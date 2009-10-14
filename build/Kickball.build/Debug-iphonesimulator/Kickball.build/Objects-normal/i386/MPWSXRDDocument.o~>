@@ -1,0 +1,55 @@
+/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:10:26: error: libxml/parser.h: No such file or directory
+/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:11:24: error: libxml/tree.h: No such file or directory
+/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:12:34: error: libxml/xpathInternals.h: No such file or directory
+/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:13:25: error: libxml/xpath.h: No such file or directory
+/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m: In function '-[MPWSXRDDocument _parseStringForContent:]':
+/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:55: warning: implicit declaration of function 'xmlInitParser'
+/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:57: error: 'xmlDocPtr' undeclared (first use in this function)
+/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:57: error: (Each undeclared identifier is reported only once
+/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:57: error: for each function it appears in.)
+/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:57: error: expected ';' before 'xrdDocument'
+/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:58: error: 'xrdDocument' undeclared (first use in this function)
+/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:60: error: 'xmlXPathContextPtr' undeclared (first use in this function)
+/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:60: error: expected ';' before 'xpathContext'
+/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:61: error: 'xmlXPathObjectPtr' undeclared (first use in this function)
+/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:61: error: expected ';' before 'xpathObject'
+/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:63: error: 'xpathObject' undeclared (first use in this function)
+/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:63: warning: implicit declaration of function 'xmlXPathEvalExpression'
+/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:63: error: expected ')' before 'xmlChar'
+/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:63: warning: type defaults to 'int' in declaration of 'type name'
+/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:63: error: 'xpathContext' undeclared (first use in this function)
+/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:65: error: 'xmlNodeSetPtr' undeclared (first use in this function)
+/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:65: error: expected ';' before 'subjectNodes'
+/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:66: error: 'subjectNodes' undeclared (first use in this function)
+/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:73: warning: implicit declaration of function 'xmlXPathFreeObject'
+/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:75: warning: implicit declaration of function 'xmlXPathFreeContext'
+/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:76: warning: implicit declaration of function 'xmlFreeDoc'
+/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:78: warning: implicit declaration of function 'xmlCleanupParser'
+/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:56: warning: unused variable 'cStringForDoc'
+{standard input}:168:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_5" minus "L00000000003$pb"
+{standard input}:168:symbol: "L_OBJC_SELECTOR_REFERENCES_5" can't be undefined in a subtraction expression
+{standard input}:164:non-relocatable subtraction expression, "L_OBJC_CLASS_MPWSXRDDocument" minus "L00000000003$pb"
+{standard input}:164:symbol: "L_OBJC_CLASS_MPWSXRDDocument" can't be undefined in a subtraction expression
+{standard input}:155:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_4" minus "L00000000003$pb"
+{standard input}:155:symbol: "L_OBJC_SELECTOR_REFERENCES_4" can't be undefined in a subtraction expression
+{standard input}:147:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_3" minus "L00000000003$pb"
+{standard input}:147:symbol: "L_OBJC_SELECTOR_REFERENCES_3" can't be undefined in a subtraction expression
+{standard input}:139:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_2" minus "L00000000003$pb"
+{standard input}:139:symbol: "L_OBJC_SELECTOR_REFERENCES_2" can't be undefined in a subtraction expression
+{standard input}:105:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_1" minus "L00000000002$pb"
+{standard input}:105:symbol: "L_OBJC_SELECTOR_REFERENCES_1" can't be undefined in a subtraction expression
+{standard input}:95:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_0" minus "L00000000002$pb"
+{standard input}:95:symbol: "L_OBJC_SELECTOR_REFERENCES_0" can't be undefined in a subtraction expression
+{standard input}:91:non-relocatable subtraction expression, "L_OBJC_CLASS_MPWSXRDDocument" minus "L00000000002$pb"
+{standard input}:91:symbol: "L_OBJC_CLASS_MPWSXRDDocument" can't be undefined in a subtraction expression
+{standard input}:57:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_0" minus "L00000000001$pb"
+{standard input}:57:symbol: "L_OBJC_SELECTOR_REFERENCES_0" can't be undefined in a subtraction expression
+{standard input}:53:non-relocatable subtraction expression, "L_OBJC_CLASS_MPWSXRDDocument" minus "L00000000001$pb"
+{standard input}:53:symbol: "L_OBJC_CLASS_MPWSXRDDocument" can't be undefined in a subtraction expression
+{standard input}:unknown:Undefined local symbol L_OBJC_CLASS_MPWSXRDDocument
+{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_0
+{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_1
+{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_2
+{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_3
+{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_4
+{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_5

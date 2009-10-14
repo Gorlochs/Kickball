@@ -1,0 +1,1691 @@
+TKickball
+v7
+r0
+t277196596.155032
+cCheck dependencies
+cProcessInfoPlistFile /Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/Info.plist Kickball-Info.plist
+cCompileXIB /Users/shawnbernard/Documents/projects/Kickball/MainWindow.xib
+cCompileXIB /Users/shawnbernard/Documents/projects/Kickball/SecondView.xib
+cCompileXIB /Users/shawnbernard/Documents/projects/Kickball/Classes/SettingsView.xib
+cCompileXIB /Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsView.xib
+cProcessPCH /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-domdjupnqpvxayckveiffenieeee/Kickball_Prefix.pch.gch Kickball_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/main.o /Users/shawnbernard/Documents/projects/Kickball/main.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/KickballAppDelegate.o /Users/shawnbernard/Documents/projects/Kickball/Classes/KickballAppDelegate.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/SettingsViewController.o /Users/shawnbernard/Documents/projects/Kickball/Classes/SettingsViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/FriendsViewController.o /Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cLd /Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/Kickball normal i386
+cGenerateDSYMFile /Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app.dSYM /Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/Kickball
+cTouch /Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app
+
+N/System/Library/Frameworks/CoreData.framework/CoreData
+c000000004A58383800000000005178B0
+t1247295544
+s5339312
+
+N/System/Library/Frameworks/Security.framework/Security
+c000000004A4D521F0000000000A0ECD0
+t1246581279
+s10546384
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/Crypto/Base64Transcoder.c
+c000000004AD5696A000000000000244A
+t1255500138
+s9290
+i"Base64Transcoder.h"
+i<math.h>
+i<string.h>
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/Crypto/Base64Transcoder.h
+c000000004AD5696A0000000000000689
+t1255500138
+s1673
+i<stdlib.h>
+i<stdbool.h>
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/Crypto/MPWSLRDDiscoverer.h
+c000000004AD5696B0000000000000515
+t1255500139
+s1301
+i<Foundation/Foundation.h>
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/Crypto/MPWSLRDDiscoverer.m
+c000000004AD5696B000000000000112F
+t1255500139
+s4399
+i"MPWSLRDDiscoverer.h"
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/Crypto/MPWSXRDDocument.h
+c000000004AD5696B0000000000000286
+t1255500139
+s646
+i<Foundation/Foundation.h>
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/Crypto/MPWSXRDDocument.m
+c000000004AD5696B0000000000000860
+t1255500139
+s2144
+i"MPWSXRDDocument.h"
+i<libxml/parser.h>
+i<libxml/tree.h>
+i<libxml/xpathInternals.h>
+i<libxml/xpath.h>
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/Crypto/hmac.c
+c000000004AD5696A0000000000000B84
+t1255500138
+s2948
+i"sha1.h"
+i<stdlib.h>
+i<string.h>
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/Crypto/hmac.h
+c000000004AD5696A0000000000000591
+t1255500138
+s1425
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/Crypto/sha1.c
+c000000004AD5696A0000000000001752
+t1255500138
+s5970
+i<stdio.h>
+i<string.h>
+i"sha1.h"
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/Crypto/sha1.h
+c000000004AD5696A0000000000000188
+t1255500138
+s392
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/FirstViewController.h
+c000000004AD5560800000000000000ED
+t1255495176
+s237
+i<UIKit/UIKit.h>
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/FirstViewController.m
+c000000004AD5560800000000000005B2
+t1255495176
+s1458
+i"FirstViewController.h"
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/Crypto/Base64Transcoder.c
+c000000004AD5696A000000000000244A
+t1255500138
+s9290
+i"Base64Transcoder.h"
+i<math.h>
+i<string.h>
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/Crypto/Base64Transcoder.h
+c000000004AD5696A0000000000000689
+t1255500138
+s1673
+i<stdlib.h>
+i<stdbool.h>
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/Crypto/hmac.c
+c000000004AD5696A0000000000000B84
+t1255500138
+s2948
+i"sha1.h"
+i<stdlib.h>
+i<string.h>
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/Crypto/hmac.h
+c000000004AD5696A0000000000000591
+t1255500138
+s1425
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/Crypto/sha1.c
+c000000004AD5696A0000000000001752
+t1255500138
+s5970
+i<stdio.h>
+i<string.h>
+i"sha1.h"
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/Crypto/sha1.h
+c000000004AD5696A0000000000000188
+t1255500138
+s392
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPDebug.h
+c000000004AD5696B00000000000000F1
+t1255500139
+s241
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuth.h
+c000000004AD5696B00000000000001C4
+t1255500139
+s452
+i<Foundation/Foundation.h>
+i<MPOAuth/MPOAuthAPI.h>
+i<MPOAuth/MPOAuthAPIRequestLoader.h>
+i<MPOAuth/MPOAuthCredentialStore.h>
+i<MPOAuth/MPOAuthParameterFactory.h>
+i<MPOAuth/MPOAuthConnection.h>
+i<MPOAuth/MPOAuthURLRequest.h>
+i<MPOAuth/MPOAuthURLResponse.h>
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthAPI+KeychainAdditions.h
+c000000004AD5696B00000000000001D9
+t1255500139
+s473
+i<Foundation/Foundation.h>
+i"MPOAuthAPI.h"
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthAPI+KeychainAdditionsMac.m
+c000000004AD5696B0000000000000C93
+t1255500139
+s3219
+i"MPOAuthAPI+KeychainAdditions.h"
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthAPI+KeychainAdditionsiPhone.m
+c000000004AD5696B0000000000001039
+t1255500139
+s4153
+i"MPOAuthAPI+KeychainAdditions.h"
+i<Security/Security.h>
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthAPI.h
+c000000004AD5696B0000000000000CCE
+t1255500139
+s3278
+i<Foundation/Foundation.h>
+i"MPOAuthCredentialStore.h"
+i"MPOAuthParameterFactory.h"
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthAPI.m
+c000000004AD571130000000000003E39
+t1255502099
+s15929
+i"MPOAuthAPIRequestLoader.h"
+i"MPOAuthAPI.h"
+i"MPOAuthCredentialConcreteStore.h"
+i"MPOAuthURLRequest.h"
+i"MPOAuthURLResponse.h"
+i"MPURLRequestParameter.h"
+i"NSURL+MPURLParameterAdditions.h"
+i"MPOAuthAPI+KeychainAdditions.h"
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthAPIRequestLoader.h
+c000000004AD5696B000000000000065B
+t1255500139
+s1627
+i<Foundation/Foundation.h>
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthAPIRequestLoader.m
+c000000004AD5716C0000000000001F9F
+t1255502188
+s8095
+i"MPOAuthAPIRequestLoader.h"
+i"MPOAuthURLRequest.h"
+i"MPOAuthURLResponse.h"
+i"MPOAuthConnection.h"
+i"MPOAuthCredentialStore.h"
+i"MPOAuthCredentialConcreteStore.h"
+i"MPURLRequestParameter.h"
+i"NSURLResponse+Encoding.h"
+i"MPDebug.h"
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthConnection.h
+c000000004AD5696B0000000000000482
+t1255500139
+s1154
+i<Foundation/Foundation.h>
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthConnection.m
+c000000004AD5696B00000000000008FD
+t1255500139
+s2301
+i"MPOAuthConnection.h"
+i"MPOAuthURLRequest.h"
+i"MPOAuthURLResponse.h"
+i"MPOAuthParameterFactory.h"
+i"MPOAuthCredentialConcreteStore.h"
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthCredentialConcreteStore.h
+c000000004AD5696B0000000000000395
+t1255500139
+s917
+i<Foundation/Foundation.h>
+i"MPOAuthCredentialStore.h"
+i"MPOAuthParameterFactory.h"
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthCredentialConcreteStore.m
+c000000004AD5696B00000000000017E0
+t1255500139
+s6112
+i"MPOAuthCredentialConcreteStore.h"
+i"MPURLRequestParameter.h"
+i"NSString+URLEscapingAdditions.h"
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthCredentialStore.h
+c000000004AD5696B00000000000003D6
+t1255500139
+s982
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthParameterFactory.h
+c000000004AD5696B000000000000031E
+t1255500139
+s798
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthSignatureParameter.h
+c000000004AD5696B0000000000000356
+t1255500139
+s854
+i<Foundation/Foundation.h>
+i"MPURLRequestParameter.h"
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthSignatureParameter.m
+c000000004AD5696B0000000000000B6F
+t1255500139
+s2927
+i"MPOAuthSignatureParameter.h"
+i"MPOAuthURLRequest.h"
+i"NSString+URLEscapingAdditions.h"
+i"NSURL+MPURLParameterAdditions.h"
+i"hmac.h"
+i"Base64Transcoder.h"
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthURLRequest.h
+c000000004AD5696B0000000000000330
+t1255500139
+s816
+i<Foundation/Foundation.h>
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthURLRequest.m
+c000000004AD5716E0000000000000AB3
+t1255502190
+s2739
+i"MPOAuthURLRequest.h"
+i"MPURLRequestParameter.h"
+i"MPOAuthSignatureParameter.h"
+i"NSString+URLEscapingAdditions.h"
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthURLResponse.h
+c000000004AD5696B00000000000001B8
+t1255500139
+s440
+i<Foundation/Foundation.h>
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthURLResponse.m
+c000000004AD5696B0000000000000292
+t1255500139
+s658
+i"MPOAuthURLResponse.h"
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPURLRequestParameter.h
+c000000004AD5696B0000000000000349
+t1255500139
+s841
+i<Foundation/Foundation.h>
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPURLRequestParameter.m
+c000000004AD5696B000000000000124A
+t1255500139
+s4682
+i"MPURLRequestParameter.h"
+i"NSString+URLEscapingAdditions.h"
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/NSString+URLEscapingAdditions.h
+c000000004AD5696B00000000000001EF
+t1255500139
+s495
+i<Foundation/Foundation.h>
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/NSString+URLEscapingAdditions.m
+c000000004AD5696B000000000000076E
+t1255500139
+s1902
+i"NSString+URLEscapingAdditions.h"
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/NSURL+MPURLParameterAdditions.h
+c000000004AD5696B00000000000001CE
+t1255500139
+s462
+i<Foundation/Foundation.h>
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/NSURL+MPURLParameterAdditions.m
+c000000004AD5696B0000000000000C68
+t1255500139
+s3176
+i"NSURL+MPURLParameterAdditions.h"
+i"MPURLRequestParameter.h"
+i"NSString+URLEscapingAdditions.h"
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/NSURLResponse+Encoding.h
+c000000004AD5696B0000000000000111
+t1255500139
+s273
+i<Foundation/Foundation.h>
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/NSURLResponse+Encoding.m
+c000000004AD5696B0000000000000286
+t1255500139
+s646
+i"NSURLResponse+Encoding.h"
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/oauthAutoConfig.plist
+c000000004AD5696C00000000000011DF
+t1255500140
+s4575
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsView.xib
+c000000004AD55B930000000000001C8A
+t1255496595
+s7306
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsViewController.h
+c000000004AD5778F00000000000000FA
+t1255503759
+s250
+i<UIKit/UIKit.h>
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsViewController.m
+c000000004AD577AB00000000000010C6
+t1255503787
+s4294
+i"FriendsViewController.h"
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsViewController.xib
+c000000004AD55B930000000000001C8A
+t1255496595
+s7306
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/KickballAppDelegate.h
+c000000004AD5560800000000000001DE
+t1255495176
+s478
+i<UIKit/UIKit.h>
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/KickballAppDelegate.m
+c000000004AD5560800000000000003C0
+t1255495176
+s960
+i"KickballAppDelegate.h"
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/MPDebug.h
+c000000004AD5696B00000000000000F1
+t1255500139
+s241
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthAPI+KeychainAdditions.h
+c000000004AD5696B00000000000001D9
+t1255500139
+s473
+i<Foundation/Foundation.h>
+i"MPOAuthAPI.h"
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthAPI+KeychainAdditionsMac.m
+c000000004AD5696B0000000000000C93
+t1255500139
+s3219
+i"MPOAuthAPI+KeychainAdditions.h"
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthAPI+KeychainAdditionsiPhone.m
+c000000004AD5696B0000000000001039
+t1255500139
+s4153
+i"MPOAuthAPI+KeychainAdditions.h"
+i<Security/Security.h>
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthAPI.h
+c000000004AD5696B0000000000000CCE
+t1255500139
+s3278
+i<Foundation/Foundation.h>
+i"MPOAuthCredentialStore.h"
+i"MPOAuthParameterFactory.h"
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthAPI.m
+c000000004AD5696B0000000000003E33
+t1255500139
+s15923
+i"MPOAuthAPIRequestLoader.h"
+i"MPOAuthAPI.h"
+i"MPOAuthCredentialConcreteStore.h"
+i"MPOAuthURLRequest.h"
+i"MPOAuthURLResponse.h"
+i"MPURLRequestParameter.h"
+i"NSURL+MPURLParameterAdditions.h"
+i"MPOAuthAPI+KeychainAdditions.h"
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthAPIRequestLoader.h
+c000000004AD5696B000000000000065B
+t1255500139
+s1627
+i<Foundation/Foundation.h>
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthAPIRequestLoader.m
+c000000004AD5696B0000000000001F95
+t1255500139
+s8085
+i"MPOAuthAPIRequestLoader.h"
+i"MPOAuthURLRequest.h"
+i"MPOAuthURLResponse.h"
+i"MPOAuthConnection.h"
+i"MPOAuthCredentialStore.h"
+i"MPOAuthCredentialConcreteStore.h"
+i"MPURLRequestParameter.h"
+i"NSURLResponse+Encoding.h"
+i"MPDebug.h"
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthConnection.h
+c000000004AD5696B0000000000000482
+t1255500139
+s1154
+i<Foundation/Foundation.h>
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthConnection.m
+c000000004AD5696B00000000000008FD
+t1255500139
+s2301
+i"MPOAuthConnection.h"
+i"MPOAuthURLRequest.h"
+i"MPOAuthURLResponse.h"
+i"MPOAuthParameterFactory.h"
+i"MPOAuthCredentialConcreteStore.h"
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthCredentialConcreteStore.h
+c000000004AD5696B0000000000000395
+t1255500139
+s917
+i<Foundation/Foundation.h>
+i"MPOAuthCredentialStore.h"
+i"MPOAuthParameterFactory.h"
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthCredentialConcreteStore.m
+c000000004AD5696B00000000000017E0
+t1255500139
+s6112
+i"MPOAuthCredentialConcreteStore.h"
+i"MPURLRequestParameter.h"
+i"NSString+URLEscapingAdditions.h"
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthCredentialStore.h
+c000000004AD5696B00000000000003D6
+t1255500139
+s982
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthParameterFactory.h
+c000000004AD5696B000000000000031E
+t1255500139
+s798
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthSignatureParameter.h
+c000000004AD5696B0000000000000356
+t1255500139
+s854
+i<Foundation/Foundation.h>
+i"MPURLRequestParameter.h"
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthSignatureParameter.m
+c000000004AD5696B0000000000000B6F
+t1255500139
+s2927
+i"MPOAuthSignatureParameter.h"
+i"MPOAuthURLRequest.h"
+i"NSString+URLEscapingAdditions.h"
+i"NSURL+MPURLParameterAdditions.h"
+i"hmac.h"
+i"Base64Transcoder.h"
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthURLRequest.h
+c000000004AD5696B0000000000000330
+t1255500139
+s816
+i<Foundation/Foundation.h>
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthURLRequest.m
+c000000004AD5696B0000000000000AAD
+t1255500139
+s2733
+i"MPOAuthURLRequest.h"
+i"MPURLRequestParameter.h"
+i"MPOAuthSignatureParameter.h"
+i"NSString+URLEscapingAdditions.h"
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthURLResponse.h
+c000000004AD5696B00000000000001B8
+t1255500139
+s440
+i<Foundation/Foundation.h>
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthURLResponse.m
+c000000004AD5696B0000000000000292
+t1255500139
+s658
+i"MPOAuthURLResponse.h"
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/MPURLRequestParameter.h
+c000000004AD5696B0000000000000349
+t1255500139
+s841
+i<Foundation/Foundation.h>
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/MPURLRequestParameter.m
+c000000004AD5696B000000000000124A
+t1255500139
+s4682
+i"MPURLRequestParameter.h"
+i"NSString+URLEscapingAdditions.h"
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSLRDDiscoverer.h
+c000000004AD5696B0000000000000515
+t1255500139
+s1301
+i<Foundation/Foundation.h>
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSLRDDiscoverer.m
+c000000004AD5696B000000000000112F
+t1255500139
+s4399
+i"MPWSLRDDiscoverer.h"
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.h
+c000000004AD5696B0000000000000286
+t1255500139
+s646
+i<Foundation/Foundation.h>
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m
+c000000004AD56D610000000000000860
+t1255501153
+s2144
+i"MPWSXRDDocument.h"
+i<libxml/parser.h>
+i<libxml/tree.h>
+i<libxml/xpathInternals.h>
+i<libxml/xpath.h>
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/NSString+URLEscapingAdditions.h
+c000000004AD5696B00000000000001EF
+t1255500139
+s495
+i<Foundation/Foundation.h>
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/NSString+URLEscapingAdditions.m
+c000000004AD5696B000000000000076E
+t1255500139
+s1902
+i"NSString+URLEscapingAdditions.h"
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/NSURL+MPURLParameterAdditions.h
+c000000004AD5696B00000000000001CE
+t1255500139
+s462
+i<Foundation/Foundation.h>
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/NSURL+MPURLParameterAdditions.m
+c000000004AD5696B0000000000000C68
+t1255500139
+s3176
+i"NSURL+MPURLParameterAdditions.h"
+i"MPURLRequestParameter.h"
+i"NSString+URLEscapingAdditions.h"
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/NSURLResponse+Encoding.h
+c000000004AD5696B0000000000000111
+t1255500139
+s273
+i<Foundation/Foundation.h>
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/NSURLResponse+Encoding.m
+c000000004AD5696B0000000000000286
+t1255500139
+s646
+i"NSURLResponse+Encoding.h"
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/SettingsView.xib
+c000000004AD557C700000000000058C2
+t1255495623
+s22722
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/SettingsViewController.h
+c000000004AD560A700000000000001D5
+t1255497895
+s469
+i<UIKit/UIKit.h>
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/SettingsViewController.m
+c000000004AD560FA00000000000007CF
+t1255497978
+s1999
+i"SettingsViewController.h"
+
+N/Users/shawnbernard/Documents/projects/Kickball/Classes/SettingsViewController.xib
+c000000004AD5567E000000000000187D
+t1255495294
+s6269
+
+N/Users/shawnbernard/Documents/projects/Kickball/Kickball_Prefix.pch
+c000000004AD5560800000000000000B9
+t1255495176
+s185
+i<Foundation/Foundation.h>
+i<UIKit/UIKit.h>
+
+N/Users/shawnbernard/Documents/projects/Kickball/MainWindow.xib
+c000000004AD5617D000000000000714E
+t1255498109
+s29006
+
+N/Users/shawnbernard/Documents/projects/Kickball/SecondView.xib
+c000000004AD5560800000000000022F0
+t1255495176
+s8944
+
+N/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app
+t1255503788
+s340
+
+N/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app.dSYM
+t1255503787
+s102
+
+N/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/FriendsView.nib
+t1255497623
+s984
+
+N/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/FriendsViewController.nib
+t2
+s0
+
+N/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/Info.plist
+t1255495531
+s566
+
+N/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/Kickball
+t1255503787
+s22256
+
+N/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/MainWindow.nib
+t1255498112
+s1984
+
+N/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/PkgInfo
+t1255495531
+s8
+
+N/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/SecondView.nib
+t1255495532
+s1709
+
+N/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/SettingsView.nib
+t1255497622
+s2244
+
+N/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/SettingsViewController.nib
+t2
+s0
+
+N/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/oauthAutoConfig.plist
+t1255501957
+s2316
+
+N/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/Base64Transcoder.o
+t1255501957
+s7960
+
+N/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/FirstViewController.o
+t1255495536
+s29888
+
+N/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/FriendsViewController.o
+t1255503787
+s33184
+
+N/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/Kickball.LinkFileList
+c000000004AD577AB0000000000000246
+t1255503787
+s582
+
+N/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/KickballAppDelegate.o
+t1255500523
+s40856
+
+N/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthAPI+KeychainAdditionsMac.o
+t1255501958
+s4548
+
+N/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthAPI+KeychainAdditionsiPhone.o
+t1255501958
+s15916
+
+N/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthAPI.o
+t1255502100
+s54088
+
+N/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthAPIRequestLoader.o
+t1255502191
+s31832
+
+N/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthConnection.o
+t1255501958
+s12820
+
+N/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthCredentialConcreteStore.o
+t1255501958
+s29884
+
+N/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthSignatureParameter.o
+t1255501958
+s14976
+
+N/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthURLRequest.o
+t1255502192
+s18336
+
+N/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthURLResponse.o
+t1255501958
+s9752
+
+N/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPURLRequestParameter.o
+t1255501958
+s21804
+
+N/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPWSLRDDiscoverer-44DA6F1C689BC435.o
+t2
+s0
+
+N/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPWSLRDDiscoverer-9244938D715FC540.o
+t2
+s0
+
+N/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPWSLRDDiscoverer.o
+t1255500719
+s22236
+
+N/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPWSXRDDocument-35DD2D70CB8BE437.o
+t2
+s0
+
+N/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPWSXRDDocument-834751E1D44FE542.o
+t2
+s0
+
+N/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPWSXRDDocument.o
+t2
+s0
+
+N/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/NSString+URLEscapingAdditions.o
+t1255501958
+s10032
+
+N/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/NSURL+MPURLParameterAdditions.o
+t1255501958
+s13032
+
+N/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/NSURLResponse+Encoding.o
+t1255501958
+s7348
+
+N/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/SettingsViewController.o
+t1255500523
+s35296
+
+N/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/hmac.o
+t1255501958
+s3880
+
+N/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/main.o
+t1255500523
+s5948
+
+N/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/sha1.o
+t1255501958
+s11776
+
+N/Users/shawnbernard/Documents/projects/Kickball/main.m
+c000000004AD556080000000000000168
+t1255495176
+s360
+i<UIKit/UIKit.h>
+
+N/Users/shawnbernard/Documents/projects/mpoauthconnection-read-only/build/Release/MPOAuth.framework/Headers/MPOAuth.h
+c000000004AD5699E00000000000001C4
+t1255500190
+s452
+i<Foundation/Foundation.h>
+i<MPOAuth/MPOAuthAPI.h>
+i<MPOAuth/MPOAuthAPIRequestLoader.h>
+i<MPOAuth/MPOAuthCredentialStore.h>
+i<MPOAuth/MPOAuthParameterFactory.h>
+i<MPOAuth/MPOAuthConnection.h>
+i<MPOAuth/MPOAuthURLRequest.h>
+i<MPOAuth/MPOAuthURLResponse.h>
+
+N/Users/shawnbernard/Documents/projects/mpoauthconnection-read-only/build/Release/MPOAuth.framework/Headers/MPOAuthAPI.h
+c000000004AD5699E0000000000000CCE
+t1255500190
+s3278
+i<Foundation/Foundation.h>
+i"MPOAuthCredentialStore.h"
+i"MPOAuthParameterFactory.h"
+
+N/Users/shawnbernard/Documents/projects/mpoauthconnection-read-only/build/Release/MPOAuth.framework/Headers/MPOAuthAPIRequestLoader.h
+c000000004AD5699E000000000000065B
+t1255500190
+s1627
+i<Foundation/Foundation.h>
+
+N/Users/shawnbernard/Documents/projects/mpoauthconnection-read-only/build/Release/MPOAuth.framework/Headers/MPOAuthConnection.h
+c000000004AD5699E0000000000000482
+t1255500190
+s1154
+i<Foundation/Foundation.h>
+
+N/Users/shawnbernard/Documents/projects/mpoauthconnection-read-only/build/Release/MPOAuth.framework/Headers/MPOAuthCredentialStore.h
+c000000004AD5699E00000000000003D6
+t1255500190
+s982
+
+N/Users/shawnbernard/Documents/projects/mpoauthconnection-read-only/build/Release/MPOAuth.framework/Headers/MPOAuthParameterFactory.h
+c000000004AD5699E000000000000031E
+t1255500190
+s798
+
+N/Users/shawnbernard/Documents/projects/mpoauthconnection-read-only/build/Release/MPOAuth.framework/Headers/MPOAuthURLRequest.h
+c000000004AD5699E0000000000000330
+t1255500190
+s816
+i<Foundation/Foundation.h>
+
+N/Users/shawnbernard/Documents/projects/mpoauthconnection-read-only/build/Release/MPOAuth.framework/Headers/MPOAuthURLResponse.h
+c000000004AD5699E00000000000001B8
+t1255500190
+s440
+i<Foundation/Foundation.h>
+
+N/Users/shawnbernard/Documents/projects/mpoauthconnection-read-only/build/Release/MPOAuth.framework/MPOAuth
+c000000004AD569CB000000000003ACC8
+t1255500235
+s240840
+
+N/Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk
+c000000004ABBEED200000000000000EE
+t1253830354
+s238
+
+N/Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics
+c000000004A821911000000000026EE30
+t1250040081
+s2551344
+
+N/Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk/System/Library/Frameworks/Foundation.framework/Foundation
+c000000004A765094000000000027E880
+t1249267860
+s2615424
+
+N/Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.h
+c000000004A7650820000000000001355
+t1249267842
+s4949
+
+N/Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk/System/Library/Frameworks/Security.framework/Headers/Security.h
+c000000004A79F8EF00000000000004F5
+t1249507567
+s1269
+
+N/Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h
+c000000004A7C6E970000000000000788
+t1249668759
+s1928
+
+N/Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk/System/Library/Frameworks/UIKit.framework/UIKit
+c000000004A7C6F5900000000016721E0
+t1249668953
+s23536096
+
+N/Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk/usr/include/math.h
+c000000004748A10600000000000004B7
+t1195942150
+s1207
+
+N/Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk/usr/include/stdio.h
+c000000004748A1330000000000003D1D
+t1195942195
+s15645
+
+N/Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk/usr/include/stdlib.h
+c000000004748A1330000000000002A79
+t1195942195
+s10873
+
+N/Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk/usr/include/string.h
+c000000004748A1330000000000001731
+t1195942195
+s5937
+
+N/Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk/usr/lib/gcc/i686-apple-darwin10/4.2.1/include/stdbool.h
+c000000004748AF950000000000000644
+t1195945877
+s1604
+
+N/usr/lib/libxml2.dylib
+c000000004A1F12DA00000000003958C0
+t1243550426
+s3758272
+
+N/var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-avjazwcacwpczogsrfdugpkgljgk/Kickball_Prefix.pch.gch
+t1255500718
+s2142576
+
+N/var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-domdjupnqpvxayckveiffenieeee/Kickball_Prefix.pch.gch
+t1255500522
+s13034960
+
+N/var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-edcyysmmuwjuzcfulkwcuoqiubjg/Kickball_Prefix.pch.gch
+t1255495535
+s13034960
+
+NKickball-Info.plist
+c000000004AD55608000000000000038D
+t1255495176
+s909
+
+CCheck dependencies
+r0
+lSLF07#2@18"Check dependencies277196596#277196596#0(0"0(0#1#0"4300882208#0"0#
+
+CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/Base64Transcoder.o /Users/shawnbernard/Documents/projects/Kickball/Classes/Crypto/Base64Transcoder.c normal i386 c com.apple.compilers.gcc.4_2
+s277193518.912265
+e277193519.015981
+r1
+xCompileC
+xbuild/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/Base64Transcoder.o
+x/Users/shawnbernard/Documents/projects/Kickball/Classes/Crypto/Base64Transcoder.c
+xnormal
+xi386
+xc
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@89"Compile /Users/shawnbernard/Documents/projects/Kickball/Classes/Crypto/Base64Transcoder.c277193518#277193519#0(0"0(0#0#81"/Users/shawnbernard/Documents/projects/Kickball/Classes/Crypto/Base64Transcoder.c4300882208#2084"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -F/Users/shawnbernard/Documents/projects/Kickball/../mpoauthconnection-read-only/build/Release -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -include /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-avjazwcacwpczogsrfdugpkgljgk/Kickball_Prefix.pch -c /Users/shawnbernard/Documents/projects/Kickball/Classes/Crypto/Base64Transcoder.c -o /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/Base64Transcoder.o0#
+
+CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/Base64Transcoder.o /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/Crypto/Base64Transcoder.c normal i386 c com.apple.compilers.gcc.4_2
+s277194757.731576
+e277194757.948112
+r1
+xCompileC
+xbuild/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/Base64Transcoder.o
+x/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/Crypto/Base64Transcoder.c
+xnormal
+xi386
+xc
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@99"Compile /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/Crypto/Base64Transcoder.c277194757#277194757#0(0"0(0#0#91"/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/Crypto/Base64Transcoder.c4300882208#2094"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -F/Users/shawnbernard/Documents/projects/Kickball/../mpoauthconnection-read-only/build/Release -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -include /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-avjazwcacwpczogsrfdugpkgljgk/Kickball_Prefix.pch -c /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/Crypto/Base64Transcoder.c -o /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/Base64Transcoder.o0#
+
+CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/FirstViewController.o /Users/shawnbernard/Documents/projects/Kickball/Classes/FirstViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s277188336.193320
+e277188336.296398
+r1
+xCompileC
+xbuild/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/FirstViewController.o
+x/Users/shawnbernard/Documents/projects/Kickball/Classes/FirstViewController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@85"Compile /Users/shawnbernard/Documents/projects/Kickball/Classes/FirstViewController.m277188336#277188336#0(0"0(0#0#77"/Users/shawnbernard/Documents/projects/Kickball/Classes/FirstViewController.m4300882208#1998"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -include /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-edcyysmmuwjuzcfulkwcuoqiubjg/Kickball_Prefix.pch -c /Users/shawnbernard/Documents/projects/Kickball/Classes/FirstViewController.m -o /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/FirstViewController.o0#
+
+CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/FriendsViewController.o /Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s277196587.799992
+e277196587.950866
+r1
+xCompileC
+xbuild/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/FriendsViewController.o
+x/Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsViewController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@87"Compile /Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsViewController.m277196587#277196587#0(0"0(0#0#79"/Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsViewController.m4300882208#2097"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -F/Users/shawnbernard/Documents/projects/Kickball/../mpoauthconnection-read-only/build/Release -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -include /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-domdjupnqpvxayckveiffenieeee/Kickball_Prefix.pch -c /Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsViewController.m -o /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/FriendsViewController.o0#
+
+CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/KickballAppDelegate.o /Users/shawnbernard/Documents/projects/Kickball/Classes/KickballAppDelegate.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s277193323.069392
+e277193323.169753
+r1
+xCompileC
+xbuild/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/KickballAppDelegate.o
+x/Users/shawnbernard/Documents/projects/Kickball/Classes/KickballAppDelegate.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@85"Compile /Users/shawnbernard/Documents/projects/Kickball/Classes/KickballAppDelegate.m277193323#277193323#0(0"0(0#0#77"/Users/shawnbernard/Documents/projects/Kickball/Classes/KickballAppDelegate.m4300882208#2093"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -F/Users/shawnbernard/Documents/projects/Kickball/../mpoauthconnection-read-only/build/Release -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -include /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-domdjupnqpvxayckveiffenieeee/Kickball_Prefix.pch -c /Users/shawnbernard/Documents/projects/Kickball/Classes/KickballAppDelegate.m -o /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/KickballAppDelegate.o0#
+
+CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthAPI+KeychainAdditionsMac.o /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthAPI+KeychainAdditionsMac.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s277194758.105206
+e277194758.167938
+r1
+xCompileC
+xbuild/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthAPI+KeychainAdditionsMac.o
+x/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthAPI+KeychainAdditionsMac.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@107"Compile /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthAPI+KeychainAdditionsMac.m277194758#277194758#0(0"0(0#0#99"/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthAPI+KeychainAdditionsMac.m4300882208#2127"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -F/Users/shawnbernard/Documents/projects/Kickball/../mpoauthconnection-read-only/build/Release -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -include /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-domdjupnqpvxayckveiffenieeee/Kickball_Prefix.pch -c /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthAPI+KeychainAdditionsMac.m -o /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthAPI+KeychainAdditionsMac.o0#
+
+CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthAPI+KeychainAdditionsMac.o /Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthAPI+KeychainAdditionsMac.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s277193519.264862
+e277193519.343285
+r1
+xCompileC
+xbuild/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthAPI+KeychainAdditionsMac.o
+x/Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthAPI+KeychainAdditionsMac.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@97"Compile /Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthAPI+KeychainAdditionsMac.m277193519#277193519#0(0"0(0#0#89"/Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthAPI+KeychainAdditionsMac.m4300882208#2117"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -F/Users/shawnbernard/Documents/projects/Kickball/../mpoauthconnection-read-only/build/Release -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -include /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-domdjupnqpvxayckveiffenieeee/Kickball_Prefix.pch -c /Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthAPI+KeychainAdditionsMac.m -o /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthAPI+KeychainAdditionsMac.o0#
+
+CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthAPI+KeychainAdditionsiPhone.o /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthAPI+KeychainAdditionsiPhone.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s277194758.040622
+e277194758.156319
+r1
+xCompileC
+xbuild/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthAPI+KeychainAdditionsiPhone.o
+x/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthAPI+KeychainAdditionsiPhone.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@110"Compile /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthAPI+KeychainAdditionsiPhone.m277194758#277194758#0(0"0(0#0#102"/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthAPI+KeychainAdditionsiPhone.m4300882208#2133"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -F/Users/shawnbernard/Documents/projects/Kickball/../mpoauthconnection-read-only/build/Release -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -include /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-domdjupnqpvxayckveiffenieeee/Kickball_Prefix.pch -c /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthAPI+KeychainAdditionsiPhone.m -o /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthAPI+KeychainAdditionsiPhone.o0#
+
+CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthAPI+KeychainAdditionsiPhone.o /Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthAPI+KeychainAdditionsiPhone.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s277193519.220607
+e277193519.312361
+r1
+xCompileC
+xbuild/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthAPI+KeychainAdditionsiPhone.o
+x/Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthAPI+KeychainAdditionsiPhone.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@100"Compile /Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthAPI+KeychainAdditionsiPhone.m277193519#277193519#0(0"0(0#0#92"/Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthAPI+KeychainAdditionsiPhone.m4300882208#2123"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -F/Users/shawnbernard/Documents/projects/Kickball/../mpoauthconnection-read-only/build/Release -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -include /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-domdjupnqpvxayckveiffenieeee/Kickball_Prefix.pch -c /Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthAPI+KeychainAdditionsiPhone.m -o /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthAPI+KeychainAdditionsiPhone.o0#
+
+CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthAPI.o /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthAPI.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s277194900.235916
+e277194900.452511
+r1
+xCompileC
+xbuild/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthAPI.o
+x/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthAPI.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@86"Compile /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthAPI.m277194900#277194900#0(0"0(0#0#78"/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthAPI.m4300882208#2085"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -F/Users/shawnbernard/Documents/projects/Kickball/../mpoauthconnection-read-only/build/Release -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -include /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-domdjupnqpvxayckveiffenieeee/Kickball_Prefix.pch -c /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthAPI.m -o /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthAPI.o0#
+
+CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthAPI.o /Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthAPI.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s277193519.066856
+e277193519.264770
+r1
+xCompileC
+xbuild/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthAPI.o
+x/Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthAPI.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+o/Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthAPI.m: In function '-[MPOAuthAPI _authenticationRequestForRequestToken]':
+o/Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthAPI.m:191: warning: implicit declaration of function 'MPLog'
+lSLF07#2@76"Compile /Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthAPI.m277193519#277193519#0(261"/Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthAPI.m: In function '-[MPOAuthAPI _authenticationRequestForRequestToken]':/Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthAPI.m:191: warning: implicit declaration of function 'MPLog'1(22@40"Implicit declaration of function 'MPLog'277193519#137#124#0(6@68"/Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthAPI.m277192939#191#0#191#0#36"implicit declaration of function '*'0(0#0#68"/Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthAPI.m4300882208#2075"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -F/Users/shawnbernard/Documents/projects/Kickball/../mpoauthconnection-read-only/build/Release -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -include /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-domdjupnqpvxayckveiffenieeee/Kickball_Prefix.pch -c /Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthAPI.m -o /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthAPI.o0#
+
+CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthAPIRequestLoader.o /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthAPIRequestLoader.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s277194991.767290
+e277194991.990262
+r1
+xCompileC
+xbuild/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthAPIRequestLoader.o
+x/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthAPIRequestLoader.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@99"Compile /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthAPIRequestLoader.m277194991#277194991#0(0"0(0#0#91"/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthAPIRequestLoader.m4300882208#2111"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -F/Users/shawnbernard/Documents/projects/Kickball/../mpoauthconnection-read-only/build/Release -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -include /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-domdjupnqpvxayckveiffenieeee/Kickball_Prefix.pch -c /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthAPIRequestLoader.m -o /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthAPIRequestLoader.o0#
+
+CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthAPIRequestLoader.o /Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthAPIRequestLoader.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s277193519.312469
+e277193519.446158
+r1
+xCompileC
+xbuild/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthAPIRequestLoader.o
+x/Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthAPIRequestLoader.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@89"Compile /Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthAPIRequestLoader.m277193519#277193519#0(0"0(0#0#81"/Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthAPIRequestLoader.m4300882208#2101"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -F/Users/shawnbernard/Documents/projects/Kickball/../mpoauthconnection-read-only/build/Release -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -include /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-domdjupnqpvxayckveiffenieeee/Kickball_Prefix.pch -c /Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthAPIRequestLoader.m -o /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthAPIRequestLoader.o0#
+
+CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthConnection.o /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthConnection.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s277194758.300197
+e277194758.391777
+r1
+xCompileC
+xbuild/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthConnection.o
+x/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthConnection.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@93"Compile /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthConnection.m277194758#277194758#0(0"0(0#0#85"/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthConnection.m4300882208#2099"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -F/Users/shawnbernard/Documents/projects/Kickball/../mpoauthconnection-read-only/build/Release -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -include /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-domdjupnqpvxayckveiffenieeee/Kickball_Prefix.pch -c /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthConnection.m -o /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthConnection.o0#
+
+CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthConnection.o /Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthConnection.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s277193519.343406
+e277193519.450074
+r1
+xCompileC
+xbuild/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthConnection.o
+x/Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthConnection.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@83"Compile /Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthConnection.m277193519#277193519#0(0"0(0#0#75"/Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthConnection.m4300882208#2089"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -F/Users/shawnbernard/Documents/projects/Kickball/../mpoauthconnection-read-only/build/Release -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -include /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-domdjupnqpvxayckveiffenieeee/Kickball_Prefix.pch -c /Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthConnection.m -o /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthConnection.o0#
+
+CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthCredentialConcreteStore.o /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthCredentialConcreteStore.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s277194758.362727
+e277194758.523163
+r1
+xCompileC
+xbuild/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthCredentialConcreteStore.o
+x/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthCredentialConcreteStore.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@106"Compile /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthCredentialConcreteStore.m277194758#277194758#0(0"0(0#0#98"/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthCredentialConcreteStore.m4300882208#2125"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -F/Users/shawnbernard/Documents/projects/Kickball/../mpoauthconnection-read-only/build/Release -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -include /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-domdjupnqpvxayckveiffenieeee/Kickball_Prefix.pch -c /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthCredentialConcreteStore.m -o /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthCredentialConcreteStore.o0#
+
+CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthCredentialConcreteStore.o /Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthCredentialConcreteStore.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s277193519.446310
+e277193519.569084
+r1
+xCompileC
+xbuild/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthCredentialConcreteStore.o
+x/Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthCredentialConcreteStore.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@96"Compile /Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthCredentialConcreteStore.m277193519#277193519#0(0"0(0#0#88"/Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthCredentialConcreteStore.m4300882208#2115"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -F/Users/shawnbernard/Documents/projects/Kickball/../mpoauthconnection-read-only/build/Release -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -include /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-domdjupnqpvxayckveiffenieeee/Kickball_Prefix.pch -c /Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthCredentialConcreteStore.m -o /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthCredentialConcreteStore.o0#
+
+CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthSignatureParameter.o /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthSignatureParameter.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s277194758.391883
+e277194758.490749
+r1
+xCompileC
+xbuild/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthSignatureParameter.o
+x/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthSignatureParameter.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@101"Compile /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthSignatureParameter.m277194758#277194758#0(0"0(0#0#93"/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthSignatureParameter.m4300882208#2115"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -F/Users/shawnbernard/Documents/projects/Kickball/../mpoauthconnection-read-only/build/Release -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -include /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-domdjupnqpvxayckveiffenieeee/Kickball_Prefix.pch -c /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthSignatureParameter.m -o /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthSignatureParameter.o0#
+
+CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthSignatureParameter.o /Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthSignatureParameter.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s277193519.450173
+e277193519.535492
+r1
+xCompileC
+xbuild/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthSignatureParameter.o
+x/Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthSignatureParameter.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@91"Compile /Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthSignatureParameter.m277193519#277193519#0(0"0(0#0#83"/Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthSignatureParameter.m4300882208#2105"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -F/Users/shawnbernard/Documents/projects/Kickball/../mpoauthconnection-read-only/build/Release -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -include /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-domdjupnqpvxayckveiffenieeee/Kickball_Prefix.pch -c /Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthSignatureParameter.m -o /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthSignatureParameter.o0#
+
+CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthURLRequest.o /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthURLRequest.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s277194991.829302
+e277194992.005021
+r1
+xCompileC
+xbuild/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthURLRequest.o
+x/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthURLRequest.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@93"Compile /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthURLRequest.m277194991#277194992#0(0"0(0#0#85"/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthURLRequest.m4300882208#2099"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -F/Users/shawnbernard/Documents/projects/Kickball/../mpoauthconnection-read-only/build/Release -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -include /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-domdjupnqpvxayckveiffenieeee/Kickball_Prefix.pch -c /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthURLRequest.m -o /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthURLRequest.o0#
+
+CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthURLRequest.o /Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthURLRequest.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s277193519.535606
+e277193519.628141
+r1
+xCompileC
+xbuild/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthURLRequest.o
+x/Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthURLRequest.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+o/Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthURLRequest.m: In function '-[MPOAuthURLRequest urlRequestSignedWithSecret:usingMethod:]':
+o/Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthURLRequest.m:57: warning: implicit declaration of function 'MPLog'
+lSLF07#2@83"Compile /Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthURLRequest.m277193519#277193519#0(283"/Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthURLRequest.m: In function '-[MPOAuthURLRequest urlRequestSignedWithSecret:usingMethod:]':/Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthURLRequest.m:57: warning: implicit declaration of function 'MPLog'1(22@40"Implicit declaration of function 'MPLog'277193519#153#130#0(6@75"/Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthURLRequest.m277192939#57#0#57#0#36"implicit declaration of function '*'0(0#0#75"/Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthURLRequest.m4300882208#2089"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -F/Users/shawnbernard/Documents/projects/Kickball/../mpoauthconnection-read-only/build/Release -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -include /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-domdjupnqpvxayckveiffenieeee/Kickball_Prefix.pch -c /Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthURLRequest.m -o /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthURLRequest.o0#
+
+CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthURLResponse.o /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthURLResponse.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s277194758.523271
+e277194758.619449
+r1
+xCompileC
+xbuild/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthURLResponse.o
+x/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthURLResponse.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@94"Compile /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthURLResponse.m277194758#277194758#0(0"0(0#0#86"/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthURLResponse.m4300882208#2101"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -F/Users/shawnbernard/Documents/projects/Kickball/../mpoauthconnection-read-only/build/Release -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -include /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-domdjupnqpvxayckveiffenieeee/Kickball_Prefix.pch -c /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPOAuthURLResponse.m -o /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthURLResponse.o0#
+
+CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthURLResponse.o /Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthURLResponse.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s277193519.569190
+e277193519.656848
+r1
+xCompileC
+xbuild/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthURLResponse.o
+x/Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthURLResponse.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@84"Compile /Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthURLResponse.m277193519#277193519#0(0"0(0#0#76"/Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthURLResponse.m4300882208#2091"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -F/Users/shawnbernard/Documents/projects/Kickball/../mpoauthconnection-read-only/build/Release -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -include /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-domdjupnqpvxayckveiffenieeee/Kickball_Prefix.pch -c /Users/shawnbernard/Documents/projects/Kickball/Classes/MPOAuthURLResponse.m -o /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPOAuthURLResponse.o0#
+
+CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPURLRequestParameter.o /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPURLRequestParameter.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s277194758.584495
+e277194758.750923
+r1
+xCompileC
+xbuild/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPURLRequestParameter.o
+x/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPURLRequestParameter.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@97"Compile /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPURLRequestParameter.m277194758#277194758#0(0"0(0#0#89"/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPURLRequestParameter.m4300882208#2107"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -F/Users/shawnbernard/Documents/projects/Kickball/../mpoauthconnection-read-only/build/Release -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -include /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-domdjupnqpvxayckveiffenieeee/Kickball_Prefix.pch -c /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/MPURLRequestParameter.m -o /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPURLRequestParameter.o0#
+
+CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPURLRequestParameter.o /Users/shawnbernard/Documents/projects/Kickball/Classes/MPURLRequestParameter.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s277193519.628256
+e277193519.729768
+r1
+xCompileC
+xbuild/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPURLRequestParameter.o
+x/Users/shawnbernard/Documents/projects/Kickball/Classes/MPURLRequestParameter.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@87"Compile /Users/shawnbernard/Documents/projects/Kickball/Classes/MPURLRequestParameter.m277193519#277193519#0(0"0(0#0#79"/Users/shawnbernard/Documents/projects/Kickball/Classes/MPURLRequestParameter.m4300882208#2097"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -F/Users/shawnbernard/Documents/projects/Kickball/../mpoauthconnection-read-only/build/Release -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -include /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-domdjupnqpvxayckveiffenieeee/Kickball_Prefix.pch -c /Users/shawnbernard/Documents/projects/Kickball/Classes/MPURLRequestParameter.m -o /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPURLRequestParameter.o0#
+
+CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPWSLRDDiscoverer-44DA6F1C689BC435.o /Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSLRDDiscoverer.m normal i386 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPWSLRDDiscoverer-9244938D715FC540.o /Users/shawnbernard/Documents/projects/Kickball/Classes/Crypto/MPWSLRDDiscoverer.m normal i386 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPWSLRDDiscoverer.o /Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSLRDDiscoverer.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s277193519.656960
+e277193519.788780
+r1
+xCompileC
+xbuild/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPWSLRDDiscoverer.o
+x/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSLRDDiscoverer.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@83"Compile /Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSLRDDiscoverer.m277193519#277193519#0(0"0(0#0#75"/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSLRDDiscoverer.m4300882208#2089"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -F/Users/shawnbernard/Documents/projects/Kickball/../mpoauthconnection-read-only/build/Release -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -include /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-domdjupnqpvxayckveiffenieeee/Kickball_Prefix.pch -c /Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSLRDDiscoverer.m -o /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPWSLRDDiscoverer.o0#
+
+CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPWSXRDDocument-35DD2D70CB8BE437.o /Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m normal i386 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPWSXRDDocument-834751E1D44FE542.o /Users/shawnbernard/Documents/projects/Kickball/Classes/Crypto/MPWSXRDDocument.m normal i386 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPWSXRDDocument.o /Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s277193945.146813
+e277193945.291676
+r0
+xCompileC
+xbuild/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPWSXRDDocument.o
+x/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+o/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:10:27: error: libxml2/parser.h: No such file or directory
+o/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:11:25: error: libxml2/tree.h: No such file or directory
+o/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:12:35: error: libxml2/xpathInternals.h: No such file or directory
+o/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:13:26: error: libxml2/xpath.h: No such file or directory
+o/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m: In function '-[MPWSXRDDocument _parseStringForContent:]':
+o/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:55: warning: implicit declaration of function 'xmlInitParser'
+o/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:57: error: 'xmlDocPtr' undeclared (first use in this function)
+o/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:57: error: (Each undeclared identifier is reported only once
+o/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:57: error: for each function it appears in.)
+o/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:57: error: expected ';' before 'xrdDocument'
+o/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:58: error: 'xrdDocument' undeclared (first use in this function)
+o/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:60: error: 'xmlXPathContextPtr' undeclared (first use in this function)
+o/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:60: error: expected ';' before 'xpathContext'
+o/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:61: error: 'xmlXPathObjectPtr' undeclared (first use in this function)
+o/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:61: error: expected ';' before 'xpathObject'
+o/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:63: error: 'xpathObject' undeclared (first use in this function)
+o/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:63: warning: implicit declaration of function 'xmlXPathEvalExpression'
+o/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:63: error: expected ')' before 'xmlChar'
+o/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:63: warning: type defaults to 'int' in declaration of 'type name'
+o/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:63: error: 'xpathContext' undeclared (first use in this function)
+o/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:65: error: 'xmlNodeSetPtr' undeclared (first use in this function)
+o/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:65: error: expected ';' before 'subjectNodes'
+o/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:66: error: 'subjectNodes' undeclared (first use in this function)
+o/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:73: warning: implicit declaration of function 'xmlXPathFreeObject'
+o/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:75: warning: implicit declaration of function 'xmlXPathFreeContext'
+o/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:76: warning: implicit declaration of function 'xmlFreeDoc'
+o/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:78: warning: implicit declaration of function 'xmlCleanupParser'
+o/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:56: warning: unused variable 'cStringForDoc'
+o{standard input}:168:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_5" minus "L00000000003$pb"
+o{standard input}:168:symbol: "L_OBJC_SELECTOR_REFERENCES_5" can't be undefined in a subtraction expression
+o{standard input}:164:non-relocatable subtraction expression, "L_OBJC_CLASS_MPWSXRDDocument" minus "L00000000003$pb"
+o{standard input}:164:symbol: "L_OBJC_CLASS_MPWSXRDDocument" can't be undefined in a subtraction expression
+o{standard input}:155:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_4" minus "L00000000003$pb"
+o{standard input}:155:symbol: "L_OBJC_SELECTOR_REFERENCES_4" can't be undefined in a subtraction expression
+o{standard input}:147:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_3" minus "L00000000003$pb"
+o{standard input}:147:symbol: "L_OBJC_SELECTOR_REFERENCES_3" can't be undefined in a subtraction expression
+o{standard input}:139:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_2" minus "L00000000003$pb"
+o{standard input}:139:symbol: "L_OBJC_SELECTOR_REFERENCES_2" can't be undefined in a subtraction expression
+o{standard input}:105:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_1" minus "L00000000002$pb"
+o{standard input}:105:symbol: "L_OBJC_SELECTOR_REFERENCES_1" can't be undefined in a subtraction expression
+o{standard input}:95:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_0" minus "L00000000002$pb"
+o{standard input}:95:symbol: "L_OBJC_SELECTOR_REFERENCES_0" can't be undefined in a subtraction expression
+o{standard input}:91:non-relocatable subtraction expression, "L_OBJC_CLASS_MPWSXRDDocument" minus "L00000000002$pb"
+o{standard input}:91:symbol: "L_OBJC_CLASS_MPWSXRDDocument" can't be undefined in a subtraction expression
+o{standard input}:57:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_0" minus "L00000000001$pb"
+o{standard input}:57:symbol: "L_OBJC_SELECTOR_REFERENCES_0" can't be undefined in a subtraction expression
+o{standard input}:53:non-relocatable subtraction expression, "L_OBJC_CLASS_MPWSXRDDocument" minus "L00000000001$pb"
+o{standard input}:53:symbol: "L_OBJC_CLASS_MPWSXRDDocument" can't be undefined in a subtraction expression
+o{standard input}:unknown:Undefined local symbol L_OBJC_CLASS_MPWSXRDDocument
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_0
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_1
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_2
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_3
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_4
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_5
+lSLF07#2@81"Compile /Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m277193945#277193945#0(6496"/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:10:27: error: libxml2/parser.h: No such file or directory/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:11:25: error: libxml2/tree.h: No such file or directory/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:12:35: error: libxml2/xpathInternals.h: No such file or directory/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:13:26: error: libxml2/xpath.h: No such file or directory/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m: In function '-[MPWSXRDDocument _parseStringForContent:]':/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:55: warning: implicit declaration of function 'xmlInitParser'/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:57: error: 'xmlDocPtr' undeclared (first use in this function)/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:57: error: (Each undeclared identifier is reported only once/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:57: error: for each function it appears in.)/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:57: error: expected ';' before 'xrdDocument'/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:58: error: 'xrdDocument' undeclared (first use in this function)/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:60: error: 'xmlXPathContextPtr' undeclared (first use in this function)/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:60: error: expected ';' before 'xpathContext'/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:61: error: 'xmlXPathObjectPtr' undeclared (first use in this function)/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:61: error: expected ';' before 'xpathObject'/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:63: error: 'xpathObject' undeclared (first use in this function)/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:63: warning: implicit declaration of function 'xmlXPathEvalExpression'/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:63: error: expected ')' before 'xmlChar'/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:63: warning: type defaults to 'int' in declaration of 'type name'/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:63: error: 'xpathContext' undeclared (first use in this function)/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:65: error: 'xmlNodeSetPtr' undeclared (first use in this function)/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:65: error: expected ';' before 'subjectNodes'/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:66: error: 'subjectNodes' undeclared (first use in this function)/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:73: warning: implicit declaration of function 'xmlXPathFreeObject'/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:75: warning: implicit declaration of function 'xmlXPathFreeContext'/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:76: warning: implicit declaration of function 'xmlFreeDoc'/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:78: warning: implicit declaration of function 'xmlCleanupParser'/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m:56: warning: unused variable 'cStringForDoc'{standard input}:168:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_5" minus "L00000000003$pb"{standard input}:168:symbol: "L_OBJC_SELECTOR_REFERENCES_5" can't be undefined in a subtraction expression{standard input}:164:non-relocatable subtraction expression, "L_OBJC_CLASS_MPWSXRDDocument" minus "L00000000003$pb"{standard input}:164:symbol: "L_OBJC_CLASS_MPWSXRDDocument" can't be undefined in a subtraction expression{standard input}:155:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_4" minus "L00000000003$pb"{standard input}:155:symbol: "L_OBJC_SELECTOR_REFERENCES_4" can't be undefined in a subtraction expression{standard input}:147:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_3" minus "L00000000003$pb"{standard input}:147:symbol: "L_OBJC_SELECTOR_REFERENCES_3" can't be undefined in a subtraction expression{standard input}:139:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_2" minus "L00000000003$pb"{standard input}:139:symbol: "L_OBJC_SELECTOR_REFERENCES_2" can't be undefined in a subtraction expression{standard input}:105:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_1" minus "L00000000002$pb"{standard input}:105:symbol: "L_OBJC_SELECTOR_REFERENCES_1" can't be undefined in a subtraction expression{standard input}:95:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_0" minus "L00000000002$pb"{standard input}:95:symbol: "L_OBJC_SELECTOR_REFERENCES_0" can't be undefined in a subtraction expression{standard input}:91:non-relocatable subtraction expression, "L_OBJC_CLASS_MPWSXRDDocument" minus "L00000000002$pb"{standard input}:91:symbol: "L_OBJC_CLASS_MPWSXRDDocument" can't be undefined in a subtraction expression{standard input}:57:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_0" minus "L00000000001$pb"{standard input}:57:symbol: "L_OBJC_SELECTOR_REFERENCES_0" can't be undefined in a subtraction expression{standard input}:53:non-relocatable subtraction expression, "L_OBJC_CLASS_MPWSXRDDocument" minus "L00000000001$pb"{standard input}:53:symbol: "L_OBJC_CLASS_MPWSXRDDocument" can't be undefined in a subtraction expression{standard input}:unknown:Undefined local symbol L_OBJC_CLASS_MPWSXRDDocument{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_0{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_1{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_2{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_3{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_4{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_525(4@43"Libxml2/parser.h: No such file or directory277193945#0#132#0(6@73"/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m277193944#10#0#10#0#28"*: No such file or directory0(4@41"Libxml2/tree.h: No such file or directory277193945#132#130#0(6@73"/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m277193944#11#0#11#0#28"*: No such file or directory0(4@51"Libxml2/xpathInternals.h: No such file or directory277193945#262#140#0(6@73"/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m277193944#12#0#12#0#28"*: No such file or directory0(4@42"Libxml2/xpath.h: No such file or directory277193945#402#131#0(6@73"/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m277193944#13#0#13#0#28"*: No such file or directory0(22@48"Implicit declaration of function 'xmlInitParser'277193945#666#136#0(6@73"/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m277193944#55#0#55#0#36"implicit declaration of function '*'0(4@51"'xmlDocPtr' undeclared (first use in this function)277193945#802#137#0(6@73"/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m277193944#57#0#57#0#43"'*' undeclared (first use in this function)0(4@33"Expected ';' before 'xrdDocument'277193945#1193#119#0(6@73"/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m277193944#57#0#57#0#19"expected * before *0(4@53"'xrdDocument' undeclared (first use in this function)277193945#1312#139#0(6@73"/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m277193944#58#0#58#0#43"'*' undeclared (first use in this function)0(4@60"'xmlXPathContextPtr' undeclared (first use in this function)277193945#1451#146#0(6@73"/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m277193944#60#0#60#0#43"'*' undeclared (first use in this function)0(4@34"Expected ';' before 'xpathContext'277193945#1597#120#0(6@73"/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m277193944#60#0#60#0#19"expected * before *0(4@59"'xmlXPathObjectPtr' undeclared (first use in this function)277193945#1717#145#0(6@73"/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m277193944#61#0#61#0#43"'*' undeclared (first use in this function)0(4@33"Expected ';' before 'xpathObject'277193945#1862#119#0(6@73"/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m277193944#61#0#61#0#19"expected * before *0(4@53"'xpathObject' undeclared (first use in this function)277193945#1981#139#0(6@73"/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m277193944#63#0#63#0#43"'*' undeclared (first use in this function)0(22@57"Implicit declaration of function 'xmlXPathEvalExpression'277193945#2120#145#0(6@73"/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m277193944#63#0#63#0#36"implicit declaration of function '*'0(4@29"Expected ')' before 'xmlChar'277193945#2265#115#0(6@73"/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m277193944#63#0#63#0#19"expected * before *0(22@52"Type defaults to 'int' in declaration of 'type name'277193945#2380#140#0(6@73"/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m277193944#63#0#63#0#42"type defaults to '*' in declaration of '*'0(4@54"'xpathContext' undeclared (first use in this function)277193945#2520#140#0(6@73"/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m277193944#63#0#63#0#43"'*' undeclared (first use in this function)0(4@55"'xmlNodeSetPtr' undeclared (first use in this function)277193945#2660#141#0(6@73"/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m277193944#65#0#65#0#43"'*' undeclared (first use in this function)0(4@34"Expected ';' before 'subjectNodes'277193945#2801#120#0(6@73"/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m277193944#65#0#65#0#19"expected * before *0(4@54"'subjectNodes' undeclared (first use in this function)277193945#2921#140#0(6@73"/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m277193944#66#0#66#0#43"'*' undeclared (first use in this function)0(22@53"Implicit declaration of function 'xmlXPathFreeObject'277193945#3061#141#0(6@73"/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m277193944#73#0#73#0#36"implicit declaration of function '*'0(22@54"Implicit declaration of function 'xmlXPathFreeContext'277193945#3202#142#0(6@73"/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m277193944#75#0#75#0#36"implicit declaration of function '*'0(22@45"Implicit declaration of function 'xmlFreeDoc'277193945#3344#133#0(6@73"/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m277193944#76#0#76#0#36"implicit declaration of function '*'0(22@51"Implicit declaration of function 'xmlCleanupParser'277193945#3477#139#0(6@73"/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m277193944#78#0#78#0#36"implicit declaration of function '*'0(22@31"Unused variable 'cStringForDoc'277193945#3616#119#0(6@73"/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m277193944#56#0#56#0#19"unused variable '*'0(0#0#73"/Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m4300882208#2085"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -F/Users/shawnbernard/Documents/projects/Kickball/../mpoauthconnection-read-only/build/Release -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -include /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-domdjupnqpvxayckveiffenieeee/Kickball_Prefix.pch -c /Users/shawnbernard/Documents/projects/Kickball/Classes/MPWSXRDDocument.m -o /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/MPWSXRDDocument.o1#
+
+CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/NSString+URLEscapingAdditions.o /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/NSString+URLEscapingAdditions.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s277194758.619550
+e277194758.707267
+r1
+xCompileC
+xbuild/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/NSString+URLEscapingAdditions.o
+x/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/NSString+URLEscapingAdditions.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@105"Compile /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/NSString+URLEscapingAdditions.m277194758#277194758#0(0"0(0#0#97"/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/NSString+URLEscapingAdditions.m4300882208#2123"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -F/Users/shawnbernard/Documents/projects/Kickball/../mpoauthconnection-read-only/build/Release -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -include /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-domdjupnqpvxayckveiffenieeee/Kickball_Prefix.pch -c /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/NSString+URLEscapingAdditions.m -o /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/NSString+URLEscapingAdditions.o0#
+
+CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/NSString+URLEscapingAdditions.o /Users/shawnbernard/Documents/projects/Kickball/Classes/NSString+URLEscapingAdditions.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s277193519.789093
+e277193519.898060
+r1
+xCompileC
+xbuild/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/NSString+URLEscapingAdditions.o
+x/Users/shawnbernard/Documents/projects/Kickball/Classes/NSString+URLEscapingAdditions.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@95"Compile /Users/shawnbernard/Documents/projects/Kickball/Classes/NSString+URLEscapingAdditions.m277193519#277193519#0(0"0(0#0#87"/Users/shawnbernard/Documents/projects/Kickball/Classes/NSString+URLEscapingAdditions.m4300882208#2113"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -F/Users/shawnbernard/Documents/projects/Kickball/../mpoauthconnection-read-only/build/Release -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -include /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-domdjupnqpvxayckveiffenieeee/Kickball_Prefix.pch -c /Users/shawnbernard/Documents/projects/Kickball/Classes/NSString+URLEscapingAdditions.m -o /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/NSString+URLEscapingAdditions.o0#
+
+CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/NSURL+MPURLParameterAdditions.o /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/NSURL+MPURLParameterAdditions.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s277194758.707380
+e277194758.804636
+r1
+xCompileC
+xbuild/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/NSURL+MPURLParameterAdditions.o
+x/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/NSURL+MPURLParameterAdditions.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@105"Compile /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/NSURL+MPURLParameterAdditions.m277194758#277194758#0(0"0(0#0#97"/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/NSURL+MPURLParameterAdditions.m4300882208#2123"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -F/Users/shawnbernard/Documents/projects/Kickball/../mpoauthconnection-read-only/build/Release -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -include /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-domdjupnqpvxayckveiffenieeee/Kickball_Prefix.pch -c /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/NSURL+MPURLParameterAdditions.m -o /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/NSURL+MPURLParameterAdditions.o0#
+
+CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/NSURL+MPURLParameterAdditions.o /Users/shawnbernard/Documents/projects/Kickball/Classes/NSURL+MPURLParameterAdditions.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s277193519.827266
+e277193519.936483
+r1
+xCompileC
+xbuild/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/NSURL+MPURLParameterAdditions.o
+x/Users/shawnbernard/Documents/projects/Kickball/Classes/NSURL+MPURLParameterAdditions.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@95"Compile /Users/shawnbernard/Documents/projects/Kickball/Classes/NSURL+MPURLParameterAdditions.m277193519#277193519#0(0"0(0#0#87"/Users/shawnbernard/Documents/projects/Kickball/Classes/NSURL+MPURLParameterAdditions.m4300882208#2113"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -F/Users/shawnbernard/Documents/projects/Kickball/../mpoauthconnection-read-only/build/Release -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -include /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-domdjupnqpvxayckveiffenieeee/Kickball_Prefix.pch -c /Users/shawnbernard/Documents/projects/Kickball/Classes/NSURL+MPURLParameterAdditions.m -o /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/NSURL+MPURLParameterAdditions.o0#
+
+CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/NSURLResponse+Encoding.o /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/NSURLResponse+Encoding.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s277194758.751031
+e277194758.841981
+r1
+xCompileC
+xbuild/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/NSURLResponse+Encoding.o
+x/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/NSURLResponse+Encoding.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@98"Compile /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/NSURLResponse+Encoding.m277194758#277194758#0(0"0(0#0#90"/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/NSURLResponse+Encoding.m4300882208#2109"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -F/Users/shawnbernard/Documents/projects/Kickball/../mpoauthconnection-read-only/build/Release -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -include /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-domdjupnqpvxayckveiffenieeee/Kickball_Prefix.pch -c /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/NSURLResponse+Encoding.m -o /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/NSURLResponse+Encoding.o0#
+
+CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/NSURLResponse+Encoding.o /Users/shawnbernard/Documents/projects/Kickball/Classes/NSURLResponse+Encoding.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s277193519.898163
+e277193519.967036
+r1
+xCompileC
+xbuild/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/NSURLResponse+Encoding.o
+x/Users/shawnbernard/Documents/projects/Kickball/Classes/NSURLResponse+Encoding.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@88"Compile /Users/shawnbernard/Documents/projects/Kickball/Classes/NSURLResponse+Encoding.m277193519#277193519#0(0"0(0#0#80"/Users/shawnbernard/Documents/projects/Kickball/Classes/NSURLResponse+Encoding.m4300882208#2099"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -F/Users/shawnbernard/Documents/projects/Kickball/../mpoauthconnection-read-only/build/Release -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -include /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-domdjupnqpvxayckveiffenieeee/Kickball_Prefix.pch -c /Users/shawnbernard/Documents/projects/Kickball/Classes/NSURLResponse+Encoding.m -o /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/NSURLResponse+Encoding.o0#
+
+CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/SettingsViewController.o /Users/shawnbernard/Documents/projects/Kickball/Classes/SettingsViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s277193323.159543
+e277193323.292939
+r1
+xCompileC
+xbuild/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/SettingsViewController.o
+x/Users/shawnbernard/Documents/projects/Kickball/Classes/SettingsViewController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@88"Compile /Users/shawnbernard/Documents/projects/Kickball/Classes/SettingsViewController.m277193323#277193323#0(0"0(0#0#80"/Users/shawnbernard/Documents/projects/Kickball/Classes/SettingsViewController.m4300882208#2099"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -F/Users/shawnbernard/Documents/projects/Kickball/../mpoauthconnection-read-only/build/Release -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -include /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-domdjupnqpvxayckveiffenieeee/Kickball_Prefix.pch -c /Users/shawnbernard/Documents/projects/Kickball/Classes/SettingsViewController.m -o /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/SettingsViewController.o0#
+
+CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/hmac.o /Users/shawnbernard/Documents/projects/Kickball/Classes/Crypto/hmac.c normal i386 c com.apple.compilers.gcc.4_2
+s277193518.986095
+e277193519.066759
+r1
+xCompileC
+xbuild/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/hmac.o
+x/Users/shawnbernard/Documents/projects/Kickball/Classes/Crypto/hmac.c
+xnormal
+xi386
+xc
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@77"Compile /Users/shawnbernard/Documents/projects/Kickball/Classes/Crypto/hmac.c277193518#277193519#0(0"0(0#0#69"/Users/shawnbernard/Documents/projects/Kickball/Classes/Crypto/hmac.c4300882208#2060"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -F/Users/shawnbernard/Documents/projects/Kickball/../mpoauthconnection-read-only/build/Release -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -include /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-avjazwcacwpczogsrfdugpkgljgk/Kickball_Prefix.pch -c /Users/shawnbernard/Documents/projects/Kickball/Classes/Crypto/hmac.c -o /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/hmac.o0#
+
+CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/hmac.o /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/Crypto/hmac.c normal i386 c com.apple.compilers.gcc.4_2
+s277194757.948385
+e277194758.040514
+r1
+xCompileC
+xbuild/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/hmac.o
+x/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/Crypto/hmac.c
+xnormal
+xi386
+xc
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@87"Compile /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/Crypto/hmac.c277194757#277194758#0(0"0(0#0#79"/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/Crypto/hmac.c4300882208#2070"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -F/Users/shawnbernard/Documents/projects/Kickball/../mpoauthconnection-read-only/build/Release -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -include /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-avjazwcacwpczogsrfdugpkgljgk/Kickball_Prefix.pch -c /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/Crypto/hmac.c -o /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/hmac.o0#
+
+CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/main.o /Users/shawnbernard/Documents/projects/Kickball/main.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s277193323.067895
+e277193323.159437
+r1
+xCompileC
+xbuild/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/main.o
+x/Users/shawnbernard/Documents/projects/Kickball/main.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@62"Compile /Users/shawnbernard/Documents/projects/Kickball/main.m277193323#277193323#0(0"0(0#0#54"/Users/shawnbernard/Documents/projects/Kickball/main.m4300882208#2055"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -F/Users/shawnbernard/Documents/projects/Kickball/../mpoauthconnection-read-only/build/Release -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -include /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-domdjupnqpvxayckveiffenieeee/Kickball_Prefix.pch -c /Users/shawnbernard/Documents/projects/Kickball/main.m -o /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/main.o0#
+
+CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/sha1.o /Users/shawnbernard/Documents/projects/Kickball/Classes/Crypto/sha1.c normal i386 c com.apple.compilers.gcc.4_2
+s277193519.016083
+e277193519.220486
+r1
+xCompileC
+xbuild/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/sha1.o
+x/Users/shawnbernard/Documents/projects/Kickball/Classes/Crypto/sha1.c
+xnormal
+xi386
+xc
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@77"Compile /Users/shawnbernard/Documents/projects/Kickball/Classes/Crypto/sha1.c277193519#277193519#0(0"0(0#0#69"/Users/shawnbernard/Documents/projects/Kickball/Classes/Crypto/sha1.c4300882208#2060"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -F/Users/shawnbernard/Documents/projects/Kickball/../mpoauthconnection-read-only/build/Release -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -include /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-avjazwcacwpczogsrfdugpkgljgk/Kickball_Prefix.pch -c /Users/shawnbernard/Documents/projects/Kickball/Classes/Crypto/sha1.c -o /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/sha1.o0#
+
+CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/sha1.o /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/Crypto/sha1.c normal i386 c com.apple.compilers.gcc.4_2
+s277194757.993222
+e277194758.105108
+r1
+xCompileC
+xbuild/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/sha1.o
+x/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/Crypto/sha1.c
+xnormal
+xi386
+xc
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@87"Compile /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/Crypto/sha1.c277194757#277194758#0(0"0(0#0#79"/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/Crypto/sha1.c4300882208#2070"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -F/Users/shawnbernard/Documents/projects/Kickball/../mpoauthconnection-read-only/build/Release -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -include /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-avjazwcacwpczogsrfdugpkgljgk/Kickball_Prefix.pch -c /Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/Crypto/sha1.c -o /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/sha1.o0#
+
+CCompileXIB /Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsView.xib
+s277190422.769991
+e277190423.637089
+r1
+xCompileXIB
+x/Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsView.xib
+lSLF07#2@34"CompileXIB Classes/FriendsView.xib277190422#277190423#0(0"0(0#0#71"/Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsView.xib4300882208#506"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 3.1    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/FriendsView.nib /Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsView.xib0#
+
+CCompileXIB /Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsViewController.xib
+r0
+
+CCompileXIB /Users/shawnbernard/Documents/projects/Kickball/Classes/SettingsView.xib
+s277190422.050470
+e277190422.784151
+r1
+xCompileXIB
+x/Users/shawnbernard/Documents/projects/Kickball/Classes/SettingsView.xib
+lSLF07#2@35"CompileXIB Classes/SettingsView.xib277190422#277190422#0(0"0(0#0#72"/Users/shawnbernard/Documents/projects/Kickball/Classes/SettingsView.xib4300882208#508"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 3.1    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/SettingsView.nib /Users/shawnbernard/Documents/projects/Kickball/Classes/SettingsView.xib0#
+
+CCompileXIB /Users/shawnbernard/Documents/projects/Kickball/Classes/SettingsViewController.xib
+r0
+
+CCompileXIB /Users/shawnbernard/Documents/projects/Kickball/MainWindow.xib
+s277190912.004847
+e277190912.378625
+r1
+xCompileXIB
+x/Users/shawnbernard/Documents/projects/Kickball/MainWindow.xib
+lSLF07#2@25"CompileXIB MainWindow.xib277190912#277190912#0(0"0(0#0#62"/Users/shawnbernard/Documents/projects/Kickball/MainWindow.xib4300882208#496"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 3.1    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/MainWindow.nib /Users/shawnbernard/Documents/projects/Kickball/MainWindow.xib0#
+
+CCompileXIB /Users/shawnbernard/Documents/projects/Kickball/SecondView.xib
+s277188331.622644
+e277188332.987610
+r1
+xCompileXIB
+x/Users/shawnbernard/Documents/projects/Kickball/SecondView.xib
+lSLF07#2@25"CompileXIB SecondView.xib277188331#277188332#0(0"0(0#0#62"/Users/shawnbernard/Documents/projects/Kickball/SecondView.xib4300882208#496"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 3.1    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/SecondView.nib /Users/shawnbernard/Documents/projects/Kickball/SecondView.xib0#
+
+CCopyPlistFile /Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/oauthAutoConfig.plist Classes/Framework/oauthAutoConfig.plist
+s277194757.308296
+e277194757.729543
+r1
+xCopyPlistFile
+x/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/oauthAutoConfig.plist
+xClasses/Framework/oauthAutoConfig.plist
+lSLF07#2@44"Copy Classes/Framework/oauthAutoConfig.plist277194757#277194757#0(0"0(0#0#87"/Users/shawnbernard/Documents/projects/Kickball/Classes/Framework/oauthAutoConfig.plist4300882208#421"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Library/Xcode/Plug-ins/CoreBuildTasks.xcplugin/Contents/Resources/copyplist --convert binary1 Classes/Framework/oauthAutoConfig.plist --outdir /Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app0#
+
+CGenerateDSYMFile /Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app.dSYM /Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/Kickball
+s277196587.984777
+e277196588.002319
+r1
+xGenerateDSYMFile
+x/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app.dSYM
+x/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/Kickball
+lSLF07#2@112"GenerateDSYMFile build/Debug-iphonesimulator/Kickball.app.dSYM build/Debug-iphonesimulator/Kickball.app/Kickball277196587#277196588#0(0"0(0#0#97"/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/Kickball4300882208#401"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/usr/bin/dsymutil /Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/Kickball -o /Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app.dSYM0#
+
+CLd /Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/Kickball normal i386
+s277196587.950964
+e277196587.984669
+r1
+xLd
+x/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/Kickball
+xnormal
+xi386
+lSLF07#2@102"Link /Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/Kickball277196587#277196587#0(0"0(0#0#0"4300882208#1038"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv MACOSX_DEPLOYMENT_TARGET 10.5    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -arch i386 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -L/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -F/Users/shawnbernard/Documents/projects/Kickball/../mpoauthconnection-read-only/build/Release -filelist /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/Kickball.LinkFileList -mmacosx-version-min=10.5 -framework Foundation -framework UIKit -framework CoreGraphics -framework Security -framework CoreData -lxml2 -o /Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/Kickball0#
+
+CProcessInfoPlistFile /Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/Info.plist Kickball-Info.plist
+s277188331.528366
+e277188331.591624
+r1
+xProcessInfoPlistFile
+x/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/Info.plist
+xKickball-Info.plist
+lSLF07#2@27"Process Kickball-Info.plist277188331#277188331#0(0"0(0#0#67"/Users/shawnbernard/Documents/projects/Kickball/Kickball-Info.plist30399714103001196#501"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    builtin-infoPlistUtility Kickball-Info.plist -genpkginfo /Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -o /Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/Info.plist0#
+
+CProcessPCH /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-avjazwcacwpczogsrfdugpkgljgk/Kickball_Prefix.pch.gch Kickball_Prefix.pch normal i386 c com.apple.compilers.gcc.4_2
+s277193518.711266
+e277193518.910532
+r1
+xProcessPCH
+x/var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-avjazwcacwpczogsrfdugpkgljgk/Kickball_Prefix.pch.gch
+xKickball_Prefix.pch
+xnormal
+xi386
+xc
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@30"Precompile Kickball_Prefix.pch277193518#277193518#0(0"0(0#0#67"/Users/shawnbernard/Documents/projects/Kickball/Kickball_Prefix.pch4300882208#1927"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x c-header -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -F/Users/shawnbernard/Documents/projects/Kickball/../mpoauthconnection-read-only/build/Release -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -c /Users/shawnbernard/Documents/projects/Kickball/Kickball_Prefix.pch -o /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-avjazwcacwpczogsrfdugpkgljgk/Kickball_Prefix.pch.gch0#
+
+CProcessPCH /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-domdjupnqpvxayckveiffenieeee/Kickball_Prefix.pch.gch Kickball_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
+s277193321.702629
+e277193323.067786
+r1
+xProcessPCH
+x/var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-domdjupnqpvxayckveiffenieeee/Kickball_Prefix.pch.gch
+xKickball_Prefix.pch
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@30"Precompile Kickball_Prefix.pch277193321#277193323#0(0"0(0#0#67"/Users/shawnbernard/Documents/projects/Kickball/Kickball_Prefix.pch4300882208#1937"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c-header -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -F/Users/shawnbernard/Documents/projects/Kickball/../mpoauthconnection-read-only/build/Release -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -c /Users/shawnbernard/Documents/projects/Kickball/Kickball_Prefix.pch -o /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-domdjupnqpvxayckveiffenieeee/Kickball_Prefix.pch.gch0#
+
+CProcessPCH /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-edcyysmmuwjuzcfulkwcuoqiubjg/Kickball_Prefix.pch.gch Kickball_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
+s277188333.386417
+e277188335.975208
+r1
+xProcessPCH
+x/var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-edcyysmmuwjuzcfulkwcuoqiubjg/Kickball_Prefix.pch.gch
+xKickball_Prefix.pch
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@30"Precompile Kickball_Prefix.pch277188333#277188335#0(0"0(0#0#67"/Users/shawnbernard/Documents/projects/Kickball/Kickball_Prefix.pch4300882208#1842"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c-header -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -c /Users/shawnbernard/Documents/projects/Kickball/Kickball_Prefix.pch -o /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-edcyysmmuwjuzcfulkwcuoqiubjg/Kickball_Prefix.pch.gch0#
+
+CTouch /Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app
+s277196588.002412
+e277196588.005003
+r1
+xTouch
+x/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app
+lSLF07#2@94"Touch /Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app277196588#277196588#0(0"0(0#0#0"4300882208#289"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /usr/bin/touch -c /Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app0#
+
