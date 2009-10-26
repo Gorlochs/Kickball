@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface FriendsListViewController : UITableViewController {
+@interface FriendsListViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource> {
 
 }
 

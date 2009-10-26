@@ -8,6 +8,7 @@
 
 #import "KickballAppDelegate.h"
 #import "FriendsListViewController.h"
+#import "Beacon.h"
 
 @implementation KickballAppDelegate
 
@@ -20,8 +21,16 @@
     // Override point for customization after app launch    
     [window addSubview:viewController.view];
     [window makeKeyAndVisible];
+    
+    // Pinch Analytics
+    NSString *applicationCode = @"51512b37fa78552a6981778e1e652682";
+    [Beacon initAndStartBeaconWithApplicationCode:applicationCode
+                                  useCoreLocation:YES useOnlyWiFi:NO];    
 }
 
+- (void)applicationWillTerminate:(UIApplication *)application {
+    [Beacon endBeacon];
+}
 
 - (void)dealloc {
     [viewController release];

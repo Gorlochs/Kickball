@@ -9,7 +9,7 @@
 //
 
 #import "FriendsListViewController.h"
-
+#import "Beacon.h"
 
 @implementation FriendsListViewController
 
@@ -22,14 +22,13 @@
 }
 */
 
-/*
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
-*/
+
 
 /*
 - (void)viewWillAppear:(BOOL)animated {
@@ -63,7 +62,7 @@
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-	
+    
 	// Release any cached data, images, etc that aren't in use.
 }
 
@@ -76,13 +75,13 @@
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 2;
 }
 
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+    return 1;
 }
 
 
@@ -97,7 +96,7 @@
     }
     
     // Set up the cell...
-	
+	cell.textLabel.text = @"foo";
     return cell;
 }
 
@@ -109,6 +108,42 @@
 	// [anotherViewController release];
 }
 
+- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+	return 24.0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    NSLog(@"viewForHeaderInSection");
+	// create the parent view that will hold header Label
+	UIView* customView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 24.0)] autorelease];
+	
+	// create the button object
+	UILabel * headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+	headerLabel.backgroundColor = [UIColor blackColor];
+	headerLabel.opaque = NO;
+	headerLabel.textColor = [UIColor grayColor];
+	headerLabel.highlightedTextColor = [UIColor grayColor];
+	headerLabel.font = [UIFont boldSystemFontOfSize:12];
+	headerLabel.frame = CGRectMake(00.0, 0.0, 320.0, 24.0);
+    
+	// If you want to align the header text as centered
+	// headerLabel.frame = CGRectMake(150.0, 0.0, 300.0, 44.0);
+    switch (section) {
+        case 0:
+            headerLabel.text = @"  Last 3 Hours";
+            break;
+        case 1:
+            headerLabel.text = @"  Today";
+            break;
+        default:
+            headerLabel.text = @"You shouldn't see this";
+            break;
+    }
+	//headerLabel.text = <Put here whatever you want to display> // i.e. array element
+	[customView addSubview:headerLabel];
+    [headerLabel release];
+	return customView;
+}
 
 /*
 // Override to support conditional editing of the table view.
