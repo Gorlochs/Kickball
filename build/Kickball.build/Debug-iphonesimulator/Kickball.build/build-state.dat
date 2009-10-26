@@ -1,395 +1,0 @@
-TKickball
-v7
-r0
-t278218433.820125
-cCheck dependencies
-cProcessInfoPlistFile /Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/Info.plist Kickball-Info.plist
-cCompileXIB /Users/shawnbernard/Documents/projects/Kickball/MainWindow.xib
-cCompileXIB /Users/shawnbernard/Documents/projects/Kickball/KickballViewController.xib
-cCompileXIB /Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsListView.xib
-cCompileXIB /Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsMapView.xib
-cProcessPCH /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-edcyysmmuwjuzcfulkwcuoqiubjg/Kickball_Prefix.pch.gch Kickball_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/main.o /Users/shawnbernard/Documents/projects/Kickball/main.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/KickballAppDelegate.o /Users/shawnbernard/Documents/projects/Kickball/Classes/KickballAppDelegate.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/KickballViewController.o /Users/shawnbernard/Documents/projects/Kickball/Classes/KickballViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/FriendsListViewController.o /Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsListViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/FriendsMapViewController.o /Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsMapViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cLd /Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/Kickball normal i386
-cGenerateDSYMFile /Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app.dSYM /Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/Kickball
-cTouch /Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app
-
-N/Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsListView.xib
-c000000004AE50F230000000000004396
-t1256525603
-s17302
-
-N/Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsListViewController.h
-c000000004AE50E2E0000000000000105
-t1256525358
-s261
-i<UIKit/UIKit.h>
-
-N/Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsListViewController.m
-c000000004AE50E7B00000000000010E5
-t1256525435
-s4325
-i"FriendsListViewController.h"
-
-N/Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsListViewController.xib
-c000000004AE50DA00000000000001C96
-t1256525216
-s7318
-
-N/Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsMapView.h
-c000000004AE50DB300000000000000E3
-t1256525235
-s227
-i<UIKit/UIKit.h>
-
-N/Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsMapView.m
-c000000004AE50DB3000000000000056D
-t1256525235
-s1389
-i"FriendsMapView.h"
-
-N/Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsMapView.xib
-c000000004AE50F290000000000003AEA
-t1256525609
-s15082
-
-N/Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsMapViewController.h
-c000000004AE50E3100000000000000FE
-t1256525361
-s254
-i<UIKit/UIKit.h>
-
-N/Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsMapViewController.m
-c000000004AE50E6000000000000005CF
-t1256525408
-s1487
-i"FriendsMapViewController.h"
-
-N/Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsMapViewController.xib
-c000000004AE50DC50000000000001883
-t1256525253
-s6275
-
-N/Users/shawnbernard/Documents/projects/Kickball/Classes/KickballAppDelegate.h
-c000000004AE50ECB00000000000001F6
-t1256525515
-s502
-i<UIKit/UIKit.h>
-
-N/Users/shawnbernard/Documents/projects/Kickball/Classes/KickballAppDelegate.m
-c000000004AE50F3F000000000000027B
-t1256525631
-s635
-i"KickballAppDelegate.h"
-i"FriendsListViewController.h"
-
-N/Users/shawnbernard/Documents/projects/Kickball/Classes/KickballViewController.h
-c000000004AE50E3B00000000000000FA
-t1256525371
-s250
-i<UIKit/UIKit.h>
-
-N/Users/shawnbernard/Documents/projects/Kickball/Classes/KickballViewController.m
-c000000004AE50E3800000000000005C4
-t1256525368
-s1476
-i"KickballViewController.h"
-
-N/Users/shawnbernard/Documents/projects/Kickball/KickballViewController.xib
-c000000004AE50D3300000000000018DF
-t1256525107
-s6367
-
-N/Users/shawnbernard/Documents/projects/Kickball/Kickball_Prefix.pch
-c000000004AE50D3300000000000000B9
-t1256525107
-s185
-i<Foundation/Foundation.h>
-i<UIKit/UIKit.h>
-
-N/Users/shawnbernard/Documents/projects/Kickball/MainWindow.xib
-c000000004AE50F030000000000004B31
-t1256525571
-s19249
-
-N/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app
-t1256525633
-s306
-
-N/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app.dSYM
-t1256525633
-s102
-
-N/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/FriendsListView.nib
-t1256525614
-s984
-
-N/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/FriendsListViewController.nib
-t2
-s0
-
-N/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/FriendsMapView.nib
-t1256525614
-s769
-
-N/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/FriendsMapViewController.nib
-t2
-s0
-
-N/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/Info.plist
-t1256525492
-s563
-
-N/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/Kickball
-t1256525633
-s22096
-
-N/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/KickballViewController.nib
-t1256525499
-s800
-
-N/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/MainWindow.nib
-t1256525577
-s1130
-
-N/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/PkgInfo
-t1256525492
-s8
-
-N/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/FriendsListViewController.o
-t1256525505
-s32836
-
-N/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/FriendsMapView.o
-t2
-s0
-
-N/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/FriendsMapViewController.o
-t1256525505
-s29956
-
-N/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/Kickball.LinkFileList
-c000000004AE50EB400000000000002E3
-t1256525492
-s739
-
-N/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/KickballAppDelegate.o
-t1256525632
-s38220
-
-N/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/KickballViewController.o
-t1256525505
-s29928
-
-N/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/main.o
-t1256525504
-s5948
-
-N/Users/shawnbernard/Documents/projects/Kickball/main.m
-c000000004AE50EB40000000000000173
-t1256525492
-s371
-i<UIKit/UIKit.h>
-
-N/Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk
-c000000004ABBEED200000000000000EE
-t1253830354
-s238
-
-N/Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics
-c000000004A821911000000000026EE30
-t1250040081
-s2551344
-
-N/Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk/System/Library/Frameworks/Foundation.framework/Foundation
-c000000004A765094000000000027E880
-t1249267860
-s2615424
-
-N/Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.h
-c000000004A7650820000000000001355
-t1249267842
-s4949
-
-N/Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h
-c000000004A7C6E970000000000000788
-t1249668759
-s1928
-
-N/Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk/System/Library/Frameworks/UIKit.framework/UIKit
-c000000004A7C6F5900000000016721E0
-t1249668953
-s23536096
-
-N/var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-edcyysmmuwjuzcfulkwcuoqiubjg/Kickball_Prefix.pch.gch
-t1256525503
-s13034960
-
-NKickball-Info.plist
-c000000004AE50E06000000000000038A
-t1256525318
-s906
-
-CCheck dependencies
-r0
-lSLF07#2@18"Check dependencies278218432#278218432#0(0"0(0#1#0"4300882208#0"0#
-
-CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/FriendsListViewController.o /Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsListViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
-s278218304.976132
-e278218305.070981
-r1
-xCompileC
-xbuild/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/FriendsListViewController.o
-x/Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsListViewController.m
-xnormal
-xi386
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@91"Compile /Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsListViewController.m278218304#278218305#0(0"0(0#0#83"/Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsListViewController.m4300882208#2010"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -include /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-edcyysmmuwjuzcfulkwcuoqiubjg/Kickball_Prefix.pch -c /Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsListViewController.m -o /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/FriendsListViewController.o0#
-
-CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/FriendsMapView.o /Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsMapView.m normal i386 objective-c com.apple.compilers.gcc.4_2
-r0
-
-CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/FriendsMapViewController.o /Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsMapViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
-s278218305.071098
-e278218305.193893
-r1
-xCompileC
-xbuild/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/FriendsMapViewController.o
-x/Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsMapViewController.m
-xnormal
-xi386
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@90"Compile /Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsMapViewController.m278218305#278218305#0(0"0(0#0#82"/Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsMapViewController.m4300882208#2008"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -include /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-edcyysmmuwjuzcfulkwcuoqiubjg/Kickball_Prefix.pch -c /Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsMapViewController.m -o /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/FriendsMapViewController.o0#
-
-CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/KickballAppDelegate.o /Users/shawnbernard/Documents/projects/Kickball/Classes/KickballAppDelegate.m normal i386 objective-c com.apple.compilers.gcc.4_2
-s278218432.493120
-e278218432.699705
-r1
-xCompileC
-xbuild/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/KickballAppDelegate.o
-x/Users/shawnbernard/Documents/projects/Kickball/Classes/KickballAppDelegate.m
-xnormal
-xi386
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@85"Compile /Users/shawnbernard/Documents/projects/Kickball/Classes/KickballAppDelegate.m278218432#278218432#0(0"0(0#0#77"/Users/shawnbernard/Documents/projects/Kickball/Classes/KickballAppDelegate.m4300882208#1998"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -include /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-edcyysmmuwjuzcfulkwcuoqiubjg/Kickball_Prefix.pch -c /Users/shawnbernard/Documents/projects/Kickball/Classes/KickballAppDelegate.m -o /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/KickballAppDelegate.o0#
-
-CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/KickballViewController.o /Users/shawnbernard/Documents/projects/Kickball/Classes/KickballViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
-s278218304.956638
-e278218305.138204
-r1
-xCompileC
-xbuild/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/KickballViewController.o
-x/Users/shawnbernard/Documents/projects/Kickball/Classes/KickballViewController.m
-xnormal
-xi386
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@88"Compile /Users/shawnbernard/Documents/projects/Kickball/Classes/KickballViewController.m278218304#278218305#0(0"0(0#0#80"/Users/shawnbernard/Documents/projects/Kickball/Classes/KickballViewController.m4300882208#2004"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -include /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-edcyysmmuwjuzcfulkwcuoqiubjg/Kickball_Prefix.pch -c /Users/shawnbernard/Documents/projects/Kickball/Classes/KickballViewController.m -o /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/KickballViewController.o0#
-
-CCompileC build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/main.o /Users/shawnbernard/Documents/projects/Kickball/main.m normal i386 objective-c com.apple.compilers.gcc.4_2
-s278218304.586977
-e278218304.976029
-r1
-xCompileC
-xbuild/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/main.o
-x/Users/shawnbernard/Documents/projects/Kickball/main.m
-xnormal
-xi386
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@62"Compile /Users/shawnbernard/Documents/projects/Kickball/main.m278218304#278218304#0(0"0(0#0#54"/Users/shawnbernard/Documents/projects/Kickball/main.m4300882208#1960"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -include /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-edcyysmmuwjuzcfulkwcuoqiubjg/Kickball_Prefix.pch -c /Users/shawnbernard/Documents/projects/Kickball/main.m -o /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/main.o0#
-
-CCompileXIB /Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsListView.xib
-s278218410.690058
-e278218414.660556
-r1
-xCompileXIB
-x/Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsListView.xib
-lSLF07#2@38"CompileXIB Classes/FriendsListView.xib278218410#278218414#0(0"0(0#0#75"/Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsListView.xib4300882208#514"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 3.1    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/FriendsListView.nib /Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsListView.xib0#
-
-CCompileXIB /Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsListViewController.xib
-r0
-
-CCompileXIB /Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsMapView.xib
-s278218410.701473
-e278218414.690768
-r1
-xCompileXIB
-x/Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsMapView.xib
-lSLF07#2@37"CompileXIB Classes/FriendsMapView.xib278218410#278218414#0(0"0(0#0#74"/Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsMapView.xib4300882208#512"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 3.1    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/FriendsMapView.nib /Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsMapView.xib0#
-
-CCompileXIB /Users/shawnbernard/Documents/projects/Kickball/Classes/FriendsMapViewController.xib
-r0
-
-CCompileXIB /Users/shawnbernard/Documents/projects/Kickball/KickballViewController.xib
-s278218292.756181
-e278218299.200056
-r1
-xCompileXIB
-x/Users/shawnbernard/Documents/projects/Kickball/KickballViewController.xib
-lSLF07#2@37"CompileXIB KickballViewController.xib278218292#278218299#0(0"0(0#0#74"/Users/shawnbernard/Documents/projects/Kickball/KickballViewController.xib4300882208#520"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 3.1    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/KickballViewController.nib /Users/shawnbernard/Documents/projects/Kickball/KickballViewController.xib0#
-
-CCompileXIB /Users/shawnbernard/Documents/projects/Kickball/MainWindow.xib
-s278218374.971433
-e278218377.542330
-r1
-xCompileXIB
-x/Users/shawnbernard/Documents/projects/Kickball/MainWindow.xib
-lSLF07#2@25"CompileXIB MainWindow.xib278218374#278218377#0(0"0(0#0#62"/Users/shawnbernard/Documents/projects/Kickball/MainWindow.xib4300882208#496"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 3.1    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/MainWindow.nib /Users/shawnbernard/Documents/projects/Kickball/MainWindow.xib0#
-
-CGenerateDSYMFile /Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app.dSYM /Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/Kickball
-s278218433.531469
-e278218433.785639
-r1
-xGenerateDSYMFile
-x/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app.dSYM
-x/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/Kickball
-lSLF07#2@112"GenerateDSYMFile build/Debug-iphonesimulator/Kickball.app.dSYM build/Debug-iphonesimulator/Kickball.app/Kickball278218433#278218433#0(0"0(0#0#97"/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/Kickball4300882208#401"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/usr/bin/dsymutil /Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/Kickball -o /Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app.dSYM0#
-
-CLd /Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/Kickball normal i386
-s278218432.699829
-e278218433.531368
-r1
-xLd
-x/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/Kickball
-xnormal
-xi386
-lSLF07#2@102"Link /Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/Kickball278218432#278218433#0(0"0(0#0#0"4300882208#896"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv MACOSX_DEPLOYMENT_TARGET 10.5    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -arch i386 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -L/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -filelist /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Objects-normal/i386/Kickball.LinkFileList -mmacosx-version-min=10.5 -framework Foundation -framework UIKit -framework CoreGraphics -o /Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/Kickball0#
-
-CProcessInfoPlistFile /Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/Info.plist Kickball-Info.plist
-s278218292.649380
-e278218292.745987
-r1
-xProcessInfoPlistFile
-x/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/Info.plist
-xKickball-Info.plist
-lSLF07#2@27"Process Kickball-Info.plist278218292#278218292#0(0"0(0#0#67"/Users/shawnbernard/Documents/projects/Kickball/Kickball-Info.plist30399714103001196#501"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    builtin-infoPlistUtility Kickball-Info.plist -genpkginfo /Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -o /Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app/Info.plist0#
-
-CProcessPCH /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-edcyysmmuwjuzcfulkwcuoqiubjg/Kickball_Prefix.pch.gch Kickball_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
-s278218300.904050
-e278218304.586799
-r1
-xProcessPCH
-x/var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-edcyysmmuwjuzcfulkwcuoqiubjg/Kickball_Prefix.pch.gch
-xKickball_Prefix.pch
-xnormal
-xi386
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@30"Precompile Kickball_Prefix.pch278218300#278218304#0(0"0(0#0#67"/Users/shawnbernard/Documents/projects/Kickball/Kickball_Prefix.pch4300882208#1842"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv LANG en_US.US-ASCII    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c-header -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Xcode/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-generated-files.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-own-target-headers.hmap -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-all-target-headers.hmap -iquote /Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/Kickball-project-headers.hmap -F/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator -I/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/include -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources/i386 -I/Users/shawnbernard/Documents/projects/Kickball/build/Kickball.build/Debug-iphonesimulator/Kickball.build/DerivedSources -c /Users/shawnbernard/Documents/projects/Kickball/Kickball_Prefix.pch -o /var/folders/LW/LWNv6nMPGZ0MwILL-Z5ybU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Kickball_Prefix-edcyysmmuwjuzcfulkwcuoqiubjg/Kickball_Prefix.pch.gch0#
-
-CTouch /Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app
-s278218433.785724
-e278218433.820073
-r1
-xTouch
-x/Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app
-lSLF07#2@94"Touch /Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app278218433#278218433#0(0"0(0#0#0"4300882208#289"    cd /Users/shawnbernard/Documents/projects/Kickball    setenv PATH "/Xcode/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Xcode/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /usr/bin/touch -c /Users/shawnbernard/Documents/projects/Kickball/build/Debug-iphonesimulator/Kickball.app0#
-
