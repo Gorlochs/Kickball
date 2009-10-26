@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 
 
-@interface FriendsListViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource> {
-
+@interface FriendsListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+    IBOutlet UITableView *theTableView;
 }
 
 @end
