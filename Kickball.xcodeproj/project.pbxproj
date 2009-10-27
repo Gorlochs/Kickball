@@ -17,6 +17,9 @@
 		6A044CAD109545200063FC33 /* FriendsListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A044CAB109545200063FC33 /* FriendsListView.xib */; };
 		6A044CB6109545450063FC33 /* FriendsMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A044CB4109545450063FC33 /* FriendsMapViewController.m */; };
 		6A044CB7109545450063FC33 /* FriendsMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A044CB5109545450063FC33 /* FriendsMapView.xib */; };
+		6A1526C71096BD7E00924D0E /* FriendsListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A1526C61096BD7E00924D0E /* FriendsListTableCell.m */; };
+		6A1526C91096BDB300924D0E /* FriendsListTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A1526C81096BDB300924D0E /* FriendsListTableCellView.xib */; };
+		6A1527081096C27200924D0E /* temp-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A1527071096C27200924D0E /* temp-icon.png */; };
 		6A39EB581096581A006F76C3 /* libPMAnalytics-r69.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A39EB571096581A006F76C3 /* libPMAnalytics-r69.a */; };
 		6A39EB5C1096584A006F76C3 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A39EB5B1096584A006F76C3 /* libsqlite3.dylib */; };
 		6A39EB6110965868006F76C3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A39EB6010965868006F76C3 /* CoreLocation.framework */; };
@@ -40,6 +43,10 @@
 		6A044CB3109545450063FC33 /* FriendsMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsMapViewController.h; sourceTree = "<group>"; };
 		6A044CB4109545450063FC33 /* FriendsMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsMapViewController.m; sourceTree = "<group>"; };
 		6A044CB5109545450063FC33 /* FriendsMapView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FriendsMapView.xib; path = Classes/FriendsMapView.xib; sourceTree = "<group>"; };
+		6A1526C51096BD7E00924D0E /* FriendsListTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsListTableCell.h; sourceTree = "<group>"; };
+		6A1526C61096BD7E00924D0E /* FriendsListTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsListTableCell.m; sourceTree = "<group>"; };
+		6A1526C81096BDB300924D0E /* FriendsListTableCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendsListTableCellView.xib; sourceTree = "<group>"; };
+		6A1527071096C27200924D0E /* temp-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "temp-icon.png"; sourceTree = "<group>"; };
 		6A39EB4310965675006F76C3 /* Beacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Beacon.h; sourceTree = "<group>"; };
 		6A39EB4410965675006F76C3 /* Beacon+FBConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Beacon+FBConnect.h"; sourceTree = "<group>"; };
 		6A39EB571096581A006F76C3 /* libPMAnalytics-r69.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPMAnalytics-r69.a"; path = "/Users/shawnbernard/Desktop/PinchAnalytics-r69/libPMAnalytics-r69.a"; sourceTree = "<absolute>"; };
@@ -95,6 +102,7 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				6A1526C81096BDB300924D0E /* FriendsListTableCellView.xib */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -141,6 +149,8 @@
 				6A044CAA109545200063FC33 /* FriendsListViewController.m */,
 				6A044CB3109545450063FC33 /* FriendsMapViewController.h */,
 				6A044CB4109545450063FC33 /* FriendsMapViewController.m */,
+				6A1526C51096BD7E00924D0E /* FriendsListTableCell.h */,
+				6A1526C61096BD7E00924D0E /* FriendsListTableCell.m */,
 			);
 			name = Friends;
 			sourceTree = "<group>";
@@ -165,6 +175,7 @@
 		6A39EC4C109662D7006F76C3 /* temp */ = {
 			isa = PBXGroup;
 			children = (
+				6A1527071096C27200924D0E /* temp-icon.png */,
 				6A39EC4D109662E5006F76C3 /* tmp-header.png */,
 			);
 			name = temp;
@@ -216,6 +227,8 @@
 				6A044CAD109545200063FC33 /* FriendsListView.xib in Resources */,
 				6A044CB7109545450063FC33 /* FriendsMapView.xib in Resources */,
 				6A39EC4E109662E5006F76C3 /* tmp-header.png in Resources */,
+				6A1526C91096BDB300924D0E /* FriendsListTableCellView.xib in Resources */,
+				6A1527081096C27200924D0E /* temp-icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,6 +243,7 @@
 				1D3623260D0F684500981E51 /* KickballAppDelegate.m in Sources */,
 				6A044CAC109545200063FC33 /* FriendsListViewController.m in Sources */,
 				6A044CB6109545450063FC33 /* FriendsMapViewController.m in Sources */,
+				6A1526C71096BD7E00924D0E /* FriendsListTableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

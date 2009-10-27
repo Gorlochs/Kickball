@@ -26,6 +26,9 @@
     NSString *applicationCode = @"51512b37fa78552a6981778e1e652682";
     [Beacon initAndStartBeaconWithApplicationCode:applicationCode
                                   useCoreLocation:YES useOnlyWiFi:NO];    
+    
+    // this is just a sample. this should be removed eventually.
+    [[Beacon shared] startSubBeaconWithName:@"App launched!" timeSession:NO];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

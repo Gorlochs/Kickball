@@ -9,6 +9,7 @@
 //
 
 #import "FriendsListViewController.h"
+#import "FriendsListTableCell.h"
 #import "Beacon.h"
 
 @implementation FriendsListViewController
@@ -90,13 +91,17 @@
     
     static NSString *CellIdentifier = @"Cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    FriendsListTableCell *cell = (FriendsListTableCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        //cell = [[[FriendsListTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        // TODO: I'm not sure that this is the best way to do this with 3.x - there might be a better way to do it now
+        UIViewController *vc = [[UIViewController alloc]initWithNibName:@"FriendsListTableCellView" bundle:nil];
+        cell = (FriendsListTableCell*) vc.view;
+        [vc release];
     }
     
     // Set up the cell...
-	cell.textLabel.text = @"foo";
+	//cell.textLabel.text = @"foo bar";
     return cell;
 }
 
@@ -113,7 +118,6 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    NSLog(@"viewForHeaderInSection");
 	// create the parent view that will hold header Label
 	UIView* customView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 24.0)] autorelease];
 	
