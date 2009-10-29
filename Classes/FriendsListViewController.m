@@ -10,6 +10,7 @@
 
 #import "FriendsListViewController.h"
 #import "FriendsListTableCell.h"
+#import "PlaceDetailViewController.h"
 #import "Beacon.h"
 
 @implementation FriendsListViewController
@@ -101,16 +102,22 @@
     }
     
     // Set up the cell...
-	//cell.textLabel.text = @"foo bar";
     return cell;
 }
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"row selected");
     // Navigation logic may go here. Create and push another view controller.
-	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
-	// [self.navigationController pushViewController:anotherViewController];
-	// [anotherViewController release];
+	PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];
+    // TODO: come up with a better way to manage the views
+    [UIView beginAnimations:nil context:NULL];
+	//make the date picker slide in/slide out
+    [self.view addSubview:placeDetailController.view];
+	[UIView commitAnimations];
+
+//	[self.navigationController pushViewController:placeDetailController];
+//	[placeDetailController release];
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

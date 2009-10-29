@@ -20,11 +20,24 @@
 		6A1526C71096BD7E00924D0E /* FriendsListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A1526C61096BD7E00924D0E /* FriendsListTableCell.m */; };
 		6A1526C91096BDB300924D0E /* FriendsListTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A1526C81096BDB300924D0E /* FriendsListTableCellView.xib */; };
 		6A1527081096C27200924D0E /* temp-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A1527071096C27200924D0E /* temp-icon.png */; };
-		6A39EB581096581A006F76C3 /* libPMAnalytics-r69.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A39EB571096581A006F76C3 /* libPMAnalytics-r69.a */; };
 		6A39EB5C1096584A006F76C3 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A39EB5B1096584A006F76C3 /* libsqlite3.dylib */; };
 		6A39EB6110965868006F76C3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A39EB6010965868006F76C3 /* CoreLocation.framework */; };
 		6A39EB6310965868006F76C3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A39EB6210965868006F76C3 /* SystemConfiguration.framework */; };
 		6A39EC4E109662E5006F76C3 /* tmp-header.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A39EC4D109662E5006F76C3 /* tmp-header.png */; };
+		6A978A611099FBC000FCE8F1 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A978A601099FBC000FCE8F1 /* StoreKit.framework */; };
+		6AC7E9171099483A00776993 /* libPMAnalytics-r69.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AC7E9161099483A00776993 /* libPMAnalytics-r69.a */; };
+		6AC7E92C10994FA000776993 /* tmp-title.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC7E92B10994FA000776993 /* tmp-title.png */; };
+		6AC7E93110994FD000776993 /* PlaceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC7E92F10994FD000776993 /* PlaceDetailViewController.m */; };
+		6AC7E93210994FD000776993 /* PlaceDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AC7E93010994FD000776993 /* PlaceDetailView.xib */; };
+		6AC7E9381099513200776993 /* PlaceTitleTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AC7E9371099513200776993 /* PlaceTitleTableCellView.xib */; };
+		6AC7E93B1099519300776993 /* tmp-phone.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC7E93A1099519300776993 /* tmp-phone.png */; };
+		6AC7E94A1099543400776993 /* PlaceDetailTitleTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC7E9491099543400776993 /* PlaceDetailTitleTableCell.m */; };
+		6AC7E9C610995A5700776993 /* PlaceDetailGiftShoutTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC7E9C510995A5700776993 /* PlaceDetailGiftShoutTableCell.m */; };
+		6AC7E9C810995A6C00776993 /* PlaceGiftShoutTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AC7E9C710995A6C00776993 /* PlaceGiftShoutTableCellView.xib */; };
+		6AC7E9CD10995B2300776993 /* tmp-gift.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC7E9CC10995B2300776993 /* tmp-gift.png */; };
+		6AC7E9CF10995BE700776993 /* tmp-shout.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC7E9CE10995BE700776993 /* tmp-shout.png */; };
+		6AC7E9D910995F1F00776993 /* PlaceDetailMayorMapTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC7E9D810995F1F00776993 /* PlaceDetailMayorMapTableCell.m */; };
+		6AC7E9DB10995F4700776993 /* PlaceMayorMapTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AC7E9DA10995F4700776993 /* PlaceMayorMapTableCellView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,11 +62,28 @@
 		6A1527071096C27200924D0E /* temp-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "temp-icon.png"; sourceTree = "<group>"; };
 		6A39EB4310965675006F76C3 /* Beacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Beacon.h; sourceTree = "<group>"; };
 		6A39EB4410965675006F76C3 /* Beacon+FBConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Beacon+FBConnect.h"; sourceTree = "<group>"; };
-		6A39EB571096581A006F76C3 /* libPMAnalytics-r69.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPMAnalytics-r69.a"; path = "/Users/shawnbernard/Desktop/PinchAnalytics-r69/libPMAnalytics-r69.a"; sourceTree = "<absolute>"; };
 		6A39EB5B1096584A006F76C3 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = /usr/lib/libsqlite3.dylib; sourceTree = "<absolute>"; };
 		6A39EB6010965868006F76C3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = /System/Library/Frameworks/CoreLocation.framework; sourceTree = "<absolute>"; };
 		6A39EB6210965868006F76C3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = /System/Library/Frameworks/SystemConfiguration.framework; sourceTree = "<absolute>"; };
 		6A39EC4D109662E5006F76C3 /* tmp-header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tmp-header.png"; sourceTree = "<group>"; };
+		6A978A601099FBC000FCE8F1 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		6AC7E9161099483A00776993 /* libPMAnalytics-r69.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPMAnalytics-r69.a"; path = "/Users/shawnbernard/Desktop/libPMAnalytics-r69.a"; sourceTree = "<absolute>"; };
+		6AC7E92B10994FA000776993 /* tmp-title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tmp-title.png"; sourceTree = "<group>"; };
+		6AC7E92E10994FD000776993 /* PlaceDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceDetailViewController.h; sourceTree = "<group>"; };
+		6AC7E92F10994FD000776993 /* PlaceDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceDetailViewController.m; sourceTree = "<group>"; };
+		6AC7E93010994FD000776993 /* PlaceDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = PlaceDetailView.xib; path = Classes/PlaceDetailView.xib; sourceTree = "<group>"; };
+		6AC7E9371099513200776993 /* PlaceTitleTableCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaceTitleTableCellView.xib; sourceTree = "<group>"; };
+		6AC7E93A1099519300776993 /* tmp-phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tmp-phone.png"; sourceTree = "<group>"; };
+		6AC7E9481099543400776993 /* PlaceDetailTitleTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceDetailTitleTableCell.h; sourceTree = "<group>"; };
+		6AC7E9491099543400776993 /* PlaceDetailTitleTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceDetailTitleTableCell.m; sourceTree = "<group>"; };
+		6AC7E9C410995A5700776993 /* PlaceDetailGiftShoutTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceDetailGiftShoutTableCell.h; sourceTree = "<group>"; };
+		6AC7E9C510995A5700776993 /* PlaceDetailGiftShoutTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceDetailGiftShoutTableCell.m; sourceTree = "<group>"; };
+		6AC7E9C710995A6C00776993 /* PlaceGiftShoutTableCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaceGiftShoutTableCellView.xib; sourceTree = "<group>"; };
+		6AC7E9CC10995B2300776993 /* tmp-gift.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tmp-gift.png"; sourceTree = "<group>"; };
+		6AC7E9CE10995BE700776993 /* tmp-shout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tmp-shout.png"; sourceTree = "<group>"; };
+		6AC7E9D710995F1F00776993 /* PlaceDetailMayorMapTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceDetailMayorMapTableCell.h; sourceTree = "<group>"; };
+		6AC7E9D810995F1F00776993 /* PlaceDetailMayorMapTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceDetailMayorMapTableCell.m; sourceTree = "<group>"; };
+		6AC7E9DA10995F4700776993 /* PlaceMayorMapTableCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaceMayorMapTableCellView.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Kickball-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Kickball-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -65,10 +95,11 @@
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
-				6A39EB581096581A006F76C3 /* libPMAnalytics-r69.a in Frameworks */,
 				6A39EB5C1096584A006F76C3 /* libsqlite3.dylib in Frameworks */,
 				6A39EB6110965868006F76C3 /* CoreLocation.framework in Frameworks */,
 				6A39EB6310965868006F76C3 /* SystemConfiguration.framework in Frameworks */,
+				6AC7E9171099483A00776993 /* libPMAnalytics-r69.a in Frameworks */,
+				6A978A611099FBC000FCE8F1 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				6A39EB3E10965666006F76C3 /* Pinch */,
+				6AC7E92D10994FB500776993 /* Place */,
 				6A044CB8109545580063FC33 /* Friends */,
 				1D3623240D0F684500981E51 /* KickballAppDelegate.h */,
 				1D3623250D0F684500981E51 /* KickballAppDelegate.m */,
@@ -102,7 +134,6 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				6A1526C81096BDB300924D0E /* FriendsListTableCellView.xib */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -123,7 +154,12 @@
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				6A044CAB109545200063FC33 /* FriendsListView.xib */,
 				6A044CB5109545450063FC33 /* FriendsMapView.xib */,
+				6AC7E93010994FD000776993 /* PlaceDetailView.xib */,
 				8D1107310486CEB800E47090 /* Kickball-Info.plist */,
+				6A1526C81096BDB300924D0E /* FriendsListTableCellView.xib */,
+				6AC7E9371099513200776993 /* PlaceTitleTableCellView.xib */,
+				6AC7E9C710995A6C00776993 /* PlaceGiftShoutTableCellView.xib */,
+				6AC7E9DA10995F4700776993 /* PlaceMayorMapTableCellView.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -131,7 +167,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6A39EB571096581A006F76C3 /* libPMAnalytics-r69.a */,
+				6A978A601099FBC000FCE8F1 /* StoreKit.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
@@ -160,6 +196,7 @@
 			children = (
 				6A39EB4310965675006F76C3 /* Beacon.h */,
 				6A39EB4410965675006F76C3 /* Beacon+FBConnect.h */,
+				6AC7E9161099483A00776993 /* libPMAnalytics-r69.a */,
 			);
 			name = Pinch;
 			sourceTree = "<group>";
@@ -175,10 +212,29 @@
 		6A39EC4C109662D7006F76C3 /* temp */ = {
 			isa = PBXGroup;
 			children = (
+				6AC7E9CE10995BE700776993 /* tmp-shout.png */,
+				6AC7E9CC10995B2300776993 /* tmp-gift.png */,
+				6AC7E93A1099519300776993 /* tmp-phone.png */,
+				6AC7E92B10994FA000776993 /* tmp-title.png */,
 				6A1527071096C27200924D0E /* temp-icon.png */,
 				6A39EC4D109662E5006F76C3 /* tmp-header.png */,
 			);
 			name = temp;
+			sourceTree = "<group>";
+		};
+		6AC7E92D10994FB500776993 /* Place */ = {
+			isa = PBXGroup;
+			children = (
+				6AC7E92E10994FD000776993 /* PlaceDetailViewController.h */,
+				6AC7E92F10994FD000776993 /* PlaceDetailViewController.m */,
+				6AC7E9481099543400776993 /* PlaceDetailTitleTableCell.h */,
+				6AC7E9491099543400776993 /* PlaceDetailTitleTableCell.m */,
+				6AC7E9C410995A5700776993 /* PlaceDetailGiftShoutTableCell.h */,
+				6AC7E9C510995A5700776993 /* PlaceDetailGiftShoutTableCell.m */,
+				6AC7E9D710995F1F00776993 /* PlaceDetailMayorMapTableCell.h */,
+				6AC7E9D810995F1F00776993 /* PlaceDetailMayorMapTableCell.m */,
+			);
+			name = Place;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,6 +285,14 @@
 				6A39EC4E109662E5006F76C3 /* tmp-header.png in Resources */,
 				6A1526C91096BDB300924D0E /* FriendsListTableCellView.xib in Resources */,
 				6A1527081096C27200924D0E /* temp-icon.png in Resources */,
+				6AC7E92C10994FA000776993 /* tmp-title.png in Resources */,
+				6AC7E93210994FD000776993 /* PlaceDetailView.xib in Resources */,
+				6AC7E9381099513200776993 /* PlaceTitleTableCellView.xib in Resources */,
+				6AC7E93B1099519300776993 /* tmp-phone.png in Resources */,
+				6AC7E9C810995A6C00776993 /* PlaceGiftShoutTableCellView.xib in Resources */,
+				6AC7E9CD10995B2300776993 /* tmp-gift.png in Resources */,
+				6AC7E9CF10995BE700776993 /* tmp-shout.png in Resources */,
+				6AC7E9DB10995F4700776993 /* PlaceMayorMapTableCellView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,6 +308,10 @@
 				6A044CAC109545200063FC33 /* FriendsListViewController.m in Sources */,
 				6A044CB6109545450063FC33 /* FriendsMapViewController.m in Sources */,
 				6A1526C71096BD7E00924D0E /* FriendsListTableCell.m in Sources */,
+				6AC7E93110994FD000776993 /* PlaceDetailViewController.m in Sources */,
+				6AC7E94A1099543400776993 /* PlaceDetailTitleTableCell.m in Sources */,
+				6AC7E9C610995A5700776993 /* PlaceDetailGiftShoutTableCell.m in Sources */,
+				6AC7E9D910995F1F00776993 /* PlaceDetailMayorMapTableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,6 +332,8 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes\"",
 					"\"$(SRCROOT)/../../../Desktop/PinchAnalytics-r69\"",
+					"\"$(SRCROOT)/../../../Desktop\"",
+					/Developer/iPhone30/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk/System/Library/Frameworks/StoreKit.framework,
 				);
 				PRODUCT_NAME = Kickball;
 			};
@@ -281,6 +351,8 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes\"",
 					"\"$(SRCROOT)/../../../Desktop/PinchAnalytics-r69\"",
+					"\"$(SRCROOT)/../../../Desktop\"",
+					/Developer/iPhone30/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk/System/Library/Frameworks/StoreKit.framework,
 				);
 				PRODUCT_NAME = Kickball;
 			};
