@@ -7,11 +7,13 @@
 //
 
 #import "PlaceDetailViewController.h"
-#import "PlaceDetailTitleTableCell.h"
-#import "PlaceDetailGiftShoutTableCell.h"
-#import "PlaceDetailMayorMapTableCell.h"
+#import "ProfileViewController.h"
 
 @implementation PlaceDetailViewController
+
+@synthesize titleCell;
+@synthesize mayorMapCell;
+@synthesize giftShoutCell;
 
 /*
 - (id)initWithStyle:(UITableViewStyle)style {
@@ -82,7 +84,12 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    if (section == 3) {
+        // TODO: return the number of people if < X, otherwise return MAX_NUMBER_OF_PEOPLE_HERE
+        return 4;
+    } else {
+        return 1;
+    }
 }
 
 
@@ -91,34 +98,35 @@
     
     static NSString *CellIdentifier = @"Cell";
     
+    // FIXME: something is f'd up.  Maybe a memory issue or something. 
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         // TODO: figure out why the switch doesn't work. very odd.
         if (indexPath.section == 0) {
-            UIViewController *vc = [[UIViewController alloc]initWithNibName:@"PlaceTitleTableCellView" bundle:nil];
-            cell = (PlaceDetailTitleTableCell*) vc.view;
-            [vc release];
+            return titleCell;
         } else if (indexPath.section == 1) {
-            UIViewController *vc = [[UIViewController alloc]initWithNibName:@"PlaceGiftShoutTableCellView" bundle:nil];
-            cell = (PlaceDetailGiftShoutTableCell*) vc.view;
-            [vc release];
+            // TODO: the PlaceDetailGiftShoutTableCell is only shown if the user has checked into this venue
+            //       otherwise, the 'Check In Here' button with the background needs to be displayed
+            return giftShoutCell;
         } else if (indexPath.section == 2) {
-            UIViewController *vc = [[UIViewController alloc]initWithNibName:@"PlaceMayorMapTableCellView" bundle:nil];
-            cell = (PlaceDetailMayorMapTableCell*) vc.view;
-            [vc release];
-            
-            // Google Static Maps API:  ABQIAAAAnrUlX7POdnZwsqXNLLWGTRTMzuZfXwYpjSHR_PURG9DdFdJWFxQJAauafQ6EM5PC-xeYd-P-GoM-pQ
-            NSString *urlAddress = @"http://m.google.com/maps";
+            NSString *urlAddress = @"http://www.literalshore.com/gorloch/kickball/google.html";
             NSURL *url = [NSURL URLWithString:urlAddress];
             NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
-//            [((PlaceDetailMayorMapTableCell*)cell).mapView loadHTMLString:@"/maps" baseURL:[NSURL URLWithString:@"http://m.google.com"]];
-            [((PlaceDetailMayorMapTableCell*)cell).mapView loadRequest:requestObj];
+            [mapView loadRequest:requestObj];
+            return mayorMapCell;
         } else {
             cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+            cell.selectionStyle = UITableViewCellSelectionStyleGray;
         }
     }
     
     // Set up the cell...
+    
+    if (indexPath.section == 3) {
+        cell.textLabel.text = @"Shawn";
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.imageView.image = [UIImage imageNamed:@"temp-icon.png"];
+    }
 	
     return cell;
 }
@@ -184,10 +192,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
-	// [self.navigationController pushViewController:anotherViewController];
-	// [anotherViewController release];
+	ProfileViewController *profileDetailController = [[ProfileViewController alloc] initWithNibName:@"ProfileViewController" bundle:nil];
+    [self.view addSubview:profileDetailController.view];
 }
 
 
@@ -232,9 +238,15 @@
 
 
 - (void)dealloc {
+    [theTableView release];
     [super dealloc];
 }
 
+#pragma mark IBAction methods
+
+- (void) callVenue {
+    
+}
 
 @end
 
