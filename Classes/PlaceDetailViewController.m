@@ -101,6 +101,7 @@
     // FIXME: something is f'd up.  Maybe a memory issue or something. 
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
+        // FIXME: I don't know what I was thinking. These shouldn't be cells, they should be part of the view, or separate subview
         // TODO: figure out why the switch doesn't work. very odd.
         if (indexPath.section == 0) {
             return titleCell;
@@ -109,6 +110,7 @@
             //       otherwise, the 'Check In Here' button with the background needs to be displayed
             return giftShoutCell;
         } else if (indexPath.section == 2) {
+            // FIXME: this should probably be replaced by MapKit and DaveE's MKPin class
             NSString *urlAddress = @"http://www.literalshore.com/gorloch/kickball/google.html";
             NSURL *url = [NSURL URLWithString:urlAddress];
             NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];

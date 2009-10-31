@@ -27,7 +27,12 @@
 		6A8AC8F1109AB31400C4FE1B /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A8AC8EF109AB31400C4FE1B /* ProfileViewController.m */; };
 		6A8AC8F2109AB31400C4FE1B /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A8AC8F0109AB31400C4FE1B /* ProfileViewController.xib */; };
 		6A978A611099FBC000FCE8F1 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A978A601099FBC000FCE8F1 /* StoreKit.framework */; };
-		6AC7E9171099483A00776993 /* libPMAnalytics-r69.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AC7E9161099483A00776993 /* libPMAnalytics-r69.a */; };
+		6AA76141109BFB1000773563 /* libPMAnalytics-r39.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA76140109BFB1000773563 /* libPMAnalytics-r39.a */; };
+		6AA76163109BFC5D00773563 /* tmp-search-bar.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AA76162109BFC5D00773563 /* tmp-search-bar.png */; };
+		6ABA7858109BDCAF001E7293 /* PlacesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABA7856109BDCAF001E7293 /* PlacesListViewController.m */; };
+		6ABA7859109BDCAF001E7293 /* PlacesListViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6ABA7857109BDCAF001E7293 /* PlacesListViewController.xib */; };
+		6ABA785D109BE181001E7293 /* tmp-checkin-shout.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ABA785C109BE181001E7293 /* tmp-checkin-shout.png */; };
+		6ABA785F109BE20C001E7293 /* tmp-shout-btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ABA785E109BE20C001E7293 /* tmp-shout-btn.png */; };
 		6AC7E92C10994FA000776993 /* tmp-title.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC7E92B10994FA000776993 /* tmp-title.png */; };
 		6AC7E93110994FD000776993 /* PlaceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC7E92F10994FD000776993 /* PlaceDetailViewController.m */; };
 		6AC7E93210994FD000776993 /* PlaceDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AC7E93010994FD000776993 /* PlaceDetailView.xib */; };
@@ -67,7 +72,13 @@
 		6A8AC8EF109AB31400C4FE1B /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		6A8AC8F0109AB31400C4FE1B /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
 		6A978A601099FBC000FCE8F1 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		6AC7E9161099483A00776993 /* libPMAnalytics-r69.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPMAnalytics-r69.a"; path = "/Users/shawnbernard/Desktop/libPMAnalytics-r69.a"; sourceTree = "<absolute>"; };
+		6AA76140109BFB1000773563 /* libPMAnalytics-r39.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPMAnalytics-r39.a"; path = "/Users/shawnbernard/Documents/projects/BoomboxPro/Classes/libPMAnalytics-r39.a"; sourceTree = "<absolute>"; };
+		6AA76162109BFC5D00773563 /* tmp-search-bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tmp-search-bar.png"; sourceTree = "<group>"; };
+		6ABA7855109BDCAF001E7293 /* PlacesListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlacesListViewController.h; sourceTree = "<group>"; };
+		6ABA7856109BDCAF001E7293 /* PlacesListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlacesListViewController.m; sourceTree = "<group>"; };
+		6ABA7857109BDCAF001E7293 /* PlacesListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlacesListViewController.xib; sourceTree = "<group>"; };
+		6ABA785C109BE181001E7293 /* tmp-checkin-shout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tmp-checkin-shout.png"; sourceTree = "<group>"; };
+		6ABA785E109BE20C001E7293 /* tmp-shout-btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tmp-shout-btn.png"; sourceTree = "<group>"; };
 		6AC7E92B10994FA000776993 /* tmp-title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tmp-title.png"; sourceTree = "<group>"; };
 		6AC7E92E10994FD000776993 /* PlaceDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceDetailViewController.h; sourceTree = "<group>"; };
 		6AC7E92F10994FD000776993 /* PlaceDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceDetailViewController.m; sourceTree = "<group>"; };
@@ -91,8 +102,8 @@
 				6A39EB5C1096584A006F76C3 /* libsqlite3.dylib in Frameworks */,
 				6A39EB6110965868006F76C3 /* CoreLocation.framework in Frameworks */,
 				6A39EB6310965868006F76C3 /* SystemConfiguration.framework in Frameworks */,
-				6AC7E9171099483A00776993 /* libPMAnalytics-r69.a in Frameworks */,
 				6A978A611099FBC000FCE8F1 /* StoreKit.framework in Frameworks */,
+				6AA76141109BFB1000773563 /* libPMAnalytics-r39.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,6 +139,7 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				6AA76140109BFB1000773563 /* libPMAnalytics-r39.a */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -189,7 +201,6 @@
 			children = (
 				6A39EB4310965675006F76C3 /* Beacon.h */,
 				6A39EB4410965675006F76C3 /* Beacon+FBConnect.h */,
-				6AC7E9161099483A00776993 /* libPMAnalytics-r69.a */,
 			);
 			name = Pinch;
 			sourceTree = "<group>";
@@ -205,6 +216,9 @@
 		6A39EC4C109662D7006F76C3 /* temp */ = {
 			isa = PBXGroup;
 			children = (
+				6AA76162109BFC5D00773563 /* tmp-search-bar.png */,
+				6ABA785E109BE20C001E7293 /* tmp-shout-btn.png */,
+				6ABA785C109BE181001E7293 /* tmp-checkin-shout.png */,
 				6AC7E9CE10995BE700776993 /* tmp-shout.png */,
 				6AC7E9CC10995B2300776993 /* tmp-gift.png */,
 				6AC7E93A1099519300776993 /* tmp-phone.png */,
@@ -220,6 +234,9 @@
 			children = (
 				6AC7E92E10994FD000776993 /* PlaceDetailViewController.h */,
 				6AC7E92F10994FD000776993 /* PlaceDetailViewController.m */,
+				6ABA7855109BDCAF001E7293 /* PlacesListViewController.h */,
+				6ABA7856109BDCAF001E7293 /* PlacesListViewController.m */,
+				6ABA7857109BDCAF001E7293 /* PlacesListViewController.xib */,
 			);
 			name = Place;
 			sourceTree = "<group>";
@@ -289,6 +306,9 @@
 				6A8AC8F2109AB31400C4FE1B /* ProfileViewController.xib in Resources */,
 				6AC7E9CD10995B2300776993 /* tmp-gift.png in Resources */,
 				6AC7E9CF10995BE700776993 /* tmp-shout.png in Resources */,
+				6ABA785D109BE181001E7293 /* tmp-checkin-shout.png in Resources */,
+				6ABA785F109BE20C001E7293 /* tmp-shout-btn.png in Resources */,
+				6AA76163109BFC5D00773563 /* tmp-search-bar.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +326,8 @@
 				6A1526C71096BD7E00924D0E /* FriendsListTableCell.m in Sources */,
 				6AC7E93110994FD000776993 /* PlaceDetailViewController.m in Sources */,
 				6A8AC8F1109AB31400C4FE1B /* ProfileViewController.m in Sources */,
+				6ABA7858109BDCAF001E7293 /* PlacesListViewController.m in Sources */,
+				6ABA7859109BDCAF001E7293 /* PlacesListViewController.xib in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,6 +350,7 @@
 					"\"$(SRCROOT)/../../../Desktop/PinchAnalytics-r69\"",
 					"\"$(SRCROOT)/../../../Desktop\"",
 					/Developer/iPhone30/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk/System/Library/Frameworks/StoreKit.framework,
+					"\"$(SRCROOT)/../BoomboxPro/Classes\"",
 				);
 				PRODUCT_NAME = Kickball;
 			};
@@ -347,6 +370,7 @@
 					"\"$(SRCROOT)/../../../Desktop/PinchAnalytics-r69\"",
 					"\"$(SRCROOT)/../../../Desktop\"",
 					/Developer/iPhone30/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk/System/Library/Frameworks/StoreKit.framework,
+					"\"$(SRCROOT)/../BoomboxPro/Classes\"",
 				);
 				PRODUCT_NAME = Kickball;
 			};

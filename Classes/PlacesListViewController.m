@@ -1,20 +1,17 @@
 //
-//  FriendsListViewController.m
+//  PlacesListViewController.m
 //  Kickball
 //
-//  Created by Shawn Bernard on 10/25/09.
-//  Copyright 2009 Gorloch Interactive, LLC. All rights reserved.
-//
-//  Standard table view of friends' recent activity
+//  Created by Shawn Bernard on 10/30/09.
+//  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
-#import "FriendsListViewController.h"
-#import "FriendsListTableCell.h"
-#import "PlaceDetailViewController.h"
 #import "PlacesListViewController.h"
-#import "Beacon.h"
+#import "PlaceDetailViewController.h"
 
-@implementation FriendsListViewController
+@implementation PlacesListViewController
+
+@synthesize searchCell;
 
 /*
 - (id)initWithStyle:(UITableViewStyle)style {
@@ -25,13 +22,14 @@
 }
 */
 
+/*
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
-
+*/
 
 /*
 - (void)viewWillAppear:(BOOL)animated {
@@ -65,7 +63,7 @@
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
+	
 	// Release any cached data, images, etc that aren't in use.
 }
 
@@ -84,7 +82,8 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    // FIXME: calculate how many rows should be displayed here
+    return 5;
 }
 
 
@@ -93,68 +92,68 @@
     
     static NSString *CellIdentifier = @"Cell";
     
-    FriendsListTableCell *cell = (FriendsListTableCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        //cell = [[[FriendsListTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-        // TODO: I'm not sure that this is the best way to do this with 3.x - there might be a better way to do it now
-        UIViewController *vc = [[UIViewController alloc]initWithNibName:@"FriendsListTableCellView" bundle:nil];
-        cell = (FriendsListTableCell*) vc.view;
-        [vc release];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     
     // Set up the cell...
+	
     return cell;
 }
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"row selected");
-    // Navigation logic may go here. Create and push another view controller.
 	PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];
-    // TODO: come up with a better way to manage the views
-    [UIView beginAnimations:nil context:NULL];
-	//make the date picker slide in/slide out
     [self.view addSubview:placeDetailController.view];
-	[UIView commitAnimations];
-
-//	[self.navigationController pushViewController:placeDetailController];
-//	[placeDetailController release];
 }
+
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    switch (indexPath.section) {
+//        case 0:
+//            return 62;
+//        case 2:
+//            return 62;
+//        default:
+//            return 44;
+//    }
+//}
 
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
 	return 24.0;
 }
 
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-	// create the parent view that will hold header Label
-	UIView* customView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 24.0)] autorelease];
-	
-	// create the button object
-	UILabel * headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-	headerLabel.backgroundColor = [UIColor blackColor];
-	headerLabel.opaque = NO;
-	headerLabel.textColor = [UIColor grayColor];
-	headerLabel.highlightedTextColor = [UIColor grayColor];
-	headerLabel.font = [UIFont boldSystemFontOfSize:12];
-	headerLabel.frame = CGRectMake(00.0, 0.0, 320.0, 24.0);
+    // create the parent view that will hold header Label
+    UIView* customView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 24.0)] autorelease];
     
-	// If you want to align the header text as centered
-	// headerLabel.frame = CGRectMake(150.0, 0.0, 300.0, 44.0);
+    // create the button object
+    UILabel * headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    headerLabel.backgroundColor = [UIColor blackColor];
+    headerLabel.opaque = NO;
+    headerLabel.textColor = [UIColor grayColor];
+    headerLabel.highlightedTextColor = [UIColor grayColor];
+    headerLabel.font = [UIFont boldSystemFontOfSize:12];
+    headerLabel.frame = CGRectMake(00.0, 0.0, 320.0, 24.0);
+    
+    // If you want to align the header text as centered
+    // headerLabel.frame = CGRectMake(150.0, 0.0, 300.0, 44.0);
     switch (section) {
         case 0:
-            headerLabel.text = @"  Last 3 Hours";
+            headerLabel.text = @"  Nearby Favorites";
             break;
         case 1:
-            headerLabel.text = @"  Today";
+            headerLabel.text = @"  Nearby";
             break;
         default:
             headerLabel.text = @"You shouldn't see this";
             break;
     }
-	//headerLabel.text = <Put here whatever you want to display> // i.e. array element
-	[customView addSubview:headerLabel];
+    //headerLabel.text = <Put here whatever you want to display> // i.e. array element
+    [customView addSubview:headerLabel];
     [headerLabel release];
-	return customView;
+    return customView;
 }
 
 /*
@@ -201,12 +200,6 @@
     [super dealloc];
 }
 
-#pragma mark IBAction methods
-
-- (IBAction) checkin {
-    PlacesListViewController *placesListController = [[PlacesListViewController alloc] initWithNibName:@"PlacesListViewController" bundle:nil];
-    [self.view addSubview:placesListController.view];
-}
 
 @end
 

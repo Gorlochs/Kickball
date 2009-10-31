@@ -13,4 +13,5 @@
     IBOutlet UITableView *theTableView;
 }
 
+- (IBAction) checkin;
 @end
