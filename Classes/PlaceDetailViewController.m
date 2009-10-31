@@ -11,9 +11,7 @@
 
 @implementation PlaceDetailViewController
 
-@synthesize titleCell;
 @synthesize mayorMapCell;
-@synthesize giftShoutCell;
 
 /*
 - (id)initWithStyle:(UITableViewStyle)style {
@@ -78,13 +76,13 @@
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 5;
+    return 3;
 }
 
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 3) {
+    if (section == 1) {
         // TODO: return the number of people if < X, otherwise return MAX_NUMBER_OF_PEOPLE_HERE
         return 4;
     } else {
@@ -104,12 +102,6 @@
         // FIXME: I don't know what I was thinking. These shouldn't be cells, they should be part of the view, or separate subview
         // TODO: figure out why the switch doesn't work. very odd.
         if (indexPath.section == 0) {
-            return titleCell;
-        } else if (indexPath.section == 1) {
-            // TODO: the PlaceDetailGiftShoutTableCell is only shown if the user has checked into this venue
-            //       otherwise, the 'Check In Here' button with the background needs to be displayed
-            return giftShoutCell;
-        } else if (indexPath.section == 2) {
             // FIXME: this should probably be replaced by MapKit and DaveE's MKPin class
             NSString *urlAddress = @"http://www.literalshore.com/gorloch/kickball/google.html";
             NSURL *url = [NSURL URLWithString:urlAddress];
@@ -124,7 +116,7 @@
     
     // Set up the cell...
     
-    if (indexPath.section == 3) {
+    if (indexPath.section == 1) {
         cell.textLabel.text = @"Shawn";
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.imageView.image = [UIImage imageNamed:@"temp-icon.png"];
@@ -134,13 +126,10 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    switch (indexPath.section) {
-        case 0:
-            return 62;
-        case 2:
-            return 62;
-        default:
-            return 44;
+    if (indexPath.section == 0) {
+        return 62;
+    } else {
+        return 44;
     }
 }
 
@@ -150,47 +139,39 @@
 
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    if (section == 0 || section == 1) {
-        return NULL;
-    } else {
-        // create the parent view that will hold header Label
-        UIView* customView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 24.0)] autorelease];
-        
-        // create the button object
-        UILabel * headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        headerLabel.backgroundColor = [UIColor blackColor];
-        headerLabel.opaque = NO;
-        headerLabel.textColor = [UIColor grayColor];
-        headerLabel.highlightedTextColor = [UIColor grayColor];
-        headerLabel.font = [UIFont boldSystemFontOfSize:12];
-        headerLabel.frame = CGRectMake(00.0, 0.0, 320.0, 24.0);
-        
-        // If you want to align the header text as centered
-        // headerLabel.frame = CGRectMake(150.0, 0.0, 300.0, 44.0);
-        switch (section) {
-            case 0:
-                break;
-            case 1:
-                break;
-            case 2:
-                // TODO: fix this
-                headerLabel.text = @"  Mayor                        Map";
-                break;
-            case 3:
-                headerLabel.text = @"  10 People Here";
-                break;
-            case 4:
-                headerLabel.text = @"  Tips";
-                break;
-            default:
-                headerLabel.text = @"You shouldn't see this";
-                break;
-        }
-        //headerLabel.text = <Put here whatever you want to display> // i.e. array element
-        [customView addSubview:headerLabel];
-        [headerLabel release];
-        return customView;
+    // create the parent view that will hold header Label
+    UIView* customView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 24.0)] autorelease];
+    
+    // create the button object
+    UILabel * headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    headerLabel.backgroundColor = [UIColor blackColor];
+    headerLabel.opaque = NO;
+    headerLabel.textColor = [UIColor grayColor];
+    headerLabel.highlightedTextColor = [UIColor grayColor];
+    headerLabel.font = [UIFont boldSystemFontOfSize:12];
+    headerLabel.frame = CGRectMake(00.0, 0.0, 320.0, 24.0);
+    
+    // If you want to align the header text as centered
+    // headerLabel.frame = CGRectMake(150.0, 0.0, 300.0, 44.0);
+    switch (section) {
+        case 0:
+            // TODO: fix this
+            headerLabel.text = @"  Mayor                        Map";
+            break;
+        case 1:
+            headerLabel.text = @"  10 People Here";
+            break;
+        case 2:
+            headerLabel.text = @"  Tips";
+            break;
+        default:
+            headerLabel.text = @"You shouldn't see this";
+            break;
     }
+    //headerLabel.text = <Put here whatever you want to display> // i.e. array element
+    [customView addSubview:headerLabel];
+    [headerLabel release];
+    return customView;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
