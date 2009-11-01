@@ -247,17 +247,18 @@
 
 #pragma mark Image Picker Delegate methods
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo {
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     // hide picker
     [picker dismissModalViewControllerAnimated:YES];
     
     // upload image
-    // TODO: this would also have to save the image to the DB and we'd have to confirm success to the user.
-    [self uploadImage:UIImageJPEGRepresentation(image, 1.0) filename:@"foobar.jpg"];
+    // TODO: this would also have to save the image to the DB and we'd have to confirm success to the user, and create a unique name.
+    [self uploadImage:UIImageJPEGRepresentation([info objectForKey:UIImagePickerControllerOriginalImage], 1.0) filename:@"foobar2.jpg"];
 }
 
 #pragma mark private methods
 
+// TODO: set max file size
 - (BOOL)uploadImage:(NSData *)imageData filename:(NSString *)filename{
     
     NSString *urlString = @"http://www.literalshore.com/gorloch/kickball/upload.php";
