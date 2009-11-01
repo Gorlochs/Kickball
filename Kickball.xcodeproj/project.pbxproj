@@ -17,6 +17,8 @@
 		6A044CAD109545200063FC33 /* FriendsListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A044CAB109545200063FC33 /* FriendsListView.xib */; };
 		6A044CB6109545450063FC33 /* FriendsMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A044CB4109545450063FC33 /* FriendsMapViewController.m */; };
 		6A044CB7109545450063FC33 /* FriendsMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A044CB5109545450063FC33 /* FriendsMapView.xib */; };
+		6A0D9FAF109D97B300F9E1D6 /* UploadGiftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A0D9FAD109D97B300F9E1D6 /* UploadGiftViewController.m */; };
+		6A0D9FB0109D97B300F9E1D6 /* UploadGiftViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A0D9FAE109D97B300F9E1D6 /* UploadGiftViewController.xib */; };
 		6A1526C71096BD7E00924D0E /* FriendsListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A1526C61096BD7E00924D0E /* FriendsListTableCell.m */; };
 		6A1526C91096BDB300924D0E /* FriendsListTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A1526C81096BDB300924D0E /* FriendsListTableCellView.xib */; };
 		6A1527081096C27200924D0E /* temp-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A1527071096C27200924D0E /* temp-icon.png */; };
@@ -58,6 +60,9 @@
 		6A044CB3109545450063FC33 /* FriendsMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsMapViewController.h; sourceTree = "<group>"; };
 		6A044CB4109545450063FC33 /* FriendsMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsMapViewController.m; sourceTree = "<group>"; };
 		6A044CB5109545450063FC33 /* FriendsMapView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FriendsMapView.xib; path = Classes/FriendsMapView.xib; sourceTree = "<group>"; };
+		6A0D9FAC109D97B300F9E1D6 /* UploadGiftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadGiftViewController.h; sourceTree = "<group>"; };
+		6A0D9FAD109D97B300F9E1D6 /* UploadGiftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadGiftViewController.m; sourceTree = "<group>"; };
+		6A0D9FAE109D97B300F9E1D6 /* UploadGiftViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UploadGiftViewController.xib; sourceTree = "<group>"; };
 		6A1526C51096BD7E00924D0E /* FriendsListTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsListTableCell.h; sourceTree = "<group>"; };
 		6A1526C61096BD7E00924D0E /* FriendsListTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsListTableCell.m; sourceTree = "<group>"; };
 		6A1526C81096BDB300924D0E /* FriendsListTableCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendsListTableCellView.xib; sourceTree = "<group>"; };
@@ -113,6 +118,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				6A0D9FAB109D97A200F9E1D6 /* Gift */,
 				6A39EB3E10965666006F76C3 /* Pinch */,
 				6AF9670D109AA2FE00EF665D /* Profile */,
 				6AC7E92D10994FB500776993 /* Place */,
@@ -194,6 +200,16 @@
 				6A1526C61096BD7E00924D0E /* FriendsListTableCell.m */,
 			);
 			name = Friends;
+			sourceTree = "<group>";
+		};
+		6A0D9FAB109D97A200F9E1D6 /* Gift */ = {
+			isa = PBXGroup;
+			children = (
+				6A0D9FAC109D97B300F9E1D6 /* UploadGiftViewController.h */,
+				6A0D9FAD109D97B300F9E1D6 /* UploadGiftViewController.m */,
+				6A0D9FAE109D97B300F9E1D6 /* UploadGiftViewController.xib */,
+			);
+			name = Gift;
 			sourceTree = "<group>";
 		};
 		6A39EB3E10965666006F76C3 /* Pinch */ = {
@@ -309,6 +325,7 @@
 				6ABA785D109BE181001E7293 /* tmp-checkin-shout.png in Resources */,
 				6ABA785F109BE20C001E7293 /* tmp-shout-btn.png in Resources */,
 				6AA76163109BFC5D00773563 /* tmp-search-bar.png in Resources */,
+				6A0D9FB0109D97B300F9E1D6 /* UploadGiftViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,6 +345,7 @@
 				6A8AC8F1109AB31400C4FE1B /* ProfileViewController.m in Sources */,
 				6ABA7858109BDCAF001E7293 /* PlacesListViewController.m in Sources */,
 				6ABA7859109BDCAF001E7293 /* PlacesListViewController.xib in Sources */,
+				6A0D9FAF109D97B300F9E1D6 /* UploadGiftViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

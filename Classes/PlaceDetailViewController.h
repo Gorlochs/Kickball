@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface PlaceDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+@interface PlaceDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
     IBOutlet UITableView *theTableView;
     IBOutlet UITableViewCell *mayorMapCell;
     IBOutlet UIWebView *mapView;
@@ -18,5 +18,6 @@
 @property (nonatomic, retain) UITableViewCell *mayorMapCell;
 
 - (IBAction) callVenue;
+- (IBAction) uploadImageToServer;
 
 @end

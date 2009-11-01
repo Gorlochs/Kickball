@@ -9,6 +9,13 @@
 #import "PlaceDetailViewController.h"
 #import "ProfileViewController.h"
 
+@interface PlaceDetailViewController (Private)
+
+- (BOOL)uploadImage:(NSData *)imageData filename:(NSString *)filename;
+
+@end
+
+
 @implementation PlaceDetailViewController
 
 @synthesize mayorMapCell;
@@ -229,6 +236,52 @@
 
 - (void) callVenue {
     
+}
+
+- (void) uploadImageToServer {
+    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+    imagePickerController.delegate = self;
+    imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    [self presentModalViewController:imagePickerController animated:YES];
+}
+
+#pragma mark Image Picker Delegate methods
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo {
+    // hide picker
+    [picker dismissModalViewControllerAnimated:YES];
+    
+    // upload image
+    // TODO: this would also have to save the image to the DB and we'd have to confirm success to the user.
+    [self uploadImage:UIImageJPEGRepresentation(image, 1.0) filename:@"foobar.jpg"];
+}
+
+#pragma mark private methods
+
+- (BOOL)uploadImage:(NSData *)imageData filename:(NSString *)filename{
+    
+    NSString *urlString = @"http://www.literalshore.com/gorloch/kickball/upload.php";
+    
+    NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];
+    [request setURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"POST"];
+    
+    NSString *boundary = [NSString stringWithString:@"---------------------------14737809831466499882746641449"];
+    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
+    [request addValue:contentType forHTTPHeaderField: @"Content-Type"];
+    
+    NSMutableData *body = [NSMutableData data];
+    [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithString:[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"photo\"; filename=\"%@\"\r\n",filename]] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithString:@"Content-Type: application/octet-stream\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[NSData dataWithData:imageData]];
+    [body appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPBody:body];
+    NSLog(@"request: %@", request);
+    NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+    
+    return ([returnString isEqualToString:@"OK"]);
 }
 
 @end
