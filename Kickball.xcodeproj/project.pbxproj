@@ -28,6 +28,7 @@
 		6A39EC4E109662E5006F76C3 /* tmp-header.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A39EC4D109662E5006F76C3 /* tmp-header.png */; };
 		6A8AC8F1109AB31400C4FE1B /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A8AC8EF109AB31400C4FE1B /* ProfileViewController.m */; };
 		6A8AC8F2109AB31400C4FE1B /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A8AC8F0109AB31400C4FE1B /* ProfileViewController.xib */; };
+		6A8EEE1A10A1227000DC630C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A8EEE1910A1227000DC630C /* MapKit.framework */; };
 		6A978A611099FBC000FCE8F1 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A978A601099FBC000FCE8F1 /* StoreKit.framework */; };
 		6AA76141109BFB1000773563 /* libPMAnalytics-r39.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA76140109BFB1000773563 /* libPMAnalytics-r39.a */; };
 		6AA76163109BFC5D00773563 /* tmp-search-bar.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AA76162109BFC5D00773563 /* tmp-search-bar.png */; };
@@ -76,6 +77,7 @@
 		6A8AC8EE109AB31400C4FE1B /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		6A8AC8EF109AB31400C4FE1B /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		6A8AC8F0109AB31400C4FE1B /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
+		6A8EEE1910A1227000DC630C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		6A978A601099FBC000FCE8F1 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		6AA76140109BFB1000773563 /* libPMAnalytics-r39.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPMAnalytics-r39.a"; path = "/Users/shawnbernard/Documents/projects/BoomboxPro/Classes/libPMAnalytics-r39.a"; sourceTree = "<absolute>"; };
 		6AA76162109BFC5D00773563 /* tmp-search-bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tmp-search-bar.png"; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				6A39EB6310965868006F76C3 /* SystemConfiguration.framework in Frameworks */,
 				6A978A611099FBC000FCE8F1 /* StoreKit.framework in Frameworks */,
 				6AA76141109BFB1000773563 /* libPMAnalytics-r39.a in Frameworks */,
+				6A8EEE1A10A1227000DC630C /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,6 +149,7 @@
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				6AA76140109BFB1000773563 /* libPMAnalytics-r39.a */,
+				6A8EEE1910A1227000DC630C /* MapKit.framework */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";

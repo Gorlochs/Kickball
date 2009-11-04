@@ -29,14 +29,29 @@
 }
 */
 
-/*
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    MKCoordinateRegion region;
+    MKCoordinateSpan span;
+    span.latitudeDelta = 0.001;
+    span.longitudeDelta = 0.001;
+    
+    CLLocationCoordinate2D location = mapView.userLocation.coordinate;
+    
+    location.latitude = 45.5235;
+    location.longitude = -122.6762;
+    region.span = span;
+    region.center = location;
+    
+    [mapView setRegion:region animated:TRUE];
+    [mapView regionThatFits:region];
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
-*/
+
 
 /*
 - (void)viewWillAppear:(BOOL)animated {
@@ -110,10 +125,10 @@
         // TODO: figure out why the switch doesn't work. very odd.
         if (indexPath.section == 0) {
             // FIXME: this should probably be replaced by MapKit and DaveE's MKPin class
-            NSString *urlAddress = @"http://www.literalshore.com/gorloch/kickball/google.html";
-            NSURL *url = [NSURL URLWithString:urlAddress];
-            NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
-            [mapView loadRequest:requestObj];
+//            NSString *urlAddress = @"http://www.literalshore.com/gorloch/kickball/google.html";
+//            NSURL *url = [NSURL URLWithString:urlAddress];
+//            NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+//            [mapView loadRequest:requestObj];
             return mayorMapCell;
         } else {
             cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
@@ -234,8 +249,9 @@
 
 #pragma mark IBAction methods
 
+// TODO: pull in correct phone number
 - (void) callVenue {
-    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel:503-555-1212"]];
 }
 
 - (void) uploadImageToServer {
@@ -252,7 +268,8 @@
     [picker dismissModalViewControllerAnimated:YES];
     
     // upload image
-    // TODO: this would also have to save the image to the DB and we'd have to confirm success to the user, and create a unique name.
+    // TODO: this would also have to save the image to the DB and we'd have to confirm success to the user.
+    //       we also need to send a notification to the gift recipient
     [self uploadImage:UIImageJPEGRepresentation([info objectForKey:UIImagePickerControllerOriginalImage], 1.0) filename:@"foobar2.jpg"];
 }
 
@@ -261,6 +278,7 @@
 // TODO: set max file size
 - (BOOL)uploadImage:(NSData *)imageData filename:(NSString *)filename{
     
+    // TODO: create some semi-secure key to pass into the PHP page
     NSString *urlString = @"http://www.literalshore.com/gorloch/kickball/upload.php";
     
     NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];

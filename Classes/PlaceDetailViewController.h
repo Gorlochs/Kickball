@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <MapKit/MapKit.h>
 
 @interface PlaceDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
     IBOutlet UITableView *theTableView;
     IBOutlet UITableViewCell *mayorMapCell;
-    IBOutlet UIWebView *mapView;
+    IBOutlet MKMapView *mapView;
 }
 
 @property (nonatomic, retain) UITableViewCell *mayorMapCell;
