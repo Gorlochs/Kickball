@@ -12,6 +12,7 @@
 #import "FriendsListTableCell.h"
 #import "PlaceDetailViewController.h"
 #import "PlacesListViewController.h"
+#import "FSCheckin.h"
 
 
 #import "Beacon.h"
@@ -95,6 +96,7 @@
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
+    // TODO: we need to separate out the checkins in the past 3 hours from the checkins not in the past 3 hours
 	if(section == 0){
 		return [self.checkins count];
 	}
@@ -128,7 +130,12 @@
 		cell.profileIcon.image = img;
 	}
 	cell.checkinDisplayLabel.text = checkin.display;
-    
+    // TODO: check to see if there is a better way to check for [off the grid]
+    if (checkin.venue.venueAddress == nil || [checkin.venue.venueAddress isEqual:@""]) {
+        cell.addressLabel.text = @"...location unknown...";
+    } else {
+        cell.addressLabel.text = checkin.venue.venueAddress;
+    }
 	
 	return cell;
 }
@@ -138,14 +145,10 @@
     NSLog(@"row selected");
     // Navigation logic may go here. Create and push another view controller.
 	PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];
+    placeDetailController.venue = ((FSCheckin*)[self.checkins objectAtIndex:indexPath.row]).venue;
+    NSLog(@"pre venue: %@", placeDetailController.venue);
     // TODO: come up with a better way to manage the views
-    [UIView beginAnimations:nil context:NULL];
-	//make the date picker slide in/slide out
     [self.view addSubview:placeDetailController.view];
-	[UIView commitAnimations];
-
-//	[self.navigationController pushViewController:placeDetailController];
-//	[placeDetailController release];
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

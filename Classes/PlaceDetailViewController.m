@@ -19,6 +19,7 @@
 @implementation PlaceDetailViewController
 
 @synthesize mayorMapCell;
+@synthesize venue;
 
 /*
 - (id)initWithStyle:(UITableViewStyle)style {
@@ -40,16 +41,19 @@
     
     CLLocationCoordinate2D location = mapView.userLocation.coordinate;
     
-    location.latitude = 45.5235;
-    location.longitude = -122.6762;
+    location.latitude =  [venue.geolat doubleValue];
+    location.longitude = [venue.geolong doubleValue];
     region.span = span;
     region.center = location;
     
     [mapView setRegion:region animated:TRUE];
     [mapView regionThatFits:region];
-
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    venueName.text = venue.name;
+    venueAddress.text = venue.venueAddress;
+    //mayorImage.image = venue.
+    
+    //NSArray * allCheckins = [FoursquareAPI 
 }
 
 

@@ -93,7 +93,7 @@ static FoursquareAPI *sharedInstance = nil;
 }
 						 
 						 
-- (void)getVeneusNearLatitude: (NSString *)geolat andLongitude:(NSString *) geolong withTarget:(id)inTarget andAction:(SEL)inAction{
+- (void)getVenuesNearLatitude: (NSString *)geolat andLongitude:(NSString *) geolong withTarget:(id)inTarget andAction:(SEL)inAction{
 	NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
 	
 	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"geolat" andValue:geolat]];
@@ -121,7 +121,7 @@ static FoursquareAPI *sharedInstance = nil;
 	[self.oauthAPI performMethod:@"/v1/user" withTarget:inTarget withParameters:params andAction:inAction];
 }
 
-- (void)getUserById:(NSString *) userId ithTarget:(id)inTarget andAction:(SEL)inAction{
+- (void)getUserById:(NSString *) userId withTarget:(id)inTarget andAction:(SEL)inAction{
 	
 }
 
@@ -231,9 +231,11 @@ static FoursquareAPI *sharedInstance = nil;
 	for (CXMLElement *venueResult in venuesInGroup) {
 		FSVenue * newVenue = [[FSVenue alloc] init];
 		int counter;
+        NSLog(@"venue result: %@", venueResult);
 		for(counter = 0; counter < [venueResult childCount]; counter++) {
 			NSString * key = [[venueResult childAtIndex:counter] name];
 			NSString * value = [[venueResult childAtIndex:counter] stringValue];
+            NSLog(@"venue: %@ - %@", key, value);
 			
 			if([key isEqualToString:@"id"]){
 				newVenue.venueid = value;

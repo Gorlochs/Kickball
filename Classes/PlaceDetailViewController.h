@@ -8,14 +8,23 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "FSVenue.h";
 
 @interface PlaceDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
     IBOutlet UITableView *theTableView;
     IBOutlet UITableViewCell *mayorMapCell;
     IBOutlet MKMapView *mapView;
+    
+    IBOutlet UILabel *venueName;
+    IBOutlet UILabel *venueAddress;
+    
+    IBOutlet UIImageView *mayorImage;
+    
+    FSVenue *venue;
 }
 
 @property (nonatomic, retain) UITableViewCell *mayorMapCell;
+@property (nonatomic, retain) FSVenue *venue;
 
 - (IBAction) callVenue;
 - (IBAction) uploadImageToServer;

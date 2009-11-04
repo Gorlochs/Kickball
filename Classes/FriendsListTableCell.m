@@ -10,7 +10,7 @@
 
 
 @implementation FriendsListTableCell
-@synthesize checkinDisplayLabel, profileIcon;
+@synthesize checkinDisplayLabel, addressLabel, profileIcon;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {

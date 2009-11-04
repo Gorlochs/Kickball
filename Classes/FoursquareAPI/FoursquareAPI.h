@@ -28,10 +28,10 @@
 
 
 - (BOOL) isAuthenticated;
-- (void)getVeneusNearLatitude:(NSString *)geolat andLongitude:(NSString *)geolong withTarget:(id)inTarget andAction:(SEL)inAction;
+- (void)getVenuesNearLatitude:(NSString *)geolat andLongitude:(NSString *)geolong withTarget:(id)inTarget andAction:(SEL)inAction;
 - (void)getCheckinsWithTarget:(id)inTarget andAction:(SEL)inAction;
 - (void)getUserWithTarget:(id)inTarget andAction:(SEL)inAction;
-- (void)getUserById:(NSString *) userId ithTarget:(id)inTarget andAction:(SEL)inAction;
+- (void)getUserById:(NSString *) userId withTarget:(id)inTarget andAction:(SEL)inAction;
 - (void)getFriendsWithTarget:(id)inTarget andAction:(SEL)inAction;
 
 

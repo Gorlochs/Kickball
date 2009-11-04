@@ -12,9 +12,11 @@
 @interface FriendsListTableCell : UITableViewCell {
 	IBOutlet UIImageView * profileIcon;
 	IBOutlet UILabel * checkinDisplayLabel;
+	IBOutlet UILabel * addressLabel;
 }
 
 @property (nonatomic, retain) UIImageView * profileIcon;
 @property (nonatomic, retain) UILabel * checkinDisplayLabel;
+@property (nonatomic, retain) UILabel * addressLabel;
 
 @end
