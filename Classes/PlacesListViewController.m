@@ -65,6 +65,8 @@
     [super didReceiveMemoryWarning];
 	
 	// Release any cached data, images, etc that aren't in use.
+    theTableView = nil;
+    searchCell = nil;
 }
 
 - (void)viewDidUnload {
@@ -197,6 +199,8 @@
 
 
 - (void)dealloc {
+    [theTableView release];
+    [searchCell release];
     [super dealloc];
 }
 
