@@ -63,7 +63,7 @@
 		6A044CB5109545450063FC33 /* FriendsMapView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FriendsMapView.xib; path = Classes/FriendsMapView.xib; sourceTree = "<group>"; };
 		6A0D9FAC109D97B300F9E1D6 /* UploadGiftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadGiftViewController.h; sourceTree = "<group>"; };
 		6A0D9FAD109D97B300F9E1D6 /* UploadGiftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadGiftViewController.m; sourceTree = "<group>"; };
-		6A0D9FAE109D97B300F9E1D6 /* UploadGiftViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UploadGiftViewController.xib; sourceTree = "<group>"; };
+		6A0D9FAE109D97B300F9E1D6 /* UploadGiftViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.xib; name = UploadGiftViewController.xib; path = Classes/UploadGiftViewController.xib; sourceTree = "<group>"; };
 		6A1526C51096BD7E00924D0E /* FriendsListTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsListTableCell.h; sourceTree = "<group>"; };
 		6A1526C61096BD7E00924D0E /* FriendsListTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsListTableCell.m; sourceTree = "<group>"; };
 		6A1526C81096BDB300924D0E /* FriendsListTableCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendsListTableCellView.xib; sourceTree = "<group>"; };
@@ -76,14 +76,14 @@
 		6A39EC4D109662E5006F76C3 /* tmp-header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tmp-header.png"; sourceTree = "<group>"; };
 		6A8AC8EE109AB31400C4FE1B /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		6A8AC8EF109AB31400C4FE1B /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
-		6A8AC8F0109AB31400C4FE1B /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
+		6A8AC8F0109AB31400C4FE1B /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.xib; name = ProfileViewController.xib; path = Classes/ProfileViewController.xib; sourceTree = "<group>"; };
 		6A8EEE1910A1227000DC630C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		6A978A601099FBC000FCE8F1 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		6AA76140109BFB1000773563 /* libPMAnalytics-r39.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPMAnalytics-r39.a"; path = "/Users/shawnbernard/Documents/projects/BoomboxPro/Classes/libPMAnalytics-r39.a"; sourceTree = "<absolute>"; };
 		6AA76162109BFC5D00773563 /* tmp-search-bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tmp-search-bar.png"; sourceTree = "<group>"; };
 		6ABA7855109BDCAF001E7293 /* PlacesListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlacesListViewController.h; sourceTree = "<group>"; };
 		6ABA7856109BDCAF001E7293 /* PlacesListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlacesListViewController.m; sourceTree = "<group>"; };
-		6ABA7857109BDCAF001E7293 /* PlacesListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlacesListViewController.xib; sourceTree = "<group>"; };
+		6ABA7857109BDCAF001E7293 /* PlacesListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.xib; name = PlacesListViewController.xib; path = Classes/PlacesListViewController.xib; sourceTree = "<group>"; };
 		6ABA785C109BE181001E7293 /* tmp-checkin-shout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tmp-checkin-shout.png"; sourceTree = "<group>"; };
 		6ABA785E109BE20C001E7293 /* tmp-shout-btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tmp-shout-btn.png"; sourceTree = "<group>"; };
 		6AC7E92B10994FA000776993 /* tmp-title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tmp-title.png"; sourceTree = "<group>"; };
@@ -173,6 +173,9 @@
 				6AC7E93010994FD000776993 /* PlaceDetailView.xib */,
 				6AF96710109AA32700EF665D /* ProfileView.xib */,
 				8D1107310486CEB800E47090 /* Kickball-Info.plist */,
+				6A0D9FAE109D97B300F9E1D6 /* UploadGiftViewController.xib */,
+				6A8AC8F0109AB31400C4FE1B /* ProfileViewController.xib */,
+				6ABA7857109BDCAF001E7293 /* PlacesListViewController.xib */,
 				6A1526C81096BDB300924D0E /* FriendsListTableCellView.xib */,
 				6AE611A3109AA462008ABF79 /* ProfileMainTableCellView.xib */,
 			);
@@ -211,7 +214,6 @@
 			children = (
 				6A0D9FAC109D97B300F9E1D6 /* UploadGiftViewController.h */,
 				6A0D9FAD109D97B300F9E1D6 /* UploadGiftViewController.m */,
-				6A0D9FAE109D97B300F9E1D6 /* UploadGiftViewController.xib */,
 			);
 			name = Gift;
 			sourceTree = "<group>";
@@ -256,7 +258,6 @@
 				6AC7E92F10994FD000776993 /* PlaceDetailViewController.m */,
 				6ABA7855109BDCAF001E7293 /* PlacesListViewController.h */,
 				6ABA7856109BDCAF001E7293 /* PlacesListViewController.m */,
-				6ABA7857109BDCAF001E7293 /* PlacesListViewController.xib */,
 			);
 			name = Place;
 			sourceTree = "<group>";
@@ -266,7 +267,6 @@
 			children = (
 				6A8AC8EE109AB31400C4FE1B /* ProfileViewController.h */,
 				6A8AC8EF109AB31400C4FE1B /* ProfileViewController.m */,
-				6A8AC8F0109AB31400C4FE1B /* ProfileViewController.xib */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
