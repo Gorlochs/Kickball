@@ -9,6 +9,7 @@
 #import "KickballAppDelegate.h"
 #import "FriendsListViewController.h"
 #import "Beacon.h"
+#import <CoreLocation/CoreLocation.h>
 
 @implementation KickballAppDelegate
 
@@ -29,6 +30,14 @@
     
     // this is just a sample. this should be removed eventually.
     [[Beacon shared] startSubBeaconWithName:@"App launched!" timeSession:NO];
+    CLLocationManager *manager = [[CLLocationManager alloc] init];
+    if (manager.locationServicesEnabled == NO) {
+        UIAlertView *servicesDisabledAlert = [[UIAlertView alloc] initWithTitle:@"Location Services Disabled" message:@"You currently have all location services for this device disabled. If you proceed, you will be asked to confirm whether location services should be reenabled." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [servicesDisabledAlert show];
+        [servicesDisabledAlert release];
+    }
+    [manager release];
+
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

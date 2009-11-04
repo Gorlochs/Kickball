@@ -12,10 +12,13 @@
 #import "FriendsListTableCell.h"
 #import "PlaceDetailViewController.h"
 #import "PlacesListViewController.h"
+
+
 #import "Beacon.h"
+#import "FoursquareAPI.h"
 
 @implementation FriendsListViewController
-
+@synthesize checkins, theTableView;
 /*
 - (id)initWithStyle:(UITableViewStyle)style {
     // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -26,8 +29,7 @@
 */
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-
+    [super viewDidLoad];	
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
@@ -38,11 +40,18 @@
     [super viewWillAppear:animated];
 }
 */
-/*
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+	if(![[FoursquareAPI sharedInstance] isAuthenticated]){
+		//run sheet to log in.
+		NSLog(@"Foursquare is not authenticated");
+	} else {
+		[[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
+	}
 }
-*/
+
+
 /*
 - (void)viewWillDisappear:(BOOL)animated {
 	[super viewWillDisappear:animated];
@@ -85,7 +94,11 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    
+	if(section == 0){
+		return [self.checkins count];
+	}
+	return 1;
 }
 
 
@@ -103,8 +116,21 @@
         [vc release];
     }
     
-    // Set up the cell...
-    return cell;
+	FSCheckin * checkin = [self.checkins objectAtIndex:indexPath.row];
+	FSUser * checkUser = checkin.user;
+	
+	NSString * path = checkUser.photo;
+	if(path){
+		NSURL *url = [NSURL URLWithString:path];
+		NSData *data = [NSData dataWithContentsOfURL:url];
+		UIImage *img = [[UIImage alloc] initWithData:data];
+	
+		cell.profileIcon.image = img;
+	}
+	cell.checkinDisplayLabel.text = checkin.display;
+    
+	
+	return cell;
 }
 
 
@@ -209,6 +235,14 @@
     PlacesListViewController *placesListController = [[PlacesListViewController alloc] initWithNibName:@"PlacesListViewController" bundle:nil];
     [self.view addSubview:placesListController.view];
 }
+
+- (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+	NSArray * allCheckins = [FoursquareAPI checkinsFromResponseXML:inString];
+	self.checkins = [allCheckins copy];
+	[self.theTableView reloadData];
+	
+}
+
 
 @end
 
