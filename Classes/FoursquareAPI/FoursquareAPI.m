@@ -187,7 +187,7 @@ static FoursquareAPI *sharedInstance = nil;
 	NSLog(@"%@", [err description]);
 
 	
-	NSArray *allUserAttrs = [userParser nodesForXPath:@"//user" error:nil];
+	NSArray *allUserAttrs = [userParser nodesForXPath:@"user" error:nil];
 	for (CXMLElement *usrAttr in allUserAttrs) {
 		return [FoursquareAPI _userFromNode:usrAttr];
 	}
@@ -231,11 +231,8 @@ static FoursquareAPI *sharedInstance = nil;
 				}
 			} else 			
 			if([key compare:@"venue"] == 0){
-				NSArray * checkinVenue = [checkinAttr elementsForName:@"venue"];
-				for (CXMLElement *checkedVenue in checkinVenue) {
-					FSVenue * currentVenueInfo = [[FoursquareAPI _venuesFromNode:checkedVenue] objectAtIndex:0];
+					FSVenue * currentVenueInfo = [[FoursquareAPI _venuesFromNode:checkinAttr] objectAtIndex:0];
 					oneCheckin.venue = currentVenueInfo;
-				}
 			}
 
 		}
@@ -248,7 +245,7 @@ static FoursquareAPI *sharedInstance = nil;
 	NSMutableArray * groupOfVenues = [[NSMutableArray alloc] initWithCapacity:1];
 	
 	//now grab the venues in each group
-	NSArray * venuesInGroup = [inputNode nodesForXPath:@"//venue" error:nil];
+	NSArray * venuesInGroup = [inputNode nodesForXPath:@"venue" error:nil];
 	for (CXMLElement *venueResult in venuesInGroup) {
 		FSVenue * newVenue = [[FSVenue alloc] init];
 		int counter;
@@ -309,7 +306,7 @@ static FoursquareAPI *sharedInstance = nil;
 			} else if([key isEqualToString:@"url"]){
 				newTip.url = value;
 			}  else if([key isEqualToString:@"user"]){
-				newTip.submittedBy = [FoursquareAPI _userFromNode:[[tipResult nodesForXPath:@"//user" error:nil] objectAtIndex:0]];
+				newTip.submittedBy = [FoursquareAPI _userFromNode:[[tipResult nodesForXPath:@"user" error:nil] objectAtIndex:0]];
 			}
 		}
 		[allTips addObject:newTip];
