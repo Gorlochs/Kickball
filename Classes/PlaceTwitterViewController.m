@@ -67,17 +67,17 @@
     [super didReceiveMemoryWarning];
 	
 	// Release any cached data, images, etc that aren't in use.
-    self.twitterStatuses = nil;
-    self.twitterName = nil;
-    self.venueName = nil;
+    twitterStatuses = nil;
+    twitterName = nil;
+    venueName = nil;
 }
 
 - (void)viewDidUnload {
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
-    self.twitterStatuses = nil;
-    self.twitterName = nil;
-    self.venueName = nil;
+    twitterStatuses = nil;
+    twitterName = nil;
+    venueName = nil;
 }
 
 
