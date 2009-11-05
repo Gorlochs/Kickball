@@ -35,6 +35,7 @@
 - (void)getUserById:(NSString *) userId withTarget:(id)inTarget andAction:(SEL)inAction;
 - (void)getFriendsWithTarget:(id)inTarget andAction:(SEL)inAction;
 - (void)getVenue:(NSString *)venueId withTarget:(id)inTarget andAction:(SEL)inAction;
+- (void)getUser:(NSString *)userId withTarget:(id)inTarget andAction:(SEL)inAction;
 
 
 - (void)doLoginUsername: (NSString *)fsUser andPass:(NSString *) fsPass;

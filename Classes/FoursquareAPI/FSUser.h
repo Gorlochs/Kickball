@@ -16,6 +16,7 @@
 	NSString * photo;
 	NSString * gender;
 	NSArray * badges;
+	BOOL isFriend;
 }
 
 @property (nonatomic, retain) NSString * userId;
@@ -24,5 +25,6 @@
 @property (nonatomic, retain) NSString * photo;
 @property (nonatomic, retain) NSString * gender;
 @property (nonatomic, retain) NSArray * badges;
+@property (nonatomic) BOOL isFriend;
 
 @end

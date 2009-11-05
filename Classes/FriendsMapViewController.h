@@ -10,6 +10,7 @@
 #import <MapKit/MapKit.h>
 #import "FoursquareAPI.h"
 #import "FriendPlacemark.h"
+#import "FriendIconAnnotationView.h"
 
 @interface FriendsMapViewController : UIViewController {
 	IBOutlet MKMapView * mapViewer;

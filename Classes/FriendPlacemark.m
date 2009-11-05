@@ -1,7 +1,7 @@
 #import "FriendPlacemark.h"
 
 @implementation FriendPlacemark
-@synthesize coordinate;
+@synthesize coordinate, url;
 
 - (NSString *)subtitle{
 	return @"Put some text here";

@@ -102,10 +102,21 @@ static FoursquareAPI *sharedInstance = nil;
 	[self.oauthAPI performMethod:@"/v1/venues" withTarget:inTarget withParameters:params  andAction:inAction];
 	
 }
+
 - (void)getVenue:(NSString *)venueId withTarget:(id)inTarget andAction:(SEL)inAction{
 	NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
 	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"vid" andValue:venueId]];
 	[self.oauthAPI performMethod:@"/v1/venue" withTarget:inTarget withParameters:params  andAction:inAction];
+}
+
+- (void)getUser:(NSString *)userId withTarget:(id)inTarget andAction:(SEL)inAction{
+	NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
+	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"uid" andValue:userId]];
+	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"badges" andValue:@"1"]];
+	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"mayor" andValue:@"1"]];
+	
+	
+	[self.oauthAPI performMethod:@"/v1/user" withTarget:inTarget withParameters:params  andAction:inAction];
 }
 
 - (void)getCheckinsWithTarget:(id)inTarget andAction:(SEL)inAction{
@@ -180,6 +191,20 @@ static FoursquareAPI *sharedInstance = nil;
 	return thisVenue;
 }
 
++ (FSUser *) userFromResponseXML:(NSString *) inString{
+	
+	NSError * err;
+	CXMLDocument *userParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
+	NSLog(@"%@", [err description]);
+
+	FSUser * thisUser = [[FSUser alloc] init];
+	
+	NSArray *allUserAttrs = [userParser nodesForXPath:@"user" error:nil];
+	for (CXMLElement *usrAttr in allUserAttrs) {
+		return [FoursquareAPI _userFromNode:usrAttr];
+	}
+	return nil;
+}
 
 + (FSUser *) loggedInUserFromResponseXML:(NSString *) inString{
 	NSError * err;

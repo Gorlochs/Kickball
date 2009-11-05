@@ -72,13 +72,18 @@
 
 - (void) refreshFriendPoints{
 	for(FSCheckin * checkin in self.checkins){		
-		CLLocationCoordinate2D location;
 		FSVenue * checkVenue = checkin.venue;
-		FSUser * checkUser = checkin.user;
-		location.latitude = [checkVenue.geolat doubleValue];
-		location.longitude = [checkVenue.geolong doubleValue];
-		FriendPlacemark *placemark=[[FriendPlacemark alloc] initWithCoordinate:location];
-		[mapViewer addAnnotation:placemark];
+		if(checkVenue.geolat && checkVenue.geolong){
+			CLLocationCoordinate2D location;
+			FSUser * checkUser = checkin.user;
+			location.latitude = [checkVenue.geolat doubleValue];
+			location.longitude = [checkVenue.geolong doubleValue];
+			FriendPlacemark *placemark=[[FriendPlacemark alloc] initWithCoordinate:location];
+			if(checkUser.photo != nil){
+				placemark.url = checkUser.photo;
+			}
+			[mapViewer addAnnotation:placemark];
+		}
 	}	
 }
 
@@ -88,13 +93,14 @@
     // If it's the user location, just return nil.
 	
     if ([annotation isKindOfClass:[MKUserLocation class]]) return nil;
-	MKPinAnnotationView*    pinView = (MKPinAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:@"CustomPinAnnotation"];
+	FriendIconAnnotationView*    pinView = (FriendIconAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:@"CustomPinAnnotation"];
 	if (!pinView){
 		// If an existing pin view was not available, create one
-		pinView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomPinAnnotation"] autorelease];
-		pinView.pinColor = MKPinAnnotationColorRed;
-		pinView.animatesDrop = YES;
-		pinView.canShowCallout = NO;
+		//pinView = [[[FriendIconAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomPinAnnotation"] autorelease];
+		pinView = [[[FriendIconAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomPinAnnotation" andImageUrl:((FriendPlacemark *)annotation).url] autorelease];
+//		pinView.pinColor = MKPinAnnotationColorRed;
+//		pinView.animatesDrop = YES;
+//		pinView.canShowCallout = NO;
 		
 	} else
 		pinView.annotation = annotation;

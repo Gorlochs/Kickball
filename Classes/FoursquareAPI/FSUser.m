@@ -11,6 +11,6 @@
 
 @implementation FSUser
 
-@synthesize	userId,firstname,lastname,photo,gender, badges;
+@synthesize	userId,firstname,lastname,photo,gender, badges, isFriend;
 
 @end
