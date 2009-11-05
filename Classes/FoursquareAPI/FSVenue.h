@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "FSUser.h"
 
 @interface FSVenue : NSObject {
 	NSString * name;
@@ -20,7 +20,12 @@
 	NSString * venueid;
 	NSString * phone;
 	NSString * crossStreet;
-}
+	NSString * twitter;
+	int mayorCount;
+	FSUser * mayor;
+	NSArray * tips;
+	
+} 
 
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * geolat;
@@ -32,5 +37,8 @@
 @property (nonatomic, retain) NSString * venueid;
 @property (nonatomic, retain) NSString * phone;
 @property (nonatomic, retain) NSString * crossStreet;
-
+@property (nonatomic, retain) NSString * twitter;
+@property (nonatomic) int mayorCount;
+@property (nonatomic, retain) FSUser * mayor;
+@property (nonatomic, retain) NSArray * tips;
 @end

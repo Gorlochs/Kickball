@@ -10,7 +10,8 @@
 
 
 @implementation FSVenue
-@synthesize name, geolat, geolong, venueAddress, zip, city, venueState, venueid, phone, crossStreet;
+@synthesize name, geolat, geolong, venueAddress, zip, city, venueState, venueid, phone, crossStreet, twitter, mayorCount, mayor, tips;
+
 
 - (id) init{
 	self = [super init];

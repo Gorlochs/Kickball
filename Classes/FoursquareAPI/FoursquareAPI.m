@@ -102,6 +102,11 @@ static FoursquareAPI *sharedInstance = nil;
 	[self.oauthAPI performMethod:@"/v1/venues" withTarget:inTarget withParameters:params  andAction:inAction];
 	
 }
+- (void)getVenue:(NSString *)venueId withTarget:(id)inTarget andAction:(SEL)inAction{
+	NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
+	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"vid" andValue:venueId]];
+	[self.oauthAPI performMethod:@"/v1/venue" withTarget:inTarget withParameters:params  andAction:inAction];
+}
 
 - (void)getCheckinsWithTarget:(id)inTarget andAction:(SEL)inAction{
 	[self.oauthAPI performMethod:@"/v1/checkins" withTarget:inTarget andAction:inAction];
@@ -110,7 +115,6 @@ static FoursquareAPI *sharedInstance = nil;
 
 - (void)getFriendsWithTarget:(id)inTarget andAction:(SEL)inAction{
 	[self.oauthAPI performMethod:@"/v1/friends" withTarget:inTarget andAction:inAction];
-	
 }
 
 - (void)getUserWithTarget:(id)inTarget andAction:(SEL)inAction{
@@ -131,12 +135,12 @@ static FoursquareAPI *sharedInstance = nil;
 	CXMLDocument *friendParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
 	NSLog(@"%@", [err localizedDescription]);
 	
-	NSMutableArray * allFriends = [[NSMutableArray alloc] initWithCapacity:1];
+	NSArray * allFriends;
 	
 	//get the groups
 	allFriends = [friendParser nodesForXPath:@"//friends/friend" error:nil];
 	for (CXMLElement *friendResult in allFriends) {
-		allFriends = [FoursquareAPI _friendsFromNode:friendResult];
+		allFriends = [[FoursquareAPI _friendsFromNode:friendResult] mutableCopy];
 	}
 	return allFriends;
 }
@@ -159,6 +163,23 @@ static FoursquareAPI *sharedInstance = nil;
 	}
 	return allVens;
 }
+
++ (FSVenue *) venueFromResponseXML:(NSString *) inString{
+	
+	NSError * err;
+	CXMLDocument *venueParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
+	
+	FSVenue * thisVenue = [[FSVenue alloc] init];
+	
+	NSArray *allGroups = [venueParser nodesForXPath:@"/" error:nil];
+	
+	for (CXMLElement *groupResult in allGroups) {
+		NSArray * groupOfVenues = [FoursquareAPI _venuesFromNode:groupResult];
+		thisVenue = (FSVenue *)[groupOfVenues objectAtIndex:0];
+	}
+	return thisVenue;
+}
+
 
 + (FSUser *) loggedInUserFromResponseXML:(NSString *) inString{
 	NSError * err;
@@ -231,11 +252,9 @@ static FoursquareAPI *sharedInstance = nil;
 	for (CXMLElement *venueResult in venuesInGroup) {
 		FSVenue * newVenue = [[FSVenue alloc] init];
 		int counter;
-        NSLog(@"venue result: %@", venueResult);
 		for(counter = 0; counter < [venueResult childCount]; counter++) {
 			NSString * key = [[venueResult childAtIndex:counter] name];
 			NSString * value = [[venueResult childAtIndex:counter] stringValue];
-            NSLog(@"venue: %@ - %@", key, value);
 			
 			if([key isEqualToString:@"id"]){
 				newVenue.venueid = value;
@@ -257,12 +276,46 @@ static FoursquareAPI *sharedInstance = nil;
 				newVenue.venueState = value;
 			} else if([key isEqualToString:@"zip"]){
 				newVenue.zip = value;
+			} else if([key isEqualToString:@"twitter"]){
+				newVenue.twitter = value;
+			} else if([key isEqualToString:@"tips"]){
+				newVenue.tips = [FoursquareAPI _tipsFromNode:venueResult];
+			} else if([key isEqualToString:@"mayor"]){
+				newVenue.mayor = [FoursquareAPI _userFromNode:venueResult];
 			}
+			
 		}
 		[groupOfVenues addObject:newVenue];
 	}
 	
 	return groupOfVenues;
+}
+
++ (NSArray *) _tipsFromNode:(CXMLNode *) inputNode{
+	NSMutableArray * allTips = [[NSMutableArray alloc] initWithCapacity:1];
+	
+	NSArray * tips = [inputNode nodesForXPath:@"//tip" error:nil];
+	for (CXMLElement *tipResult in tips) {
+		FSTip * newTip = [[FSTip alloc] init];
+		int counter;
+		for(counter = 0; counter < [tipResult childCount]; counter++) {
+			NSString * key = [[tipResult childAtIndex:counter] name];
+			NSString * value = [[tipResult childAtIndex:counter] stringValue];
+			
+			if([key isEqualToString:@"id"]){
+				newTip.tipId = value;
+			} else if([key isEqualToString:@"text"]){
+				newTip.text = value;
+			} else if([key isEqualToString:@"url"]){
+				newTip.url = value;
+			}  else if([key isEqualToString:@"user"]){
+				newTip.submittedBy = [FoursquareAPI _userFromNode:[[tipResult nodesForXPath:@"//user" error:nil] objectAtIndex:0]];
+			}
+		}
+		[allTips addObject:newTip];
+	}
+	
+	return allTips;
 }
 
 + (NSArray *) _friendsFromNode:(CXMLNode *) inputNode{
