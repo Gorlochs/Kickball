@@ -8,6 +8,7 @@
 
 #import "PlaceDetailViewController.h"
 #import "ProfileViewController.h"
+#import "PlaceTwitterViewController.h"
 
 @interface PlaceDetailViewController (Private)
 
@@ -267,6 +268,14 @@
     imagePickerController.delegate = self;
     imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     [self presentModalViewController:imagePickerController animated:YES];
+}
+
+- (void) showTwitterFeed {
+    PlaceTwitterViewController *vc = [[PlaceTwitterViewController alloc] initWithNibName:@"PlaceTwitterViewController" bundle:nil];
+//    vc.twitterName = venue.twitter;
+    vc.twitterName = @"VictoryBar";
+    [self presentModalViewController:vc animated:YES];
+    [vc release];
 }
 
 #pragma mark Image Picker Delegate methods

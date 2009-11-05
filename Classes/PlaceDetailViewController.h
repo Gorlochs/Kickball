@@ -19,6 +19,7 @@
     IBOutlet UILabel *venueAddress;
     
     IBOutlet UIImageView *mayorImage;
+    IBOutlet UIButton *twitterButton;
     
     FSVenue *venue;
 }
@@ -28,5 +29,6 @@
 
 - (IBAction) callVenue;
 - (IBAction) uploadImageToServer;
+- (IBAction) showTwitterFeed;
 
 @end
