@@ -7,13 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "FSUser.h"
 
 @interface ProfileViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
     IBOutlet UITableView *theTableView;
     IBOutlet UITableViewCell *titleCell;
+    NSString *userId;
+    FSUser *user;
 }
 
 @property (nonatomic, retain) UITableViewCell *titleCell;
+@property (nonatomic, retain) NSString *userId;
 
 @end

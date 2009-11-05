@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "FSUser.h"
 
+
 @interface FSVenue : NSObject {
 	NSString * name;
 	NSString * geolat;

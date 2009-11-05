@@ -9,10 +9,12 @@
 #import "PlaceDetailViewController.h"
 #import "ProfileViewController.h"
 #import "PlaceTwitterViewController.h"
+#import "FoursquareAPI.h"
 
 @interface PlaceDetailViewController (Private)
 
 - (BOOL)uploadImage:(NSData *)imageData filename:(NSString *)filename;
+- (void)venueResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString;
 
 @end
 
@@ -21,6 +23,7 @@
 
 @synthesize mayorMapCell;
 @synthesize venue;
+@synthesize venueId;
 
 /*
 - (id)initWithStyle:(UITableViewStyle)style {
@@ -54,38 +57,26 @@
     venueAddress.text = venue.venueAddress;
     //mayorImage.image = venue.
     
-    //NSArray * allCheckins = [FoursquareAPI 
+    if(![[FoursquareAPI sharedInstance] isAuthenticated]){
+		//run sheet to log in.
+		NSLog(@"Foursquare is not authenticated");
+	} else {
+		[[FoursquareAPI sharedInstance] getVenue:venueId withTarget:self andAction:@selector(venueResponseReceived:withResponseString:)];
+	}
 }
 
-
-/*
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+- (void)venueResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+	self.venue = [FoursquareAPI venueFromResponseXML:inString];
+    DebugLog(@"venue: %@", self.venue);
+    NSLog(@"venue: %@", self.venue);
+    if (self.venue.mayor != nil) {
+        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:venue.mayor.photo]];
+        UIImage *img = [[UIImage alloc] initWithData:data];
+        mayorImage.image = img;
+        [img release];    
+    }
+	[theTableView reloadData];
 }
-*/
-/*
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-*/
-/*
-- (void)viewWillDisappear:(BOOL)animated {
-	[super viewWillDisappear:animated];
-}
-*/
-/*
-- (void)viewDidDisappear:(BOOL)animated {
-	[super viewDidDisappear:animated];
-}
-*/
-
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -113,29 +104,40 @@
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 1) {
-        // TODO: return the number of people if < X, otherwise return MAX_NUMBER_OF_PEOPLE_HERE
-        return 4;
+        // people here
+        
+        if (venue.tips != nil) {
+            // TODO: return the number of people if < X, otherwise return MAX_NUMBER_OF_PEOPLE_HERE
+            //return [venue.tips count];
+            return 0;
+        } else {
+            return 0;
+        }
+    } else if (section == 2) {
+        // tips
+        // TODO: return the number of people if < X, otherwise return MAX_NUMBER_TIPS
+        if (venue.tips != nil) {
+            return [venue.tips count];
+        } else {
+            return 0;
+        }
     } else {
         return 1;
     }
 }
 
-
-// Customize the appearance of table view cells.
+// FIXME: i think somethign is screwed up with the cells since I am using one MayorMapCell and the rest are standard cells
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier = @"Cell";
     
-    // FIXME: something is f'd up.  Maybe a memory issue or something. 
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        // FIXME: I don't know what I was thinking. These shouldn't be cells, they should be part of the view, or separate subview
         // TODO: figure out why the switch doesn't work. very odd.
         if (indexPath.section == 0) {
-//            NSString *urlAddress = @"http://www.literalshore.com/gorloch/kickball/google.html";
-//            NSURL *url = [NSURL URLWithString:urlAddress];
-//            NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
-//            [mapView loadRequest:requestObj];
+//            [[NSBundle mainBundle] loadNibNamed:@"MayorCell" owner:self options:nil];
+//            cell = mayorMapCell;
+//            mayorMapCell = nil;
             return mayorMapCell;
         } else {
             cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
@@ -144,12 +146,31 @@
     }
     
     // Set up the cell...
-    
-    if (indexPath.section == 1) {
+    if (indexPath.section == 0) {
+        if (venue.mayor.photo != nil) {
+            NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:venue.mayor.photo]];
+            UIImage *img = [[UIImage alloc] initWithData:data];
+            mayorImage.image = img;
+            [img release];                
+        }
+        // not sure if this should go here or not
+        return mayorMapCell;
+    } else if (indexPath.section == 1) {
+        if (venue != nil) {
+//            cell.textLabel = venue.
+        }
+        cell.textLabel.text = @"Shawn";
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.imageView.image = [UIImage imageNamed:@"temp-icon.png"];
+    } else if (indexPath.section == 2) {
+        if (venue != nil) {
+            cell.textLabel.text = ((FSTip*) [venue.tips objectAtIndex:indexPath.row]).text;
+        }
         cell.textLabel.text = @"Shawn";
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.imageView.image = [UIImage imageNamed:@"temp-icon.png"];
     }
+     
 	
     return cell;
 }

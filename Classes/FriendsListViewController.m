@@ -19,7 +19,8 @@
 #import "FoursquareAPI.h"
 
 @implementation FriendsListViewController
-@synthesize checkins, theTableView;
+@synthesize checkins, recentCheckins, olderCheckins, theTableView;
+
 /*
 - (id)initWithStyle:(UITableViewStyle)style {
     // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -97,9 +98,11 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     // TODO: we need to separate out the checkins in the past 3 hours from the checkins not in the past 3 hours
-	if(section == 0){
-		return [self.checkins count];
-	}
+	if (section == 0) {
+		return [self.recentCheckins count];
+	} else if (section == 1) {
+        return [self.olderCheckins count];
+    }
 	return 1;
 }
 
@@ -118,7 +121,13 @@
         [vc release];
     }
     
-	FSCheckin * checkin = [self.checkins objectAtIndex:indexPath.row];
+    FSCheckin *checkin = nil;
+    if (indexPath.section == 0) {
+        checkin = [self.recentCheckins objectAtIndex:indexPath.row];
+    } else if (indexPath.section == 1) {
+        checkin = [self.olderCheckins objectAtIndex:indexPath.row];
+    }
+	
 	FSUser * checkUser = checkin.user;
 	
 	NSString * path = checkUser.photo;
@@ -128,6 +137,7 @@
 		UIImage *img = [[UIImage alloc] initWithData:data];
 	
 		cell.profileIcon.image = img;
+        [img release];
 	}
 	cell.checkinDisplayLabel.text = checkin.display;
     // TODO: check to see if there is a better way to check for [off the grid]
@@ -146,6 +156,7 @@
     // Navigation logic may go here. Create and push another view controller.
 	PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];
     placeDetailController.venue = ((FSCheckin*)[self.checkins objectAtIndex:indexPath.row]).venue;
+    placeDetailController.venueId = ((FSCheckin*)[self.checkins objectAtIndex:indexPath.row]).venue.venueid;
     NSLog(@"pre venue: %@", placeDetailController.venue);
     // TODO: come up with a better way to manage the views
     [self.view addSubview:placeDetailController.view];
@@ -229,6 +240,7 @@
 
 - (void)dealloc {
     [theTableView release];
+    [checkins release];
     [super dealloc];
 }
 
@@ -241,13 +253,31 @@
 
 - (IBAction) flipToMap {
     FriendsMapViewController *mapViewController = [[FriendsMapViewController alloc] initWithNibName:@"FriendsMapView" bundle:nil];
-    [self.view addSubview:mapViewController.view];
 	mapViewController.checkins = self.checkins;
+    [self.view addSubview:mapViewController.view];
 }
 
 - (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
 	NSArray * allCheckins = [FoursquareAPI checkinsFromResponseXML:inString];
 	self.checkins = [allCheckins copy];
+    
+    recentCheckins = [[NSMutableArray alloc] init];
+    olderCheckins = [[NSMutableArray alloc] init];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"EEE, dd MMM yy HH:mm:ss"];
+    
+    NSDate *threeHoursFromNow = [[NSDate alloc] initWithTimeIntervalSinceNow:-60*60*3];
+    
+    for (FSCheckin *checkin in checkins) {
+        NSDate *date = [dateFormatter dateFromString:checkin.created];
+        if ([date compare:threeHoursFromNow] == NSOrderedDescending) {
+            [recentCheckins addObject:checkin];
+        } else {
+            [olderCheckins addObject:checkin];
+        }
+    }
+    
 	[self.theTableView reloadData];
 }
 

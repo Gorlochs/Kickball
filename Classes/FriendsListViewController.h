@@ -12,9 +12,13 @@
 @interface FriendsListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
     IBOutlet UITableView *theTableView;
 	NSArray * checkins;
+	NSMutableArray * recentCheckins;
+	NSMutableArray * olderCheckins;
 }
 
 @property (nonatomic, retain) NSArray * checkins;
+@property (nonatomic, retain) NSMutableArray * recentCheckins;
+@property (nonatomic, retain) NSMutableArray * olderCheckins;
 @property (nonatomic, retain) UITableView *theTableView;
 
 - (IBAction) checkin;

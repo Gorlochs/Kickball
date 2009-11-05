@@ -27,6 +27,7 @@
 		imageView = [[UIImageView alloc] initWithImage:img];
 		imageView.frame = CGRectMake(kBorder, kBorder, kWidth - 2 * kBorder, kWidth - 2 * kBorder);
 		[self addSubview:imageView];
+        [img release];
 	}
 		
 	return self;

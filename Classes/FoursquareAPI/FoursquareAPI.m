@@ -179,13 +179,14 @@ static FoursquareAPI *sharedInstance = nil;
 	
 	NSError * err;
 	CXMLDocument *venueParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
-	
+	NSLog(@"venue xml: %@", venueParser);
 	FSVenue * thisVenue = [[FSVenue alloc] init];
 	
 	NSArray *allGroups = [venueParser nodesForXPath:@"/" error:nil];
 	
 	for (CXMLElement *groupResult in allGroups) {
 		NSArray * groupOfVenues = [FoursquareAPI _venuesFromNode:groupResult];
+        NSLog(@"group of venues: %@", groupOfVenues);
 		thisVenue = (FSVenue *)[groupOfVenues objectAtIndex:0];
 	}
 	return thisVenue;
@@ -226,6 +227,7 @@ static FoursquareAPI *sharedInstance = nil;
 	NSLog(@"%@", [err localizedDescription]);
 	
 	NSMutableArray * allCheckins = [[NSMutableArray alloc] initWithCapacity:1];
+	NSLog(@"checkins xml: %@", checkinParser);
 
 	NSArray *allCheckinAttrs = NULL;
 	

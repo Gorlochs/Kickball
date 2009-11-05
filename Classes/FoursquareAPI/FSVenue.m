@@ -18,4 +18,8 @@
 	return self;
 }
 
+- (NSString*) description {
+    return [NSString stringWithFormat:@"name=%@ ; venueid=%@ ; mayor=%@", name, venueid, mayor];
+}
+
 @end

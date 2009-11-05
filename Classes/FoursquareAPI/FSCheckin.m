@@ -11,4 +11,10 @@
 
 @implementation FSCheckin
 @synthesize message, venue, badges, specials, created, checkinId, shout, display, user;
+
+
+- (NSString*) description {
+    return [NSString stringWithFormat:@"message=%@ ; venue=%@ ; created=%@ ; user=%@ ; checkinId=%@", message, venue, created, user, checkinId];
+}
+
 @end
