@@ -7,10 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <MapKit/MapKit.h>
+#import "FoursquareAPI.h"
+#import "FriendPlacemark.h"
 
 @interface FriendsMapViewController : UIViewController {
-
+	IBOutlet MKMapView * mapViewer;
+	NSArray * checkins;
 }
 
+@property (nonatomic, retain) NSArray * checkins;
+@property (nonatomic, retain) MKMapView * mapViewer;
+
+
+- (void) refreshFriendPoints;
+- (void) setCheckins:(NSArray *) checkin;
+- (NSArray *) checkins;
 @end

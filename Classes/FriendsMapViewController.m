@@ -13,6 +13,8 @@
 
 @implementation FriendsMapViewController
 
+@synthesize mapViewer;
+
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -29,6 +31,11 @@
     [super viewDidLoad];
 }
 */
+
+-(void) viewDidAppear:(BOOL)animated{
+	[super viewDidAppear:animated];
+	[self refreshFriendPoints];
+}
 
 /*
 // Override to allow orientations other than the default portrait orientation.
@@ -50,6 +57,49 @@
 	// e.g. self.myOutlet = nil;
 }
 
+
+- (void) setCheckins:(NSArray *) checkin{
+	[checkins release];
+	checkins = checkin;
+	[checkins retain];
+	[self refreshFriendPoints];
+}
+
+
+- (NSArray *) checkins{
+	return checkins;
+}
+
+- (void) refreshFriendPoints{
+	for(FSCheckin * checkin in self.checkins){		
+		CLLocationCoordinate2D location;
+		FSVenue * checkVenue = checkin.venue;
+		FSUser * checkUser = checkin.user;
+		location.latitude = [checkVenue.geolat doubleValue];
+		location.longitude = [checkVenue.geolong doubleValue];
+		FriendPlacemark *placemark=[[FriendPlacemark alloc] initWithCoordinate:location];
+		[mapViewer addAnnotation:placemark];
+	}	
+}
+
+#pragma mark MapViewer functions
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
+	
+    // If it's the user location, just return nil.
+	
+    if ([annotation isKindOfClass:[MKUserLocation class]]) return nil;
+	MKPinAnnotationView*    pinView = (MKPinAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:@"CustomPinAnnotation"];
+	if (!pinView){
+		// If an existing pin view was not available, create one
+		pinView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomPinAnnotation"] autorelease];
+		pinView.pinColor = MKPinAnnotationColorRed;
+		pinView.animatesDrop = YES;
+		pinView.canShowCallout = NO;
+		
+	} else
+		pinView.annotation = annotation;
+	return pinView;	
+}
 
 - (void)dealloc {
     [super dealloc];

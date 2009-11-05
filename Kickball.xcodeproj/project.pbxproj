@@ -14,6 +14,9 @@
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		552AFD8210A270ED009300E2 /* FSTip.m in Sources */ = {isa = PBXBuildFile; fileRef = 552AFD8110A270ED009300E2 /* FSTip.m */; };
+		552AFD9E10A27405009300E2 /* libPMAnalytics-r69.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 552AFD9D10A27405009300E2 /* libPMAnalytics-r69.a */; };
+		552AFDE410A27AED009300E2 /* FriendPlacemark.m in Sources */ = {isa = PBXBuildFile; fileRef = 552AFDE310A27AED009300E2 /* FriendPlacemark.m */; };
+		552AFE4110A285AC009300E2 /* FriendIconAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 552AFE4010A285AC009300E2 /* FriendIconAnnotationView.m */; };
 		553C517F10A1BD5100A74641 /* FoursquareAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 553C50FF10A1BD5000A74641 /* FoursquareAPI.m */; };
 		553C518010A1BD5100A74641 /* FSBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 553C510110A1BD5000A74641 /* FSBadge.m */; };
 		553C518110A1BD5100A74641 /* FSCheckin.m in Sources */ = {isa = PBXBuildFile; fileRef = 553C510310A1BD5000A74641 /* FSCheckin.m */; };
@@ -118,7 +121,6 @@
 		6AC7E9CD10995B2300776993 /* tmp-gift.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC7E9CC10995B2300776993 /* tmp-gift.png */; };
 		6AC7E9CF10995BE700776993 /* tmp-shout.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC7E9CE10995BE700776993 /* tmp-shout.png */; };
 		6AE61217109AB04C008ABF79 /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AF96710109AA32700EF665D /* ProfileView.xib */; };
-		6AFF236F10A2241800CD30E5 /* libPMAnalytics-r69.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AFF236E10A2241800CD30E5 /* libPMAnalytics-r69.a */; };
 		6AFF23F110A247B100CD30E5 /* PlaceTwitterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AFF23EF10A247B100CD30E5 /* PlaceTwitterViewController.m */; };
 		6AFF23F210A247B100CD30E5 /* PlaceTwitterViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6AFF23F010A247B100CD30E5 /* PlaceTwitterViewController.xib */; };
 		6AFF241210A24A0900CD30E5 /* PlaceTwitterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AFF23F010A247B100CD30E5 /* PlaceTwitterViewController.xib */; };
@@ -136,6 +138,11 @@
 		32CA4F630368D1EE00C91783 /* Kickball_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kickball_Prefix.pch; sourceTree = "<group>"; };
 		552AFD8010A270ED009300E2 /* FSTip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSTip.h; sourceTree = "<group>"; };
 		552AFD8110A270ED009300E2 /* FSTip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSTip.m; sourceTree = "<group>"; };
+		552AFD9D10A27405009300E2 /* libPMAnalytics-r69.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPMAnalytics-r69.a"; sourceTree = "<group>"; };
+		552AFDE210A27AED009300E2 /* FriendPlacemark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendPlacemark.h; sourceTree = "<group>"; };
+		552AFDE310A27AED009300E2 /* FriendPlacemark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendPlacemark.m; sourceTree = "<group>"; };
+		552AFE3F10A285AC009300E2 /* FriendIconAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendIconAnnotationView.h; sourceTree = "<group>"; };
+		552AFE4010A285AC009300E2 /* FriendIconAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendIconAnnotationView.m; sourceTree = "<group>"; };
 		553C50FE10A1BD5000A74641 /* FoursquareAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoursquareAPI.h; sourceTree = "<group>"; };
 		553C50FF10A1BD5000A74641 /* FoursquareAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoursquareAPI.m; sourceTree = "<group>"; };
 		553C510010A1BD5000A74641 /* FSBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSBadge.h; sourceTree = "<group>"; };
@@ -330,7 +337,6 @@
 		6AC7E9CE10995BE700776993 /* tmp-shout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tmp-shout.png"; sourceTree = "<group>"; };
 		6AE611A3109AA462008ABF79 /* ProfileMainTableCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileMainTableCellView.xib; sourceTree = "<group>"; };
 		6AF96710109AA32700EF665D /* ProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfileView.xib; path = Classes/ProfileView.xib; sourceTree = "<group>"; };
-		6AFF236E10A2241800CD30E5 /* libPMAnalytics-r69.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPMAnalytics-r69.a"; path = "/Users/shawnbernard/Desktop/PinchAnalytics-r69/libPMAnalytics-r69.a"; sourceTree = "<absolute>"; };
 		6AFF23EE10A247B100CD30E5 /* PlaceTwitterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceTwitterViewController.h; sourceTree = "<group>"; };
 		6AFF23EF10A247B100CD30E5 /* PlaceTwitterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceTwitterViewController.m; sourceTree = "<group>"; };
 		6AFF23F010A247B100CD30E5 /* PlaceTwitterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PlaceTwitterViewController.xib; path = Classes/PlaceTwitterViewController.xib; sourceTree = "<group>"; };
@@ -352,7 +358,7 @@
 				6A8EEE1A10A1227000DC630C /* MapKit.framework in Frameworks */,
 				6A8EEF0B10A14F3F00DC630C /* libxml2.dylib in Frameworks */,
 				553C51BF10A1BD8100A74641 /* Security.framework in Frameworks */,
-				6AFF236F10A2241800CD30E5 /* libPMAnalytics-r69.a in Frameworks */,
+				552AFD9E10A27405009300E2 /* libPMAnalytics-r69.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,6 +436,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				552AFD9D10A27405009300E2 /* libPMAnalytics-r69.a */,
 				6A978A601099FBC000FCE8F1 /* StoreKit.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
@@ -440,7 +447,6 @@
 				6A8EEE1910A1227000DC630C /* MapKit.framework */,
 				6A8EEF0A10A14F3F00DC630C /* libxml2.dylib */,
 				553C51BE10A1BD8100A74641 /* Security.framework */,
-				6AFF236E10A2241800CD30E5 /* libPMAnalytics-r69.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -639,12 +645,16 @@
 		6A044CB8109545580063FC33 /* Friends */ = {
 			isa = PBXGroup;
 			children = (
+				552AFDE210A27AED009300E2 /* FriendPlacemark.h */,
+				552AFDE310A27AED009300E2 /* FriendPlacemark.m */,
 				6A044CA9109545200063FC33 /* FriendsListViewController.h */,
 				6A044CAA109545200063FC33 /* FriendsListViewController.m */,
 				6A044CB3109545450063FC33 /* FriendsMapViewController.h */,
 				6A044CB4109545450063FC33 /* FriendsMapViewController.m */,
 				6A1526C51096BD7E00924D0E /* FriendsListTableCell.h */,
 				6A1526C61096BD7E00924D0E /* FriendsListTableCell.m */,
+				552AFE3F10A285AC009300E2 /* FriendIconAnnotationView.h */,
+				552AFE4010A285AC009300E2 /* FriendIconAnnotationView.m */,
 			);
 			name = Friends;
 			sourceTree = "<group>";
@@ -932,6 +942,8 @@
 				6AFF23F110A247B100CD30E5 /* PlaceTwitterViewController.m in Sources */,
 				6AFF23F210A247B100CD30E5 /* PlaceTwitterViewController.xib in Sources */,
 				552AFD8210A270ED009300E2 /* FSTip.m in Sources */,
+				552AFDE410A27AED009300E2 /* FriendPlacemark.m in Sources */,
+				552AFE4110A285AC009300E2 /* FriendIconAnnotationView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "FriendsMapViewController.h"FriendsMapViewController
 
 @interface FriendsListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
     IBOutlet UITableView *theTableView;
@@ -18,6 +18,7 @@
 @property (nonatomic, retain) UITableView *theTableView;
 
 - (IBAction) checkin;
+- (IBAction) flipToMap;
 - (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString;
 
 @end
