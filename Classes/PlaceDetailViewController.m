@@ -274,6 +274,7 @@
     PlaceTwitterViewController *vc = [[PlaceTwitterViewController alloc] initWithNibName:@"PlaceTwitterViewController" bundle:nil];
 //    vc.twitterName = venue.twitter;
     vc.twitterName = @"VictoryBar";
+    vc.venueName = @"Victory Bar";
     [self presentModalViewController:vc animated:YES];
     [vc release];
 }

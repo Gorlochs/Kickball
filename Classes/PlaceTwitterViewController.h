@@ -12,8 +12,10 @@
 @interface PlaceTwitterViewController : UITableViewController <MGTwitterEngineDelegate> {
     NSString *twitterName;
     NSArray *twitterStatuses;
+    NSString *venueName;
 }
 
 @property (nonatomic, retain) NSString *twitterName;
+@property (nonatomic, retain) NSString *venueName;
 
 @end

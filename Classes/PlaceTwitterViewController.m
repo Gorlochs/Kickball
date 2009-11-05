@@ -11,7 +11,7 @@
 
 @implementation PlaceTwitterViewController
 
-@synthesize twitterName;
+@synthesize twitterName, venueName;
 
 /*
 - (id)initWithStyle:(UITableViewStyle)style {
@@ -24,6 +24,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // TODO: figure out why this isn't working (i.e., the navigation bar isn't being displayed)
+    self.navigationItem.title = venueName;
 
     MGTwitterEngine *twitterEngine = [[MGTwitterEngine alloc] initWithDelegate:self];
     NSString *timeline = [twitterEngine getUserTimelineFor:twitterName sinceID:0 startingAtPage:0 count:20];
@@ -64,11 +67,17 @@
     [super didReceiveMemoryWarning];
 	
 	// Release any cached data, images, etc that aren't in use.
+    self.twitterStatuses = nil;
+    self.twitterName = nil;
+    self.venueName = nil;
 }
 
 - (void)viewDidUnload {
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
+    self.twitterStatuses = nil;
+    self.twitterName = nil;
+    self.venueName = nil;
 }
 
 
@@ -97,6 +106,7 @@
     }
     
     // Set up the cell...
+    cell.textLabel.numberOfLines = 2;
     cell.textLabel.text = [((NSDictionary*)[twitterStatuses objectAtIndex:indexPath.row]) objectForKey:@"text"];
 	
     return cell;
@@ -152,6 +162,9 @@
 
 
 - (void)dealloc {
+    [twitterStatuses release];
+    [twitterName release];
+    [venueName release];
     [super dealloc];
 }
 
