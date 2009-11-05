@@ -8,10 +8,21 @@
 
 #import "PlacesListViewController.h"
 #import "PlaceDetailViewController.h"
+#import "FoursquareAPI.h"
+
+@interface PlacesListViewController (Private)
+
+- (void)stopUpdatingLocation:(NSString *)state;
+- (void)venuesResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString;
+
+@end
 
 @implementation PlacesListViewController
 
 @synthesize searchCell;
+@synthesize locationManager;
+@synthesize bestEffortAtLocation;
+@synthesize venues;
 
 /*
 - (id)initWithStyle:(UITableViewStyle)style {
@@ -22,14 +33,94 @@
 }
 */
 
-/*
 - (void)viewDidLoad {
+    self.locationManager = [[[CLLocationManager alloc] init] autorelease];
+    locationManager.delegate = self;
+    // This is the most important property to set for the manager. It ultimately determines how the manager will
+    // attempt to acquire location and thus, the amount of power that will be consumed.
+//    locationManager.desiredAccuracy = [[setupInfo objectForKey:kSetupInfoKeyAccuracy] doubleValue];
+    locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+    // Once configured, the location manager must be "started".
+    [locationManager startUpdatingLocation];
+    
+    if(![[FoursquareAPI sharedInstance] isAuthenticated]){
+		//run sheet to log in.
+		NSLog(@"Foursquare is not authenticated");
+	} else {
+		//[[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
+	}
+    
     [super viewDidLoad];
-
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
-*/
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+    // store all of the measurements, just so we can see what kind of data we might receive
+    //[locationMeasurements addObject:newLocation];
+    // test the age of the location measurement to determine if the measurement is cached
+    // in most cases you will not want to rely on cached measurements
+    NSTimeInterval locationAge = -[newLocation.timestamp timeIntervalSinceNow];
+    if (locationAge > 5.0) return;
+    // test that the horizontal accuracy does not indicate an invalid measurement
+    if (newLocation.horizontalAccuracy < 0) return;
+    // test the measurement to see if it is more accurate than the previous measurement
+    if (bestEffortAtLocation == nil || bestEffortAtLocation.horizontalAccuracy < newLocation.horizontalAccuracy) {
+        // store the location as the "best effort"
+        self.bestEffortAtLocation = newLocation;
+        NSLog(@"best effort at location: %@", bestEffortAtLocation);
+        // test the measurement to see if it meets the desired accuracy
+        //
+        // IMPORTANT!!! kCLLocationAccuracyBest should not be used for comparison with location coordinate or altitidue 
+        // accuracy because it is a negative value. Instead, compare against some predetermined "real" measure of 
+        // acceptable accuracy, or depend on the timeout to stop updating. This sample depends on the timeout.
+        //
+        if (newLocation.horizontalAccuracy <= locationManager.desiredAccuracy) {
+            // we have a measurement that meets our requirements, so we can stop updating the location
+            // 
+            // IMPORTANT!!! Minimize power usage by stopping the location manager as soon as possible.
+            //
+            [self stopUpdatingLocation:NSLocalizedString(@"Acquired Location", @"Acquired Location")];
+            // we can also cancel our previous performSelector:withObject:afterDelay: - it's no longer necessary
+            [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(stopUpdatingLocation:) object:nil];
+        }
+    }
+    // update the display with the new location data
+    //[theTableView reloadData];
+    
+    // RUN FOURSQUARE API CALL HERE
+    [[FoursquareAPI sharedInstance] getVenuesNearLatitude:[NSString stringWithFormat:@"%f",bestEffortAtLocation.coordinate.latitude] 
+                                             andLongitude:[NSString stringWithFormat:@"%f",bestEffortAtLocation.coordinate.longitude]
+                                               withTarget:self 
+                                                andAction:@selector(venuesResponseReceived:withResponseString:)
+     ];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    // The location "unknown" error simply means the manager is currently unable to get the location.
+    // We can ignore this error for the scenario of getting a single location fix, because we already have a 
+    // timeout that will stop the location manager to save power.
+    if ([error code] != kCLErrorLocationUnknown) {
+        [self stopUpdatingLocation:NSLocalizedString(@"Error", @"Error")];
+    }
+}
+
+
+- (void)stopUpdatingLocation:(NSString *)state {
+//    self.stateString = state;
+//    [self.tableView reloadData];
+    [locationManager stopUpdatingLocation];
+    locationManager.delegate = nil;
+    
+    // TODO: RUN FOURSQUARE API CALL HERE
+    
+//    UIBarButtonItem *resetItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Reset", @"Reset") style:UIBarButtonItemStyleBordered target:self action:@selector(reset)] autorelease];
+//    [self.navigationItem setLeftBarButtonItem:resetItem animated:YES];;
+}
+
+- (void)venuesResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+	NSArray *allVenues = [FoursquareAPI venuesFromResponseXML:inString];
+	self.venues = [allVenues copy];
+	[theTableView reloadData];
+}
 
 /*
 - (void)viewWillAppear:(BOOL)animated {
@@ -86,8 +177,12 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // FIXME: calculate how many rows should be displayed here
-    return 5;
+    if (section == 0) {
+        return [(NSArray*)[venues objectAtIndex:0] count];
+    } else if (section == 1) {
+        return [(NSArray*)[venues objectAtIndex:1] count];
+    }
+    return 0;
 }
 
 
@@ -102,13 +197,18 @@
     }
     
     // Set up the cell...
+    if (indexPath.section == 0) {
+        cell.textLabel.text = ((FSVenue*) [(NSArray*)[venues objectAtIndex:0] objectAtIndex:indexPath.row]).name;
+    } else if (indexPath.section == 1) {
+        cell.textLabel.text = ((FSVenue*) [(NSArray*)[venues objectAtIndex:1] objectAtIndex:indexPath.row]).name;
+    }
 	
     return cell;
 }
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];
+	PlaceDetailViewController *placeDetailController = [[[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil] autorelease];
     [self.view addSubview:placeDetailController.view];
 }
 
@@ -203,6 +303,8 @@
 - (void)dealloc {
     [theTableView release];
     [searchCell release];
+    [locationManager release];
+    [bestEffortAtLocation release];
     [super dealloc];
 }
 

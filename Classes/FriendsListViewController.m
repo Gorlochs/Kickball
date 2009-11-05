@@ -234,7 +234,7 @@
 
 #pragma mark IBAction methods
 
-- (IBAction) checkin {
+- (void) checkin {
     PlacesListViewController *placesListController = [[PlacesListViewController alloc] initWithNibName:@"PlacesListViewController" bundle:nil];
     [self.view addSubview:placesListController.view];
 }
