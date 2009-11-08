@@ -92,6 +92,8 @@
                                                withTarget:self 
                                                 andAction:@selector(venuesResponseReceived:withResponseString:)
      ];
+    
+    venuesTypeToDisplay = KBNearbyVenues;
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
@@ -169,6 +171,7 @@
 
 -(void)searchOnKeywordsandLatLong {
     [searchbox resignFirstResponder];
+    venuesTypeToDisplay = KBSearchVenues;
     if (![searchbox.text isEqualToString:@""]) {
         [[FoursquareAPI sharedInstance] getVenuesByKeyword:[NSString stringWithFormat:@"%f",bestEffortAtLocation.coordinate.latitude] 
                                               andLongitude:[NSString stringWithFormat:@"%f",bestEffortAtLocation.coordinate.longitude] 
@@ -261,10 +264,19 @@
     // headerLabel.frame = CGRectMake(150.0, 0.0, 300.0, 44.0);
     switch (section) {
         case 0:
-            headerLabel.text = @"  Nearby Favorites";
+            // these values could be pulled from the xml, but I'm not sure that it's worth the trouble
+            if (venuesTypeToDisplay == KBSearchVenues) {
+                headerLabel.text = @"  Matching Places";
+            } else {
+                headerLabel.text = @"  Nearby Favorites";
+            }
             break;
         case 1:
-            headerLabel.text = @"  Nearby";
+            if (venuesTypeToDisplay == KBSearchVenues) {
+                headerLabel.text = @"  Matching Tags";
+            } else {
+                headerLabel.text = @"  Nearby";
+            }
             break;
         default:
             headerLabel.text = @"You shouldn't see this";

@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 
+typedef enum {
+	KBNearbyVenues = 0,
+	KBSearchVenues = 1
+} KBListType;
 
 @interface PlacesListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, CLLocationManagerDelegate> {
     IBOutlet UITableView *theTableView;
@@ -17,6 +21,7 @@
     CLLocationManager *locationManager;
     CLLocation *bestEffortAtLocation;
     NSArray *venues;
+    KBListType venuesTypeToDisplay;
 }
 
 @property (nonatomic, retain) UITableViewCell *searchCell;
