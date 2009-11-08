@@ -30,6 +30,7 @@
 
 - (BOOL) isAuthenticated;
 - (void)getVenuesNearLatitude:(NSString *)geolat andLongitude:(NSString *)geolong withTarget:(id)inTarget andAction:(SEL)inAction;
+- (void)getVenuesByKeyword: (NSString *)geolat andLongitude:(NSString *) geolong andKeywords:(NSString *) keywords withTarget:(id)inTarget andAction:(SEL)inAction;
 - (void)getCheckinsWithTarget:(id)inTarget andAction:(SEL)inAction;
 - (void)getUserWithTarget:(id)inTarget andAction:(SEL)inAction;
 - (void)getUserById:(NSString *) userId withTarget:(id)inTarget andAction:(SEL)inAction;

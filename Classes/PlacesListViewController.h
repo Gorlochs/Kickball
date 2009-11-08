@@ -10,9 +10,10 @@
 #import <CoreLocation/CoreLocation.h>
 
 
-@interface PlacesListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate> {
+@interface PlacesListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, CLLocationManagerDelegate> {
     IBOutlet UITableView *theTableView;
     IBOutlet UITableViewCell *searchCell;
+    IBOutlet UITextField *searchbox;
     CLLocationManager *locationManager;
     CLLocation *bestEffortAtLocation;
     NSArray *venues;
@@ -22,5 +23,7 @@
 @property (nonatomic, retain) CLLocationManager *locationManager;
 @property (nonatomic, retain) CLLocation *bestEffortAtLocation;
 @property (nonatomic, retain) NSArray *venues;
+
+-(IBAction)searchOnKeywordsandLatLong;
 
 @end

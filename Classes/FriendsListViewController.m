@@ -278,6 +278,8 @@
         }
     }
     
+    [threeHoursFromNow release];
+    [dateFormatter release];
 	[self.theTableView reloadData];
 }
 

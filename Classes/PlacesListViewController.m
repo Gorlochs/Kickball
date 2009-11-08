@@ -110,8 +110,6 @@
     [locationManager stopUpdatingLocation];
     locationManager.delegate = nil;
     
-    // TODO: RUN FOURSQUARE API CALL HERE
-    
 //    UIBarButtonItem *resetItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Reset", @"Reset") style:UIBarButtonItemStyleBordered target:self action:@selector(reset)] autorelease];
 //    [self.navigationItem setLeftBarButtonItem:resetItem animated:YES];;
 }
@@ -167,6 +165,19 @@
     searchCell = nil;
 }
 
+#pragma mark IBAction methods
+
+-(void)searchOnKeywordsandLatLong {
+    [searchbox resignFirstResponder];
+    if (![searchbox.text isEqualToString:@""]) {
+        [[FoursquareAPI sharedInstance] getVenuesByKeyword:[NSString stringWithFormat:@"%f",bestEffortAtLocation.coordinate.latitude] 
+                                              andLongitude:[NSString stringWithFormat:@"%f",bestEffortAtLocation.coordinate.longitude] 
+                                               andKeywords:searchbox.text
+                                                withTarget:self 
+                                                 andAction:@selector(venuesResponseReceived:withResponseString:)
+         ];
+    }
+}
 
 #pragma mark Table view methods
 

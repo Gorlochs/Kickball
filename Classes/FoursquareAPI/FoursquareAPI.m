@@ -91,13 +91,25 @@ static FoursquareAPI *sharedInstance = nil;
 		return YES;
 	} else return NO;
 }
-						 
-						 
+
+
 - (void)getVenuesNearLatitude: (NSString *)geolat andLongitude:(NSString *) geolong withTarget:(id)inTarget andAction:(SEL)inAction{
 	NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
 	
 	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"geolat" andValue:geolat]];
 	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"geolong" andValue:geolong]];
+	
+	[self.oauthAPI performMethod:@"/v1/venues" withTarget:inTarget withParameters:params  andAction:inAction];
+	
+}
+
+// this might could be combined with the above method
+- (void)getVenuesByKeyword: (NSString *)geolat andLongitude:(NSString *) geolong andKeywords:(NSString *) keywords withTarget:(id)inTarget andAction:(SEL)inAction{
+	NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
+	
+	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"geolat" andValue:geolat]];
+	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"geolong" andValue:geolong]];
+	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"q" andValue:[keywords stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]]];
 	
 	[self.oauthAPI performMethod:@"/v1/venues" withTarget:inTarget withParameters:params  andAction:inAction];
 	
