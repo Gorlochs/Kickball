@@ -83,10 +83,9 @@
             [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(stopUpdatingLocation:) object:nil];
         }
     }
-    // update the display with the new location data
-    //[theTableView reloadData];
     
-    // RUN FOURSQUARE API CALL HERE
+    // TODO: this @selector should probably be different than the one for the searchbox.
+    //       this way, we can switch back and forth to this list without having to reload everything
     [[FoursquareAPI sharedInstance] getVenuesNearLatitude:[NSString stringWithFormat:@"%f",bestEffortAtLocation.coordinate.latitude] 
                                              andLongitude:[NSString stringWithFormat:@"%f",bestEffortAtLocation.coordinate.longitude]
                                                withTarget:self 
@@ -169,6 +168,8 @@
 
 #pragma mark IBAction methods
 
+// TODO: this should probably use a different @selector and set a instance variable?
+//       
 -(void)searchOnKeywordsandLatLong {
     [searchbox resignFirstResponder];
     venuesTypeToDisplay = KBSearchVenues;
@@ -207,14 +208,16 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    // Set up the cell...
-    if (indexPath.section == 0) {
-        cell.textLabel.text = ((FSVenue*) [(NSArray*)[venues objectAtIndex:0] objectAtIndex:indexPath.row]).name;
-    } else if (indexPath.section == 1) {
-        cell.textLabel.text = ((FSVenue*) [(NSArray*)[venues objectAtIndex:1] objectAtIndex:indexPath.row]).name;
+    // passing in indexPath.section chooses the proper venue array to display in the appropriate section
+    FSVenue *venue = (FSVenue*) [(NSArray*)[venues objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    cell.textLabel.text = venue.name;
+    if (venue.crossStreet != nil) {
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ at %@", venue.venueAddress, venue.crossStreet];
+    } else {
+        cell.detailTextLabel.text = venue.venueAddress;
     }
 	
     return cell;
@@ -257,8 +260,8 @@
     headerLabel.opaque = NO;
     headerLabel.textColor = [UIColor grayColor];
     headerLabel.highlightedTextColor = [UIColor grayColor];
-    headerLabel.font = [UIFont boldSystemFontOfSize:12];
-    headerLabel.frame = CGRectMake(00.0, 0.0, 320.0, 24.0);
+    headerLabel.font = [UIFont boldSystemFontOfSize:14];
+    headerLabel.frame = CGRectMake(0.0, 0.0, 320.0, 24.0);
     
     // If you want to align the header text as centered
     // headerLabel.frame = CGRectMake(150.0, 0.0, 300.0, 44.0);
