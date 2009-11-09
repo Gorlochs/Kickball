@@ -111,17 +111,13 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 1) {
         // people here
-        
-        if (venue.tips != nil) {
-            // TODO: return the number of people if < X, otherwise return MAX_NUMBER_OF_PEOPLE_HERE
-            //return [venue.tips count];
-            return 0;
-        } else {
-            return 0;
-        }
+        //if (venue.peopleHere != nil) {
+            return [venue.peopleHere count];
+        //} else {
+        //    return 0;
+        //}
     } else if (section == 2) {
         // tips
-        // TODO: return the number of people if < X, otherwise return MAX_NUMBER_TIPS
         if (venue.tips != nil) {
             return [venue.tips count];
         } else {
@@ -153,13 +149,6 @@
     
     // Set up the cell...
     if (indexPath.section == 0) {
-//        if (venue.mayor.photo != nil) {
-//            NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:venue.mayor.photo]];
-//            UIImage *img = [[UIImage alloc] initWithData:data];
-//            mayorImage.image = img;
-//            [img release];                
-//        }
-        // not sure if this should go here or not
         return mayorMapCell;
     } else if (indexPath.section == 1) {
         if (venue != nil) {
@@ -169,9 +158,13 @@
 //            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 //            cell.imageView.image = [UIImage imageNamed:@"temp-icon.png"];
         }
-        cell.textLabel.text = @"Shawn";
+        FSUser *user = ((FSUser*)[venue.peopleHere objectAtIndex:indexPath.row]);
+        cell.textLabel.text = user.firstnameLastInitial;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.imageView.image = [UIImage imageNamed:@"temp-icon.png"];
+        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:user.photo]];
+        UIImage *img = [[UIImage alloc] initWithData:data];
+        cell.imageView.image = img;
+        [img release];
     } else if (indexPath.section == 2) {
         if (venue != nil) {
             cell.textLabel.text = ((FSTip*) [venue.tips objectAtIndex:indexPath.row]).text;
