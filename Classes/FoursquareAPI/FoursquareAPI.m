@@ -317,8 +317,9 @@ static FoursquareAPI *sharedInstance = nil;
 			} else if([key isEqualToString:@"tips"]){
 				newVenue.tips = [FoursquareAPI _tipsFromNode:venueResult];
 			} else if([key isEqualToString:@"stats"]){
-				
-				newVenue.mayor = [FoursquareAPI _userFromNode:[[venueResult nodesForXPath:@"mayor/user" error:nil] objectAtIndex:0]];
+				NSArray * mayorNodes = [venueResult nodesForXPath:@"mayor/user" error:nil];
+				if(mayorNodes && [mayorNodes objectAtIndex:0])
+				newVenue.mayor = [FoursquareAPI _userFromNode:[mayorNodes objectAtIndex:0]];
 
 			} else if([key isEqualToString:@"people"]){
 				NSMutableArray * allPeople = [[NSMutableArray alloc] initWithCapacity:1];
