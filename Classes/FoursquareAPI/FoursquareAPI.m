@@ -317,9 +317,22 @@ static FoursquareAPI *sharedInstance = nil;
 			} else if([key isEqualToString:@"tips"]){
 				newVenue.tips = [FoursquareAPI _tipsFromNode:venueResult];
 			} else if([key isEqualToString:@"stats"]){
-				NSArray * mayorNodes = [venueResult nodesForXPath:@"mayor/user" error:nil];
-				if(mayorNodes && [mayorNodes objectAtIndex:0])
-				newVenue.mayor = [FoursquareAPI _userFromNode:[mayorNodes objectAtIndex:0]];
+				NSArray * mayorNodes = [venueResult nodesForXPath:@"stats/mayor/user" error:nil];
+				if(mayorNodes && [mayorNodes count] > 0){
+					newVenue.mayor = [FoursquareAPI _userFromNode:[mayorNodes objectAtIndex:0]];
+				}
+				
+				NSArray * countNodes = [venueResult nodesForXPath:@"stats/count" error:nil];
+				if(countNodes && [countNodes count] > 0){
+					CXMLNode * countNode = [countNodes objectAtIndex:0];
+					newVenue.mayorCount = [[countNode stringValue]  intValue]; 
+				}
+				
+				NSArray * checkinNodes = [venueResult nodesForXPath:@"stats/checkins" error:nil];
+				if(checkinNodes && [checkinNodes count] > 0){
+					CXMLNode * checkinsNode = [checkinNodes objectAtIndex:0];
+					newVenue.userCheckinCount = [[checkinsNode stringValue]  intValue]; 
+				}
 
 			} else if([key isEqualToString:@"people"]){
 				NSMutableArray * allPeople = [[NSMutableArray alloc] initWithCapacity:1];
