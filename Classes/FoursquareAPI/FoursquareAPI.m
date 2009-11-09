@@ -148,6 +148,7 @@ static FoursquareAPI *sharedInstance = nil;
 	[self.oauthAPI performMethod:@"/v1/user" withTarget:inTarget withParameters:params andAction:inAction];
 }
 
+
 - (void)getUserById:(NSString *) userId withTarget:(id)inTarget andAction:(SEL)inAction{
 	
 }
@@ -210,8 +211,6 @@ static FoursquareAPI *sharedInstance = nil;
 	NSError * err;
 	CXMLDocument *userParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
 	NSLog(@"%@", [err description]);
-
-	FSUser * thisUser = [[FSUser alloc] init];
 	
 	NSArray *allUserAttrs = [userParser nodesForXPath:@"user" error:nil];
 	for (CXMLElement *usrAttr in allUserAttrs) {
@@ -317,8 +316,17 @@ static FoursquareAPI *sharedInstance = nil;
 				newVenue.twitter = value;
 			} else if([key isEqualToString:@"tips"]){
 				newVenue.tips = [FoursquareAPI _tipsFromNode:venueResult];
-			} else if([key isEqualToString:@"mayor"]){
-				newVenue.mayor = [FoursquareAPI _userFromNode:venueResult];
+			} else if([key isEqualToString:@"stats"]){
+				
+				newVenue.mayor = [FoursquareAPI _userFromNode:[[venueResult nodesForXPath:@"mayor/user" error:nil] objectAtIndex:0]];
+
+			} else if([key isEqualToString:@"people"]){
+				NSMutableArray * allPeople = [[NSMutableArray alloc] initWithCapacity:1];
+				NSArray * allUserTags = [venueResult nodesForXPath:@"now/user" error:nil];
+				for (CXMLElement *userTag in allUserTags) {
+					[allPeople addObject:[FoursquareAPI _userFromNode:userTag]];
+				}
+				newVenue.peopleHere = allPeople;
 			}
 			
 		}

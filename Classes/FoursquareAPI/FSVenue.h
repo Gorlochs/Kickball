@@ -25,6 +25,9 @@
 	int mayorCount;
 	FSUser * mayor;
 	NSArray * tips;
+	NSArray * peopleHere;
+	BOOL friendsHaveBeenHere;
+	BOOL userHasBeenHere;
 	
 } 
 
@@ -42,4 +45,7 @@
 @property (nonatomic) int mayorCount;
 @property (nonatomic, retain) FSUser * mayor;
 @property (nonatomic, retain) NSArray * tips;
+@property (nonatomic, retain) NSArray * peopleHere;
+@property (nonatomic) BOOL friendsHaveBeenHere;
+@property (nonatomic) BOOL userHasBeenHere;
 @end
