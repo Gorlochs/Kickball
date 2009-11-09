@@ -226,24 +226,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];
-    if (indexPath.section == 0) {
-        placeDetailController.venue = [(NSArray*)[venues objectAtIndex:0] objectAtIndex:indexPath.row];
-    } else if (indexPath.section == 1) {
-        placeDetailController.venue = [(NSArray*)[venues objectAtIndex:1] objectAtIndex:indexPath.row];
-    }
+    FSVenue *venue = [(NSArray*)[venues objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    placeDetailController.venueId = venue.venueid;
+//    if (indexPath.section == 0) {
+//        placeDetailController.venue = [(NSArray*)[venues objectAtIndex:0] objectAtIndex:indexPath.row];
+//    } else if (indexPath.section == 1) {
+//        placeDetailController.venue = [(NSArray*)[venues objectAtIndex:1] objectAtIndex:indexPath.row];
+//    }
     [self.view addSubview:placeDetailController.view];
 }
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    switch (indexPath.section) {
-//        case 0:
-//            return 62;
-//        case 2:
-//            return 62;
-//        default:
-//            return 44;
-//    }
-//}
 
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
 	return 24.0;
@@ -291,51 +283,13 @@
     return customView;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 
 - (void)dealloc {
     [theTableView release];
     [searchCell release];
     [locationManager release];
     [bestEffortAtLocation release];
+    [venues release];
     [super dealloc];
 }
 

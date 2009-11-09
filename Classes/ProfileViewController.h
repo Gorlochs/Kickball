@@ -11,12 +11,16 @@
 
 @interface ProfileViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
     IBOutlet UITableView *theTableView;
-    IBOutlet UITableViewCell *titleCell;
     NSString *userId;
     FSUser *user;
+    
+    IBOutlet UILabel *nameLocation;
+    IBOutlet UILabel *lastCheckinAddress;
+    IBOutlet UILabel *nightsOut;
+    IBOutlet UILabel *totalCheckins;
+    IBOutlet UIImageView *userIcon;
 }
 
-@property (nonatomic, retain) UITableViewCell *titleCell;
 @property (nonatomic, retain) NSString *userId;
 
 @end

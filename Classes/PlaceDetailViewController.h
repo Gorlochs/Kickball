@@ -10,6 +10,7 @@
 #import <MapKit/MapKit.h>
 #import "FSVenue.h";
 
+// just testing this snippet out that I picked up somewhere
 #define DebugLog( s, ... ) NSLog( @"<%p %@:(%d)> %@", self, [[NSString stringWithUTF8String:__FILE__] lastPathComponent], __LINE__, [NSString stringWithFormat:(s), ##__VA_ARGS__] )
 
 @interface PlaceDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
@@ -21,6 +22,7 @@
     IBOutlet UILabel *venueAddress;
     
     IBOutlet UIImageView *mayorImage;
+    IBOutlet UILabel *mayorNameLabel;
     IBOutlet UIButton *twitterButton;
     
     FSVenue *venue;

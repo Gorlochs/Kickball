@@ -54,5 +54,6 @@
 + (FSUser *) loggedInUserFromResponseXML:(NSString *) inString; 
 + (NSArray *) checkinsFromResponseXML:(NSString *) inString;
 + (FSVenue *) venueFromResponseXML:(NSString *) inString;
++ (FSUser *) userFromResponseXML:(NSString *) inString;
 
 @end

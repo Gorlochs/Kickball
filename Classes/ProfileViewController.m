@@ -11,7 +11,6 @@
 
 @implementation ProfileViewController
 
-@synthesize titleCell;
 @synthesize userId;
 
 /*
@@ -33,12 +32,13 @@
 		//run sheet to log in.
 		NSLog(@"Foursquare is not authenticated");
 	} else {
+        // TODO: will also have to make a call to our DB to get gift info
 		[[FoursquareAPI sharedInstance] getUserById:userId withTarget:self andAction:@selector(userResponseReceived:withResponseString:)];
 	}
 }
 
 - (void)userResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-//	self.user = [FoursquareAPI  userFromResponseXML:inString];
+	user = [FoursquareAPI userFromResponseXML:inString];
 //	[theTableView reloadData];
 }
 
@@ -56,18 +56,34 @@
 	
 	// Release any cached data, images, etc that aren't in use.
     theTableView = nil;
-    titleCell = nil;
+    
+    nameLocation = nil;
+    lastCheckinAddress = nil;
+    nightsOut = nil;
+    totalCheckins = nil;
+    userIcon = nil;
 }
 
 - (void)viewDidUnload {
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
+    nameLocation = nil;
+    lastCheckinAddress = nil;
+    nightsOut = nil;
+    totalCheckins = nil;
+    userIcon = nil;
 }
 
 
 - (void)dealloc {
     [theTableView release];
-    [titleCell release];
+    
+    [nameLocation release];
+    [lastCheckinAddress release];
+    [nightsOut release];
+    [totalCheckins release];
+    [userIcon release];
+    
     [super dealloc];
 }
 
@@ -89,17 +105,16 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier = @"Cell";
-    
-    // FIXME: something is f'd up.  Maybe a memory issue or something. 
+     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         // TODO: figure out why the switch doesn't work. very odd.
-        if (indexPath.section == 0) {
-            return titleCell;
-        } else {
+//        if (indexPath.section == 0) {
+//            return titleCell;
+//        } else {
             cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
             cell.selectionStyle = UITableViewCellSelectionStyleGray;
-        }
+//        }
     }
     
     // Set up the cell...
@@ -113,14 +128,14 @@
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    switch (indexPath.section) {
-        case 0:
-            return 114;
-        default:
-            return 44;
-    }
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    switch (indexPath.section) {
+//        case 0:
+//            return 114;
+//        default:
+//            return 44;
+//    }
+//}
 
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
 	return 24.0;
@@ -140,8 +155,8 @@
         headerLabel.opaque = NO;
         headerLabel.textColor = [UIColor grayColor];
         headerLabel.highlightedTextColor = [UIColor grayColor];
-        headerLabel.font = [UIFont boldSystemFontOfSize:12];
-        headerLabel.frame = CGRectMake(00.0, 0.0, 320.0, 24.0);
+        headerLabel.font = [UIFont boldSystemFontOfSize:14];
+        headerLabel.frame = CGRectMake(0.0, 0.0, 320.0, 24.0);
         
         // If you want to align the header text as centered
         // headerLabel.frame = CGRectMake(150.0, 0.0, 300.0, 44.0);

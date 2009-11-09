@@ -17,6 +17,9 @@
 	NSString * gender;
 	NSArray * badges;
 	BOOL isFriend;
+    
+    // convenience property
+    NSString *firstnameLastInitial;
 }
 
 @property (nonatomic, retain) NSString * userId;
@@ -26,5 +29,7 @@
 @property (nonatomic, retain) NSString * gender;
 @property (nonatomic, retain) NSArray * badges;
 @property (nonatomic) BOOL isFriend;
+@property (nonatomic, retain) NSString * firstnameLastInitial;
+
 
 @end

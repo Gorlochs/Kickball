@@ -28,7 +28,7 @@
 	NSArray * peopleHere;
 	BOOL friendsHaveBeenHere;
 	BOOL userHasBeenHere;
-	
+	int userCheckinCount;
 } 
 
 @property (nonatomic, retain) NSString * name;
@@ -48,4 +48,5 @@
 @property (nonatomic, retain) NSArray * peopleHere;
 @property (nonatomic) BOOL friendsHaveBeenHere;
 @property (nonatomic) BOOL userHasBeenHere;
+@property (nonatomic) int userCheckinCount;
 @end

@@ -11,6 +11,10 @@
 
 @implementation FSUser
 
-@synthesize	userId,firstname,lastname,photo,gender, badges, isFriend;
+@synthesize	userId,firstname,lastname,photo,gender, badges, isFriend, firstnameLastInitial;
+
+- (NSString*) firstnameLastInitial {
+    return [NSString stringWithFormat:@"%@ %@.", firstname, [lastname substringToIndex:1]];
+}
 
 @end
