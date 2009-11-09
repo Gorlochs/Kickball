@@ -336,7 +336,7 @@ static FoursquareAPI *sharedInstance = nil;
 
 			} else if([key isEqualToString:@"people"]){
 				NSMutableArray * allPeople = [[NSMutableArray alloc] initWithCapacity:1];
-				NSArray * allUserTags = [venueResult nodesForXPath:@"now/user" error:nil];
+				NSArray * allUserTags = [venueResult nodesForXPath:@"people/now/user" error:nil];
 				for (CXMLElement *userTag in allUserTags) {
 					[allPeople addObject:[FoursquareAPI _userFromNode:userTag]];
 				}
