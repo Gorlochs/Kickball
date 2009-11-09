@@ -13,7 +13,8 @@
 @synthesize name, geolat, geolong, venueAddress, 
 				zip, city, venueState, venueid, 
 				phone, crossStreet, twitter, mayorCount, 
-				mayor, tips, peopleHere, friendsHaveBeenHere, userHasBeenHere;
+				mayor, tips, peopleHere, friendsHaveBeenHere, 
+				userHasBeenHere, userCheckinCount;
 
 
 - (id) init{
@@ -22,7 +23,7 @@
 }
 
 - (NSString*) description {
-    return [NSString stringWithFormat:@"name=%@ ; venueid=%@ ; mayor=%@", name, venueid, mayor];
+    return [NSString stringWithFormat:@"name=%@ ; venueid=%@ ; mayor=%@ ; mayorCount = %d", name, venueid, mayor, mayorCount];
 }
 
 @end
