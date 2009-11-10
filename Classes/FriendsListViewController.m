@@ -146,7 +146,37 @@
     } else {
         cell.addressLabel.text = checkin.venue.venueAddress;
     }
-	
+    
+    // probably break this out into another method
+    // this date is in GMT
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"EEE, dd MMM yy HH:mm:ss"];
+    NSDate *checkinDate = [dateFormatter dateFromString:checkin.created];
+    
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    //[gregorian setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
+    NSUInteger unitFlags = NSMinuteCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit;
+    NSDateComponents *components = [gregorian components:unitFlags fromDate:[NSDate date] toDate:checkinDate options:0];
+    NSInteger minutes = [components minute] * -1;
+    NSInteger hours = [components hour] * -1;
+    NSInteger days = [components day] * -1;
+
+    // odd logic, I know, but the logical logic didn't work
+    if (days == 0 && hours == 0) {
+        cell.timeUnits.text = @"minutes";
+        cell.numberOfTimeUnits.text = [NSString stringWithFormat:@"%02d", minutes];
+    } else if (days == 0) {
+        cell.timeUnits.text = @"hours";
+        cell.numberOfTimeUnits.text = [NSString stringWithFormat:@"%02d", hours];
+    } else {
+        cell.timeUnits.text = @"days";
+        cell.numberOfTimeUnits.text = [NSString stringWithFormat:@"%02d", days];
+    }
+    
+    NSLog(@"hours: %d", hours);
+    NSLog(@"days: %d", days);
+    [dateFormatter release];
+    
 	return cell;
 }
 
@@ -179,7 +209,7 @@
 	headerLabel.textColor = [UIColor grayColor];
 	headerLabel.highlightedTextColor = [UIColor grayColor];
 	headerLabel.font = [UIFont boldSystemFontOfSize:12];
-	headerLabel.frame = CGRectMake(00.0, 0.0, 320.0, 24.0);
+	headerLabel.frame = CGRectMake(0.0, 0.0, 320.0, 24.0);
     
 	// If you want to align the header text as centered
 	// headerLabel.frame = CGRectMake(150.0, 0.0, 300.0, 44.0);
@@ -199,45 +229,6 @@
     [headerLabel release];
 	return customView;
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 
 - (void)dealloc {

@@ -108,7 +108,7 @@
 									<double key="NSSize">16</double>
 									<int key="NSfFlags">16</int>
 								</object>
-								<object class="NSColor" key="IBUITextColor" id="553511191">
+								<object class="NSColor" key="IBUITextColor" id="147622804">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MCAwIDAAA</bytes>
 								</object>
@@ -258,27 +258,17 @@
 							<object class="IBMKMapView" id="853261904">
 								<reference key="NSNextResponder" ref="578799204"/>
 								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{240, 0}, {80, 64}}</string>
+								<string key="NSFrame">{{218, 0}, {102, 64}}</string>
 								<reference key="NSSuperview" ref="578799204"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">4</int>
 								<bool key="IBUIMultipleTouchEnabled">YES</bool>
 							</object>
-							<object class="IBUIImageView" id="332054479">
+							<object class="IBUILabel" id="671817252">
 								<reference key="NSNextResponder" ref="578799204"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrameSize">{64, 64}</string>
-								<reference key="NSSuperview" ref="578799204"/>
-								<bool key="IBUIOpaque">NO</bool>
-								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
-								<int key="IBUIContentMode">4</int>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-							</object>
-							<object class="IBUILabel" id="110292092">
-								<reference key="NSNextResponder" ref="578799204"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{72, 20}, {149, 21}}</string>
+								<string key="NSFrame">{{67, 20}, {137, 21}}</string>
 								<reference key="NSSuperview" ref="578799204"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -289,7 +279,7 @@
 									<double key="NSSize">17</double>
 									<int key="NSfFlags">16</int>
 								</object>
-								<reference key="IBUITextColor" ref="553511191"/>
+								<reference key="IBUITextColor" ref="147622804"/>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">1</int>
 								<float key="IBUIMinimumFontSize">10</float>
@@ -398,14 +388,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">mayorImage</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="332054479"/>
-					</object>
-					<int key="connectionID">53</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">twitterButton</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="558748466"/>
@@ -425,7 +407,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">mayorNameLabel</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="110292092"/>
+						<reference key="destination" ref="671817252"/>
 					</object>
 					<int key="connectionID">58</int>
 				</object>
@@ -478,8 +460,7 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="853261904"/>
-							<reference ref="332054479"/>
-							<reference ref="110292092"/>
+							<reference ref="671817252"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Mayor Map Cell</string>
@@ -539,18 +520,13 @@
 						<reference key="parent" ref="963809274"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">52</int>
-						<reference key="object" ref="332054479"/>
-						<reference key="parent" ref="963809274"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">54</int>
 						<reference key="object" ref="558748466"/>
 						<reference key="parent" ref="920997831"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">57</int>
-						<reference key="object" ref="110292092"/>
+						<reference key="object" ref="671817252"/>
 						<reference key="parent" ref="963809274"/>
 					</object>
 				</object>
@@ -574,7 +550,6 @@
 					<string>4.IBPluginDependency</string>
 					<string>40.IBPluginDependency</string>
 					<string>42.IBPluginDependency</string>
-					<string>52.IBPluginDependency</string>
 					<string>54.IBPluginDependency</string>
 					<string>57.IBPluginDependency</string>
 					<string>8.IBEditorWindowLastContentRect</string>
@@ -594,7 +569,6 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{206, 419}, {320, 480}}</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

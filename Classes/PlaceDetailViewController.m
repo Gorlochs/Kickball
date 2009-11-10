@@ -83,9 +83,13 @@
     if (venueToDisplay.mayor != nil) {
         NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:venueToDisplay.mayor.photo]];
         UIImage *img = [[UIImage alloc] initWithData:data];
-        mayorImage.image = img;
+        mayorMapCell.imageView.image = img;
         [img release];
         mayorNameLabel.text = venueToDisplay.mayor.firstnameLastInitial;
+    }
+    
+    if (venueToDisplay.twitter == nil || [venueToDisplay.twitter isEqualToString:@""]) {
+        twitterButton.hidden = YES;
     }
 }
 
@@ -99,7 +103,6 @@
     mapView = nil;
     venueName = nil;
     venueAddress = nil;
-    mayorImage = nil;
     mayorNameLabel = nil;
     twitterButton = nil;
 }
@@ -112,7 +115,6 @@
     mapView = nil;
     venueName = nil;
     venueAddress = nil;
-    mayorImage = nil;
     mayorNameLabel = nil;
     twitterButton = nil;
 }
@@ -147,9 +149,6 @@
     if (cell == nil) {
         // TODO: figure out why the switch doesn't work. very odd.
         if (indexPath.section == 0) {
-//            [[NSBundle mainBundle] loadNibNamed:@"MayorCell" owner:self options:nil];
-//            cell = mayorMapCell;
-//            mayorMapCell = nil;
             return mayorMapCell;
         } else {
             cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
@@ -172,14 +171,12 @@
         cell.imageView.image = img;
         [img release];
     } else if (indexPath.section == 2) {
-        if (venue != nil) {
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            FSTip *tip = (FSTip*) [venue.tips objectAtIndex:indexPath.row];
-            cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
-            cell.textLabel.text = [NSString stringWithFormat:@"%@ says,", tip.submittedBy.firstnameLastInitial];
-            cell.detailTextLabel.numberOfLines = 2;
-            cell.detailTextLabel.text = tip.text;
-        }
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        FSTip *tip = (FSTip*) [venue.tips objectAtIndex:indexPath.row];
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ says,", tip.submittedBy.firstnameLastInitial];
+        cell.detailTextLabel.numberOfLines = 2;
+        cell.detailTextLabel.text = tip.text;
         cell.imageView.image = nil;
     }
 	
@@ -261,7 +258,6 @@
     [mapView release];
     [venueName release];
     [venueAddress release];
-    [mayorImage release];
     [mayorNameLabel release];
     [twitterButton release];
     [venue release];
@@ -286,9 +282,8 @@
 
 - (void) showTwitterFeed {
     PlaceTwitterViewController *vc = [[PlaceTwitterViewController alloc] initWithNibName:@"PlaceTwitterViewController" bundle:nil];
-//    vc.twitterName = venue.twitter;
-    vc.twitterName = @"VictoryBar";
-    vc.venueName = @"Victory Bar";
+    vc.twitterName = venue.twitter;
+    vc.venueName = venue.name;
     [self presentModalViewController:vc animated:YES];
     [vc release];
 }

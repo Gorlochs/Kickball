@@ -21,7 +21,6 @@
     IBOutlet UILabel *venueName;
     IBOutlet UILabel *venueAddress;
     
-    IBOutlet UIImageView *mayorImage;
     IBOutlet UILabel *mayorNameLabel;
     IBOutlet UIButton *twitterButton;
     
