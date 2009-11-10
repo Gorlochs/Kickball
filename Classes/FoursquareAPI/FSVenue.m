@@ -14,7 +14,7 @@
 				zip, city, venueState, venueid, 
 				phone, crossStreet, twitter, mayorCount, 
 				mayor, tips, peopleHere, friendsHaveBeenHere, 
-				userHasBeenHere, userCheckinCount;
+                userHasBeenHere, userCheckinCount, addressWithCrossstreet;
 
 
 - (id) init{
@@ -24,6 +24,14 @@
 
 - (NSString*) description {
     return [NSString stringWithFormat:@"name=%@ ; venueid=%@ ; mayor=%@ ; mayorCount = %d", name, venueid, mayor, mayorCount];
+}
+
+- (NSString*) addressWithCrossstreet {
+    if (self.crossStreet != nil) {
+        return [NSString stringWithFormat:@"%@ %@", self.venueAddress, self.crossStreet];
+    } else {
+        return self.venueAddress;
+    }
 }
 
 @end

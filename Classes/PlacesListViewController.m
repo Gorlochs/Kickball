@@ -214,11 +214,7 @@
     // passing in indexPath.section chooses the proper venue array to display in the appropriate section
     FSVenue *venue = (FSVenue*) [(NSArray*)[venues objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     cell.textLabel.text = venue.name;
-    if (venue.crossStreet != nil) {
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ at %@", venue.venueAddress, venue.crossStreet];
-    } else {
-        cell.detailTextLabel.text = venue.venueAddress;
-    }
+    cell.detailTextLabel.text = venue.addressWithCrossstreet;
 	
     return cell;
 }

@@ -73,7 +73,7 @@
     [mapView regionThatFits:region];
     
     venueName.text = venueToDisplay.name;
-    venueAddress.text = venueToDisplay.venueAddress;
+    venueAddress.text = venueToDisplay.addressWithCrossstreet;
     
     if (venueToDisplay.mayor != nil) {
         NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:venueToDisplay.mayor.photo]];
@@ -142,7 +142,7 @@
 //            mayorMapCell = nil;
             return mayorMapCell;
         } else {
-            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
             cell.selectionStyle = UITableViewCellSelectionStyleGray;
         }
     }
@@ -167,7 +167,12 @@
         [img release];
     } else if (indexPath.section == 2) {
         if (venue != nil) {
-            cell.textLabel.text = ((FSTip*) [venue.tips objectAtIndex:indexPath.row]).text;
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            FSTip *tip = (FSTip*) [venue.tips objectAtIndex:indexPath.row];
+            cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
+            cell.textLabel.text = [NSString stringWithFormat:@"%@ says,", tip.submittedBy.firstnameLastInitial];
+            cell.detailTextLabel.numberOfLines = 2;
+            cell.detailTextLabel.text = tip.text;
         }
 //        cell.textLabel.text = @"Shawn";
 //        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -179,10 +184,15 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0) {
-        return 62;
-    } else {
-        return 44;
+    switch (indexPath.section) {
+        case 0:
+            return 62;
+        case 1:
+            return 44;
+        case 2:
+            return 62;
+        default:
+            return 44;
     }
 }
 

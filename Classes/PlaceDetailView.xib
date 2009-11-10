@@ -108,7 +108,7 @@
 									<double key="NSSize">16</double>
 									<int key="NSfFlags">16</int>
 								</object>
-								<object class="NSColor" key="IBUITextColor" id="89123335">
+								<object class="NSColor" key="IBUITextColor" id="553511191">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MCAwIDAAA</bytes>
 								</object>
@@ -275,7 +275,7 @@
 								<int key="IBUIContentMode">4</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 							</object>
-							<object class="IBUILabel" id="546041172">
+							<object class="IBUILabel" id="110292092">
 								<reference key="NSNextResponder" ref="578799204"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{72, 20}, {149, 21}}</string>
@@ -284,7 +284,12 @@
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="IBUIText"/>
-								<reference key="IBUITextColor" ref="89123335"/>
+								<object class="NSFont" key="IBUIFont">
+									<string key="NSName">Helvetica-Bold</string>
+									<double key="NSSize">17</double>
+									<int key="NSfFlags">16</int>
+								</object>
+								<reference key="IBUITextColor" ref="553511191"/>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">1</int>
 								<float key="IBUIMinimumFontSize">10</float>
@@ -420,7 +425,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">mayorNameLabel</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="546041172"/>
+						<reference key="destination" ref="110292092"/>
 					</object>
 					<int key="connectionID">58</int>
 				</object>
@@ -474,7 +479,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="853261904"/>
 							<reference ref="332054479"/>
-							<reference ref="546041172"/>
+							<reference ref="110292092"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Mayor Map Cell</string>
@@ -545,7 +550,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">57</int>
-						<reference key="object" ref="546041172"/>
+						<reference key="object" ref="110292092"/>
 						<reference key="parent" ref="963809274"/>
 					</object>
 				</object>

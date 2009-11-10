@@ -29,6 +29,7 @@
 	BOOL friendsHaveBeenHere;
 	BOOL userHasBeenHere;
 	int userCheckinCount;
+    NSString * addressWithCrossstreet;
 } 
 
 @property (nonatomic, retain) NSString * name;
@@ -49,4 +50,5 @@
 @property (nonatomic) BOOL friendsHaveBeenHere;
 @property (nonatomic) BOOL userHasBeenHere;
 @property (nonatomic) int userCheckinCount;
+@property (nonatomic, retain) NSString * addressWithCrossstreet;
 @end
