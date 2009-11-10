@@ -224,11 +224,6 @@
 	PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];
     FSVenue *venue = [(NSArray*)[venues objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     placeDetailController.venueId = venue.venueid;
-//    if (indexPath.section == 0) {
-//        placeDetailController.venue = [(NSArray*)[venues objectAtIndex:0] objectAtIndex:indexPath.row];
-//    } else if (indexPath.section == 1) {
-//        placeDetailController.venue = [(NSArray*)[venues objectAtIndex:1] objectAtIndex:indexPath.row];
-//    }
     [self.view addSubview:placeDetailController.view];
 }
 

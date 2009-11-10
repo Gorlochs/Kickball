@@ -222,7 +222,7 @@
     switch (section) {
         case 0:
             // TODO: fix this
-            headerLabel.text = @"  Mayor                        Map";
+            headerLabel.text = @"  Mayor                                                                    Map";
             break;
         case 1:
             headerLabel.text = [NSString stringWithFormat:@"  %d People Here", [venue.peopleHere count]];
@@ -241,9 +241,17 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	ProfileViewController *profileDetailController = [[ProfileViewController alloc] initWithNibName:@"ProfileViewController" bundle:nil];
-//    profileDetailController.userId = 
-    [self.view addSubview:profileDetailController.view];
+    if (indexPath.section == 0) {
+        ProfileViewController *profileDetailController = [[ProfileViewController alloc] initWithNibName:@"ProfileView" bundle:nil];
+        NSLog(@"mayor user id: %@", venue.mayor.userId);
+        profileDetailController.userId = venue.mayor.userId;
+        [self.view addSubview:profileDetailController.view];
+    } else if (indexPath.section == 1) {
+        FSUser *user = ((FSUser*)[venue.peopleHere objectAtIndex:indexPath.row]);
+        ProfileViewController *profileDetailController = [[ProfileViewController alloc] initWithNibName:@"ProfileView" bundle:nil];
+        profileDetailController.userId = user.userId;
+        [self.view addSubview:profileDetailController.view];
+    }
 }
 
 

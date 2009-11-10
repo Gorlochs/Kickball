@@ -9,6 +9,12 @@
 #import "ProfileViewController.h"
 #import "FoursquareAPI.h"
 
+@interface ProfileViewController (Private)
+
+- (void)userResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString;
+
+@end
+
 @implementation ProfileViewController
 
 @synthesize userId;
@@ -33,11 +39,12 @@
 		NSLog(@"Foursquare is not authenticated");
 	} else {
         // TODO: will also have to make a call to our DB to get gift info
-		[[FoursquareAPI sharedInstance] getUserById:userId withTarget:self andAction:@selector(userResponseReceived:withResponseString:)];
+        [[FoursquareAPI sharedInstance] getUser:self.userId withTarget:self andAction:@selector(userResponseReceived:withResponseString:)];
 	}
 }
 
-- (void)userResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+- (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+    NSLog(@"inString: %@", inString);
 	user = [FoursquareAPI userFromResponseXML:inString];
 //	[theTableView reloadData];
 }
