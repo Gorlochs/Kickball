@@ -156,10 +156,12 @@
     // Navigation logic may go here. Create and push another view controller.
 	PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];
     placeDetailController.venue = ((FSCheckin*)[self.checkins objectAtIndex:indexPath.row]).venue;
-    placeDetailController.venueId = ((FSCheckin*)[self.checkins objectAtIndex:indexPath.row]).venue.venueid;
-    NSLog(@"pre venue: %@", placeDetailController.venue);
-    // TODO: come up with a better way to manage the views
-    [self.view addSubview:placeDetailController.view];
+	//handle off the grid checkins.
+	if(((FSCheckin*)[self.checkins objectAtIndex:indexPath.row]).venue.venueid != nil){
+		placeDetailController.venueId = ((FSCheckin*)[self.checkins objectAtIndex:indexPath.row]).venue.venueid;
+		// TODO: come up with a better way to manage the views
+		[self.view addSubview:placeDetailController.view];
+	}
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
