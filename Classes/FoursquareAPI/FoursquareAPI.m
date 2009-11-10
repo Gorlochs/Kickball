@@ -255,7 +255,7 @@ static FoursquareAPI *sharedInstance = nil;
 
 	NSArray *allCheckinAttrs = NULL;
 	
-	allCheckinAttrs = [checkinParser nodesForXPath:@"//checkins/checkin" error:nil];
+	allCheckinAttrs = [checkinParser nodesForXPath:@"//checkin" error:nil];
 	for (CXMLElement *checkinAttr in allCheckinAttrs) {
 		FSCheckin * oneCheckin = [[FSCheckin alloc] init];
 		int counter;
