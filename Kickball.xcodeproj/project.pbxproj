@@ -90,6 +90,7 @@
 		6A39EB6110965868006F76C3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A39EB6010965868006F76C3 /* CoreLocation.framework */; };
 		6A39EB6310965868006F76C3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A39EB6210965868006F76C3 /* SystemConfiguration.framework */; };
 		6A39EC4E109662E5006F76C3 /* tmp-header.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A39EC4D109662E5006F76C3 /* tmp-header.png */; };
+		6A7ED9F710A91DC9002FB1DC /* VenueAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A7ED9F610A91DC9002FB1DC /* VenueAnnotation.m */; };
 		6A8AC8F1109AB31400C4FE1B /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A8AC8EF109AB31400C4FE1B /* ProfileViewController.m */; };
 		6A8AC8F2109AB31400C4FE1B /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A8AC8F0109AB31400C4FE1B /* ProfileViewController.xib */; };
 		6A8EEE1A10A1227000DC630C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A8EEE1910A1227000DC630C /* MapKit.framework */; };
@@ -284,6 +285,8 @@
 		6A39EB6010965868006F76C3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = /System/Library/Frameworks/CoreLocation.framework; sourceTree = "<absolute>"; };
 		6A39EB6210965868006F76C3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = /System/Library/Frameworks/SystemConfiguration.framework; sourceTree = "<absolute>"; };
 		6A39EC4D109662E5006F76C3 /* tmp-header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tmp-header.png"; sourceTree = "<group>"; };
+		6A7ED9F510A91DC9002FB1DC /* VenueAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VenueAnnotation.h; sourceTree = "<group>"; };
+		6A7ED9F610A91DC9002FB1DC /* VenueAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueAnnotation.m; sourceTree = "<group>"; };
 		6A8AC8EE109AB31400C4FE1B /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		6A8AC8EF109AB31400C4FE1B /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		6A8AC8F0109AB31400C4FE1B /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfileViewController.xib; path = Classes/ProfileViewController.xib; sourceTree = "<group>"; };
@@ -773,6 +776,8 @@
 				6ABA7856109BDCAF001E7293 /* PlacesListViewController.m */,
 				6AFF23EE10A247B100CD30E5 /* PlaceTwitterViewController.h */,
 				6AFF23EF10A247B100CD30E5 /* PlaceTwitterViewController.m */,
+				6A7ED9F510A91DC9002FB1DC /* VenueAnnotation.h */,
+				6A7ED9F610A91DC9002FB1DC /* VenueAnnotation.m */,
 			);
 			name = Place;
 			sourceTree = "<group>";
@@ -944,6 +949,7 @@
 				552AFD8210A270ED009300E2 /* FSTip.m in Sources */,
 				552AFDE410A27AED009300E2 /* FriendPlacemark.m in Sources */,
 				552AFE4110A285AC009300E2 /* FriendIconAnnotationView.m in Sources */,
+				6A7ED9F710A91DC9002FB1DC /* VenueAnnotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
