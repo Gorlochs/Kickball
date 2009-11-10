@@ -149,8 +149,20 @@ static FoursquareAPI *sharedInstance = nil;
 }
 
 
-- (void)getUserById:(NSString *) userId withTarget:(id)inTarget andAction:(SEL)inAction{
+- (void) doCheckinAtVenueWithId:(NSString *)venueId andShout:(NSString *)shout offGrid:(BOOL)offGrid withTarget:(id)inTarget andAction:(SEL)inAction{
+	NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
 	
+	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"vid" andValue:venueId]];
+	if(shout){
+		[params addObject:[[MPURLRequestParameter alloc] initWithName:@"shout" andValue:shout]];
+	}
+	if(offGrid == YES){
+		[params addObject:[[MPURLRequestParameter alloc] initWithName:@"private" andValue:@"1"]];
+	} else {
+		[params addObject:[[MPURLRequestParameter alloc] initWithName:@"private" andValue:@"0"]];
+	}
+	
+	[self.oauthAPI performMethod:@"/v1/checkin" withTarget:inTarget withParameters:params andAction:inAction];
 }
 
 + (NSArray *) friendsFromResponseXML:(NSString *) inString{
