@@ -10,6 +10,7 @@
 #import "ProfileViewController.h"
 #import "PlaceTwitterViewController.h"
 #import "FoursquareAPI.h"
+#import "VenueAnnotation.h"
 
 @interface PlaceDetailViewController (Private)
 
@@ -59,8 +60,8 @@
 - (void) prepViewWithVenueInfo:(FSVenue*)venueToDisplay {
     MKCoordinateRegion region;
     MKCoordinateSpan span;
-    span.latitudeDelta = 0.001;
-    span.longitudeDelta = 0.001;
+    span.latitudeDelta = 0.002;
+    span.longitudeDelta = 0.002;
     
     CLLocationCoordinate2D location = mapView.userLocation.coordinate;
     
@@ -71,6 +72,10 @@
     
     [mapView setRegion:region animated:TRUE];
     [mapView regionThatFits:region];
+    
+    VenueAnnotation *venueAnnotation = [[VenueAnnotation alloc] initWithCoordinate:location];
+    [mapView addAnnotation:venueAnnotation];
+    [venueAnnotation release];
     
     venueName.text = venueToDisplay.name;
     venueAddress.text = venueToDisplay.addressWithCrossstreet;
@@ -92,11 +97,24 @@
     theTableView = nil;
     mayorMapCell = nil;
     mapView = nil;
+    venueName = nil;
+    venueAddress = nil;
+    mayorImage = nil;
+    mayorNameLabel = nil;
+    twitterButton = nil;
 }
 
 - (void)viewDidUnload {
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
+    theTableView = nil;
+    mayorMapCell = nil;
+    mapView = nil;
+    venueName = nil;
+    venueAddress = nil;
+    mayorImage = nil;
+    mayorNameLabel = nil;
+    twitterButton = nil;
 }
 
 
@@ -111,18 +129,10 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 1) {
         // people here
-        //if (venue.peopleHere != nil) {
-            return [venue.peopleHere count];
-        //} else {
-        //    return 0;
-        //}
+        return [venue.peopleHere count];
     } else if (section == 2) {
         // tips
-        if (venue.tips != nil) {
-            return [venue.tips count];
-        } else {
-            return 0;
-        }
+        return [venue.tips count];
     } else {
         return 1;
     }
@@ -151,13 +161,6 @@
     if (indexPath.section == 0) {
         return mayorMapCell;
     } else if (indexPath.section == 1) {
-        if (venue != nil) {
-            //            cell.textLabel = venue.
-            // TODO: fix this when venue returns the people at the venue
-//            cell.textLabel.text = venue.;
-//            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-//            cell.imageView.image = [UIImage imageNamed:@"temp-icon.png"];
-        }
         FSUser *user = ((FSUser*)[venue.peopleHere objectAtIndex:indexPath.row]);
         cell.textLabel.text = user.firstnameLastInitial;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -174,11 +177,7 @@
             cell.detailTextLabel.numberOfLines = 2;
             cell.detailTextLabel.text = tip.text;
         }
-//        cell.textLabel.text = @"Shawn";
-//        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-//        cell.imageView.image = [UIImage imageNamed:@"temp-icon.png"];
     }
-     
 	
     return cell;
 }
@@ -222,7 +221,7 @@
             headerLabel.text = @"  Mayor                        Map";
             break;
         case 1:
-            headerLabel.text = @"  10 People Here";
+            headerLabel.text = [NSString stringWithFormat:@"  %d People Here", [venue.peopleHere count]];
             break;
         case 2:
             headerLabel.text = @"  Tips";
@@ -244,50 +243,18 @@
 }
 
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-
 - (void)dealloc {
     [theTableView release];
     [mayorMapCell release];
     [mapView release];
+    [venueName release];
+    [venueAddress release];
+    [mayorImage release];
+    [mayorNameLabel release];
+    [twitterButton release];
+    [venue release];
+    [venueId release];
+    
     [super dealloc];
 }
 
