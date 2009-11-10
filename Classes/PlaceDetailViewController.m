@@ -161,6 +161,9 @@
     if (indexPath.section == 0) {
         return mayorMapCell;
     } else if (indexPath.section == 1) {
+        cell.detailTextLabel.numberOfLines = 1;
+        cell.detailTextLabel.text = nil;
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:16];
         FSUser *user = ((FSUser*)[venue.peopleHere objectAtIndex:indexPath.row]);
         cell.textLabel.text = user.firstnameLastInitial;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -177,6 +180,7 @@
             cell.detailTextLabel.numberOfLines = 2;
             cell.detailTextLabel.text = tip.text;
         }
+        cell.imageView.image = nil;
     }
 	
     return cell;

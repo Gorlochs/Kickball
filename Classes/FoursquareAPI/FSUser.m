@@ -14,7 +14,11 @@
 @synthesize	userId,firstname,lastname,photo,gender, badges, isFriend, firstnameLastInitial;
 
 - (NSString*) firstnameLastInitial {
-    return [NSString stringWithFormat:@"%@ %@.", firstname, [lastname substringToIndex:1]];
+    if (lastname != nil) {
+        return [NSString stringWithFormat:@"%@ %@.", firstname, [lastname substringToIndex:1]];
+    } else {
+        return firstname;
+    }
 }
 
 @end
