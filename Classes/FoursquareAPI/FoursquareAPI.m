@@ -148,6 +148,14 @@ static FoursquareAPI *sharedInstance = nil;
 	[self.oauthAPI performMethod:@"/v1/user" withTarget:inTarget withParameters:params andAction:inAction];
 }
 
+- (void)getCityNearestToLatitude:(NSString *) geolat andLongitude:(NSString *)geolong withTarget:(id)inTarget andAction:(SEL)inAction{
+	NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
+	
+	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"geolat" andValue:geolat]];
+	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"geolong" andValue:geolong]];
+	[self.oauthAPI performMethod:@"/v1/checkcity" withTarget:inTarget withParameters:params andAction:inAction];
+}
+
 
 - (void) doCheckinAtVenueWithId:(NSString *)venueId andShout:(NSString *)shout offGrid:(BOOL)offGrid withTarget:(id)inTarget andAction:(SEL)inAction{
 	NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
@@ -283,8 +291,8 @@ static FoursquareAPI *sharedInstance = nil;
 				}
 			} else 			
 			if([key compare:@"venue"] == 0){
-					FSVenue * currentVenueInfo = [[FoursquareAPI _venuesFromNode:checkinAttr] objectAtIndex:0];
-					oneCheckin.venue = currentVenueInfo;
+				FSVenue * currentVenueInfo = [[FoursquareAPI _venuesFromNode:checkinAttr] objectAtIndex:0];
+				oneCheckin.venue = currentVenueInfo;
 			}
 
 		}
@@ -296,7 +304,7 @@ static FoursquareAPI *sharedInstance = nil;
 + (NSArray *) _venuesFromNode:(CXMLNode *) inputNode{
 	NSMutableArray * groupOfVenues = [[NSMutableArray alloc] initWithCapacity:1];
 	
-	//now grab the venues in each group
+	//now grab the venues in each group	
 	NSArray * venuesInGroup = [inputNode nodesForXPath:@"venue" error:nil];
 	for (CXMLElement *venueResult in venuesInGroup) {
 		FSVenue * newVenue = [[FSVenue alloc] init];
@@ -360,7 +368,7 @@ static FoursquareAPI *sharedInstance = nil;
 		}
 		[groupOfVenues addObject:newVenue];
 	}
-	
+
 	return groupOfVenues;
 }
 
@@ -437,6 +445,30 @@ static FoursquareAPI *sharedInstance = nil;
 			loggedInUser.lastname = value;
 		} else if([key isEqualToString:@"gender"]){
 			loggedInUser.gender = value;
+		} else if([key isEqualToString:@"city"]){
+			NSArray * userCityXML = [usrAttr nodesForXPath:@"/city" error:nil];
+			for (CXMLElement *userCityNode in userCityXML) {
+				FSCity * userCity = [[FSCity alloc] init];
+				int counter;
+				for(counter = 0; counter < [userCityNode childCount]; counter++) {
+					NSString * key = [[userCityNode childAtIndex:counter] name];
+					NSString * value = [[userCityNode childAtIndex:counter] stringValue];
+					if([key isEqualToString:@"id"]){
+						userCity.cityid = value;
+					} else if([key isEqualToString:@"name"]){
+						userCity.cityname = value;
+					} else if([key isEqualToString:@"timezone"]){
+						userCity.citytimezone = value;
+					}
+				}
+				loggedInUser.userCity = userCity;
+			}
+		} else if([key compare:@"mayor"] == 0){
+			NSArray * userMayorshipXML = [usrAttr nodesForXPath:@"//mayor" error:nil];
+			if([userMayorshipXML count] > 0){
+				NSArray * loggedMayorships = [FoursquareAPI _venuesFromNode:[userMayorshipXML objectAtIndex:0]];
+				loggedInUser.mayorOf = loggedMayorships;
+			}
 		} else if([key compare:@"badges"] == 0){
 			NSMutableArray * loggedUserBadges = [[NSMutableArray alloc] initWithCapacity:1];
 			//badges and city are special cases

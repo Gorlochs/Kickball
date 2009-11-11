@@ -15,6 +15,7 @@
 #import "FSBadge.h"
 #import "FSCheckin.h"
 #import "FSTip.h"
+#import "FSCity.h"
 
 #define kConsumerKey		@"56db3be85201b7c551d458354075499b04adbd869"
 #define kConsumerSecret		@"b6439213b40bec023df4da248ed83050"
@@ -34,6 +35,7 @@
 - (void)getCheckinsWithTarget:(id)inTarget andAction:(SEL)inAction;
 - (void)getUserWithTarget:(id)inTarget andAction:(SEL)inAction;
 //- (void)getUserById:(NSString *) userId withTarget:(id)inTarget andAction:(SEL)inAction;
+- (void)getCityNearestToLatitude:(NSString *) geolat andLongitude:(NSString *)geolong withTarget:(id)inTarget andAction:(SEL)inAction;
 - (void)getFriendsWithTarget:(id)inTarget andAction:(SEL)inAction;
 - (void)getVenue:(NSString *)venueId withTarget:(id)inTarget andAction:(SEL)inAction;
 - (void)getUser:(NSString *)userId withTarget:(id)inTarget andAction:(SEL)inAction;
