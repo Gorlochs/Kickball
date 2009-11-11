@@ -43,7 +43,7 @@
 	}
 }
 
-- (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+- (void)userResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     NSLog(@"inString: %@", inString);
 	user = [FoursquareAPI userFromResponseXML:inString];
 //	[theTableView reloadData];
