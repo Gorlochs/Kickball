@@ -13,10 +13,15 @@
 #import "PlaceDetailViewController.h"
 #import "PlacesListViewController.h"
 #import "FSCheckin.h"
-
-
 #import "Beacon.h"
 #import "FoursquareAPI.h"
+
+@interface FriendsListViewController (Private)
+
+- (NSDate*) convertToUTC:(NSDate*)sourceDate;
+
+@end
+
 
 @implementation FriendsListViewController
 @synthesize checkins, recentCheckins, olderCheckins, theTableView;
@@ -148,22 +153,20 @@
     }
     
     // probably break this out into another method
-    // this date is in GMT
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EEE, dd MMM yy HH:mm:ss"];
     NSDate *checkinDate = [dateFormatter dateFromString:checkin.created];
     
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    //[gregorian setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
     NSUInteger unitFlags = NSMinuteCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit;
-    NSDateComponents *components = [gregorian components:unitFlags fromDate:[NSDate date] toDate:checkinDate options:0];
+    NSDateComponents *components = [gregorian components:unitFlags fromDate:[self convertToUTC:[NSDate date]] toDate:checkinDate options:0];
     NSInteger minutes = [components minute] * -1;
     NSInteger hours = [components hour] * -1;
     NSInteger days = [components day] * -1;
 
     // odd logic, I know, but the logical logic didn't work
     if (days == 0 && hours == 0) {
-        cell.timeUnits.text = @"minutes";
+        cell.timeUnits.text = @"min.";
         cell.numberOfTimeUnits.text = [NSString stringWithFormat:@"%02d", minutes];
     } else if (days == 0) {
         cell.timeUnits.text = @"hours";
@@ -172,14 +175,22 @@
         cell.timeUnits.text = @"days";
         cell.numberOfTimeUnits.text = [NSString stringWithFormat:@"%02d", days];
     }
-    
-    NSLog(@"hours: %d", hours);
-    NSLog(@"days: %d", days);
     [dateFormatter release];
     
 	return cell;
 }
 
+- (NSDate*) convertToUTC:(NSDate*)sourceDate {
+    NSTimeZone* currentTimeZone = [NSTimeZone localTimeZone];
+    NSTimeZone* utcTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
+    
+    NSInteger currentGMTOffset = [currentTimeZone secondsFromGMTForDate:sourceDate];
+    NSInteger gmtOffset = [utcTimeZone secondsFromGMTForDate:sourceDate];
+    NSTimeInterval gmtInterval = gmtOffset - currentGMTOffset;
+    
+    NSDate* destinationDate = [[[NSDate alloc] initWithTimeInterval:gmtInterval sinceDate:sourceDate] autorelease];     
+    return destinationDate;
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"row selected");
