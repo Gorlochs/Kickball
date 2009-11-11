@@ -44,8 +44,12 @@
 }
 
 - (void)userResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    NSLog(@"inString: %@", inString);
 	user = [FoursquareAPI userFromResponseXML:inString];
+    nameLocation.text = user.firstnameLastInitial;
+    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:user.photo]];
+    UIImage *img = [[UIImage alloc] initWithData:data];
+    userIcon.image = img;
+    [img release];
 //	[theTableView reloadData];
 }
 

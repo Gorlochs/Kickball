@@ -74,7 +74,7 @@
 						<float key="IBUISectionHeaderHeight">22</float>
 						<float key="IBUISectionFooterHeight">22</float>
 					</object>
-					<object class="IBUISegmentedControl" id="15119098">
+					<object class="IBUISegmentedControl" id="749137926">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{7, 116}, {303, 30}}</string>
@@ -128,7 +128,7 @@
 							<bytes key="NSRGB">MC44MzY5NTY1MjE3IDAuODM2OTU2NTIxNyAwLjgzNjk1NjUyMTcAA</bytes>
 						</object>
 					</object>
-					<object class="IBUILabel" id="128447218">
+					<object class="IBUILabel" id="67157092">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{65, 50}, {258, 22}}</string>
@@ -150,7 +150,7 @@
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
 					</object>
-					<object class="IBUILabel" id="1004381978">
+					<object class="IBUILabel" id="1002275347">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{65, 66}, {237, 21}}</string>
@@ -172,7 +172,7 @@
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
 					</object>
-					<object class="IBUILabel" id="175080698">
+					<object class="IBUILabel" id="590521442">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{65, 86}, {91, 21}}</string>
@@ -194,7 +194,7 @@
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
 					</object>
-					<object class="IBUILabel" id="210214220">
+					<object class="IBUILabel" id="173050603">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{159, 86}, {24, 21}}</string>
@@ -212,7 +212,7 @@
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
 					</object>
-					<object class="IBUILabel" id="504205511">
+					<object class="IBUILabel" id="310437767">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{187, 86}, {87, 21}}</string>
@@ -230,7 +230,7 @@
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
 					</object>
-					<object class="IBUILabel" id="869346067">
+					<object class="IBUILabel" id="654479009">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{281, 86}, {71, 21}}</string>
@@ -248,7 +248,7 @@
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
 					</object>
-					<object class="IBUIImageView" id="901004205">
+					<object class="IBUIImageView" id="362843530">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">256</int>
 						<string key="NSFrame">{{9, 56}, {50, 51}}</string>
@@ -257,10 +257,6 @@
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">2</int>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
-						<object class="NSCustomResource" key="IBUIImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">temp-icon.png</string>
-						</object>
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 460}</string>
@@ -314,7 +310,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">nightsOut</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="210214220"/>
+						<reference key="destination" ref="173050603"/>
 					</object>
 					<int key="connectionID">26</int>
 				</object>
@@ -322,7 +318,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">totalCheckins</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="869346067"/>
+						<reference key="destination" ref="654479009"/>
 					</object>
 					<int key="connectionID">27</int>
 				</object>
@@ -330,7 +326,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">nameLocation</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="128447218"/>
+						<reference key="destination" ref="67157092"/>
 					</object>
 					<int key="connectionID">28</int>
 				</object>
@@ -338,7 +334,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">lastCheckinAddress</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="1004381978"/>
+						<reference key="destination" ref="1002275347"/>
 					</object>
 					<int key="connectionID">29</int>
 				</object>
@@ -346,7 +342,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">userIcon</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="901004205"/>
+						<reference key="destination" ref="362843530"/>
 					</object>
 					<int key="connectionID">30</int>
 				</object>
@@ -366,15 +362,15 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="972443800"/>
+							<reference ref="749137926"/>
+							<reference ref="67157092"/>
+							<reference ref="1002275347"/>
+							<reference ref="590521442"/>
+							<reference ref="362843530"/>
+							<reference ref="173050603"/>
+							<reference ref="310437767"/>
+							<reference ref="654479009"/>
 							<reference ref="488113794"/>
-							<reference ref="15119098"/>
-							<reference ref="128447218"/>
-							<reference ref="1004381978"/>
-							<reference ref="175080698"/>
-							<reference ref="901004205"/>
-							<reference ref="210214220"/>
-							<reference ref="504205511"/>
-							<reference ref="869346067"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -401,42 +397,42 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">18</int>
-						<reference key="object" ref="15119098"/>
+						<reference key="object" ref="749137926"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">19</int>
-						<reference key="object" ref="128447218"/>
+						<reference key="object" ref="67157092"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">20</int>
-						<reference key="object" ref="1004381978"/>
+						<reference key="object" ref="1002275347"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">21</int>
-						<reference key="object" ref="175080698"/>
+						<reference key="object" ref="590521442"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">22</int>
-						<reference key="object" ref="504205511"/>
+						<reference key="object" ref="310437767"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">23</int>
-						<reference key="object" ref="901004205"/>
+						<reference key="object" ref="362843530"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">24</int>
-						<reference key="object" ref="210214220"/>
+						<reference key="object" ref="173050603"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">25</int>
-						<reference key="object" ref="869346067"/>
+						<reference key="object" ref="654479009"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</object>

@@ -222,6 +222,7 @@ static FoursquareAPI *sharedInstance = nil;
 	
 	NSError * err;
 	CXMLDocument *userParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
+    NSLog(@"user xml: %@", userParser);
 	NSLog(@"%@", [err description]);
 	
 	NSArray *allUserAttrs = [userParser nodesForXPath:@"user" error:nil];

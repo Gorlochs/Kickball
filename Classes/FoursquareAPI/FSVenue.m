@@ -28,7 +28,7 @@
 
 - (NSString*) addressWithCrossstreet {
     if (self.crossStreet != nil) {
-        return [NSString stringWithFormat:@"%@ %@", self.venueAddress, self.crossStreet];
+        return [NSString stringWithFormat:@"%@ (%@)", self.venueAddress, self.crossStreet];
     } else {
         return self.venueAddress;
     }

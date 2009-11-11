@@ -194,12 +194,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"row selected");
+    FSVenue *venue = ((FSCheckin*)[self.checkins objectAtIndex:indexPath.row]).venue;
     // Navigation logic may go here. Create and push another view controller.
 	PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];
-    placeDetailController.venue = ((FSCheckin*)[self.checkins objectAtIndex:indexPath.row]).venue;
+//    placeDetailController.venue = venue;
 	//handle off the grid checkins.
-	if(((FSCheckin*)[self.checkins objectAtIndex:indexPath.row]).venue.venueid != nil){
-		placeDetailController.venueId = ((FSCheckin*)[self.checkins objectAtIndex:indexPath.row]).venue.venueid;
+	if (venue.venueid != nil) {
+		placeDetailController.venueId = venue.venueid;
 		// TODO: come up with a better way to manage the views
 		[self.view addSubview:placeDetailController.view];
 	}
