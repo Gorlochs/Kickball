@@ -9,6 +9,8 @@
 #import "ProfileViewController.h"
 #import "FoursquareAPI.h"
 
+#define BADGES_PER_ROW 3
+
 @interface ProfileViewController (Private)
 
 - (void)userResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString;
@@ -17,7 +19,7 @@
 
 @implementation ProfileViewController
 
-@synthesize userId;
+@synthesize userId, badgeCell;
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -46,11 +48,35 @@
 - (void)userResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
 	user = [FoursquareAPI userFromResponseXML:inString];
     nameLocation.text = user.firstnameLastInitial;
+    
+    // user icon
     NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:user.photo]];
     UIImage *img = [[UIImage alloc] initWithData:data];
     userIcon.image = img;
     [img release];
-//	[theTableView reloadData];
+    
+    // badges
+    // I was hoping for something elegant, and it seemed like I was going to get there, but, as you can see, I didn't quite make it
+    // I'm sure there's a better way to do this, but this works.
+    int x = 0;
+    int y = 0;
+    for (FSBadge *badge in user.badges) {
+        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:badge.icon]];
+        UIImage *img = [[UIImage alloc] initWithData:data];
+        UIImageView *imgView = [[UIImageView alloc] initWithImage:img];
+        CGRect frame= CGRectMake(x*50, y*50, 50, 50);
+        imgView.frame = frame;
+        [img release];
+        [badgeCell addSubview:imgView];
+        [imgView release];
+        x++;
+        if (x%BADGES_PER_ROW == 0) {
+            x = 0;
+            y++;
+        }
+    }
+    
+	[theTableView reloadData];
 }
 
 /*
@@ -108,45 +134,49 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (section == 2) {
+        return [user.mayorOf count];
+    }
     return 1;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 1) {
+        return 50 * (([user.badges count]/BADGES_PER_ROW) + 1);
+    }
+    return 44;
+}
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier = @"Cell";
-     
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        // TODO: figure out why the switch doesn't work. very odd.
-//        if (indexPath.section == 0) {
-//            return titleCell;
-//        } else {
+        if (indexPath.section == 1) {
+            return badgeCell;
+        } else {
             cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
             cell.selectionStyle = UITableViewCellSelectionStyleGray;
-//        }
+        }
     }
     
     // Set up the cell...
-    
-    if (indexPath.section == 3) {
-        cell.textLabel.text = @"Shawn";
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.imageView.image = [UIImage imageNamed:@"temp-icon.png"];
+    switch (indexPath.section) {
+        case 0:  // add friend/follow on twitter
+            break;
+        case 1:  // badges
+            return badgeCell;
+            break;
+        case 2:  // mayors
+            cell.textLabel.text = ((FSVenue*)[user.mayorOf objectAtIndex:indexPath.row]).name;
+            break;
+        default:
+            break;
     }
-	
     return cell;
 }
-
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    switch (indexPath.section) {
-//        case 0:
-//            return 114;
-//        default:
-//            return 44;
-//    }
-//}
 
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
 	return 24.0;

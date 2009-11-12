@@ -11,6 +11,7 @@
 
 @interface ProfileViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
     IBOutlet UITableView *theTableView;
+    IBOutlet UITableViewCell *badgeCell;
     NSString *userId;
     FSUser *user;
     
@@ -21,6 +22,7 @@
     IBOutlet UIImageView *userIcon;
 }
 
+@property (nonatomic, retain) UITableViewCell *badgeCell;
 @property (nonatomic, retain) NSString *userId;
 
 @end

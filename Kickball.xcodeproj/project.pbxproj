@@ -92,7 +92,6 @@
 		6A39EC4E109662E5006F76C3 /* tmp-header.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A39EC4D109662E5006F76C3 /* tmp-header.png */; };
 		6A7ED9F710A91DC9002FB1DC /* VenueAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A7ED9F610A91DC9002FB1DC /* VenueAnnotation.m */; };
 		6A8AC8F1109AB31400C4FE1B /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A8AC8EF109AB31400C4FE1B /* ProfileViewController.m */; };
-		6A8AC8F2109AB31400C4FE1B /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A8AC8F0109AB31400C4FE1B /* ProfileViewController.xib */; };
 		6A8EEE1A10A1227000DC630C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A8EEE1910A1227000DC630C /* MapKit.framework */; };
 		6A8EEEF410A14F0F00DC630C /* MGTwitterEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A8EEEC610A14F0F00DC630C /* MGTwitterEngine.m */; };
 		6A8EEEF510A14F0F00DC630C /* MGTwitterHTTPURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A8EEEC910A14F0F00DC630C /* MGTwitterHTTPURLConnection.m */; };
@@ -291,7 +290,6 @@
 		6A7ED9F610A91DC9002FB1DC /* VenueAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueAnnotation.m; sourceTree = "<group>"; };
 		6A8AC8EE109AB31400C4FE1B /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		6A8AC8EF109AB31400C4FE1B /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
-		6A8AC8F0109AB31400C4FE1B /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfileViewController.xib; path = Classes/ProfileViewController.xib; sourceTree = "<group>"; };
 		6A8EEE1910A1227000DC630C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		6A8EEEC410A14F0F00DC630C /* MGTwitterEngineGlobalHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTwitterEngineGlobalHeader.h; sourceTree = "<group>"; };
 		6A8EEEC510A14F0F00DC630C /* MGTwitterEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTwitterEngine.h; sourceTree = "<group>"; };
@@ -433,7 +431,6 @@
 				6AFF23F010A247B100CD30E5 /* PlaceTwitterViewController.xib */,
 				8D1107310486CEB800E47090 /* Kickball-Info.plist */,
 				6A0D9FAE109D97B300F9E1D6 /* UploadGiftViewController.xib */,
-				6A8AC8F0109AB31400C4FE1B /* ProfileViewController.xib */,
 				6ABA7857109BDCAF001E7293 /* PlacesListViewController.xib */,
 				6A1526C81096BDB300924D0E /* FriendsListTableCellView.xib */,
 				6AE611A3109AA462008ABF79 /* ProfileMainTableCellView.xib */,
@@ -852,7 +849,6 @@
 				6AFF241210A24A0900CD30E5 /* PlaceTwitterViewController.xib in Resources */,
 				6AC7E92C10994FA000776993 /* tmp-title.png in Resources */,
 				6AC7E93B1099519300776993 /* tmp-phone.png in Resources */,
-				6A8AC8F2109AB31400C4FE1B /* ProfileViewController.xib in Resources */,
 				6AC7E9CD10995B2300776993 /* tmp-gift.png in Resources */,
 				6AC7E9CF10995BE700776993 /* tmp-shout.png in Resources */,
 				6ABA785D109BE181001E7293 /* tmp-checkin-shout.png in Resources */,
