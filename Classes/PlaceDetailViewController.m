@@ -237,17 +237,22 @@
     return customView;
 }
 
+// FIXME: pull out to method to prevent code repetition
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         ProfileViewController *profileDetailController = [[ProfileViewController alloc] initWithNibName:@"ProfileView" bundle:nil];
         NSLog(@"mayor user id: %@", venue.mayor.userId);
         profileDetailController.userId = venue.mayor.userId;
-        [self.view addSubview:profileDetailController.view];
+        //[self.view addSubview:profileDetailController.view];
+        [self.navigationController pushViewController:profileDetailController animated:YES];
+        [profileDetailController release];
     } else if (indexPath.section == 1) {
         FSUser *user = ((FSUser*)[venue.peopleHere objectAtIndex:indexPath.row]);
         ProfileViewController *profileDetailController = [[ProfileViewController alloc] initWithNibName:@"ProfileView" bundle:nil];
         profileDetailController.userId = user.userId;
-        [self.view addSubview:profileDetailController.view];
+        //[self.view addSubview:profileDetailController.view];
+        [self.navigationController pushViewController:profileDetailController animated:YES];
+        [profileDetailController release];
     }
 }
 

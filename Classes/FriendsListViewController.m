@@ -253,12 +253,13 @@
 
 - (void) checkin {
     PlacesListViewController *placesListController = [[PlacesListViewController alloc] initWithNibName:@"PlacesListViewController" bundle:nil];
-    [self.view addSubview:placesListController.view];
+    [self.navigationController pushViewController:placesListController animated:YES];
+    [placesListController release];
 }
 
 - (IBAction) flipToMap {
     FriendsMapViewController *mapViewController = [[FriendsMapViewController alloc] initWithNibName:@"FriendsMapView" bundle:nil];
-    [self.view addSubview:mapViewController.view];
+    [self.navigationController mapViewController:placesListController animated:YES];
 	mapViewController.checkins = self.checkins;
 }
 
@@ -282,6 +283,8 @@
             [olderCheckins addObject:checkin];
         }
     }
+    NSLog(@"recent checkins: %d", [recentCheckins count]);
+    NSLog(@"older checkins: %d", [olderCheckins count]);
     
     [threeHoursFromNow release];
     [dateFormatter release];

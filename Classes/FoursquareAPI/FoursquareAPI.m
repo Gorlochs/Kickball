@@ -194,7 +194,7 @@ static FoursquareAPI *sharedInstance = nil;
 	NSError * err;
 	CXMLDocument *venueParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
 	NSLog(@"venues xml: %@", venueParser);
-	NSLog(@"%@", [err localizedDescription]);
+	NSLog(@"error: %@", [err localizedDescription]);
 
 	NSMutableArray * allVens = [[NSMutableArray alloc] initWithCapacity:1];
 
@@ -206,6 +206,7 @@ static FoursquareAPI *sharedInstance = nil;
 		NSArray * groupOfVenues = [FoursquareAPI _venuesFromNode:groupResult];
 		[allVens addObject:[groupOfVenues copy]];
 	}
+    NSLog(@"completed venuesFromResponseXML");
 	return allVens;
 }
 

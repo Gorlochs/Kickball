@@ -195,7 +195,9 @@
     if (section == 0) {
         return [(NSArray*)[venues objectAtIndex:0] count];
     } else if (section == 1) {
-        return [(NSArray*)[venues objectAtIndex:1] count];
+        if ([venues count] > 1) {
+            return [(NSArray*)[venues objectAtIndex:1] count];
+        }
     }
     return 0;
 }
@@ -212,10 +214,12 @@
     }
     
     // passing in indexPath.section chooses the proper venue array to display in the appropriate section
-    FSVenue *venue = (FSVenue*) [(NSArray*)[venues objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-    cell.textLabel.text = venue.name;
-    cell.detailTextLabel.text = venue.addressWithCrossstreet;
-	
+    if ([venues count] >= indexPath.section) {
+        NSLog(@"setting up cell for section: %d", indexPath.section);
+        FSVenue *venue = (FSVenue*) [(NSArray*)[venues objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        cell.textLabel.text = venue.name;
+        cell.detailTextLabel.text = venue.addressWithCrossstreet;
+	}
     return cell;
 }
 
@@ -224,7 +228,9 @@
 	PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];
     FSVenue *venue = [(NSArray*)[venues objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     placeDetailController.venueId = venue.venueid;
-    [self.view addSubview:placeDetailController.view];
+    [self.navigationController pushViewController:placeDetailController animated:YES];
+    [placeDetailController release];
+//    [self.view addSubview:placeDetailController.view];
 }
 
 

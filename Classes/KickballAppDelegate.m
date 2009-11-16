@@ -15,12 +15,14 @@
 
 @synthesize window;
 @synthesize viewController;
+@synthesize navigationController;
 
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {    
     
     // Override point for customization after app launch    
-    [window addSubview:viewController.view];
+    //[window addSubview:viewController.view];
+    [window addSubview:navigationController.view];
     [window makeKeyAndVisible];
     
     // Pinch Analytics
