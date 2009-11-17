@@ -35,5 +35,6 @@
 - (IBAction) callVenue;
 - (IBAction) uploadImageToServer;
 - (IBAction) showTwitterFeed;
+- (IBAction) backOneView;
 
 @end

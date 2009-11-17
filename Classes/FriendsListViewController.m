@@ -197,13 +197,12 @@
     FSVenue *venue = ((FSCheckin*)[self.checkins objectAtIndex:indexPath.row]).venue;
     // Navigation logic may go here. Create and push another view controller.
 	PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];
-//    placeDetailController.venue = venue;
 	//handle off the grid checkins.
 	if (venue.venueid != nil) {
 		placeDetailController.venueId = venue.venueid;
-		// TODO: come up with a better way to manage the views
-		[self.view addSubview:placeDetailController.view];
+        [self.navigationController pushViewController:placeDetailController animated:YES];
 	}
+    [placeDetailController release];
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -259,7 +258,7 @@
 
 - (IBAction) flipToMap {
     FriendsMapViewController *mapViewController = [[FriendsMapViewController alloc] initWithNibName:@"FriendsMapView" bundle:nil];
-    [self.navigationController mapViewController:placesListController animated:YES];
+    [self.navigationController pushViewController:mapViewController animated:YES];
 	mapViewController.checkins = self.checkins;
 }
 
