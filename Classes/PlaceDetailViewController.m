@@ -17,6 +17,7 @@
 - (BOOL)uploadImage:(NSData *)imageData filename:(NSString *)filename;
 - (void)venueResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString;
 - (void) prepViewWithVenueInfo:(FSVenue*)venueToDisplay;
+- (void) pushProfileDetailController:(NSString*)profileUserId;
 
 @end
 
@@ -105,6 +106,8 @@
 	// Release any cached data, images, etc that aren't in use.
     theTableView = nil;
     mayorMapCell = nil;
+    checkinCell = nil;
+    giftShoutCell = nil;
     mapView = nil;
     venueName = nil;
     venueAddress = nil;
@@ -117,6 +120,8 @@
 	// e.g. self.myOutlet = nil;
     theTableView = nil;
     mayorMapCell = nil;
+    checkinCell = nil;
+    giftShoutCell = nil;
     mapView = nil;
     venueName = nil;
     venueAddress = nil;
@@ -263,26 +268,26 @@
 // FIXME: pull out to method to prevent code repetition
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1) {
-        ProfileViewController *profileDetailController = [[ProfileViewController alloc] initWithNibName:@"ProfileView" bundle:nil];
-        NSLog(@"mayor user id: %@", venue.mayor.userId);
-        profileDetailController.userId = venue.mayor.userId;
-        //[self.view addSubview:profileDetailController.view];
-        [self.navigationController pushViewController:profileDetailController animated:YES];
-        [profileDetailController release];
+        [self pushProfileDetailController:venue.mayor.userId];
     } else if (indexPath.section == 2) {
         FSUser *user = ((FSUser*)[venue.peopleHere objectAtIndex:indexPath.row]);
-        ProfileViewController *profileDetailController = [[ProfileViewController alloc] initWithNibName:@"ProfileView" bundle:nil];
-        profileDetailController.userId = user.userId;
-        //[self.view addSubview:profileDetailController.view];
-        [self.navigationController pushViewController:profileDetailController animated:YES];
-        [profileDetailController release];
+        [self pushProfileDetailController:user.userId];
     }
+}
+
+- (void) pushProfileDetailController:(NSString*)profileUserId {
+    ProfileViewController *profileDetailController = [[ProfileViewController alloc] initWithNibName:@"ProfileView" bundle:nil];
+    profileDetailController.userId = profileUserId;
+    [self.navigationController pushViewController:profileDetailController animated:YES];
+    [profileDetailController release];
 }
 
 
 - (void)dealloc {
     [theTableView release];
     [mayorMapCell release];
+    [checkinCell release];
+    [giftShoutCell release];
     [mapView release];
     [venueName release];
     [venueAddress release];
