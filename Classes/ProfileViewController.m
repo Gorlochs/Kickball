@@ -8,6 +8,8 @@
 
 #import "ProfileViewController.h"
 #import "FoursquareAPI.h"
+#import "FSVenue.h"
+#import "PlaceDetailViewController.h"
 
 #define BADGES_PER_ROW 3
 
@@ -223,10 +225,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
-	// [self.navigationController pushViewController:anotherViewController];
-	// [anotherViewController release];
+	PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];
+    placeDetailController.venueId = ((FSVenue*)[user.mayorOf objectAtIndex:indexPath.row]).venueid;
+    [self.navigationController pushViewController:placeDetailController animated:YES];
+    [placeDetailController release];
 }
 
 
