@@ -24,7 +24,7 @@
 
 
 @implementation FriendsListViewController
-@synthesize checkins, recentCheckins, olderCheckins, theTableView;
+@synthesize checkins, recentCheckins, todayCheckins, yesterdayCheckins, theTableView;
 
 /*
 - (id)initWithStyle:(UITableViewStyle)style {
@@ -95,7 +95,7 @@
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 3;
 }
 
 
@@ -106,7 +106,9 @@
 	if (section == 0) {
 		return [self.recentCheckins count];
 	} else if (section == 1) {
-        return [self.olderCheckins count];
+        return [self.todayCheckins count];
+    } else if (section == 2) {
+        return [self.yesterdayCheckins count];
     }
 	return 1;
 }
@@ -130,7 +132,9 @@
     if (indexPath.section == 0) {
         checkin = [self.recentCheckins objectAtIndex:indexPath.row];
     } else if (indexPath.section == 1) {
-        checkin = [self.olderCheckins objectAtIndex:indexPath.row];
+        checkin = [self.todayCheckins objectAtIndex:indexPath.row];
+    } else if (indexPath.section == 2) {
+        checkin = [self.yesterdayCheckins objectAtIndex:indexPath.row];
     }
 	
 	FSUser * checkUser = checkin.user;
@@ -200,7 +204,10 @@
             venue = ((FSCheckin*)[self.recentCheckins objectAtIndex:indexPath.row]).venue;
             break;
         case 1: //today
-            venue = ((FSCheckin*)[self.olderCheckins objectAtIndex:indexPath.row]).venue;
+            venue = ((FSCheckin*)[self.todayCheckins objectAtIndex:indexPath.row]).venue;
+            break;
+        case 2: //yesterday
+            venue = ((FSCheckin*)[self.yesterdayCheckins objectAtIndex:indexPath.row]).venue;
             break;
         default:
             break;
@@ -241,6 +248,9 @@
         case 1:
             headerLabel.text = @"  Today";
             break;
+        case 2:
+            headerLabel.text = @"  Yesterday";
+            break;
         default:
             headerLabel.text = @"You shouldn't see this";
             break;
@@ -277,25 +287,32 @@
 	self.checkins = [allCheckins copy];
     
     recentCheckins = [[NSMutableArray alloc] init];
-    olderCheckins = [[NSMutableArray alloc] init];
+    todayCheckins = [[NSMutableArray alloc] init];
+    yesterdayCheckins = [[NSMutableArray alloc] init];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EEE, dd MMM yy HH:mm:ss"];
     
     NSDate *threeHoursFromNow = [[NSDate alloc] initWithTimeIntervalSinceNow:-60*60*3];
+    NSDate *twentyfourHoursFromNow = [[NSDate alloc] initWithTimeIntervalSinceNow:-60*60*24];
     
     for (FSCheckin *checkin in checkins) {
         NSDate *date = [dateFormatter dateFromString:checkin.created];
         if ([date compare:threeHoursFromNow] == NSOrderedDescending) {
             [recentCheckins addObject:checkin];
+        } else if ([date compare:threeHoursFromNow] == NSOrderedAscending  && [date compare:twentyfourHoursFromNow] == NSOrderedDescending) {
+            [todayCheckins addObject:checkin];
         } else {
-            [olderCheckins addObject:checkin];
+            [yesterdayCheckins addObject:checkin];
         }
     }
+    NSLog(@"all checkins: %d", [checkins count]);
     NSLog(@"recent checkins: %d", [recentCheckins count]);
-    NSLog(@"older checkins: %d", [olderCheckins count]);
+    NSLog(@"today checkins: %d", [todayCheckins count]);
+    NSLog(@"yesterday checkins: %d", [yesterdayCheckins count]);
     
     [threeHoursFromNow release];
+    [twentyfourHoursFromNow release];
     [dateFormatter release];
 	[self.theTableView reloadData];
 }

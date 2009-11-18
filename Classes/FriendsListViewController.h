@@ -13,12 +13,14 @@
     IBOutlet UITableView *theTableView;
 	NSArray * checkins;
 	NSMutableArray * recentCheckins;
-	NSMutableArray * olderCheckins;
+	NSMutableArray * todayCheckins;
+	NSMutableArray * yesterdayCheckins;
 }
 
 @property (nonatomic, retain) NSArray * checkins;
 @property (nonatomic, retain) NSMutableArray * recentCheckins;
-@property (nonatomic, retain) NSMutableArray * olderCheckins;
+@property (nonatomic, retain) NSMutableArray * todayCheckins;
+@property (nonatomic, retain) NSMutableArray * yesterdayCheckins;
 @property (nonatomic, retain) UITableView *theTableView;
 
 - (IBAction) checkin;
