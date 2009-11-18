@@ -90,6 +90,7 @@
 		6A39EB6110965868006F76C3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A39EB6010965868006F76C3 /* CoreLocation.framework */; };
 		6A39EB6310965868006F76C3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A39EB6210965868006F76C3 /* SystemConfiguration.framework */; };
 		6A39EC4E109662E5006F76C3 /* tmp-header.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A39EC4D109662E5006F76C3 /* tmp-header.png */; };
+		6A55B4D010B36EC60005E934 /* KBBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A55B4CF10B36EC60005E934 /* KBBaseViewController.m */; };
 		6A7ED9F710A91DC9002FB1DC /* VenueAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A7ED9F610A91DC9002FB1DC /* VenueAnnotation.m */; };
 		6A8AC8F1109AB31400C4FE1B /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A8AC8EF109AB31400C4FE1B /* ProfileViewController.m */; };
 		6A8EEE1A10A1227000DC630C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A8EEE1910A1227000DC630C /* MapKit.framework */; };
@@ -286,6 +287,8 @@
 		6A39EB6010965868006F76C3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = /System/Library/Frameworks/CoreLocation.framework; sourceTree = "<absolute>"; };
 		6A39EB6210965868006F76C3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = /System/Library/Frameworks/SystemConfiguration.framework; sourceTree = "<absolute>"; };
 		6A39EC4D109662E5006F76C3 /* tmp-header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tmp-header.png"; sourceTree = "<group>"; };
+		6A55B4CE10B36EC60005E934 /* KBBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBBaseViewController.h; sourceTree = "<group>"; };
+		6A55B4CF10B36EC60005E934 /* KBBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBBaseViewController.m; sourceTree = "<group>"; };
 		6A7ED9F510A91DC9002FB1DC /* VenueAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VenueAnnotation.h; sourceTree = "<group>"; };
 		6A7ED9F610A91DC9002FB1DC /* VenueAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueAnnotation.m; sourceTree = "<group>"; };
 		6A8AC8EE109AB31400C4FE1B /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
@@ -384,6 +387,7 @@
 				6AF9670D109AA2FE00EF665D /* Profile */,
 				6AC7E92D10994FB500776993 /* Place */,
 				6A044CB8109545580063FC33 /* Friends */,
+				6A55B4CC10B36E9A0005E934 /* General */,
 				1D3623240D0F684500981E51 /* KickballAppDelegate.h */,
 				1D3623250D0F684500981E51 /* KickballAppDelegate.m */,
 			);
@@ -709,6 +713,15 @@
 			name = temp;
 			sourceTree = "<group>";
 		};
+		6A55B4CC10B36E9A0005E934 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				6A55B4CE10B36EC60005E934 /* KBBaseViewController.h */,
+				6A55B4CF10B36EC60005E934 /* KBBaseViewController.m */,
+			);
+			name = General;
+			sourceTree = "<group>";
+		};
 		6A8EEEC110A14ED200DC630C /* MGTwitterEngine */ = {
 			isa = PBXGroup;
 			children = (
@@ -956,6 +969,7 @@
 				552AFE4110A285AC009300E2 /* FriendIconAnnotationView.m in Sources */,
 				6A7ED9F710A91DC9002FB1DC /* VenueAnnotation.m in Sources */,
 				6A9FF5BA10AA830700E52FDA /* FSCity.m in Sources */,
+				6A55B4D010B36EC60005E934 /* KBBaseViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
