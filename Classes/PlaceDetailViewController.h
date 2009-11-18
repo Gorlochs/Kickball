@@ -16,6 +16,8 @@
 
 @interface PlaceDetailViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
     IBOutlet UITableView *theTableView;
+    IBOutlet UITableViewCell *checkinCell;
+    IBOutlet UITableViewCell *giftShoutCell;
     IBOutlet UITableViewCell *mayorMapCell;
     IBOutlet MKMapView *mapView;
     
@@ -27,14 +29,19 @@
     
     FSVenue *venue;
     NSString *venueId;
+    
+    bool isUserCheckedIn;
 }
 
 @property (nonatomic, retain) UITableViewCell *mayorMapCell;
+@property (nonatomic, retain) UITableViewCell *checkinCell;
+@property (nonatomic, retain) UITableViewCell *giftShoutCell;
 @property (nonatomic, retain) FSVenue *venue;
 @property (nonatomic, retain) NSString *venueId;
 
 - (IBAction) callVenue;
 - (IBAction) uploadImageToServer;
 - (IBAction) showTwitterFeed;
+- (IBAction) checkinToVenue;
 
 @end

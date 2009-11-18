@@ -91,6 +91,7 @@
 		6A39EB6310965868006F76C3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A39EB6210965868006F76C3 /* SystemConfiguration.framework */; };
 		6A39EC4E109662E5006F76C3 /* tmp-header.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A39EC4D109662E5006F76C3 /* tmp-header.png */; };
 		6A55B4D010B36EC60005E934 /* KBBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A55B4CF10B36EC60005E934 /* KBBaseViewController.m */; };
+		6A55B4FC10B3B4BA0005E934 /* tmp-checkin.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A55B4FB10B3B4BA0005E934 /* tmp-checkin.png */; };
 		6A7ED9F710A91DC9002FB1DC /* VenueAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A7ED9F610A91DC9002FB1DC /* VenueAnnotation.m */; };
 		6A8AC8F1109AB31400C4FE1B /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A8AC8EF109AB31400C4FE1B /* ProfileViewController.m */; };
 		6A8EEE1A10A1227000DC630C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A8EEE1910A1227000DC630C /* MapKit.framework */; };
@@ -289,6 +290,7 @@
 		6A39EC4D109662E5006F76C3 /* tmp-header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tmp-header.png"; sourceTree = "<group>"; };
 		6A55B4CE10B36EC60005E934 /* KBBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBBaseViewController.h; sourceTree = "<group>"; };
 		6A55B4CF10B36EC60005E934 /* KBBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBBaseViewController.m; sourceTree = "<group>"; };
+		6A55B4FB10B3B4BA0005E934 /* tmp-checkin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tmp-checkin.png"; sourceTree = "<group>"; };
 		6A7ED9F510A91DC9002FB1DC /* VenueAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VenueAnnotation.h; sourceTree = "<group>"; };
 		6A7ED9F610A91DC9002FB1DC /* VenueAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueAnnotation.m; sourceTree = "<group>"; };
 		6A8AC8EE109AB31400C4FE1B /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
@@ -699,6 +701,7 @@
 		6A39EC4C109662D7006F76C3 /* temp */ = {
 			isa = PBXGroup;
 			children = (
+				6A55B4FB10B3B4BA0005E934 /* tmp-checkin.png */,
 				6A9FF57210AA639200E52FDA /* tmp-phone2.png */,
 				6AA76162109BFC5D00773563 /* tmp-search-bar.png */,
 				6ABA785E109BE20C001E7293 /* tmp-shout-btn.png */,
@@ -870,6 +873,7 @@
 				6A0D9FB0109D97B300F9E1D6 /* UploadGiftViewController.xib in Resources */,
 				553C519410A1BD5100A74641 /* oauthAutoConfig.plist in Resources */,
 				6A9FF57310AA639200E52FDA /* tmp-phone2.png in Resources */,
+				6A55B4FC10B3B4BA0005E934 /* tmp-checkin.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

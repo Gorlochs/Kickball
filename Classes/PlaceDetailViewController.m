@@ -26,6 +26,8 @@
 @synthesize mayorMapCell;
 @synthesize venue;
 @synthesize venueId;
+@synthesize checkinCell;
+@synthesize giftShoutCell;
 
 /*
 - (id)initWithStyle:(UITableViewStyle)style {
@@ -39,6 +41,9 @@
 // FIXME: add a check to make sure that a valid venueId exists, since this page will crap out if it doesn't.
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // TODO: need a way to persist this? What is the business logic for displaying each cell?
+    isUserCheckedIn = NO;
 
        //mayorImage.image = venue.
     
@@ -123,16 +128,16 @@
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return 4;
 }
 
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 1) {
+    if (section == 2) {
         // people here
         return [venue.peopleHere count];
-    } else if (section == 2) {
+    } else if (section == 3) {
         // tips
         return [venue.tips count];
     } else {
@@ -149,6 +154,12 @@
     if (cell == nil) {
         // TODO: figure out why the switch doesn't work. very odd.
         if (indexPath.section == 0) {
+            if (isUserCheckedIn) {
+                return giftShoutCell;
+            } else {
+                return checkinCell;
+            }
+        } else if (indexPath.section == 1) {
             return mayorMapCell;
         } else {
             cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
@@ -158,8 +169,15 @@
     
     // Set up the cell...
     if (indexPath.section == 0) {
-        return mayorMapCell;
+        // this double call just doesn't sit right with me
+        if (isUserCheckedIn) {
+            return giftShoutCell;
+        } else {
+            return checkinCell;
+        }
     } else if (indexPath.section == 1) {
+        return mayorMapCell;
+    } else if (indexPath.section == 2) {
         cell.detailTextLabel.numberOfLines = 1;
         cell.detailTextLabel.text = nil;
         cell.textLabel.font = [UIFont boldSystemFontOfSize:16];
@@ -170,7 +188,7 @@
         UIImage *img = [[UIImage alloc] initWithData:data];
         cell.imageView.image = img;
         [img release];
-    } else if (indexPath.section == 2) {
+    } else if (indexPath.section == 3) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         FSTip *tip = (FSTip*) [venue.tips objectAtIndex:indexPath.row];
         cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
@@ -186,10 +204,12 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.section) {
         case 0:
-            return 62;
-        case 1:
             return 44;
+        case 1:
+            return 62;
         case 2:
+            return 44;
+        case 3:
             return 62;
         default:
             return 44;
@@ -218,13 +238,16 @@
     // headerLabel.frame = CGRectMake(150.0, 0.0, 300.0, 44.0);
     switch (section) {
         case 0:
+            return nil;
+            break;
+        case 1:
             // TODO: fix this
             headerLabel.text = @"  Mayor                                                                    Map";
             break;
-        case 1:
+        case 2:
             headerLabel.text = [NSString stringWithFormat:@"  %d People Here", [venue.peopleHere count]];
             break;
-        case 2:
+        case 3:
             headerLabel.text = @"  Tips";
             break;
         default:
@@ -239,14 +262,14 @@
 
 // FIXME: pull out to method to prevent code repetition
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0) {
+    if (indexPath.section == 1) {
         ProfileViewController *profileDetailController = [[ProfileViewController alloc] initWithNibName:@"ProfileView" bundle:nil];
         NSLog(@"mayor user id: %@", venue.mayor.userId);
         profileDetailController.userId = venue.mayor.userId;
         //[self.view addSubview:profileDetailController.view];
         [self.navigationController pushViewController:profileDetailController animated:YES];
         [profileDetailController release];
-    } else if (indexPath.section == 1) {
+    } else if (indexPath.section == 2) {
         FSUser *user = ((FSUser*)[venue.peopleHere objectAtIndex:indexPath.row]);
         ProfileViewController *profileDetailController = [[ProfileViewController alloc] initWithNibName:@"ProfileView" bundle:nil];
         profileDetailController.userId = user.userId;
@@ -291,6 +314,23 @@
     vc.venueName = venue.name;
     [self presentModalViewController:vc animated:YES];
     [vc release];
+}
+
+- (void) checkinToVenue {
+    if(![[FoursquareAPI sharedInstance] isAuthenticated]){
+		//run sheet to log in.
+		NSLog(@"Foursquare is not authenticated");
+	} else {
+		[[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:venue.venueid andShout:nil offGrid:NO withTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
+	}
+}
+
+- (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+    NSLog(@"%@", inString);
+	//self.venue = [FoursquareAPI checkinsFromResponseXML:inString];
+    //[self prepViewWithVenueInfo:self.venue];
+    isUserCheckedIn = YES;
+	//[theTableView reloadData];
 }
 
 #pragma mark Image Picker Delegate methods
