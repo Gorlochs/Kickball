@@ -194,8 +194,18 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"row selected");
-    FSVenue *venue = ((FSCheckin*)[self.checkins objectAtIndex:indexPath.row]).venue;
-    // Navigation logic may go here. Create and push another view controller.
+    FSVenue *venue = nil;
+    switch (indexPath.section) {
+        case 0: // last 3 hours
+            venue = ((FSCheckin*)[self.recentCheckins objectAtIndex:indexPath.row]).venue;
+            break;
+        case 1: //today
+            venue = ((FSCheckin*)[self.olderCheckins objectAtIndex:indexPath.row]).venue;
+            break;
+        default:
+            break;
+    }
+    
 	PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];
 	//handle off the grid checkins.
 	if (venue.venueid != nil) {

@@ -11,8 +11,9 @@
 #import "FoursquareAPI.h"
 #import "FriendPlacemark.h"
 #import "FriendIconAnnotationView.h"
+#import "KBBaseViewController.h"
 
-@interface FriendsMapViewController : UIViewController {
+@interface FriendsMapViewController : KBBaseViewController {
 	IBOutlet MKMapView * mapViewer;
 	NSArray * checkins;
 }

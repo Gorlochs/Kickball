@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "FSUser.h"
+#import "KBBaseViewController.h"
 
-@interface ProfileViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+@interface ProfileViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource> {
     IBOutlet UITableView *theTableView;
     IBOutlet UITableViewCell *badgeCell;
     NSString *userId;

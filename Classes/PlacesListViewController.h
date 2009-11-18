@@ -8,13 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import "KBBaseViewController.h"
 
 typedef enum {
 	KBNearbyVenues = 0,
 	KBSearchVenues = 1
 } KBListType;
 
-@interface PlacesListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, CLLocationManagerDelegate> {
+@interface PlacesListViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, CLLocationManagerDelegate> {
     IBOutlet UITableView *theTableView;
     IBOutlet UITableViewCell *searchCell;
     IBOutlet UITextField *searchbox;
