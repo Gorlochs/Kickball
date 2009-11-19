@@ -19,6 +19,10 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (IBAction) viewUserProfile {
+    // take user to their profile
+}
+
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];

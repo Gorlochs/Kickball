@@ -10,9 +10,10 @@
 
 
 @interface KBBaseViewController : UIViewController {
-
+    IBOutlet UIButton *signedInUserIcon;
 }
 
 - (IBAction) backOneView;
+- (IBAction) viewUserProfile;
 
 @end

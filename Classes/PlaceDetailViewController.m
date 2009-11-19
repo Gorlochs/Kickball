@@ -265,7 +265,6 @@
     return customView;
 }
 
-// FIXME: pull out to method to prevent code repetition
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1) {
         [self pushProfileDetailController:venue.mayor.userId];

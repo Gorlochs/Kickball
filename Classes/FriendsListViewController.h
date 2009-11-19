@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FriendsMapViewController.h"FriendsMapViewController
+#import "FriendsMapViewController.h"
 
-@interface FriendsListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+@interface FriendsListViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource> {
     IBOutlet UITableView *theTableView;
 	NSArray * checkins;
 	NSMutableArray * recentCheckins;
