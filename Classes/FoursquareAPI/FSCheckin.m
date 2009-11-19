@@ -10,7 +10,7 @@
 
 
 @implementation FSCheckin
-@synthesize message, venue, badges, specials, created, checkinId, shout, display, user;
+@synthesize message, venue, badges, specials, created, checkinId, shout, display, user, scoring;
 
 
 - (NSString*) description {

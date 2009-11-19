@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "FSVenue.h"
 #import "FSUser.h"
+#import "FSScoring.h"
 
 @interface FSCheckin : NSObject {
 	NSString * message;
@@ -20,6 +21,7 @@
 	NSString * shout;
 	NSString * display;
 	FSUser * user;
+	FSScoring * scoring;
 }
 
 @property (nonatomic, retain) NSString * message;
@@ -31,5 +33,5 @@
 @property (nonatomic, retain) NSString * shout;
 @property (nonatomic, retain) NSString * display;
 @property (nonatomic, retain) FSUser * user;
-
+@property (nonatomic, retain) FSScoring * scoring;
 @end

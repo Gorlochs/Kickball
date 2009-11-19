@@ -13,7 +13,7 @@ static FoursquareAPI *sharedInstance = nil;
 
 @implementation FoursquareAPI
 
-@synthesize oauthAPI;
+@synthesize oauthAPI, currentUser;
 
 #pragma mark -
 #pragma mark class instance methods
@@ -294,12 +294,60 @@ static FoursquareAPI *sharedInstance = nil;
 			if([key compare:@"venue"] == 0){
 				FSVenue * currentVenueInfo = [[FoursquareAPI _venuesFromNode:checkinAttr] objectAtIndex:0];
 				oneCheckin.venue = currentVenueInfo;
+			} else 
+			if([key compare:@"scoring"] == 0){
+				FSScoring * currentCheckinScoring = [FoursquareAPI _scoringFromNode:checkinAttr];
+				oneCheckin.scoring = currentCheckinScoring;
 			}
 
 		}
 		[allCheckins addObject:[oneCheckin retain]];
 	}
 	return allCheckins;
+}
+
++ (FSScoring *) _scoringFromNode:(CXMLNode *) inputNode{
+	NSMutableArray * allScores = [[NSMutableArray alloc] initWithCapacity:1];
+	FSScoring *theScoring = [[FSScoring alloc] init];
+	
+	//get all the scores in the checkin
+	NSArray * scoresReturned = [inputNode nodesForXPath:@"score" error:nil];
+	for (CXMLElement *scoreResult in scoresReturned) {
+		FSScore * newScore = [[FSScore alloc] init];
+		int counter;
+		for(counter = 0; counter < [scoreResult childCount]; counter++) {
+			NSString * key = [[scoreResult childAtIndex:counter] name];
+			NSString * value = [[scoreResult childAtIndex:counter] stringValue];
+			
+			if([key isEqualToString:@"points"]){
+				newScore.points = [value intValue];
+			} else if([key isEqualToString:@"message"]){
+				newScore.message = value;
+			} else if([key isEqualToString:@"icon"]){
+				newScore.icon = value;
+			}
+		}
+		[allScores addObject:newScore];
+	}
+	theScoring.scores = allScores;
+	
+	//don't forget to get the total
+	NSArray * totalsReturned = [inputNode nodesForXPath:@"total" error:nil];
+	for (CXMLElement *totalResult in totalsReturned) {
+		int counter;
+		for(counter = 0; counter < [totalResult childCount]; counter++) {
+			NSString * key = [[totalResult childAtIndex:counter] name];
+			NSString * value = [[totalResult childAtIndex:counter] stringValue];
+			
+			if([key isEqualToString:@"points"]){
+				theScoring.total = [value intValue];
+			} else if([key isEqualToString:@"message"]){
+				theScoring.message = value;
+			}
+		}
+	}
+	
+	return theScoring;
 }
 
 + (NSArray *) _venuesFromNode:(CXMLNode *) inputNode{

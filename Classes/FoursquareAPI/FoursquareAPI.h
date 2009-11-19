@@ -16,6 +16,8 @@
 #import "FSCheckin.h"
 #import "FSTip.h"
 #import "FSCity.h"
+#import "FSScoring.h"
+#import "FSScore.h"
 
 #define kConsumerKey		@"56db3be85201b7c551d458354075499b04adbd869"
 #define kConsumerSecret		@"b6439213b40bec023df4da248ed83050"
@@ -24,9 +26,11 @@
 
 @interface FoursquareAPI : NSObject {
 	MPOAuthAPI * oauthAPI;
+	FSUser * currentUser;
 }
 
 @property (nonatomic, retain) MPOAuthAPI * oauthAPI;
+@property (nonatomic, retain) FSUser * currentUser;
 
 
 - (BOOL) isAuthenticated;
@@ -51,6 +55,7 @@
 + (NSArray *) _friendsFromNode:(CXMLNode *) inputNode;
 + (FSUser *) _userFromNode:(CXMLElement *) usrAttr;
 + (NSArray *) _tipsFromNode:(CXMLNode *) inputNode;
++ (FSScoring *) _scoringFromNode:(CXMLNode *) inputNode;
 
 + (NSArray *) friendsFromResponseXML:(NSString *) inString;
 + (NSArray *) venuesFromResponseXML:(NSString *) inString;

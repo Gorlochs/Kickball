@@ -77,6 +77,8 @@
 		553C51B810A1BD5100A74641 /* CXMLNode_XPathExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 553C517A10A1BD5100A74641 /* CXMLNode_XPathExtensions.m */; };
 		553C51B910A1BD5100A74641 /* CTidy.m in Sources */ = {isa = PBXBuildFile; fileRef = 553C517D10A1BD5100A74641 /* CTidy.m */; };
 		553C51BF10A1BD8100A74641 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553C51BE10A1BD8100A74641 /* Security.framework */; };
+		5550EE1A10B4F9D00065C925 /* FSScoring.m in Sources */ = {isa = PBXBuildFile; fileRef = 5550EE1910B4F9D00065C925 /* FSScoring.m */; };
+		5550EE1D10B4FA3A0065C925 /* FSScore.m in Sources */ = {isa = PBXBuildFile; fileRef = 5550EE1C10B4FA3A0065C925 /* FSScore.m */; };
 		6A044CAC109545200063FC33 /* FriendsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A044CAA109545200063FC33 /* FriendsListViewController.m */; };
 		6A044CAD109545200063FC33 /* FriendsListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A044CAB109545200063FC33 /* FriendsListView.xib */; };
 		6A044CB6109545450063FC33 /* FriendsMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A044CB4109545450063FC33 /* FriendsMapViewController.m */; };
@@ -328,6 +330,12 @@
 		553C517D10A1BD5100A74641 /* CTidy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTidy.m; sourceTree = "<group>"; };
 		553C517E10A1BD5100A74641 /* TouchXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchXML.h; sourceTree = "<group>"; };
 		553C51BE10A1BD8100A74641 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		5550EE1810B4F9D00065C925 /* FSScoring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSScoring.h; sourceTree = "<group>"; };
+		5550EE1910B4F9D00065C925 /* FSScoring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSScoring.m; sourceTree = "<group>"; };
+		5550EE1B10B4FA3A0065C925 /* FSScore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSScore.h; sourceTree = "<group>"; };
+		5550EE1C10B4FA3A0065C925 /* FSScore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSScore.m; sourceTree = "<group>"; };
+		5566949910AA535200DF19D5 /* FSCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCity.h; sourceTree = "<group>"; };
+		5566949A10AA535200DF19D5 /* FSCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCity.m; sourceTree = "<group>"; };
 		6A044CA9109545200063FC33 /* FriendsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsListViewController.h; sourceTree = "<group>"; };
 		6A044CAA109545200063FC33 /* FriendsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsListViewController.m; sourceTree = "<group>"; };
 		6A044CAB109545200063FC33 /* FriendsListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FriendsListView.xib; path = Classes/FriendsListView.xib; sourceTree = "<group>"; };
@@ -597,6 +605,12 @@
 				553C510710A1BD5000A74641 /* FSVenue.m */,
 				552AFD8010A270ED009300E2 /* FSTip.h */,
 				552AFD8110A270ED009300E2 /* FSTip.m */,
+				5566949910AA535200DF19D5 /* FSCity.h */,
+				5566949A10AA535200DF19D5 /* FSCity.m */,
+				5550EE1810B4F9D00065C925 /* FSScoring.h */,
+				5550EE1910B4F9D00065C925 /* FSScoring.m */,
+				5550EE1B10B4FA3A0065C925 /* FSScore.h */,
+				5550EE1C10B4FA3A0065C925 /* FSScore.m */,
 			);
 			path = FoursquareAPI;
 			sourceTree = "<group>";
@@ -1218,6 +1232,8 @@
 				6A7ED9F710A91DC9002FB1DC /* VenueAnnotation.m in Sources */,
 				6A9FF5BA10AA830700E52FDA /* FSCity.m in Sources */,
 				6A55B4D010B36EC60005E934 /* KBBaseViewController.m in Sources */,
+				5550EE1A10B4F9D00065C925 /* FSScoring.m in Sources */,
+				5550EE1D10B4FA3A0065C925 /* FSScore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
