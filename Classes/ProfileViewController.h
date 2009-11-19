@@ -10,7 +10,7 @@
 #import "FSUser.h"
 #import "KBBaseViewController.h"
 
-@interface ProfileViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource> {
+@interface ProfileViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate> {
     IBOutlet UITableView *theTableView;
     IBOutlet UITableViewCell *badgeCell;
     NSString *userId;
@@ -22,9 +22,12 @@
     IBOutlet UILabel *nightsOut;
     IBOutlet UILabel *totalCheckins;
     IBOutlet UIImageView *userIcon;
+    IBOutlet UISegmentedControl *segmentedControl;
 }
 
 @property (nonatomic, retain) UITableViewCell *badgeCell;
 @property (nonatomic, retain) NSString *userId;
+
+- (IBAction) clickSegmentedControl;
 
 @end

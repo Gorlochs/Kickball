@@ -23,20 +23,14 @@
 
 @synthesize userId, badgeCell;
 
-/*
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
- - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
- if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
- // Custom initialization
- }
- return self;
- }
- */
-
 
  // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    name.text = @"";
+    location.text = @"";
+    lastCheckinAddress.text = @"";
     
     if(![[FoursquareAPI sharedInstance] isAuthenticated]){
 		//run sheet to log in.
@@ -232,5 +226,40 @@
     [placeDetailController release];
 }
 
+#pragma mark IBAction methods
+
+- (IBAction) clickSegmentedControl {
+    NSString *title = nil;
+    if (segmentedControl.selectedSegmentIndex == 0) {
+        title = @"Yes, open SMS app";
+    } else if (segmentedControl.selectedSegmentIndex == 1) {
+        title = @"Yes, open Phone app";
+    } else if (segmentedControl.selectedSegmentIndex == 2) {
+        title = @"Yes, open Mail app";
+    } else if (segmentedControl.selectedSegmentIndex == 3) {
+        title = @"Yes, open Twitter app";
+    } else if (segmentedControl.selectedSegmentIndex == 4) {
+        title = @"Yes, open Facebook app";
+    }
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"You will be leaving the Kickball app. Are you sure?"
+                                                             delegate:self
+                                                    cancelButtonTitle:@"Cancel"
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:title,nil];
+    
+    actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+    actionSheet.tag = segmentedControl.selectedSegmentIndex;
+    [actionSheet showInView:self.view];
+    [actionSheet release];
+}
+
+#pragma mark UIActionSheetDelegate methods
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        // send user to SMS
+        NSLog(@"clicked the 'leave' button; tag: %d", actionSheet.tag);
+    }
+}
 
 @end

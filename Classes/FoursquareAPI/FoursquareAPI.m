@@ -418,6 +418,7 @@ static FoursquareAPI *sharedInstance = nil;
 				}
 				newVenue.peopleHere = allPeople;
                 NSLog(@"mayor: %@", newVenue.mayor);
+                
 			}
 			
 		}

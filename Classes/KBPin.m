@@ -11,6 +11,8 @@
 
 @implementation KBPin
 
+@synthesize title;
+
 - (id)initWithAnnotation:(id <MKAnnotation>)annotation
 {
     self = [super initWithAnnotation:annotation reuseIdentifier:@"CustomId"];
@@ -26,5 +28,11 @@
     }    
     return self;
 }
+
+- (void) dealloc {
+    [title release];
+    [super dealloc];
+}
+
 @end
 

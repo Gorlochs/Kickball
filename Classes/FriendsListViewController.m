@@ -250,7 +250,7 @@
             headerLabel.text = @"  Today";
             break;
         case 2:
-            headerLabel.text = @"  Yesterday";
+            headerLabel.text = @"  Older";
             break;
         default:
             headerLabel.text = @"You shouldn't see this";

@@ -90,63 +90,34 @@
             [mapViewer setRegion:region animated:NO];
             [mapViewer regionThatFits:region];
             
-            VenueAnnotation *venueAnnotation = [[VenueAnnotation alloc] initWithCoordinate:location];
-            [mapViewer addAnnotation:venueAnnotation];
-            [venueAnnotation release];
-            
-            
-            
-//			CLLocationCoordinate2D location;
-//			//FSUser * checkUser = checkin.user;
-//			location.latitude = [venue.geolat doubleValue];
-//			location.longitude = [venue.geolong doubleValue];
-//			//FriendPlacemark *placemark=[[FriendPlacemark alloc] initWithCoordinate:location];
-//			//if(checkUser.photo != nil){
-//			//	placemark.url = checkUser.photo;
-//			//}
-//            VenueAnnotation *venueAnnotation = [[VenueAnnotation alloc] initWithCoordinate:location];
-//            [mapViewer addAnnotation:venueAnnotation];
-//            [venueAnnotation release];
+            VenueAnnotation *anote = [[VenueAnnotation alloc] init];
+            anote.coordinate = location;
+            anote.title = venue.name;
+            anote.subtitle = venue.addressWithCrossstreet;
+            [mapViewer addAnnotation:anote];
 		}
 	}	
 }
 
 #pragma mark MapViewer functions
-- (MKAnnotationView *) mapView: (MKMapView *) mapView viewForAnnotation: (id<MKAnnotation>) annotation
-{    
-    MKPinAnnotationView *pin = (MKPinAnnotationView *) [self.mapViewer dequeueReusableAnnotationViewWithIdentifier: @"CustomPinAnnotation"];
-    if (pin == nil)
-    {
-        pin = [[[KBPin alloc] initWithAnnotation:annotation] autorelease];
-
-        //pin = [[[MKPinAnnotationView alloc] initWithAnnotation: annotation reuseIdentifier: @"CustomPinAnnotation"] autorelease];
-    }
-    else
-    {
-        pin.annotation = annotation;
-    }
-//    pin.pinColor = MKPinAnnotationColorRed;
-    //pin.animatesDrop = YES;
-    return pin;
-}
-
-//- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
-//	
-//    // If it's the user location, just return nil.
-//	
-//    if ([annotation isKindOfClass:[MKUserLocation class]]) return nil;
-//	FriendIconAnnotationView*    pinView = (FriendIconAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:@"CustomPinAnnotation"];
-//	if (!pinView){
-//		// If an existing pin view was not available, create one
-//		//pinView = [[[FriendIconAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomPinAnnotation"] autorelease];
-//		pinView = [[[FriendIconAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomPinAnnotation" andImageUrl:((FriendPlacemark *)annotation).url] autorelease];
-//        //		pinView.pinColor = MKPinAnnotationColorRed;
-//        //		pinView.animatesDrop = YES;
-//        //		pinView.canShowCallout = NO;
-//		
-//	} else
-//		pinView.annotation = annotation;
-//	return pinView;	
+//// this one displays the proper pin, but doesn't work with the pop up annotation
+//- (MKAnnotationView *) mapView: (MKMapView *) mapView viewForAnnotation: (id<MKAnnotation>) annotation
+//{    
+//    KBPin *pin = (KBPin *) [self.mapViewer dequeueReusableAnnotationViewWithIdentifier: @"CustomPinAnnotation"];
+//    if (pin == nil)
+//    {
+//        pin = [[[KBPin alloc] initWithAnnotation:annotation] autorelease];
+//
+//        //pin = [[[MKPinAnnotationView alloc] initWithAnnotation: annotation reuseIdentifier: @"CustomPinAnnotation"] autorelease];
+//    }
+//    else
+//    {
+//        pin.annotation = annotation;
+//    }
+//    pin.title = @"testing";
+////    pin.pinColor = MKPinAnnotationColorRed;
+//    //pin.animatesDrop = YES;
+//    return pin;
 //}
 
 - (void)dealloc {

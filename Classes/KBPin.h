@@ -10,8 +10,10 @@
 #import <MapKit/MapKit.h>
 
 @interface KBPin : MKAnnotationView {
-
+    NSString *title;
 }
+
+@property (nonatomic, retain) NSString *title;
 
 - (id)initWithAnnotation:(id <MKAnnotation>) annotation;
 

@@ -23,7 +23,7 @@
 }
 
 - (NSString*) description {
-    return [NSString stringWithFormat:@"name=%@ ; venueid=%@ ; mayor=%@ ; mayorCount = %d ; lat = %@ ; long = %@", name, venueid, mayor, mayorCount, geolat, geolong];
+    return [NSString stringWithFormat:@"name=%@ ; venueid=%@ ; mayor=%@ ; mayorCount = %d ; lat = %@ ; long = %@; peopleHere: %@", name, venueid, mayor, mayorCount, geolat, geolong, peopleHere];
 }
 
 - (NSString*) addressWithCrossstreet {

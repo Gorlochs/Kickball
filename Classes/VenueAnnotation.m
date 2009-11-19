@@ -11,15 +11,15 @@
 
 @implementation VenueAnnotation
 
-@synthesize coordinate;
+@synthesize coordinate, title, subtitle;
 
-- (NSString *)subtitle{
-	return nil;
-}
+//- (NSString *)subtitle{
+//	return nil;
+//}
 
-- (NSString *)title{
-	return nil;
-}
+//- (NSString *)title{
+//	return nil;
+//}
 
 -(id)initWithCoordinate:(CLLocationCoordinate2D) c{
 	coordinate = c;

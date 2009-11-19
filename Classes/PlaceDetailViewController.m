@@ -48,7 +48,11 @@
     isUserCheckedIn = NO;
     isPingOn = YES;
     isTwitterOn = YES;
-
+    
+    // this is to clear out the placeholder text, which is useful in IB
+    venueName.text = @"";
+    venueAddress.text = @"";
+    
        //mayorImage.image = venue.
     
     if(![[FoursquareAPI sharedInstance] isAuthenticated]){
@@ -60,6 +64,7 @@
 }
 
 - (void)venueResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+    NSLog(@"venue response string: %@", inString);
 	self.venue = [FoursquareAPI venueFromResponseXML:inString];
     [self prepViewWithVenueInfo:self.venue];
 
@@ -95,6 +100,9 @@
         mayorMapCell.imageView.image = img;
         [img release];
         mayorNameLabel.text = venueToDisplay.mayor.firstnameLastInitial;
+    } else {
+        // TODO: get Mikula to make this all pretty and stuff
+        mayorNameLabel.text = @"no mayor";
     }
     
     if (venueToDisplay.twitter == nil || [venueToDisplay.twitter isEqualToString:@""]) {
@@ -192,7 +200,10 @@
         FSUser *user = ((FSUser*)[venue.peopleHere objectAtIndex:indexPath.row]);
         cell.textLabel.text = user.firstnameLastInitial;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:user.photo]];
+        NSData *data = nil;
+        if (user.photo) {
+            data = [NSData dataWithContentsOfURL:[NSURL URLWithString:user.photo]];
+        }
         UIImage *img = [[UIImage alloc] initWithData:data];
         cell.imageView.image = img;
         [img release];
@@ -305,7 +316,7 @@
 
 // TODO: pull in correct phone number
 - (void) callVenue {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel:503-555-1212"]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", venue.phone]]];
 }
 
 - (void) uploadImageToServer {
@@ -342,7 +353,7 @@
 	self.checkin = [FoursquareAPI checkinsFromResponseXML:inString];
     NSLog(@"checkin: %@", checkin);
     isUserCheckedIn = YES;
-	//[theTableView reloadData];
+	[theTableView reloadData];
 }
 
 // these two methods arte a bit counterintuitive. the selected state is currently off/false, while the unselected state is on/true
