@@ -77,7 +77,7 @@
     region.span = span;
     region.center = location;
     
-    [mapView setRegion:region animated:TRUE];
+    [mapView setRegion:region animated:NO];
     [mapView regionThatFits:region];
     
     VenueAnnotation *venueAnnotation = [[VenueAnnotation alloc] initWithCoordinate:location];

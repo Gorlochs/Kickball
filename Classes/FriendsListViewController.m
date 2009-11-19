@@ -279,8 +279,9 @@
 
 - (IBAction) flipToMap {
     FriendsMapViewController *mapViewController = [[FriendsMapViewController alloc] initWithNibName:@"FriendsMapView" bundle:nil];
+    mapViewController.checkins = self.checkins;
     [self.navigationController pushViewController:mapViewController animated:YES];
-	mapViewController.checkins = self.checkins;
+    [mapViewController release];
 }
 
 - (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {

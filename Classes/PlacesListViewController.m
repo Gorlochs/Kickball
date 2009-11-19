@@ -8,6 +8,7 @@
 
 #import "PlacesListViewController.h"
 #import "PlaceDetailViewController.h"
+#import "PlacesMapViewController.h"
 #import "FoursquareAPI.h"
 
 @interface PlacesListViewController (Private)
@@ -183,6 +184,14 @@
     }
 }
 
+- (void) flipToMap {
+    PlacesMapViewController *mapViewController = [[PlacesMapViewController alloc] initWithNibName:@"PlacesMapView" bundle:nil];
+    // TODO: do we need to combine both items in the venues array?
+	mapViewController.venues = [self.venues objectAtIndex:0];
+    [self.navigationController pushViewController:mapViewController animated:YES];
+    [mapViewController release];
+}
+
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -215,7 +224,6 @@
     
     // passing in indexPath.section chooses the proper venue array to display in the appropriate section
     if ([venues count] >= indexPath.section) {
-        NSLog(@"setting up cell for section: %d", indexPath.section);
         FSVenue *venue = (FSVenue*) [(NSArray*)[venues objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
         cell.textLabel.text = venue.name;
         cell.detailTextLabel.text = venue.addressWithCrossstreet;

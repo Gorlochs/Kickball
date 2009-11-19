@@ -62,6 +62,7 @@
 	[checkins release];
 	checkins = checkin;
 	[checkins retain];
+    // TODO: center map on user's coordinate, which will be pulled from [FoursquareAPI user] or something
 	[self refreshFriendPoints];
 }
 

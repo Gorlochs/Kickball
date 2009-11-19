@@ -30,6 +30,7 @@ typedef enum {
 @property (nonatomic, retain) CLLocation *bestEffortAtLocation;
 @property (nonatomic, retain) NSArray *venues;
 
--(IBAction)searchOnKeywordsandLatLong;
+- (IBAction) searchOnKeywordsandLatLong;
+- (IBAction) flipToMap;
 
 @end
