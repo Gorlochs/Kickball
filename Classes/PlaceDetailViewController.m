@@ -44,8 +44,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // TODO: need a way to persist this? What is the business logic for displaying each cell?
+    // TODO: need a way to persist these? What is the business logic for displaying each cell?
     isUserCheckedIn = NO;
+    isPingOn = YES;
+    isTwitterOn = YES;
 
        //mayorImage.image = venue.
     
@@ -326,7 +328,12 @@
 		//run sheet to log in.
 		NSLog(@"Foursquare is not authenticated");
 	} else {
-		[[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:venue.venueid andShout:nil offGrid:NO withTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
+		[[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:venue.venueid 
+                                                      andShout:nil 
+                                                       offGrid:!isPingOn
+                                                     toTwitter:isTwitterOn
+                                                    withTarget:self 
+                                                     andAction:@selector(checkinResponseReceived:withResponseString:)];
 	}
 }
 
@@ -338,14 +345,17 @@
 	//[theTableView reloadData];
 }
 
+// these two methods arte a bit counterintuitive. the selected state is currently off/false, while the unselected state is on/true
 - (void) togglePing {
     isPingOn = !isPingOn;
-    pingToggleButton.selected = isPingOn;
+    pingToggleButton.selected = !isPingOn;
+    NSLog(@"is ping on: %d", isPingOn);
 }
 
 - (void) toggleTwitter {
     isTwitterOn = !isTwitterOn;
-    twitterToggleButton.selected = isTwitterOn;
+    twitterToggleButton.selected = !isTwitterOn;
+    NSLog(@"is twitter on: %d", isTwitterOn);
 }
 
 #pragma mark Image Picker Delegate methods
