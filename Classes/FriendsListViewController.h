@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "FriendsMapViewController.h"
 
-@interface FriendsListViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource> {
+@interface FriendsListViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
     IBOutlet UITableView *theTableView;
+    IBOutlet UITextField *shoutField;
 	NSArray * checkins;
 	NSMutableArray * recentCheckins;
 	NSMutableArray * todayCheckins;
@@ -26,5 +27,6 @@
 - (IBAction) checkin;
 - (IBAction) flipToMap;
 - (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString;
+- (IBAction) shout;
 
 @end

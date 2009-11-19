@@ -319,6 +319,33 @@
 	[self.theTableView reloadData];
 }
 
+- (void) shout {
+    if ([shoutField.text length] > 0) {
+        if(![[FoursquareAPI sharedInstance] isAuthenticated]){
+            //run sheet to log in.
+            NSLog(@"Foursquare is not authenticated");
+        } else {
+            [[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:nil 
+                                                          andShout:shoutField.text 
+                                                           offGrid:NO
+                                                         toTwitter:NO
+                                                        withTarget:self 
+                                                         andAction:@selector(shoutResponseReceived:withResponseString:)];
+        }
+    } else {
+        NSLog(@"no text in shout field");
+    }
+}
+
+- (void)shoutResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+    NSLog(@"instring: %@", inString);
+	NSArray *shoutCheckins = [FoursquareAPI checkinsFromResponseXML:inString];
+    NSLog(@"shoutCheckins: %@", shoutCheckins);
+    [shoutField resignFirstResponder];
+//    isUserCheckedIn = YES;
+    // TODO: display some notification to user to let them know that the shout was sent
+    [theTableView reloadData];
+}
 
 @end
 
