@@ -27,10 +27,15 @@
     IBOutlet UILabel *mayorNameLabel;
     IBOutlet UIButton *twitterButton;
     
+    IBOutlet UIButton *pingToggleButton;
+    IBOutlet UIButton *twitterToggleButton;
+    
     FSVenue *venue;
     NSString *venueId;
     
     bool isUserCheckedIn;
+    bool isPingOn;
+    bool isTwitterOn;
 }
 
 @property (nonatomic, retain) UITableViewCell *mayorMapCell;
@@ -43,5 +48,7 @@
 - (IBAction) uploadImageToServer;
 - (IBAction) showTwitterFeed;
 - (IBAction) checkinToVenue;
+- (IBAction) togglePing;
+- (IBAction) toggleTwitter;
 
 @end

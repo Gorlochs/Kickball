@@ -337,6 +337,16 @@
 	//[theTableView reloadData];
 }
 
+- (IBAction) togglePing {
+    isPingOn = !isPingOn;
+    pingToggleButton.selected = isPingOn;
+}
+
+- (IBAction) toggleTwitter {
+    isTwitterOn = !isTwitterOn;
+    twitterToggleButton.selected = isTwitterOn;
+}
+
 #pragma mark Image Picker Delegate methods
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
