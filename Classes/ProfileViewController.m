@@ -49,7 +49,8 @@
 
 - (void)userResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
 	user = [FoursquareAPI userFromResponseXML:inString];
-    nameLocation.text = user.firstnameLastInitial;
+    name.text = user.firstnameLastInitial;
+//    location.text = user.
     
     // user icon
     NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:user.photo]];
@@ -96,7 +97,7 @@
 	// Release any cached data, images, etc that aren't in use.
     theTableView = nil;
     
-    nameLocation = nil;
+    name = nil;
     lastCheckinAddress = nil;
     nightsOut = nil;
     totalCheckins = nil;
@@ -106,7 +107,7 @@
 - (void)viewDidUnload {
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
-    nameLocation = nil;
+    name = nil;
     lastCheckinAddress = nil;
     nightsOut = nil;
     totalCheckins = nil;
@@ -117,7 +118,7 @@
 - (void)dealloc {
     [theTableView release];
     
-    [nameLocation release];
+    [name release];
     [lastCheckinAddress release];
     [nightsOut release];
     [totalCheckins release];

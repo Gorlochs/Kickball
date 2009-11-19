@@ -26,6 +26,7 @@
 
 @synthesize mayorMapCell;
 @synthesize venue;
+@synthesize checkin;
 @synthesize venueId;
 @synthesize checkinCell;
 @synthesize giftShoutCell;
@@ -330,19 +331,19 @@
 }
 
 - (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    NSLog(@"%@", inString);
-	//self.venue = [FoursquareAPI checkinsFromResponseXML:inString];
-    //[self prepViewWithVenueInfo:self.venue];
+    NSLog(@"instring: %@", inString);
+	self.checkin = [FoursquareAPI checkinsFromResponseXML:inString];
+    NSLog(@"checkin: %@", checkin);
     isUserCheckedIn = YES;
 	//[theTableView reloadData];
 }
 
-- (IBAction) togglePing {
+- (void) togglePing {
     isPingOn = !isPingOn;
     pingToggleButton.selected = isPingOn;
 }
 
-- (IBAction) toggleTwitter {
+- (void) toggleTwitter {
     isTwitterOn = !isTwitterOn;
     twitterToggleButton.selected = isTwitterOn;
 }

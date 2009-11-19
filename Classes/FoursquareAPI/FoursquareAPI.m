@@ -169,7 +169,7 @@ static FoursquareAPI *sharedInstance = nil;
 	} else {
 		[params addObject:[[MPURLRequestParameter alloc] initWithName:@"private" andValue:@"0"]];
 	}
-	
+	NSLog(@"checkin params: %@", params);
 	[self.oauthAPI performMethod:@"/v1/checkin" withTarget:inTarget withParameters:params andAction:inAction];
 }
 

@@ -125,6 +125,7 @@
         // TODO: I'm not sure that this is the best way to do this with 3.x - there might be a better way to do it now
         UIViewController *vc = [[UIViewController alloc]initWithNibName:@"FriendsListTableCellView" bundle:nil];
         cell = (FriendsListTableCell*) vc.view;
+        cell.selectionStyle = UITableViewCellSelectionStyleGray;\
         [vc release];
     }
     

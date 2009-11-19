@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-#import "FSVenue.h";
+#import "FSVenue.h"
 #import "KBBaseViewController.h"
 
 // just testing this snippet out that I picked up somewhere
@@ -30,6 +30,7 @@
     IBOutlet UIButton *pingToggleButton;
     IBOutlet UIButton *twitterToggleButton;
     
+    NSArray *checkin;
     FSVenue *venue;
     NSString *venueId;
     
@@ -41,6 +42,7 @@
 @property (nonatomic, retain) UITableViewCell *mayorMapCell;
 @property (nonatomic, retain) UITableViewCell *checkinCell;
 @property (nonatomic, retain) UITableViewCell *giftShoutCell;
+@property (nonatomic, retain) NSArray *checkin;
 @property (nonatomic, retain) FSVenue *venue;
 @property (nonatomic, retain) NSString *venueId;
 

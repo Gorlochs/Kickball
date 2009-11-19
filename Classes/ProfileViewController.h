@@ -16,7 +16,8 @@
     NSString *userId;
     FSUser *user;
     
-    IBOutlet UILabel *nameLocation;
+    IBOutlet UILabel *name;
+    IBOutlet UILabel *location;
     IBOutlet UILabel *lastCheckinAddress;
     IBOutlet UILabel *nightsOut;
     IBOutlet UILabel *totalCheckins;
