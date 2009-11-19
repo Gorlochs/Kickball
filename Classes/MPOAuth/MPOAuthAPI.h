@@ -78,6 +78,10 @@ typedef enum {
 - (void)performMethod:(NSString *)inMethod withTarget:(id)inTarget andAction:(SEL)inAction;
 - (void)performMethod:(NSString *)inMethod atURL:(NSURL *)inURL withParameters:(NSArray *)inParameters withTarget:(id)inTarget andAction:(SEL)inAction;
 
+- (void)performMethod:(NSString *)inMethod withTarget:(id)inTarget andAction:(SEL)inAction doPost:(BOOL)inPost;
+- (void)performMethod:(NSString *)inMethod withTarget:(id)inTarget withParameters:(NSArray *)inParameters andAction:(SEL)inAction doPost:(BOOL)inPost;
+- (void)performMethod:(NSString *)inMethod atURL:(NSURL *)inURL withParameters:(NSArray *)inParameters withTarget:(id)inTarget andAction:(SEL)inAction doPost:(BOOL)inPost;
+
 - (NSData *)dataForMethod:(NSString *)inMethod;
 - (NSData *)dataForMethod:(NSString *)inMethod withParameters:(NSArray *)inParameters;
 - (NSData *)dataForURL:(NSURL *)inURL andMethod:(NSString *)inMethod withParameters:(NSArray *)inParameters;
