@@ -12,7 +12,7 @@
 
 @implementation PlacesMapViewController
 
-@synthesize mapViewer;
+@synthesize mapViewer, bestEffortAtLocation;
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -119,6 +119,27 @@
 //    //pin.animatesDrop = YES;
 //    return pin;
 //}
+
+#pragma mark IBAction methods
+
+-(void)searchOnKeywordsandLatLong {
+    [searchbox resignFirstResponder];
+    if (![searchbox.text isEqualToString:@""]) {
+        // TODO: I am just replacing a space with a +, but other characters might give this method a headache.
+        [[FoursquareAPI sharedInstance] getVenuesByKeyword:[NSString stringWithFormat:@"%f",bestEffortAtLocation.coordinate.latitude] 
+                                              andLongitude:[NSString stringWithFormat:@"%f",bestEffortAtLocation.coordinate.longitude] 
+                                               andKeywords:[searchbox.text stringByReplacingOccurrencesOfString:@" " withString:@"+"]
+                                                withTarget:self 
+                                                 andAction:@selector(venuesResponseReceived:withResponseString:)
+         ];
+    }
+}
+- (void)venuesResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+	NSArray *allVenues = [FoursquareAPI venuesFromResponseXML:inString];
+	self.venues = [[allVenues copy] objectAtIndex:0];
+    //[self refreshVenuePoints];
+}
+
 
 - (void)dealloc {
     [venues release];

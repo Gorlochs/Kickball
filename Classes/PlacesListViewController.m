@@ -121,6 +121,10 @@
 	NSArray *allVenues = [FoursquareAPI venuesFromResponseXML:inString];
 	self.venues = [allVenues copy];
 	[theTableView reloadData];
+    
+    //move table to new entry
+    NSUInteger indexArr[] = {0,0};
+    [theTableView scrollToRowAtIndexPath:[NSIndexPath indexPathWithIndexes:indexArr length:2] atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
