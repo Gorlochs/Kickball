@@ -147,9 +147,10 @@
     [searchbox resignFirstResponder];
     venuesTypeToDisplay = KBSearchVenues;
     if (![searchbox.text isEqualToString:@""]) {
+        // TODO: I am just replacing a space with a +, but other characters might give this method a headache.
         [[FoursquareAPI sharedInstance] getVenuesByKeyword:[NSString stringWithFormat:@"%f",bestEffortAtLocation.coordinate.latitude] 
                                               andLongitude:[NSString stringWithFormat:@"%f",bestEffortAtLocation.coordinate.longitude] 
-                                               andKeywords:searchbox.text
+                                               andKeywords:[searchbox.text stringByReplacingOccurrencesOfString:@" " withString:@"+"]
                                                 withTarget:self 
                                                  andAction:@selector(venuesResponseReceived:withResponseString:)
          ];
