@@ -36,9 +36,7 @@
 */
 
 - (void)viewDidLoad {
-    [super viewDidLoad];	
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [super viewDidLoad];
 }
 
 
@@ -57,26 +55,6 @@
 		[[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
 	}
 }
-
-
-/*
-- (void)viewWillDisappear:(BOOL)animated {
-	[super viewWillDisappear:animated];
-}
-*/
-/*
-- (void)viewDidDisappear:(BOOL)animated {
-	[super viewDidDisappear:animated];
-}
-*/
-
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -125,7 +103,7 @@
         // TODO: I'm not sure that this is the best way to do this with 3.x - there might be a better way to do it now
         UIViewController *vc = [[UIViewController alloc]initWithNibName:@"FriendsListTableCellView" bundle:nil];
         cell = (FriendsListTableCell*) vc.view;
-        cell.selectionStyle = UITableViewCellSelectionStyleGray;\
+        cell.selectionStyle = UITableViewCellSelectionStyleGray;
         [vc release];
     }
     
@@ -214,6 +192,7 @@
             break;
     }
     
+    [theTableView deselectRowAtIndexPath:indexPath animated:YES];
 	PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];
 	//handle off the grid checkins.
 	if (venue.venueid != nil) {
@@ -297,12 +276,14 @@
     
     NSDate *threeHoursFromNow = [[NSDate alloc] initWithTimeIntervalSinceNow:-60*60*3];
     NSDate *twentyfourHoursFromNow = [[NSDate alloc] initWithTimeIntervalSinceNow:-60*60*24];
+    threeHoursFromNow = [self convertToUTC:threeHoursFromNow];
+    twentyfourHoursFromNow = [self convertToUTC:twentyfourHoursFromNow];
     
     for (FSCheckin *checkin in checkins) {
         NSDate *date = [dateFormatter dateFromString:checkin.created];
         if ([date compare:threeHoursFromNow] == NSOrderedDescending) {
             [recentCheckins addObject:checkin];
-        } else if ([date compare:threeHoursFromNow] == NSOrderedAscending  && [date compare:twentyfourHoursFromNow] == NSOrderedDescending) {
+        } else if ([date compare:threeHoursFromNow] == NSOrderedAscending && [date compare:twentyfourHoursFromNow] == NSOrderedDescending) {
             [todayCheckins addObject:checkin];
         } else {
             [yesterdayCheckins addObject:checkin];
@@ -313,8 +294,8 @@
     NSLog(@"today checkins: %d", [todayCheckins count]);
     NSLog(@"yesterday checkins: %d", [yesterdayCheckins count]);
     
-    [threeHoursFromNow release];
-    [twentyfourHoursFromNow release];
+//    [threeHoursFromNow release];
+//    [twentyfourHoursFromNow release];
     [dateFormatter release];
 	[self.theTableView reloadData];
 }
