@@ -85,6 +85,8 @@
 		6A044CB7109545450063FC33 /* FriendsMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A044CB5109545450063FC33 /* FriendsMapView.xib */; };
 		6A0D9FAF109D97B300F9E1D6 /* UploadGiftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A0D9FAD109D97B300F9E1D6 /* UploadGiftViewController.m */; };
 		6A0D9FB0109D97B300F9E1D6 /* UploadGiftViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A0D9FAE109D97B300F9E1D6 /* UploadGiftViewController.xib */; };
+		6A12EC6110B772D60013BA52 /* GeoApiDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A12EC6010B772D60013BA52 /* GeoApiDetailsViewController.m */; };
+		6A12EC6310B772FA0013BA52 /* GeoApiDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A12EC6210B772FA0013BA52 /* GeoApiDetailsView.xib */; };
 		6A1526C71096BD7E00924D0E /* FriendsListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A1526C61096BD7E00924D0E /* FriendsListTableCell.m */; };
 		6A1526C91096BDB300924D0E /* FriendsListTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A1526C81096BDB300924D0E /* FriendsListTableCellView.xib */; };
 		6A1527081096C27200924D0E /* temp-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A1527071096C27200924D0E /* temp-icon.png */; };
@@ -151,8 +153,20 @@
 		6A39EB6110965868006F76C3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A39EB6010965868006F76C3 /* CoreLocation.framework */; };
 		6A39EB6310965868006F76C3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A39EB6210965868006F76C3 /* SystemConfiguration.framework */; };
 		6A39EC4E109662E5006F76C3 /* tmp-header.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A39EC4D109662E5006F76C3 /* tmp-header.png */; };
+		6A402A9F10B755B200D9BCEB /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A402A8C10B755B200D9BCEB /* NSObject+SBJSON.m */; };
+		6A402AA010B755B200D9BCEB /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A402A8E10B755B200D9BCEB /* NSString+SBJSON.m */; };
+		6A402AA110B755B200D9BCEB /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A402A9010B755B200D9BCEB /* SBJSON.m */; };
+		6A402AA210B755B200D9BCEB /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A402A9210B755B200D9BCEB /* SBJsonBase.m */; };
+		6A402AA310B755B200D9BCEB /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A402A9410B755B200D9BCEB /* SBJsonParser.m */; };
+		6A402AA410B755B200D9BCEB /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A402A9610B755B200D9BCEB /* SBJsonWriter.m */; };
+		6A402AA510B755B200D9BCEB /* GAConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A402A9A10B755B200D9BCEB /* GAConnectionManager.m */; };
+		6A402AA610B755B200D9BCEB /* GAParent.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A402A9C10B755B200D9BCEB /* GAParent.m */; };
+		6A402AA710B755B200D9BCEB /* GAPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A402A9E10B755B200D9BCEB /* GAPlace.m */; };
+		6A402B2F10B769A800D9BCEB /* GeoApiTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A402B2D10B769A800D9BCEB /* GeoApiTableViewController.m */; };
+		6A402B3010B769A900D9BCEB /* GeoApiTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A402B2E10B769A800D9BCEB /* GeoApiTableViewController.xib */; };
 		6A55B4D010B36EC60005E934 /* KBBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A55B4CF10B36EC60005E934 /* KBBaseViewController.m */; };
 		6A55B4FC10B3B4BA0005E934 /* tmp-checkin.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A55B4FB10B3B4BA0005E934 /* tmp-checkin.png */; };
+		6A5F8F3C10B7707100914709 /* GeoAPIView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A5F8F3B10B7707100914709 /* GeoAPIView.xib */; };
 		6A7ED9F710A91DC9002FB1DC /* VenueAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A7ED9F610A91DC9002FB1DC /* VenueAnnotation.m */; };
 		6A8AC8F1109AB31400C4FE1B /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A8AC8EF109AB31400C4FE1B /* ProfileViewController.m */; };
 		6A8CE6BE10B52AC000BE05F9 /* KBPin.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A8CE6BD10B52AC000BE05F9 /* KBPin.m */; };
@@ -348,6 +362,9 @@
 		6A0D9FAC109D97B300F9E1D6 /* UploadGiftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadGiftViewController.h; sourceTree = "<group>"; };
 		6A0D9FAD109D97B300F9E1D6 /* UploadGiftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadGiftViewController.m; sourceTree = "<group>"; };
 		6A0D9FAE109D97B300F9E1D6 /* UploadGiftViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = UploadGiftViewController.xib; path = Classes/UploadGiftViewController.xib; sourceTree = "<group>"; };
+		6A12EC5F10B772D60013BA52 /* GeoApiDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeoApiDetailsViewController.h; sourceTree = "<group>"; };
+		6A12EC6010B772D60013BA52 /* GeoApiDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeoApiDetailsViewController.m; sourceTree = "<group>"; };
+		6A12EC6210B772FA0013BA52 /* GeoApiDetailsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeoApiDetailsView.xib; sourceTree = "<group>"; };
 		6A1526C51096BD7E00924D0E /* FriendsListTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsListTableCell.h; sourceTree = "<group>"; };
 		6A1526C61096BD7E00924D0E /* FriendsListTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsListTableCell.m; sourceTree = "<group>"; };
 		6A1526C81096BDB300924D0E /* FriendsListTableCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendsListTableCellView.xib; sourceTree = "<group>"; };
@@ -417,9 +434,33 @@
 		6A39EB6010965868006F76C3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = /System/Library/Frameworks/CoreLocation.framework; sourceTree = "<absolute>"; };
 		6A39EB6210965868006F76C3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = /System/Library/Frameworks/SystemConfiguration.framework; sourceTree = "<absolute>"; };
 		6A39EC4D109662E5006F76C3 /* tmp-header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tmp-header.png"; sourceTree = "<group>"; };
+		6A402A8A10B755B200D9BCEB /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
+		6A402A8B10B755B200D9BCEB /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
+		6A402A8C10B755B200D9BCEB /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
+		6A402A8D10B755B200D9BCEB /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SBJSON.h"; sourceTree = "<group>"; };
+		6A402A8E10B755B200D9BCEB /* NSString+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SBJSON.m"; sourceTree = "<group>"; };
+		6A402A8F10B755B200D9BCEB /* SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJSON.h; sourceTree = "<group>"; };
+		6A402A9010B755B200D9BCEB /* SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJSON.m; sourceTree = "<group>"; };
+		6A402A9110B755B200D9BCEB /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
+		6A402A9210B755B200D9BCEB /* SBJsonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonBase.m; sourceTree = "<group>"; };
+		6A402A9310B755B200D9BCEB /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
+		6A402A9410B755B200D9BCEB /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
+		6A402A9510B755B200D9BCEB /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
+		6A402A9610B755B200D9BCEB /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		6A402A9810B755B200D9BCEB /* GAConnectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAConnectionDelegate.h; sourceTree = "<group>"; };
+		6A402A9910B755B200D9BCEB /* GAConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAConnectionManager.h; sourceTree = "<group>"; };
+		6A402A9A10B755B200D9BCEB /* GAConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAConnectionManager.m; sourceTree = "<group>"; };
+		6A402A9B10B755B200D9BCEB /* GAParent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAParent.h; sourceTree = "<group>"; };
+		6A402A9C10B755B200D9BCEB /* GAParent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAParent.m; sourceTree = "<group>"; };
+		6A402A9D10B755B200D9BCEB /* GAPlace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAPlace.h; sourceTree = "<group>"; };
+		6A402A9E10B755B200D9BCEB /* GAPlace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAPlace.m; sourceTree = "<group>"; };
+		6A402B2C10B769A800D9BCEB /* GeoApiTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeoApiTableViewController.h; sourceTree = "<group>"; };
+		6A402B2D10B769A800D9BCEB /* GeoApiTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeoApiTableViewController.m; sourceTree = "<group>"; };
+		6A402B2E10B769A800D9BCEB /* GeoApiTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GeoApiTableViewController.xib; path = Classes/GeoApiTableViewController.xib; sourceTree = "<group>"; };
 		6A55B4CE10B36EC60005E934 /* KBBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBBaseViewController.h; sourceTree = "<group>"; };
 		6A55B4CF10B36EC60005E934 /* KBBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBBaseViewController.m; sourceTree = "<group>"; };
 		6A55B4FB10B3B4BA0005E934 /* tmp-checkin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tmp-checkin.png"; sourceTree = "<group>"; };
+		6A5F8F3B10B7707100914709 /* GeoAPIView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GeoAPIView.xib; sourceTree = "<group>"; };
 		6A7ED9F510A91DC9002FB1DC /* VenueAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VenueAnnotation.h; sourceTree = "<group>"; };
 		6A7ED9F610A91DC9002FB1DC /* VenueAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueAnnotation.m; sourceTree = "<group>"; };
 		6A8AC8EE109AB31400C4FE1B /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
@@ -513,6 +554,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				6A402A8910B755B200D9BCEB /* JSON */,
+				6A402A9710B755B200D9BCEB /* GeoAPI */,
 				553C50FD10A1BD5000A74641 /* FoursquareAPI */,
 				553C510810A1BD5000A74641 /* MPOAuth */,
 				553C512E10A1BD5000A74641 /* tidy */,
@@ -568,13 +611,16 @@
 				6A044CB5109545450063FC33 /* FriendsMapView.xib */,
 				6AC7E93010994FD000776993 /* PlaceDetailView.xib */,
 				6AF96710109AA32700EF665D /* ProfileView.xib */,
+				6A5F8F3B10B7707100914709 /* GeoAPIView.xib */,
 				6AFF23F010A247B100CD30E5 /* PlaceTwitterViewController.xib */,
+				6A402B2E10B769A800D9BCEB /* GeoApiTableViewController.xib */,
 				8D1107310486CEB800E47090 /* Kickball-Info.plist */,
 				6AC5817A10B517FB0043B90C /* PlacesMapView.xib */,
 				6A0D9FAE109D97B300F9E1D6 /* UploadGiftViewController.xib */,
 				6ABA7857109BDCAF001E7293 /* PlacesListViewController.xib */,
 				6A1526C81096BDB300924D0E /* FriendsListTableCellView.xib */,
 				6AE611A3109AA462008ABF79 /* ProfileMainTableCellView.xib */,
+				6A12EC6210B772FA0013BA52 /* GeoApiDetailsView.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -822,6 +868,17 @@
 			name = Gift;
 			sourceTree = "<group>";
 		};
+		6A12EC5E10B772B60013BA52 /* GeoAPI related */ = {
+			isa = PBXGroup;
+			children = (
+				6A402B2C10B769A800D9BCEB /* GeoApiTableViewController.h */,
+				6A402B2D10B769A800D9BCEB /* GeoApiTableViewController.m */,
+				6A12EC5F10B772D60013BA52 /* GeoApiDetailsViewController.h */,
+				6A12EC6010B772D60013BA52 /* GeoApiDetailsViewController.m */,
+			);
+			name = "GeoAPI related";
+			sourceTree = "<group>";
+		};
 		6A209FE510B4C7D9000B5B7D /* real */ = {
 			isa = PBXGroup;
 			children = (
@@ -924,6 +981,40 @@
 			name = temp;
 			sourceTree = "<group>";
 		};
+		6A402A8910B755B200D9BCEB /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				6A402A8A10B755B200D9BCEB /* JSON.h */,
+				6A402A8B10B755B200D9BCEB /* NSObject+SBJSON.h */,
+				6A402A8C10B755B200D9BCEB /* NSObject+SBJSON.m */,
+				6A402A8D10B755B200D9BCEB /* NSString+SBJSON.h */,
+				6A402A8E10B755B200D9BCEB /* NSString+SBJSON.m */,
+				6A402A8F10B755B200D9BCEB /* SBJSON.h */,
+				6A402A9010B755B200D9BCEB /* SBJSON.m */,
+				6A402A9110B755B200D9BCEB /* SBJsonBase.h */,
+				6A402A9210B755B200D9BCEB /* SBJsonBase.m */,
+				6A402A9310B755B200D9BCEB /* SBJsonParser.h */,
+				6A402A9410B755B200D9BCEB /* SBJsonParser.m */,
+				6A402A9510B755B200D9BCEB /* SBJsonWriter.h */,
+				6A402A9610B755B200D9BCEB /* SBJsonWriter.m */,
+			);
+			path = JSON;
+			sourceTree = "<group>";
+		};
+		6A402A9710B755B200D9BCEB /* GeoAPI */ = {
+			isa = PBXGroup;
+			children = (
+				6A402A9810B755B200D9BCEB /* GAConnectionDelegate.h */,
+				6A402A9910B755B200D9BCEB /* GAConnectionManager.h */,
+				6A402A9A10B755B200D9BCEB /* GAConnectionManager.m */,
+				6A402A9B10B755B200D9BCEB /* GAParent.h */,
+				6A402A9C10B755B200D9BCEB /* GAParent.m */,
+				6A402A9D10B755B200D9BCEB /* GAPlace.h */,
+				6A402A9E10B755B200D9BCEB /* GAPlace.m */,
+			);
+			path = GeoAPI;
+			sourceTree = "<group>";
+		};
 		6A55B4CC10B36E9A0005E934 /* General */ = {
 			isa = PBXGroup;
 			children = (
@@ -999,6 +1090,7 @@
 		6AC7E92D10994FB500776993 /* Place */ = {
 			isa = PBXGroup;
 			children = (
+				6A12EC5E10B772B60013BA52 /* GeoAPI related */,
 				6AC7E92E10994FD000776993 /* PlaceDetailViewController.h */,
 				6AC7E92F10994FD000776993 /* PlaceDetailViewController.m */,
 				6ABA7855109BDCAF001E7293 /* PlacesListViewController.h */,
@@ -1072,6 +1164,8 @@
 				6A044CB7109545450063FC33 /* FriendsMapView.xib in Resources */,
 				6AE61217109AB04C008ABF79 /* ProfileView.xib in Resources */,
 				6A1526C91096BDB300924D0E /* FriendsListTableCellView.xib in Resources */,
+				6A5F8F3C10B7707100914709 /* GeoAPIView.xib in Resources */,
+				6A402B3010B769A900D9BCEB /* GeoApiTableViewController.xib in Resources */,
 				6AC7E93210994FD000776993 /* PlaceDetailView.xib in Resources */,
 				6A39EC4E109662E5006F76C3 /* tmp-header.png in Resources */,
 				6A1527081096C27200924D0E /* temp-icon.png in Resources */,
@@ -1146,6 +1240,7 @@
 				6A20A06B10B4C7F4000B5B7D /* pin02.png in Resources */,
 				6A20A06C10B4C7F4000B5B7D /* pin03.png in Resources */,
 				6A20A06D10B4C7F4000B5B7D /* yelp-arrow.png in Resources */,
+				6A12EC6310B772FA0013BA52 /* GeoApiDetailsView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1250,6 +1345,17 @@
 				5550EE1D10B4FA3A0065C925 /* FSScore.m in Sources */,
 				6AC5817B10B517FB0043B90C /* PlacesMapViewController.m in Sources */,
 				6A8CE6BE10B52AC000BE05F9 /* KBPin.m in Sources */,
+				6A402A9F10B755B200D9BCEB /* NSObject+SBJSON.m in Sources */,
+				6A402AA010B755B200D9BCEB /* NSString+SBJSON.m in Sources */,
+				6A402AA110B755B200D9BCEB /* SBJSON.m in Sources */,
+				6A402AA210B755B200D9BCEB /* SBJsonBase.m in Sources */,
+				6A402AA310B755B200D9BCEB /* SBJsonParser.m in Sources */,
+				6A402AA410B755B200D9BCEB /* SBJsonWriter.m in Sources */,
+				6A402AA510B755B200D9BCEB /* GAConnectionManager.m in Sources */,
+				6A402AA610B755B200D9BCEB /* GAParent.m in Sources */,
+				6A402AA710B755B200D9BCEB /* GAPlace.m in Sources */,
+				6A402B2F10B769A800D9BCEB /* GeoApiTableViewController.m in Sources */,
+				6A12EC6110B772D60013BA52 /* GeoApiDetailsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,6 +11,10 @@
 #import "PlaceTwitterViewController.h"
 #import "FoursquareAPI.h"
 #import "VenueAnnotation.h"
+#import "GAConnectionManager.h"
+#import "SBJSON.h"
+#import "GeoApiTableViewController.h"
+#import "GAPlace.h"
 
 @interface PlaceDetailViewController (Private)
 
@@ -367,6 +371,44 @@
     isTwitterOn = !isTwitterOn;
     twitterToggleButton.selected = !isTwitterOn;
     NSLog(@"is twitter on: %d", isTwitterOn);
+}
+
+- (void) doGeoAPICall {
+    GAConnectionManager *connectionManager_ = [[GAConnectionManager alloc] initWithAPIKey:@"K6afuuFTXK" delegate:self];
+    CLLocationCoordinate2D location = mapView.userLocation.coordinate;
+    
+    location.latitude =  [venue.geolat doubleValue];
+    location.longitude = [venue.geolong doubleValue];
+    [connectionManager_ requestBusinessesNearCoords:location withinRadius:200 maxResults:5];
+}
+
+// TODO: neaten this mess up
+- (void)receivedResponseString:(NSString *)responseString {
+//    NSLog(@"geoapi response string: %@", responseString);
+    SBJSON *parser = [SBJSON new];
+    id dict = [parser objectWithString:responseString error:NULL];
+    NSArray *array = [(NSDictionary*)dict objectForKey:@"entity"];
+    NSMutableArray *objArray = [[NSMutableArray alloc] initWithCapacity:[array count]];
+    for (NSDictionary *dict in array) {
+        GAPlace *place = [[GAPlace alloc] init];
+        place.guid = [dict objectForKey:@"guid"];
+        place.name = [[dict objectForKey:@"view.listing"] objectForKey:@"name"];
+        NSArray *tmp = [[dict objectForKey:@"view.listing"] objectForKey:@"address"];
+        place.address = [NSString stringWithFormat:@"%@, %@, %@", [tmp objectAtIndex:0], [tmp objectAtIndex:1], [tmp objectAtIndex:2]];
+        [objArray addObject:place];
+        [place release];
+        //NSLog(@"name: %@", [[dict objectForKey:@"view.listing"] objectForKey:@"name"]);
+    }
+    GeoApiTableViewController *vc = [[GeoApiTableViewController alloc] initWithNibName:@"GeoAPIView" bundle:nil];
+    vc.geoAPIResults = objArray;
+    [objArray release];
+    [self.navigationController pushViewController:vc animated:YES];
+    [vc release];
+    NSLog(@"dictionary?: %@", [(NSDictionary*)dict objectForKey:@"entity"]);
+}
+
+- (void)requestFailed:(NSError *)error {
+    NSLog(@"geoapi error string: %@", error);
 }
 
 #pragma mark Image Picker Delegate methods
