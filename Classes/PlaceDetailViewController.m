@@ -53,6 +53,8 @@
     isPingOn = YES;
     isTwitterOn = YES;
     
+    venueDetailButton.hidden = YES;
+    
     // this is to clear out the placeholder text, which is useful in IB
     venueName.text = @"";
     venueAddress.text = @"";
@@ -97,6 +99,8 @@
     
     venueName.text = venueToDisplay.name;
     venueAddress.text = venueToDisplay.addressWithCrossstreet;
+    
+    venueDetailButton.hidden = NO;
     
     if (venueToDisplay.mayor != nil) {
         NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:venueToDisplay.mayor.photo]];

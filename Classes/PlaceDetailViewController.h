@@ -30,6 +30,7 @@
     
     IBOutlet UIButton *pingToggleButton;
     IBOutlet UIButton *twitterToggleButton;
+    IBOutlet UIButton *venueDetailButton;
     
     NSArray *checkin;
     FSVenue *venue;
