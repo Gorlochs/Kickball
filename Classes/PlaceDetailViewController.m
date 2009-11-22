@@ -152,24 +152,27 @@
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 4;
+    return 5;
 }
 
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 2) {
-        // people here
+    if (section == 0) { // checkin
+        return !isUserCheckedIn;
+    } else if (section == 1) { // gift
+        return isUserCheckedIn;
+    } else if (section == 2) { // mayor
+        return 1;
+    } else if (section == 3) { // people here
         return [venue.peopleHere count];
-    } else if (section == 3) {
-        // tips
+    } else if (section == 4) { // tips
         return [venue.tips count];
     } else {
         return 1;
     }
 }
 
-// FIXME: i think somethign is screwed up with the cells since I am using one MayorMapCell and the rest are standard cells
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier = @"Cell";
@@ -178,12 +181,10 @@
     if (cell == nil) {
         // TODO: figure out why the switch doesn't work. very odd.
         if (indexPath.section == 0) {
-            if (isUserCheckedIn) {
-                return giftShoutCell;
-            } else {
-                return checkinCell;
-            }
+            return checkinCell;
         } else if (indexPath.section == 1) {
+            return giftShoutCell;
+        } else if (indexPath.section == 2) {
             return mayorMapCell;
         } else {
             cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
@@ -194,14 +195,12 @@
     // Set up the cell...
     if (indexPath.section == 0) {
         // this double call just doesn't sit right with me
-        if (isUserCheckedIn) {
-            return giftShoutCell;
-        } else {
-            return checkinCell;
-        }
+        return checkinCell;
     } else if (indexPath.section == 1) {
-        return mayorMapCell;
+        return giftShoutCell;
     } else if (indexPath.section == 2) {
+        return mayorMapCell;
+    } else if (indexPath.section == 3) {
         cell.detailTextLabel.numberOfLines = 1;
         cell.detailTextLabel.text = nil;
         cell.textLabel.font = [UIFont boldSystemFontOfSize:16];
@@ -215,7 +214,7 @@
         UIImage *img = [[UIImage alloc] initWithData:data];
         cell.imageView.image = img;
         [img release];
-    } else if (indexPath.section == 3) {
+    } else if (indexPath.section == 4) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         FSTip *tip = (FSTip*) [venue.tips objectAtIndex:indexPath.row];
         cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
@@ -233,10 +232,12 @@
         case 0:
             return 44;
         case 1:
-            return 62;
-        case 2:
             return 44;
+        case 2:
+            return 62;
         case 3:
+            return 44;
+        case 4:
             return 62;
         default:
             return 44;
@@ -268,13 +269,16 @@
             return nil;
             break;
         case 1:
+            return nil;
+            break;
+        case 2:
             // TODO: fix this
             headerLabel.text = @"  Mayor                                                                    Map";
             break;
-        case 2:
+        case 3:
             headerLabel.text = [NSString stringWithFormat:@"  %d People Here", [venue.peopleHere count]];
             break;
-        case 3:
+        case 4:
             headerLabel.text = @"  Tips";
             break;
         default:
@@ -386,6 +390,8 @@
     [connectionManager_ requestBusinessesNearCoords:location withinRadius:200 maxResults:5];
 }
 
+#pragma mark GeoAPI Delegate methods
+
 // TODO: neaten this mess up
 - (void)receivedResponseString:(NSString *)responseString {
 //    NSLog(@"geoapi response string: %@", responseString);
@@ -412,6 +418,7 @@
 }
 
 - (void)requestFailed:(NSError *)error {
+    // TODO: probably want to pop up error message for user
     NSLog(@"geoapi error string: %@", error);
 }
 
