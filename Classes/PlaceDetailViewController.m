@@ -33,7 +33,7 @@
 @synthesize checkin;
 @synthesize venueId;
 @synthesize checkinCell;
-@synthesize giftShoutCell;
+@synthesize giftCell;
 
 /*
 - (id)initWithStyle:(UITableViewStyle)style {
@@ -126,7 +126,7 @@
     theTableView = nil;
     mayorMapCell = nil;
     checkinCell = nil;
-    giftShoutCell = nil;
+    giftCell = nil;
     mapView = nil;
     venueName = nil;
     venueAddress = nil;
@@ -140,7 +140,7 @@
     theTableView = nil;
     mayorMapCell = nil;
     checkinCell = nil;
-    giftShoutCell = nil;
+    giftCell = nil;
     mapView = nil;
     venueName = nil;
     venueAddress = nil;
@@ -158,15 +158,19 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 0) { // checkin
-        return !isUserCheckedIn;
-    } else if (section == 1) { // gift
+    if (section == 0) { // points
         return isUserCheckedIn;
-    } else if (section == 2) { // mayor
+    } else if (section == 1) { // badge
+        return isUserCheckedIn;
+    } else if (section == 2) { // checkin
+        return !isUserCheckedIn;
+    } else if (section == 3) { // gift
+        return isUserCheckedIn;
+    } else if (section == 4) { // mayor
         return 1;
-    } else if (section == 3) { // people here
+    } else if (section == 5) { // people here
         return [venue.peopleHere count];
-    } else if (section == 4) { // tips
+    } else if (section == 6) { // tips
         return [venue.tips count];
     } else {
         return 1;
@@ -181,10 +185,14 @@
     if (cell == nil) {
         // TODO: figure out why the switch doesn't work. very odd.
         if (indexPath.section == 0) {
-            return checkinCell;
+            return pointsCell;
         } else if (indexPath.section == 1) {
-            return giftShoutCell;
+            return badgeCell;
         } else if (indexPath.section == 2) {
+            return checkinCell;
+        } else if (indexPath.section == 3) {
+            return giftCell;
+        } else if (indexPath.section == 4) {
             return mayorMapCell;
         } else {
             cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
@@ -194,13 +202,17 @@
     
     // Set up the cell...
     if (indexPath.section == 0) {
-        // this double call just doesn't sit right with me
-        return checkinCell;
+        // TODO: fill in the points the user received for checking in
+        return pointsCell;
     } else if (indexPath.section == 1) {
-        return giftShoutCell;
+        return badgeCell;
     } else if (indexPath.section == 2) {
-        return mayorMapCell;
+        return checkinCell;
     } else if (indexPath.section == 3) {
+        return giftCell;
+    } else if (indexPath.section == 4) {
+        return mayorMapCell;
+    } else if (indexPath.section == 5) {
         cell.detailTextLabel.numberOfLines = 1;
         cell.detailTextLabel.text = nil;
         cell.textLabel.font = [UIFont boldSystemFontOfSize:16];
@@ -214,7 +226,7 @@
         UIImage *img = [[UIImage alloc] initWithData:data];
         cell.imageView.image = img;
         [img release];
-    } else if (indexPath.section == 4) {
+    } else if (indexPath.section == 6) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         FSTip *tip = (FSTip*) [venue.tips objectAtIndex:indexPath.row];
         cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
@@ -232,12 +244,16 @@
         case 0:
             return 44;
         case 1:
-            return 44;
+            return 66;
         case 2:
-            return 62;
-        case 3:
             return 44;
+        case 3:
+            return 216;
         case 4:
+            return 62;
+        case 5:
+            return 44;
+        case 6:
             return 62;
         default:
             return 44;
@@ -266,19 +282,19 @@
     // headerLabel.frame = CGRectMake(150.0, 0.0, 300.0, 44.0);
     switch (section) {
         case 0:
-            return nil;
-            break;
         case 1:
+        case 2:
+        case 3:
             return nil;
             break;
-        case 2:
+        case 4:
             // TODO: fix this
             headerLabel.text = @"  Mayor                                                                    Map";
             break;
-        case 3:
+        case 5:
             headerLabel.text = [NSString stringWithFormat:@"  %d People Here", [venue.peopleHere count]];
             break;
-        case 4:
+        case 6:
             headerLabel.text = @"  Tips";
             break;
         default:
@@ -312,7 +328,8 @@
     [theTableView release];
     [mayorMapCell release];
     [checkinCell release];
-    [giftShoutCell release];
+    [giftCell release];
+    [pointsCell release];
     [mapView release];
     [venueName release];
     [venueAddress release];

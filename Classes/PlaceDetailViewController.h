@@ -18,16 +18,18 @@
 @interface PlaceDetailViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate, GAConnectionDelegate> {
     IBOutlet UITableView *theTableView;
     IBOutlet UITableViewCell *checkinCell;
-    IBOutlet UITableViewCell *giftShoutCell;
+    IBOutlet UITableViewCell *giftCell;
     IBOutlet UITableViewCell *mayorMapCell;
+    IBOutlet UITableViewCell *pointsCell;
+    IBOutlet UITableViewCell *badgeCell;
     IBOutlet MKMapView *mapView;
     
     IBOutlet UILabel *venueName;
     IBOutlet UILabel *venueAddress;
-    
     IBOutlet UILabel *mayorNameLabel;
-    IBOutlet UIButton *twitterButton;
+    IBOutlet UILabel *badgeLabel;
     
+    IBOutlet UIButton *twitterButton;
     IBOutlet UIButton *pingToggleButton;
     IBOutlet UIButton *twitterToggleButton;
     IBOutlet UIButton *venueDetailButton;
@@ -43,7 +45,7 @@
 
 @property (nonatomic, retain) UITableViewCell *mayorMapCell;
 @property (nonatomic, retain) UITableViewCell *checkinCell;
-@property (nonatomic, retain) UITableViewCell *giftShoutCell;
+@property (nonatomic, retain) UITableViewCell *giftCell;
 @property (nonatomic, retain) NSArray *checkin;
 @property (nonatomic, retain) FSVenue *venue;
 @property (nonatomic, retain) NSString *venueId;

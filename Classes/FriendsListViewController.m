@@ -53,6 +53,8 @@
 		NSLog(@"Foursquare is not authenticated");
 	} else {
 		[[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
+        
+//        [[FoursquareAPI sharedInstance] getFriendsWithTarget:self andAction:@selector(friendsResponseReceived:withResponseString:)];
 	}
 }
 
@@ -262,6 +264,10 @@
     [self.navigationController pushViewController:mapViewController animated:YES];
     [mapViewController release];
 }
+
+//- (void)friendsResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+//    NSLog(@"friends: %@", inString);
+//}
 
 - (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
 	NSArray * allCheckins = [FoursquareAPI checkinsFromResponseXML:inString];
