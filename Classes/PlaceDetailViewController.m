@@ -383,6 +383,7 @@
     NSLog(@"checkin: %@", checkin);
     isUserCheckedIn = YES;
 	[theTableView reloadData];
+    [progressViewController.view removeFromSuperview];
 }
 
 // these two methods arte a bit counterintuitive. the selected state is currently off/false, while the unselected state is on/true

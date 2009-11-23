@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ProgressViewController.h"
 
 
 @interface KBBaseViewController : UIViewController {
     IBOutlet UIButton *signedInUserIcon;
+    ProgressViewController *progressViewController;
 }
 
 - (IBAction) backOneView;

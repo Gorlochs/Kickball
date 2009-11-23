@@ -52,6 +52,8 @@
 		//run sheet to log in.
 		NSLog(@"Foursquare is not authenticated");
 	} else {
+        progressViewController = [[ProgressViewController alloc] initWithNibName:@"ProgressView" bundle:nil];
+        [self.view addSubview:progressViewController.view];
 		[[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
         
 //        [[FoursquareAPI sharedInstance] getFriendsWithTarget:self andAction:@selector(friendsResponseReceived:withResponseString:)];
@@ -304,6 +306,7 @@
 //    [twentyfourHoursFromNow release];
     [dateFormatter release];
 	[self.theTableView reloadData];
+    [progressViewController.view removeFromSuperview];
 }
 
 - (void) shout {
