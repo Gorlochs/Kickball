@@ -39,7 +39,6 @@
         [servicesDisabledAlert release];
     }
     [manager release];
-
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

@@ -167,6 +167,7 @@
 		6A55B4D010B36EC60005E934 /* KBBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A55B4CF10B36EC60005E934 /* KBBaseViewController.m */; };
 		6A55B4FC10B3B4BA0005E934 /* tmp-checkin.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A55B4FB10B3B4BA0005E934 /* tmp-checkin.png */; };
 		6A5F8F3C10B7707100914709 /* GeoAPIView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A5F8F3B10B7707100914709 /* GeoAPIView.xib */; };
+		6A63EAA410BAE8FD00DA3133 /* libPMAnalytics-r69.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A63EAA310BAE8FD00DA3133 /* libPMAnalytics-r69.a */; };
 		6A7ED9F710A91DC9002FB1DC /* VenueAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A7ED9F610A91DC9002FB1DC /* VenueAnnotation.m */; };
 		6A8AC8F1109AB31400C4FE1B /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A8AC8EF109AB31400C4FE1B /* ProfileViewController.m */; };
 		6A8CE6BE10B52AC000BE05F9 /* KBPin.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A8CE6BD10B52AC000BE05F9 /* KBPin.m */; };
@@ -463,6 +464,7 @@
 		6A55B4CF10B36EC60005E934 /* KBBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBBaseViewController.m; sourceTree = "<group>"; };
 		6A55B4FB10B3B4BA0005E934 /* tmp-checkin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tmp-checkin.png"; sourceTree = "<group>"; };
 		6A5F8F3B10B7707100914709 /* GeoAPIView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GeoAPIView.xib; sourceTree = "<group>"; };
+		6A63EAA310BAE8FD00DA3133 /* libPMAnalytics-r69.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPMAnalytics-r69.a"; path = "/Users/shawnbernard/Desktop/PinchAnalytics-r69/libPMAnalytics-r69.a"; sourceTree = "<absolute>"; };
 		6A7ED9F510A91DC9002FB1DC /* VenueAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VenueAnnotation.h; sourceTree = "<group>"; };
 		6A7ED9F610A91DC9002FB1DC /* VenueAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueAnnotation.m; sourceTree = "<group>"; };
 		6A8AC8EE109AB31400C4FE1B /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
@@ -550,6 +552,7 @@
 				6A8EEF0B10A14F3F00DC630C /* libxml2.dylib in Frameworks */,
 				553C51BF10A1BD8100A74641 /* Security.framework in Frameworks */,
 				552AFD9E10A27405009300E2 /* libPMAnalytics-r69.a in Frameworks */,
+				6A63EAA410BAE8FD00DA3133 /* libPMAnalytics-r69.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -594,6 +597,7 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				6A63EAA310BAE8FD00DA3133 /* libPMAnalytics-r69.a */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";

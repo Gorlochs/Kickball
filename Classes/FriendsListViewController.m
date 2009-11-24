@@ -77,6 +77,14 @@
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+//    int rows = 0;
+//    if ([self.recentCheckins count] > 0) 
+//        rows++;
+//    if ([self.todayCheckins count] > 0) 
+//        rows++;
+//    if ([self.yesterdayCheckins count] > 0) 
+//        rows++;
+//    return rows;
     return 3;
 }
 
@@ -247,6 +255,10 @@
 
 
 - (void)dealloc {
+    [shoutField release];
+    [recentCheckins release];
+    [todayCheckins release];
+    [yesterdayCheckins release];
     [theTableView release];
     [checkins release];
     [super dealloc];

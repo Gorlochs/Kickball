@@ -165,7 +165,7 @@
     } else if (section == 2) { // checkin
         return !isUserCheckedIn;
     } else if (section == 3) { // gift
-        return isUserCheckedIn;
+        return !isUserCheckedIn;
     } else if (section == 4) { // mayor
         return 1;
     } else if (section == 5) { // people here
@@ -446,6 +446,9 @@
     // hide picker
     [picker dismissModalViewControllerAnimated:YES];
     
+    // info we need to submit:
+    //      userId, venueId, photo, isPrivate, message, receiverId
+    
     // upload image
     // TODO: this would also have to save the image to the DB and we'd have to confirm success to the user.
     //       we also need to send a notification to the gift recipient
@@ -454,31 +457,84 @@
 
 #pragma mark private methods
 
-// TODO: set max file size
+// TODO: set max file size    
 - (BOOL)uploadImage:(NSData *)imageData filename:(NSString *)filename{
+    //TweetPhotoAppDelegate* myApp = (TweetPhotoAppDelegate*)[[UIApplication sharedApplication] delegate];
     
-    // TODO: create some semi-secure key to pass into the PHP page
-    NSString *urlString = @"http://www.literalshore.com/gorloch/kickball/upload.php";
+    NSString *url = [NSString stringWithFormat:@"http://www.literalshore.com/gorloch/kickball/upload.php"];
     
-    NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];
-    [request setURL:[NSURL URLWithString:urlString]];
-    [request setHTTPMethod:@"POST"];
+    NSString * boundary = @"kickballBoundaryParm";
+    NSMutableData *postData = [NSMutableData dataWithCapacity:[imageData length] + 1024];
     
-    NSString *boundary = [NSString stringWithString:@"---------------------------14737809831466499882746641449"];
-    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
-    [request addValue:contentType forHTTPHeaderField: @"Content-Type"];
+    NSString * venueIdString = [NSString stringWithFormat:@"Content-Disposition: form-data; name=\"venueId\"\r\n\r\n%@", venue.venueid];
+    NSString * submitterIdString = [NSString stringWithFormat:@"Content-Disposition: form-data; name=\"submitterId\"\r\n\r\n%@", @"sabernar"];
+    NSString * receiverIdString = [NSString stringWithFormat:@"Content-Disposition: form-data; name=\"receiverId\"\r\n\r\n%@", @""];
+    NSString * isPrivateString = [NSString stringWithFormat:@"Content-Disposition: form-data; name=\"isPrivate\"\r\n\r\n%@", @"1"];
+    NSString * messageString = [NSString stringWithFormat:@"Content-Disposition: form-data; name=\"message\"\r\n\r\n%@", @"test message"];
+    NSString * boundaryString = [NSString stringWithFormat:@"\r\n--%@\r\n", boundary];
+    NSString * boundaryStringFinal = [NSString stringWithFormat:@"\r\n--%@--\r\n", boundary];
     
-    NSMutableData *body = [NSMutableData data];
-    [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithString:[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"photo\"; filename=\"%@\"\r\n",filename]] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithString:@"Content-Type: application/octet-stream\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[NSData dataWithData:imageData]];
-    [body appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [request setHTTPBody:body];
-    NSLog(@"request: %@", request);
-    NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    [postData appendData:[boundaryString dataUsingEncoding:NSUTF8StringEncoding]];
+    [postData appendData:[venueIdString dataUsingEncoding:NSUTF8StringEncoding]];
+    [postData appendData:[boundaryString dataUsingEncoding:NSUTF8StringEncoding]];
+    [postData appendData:[submitterIdString dataUsingEncoding:NSUTF8StringEncoding]];
+    [postData appendData:[boundaryString dataUsingEncoding:NSUTF8StringEncoding]];
+    [postData appendData:[receiverIdString dataUsingEncoding:NSUTF8StringEncoding]];
+    [postData appendData:[boundaryString dataUsingEncoding:NSUTF8StringEncoding]];
+    [postData appendData:[isPrivateString dataUsingEncoding:NSUTF8StringEncoding]];
+    [postData appendData:[boundaryString dataUsingEncoding:NSUTF8StringEncoding]];
+    [postData appendData:[messageString dataUsingEncoding:NSUTF8StringEncoding]];
+    [postData appendData:[boundaryString dataUsingEncoding:NSUTF8StringEncoding]];
+    
+//    if (message != nil && ![message isEqualToString:@""]) {
+//        [postData appendData:[messageString dataUsingEncoding:NSUTF8StringEncoding]];
+//        [postData appendData:[boundaryString dataUsingEncoding:NSUTF8StringEncoding]];
+//    }
+//    
+//    if (tags != nil && ![tags isEqualToString:@""]) {
+//        [postData appendData:[tagsString dataUsingEncoding:NSUTF8StringEncoding]];
+//        [postData appendData:[boundaryString dataUsingEncoding:NSUTF8StringEncoding]];
+//    }
+//    
+//    if (longitude && latitude) {
+//        [postData appendData:[latString dataUsingEncoding:NSUTF8StringEncoding]];
+//        [postData appendData:[boundaryString dataUsingEncoding:NSUTF8StringEncoding]];
+//        [postData appendData:[longString dataUsingEncoding:NSUTF8StringEncoding]];
+//        [postData appendData:[boundaryString dataUsingEncoding:NSUTF8StringEncoding]];
+//    }
+   
+   
+    [postData appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"photo\";\r\nfilename=\"foobar.jpg\"\r\nContent-Type: application/octet-stream\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+    [postData appendData:imageData];
+    [postData appendData:[boundaryStringFinal dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSMutableURLRequest * theRequest=(NSMutableURLRequest*)[NSMutableURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+    
+    [theRequest setHTTPMethod:@"POST"];
+    
+    [theRequest addValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary] forHTTPHeaderField:@"Content-Type"];
+    [theRequest addValue:@"www.literalshore.com" forHTTPHeaderField:@"Host"];
+    NSString * dataLength = [NSString stringWithFormat:@"%d", [postData length]];
+    [theRequest addValue:dataLength forHTTPHeaderField:@"Content-Length"];
+    [theRequest setHTTPBody:(NSData*)postData];
+    
+    NSURLResponse *response = nil;
+    NSError *error = nil;
+    NSData *returnData = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:&response error:&error];
     NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+    NSLog(@"return string: %@", returnString);
+    NSLog(@"response: %@", response);
+    NSLog(@"error: %@", error);
     
+//    NSURLConnection * theConnection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+    
+//    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+//    if (theConnection) {
+//        receivedData=[[NSMutableData data] retain];
+//    }
+//    else {
+//        [myApp addTextToLog:@"Could not connect to the network" withCaption:@"tweetPhoto"];
+//    }
     return ([returnString isEqualToString:@"OK"]);
 }
 
