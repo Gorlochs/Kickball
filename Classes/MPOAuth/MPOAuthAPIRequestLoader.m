@@ -148,7 +148,10 @@ NSString *MPOAuthNotificationErrorHasOccurred		= @"MPOAuthNotificationErrorHasOc
 	BOOL oauthResponseSuccess = ([response rangeOfString:@"oauth"].location != NSNotFound);
 	BOOL oauthTokenSuccess = ([response rangeOfString:@"oauth_token" options:NSCaseInsensitiveSearch].location != NSNotFound);
 	BOOL oauthError = ([response rangeOfString:@"<error>"].location != NSNotFound);
-	oauthError = ([response rangeOfString:@"SIGNATURE_INVALID"].location != NSNotFound);	
+	BOOL sigError = ([response rangeOfString:@"SIGNATURE_INVALID"].location != NSNotFound);	
+	BOOL authError = ([response rangeOfString:@"<unauthorized>"].location != NSNotFound);
+	
+	oauthError = (oauthError || sigError || authError);
 	
 	if ([response length] > 5 && oauthResponseSuccess && !oauthError) {
 		mangleResponse = [mangleResponse stringByReplacingOccurrencesOfString:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?>" withString:@""];
