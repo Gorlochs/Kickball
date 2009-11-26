@@ -25,7 +25,7 @@ static FoursquareAPI *sharedInstance = nil;
 {
     @synchronized(self)
     {
-        if (sharedInstance == nil)
+        if (sharedInstance == nil){
 			sharedInstance = [[FoursquareAPI alloc] init];
 			NSDictionary *credentials = [NSDictionary dictionaryWithObjectsAndKeys:	kConsumerKey, kMPOAuthCredentialConsumerKey,
 										 kConsumerSecret, kMPOAuthCredentialConsumerSecret,
@@ -35,7 +35,8 @@ static FoursquareAPI *sharedInstance = nil;
 			sharedInstance.oauthAPI = [[MPOAuthAPI alloc] initWithCredentials:credentials
 								  authenticationURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/authexchange"]
 														 andBaseURL:[NSURL URLWithString:@"http://api.foursquare.com"]];
-    }
+		}
+	}
     return sharedInstance;
 }
 
