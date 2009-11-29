@@ -9,12 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "FSUser.h"
 #import "KBBaseViewController.h"
+#import "MGTwitterEngineDelegate.h"
 
-@interface ProfileViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate> {
+@interface ProfileViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, MGTwitterEngineDelegate> {
     IBOutlet UITableView *theTableView;
     IBOutlet UITableViewCell *badgeCell;
+    IBOutlet UITableViewCell *addFriendCell;
+    IBOutlet UITableView *twitterTable;
     NSString *userId;
     FSUser *user;
+    NSArray *twitterStatuses;
     
     IBOutlet UILabel *name;
     IBOutlet UILabel *location;

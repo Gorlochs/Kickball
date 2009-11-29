@@ -95,26 +95,61 @@
             anote.title = venue.name;
             anote.subtitle = venue.addressWithCrossstreet;
             [mapViewer addAnnotation:anote];
+            
+//            MKAnnotationView *av = [[MKAnnotationView alloc] initWithAnnotation:anote reuseIdentifier:@"testing"];
+//            av.rightCalloutAccessoryView
 		}
 	}	
 }
 
+
 #pragma mark MapViewer functions
-//// this one displays the proper pin, but doesn't work with the pop up annotation
-//- (MKAnnotationView *) mapView: (MKMapView *) mapView viewForAnnotation: (id<MKAnnotation>) annotation
+// this one displays the proper pin, but doesn't work with the pop up annotation
+//- (MKAnnotationView *) mapView: (MKMapView *) mapView viewForAnnotation: (id<MKAnnotation>) annotation {
+//        
+//    MKAnnotationView *annView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:nil];
+//    
+//    UIImage *image = [UIImage imageNamed:@"pin01.png"];
+//    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+//    [annView addSubview:imageView];
+//    [imageView release];
+//    
+//    MKPinAnnotationView *pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:nil];     
+//    [annView addSubview:pinView];
+//    [pinView release];
+//    
+//    return annView;
+//}
+    
+
 //{    
-//    KBPin *pin = (KBPin *) [self.mapViewer dequeueReusableAnnotationViewWithIdentifier: @"CustomPinAnnotation"];
-//    if (pin == nil)
-//    {
-//        pin = [[[KBPin alloc] initWithAnnotation:annotation] autorelease];
-//
-//        //pin = [[[MKPinAnnotationView alloc] initWithAnnotation: annotation reuseIdentifier: @"CustomPinAnnotation"] autorelease];
-//    }
-//    else
-//    {
-//        pin.annotation = annotation;
-//    }
-//    pin.title = @"testing";
+//    MKPinAnnotationView *pin=[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomAnnotation"];
+////	[pin setPinColor:MKPinAnnotationColorRed];
+////    
+//	// Set up the Left callout
+//	UIButton *myDetailButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+//	myDetailButton.frame = CGRectMake(0, 0, 23, 23);
+//	myDetailButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+//	myDetailButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+////	[myDetailButton addTarget:self action:@selector(checkButtonTapped:event:) forControlEvents:UIControlEventTouchUpInside];
+//	
+//	
+//	pin.rightCalloutAccessoryView = myDetailButton;
+//	pin.animatesDrop = YES;
+//	pin.canShowCallout = YES;
+//    
+//    //	if (pin == nil)
+////    {
+////        //pin = [[[KBPin alloc] initWithAnnotation:annotation] autorelease];
+////
+////        pin = [[[MKPinAnnotationView alloc] initWithAnnotation: annotation reuseIdentifier: @"CustomAnnotation"] autorelease];
+////    }
+////    else
+////    {
+////        pin.annotation = annotation;
+////    }
+//    //pin.annotation.title = @"test";
+//    //pin.title = @"testing";
 ////    pin.pinColor = MKPinAnnotationColorRed;
 //    //pin.animatesDrop = YES;
 //    return pin;

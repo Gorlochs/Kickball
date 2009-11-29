@@ -19,6 +19,7 @@
 @interface FriendsListViewController (Private)
 
 - (NSDate*) convertToUTC:(NSDate*)sourceDate;
+- (void) addAuthToWebRequest:(NSMutableURLRequest*)requestObj email:(NSString*)email password:(NSString*)password;
 
 @end
 
@@ -37,8 +38,47 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	if(![[FoursquareAPI sharedInstance] isAuthenticated]){
+		//run sheet to log in.
+		NSLog(@"Foursquare is not authenticated");
+        
+//       if (self.loginViewModal == nil)
+//			self.loginViewModal = [[[LoginViewModalController alloc] initWithNibName:
+//                                    NSStringFromClass([LoginViewModalController class]) bundle:nil] autorelease];
+//        
+//		[self.loginViewModal setRootController:self];
+//		[self.navigationController presentModalViewController:self.loginViewModal animated:YES];
+        
+	} else {
+        progressViewController = [[ProgressViewController alloc] initWithNibName:@"ProgressView" bundle:nil];
+        [self.view addSubview:progressViewController.view];
+//        progressViewController.view.backgroundColor = [UIColor clearColor];
+        progressViewController.activityLabel.text = @"Retrieving friends' whereabouts...";
+		[[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
+        
+        // this didn't work in the appdelegate (timing issues), so it's in the first page, but it's going to set an appDelegate property
+        // probably should be put back in the appdelegate with a notification that this page checks for
+        [[FoursquareAPI sharedInstance] getUser:nil withTarget:self andAction:@selector(userResponseReceived:withResponseString:)];
+	}
+    NSURL *url = [NSURL URLWithString:@"https://go.urbanairship.com/api/app/content"];
+    NSMutableURLRequest *requestObj = [NSMutableURLRequest requestWithURL:url];
+    
+    // TEST: this is just testing communication with Airship's servers
+    [self addAuthToWebRequest:requestObj email:@"qpHHiOCAT8iYATFJa4dsIQ" password:@"PGTRPo6OTI2dvtz2xw-vfw"];    
+    NSURLResponse *response = nil;
+    NSError *error = nil;
+    NSData *returnData = [NSURLConnection sendSynchronousRequest:requestObj returningResponse:&response error:&error];
+    NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+    NSLog(@"return string: %@", returnString);
 }
 
+- (void) addAuthToWebRequest:(NSMutableURLRequest*)requestObj email:(NSString*)email password:(NSString*)password{
+    NSString *authString = [[[NSString stringWithFormat:@"%@:%@", email, password] dataUsingEncoding:NSUTF8StringEncoding] base64EncodingWithLineLength:0];
+    
+    authString = [NSString stringWithFormat: @"Basic %@", authString];
+    
+    [requestObj setValue:authString forHTTPHeaderField:@"Authorization"];
+}
 
 /*
 - (void)viewWillAppear:(BOOL)animated {
@@ -48,16 +88,19 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-	if(![[FoursquareAPI sharedInstance] isAuthenticated]){
-		//run sheet to log in.
-		NSLog(@"Foursquare is not authenticated");
-	} else {
-        progressViewController = [[ProgressViewController alloc] initWithNibName:@"ProgressView" bundle:nil];
-        [self.view addSubview:progressViewController.view];
-		[[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
-        
-//        [[FoursquareAPI sharedInstance] getFriendsWithTarget:self andAction:@selector(friendsResponseReceived:withResponseString:)];
-	}
+}
+
+- (void)userResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+	FSUser* user = [FoursquareAPI userFromResponseXML:inString];
+
+    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:user.photo]];
+    UIImage *img = [[UIImage alloc] initWithData:data];
+    signedInUserIcon.imageView.image = [UIImage imageWithData:data];
+    signedInUserIcon.hidden = NO;
+    [img release];
+    
+    [self setAuthenticatedUser:user];
+    NSLog(@"auth'd user: %@", user);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -92,7 +135,6 @@
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    // TODO: we need to separate out the checkins in the past 3 hours from the checkins not in the past 3 hours
 	if (section == 0) {
 		return [self.recentCheckins count];
 	} else if (section == 1) {
@@ -345,7 +387,16 @@
     NSLog(@"shoutCheckins: %@", shoutCheckins);
     [shoutField resignFirstResponder];
 //    isUserCheckedIn = YES;
-    // TODO: display some notification to user to let them know that the shout was sent
+    
+    // TODO: confirm that the shout was sent?
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Kickball" 
+													message:@"Your shout was sent!"
+												   delegate:self 
+										  cancelButtonTitle:@"OK" 
+										  otherButtonTitles:nil];
+	[alert show];
+	[alert release];
+    
     [theTableView reloadData];
 }
 

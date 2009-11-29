@@ -15,12 +15,15 @@
 	NSString * lastname;
 	NSString * photo;
 	NSString * gender;
+    NSString * twitter;
 	NSArray * badges;
 	NSArray * mayorOf;
     FSCity * userCity;
 	BOOL isFriend;
+    
     // convenience property
     NSString *firstnameLastInitial;
+    UIImage *icon;
 }
 
 @property (nonatomic, retain) NSString * userId;
@@ -28,11 +31,14 @@
 @property (nonatomic, retain) NSString * lastname;
 @property (nonatomic, retain) NSString * photo;
 @property (nonatomic, retain) NSString * gender;
+@property (nonatomic, retain) NSString * twitter;
 @property (nonatomic, retain) NSArray * badges;
 @property (nonatomic, retain) NSArray * mayorOf;
 @property (nonatomic, retain) FSCity * userCity;
 @property (nonatomic) BOOL isFriend;
+
 @property (nonatomic, retain) NSString * firstnameLastInitial;
+@property (nonatomic, retain) UIImage *icon;
 
 
 @end

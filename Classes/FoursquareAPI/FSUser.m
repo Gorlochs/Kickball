@@ -11,7 +11,7 @@
 
 @implementation FSUser
 
-@synthesize	userId,firstname,lastname,photo,gender, badges, isFriend, firstnameLastInitial, userCity, mayorOf;
+@synthesize	userId, firstname, lastname, photo, gender, badges, isFriend, firstnameLastInitial, userCity, mayorOf, twitter, icon;
 
 - (NSString*) firstnameLastInitial {
     if (lastname != nil) {
@@ -19,6 +19,10 @@
     } else {
         return firstname;
     }
+}
+
+- (NSString*) description {
+    return [NSString stringWithFormat:@"userId=%@ ; firstname=%@ ; userCity=%@ ; photo=%@", userId, firstname, userCity, photo];
 }
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FSUser.h"
 
 @class FriendsListViewController;
 
@@ -14,10 +15,12 @@
     UIWindow *window;
     FriendsListViewController *viewController;
     UINavigationController *navigationController;
+    FSUser *user;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet FriendsListViewController *viewController;
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
+@property (nonatomic, retain) IBOutlet FSUser *user;
 
 @end

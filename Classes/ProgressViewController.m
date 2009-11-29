@@ -11,14 +11,18 @@
 
 @implementation ProgressViewController
 
+@synthesize activityLabel;
+
 - (void)viewDidLoad
 {
-    [activityIndicator startAnimating];
+    self.view.backgroundColor = [UIColor clearColor];
+    [self setupBusyAnimation];
+    [stripedActivityIndicator startAnimating];
 }
 
 - (void)viewWillDisappear: (BOOL)animated
 {
-    [activityIndicator stopAnimating];
+    [stripedActivityIndicator stopAnimating];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -35,9 +39,23 @@
 
 
 - (void)dealloc {
-    [activityIndicator release];
+    [stripedActivityIndicator release];
     [super dealloc];
 }
 
+- (void) setupBusyAnimation {
+    stripedActivityIndicator.animationImages = [NSArray arrayWithObjects:  
+                                [UIImage imageNamed:@"red-busy-01.png"],
+                                [UIImage imageNamed:@"red-busy-02.png"],
+                                [UIImage imageNamed:@"red-busy-03.png"],
+                                [UIImage imageNamed:@"red-busy-04.png"],
+                                [UIImage imageNamed:@"red-busy-05.png"],
+                                [UIImage imageNamed:@"red-busy-06.png"],
+                                [UIImage imageNamed:@"red-busy-07.png"],
+                                nil];
+    
+    stripedActivityIndicator.animationDuration = 1.0;
+    stripedActivityIndicator.animationRepeatCount = 0;
+}
 
 @end

@@ -212,16 +212,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];
     FSVenue *venue = nil;
-    // FIXME: I NEVER FINISHED THIS!!!
-    if (indexPath.section == 0) {
-        venue = [(NSArray*)[venues objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-    } else if (indexPath.section == 1) {
-        venue = [(NSArray*)[venues objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-    } else if (indexPath.section == 2) {
-        venue = [(NSArray*)[venues objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-    }
-    
-    
+    venue = [(NSArray*)[venues objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+   
     placeDetailController.venueId = venue.venueid;
     [self.navigationController pushViewController:placeDetailController animated:YES];
     [placeDetailController release];

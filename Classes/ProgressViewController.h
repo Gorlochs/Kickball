@@ -10,7 +10,12 @@
 
 
 @interface ProgressViewController : UIViewController {
-    IBOutlet UIActivityIndicatorView *activityIndicator;
+    IBOutlet UIImageView *stripedActivityIndicator;
+    IBOutlet UILabel *activityLabel;
 }
+
+@property (nonatomic, retain) UILabel *activityLabel;
+
+- (void) setupBusyAnimation;
 
 @end

@@ -82,12 +82,18 @@ static FoursquareAPI *sharedInstance = nil;
 											 fsUsername:fsUser
 											 fsPassword:fsPass];
 	self.oauthAPI.delegate = (id <MPOAuthAPIDelegate>)[UIApplication sharedApplication].delegate;
-
+    MPOAuthCredentialConcreteStore *credStore = [self.oauthAPI credentials];
+    NSLog(@"cred: %@", [credStore oauthParameters]);
+//    NSLog(@"cred time: %@", [self.oauthAPI credentials].timestamp);
+//    NSLog(@"cred request token: %@", [self.oauthAPI credentials].requestToken);
+//    NSLog(@"cred consumer key: %@", [self.oauthAPI credentials].consumerKey);
+    NSLog(@"auth state: %@", self.oauthAPI.authenticationState);
 }
 
 - (BOOL) isAuthenticated{
 	
 	NSString *accessTokenSecret = [self.oauthAPI findValueFromKeychainUsingName:@"oauth_token_access_secret"];
+    NSLog(@"****** accessTokenSecret: %@", accessTokenSecret);
 	if(accessTokenSecret != nil){
 		return YES;
 	} else return NO;
@@ -502,6 +508,8 @@ static FoursquareAPI *sharedInstance = nil;
 			loggedInUser.lastname = value;
 		} else if([key isEqualToString:@"gender"]){
 			loggedInUser.gender = value;
+		} else if([key isEqualToString:@"twitter"]){
+			loggedInUser.twitter = value;
 		} else if([key isEqualToString:@"city"]){
 			NSArray * userCityXML = [usrAttr nodesForXPath:@"/city" error:nil];
 			for (CXMLElement *userCityNode in userCityXML) {

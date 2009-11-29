@@ -10,12 +10,14 @@
 #import "FoursquareAPI.h"
 #import "FSVenue.h"
 #import "PlaceDetailViewController.h"
+#import "MGTwitterEngine.h"
 
 #define BADGES_PER_ROW 3
 
 @interface ProfileViewController (Private)
 
 - (void)userResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString;
+- (void) displayActionSheet:(NSString*)title;
 
 @end
 
@@ -139,7 +141,8 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1) {
-        return 50 * (([user.badges count]/BADGES_PER_ROW) + 1);
+        //return 50 * (([user.badges count]/BADGES_PER_ROW) + 1);
+        return 50 * (([user.badges count]+2)/BADGES_PER_ROW);
     }
     return 44;
 }
@@ -151,7 +154,9 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        if (indexPath.section == 1) {
+        if (indexPath.section == 0) {
+            return addFriendCell;
+        } else if (indexPath.section == 1) {
             return badgeCell;
         } else {
             cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
@@ -162,6 +167,7 @@
     // Set up the cell...
     switch (indexPath.section) {
         case 0:  // add friend/follow on twitter
+            return addFriendCell;
             break;
         case 1:  // badges
             return badgeCell;
@@ -228,19 +234,32 @@
 
 #pragma mark IBAction methods
 
-- (IBAction) clickSegmentedControl {
+- (void) clickSegmentedControl {
     NSString *title = nil;
     if (segmentedControl.selectedSegmentIndex == 0) {
         title = @"Yes, open SMS app";
+        [self displayActionSheet:title];
     } else if (segmentedControl.selectedSegmentIndex == 1) {
         title = @"Yes, open Phone app";
+        [self displayActionSheet:title];
     } else if (segmentedControl.selectedSegmentIndex == 2) {
         title = @"Yes, open Mail app";
+        [self displayActionSheet:title];
     } else if (segmentedControl.selectedSegmentIndex == 3) {
-        title = @"Yes, open Twitter app";
+        // display twitter table
+        
+        // TODO: figure out the best way to deal with the UITableViewDelegate methods with this table
+        //       I don't want to use the ones in this controller (too big a pain in the ass)
+        //       I guess I can just create a new controller and use that.
+        MGTwitterEngine *twitterEngine = [[MGTwitterEngine alloc] initWithDelegate:self];
+        NSString *twitters = [twitterEngine getUserTimelineFor:user.twitter sinceID:0 startingAtPage:0 count:20];
+        NSLog(@"twitter: %@", twitters);
     } else if (segmentedControl.selectedSegmentIndex == 4) {
         title = @"Yes, open Facebook app";
+        [self displayActionSheet:title];
     }
+}
+- (void) displayActionSheet:(NSString*)title {
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"You will be leaving the Kickball app. Are you sure?"
                                                              delegate:self
                                                     cancelButtonTitle:@"Cancel"
@@ -260,6 +279,22 @@
         // send user to SMS
         NSLog(@"clicked the 'leave' button; tag: %d", actionSheet.tag);
     }
+}
+
+#pragma mark MGTwitterEngineDelegate methods
+
+- (void)statusesReceived:(NSArray *)statuses forRequest:(NSString *)connectionIdentifier {
+    twitterStatuses = [[NSArray alloc] initWithArray:statuses];
+    //[self.tableView reloadData];
+    NSLog(@"statusesReceived: %@", statuses);
+}
+
+- (void)requestSucceeded:(NSString *)connectionIdentifier {
+    NSLog(@"requestSucceeded: %@", connectionIdentifier);
+}
+
+- (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error {
+    NSLog(@"requestFailed: %@", connectionIdentifier);
 }
 
 @end

@@ -16,6 +16,7 @@
 @synthesize window;
 @synthesize viewController;
 @synthesize navigationController;
+@synthesize user;
 
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {    

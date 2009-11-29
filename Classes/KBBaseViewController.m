@@ -7,10 +7,27 @@
 //
 
 #import "KBBaseViewController.h"
-
+#import "KickballAppDelegate.h"
+#import "ProfileViewController.h"
+#import "FoursquareAPI.h"
 
 @implementation KBBaseViewController
 
+@synthesize loginViewModal;
+
+- (void) viewDidLoad {
+    [super viewDidLoad];
+    
+//    authenticatedUser = [self getAuthenticatedUser];
+//    
+//    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:authenticatedUser.photo]];
+//    UIImage *img = [[UIImage alloc] initWithData:data];
+//    //UIImageView *imgView = [[UIImageView alloc] initWithImage:img];
+//    //UIImage *image = [UIImage imageWithData:data];
+//    authUserIcon.imageView.image = img;
+//    [img release];
+//    NSLog(@"image: %@", authUserIcon.imageView.image);
+}
 
 - (void) backOneView {
     NSLog(@"backOneView is being called");
@@ -21,6 +38,21 @@
 
 - (IBAction) viewUserProfile {
     // take user to their profile
+    ProfileViewController *pvc = [[ProfileViewController alloc] initWithNibName:@"ProfileView" bundle:nil];
+    pvc.userId = [self getAuthenticatedUser].userId;
+    [self.navigationController pushViewController:pvc animated:YES];
+    [pvc release];
+}
+
+- (FSUser*) getAuthenticatedUser {
+    KickballAppDelegate *appDelegate = (KickballAppDelegate*)[UIApplication sharedApplication].delegate;
+    return appDelegate.user;
+}
+
+// ugh. this sucks. it works for now, but it's yet another thing that needs to be fixed
+- (void) setAuthenticatedUser:(FSUser*)user {
+    KickballAppDelegate *appDelegate = (KickballAppDelegate*)[UIApplication sharedApplication].delegate;
+    appDelegate.user = user;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -40,5 +72,15 @@
     [super dealloc];
 }
 
+- (void)doLoginUsername: (NSString *)fsUser andPass:(NSString *) fsPass{
+    
+	[[FoursquareAPI sharedInstance] doLoginUsername:fsUser andPass:fsPass];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(accessTokenReceived:) name:MPOAuthNotificationAccessTokenReceived object:nil];
+    
+}
+
+- (void)accessTokenReceived:(NSNotification *)inNotification {
+	[self dismissModalViewControllerAnimated:YES];
+}
 
 @end

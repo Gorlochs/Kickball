@@ -1,17 +1,17 @@
 //
-//  PlaceTwitterViewController.m
+//  TipDetailViewController.m
 //  Kickball
 //
-//  Created by Shawn Bernard on 11/4/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Created by Shawn Bernard on 11/29/09.
+//  Copyright 2009 Gorloch Interactive, LLC. All rights reserved.
 //
 
-#import "PlaceTwitterViewController.h"
-#import "MGTwitterEngine.h"
+#import "TipDetailViewController.h"
 
-@implementation PlaceTwitterViewController
+// FIXME: if this isn't going to be a table, get rid of all the tables stuff, including the delegate & datasource
+@implementation TipDetailViewController
 
-@synthesize twitterName, venueName;
+@synthesize tip;
 
 /*
 - (id)initWithStyle:(UITableViewStyle)style {
@@ -25,30 +25,50 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // TODO: figure out why this isn't working (i.e., the navigation bar isn't being displayed)
-    self.navigationItem.title = venueName;
-
-    MGTwitterEngine *twitterEngine = [[MGTwitterEngine alloc] initWithDelegate:self];
-    NSString *timeline = [twitterEngine getUserTimelineFor:twitterName sinceID:0 startingAtPage:0 count:20];
-    NSLog(@"timeline: %@", timeline);
+    authorNamelabel.text = tip.submittedBy.firstnameLastInitial;
+    tipText.text = tip.text;
+    authorIcon.imageView.image = tip.submittedBy.icon;
 }
+
+/*
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+}
+*/
+/*
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+}
+*/
+/*
+- (void)viewWillDisappear:(BOOL)animated {
+	[super viewWillDisappear:animated];
+}
+*/
+/*
+- (void)viewDidDisappear:(BOOL)animated {
+	[super viewDidDisappear:animated];
+}
+*/
+
+/*
+// Override to allow orientations other than the default portrait orientation.
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    // Return YES for supported orientations
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+*/
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
 	
 	// Release any cached data, images, etc that aren't in use.
-    twitterStatuses = nil;
-    twitterName = nil;
-    venueName = nil;
 }
 
 - (void)viewDidUnload {
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
-    twitterStatuses = nil;
-    twitterName = nil;
-    venueName = nil;
 }
 
 
@@ -61,7 +81,7 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [twitterStatuses count];
+    return 0;
 }
 
 
@@ -73,12 +93,9 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-        cell.textLabel.font = [UIFont systemFontOfSize:10.0];
     }
     
     // Set up the cell...
-    cell.textLabel.numberOfLines = 2;
-    cell.textLabel.text = [((NSDictionary*)[twitterStatuses objectAtIndex:indexPath.row]) objectForKey:@"text"];
 	
     return cell;
 }
@@ -133,42 +150,9 @@
 
 
 - (void)dealloc {
-    [twitterStatuses release];
-    [twitterName release];
-    [venueName release];
     [super dealloc];
 }
 
-#pragma mark MGTwitterEngineDelegate methods
 
-- (void)statusesReceived:(NSArray *)statuses forRequest:(NSString *)connectionIdentifier {
-    twitterStatuses = [[NSArray alloc] initWithArray:statuses];
-    [self.tableView reloadData];
-    NSLog(@"statusesReceived: %@", statuses);
-}
-//- (void)directMessagesReceived:(NSArray *)messages forRequest:(NSString *)connectionIdentifier {
-//    NSLog(@"directMessagesReceived: %@", messages);
-//    
-//}
-//- (void)userInfoReceived:(NSArray *)userInfo forRequest:(NSString *)connectionIdentifier {
-//    NSLog(@"userInfoReceived: %@", userInfo);
-//    
-//}
-//- (void)miscInfoReceived:(NSArray *)miscInfo forRequest:(NSString *)connectionIdentifier {
-//    NSLog(@"miscInfoReceived: %@", miscInfo);
-//    
-//}
-//- (void)connectionFinished:(NSString *)connectionIdentifier {
-//    NSLog(@"connectionFinished: %@", connectionIdentifier);
-//    
-//}
-- (void)requestSucceeded:(NSString *)connectionIdentifier {
-    NSLog(@"requestSucceeded: %@", connectionIdentifier);
-    
-}
-- (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error {
-    NSLog(@"requestFailed: %@", connectionIdentifier);
-    
-}
 @end
 

@@ -18,3 +18,4 @@
 - (id)initWithAnnotation:(id <MKAnnotation>) annotation;
 
 @end
+

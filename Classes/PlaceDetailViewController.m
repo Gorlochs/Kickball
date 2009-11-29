@@ -15,6 +15,8 @@
 #import "SBJSON.h"
 #import "GeoApiTableViewController.h"
 #import "GAPlace.h"
+#import "TipDetailViewController.h"
+#import "FSTip.h"
 
 @interface PlaceDetailViewController (Private)
 
@@ -59,7 +61,13 @@
     venueName.text = @"";
     venueAddress.text = @"";
     
-       //mayorImage.image = venue.
+    // pull this up into a method (or property)
+    FSUser *tmpUser = [self getAuthenticatedUser];
+    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:tmpUser.photo]];
+    UIImage *img = [[UIImage alloc] initWithData:data];
+    signedInUserIcon.imageView.image = [UIImage imageWithData:data];
+    signedInUserIcon.hidden = NO;
+    [img release];
     
     if(![[FoursquareAPI sharedInstance] isAuthenticated]){
 		//run sheet to log in.
@@ -152,7 +160,7 @@
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 5;
+    return 7;
 }
 
 
@@ -308,11 +316,17 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 1) {
+    if (indexPath.section == 4) {
         [self pushProfileDetailController:venue.mayor.userId];
-    } else if (indexPath.section == 2) {
+    } else if (indexPath.section == 5) {
         FSUser *user = ((FSUser*)[venue.peopleHere objectAtIndex:indexPath.row]);
         [self pushProfileDetailController:user.userId];
+    } else if (indexPath.section == 6) {
+        FSTip *tip = ((FSTip*)[venue.tips objectAtIndex:indexPath.row]);
+        TipDetailViewController *tipController = [[TipDetailViewController alloc] initWithNibName:@"TipView" bundle:nil];
+        tipController.tip = tip;
+        [self.navigationController pushViewController:tipController animated:YES];
+        [tipController release];
     }
 }
 
@@ -343,7 +357,6 @@
 
 #pragma mark IBAction methods
 
-// TODO: pull in correct phone number
 - (void) callVenue {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", venue.phone]]];
 }
@@ -446,11 +459,8 @@
     // hide picker
     [picker dismissModalViewControllerAnimated:YES];
     
-    // info we need to submit:
-    //      userId, venueId, photo, isPrivate, message, receiverId
-    
     // upload image
-    // TODO: this would also have to save the image to the DB and we'd have to confirm success to the user.
+    // TODO: we'd have to confirm success to the user.
     //       we also need to send a notification to the gift recipient
     [self uploadImage:UIImageJPEGRepresentation([info objectForKey:UIImagePickerControllerOriginalImage], 1.0) filename:@"foobar2.jpg"];
 }
@@ -485,24 +495,6 @@
     [postData appendData:[boundaryString dataUsingEncoding:NSUTF8StringEncoding]];
     [postData appendData:[messageString dataUsingEncoding:NSUTF8StringEncoding]];
     [postData appendData:[boundaryString dataUsingEncoding:NSUTF8StringEncoding]];
-    
-//    if (message != nil && ![message isEqualToString:@""]) {
-//        [postData appendData:[messageString dataUsingEncoding:NSUTF8StringEncoding]];
-//        [postData appendData:[boundaryString dataUsingEncoding:NSUTF8StringEncoding]];
-//    }
-//    
-//    if (tags != nil && ![tags isEqualToString:@""]) {
-//        [postData appendData:[tagsString dataUsingEncoding:NSUTF8StringEncoding]];
-//        [postData appendData:[boundaryString dataUsingEncoding:NSUTF8StringEncoding]];
-//    }
-//    
-//    if (longitude && latitude) {
-//        [postData appendData:[latString dataUsingEncoding:NSUTF8StringEncoding]];
-//        [postData appendData:[boundaryString dataUsingEncoding:NSUTF8StringEncoding]];
-//        [postData appendData:[longString dataUsingEncoding:NSUTF8StringEncoding]];
-//        [postData appendData:[boundaryString dataUsingEncoding:NSUTF8StringEncoding]];
-//    }
-   
    
     [postData appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"photo\";\r\nfilename=\"foobar.jpg\"\r\nContent-Type: application/octet-stream\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
     [postData appendData:imageData];
