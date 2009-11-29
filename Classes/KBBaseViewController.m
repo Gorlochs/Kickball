@@ -83,4 +83,17 @@
 	[self dismissModalViewControllerAnimated:YES];
 }
 
+- (void) startProgressBar:(NSString*)textToDisplay {
+    if (textToDisplay == nil) {
+        textToDisplay = @"Connecting...";
+    }
+    progressViewController = [[ProgressViewController alloc] initWithNibName:@"ProgressView" bundle:nil];
+    [self.view addSubview:progressViewController.view];
+    progressViewController.activityLabel.text = textToDisplay;
+}
+
+- (void) stopProgressBar {
+    [progressViewController.view removeFromSuperview];
+}
+
 @end

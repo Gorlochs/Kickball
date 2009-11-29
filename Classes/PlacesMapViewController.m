@@ -172,6 +172,7 @@
 - (void)venuesResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
 	NSArray *allVenues = [FoursquareAPI venuesFromResponseXML:inString];
 	self.venues = [[allVenues copy] objectAtIndex:0];
+    [self stopProgressBar];
     //[self refreshVenuePoints];
 }
 

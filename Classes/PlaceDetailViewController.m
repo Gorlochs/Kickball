@@ -73,6 +73,7 @@
 		//run sheet to log in.
 		NSLog(@"Foursquare is not authenticated");
 	} else {
+        [self startProgressBar:@"Retrieving venue details..."];
 		[[FoursquareAPI sharedInstance] getVenue:venueId withTarget:self andAction:@selector(venueResponseReceived:withResponseString:)];
 	}
 }
@@ -83,6 +84,7 @@
     [self prepViewWithVenueInfo:self.venue];
 
 	[theTableView reloadData];
+    [self stopProgressBar];
 }
 
 - (void) prepViewWithVenueInfo:(FSVenue*)venueToDisplay {

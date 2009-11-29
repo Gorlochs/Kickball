@@ -25,16 +25,8 @@
 
 
 @implementation FriendsListViewController
-@synthesize checkins, recentCheckins, todayCheckins, yesterdayCheckins, theTableView;
 
-/*
-- (id)initWithStyle:(UITableViewStyle)style {
-    // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-    if (self = [super initWithStyle:style]) {
-    }
-    return self;
-}
-*/
+@synthesize checkins, recentCheckins, todayCheckins, yesterdayCheckins, theTableView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -50,10 +42,10 @@
 //		[self.navigationController presentModalViewController:self.loginViewModal animated:YES];
         
 	} else {
-        progressViewController = [[ProgressViewController alloc] initWithNibName:@"ProgressView" bundle:nil];
-        [self.view addSubview:progressViewController.view];
-//        progressViewController.view.backgroundColor = [UIColor clearColor];
-        progressViewController.activityLabel.text = @"Retrieving friends' whereabouts...";
+        [self startProgressBar:@"Retrieving friends' whereabouts..."];
+//        progressViewController = [[ProgressViewController alloc] initWithNibName:@"ProgressView" bundle:nil];
+//        [self.view addSubview:progressViewController.view];
+//        progressViewController.activityLabel.text = @"Retrieving friends' whereabouts...";
 		[[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
         
         // this didn't work in the appdelegate (timing issues), so it's in the first page, but it's going to set an appDelegate property
@@ -79,12 +71,6 @@
     
     [requestObj setValue:authString forHTTPHeaderField:@"Authorization"];
 }
-
-/*
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-}
-*/
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -360,7 +346,7 @@
 //    [twentyfourHoursFromNow release];
     [dateFormatter release];
 	[self.theTableView reloadData];
-    [progressViewController.view removeFromSuperview];
+    [self stopProgressBar];
 }
 
 - (void) shout {

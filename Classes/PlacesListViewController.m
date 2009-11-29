@@ -26,16 +26,9 @@
 @synthesize bestEffortAtLocation;
 @synthesize venues;
 
-/*
-- (id)initWithStyle:(UITableViewStyle)style {
-    // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-    if (self = [super initWithStyle:style]) {
-    }
-    return self;
-}
-*/
 
 - (void)viewDidLoad {
+    [self startProgressBar:@"Retrieving nearby venues..."];
     self.locationManager = [[[CLLocationManager alloc] init] autorelease];
     locationManager.delegate = self;
     // This is the most important property to set for the manager. It ultimately determines how the manager will
@@ -55,6 +48,7 @@
     [super viewDidLoad];
 }
 
+// TODO: this takes a bit of time.  Should we push this up to the appDelegate so that it's not executed every time this screen is displayed?
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
     // store all of the measurements, just so we can see what kind of data we might receive
     //[locationMeasurements addObject:newLocation];
@@ -92,7 +86,7 @@
                                              andLongitude:[NSString stringWithFormat:@"%f",bestEffortAtLocation.coordinate.longitude]
                                                withTarget:self 
                                                 andAction:@selector(venuesResponseReceived:withResponseString:)
-     ];
+    ];
     
     venuesTypeToDisplay = KBNearbyVenues;
 }
@@ -125,6 +119,7 @@
     //move table to new entry
     NSUInteger indexArr[] = {0,0};
     [theTableView scrollToRowAtIndexPath:[NSIndexPath indexPathWithIndexes:indexArr length:2] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    [self stopProgressBar];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -213,11 +208,11 @@
 	PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];
     FSVenue *venue = nil;
     venue = [(NSArray*)[venues objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    [theTableView deselectRowAtIndexPath:indexPath animated:YES];
    
     placeDetailController.venueId = venue.venueid;
     [self.navigationController pushViewController:placeDetailController animated:YES];
     [placeDetailController release];
-//    [self.view addSubview:placeDetailController.view];
 }
 
 

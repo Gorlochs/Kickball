@@ -24,6 +24,8 @@
 - (IBAction) viewUserProfile;
 - (void) setAuthenticatedUser:(FSUser*)user;
 - (FSUser*) getAuthenticatedUser;
-- (void)doLoginUsername: (NSString *)fsUser andPass:(NSString *) fsPass;
+- (void) doLoginUsername: (NSString *)fsUser andPass:(NSString *) fsPass;
+- (void) startProgressBar:(NSString*)textToDisplay;
+- (void) stopProgressBar;
 
 @end
