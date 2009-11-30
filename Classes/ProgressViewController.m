@@ -45,13 +45,13 @@
 
 - (void) setupBusyAnimation {
     stripedActivityIndicator.animationImages = [NSArray arrayWithObjects:  
-                                [UIImage imageNamed:@"red-busy-01.png"],
-                                [UIImage imageNamed:@"red-busy-02.png"],
-                                [UIImage imageNamed:@"red-busy-03.png"],
-                                [UIImage imageNamed:@"red-busy-04.png"],
-                                [UIImage imageNamed:@"red-busy-05.png"],
-                                [UIImage imageNamed:@"red-busy-06.png"],
-                                [UIImage imageNamed:@"red-busy-07.png"],
+                                [UIImage imageNamed:@"blue-busy-01.png"],
+                                [UIImage imageNamed:@"blue-busy-02.png"],
+                                [UIImage imageNamed:@"blue-busy-03.png"],
+                                [UIImage imageNamed:@"blue-busy-04.png"],
+                                [UIImage imageNamed:@"blue-busy-05.png"],
+                                [UIImage imageNamed:@"blue-busy-06.png"],
+                                [UIImage imageNamed:@"blue-busy-07.png"],
                                 nil];
     
     stripedActivityIndicator.animationDuration = 1.0;

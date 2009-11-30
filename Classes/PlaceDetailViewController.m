@@ -56,6 +56,7 @@
     isTwitterOn = YES;
     
     venueDetailButton.hidden = YES;
+    twitterButton.hidden = YES;
     
     // this is to clear out the placeholder text, which is useful in IB
     venueName.text = @"";
@@ -123,8 +124,8 @@
         mayorNameLabel.text = @"no mayor";
     }
     
-    if (venueToDisplay.twitter == nil || [venueToDisplay.twitter isEqualToString:@""]) {
-        twitterButton.hidden = YES;
+    if (venueToDisplay.twitter != nil && ![venueToDisplay.twitter isEqualToString:@""]) {
+        twitterButton.hidden = NO;
     }
 }
 
