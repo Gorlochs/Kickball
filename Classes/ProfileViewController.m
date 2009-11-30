@@ -12,7 +12,7 @@
 #import "PlaceDetailViewController.h"
 #import "MGTwitterEngine.h"
 
-#define BADGES_PER_ROW 3
+#define BADGES_PER_ROW 5
 
 @interface ProfileViewController (Private)
 
@@ -63,7 +63,7 @@
         NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:badge.icon]];
         UIImage *img = [[UIImage alloc] initWithData:data];
         UIImageView *imgView = [[UIImageView alloc] initWithImage:img];
-        CGRect frame= CGRectMake(x*50, y*50, 50, 50);
+        CGRect frame= CGRectMake(x*60 + 10, y*60 + 10, 50, 50);
         imgView.frame = frame;
         [img release];
         [badgeCell addSubview:imgView];
@@ -142,7 +142,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1) {
         //return 50 * (([user.badges count]/BADGES_PER_ROW) + 1);
-        return 50 * (([user.badges count]+2)/BADGES_PER_ROW);
+        return 60 * (([user.badges count]+2)/BADGES_PER_ROW) + 10;
     }
     return 44;
 }
@@ -226,10 +226,12 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];
-    placeDetailController.venueId = ((FSVenue*)[user.mayorOf objectAtIndex:indexPath.row]).venueid;
-    [self.navigationController pushViewController:placeDetailController animated:YES];
-    [placeDetailController release];
+    if (indexPath.section == 2) { // mayor section
+        PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];
+        placeDetailController.venueId = ((FSVenue*)[user.mayorOf objectAtIndex:indexPath.row]).venueid;
+        [self.navigationController pushViewController:placeDetailController animated:YES];
+        [placeDetailController release];
+    }
 }
 
 #pragma mark IBAction methods
