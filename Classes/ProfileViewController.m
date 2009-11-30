@@ -65,7 +65,7 @@
         UIButton *btn = [[UIButton alloc] initWithFrame:frame];
         UIImage *img = [[UIImage alloc] initWithData:data];
         [btn setImage:img forState:UIControlStateNormal];
-        btn.tag = badge.badgeId;
+        btn.tag = [badge.badgeId intValue];
         [badgeCell addSubview:btn];
         [badgeCell bringSubviewToFront:btn];
         [img release];

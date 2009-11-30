@@ -330,6 +330,7 @@
         [self.navigationController pushViewController:tipController animated:YES];
         [tipController release];
     }
+    [theTableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void) pushProfileDetailController:(NSString*)profileUserId {
