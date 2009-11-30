@@ -26,7 +26,7 @@
     [super viewDidLoad];
     
     // TODO: figure out why this isn't working (i.e., the navigation bar isn't being displayed)
-    self.navigationItem.title = venueName;
+    venueLabel.text = venueName;
 
     MGTwitterEngine *twitterEngine = [[MGTwitterEngine alloc] initWithDelegate:self];
     NSString *timeline = [twitterEngine getUserTimelineFor:twitterName sinceID:0 startingAtPage:0 count:20];
@@ -64,6 +64,9 @@
     return [twitterStatuses count];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 66;
+}
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -73,12 +76,20 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-        cell.textLabel.font = [UIFont systemFontOfSize:10.0];
+        cell.textLabel.font = [UIFont systemFontOfSize:14.0];
     }
     
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss GMT"];
+    
     // Set up the cell...
-    cell.textLabel.numberOfLines = 2;
-    cell.textLabel.text = [((NSDictionary*)[twitterStatuses objectAtIndex:indexPath.row]) objectForKey:@"text"];
+    cell.textLabel.numberOfLines = 3;
+    NSDictionary *dict = (NSDictionary*)[twitterStatuses objectAtIndex:indexPath.row];
+//    NSLog(@"date: %@", [dict objectForKey:@"created_at"]);
+//    NSDate *tweetDate = [dateFormatter dateFromString:[dict objectForKey:@"created_at"]];
+//    [dateFormatter setDateFormat:@"MM-dd-YYYY HH:mm:ss"];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ (%@)", [dict objectForKey:@"text"], [dict objectForKey:@"created_at"]];
+    [dateFormatter release];
 	
     return cell;
 }
@@ -91,59 +102,26 @@
 	// [anotherViewController release];
 }
 
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-
 - (void)dealloc {
     [twitterStatuses release];
     [twitterName release];
     [venueName release];
+    [venueLabel release];
+    [theTableView release];
     [super dealloc];
+}
+
+#pragma mark UITableView methods
+
+- (void) close {
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 #pragma mark MGTwitterEngineDelegate methods
 
 - (void)statusesReceived:(NSArray *)statuses forRequest:(NSString *)connectionIdentifier {
     twitterStatuses = [[NSArray alloc] initWithArray:statuses];
-    [self.tableView reloadData];
+    [theTableView reloadData];
     NSLog(@"statusesReceived: %@", statuses);
 }
 //- (void)directMessagesReceived:(NSArray *)messages forRequest:(NSString *)connectionIdentifier {
