@@ -61,13 +61,22 @@
     int y = 0;
     for (FSBadge *badge in user.badges) {
         NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:badge.icon]];
-        UIImage *img = [[UIImage alloc] initWithData:data];
-        UIImageView *imgView = [[UIImageView alloc] initWithImage:img];
         CGRect frame= CGRectMake(x*60 + 10, y*60 + 10, 50, 50);
-        imgView.frame = frame;
+        UIButton *btn = [[UIButton alloc] initWithFrame:frame];
+        UIImage *img = [[UIImage alloc] initWithData:data];
+        [btn setImage:img forState:UIControlStateNormal];
+        btn.tag = badge.badgeId;
+        [badgeCell addSubview:btn];
+        [badgeCell bringSubviewToFront:btn];
         [img release];
-        [badgeCell addSubview:imgView];
-        [imgView release];
+        
+//        UIImage *img = [[UIImage alloc] initWithData:data];
+//        UIImageView *imgView = [[UIImageView alloc] initWithImage:img];
+//        CGRect frame= CGRectMake(x*60 + 10, y*60 + 10, 50, 50);
+//        imgView.frame = frame;
+//        [img release];
+//        [badgeCell addSubview:imgView];
+//        [imgView release];
         x++;
         if (x%BADGES_PER_ROW == 0) {
             x = 0;
