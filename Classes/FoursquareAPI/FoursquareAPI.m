@@ -82,18 +82,18 @@ static FoursquareAPI *sharedInstance = nil;
 											 fsUsername:fsUser
 											 fsPassword:fsPass];
 	self.oauthAPI.delegate = (id <MPOAuthAPIDelegate>)[UIApplication sharedApplication].delegate;
-    MPOAuthCredentialConcreteStore *credStore = [self.oauthAPI credentials];
-    NSLog(@"cred: %@", [credStore oauthParameters]);
-//    NSLog(@"cred time: %@", [self.oauthAPI credentials].timestamp);
-//    NSLog(@"cred request token: %@", [self.oauthAPI credentials].requestToken);
-//    NSLog(@"cred consumer key: %@", [self.oauthAPI credentials].consumerKey);
-    NSLog(@"auth state: %@", self.oauthAPI.authenticationState);
+//    MPOAuthCredentialConcreteStore *credStore = [self.oauthAPI credentials];
+//    NSLog(@"cred: %@", [credStore oauthParameters]);
+////    NSLog(@"cred time: %@", [self.oauthAPI credentials].timestamp);
+////    NSLog(@"cred request token: %@", [self.oauthAPI credentials].requestToken);
+////    NSLog(@"cred consumer key: %@", [self.oauthAPI credentials].consumerKey);
+//    NSLog(@"auth state: %@", self.oauthAPI.authenticationState);
 }
 
 - (BOOL) isAuthenticated{
 	
 	NSString *accessTokenSecret = [self.oauthAPI findValueFromKeychainUsingName:@"oauth_token_access_secret"];
-    NSLog(@"****** accessTokenSecret: %@", accessTokenSecret);
+    //NSLog(@"****** accessTokenSecret: %@", accessTokenSecret);
 	if(accessTokenSecret != nil){
 		return YES;
 	} else return NO;
@@ -183,7 +183,12 @@ static FoursquareAPI *sharedInstance = nil;
 	}
 	NSLog(@"checkin params: %@", params);
     [self.oauthAPI performMethod:@"/v1/checkin" withTarget:inTarget withParameters:params andAction:inAction doPost:YES];
-//	[self.oauthAPI performMethod:@"/v1/checkin" withTarget:inTarget withParameters:params andAction:inAction];
+}
+
+- (void) doSendFriendRequest:(NSString*)userId withTarget:(id)inTarget andAction:(SEL)inAction {
+    NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
+    [params addObject:[[MPURLRequestParameter alloc] initWithName:@"uid" andValue:userId]];
+    [self.oauthAPI performMethod:@"/v1/friend/sendrequest" withTarget:inTarget withParameters:params andAction:inAction doPost:YES];
 }
 
 + (NSArray *) friendsFromResponseXML:(NSString *) inString{

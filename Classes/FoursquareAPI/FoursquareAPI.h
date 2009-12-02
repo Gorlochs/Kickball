@@ -44,10 +44,9 @@
 - (void)getVenue:(NSString *)venueId withTarget:(id)inTarget andAction:(SEL)inAction;
 - (void)getUser:(NSString *)userId withTarget:(id)inTarget andAction:(SEL)inAction;
 - (void) doCheckinAtVenueWithId:(NSString *)venueId andShout:(NSString *)shout offGrid:(BOOL)offGrid toTwitter:(BOOL)toTwitter withTarget:(id)inTarget andAction:(SEL)inAction;
-
+- (void) doSendFriendRequest:(NSString*)userId withTarget:(id)inTarget andAction:(SEL)inAction;
 
 - (void)doLoginUsername: (NSString *)fsUser andPass:(NSString *) fsPass;
-
 
 + (FoursquareAPI *)sharedInstance;
 
