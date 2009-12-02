@@ -191,6 +191,56 @@ static FoursquareAPI *sharedInstance = nil;
     [self.oauthAPI performMethod:@"/v1/friend/sendrequest" withTarget:inTarget withParameters:params andAction:inAction doPost:YES];
 }
 
+- (void) approveFriendRequest:(NSString*)userId withTarget:(id)inTarget andAction:(SEL)inAction {
+    NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
+    [params addObject:[[MPURLRequestParameter alloc] initWithName:@"uid" andValue:userId]];
+    [self.oauthAPI performMethod:@"/v1/friend/approve" withTarget:inTarget withParameters:params andAction:inAction doPost:YES];
+}
+
+- (void) denyFriendRequest:(NSString*)userId withTarget:(id)inTarget andAction:(SEL)inAction {
+    NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
+    [params addObject:[[MPURLRequestParameter alloc] initWithName:@"uid" andValue:userId]];
+    [self.oauthAPI performMethod:@"/v1/friend/deny" withTarget:inTarget withParameters:params andAction:inAction doPost:YES];
+}
+
+- (void) findFriendsByName:(NSString*)name withTarget:(id)inTarget andAction:(SEL)inAction {
+    NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
+    [params addObject:[[MPURLRequestParameter alloc] initWithName:@"q" andValue:name]];
+    [self.oauthAPI performMethod:@"/v1/findfriends/byname" withTarget:inTarget withParameters:params andAction:inAction doPost:NO];
+}
+
+- (void) findFriendsByPhone:(NSString*)phone withTarget:(id)inTarget andAction:(SEL)inAction {
+    NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
+    [params addObject:[[MPURLRequestParameter alloc] initWithName:@"q" andValue:phone]];
+    [self.oauthAPI performMethod:@"/v1/findfriends/byphone" withTarget:inTarget withParameters:params andAction:inAction doPost:NO];
+}
+
+- (void) findFriendsByTwitterName:(NSString*)twitterName withTarget:(id)inTarget andAction:(SEL)inAction {
+    NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
+    [params addObject:[[MPURLRequestParameter alloc] initWithName:@"q" andValue:twitterName]];
+    [self.oauthAPI performMethod:@"/v1/findfriends/bytwitter" withTarget:inTarget withParameters:params andAction:inAction doPost:NO];
+}
+
+// TODO: getPendingFriendRequests
+
++ (NSArray *) usersFromResponseXML:(NSString *) inString {
+	
+	NSError * err;
+	CXMLDocument *userParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
+	NSLog(@"error: %@", [err localizedDescription]);
+	
+	NSArray * allUsers;
+    NSMutableArray * users = [[NSMutableArray alloc] initWithCapacity:1];;
+	
+	//get the groups
+	allUsers = [userParser nodesForXPath:@"//users/user" error:nil];
+    NSLog(@"allusers: %@", allUsers);
+	for (CXMLElement *userResult in allUsers) {
+        [users addObject:[FoursquareAPI _userFromNode:userResult]];
+	}
+	return users;
+}
+
 + (NSArray *) friendsFromResponseXML:(NSString *) inString{
 	
 	NSError * err;

@@ -45,6 +45,11 @@
 - (void)getUser:(NSString *)userId withTarget:(id)inTarget andAction:(SEL)inAction;
 - (void) doCheckinAtVenueWithId:(NSString *)venueId andShout:(NSString *)shout offGrid:(BOOL)offGrid toTwitter:(BOOL)toTwitter withTarget:(id)inTarget andAction:(SEL)inAction;
 - (void) doSendFriendRequest:(NSString*)userId withTarget:(id)inTarget andAction:(SEL)inAction;
+- (void) approveFriendRequest:(NSString*)userId withTarget:(id)inTarget andAction:(SEL)inAction;
+- (void) denyFriendRequest:(NSString*)userId withTarget:(id)inTarget andAction:(SEL)inAction;
+- (void) findFriendsByName:(NSString*)name withTarget:(id)inTarget andAction:(SEL)inAction;
+- (void) findFriendsByPhone:(NSString*)phone withTarget:(id)inTarget andAction:(SEL)inAction;
+- (void) findFriendsByTwitterName:(NSString*)phone withTarget:(id)inTarget andAction:(SEL)inAction;
 
 - (void)doLoginUsername: (NSString *)fsUser andPass:(NSString *) fsPass;
 
@@ -56,6 +61,7 @@
 + (NSArray *) _tipsFromNode:(CXMLNode *) inputNode;
 + (FSScoring *) _scoringFromNode:(CXMLNode *) inputNode;
 
++ (NSArray *) usersFromResponseXML:(NSString *) inString;
 + (NSArray *) friendsFromResponseXML:(NSString *) inString;
 + (NSArray *) venuesFromResponseXML:(NSString *) inString;
 + (FSUser *) loggedInUserFromResponseXML:(NSString *) inString; 
