@@ -150,6 +150,12 @@
 
 
 - (void)dealloc {
+    [tip release];
+    [authorNamelabel release];
+    [authorIcon release];
+    [createdOnLabel release];
+    [tipText release];
+    
     [super dealloc];
 }
 

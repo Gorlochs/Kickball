@@ -43,10 +43,11 @@
         
 	} else {
         [self startProgressBar:@"Retrieving friends' whereabouts..."];
-//        progressViewController = [[ProgressViewController alloc] initWithNibName:@"ProgressView" bundle:nil];
-//        [self.view addSubview:progressViewController.view];
-//        progressViewController.activityLabel.text = @"Retrieving friends' whereabouts...";
 		[[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
+        
+        // testing
+        //[[FoursquareAPI sharedInstance ] doSendFriendRequest:@"53961" withTarget:self andAction:@selector(sendFriendRequestResponseReceived:withResponseString:)];
+        //[[FoursquareAPI sharedInstance ] findFriendsByName:@"francine" withTarget:self andAction:@selector(findFriendsResponseReceived:withResponseString:)];
         
         // this didn't work in the appdelegate (timing issues), so it's in the first page, but it's going to set an appDelegate property
         // probably should be put back in the appdelegate with a notification that this page checks for
@@ -63,6 +64,12 @@
     NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
     NSLog(@"return string: %@", returnString);
 }
+
+//- (void)findFriendsResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+//    NSLog(@"find friend instring: %@", inString);
+//    NSArray *users = [FoursquareAPI usersFromResponseXML:inString];
+//    NSLog(@"users: %@", users);
+//}
 
 - (void) addAuthToWebRequest:(NSMutableURLRequest*)requestObj email:(NSString*)email password:(NSString*)password{
     NSString *authString = [[[NSString stringWithFormat:@"%@:%@", email, password] dataUsingEncoding:NSUTF8StringEncoding] base64EncodingWithLineLength:0];

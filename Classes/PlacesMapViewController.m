@@ -180,7 +180,8 @@
 - (void)dealloc {
     [venues release];
     [mapViewer release];
-
+    [bestEffortAtLocation release];
+    [searchbox release];
     [super dealloc];
 }
 @end

@@ -266,6 +266,7 @@
 - (void)dealloc {
     [theTableView release];
     [searchCell release];
+    [searchbox release];
     [locationManager release];
     [bestEffortAtLocation release];
     [venues release];

@@ -105,6 +105,7 @@ static FoursquareAPI *sharedInstance = nil;
 	
 	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"geolat" andValue:geolat]];
 	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"geolong" andValue:geolong]];
+	//[params addObject:[[MPURLRequestParameter alloc] initWithName:@"l" andValue:@"100"]];  // seems that there is a limit of 50 veunes returned
 	
 	[self.oauthAPI performMethod:@"/v1/venues" withTarget:inTarget withParameters:params  andAction:inAction];
 	
@@ -230,7 +231,7 @@ static FoursquareAPI *sharedInstance = nil;
 	NSLog(@"error: %@", [err localizedDescription]);
 	
 	NSArray * allUsers;
-    NSMutableArray * users = [[NSMutableArray alloc] initWithCapacity:1];;
+    NSMutableArray * users = [[NSMutableArray alloc] initWithCapacity:1];
 	
 	//get the groups
 	allUsers = [userParser nodesForXPath:@"//users/user" error:nil];
@@ -275,6 +276,7 @@ static FoursquareAPI *sharedInstance = nil;
 		[allVens addObject:[groupOfVenues copy]];
 	}
     NSLog(@"completed venuesFromResponseXML");
+    NSLog(@"number of venues found: %@", [allVens objectAtIndex:0]);
 	return allVens;
 }
 

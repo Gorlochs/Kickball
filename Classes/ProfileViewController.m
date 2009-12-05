@@ -122,12 +122,20 @@
 
 - (void)dealloc {
     [theTableView release];
+    [badgeCell release];
+    [addFriendCell release];
+    [twitterTable release];
+    [userId release];
+    [user release];
+    [twitterStatuses release];
     
     [name release];
+    [location release];
     [lastCheckinAddress release];
     [nightsOut release];
     [totalCheckins release];
     [userIcon release];
+    [segmentedControl release];
     
     [super dealloc];
 }

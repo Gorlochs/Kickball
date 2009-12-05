@@ -422,7 +422,7 @@
     
     location.latitude =  [venue.geolat doubleValue];
     location.longitude = [venue.geolong doubleValue];
-    [connectionManager_ requestBusinessesNearCoords:location withinRadius:200 maxResults:5];
+    [connectionManager_ requestBusinessesNearCoords:location withinRadius:200 maxResults:10];
 }
 
 #pragma mark GeoAPI Delegate methods
