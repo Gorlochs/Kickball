@@ -222,7 +222,27 @@ static FoursquareAPI *sharedInstance = nil;
     [self.oauthAPI performMethod:@"/v1/findfriends/bytwitter" withTarget:inTarget withParameters:params andAction:inAction doPost:NO];
 }
 
-// TODO: getPendingFriendRequests
+- (void) getPendingFriendRequests:(id)inTarget andAction:(SEL)inAction {
+    [self.oauthAPI performMethod:@"/v1/friend/requests" withTarget:inTarget andAction:inAction doPost:NO];
+}
+
++ (NSArray *) friendRequestsFromResponseXML:(NSString *) inString {
+	
+	NSError * err;
+	CXMLDocument *userParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
+	NSLog(@"error: %@", [err localizedDescription]);
+	
+	NSArray * allUsers;
+    NSMutableArray * users = [[NSMutableArray alloc] initWithCapacity:1];
+	
+	//get the groups
+	allUsers = [userParser nodesForXPath:@"//requests/user" error:nil];
+    NSLog(@"allusers: %@", allUsers);
+	for (CXMLElement *userResult in allUsers) {
+        [users addObject:[FoursquareAPI _userFromNode:userResult]];
+	}
+	return users;
+}
 
 + (NSArray *) usersFromResponseXML:(NSString *) inString {
 	

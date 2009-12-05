@@ -50,6 +50,7 @@
 - (void) findFriendsByName:(NSString*)name withTarget:(id)inTarget andAction:(SEL)inAction;
 - (void) findFriendsByPhone:(NSString*)phone withTarget:(id)inTarget andAction:(SEL)inAction;
 - (void) findFriendsByTwitterName:(NSString*)phone withTarget:(id)inTarget andAction:(SEL)inAction;
+- (void) getPendingFriendRequests:(id)inTarget andAction:(SEL)inAction;
 
 - (void)doLoginUsername: (NSString *)fsUser andPass:(NSString *) fsPass;
 
