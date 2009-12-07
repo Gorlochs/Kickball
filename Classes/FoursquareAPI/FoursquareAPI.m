@@ -13,7 +13,7 @@ static FoursquareAPI *sharedInstance = nil;
 
 @implementation FoursquareAPI
 
-@synthesize oauthAPI, currentUser;
+@synthesize oauthAPI, currentUser, userName, passWord, activeRequests;
 
 #pragma mark -
 #pragma mark class instance methods
@@ -27,14 +27,14 @@ static FoursquareAPI *sharedInstance = nil;
     {
         if (sharedInstance == nil){
 			sharedInstance = [[FoursquareAPI alloc] init];
-			NSDictionary *credentials = [NSDictionary dictionaryWithObjectsAndKeys:	kConsumerKey, kMPOAuthCredentialConsumerKey,
-										 kConsumerSecret, kMPOAuthCredentialConsumerSecret,
-										 nil];
-			
-			
-			sharedInstance.oauthAPI = [[MPOAuthAPI alloc] initWithCredentials:credentials
-								  authenticationURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/authexchange"]
-														 andBaseURL:[NSURL URLWithString:@"http://api.foursquare.com"]];
+//			NSDictionary *credentials = [NSDictionary dictionaryWithObjectsAndKeys:	kConsumerKey, kMPOAuthCredentialConsumerKey,
+//										 kConsumerSecret, kMPOAuthCredentialConsumerSecret,
+//										 nil];
+//			
+//			
+//			sharedInstance.oauthAPI = [[MPOAuthAPI alloc] initWithCredentials:credentials
+//								  authenticationURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/authexchange"]
+//														 andBaseURL:[NSURL URLWithString:@"http://api.foursquare.com"]];
 		}
 	}
     return sharedInstance;
@@ -72,16 +72,22 @@ static FoursquareAPI *sharedInstance = nil;
 }
 
 - (void)doLoginUsername: (NSString *)fsUser andPass:(NSString *) fsPass{
-	NSDictionary *credentials = [NSDictionary dictionaryWithObjectsAndKeys:	kConsumerKey, kMPOAuthCredentialConsumerKey,
-								 kConsumerSecret, kMPOAuthCredentialConsumerSecret,
-								 nil];
 	
-	self.oauthAPI = [[MPOAuthAPI alloc] initWithCredentials:credentials
-									  authenticationURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/authexchange"]
-											 andBaseURL:[NSURL URLWithString:@"http://api.foursquare.com"]
-											 fsUsername:fsUser
-											 fsPassword:fsPass];
-	self.oauthAPI.delegate = (id <MPOAuthAPIDelegate>)[UIApplication sharedApplication].delegate;
+	self.userName = fsUser; 
+	self.passWord = fsPass;
+	self.userName = @"USERNAME"; 
+	self.passWord = @"PASSWORD";
+	
+//	NSDictionary *credentials = [NSDictionary dictionaryWithObjectsAndKeys:	kConsumerKey, kMPOAuthCredentialConsumerKey,
+//								 kConsumerSecret, kMPOAuthCredentialConsumerSecret,
+//								 nil];
+//	
+//	self.oauthAPI = [[MPOAuthAPI alloc] initWithCredentials:credentials
+//									  authenticationURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/authexchange"]
+//											 andBaseURL:[NSURL URLWithString:@"http://api.foursquare.com"]
+//											 fsUsername:fsUser
+//											 fsPassword:fsPass];
+//	self.oauthAPI.delegate = (id <MPOAuthAPIDelegate>)[UIApplication sharedApplication].delegate;
 //    MPOAuthCredentialConcreteStore *credStore = [self.oauthAPI credentials];
 //    NSLog(@"cred: %@", [credStore oauthParameters]);
 ////    NSLog(@"cred time: %@", [self.oauthAPI credentials].timestamp);
@@ -91,77 +97,118 @@ static FoursquareAPI *sharedInstance = nil;
 }
 
 - (BOOL) isAuthenticated{
-	
-	NSString *accessTokenSecret = [self.oauthAPI findValueFromKeychainUsingName:@"oauth_token_access_secret"];
-    //NSLog(@"****** accessTokenSecret: %@", accessTokenSecret);
-	if(accessTokenSecret != nil){
-		return YES;
-	} else return NO;
+	if(!self.userName){
+		return NO;
+	}
+	return YES;
+//	
+//	NSString *accessTokenSecret = [self.oauthAPI findValueFromKeychainUsingName:@"oauth_token_access_secret"];
+//    //NSLog(@"****** accessTokenSecret: %@", accessTokenSecret);
+//	if(accessTokenSecret != nil){
+//		return YES;
+//	} else return NO;
 }
 
 
 - (void)getVenuesNearLatitude: (NSString *)geolat andLongitude:(NSString *) geolong withTarget:(id)inTarget andAction:(SEL)inAction{
-	NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
+//	NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
+//	
+//	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"geolat" andValue:geolat]];
+//	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"geolong" andValue:geolong]];
+//	//[params addObject:[[MPURLRequestParameter alloc] initWithName:@"l" andValue:@"100"]];  // seems that there is a limit of 50 veunes returned
+//	
+//	[self.oauthAPI performMethod:@"/v1/venues" withTarget:inTarget withParameters:params  andAction:inAction];
+	NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:3];
+
+	[requestParams setObject:geolat forKey:@"geolat"];
+	[requestParams setObject:geolong forKey:@"geolong"];
+	[requestParams setObject:@"100" forKey:@"l"];
 	
-	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"geolat" andValue:geolat]];
-	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"geolong" andValue:geolong]];
-	//[params addObject:[[MPURLRequestParameter alloc] initWithName:@"l" andValue:@"100"]];  // seems that there is a limit of 50 veunes returned
-	
-	[self.oauthAPI performMethod:@"/v1/venues" withTarget:inTarget withParameters:params  andAction:inAction];
-	
+	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/venues"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"GET"];
+
 }
 
 // this might could be combined with the above method
 - (void)getVenuesByKeyword: (NSString *)geolat andLongitude:(NSString *) geolong andKeywords:(NSString *) keywords withTarget:(id)inTarget andAction:(SEL)inAction{
-	NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
+//	NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
+//	
+//	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"geolat" andValue:geolat]];
+//	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"geolong" andValue:geolong]];
+//	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"q" andValue:[keywords stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]]];
+//	
+//	[self.oauthAPI performMethod:@"/v1/venues" withTarget:inTarget withParameters:params  andAction:inAction];
 	
-	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"geolat" andValue:geolat]];
-	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"geolong" andValue:geolong]];
-	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"q" andValue:[keywords stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]]];
+	NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:3];
 	
-	[self.oauthAPI performMethod:@"/v1/venues" withTarget:inTarget withParameters:params  andAction:inAction];
+	[requestParams setObject:geolat forKey:@"geolat"];
+	[requestParams setObject:geolong forKey:@"geolong"];
+	[requestParams setObject:[keywords stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding] forKey:@"1"];
 	
+	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/venues"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"GET"];
+
 }
 
 - (void)getVenue:(NSString *)venueId withTarget:(id)inTarget andAction:(SEL)inAction{
-	NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
-	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"vid" andValue:venueId]];
-	[self.oauthAPI performMethod:@"/v1/venue" withTarget:inTarget withParameters:params  andAction:inAction];
+//	NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
+//	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"vid" andValue:venueId]];
+//	[self.oauthAPI performMethod:@"/v1/venue" withTarget:inTarget withParameters:params  andAction:inAction];
+	NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:3];
+	[requestParams setObject:venueId forKey:@"vid"];	
+	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/venue"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"GET"];
+
 }
 
 - (void)getUser:(NSString *)userId withTarget:(id)inTarget andAction:(SEL)inAction{
-	NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
-	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"uid" andValue:userId]];
-	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"badges" andValue:@"1"]];
-	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"mayor" andValue:@"1"]];
-	
-	
-	[self.oauthAPI performMethod:@"/v1/user" withTarget:inTarget withParameters:params  andAction:inAction];
+//	NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
+//	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"uid" andValue:userId]];
+//	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"badges" andValue:@"1"]];
+//	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"mayor" andValue:@"1"]];
+//	[self.oauthAPI performMethod:@"/v1/user" withTarget:inTarget withParameters:params  andAction:inAction];
+
+	NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:3];
+	if(userId != nil){
+		[requestParams setObject:userId forKey:@"uid"];
+	}
+	[requestParams setObject:@"1" forKey:@"badges"];
+	[requestParams setObject:@"1" forKey:@"mayor"];
+	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/user"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"GET"];
 }
 
 - (void)getCheckinsWithTarget:(id)inTarget andAction:(SEL)inAction{
-	[self.oauthAPI performMethod:@"/v1/checkins" withTarget:inTarget andAction:inAction];
+	//	[self.oauthAPI performMethod:@"/v1/checkins" withTarget:inTarget andAction:inAction];
+	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/checkins"] withUser:self.userName andPassword:self.passWord andParams:nil withTarget:inTarget andAction:inAction usingMethod:@"GET"];
 
 }
 
 - (void)getFriendsWithTarget:(id)inTarget andAction:(SEL)inAction{
-	[self.oauthAPI performMethod:@"/v1/friends" withTarget:inTarget andAction:inAction];
+	//[self.oauthAPI performMethod:@"/v1/friends" withTarget:inTarget andAction:inAction];
+	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/friends"] withUser:self.userName andPassword:self.passWord andParams:nil withTarget:inTarget andAction:inAction usingMethod:@"GET"];
 }
 
 - (void)getUserWithTarget:(id)inTarget andAction:(SEL)inAction{
-	NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
-	
-	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"badges" andValue:@"1"]];
-	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"mayor" andValue:@"1"]];
-	[self.oauthAPI performMethod:@"/v1/user" withTarget:inTarget withParameters:params andAction:inAction];
+//	NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
+//	
+//	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"badges" andValue:@"1"]];
+//	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"mayor" andValue:@"1"]];
+//	[self.oauthAPI performMethod:@"/v1/user" withTarget:inTarget withParameters:params andAction:inAction];
+	NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:3];
+	[requestParams setObject:@"1" forKey:@"badges"];	
+	[requestParams setObject:@"1" forKey:@"mayor"];	
+	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/user"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"GET"];
+
 }
 
 - (void)getCityNearestToLatitude:(NSString *) geolat andLongitude:(NSString *)geolong withTarget:(id)inTarget andAction:(SEL)inAction{
-	NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
-	
-	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"geolat" andValue:geolat]];
-	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"geolong" andValue:geolong]];
-	[self.oauthAPI performMethod:@"/v1/checkcity" withTarget:inTarget withParameters:params andAction:inAction];
+//	NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
+//	
+//	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"geolat" andValue:geolat]];
+//	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"geolong" andValue:geolong]];
+//	[self.oauthAPI performMethod:@"/v1/checkcity" withTarget:inTarget withParameters:params andAction:inAction];
+	NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:3];
+	[requestParams setObject:geolat forKey:@"geolat"];	
+	[requestParams setObject:geolong forKey:@"geolong"];	
+	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/checkcity"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"GET"];
+
 }
 
 
@@ -637,6 +684,165 @@ static FoursquareAPI *sharedInstance = nil;
 		}
 	}
 	return loggedInUser;
+}
+
+
+int encode(unsigned s_len, char *src, unsigned d_len, char *dst)
+{
+	char base64[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	"abcdefghijklmnopqrstuvwxyz"
+	"0123456789"
+	"+/";
+	
+	unsigned triad;
+	
+	for (triad = 0; triad < s_len; triad += 3)
+	{
+		unsigned long int sr;
+		unsigned byte;
+		
+		for (byte = 0; (byte<3)&&(triad+byte<s_len); ++byte)
+		{
+			sr <<= 8;
+			sr |= (*(src+triad+byte) & 0xff);
+		}
+		
+		sr <<= (6-((8*byte)%6))%6; /*shift left to next 6bit alignment*/
+		
+		if (d_len < 4) return 1; /* error - dest too short */
+		
+		*(dst+0) = *(dst+1) = *(dst+2) = *(dst+3) = '=';
+		switch(byte)
+		{
+			case 3:
+				*(dst+3) = base64[sr&0x3f];
+				sr >>= 6;
+			case 2:
+				*(dst+2) = base64[sr&0x3f];
+				sr >>= 6;
+			case 1:
+				*(dst+1) = base64[sr&0x3f];
+				sr >>= 6;
+				*(dst+0) = base64[sr&0x3f];
+		}
+		dst += 4; d_len -= 4;
+	}
+	
+	return 0;
+	
+}
++ (NSString *)parameterStringForDictionary:(NSDictionary *)inParameterDictionary {
+	NSMutableString *queryString = [[NSMutableString alloc] init];
+	int i = 0;
+	
+	for (NSString *aKey in [inParameterDictionary allKeys]) {
+		if (i > 0) {
+			[queryString appendString:@"&"];
+		}
+		[queryString appendFormat:@"%@=%@", [aKey stringByAddingURIPercentEscapesUsingEncoding:NSUTF8StringEncoding], [[inParameterDictionary objectForKey:aKey] stringByAddingURIPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+		i++;
+	}
+	
+	return [queryString autorelease];
+}
+
+
+- (void) loadBasicAuthURL:(NSURL *) url withUser:(NSString *) loginString andPassword: (NSString *) passwordString andParams:(NSDictionary *) parameters withTarget:(id)inTarget andAction:(SEL)inAction usingMethod:(NSString *) httpMethod{
+	if(activeRequests == nil){
+		
+		activeRequests = [[NSMutableDictionary alloc] initWithCapacity:1];
+
+	}
+	
+    NSMutableString *dataStr = (NSMutableString*)[@"" stringByAppendingFormat:@"%@:%@", loginString, passwordString];
+	
+    NSData *encodeData = [dataStr dataUsingEncoding:NSUTF8StringEncoding];
+    char encodeArray[512];
+	
+    memset(encodeArray, '\0', sizeof(encodeArray));
+	
+    // Base64 Encode username and password
+    encode([encodeData length], (char *)[encodeData bytes], sizeof(encodeArray), encodeArray);
+	NSData * data = [[NSData alloc] initWithBytes:encodeArray length:strlen(encodeArray)];
+    dataStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+    NSString * authenticationString = [@"" stringByAppendingFormat:@"Basic %@", dataStr];
+	
+    // Create asynchronous request
+    NSMutableURLRequest * theRequest=(NSMutableURLRequest*)[NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+    [theRequest addValue:authenticationString forHTTPHeaderField:@"Authorization"];
+	
+	
+	if(httpMethod == nil){
+		httpMethod = @"GET";
+	}
+	
+	NSMutableString *parameterString = [[NSMutableString alloc] initWithString:[FoursquareAPI parameterStringForDictionary:parameters]];
+
+	if(httpMethod == @"POST"){
+		//this is a post so do some form encoding
+		NSData *postData = [parameterString dataUsingEncoding:NSUTF8StringEncoding];		
+		[theRequest setValue:[NSString stringWithFormat:@"%d", [postData length]] forHTTPHeaderField:@"Content-Length"];
+		[theRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+		[theRequest setHTTPBody:postData];
+	} else {
+			//its a get so put them on the URL
+		
+		NSString *urlString = [NSString stringWithFormat:@"%@?%@", [url absoluteString], parameterString];		
+		[theRequest setURL:[NSURL URLWithString:urlString]];
+		
+	}
+	
+	[theRequest setHTTPMethod:httpMethod];
+    NSURLConnection * theConnection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    if (theConnection) {
+		FSFunctionRequest * fsReq = [[FSFunctionRequest alloc] init];
+		
+		fsReq.currentTarget = [inTarget retain];
+		fsReq.currentSelector = inAction;
+		fsReq.currentRequestURL = [url retain];
+		fsReq.receivedData = [[[NSMutableData alloc] initWithCapacity:15] retain];
+		[fsReq retain];
+		[activeRequests setObject:fsReq forKey:[NSString stringWithFormat:@"%d", [theConnection hash]]];
+
+//		[inTarget performSelector:inAction withObject:url withObject:receivedData];	
+
+    }
+    else {
+		NSLog(@"Could not connect to the network");
+    }
+	
+}
+
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+	FSFunctionRequest * fsReq = (FSFunctionRequest *) [activeRequests objectForKey:[NSString stringWithFormat:@"%d", [connection hash]]]; 
+
+	
+    [fsReq.receivedData setLength:0];
+	
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+	FSFunctionRequest * fsReq = (FSFunctionRequest *) [activeRequests objectForKey:[NSString stringWithFormat:@"%d", [connection hash]]]; 
+    [fsReq.receivedData appendData:data];
+	
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+	FSFunctionRequest * fsReq = (FSFunctionRequest *) [activeRequests objectForKey:[NSString stringWithFormat:@"%d", [connection hash]]]; 
+
+    NSLog(@"Succeeded! Received %d bytes of data",[fsReq.receivedData length]);
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+	NSString * responseString = [[NSString alloc] initWithData:fsReq.receivedData encoding:NSUTF8StringEncoding];
+	[fsReq.currentTarget performSelector:fsReq.currentSelector withObject:fsReq.currentRequestURL withObject:responseString];	
+
+    [connection release];
+	[activeRequests removeObjectForKey:[NSString stringWithFormat:@"%d", [connection hash]]]; 
 }
 
 @end

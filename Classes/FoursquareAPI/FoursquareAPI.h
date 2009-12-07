@@ -18,6 +18,8 @@
 #import "FSCity.h"
 #import "FSScoring.h"
 #import "FSScore.h"
+#import "FSFunctionRequest.h"
+
 
 #define kConsumerKey		@"56db3be85201b7c551d458354075499b04adbd869"
 #define kConsumerSecret		@"b6439213b40bec023df4da248ed83050"
@@ -27,11 +29,16 @@
 @interface FoursquareAPI : NSObject {
 	MPOAuthAPI * oauthAPI;
 	FSUser * currentUser;
+	NSString * userName;
+	NSString * passWord;
+	NSMutableDictionary * activeRequests;
 }
 
 @property (nonatomic, retain) MPOAuthAPI * oauthAPI;
 @property (nonatomic, retain) FSUser * currentUser;
-
+@property (nonatomic, retain) NSString * userName;
+@property (nonatomic, retain) NSString * passWord;
+@property (nonatomic, retain) NSMutableDictionary * activeRequests;
 
 - (BOOL) isAuthenticated;
 - (void)getVenuesNearLatitude:(NSString *)geolat andLongitude:(NSString *)geolong withTarget:(id)inTarget andAction:(SEL)inAction;
@@ -51,6 +58,7 @@
 - (void) findFriendsByPhone:(NSString*)phone withTarget:(id)inTarget andAction:(SEL)inAction;
 - (void) findFriendsByTwitterName:(NSString*)phone withTarget:(id)inTarget andAction:(SEL)inAction;
 - (void) getPendingFriendRequests:(id)inTarget andAction:(SEL)inAction;
+- (void) loadBasicAuthURL:(NSURL *) url withUser:(NSString *) loginString andPassword: (NSString *) passwordString andParams:(NSDictionary *) parameters withTarget:(id)inTarget andAction:(SEL)inAction usingMethod:(NSString *) httpMethod;
 
 - (void)doLoginUsername: (NSString *)fsUser andPass:(NSString *) fsPass;
 
