@@ -75,8 +75,6 @@ static FoursquareAPI *sharedInstance = nil;
 	
 	self.userName = fsUser; 
 	self.passWord = fsPass;
-	self.userName = @"USERNAME"; 
-	self.passWord = @"PASSWORD";
 	
 //	NSDictionary *credentials = [NSDictionary dictionaryWithObjectsAndKeys:	kConsumerKey, kMPOAuthCredentialConsumerKey,
 //								 kConsumerSecret, kMPOAuthCredentialConsumerSecret,
@@ -97,6 +95,9 @@ static FoursquareAPI *sharedInstance = nil;
 }
 
 - (BOOL) isAuthenticated{
+	self.userName = @"USERNAME"; 
+	self.passWord = @"PASSWORD";
+
 	if(!self.userName){
 		return NO;
 	}
@@ -213,24 +214,34 @@ static FoursquareAPI *sharedInstance = nil;
 
 
 - (void) doCheckinAtVenueWithId:(NSString *)venueId andShout:(NSString *)shout offGrid:(BOOL)offGrid toTwitter:(BOOL)toTwitter withTarget:(id)inTarget andAction:(SEL)inAction {
-	NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
-	
-	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"vid" andValue:venueId]];
+//	NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
+	NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:3];
+
+//	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"vid" andValue:venueId]];
+
+	[requestParams setObject:venueId forKey:@"vid"];	
+
 	if(shout){
-		[params addObject:[[MPURLRequestParameter alloc] initWithName:@"shout" andValue:shout]];
+		[requestParams setObject:shout forKey:@"shout"];	
+//		[params addObject:[[MPURLRequestParameter alloc] initWithName:@"shout" andValue:shout]];
 	}
 	if(offGrid == YES){
-		[params addObject:[[MPURLRequestParameter alloc] initWithName:@"private" andValue:@"1"]];
+		[requestParams setObject:@"1" forKey:@"private"];	
+//		[params addObject:[[MPURLRequestParameter alloc] initWithName:@"private" andValue:@"1"]];
 	} else {
-		[params addObject:[[MPURLRequestParameter alloc] initWithName:@"private" andValue:@"0"]];
+		[requestParams setObject:@"0" forKey:@"private"];	
+//		[params addObject:[[MPURLRequestParameter alloc] initWithName:@"private" andValue:@"0"]];
 	}
 	if(toTwitter == YES){
-		[params addObject:[[MPURLRequestParameter alloc] initWithName:@"twitter" andValue:@"1"]];
+		[requestParams setObject:@"1" forKey:@"twitter"];	
+//		[params addObject:[[MPURLRequestParameter alloc] initWithName:@"twitter" andValue:@"1"]];
 	} else {
-		[params addObject:[[MPURLRequestParameter alloc] initWithName:@"twitter" andValue:@"0"]];
+		[requestParams setObject:@"0" forKey:@"twitter"];	
+//		[params addObject:[[MPURLRequestParameter alloc] initWithName:@"twitter" andValue:@"0"]];
 	}
-	NSLog(@"checkin params: %@", params);
-    [self.oauthAPI performMethod:@"/v1/checkin" withTarget:inTarget withParameters:params andAction:inAction doPost:YES];
+	NSLog(@"checkin params: %@", requestParams);
+	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/checkin"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"POST"];
+//    [self.oauthAPI performMethod:@"/v1/checkin" withTarget:inTarget withParameters:params andAction:inAction doPost:YES];
 }
 
 - (void) doSendFriendRequest:(NSString*)userId withTarget:(id)inTarget andAction:(SEL)inAction {
