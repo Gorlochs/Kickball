@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "FriendsMapViewController.h"
+#import "LoginViewModalController.h"
 
 @interface FriendsListViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
     IBOutlet UITableView *theTableView;
@@ -16,6 +17,7 @@
 	NSMutableArray * recentCheckins;
 	NSMutableArray * todayCheckins;
 	NSMutableArray * yesterdayCheckins;
+
 }
 
 @property (nonatomic, retain) NSArray * checkins;
@@ -28,5 +30,6 @@
 - (IBAction) flipToMap;
 - (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString;
 - (IBAction) shout;
+- (void) doInitialDisplay;
 
 @end

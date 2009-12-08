@@ -96,4 +96,7 @@
     [progressViewController.view removeFromSuperview];
 }
 
+- (void) doInitialDisplay {
+}
+
 @end

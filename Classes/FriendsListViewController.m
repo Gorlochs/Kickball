@@ -26,32 +26,22 @@
 
 @implementation FriendsListViewController
 
-@synthesize checkins, recentCheckins, todayCheckins, yesterdayCheckins, theTableView;
+@synthesize checkins, recentCheckins, todayCheckins, yesterdayCheckins, theTableView, loginViewModal;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 	if(![[FoursquareAPI sharedInstance] isAuthenticated]){
 		//run sheet to log in.
 		NSLog(@"Foursquare is not authenticated");
-        
-//       if (self.loginViewModal == nil)
-//			self.loginViewModal = [[[LoginViewModalController alloc] initWithNibName:
-//                                    NSStringFromClass([LoginViewModalController class]) bundle:nil] autorelease];
-//        
-//		[self.loginViewModal setRootController:self];
-//		[self.navigationController presentModalViewController:self.loginViewModal animated:YES];
+		if (self.loginViewModal == nil)
+			self.loginViewModal = [[[LoginViewModalController alloc] initWithNibName:
+									NSStringFromClass([LoginViewModalController class]) bundle:nil] autorelease];
+		
+		self.loginViewModal.rootController = self;
+		[self.navigationController presentModalViewController:self.loginViewModal animated:YES];
         
 	} else {
-        [self startProgressBar:@"Retrieving friends' whereabouts..."];
-		[[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
-        
-        // testing
-        //[[FoursquareAPI sharedInstance ] doSendFriendRequest:@"53961" withTarget:self andAction:@selector(sendFriendRequestResponseReceived:withResponseString:)];
-        //[[FoursquareAPI sharedInstance ] findFriendsByName:@"francine" withTarget:self andAction:@selector(findFriendsResponseReceived:withResponseString:)];
-        
-        // this didn't work in the appdelegate (timing issues), so it's in the first page, but it's going to set an appDelegate property
-        // probably should be put back in the appdelegate with a notification that this page checks for
-        [[FoursquareAPI sharedInstance] getUser:nil withTarget:self andAction:@selector(userResponseReceived:withResponseString:)];
+		[self doInitialDisplay];
 	}
     NSURL *url = [NSURL URLWithString:@"https://go.urbanairship.com/api/app/content"];
     NSMutableURLRequest *requestObj = [NSMutableURLRequest requestWithURL:url];
@@ -63,6 +53,22 @@
     NSData *returnData = [NSURLConnection sendSynchronousRequest:requestObj returningResponse:&response error:&error];
     NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
     NSLog(@"return string: %@", returnString);
+}
+
+- (void) doInitialDisplay {
+
+	[self startProgressBar:@"Retrieving friends' whereabouts..."];
+	[[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
+	
+	// testing
+	//[[FoursquareAPI sharedInstance ] doSendFriendRequest:@"53961" withTarget:self andAction:@selector(sendFriendRequestResponseReceived:withResponseString:)];
+	//[[FoursquareAPI sharedInstance ] findFriendsByName:@"francine" withTarget:self andAction:@selector(findFriendsResponseReceived:withResponseString:)];
+	
+	// this didn't work in the appdelegate (timing issues), so it's in the first page, but it's going to set an appDelegate property
+	// probably should be put back in the appdelegate with a notification that this page checks for
+	[[FoursquareAPI sharedInstance] getUser:nil withTarget:self andAction:@selector(userResponseReceived:withResponseString:)];
+	
+	
 }
 
 //- (void)findFriendsResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
@@ -361,6 +367,7 @@
         if(![[FoursquareAPI sharedInstance] isAuthenticated]){
             //run sheet to log in.
             NSLog(@"Foursquare is not authenticated");
+			
         } else {
             [[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:nil 
                                                           andShout:shoutField.text 

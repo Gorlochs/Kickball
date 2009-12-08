@@ -72,7 +72,11 @@
 
 - (IBAction) login: (id) sender
 {
-	[self doLoginUsername:[usernameField text] andPass:[passwordField text]];	
+	[[FoursquareAPI sharedInstance] doLoginUsername:[usernameField text] andPass:[passwordField text]];	
+	if([self.rootController respondsToSelector:@selector(doInitialDisplay)]){
+		[(KBBaseViewController *)self.rootController doInitialDisplay];
+	}
+	[self dismissModalViewControllerAnimated:true];
 }
 
 - (void)dealloc {

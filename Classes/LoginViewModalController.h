@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "KBBaseViewController.h"
+#import "FoursquareAPI.h"
 
-@interface LoginViewModalController : KBBaseViewController {
+@interface LoginViewModalController : UIViewController {
 	IBOutlet UITextField *usernameField;
 	IBOutlet UITextField *passwordField;
 	UIViewController * rootController;

@@ -95,8 +95,6 @@ static FoursquareAPI *sharedInstance = nil;
 }
 
 - (BOOL) isAuthenticated{
-	self.userName = @"USERNAME"; 
-	self.passWord = @"PASSWORD";
 
 	if(!self.userName){
 		return NO;

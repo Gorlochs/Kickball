@@ -27,5 +27,6 @@
 - (void) doLoginUsername: (NSString *)fsUser andPass:(NSString *) fsPass;
 - (void) startProgressBar:(NSString*)textToDisplay;
 - (void) stopProgressBar;
+- (void) doInitialDisplay;
 
 @end
