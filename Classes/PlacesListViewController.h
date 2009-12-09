@@ -21,14 +21,14 @@ typedef enum {
     IBOutlet UITextField *searchbox;
     CLLocationManager *locationManager;
     CLLocation *bestEffortAtLocation;
-    NSArray *venues;
+    NSDictionary *venues;
     KBListType venuesTypeToDisplay;
 }
 
 @property (nonatomic, retain) UITableViewCell *searchCell;
 @property (nonatomic, retain) CLLocationManager *locationManager;
 @property (nonatomic, retain) CLLocation *bestEffortAtLocation;
-@property (nonatomic, retain) NSArray *venues;
+@property (nonatomic, retain) NSDictionary *venues;
 
 - (IBAction) searchOnKeywordsandLatLong;
 - (IBAction) flipToMap;

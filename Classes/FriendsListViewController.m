@@ -81,6 +81,7 @@
 	//[[FoursquareAPI sharedInstance ] doSendFriendRequest:@"53961" withTarget:self andAction:@selector(sendFriendRequestResponseReceived:withResponseString:)];
 	//[[FoursquareAPI sharedInstance ] findFriendsByName:@"francine" withTarget:self andAction:@selector(findFriendsResponseReceived:withResponseString:)];
 	
+    // FIXME: fix this. this seems out of place here
 	// this didn't work in the appdelegate (timing issues), so it's in the first page, but it's going to set an appDelegate property
 	// probably should be put back in the appdelegate with a notification that this page checks for
 	[[FoursquareAPI sharedInstance] getUser:nil withTarget:self andAction:@selector(userResponseReceived:withResponseString:)];

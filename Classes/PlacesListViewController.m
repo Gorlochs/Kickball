@@ -16,6 +16,7 @@
 
 - (void)stopUpdatingLocation:(NSString *)state;
 - (void)venuesResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString;
+- (FSVenue*) extractVenueFromDictionaryForRow:(NSIndexPath*)indexPath;
 
 @end
 
@@ -112,7 +113,8 @@
 }
 
 - (void)venuesResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-	NSArray *allVenues = [FoursquareAPI venuesFromResponseXML:inString];
+    NSLog(@"venues: %@", inString);
+	NSDictionary *allVenues = [FoursquareAPI venuesFromResponseXML:inString];
 	self.venues = [allVenues copy];
 	[theTableView reloadData];
     
@@ -167,19 +169,22 @@
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return [venues count];
 }
 
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 0) {
-        return [(NSArray*)[venues objectAtIndex:0] count];
-    } else if (section == 1) {
-        if ([venues count] > 1) {
-            return [(NSArray*)[venues objectAtIndex:1] count];
-        }
+    for (NSString *key in [venues allKeys]) {
+        return [(NSArray*)[venues objectForKey:key] count];
     }
+//    if (section == 0) {
+//        return [(NSArray*)[venues objectAtIndex:0] count];
+//    } else if (section == 1) {
+//        if ([venues count] > 1) {
+//            return [(NSArray*)[venues objectAtIndex:1] count];
+//        }
+//    }
     return 0;
 }
 
@@ -196,18 +201,26 @@
     
     // passing in indexPath.section chooses the proper venue array to display in the appropriate section
     if ([venues count] >= indexPath.section) {
-        FSVenue *venue = (FSVenue*) [(NSArray*)[venues objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+//        FSVenue *venue = (FSVenue*) [(NSArray*)[venues objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+//        NSString *keyForSection = [[venues allKeys] objectAtIndex:indexPath.section];
+//        NSArray *venuesForSection = [venues objectForKey:keyForSection];
+        FSVenue *venue = [self extractVenueFromDictionaryForRow:indexPath];
         cell.textLabel.text = venue.name;
         cell.detailTextLabel.text = venue.addressWithCrossstreet;
 	}
     return cell;
 }
 
+- (FSVenue*) extractVenueFromDictionaryForRow:(NSIndexPath*)indexPath {
+    NSString *keyForSection = [[venues allKeys] objectAtIndex:indexPath.section];
+    NSArray *venuesForSection = [venues objectForKey:keyForSection];
+    return (FSVenue*) [venuesForSection objectAtIndex:indexPath.row];
+}
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];
-    FSVenue *venue = nil;
-    venue = [(NSArray*)[venues objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    FSVenue *venue = [self extractVenueFromDictionaryForRow:indexPath];
     [theTableView deselectRowAtIndexPath:indexPath animated:YES];
    
     placeDetailController.venueId = venue.venueid;
@@ -233,29 +246,31 @@
     headerLabel.highlightedTextColor = [UIColor grayColor];
     headerLabel.font = [UIFont boldSystemFontOfSize:14];
     headerLabel.frame = CGRectMake(0.0, 0.0, 320.0, 24.0);
+
+    headerLabel.text = [[venues allKeys] objectAtIndex:section];
     
     // If you want to align the header text as centered
     // headerLabel.frame = CGRectMake(150.0, 0.0, 300.0, 44.0);
-    switch (section) {
-        case 0:
-            // these values could be pulled from the xml, but I'm not sure that it's worth the trouble
-            if (venuesTypeToDisplay == KBSearchVenues) {
-                headerLabel.text = @"  Matching Places";
-            } else {
-                headerLabel.text = @"  Nearby Favorites";
-            }
-            break;
-        case 1:
-            if (venuesTypeToDisplay == KBSearchVenues) {
-                headerLabel.text = @"  Matching Tags";
-            } else {
-                headerLabel.text = @"  Nearby";
-            }
-            break;
-        default:
-            headerLabel.text = @"You shouldn't see this";
-            break;
-    }
+//    switch (section) {
+//        case 0:
+//            // these values could be pulled from the xml, but I'm not sure that it's worth the trouble
+//            if (venuesTypeToDisplay == KBSearchVenues) {
+//                headerLabel.text = @"  Matching Places";
+//            } else {
+//                headerLabel.text = @"  Nearby Favorites";
+//            }
+//            break;
+//        case 1:
+//            if (venuesTypeToDisplay == KBSearchVenues) {
+//                headerLabel.text = @"  Matching Tags";
+//            } else {
+//                headerLabel.text = @"  Nearby";
+//            }
+//            break;
+//        default:
+//            headerLabel.text = @"You shouldn't see this";
+//            break;
+//    }
     //headerLabel.text = <Put here whatever you want to display> // i.e. array element
     [customView addSubview:headerLabel];
     [headerLabel release];

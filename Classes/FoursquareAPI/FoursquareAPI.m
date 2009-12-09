@@ -119,9 +119,10 @@ static FoursquareAPI *sharedInstance = nil;
 //	[self.oauthAPI performMethod:@"/v1/venues" withTarget:inTarget withParameters:params  andAction:inAction];
 	NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:3];
 
+    // TODO: maybe make the num returned (l) a parameter?
 	[requestParams setObject:geolat forKey:@"geolat"];
 	[requestParams setObject:geolong forKey:@"geolong"];
-	[requestParams setObject:@"100" forKey:@"l"];
+	[requestParams setObject:@"20" forKey:@"l"]; 
 	
 	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/venues"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"GET"];
 
@@ -334,13 +335,14 @@ static FoursquareAPI *sharedInstance = nil;
 	return allFriends;
 }
 
-+ (NSArray *) venuesFromResponseXML:(NSString *) inString{
++ (NSDictionary *) venuesFromResponseXML:(NSString *) inString{
 
 	NSError * err;
 	CXMLDocument *venueParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
 	NSLog(@"venues xml: %@", venueParser);
 	NSLog(@"error: %@", [err localizedDescription]);
 
+    NSMutableDictionary *allVenues = [[NSMutableDictionary alloc] initWithCapacity:1];
 	NSMutableArray * allVens = [[NSMutableArray alloc] initWithCapacity:1];
 
 	NSArray *allGroups = NULL;
@@ -349,11 +351,13 @@ static FoursquareAPI *sharedInstance = nil;
 	allGroups = [venueParser nodesForXPath:@"//venues/group" error:nil];
 	for (CXMLElement *groupResult in allGroups) {
 		NSArray * groupOfVenues = [FoursquareAPI _venuesFromNode:groupResult];
+        [allVenues setObject:[groupOfVenues copy] forKey:[[groupResult attributeForName:@"type"] stringValue]];
 		[allVens addObject:[groupOfVenues copy]];
 	}
+    NSLog(@"dictionary: %@", [allVenues objectForKey:@"Nearby"]);
     NSLog(@"completed venuesFromResponseXML");
     NSLog(@"number of venues found: %@", [allVens objectAtIndex:0]);
-	return allVens;
+	return allVenues;
 }
 
 + (FSVenue *) venueFromResponseXML:(NSString *) inString{
