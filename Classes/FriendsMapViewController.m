@@ -57,12 +57,48 @@
 	// e.g. self.myOutlet = nil;
 }
 
+-(void) centerOnCheckin: (FSCheckin *) checkin {
+	NSLog(@"Update map");
+	/*Region and Zoom*/
+	MKCoordinateRegion region;
+	MKCoordinateSpan span;
+	span.latitudeDelta=0.2;
+	span.longitudeDelta=0.2;
+
+	CLLocationCoordinate2D location = checkin.venue.location;
+
+	region.span=span;
+	region.center=location;
+	
+	
+	[mapViewer setCenterCoordinate: location animated: YES];
+	
+	//[mapViewer setRegion:region animated:TRUE];
+	//[mapViewer regionThatFits:region];
+	
+	
+	
+	
+	//[mapViewer setRegion:mapViewer.region animated:YES];	 
+}
+
+
 
 - (void) setCheckins:(NSArray *) checkin{
 	[checkins release];
 	checkins = checkin;
 	[checkins retain];
+	
     // TODO: center map on user's coordinate, which will be pulled from [FoursquareAPI user] or something
+
+	if (checkins && [checkins count] > 0)
+	{
+		FSCheckin* checkin = [checkins objectAtIndex:0];
+		//[self performSelectorOnMainThread:@selector(centerOnCheckin:) withObject:checkin waitUntilDone:NO];	
+
+	}
+	
+//	[mapViewer setCenterCoordinate:(CLLocationCoordinate2D)];
 	[self refreshFriendPoints];
 }
 
@@ -75,10 +111,9 @@
 	for(FSCheckin * checkin in self.checkins){		
 		FSVenue * checkVenue = checkin.venue;
 		if(checkVenue.geolat && checkVenue.geolong){
-			CLLocationCoordinate2D location;
+			CLLocationCoordinate2D location = checkVenue.location;
 			FSUser * checkUser = checkin.user;
-			location.latitude = [checkVenue.geolat doubleValue];
-			location.longitude = [checkVenue.geolong doubleValue];
+
 			FriendPlacemark *placemark=[[FriendPlacemark alloc] initWithCoordinate:location];
 			if(checkUser.photo != nil){
 				placemark.url = checkUser.photo;

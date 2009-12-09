@@ -17,6 +17,7 @@
 #import "FSCheckin.h"
 #import "Beacon.h"
 #import "FoursquareAPI.h"
+#import "LoginViewModalController.h"
 
 @interface FriendsListViewController (Private)
 

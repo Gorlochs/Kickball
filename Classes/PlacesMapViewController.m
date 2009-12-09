@@ -79,10 +79,7 @@
             span.latitudeDelta = 0.01;
             span.longitudeDelta = 0.01;
             
-            CLLocationCoordinate2D location = mapViewer.userLocation.coordinate;
-            
-            location.latitude =  [venue.geolat doubleValue];
-            location.longitude = [venue.geolong doubleValue];
+            CLLocationCoordinate2D location = venue.location;
             
             region.span = span;
             region.center = location;

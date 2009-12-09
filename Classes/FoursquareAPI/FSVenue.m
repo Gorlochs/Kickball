@@ -34,4 +34,15 @@
     }
 }
 
+- (CLLocationCoordinate2D) location
+{
+	CLLocationCoordinate2D loc;
+	if (geolat && geolong)
+	{
+		loc.latitude = geolat.doubleValue;
+		loc.longitude = geolong.doubleValue;
+	}
+	return loc;	
+}
+
 @end

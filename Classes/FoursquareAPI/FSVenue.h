@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
 #import "FSUser.h"
+
+
 
 
 @interface FSVenue : NSObject {
@@ -51,4 +54,6 @@
 @property (nonatomic) BOOL userHasBeenHere;
 @property (nonatomic) int userCheckinCount;
 @property (nonatomic, retain) NSString * addressWithCrossstreet;
+@property (nonatomic, readonly) CLLocationCoordinate2D location;
+
 @end

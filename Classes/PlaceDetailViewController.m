@@ -94,10 +94,8 @@
     span.latitudeDelta = 0.002;
     span.longitudeDelta = 0.002;
     
-    CLLocationCoordinate2D location = mapView.userLocation.coordinate;
+    CLLocationCoordinate2D location = venueToDisplay.location;
     
-    location.latitude =  [venueToDisplay.geolat doubleValue];
-    location.longitude = [venueToDisplay.geolong doubleValue];
     region.span = span;
     region.center = location;
     
@@ -418,10 +416,8 @@
 
 - (void) doGeoAPICall {
     GAConnectionManager *connectionManager_ = [[GAConnectionManager alloc] initWithAPIKey:@"K6afuuFTXK" delegate:self];
-    CLLocationCoordinate2D location = mapView.userLocation.coordinate;
-    
-    location.latitude =  [venue.geolat doubleValue];
-    location.longitude = [venue.geolong doubleValue];
+    CLLocationCoordinate2D location = venue.location;
+
     [connectionManager_ requestBusinessesNearCoords:location withinRadius:200 maxResults:10];
 }
 

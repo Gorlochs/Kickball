@@ -75,6 +75,8 @@
 - (void)doLoginUsername: (NSString *)fsUser andPass:(NSString *) fsPass{
     
 	[[FoursquareAPI sharedInstance] doLoginUsername:fsUser andPass:fsPass];
+	[self dismissModalViewControllerAnimated:YES];
+
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(accessTokenReceived:) name:MPOAuthNotificationAccessTokenReceived object:nil];
     
 }
