@@ -12,7 +12,6 @@
 #import "FriendsListTableCell.h"
 #import "PlaceDetailViewController.h"
 #import "PlacesListViewController.h"
-#import "ProfileViewController.h"
 #import "FSCheckin.h"
 #import "Beacon.h"
 #import "FoursquareAPI.h"
@@ -41,11 +40,32 @@
 		self.loginViewModal.rootController = self;
 		[self.navigationController presentModalViewController:self.loginViewModal animated:YES];
         
+<<<<<<< .mine
+       if (self.loginViewModal == nil)
+			self.loginViewModal = [[[LoginViewModalController alloc] initWithNibName:
+                                    NSStringFromClass([LoginViewModalController class]) bundle:nil] autorelease];
+        
+=======
+>>>>>>> .r131
 		[self.loginViewModal setRootController:self];
 		[self.navigationController presentModalViewController:self.loginViewModal animated:YES];
         
 	} else {
+<<<<<<< .mine
+        [self startProgressBar:@"Retrieving friends' whereabouts..."];
+		[[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
+        
+        // testing
+        //[[FoursquareAPI sharedInstance ] doSendFriendRequest:@"53961" withTarget:self andAction:@selector(sendFriendRequestResponseReceived:withResponseString:)];
+        //[[FoursquareAPI sharedInstance ] findFriendsByName:@"francine" withTarget:self andAction:@selector(findFriendsResponseReceived:withResponseString:)];
+        [[FoursquareAPI sharedInstance] getPendingFriendRequests:self andAction:@selector(findFriendsRequests:withResponseString:)];
+        
+        // this didn't work in the appdelegate (timing issues), so it's in the first page, but it's going to set an appDelegate property
+        // probably should be put back in the appdelegate with a notification that this page checks for
+        [[FoursquareAPI sharedInstance] getUser:nil withTarget:self andAction:@selector(userResponseReceived:withResponseString:)];
+=======
 		[self doInitialDisplay];
+>>>>>>> .r131
 	}
     NSURL *url = [NSURL URLWithString:@"https://go.urbanairship.com/api/app/content"];
     NSMutableURLRequest *requestObj = [NSMutableURLRequest requestWithURL:url];
@@ -59,14 +79,15 @@
     NSLog(@"return string: %@", returnString);
 }
 
+<<<<<<< .mine
+- (void)findFriendsRequests:(NSURL *)inURL withResponseString:(NSString *)inString {
+    NSLog(@"find friend instring: %@", inString);
+    NSArray *requests = [FoursquareAPI friendRequestsFromResponseXML:inString];
+    NSLog(@"friend requests: %@", requests);
+}
+
+=======
 - (void) doInitialDisplay {
-    // check to see if we need to display the instruction view
-    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-    BOOL hasViewedInstructions = [standardUserDefaults boolForKey:@"viewedInstructions"];
-    NSLog(@"hasViewedInstructions: %d", hasViewedInstructions);
-    if (!hasViewedInstructions) {
-        [self.view addSubview:instructionView];
-    }
 
 	[self startProgressBar:@"Retrieving friends' whereabouts..."];
 	[[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
@@ -82,6 +103,7 @@
 	
 }
 
+>>>>>>> .r131
 //- (void)findFriendsResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
 //    NSLog(@"find friend instring: %@", inString);
 //    NSArray *users = [FoursquareAPI usersFromResponseXML:inString];
@@ -241,29 +263,29 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"row selected");
-    FSUser *user = nil;
+    FSVenue *venue = nil;
     switch (indexPath.section) {
         case 0: // last 3 hours
-            user = ((FSCheckin*)[self.recentCheckins objectAtIndex:indexPath.row]).user;
+            venue = ((FSCheckin*)[self.recentCheckins objectAtIndex:indexPath.row]).venue;
             break;
         case 1: //today
-            user = ((FSCheckin*)[self.todayCheckins objectAtIndex:indexPath.row]).user;
+            venue = ((FSCheckin*)[self.todayCheckins objectAtIndex:indexPath.row]).venue;
             break;
         case 2: //yesterday
-            user = ((FSCheckin*)[self.yesterdayCheckins objectAtIndex:indexPath.row]).user;
+            venue = ((FSCheckin*)[self.yesterdayCheckins objectAtIndex:indexPath.row]).venue;
             break;
         default:
             break;
     }
     
     [theTableView deselectRowAtIndexPath:indexPath animated:YES];
-	ProfileViewController *profileController = [[ProfileViewController alloc] initWithNibName:@"ProfileView" bundle:nil];
+	PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];
 	//handle off the grid checkins.
-	if (user.userId != nil) {
-        profileController.userId = user.userId;
-        [self.navigationController pushViewController:profileController animated:YES];
+	if (venue.venueid != nil) {
+		placeDetailController.venueId = venue.venueid;
+        [self.navigationController pushViewController:placeDetailController animated:YES];
 	}
-    [profileController release];
+    [placeDetailController release];
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

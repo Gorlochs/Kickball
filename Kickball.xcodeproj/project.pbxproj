@@ -78,7 +78,6 @@
 		553C51BF10A1BD8100A74641 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553C51BE10A1BD8100A74641 /* Security.framework */; };
 		5550EE1A10B4F9D00065C925 /* FSScoring.m in Sources */ = {isa = PBXBuildFile; fileRef = 5550EE1910B4F9D00065C925 /* FSScoring.m */; };
 		5550EE1D10B4FA3A0065C925 /* FSScore.m in Sources */ = {isa = PBXBuildFile; fileRef = 5550EE1C10B4FA3A0065C925 /* FSScore.m */; };
-		55A8DD2F10CCD07300D3538A /* FSFunctionRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A8DD2E10CCD07300D3538A /* FSFunctionRequest.m */; };
 		6A044CAC109545200063FC33 /* FriendsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A044CAA109545200063FC33 /* FriendsListViewController.m */; };
 		6A044CAD109545200063FC33 /* FriendsListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A044CAB109545200063FC33 /* FriendsListView.xib */; };
 		6A044CB6109545450063FC33 /* FriendsMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A044CB4109545450063FC33 /* FriendsMapViewController.m */; };
@@ -92,6 +91,8 @@
 		6A1526C71096BD7E00924D0E /* FriendsListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A1526C61096BD7E00924D0E /* FriendsListTableCell.m */; };
 		6A1526C91096BDB300924D0E /* FriendsListTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A1526C81096BDB300924D0E /* FriendsListTableCellView.xib */; };
 		6A1527081096C27200924D0E /* temp-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A1527071096C27200924D0E /* temp-icon.png */; };
+		6A16ABA910CF21B200CD5302 /* tmp-instruction.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A16ABA810CF21B200CD5302 /* tmp-instruction.png */; };
+		6A16ABDB10CF251800CD5302 /* InstructionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A16ABDA10CF251800CD5302 /* InstructionView.m */; };
 		6A20A03310B4C7F4000B5B7D /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A209FF810B4C7F4000B5B7D /* arrow.png */; };
 		6A20A03410B4C7F4000B5B7D /* bg-firstTimer.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A209FF910B4C7F4000B5B7D /* bg-firstTimer.png */; };
 		6A20A03510B4C7F4000B5B7D /* bg-firstTravel.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A209FFA10B4C7F4000B5B7D /* bg-firstTravel.png */; };
@@ -151,6 +152,7 @@
 		6A20A06B10B4C7F4000B5B7D /* pin02.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A20A03010B4C7F4000B5B7D /* pin02.png */; };
 		6A20A06C10B4C7F4000B5B7D /* pin03.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A20A03110B4C7F4000B5B7D /* pin03.png */; };
 		6A20A06D10B4C7F4000B5B7D /* yelp-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A20A03210B4C7F4000B5B7D /* yelp-arrow.png */; };
+		6A2A079A10CCE0100012F527 /* FSFunctionRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A8DD2E10CCD07300D3538A /* FSFunctionRequest.m */; };
 		6A39EB5C1096584A006F76C3 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A39EB5B1096584A006F76C3 /* libsqlite3.dylib */; };
 		6A39EB6110965868006F76C3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A39EB6010965868006F76C3 /* CoreLocation.framework */; };
 		6A39EB6310965868006F76C3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A39EB6210965868006F76C3 /* SystemConfiguration.framework */; };
@@ -216,6 +218,10 @@
 		6AE61217109AB04C008ABF79 /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AF96710109AA32700EF665D /* ProfileView.xib */; };
 		6AF2F0AA10C2EA0B00A29C96 /* TipDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF2F0A910C2EA0B00A29C96 /* TipDetailViewController.m */; };
 		6AF2F0AE10C2EBB300A29C96 /* TipView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AF2F0AD10C2EBB300A29C96 /* TipView.xib */; };
+		6AF794AE10CCADFF00E77D49 /* FriendRequestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF794AC10CCADFF00E77D49 /* FriendRequestsViewController.m */; };
+		6AF794AF10CCADFF00E77D49 /* FriendRequestsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AF794AD10CCADFF00E77D49 /* FriendRequestsViewController.xib */; };
+		6AF794C010CCAF4B00E77D49 /* AddFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF794BE10CCAF4B00E77D49 /* AddFriendsViewController.m */; };
+		6AF794C110CCAF4B00E77D49 /* AddFriendsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AF794BF10CCAF4B00E77D49 /* AddFriendsViewController.xib */; };
 		6AFBB96A10C39EFB00CCA568 /* blue-busy-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AFBB96310C39EFB00CCA568 /* blue-busy-01.png */; };
 		6AFBB96B10C39EFB00CCA568 /* blue-busy-02.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AFBB96410C39EFB00CCA568 /* blue-busy-02.png */; };
 		6AFBB96C10C39EFB00CCA568 /* blue-busy-03.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AFBB96510C39EFB00CCA568 /* blue-busy-03.png */; };
@@ -395,6 +401,9 @@
 		6A1526C61096BD7E00924D0E /* FriendsListTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsListTableCell.m; sourceTree = "<group>"; };
 		6A1526C81096BDB300924D0E /* FriendsListTableCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendsListTableCellView.xib; sourceTree = "<group>"; };
 		6A1527071096C27200924D0E /* temp-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "temp-icon.png"; sourceTree = "<group>"; };
+		6A16ABA810CF21B200CD5302 /* tmp-instruction.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tmp-instruction.png"; sourceTree = "<group>"; };
+		6A16ABD910CF251800CD5302 /* InstructionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstructionView.h; sourceTree = "<group>"; };
+		6A16ABDA10CF251800CD5302 /* InstructionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstructionView.m; sourceTree = "<group>"; };
 		6A209FF810B4C7F4000B5B7D /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
 		6A209FF910B4C7F4000B5B7D /* bg-firstTimer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-firstTimer.png"; sourceTree = "<group>"; };
 		6A209FFA10B4C7F4000B5B7D /* bg-firstTravel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-firstTravel.png"; sourceTree = "<group>"; };
@@ -560,6 +569,12 @@
 		6AF2F0A810C2EA0B00A29C96 /* TipDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipDetailViewController.h; sourceTree = "<group>"; };
 		6AF2F0A910C2EA0B00A29C96 /* TipDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipDetailViewController.m; sourceTree = "<group>"; };
 		6AF2F0AD10C2EBB300A29C96 /* TipView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TipView.xib; sourceTree = "<group>"; };
+		6AF794AB10CCADFF00E77D49 /* FriendRequestsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendRequestsViewController.h; sourceTree = "<group>"; };
+		6AF794AC10CCADFF00E77D49 /* FriendRequestsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendRequestsViewController.m; sourceTree = "<group>"; };
+		6AF794AD10CCADFF00E77D49 /* FriendRequestsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.xib; path = FriendRequestsViewController.xib; sourceTree = "<group>"; };
+		6AF794BD10CCAF4B00E77D49 /* AddFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendsViewController.h; sourceTree = "<group>"; };
+		6AF794BE10CCAF4B00E77D49 /* AddFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendsViewController.m; sourceTree = "<group>"; };
+		6AF794BF10CCAF4B00E77D49 /* AddFriendsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.xib; path = AddFriendsViewController.xib; sourceTree = "<group>"; };
 		6AF96710109AA32700EF665D /* ProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfileView.xib; path = Classes/ProfileView.xib; sourceTree = "<group>"; };
 		6AFBB96310C39EFB00CCA568 /* blue-busy-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blue-busy-01.png"; sourceTree = "<group>"; };
 		6AFBB96410C39EFB00CCA568 /* blue-busy-02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blue-busy-02.png"; sourceTree = "<group>"; };
@@ -613,6 +628,7 @@
 				6A0D9FAB109D97A200F9E1D6 /* Gift */,
 				6AF9670D109AA2FE00EF665D /* Profile */,
 				6AC7E92D10994FB500776993 /* Place */,
+				6AF794AA10CCAD9A00E77D49 /* Requests */,
 				6A044CB8109545580063FC33 /* Friends */,
 				6A55B4CC10B36E9A0005E934 /* General */,
 				1D3623240D0F684500981E51 /* KickballAppDelegate.h */,
@@ -1020,6 +1036,7 @@
 		6A39EC4C109662D7006F76C3 /* temp */ = {
 			isa = PBXGroup;
 			children = (
+				6A16ABA810CF21B200CD5302 /* tmp-instruction.png */,
 				6A6EFF1D10BCB47300208FF7 /* tmp-icon-50x50.png */,
 				6A55B4FB10B3B4BA0005E934 /* tmp-checkin.png */,
 				6A9FF57210AA639200E52FDA /* tmp-phone2.png */,
@@ -1079,6 +1096,8 @@
 				6A55B4CF10B36EC60005E934 /* KBBaseViewController.m */,
 				6AFC1D9810BA4320006B7E5F /* ProgressViewController.h */,
 				6AFC1D9910BA4320006B7E5F /* ProgressViewController.m */,
+				6A16ABD910CF251800CD5302 /* InstructionView.h */,
+				6A16ABDA10CF251800CD5302 /* InstructionView.m */,
 			);
 			name = General;
 			sourceTree = "<group>";
@@ -1189,6 +1208,19 @@
 			name = Place;
 			sourceTree = "<group>";
 		};
+		6AF794AA10CCAD9A00E77D49 /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				6AF794AB10CCADFF00E77D49 /* FriendRequestsViewController.h */,
+				6AF794AC10CCADFF00E77D49 /* FriendRequestsViewController.m */,
+				6AF794AD10CCADFF00E77D49 /* FriendRequestsViewController.xib */,
+				6AF794BD10CCAF4B00E77D49 /* AddFriendsViewController.h */,
+				6AF794BE10CCAF4B00E77D49 /* AddFriendsViewController.m */,
+				6AF794BF10CCAF4B00E77D49 /* AddFriendsViewController.xib */,
+			);
+			name = Requests;
+			sourceTree = "<group>";
+		};
 		6AF9670D109AA2FE00EF665D /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -1242,8 +1274,10 @@
 			files = (
 				6AC5817C10B517FB0043B90C /* PlacesMapView.xib in Resources */,
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
+				6AF794AF10CCADFF00E77D49 /* FriendRequestsViewController.xib in Resources */,
 				6A044CAD109545200063FC33 /* FriendsListView.xib in Resources */,
 				6A044CB7109545450063FC33 /* FriendsMapView.xib in Resources */,
+				6AF794C110CCAF4B00E77D49 /* AddFriendsViewController.xib in Resources */,
 				6AE61217109AB04C008ABF79 /* ProfileView.xib in Resources */,
 				6A1526C91096BDB300924D0E /* FriendsListTableCellView.xib in Resources */,
 				6A5F8F3C10B7707100914709 /* GeoAPIView.xib in Resources */,
@@ -1340,6 +1374,7 @@
 				6AFBB96E10C39EFB00CCA568 /* blue-busy-05.png in Resources */,
 				6AFBB96F10C39EFB00CCA568 /* blue-busy-06.png in Resources */,
 				6AFBB97010C39EFB00CCA568 /* blue-busy-07.png in Resources */,
+				6A16ABA910CF21B200CD5302 /* tmp-instruction.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1377,6 +1412,7 @@
 				553C517F10A1BD5100A74641 /* FoursquareAPI.m in Sources */,
 				553C518010A1BD5100A74641 /* FSBadge.m in Sources */,
 				553C518110A1BD5100A74641 /* FSCheckin.m in Sources */,
+				6A2A079A10CCE0100012F527 /* FSFunctionRequest.m in Sources */,
 				553C518210A1BD5100A74641 /* FSUser.m in Sources */,
 				553C518310A1BD5100A74641 /* FSVenue.m in Sources */,
 				553C518410A1BD5100A74641 /* Base64Transcoder.c in Sources */,
@@ -1459,7 +1495,9 @@
 				6AFC1D9A10BA4320006B7E5F /* ProgressViewController.m in Sources */,
 				6A10E61610BE0541006538DB /* LoginViewModalController.m in Sources */,
 				6AF2F0AA10C2EA0B00A29C96 /* TipDetailViewController.m in Sources */,
-				55A8DD2F10CCD07300D3538A /* FSFunctionRequest.m in Sources */,
+				6AF794AE10CCADFF00E77D49 /* FriendRequestsViewController.m in Sources */,
+				6AF794C010CCAF4B00E77D49 /* AddFriendsViewController.m in Sources */,
+				6A16ABDB10CF251800CD5302 /* InstructionView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1525,7 +1563,7 @@
 					$SDKROOT/usr/include/libxml2,
 				);
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6940A240-0E26-4FED-BA52-A3B213787AD6";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7C29CE78-4C19-4BCF-A7E6-E1BE7236E0A8";
 				SDKROOT = iphoneos3.1;
 			};
 			name = Debug;

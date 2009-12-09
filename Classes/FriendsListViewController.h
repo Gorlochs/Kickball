@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "FriendsMapViewController.h"
 #import "LoginViewModalController.h"
+#import "InstructionView.h"
+
 
 @interface FriendsListViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
     IBOutlet UITableView *theTableView;
@@ -17,7 +19,8 @@
 	NSMutableArray * recentCheckins;
 	NSMutableArray * todayCheckins;
 	NSMutableArray * yesterdayCheckins;
-
+    
+    IBOutlet InstructionView *instructionView;
 }
 
 @property (nonatomic, retain) NSArray * checkins;

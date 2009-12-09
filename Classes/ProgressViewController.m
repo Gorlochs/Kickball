@@ -54,7 +54,7 @@
                                 [UIImage imageNamed:@"blue-busy-07.png"],
                                 nil];
     
-    stripedActivityIndicator.animationDuration = 1.0;
+    stripedActivityIndicator.animationDuration = 0.5;
     stripedActivityIndicator.animationRepeatCount = 0;
 }
 
