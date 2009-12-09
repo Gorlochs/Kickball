@@ -45,14 +45,24 @@
 
 - (void) setupBusyAnimation {
     stripedActivityIndicator.animationImages = [NSArray arrayWithObjects:  
-                                [UIImage imageNamed:@"blue-busy-01.png"],
-                                [UIImage imageNamed:@"blue-busy-02.png"],
-                                [UIImage imageNamed:@"blue-busy-03.png"],
-                                [UIImage imageNamed:@"blue-busy-04.png"],
-                                [UIImage imageNamed:@"blue-busy-05.png"],
-                                [UIImage imageNamed:@"blue-busy-06.png"],
-                                [UIImage imageNamed:@"blue-busy-07.png"],
-                                nil];
+                                                [UIImage imageNamed:@"01.png"],
+                                                [UIImage imageNamed:@"02.png"],
+                                                [UIImage imageNamed:@"03.png"],
+                                                [UIImage imageNamed:@"04.png"],
+                                                [UIImage imageNamed:@"05.png"],
+                                                [UIImage imageNamed:@"06.png"],
+                                                [UIImage imageNamed:@"07.png"],
+                                                [UIImage imageNamed:@"08.png"],
+                                                [UIImage imageNamed:@"09.png"],
+                                                [UIImage imageNamed:@"10.png"],
+                                                [UIImage imageNamed:@"11.png"],
+                                                [UIImage imageNamed:@"12.png"],
+                                                [UIImage imageNamed:@"13.png"],
+                                                [UIImage imageNamed:@"14.png"],
+                                                [UIImage imageNamed:@"15.png"],
+                                                [UIImage imageNamed:@"16.png"],
+                                                [UIImage imageNamed:@"17.png"],
+                                                nil];
     
     stripedActivityIndicator.animationDuration = 0.5;
     stripedActivityIndicator.animationRepeatCount = 0;
