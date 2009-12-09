@@ -31,6 +31,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // this is so the cell doesn't show up before the table is filled in
+    footerViewCell.hidden = YES;
+    
 	if(![[FoursquareAPI sharedInstance] isAuthenticated]){
 		//run sheet to log in.
 		NSLog(@"Foursquare is not authenticated");
@@ -138,7 +142,7 @@
 //    if ([self.yesterdayCheckins count] > 0) 
 //        rows++;
 //    return rows;
-    return 3;
+    return 4;
 }
 
 
@@ -163,6 +167,9 @@
     
     FriendsListTableCell *cell = (FriendsListTableCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
+        if (indexPath.section == 3) {
+            return footerViewCell;
+        }
         //cell = [[[FriendsListTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         // TODO: I'm not sure that this is the best way to do this with 3.x - there might be a better way to do it now
         UIViewController *vc = [[UIViewController alloc]initWithNibName:@"FriendsListTableCellView" bundle:nil];
@@ -178,6 +185,8 @@
         checkin = [self.todayCheckins objectAtIndex:indexPath.row];
     } else if (indexPath.section == 2) {
         checkin = [self.yesterdayCheckins objectAtIndex:indexPath.row];
+    } else if (indexPath.section == 3) {
+        return footerViewCell;
     }
 	
 	FSUser * checkUser = checkin.user;
@@ -194,7 +203,11 @@
 	cell.checkinDisplayLabel.text = checkin.display;
     // TODO: check to see if there is a better way to check for [off the grid]
     if (checkin.venue.venueAddress == nil || [checkin.venue.venueAddress isEqual:@""]) {
-        cell.addressLabel.text = @"...location unknown...";
+        if (checkin.shout == nil || [checkin.shout isEqual:@""]) {
+            cell.addressLabel.text = @"...location unknown...";
+        } else {
+            cell.addressLabel.text = checkin.shout;
+        }
     } else {
         cell.addressLabel.text = checkin.venue.venueAddress;
     }
@@ -270,6 +283,13 @@
 	return 24.0;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 3) {
+        return 60;
+    }
+    return 44;
+}
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
 	// create the parent view that will hold header Label
 	UIView* customView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 24.0)] autorelease];
@@ -295,6 +315,8 @@
         case 2:
             headerLabel.text = @"  Older";
             break;
+        case 3:  // footer cell
+            return nil;
         default:
             headerLabel.text = @"You shouldn't see this";
             break;
@@ -370,6 +392,7 @@
 //    [twentyfourHoursFromNow release];
     [dateFormatter release];
 	[self.theTableView reloadData];
+    footerViewCell.hidden = NO;
     [self stopProgressBar];
 }
 
@@ -409,6 +432,10 @@
 	[alert release];
     
     [theTableView reloadData];
+}
+
+- (void) addFriend {
+    NSLog(@"******** adding friend *********");
 }
 
 @end

@@ -21,6 +21,7 @@
 	NSMutableArray * yesterdayCheckins;
     
     IBOutlet InstructionView *instructionView;
+    IBOutlet UITableViewCell *footerViewCell;
 }
 
 @property (nonatomic, retain) NSArray * checkins;
@@ -34,5 +35,6 @@
 - (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString;
 - (IBAction) shout;
 - (void) doInitialDisplay;
+- (IBAction) addFriend;
 
 @end
