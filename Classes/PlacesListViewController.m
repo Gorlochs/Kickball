@@ -161,7 +161,13 @@
 - (void) flipToMap {
     PlacesMapViewController *mapViewController = [[PlacesMapViewController alloc] initWithNibName:@"PlacesMapView" bundle:nil];
     // TODO: do we need to combine both items in the venues array?
-	mapViewController.venues = [self.venues objectAtIndex:0];
+    NSMutableArray *allvenues = [[NSMutableArray alloc] initWithCapacity:1];
+    for (NSString *key in [venues allKeys]) {
+        [allvenues addObjectsFromArray:[venues objectForKey:key]];
+    }
+    
+	mapViewController.venues = allvenues;
+    [allvenues release];
     [self.navigationController pushViewController:mapViewController animated:YES];
     [mapViewController release];
 }
@@ -178,13 +184,6 @@
     for (NSString *key in [venues allKeys]) {
         return [(NSArray*)[venues objectForKey:key] count];
     }
-//    if (section == 0) {
-//        return [(NSArray*)[venues objectAtIndex:0] count];
-//    } else if (section == 1) {
-//        if ([venues count] > 1) {
-//            return [(NSArray*)[venues objectAtIndex:1] count];
-//        }
-//    }
     return 0;
 }
 
@@ -197,13 +196,11 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:15.0];
+        cell.detailTextLabel.font = [UIFont systemFontOfSize:12.0];
     }
     
-    // passing in indexPath.section chooses the proper venue array to display in the appropriate section
     if ([venues count] >= indexPath.section) {
-//        FSVenue *venue = (FSVenue*) [(NSArray*)[venues objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-//        NSString *keyForSection = [[venues allKeys] objectAtIndex:indexPath.section];
-//        NSArray *venuesForSection = [venues objectForKey:keyForSection];
         FSVenue *venue = [self extractVenueFromDictionaryForRow:indexPath];
         cell.textLabel.text = venue.name;
         cell.detailTextLabel.text = venue.addressWithCrossstreet;
@@ -237,6 +234,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     // create the parent view that will hold header Label
     UIView* customView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 24.0)] autorelease];
+    customView.backgroundColor = [UIColor blackColor];
     
     // create the button object
     UILabel * headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -245,33 +243,10 @@
     headerLabel.textColor = [UIColor grayColor];
     headerLabel.highlightedTextColor = [UIColor grayColor];
     headerLabel.font = [UIFont boldSystemFontOfSize:14];
-    headerLabel.frame = CGRectMake(0.0, 0.0, 320.0, 24.0);
+    headerLabel.frame = CGRectMake(10.0, 0.0, 320.0, 24.0);
 
     headerLabel.text = [[venues allKeys] objectAtIndex:section];
     
-    // If you want to align the header text as centered
-    // headerLabel.frame = CGRectMake(150.0, 0.0, 300.0, 44.0);
-//    switch (section) {
-//        case 0:
-//            // these values could be pulled from the xml, but I'm not sure that it's worth the trouble
-//            if (venuesTypeToDisplay == KBSearchVenues) {
-//                headerLabel.text = @"  Matching Places";
-//            } else {
-//                headerLabel.text = @"  Nearby Favorites";
-//            }
-//            break;
-//        case 1:
-//            if (venuesTypeToDisplay == KBSearchVenues) {
-//                headerLabel.text = @"  Matching Tags";
-//            } else {
-//                headerLabel.text = @"  Nearby";
-//            }
-//            break;
-//        default:
-//            headerLabel.text = @"You shouldn't see this";
-//            break;
-//    }
-    //headerLabel.text = <Put here whatever you want to display> // i.e. array element
     [customView addSubview:headerLabel];
     [headerLabel release];
     return customView;

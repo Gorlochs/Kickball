@@ -205,8 +205,8 @@
         [img release];
         
         cell.profileIcon.layer.masksToBounds = YES;
-        cell.profileIcon.layer.cornerRadius = 10.0;
-        cell.profileIcon.layer.borderWidth = 1.0;
+        cell.profileIcon.layer.cornerRadius = 3.0;
+        //cell.profileIcon.layer.borderWidth = 1.0;
     }
 	cell.checkinDisplayLabel.text = checkin.display;
     // TODO: check to see if there is a better way to check for [off the grid]
@@ -301,6 +301,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
 	// create the parent view that will hold header Label
 	UIView* customView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 24.0)] autorelease];
+    customView.backgroundColor = [UIColor blackColor];
 	
 	// create the button object
 	UILabel * headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -309,19 +310,19 @@
 	headerLabel.textColor = [UIColor grayColor];
 	headerLabel.highlightedTextColor = [UIColor grayColor];
 	headerLabel.font = [UIFont boldSystemFontOfSize:12];
-	headerLabel.frame = CGRectMake(0.0, 0.0, 320.0, 24.0);
+	headerLabel.frame = CGRectMake(10.0, 0.0, 320.0, 24.0);
     
 	// If you want to align the header text as centered
 	// headerLabel.frame = CGRectMake(150.0, 0.0, 300.0, 44.0);
     switch (section) {
         case 0:
-            headerLabel.text = @"  Last 3 Hours";
+            headerLabel.text = @"Last 3 Hours";
             break;
         case 1:
-            headerLabel.text = @"  Today";
+            headerLabel.text = @"Today";
             break;
         case 2:
-            headerLabel.text = @"  Older";
+            headerLabel.text = @"Older";
             break;
         case 3:  // footer cell
             return nil;
