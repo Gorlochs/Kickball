@@ -93,6 +93,7 @@
 		6A1527081096C27200924D0E /* temp-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A1527071096C27200924D0E /* temp-icon.png */; };
 		6A16ABA910CF21B200CD5302 /* tmp-instruction.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A16ABA810CF21B200CD5302 /* tmp-instruction.png */; };
 		6A16ABDB10CF251800CD5302 /* InstructionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A16ABDA10CF251800CD5302 /* InstructionView.m */; };
+		6A16AC5710CF5A9500CD5302 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A16AC5610CF5A9500CD5302 /* QuartzCore.framework */; };
 		6A20A03310B4C7F4000B5B7D /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A209FF810B4C7F4000B5B7D /* arrow.png */; };
 		6A20A03410B4C7F4000B5B7D /* bg-firstTimer.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A209FF910B4C7F4000B5B7D /* bg-firstTimer.png */; };
 		6A20A03510B4C7F4000B5B7D /* bg-firstTravel.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A209FFA10B4C7F4000B5B7D /* bg-firstTravel.png */; };
@@ -404,6 +405,7 @@
 		6A16ABA810CF21B200CD5302 /* tmp-instruction.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tmp-instruction.png"; sourceTree = "<group>"; };
 		6A16ABD910CF251800CD5302 /* InstructionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstructionView.h; sourceTree = "<group>"; };
 		6A16ABDA10CF251800CD5302 /* InstructionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstructionView.m; sourceTree = "<group>"; };
+		6A16AC5610CF5A9500CD5302 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		6A209FF810B4C7F4000B5B7D /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
 		6A209FF910B4C7F4000B5B7D /* bg-firstTimer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-firstTimer.png"; sourceTree = "<group>"; };
 		6A209FFA10B4C7F4000B5B7D /* bg-firstTravel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-firstTravel.png"; sourceTree = "<group>"; };
@@ -608,6 +610,7 @@
 				6A8EEF0B10A14F3F00DC630C /* libxml2.dylib in Frameworks */,
 				553C51BF10A1BD8100A74641 /* Security.framework in Frameworks */,
 				6A63EAA410BAE8FD00DA3133 /* libPMAnalytics-r69.a in Frameworks */,
+				6A16AC5710CF5A9500CD5302 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -654,6 +657,7 @@
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				6A63EAA310BAE8FD00DA3133 /* libPMAnalytics-r69.a */,
+				6A16AC5610CF5A9500CD5302 /* QuartzCore.framework */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";

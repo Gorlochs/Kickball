@@ -8,6 +8,7 @@
 //  Standard table view of friends' recent activity
 //
 
+#import <QuartzCore/QuartzCore.h>
 #import "FriendsListViewController.h"
 #import "FriendsListTableCell.h"
 #import "PlaceDetailViewController.h"
@@ -191,6 +192,7 @@
 	
 	FSUser * checkUser = checkin.user;
 	
+    // create icon image
 	NSString * path = checkUser.photo;
 	if(path){
 		NSURL *url = [NSURL URLWithString:path];
@@ -199,7 +201,11 @@
 	
 		cell.profileIcon.image = img;
         [img release];
-	}
+        
+        cell.profileIcon.layer.masksToBounds = YES;
+        cell.profileIcon.layer.cornerRadius = 10.0;
+        cell.profileIcon.layer.borderWidth = 1.0;
+    }
 	cell.checkinDisplayLabel.text = checkin.display;
     // TODO: check to see if there is a better way to check for [off the grid]
     if (checkin.venue.venueAddress == nil || [checkin.venue.venueAddress isEqual:@""]) {
