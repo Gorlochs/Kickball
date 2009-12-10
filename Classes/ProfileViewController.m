@@ -176,7 +176,11 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         if (indexPath.section == 0) {
-            return addFriendCell;
+            if (user.isFriend) {
+                return friendActionCell;
+            } else {
+                return addFriendCell;
+            }
         } else if (indexPath.section == 1) {
             return badgeCell;
         } else {
@@ -188,7 +192,11 @@
     // Set up the cell...
     switch (indexPath.section) {
         case 0:  // add friend/follow on twitter
-            return addFriendCell;
+            if (user.isFriend) {
+                return friendActionCell;
+            } else {
+                return addFriendCell;
+            }
             break;
         case 1:  // badges
             return badgeCell;

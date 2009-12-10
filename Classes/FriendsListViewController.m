@@ -210,12 +210,10 @@
     }
 	cell.checkinDisplayLabel.text = checkin.display;
     // TODO: check to see if there is a better way to check for [off the grid]
-    if (checkin.venue.venueAddress == nil || [checkin.venue.venueAddress isEqual:@""]) {
-        if (checkin.shout == nil || [checkin.shout isEqual:@""]) {
-            cell.addressLabel.text = @"...location unknown...";
-        } else {
-            cell.addressLabel.text = checkin.shout;
-        }
+    if ([checkin.display rangeOfString:@"[off the grid]"].location != NSNotFound) {
+        cell.addressLabel.text = @"...location unknown...";
+    } else if (checkin.shout != nil) {
+        cell.addressLabel.text = checkin.shout;
     } else {
         cell.addressLabel.text = checkin.venue.venueAddress;
     }

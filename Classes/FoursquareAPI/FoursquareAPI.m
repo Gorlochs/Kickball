@@ -440,12 +440,10 @@ static FoursquareAPI *sharedInstance = nil;
 					FSUser * currentUserInfo = [FoursquareAPI _userFromNode:checkedUser];
 					oneCheckin.user = currentUserInfo;
 				}
-			} else 			
-			if([key compare:@"venue"] == 0){
+			} else if([key compare:@"venue"] == 0){
 				FSVenue * currentVenueInfo = [[FoursquareAPI _venuesFromNode:checkinAttr] objectAtIndex:0];
 				oneCheckin.venue = currentVenueInfo;
-			} else 
-			if([key compare:@"scoring"] == 0){
+			} else if([key compare:@"scoring"] == 0){
 				FSScoring * currentCheckinScoring = [FoursquareAPI _scoringFromNode:checkinAttr];
 				oneCheckin.scoring = currentCheckinScoring;
 			}
@@ -496,7 +494,7 @@ static FoursquareAPI *sharedInstance = nil;
 			}
 		}
 	}
-	
+	NSLog(@"the scoring: %@", theScoring);
 	return theScoring;
 }
 

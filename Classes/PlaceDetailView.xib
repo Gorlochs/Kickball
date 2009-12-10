@@ -14,7 +14,7 @@
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="72"/>
 			<integer value="107"/>
-			<integer value="8"/>
+			<integer value="83"/>
 			<integer value="62"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
@@ -79,7 +79,7 @@
 									<string key="NSResourceName">tmp-icon-50x50.png</string>
 								</object>
 							</object>
-							<object class="IBUIImageView" id="24434254">
+							<object class="IBUIImageView" id="244968735">
 								<reference key="NSNextResponder" ref="44535751"/>
 								<int key="NSvFlags">256</int>
 								<string key="NSFrame">{{57, 10}, {243, 29}}</string>
@@ -242,7 +242,7 @@
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="657622904"/>
 							</object>
-							<object class="IBUIButton" id="385774050">
+							<object class="IBUIButton" id="721267677">
 								<reference key="NSNextResponder" ref="920997831"/>
 								<int key="NSvFlags">-2147483356</int>
 								<string key="NSFrame">{{233, 11}, {81, 48}}</string>
@@ -1035,7 +1035,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">viewSpecial</string>
-						<reference key="source" ref="385774050"/>
+						<reference key="source" ref="721267677"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -1045,7 +1045,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">specialsButton</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="385774050"/>
+						<reference key="destination" ref="721267677"/>
 					</object>
 					<int key="connectionID">121</int>
 				</object>
@@ -1077,8 +1077,8 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="920997831"/>
 							<reference ref="777524979"/>
-							<reference ref="44535751"/>
 							<reference ref="873029372"/>
+							<reference ref="44535751"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1109,7 +1109,7 @@
 							<reference ref="963747359"/>
 							<reference ref="692896833"/>
 							<reference ref="431145987"/>
-							<reference ref="385774050"/>
+							<reference ref="721267677"/>
 							<reference ref="15368905"/>
 							<reference ref="558748466"/>
 						</object>
@@ -1220,7 +1220,7 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="396296225"/>
-							<reference ref="24434254"/>
+							<reference ref="244968735"/>
 						</object>
 						<reference key="parent" ref="40485673"/>
 						<string key="objectName">Header View</string>
@@ -1304,12 +1304,12 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">117</int>
-						<reference key="object" ref="24434254"/>
+						<reference key="object" ref="244968735"/>
 						<reference key="parent" ref="44535751"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">119</int>
-						<reference key="object" ref="385774050"/>
+						<reference key="object" ref="721267677"/>
 						<reference key="parent" ref="920997831"/>
 					</object>
 					<object class="IBObjectRecord">
