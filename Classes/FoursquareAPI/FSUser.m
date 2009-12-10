@@ -11,7 +11,7 @@
 
 @implementation FSUser
 
-@synthesize	userId, firstname, lastname, photo, gender, badges, isFriend, firstnameLastInitial, userCity, mayorOf, twitter, icon;
+@synthesize	userId, firstname, lastname, photo, gender, badges, isFriend, firstnameLastInitial, userCity, mayorOf, twitter, icon, checkin;
 
 - (NSString*) firstnameLastInitial {
     if (lastname != nil) {

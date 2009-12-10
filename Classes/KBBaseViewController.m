@@ -92,6 +92,8 @@
     progressViewController = [[ProgressViewController alloc] initWithNibName:@"ProgressView" bundle:nil];
     [self.view addSubview:progressViewController.view];
     progressViewController.activityLabel.text = textToDisplay;
+    [progressViewController.activityLabel setShadowColor:[UIColor blackColor]];
+    [progressViewController.activityLabel setShadowOffset:CGSizeMake(1, 1)];
 }
 
 - (void) stopProgressBar {

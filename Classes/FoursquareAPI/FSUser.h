@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "FSCity.h"
 
+@class FSCheckin;
+
 @interface FSUser : NSObject {
 	NSString * userId;
 	NSString * firstname;
@@ -20,6 +22,7 @@
 	NSArray * mayorOf;
     FSCity * userCity;
 	BOOL isFriend;
+    FSCheckin * checkin;
     
     // convenience property
     NSString *firstnameLastInitial;
@@ -35,6 +38,7 @@
 @property (nonatomic, retain) NSArray * badges;
 @property (nonatomic, retain) NSArray * mayorOf;
 @property (nonatomic, retain) FSCity * userCity;
+@property (nonatomic, retain) FSCheckin * checkin;
 @property (nonatomic) BOOL isFriend;
 
 @property (nonatomic, retain) NSString * firstnameLastInitial;

@@ -69,6 +69,7 @@
 + (FSUser *) _userFromNode:(CXMLElement *) usrAttr;
 + (NSArray *) _tipsFromNode:(CXMLNode *) inputNode;
 + (FSScoring *) _scoringFromNode:(CXMLNode *) inputNode;
++ (FSCheckin *) _checkinFromNode:(CXMLNode *) inputNode;
 
 + (NSArray *) usersFromResponseXML:(NSString *) inString;
 + (NSArray *) friendsFromResponseXML:(NSString *) inString;

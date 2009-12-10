@@ -29,7 +29,7 @@
 
 @implementation FriendsListViewController
 
-@synthesize checkins, recentCheckins, todayCheckins, yesterdayCheckins, theTableView, loginViewModal;
+@synthesize checkins, recentCheckins, todayCheckins, yesterdayCheckins, theTableView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -205,7 +205,7 @@
         [img release];
         
         cell.profileIcon.layer.masksToBounds = YES;
-        cell.profileIcon.layer.cornerRadius = 3.0;
+        cell.profileIcon.layer.cornerRadius = 4.0;
         //cell.profileIcon.layer.borderWidth = 1.0;
     }
 	cell.checkinDisplayLabel.text = checkin.display;

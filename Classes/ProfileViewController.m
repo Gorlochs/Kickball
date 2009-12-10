@@ -6,6 +6,7 @@
 //  Copyright 2009 Gorloch Interactive, LLC. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
 #import "ProfileViewController.h"
 #import "FoursquareAPI.h"
 #import "FSVenue.h"
@@ -46,12 +47,15 @@
 - (void)userResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
 	user = [FoursquareAPI userFromResponseXML:inString];
     name.text = user.firstnameLastInitial;
-//    location.text = user.
+    location.text = user.checkin.venue.name;
+    lastCheckinAddress.text = user.checkin.venue.venueAddress;
     
     // user icon
     NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:user.photo]];
     UIImage *img = [[UIImage alloc] initWithData:data];
     userIcon.image = img;
+    userIcon.layer.masksToBounds = YES;
+    userIcon.layer.cornerRadius = 5.0;
     [img release];
     
     // badges
@@ -159,7 +163,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1) {
         //return 50 * (([user.badges count]/BADGES_PER_ROW) + 1);
-        return 60 * (([user.badges count]+2)/BADGES_PER_ROW) + 10;
+        return 60 * (([user.badges count]+BADGES_PER_ROW-1)/BADGES_PER_ROW) + 10;
     }
     return 44;
 }
@@ -202,13 +206,13 @@
 	return 24.0;
 }
 
-
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (section == 0) {
         return NULL;
     } else {
         // create the parent view that will hold header Label
         UIView* customView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 24.0)] autorelease];
+        customView.backgroundColor = [UIColor blackColor];
         
         // create the button object
         UILabel * headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -217,7 +221,7 @@
         headerLabel.textColor = [UIColor grayColor];
         headerLabel.highlightedTextColor = [UIColor grayColor];
         headerLabel.font = [UIFont boldSystemFontOfSize:14];
-        headerLabel.frame = CGRectMake(0.0, 0.0, 320.0, 24.0);
+        headerLabel.frame = CGRectMake(10.0, 0.0, 320.0, 24.0);
         
         // If you want to align the header text as centered
         // headerLabel.frame = CGRectMake(150.0, 0.0, 300.0, 44.0);
@@ -225,17 +229,15 @@
             case 0:
                 break;
             case 1:
-                // TODO: fix this
-                headerLabel.text = @"  Badges";
+                headerLabel.text = @"Badges";
                 break;
             case 2:
-                headerLabel.text = @"  Mayor";
+                headerLabel.text = @"Mayor";
                 break;
             default:
                 headerLabel.text = @"You shouldn't see this";
                 break;
         }
-        //headerLabel.text = <Put here whatever you want to display> // i.e. array element
         [customView addSubview:headerLabel];
         [headerLabel release];
         return customView;
@@ -246,6 +248,7 @@
     if (indexPath.section == 2) { // mayor section
         PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];
         placeDetailController.venueId = ((FSVenue*)[user.mayorOf objectAtIndex:indexPath.row]).venueid;
+        [theTableView deselectRowAtIndexPath:indexPath animated:YES];
         [self.navigationController pushViewController:placeDetailController animated:YES];
         [placeDetailController release];
     }

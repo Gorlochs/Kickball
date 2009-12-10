@@ -174,7 +174,8 @@
     } else if (section == 2) { // checkin
         return !isUserCheckedIn;
     } else if (section == 3) { // gift
-        return !isUserCheckedIn;
+        return NO;
+        //return isUserCheckedIn;
     } else if (section == 4) { // mayor
         return 1;
     } else if (section == 5) { // people here
@@ -298,7 +299,7 @@
             break;
         case 4:
             // TODO: fix this
-            headerLabel.text = @"  Mayor                                                                    Map";
+            headerLabel.text = @"  Mayor                                                           Map";
             break;
         case 5:
             headerLabel.text = [NSString stringWithFormat:@"  %d People Here", [venue.peopleHere count]];
@@ -398,6 +399,10 @@
     NSLog(@"checkin: %@", checkin);
     isUserCheckedIn = YES;
 	[theTableView reloadData];
+    FSCheckin *ci = (FSCheckin*)[self.checkin objectAtIndex:0];
+    if (ci.specials != nil) {
+        specialsButton.hidden = NO;
+    }
     [progressViewController.view removeFromSuperview];
 }
 
@@ -419,6 +424,10 @@
     CLLocationCoordinate2D location = venue.location;
 
     [connectionManager_ requestBusinessesNearCoords:location withinRadius:200 maxResults:10];
+}
+
+- (void) viewSpecial {
+    
 }
 
 #pragma mark GeoAPI Delegate methods

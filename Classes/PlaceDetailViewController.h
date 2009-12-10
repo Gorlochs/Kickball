@@ -33,6 +33,7 @@
     IBOutlet UIButton *pingToggleButton;
     IBOutlet UIButton *twitterToggleButton;
     IBOutlet UIButton *venueDetailButton;
+    IBOutlet UIButton *specialsButton;
     
     NSArray *checkin;
     FSVenue *venue;
@@ -57,5 +58,6 @@
 - (IBAction) togglePing;
 - (IBAction) toggleTwitter;
 - (IBAction) doGeoAPICall;
+- (IBAction) viewSpecial;
 
 @end

@@ -10,9 +10,6 @@
 #import <CoreLocation/CoreLocation.h>
 #import "FSUser.h"
 
-
-
-
 @interface FSVenue : NSObject {
 	NSString * name;
 	NSString * geolat;

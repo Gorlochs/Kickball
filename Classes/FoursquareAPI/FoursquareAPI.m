@@ -624,6 +624,25 @@ static FoursquareAPI *sharedInstance = nil;
 	return allFriends;
 }
 
++ (FSCheckin *) _checkinFromNode:(CXMLNode *) inputNode{
+    FSCheckin *checkin = [[FSCheckin alloc] init];
+    
+//	NSArray * checkins = [inputNode nodesForXPath:@"//checkin" error:nil];
+//	for (CXMLElement *checkinResult in checkins) {
+//	//for(counter = 0; counter < [usrAttr childCount]; counter++) {
+//    CXMLElement *checkinResult = [inputNode 
+//		NSString * key = [[inputNode childAtIndex:counter] name];
+//		NSString * value = [[inputNode childAtIndex:counter] stringValue];
+//        
+//        if ([key isEqualToString:@"id"]) {
+//            checkin.checkinId = value;
+//        } else if ([key isEqualToString:@"display"]) {
+//            checkin.display = value;
+//        }
+//    }
+    
+    return checkin;
+}
 
 + (FSUser *) _userFromNode:(CXMLElement *) usrAttr{
 
@@ -694,8 +713,43 @@ static FoursquareAPI *sharedInstance = nil;
 				[loggedUserBadges addObject:currentBadgeInfo];
 			}
 			loggedInUser.badges = loggedUserBadges;
-		}
-	}
+		} else if ([key compare:@"checkin"] == 0){
+			NSArray * userCheckinXML = [usrAttr nodesForXPath:@"//checkin" error:nil];
+            NSLog(@"user's last checkin: %@", [userCheckinXML objectAtIndex:0]);
+            CXMLElement *checkinElement = [userCheckinXML objectAtIndex:0];
+            FSCheckin *checkin = [[FSCheckin alloc] init];
+            NSLog(@"childcount: %d", [checkinElement childCount]);
+            for (int i = 0; i < [checkinElement childCount]; i++) {
+                NSLog(@"counter: %d", i);
+                NSString * key = [[checkinElement childAtIndex:i] name];
+                NSString * value = [[checkinElement childAtIndex:i] stringValue];
+                if ([key isEqualToString:@"id"]) {
+                    checkin.checkinId = value;
+                } else if ([key isEqualToString:@"display"]) {
+                    checkin.display = value;
+                } else if ([key isEqualToString:@"venue"]) {
+                    NSArray * checkinVenueXML = [usrAttr nodesForXPath:@"//checkin/venue" error:nil];
+                    CXMLElement *checkinVenueElement = [checkinVenueXML objectAtIndex:0];
+                    NSLog(@"checkin venue element: %@", checkinVenueElement);
+                    FSVenue *checkinVenue = [[FSVenue alloc] init];
+                    for (int j = 0; j < [checkinVenueElement childCount]; j++) {
+                        NSString * key2 = [[checkinVenueElement childAtIndex:j] name];
+                        NSString * value2 = [[checkinVenueElement childAtIndex:j] stringValue];
+                        if ([key2 isEqualToString:@"address"]) {
+                            checkinVenue.venueAddress = value2;
+                        } else if ([key2 isEqualToString:@"name"]) {
+                            checkinVenue.name = value2;
+                        }
+                    }
+                    checkin.venue = checkinVenue;
+                    [checkinVenue release];
+                }
+            }
+            loggedInUser.checkin = checkin;
+            [checkin release];
+            //loggedInUser.checkin = [FoursquareAPI _checkinFromNode:[userCheckinXML objectAtIndex:0]];
+        }
+    }
 	return loggedInUser;
 }
 
