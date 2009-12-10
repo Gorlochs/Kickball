@@ -36,7 +36,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (IBAction) viewUserProfile {
+- (void) viewUserProfile {
     // take user to their profile
     ProfileViewController *pvc = [[ProfileViewController alloc] initWithNibName:@"ProfileView" bundle:nil];
     pvc.userId = [self getAuthenticatedUser].userId;

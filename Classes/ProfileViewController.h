@@ -33,5 +33,6 @@
 @property (nonatomic, retain) NSString *userId;
 
 - (IBAction) clickSegmentedControl;
+- (IBAction) viewVenue;
 
 @end

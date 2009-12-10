@@ -294,6 +294,14 @@
     [actionSheet release];
 }
 
+- (void) viewVenue {
+    PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];
+    FSVenue *venue = user.checkin.venue;
+    placeDetailController.venueId = venue.venueid;
+    [self.navigationController pushViewController:placeDetailController animated:YES];
+    [placeDetailController release];
+}
+
 #pragma mark UIActionSheetDelegate methods
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {

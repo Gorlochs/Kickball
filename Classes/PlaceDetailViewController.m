@@ -6,6 +6,7 @@
 //  Copyright 2009 Gorloch Interactive, LLC. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
 #import "PlaceDetailViewController.h"
 #import "ProfileViewController.h"
 #import "PlaceTwitterViewController.h"
@@ -235,6 +236,8 @@
         }
         UIImage *img = [[UIImage alloc] initWithData:data];
         cell.imageView.image = img;
+        cell.imageView.layer.masksToBounds = YES;
+        cell.imageView.layer.cornerRadius = 4.0;
         [img release];
     } else if (indexPath.section == 6) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

@@ -739,6 +739,8 @@ static FoursquareAPI *sharedInstance = nil;
                             checkinVenue.venueAddress = value2;
                         } else if ([key2 isEqualToString:@"name"]) {
                             checkinVenue.name = value2;
+                        } else if ([key2 isEqualToString:@"id"]) {
+                            checkinVenue.venueid = value2;
                         }
                     }
                     checkin.venue = checkinVenue;
