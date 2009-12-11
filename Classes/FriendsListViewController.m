@@ -111,12 +111,8 @@
 - (void)userResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
 	FSUser* user = [FoursquareAPI userFromResponseXML:inString];
 
-//    [[Utilities sharedInstance] cacheImage:user.photo];
-//    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:user.photo]];
-//    UIImage *img = [[UIImage alloc] initWithData:data];
     signedInUserIcon.imageView.image = [[Utilities sharedInstance] getCachedImage:user.photo];
     signedInUserIcon.hidden = NO;
-//    [img release];
     
     [self setAuthenticatedUser:user];
     NSLog(@"auth'd user: %@", user);
@@ -198,15 +194,7 @@
 	
     // create icon image
 	NSString * path = checkUser.photo;
-	if(path){
-        
-//		NSURL *url = [NSURL URLWithString:path];
-//		NSData *data = [NSData dataWithContentsOfURL:url];
-//		UIImage *img = [[UIImage alloc] initWithData:data];
-//	
-//		cell.profileIcon.image = img;
-//        [img release];
-        
+	if (path) {
         cell.profileIcon.image = [[Utilities sharedInstance] getCachedImage:checkUser.photo];
         cell.profileIcon.layer.masksToBounds = YES;
         cell.profileIcon.layer.cornerRadius = 4.0;

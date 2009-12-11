@@ -10,6 +10,7 @@
 #import "KickballAppDelegate.h"
 #import "ProfileViewController.h"
 #import "FoursquareAPI.h"
+#import "Utilities.h"
 
 @implementation KBBaseViewController
 
@@ -18,15 +19,12 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
     
-//    authenticatedUser = [self getAuthenticatedUser];
-//    
-//    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:authenticatedUser.photo]];
-//    UIImage *img = [[UIImage alloc] initWithData:data];
-//    //UIImageView *imgView = [[UIImageView alloc] initWithImage:img];
-//    //UIImage *image = [UIImage imageWithData:data];
-//    authUserIcon.imageView.image = img;
-//    [img release];
-//    NSLog(@"image: %@", authUserIcon.imageView.image);
+    FSUser *tmpUser = [self getAuthenticatedUser];
+    if (tmpUser != nil) {
+        signedInUserIcon.imageView.image = [[Utilities sharedInstance] getCachedImage:tmpUser.photo];
+        NSLog(@"icon being retrieved and displayed: %@", signedInUserIcon.imageView.image);
+        signedInUserIcon.hidden = NO;
+    }
 }
 
 - (void) backOneView {

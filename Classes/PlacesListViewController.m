@@ -29,6 +29,8 @@
 
 
 - (void)viewDidLoad {
+    [super viewDidLoad];
+    
     [self startProgressBar:@"Retrieving nearby venues..."];
     self.locationManager = [[[CLLocationManager alloc] init] autorelease];
     locationManager.delegate = self;
@@ -46,7 +48,6 @@
 		//[[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
 	}
     
-    [super viewDidLoad];
 }
 
 // TODO: this takes a bit of time.  Should we push this up to the appDelegate so that it's not executed every time this screen is displayed?

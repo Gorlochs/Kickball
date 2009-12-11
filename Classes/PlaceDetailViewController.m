@@ -18,6 +18,7 @@
 #import "GAPlace.h"
 #import "TipDetailViewController.h"
 #import "FSTip.h"
+#import "Utilities.h"
 
 @interface PlaceDetailViewController (Private)
 
@@ -65,11 +66,8 @@
     
     // pull this up into a method (or property)
     FSUser *tmpUser = [self getAuthenticatedUser];
-    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:tmpUser.photo]];
-    UIImage *img = [[UIImage alloc] initWithData:data];
-    signedInUserIcon.imageView.image = [UIImage imageWithData:data];
+    signedInUserIcon.imageView.image = [[Utilities sharedInstance] getCachedImage:tmpUser.photo];
     signedInUserIcon.hidden = NO;
-    [img release];
     
     if(![[FoursquareAPI sharedInstance] isAuthenticated]){
 		//run sheet to log in.
@@ -113,10 +111,7 @@
     venueDetailButton.hidden = NO;
     
     if (venueToDisplay.mayor != nil) {
-        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:venueToDisplay.mayor.photo]];
-        UIImage *img = [[UIImage alloc] initWithData:data];
-        mayorMapCell.imageView.image = img;
-        [img release];
+        mayorMapCell.imageView.image = [[Utilities sharedInstance] getCachedImage:venueToDisplay.mayor.photo];
         mayorNameLabel.text = venueToDisplay.mayor.firstnameLastInitial;
     } else {
         // TODO: get Mikula to make this all pretty and stuff
@@ -230,15 +225,9 @@
         FSUser *user = ((FSUser*)[venue.peopleHere objectAtIndex:indexPath.row]);
         cell.textLabel.text = user.firstnameLastInitial;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        NSData *data = nil;
-        if (user.photo) {
-            data = [NSData dataWithContentsOfURL:[NSURL URLWithString:user.photo]];
-        }
-        UIImage *img = [[UIImage alloc] initWithData:data];
-        cell.imageView.image = img;
+        cell.imageView.image = [[Utilities sharedInstance] getCachedImage:user.photo];
         cell.imageView.layer.masksToBounds = YES;
         cell.imageView.layer.cornerRadius = 4.0;
-        [img release];
     } else if (indexPath.section == 6) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         FSTip *tip = (FSTip*) [venue.tips objectAtIndex:indexPath.row];

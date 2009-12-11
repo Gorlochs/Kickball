@@ -12,6 +12,7 @@
 #import "FSVenue.h"
 #import "PlaceDetailViewController.h"
 #import "MGTwitterEngine.h"
+#import "Utilities.h"
 
 #define BADGES_PER_ROW 5
 
@@ -51,12 +52,9 @@
     lastCheckinAddress.text = user.checkin.venue.venueAddress;
     
     // user icon
-    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:user.photo]];
-    UIImage *img = [[UIImage alloc] initWithData:data];
-    userIcon.image = img;
+    userIcon.image = [[Utilities sharedInstance] getCachedImage:user.photo];
     userIcon.layer.masksToBounds = YES;
     userIcon.layer.cornerRadius = 5.0;
-    [img release];
     
     // badges
     // I was hoping for something elegant, and it seemed like I was going to get there, but, as you can see, I didn't quite make it
@@ -64,23 +62,13 @@
     int x = 0;
     int y = 0;
     for (FSBadge *badge in user.badges) {
-        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:badge.icon]];
         CGRect frame= CGRectMake(x*60 + 10, y*60 + 10, 50, 50);
         UIButton *btn = [[UIButton alloc] initWithFrame:frame];
-        UIImage *img = [[UIImage alloc] initWithData:data];
-        [btn setImage:img forState:UIControlStateNormal];
+        [btn setImage:[[Utilities sharedInstance] getCachedImage:badge.icon] forState:UIControlStateNormal];
         btn.tag = [badge.badgeId intValue];
         [badgeCell addSubview:btn];
         [badgeCell bringSubviewToFront:btn];
-        [img release];
-        
-//        UIImage *img = [[UIImage alloc] initWithData:data];
-//        UIImageView *imgView = [[UIImageView alloc] initWithImage:img];
-//        CGRect frame= CGRectMake(x*60 + 10, y*60 + 10, 50, 50);
-//        imgView.frame = frame;
-//        [img release];
-//        [badgeCell addSubview:imgView];
-//        [imgView release];
+
         x++;
         if (x%BADGES_PER_ROW == 0) {
             x = 0;
