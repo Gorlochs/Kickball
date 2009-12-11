@@ -20,6 +20,7 @@
 
 - (void)userResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString;
 - (void) displayActionSheet:(NSString*)title;
+- (UITableViewCell*) determineWhichFriendCellToDisplay:(FSFriendStatus)status;
 
 @end
 
@@ -164,11 +165,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         if (indexPath.section == 0) {
-            if (user.isFriend) {
-                return friendActionCell;
-            } else {
-                return addFriendCell;
-            }
+            return [self determineWhichFriendCellToDisplay:user.friendStatus];
         } else if (indexPath.section == 1) {
             return badgeCell;
         } else {
@@ -180,11 +177,7 @@
     // Set up the cell...
     switch (indexPath.section) {
         case 0:  // add friend/follow on twitter
-            if (user.isFriend) {
-                return friendActionCell;
-            } else {
-                return addFriendCell;
-            }
+            return [self determineWhichFriendCellToDisplay:user.friendStatus];
             break;
         case 1:  // badges
             return badgeCell;
@@ -196,6 +189,17 @@
             break;
     }
     return cell;
+}
+
+- (UITableViewCell*) determineWhichFriendCellToDisplay:(FSFriendStatus)status {
+    if (status == FSStatusFriend) {
+        return friendActionCell;
+    } else if (status == FSStatusNotFriend) {
+        return addFriendCell;
+    } else if (status == FSStatusPendingYou || status == FSStatusPendingThem) {
+        return friendPendingCell;
+    }
+    return nil;
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

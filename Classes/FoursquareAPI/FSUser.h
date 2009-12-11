@@ -9,6 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "FSCity.h"
 
+typedef enum {
+	FSStatusFriend = 0,
+	FSStatusNotFriend = 1,
+    FSStatusPendingYou = 2,
+    FSStatusPendingThem = 3
+} FSFriendStatus;
+
 @class FSCheckin;
 
 @interface FSUser : NSObject {
@@ -22,6 +29,7 @@
 	NSArray * mayorOf;
     FSCity * userCity;
 	BOOL isFriend;
+    FSFriendStatus friendStatus;
     FSCheckin * checkin;
     
     // convenience property
@@ -40,6 +48,7 @@
 @property (nonatomic, retain) FSCity * userCity;
 @property (nonatomic, retain) FSCheckin * checkin;
 @property (nonatomic) BOOL isFriend;
+@property (nonatomic) FSFriendStatus friendStatus;
 
 @property (nonatomic, retain) NSString * firstnameLastInitial;
 @property (nonatomic, retain) UIImage *icon;

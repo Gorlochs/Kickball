@@ -11,7 +11,14 @@
 
 @implementation FSUser
 
-@synthesize	userId, firstname, lastname, photo, gender, badges, isFriend, firstnameLastInitial, userCity, mayorOf, twitter, icon, checkin;
+@synthesize	userId, firstname, lastname, photo, gender, badges, isFriend, firstnameLastInitial, userCity, mayorOf, twitter, icon, checkin, friendStatus;
+
+- (id)init {
+    if ((self = [super init])) {
+        friendStatus = FSStatusNotFriend;
+    }
+    return self;    
+}
 
 - (NSString*) firstnameLastInitial {
     if (lastname != nil) {

@@ -665,6 +665,18 @@ static FoursquareAPI *sharedInstance = nil;
 			loggedInUser.gender = value;
 		} else if([key isEqualToString:@"twitter"]){
 			loggedInUser.twitter = value;
+		} else if([key isEqualToString:@"friendstatus"]){
+            loggedInUser.isFriend = NO;
+            if ([value isEqualToString:@"friend"]) {
+                loggedInUser.isFriend = YES;
+                loggedInUser.friendStatus = FSStatusFriend;
+            } else if ([value isEqualToString:@"pendingyou"]) {
+                loggedInUser.friendStatus = FSStatusPendingYou;
+            } else if ([value isEqualToString:@"pendingthem"]) {
+                loggedInUser.friendStatus = FSStatusPendingThem;
+            } else {
+                loggedInUser.friendStatus = FSStatusNotFriend;
+            }
 		} else if([key isEqualToString:@"city"]){
 			NSArray * userCityXML = [usrAttr nodesForXPath:@"/city" error:nil];
 			for (CXMLElement *userCityNode in userCityXML) {
