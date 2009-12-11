@@ -677,6 +677,22 @@ static FoursquareAPI *sharedInstance = nil;
             } else {
                 loggedInUser.friendStatus = FSStatusNotFriend;
             }
+		} else if([key isEqualToString:@"settings"]){
+			NSArray * settingsXML = [usrAttr nodesForXPath:@"//settings" error:nil];
+            NSLog(@"settings xml: %@", settingsXML);
+			for (CXMLElement *settingsNode in settingsXML) {
+                for (int counter = 0; counter < [settingsNode childCount]; counter++) {
+					NSString * key = [[settingsNode childAtIndex:counter] name];
+					NSString * value = [[settingsNode childAtIndex:counter] stringValue];
+                    if ([key isEqualToString:@"sendtotwitter"]) {
+                        loggedInUser.sendToTwitter = [value isEqualToString:@"true"];
+                    } else if ([key isEqualToString:@"sendtofacebook"]) {
+                        loggedInUser.sendToFacebook = [value isEqualToString:@"true"];
+                    } else if ([key isEqualToString:@"pings"]) {
+                        loggedInUser.isPingOn = [value isEqualToString:@"on"];
+                    }
+                }
+            }
 		} else if([key isEqualToString:@"city"]){
 			NSArray * userCityXML = [usrAttr nodesForXPath:@"/city" error:nil];
 			for (CXMLElement *userCityNode in userCityXML) {

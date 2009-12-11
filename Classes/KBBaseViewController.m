@@ -48,6 +48,7 @@
 }
 
 // ugh. this sucks. it works for now, but it's yet another thing that needs to be fixed
+// TODO: set the user object in the FoursquareAPI instead of using the appdelegate
 - (void) setAuthenticatedUser:(FSUser*)user {
     KickballAppDelegate *appDelegate = (KickballAppDelegate*)[UIApplication sharedApplication].delegate;
     appDelegate.user = user;

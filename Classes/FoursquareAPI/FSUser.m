@@ -11,7 +11,8 @@
 
 @implementation FSUser
 
-@synthesize	userId, firstname, lastname, photo, gender, badges, isFriend, firstnameLastInitial, userCity, mayorOf, twitter, icon, checkin, friendStatus;
+@synthesize	userId, firstname, lastname, photo, gender, badges, isFriend, firstnameLastInitial, userCity, mayorOf;
+@synthesize twitter, icon, checkin, friendStatus, isPingOn, sendToTwitter, sendToFacebook;
 
 - (id)init {
     if ((self = [super init])) {
@@ -29,7 +30,7 @@
 }
 
 - (NSString*) description {
-    return [NSString stringWithFormat:@"userId=%@ ; firstname=%@ ; userCity=%@ ; photo=%@", userId, firstname, userCity, photo];
+    return [NSString stringWithFormat:@"userId=%@ ; firstname=%@ ; userCity=%@ ; photo=%@ ; pings=%d ; sendtotwitter=%d", userId, firstname, userCity, photo, isPingOn, sendToTwitter];
 }
 
 @end

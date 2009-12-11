@@ -10,6 +10,7 @@
 #import "FSUser.h"
 #import "KBBaseViewController.h"
 #import "MGTwitterEngineDelegate.h"
+#import "FSCheckin.h"
 
 @interface ProfileViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, MGTwitterEngineDelegate> {
     IBOutlet UITableView *theTableView;
@@ -21,6 +22,7 @@
     NSString *userId;
     FSUser *user;
     NSArray *twitterStatuses;
+    NSArray *checkin;
     
     IBOutlet UILabel *name;
     IBOutlet UILabel *location;
@@ -29,6 +31,9 @@
     IBOutlet UILabel *totalCheckins;
     IBOutlet UIImageView *userIcon;
     IBOutlet UISegmentedControl *segmentedControl;
+    
+    bool isPingOn;
+    bool isTwitterOn;
 }
 
 @property (nonatomic, retain) UITableViewCell *badgeCell;
@@ -36,5 +41,7 @@
 
 - (IBAction) clickSegmentedControl;
 - (IBAction) viewVenue;
+- (IBAction) checkinToProfilesVenue;
+- (IBAction) unfriend;
 
 @end

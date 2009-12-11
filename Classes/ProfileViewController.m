@@ -302,6 +302,42 @@
     [placeDetailController release];
 }
 
+
+- (void) checkinToProfilesVenue {
+    [self.view addSubview:progressViewController.view];
+    [[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:user.checkin.venue.venueid 
+                                                  andShout:nil 
+                                                   offGrid:!isPingOn
+                                                 toTwitter:isTwitterOn
+                                                withTarget:self 
+                                                 andAction:@selector(checkinResponseReceived:withResponseString:)];
+}
+
+- (void) unfriend {
+    
+}
+
+- (void) checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+    NSLog(@"instring: %@", inString);
+	checkin = [FoursquareAPI checkinsFromResponseXML:inString];
+//    isUserCheckedIn = YES;
+//	  [theTableView reloadData];
+//    FSCheckin *ci = (FSCheckin*)[self.checkin objectAtIndex:0];
+//    if (ci.specials != nil) {
+//        specialsButton.hidden = NO;
+//    }
+    [progressViewController.view removeFromSuperview];
+    
+    // TODO: figure out what we want to do here. How do we show points?
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Kickball" 
+													message:@"Thank you for checking in!"
+												   delegate:self 
+										  cancelButtonTitle:@"OK" 
+										  otherButtonTitles:nil];
+	[alert show];
+	[alert release];
+}
+
 #pragma mark UIActionSheetDelegate methods
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {

@@ -508,21 +508,21 @@
 				<int key="IBUISeparatorStyle">1</int>
 				<reference key="IBUIContentView" ref="946116099"/>
 			</object>
-			<object class="IBUITableViewCell" id="1036240044">
+			<object class="IBUITableViewCell" id="702190062">
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<object class="IBUIView" id="1072587180">
-						<reference key="NSNextResponder" ref="1036240044"/>
+					<object class="IBUIView" id="403316726">
+						<reference key="NSNextResponder" ref="702190062"/>
 						<int key="NSvFlags">256</int>
 						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBUILabel" id="688929482">
-								<reference key="NSNextResponder" ref="1072587180"/>
+							<object class="IBUILabel" id="567203251">
+								<reference key="NSNextResponder" ref="403316726"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{12, 9}, {296, 21}}</string>
-								<reference key="NSSuperview" ref="1072587180"/>
+								<reference key="NSSuperview" ref="403316726"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -534,7 +534,7 @@
 							</object>
 						</object>
 						<string key="NSFrameSize">{320, 43}</string>
-						<reference key="NSSuperview" ref="1036240044"/>
+						<reference key="NSSuperview" ref="702190062"/>
 						<reference key="IBUIBackgroundColor" ref="348901533"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -547,7 +547,7 @@
 				<reference key="IBUIBackgroundColor" ref="537609086"/>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<int key="IBUISeparatorStyle">1</int>
-				<reference key="IBUIContentView" ref="1072587180"/>
+				<reference key="IBUIContentView" ref="403316726"/>
 			</object>
 			<object class="IBUITableView" id="902377314">
 				<nil key="NSNextResponder"/>
@@ -721,9 +721,27 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">friendPendingCell</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="1036240044"/>
+						<reference key="destination" ref="702190062"/>
 					</object>
 					<int key="connectionID">71</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">checkinToProfilesVenue</string>
+						<reference key="source" ref="281295563"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">73</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">unfriend</string>
+						<reference key="source" ref="972126421"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">74</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -889,18 +907,18 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">70</int>
-						<reference key="object" ref="1036240044"/>
+						<reference key="object" ref="702190062"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="688929482"/>
+							<reference ref="567203251"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Friend Pending Cell</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">72</int>
-						<reference key="object" ref="688929482"/>
-						<reference key="parent" ref="1036240044"/>
+						<reference key="object" ref="567203251"/>
+						<reference key="parent" ref="702190062"/>
 					</object>
 				</object>
 			</object>
@@ -991,7 +1009,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">72</int>
+			<int key="maxID">74</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1042,11 +1060,15 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>checkinToProfilesVenue</string>
 							<string>clickSegmentedControl</string>
+							<string>unfriend</string>
 							<string>viewVenue</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 						</object>
