@@ -274,6 +274,7 @@
 		6AC5817C10B517FB0043B90C /* PlacesMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AC5817A10B517FB0043B90C /* PlacesMapView.xib */; };
 		6AC7E93110994FD000776993 /* PlaceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC7E92F10994FD000776993 /* PlaceDetailViewController.m */; };
 		6AC7E93210994FD000776993 /* PlaceDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AC7E93010994FD000776993 /* PlaceDetailView.xib */; };
+		6ADC9C1A10D1EE5100CFDCA7 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ADC9C1910D1EE5100CFDCA7 /* Utilities.m */; };
 		6AE4B92A10D01B8900C910A1 /* icon57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AE4B92910D01B8900C910A1 /* icon57x57.png */; };
 		6AE4B93810D01E2F00C910A1 /* icon57x5702.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AE4B93710D01E2F00C910A1 /* icon57x5702.png */; };
 		6AE61217109AB04C008ABF79 /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AF96710109AA32700EF665D /* ProfileView.xib */; };
@@ -678,6 +679,8 @@
 		6AC7E92E10994FD000776993 /* PlaceDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceDetailViewController.h; sourceTree = "<group>"; };
 		6AC7E92F10994FD000776993 /* PlaceDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceDetailViewController.m; sourceTree = "<group>"; };
 		6AC7E93010994FD000776993 /* PlaceDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = PlaceDetailView.xib; path = Classes/PlaceDetailView.xib; sourceTree = "<group>"; };
+		6ADC9C1810D1EE5100CFDCA7 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
+		6ADC9C1910D1EE5100CFDCA7 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		6AE4B92910D01B8900C910A1 /* icon57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon57x57.png; sourceTree = "<group>"; };
 		6AE4B93710D01E2F00C910A1 /* icon57x5702.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon57x5702.png; sourceTree = "<group>"; };
 		6AE611A3109AA462008ABF79 /* ProfileMainTableCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileMainTableCellView.xib; sourceTree = "<group>"; };
@@ -1258,6 +1261,8 @@
 				6AFC1D9910BA4320006B7E5F /* ProgressViewController.m */,
 				6A16ABD910CF251800CD5302 /* InstructionView.h */,
 				6A16ABDA10CF251800CD5302 /* InstructionView.m */,
+				6ADC9C1810D1EE5100CFDCA7 /* Utilities.h */,
+				6ADC9C1910D1EE5100CFDCA7 /* Utilities.m */,
 			);
 			name = General;
 			sourceTree = "<group>";
@@ -1714,6 +1719,7 @@
 				6AF794AE10CCADFF00E77D49 /* FriendRequestsViewController.m in Sources */,
 				6AF794C010CCAF4B00E77D49 /* AddFriendsViewController.m in Sources */,
 				6A16ABDB10CF251800CD5302 /* InstructionView.m in Sources */,
+				6ADC9C1A10D1EE5100CFDCA7 /* Utilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
