@@ -16,6 +16,7 @@
 @interface FriendsMapViewController : KBBaseViewController {
 	IBOutlet MKMapView * mapViewer;
 	NSArray * checkins;
+	MKCoordinateRegion mapRegion;
 }
 
 @property (nonatomic, retain) NSArray * checkins;
