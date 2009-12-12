@@ -249,9 +249,14 @@ static FoursquareAPI *sharedInstance = nil;
 }
 
 - (void) doSendFriendRequest:(NSString*)userId withTarget:(id)inTarget andAction:(SEL)inAction {
-    NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
-    [params addObject:[[MPURLRequestParameter alloc] initWithName:@"uid" andValue:userId]];
-    [self.oauthAPI performMethod:@"/v1/friend/sendrequest" withTarget:inTarget withParameters:params andAction:inAction doPost:YES];
+//    NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
+//    [params addObject:[[MPURLRequestParameter alloc] initWithName:@"uid" andValue:userId]];
+//    NSLog(@"user id to send request to: %@", userId);
+//    [self.oauthAPI performMethod:@"/v1/friend/sendrequest" withTarget:inTarget withParameters:params andAction:inAction doPost:YES];
+    
+    NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:1];
+	[requestParams setObject:userId forKey:@"uid"];	
+	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/friend/sendrequest"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"POST"];
 }
 
 - (void) approveFriendRequest:(NSString*)userId withTarget:(id)inTarget andAction:(SEL)inAction {

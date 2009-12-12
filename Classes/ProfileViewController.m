@@ -318,6 +318,11 @@
     // TODO: waiting for this to be implemented in the API
 }
 
+- (void) friendUser {
+    [self startProgressBar:@"Sending Friend Request..."];
+    [[FoursquareAPI sharedInstance] doSendFriendRequest:user.userId withTarget:self andAction:@selector(friendRequestResponseReceived:withResponseString:)];
+}
+
 - (void) togglePingsAndUpdates {
     [self startProgressBar:@"Changing your ping update preferences..."];
     NSArray *yesnoArray = [NSArray arrayWithObjects:@"no", @"yes", nil];
@@ -325,6 +330,23 @@
 
 //    isPingAndUpdatesOn = !isPingAndUpdatesOn;
 //    pingsAndUpdates.selected = !isPingAndUpdatesOn;
+}
+
+#pragma mark selectors for FoursquareAPI calls
+
+- (void) friendRequestResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+    NSLog(@"friend request instring: %@", inString);
+    FSUser *friendedUser = [FoursquareAPI userFromResponseXML:inString];
+    NSLog(@"friended user: %@", friendedUser);
+    [self stopProgressBar];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Kickball" 
+													message:@"Your friend request has been sent."
+												   delegate:self 
+										  cancelButtonTitle:@"OK" 
+										  otherButtonTitles:nil];
+	[alert show];
+	[alert release];
 }
 
 - (void) pingUpdateResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {

@@ -48,5 +48,6 @@
 - (IBAction) checkinToProfilesVenue;
 - (IBAction) unfriend;
 - (IBAction) togglePingsAndUpdates;
+- (IBAction) friendUser;
 
 @end
