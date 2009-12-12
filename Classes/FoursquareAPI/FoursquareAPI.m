@@ -251,7 +251,6 @@ static FoursquareAPI *sharedInstance = nil;
 - (void) doSendFriendRequest:(NSString*)userId withTarget:(id)inTarget andAction:(SEL)inAction {
 //    NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
 //    [params addObject:[[MPURLRequestParameter alloc] initWithName:@"uid" andValue:userId]];
-//    NSLog(@"user id to send request to: %@", userId);
 //    [self.oauthAPI performMethod:@"/v1/friend/sendrequest" withTarget:inTarget withParameters:params andAction:inAction doPost:YES];
     
     NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:1];
@@ -260,37 +259,58 @@ static FoursquareAPI *sharedInstance = nil;
 }
 
 - (void) approveFriendRequest:(NSString*)userId withTarget:(id)inTarget andAction:(SEL)inAction {
-    NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
-    [params addObject:[[MPURLRequestParameter alloc] initWithName:@"uid" andValue:userId]];
-    [self.oauthAPI performMethod:@"/v1/friend/approve" withTarget:inTarget withParameters:params andAction:inAction doPost:YES];
+//    NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
+//    [params addObject:[[MPURLRequestParameter alloc] initWithName:@"uid" andValue:userId]];
+//    [self.oauthAPI performMethod:@"/v1/friend/approve" withTarget:inTarget withParameters:params andAction:inAction doPost:YES];
+    
+    NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:1];
+	[requestParams setObject:userId forKey:@"uid"];	
+	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/friend/approve"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"POST"];    
 }
 
 - (void) denyFriendRequest:(NSString*)userId withTarget:(id)inTarget andAction:(SEL)inAction {
-    NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
-    [params addObject:[[MPURLRequestParameter alloc] initWithName:@"uid" andValue:userId]];
-    [self.oauthAPI performMethod:@"/v1/friend/deny" withTarget:inTarget withParameters:params andAction:inAction doPost:YES];
+//    NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
+//    [params addObject:[[MPURLRequestParameter alloc] initWithName:@"uid" andValue:userId]];
+//    [self.oauthAPI performMethod:@"/v1/friend/deny" withTarget:inTarget withParameters:params andAction:inAction doPost:YES];
+    
+    NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:1];
+	[requestParams setObject:userId forKey:@"uid"];	
+	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/friend/deny"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"POST"];
 }
 
 - (void) findFriendsByName:(NSString*)name withTarget:(id)inTarget andAction:(SEL)inAction {
-    NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
-    [params addObject:[[MPURLRequestParameter alloc] initWithName:@"q" andValue:name]];
-    [self.oauthAPI performMethod:@"/v1/findfriends/byname" withTarget:inTarget withParameters:params andAction:inAction doPost:NO];
+//    NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
+//    [params addObject:[[MPURLRequestParameter alloc] initWithName:@"q" andValue:name]];
+//    [self.oauthAPI performMethod:@"/v1/findfriends/byname" withTarget:inTarget withParameters:params andAction:inAction doPost:NO];
+    
+    NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:1];
+	[requestParams setObject:name forKey:@"q"];	
+	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/findfriends/byname"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"GET"];
 }
 
 - (void) findFriendsByPhone:(NSString*)phone withTarget:(id)inTarget andAction:(SEL)inAction {
-    NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
-    [params addObject:[[MPURLRequestParameter alloc] initWithName:@"q" andValue:phone]];
-    [self.oauthAPI performMethod:@"/v1/findfriends/byphone" withTarget:inTarget withParameters:params andAction:inAction doPost:NO];
+//    NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
+//    [params addObject:[[MPURLRequestParameter alloc] initWithName:@"q" andValue:phone]];
+//    [self.oauthAPI performMethod:@"/v1/findfriends/byphone" withTarget:inTarget withParameters:params andAction:inAction doPost:NO];
+    
+    NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:1];
+	[requestParams setObject:name forKey:@"q"];	
+	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/findfriends/byphone"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"GET"];
 }
 
 - (void) findFriendsByTwitterName:(NSString*)twitterName withTarget:(id)inTarget andAction:(SEL)inAction {
-    NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
-    [params addObject:[[MPURLRequestParameter alloc] initWithName:@"q" andValue:twitterName]];
-    [self.oauthAPI performMethod:@"/v1/findfriends/bytwitter" withTarget:inTarget withParameters:params andAction:inAction doPost:NO];
+//    NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
+//    [params addObject:[[MPURLRequestParameter alloc] initWithName:@"q" andValue:twitterName]];
+//    [self.oauthAPI performMethod:@"/v1/findfriends/bytwitter" withTarget:inTarget withParameters:params andAction:inAction doPost:NO];
+    
+    NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:1];
+	[requestParams setObject:name forKey:@"q"];	
+	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/findfriends/bytwitter"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"GET"];
 }
 
 - (void) getPendingFriendRequests:(id)inTarget andAction:(SEL)inAction {
-    [self.oauthAPI performMethod:@"/v1/friend/requests" withTarget:inTarget andAction:inAction doPost:NO];
+//    [self.oauthAPI performMethod:@"/v1/friend/requests" withTarget:inTarget andAction:inAction doPost:NO];
+	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/friend/requests"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"POST"];
 }
 
 + (NSArray *) friendRequestsFromResponseXML:(NSString *) inString {
