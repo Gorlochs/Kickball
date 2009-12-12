@@ -337,8 +337,9 @@
 - (void) friendRequestResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     NSLog(@"friend request instring: %@", inString);
     FSUser *friendedUser = [FoursquareAPI userFromResponseXML:inString];
-    NSLog(@"friended user: %@", friendedUser);
     [self stopProgressBar];
+    user.friendStatus = FSStatusPendingYou;
+    [theTableView reloadData];
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Kickball" 
 													message:@"Your friend request has been sent."

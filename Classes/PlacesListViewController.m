@@ -120,9 +120,11 @@
 	[theTableView reloadData];
     
     //move table to new entry
-    NSUInteger indexArr[] = {0,0};
-    [theTableView scrollToRowAtIndexPath:[NSIndexPath indexPathWithIndexes:indexArr length:2] atScrollPosition:UITableViewScrollPositionTop animated:YES];
-    [self stopProgressBar];
+    if ([theTableView numberOfSections] != 0) {
+        NSUInteger indexArr[] = {0,0};
+        [theTableView scrollToRowAtIndexPath:[NSIndexPath indexPathWithIndexes:indexArr length:2] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+        [self stopProgressBar];   
+    }
 }
 
 - (void)didReceiveMemoryWarning {

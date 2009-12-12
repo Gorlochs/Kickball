@@ -294,7 +294,7 @@ static FoursquareAPI *sharedInstance = nil;
 //    [self.oauthAPI performMethod:@"/v1/findfriends/byphone" withTarget:inTarget withParameters:params andAction:inAction doPost:NO];
     
     NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:1];
-	[requestParams setObject:name forKey:@"q"];	
+	[requestParams setObject:phone forKey:@"q"];	
 	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/findfriends/byphone"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"GET"];
 }
 
@@ -304,13 +304,13 @@ static FoursquareAPI *sharedInstance = nil;
 //    [self.oauthAPI performMethod:@"/v1/findfriends/bytwitter" withTarget:inTarget withParameters:params andAction:inAction doPost:NO];
     
     NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:1];
-	[requestParams setObject:name forKey:@"q"];	
+	[requestParams setObject:twitterName forKey:@"q"];	
 	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/findfriends/bytwitter"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"GET"];
 }
 
 - (void) getPendingFriendRequests:(id)inTarget andAction:(SEL)inAction {
 //    [self.oauthAPI performMethod:@"/v1/friend/requests" withTarget:inTarget andAction:inAction doPost:NO];
-	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/friend/requests"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"POST"];
+	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/friend/requests"] withUser:self.userName andPassword:self.passWord andParams:nil withTarget:inTarget andAction:inAction usingMethod:@"POST"];
 }
 
 + (NSArray *) friendRequestsFromResponseXML:(NSString *) inString {
