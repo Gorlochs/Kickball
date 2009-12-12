@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		037A07EF10CA18AA00AF6275 /* libPMAnalytics-r69.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 037A07EE10CA18AA00AF6275 /* libPMAnalytics-r69.a */; };
+		0331DFCF10D36737009C5089 /* libisimulate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0331DFCE10D36737009C5089 /* libisimulate.a */; };
+		0331DFD110D36749009C5089 /* libPMAnalytics-r69.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0331DFD010D36749009C5089 /* libPMAnalytics-r69.a */; };
+		03D4FDD410D1FCFE007F44C7 /* libisimulate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 03D4FDD310D1FCFE007F44C7 /* libisimulate.a */; };
 		1D3623260D0F684500981E51 /* KickballAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* KickballAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -292,7 +294,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		037A07EE10CA18AA00AF6275 /* libPMAnalytics-r69.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPMAnalytics-r69.a"; sourceTree = "<group>"; };
+		0331DFCE10D36737009C5089 /* libisimulate.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libisimulate.a; path = libs/libisimulate.a; sourceTree = "<group>"; };
+		0331DFD010D36749009C5089 /* libPMAnalytics-r69.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPMAnalytics-r69.a"; path = "libs/libPMAnalytics-r69.a"; sourceTree = "<group>"; };
+		03D4FDD310D1FCFE007F44C7 /* libisimulate.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libisimulate.a; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* KickballAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KickballAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* KickballAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KickballAppDelegate.m; sourceTree = "<group>"; };
@@ -718,8 +722,10 @@
 				6A8EEE1A10A1227000DC630C /* MapKit.framework in Frameworks */,
 				6A8EEF0B10A14F3F00DC630C /* libxml2.dylib in Frameworks */,
 				553C51BF10A1BD8100A74641 /* Security.framework in Frameworks */,
-				037A07EF10CA18AA00AF6275 /* libPMAnalytics-r69.a in Frameworks */,
 				6A16AC5710CF5A9500CD5302 /* QuartzCore.framework in Frameworks */,
+				03D4FDD410D1FCFE007F44C7 /* libisimulate.a in Frameworks */,
+				0331DFCF10D36737009C5089 /* libisimulate.a in Frameworks */,
+				0331DFD110D36749009C5089 /* libPMAnalytics-r69.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -760,7 +766,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				037A07EE10CA18AA00AF6275 /* libPMAnalytics-r69.a */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -808,6 +813,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0331DFCE10D36737009C5089 /* libisimulate.a */,
 				6A978A601099FBC000FCE8F1 /* StoreKit.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
@@ -819,6 +825,7 @@
 				6A8EEF0A10A14F3F00DC630C /* libxml2.dylib */,
 				6A16AC5610CF5A9500CD5302 /* QuartzCore.framework */,
 				553C51BE10A1BD8100A74641 /* Security.framework */,
+				0331DFD010D36749009C5089 /* libPMAnalytics-r69.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1033,6 +1040,7 @@
 				6A044CAA109545200063FC33 /* FriendsListViewController.m */,
 				6A044CB3109545450063FC33 /* FriendsMapViewController.h */,
 				6A044CB4109545450063FC33 /* FriendsMapViewController.m */,
+				03D4FDD310D1FCFE007F44C7 /* libisimulate.a */,
 				6A1526C51096BD7E00924D0E /* FriendsListTableCell.h */,
 				6A1526C61096BD7E00924D0E /* FriendsListTableCell.m */,
 				552AFE3F10A285AC009300E2 /* FriendIconAnnotationView.h */,
@@ -1745,6 +1753,7 @@
 					"\"$(SRCROOT)/../BoomboxPro/Classes\"",
 					"\"$(SRCROOT)/../../../Desktop/libYAJLIPhone-0.2.10 Folder\"",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/libs\"",
 				);
 				PRODUCT_NAME = Kickball;
 			};
@@ -1767,6 +1776,7 @@
 					"\"$(SRCROOT)/../BoomboxPro/Classes\"",
 					"\"$(SRCROOT)/../../../Desktop/libYAJLIPhone-0.2.10 Folder\"",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/libs\"",
 				);
 				PRODUCT_NAME = Kickball;
 			};
@@ -1784,6 +1794,7 @@
 					/usr/local/include/yajl,
 					$SDKROOT/usr/include/libxml2,
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7C29CE78-4C19-4BCF-A7E6-E1BE7236E0A8";
 				SDKROOT = iphoneos3.1;
@@ -1798,6 +1809,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
 				SDKROOT = iphoneos3.1;
 			};
