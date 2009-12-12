@@ -32,5 +32,6 @@ typedef enum {
 
 - (IBAction) searchOnKeywordsandLatLong;
 - (IBAction) flipToMap;
+- (IBAction) refresh;
 
 @end

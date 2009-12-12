@@ -12,7 +12,7 @@
 @implementation FSUser
 
 @synthesize	userId, firstname, lastname, photo, gender, badges, isFriend, firstnameLastInitial, userCity, mayorOf;
-@synthesize twitter, icon, checkin, friendStatus, isPingOn, sendToTwitter, sendToFacebook;
+@synthesize twitter, icon, checkin, friendStatus, isPingOn, sendToTwitter, sendToFacebook, sendsPingsToSignedInUser;
 
 - (id)init {
     if ((self = [super init])) {

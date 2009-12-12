@@ -148,6 +148,7 @@
 -(void)searchOnKeywordsandLatLong {
     [searchbox resignFirstResponder];
     venuesTypeToDisplay = KBSearchVenues;
+    [self startProgressBar:@"Searching..."];
     if (![searchbox.text isEqualToString:@""]) {
         // TODO: I am just replacing a space with a +, but other characters might give this method a headache.
         [[FoursquareAPI sharedInstance] getVenuesByKeyword:[NSString stringWithFormat:@"%f",bestEffortAtLocation.coordinate.latitude] 
@@ -171,6 +172,17 @@
     [allvenues release];
     [self.navigationController pushViewController:mapViewController animated:YES];
     [mapViewController release];
+}
+
+- (void) refresh {
+    [self startProgressBar:@"Retrieving nearby venues..."];
+    [[FoursquareAPI sharedInstance] getVenuesNearLatitude:[NSString stringWithFormat:@"%f",bestEffortAtLocation.coordinate.latitude] 
+                                             andLongitude:[NSString stringWithFormat:@"%f",bestEffortAtLocation.coordinate.longitude]
+                                               withTarget:self 
+                                                andAction:@selector(venuesResponseReceived:withResponseString:)
+     ];
+    
+    venuesTypeToDisplay = KBNearbyVenues;
 }
 
 #pragma mark Table view methods
@@ -253,6 +265,13 @@
     return customView;
 }
 
+#pragma mark UITextFieldDelegate methods
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    [self searchOnKeywordsandLatLong];
+    return YES;
+}
 
 - (void)dealloc {
     [theTableView release];

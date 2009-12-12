@@ -51,6 +51,7 @@
     name.text = user.firstnameLastInitial;
     location.text = user.checkin.venue.name;
     lastCheckinAddress.text = user.checkin.venue.venueAddress;
+    isPingAndUpdatesOn = user.sendsPingsToSignedInUser;
     
     // user icon
     userIcon.image = [[Utilities sharedInstance] getCachedImage:user.photo];
@@ -304,7 +305,7 @@
 
 
 - (void) checkinToProfilesVenue {
-    [self.view addSubview:progressViewController.view];
+    [self startProgressBar:@"Checking in to this venue..."];
     [[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:user.checkin.venue.venueid 
                                                   andShout:nil 
                                                    offGrid:!isPingOn
@@ -314,7 +315,26 @@
 }
 
 - (void) unfriend {
-    
+    // TODO: waiting for this to be implemented in the API
+}
+
+- (void) togglePingsAndUpdates {
+    [self startProgressBar:@"Changing your ping update preferences..."];
+    NSArray *yesnoArray = [NSArray arrayWithObjects:@"no", @"yes", nil];
+    [[FoursquareAPI sharedInstance] setPings:[yesnoArray objectAtIndex:!isPingAndUpdatesOn] forUser:user.userId withTarget:self andAction:@selector(pingUpdateResponseReceived:withResponseString:)];
+
+//    isPingAndUpdatesOn = !isPingAndUpdatesOn;
+//    pingsAndUpdates.selected = !isPingAndUpdatesOn;
+}
+
+- (void) pingUpdateResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+    NSLog(@"instring: %@", inString);
+	BOOL newPingSetting = [FoursquareAPI pingSettingFromResponseXML:inString];
+    NSLog(@"new ping setting: %d", newPingSetting);
+    user.sendsPingsToSignedInUser = newPingSetting;
+    isPingAndUpdatesOn = newPingSetting;
+    pingsAndUpdates.selected = isPingAndUpdatesOn;
+    [self stopProgressBar];
 }
 
 - (void) checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
@@ -326,7 +346,7 @@
 //    if (ci.specials != nil) {
 //        specialsButton.hidden = NO;
 //    }
-    [progressViewController.view removeFromSuperview];
+    [self stopProgressBar];
     
     // TODO: figure out what we want to do here. How do we show points?
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Kickball" 

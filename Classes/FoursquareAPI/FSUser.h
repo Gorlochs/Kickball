@@ -31,9 +31,14 @@ typedef enum {
 	BOOL isFriend;
     FSFriendStatus friendStatus;
     FSCheckin * checkin;
+    
+    // these are for the signed in user
     BOOL isPingOn;
     BOOL sendToTwitter;
     BOOL sendToFacebook;
+    
+    // this is for an 'other' user
+    BOOL sendsPingsToSignedInUser;
     
     // convenience property
     NSString *firstnameLastInitial;
@@ -54,6 +59,7 @@ typedef enum {
 @property (nonatomic) BOOL isPingOn;
 @property (nonatomic) BOOL sendToTwitter;
 @property (nonatomic) BOOL sendToFacebook;
+@property (nonatomic) BOOL sendsPingsToSignedInUser;
 @property (nonatomic) FSFriendStatus friendStatus;
 
 @property (nonatomic, retain) NSString * firstnameLastInitial;

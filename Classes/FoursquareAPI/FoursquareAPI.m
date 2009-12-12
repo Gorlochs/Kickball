@@ -142,7 +142,7 @@ static FoursquareAPI *sharedInstance = nil;
 	
 	[requestParams setObject:geolat forKey:@"geolat"];
 	[requestParams setObject:geolong forKey:@"geolong"];
-	[requestParams setObject:[keywords stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding] forKey:@"1"];
+	[requestParams setObject:[keywords stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding] forKey:@"q"];
 	
 	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/venues"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"GET"];
 
@@ -208,9 +208,14 @@ static FoursquareAPI *sharedInstance = nil;
 	[requestParams setObject:geolat forKey:@"geolat"];	
 	[requestParams setObject:geolong forKey:@"geolong"];	
 	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/checkcity"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"GET"];
-
 }
 
+- (void)setPings:(NSString*)pingStatus forUser:(NSString *)userId withTarget:(id)inTarget andAction:(SEL)inAction {
+    NSLog(@"setting ping status (%@) for user: %@", pingStatus, userId);
+    NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:1];
+	[requestParams setObject:pingStatus forKey:userId];
+	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/settings/setpings"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"POST"];
+}
 
 - (void) doCheckinAtVenueWithId:(NSString *)venueId andShout:(NSString *)shout offGrid:(BOOL)offGrid toTwitter:(BOOL)toTwitter withTarget:(id)inTarget andAction:(SEL)inAction {
 //	NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
@@ -301,6 +306,25 @@ static FoursquareAPI *sharedInstance = nil;
 	return users;
 }
 
++ (BOOL) pingSettingFromResponseXML:(NSString *) inString {
+	NSError * err;
+	CXMLDocument *settingsParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
+	NSLog(@"error: %@", [err localizedDescription]);
+    
+    BOOL isPingSet = NO;
+    NSArray *settings = [settingsParser nodesForXPath:@"//settings" error:&err];
+    for (CXMLElement *settingsResult in settings) {
+		for(int counter = 0; counter < [settingsResult childCount]; counter++) {
+			NSString * key = [[settingsResult childAtIndex:counter] name];
+			NSString * value = [[settingsResult childAtIndex:counter] stringValue];
+            if([key isEqualToString:@"get_pings"]){
+				isPingSet = [value isEqualToString:@"true"];
+            }
+        }
+    }
+    return isPingSet;
+}
+
 + (NSArray *) usersFromResponseXML:(NSString *) inString {
 	
 	NSError * err;
@@ -354,9 +378,6 @@ static FoursquareAPI *sharedInstance = nil;
         [allVenues setObject:[groupOfVenues copy] forKey:[[groupResult attributeForName:@"type"] stringValue]];
 		[allVens addObject:[groupOfVenues copy]];
 	}
-    NSLog(@"dictionary: %@", [allVenues objectForKey:@"Nearby"]);
-    NSLog(@"completed venuesFromResponseXML");
-    NSLog(@"number of venues found: %@", [allVens objectAtIndex:0]);
 	return allVenues;
 }
 
@@ -690,6 +711,8 @@ static FoursquareAPI *sharedInstance = nil;
                         loggedInUser.sendToFacebook = [value isEqualToString:@"true"];
                     } else if ([key isEqualToString:@"pings"]) {
                         loggedInUser.isPingOn = [value isEqualToString:@"on"];
+                    } else if ([key isEqualToString:@"get_pings"]) {
+                        loggedInUser.sendsPingsToSignedInUser = [value isEqualToString:@"true"];
                     }
                 }
             }

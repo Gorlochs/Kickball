@@ -54,8 +54,6 @@
     
     // TODO: need a way to persist these? What is the business logic for displaying each cell?
     isUserCheckedIn = NO;
-    isPingOn = YES;
-    isTwitterOn = YES;
     
     venueDetailButton.hidden = YES;
     twitterButton.hidden = YES;
@@ -68,6 +66,10 @@
     FSUser *tmpUser = [self getAuthenticatedUser];
     signedInUserIcon.imageView.image = [[Utilities sharedInstance] getCachedImage:tmpUser.photo];
     signedInUserIcon.hidden = NO;
+    isPingOn = tmpUser.isPingOn;
+    isTwitterOn = tmpUser.sendToTwitter;
+    twitterButton.selected = isTwitterOn;
+    pingToggleButton.selected = isPingOn;
     
     if(![[FoursquareAPI sharedInstance] isAuthenticated]){
 		//run sheet to log in.
@@ -376,6 +378,7 @@
 		//run sheet to log in.
 		NSLog(@"Foursquare is not authenticated");
 	} else {
+        [self startProgressBar:@"Checking in to this venue..."];
 		[[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:venue.venueid 
                                                       andShout:nil 
                                                        offGrid:!isPingOn
@@ -395,19 +398,18 @@
     if (ci.specials != nil) {
         specialsButton.hidden = NO;
     }
-    [progressViewController.view removeFromSuperview];
+    [self stopProgressBar];
 }
 
-// these two methods arte a bit counterintuitive. the selected state is currently off/false, while the unselected state is on/true
 - (void) togglePing {
     isPingOn = !isPingOn;
-    pingToggleButton.selected = !isPingOn;
+    pingToggleButton.selected = isPingOn;
     NSLog(@"is ping on: %d", isPingOn);
 }
 
 - (void) toggleTwitter {
     isTwitterOn = !isTwitterOn;
-    twitterToggleButton.selected = !isTwitterOn;
+    twitterToggleButton.selected = isTwitterOn;
     NSLog(@"is twitter on: %d", isTwitterOn);
 }
 

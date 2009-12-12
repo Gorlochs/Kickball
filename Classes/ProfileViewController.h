@@ -31,9 +31,13 @@
     IBOutlet UILabel *totalCheckins;
     IBOutlet UIImageView *userIcon;
     IBOutlet UISegmentedControl *segmentedControl;
+    IBOutlet UIButton *pingsAndUpdates;
     
+    // not sure what these are doing here
     bool isPingOn;
     bool isTwitterOn;
+    
+    bool isPingAndUpdatesOn;
 }
 
 @property (nonatomic, retain) UITableViewCell *badgeCell;
@@ -43,5 +47,6 @@
 - (IBAction) viewVenue;
 - (IBAction) checkinToProfilesVenue;
 - (IBAction) unfriend;
+- (IBAction) togglePingsAndUpdates;
 
 @end
