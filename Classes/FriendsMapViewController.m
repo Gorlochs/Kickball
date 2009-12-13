@@ -150,6 +150,7 @@
 				placemark.url = checkUser.photo;
 			}
 			[mapViewer addAnnotation:placemark];
+            [placemark release];
 		}
 	}	
 }

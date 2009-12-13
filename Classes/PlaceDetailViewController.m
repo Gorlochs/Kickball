@@ -290,6 +290,7 @@
         case 1:
         case 2:
         case 3:
+            [headerLabel release];
             return nil;
             break;
         case 4:

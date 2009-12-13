@@ -328,6 +328,7 @@ static FoursquareAPI *sharedInstance = nil;
 	for (CXMLElement *userResult in allUsers) {
         [users addObject:[FoursquareAPI _userFromNode:userResult]];
 	}
+    [userParser release];
 	return users;
 }
 
@@ -347,6 +348,7 @@ static FoursquareAPI *sharedInstance = nil;
             }
         }
     }
+    [settingsParser release];
     return isPingSet;
 }
 
@@ -365,6 +367,7 @@ static FoursquareAPI *sharedInstance = nil;
 	for (CXMLElement *userResult in allUsers) {
         [users addObject:[FoursquareAPI _userFromNode:userResult]];
 	}
+    [userParser release];
 	return users;
 }
 
@@ -381,6 +384,7 @@ static FoursquareAPI *sharedInstance = nil;
 	for (CXMLElement *friendResult in allFriends) {
 		allFriends = [[FoursquareAPI _friendsFromNode:friendResult] mutableCopy];
 	}
+    [friendParser release];
 	return allFriends;
 }
 
@@ -404,6 +408,7 @@ static FoursquareAPI *sharedInstance = nil;
 		[allVens addObject:[groupOfVenues copy]];
 	}
 	return allVenues;
+    [venueParser release];
 }
 
 + (FSVenue *) venueFromResponseXML:(NSString *) inString{
@@ -420,6 +425,7 @@ static FoursquareAPI *sharedInstance = nil;
         NSLog(@"group of venues: %@", groupOfVenues);
 		thisVenue = (FSVenue *)[groupOfVenues objectAtIndex:0];
 	}
+    [venueParser release];
 	return thisVenue;
 }
 
@@ -434,6 +440,7 @@ static FoursquareAPI *sharedInstance = nil;
 	for (CXMLElement *usrAttr in allUserAttrs) {
 		return [FoursquareAPI _userFromNode:usrAttr];
 	}
+    [userParser release];
 	return nil;
 }
 
@@ -447,6 +454,7 @@ static FoursquareAPI *sharedInstance = nil;
 	for (CXMLElement *usrAttr in allUserAttrs) {
 		return [FoursquareAPI _userFromNode:usrAttr];
 	}
+    [userParser release];
 	
 	return nil;
 }
@@ -497,6 +505,7 @@ static FoursquareAPI *sharedInstance = nil;
 		}
 		[allCheckins addObject:[oneCheckin retain]];
 	}
+    [checkinParser release];
 	return allCheckins;
 }
 
@@ -541,6 +550,7 @@ static FoursquareAPI *sharedInstance = nil;
 		}
 	}
 	NSLog(@"the scoring: %@", theScoring);
+    [allScores release];
 	return theScoring;
 }
 
@@ -910,7 +920,7 @@ int encode(unsigned s_len, char *src, unsigned d_len, char *dst)
 	NSData * data = [[NSData alloc] initWithBytes:encodeArray length:strlen(encodeArray)];
     dataStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
     NSString * authenticationString = [@"" stringByAppendingFormat:@"Basic %@", dataStr];
-	
+	[dataStr release];
     // Create asynchronous request
     NSMutableURLRequest * theRequest=(NSMutableURLRequest*)[NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
     [theRequest addValue:authenticationString forHTTPHeaderField:@"Authorization"];
@@ -984,7 +994,7 @@ int encode(unsigned s_len, char *src, unsigned d_len, char *dst)
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 	NSString * responseString = [[NSString alloc] initWithData:fsReq.receivedData encoding:NSUTF8StringEncoding];
 	[fsReq.currentTarget performSelector:fsReq.currentSelector withObject:fsReq.currentRequestURL withObject:responseString];	
-
+//    [responseString release];
     [connection release];
 	[activeRequests removeObjectForKey:[NSString stringWithFormat:@"%d", [connection hash]]]; 
 }

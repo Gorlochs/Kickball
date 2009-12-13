@@ -330,6 +330,7 @@
             headerLabel.text = @"Older";
             break;
         case 3:  // footer cell
+            [headerLabel release];
             return nil;
         default:
             headerLabel.text = @"You shouldn't see this";
