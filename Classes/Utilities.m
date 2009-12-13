@@ -71,8 +71,8 @@ static Utilities *sharedInstance = nil;
         // The file doesn't exist, we should get a copy of it
         
         // Fetch image
-        //NSData *data = [[NSData alloc] initWithContentsOfURL: imageURL];
-        //UIImage *image = [[UIImage alloc] initWithData: data];
+        NSData *data = [[NSData alloc] initWithContentsOfURL: imageURL];
+        UIImage *image = [[UIImage alloc] initWithData: data];
         
         // Do we want to round the corners?
         //image = [self roundCorners: image];
