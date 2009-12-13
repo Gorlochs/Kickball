@@ -427,6 +427,7 @@
 #pragma mark GeoAPI Delegate methods
 
 // TODO: neaten this mess up
+// TODO: maybe we can do a string match with the name of the venue and then bring that value to the top of the list, or maybe just go directly to it
 - (void)receivedResponseString:(NSString *)responseString {
 //    NSLog(@"geoapi response string: %@", responseString);
     SBJSON *parser = [SBJSON new];

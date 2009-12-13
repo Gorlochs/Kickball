@@ -33,5 +33,6 @@ typedef enum {
 - (IBAction) searchOnKeywordsandLatLong;
 - (IBAction) flipToMap;
 - (IBAction) refresh;
+- (IBAction) addNewVenue;
 
 @end

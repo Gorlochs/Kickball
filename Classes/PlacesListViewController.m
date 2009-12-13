@@ -11,6 +11,7 @@
 #import "PlacesMapViewController.h"
 #import "FoursquareAPI.h"
 #import "FSCheckin.h"
+#import "AddPlaceViewController.h"
 
 @interface PlacesListViewController (Private)
 
@@ -102,15 +103,11 @@
     }
 }
 
-
 - (void)stopUpdatingLocation:(NSString *)state {
 //    self.stateString = state;
 //    [self.tableView reloadData];
     [locationManager stopUpdatingLocation];
     locationManager.delegate = nil;
-    
-//    UIBarButtonItem *resetItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Reset", @"Reset") style:UIBarButtonItemStyleBordered target:self action:@selector(reset)] autorelease];
-//    [self.navigationItem setLeftBarButtonItem:resetItem animated:YES];;
 }
 
 - (void)venuesResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
@@ -137,8 +134,6 @@
 }
 
 - (void)viewDidUnload {
-	// Release any retained subviews of the main view.
-	// e.g. self.myOutlet = nil;
     theTableView = nil;
     searchCell = nil;
 }
@@ -146,12 +141,11 @@
 #pragma mark IBAction methods
 
 // TODO: this should probably use a different @selector and set a instance variable?
-//       
 -(void)searchOnKeywordsandLatLong {
     [searchbox resignFirstResponder];
-    venuesTypeToDisplay = KBSearchVenues;
-    [self startProgressBar:@"Searching..."];
     if (![searchbox.text isEqualToString:@""]) {
+        venuesTypeToDisplay = KBSearchVenues;
+        [self startProgressBar:@"Searching..."];
         // TODO: I am just replacing a space with a +, but other characters might give this method a headache.
         [[FoursquareAPI sharedInstance] getVenuesByKeyword:[NSString stringWithFormat:@"%f",bestEffortAtLocation.coordinate.latitude] 
                                               andLongitude:[NSString stringWithFormat:@"%f",bestEffortAtLocation.coordinate.longitude] 
@@ -185,6 +179,12 @@
      ];
     
     venuesTypeToDisplay = KBNearbyVenues;
+}
+
+- (void) addNewVenue {
+    AddPlaceViewController *addPlaceController = [[AddPlaceViewController alloc] initWithNibName:@"AddPlaceViewController" bundle:nil];
+    [self.navigationController pushViewController:addPlaceController animated:YES];
+    [addPlaceController release];
 }
 
 #pragma mark Table view methods

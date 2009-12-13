@@ -268,6 +268,10 @@
 		6A90480110D02DE700260719 /* icon57x5701.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A90480010D02DE700260719 /* icon57x5701.png */; };
 		6A978A611099FBC000FCE8F1 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A978A601099FBC000FCE8F1 /* StoreKit.framework */; };
 		6A9FF5BA10AA830700E52FDA /* FSCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A9FF5B910AA830700E52FDA /* FSCity.m */; };
+		6AACC53210D48F240059E604 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AACC53110D48F240059E604 /* LocationManager.m */; };
+		6AACC62710D4ACEC0059E604 /* tmp-tips-for-adding.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AACC62610D4ACEC0059E604 /* tmp-tips-for-adding.png */; };
+		6AACC63B10D4B1430059E604 /* AddPlaceTipsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AACC63910D4B1430059E604 /* AddPlaceTipsViewController.m */; };
+		6AACC63C10D4B1430059E604 /* AddPlaceTipsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AACC63A10D4B1430059E604 /* AddPlaceTipsViewController.xib */; };
 		6ABA7858109BDCAF001E7293 /* PlacesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABA7856109BDCAF001E7293 /* PlacesListViewController.m */; };
 		6ABA7859109BDCAF001E7293 /* PlacesListViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6ABA7857109BDCAF001E7293 /* PlacesListViewController.xib */; };
 		6AC5817B10B517FB0043B90C /* PlacesMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC5817910B517FB0043B90C /* PlacesMapViewController.m */; };
@@ -275,6 +279,8 @@
 		6AC7E93110994FD000776993 /* PlaceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC7E92F10994FD000776993 /* PlaceDetailViewController.m */; };
 		6AC7E93210994FD000776993 /* PlaceDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AC7E93010994FD000776993 /* PlaceDetailView.xib */; };
 		6ADC9C1A10D1EE5100CFDCA7 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ADC9C1910D1EE5100CFDCA7 /* Utilities.m */; };
+		6ADC9EC610D3F08600CFDCA7 /* AddPlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ADC9EC410D3F08600CFDCA7 /* AddPlaceViewController.m */; };
+		6ADC9EC710D3F08600CFDCA7 /* AddPlaceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6ADC9EC510D3F08600CFDCA7 /* AddPlaceViewController.xib */; };
 		6AE4B92A10D01B8900C910A1 /* icon57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AE4B92910D01B8900C910A1 /* icon57x57.png */; };
 		6AE4B93810D01E2F00C910A1 /* icon57x5702.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AE4B93710D01E2F00C910A1 /* icon57x5702.png */; };
 		6AE61217109AB04C008ABF79 /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AF96710109AA32700EF665D /* ProfileView.xib */; };
@@ -672,6 +678,12 @@
 		6A978A601099FBC000FCE8F1 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		6A9FF5B810AA830700E52FDA /* FSCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCity.h; sourceTree = "<group>"; };
 		6A9FF5B910AA830700E52FDA /* FSCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCity.m; sourceTree = "<group>"; };
+		6AACC53010D48F240059E604 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
+		6AACC53110D48F240059E604 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
+		6AACC62610D4ACEC0059E604 /* tmp-tips-for-adding.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tmp-tips-for-adding.png"; sourceTree = "<group>"; };
+		6AACC63810D4B1430059E604 /* AddPlaceTipsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPlaceTipsViewController.h; sourceTree = "<group>"; };
+		6AACC63910D4B1430059E604 /* AddPlaceTipsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPlaceTipsViewController.m; sourceTree = "<group>"; };
+		6AACC63A10D4B1430059E604 /* AddPlaceTipsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.xib; path = AddPlaceTipsViewController.xib; sourceTree = "<group>"; };
 		6ABA7855109BDCAF001E7293 /* PlacesListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlacesListViewController.h; sourceTree = "<group>"; };
 		6ABA7856109BDCAF001E7293 /* PlacesListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlacesListViewController.m; sourceTree = "<group>"; };
 		6ABA7857109BDCAF001E7293 /* PlacesListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PlacesListViewController.xib; path = Classes/PlacesListViewController.xib; sourceTree = "<group>"; };
@@ -683,6 +695,9 @@
 		6AC7E93010994FD000776993 /* PlaceDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = PlaceDetailView.xib; path = Classes/PlaceDetailView.xib; sourceTree = "<group>"; };
 		6ADC9C1810D1EE5100CFDCA7 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		6ADC9C1910D1EE5100CFDCA7 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
+		6ADC9EC310D3F08600CFDCA7 /* AddPlaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPlaceViewController.h; sourceTree = "<group>"; };
+		6ADC9EC410D3F08600CFDCA7 /* AddPlaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPlaceViewController.m; sourceTree = "<group>"; };
+		6ADC9EC510D3F08600CFDCA7 /* AddPlaceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AddPlaceViewController.xib; path = Classes/AddPlaceViewController.xib; sourceTree = "<group>"; };
 		6AE4B92910D01B8900C910A1 /* icon57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon57x57.png; sourceTree = "<group>"; };
 		6AE4B93710D01E2F00C910A1 /* icon57x5702.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon57x5702.png; sourceTree = "<group>"; };
 		6AE611A3109AA462008ABF79 /* ProfileMainTableCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileMainTableCellView.xib; sourceTree = "<group>"; };
@@ -747,6 +762,7 @@
 				6A55B4CC10B36E9A0005E934 /* General */,
 				1D3623240D0F684500981E51 /* KickballAppDelegate.h */,
 				1D3623250D0F684500981E51 /* KickballAppDelegate.m */,
+				03D4FDD310D1FCFE007F44C7 /* libisimulate.a */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -795,6 +811,7 @@
 				6A402B2E10B769A800D9BCEB /* GeoApiTableViewController.xib */,
 				8D1107310486CEB800E47090 /* Kickball-Info.plist */,
 				6AC5817A10B517FB0043B90C /* PlacesMapView.xib */,
+				6ADC9EC510D3F08600CFDCA7 /* AddPlaceViewController.xib */,
 				6A0D9FAE109D97B300F9E1D6 /* UploadGiftViewController.xib */,
 				6ABA7857109BDCAF001E7293 /* PlacesListViewController.xib */,
 				6A1526C81096BDB300924D0E /* FriendsListTableCellView.xib */,
@@ -1036,7 +1053,6 @@
 				6A044CAA109545200063FC33 /* FriendsListViewController.m */,
 				6A044CB3109545450063FC33 /* FriendsMapViewController.h */,
 				6A044CB4109545450063FC33 /* FriendsMapViewController.m */,
-				03D4FDD310D1FCFE007F44C7 /* libisimulate.a */,
 				6A1526C51096BD7E00924D0E /* FriendsListTableCell.h */,
 				6A1526C61096BD7E00924D0E /* FriendsListTableCell.m */,
 				552AFE3F10A285AC009300E2 /* FriendIconAnnotationView.h */,
@@ -1215,6 +1231,7 @@
 		6A39EC4C109662D7006F76C3 /* temp */ = {
 			isa = PBXGroup;
 			children = (
+				6AACC62610D4ACEC0059E604 /* tmp-tips-for-adding.png */,
 				6A16AF3910CFFAF600CD5302 /* tmp-instruction.png */,
 			);
 			name = temp;
@@ -1267,6 +1284,8 @@
 				6A16ABDA10CF251800CD5302 /* InstructionView.m */,
 				6ADC9C1810D1EE5100CFDCA7 /* Utilities.h */,
 				6ADC9C1910D1EE5100CFDCA7 /* Utilities.m */,
+				6AACC53010D48F240059E604 /* LocationManager.h */,
+				6AACC53110D48F240059E604 /* LocationManager.m */,
 			);
 			name = General;
 			sourceTree = "<group>";
@@ -1361,6 +1380,7 @@
 		6AC7E92D10994FB500776993 /* Place */ = {
 			isa = PBXGroup;
 			children = (
+				6ADC9EBE10D3EF4900CFDCA7 /* Add Venue */,
 				6A12EC5E10B772B60013BA52 /* GeoAPI related */,
 				6AC7E92E10994FD000776993 /* PlaceDetailViewController.h */,
 				6AC7E92F10994FD000776993 /* PlaceDetailViewController.m */,
@@ -1378,6 +1398,18 @@
 				6AF2F0A910C2EA0B00A29C96 /* TipDetailViewController.m */,
 			);
 			name = Place;
+			sourceTree = "<group>";
+		};
+		6ADC9EBE10D3EF4900CFDCA7 /* Add Venue */ = {
+			isa = PBXGroup;
+			children = (
+				6ADC9EC310D3F08600CFDCA7 /* AddPlaceViewController.h */,
+				6ADC9EC410D3F08600CFDCA7 /* AddPlaceViewController.m */,
+				6AACC63810D4B1430059E604 /* AddPlaceTipsViewController.h */,
+				6AACC63910D4B1430059E604 /* AddPlaceTipsViewController.m */,
+				6AACC63A10D4B1430059E604 /* AddPlaceTipsViewController.xib */,
+			);
+			name = "Add Venue";
 			sourceTree = "<group>";
 		};
 		6AF794AA10CCAD9A00E77D49 /* Requests */ = {
@@ -1451,6 +1483,8 @@
 				6A044CB7109545450063FC33 /* FriendsMapView.xib in Resources */,
 				6AF794C110CCAF4B00E77D49 /* AddFriendsViewController.xib in Resources */,
 				6AE61217109AB04C008ABF79 /* ProfileView.xib in Resources */,
+				6AACC63C10D4B1430059E604 /* AddPlaceTipsViewController.xib in Resources */,
+				6ADC9EC710D3F08600CFDCA7 /* AddPlaceViewController.xib in Resources */,
 				6A1526C91096BDB300924D0E /* FriendsListTableCellView.xib in Resources */,
 				6A5F8F3C10B7707100914709 /* GeoAPIView.xib in Resources */,
 				6A10E61710BE0541006538DB /* LoginViewModalController.xib in Resources */,
@@ -1600,6 +1634,7 @@
 				6AE4B92A10D01B8900C910A1 /* icon57x57.png in Resources */,
 				6AE4B93810D01E2F00C910A1 /* icon57x5702.png in Resources */,
 				6A90480110D02DE700260719 /* icon57x5701.png in Resources */,
+				6AACC62710D4ACEC0059E604 /* tmp-tips-for-adding.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1724,6 +1759,9 @@
 				6AF794C010CCAF4B00E77D49 /* AddFriendsViewController.m in Sources */,
 				6A16ABDB10CF251800CD5302 /* InstructionView.m in Sources */,
 				6ADC9C1A10D1EE5100CFDCA7 /* Utilities.m in Sources */,
+				6ADC9EC610D3F08600CFDCA7 /* AddPlaceViewController.m in Sources */,
+				6AACC53210D48F240059E604 /* LocationManager.m in Sources */,
+				6AACC63B10D4B1430059E604 /* AddPlaceTipsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
