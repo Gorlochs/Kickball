@@ -73,7 +73,7 @@ static Utilities *sharedInstance = nil;
         // Fetch image
         NSData *data = [[NSData alloc] initWithContentsOfURL: imageURL];
         UIImage *image = [[UIImage alloc] initWithData: data];
-        
+        [data release];
         // Do we want to round the corners?
         //image = [self roundCorners: image];
         
@@ -92,6 +92,7 @@ static Utilities *sharedInstance = nil;
             NSLog(@"save jpg to filesystem: %@", filename);
             [UIImageJPEGRepresentation(image, 100) writeToFile: uniquePath atomically: YES];
         }
+        [image release];
     }
 }
 
