@@ -15,6 +15,7 @@
 #import "GAConnectionManager.h"
 #import "SBJSON.h"
 #import "GeoApiTableViewController.h"
+#import "GeoApiDetailsViewController.h"
 #import "GAPlace.h"
 #import "TipDetailViewController.h"
 #import "FSTip.h"
@@ -417,7 +418,7 @@
     GAConnectionManager *connectionManager_ = [[GAConnectionManager alloc] initWithAPIKey:@"K6afuuFTXK" delegate:self];
     CLLocationCoordinate2D location = venue.location;
 
-    [connectionManager_ requestBusinessesNearCoords:location withinRadius:200 maxResults:10];
+    [connectionManager_ requestBusinessesNearCoords:location withinRadius:100 maxResults:5];
 }
 
 - (void) viewSpecial {
@@ -441,7 +442,19 @@
         NSArray *tmp = [[dict objectForKey:@"view.listing"] objectForKey:@"address"];
         place.address = [NSString stringWithFormat:@"%@, %@, %@", [tmp objectAtIndex:0], [tmp objectAtIndex:1], [tmp objectAtIndex:2]];
         [objArray addObject:place];
-        [place release];
+        
+        if ([place.name rangeOfString:venue.name options:NSCaseInsensitiveSearch].location != NSNotFound) {
+            GeoApiDetailsViewController *vc = [[GeoApiDetailsViewController alloc] initWithNibName:@"GeoApiDetailsView" bundle:nil];
+            vc.place = place;
+            [place release];
+            [self.navigationController pushViewController:vc animated:YES];
+            [vc release];
+            break;
+        } else { 
+            // meh. not pretty.
+            [place release];
+        }
+        
         //NSLog(@"name: %@", [[dict objectForKey:@"view.listing"] objectForKey:@"name"]);
     }
     GeoApiTableViewController *vc = [[GeoApiTableViewController alloc] initWithNibName:@"GeoAPIView" bundle:nil];
