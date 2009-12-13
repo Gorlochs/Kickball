@@ -118,10 +118,13 @@
     [theTableView release];
     [badgeCell release];
     [addFriendCell release];
+    [friendActionCell release];
+    [friendPendingCell release];
     [twitterTable release];
     [userId release];
     [user release];
     [twitterStatuses release];
+    [checkin release];
     
     [name release];
     [location release];
@@ -130,6 +133,7 @@
     [totalCheckins release];
     [userIcon release];
     [segmentedControl release];
+    [pingsAndUpdates release];
     
     [super dealloc];
 }

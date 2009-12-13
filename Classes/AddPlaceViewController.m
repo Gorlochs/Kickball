@@ -181,6 +181,13 @@
 
 
 - (void)dealloc {
+    [theTableView release];
+    [pingToggleButton release];
+    [twitterToggleButton release];
+    [newPlaceName release];
+    
+    [checkin release];
+    [venues release];
     [super dealloc];
 }
 

@@ -342,11 +342,21 @@
     [checkinCell release];
     [giftCell release];
     [pointsCell release];
+    [badgeCell release];
     [mapView release];
+    
     [venueName release];
     [venueAddress release];
     [mayorNameLabel release];
+    [badgeCell release];
+    
     [twitterButton release];
+    [pingToggleButton release];
+    [twitterToggleButton release];
+    [venueDetailButton release];
+    [specialsButton release];
+    
+    [checkin release];
     [venue release];
     [venueId release];
     

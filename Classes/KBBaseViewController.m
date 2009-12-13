@@ -68,6 +68,9 @@
 
 
 - (void)dealloc {
+    [signedInUserIcon release];
+    [progressViewController release];
+    [loginViewModal release];
     [super dealloc];
 }
 

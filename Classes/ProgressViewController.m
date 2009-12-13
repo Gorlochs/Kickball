@@ -40,6 +40,7 @@
 
 - (void)dealloc {
     [stripedActivityIndicator release];
+    [activityLabel release];
     [super dealloc];
 }
 

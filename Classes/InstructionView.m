@@ -26,6 +26,7 @@
 
 
 - (void)dealloc {
+    [removeViewButton release];
     [super dealloc];
 }
 

@@ -29,6 +29,11 @@
 
 
 - (void)dealloc {
+    [profileIcon release];
+	[checkinDisplayLabel release];
+	[addressLabel release];
+    [timeUnits release];
+    [numberOfTimeUnits release];
     [super dealloc];
 }
 

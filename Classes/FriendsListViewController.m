@@ -131,8 +131,21 @@
 - (void)viewDidUnload {
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
+    instructionView = nil;
+    footerViewCell = nil;
 }
 
+- (void)dealloc {
+    [shoutField release];
+    [recentCheckins release];
+    [todayCheckins release];
+    [yesterdayCheckins release];
+    [theTableView release];
+    [checkins release];
+    [instructionView release];
+    [footerViewCell release];
+    [super dealloc];
+}
 
 #pragma mark Table view methods
 
@@ -326,17 +339,6 @@
 	[customView addSubview:headerLabel];
     [headerLabel release];
 	return customView;
-}
-
-
-- (void)dealloc {
-    [shoutField release];
-    [recentCheckins release];
-    [todayCheckins release];
-    [yesterdayCheckins release];
-    [theTableView release];
-    [checkins release];
-    [super dealloc];
 }
 
 #pragma mark IBAction methods
