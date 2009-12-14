@@ -7,6 +7,7 @@
 //
 
 #import "FriendIconAnnotationView.h"
+#import "Utilities.h"
 
 #define kHeight 32
 #define kWidth 32
@@ -20,14 +21,14 @@
 	self.frame = CGRectMake(0, 0, kWidth, kHeight);
 	self.backgroundColor = [UIColor whiteColor];
 	if(inUrl){
-		NSURL *imgUrl = [NSURL URLWithString:inUrl];
-		NSData *data = [NSData dataWithContentsOfURL:imgUrl];
-		UIImage *img = [[UIImage alloc] initWithData:data];
+//		NSURL *imgUrl = [NSURL URLWithString:inUrl];
+//		NSData *data = [NSData dataWithContentsOfURL:imgUrl];
+//		UIImage *img = [[UIImage alloc] initWithData:data];
 		
-		imageView = [[UIImageView alloc] initWithImage:img];
+		imageView = [[UIImageView alloc] initWithImage:[[Utilities sharedInstance] getCachedImage:inUrl]];
 		imageView.frame = CGRectMake(kBorder, kBorder, kWidth - 2 * kBorder, kWidth - 2 * kBorder);
 		[self addSubview:imageView];
-        [img release];
+//        [img release];
 	}
 		
 	return self;
