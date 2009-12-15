@@ -10,20 +10,26 @@
 #import "FoursquareAPI.h"
 #import "LocationManager.h"
 #import "AddPlaceTipsViewController.h"
-
+#import "AddPlaceFormViewController.h"
+#import "Utilities.h"
+#import "PlaceDetailViewController.h"
 
 @implementation AddPlaceViewController
 
 @synthesize checkin;
 
-/*
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    // pull this up into a method (or property)
+    FSUser *tmpUser = [self getAuthenticatedUser];
+    signedInUserIcon.imageView.image = [[Utilities sharedInstance] getCachedImage:tmpUser.photo];
+    signedInUserIcon.hidden = NO;
+    isPingOn = tmpUser.isPingOn;
+    isTwitterOn = tmpUser.sendToTwitter;
+    twitterToggleButton.selected = isTwitterOn;
+    pingToggleButton.selected = isPingOn;
 }
-*/
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -86,10 +92,17 @@
     NSLog(@"is twitter on: %d", isTwitterOn);
 }
 
-- (IBAction) viewTipsForAddingNewPlace {
+- (void) viewTipsForAddingNewPlace {
     AddPlaceTipsViewController *tipController = [[AddPlaceTipsViewController alloc] initWithNibName:@"AddPlaceTipsViewController" bundle:nil];
     [self.navigationController pushViewController:tipController animated:YES];
     [tipController release];
+}
+
+- (void) switchToTextFields {
+    AddPlaceFormViewController *formController = [[AddPlaceFormViewController alloc] initWithNibName:@"AddPlaceFormViewController" bundle:nil];
+    formController.newVenueName = newPlaceName.text;
+    [self.navigationController pushViewController:formController animated:YES];
+    [formController release];
 }
 
 #pragma mark Table view methods
@@ -102,7 +115,7 @@
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     for (NSString *key in [venues allKeys]) {
-        return [(NSArray*)[venues objectForKey:key] count];
+        return [(NSArray*)[venues objectForKey:key] count] + 1;
     }
     return 0;
 }
@@ -115,11 +128,17 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        if (indexPath.row > [(NSArray*)[venues objectForKey:@"Matching Places"] count]) {
+            return noneOfTheseCell;
+        } else {
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        }
     }
-    
-    // Set up the cell...
 	
+    // FIXME: find a better way to do this!
+    if (indexPath.row == [(NSArray*)[venues objectForKey:@"Matching Places"] count]) {
+        return noneOfTheseCell;
+    }
     if ([venues count] >= indexPath.section) {
         FSVenue *venue = [self extractVenueFromDictionaryForRow:indexPath];
         cell.textLabel.text = venue.name;
@@ -136,12 +155,22 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
-	// [self.navigationController pushViewController:anotherViewController];
-	// [anotherViewController release];
+    
+    if (indexPath.row != [(NSArray*)[venues objectForKey:@"Matching Places"] count]) {
+        PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];
+        FSVenue *venue = [self extractVenueFromDictionaryForRow:indexPath];
+        [theTableView deselectRowAtIndexPath:indexPath animated:YES];
+        
+        placeDetailController.venueId = venue.venueid;
+        placeDetailController.doCheckin = YES;
+        [self.navigationController pushViewController:placeDetailController animated:YES];
+        [placeDetailController release];
+    }
 }
 
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 44;
+}
 
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
 	return 44;

@@ -42,6 +42,9 @@
     bool isUserCheckedIn;
     bool isPingOn;
     bool isTwitterOn;
+    
+    // set to YES if the user should be checked in with the initialization of this view
+    BOOL doCheckin;
 }
 
 @property (nonatomic, retain) UITableViewCell *mayorMapCell;
@@ -50,6 +53,7 @@
 @property (nonatomic, retain) NSArray *checkin;
 @property (nonatomic, retain) FSVenue *venue;
 @property (nonatomic, retain) NSString *venueId;
+@property (nonatomic) BOOL doCheckin;
 
 - (IBAction) callVenue;
 - (IBAction) uploadImageToServer;

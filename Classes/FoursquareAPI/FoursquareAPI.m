@@ -313,6 +313,23 @@ static FoursquareAPI *sharedInstance = nil;
 	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/friend/requests"] withUser:self.userName andPassword:self.passWord andParams:nil withTarget:inTarget andAction:inAction usingMethod:@"POST"];
 }
 
+- (void) addNewVenue:(NSString*)name atAddress:(NSString*)address andCrossstreet:(NSString*)crossStreet andCity:(NSString*)city andState:(NSString*)state  
+          andOptionalZip:(NSString*)zip andRequiredCityId:(NSString*)cityId andOptionalPhone:(NSString*)phone  withTarget:(id)inTarget andAction:(SEL)inAction {  
+    
+    NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:8];
+	[requestParams setObject:name forKey:@"name"];
+	[requestParams setObject:address forKey:@"address"];
+	[requestParams setObject:crossStreet forKey:@"crossstreet"];
+	[requestParams setObject:city forKey:@"city"];
+	[requestParams setObject:state forKey:@"state"];
+	[requestParams setObject:zip forKey:@"zip"];
+	[requestParams setObject:cityId forKey:@"cityId"];
+	[requestParams setObject:phone forKey:@"phone"];
+	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/addvenue"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"POST"];
+}
+
+#pragma mark response parsers
+
 + (NSArray *) friendRequestsFromResponseXML:(NSString *) inString {
 	
 	NSError * err;
@@ -826,6 +843,10 @@ static FoursquareAPI *sharedInstance = nil;
                             checkinVenue.name = value2;
                         } else if ([key2 isEqualToString:@"id"]) {
                             checkinVenue.venueid = value2;
+                        } else if([key2 isEqualToString:@"city"]) {
+                            checkinVenue.city = value2;
+                        } else if([key2 isEqualToString:@"state"]) {
+                            checkinVenue.venueState = value2;
                         }
                     }
                     checkin.venue = checkinVenue;

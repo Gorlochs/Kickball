@@ -39,15 +39,14 @@
 @synthesize venueId;
 @synthesize checkinCell;
 @synthesize giftCell;
+@synthesize doCheckin;
 
-/*
-- (id)initWithStyle:(UITableViewStyle)style {
-    // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-    if (self = [super initWithStyle:style]) {
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        // Custom initialization
     }
     return self;
 }
-*/
 
 // FIXME: add a check to make sure that a valid venueId exists, since this page will crap out if it doesn't.
 - (void)viewDidLoad {
@@ -72,13 +71,7 @@
     twitterButton.selected = isTwitterOn;
     pingToggleButton.selected = isPingOn;
     
-    if(![[FoursquareAPI sharedInstance] isAuthenticated]){
-		//run sheet to log in.
-		NSLog(@"Foursquare is not authenticated");
-	} else {
-        [self startProgressBar:@"Retrieving venue details..."];
-		[[FoursquareAPI sharedInstance] getVenue:venueId withTarget:self andAction:@selector(venueResponseReceived:withResponseString:)];
-	}
+    [[FoursquareAPI sharedInstance] getVenue:venueId withTarget:self andAction:@selector(venueResponseReceived:withResponseString:)];
 }
 
 - (void)venueResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
@@ -88,6 +81,10 @@
 
 	[theTableView reloadData];
     [self stopProgressBar];
+    
+    if (doCheckin) {
+        [self checkinToVenue];
+    }
 }
 
 - (void) prepViewWithVenueInfo:(FSVenue*)venueToDisplay {
@@ -386,18 +383,13 @@
 }
 
 - (void) checkinToVenue {
-    if(![[FoursquareAPI sharedInstance] isAuthenticated]){
-		//run sheet to log in.
-		NSLog(@"Foursquare is not authenticated");
-	} else {
-        [self startProgressBar:@"Checking in to this venue..."];
-		[[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:venue.venueid 
-                                                      andShout:nil 
-                                                       offGrid:!isPingOn
-                                                     toTwitter:isTwitterOn
-                                                    withTarget:self 
-                                                     andAction:@selector(checkinResponseReceived:withResponseString:)];
-	}
+    [self startProgressBar:@"Checking in to this venue..."];
+    [[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:venue.venueid 
+                                                  andShout:nil 
+                                                   offGrid:!isPingOn
+                                                 toTwitter:isTwitterOn
+                                                withTarget:self 
+                                                 andAction:@selector(checkinResponseReceived:withResponseString:)];
 }
 
 - (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
