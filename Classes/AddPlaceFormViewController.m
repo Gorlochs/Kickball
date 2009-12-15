@@ -8,6 +8,7 @@
 
 #import "AddPlaceFormViewController.h"
 #import "FoursquareAPI.h"
+#import "PlaceDetailViewController.h"
 
 static const CGFloat KEYBOARD_ANIMATION_DURATION = 0.3;
 static const CGFloat MINIMUM_SCROLL_FRACTION = 0.2;
@@ -152,6 +153,12 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     NSLog(@"new venue instring: %@", inString);
 	FSVenue *venue = [FoursquareAPI venueFromResponseXML:inString];
     [self stopProgressBar];
+    
+    PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];    
+    placeDetailController.venueId = venue.venueid;
+    placeDetailController.doCheckin = YES;
+    [self.navigationController pushViewController:placeDetailController animated:YES];
+    [placeDetailController release];
 }
 
 - (void) doVenuelessCheckin {
