@@ -22,6 +22,7 @@
 
 - (IBAction) backOneView;
 - (IBAction) viewUserProfile;
+- (IBAction) goToHomeView;
 - (void) setAuthenticatedUser:(FSUser*)user;
 - (FSUser*) getAuthenticatedUser;
 - (void) doLoginUsername: (NSString *)fsUser andPass:(NSString *) fsPass;

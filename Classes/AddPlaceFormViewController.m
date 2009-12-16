@@ -92,14 +92,6 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 }
 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
-	// [self.navigationController pushViewController:anotherViewController];
-	// [anotherViewController release];
-}
-
-
 - (void)dealloc {
     [theTableView release];
     
@@ -154,6 +146,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 	FSVenue *venue = [FoursquareAPI venueFromResponseXML:inString];
     [self stopProgressBar];
     
+    // TODO: we should think about removing the Add Venue pages from the stack so users can't use the BACK button to return to them
     PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];    
     placeDetailController.venueId = venue.venueid;
     placeDetailController.doCheckin = YES;

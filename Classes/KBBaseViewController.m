@@ -34,6 +34,10 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void) goToHomeView {
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
 - (void) viewUserProfile {
     // take user to their profile
     ProfileViewController *pvc = [[ProfileViewController alloc] initWithNibName:@"ProfileView" bundle:nil];
