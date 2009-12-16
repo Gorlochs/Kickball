@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0331DFD110D36749009C5089 /* libPMAnalytics-r69.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0331DFD010D36749009C5089 /* libPMAnalytics-r69.a */; };
-		03CECD8410D887C100E06966 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CECD8310D887C100E06966 /* SFHFKeychainUtils.m */; };
 		1D3623260D0F684500981E51 /* KickballAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* KickballAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -277,10 +276,12 @@
 		6AACC63C10D4B1430059E604 /* AddPlaceTipsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AACC63A10D4B1430059E604 /* AddPlaceTipsViewController.xib */; };
 		6ABA7858109BDCAF001E7293 /* PlacesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABA7856109BDCAF001E7293 /* PlacesListViewController.m */; };
 		6ABA7859109BDCAF001E7293 /* PlacesListViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6ABA7857109BDCAF001E7293 /* PlacesListViewController.xib */; };
+		6ABB8B2F10D88C99001ECDAD /* FSMayor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABB8B2E10D88C99001ECDAD /* FSMayor.m */; };
 		6AC5817B10B517FB0043B90C /* PlacesMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC5817910B517FB0043B90C /* PlacesMapViewController.m */; };
 		6AC5817C10B517FB0043B90C /* PlacesMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AC5817A10B517FB0043B90C /* PlacesMapView.xib */; };
 		6AC7E93110994FD000776993 /* PlaceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC7E92F10994FD000776993 /* PlaceDetailViewController.m */; };
 		6AC7E93210994FD000776993 /* PlaceDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AC7E93010994FD000776993 /* PlaceDetailView.xib */; };
+		6AD9776D10D8B2AC00F72C40 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD9776C10D8B2AC00F72C40 /* SFHFKeychainUtils.m */; };
 		6ADC9C1A10D1EE5100CFDCA7 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ADC9C1910D1EE5100CFDCA7 /* Utilities.m */; };
 		6ADC9EC610D3F08600CFDCA7 /* AddPlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ADC9EC410D3F08600CFDCA7 /* AddPlaceViewController.m */; };
 		6ADC9EC710D3F08600CFDCA7 /* AddPlaceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6ADC9EC510D3F08600CFDCA7 /* AddPlaceViewController.xib */; };
@@ -303,8 +304,6 @@
 /* Begin PBXFileReference section */
 		0331DFCE10D36737009C5089 /* libisimulate.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libisimulate.a; path = libs/libisimulate.a; sourceTree = "<group>"; };
 		0331DFD010D36749009C5089 /* libPMAnalytics-r69.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPMAnalytics-r69.a"; path = "libs/libPMAnalytics-r69.a"; sourceTree = "<group>"; };
-		03CECD8210D887C100E06966 /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFHFKeychainUtils.h; path = "../../../Downloads/ldandersen-scifihifi-iphone-22397f9/security/SFHFKeychainUtils.h"; sourceTree = SOURCE_ROOT; };
-		03CECD8310D887C100E06966 /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFHFKeychainUtils.m; path = "../../../Downloads/ldandersen-scifihifi-iphone-22397f9/security/SFHFKeychainUtils.m"; sourceTree = SOURCE_ROOT; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* KickballAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KickballAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* KickballAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KickballAppDelegate.m; sourceTree = "<group>"; };
@@ -694,12 +693,16 @@
 		6ABA7855109BDCAF001E7293 /* PlacesListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlacesListViewController.h; sourceTree = "<group>"; };
 		6ABA7856109BDCAF001E7293 /* PlacesListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlacesListViewController.m; sourceTree = "<group>"; };
 		6ABA7857109BDCAF001E7293 /* PlacesListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PlacesListViewController.xib; path = Classes/PlacesListViewController.xib; sourceTree = "<group>"; };
+		6ABB8B2D10D88C99001ECDAD /* FSMayor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSMayor.h; sourceTree = "<group>"; };
+		6ABB8B2E10D88C99001ECDAD /* FSMayor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSMayor.m; sourceTree = "<group>"; };
 		6AC5817810B517FB0043B90C /* PlacesMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlacesMapViewController.h; sourceTree = "<group>"; };
 		6AC5817910B517FB0043B90C /* PlacesMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlacesMapViewController.m; sourceTree = "<group>"; };
 		6AC5817A10B517FB0043B90C /* PlacesMapView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PlacesMapView.xib; path = Classes/PlacesMapView.xib; sourceTree = "<group>"; };
 		6AC7E92E10994FD000776993 /* PlaceDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceDetailViewController.h; sourceTree = "<group>"; };
 		6AC7E92F10994FD000776993 /* PlaceDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceDetailViewController.m; sourceTree = "<group>"; };
 		6AC7E93010994FD000776993 /* PlaceDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = PlaceDetailView.xib; path = Classes/PlaceDetailView.xib; sourceTree = "<group>"; };
+		6AD9776B10D8B2AC00F72C40 /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFHFKeychainUtils.h; path = ../SFHFKeychainUtils.h; sourceTree = "<group>"; };
+		6AD9776C10D8B2AC00F72C40 /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFHFKeychainUtils.m; path = ../SFHFKeychainUtils.m; sourceTree = "<group>"; };
 		6ADC9C1810D1EE5100CFDCA7 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		6ADC9C1910D1EE5100CFDCA7 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		6ADC9EC310D3F08600CFDCA7 /* AddPlaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPlaceViewController.h; sourceTree = "<group>"; };
@@ -753,8 +756,8 @@
 		0300485410D85F8C004590BD /* Keychain */ = {
 			isa = PBXGroup;
 			children = (
-				03CECD8210D887C100E06966 /* SFHFKeychainUtils.h */,
-				03CECD8310D887C100E06966 /* SFHFKeychainUtils.m */,
+				6AD9776B10D8B2AC00F72C40 /* SFHFKeychainUtils.h */,
+				6AD9776C10D8B2AC00F72C40 /* SFHFKeychainUtils.m */,
 			);
 			name = Keychain;
 			sourceTree = "<group>";
@@ -884,6 +887,8 @@
 				5550EE1C10B4FA3A0065C925 /* FSScore.m */,
 				55A8DD2D10CCD07300D3538A /* FSFunctionRequest.h */,
 				55A8DD2E10CCD07300D3538A /* FSFunctionRequest.m */,
+				6ABB8B2D10D88C99001ECDAD /* FSMayor.h */,
+				6ABB8B2E10D88C99001ECDAD /* FSMayor.m */,
 			);
 			path = FoursquareAPI;
 			sourceTree = "<group>";
@@ -1783,7 +1788,8 @@
 				6AACC63B10D4B1430059E604 /* AddPlaceTipsViewController.m in Sources */,
 				6A3900B110D6F1A0001D133C /* AddPlaceFormViewController.m in Sources */,
 				6A3900B210D6F1A0001D133C /* AddPlaceFormViewController.xib in Sources */,
-				03CECD8410D887C100E06966 /* SFHFKeychainUtils.m in Sources */,
+				6ABB8B2F10D88C99001ECDAD /* FSMayor.m in Sources */,
+				6AD9776D10D8B2AC00F72C40 /* SFHFKeychainUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
