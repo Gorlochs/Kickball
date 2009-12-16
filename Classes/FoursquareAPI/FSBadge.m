@@ -12,4 +12,9 @@
 @implementation FSBadge
 @synthesize	badgeId, badgeName, icon, description;
 
+
+- (NSString*) description {
+    return [NSString stringWithFormat:@"(BADGE : name=%@ ; id=%@ ; icon=%@ ; description=%@)", badgeName, badgeId, icon, description];
+}
+
 @end

@@ -8,6 +8,7 @@
 
 #import "FoursquareAPI.h"
 #import "Utilities.h"
+#import "FSMayor.h"
 
 static FoursquareAPI *sharedInstance = nil;
 
@@ -493,7 +494,7 @@ static FoursquareAPI *sharedInstance = nil;
 		for(counter = 0; counter < [checkinAttr childCount]; counter++) {
 			NSString * key = [[checkinAttr childAtIndex:counter] name];
 			NSString * value = [[checkinAttr childAtIndex:counter] stringValue];
-			 if([key isEqualToString:@"message"]){
+            if([key isEqualToString:@"message"]){
 				oneCheckin.message = value;
 			} else if([key isEqualToString:@"created"]){
 				oneCheckin.created = value;
@@ -514,10 +515,37 @@ static FoursquareAPI *sharedInstance = nil;
 			} else if([key compare:@"venue"] == 0){
 				FSVenue * currentVenueInfo = [[FoursquareAPI _venuesFromNode:checkinAttr] objectAtIndex:0];
 				oneCheckin.venue = currentVenueInfo;
-			} else if([key compare:@"scoring"] == 0){
+			} else if ([key compare:@"scoring"] == 0) {
 				FSScoring * currentCheckinScoring = [FoursquareAPI _scoringFromNode:checkinAttr];
 				oneCheckin.scoring = currentCheckinScoring;
-			}
+			} else if ([key compare:@"badges"] == 0) {
+                NSArray * badgeXML = [checkinAttr nodesForXPath:@"//badges" error:nil];
+                if ([badgeXML count] > 0) {
+                    oneCheckin.badges = [FoursquareAPI _badgesFromNode:[badgeXML objectAtIndex:0]];
+                }
+			} else if ([key compare:@"mayor"] == 0) {
+                NSArray * mayorNodes = [checkinAttr nodesForXPath:@"//mayor" error:nil];
+                FSMayor *checkinMayor = nil;
+                NSArray * mayorUserNodes = [checkinAttr nodesForXPath:@"//mayor/user" error:nil];
+				if(mayorUserNodes && [mayorUserNodes count] > 0){
+                    checkinMayor = [[FSMayor alloc] init];
+					checkinMayor.user = [FoursquareAPI _userFromNode:[mayorUserNodes objectAtIndex:0]];
+				}
+                for (CXMLElement *mayorNode in mayorNodes) {
+                    for (int counter = 0; counter < [mayorNode childCount]; counter++) {
+                        NSString * key = [[mayorNode childAtIndex:counter] name];
+                        NSString * value = [[mayorNode childAtIndex:counter] stringValue];
+                        if ([key isEqualToString:@"message"]) {
+                            checkinMayor.mayorCheckinMessage = value;
+                        } else if ([key isEqualToString:@"checkins"]) {
+                            checkinMayor.numCheckins = [value intValue];
+                        } else if ([key isEqualToString:@"type"]) {
+                            checkinMayor.mayorTransitionType = value;
+                        }
+                    }
+                }
+                oneCheckin.mayor = checkinMayor;
+            }
 
 		}
 		[allCheckins addObject:[oneCheckin retain]];
@@ -531,7 +559,7 @@ static FoursquareAPI *sharedInstance = nil;
 	FSScoring *theScoring = [[FSScoring alloc] init];
 	
 	//get all the scores in the checkin
-	NSArray * scoresReturned = [inputNode nodesForXPath:@"score" error:nil];
+	NSArray * scoresReturned = [inputNode nodesForXPath:@"//score" error:nil];
 	for (CXMLElement *scoreResult in scoresReturned) {
 		FSScore * newScore = [[FSScore alloc] init];
 		int counter;
@@ -670,6 +698,31 @@ static FoursquareAPI *sharedInstance = nil;
 	return allTips;
 }
 
++ (NSArray *) _badgesFromNode:(CXMLNode *) inputNode {
+    NSMutableArray * loggedUserBadges = [[NSMutableArray alloc] initWithCapacity:1];
+    
+    NSArray * userBadgeXML = [inputNode nodesForXPath:@"//badges/badge" error:nil];
+    for (CXMLElement *loggedBadge in userBadgeXML) {
+        FSBadge * currentBadgeInfo = [[FSBadge alloc] init];
+        int counter;
+        for(counter = 0; counter < [loggedBadge childCount]; counter++) {
+            NSString * key = [[loggedBadge childAtIndex:counter] name];
+            NSString * value = [[loggedBadge childAtIndex:counter] stringValue];
+            if([key isEqualToString:@"id"]){
+                currentBadgeInfo.badgeId = value;
+            } else if([key isEqualToString:@"name"]){
+                currentBadgeInfo.badgeName = value;
+            } else if([key isEqualToString:@"icon"]){
+                currentBadgeInfo.icon = value;
+            } else if([key isEqualToString:@"description"]){
+                currentBadgeInfo.description = value;
+            }
+        }
+        [loggedUserBadges addObject:currentBadgeInfo];
+    }
+    return loggedUserBadges;
+}
+
 + (NSArray *) _friendsFromNode:(CXMLNode *) inputNode{
 	NSMutableArray * allFriends = [[NSMutableArray alloc] initWithCapacity:1];
 	
@@ -793,28 +846,10 @@ static FoursquareAPI *sharedInstance = nil;
 				loggedInUser.mayorOf = loggedMayorships;
 			}
 		} else if([key compare:@"badges"] == 0){
-			NSMutableArray * loggedUserBadges = [[NSMutableArray alloc] initWithCapacity:1];
-			//badges and city are special cases
-			NSArray * userBadgeXML = [usrAttr nodesForXPath:@"//badges/badge" error:nil];
-			for (CXMLElement *loggedBadge in userBadgeXML) {
-				FSBadge * currentBadgeInfo = [[FSBadge alloc] init];
-				int counter;
-				for(counter = 0; counter < [loggedBadge childCount]; counter++) {
-					NSString * key = [[loggedBadge childAtIndex:counter] name];
-					NSString * value = [[loggedBadge childAtIndex:counter] stringValue];
-					if([key isEqualToString:@"id"]){
-						currentBadgeInfo.badgeId = value;
-					} else if([key isEqualToString:@"name"]){
-						currentBadgeInfo.badgeName = value;
-					} else if([key isEqualToString:@"icon"]){
-						currentBadgeInfo.icon = value;
-					} else if([key isEqualToString:@"description"]){
-						currentBadgeInfo.description = value;
-					}
-				}
-				[loggedUserBadges addObject:currentBadgeInfo];
-			}
-			loggedInUser.badges = loggedUserBadges;
+			NSArray * badgeXML = [usrAttr nodesForXPath:@"//badges" error:nil];
+            if ([badgeXML count] > 0) {
+                loggedInUser.badges = [FoursquareAPI _badgesFromNode:[badgeXML objectAtIndex:0]];
+            }
 		} else if ([key compare:@"checkin"] == 0){
 			NSArray * userCheckinXML = [usrAttr nodesForXPath:@"//checkin" error:nil];
             NSLog(@"user's last checkin: %@", [userCheckinXML objectAtIndex:0]);

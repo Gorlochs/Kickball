@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "FSVenue.h"
 #import "FSUser.h"
+#import "FSMayor.h"
 #import "FSScoring.h"
 
 @interface FSCheckin : NSObject {
@@ -20,7 +21,8 @@
 	NSString * checkinId;
 	NSString * shout;
 	NSString * display;
-	FSUser * user;
+	FSUser * user; // not sure if this is supposed to represent the mayor or not
+	FSMayor * mayor;
 	FSScoring * scoring;
 }
 
@@ -34,4 +36,5 @@
 @property (nonatomic, retain) NSString * display;
 @property (nonatomic, retain) FSUser * user;
 @property (nonatomic, retain) FSScoring * scoring;
+@property (nonatomic, retain) FSMayor * mayor;
 @end

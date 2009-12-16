@@ -14,7 +14,7 @@
 @synthesize scores, total, message;
 
 - (NSString*) description {
-    return [NSString stringWithFormat:@"FSScoring: scores = %@, total = %d, message = %@", scores, total, message];
+    return [NSString stringWithFormat:@"(FSScoring: scores = %@, total = %d, message = %@)", scores, total, message];
 }
 
 @end

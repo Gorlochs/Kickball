@@ -72,6 +72,7 @@
 + (NSArray *) _tipsFromNode:(CXMLNode *) inputNode;
 + (FSScoring *) _scoringFromNode:(CXMLNode *) inputNode;
 + (FSCheckin *) _checkinFromNode:(CXMLNode *) inputNode;
++ (NSArray *) _badgesFromNode:(CXMLNode *) inputNode;
 
 + (NSArray *) usersFromResponseXML:(NSString *) inString;
 + (NSArray *) friendsFromResponseXML:(NSString *) inString;

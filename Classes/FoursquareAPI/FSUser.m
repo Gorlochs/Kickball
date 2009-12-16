@@ -30,7 +30,7 @@
 }
 
 - (NSString*) description {
-    return [NSString stringWithFormat:@"userId=%@ ; firstname=%@ ; userCity=%@ ; photo=%@ ; pings=%d ; sendtotwitter=%d", userId, firstname, userCity, photo, isPingOn, sendToTwitter];
+    return [NSString stringWithFormat:@"(USER : userId=%@ ; firstname=%@ ; userCity=%@ ; photo=%@ ; pings=%d ; sendtotwitter=%d)", userId, firstname, userCity, photo, isPingOn, sendToTwitter];
 }
 
 @end
