@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "KBBaseViewController.h"
 #import "FoursquareAPI.h"
+#import "SFHFKeychainUtils.h"
+
+#define kUsernameDefaultsKey @"FSUsername"
 
 @interface LoginViewModalController : UIViewController {
 	IBOutlet UITextField *usernameField;

@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="5"/>
+			<integer value="1"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -112,7 +112,7 @@
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUIText">shawnb@gmail.com</string>
+						<string key="IBUIText"/>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MAA</bytes>
@@ -120,13 +120,13 @@
 								<int key="NSID">2</int>
 							</object>
 						</object>
-						<bool key="IBUIClearsOnBeginEditing">YES</bool>
 						<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
 						<float key="IBUIMinimumFontSize">17</float>
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits">
 							<int key="IBUIAutocorrectionType">1</int>
 							<int key="IBUIKeyboardType">7</int>
 						</object>
+						<int key="IBUIClearButtonMode">1</int>
 					</object>
 					<object class="IBUITextField" id="125557893">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -136,13 +136,12 @@
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUIText">flamingo</string>
+						<string key="IBUIText"/>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MAA</bytes>
 							<reference key="NSCustomColorSpace" ref="996504721"/>
 						</object>
-						<bool key="IBUIClearsOnBeginEditing">YES</bool>
 						<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
 						<float key="IBUIMinimumFontSize">17</float>
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits">
@@ -249,11 +248,6 @@
 						<reference key="parent" ref="0"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">3</int>
-						<reference key="object" ref="125557893"/>
-						<reference key="parent" ref="191373211"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">5</int>
 						<reference key="object" ref="971204711"/>
 						<reference key="parent" ref="191373211"/>
@@ -271,6 +265,11 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">18</int>
 						<reference key="object" ref="101736432"/>
+						<reference key="parent" ref="191373211"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">3</int>
+						<reference key="object" ref="125557893"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</object>

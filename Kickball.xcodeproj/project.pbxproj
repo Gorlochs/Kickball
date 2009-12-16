@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0331DFD110D36749009C5089 /* libPMAnalytics-r69.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0331DFD010D36749009C5089 /* libPMAnalytics-r69.a */; };
+		03CECD8410D887C100E06966 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CECD8310D887C100E06966 /* SFHFKeychainUtils.m */; };
 		1D3623260D0F684500981E51 /* KickballAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* KickballAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -302,7 +303,8 @@
 /* Begin PBXFileReference section */
 		0331DFCE10D36737009C5089 /* libisimulate.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libisimulate.a; path = libs/libisimulate.a; sourceTree = "<group>"; };
 		0331DFD010D36749009C5089 /* libPMAnalytics-r69.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPMAnalytics-r69.a"; path = "libs/libPMAnalytics-r69.a"; sourceTree = "<group>"; };
-		03D4FDD310D1FCFE007F44C7 /* libisimulate.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libisimulate.a; sourceTree = "<group>"; };
+		03CECD8210D887C100E06966 /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFHFKeychainUtils.h; path = "../../../Downloads/ldandersen-scifihifi-iphone-22397f9/security/SFHFKeychainUtils.h"; sourceTree = SOURCE_ROOT; };
+		03CECD8310D887C100E06966 /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFHFKeychainUtils.m; path = "../../../Downloads/ldandersen-scifihifi-iphone-22397f9/security/SFHFKeychainUtils.m"; sourceTree = SOURCE_ROOT; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* KickballAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KickballAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* KickballAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KickballAppDelegate.m; sourceTree = "<group>"; };
@@ -748,9 +750,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0300485410D85F8C004590BD /* Keychain */ = {
+			isa = PBXGroup;
+			children = (
+				03CECD8210D887C100E06966 /* SFHFKeychainUtils.h */,
+				03CECD8310D887C100E06966 /* SFHFKeychainUtils.m */,
+			);
+			name = Keychain;
+			sourceTree = "<group>";
+		};
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				0300485410D85F8C004590BD /* Keychain */,
 				6A402A8910B755B200D9BCEB /* JSON */,
 				6A402A9710B755B200D9BCEB /* GeoAPI */,
 				553C50FD10A1BD5000A74641 /* FoursquareAPI */,
@@ -767,7 +779,6 @@
 				6A55B4CC10B36E9A0005E934 /* General */,
 				1D3623240D0F684500981E51 /* KickballAppDelegate.h */,
 				1D3623250D0F684500981E51 /* KickballAppDelegate.m */,
-				03D4FDD310D1FCFE007F44C7 /* libisimulate.a */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1772,6 +1783,7 @@
 				6AACC63B10D4B1430059E604 /* AddPlaceTipsViewController.m in Sources */,
 				6A3900B110D6F1A0001D133C /* AddPlaceFormViewController.m in Sources */,
 				6A3900B210D6F1A0001D133C /* AddPlaceFormViewController.xib in Sources */,
+				03CECD8410D887C100E06966 /* SFHFKeychainUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
