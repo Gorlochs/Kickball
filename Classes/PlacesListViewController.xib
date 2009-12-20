@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="4"/>
+			<integer value="8"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -216,25 +216,6 @@
 							<string key="NSResourceName">resultsRefresh01.png</string>
 						</object>
 					</object>
-					<object class="IBUIButton" id="211535145">
-						<reference key="NSNextResponder" ref="12965882"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{17, 390}, {72, 35}}</string>
-						<reference key="NSSuperview" ref="12965882"/>
-						<bool key="IBUIOpaque">NO</bool>
-						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
-						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
-						<reference key="IBUIFont" ref="545247730"/>
-						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">Map</string>
-						<reference key="IBUIHighlightedTitleColor" ref="937759410"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
-						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="367608096"/>
-					</object>
 					<object class="IBUIButton" id="238232849">
 						<reference key="NSNextResponder" ref="12965882"/>
 						<int key="NSvFlags">292</int>
@@ -255,7 +236,7 @@
 					<object class="IBUIButton" id="204091295">
 						<reference key="NSNextResponder" ref="12965882"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{165, 388}, {139, 37}}</string>
+						<string key="NSFrame">{{9, 383}, {139, 37}}</string>
 						<reference key="NSSuperview" ref="12965882"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -270,6 +251,28 @@
 							<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="367608096"/>
+					</object>
+					<object class="IBUIButton" id="1058640374">
+						<reference key="NSNextResponder" ref="12965882"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{243, 388}, {79, 41}}</string>
+						<reference key="NSSuperview" ref="12965882"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
+						<reference key="IBUIFont" ref="545247730"/>
+						<string key="IBUINormalTitle">List</string>
+						<reference key="IBUIHighlightedTitleColor" ref="937759410"/>
+						<object class="NSColor" key="IBUINormalTitleColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
+						</object>
+						<reference key="IBUINormalTitleShadowColor" ref="367608096"/>
+						<object class="NSCustomResource" key="IBUINormalImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">listMapToggle02.png</string>
+						</object>
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 460}</string>
@@ -419,15 +422,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">flipToMap</string>
-						<reference key="source" ref="211535145"/>
-						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">40</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">viewUserProfile</string>
 						<reference key="source" ref="101132024"/>
 						<reference key="destination" ref="372490531"/>
@@ -470,6 +464,15 @@
 					</object>
 					<int key="connectionID">48</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">flipToMap</string>
+						<reference key="source" ref="1058640374"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">52</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -499,11 +502,11 @@
 							<reference ref="873029372"/>
 							<reference ref="1037921556"/>
 							<reference ref="882464250"/>
-							<reference ref="211535145"/>
 							<reference ref="542166593"/>
 							<reference ref="238232849"/>
-							<reference ref="204091295"/>
 							<reference ref="798819852"/>
+							<reference ref="1058640374"/>
+							<reference ref="204091295"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -564,11 +567,6 @@
 						<reference key="parent" ref="12965882"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">39</int>
-						<reference key="object" ref="211535145"/>
-						<reference key="parent" ref="12965882"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">41</int>
 						<reference key="object" ref="726433261"/>
 						<reference key="parent" ref="1037921556"/>
@@ -581,6 +579,11 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">47</int>
 						<reference key="object" ref="204091295"/>
+						<reference key="parent" ref="12965882"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">51</int>
+						<reference key="object" ref="1058640374"/>
 						<reference key="parent" ref="12965882"/>
 					</object>
 				</object>
@@ -599,11 +602,11 @@
 					<string>32.IBEditorWindowLastContentRect</string>
 					<string>32.IBPluginDependency</string>
 					<string>33.IBPluginDependency</string>
-					<string>39.IBPluginDependency</string>
 					<string>4.IBEditorWindowLastContentRect</string>
 					<string>4.IBPluginDependency</string>
 					<string>44.IBPluginDependency</string>
 					<string>47.IBPluginDependency</string>
+					<string>51.IBPluginDependency</string>
 					<string>8.IBEditorWindowLastContentRect</string>
 					<string>8.IBPluginDependency</string>
 				</object>
@@ -619,8 +622,8 @@
 					<string>{{0, 930}, {325, 54}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{329, 504}, {320, 480}}</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -644,7 +647,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">48</int>
+			<int key="maxID">52</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

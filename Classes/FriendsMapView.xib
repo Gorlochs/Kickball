@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="16"/>
+			<integer value="1"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -43,7 +43,7 @@
 					<object class="IBMKMapView" id="935662947">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{0, 98}, {320, 362}}</string>
+						<string key="NSFrame">{{0, 92}, {320, 368}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -160,7 +160,7 @@
 					<object class="IBUIButton" id="372550933">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{5, 56}, {109, 36}}</string>
+						<string key="NSFrame">{{5, 53}, {109, 36}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -173,13 +173,14 @@
 							<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="754996190"/>
-						<object class="NSCustomResource" key="IBUISelectedImage">
+						<object class="NSCustomResource" key="IBUIHighlightedImage" id="516507224">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">btn-checkin02.png</string>
+							<string key="NSResourceName">listMapCheckin02.png</string>
 						</object>
+						<reference key="IBUISelectedImage" ref="516507224"/>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">btn-checkin01.png</string>
+							<string key="NSResourceName">listMapCheckin01.png</string>
 						</object>
 					</object>
 					<object class="IBUIImageView" id="974492666">
@@ -199,7 +200,7 @@
 					<object class="IBUITextField" id="618594391">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{130, 59}, {145, 31}}</string>
+						<string key="NSFrame">{{118, 53}, {197, 36}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -222,6 +223,10 @@
 						<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
 						<float key="IBUIMinimumFontSize">17</float>
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits"/>
+						<object class="NSCustomResource" key="IBUIBackground">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">listMapShout.png</string>
+						</object>
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 460}</string>
@@ -298,12 +303,12 @@
 						<reference key="object" ref="191373211"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="935662947"/>
 							<reference ref="758816229"/>
-							<reference ref="372550933"/>
 							<reference ref="974492666"/>
-							<reference ref="618594391"/>
 							<reference ref="168962681"/>
+							<reference ref="618594391"/>
+							<reference ref="372550933"/>
+							<reference ref="935662947"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -393,7 +398,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>FriendsMapViewController</string>
 					<string>UIResponder</string>
-					<string>{{213, 426}, {320, 480}}</string>
+					<string>{{68, 420}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{0, 930}, {325, 54}}</string>
@@ -446,10 +451,12 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>backOneView</string>
+							<string>goToHomeView</string>
 							<string>viewUserProfile</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 						</object>
