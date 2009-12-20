@@ -21,6 +21,7 @@
 - (void)userResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString;
 - (void) displayActionSheet:(NSString*)title;
 - (UITableViewCell*) determineWhichFriendCellToDisplay:(FSFriendStatus)status;
+- (void) disableUnavailableSegments;
 
 @end
 
@@ -78,6 +79,8 @@
             y++;
         }
     }
+    
+    [self disableUnavailableSegments];
     
 	[theTableView reloadData];
     [self stopProgressBar];
@@ -141,6 +144,7 @@
 }
 
 
+#pragma mark
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -268,6 +272,7 @@
     }
 }
 
+#pragma mark
 #pragma mark IBAction methods
 
 - (void) clickSegmentedControl {
@@ -316,7 +321,6 @@
     [placeDetailController release];
 }
 
-
 - (void) checkinToProfilesVenue {
     [self startProgressBar:@"Checking in to this venue..."];
     [[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:user.checkin.venue.venueid 
@@ -345,6 +349,54 @@
 //    pingsAndUpdates.selected = !isPingAndUpdatesOn;
 }
 
+#pragma mark
+#pragma mark private methods
+
+- (void) disableUnavailableSegments {
+    if (user.phone == nil) {
+        [segmentedControl setEnabled:NO forSegmentAtIndex:0];
+        [segmentedControl setEnabled:NO forSegmentAtIndex:1];
+    }
+    
+    if (user.email == nil) {
+        [segmentedControl setEnabled:NO forSegmentAtIndex:2];
+    }
+    
+    if (user.twitter == nil) {
+        [segmentedControl setEnabled:NO forSegmentAtIndex:3];
+    }
+    
+    if (user.facebook == nil) {
+        [segmentedControl setEnabled:NO forSegmentAtIndex:4];
+    }
+}
+
+#pragma mark
+#pragma mark UIActionSheetDelegate methods
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSLog(@"clicked the 'leave' button; tag: %d", actionSheet.tag);
+    if (buttonIndex == 0) {
+        switch (actionSheet.tag) {
+            case 0:
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"sms:%@", user.phone]]];
+                break;
+            case 1:
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", user.phone]]];
+                break;
+            case 2:
+                [[UIApplication sharedApplication] openURL: [NSURL URLWithString: [NSString stringWithFormat:@"mailto:%@", user.email]]];
+                break;
+            case 4:
+                [[UIApplication sharedApplication] openURL: [NSURL URLWithString: [NSString stringWithFormat:@"facebook:%@", user.facebook]]];
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+#pragma mark
 #pragma mark selectors for FoursquareAPI calls
 
 - (void) friendRequestResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
@@ -354,6 +406,7 @@
     user.friendStatus = FSStatusPendingYou;
     [theTableView reloadData];
     
+    // TODO: convert this to our custom popup
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Kickball" 
 													message:@"Your friend request has been sent."
 												   delegate:self 
@@ -394,15 +447,7 @@
 	[alert release];
 }
 
-#pragma mark UIActionSheetDelegate methods
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 0) {
-        // send user to SMS
-        NSLog(@"clicked the 'leave' button; tag: %d", actionSheet.tag);
-    }
-}
-
+#pragma mark
 #pragma mark MGTwitterEngineDelegate methods
 
 - (void)statusesReceived:(NSArray *)statuses forRequest:(NSString *)connectionIdentifier {

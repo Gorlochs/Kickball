@@ -859,6 +859,12 @@ static FoursquareAPI *sharedInstance = nil;
 			loggedInUser.gender = value;
 		} else if([key isEqualToString:@"twitter"]){
 			loggedInUser.twitter = value;
+		} else if([key isEqualToString:@"email"]){
+			loggedInUser.email = value;
+		} else if([key isEqualToString:@"phone"]){
+			loggedInUser.phone = value;
+		} else if([key isEqualToString:@"facebook"]){
+			loggedInUser.facebook = value;
 		} else if([key isEqualToString:@"friendstatus"]){
             loggedInUser.isFriend = NO;
             if ([value isEqualToString:@"friend"]) {

@@ -25,6 +25,9 @@ typedef enum {
 	NSString * photo;
 	NSString * gender;
     NSString * twitter;
+    NSString * email;
+    NSString * phone;
+    NSString * facebook;
 	NSArray * badges;
 	NSArray * mayorOf;
     FSCity * userCity;
@@ -51,6 +54,9 @@ typedef enum {
 @property (nonatomic, retain) NSString * photo;
 @property (nonatomic, retain) NSString * gender;
 @property (nonatomic, retain) NSString * twitter;
+@property (nonatomic, retain) NSString * email;
+@property (nonatomic, retain) NSString * phone;
+@property (nonatomic, retain) NSString * facebook;
 @property (nonatomic, retain) NSArray * badges;
 @property (nonatomic, retain) NSArray * mayorOf;
 @property (nonatomic, retain) FSCity * userCity;
