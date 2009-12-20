@@ -213,6 +213,7 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
         cell.textLabel.font = [UIFont boldSystemFontOfSize:15.0];
         cell.detailTextLabel.font = [UIFont systemFontOfSize:12.0];
+        //cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
     if ([venues count] >= indexPath.section) {

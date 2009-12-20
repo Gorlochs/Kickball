@@ -69,10 +69,12 @@
 + (NSArray *) _venuesFromNode:(CXMLNode *) inputNode;
 + (NSArray *) _friendsFromNode:(CXMLNode *) inputNode;
 + (FSUser *) _userFromNode:(CXMLElement *) usrAttr;
++ (FSUser *) _shortUserFromNode:(CXMLElement *) usrAttr;
 + (NSArray *) _tipsFromNode:(CXMLNode *) inputNode;
 + (FSScoring *) _scoringFromNode:(CXMLNode *) inputNode;
 + (FSCheckin *) _checkinFromNode:(CXMLNode *) inputNode;
 + (NSArray *) _badgesFromNode:(CXMLNode *) inputNode;
++ (NSArray *) _checkinsFromNode:(CXMLNode *) inputNode;
 
 + (NSArray *) usersFromResponseXML:(NSString *) inString;
 + (NSArray *) friendsFromResponseXML:(NSString *) inString;

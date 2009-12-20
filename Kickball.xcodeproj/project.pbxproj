@@ -247,6 +247,8 @@
 		6A402AA710B755B200D9BCEB /* GAPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A402A9E10B755B200D9BCEB /* GAPlace.m */; };
 		6A402B2F10B769A800D9BCEB /* GeoApiTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A402B2D10B769A800D9BCEB /* GeoApiTableViewController.m */; };
 		6A402B3010B769A900D9BCEB /* GeoApiTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A402B2E10B769A800D9BCEB /* GeoApiTableViewController.xib */; };
+		6A47C00610DCA8DE00DCF011 /* ForgotPasswordWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A47C00410DCA8DE00DCF011 /* ForgotPasswordWebViewController.m */; };
+		6A47C00710DCA8DE00DCF011 /* ForgotPasswordWebViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A47C00510DCA8DE00DCF011 /* ForgotPasswordWebViewController.xib */; };
 		6A55B4D010B36EC60005E934 /* KBBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A55B4CF10B36EC60005E934 /* KBBaseViewController.m */; };
 		6A5F8F3C10B7707100914709 /* GeoAPIView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A5F8F3B10B7707100914709 /* GeoAPIView.xib */; };
 		6A7ED9F710A91DC9002FB1DC /* VenueAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A7ED9F610A91DC9002FB1DC /* VenueAnnotation.m */; };
@@ -639,6 +641,9 @@
 		6A402B2C10B769A800D9BCEB /* GeoApiTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeoApiTableViewController.h; sourceTree = "<group>"; };
 		6A402B2D10B769A800D9BCEB /* GeoApiTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeoApiTableViewController.m; sourceTree = "<group>"; };
 		6A402B2E10B769A800D9BCEB /* GeoApiTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GeoApiTableViewController.xib; path = Classes/GeoApiTableViewController.xib; sourceTree = "<group>"; };
+		6A47C00310DCA8DE00DCF011 /* ForgotPasswordWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgotPasswordWebViewController.h; sourceTree = "<group>"; };
+		6A47C00410DCA8DE00DCF011 /* ForgotPasswordWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgotPasswordWebViewController.m; sourceTree = "<group>"; };
+		6A47C00510DCA8DE00DCF011 /* ForgotPasswordWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.xib; path = ForgotPasswordWebViewController.xib; sourceTree = "<group>"; };
 		6A55B4CE10B36EC60005E934 /* KBBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBBaseViewController.h; sourceTree = "<group>"; };
 		6A55B4CF10B36EC60005E934 /* KBBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBBaseViewController.m; sourceTree = "<group>"; };
 		6A5F8F3B10B7707100914709 /* GeoAPIView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GeoAPIView.xib; sourceTree = "<group>"; };
@@ -1307,6 +1312,9 @@
 				6ADC9C1910D1EE5100CFDCA7 /* Utilities.m */,
 				6AACC53010D48F240059E604 /* LocationManager.h */,
 				6AACC53110D48F240059E604 /* LocationManager.m */,
+				6A47C00310DCA8DE00DCF011 /* ForgotPasswordWebViewController.h */,
+				6A47C00410DCA8DE00DCF011 /* ForgotPasswordWebViewController.m */,
+				6A47C00510DCA8DE00DCF011 /* ForgotPasswordWebViewController.xib */,
 			);
 			name = General;
 			sourceTree = "<group>";
@@ -1790,6 +1798,8 @@
 				6A3900B210D6F1A0001D133C /* AddPlaceFormViewController.xib in Sources */,
 				6ABB8B2F10D88C99001ECDAD /* FSMayor.m in Sources */,
 				03CECEA510D8B62C00E06966 /* SFHFKeychainUtils.m in Sources */,
+				6A47C00610DCA8DE00DCF011 /* ForgotPasswordWebViewController.m in Sources */,
+				6A47C00710DCA8DE00DCF011 /* ForgotPasswordWebViewController.xib in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

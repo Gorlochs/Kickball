@@ -20,6 +20,7 @@
 #import "TipDetailViewController.h"
 #import "FSTip.h"
 #import "Utilities.h"
+#import "FSBadge.h"
 
 @interface PlaceDetailViewController (Private)
 
@@ -71,6 +72,7 @@
     twitterButton.selected = isTwitterOn;
     pingToggleButton.selected = isPingOn;
     
+    [self startProgressBar:@"Retrieving venue details..."];
     [[FoursquareAPI sharedInstance] getVenue:venueId withTarget:self andAction:@selector(venueResponseReceived:withResponseString:)];
 }
 
@@ -157,7 +159,7 @@
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 7;
+    return 9;
 }
 
 
@@ -166,17 +168,19 @@
     if (section == 0) { // points
         return isUserCheckedIn;
     } else if (section == 1) { // badge
-        return isUserCheckedIn;
-    } else if (section == 2) { // checkin
+        return isUserCheckedIn && [[self getSingleCheckin].badges count] > 0;
+    } else if (section == 2) { // checkin mayor
+        return [self hasMayorCell];
+    } else if (section == 3) { // checkin
         return !isUserCheckedIn;
-    } else if (section == 3) { // gift
+    } else if (section == 4) { // gift
         return NO;
         //return isUserCheckedIn;
-    } else if (section == 4) { // mayor
+    } else if (section == 5) { // mayor & map cell
         return 1;
-    } else if (section == 5) { // people here
-        return [venue.peopleHere count];
-    } else if (section == 6) { // tips
+    } else if (section == 6) { // people here
+        return [venue.currentCheckins count];
+    } else if (section == 7) { // tips
         return [venue.tips count];
     } else {
         return 1;
@@ -189,46 +193,45 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        // TODO: figure out why the switch doesn't work. very odd.
-        if (indexPath.section == 0) {
-            return pointsCell;
-        } else if (indexPath.section == 1) {
-            return badgeCell;
-        } else if (indexPath.section == 2) {
-            return checkinCell;
-        } else if (indexPath.section == 3) {
-            return giftCell;
-        } else if (indexPath.section == 4) {
-            return mayorMapCell;
-        } else {
-            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
-            cell.selectionStyle = UITableViewCellSelectionStyleGray;
-        }
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        cell.selectionStyle = UITableViewCellSelectionStyleGray;
     }
     
     // Set up the cell...
     if (indexPath.section == 0) {
-        // TODO: fill in the points the user received for checking in
+        // FIXME: fill in the points the user received for checking in
         return pointsCell;
     } else if (indexPath.section == 1) {
+        FSBadge *badge = (FSBadge*)[[self getSingleCheckin].badges objectAtIndex:0];
+        badgeImage.image = [[Utilities sharedInstance] getCachedImage:badge.icon];
+        badgeLabel.text = badge.description;
         return badgeCell;
     } else if (indexPath.section == 2) {
-        return checkinCell;
+        if ([self getSingleCheckin].user == nil) {
+            stillTheMayorLabel.text = [NSString stringWithFormat:@"You're still the mayor of %@!", venue.name];
+            return stillTheMayorCell;
+        } else {
+            newMayorshipLabel.text = [self getSingleCheckin].mayor.mayorCheckinMessage;
+            return newMayorCell;
+        }
     } else if (indexPath.section == 3) {
-        return giftCell;
+        return checkinCell;
     } else if (indexPath.section == 4) {
-        return mayorMapCell;
+        return giftCell;
     } else if (indexPath.section == 5) {
+        return mayorMapCell;
+    } else if (indexPath.section == 6) {
         cell.detailTextLabel.numberOfLines = 1;
         cell.detailTextLabel.text = nil;
         cell.textLabel.font = [UIFont boldSystemFontOfSize:16];
-        FSUser *user = ((FSUser*)[venue.peopleHere objectAtIndex:indexPath.row]);
-        cell.textLabel.text = user.firstnameLastInitial;
+        FSCheckin *currentCheckin = ((FSCheckin*)[venue.currentCheckins objectAtIndex:indexPath.row]);
+        cell.textLabel.text = currentCheckin.user.firstnameLastInitial;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.imageView.image = [[Utilities sharedInstance] getCachedImage:user.photo];
+        NSLog(@"currentcheckin user: %@", currentCheckin.user);
+        cell.imageView.image = [[Utilities sharedInstance] getCachedImage:currentCheckin.user.photo];
         cell.imageView.layer.masksToBounds = YES;
         cell.imageView.layer.cornerRadius = 4.0;
-    } else if (indexPath.section == 6) {
+    } else if (indexPath.section == 7) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         FSTip *tip = (FSTip*) [venue.tips objectAtIndex:indexPath.row];
         cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
@@ -248,14 +251,20 @@
         case 1:
             return 66;
         case 2:
-            return 44;
+            if ([self getSingleCheckin].user == nil) {
+                return 70;
+            } else {
+                return 44;
+            }
         case 3:
-            return 216;
-        case 4:
-            return 62;
-        case 5:
             return 44;
+        case 4:
+            return 70;
+        case 5:
+            return 62;
         case 6:
+            return 44;
+        case 7:
             return 62;
         default:
             return 44;
@@ -287,17 +296,18 @@
         case 1:
         case 2:
         case 3:
+        case 4:
             [headerLabel release];
             return nil;
             break;
-        case 4:
+        case 5:
             // TODO: fix this
             headerLabel.text = @"  Mayor                                                           Map";
             break;
-        case 5:
-            headerLabel.text = [NSString stringWithFormat:@"  %d People Here", [venue.peopleHere count]];
-            break;
         case 6:
+            headerLabel.text = [NSString stringWithFormat:@"  %d People Here", [venue.currentCheckins count]];
+            break;
+        case 7:
             headerLabel.text = @"  Tips";
             break;
         default:
@@ -311,12 +321,12 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 4) {
+    if (indexPath.section == 5) {
         [self pushProfileDetailController:venue.mayor.userId];
-    } else if (indexPath.section == 5) {
-        FSUser *user = ((FSUser*)[venue.peopleHere objectAtIndex:indexPath.row]);
-        [self pushProfileDetailController:user.userId];
     } else if (indexPath.section == 6) {
+        FSUser *user = ((FSUser*)[venue.currentCheckins objectAtIndex:indexPath.row]);
+        [self pushProfileDetailController:user.userId];
+    } else if (indexPath.section == 7) {
         FSTip *tip = ((FSTip*)[venue.tips objectAtIndex:indexPath.row]);
         TipDetailViewController *tipController = [[TipDetailViewController alloc] initWithNibName:@"TipView" bundle:nil];
         tipController.tip = tip;
@@ -398,7 +408,7 @@
     NSLog(@"checkin: %@", checkin);
     isUserCheckedIn = YES;
 	[theTableView reloadData];
-    FSCheckin *ci = (FSCheckin*)[self.checkin objectAtIndex:0];
+    FSCheckin *ci = [self getSingleCheckin];
     if (ci.specials != nil) {
         specialsButton.hidden = NO;
     }
@@ -424,8 +434,23 @@
     [connectionManager_ requestBusinessesNearCoords:location withinRadius:100 maxResults:5];
 }
 
-- (void) viewSpecial {
-    
+- (void) showSpecial {
+    // FIXME: convert this into our custom popup view
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Kickball" 
+													message:[[self getSingleCheckin].specials objectAtIndex:0]
+												   delegate:self 
+										  cancelButtonTitle:@"OK" 
+										  otherButtonTitles:nil];
+	[alert show];
+	[alert release];
+}
+
+- (FSCheckin*) getSingleCheckin {
+    return (FSCheckin*) [self.checkin objectAtIndex:0];
+}
+
+- (BOOL) hasMayorCell {
+    return [self getSingleCheckin] != nil && [self getSingleCheckin].mayor && [self getSingleCheckin].mayor.user == nil;
 }
 
 #pragma mark GeoAPI Delegate methods

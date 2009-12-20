@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewModalController.h"
+#import "ForgotPasswordWebViewController.h"
 
 @interface LoginViewModalController (PrivateMethods)
 
@@ -104,6 +105,22 @@
 		[(KBBaseViewController *)self.rootController doInitialDisplay];
 	}
 	[self dismissModalViewControllerAnimated:true];
+}
+
+- (IBAction) openFoursquareForgottenPasswordWebPage {
+    NSURL *url = [NSURL URLWithString:@"http://foursquare.com/change_password"];
+    
+    if (![[UIApplication sharedApplication] openURL:url])  {
+        NSLog(@"%@%@",@"Failed to open url:",[url description]);
+    }
+//    ForgotPasswordWebViewController *fpwvc = [[ForgotPasswordWebViewController alloc] initWithNibName:@"ForgotPasswordWebViewController" bundle:nil];
+//    UIWebView *webView = [[UIWebView alloc] init];
+//    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://foursquare.com/change_password"]];
+//    [webView loadRequest:request];
+//    fpwvc.webView = webView;
+//    [request release];
+//    [webView release];
+//    [self.navigationController presentModalViewController:fpwvc animated:YES];
 }
 
 - (void)dealloc {

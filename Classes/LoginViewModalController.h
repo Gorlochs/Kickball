@@ -16,6 +16,7 @@
 @interface LoginViewModalController : UIViewController {
 	IBOutlet UITextField *usernameField;
 	IBOutlet UITextField *passwordField;
+    IBOutlet UIButton *forgottenPasswordButton;
 	UIViewController * rootController;
 }
 
@@ -24,5 +25,6 @@
 @property (nonatomic, retain) UITextField *passwordField;
 
 - (IBAction) login: (id) sender;
+- (IBAction) openFoursquareForgottenPasswordWebPage;
 
 @end

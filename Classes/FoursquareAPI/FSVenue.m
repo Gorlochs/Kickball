@@ -13,7 +13,7 @@
 @synthesize name, geolat, geolong, venueAddress, 
 				zip, city, venueState, venueid, 
 				phone, crossStreet, twitter, mayorCount, 
-				mayor, tips, peopleHere, friendsHaveBeenHere, 
+				mayor, tips, currentCheckins, friendsHaveBeenHere, 
                 userHasBeenHere, userCheckinCount, addressWithCrossstreet;
 
 
@@ -23,7 +23,7 @@
 }
 
 - (NSString*) description {
-    return [NSString stringWithFormat:@"(VENUE : name=%@ ; venueid=%@ ; city=%@ ; state=%@ ; mayor=%@ ; mayorCount = %d ; lat = %@ ; long = %@; peopleHere: %@)", name, venueid, city, venueState, mayor, mayorCount, geolat, geolong, peopleHere];
+    return [NSString stringWithFormat:@"(VENUE : name=%@ ; venueid=%@ ; city=%@ ; state=%@ ; mayor=%@ ; mayorCount = %d ; lat = %@ ; long = %@; currentCheckins: %@)", name, venueid, city, venueState, mayor, mayorCount, geolat, geolong, currentCheckins];
 }
 
 - (NSString*) addressWithCrossstreet {

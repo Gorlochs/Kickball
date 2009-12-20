@@ -42,6 +42,7 @@
 		NSLog(@"Foursquare is not authenticated");
 	} else {
         // TODO: will also have to make a call to our DB to get gift info
+        [self startProgressBar:@"Retrieving venue..."];
         [[FoursquareAPI sharedInstance] getUser:self.userId withTarget:self andAction:@selector(userResponseReceived:withResponseString:)];
 	}
 }
@@ -79,6 +80,7 @@
     }
     
 	[theTableView reloadData];
+    [self stopProgressBar];
 }
 
 /*

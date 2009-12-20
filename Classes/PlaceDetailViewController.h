@@ -22,12 +22,18 @@
     IBOutlet UITableViewCell *mayorMapCell;
     IBOutlet UITableViewCell *pointsCell;
     IBOutlet UITableViewCell *badgeCell;
+    IBOutlet UITableViewCell *newMayorCell;
+    IBOutlet UITableViewCell *stillTheMayorCell;
     IBOutlet MKMapView *mapView;
     
     IBOutlet UILabel *venueName;
     IBOutlet UILabel *venueAddress;
     IBOutlet UILabel *mayorNameLabel;
     IBOutlet UILabel *badgeLabel;
+    IBOutlet UILabel *newMayorshipLabel;
+    IBOutlet UILabel *stillTheMayorLabel;
+    
+    IBOutlet UIImageView *badgeImage;
     
     IBOutlet UIButton *twitterButton;
     IBOutlet UIButton *pingToggleButton;
@@ -62,6 +68,8 @@
 - (IBAction) togglePing;
 - (IBAction) toggleTwitter;
 - (IBAction) doGeoAPICall;
-- (IBAction) viewSpecial;
+- (IBAction) showSpecial;
+- (FSCheckin*) getSingleCheckin;
+- (BOOL) hasMayorCell;
 
 @end
