@@ -571,6 +571,7 @@ static FoursquareAPI *sharedInstance = nil;
                         } else if ([key isEqualToString:@"type"]) {
                             special.type = value;
                         } else if ([key isEqualToString:@"venue"]) {
+                            // FIXME: this was done for expediency's sake
                             //special.venue = [FoursquareAPI _venuesFromNode:[checkinAttr nodesForXPath:@"//special/venue" error:nil]];
                         }
                     }
