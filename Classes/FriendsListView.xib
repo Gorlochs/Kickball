@@ -299,7 +299,7 @@
 									<object class="IBUIButton" id="660130799">
 										<reference key="NSNextResponder" ref="1000401801"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{8, 10}, {128, 37}}</string>
+										<string key="NSFrame">{{8, 6}, {128, 37}}</string>
 										<reference key="NSSuperview" ref="1000401801"/>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -323,13 +323,13 @@
 										</object>
 									</object>
 								</object>
-								<string key="NSFrame">{{0, 1}, {320, 58}}</string>
+								<string key="NSFrame">{{0, 1}, {320, 50}}</string>
 								<reference key="NSSuperview" ref="313005752"/>
 								<reference key="IBUIBackgroundColor" ref="799418983"/>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 							</object>
 						</object>
-						<string key="NSFrameSize">{320, 59}</string>
+						<string key="NSFrameSize">{320, 49}</string>
 						<reference key="NSSuperview" ref="800991454"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -341,7 +341,7 @@
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 					</object>
 				</object>
-				<string key="NSFrameSize">{320, 60}</string>
+				<string key="NSFrameSize">{320, 50}</string>
 				<reference key="NSSuperview"/>
 				<reference key="IBUIBackgroundColor" ref="799418983"/>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -485,6 +485,14 @@
 						<int key="IBEventType">7</int>
 					</object>
 					<int key="connectionID">57</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">mapButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="564801686"/>
+					</object>
+					<int key="connectionID">58</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -673,7 +681,7 @@
 					<string>{{125, 278}, {320, 66}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{394, 344}, {320, 60}}</string>
+					<string>{{426, 405}, {320, 50}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>
@@ -693,7 +701,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">57</int>
+			<int key="maxID">58</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -724,6 +732,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>footerViewCell</string>
 							<string>instructionView</string>
+							<string>mapButton</string>
 							<string>shoutField</string>
 							<string>theTableView</string>
 						</object>
@@ -731,6 +740,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UITableViewCell</string>
 							<string>InstructionView</string>
+							<string>UIButton</string>
 							<string>UITextField</string>
 							<string>UITableView</string>
 						</object>

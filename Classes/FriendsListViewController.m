@@ -38,6 +38,7 @@
     
     // this is so the cell doesn't show up before the table is filled in
     footerViewCell.hidden = YES;
+    mapButton.hidden = YES;
     
 	if(![[FoursquareAPI sharedInstance] isAuthenticated]){
 		//run sheet to log in.
@@ -298,7 +299,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 3) {
-        return 60;
+        return 50;
     }
     return 44;
 }
@@ -397,6 +398,7 @@
     [dateFormatter release];
 	[self.theTableView reloadData];
     footerViewCell.hidden = NO;
+    mapButton.hidden = NO;
     [self stopProgressBar];
 }
 

@@ -10,11 +10,13 @@
 #import "FriendsMapViewController.h"
 #import "LoginViewModalController.h"
 #import "InstructionView.h"
+#import "FriendsMapViewController.h"
 
 
 @interface FriendsListViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
     IBOutlet UITableView *theTableView;
     IBOutlet UITextField *shoutField;
+    IBOutlet UIButton *mapButton;
 	NSArray * checkins;
 	NSMutableArray * recentCheckins;
 	NSMutableArray * todayCheckins;
@@ -22,6 +24,8 @@
     
     IBOutlet InstructionView *instructionView;
     IBOutlet UITableViewCell *footerViewCell;
+    
+    FriendsMapViewController *mapViewController;
 }
 
 @property (nonatomic, retain) NSArray * checkins;

@@ -160,7 +160,7 @@
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 9;
+    return 8;
 }
 
 
@@ -280,6 +280,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     // create the parent view that will hold header Label
     UIView* customView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 24.0)] autorelease];
+    customView.backgroundColor = [UIColor blackColor];
     
     // create the button object
     UILabel * headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -288,10 +289,8 @@
     headerLabel.textColor = [UIColor grayColor];
     headerLabel.highlightedTextColor = [UIColor grayColor];
     headerLabel.font = [UIFont boldSystemFontOfSize:12];
-    headerLabel.frame = CGRectMake(00.0, 0.0, 320.0, 24.0);
+    headerLabel.frame = CGRectMake(10.0, 0.0, 320.0, 24.0);
     
-    // If you want to align the header text as centered
-    // headerLabel.frame = CGRectMake(150.0, 0.0, 300.0, 44.0);
     switch (section) {
         case 0:
         case 1:
@@ -303,13 +302,13 @@
             break;
         case 5:
             // TODO: fix this
-            headerLabel.text = @"  Mayor                                                           Map";
+            headerLabel.text = @"Mayor                                                           Map";
             break;
         case 6:
-            headerLabel.text = [NSString stringWithFormat:@"  %d People Here", [venue.currentCheckins count]];
+            headerLabel.text = [NSString stringWithFormat:@"%d %@ Here", [venue.currentCheckins count], [venue.currentCheckins count] == 1 ? @"Person" : @"People"];
             break;
         case 7:
-            headerLabel.text = @"  Tips";
+            headerLabel.text = [NSString stringWithFormat:@"%d %@", [venue.tips count], [venue.tips count] == 1 ? @"Tip" : @"Tips"];
             break;
         default:
             headerLabel.text = @"You shouldn't see this";
@@ -457,7 +456,6 @@
 #pragma mark GeoAPI Delegate methods
 
 // TODO: neaten this mess up
-// TODO: maybe we can do a string match with the name of the venue and then bring that value to the top of the list, or maybe just go directly to it
 - (void)receivedResponseString:(NSString *)responseString {
 //    NSLog(@"geoapi response string: %@", responseString);
     SBJSON *parser = [SBJSON new];
@@ -483,8 +481,6 @@
             // meh. not pretty.
             [place release];
         }
-        
-        //NSLog(@"name: %@", [[dict objectForKey:@"view.listing"] objectForKey:@"name"]);
     }
     GeoApiTableViewController *vc = [[GeoApiTableViewController alloc] initWithNibName:@"GeoAPIView" bundle:nil];
     vc.geoAPIResults = objArray;
