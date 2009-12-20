@@ -21,6 +21,7 @@
 #import "FSTip.h"
 #import "Utilities.h"
 #import "FSBadge.h"
+#import "FSSpecial.h"
 
 @interface PlaceDetailViewController (Private)
 
@@ -436,8 +437,8 @@
 
 - (void) showSpecial {
     // FIXME: convert this into our custom popup view
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Kickball" 
-													message:[[self getSingleCheckin].specials objectAtIndex:0]
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Specials!" 
+													message:((FSSpecial*)[[self getSingleCheckin].specials objectAtIndex:0]).message
 												   delegate:self 
 										  cancelButtonTitle:@"OK" 
 										  otherButtonTitles:nil];

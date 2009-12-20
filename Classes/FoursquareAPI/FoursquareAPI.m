@@ -9,6 +9,7 @@
 #import "FoursquareAPI.h"
 #import "Utilities.h"
 #import "FSMayor.h"
+#import "FSSpecial.h"
 
 static FoursquareAPI *sharedInstance = nil;
 
@@ -555,6 +556,29 @@ static FoursquareAPI *sharedInstance = nil;
                 }
                 oneCheckin.mayor = checkinMayor;
                 [checkinMayor release];
+            } else if ([key compare:@"specials"] == 0) {
+                NSArray *specialNodes = [checkinAttr nodesForXPath:@"//specials/special" error:nil];
+                NSMutableArray *specialArray = [[NSMutableArray alloc] initWithCapacity:1];
+                for (CXMLElement *specialNode in specialNodes) {
+                    FSSpecial *special = [[FSSpecial alloc] init];
+                    for (int counter = 0; counter < [specialNode childCount]; counter++) {
+                        NSString * key = [[specialNode childAtIndex:counter] name];
+                        NSString * value = [[specialNode childAtIndex:counter] stringValue];
+                        if ([key isEqualToString:@"message"]) {
+                            special.message = value;
+                        } else if ([key isEqualToString:@"id"]) {
+                            special.specialId = value;
+                        } else if ([key isEqualToString:@"type"]) {
+                            special.type = value;
+                        } else if ([key isEqualToString:@"venue"]) {
+                            //special.venue = [FoursquareAPI _venuesFromNode:[checkinAttr nodesForXPath:@"//special/venue" error:nil]];
+                        }
+                    }
+                    [specialArray addObject:special];
+                    [special release];
+                }
+                oneCheckin.specials = specialArray;
+                [specialArray release];
             }
         }
         [allCheckins addObject:oneCheckin];

@@ -273,6 +273,7 @@
 		6A90480110D02DE700260719 /* icon57x5701.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A90480010D02DE700260719 /* icon57x5701.png */; };
 		6A978A611099FBC000FCE8F1 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A978A601099FBC000FCE8F1 /* StoreKit.framework */; };
 		6A9FF5BA10AA830700E52FDA /* FSCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A9FF5B910AA830700E52FDA /* FSCity.m */; };
+		6AA8B86C10DDCECC005634D4 /* FSSpecial.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA8B86B10DDCECC005634D4 /* FSSpecial.m */; };
 		6AACC53210D48F240059E604 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AACC53110D48F240059E604 /* LocationManager.m */; };
 		6AACC62710D4ACEC0059E604 /* tmp-tips-for-adding.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AACC62610D4ACEC0059E604 /* tmp-tips-for-adding.png */; };
 		6AACC63B10D4B1430059E604 /* AddPlaceTipsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AACC63910D4B1430059E604 /* AddPlaceTipsViewController.m */; };
@@ -691,6 +692,8 @@
 		6A978A601099FBC000FCE8F1 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		6A9FF5B810AA830700E52FDA /* FSCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCity.h; sourceTree = "<group>"; };
 		6A9FF5B910AA830700E52FDA /* FSCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCity.m; sourceTree = "<group>"; };
+		6AA8B86A10DDCECC005634D4 /* FSSpecial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSpecial.h; sourceTree = "<group>"; };
+		6AA8B86B10DDCECC005634D4 /* FSSpecial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSSpecial.m; sourceTree = "<group>"; };
 		6AACC53010D48F240059E604 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
 		6AACC53110D48F240059E604 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
 		6AACC62610D4ACEC0059E604 /* tmp-tips-for-adding.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tmp-tips-for-adding.png"; sourceTree = "<group>"; };
@@ -894,6 +897,8 @@
 				55A8DD2E10CCD07300D3538A /* FSFunctionRequest.m */,
 				6ABB8B2D10D88C99001ECDAD /* FSMayor.h */,
 				6ABB8B2E10D88C99001ECDAD /* FSMayor.m */,
+				6AA8B86A10DDCECC005634D4 /* FSSpecial.h */,
+				6AA8B86B10DDCECC005634D4 /* FSSpecial.m */,
 			);
 			path = FoursquareAPI;
 			sourceTree = "<group>";
@@ -1800,6 +1805,7 @@
 				03CECEA510D8B62C00E06966 /* SFHFKeychainUtils.m in Sources */,
 				6A47C00610DCA8DE00DCF011 /* ForgotPasswordWebViewController.m in Sources */,
 				6A47C00710DCA8DE00DCF011 /* ForgotPasswordWebViewController.xib in Sources */,
+				6AA8B86C10DDCECC005634D4 /* FSSpecial.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

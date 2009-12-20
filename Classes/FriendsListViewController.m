@@ -362,9 +362,7 @@
 //}
 
 - (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    NSLog(@"CHECKIN RESPONSE RECEIVED: %@", inString);
 	NSArray * allCheckins = [FoursquareAPI checkinsFromResponseXML:inString];
-    NSLog(@"allCheckins array from controller: %@", allCheckins);
 	self.checkins = [allCheckins copy];
     
     recentCheckins = [[NSMutableArray alloc] init];
@@ -380,7 +378,6 @@
     twentyfourHoursFromNow = [self convertToUTC:twentyfourHoursFromNow];
     
     for (FSCheckin *checkin in checkins) {
-        NSLog(@"checkin from the controller: %@", checkin);
         NSDate *date = [dateFormatter dateFromString:checkin.created];
         if ([date compare:threeHoursFromNow] == NSOrderedDescending) {
             [recentCheckins addObject:checkin];
