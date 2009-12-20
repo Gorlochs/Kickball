@@ -51,8 +51,17 @@
 - (void)userResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
 	user = [FoursquareAPI userFromResponseXML:inString];
     name.text = user.firstnameLastInitial;
-    location.text = user.checkin.venue.name;
-    lastCheckinAddress.text = user.checkin.venue.venueAddress;
+    
+    if ([user.checkin.display rangeOfString:@"[off the grid]"].location != NSNotFound) {
+        location.text = @"[off the grid]";
+        lastCheckinAddress.text = @"...location unknown...";
+    } else if (user.checkin.shout != nil) {
+        lastCheckinAddress.text = user.checkin.shout;
+    } else {
+        location.text = user.checkin.venue.name;
+        lastCheckinAddress.text = user.checkin.venue.venueAddress;
+    }
+    
     isPingAndUpdatesOn = user.sendsPingsToSignedInUser;
     
     // user icon
