@@ -12,9 +12,9 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="64"/>
 			<integer value="49"/>
 			<integer value="70"/>
-			<integer value="64"/>
 			<integer value="35"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
@@ -48,10 +48,10 @@
 						<int key="NSvFlags">292</int>
 						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBUIButton" id="335889376">
+							<object class="IBUIButton" id="576441634">
 								<reference key="NSNextResponder" ref="306659321"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{264, 0}, {56, 50}}</string>
+								<string key="NSFrame">{{34, 8}, {41, 33}}</string>
 								<reference key="NSSuperview" ref="306659321"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -74,23 +74,6 @@
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MC41AA</bytes>
 								</object>
-							</object>
-							<object class="IBUIButton" id="576441634">
-								<reference key="NSNextResponder" ref="306659321"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{34, 8}, {41, 33}}</string>
-								<reference key="NSSuperview" ref="306659321"/>
-								<bool key="IBUIOpaque">NO</bool>
-								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
-								<int key="IBUIContentHorizontalAlignment">0</int>
-								<int key="IBUIContentVerticalAlignment">0</int>
-								<reference key="IBUIFont" ref="805532983"/>
-								<reference key="IBUIHighlightedTitleColor" ref="850398413"/>
-								<object class="NSColor" key="IBUINormalTitleColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
-								</object>
-								<reference key="IBUINormalTitleShadowColor" ref="647369887"/>
 								<object class="NSCustomResource" key="IBUISelectedImage">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">btn-back02.png</string>
@@ -134,6 +117,26 @@
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">kbTitle01.png</string>
 								</object>
+							</object>
+							<object class="IBUIButton" id="335889376">
+								<reference key="NSNextResponder" ref="306659321"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{270, 0}, {50, 50}}</string>
+								<reference key="NSSuperview" ref="306659321"/>
+								<bool key="IBUIOpaque">NO</bool>
+								<bool key="IBUIClipsSubviews">YES</bool>
+								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+								<int key="IBUIContentMode">2</int>
+								<int key="IBUIContentHorizontalAlignment">0</int>
+								<int key="IBUIContentVerticalAlignment">0</int>
+								<reference key="IBUIFont" ref="805532983"/>
+								<string key="IBUINormalTitle">icon</string>
+								<reference key="IBUIHighlightedTitleColor" ref="850398413"/>
+								<object class="NSColor" key="IBUINormalTitleColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
+								</object>
+								<reference key="IBUINormalTitleShadowColor" ref="647369887"/>
 							</object>
 						</object>
 						<string key="NSFrameSize">{320, 50}</string>
@@ -1026,7 +1029,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>ProfileViewController</string>
 					<string>UIResponder</string>
-					<string>{{207, 203}, {320, 480}}</string>
+					<string>{{119, 176}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1074,7 +1077,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">79</int>
+			<int key="maxID">80</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

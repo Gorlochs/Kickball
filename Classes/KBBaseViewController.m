@@ -16,20 +16,22 @@
 
 @synthesize loginViewModal;
 
+//- (void) viewWillAppear:(BOOL)animated {
+//    signedInUserIcon.hidden = YES;
+//}
+
 - (void) viewDidLoad {
     [super viewDidLoad];
     
     FSUser *tmpUser = [self getAuthenticatedUser];
     if (tmpUser != nil) {
-        signedInUserIcon.imageView.image = [[Utilities sharedInstance] getCachedImage:tmpUser.photo];
-        NSLog(@"icon being retrieved and displayed: %@", signedInUserIcon.imageView.image);
+        [signedInUserIcon setImage:[[Utilities sharedInstance] getCachedImage:tmpUser.photo] forState:UIControlStateNormal];
+        NSLog(@"icon being retrieved and displayed: %@", [signedInUserIcon imageForState:UIControlStateNormal]);
         signedInUserIcon.hidden = NO;
     }
 }
 
 - (void) backOneView {
-    NSLog(@"backOneView is being called");
-    //    [self.navigationController popToViewController:[[self.navigationController viewControllers] objectAtIndex:0] animated:YES];
     
     [self.navigationController popViewControllerAnimated:YES];
 }

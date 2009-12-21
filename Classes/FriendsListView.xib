@@ -12,8 +12,8 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="25"/>
 			<integer value="47"/>
-			<integer value="11"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -164,28 +164,6 @@
 						<int key="NSvFlags">292</int>
 						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBUIButton" id="136952293">
-								<reference key="NSNextResponder" ref="754042065"/>
-								<int key="NSvFlags">-2147483356</int>
-								<string key="NSFrame">{{270, 0}, {50, 50}}</string>
-								<reference key="NSSuperview" ref="754042065"/>
-								<bool key="IBUIOpaque">NO</bool>
-								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
-								<int key="IBUIContentMode">1</int>
-								<int key="IBUIContentHorizontalAlignment">0</int>
-								<int key="IBUIContentVerticalAlignment">0</int>
-								<reference key="IBUIFont" ref="386227388"/>
-								<reference key="IBUIHighlightedTitleColor" ref="835891163"/>
-								<object class="NSColor" key="IBUINormalTitleColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
-								</object>
-								<reference key="IBUINormalTitleShadowColor" ref="272206272"/>
-								<object class="NSCustomResource" key="IBUINormalImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">tmp-icon-50x50.png</string>
-								</object>
-							</object>
 							<object class="IBUIImageView" id="19250962">
 								<reference key="NSNextResponder" ref="754042065"/>
 								<int key="NSvFlags">256</int>
@@ -199,6 +177,25 @@
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">kbTitle01.png</string>
 								</object>
+							</object>
+							<object class="IBUIButton" id="136952293">
+								<reference key="NSNextResponder" ref="754042065"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{270, 0}, {50, 50}}</string>
+								<reference key="NSSuperview" ref="754042065"/>
+								<bool key="IBUIOpaque">NO</bool>
+								<bool key="IBUIClipsSubviews">YES</bool>
+								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+								<int key="IBUIContentHorizontalAlignment">0</int>
+								<int key="IBUIContentVerticalAlignment">0</int>
+								<reference key="IBUIFont" ref="386227388"/>
+								<string key="IBUINormalTitle">icon</string>
+								<reference key="IBUIHighlightedTitleColor" ref="835891163"/>
+								<object class="NSColor" key="IBUINormalTitleColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
+								</object>
+								<reference key="IBUINormalTitleShadowColor" ref="272206272"/>
 							</object>
 						</object>
 						<string key="NSFrameSize">{320, 50}</string>
@@ -558,8 +555,8 @@
 						<reference key="object" ref="754042065"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="136952293"/>
 							<reference ref="19250962"/>
+							<reference ref="136952293"/>
 						</object>
 						<reference key="parent" ref="580314856"/>
 						<string key="objectName">Header View</string>
