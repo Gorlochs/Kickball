@@ -24,8 +24,6 @@
     
     IBOutlet InstructionView *instructionView;
     IBOutlet UITableViewCell *footerViewCell;
-    
-    FriendsMapViewController *mapViewController;
 }
 
 @property (nonatomic, retain) NSArray * checkins;

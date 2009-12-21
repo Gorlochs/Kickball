@@ -319,17 +319,30 @@
 	headerLabel.font = [UIFont boldSystemFontOfSize:12];
 	headerLabel.frame = CGRectMake(10.0, 0.0, 320.0, 24.0);
     
-	// If you want to align the header text as centered
-	// headerLabel.frame = CGRectMake(150.0, 0.0, 300.0, 44.0);
+    // damn, this is ugly.  nil should be returned before all the above code is executed.  
+    // probably should extract the headerLabel construction and just have a single switch in here
+    // and pass the text into the method
     switch (section) {
         case 0:
-            headerLabel.text = @"Last 3 Hours";
+            if ([recentCheckins count] > 0) {
+                headerLabel.text = @"Last 3 Hours";
+            } else {
+                return nil;
+            }
             break;
         case 1:
-            headerLabel.text = @"Today";
+            if ([todayCheckins count] > 0) {
+                headerLabel.text = @"Today";
+            } else {
+                return nil;
+            }
             break;
         case 2:
-            headerLabel.text = @"Older";
+            if ([yesterdayCheckins count] > 0) {
+                headerLabel.text = @"Older";
+            } else {
+                return nil;
+            }
             break;
         case 3:  // footer cell
             [headerLabel release];
