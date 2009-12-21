@@ -1054,7 +1054,7 @@ int encode(unsigned s_len, char *src, unsigned d_len, char *dst)
     // Create asynchronous request
     NSMutableURLRequest * theRequest=(NSMutableURLRequest*)[NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
     [theRequest addValue:authenticationString forHTTPHeaderField:@"Authorization"];
-	
+    [theRequest addValue:@"UltraDudez" forHTTPHeaderField:@"User-Agent"];
 	
 	if(httpMethod == nil){
 		httpMethod = @"GET";
