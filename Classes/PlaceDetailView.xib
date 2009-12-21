@@ -12,13 +12,13 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="113"/>
+			<integer value="36"/>
+			<integer value="127"/>
 			<integer value="14"/>
+			<integer value="113"/>
 			<integer value="72"/>
 			<integer value="107"/>
 			<integer value="62"/>
-			<integer value="36"/>
-			<integer value="127"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -721,6 +721,23 @@
 								<int key="IBUIBaselineAdjustment">1</int>
 								<float key="IBUIMinimumFontSize">10</float>
 							</object>
+							<object class="IBUIButton" id="231562490">
+								<reference key="NSNextResponder" ref="578799204"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{218, 1}, {102, 59}}</string>
+								<reference key="NSSuperview" ref="578799204"/>
+								<bool key="IBUIOpaque">NO</bool>
+								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+								<int key="IBUIContentHorizontalAlignment">0</int>
+								<int key="IBUIContentVerticalAlignment">0</int>
+								<reference key="IBUIFont" ref="741906914"/>
+								<reference key="IBUIHighlightedTitleColor" ref="484015391"/>
+								<object class="NSColor" key="IBUINormalTitleColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
+								</object>
+								<reference key="IBUINormalTitleShadowColor" ref="657622904"/>
+							</object>
 						</object>
 						<string key="NSFrameSize">{320, 62}</string>
 						<reference key="NSSuperview" ref="963809274"/>
@@ -1157,6 +1174,23 @@
 					</object>
 					<int key="connectionID">138</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">viewVenueMap</string>
+						<reference key="source" ref="231562490"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">140</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">mapButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="231562490"/>
+					</object>
+					<int key="connectionID">141</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -1205,6 +1239,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="853261904"/>
 							<reference ref="671817252"/>
+							<reference ref="231562490"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Mayor Map Cell</string>
@@ -1452,6 +1487,11 @@
 						<reference key="object" ref="1068209857"/>
 						<reference key="parent" ref="268361089"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">139</int>
+						<reference key="object" ref="231562490"/>
+						<reference key="parent" ref="963809274"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -1472,6 +1512,7 @@
 					<string>129.IBPluginDependency</string>
 					<string>132.IBPluginDependency</string>
 					<string>134.IBPluginDependency</string>
+					<string>139.IBPluginDependency</string>
 					<string>14.IBEditorWindowLastContentRect</string>
 					<string>14.IBPluginDependency</string>
 					<string>36.IBEditorWindowLastContentRect</string>
@@ -1523,6 +1564,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{694, 401}, {320, 62}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{42, 478}, {320, 62}}</string>
@@ -1548,7 +1590,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{63, 456}, {320, 460}}</string>
+					<string>{{631, 48}, {320, 460}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{0, 930}, {325, 54}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1575,7 +1617,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">138</int>
+			<int key="maxID">141</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1636,9 +1678,11 @@
 							<string>togglePing</string>
 							<string>toggleTwitter</string>
 							<string>uploadImageToServer</string>
+							<string>viewVenueMap</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -1658,6 +1702,7 @@
 							<string>badgeLabel</string>
 							<string>checkinCell</string>
 							<string>giftCell</string>
+							<string>mapButton</string>
 							<string>mapView</string>
 							<string>mayorMapCell</string>
 							<string>mayorNameLabel</string>
@@ -1682,6 +1727,7 @@
 							<string>UILabel</string>
 							<string>UITableViewCell</string>
 							<string>UITableViewCell</string>
+							<string>UIButton</string>
 							<string>MKMapView</string>
 							<string>UITableViewCell</string>
 							<string>UILabel</string>

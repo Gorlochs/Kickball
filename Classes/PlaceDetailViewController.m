@@ -22,6 +22,7 @@
 #import "Utilities.h"
 #import "FSBadge.h"
 #import "FSSpecial.h"
+#import "PlaceMapViewController.h"
 
 @interface PlaceDetailViewController (Private)
 
@@ -451,6 +452,14 @@
 
 - (BOOL) hasMayorCell {
     return [self getSingleCheckin] != nil && [self getSingleCheckin].mayor && [self getSingleCheckin].mayor.user == nil;
+}
+
+- (void) viewVenueMap {
+    PlaceMapViewController *placeMapController = [[PlaceMapViewController alloc] initWithNibName:@"PlaceMapViewController" bundle:nil];
+    placeMapController.venue = venue;
+    [self.navigationController pushViewController:placeMapController animated:YES];
+//    [self presentModalViewController:placeMapController animated:YES];
+    [placeMapController release];
 }
 
 #pragma mark GeoAPI Delegate methods

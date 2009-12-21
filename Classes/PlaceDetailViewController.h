@@ -40,6 +40,7 @@
     IBOutlet UIButton *twitterToggleButton;
     IBOutlet UIButton *venueDetailButton;
     IBOutlet UIButton *specialsButton;
+    IBOutlet UIButton *mapButton;
     
     NSArray *checkin;
     FSVenue *venue;
@@ -69,6 +70,7 @@
 - (IBAction) toggleTwitter;
 - (IBAction) doGeoAPICall;
 - (IBAction) showSpecial;
+- (IBAction) viewVenueMap;
 - (FSCheckin*) getSingleCheckin;
 - (BOOL) hasMayorCell;
 

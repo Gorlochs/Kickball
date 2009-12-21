@@ -14,8 +14,8 @@
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="49"/>
 			<integer value="70"/>
-			<integer value="35"/>
 			<integer value="64"/>
+			<integer value="35"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -446,10 +446,11 @@
 									<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="647369887"/>
-								<object class="NSCustomResource" key="IBUISelectedImage">
+								<object class="NSCustomResource" key="IBUIHighlightedImage" id="584945821">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">profileUnfriend02.png</string>
 								</object>
+								<reference key="IBUISelectedImage" ref="584945821"/>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">profileUnfriend01.png</string>
