@@ -32,15 +32,15 @@
 
 static NSString *SFHFKeychainUtilsErrorDomain = @"SFHFKeychainUtilsErrorDomain";
 
-#if TARGET_IPHONE_SIMULATOR
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < 30000 && TARGET_IPHONE_SIMULATOR
 @interface SFHFKeychainUtils (PrivateMethods)
 + (SecKeychainItemRef) getKeychainItemReferenceForUsername: (NSString *) username andServiceName: (NSString *) serviceName error: (NSError **) error;
 @end
 #endif
 
 @implementation SFHFKeychainUtils
-	
-#if TARGET_IPHONE_SIMULATOR
+
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < 30000 && TARGET_IPHONE_SIMULATOR
 
 + (NSString *) getPasswordForUsername: (NSString *) username andServiceName: (NSString *) serviceName error: (NSError **) error {
 	if (!username || !serviceName) {
@@ -74,7 +74,7 @@ static NSString *SFHFKeychainUtilsErrorDomain = @"SFHFKeychainUtilsErrorDomain";
 		*error = [NSError errorWithDomain: SFHFKeychainUtilsErrorDomain code: status userInfo: nil];
 		return nil;
     }
-
+    
 	NSString *passwordString = nil;
 	
 	if (password != NULL) {
@@ -170,7 +170,7 @@ static NSString *SFHFKeychainUtilsErrorDomain = @"SFHFKeychainUtilsErrorDomain";
 	}
 	
 	*error = nil;
-		
+    
 	SecKeychainItemRef item;
 	
 	OSStatus status = SecKeychainFindGenericPassword(NULL,
@@ -202,7 +202,7 @@ static NSString *SFHFKeychainUtilsErrorDomain = @"SFHFKeychainUtilsErrorDomain";
 	}
 	
 	*error = nil;
-		
+    
 	// Set up a query dictionary with the base query attributes: item type (generic), username, and service
 	
 	NSArray *keys = [[[NSArray alloc] initWithObjects: (NSString *) kSecClass, kSecAttrAccount, kSecAttrService, nil] autorelease];
@@ -237,7 +237,7 @@ static NSString *SFHFKeychainUtilsErrorDomain = @"SFHFKeychainUtilsErrorDomain";
 	NSData *resultData = nil;
 	NSMutableDictionary *passwordQuery = [query mutableCopy];
 	[passwordQuery setObject: (id) kCFBooleanTrue forKey: (id) kSecReturnData];
-
+    
 	status = SecItemCopyMatching((CFDictionaryRef) passwordQuery, (CFTypeRef *) &resultData);
 	
 	[resultData autorelease];
@@ -260,9 +260,9 @@ static NSString *SFHFKeychainUtilsErrorDomain = @"SFHFKeychainUtilsErrorDomain";
 		
 		return nil;
 	}
-
+    
 	NSString *password = nil;	
-		
+    
 	if (resultData) {
 		password = [[NSString alloc] initWithData: resultData encoding: NSUTF8StringEncoding];
 	}
@@ -272,7 +272,7 @@ static NSString *SFHFKeychainUtilsErrorDomain = @"SFHFKeychainUtilsErrorDomain";
 		// Set the -1999 error so the code above us can prompt the user again.
 		*error = [NSError errorWithDomain: SFHFKeychainUtilsErrorDomain code: -1999 userInfo: nil];		
 	}
-			
+    
 	return [password autorelease];
 }
 
@@ -285,15 +285,15 @@ static NSString *SFHFKeychainUtilsErrorDomain = @"SFHFKeychainUtilsErrorDomain";
 	// See if we already have a password entered for these credentials.
 	
 	NSString *existingPassword = [SFHFKeychainUtils getPasswordForUsername: username andServiceName: serviceName error: error];
-
+    
 	if ([*error code] == -1999) {
 		// There is an existing entry without a password properly stored (possibly as a result of the previous incorrect version of this code.
 		// Delete the existing item before moving on entering a correct one.
-
+        
 		*error = nil;
 		
 		[self deleteItemForUsername: username andServiceName: serviceName error: error];
-	
+        
 		if ([*error code] != noErr) {
 			return;
 		}
@@ -305,7 +305,7 @@ static NSString *SFHFKeychainUtilsErrorDomain = @"SFHFKeychainUtilsErrorDomain";
 	*error = nil;
 	
 	OSStatus status = noErr;
-		
+    
 	if (existingPassword) {
 		// We have an existing, properly entered item with a password.
 		// Update the existing item.
@@ -349,7 +349,7 @@ static NSString *SFHFKeychainUtilsErrorDomain = @"SFHFKeychainUtilsErrorDomain";
 							 nil] autorelease];
 		
 		NSDictionary *query = [[[NSDictionary alloc] initWithObjects: objects forKeys: keys] autorelease];			
-
+        
 		status = SecItemAdd((CFDictionaryRef) query, NULL);
 	}
 	
@@ -366,7 +366,7 @@ static NSString *SFHFKeychainUtilsErrorDomain = @"SFHFKeychainUtilsErrorDomain";
 	}
 	
 	*error = nil;
-		
+    
 	NSArray *keys = [[[NSArray alloc] initWithObjects: (NSString *) kSecClass, kSecAttrAccount, kSecAttrService, kSecReturnAttributes, nil] autorelease];
 	NSArray *objects = [[[NSArray alloc] initWithObjects: (NSString *) kSecClassGenericPassword, username, serviceName, kCFBooleanTrue, nil] autorelease];
 	
