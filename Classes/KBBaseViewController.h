@@ -16,6 +16,8 @@
     IBOutlet UIButton *signedInUserIcon;
     ProgressViewController *progressViewController;
     LoginViewModalController *loginViewModal;
+    
+    NSTimer *touchTimer;
 }
 
 @property (nonatomic, retain) LoginViewModalController *loginViewModal;
@@ -29,5 +31,6 @@
 - (void) startProgressBar:(NSString*)textToDisplay;
 - (void) stopProgressBar;
 - (void) doInitialDisplay;
+- (void) displayOverlayNavigation;
 
 @end

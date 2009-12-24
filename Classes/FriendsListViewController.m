@@ -322,11 +322,13 @@
     // damn, this is ugly.  nil should be returned before all the above code is executed.  
     // probably should extract the headerLabel construction and just have a single switch in here
     // and pass the text into the method
+    // TODO: clean this crap up
     switch (section) {
         case 0:
             if ([recentCheckins count] > 0) {
                 headerLabel.text = @"Last 3 Hours";
             } else {
+                [headerLabel release];
                 return nil;
             }
             break;
@@ -334,6 +336,7 @@
             if ([todayCheckins count] > 0) {
                 headerLabel.text = @"Today";
             } else {
+                [headerLabel release];
                 return nil;
             }
             break;
@@ -341,6 +344,7 @@
             if ([yesterdayCheckins count] > 0) {
                 headerLabel.text = @"Older";
             } else {
+                [headerLabel release];
                 return nil;
             }
             break;

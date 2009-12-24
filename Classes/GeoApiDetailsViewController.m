@@ -8,6 +8,7 @@
 
 #import "GeoApiDetailsViewController.h"
 #import "GAConnectionManager.h"
+#import "SBJSON.h"
 
 @implementation GeoApiDetailsViewController
 
@@ -31,54 +32,74 @@
 
 - (void)receivedResponseString:(NSString *)responseString {
     NSLog(@"geoapi response string: %@", responseString);
-    label.text = responseString;
-//    SBJSON *parser = [SBJSON new];
-//    id dict = [parser objectWithString:responseString error:NULL];
-//    NSArray *array = [(NSDictionary*)dict objectForKey:@"entity"];
-//    NSMutableArray *objArray = [[NSMutableArray alloc] initWithCapacity:[array count]];
-//    for (NSDictionary *dict in array) {
-////        GAPlace *place = [[GAPlace alloc] init];
-////        place.guid = [dict objectForKey:@"guid"];
-////        place.name = [[dict objectForKey:@"view.listing"] objectForKey:@"name"];
-////        NSArray *tmp = [[dict objectForKey:@"view.listing"] objectForKey:@"address"];
-////        place.address = [NSString stringWithFormat:@"%@, %@, %@", [tmp objectAtIndex:0], [tmp objectAtIndex:1], [tmp objectAtIndex:2]];
-////        [objArray addObject:place];
-////        [place release];
-//        //NSLog(@"name: %@", [[dict objectForKey:@"view.listing"] objectForKey:@"name"]);
-//    }
+    
+    //label.text = responseString;
+    SBJSON *parser = [SBJSON new];
+    id dict = [parser objectWithString:responseString error:NULL];
+    NSDictionary *results = [(NSDictionary*)dict objectForKey:@"result"];
+    
+    place.address = [dict objectForKey:@"address"];
+    place.listing = [[NSDictionary alloc] initWithDictionary:results];
+    place.name = [results objectForKey:@"name"];
+    
+    [theTableView reloadData];
+
+    NSLog(@"place listing: %@", place.listing);
 }
 
 - (void)requestFailed:(NSError *)error {
     NSLog(@"geoapi error string: %@", error);
 }
-/*
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-}
-*/
-/*
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-*/
-/*
-- (void)viewWillDisappear:(BOOL)animated {
-	[super viewWillDisappear:animated];
-}
-*/
-/*
-- (void)viewDidDisappear:(BOOL)animated {
-	[super viewDidDisappear:animated];
-}
-*/
 
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+#pragma mark Table view methods
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
 }
-*/
+
+
+// Customize the number of rows in the table view.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [place.listing count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    static NSString *CellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:12.0];
+//        cell.detailTextLabel.font = [UIFont systemFontOfSize:10.0];
+    }
+    
+    NSArray *keys = [place.listing allKeys];
+    NSLog(@"key: %@", [keys objectAtIndex:indexPath.row]);
+    NSLog(@"text: %@", [place.listing objectForKey:[keys objectAtIndex:indexPath.row]]);
+    NSLog(@"text class: %@", [[place.listing objectForKey:[keys objectAtIndex:indexPath.row]] class]);
+    if (![[place.listing objectForKey:[keys objectAtIndex:indexPath.row]] isKindOfClass:[NSNull class]]) {
+        if ([[place.listing objectForKey:[keys objectAtIndex:indexPath.row]] isKindOfClass:[NSArray class]]) {
+            NSArray *tmpArray = (NSArray*)[place.listing objectForKey:[keys objectAtIndex:indexPath.row]];
+            cell.textLabel.text = [tmpArray componentsJoinedByString:@"\n"];
+            cell.textLabel.numberOfLines = [tmpArray count];
+        } else if ([[place.listing objectForKey:[keys objectAtIndex:indexPath.row]] isKindOfClass:[NSString class]]) {
+            cell.textLabel.text = [place.listing objectForKey:[keys objectAtIndex:indexPath.row]];
+        } else if ([[place.listing objectForKey:[keys objectAtIndex:indexPath.row]] isKindOfClass:[NSDecimalNumber class]]) {
+            cell.textLabel.text = [NSString stringWithFormat:@"%f", [place.listing objectForKey:[keys objectAtIndex:indexPath.row]]];
+        }   
+    }
+
+    return cell;
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Navigation logic may go here. Create and push another view controller.
+	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
+	// [self.navigationController pushViewController:anotherViewController];
+	// [anotherViewController release];
+}
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -93,46 +114,9 @@
 }
 
 
-#pragma mark Table view methods
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-
-// Customize the number of rows in the table view.
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
-}
-
-
-// Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-    }
-    
-    // Set up the cell...
-	
-    return cell;
-}
-
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
-	// [self.navigationController pushViewController:anotherViewController];
-	// [anotherViewController release];
-}
-
-
 - (void)dealloc {
     [place release];
-    [label release];
+    [theTableView release];
     [super dealloc];
 }
 

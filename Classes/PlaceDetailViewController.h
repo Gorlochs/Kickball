@@ -24,6 +24,7 @@
     IBOutlet UITableViewCell *badgeCell;
     IBOutlet UITableViewCell *newMayorCell;
     IBOutlet UITableViewCell *stillTheMayorCell;
+    IBOutlet UITableViewCell *bottomButtonCell;
     IBOutlet MKMapView *mapView;
     
     IBOutlet UILabel *venueName;
@@ -71,6 +72,9 @@
 - (IBAction) doGeoAPICall;
 - (IBAction) showSpecial;
 - (IBAction) viewVenueMap;
+- (IBAction) addTipTodo;
+- (IBAction) markVenueWrongAddress;
+- (IBAction) markVenueClosed;
 - (FSCheckin*) getSingleCheckin;
 - (BOOL) hasMayorCell;
 

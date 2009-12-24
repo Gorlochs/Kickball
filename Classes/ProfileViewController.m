@@ -163,7 +163,7 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 0) {
+    if (section == 0) { // Friend/I'm Here/Friending-Status row
         if ([user.userId isEqualToString:[self getAuthenticatedUser].userId]) {
             return 0;
         } else {
@@ -178,8 +178,11 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1) {
-        //return 50 * (([user.badges count]/BADGES_PER_ROW) + 1);
-        return 60 * (([user.badges count]+BADGES_PER_ROW-1)/BADGES_PER_ROW) + 10;
+        if ([user.badges count] > 1) {
+            return 60 * (([user.badges count]+BADGES_PER_ROW-1)/BADGES_PER_ROW) + 10;
+        } else {
+            return 0;
+        }
     }
     return 44;
 }
@@ -256,9 +259,17 @@
             case 0:
                 break;
             case 1:
+                if ([user.badges count] < 1) {
+                    [headerLabel release];
+                    return nil;
+                }
                 headerLabel.text = @"Badges";
                 break;
             case 2:
+                if ([user.mayorOf count] < 1) {
+                    [headerLabel release];
+                    return nil;
+                }
                 headerLabel.text = @"Mayor";
                 break;
             default:

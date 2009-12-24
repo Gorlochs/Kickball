@@ -12,6 +12,7 @@
 #import "FoursquareAPI.h"
 #import "FSCheckin.h"
 #import "AddPlaceViewController.h"
+#import "LocationManager.h"
 
 @interface PlacesListViewController (Private)
 
@@ -32,22 +33,31 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self startProgressBar:@"Retrieving nearby venues..."];
-    self.locationManager = [[[CLLocationManager alloc] init] autorelease];
-    locationManager.delegate = self;
-    // This is the most important property to set for the manager. It ultimately determines how the manager will
-    // attempt to acquire location and thus, the amount of power that will be consumed.
-//    locationManager.desiredAccuracy = [[setupInfo objectForKey:kSetupInfoKeyAccuracy] doubleValue];
-    locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
-    // Once configured, the location manager must be "started".
-    [locationManager startUpdatingLocation];
+    NSLog(@"PlacesListViewController get venue - geolat: %f", [[LocationManager locationManager] latitude]);
+    NSLog(@"PlacesListViewController get venue - geolong: %f", [[LocationManager locationManager] longitude]);
+    [[FoursquareAPI sharedInstance] getVenuesNearLatitude:[NSString stringWithFormat:@"%f",[[LocationManager locationManager] latitude]]
+                                             andLongitude:[NSString stringWithFormat:@"%f",[[LocationManager locationManager] longitude]]
+                                               withTarget:self 
+                                                andAction:@selector(venuesResponseReceived:withResponseString:)
+     ];
+                                                
     
-    if(![[FoursquareAPI sharedInstance] isAuthenticated]){
-		//run sheet to log in.
-		NSLog(@"Foursquare is not authenticated");
-	} else {
-		//[[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
-	}
+//    [self startProgressBar:@"Retrieving nearby venues..."];
+//    self.locationManager = [[[CLLocationManager alloc] init] autorelease];
+//    locationManager.delegate = self;
+//    // This is the most important property to set for the manager. It ultimately determines how the manager will
+//    // attempt to acquire location and thus, the amount of power that will be consumed.
+////    locationManager.desiredAccuracy = [[setupInfo objectForKey:kSetupInfoKeyAccuracy] doubleValue];
+//    locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+//    // Once configured, the location manager must be "started".
+//    [locationManager startUpdatingLocation];
+//    
+//    if(![[FoursquareAPI sharedInstance] isAuthenticated]){
+//		//run sheet to log in.
+//		NSLog(@"Foursquare is not authenticated");
+//	} else {
+//		//[[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
+//	}
     
 }
 

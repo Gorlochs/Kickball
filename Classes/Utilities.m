@@ -107,6 +107,7 @@ static Utilities *sharedInstance = nil;
     // Check for a cached version
     if([[NSFileManager defaultManager] fileExistsAtPath: uniquePath])
     {
+        NSLog(@"pulling image from cache: %@", filename);
         image = [UIImage imageWithContentsOfFile: uniquePath]; // this is the cached image
     }
     else

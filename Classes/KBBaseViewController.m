@@ -6,6 +6,7 @@
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
 #import "KBBaseViewController.h"
 #import "KickballAppDelegate.h"
 #import "ProfileViewController.h"
@@ -22,17 +23,41 @@
 
 - (void) viewDidLoad {
     [super viewDidLoad];
+    //[self setUserInteractionEnabled:YES];
     
     FSUser *tmpUser = [self getAuthenticatedUser];
     if (tmpUser != nil) {
         [signedInUserIcon setImage:[[Utilities sharedInstance] getCachedImage:tmpUser.photo] forState:UIControlStateNormal];
         NSLog(@"icon being retrieved and displayed: %@", [signedInUserIcon imageForState:UIControlStateNormal]);
         signedInUserIcon.hidden = NO;
+//        signedInUserIcon.layer.masksToBounds = YES;
+//        signedInUserIcon.layer.cornerRadius = 4.0;
     }
 }
 
+- (void) touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event {
+    NSLog(@"touch started");
+    touchTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(displayOverlayNavigation) userInfo:nil repeats:NO]; 
+	
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+//    CGPoint pt = [[touches anyObject] locationInView:self];
+//	CGRect frame = self.frame;
+//    frame.size.width = pt.x;
+//    self.frame = frame;
+    [UIView commitAnimations];
+}
+
+- (void) displayOverlayNavigation {
+    NSLog(@"***** one second touch called the display navigation method *****");
+}
+
+- (void) touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event {
+    NSLog(@"touch ended");
+    //[touchTimer invalidate];
+}
+
 - (void) backOneView {
-    
     [self.navigationController popViewControllerAnimated:YES];
 }
 

@@ -24,7 +24,7 @@
 - (void)setPasswordFromKeychain
 {
 	NSString *username = usernameField.text;
-	NSError *error;
+	NSError *error = nil;
 	NSString *password = [SFHFKeychainUtils getPasswordForUsername:username andServiceName:@"Kickball" error:&error];
 	NSLog(@"Password for %@: %@", username, password);
 	passwordField.text = password;

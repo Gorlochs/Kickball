@@ -161,7 +161,7 @@
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 8;
+    return 9;
 }
 
 
@@ -184,6 +184,9 @@
         return [venue.currentCheckins count];
     } else if (section == 7) { // tips
         return [venue.tips count];
+        return [venue.currentCheckins count];
+    } else if (section == 8) { // bottom button row
+        return 1;
     } else {
         return 1;
     }
@@ -241,6 +244,8 @@
         cell.detailTextLabel.numberOfLines = 2;
         cell.detailTextLabel.text = tip.text;
         cell.imageView.image = nil;
+    } else if (indexPath.section == 8) {
+        return bottomButtonCell;
     }
 	
     return cell;
@@ -268,6 +273,8 @@
             return 44;
         case 7:
             return 62;
+        case 8:
+            return 44;
         default:
             return 44;
     }
@@ -310,6 +317,10 @@
             break;
         case 7:
             headerLabel.text = [NSString stringWithFormat:@"%d %@", [venue.tips count], [venue.tips count] == 1 ? @"Tip" : @"Tips"];
+            break;
+        case 8:  
+            [headerLabel release];
+            return nil;
             break;
         default:
             headerLabel.text = @"You shouldn't see this";
@@ -460,6 +471,37 @@
     [self.navigationController pushViewController:placeMapController animated:YES];
 //    [self presentModalViewController:placeMapController animated:YES];
     [placeMapController release];
+}
+
+- (void) addTipTodo {
+    
+}
+
+- (void) markVenueWrongAddress {
+    
+}
+
+- (void) markVenueClosed {
+    [self startProgressBar:@"Sending closure notification..."];
+    [[FoursquareAPI sharedInstance] flagVenueAsClosed:venue.venueid withTarget:self andAction:@selector(okResponseReceived:withResponseString:)];
+}
+
+- (void)okResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+    NSLog(@"flag venue closed response: %@", inString);
+    
+	BOOL isOK = [FoursquareAPI simpleBooleanFromResponseXML:inString];
+    [self stopProgressBar];
+    
+    if (isOK) {
+        // TODO: convert to custom popup
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Venue Closure" 
+                                                        message:@"Thank you for notifying Foursquare."
+                                                       delegate:self 
+                                              cancelButtonTitle:@"OK" 
+                                              otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+    }
 }
 
 #pragma mark GeoAPI Delegate methods

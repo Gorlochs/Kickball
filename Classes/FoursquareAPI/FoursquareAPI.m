@@ -122,7 +122,7 @@ static FoursquareAPI *sharedInstance = nil;
 //	
 //	[self.oauthAPI performMethod:@"/v1/venues" withTarget:inTarget withParameters:params  andAction:inAction];
 	NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:3];
-
+    
     // TODO: maybe make the num returned (l) a parameter?
 	[requestParams setObject:geolat forKey:@"geolat"];
 	[requestParams setObject:geolong forKey:@"geolong"];
@@ -332,6 +332,12 @@ static FoursquareAPI *sharedInstance = nil;
 	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/addvenue"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"POST"];
 }
 
+- (void) flagVenueAsClosed:(NSString*)venueId withTarget:(id)inTarget andAction:(SEL)inAction {
+    NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:1];
+	[requestParams setObject:venueId forKey:@"vid"];	
+	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/venue/flagclosed"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"POST"];
+}
+
 #pragma mark response parsers
 
 + (NSArray *) friendRequestsFromResponseXML:(NSString *) inString {
@@ -351,6 +357,26 @@ static FoursquareAPI *sharedInstance = nil;
 	}
     [userParser release];
 	return users;
+}
+
++ (BOOL) simpleBooleanFromResponseXML:(NSString *) inString {
+	NSError * err;
+	CXMLDocument *settingsParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
+	NSLog(@"error: %@", [err localizedDescription]);
+    
+    BOOL isOK = NO;
+    NSArray *settings = [settingsParser nodesForXPath:@"/" error:&err];
+    for (CXMLElement *settingsResult in settings) {
+		for(int counter = 0; counter < [settingsResult childCount]; counter++) {
+			NSString * key = [[settingsResult childAtIndex:counter] name];
+			NSString * value = [[settingsResult childAtIndex:counter] stringValue];
+            if([key isEqualToString:@"response"]){
+				isOK = [value isEqualToString:@"ok"];
+            }
+        }
+    }
+    [settingsParser release];
+    return isOK;
 }
 
 + (BOOL) pingSettingFromResponseXML:(NSString *) inString {
