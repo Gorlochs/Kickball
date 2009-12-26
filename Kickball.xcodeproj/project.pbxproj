@@ -230,6 +230,8 @@
 		6A16AF3510CFFA4200CD5302 /* wrongAddress01.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A16AEBF10CFFA4200CD5302 /* wrongAddress01.png */; };
 		6A16AF3610CFFA4200CD5302 /* wrongAddress02.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A16AEC010CFFA4200CD5302 /* wrongAddress02.png */; };
 		6A16AF3A10CFFAF600CD5302 /* tmp-instruction.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A16AF3910CFFAF600CD5302 /* tmp-instruction.png */; };
+		6A223A4F10E46CE1003550F2 /* CreateTipTodoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A223A4D10E46CE1003550F2 /* CreateTipTodoViewController.m */; };
+		6A223A5010E46CE1003550F2 /* CreateTipTodoViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A223A4E10E46CE1003550F2 /* CreateTipTodoViewController.xib */; };
 		6A2A079A10CCE0100012F527 /* FSFunctionRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A8DD2E10CCD07300D3538A /* FSFunctionRequest.m */; };
 		6A3900B110D6F1A0001D133C /* AddPlaceFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A3900AF10D6F1A0001D133C /* AddPlaceFormViewController.m */; };
 		6A3900B210D6F1A0001D133C /* AddPlaceFormViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A3900B010D6F1A0001D133C /* AddPlaceFormViewController.xib */; };
@@ -632,6 +634,9 @@
 		6A16AEBF10CFFA4200CD5302 /* wrongAddress01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wrongAddress01.png; sourceTree = "<group>"; };
 		6A16AEC010CFFA4200CD5302 /* wrongAddress02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wrongAddress02.png; sourceTree = "<group>"; };
 		6A16AF3910CFFAF600CD5302 /* tmp-instruction.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tmp-instruction.png"; sourceTree = "<group>"; };
+		6A223A4C10E46CE1003550F2 /* CreateTipTodoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTipTodoViewController.h; sourceTree = "<group>"; };
+		6A223A4D10E46CE1003550F2 /* CreateTipTodoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTipTodoViewController.m; sourceTree = "<group>"; };
+		6A223A4E10E46CE1003550F2 /* CreateTipTodoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTipTodoViewController.xib; sourceTree = "<group>"; };
 		6A3900AE10D6F1A0001D133C /* AddPlaceFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPlaceFormViewController.h; sourceTree = "<group>"; };
 		6A3900AF10D6F1A0001D133C /* AddPlaceFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPlaceFormViewController.m; sourceTree = "<group>"; };
 		6A3900B010D6F1A0001D133C /* AddPlaceFormViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddPlaceFormViewController.xib; sourceTree = "<group>"; };
@@ -1299,6 +1304,16 @@
 			name = real;
 			sourceTree = "<group>";
 		};
+		6A223A4B10E46CBE003550F2 /* Tip Todo */ = {
+			isa = PBXGroup;
+			children = (
+				6A223A4C10E46CE1003550F2 /* CreateTipTodoViewController.h */,
+				6A223A4D10E46CE1003550F2 /* CreateTipTodoViewController.m */,
+				6A223A4E10E46CE1003550F2 /* CreateTipTodoViewController.xib */,
+			);
+			name = "Tip Todo";
+			sourceTree = "<group>";
+		};
 		6A39EB3E10965666006F76C3 /* Pinch */ = {
 			isa = PBXGroup;
 			children = (
@@ -1478,6 +1493,7 @@
 		6AC7E92D10994FB500776993 /* Place */ = {
 			isa = PBXGroup;
 			children = (
+				6A223A4B10E46CBE003550F2 /* Tip Todo */,
 				6ADC9EBE10D3EF4900CFDCA7 /* Add Venue */,
 				6A12EC5E10B772B60013BA52 /* GeoAPI related */,
 				6AC7E92E10994FD000776993 /* PlaceDetailViewController.h */,
@@ -1894,6 +1910,8 @@
 				6A4C30C610DED6E300C89F55 /* SettingsViewController.xib in Sources */,
 				6A4C30CA10DF24FD00C89F55 /* PlaceMapViewController.m in Sources */,
 				6A4C30CB10DF24FD00C89F55 /* PlaceMapViewController.xib in Sources */,
+				6A223A4F10E46CE1003550F2 /* CreateTipTodoViewController.m in Sources */,
+				6A223A5010E46CE1003550F2 /* CreateTipTodoViewController.xib in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -58,6 +58,10 @@
 }
 
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 50;
+}
+
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [place.listing count];
@@ -69,9 +73,10 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
         cell.textLabel.font = [UIFont boldSystemFontOfSize:12.0];
-//        cell.detailTextLabel.font = [UIFont systemFontOfSize:10.0];
+        cell.detailTextLabel.font = [UIFont systemFontOfSize:10.0];
+        cell.detailTextLabel.numberOfLines = 3;
     }
     
     NSArray *keys = [place.listing allKeys];
@@ -79,14 +84,14 @@
     NSLog(@"text: %@", [place.listing objectForKey:[keys objectAtIndex:indexPath.row]]);
     NSLog(@"text class: %@", [[place.listing objectForKey:[keys objectAtIndex:indexPath.row]] class]);
     if (![[place.listing objectForKey:[keys objectAtIndex:indexPath.row]] isKindOfClass:[NSNull class]]) {
+        cell.textLabel.text = [keys objectAtIndex:indexPath.row];
         if ([[place.listing objectForKey:[keys objectAtIndex:indexPath.row]] isKindOfClass:[NSArray class]]) {
             NSArray *tmpArray = (NSArray*)[place.listing objectForKey:[keys objectAtIndex:indexPath.row]];
-            cell.textLabel.text = [tmpArray componentsJoinedByString:@"\n"];
-            cell.textLabel.numberOfLines = [tmpArray count];
+            cell.detailTextLabel.text = [tmpArray componentsJoinedByString:@", "];
         } else if ([[place.listing objectForKey:[keys objectAtIndex:indexPath.row]] isKindOfClass:[NSString class]]) {
-            cell.textLabel.text = [place.listing objectForKey:[keys objectAtIndex:indexPath.row]];
+            cell.detailTextLabel.text = [place.listing objectForKey:[keys objectAtIndex:indexPath.row]];
         } else if ([[place.listing objectForKey:[keys objectAtIndex:indexPath.row]] isKindOfClass:[NSDecimalNumber class]]) {
-            cell.textLabel.text = [NSString stringWithFormat:@"%f", [place.listing objectForKey:[keys objectAtIndex:indexPath.row]]];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%f", [place.listing objectForKey:[keys objectAtIndex:indexPath.row]]];
         }   
     }
 

@@ -338,6 +338,14 @@ static FoursquareAPI *sharedInstance = nil;
 	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/venue/flagclosed"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"POST"];
 }
 
+- (void) createTipTodoForVenue:(NSString*)venueId type:(NSString*)tipOrTodo text:(NSString*)tipTodoText withTarget:(id)inTarget andAction:(SEL)inAction {
+    NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:1];
+	[requestParams setObject:venueId forKey:@"vid"];
+	[requestParams setObject:tipTodoText forKey:@"text"];
+	[requestParams setObject:tipOrTodo forKey:@"type"];
+	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/addtip"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"POST"];    
+}
+
 #pragma mark response parsers
 
 + (NSArray *) friendRequestsFromResponseXML:(NSString *) inString {
@@ -357,6 +365,26 @@ static FoursquareAPI *sharedInstance = nil;
 	}
     [userParser release];
 	return users;
+}
+
++ (NSString*) tipIdFromResponseXML:(NSString *) inString {
+	NSError * err;
+	CXMLDocument *settingsParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
+	NSLog(@"error: %@", [err localizedDescription]);
+    
+    NSString *tipId = nil;
+    NSArray *settings = [settingsParser nodesForXPath:@"//tip" error:&err];
+    for (CXMLElement *settingsResult in settings) {
+		for(int counter = 0; counter < [settingsResult childCount]; counter++) {
+			NSString * key = [[settingsResult childAtIndex:counter] name];
+			NSString * value = [[settingsResult childAtIndex:counter] stringValue];
+            if([key isEqualToString:@"id"]){
+				tipId = value;
+            }
+        }
+    }
+    [settingsParser release];
+    return tipId;
 }
 
 + (BOOL) simpleBooleanFromResponseXML:(NSString *) inString {

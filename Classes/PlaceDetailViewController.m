@@ -23,6 +23,7 @@
 #import "FSBadge.h"
 #import "FSSpecial.h"
 #import "PlaceMapViewController.h"
+#import "CreateTipTodoViewController.h"
 
 @interface PlaceDetailViewController (Private)
 
@@ -474,7 +475,10 @@
 }
 
 - (void) addTipTodo {
-    
+    CreateTipTodoViewController *tipController = [[CreateTipTodoViewController alloc] initWithNibName:@"CreateTipTodoViewController" bundle:nil];
+    tipController.venueId = venue.venueid;
+    [self presentModalViewController:tipController animated:YES];
+    [tipController release];
 }
 
 - (void) markVenueWrongAddress {
