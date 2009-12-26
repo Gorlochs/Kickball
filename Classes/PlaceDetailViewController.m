@@ -449,14 +449,10 @@
 }
 
 - (void) showSpecial {
-    // FIXME: convert this into our custom popup view
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Specials!" 
-													message:((FSSpecial*)[[self getSingleCheckin].specials objectAtIndex:0]).message
-												   delegate:self 
-										  cancelButtonTitle:@"OK" 
-										  otherButtonTitles:nil];
-	[alert show];
-	[alert release];
+    FSSpecial *special = ((FSSpecial*)[[self getSingleCheckin].specials objectAtIndex:0]);
+    KBMessage *msg = [[KBMessage alloc] initWithMember:special.venue.name andSubtitle:special.venue.addressWithCrossstreet andMessage:special.message];
+    [self displayPopupMessage:msg];
+    [msg release];
 }
 
 - (FSCheckin*) getSingleCheckin {

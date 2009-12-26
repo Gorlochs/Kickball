@@ -346,6 +346,18 @@ static FoursquareAPI *sharedInstance = nil;
 	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/addtip"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"POST"];    
 }
 
+- (void) markTipAsTodo:(NSString*)tipId withTarget:(id)inTarget andAction:(SEL)inAction {
+    NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:1];
+	[requestParams setObject:tipId forKey:@"tid"];
+	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/tip/marktodo"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"POST"];    
+}
+
+- (void) markTipAsDone:(NSString*)tipId withTarget:(id)inTarget andAction:(SEL)inAction {
+    NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:1];
+	[requestParams setObject:tipId forKey:@"tid"];
+	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/tip/markdone"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"POST"];    
+}
+
 #pragma mark response parsers
 
 + (NSArray *) friendRequestsFromResponseXML:(NSString *) inString {
@@ -628,7 +640,10 @@ static FoursquareAPI *sharedInstance = nil;
                             special.type = value;
                         } else if ([key isEqualToString:@"venue"]) {
                             // FIXME: this was done for expediency's sake
-                            //special.venue = [FoursquareAPI _venuesFromNode:[checkinAttr nodesForXPath:@"//special/venue" error:nil]];
+                            NSArray *venueArray = [FoursquareAPI _venuesFromNode:[checkinAttr nodesForXPath:@"//special/venue" error:nil]];
+                            if ([venueArray count] > 0) {
+                                special.venue = [venueArray objectAtIndex:0];
+                            }
                         }
                     }
                     [specialArray addObject:special];

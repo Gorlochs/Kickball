@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "ProgressViewController.h"
+#import "PopupMessageView.h"
 #import "FSUser.h"
+#import "KBMessage.h"
 
 @class LoginViewModalController;
 
@@ -16,6 +18,7 @@
     IBOutlet UIButton *signedInUserIcon;
     ProgressViewController *progressViewController;
     LoginViewModalController *loginViewModal;
+    PopupMessageView *popupView;
     
     NSTimer *touchTimer;
 }
@@ -32,5 +35,6 @@
 - (void) stopProgressBar;
 - (void) doInitialDisplay;
 - (void) displayOverlayNavigation;
+- (void) displayPopupMessage:(KBMessage*)message;
 
 @end

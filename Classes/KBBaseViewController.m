@@ -37,6 +37,7 @@
 
 - (void) touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event {
     NSLog(@"touch started");
+    // TODO: this doesn't seem right now that I look at it again. We need to revisit this anyway.
     touchTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(displayOverlayNavigation) userInfo:nil repeats:NO]; 
 	
     [UIView beginAnimations:nil context:NULL];
@@ -116,7 +117,7 @@
 
 - (void) startProgressBar:(NSString*)textToDisplay {
     if (textToDisplay == nil) {
-        textToDisplay = @"Connecting...";
+        textToDisplay = @"Processing...";
     }
     progressViewController = [[ProgressViewController alloc] initWithNibName:@"ProgressView" bundle:nil];
     [self.view addSubview:progressViewController.view];
@@ -130,6 +131,12 @@
 }
 
 - (void) doInitialDisplay {
+}
+
+- (void) displayPopupMessage:(KBMessage*)message {
+    popupView = [[PopupMessageView alloc] initWithNibName:@"PopupMessageView" bundle:nil];
+    popupView.message = message;
+    [self.view addSubview:popupView.view];
 }
 
 @end

@@ -7,11 +7,32 @@
 //
 
 #import "TipDetailViewController.h"
+#import "FoursquareAPI.h"
 
 
 @implementation TipDetailViewController
 
 @synthesize tip, venue;
+
+
+- (void) markTipAsTodoForUser {
+    [[FoursquareAPI sharedInstance] markTipAsDone:tip.tipId withTarget:self andAction:@selector(tipResponseReceived:withResponseString:)];
+}
+
+- (void) markTipAsDoneForUser {
+    [[FoursquareAPI sharedInstance] markTipAsTodo:tip.tipId withTarget:self andAction:@selector(tipResponseReceived:withResponseString:)];
+}
+
+- (void) tipResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+    NSLog(@"tip response string: %@", inString);
+	NSString *tipId =  [FoursquareAPI tipIdFromResponseXML:inString];
+    NSLog(@"returned tip id: %@", tipId);
+    if (tipId != nil) {
+        // display thank you message
+    } else {
+        // display error message
+    }
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -40,6 +61,8 @@
     [venue release];
     [authorNameLabel release];
     [tipText release];
+    [venueName release];
+    [venueAddress release];
     
     [super dealloc];
 }

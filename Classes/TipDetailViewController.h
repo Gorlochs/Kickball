@@ -24,4 +24,7 @@
 @property (nonatomic, retain) FSTip *tip;
 @property (nonatomic, retain) FSVenue *venue;
 
+- (IBAction) markTipAsTodoForUser;
+- (IBAction) markTipAsDoneForUser;
+
 @end

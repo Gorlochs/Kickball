@@ -131,13 +131,9 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
                                          withTarget:self 
                                           andAction:@selector(newVenueResponseReceived:withResponseString:)];
     } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Kickball" 
-                                                        message:@"Please fill in the required fields."
-                                                       delegate:self 
-                                              cancelButtonTitle:@"OK" 
-                                              otherButtonTitles:nil];
-        [alert show];
-        [alert release];
+        KBMessage *msg = [[KBMessage alloc] initWithMember:@"Form Error!" andSubtitle:@"Please fix the following error:" andMessage:@"All the required fields need to be filled in"];
+        [self displayPopupMessage:msg];
+        [msg release];
     }
 }
 

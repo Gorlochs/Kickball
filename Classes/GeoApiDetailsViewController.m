@@ -14,14 +14,6 @@
 
 @synthesize place;
 
-/*
-- (id)initWithStyle:(UITableViewStyle)style {
-    // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-    if (self = [super initWithStyle:style]) {
-    }
-    return self;
-}
-*/
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -91,7 +83,8 @@
         } else if ([[place.listing objectForKey:[keys objectAtIndex:indexPath.row]] isKindOfClass:[NSString class]]) {
             cell.detailTextLabel.text = [place.listing objectForKey:[keys objectAtIndex:indexPath.row]];
         } else if ([[place.listing objectForKey:[keys objectAtIndex:indexPath.row]] isKindOfClass:[NSDecimalNumber class]]) {
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%f", [place.listing objectForKey:[keys objectAtIndex:indexPath.row]]];
+            //cell.detailTextLabel.text = [NSString stringWithFormat:@"%f", [place.listing objectForKey:[keys objectAtIndex:indexPath.row]]];
+            cell.detailTextLabel.text = [[place.listing objectForKey:[keys objectAtIndex:indexPath.row]] description];
         }   
     }
 

@@ -63,6 +63,8 @@
 - (void) loadBasicAuthURL:(NSURL *) url withUser:(NSString *) loginString andPassword: (NSString *) passwordString andParams:(NSDictionary *) parameters withTarget:(id)inTarget andAction:(SEL)inAction usingMethod:(NSString *) httpMethod;
 - (void) addNewVenue:(NSString*)name atAddress:(NSString*)address andCrossstreet:(NSString*)crossStreet andCity:(NSString*)city andState:(NSString*)state andOptionalZip:(NSString*)zip andRequiredCityId:(NSString*)cityId andOptionalPhone:(NSString*)phone  withTarget:(id)inTarget andAction:(SEL)inAction;
 - (void) createTipTodoForVenue:(NSString*)venueId type:(NSString*)tipOrTodo text:(NSString*)tipTodoText withTarget:(id)inTarget andAction:(SEL)inAction;
+- (void) markTipAsTodo:(NSString*)tipId withTarget:(id)inTarget andAction:(SEL)inAction;
+- (void) markTipAsDone:(NSString*)tipId withTarget:(id)inTarget andAction:(SEL)inAction;
 
 - (void)doLoginUsername: (NSString *)fsUser andPass:(NSString *) fsPass;
 

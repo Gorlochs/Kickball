@@ -120,6 +120,7 @@
     [self setAuthenticatedUser:user];
     NSLog(@"auth'd user: %@", user);
 //    [[LocationManager locationManager] stopUpdates];
+    //[self displayPopupMessage:@"1" andSubtitle:@"2" andMessage:@"3"];
 }
 
 - (void)didReceiveMemoryWarning {
