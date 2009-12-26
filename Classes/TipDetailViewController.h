@@ -8,17 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import "FSTip.h"
+#import "FSVenue.h"
 #import "KBBaseViewController.h"
 
-@interface TipDetailViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource> {
+@interface TipDetailViewController : KBBaseViewController {
     FSTip *tip;
+    FSVenue *venue;
     
-    IBOutlet UILabel *authorNamelabel;
-    IBOutlet UIButton *authorIcon;
-    IBOutlet UILabel *createdOnLabel;
-    IBOutlet UITextView *tipText;
+    IBOutlet UILabel *authorNameLabel;
+    IBOutlet UILabel *tipText;
+    IBOutlet UILabel *venueName;
+    IBOutlet UILabel *venueAddress;
 }
 
 @property (nonatomic, retain) FSTip *tip;
+@property (nonatomic, retain) FSVenue *venue;
 
 @end

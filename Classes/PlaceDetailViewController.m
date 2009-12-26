@@ -343,6 +343,7 @@
         FSTip *tip = ((FSTip*)[venue.tips objectAtIndex:indexPath.row]);
         TipDetailViewController *tipController = [[TipDetailViewController alloc] initWithNibName:@"TipView" bundle:nil];
         tipController.tip = tip;
+        tipController.venue = venue;
         [self.navigationController pushViewController:tipController animated:YES];
         [tipController release];
     }
