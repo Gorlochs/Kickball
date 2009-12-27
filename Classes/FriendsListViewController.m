@@ -448,13 +448,9 @@
 //    isUserCheckedIn = YES;
     
     // TODO: confirm that the shout was sent?
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Kickball" 
-													message:@"Your shout was sent!"
-												   delegate:self 
-										  cancelButtonTitle:@"OK" 
-										  otherButtonTitles:nil];
-	[alert show];
-	[alert release];
+    KBMessage *msg = [[KBMessage alloc] initWithMember:@"Kickball Notification" andSubtitle:@"Your shout was sent" andMessage:@"Thank you."];
+    [self displayPopupMessage:msg];
+    [msg release];
     
     [theTableView reloadData];
 }

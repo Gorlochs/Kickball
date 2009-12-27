@@ -494,14 +494,9 @@
     [self stopProgressBar];
     
     if (isOK) {
-        // TODO: convert to custom popup
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Venue Closure" 
-                                                        message:@"Thank you for notifying Foursquare."
-                                                       delegate:self 
-                                              cancelButtonTitle:@"OK" 
-                                              otherButtonTitles:nil];
-        [alert show];
-        [alert release];
+        KBMessage *msg = [[KBMessage alloc] initWithMember:@"Foursquare Notification" andSubtitle:@"Venue Closure" andMessage:@"Thank you for notifying Foursquare."];
+        [self displayPopupMessage:msg];
+        [msg release];
     }
 }
 

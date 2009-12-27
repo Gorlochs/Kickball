@@ -427,13 +427,9 @@
     [theTableView reloadData];
     
     // TODO: convert this to our custom popup
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Kickball" 
-													message:@"Your friend request has been sent."
-												   delegate:self 
-										  cancelButtonTitle:@"OK" 
-										  otherButtonTitles:nil];
-	[alert show];
-	[alert release];
+    KBMessage *msg = [[KBMessage alloc] initWithMember:@"Kickball Notification" andSubtitle:@"Friend Request" andMessage:@"Your request has been sent."];
+    [self displayPopupMessage:msg];
+    [msg release];
 }
 
 - (void) pingUpdateResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
@@ -458,13 +454,9 @@
     [self stopProgressBar];
     
     // TODO: figure out what we want to do here. How do we show points?
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Kickball" 
-													message:@"Thank you for checking in!"
-												   delegate:self 
-										  cancelButtonTitle:@"OK" 
-										  otherButtonTitles:nil];
-	[alert show];
-	[alert release];
+    KBMessage *msg = [[KBMessage alloc] initWithMember:@"Kickball Notification" andSubtitle:@"Checking in" andMessage:@"Thank you for checking in"];
+    [self displayPopupMessage:msg];
+    [msg release];
 }
 
 #pragma mark
