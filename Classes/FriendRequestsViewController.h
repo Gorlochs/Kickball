@@ -25,6 +25,9 @@
     IBOutlet UITextField *twitterText;
     IBOutlet UITextField *nameText;
     IBOutlet UITextField *phoneText;
+    
+    NSArray *friendRequests;
+    CGFloat animatedDistance;
 }
 
 - (IBAction) searchAddressBook;

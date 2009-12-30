@@ -37,12 +37,15 @@
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 4;
+    return 5;
 }
 
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (section == 0) {
+        return [friendRequests count];
+    }
     return 1;
 }
 
@@ -60,15 +63,18 @@
     // Set up the cell...
     switch (indexPath.section) {
         case 0:
-            return addressBookCell;
+            cell.textLabel.text = ((FSUser*)[friendRequests objectAtIndex:indexPath.row]).firstnameLastInitial;
             break;
         case 1:
-            return twitterCell;
+            return addressBookCell;
             break;
         case 2:
-            return nameCell;
+            return twitterCell;
             break;
         case 3:
+            return nameCell;
+            break;
+        case 4:
             return phoneCell;
             break;
         default:
@@ -102,15 +108,22 @@
     
     switch (section) {
         case 0:
-            headerLabel.text = @"From Your Address Book";
+            if ([friendRequests count] > 0) {
+                headerLabel.text = [NSString stringWithFormat:@"%d friends found. Don't add any baddies.", [friendRequests count]];
+            } else {
+                return nil;
+            }
             break;
         case 1:
-            headerLabel.text = @"From Twitter";
+            headerLabel.text = @"From Your Address Book";
             break;
         case 2:
-            headerLabel.text = @"By Name";
+            headerLabel.text = @"From Twitter";
             break;
         case 3:
+            headerLabel.text = @"By Name";
+            break;
+        case 4:
             headerLabel.text = @"By Phone Number";
             break;
         default:
@@ -210,9 +223,59 @@
 
 - (void)searchResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     NSLog(@"search response: %@", inString);
-    NSArray *users = [FoursquareAPI usersFromResponseXML:inString];
+    friendRequests = [FoursquareAPI usersFromResponseXML:inString];
+    [theTableView reloadData];
     // TODO: display users 
     [self stopProgressBar];
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    CGRect textFieldRect = [self.view.window convertRect:textField.bounds fromView:textField];
+    CGRect viewRect = [self.view.window convertRect:self.view.bounds fromView:self.view];
+    CGFloat midline = textFieldRect.origin.y + 0.5 * textFieldRect.size.height;
+    CGFloat numerator = midline - viewRect.origin.y - MINIMUM_SCROLL_FRACTION * viewRect.size.height;
+    CGFloat denominator = (MAXIMUM_SCROLL_FRACTION - MINIMUM_SCROLL_FRACTION) * viewRect.size.height;
+    CGFloat heightFraction = numerator / denominator;
+    if (heightFraction < 0.0) {
+        heightFraction = 0.0;
+    } else if (heightFraction > 1.0) {
+        heightFraction = 1.0;
+    }
+    UIInterfaceOrientation orientation =
+    [[UIApplication sharedApplication] statusBarOrientation];
+    if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown) {
+        animatedDistance = floor(PORTRAIT_KEYBOARD_HEIGHT * heightFraction);
+    } else {
+        animatedDistance = floor(LANDSCAPE_KEYBOARD_HEIGHT * heightFraction);
+    }
+    CGRect viewFrame = self.view.frame;
+    viewFrame.origin.y -= animatedDistance;
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
+    
+    [self.view setFrame:viewFrame];
+    
+    [UIView commitAnimations];
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    CGRect viewFrame = self.view.frame;
+    viewFrame.origin.y += animatedDistance;
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
+    
+    [self.view setFrame:viewFrame];
+    
+    [UIView commitAnimations];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
 }
 
 @end
