@@ -34,5 +34,6 @@
 - (IBAction) searchByName;
 - (IBAction) searchByTwitter;
 - (IBAction) searchByPhone;
+- (void) didTapFriendizeButton: (UIControl *) button withEvent: (UIEvent *) event;
 
 @end

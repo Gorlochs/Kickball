@@ -64,6 +64,16 @@
     switch (indexPath.section) {
         case 0:
             cell.textLabel.text = ((FSUser*)[friendRequests objectAtIndex:indexPath.row]).firstnameLastInitial;
+            
+            UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
+            [btn setImage:[UIImage imageNamed:@"profileCheckin01.png"] forState:UIControlStateNormal];
+            [btn setImage:[UIImage imageNamed:@"profileCheckin02.png"] forState:UIControlStateHighlighted];
+            btn.frame = CGRectMake(-40, 0, 80, 15);
+            btn.userInteractionEnabled = YES;
+            btn.tag = indexPath.row;
+            [btn addTarget:self action:@selector(didTapFriendizeButton:withEvent:) forControlEvents:UIControlEventTouchUpInside];
+            cell.accessoryView = btn;
+            
             break;
         case 1:
             return addressBookCell;
@@ -82,6 +92,10 @@
     }
 	
     return cell;
+}
+
+- (void) didTapFriendizeButton: (UIControl *) button withEvent: (UIEvent *) event {
+    NSLog(@"friendize button tapped: %d", button.tag);
 }
 
 
@@ -200,24 +214,14 @@
     NSMutableArray *phones = [[NSMutableArray alloc] initWithCapacity:1];
     for (int i = 0; i<[people count]; i++) {
         ABRecordRef person = [people objectAtIndex:i];
-//        NSString *firstName = (NSString *)ABRecordCopyValue(person, kABPersonFirstNameProperty);
-//		NSString *lastName = (NSString *)ABRecordCopyValue(person, kABPersonLastNameProperty);
-        NSLog(@"person: %@", person);
-
-        NSLog(@"person name: %@ %@", ABRecordCopyValue(person, kABPersonFirstNameProperty), ABRecordCopyValue(person, kABPersonLastNameProperty));
         if (ABMultiValueGetCount(ABRecordCopyValue(person,kABPersonPhoneProperty)) > 0) {
-            NSLog(@"phone property: %@", ABMultiValueCopyValueAtIndex(ABRecordCopyValue(person,kABPersonPhoneProperty) ,0));
             NSString *phone = (NSString *)ABMultiValueCopyValueAtIndex(ABRecordCopyValue(person,kABPersonPhoneProperty) ,0);
             if (phone != nil && ![phone isEqualToString:@""]) {
-                NSLog(@"phone: %@", phone);
                 [phones addObject:phone];
             }
             [phone release];
         }
-        
     }
-    NSLog(@"phones: %@", phones);
-    NSLog(@"phones: %@", [phones componentsJoinedByString:@","]);
     [[FoursquareAPI sharedInstance] findFriendsByPhone:[phones componentsJoinedByString:@","] withTarget:self andAction:@selector(searchResponseReceived:withResponseString:)];
 }
 
@@ -225,9 +229,11 @@
     NSLog(@"search response: %@", inString);
     friendRequests = [FoursquareAPI usersFromResponseXML:inString];
     [theTableView reloadData];
-    // TODO: display users 
     [self stopProgressBar];
 }
+
+#pragma mark
+#pragma mark UITextFieldDelegate methods
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     CGRect textFieldRect = [self.view.window convertRect:textField.bounds fromView:textField];
