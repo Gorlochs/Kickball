@@ -43,21 +43,21 @@
 	// e.g. self.myOutlet = nil;
 }
 
--(void)searchOnKeywordsandLatLong {
-    [newPlaceName resignFirstResponder];
-    if (![newPlaceName.text isEqualToString:@""]) {
-        [self startProgressBar:@"Searching..."];
-        // TODO: I am just replacing a space with a +, but other characters might give this method a headache.
-        NSLog(@"searching on latitude: %f", [[LocationManager locationManager] latitude]);
-        NSLog(@"searching on longitude: %f", [[LocationManager locationManager] longitude]);
-        [[FoursquareAPI sharedInstance] getVenuesByKeyword:[NSString stringWithFormat:@"%f", [[LocationManager locationManager] latitude]] 
-                                              andLongitude:[NSString stringWithFormat:@"%f",[[LocationManager locationManager] longitude]] 
-                                               andKeywords:[newPlaceName.text stringByReplacingOccurrencesOfString:@" " withString:@"+"]
-                                                withTarget:self 
-                                                 andAction:@selector(venuesResponseReceived:withResponseString:)
-         ];
-    }
-}
+//-(void)searchOnKeywordsandLatLong {
+//    [newPlaceName resignFirstResponder];
+//    if (![newPlaceName.text isEqualToString:@""]) {
+//        [self startProgressBar:@"Searching..."];
+//        // TODO: I am just replacing a space with a +, but other characters might give this method a headache.
+//        NSLog(@"searching on latitude: %f", [[LocationManager locationManager] latitude]);
+//        NSLog(@"searching on longitude: %f", [[LocationManager locationManager] longitude]);
+//        [[FoursquareAPI sharedInstance] getVenuesByKeyword:[NSString stringWithFormat:@"%f", [[LocationManager locationManager] latitude]] 
+//                                              andLongitude:[NSString stringWithFormat:@"%f",[[LocationManager locationManager] longitude]] 
+//                                               andKeywords:[newPlaceName.text stringByReplacingOccurrencesOfString:@" " withString:@"+"]
+//                                                withTarget:self 
+//                                                 andAction:@selector(venuesResponseReceived:withResponseString:)
+//         ];
+//    }
+//}
 
 - (void)venuesResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     NSLog(@"venues: %@", inString);
@@ -77,7 +77,19 @@
 #pragma mark IBOutlet methods
 
 - (void) checkinToNewVenue {
-    
+    [newPlaceName resignFirstResponder];
+    if (![newPlaceName.text isEqualToString:@""]) {
+        [self startProgressBar:@"Searching..."];
+        // TODO: I am just replacing a space with a +, but other characters might give this method a headache.
+        NSLog(@"searching on latitude: %f", [[LocationManager locationManager] latitude]);
+        NSLog(@"searching on longitude: %f", [[LocationManager locationManager] longitude]);
+        [[FoursquareAPI sharedInstance] getVenuesByKeyword:[NSString stringWithFormat:@"%f", [[LocationManager locationManager] latitude]] 
+                                              andLongitude:[NSString stringWithFormat:@"%f",[[LocationManager locationManager] longitude]] 
+                                               andKeywords:[newPlaceName.text stringByReplacingOccurrencesOfString:@" " withString:@"+"]
+                                                withTarget:self 
+                                                 andAction:@selector(venuesResponseReceived:withResponseString:)
+         ];
+    }
 }
 
 - (void) togglePing {
@@ -117,7 +129,7 @@
     for (NSString *key in [venues allKeys]) {
         return [(NSArray*)[venues objectForKey:key] count] + 1;
     }
-    return 0;
+    return 1;
 }
 
 
@@ -136,7 +148,8 @@
     }
 	
     // FIXME: find a better way to do this!
-    if (indexPath.row == [(NSArray*)[venues objectForKey:@"Matching Places"] count]) {
+    if (indexPath.row == [(NSArray*)[venues objectForKey:@"Matching Places"] count] 
+        || ([venues count] == 0 && ![newPlaceName.text isEqualToString:@""])) {
         return noneOfTheseCell;
     }
     if ([venues count] >= indexPath.section) {
@@ -204,7 +217,7 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
-    [self searchOnKeywordsandLatLong];
+    [self checkinToNewVenue];
     return YES;
 }
 

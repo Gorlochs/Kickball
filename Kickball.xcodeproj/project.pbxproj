@@ -322,8 +322,8 @@
 		6AF2F0AE10C2EBB300A29C96 /* TipView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AF2F0AD10C2EBB300A29C96 /* TipView.xib */; };
 		6AF794AE10CCADFF00E77D49 /* FriendRequestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF794AC10CCADFF00E77D49 /* FriendRequestsViewController.m */; };
 		6AF794AF10CCADFF00E77D49 /* FriendRequestsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AF794AD10CCADFF00E77D49 /* FriendRequestsViewController.xib */; };
-		6AF794C010CCAF4B00E77D49 /* AddFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF794BE10CCAF4B00E77D49 /* AddFriendsViewController.m */; };
-		6AF794C110CCAF4B00E77D49 /* AddFriendsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AF794BF10CCAF4B00E77D49 /* AddFriendsViewController.xib */; };
+		6AF794C010CCAF4B00E77D49 /* ViewFriendRequestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF794BE10CCAF4B00E77D49 /* ViewFriendRequestsViewController.m */; };
+		6AF794C110CCAF4B00E77D49 /* ViewFriendRequestsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AF794BF10CCAF4B00E77D49 /* ViewFriendRequestsViewController.xib */; };
 		6AFC1D9610BA42A9006B7E5F /* ProgressView.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6AFC1D9510BA42A9006B7E5F /* ProgressView.xib */; };
 		6AFC1D9A10BA4320006B7E5F /* ProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AFC1D9910BA4320006B7E5F /* ProgressViewController.m */; };
 		6AFF23F110A247B100CD30E5 /* PlaceTwitterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AFF23EF10A247B100CD30E5 /* PlaceTwitterViewController.m */; };
@@ -784,9 +784,9 @@
 		6AF794AB10CCADFF00E77D49 /* FriendRequestsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendRequestsViewController.h; sourceTree = "<group>"; };
 		6AF794AC10CCADFF00E77D49 /* FriendRequestsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendRequestsViewController.m; sourceTree = "<group>"; };
 		6AF794AD10CCADFF00E77D49 /* FriendRequestsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendRequestsViewController.xib; sourceTree = "<group>"; };
-		6AF794BD10CCAF4B00E77D49 /* AddFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendsViewController.h; sourceTree = "<group>"; };
-		6AF794BE10CCAF4B00E77D49 /* AddFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendsViewController.m; sourceTree = "<group>"; };
-		6AF794BF10CCAF4B00E77D49 /* AddFriendsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddFriendsViewController.xib; sourceTree = "<group>"; };
+		6AF794BD10CCAF4B00E77D49 /* ViewFriendRequestsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewFriendRequestsViewController.h; sourceTree = "<group>"; };
+		6AF794BE10CCAF4B00E77D49 /* ViewFriendRequestsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewFriendRequestsViewController.m; sourceTree = "<group>"; };
+		6AF794BF10CCAF4B00E77D49 /* ViewFriendRequestsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.xib; path = ViewFriendRequestsViewController.xib; sourceTree = "<group>"; };
 		6AF96710109AA32700EF665D /* ProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfileView.xib; path = Classes/ProfileView.xib; sourceTree = "<group>"; };
 		6AFC1D9510BA42A9006B7E5F /* ProgressView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProgressView.xib; sourceTree = "<group>"; };
 		6AFC1D9810BA4320006B7E5F /* ProgressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressViewController.h; sourceTree = "<group>"; };
@@ -1555,9 +1555,9 @@
 				6AF794AB10CCADFF00E77D49 /* FriendRequestsViewController.h */,
 				6AF794AC10CCADFF00E77D49 /* FriendRequestsViewController.m */,
 				6AF794AD10CCADFF00E77D49 /* FriendRequestsViewController.xib */,
-				6AF794BD10CCAF4B00E77D49 /* AddFriendsViewController.h */,
-				6AF794BE10CCAF4B00E77D49 /* AddFriendsViewController.m */,
-				6AF794BF10CCAF4B00E77D49 /* AddFriendsViewController.xib */,
+				6AF794BD10CCAF4B00E77D49 /* ViewFriendRequestsViewController.h */,
+				6AF794BE10CCAF4B00E77D49 /* ViewFriendRequestsViewController.m */,
+				6AF794BF10CCAF4B00E77D49 /* ViewFriendRequestsViewController.xib */,
 			);
 			name = Requests;
 			sourceTree = "<group>";
@@ -1618,7 +1618,7 @@
 				6AF794AF10CCADFF00E77D49 /* FriendRequestsViewController.xib in Resources */,
 				6A044CAD109545200063FC33 /* FriendsListView.xib in Resources */,
 				6A044CB7109545450063FC33 /* FriendsMapView.xib in Resources */,
-				6AF794C110CCAF4B00E77D49 /* AddFriendsViewController.xib in Resources */,
+				6AF794C110CCAF4B00E77D49 /* ViewFriendRequestsViewController.xib in Resources */,
 				6AE61217109AB04C008ABF79 /* ProfileView.xib in Resources */,
 				6AACC63C10D4B1430059E604 /* AddPlaceTipsViewController.xib in Resources */,
 				6ADC9EC710D3F08600CFDCA7 /* AddPlaceViewController.xib in Resources */,
@@ -1911,7 +1911,7 @@
 				6A10E61610BE0541006538DB /* LoginViewModalController.m in Sources */,
 				6AF2F0AA10C2EA0B00A29C96 /* TipDetailViewController.m in Sources */,
 				6AF794AE10CCADFF00E77D49 /* FriendRequestsViewController.m in Sources */,
-				6AF794C010CCAF4B00E77D49 /* AddFriendsViewController.m in Sources */,
+				6AF794C010CCAF4B00E77D49 /* ViewFriendRequestsViewController.m in Sources */,
 				6A16ABDB10CF251800CD5302 /* InstructionView.m in Sources */,
 				6ADC9C1A10D1EE5100CFDCA7 /* Utilities.m in Sources */,
 				6ADC9EC610D3F08600CFDCA7 /* AddPlaceViewController.m in Sources */,

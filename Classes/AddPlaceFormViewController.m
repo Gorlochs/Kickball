@@ -9,6 +9,7 @@
 #import "AddPlaceFormViewController.h"
 #import "FoursquareAPI.h"
 #import "PlaceDetailViewController.h"
+#import "FSCheckin.h"
 
 
 @implementation AddPlaceFormViewController
@@ -146,7 +147,21 @@
 }
 
 - (void) doVenuelessCheckin {
+    [self startProgressBar:@"Checking you in..."];
+    [[FoursquareAPI sharedInstance] doVenuelessCheckin:newVenueName withTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
+}
+
+- (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+    NSLog(@"new checkin instring: %@", inString);
+	NSArray *checkins = [FoursquareAPI checkinFromResponseXML:inString];
+    FSCheckin *checkin = [checkins objectAtIndex:0];
+    NSLog(@"venueless checkin: %@", checkins);
+    [self stopProgressBar];
     
+    // TODO: we should probably take the user off this page.
+    KBMessage *msg = [[KBMessage alloc] initWithMember:@"Checkin Successful" andSubtitle:@"Nice job!" andMessage:checkin.message];
+    [self displayPopupMessage:msg];
+    [msg release];
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {

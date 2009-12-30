@@ -221,6 +221,13 @@ static FoursquareAPI *sharedInstance = nil;
 	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/settings/setpings"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"POST"];
 }
 
+- (void) doVenuelessCheckin:(NSString*)venueName withTarget:(id)inTarget andAction:(SEL)inAction {
+    NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:1];
+    
+	[requestParams setObject:venueName forKey:@"venue"];
+    [self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/checkin"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"POST"];
+}
+
 - (void) doCheckinAtVenueWithId:(NSString *)venueId andShout:(NSString *)shout offGrid:(BOOL)offGrid toTwitter:(BOOL)toTwitter withTarget:(id)inTarget andAction:(SEL)inAction {
 //	NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
 	NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:3];
@@ -552,14 +559,31 @@ static FoursquareAPI *sharedInstance = nil;
 	NSLog(@"%@", [err localizedDescription]);
 	
 	NSLog(@"checkins xml: %@", checkinParser);
-
+    
 	NSArray *allCheckinAttrs = [checkinParser nodesForXPath:@"//checkins" error:nil];
-
+    
 	for (CXMLElement *checkinAttr in allCheckinAttrs) {
         return [FoursquareAPI _checkinsFromNode:checkinAttr];
     }
     [checkinParser release];
+    
+    return nil;
+}
 
++ (NSArray *) checkinFromResponseXML:(NSString *) inString{
+	NSError * err;
+	CXMLDocument *checkinParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
+	NSLog(@"%@", [err localizedDescription]);
+	
+	NSLog(@"checkins xml: %@", checkinParser);
+    
+	NSArray *allCheckinAttrs = [checkinParser nodesForXPath:@"//checkin" error:nil];
+    
+	for (CXMLElement *checkinAttr in allCheckinAttrs) {
+        return [FoursquareAPI _checkinsFromNode:checkinAttr];
+    }
+    [checkinParser release];
+    
     return nil;
 }
 

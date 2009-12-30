@@ -51,6 +51,7 @@
 - (void)getVenue:(NSString *)venueId withTarget:(id)inTarget andAction:(SEL)inAction;
 - (void)getUser:(NSString *)userId withTarget:(id)inTarget andAction:(SEL)inAction;
 - (void)setPings:(NSString*)pingStatus forUser:(NSString *)userId withTarget:(id)inTarget andAction:(SEL)inAction;
+- (void) doVenuelessCheckin:(NSString*)venueName withTarget:(id)inTarget andAction:(SEL)inAction;
 - (void) doCheckinAtVenueWithId:(NSString *)venueId andShout:(NSString *)shout offGrid:(BOOL)offGrid toTwitter:(BOOL)toTwitter withTarget:(id)inTarget andAction:(SEL)inAction;
 - (void) doSendFriendRequest:(NSString*)userId withTarget:(id)inTarget andAction:(SEL)inAction;
 - (void) approveFriendRequest:(NSString*)userId withTarget:(id)inTarget andAction:(SEL)inAction;
@@ -76,7 +77,7 @@
 + (FSUser *) _shortUserFromNode:(CXMLElement *) usrAttr;
 + (NSArray *) _tipsFromNode:(CXMLNode *) inputNode;
 + (FSScoring *) _scoringFromNode:(CXMLNode *) inputNode;
-+ (FSCheckin *) _checkinFromNode:(CXMLNode *) inputNode;
+//+ (FSCheckin *) _checkinFromNode:(CXMLNode *) inputNode;
 + (NSArray *) _badgesFromNode:(CXMLNode *) inputNode;
 + (NSArray *) _checkinsFromNode:(CXMLNode *) inputNode;
 
@@ -85,6 +86,7 @@
 + (NSDictionary *) venuesFromResponseXML:(NSString *) inString;
 + (FSUser *) loggedInUserFromResponseXML:(NSString *) inString; 
 + (NSArray *) checkinsFromResponseXML:(NSString *) inString;
++ (NSArray *) checkinFromResponseXML:(NSString *) inString;
 + (FSVenue *) venueFromResponseXML:(NSString *) inString;
 + (FSUser *) userFromResponseXML:(NSString *) inString;
 + (BOOL) pingSettingFromResponseXML:(NSString *) inString;

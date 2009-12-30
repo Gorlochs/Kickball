@@ -12,9 +12,9 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="70"/>
+			<integer value="8"/>
 			<integer value="24"/>
-			<integer value="9"/>
+			<integer value="70"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -157,14 +157,11 @@
 							<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="694046621"/>
-						<object class="NSCustomResource" key="IBUIHighlightedImage" id="38788443">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">btn-checkin02.png</string>
-						</object>
-						<object class="NSCustomResource" key="IBUISelectedImage" id="366323489">
+						<object class="NSCustomResource" key="IBUIHighlightedImage" id="558357428">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">placeCheckin02.png</string>
 						</object>
+						<reference key="IBUISelectedImage" ref="558357428"/>
 						<object class="NSCustomResource" key="IBUINormalImage" id="80745849">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">placeCheckin01.png</string>
@@ -363,8 +360,11 @@
 									<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="694046621"/>
-								<reference key="IBUIHighlightedImage" ref="38788443"/>
-								<reference key="IBUISelectedImage" ref="366323489"/>
+								<object class="NSCustomResource" key="IBUIHighlightedImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">btn-checkin02.png</string>
+								</object>
+								<reference key="IBUISelectedImage" ref="558357428"/>
 								<reference key="IBUINormalImage" ref="80745849"/>
 							</object>
 							<object class="IBUIButton" id="860345560">
