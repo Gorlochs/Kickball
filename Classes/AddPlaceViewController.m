@@ -120,7 +120,7 @@
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [venues count];
+    return [venues count] > 0 ? [venues count] : 1;
 }
 
 
@@ -140,7 +140,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        if (indexPath.row > [(NSArray*)[venues objectForKey:@"Matching Places"] count]) {
+        if (indexPath.row > [(NSArray*)[venues objectForKey:@"Matching Places"] count] && ![newPlaceName.text isEqualToString:@""]) {
             return noneOfTheseCell;
         } else {
             cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
@@ -148,8 +148,7 @@
     }
 	
     // FIXME: find a better way to do this!
-    if (indexPath.row == [(NSArray*)[venues objectForKey:@"Matching Places"] count] 
-        || ([venues count] == 0 && ![newPlaceName.text isEqualToString:@""])) {
+    if (indexPath.row == [(NSArray*)[venues objectForKey:@"Matching Places"] count] && ![newPlaceName.text isEqualToString:@""]) {
         return noneOfTheseCell;
     }
     if ([venues count] >= indexPath.section) {
@@ -190,7 +189,7 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    if (section == 0) {
+    if (section == 0 && [venues count] > 0) {
         // create the parent view that will hold header Label
         UIView* customView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 24.0)] autorelease];
         customView.backgroundColor = [UIColor whiteColor];
