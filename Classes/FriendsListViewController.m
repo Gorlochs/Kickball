@@ -20,6 +20,7 @@
 #import "LoginViewModalController.h"
 #import "Utilities.h"
 #import "LocationManager.h"
+#import "FriendRequestsViewController.h"
 
 @interface FriendsListViewController (Private)
 
@@ -456,7 +457,9 @@
 }
 
 - (void) addFriend {
-    NSLog(@"******** adding friend *********");
+    FriendRequestsViewController *friendsController = [[FriendRequestsViewController alloc] initWithNibName:@"FriendRequestsViewController" bundle:nil];
+    [self.navigationController pushViewController:friendsController animated:YES];
+    [friendsController release];
 }
 
 @end

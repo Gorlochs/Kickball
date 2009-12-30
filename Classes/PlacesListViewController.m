@@ -130,8 +130,8 @@
     if ([theTableView numberOfSections] != 0) {
         NSUInteger indexArr[] = {0,0};
         [theTableView scrollToRowAtIndexPath:[NSIndexPath indexPathWithIndexes:indexArr length:2] atScrollPosition:UITableViewScrollPositionTop animated:YES];
-        [self stopProgressBar];   
     }
+    [self stopProgressBar];
 }
 
 - (void)didReceiveMemoryWarning {

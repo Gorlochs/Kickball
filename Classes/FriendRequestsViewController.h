@@ -7,10 +7,29 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AddressBook/AddressBook.h>
 #import "KBBaseViewController.h"
 
-@interface FriendRequestsViewController : KBBaseViewController {
+@interface FriendRequestsViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
     IBOutlet UITableView *theTableView;
+    IBOutlet UITableViewCell *addressBookCell;
+    IBOutlet UITableViewCell *twitterCell;
+    IBOutlet UITableViewCell *nameCell;
+    IBOutlet UITableViewCell *phoneCell;
+    
+    IBOutlet UIButton *addressBookSearchButton;
+    IBOutlet UIButton *twitterSearchButton;
+    IBOutlet UIButton *nameSearchButton;
+    IBOutlet UIButton *phoneSearchButton;
+    
+    IBOutlet UITextField *twitterText;
+    IBOutlet UITextField *nameText;
+    IBOutlet UITextField *phoneText;
 }
+
+- (IBAction) searchAddressBook;
+- (IBAction) searchByName;
+- (IBAction) searchByTwitter;
+- (IBAction) searchByPhone;
 
 @end

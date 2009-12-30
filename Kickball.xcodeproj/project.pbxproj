@@ -280,6 +280,7 @@
 		6A8EEF0610A14F0F00DC630C /* NSString+UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A8EEEF110A14F0F00DC630C /* NSString+UUID.m */; };
 		6A8EEF0710A14F0F00DC630C /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A8EEEF310A14F0F00DC630C /* NSData+Base64.m */; };
 		6A8EEF0B10A14F3F00DC630C /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A8EEF0A10A14F3F00DC630C /* libxml2.dylib */; };
+		6A8F68EA10E9B9FC00E0275E /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A8F68E910E9B9FC00E0275E /* AddressBook.framework */; };
 		6A90480110D02DE700260719 /* icon57x5701.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A90480010D02DE700260719 /* icon57x5701.png */; };
 		6A95A11610E2DEA900F1D57A /* addMyTip01.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A95A10610E2DEA900F1D57A /* addMyTip01.png */; };
 		6A95A11710E2DEA900F1D57A /* addMyTip02.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A95A10710E2DEA900F1D57A /* addMyTip02.png */; };
@@ -729,6 +730,7 @@
 		6A8EEEF210A14F0F00DC630C /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
 		6A8EEEF310A14F0F00DC630C /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 		6A8EEF0A10A14F3F00DC630C /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		6A8F68E910E9B9FC00E0275E /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		6A90480010D02DE700260719 /* icon57x5701.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon57x5701.png; sourceTree = "<group>"; };
 		6A95A10610E2DEA900F1D57A /* addMyTip01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addMyTip01.png; sourceTree = "<group>"; };
 		6A95A10710E2DEA900F1D57A /* addMyTip02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addMyTip02.png; sourceTree = "<group>"; };
@@ -812,6 +814,7 @@
 				553C51BF10A1BD8100A74641 /* Security.framework in Frameworks */,
 				6A16AC5710CF5A9500CD5302 /* QuartzCore.framework in Frameworks */,
 				0331DFD110D36749009C5089 /* libPMAnalytics-r69.a in Frameworks */,
+				6A8F68EA10E9B9FC00E0275E /* AddressBook.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -924,6 +927,7 @@
 				6A16AC5610CF5A9500CD5302 /* QuartzCore.framework */,
 				553C51BE10A1BD8100A74641 /* Security.framework */,
 				0331DFD010D36749009C5089 /* libPMAnalytics-r69.a */,
+				6A8F68E910E9B9FC00E0275E /* AddressBook.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

@@ -24,6 +24,7 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
     //[self setUserInteractionEnabled:YES];
+    [UIView setAnimationsEnabled:YES];
     
     FSUser *tmpUser = [self getAuthenticatedUser];
     if (tmpUser != nil) {
@@ -134,9 +135,17 @@
 }
 
 - (void) displayPopupMessage:(KBMessage*)message {
+    
     popupView = [[PopupMessageView alloc] initWithNibName:@"PopupMessageView" bundle:nil];
     popupView.message = message;
+    popupView.view.alpha = 0;
     [self.view addSubview:popupView.view];
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:0.7];
+    popupView.view.alpha = 1.0;
+    [UIView commitAnimations];
 }
 
 @end

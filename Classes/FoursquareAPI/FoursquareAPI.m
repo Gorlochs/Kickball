@@ -156,7 +156,7 @@ static FoursquareAPI *sharedInstance = nil;
 //	NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
 //	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"vid" andValue:venueId]];
 //	[self.oauthAPI performMethod:@"/v1/venue" withTarget:inTarget withParameters:params  andAction:inAction];
-	NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:3];
+	NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:1];
 	[requestParams setObject:venueId forKey:@"vid"];	
 	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/venue"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"GET"];
 
