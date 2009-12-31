@@ -63,6 +63,7 @@
     }
     
     isPingAndUpdatesOn = user.sendsPingsToSignedInUser;
+    pingsAndUpdates.selected = user.sendsPingsToSignedInUser;
     
     // user icon
     userIcon.image = [[Utilities sharedInstance] getCachedImage:user.photo];
@@ -364,11 +365,12 @@
 
 - (void) togglePingsAndUpdates {
     [self startProgressBar:@"Changing your ping update preferences..."];
-    NSArray *yesnoArray = [NSArray arrayWithObjects:@"no", @"yes", nil];
-    [[FoursquareAPI sharedInstance] setPings:[yesnoArray objectAtIndex:!isPingAndUpdatesOn] forUser:user.userId withTarget:self andAction:@selector(pingUpdateResponseReceived:withResponseString:)];
-
-//    isPingAndUpdatesOn = !isPingAndUpdatesOn;
-//    pingsAndUpdates.selected = !isPingAndUpdatesOn;
+    //NSArray *yesnoArray = [NSArray arrayWithObjects:@"off", @"on", nil];
+    NSString *ping = @"on";
+    if (isPingAndUpdatesOn) {
+        ping = @"off";
+    }
+    [[FoursquareAPI sharedInstance] setPings:ping forUser:user.userId withTarget:self andAction:@selector(pingUpdateResponseReceived:withResponseString:)];
 }
 
 #pragma mark

@@ -12,10 +12,11 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="142"/>
-			<integer value="8"/>
+			<integer value="62"/>
 			<integer value="113"/>
+			<integer value="142"/>
 			<integer value="127"/>
+			<integer value="8"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -308,7 +309,7 @@
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 			</object>
 			<object class="IBUITableViewCell" id="982918165">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -353,7 +354,6 @@
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
 								<reference key="IBUIFont" ref="741906914"/>
-								<bool key="IBUIReversesTitleShadowWhenHighlighted">YES</bool>
 								<reference key="IBUIHighlightedTitleColor" ref="484015391"/>
 								<object class="NSColor" key="IBUINormalTitleColor">
 									<int key="NSColorSpace">1</int>
@@ -416,6 +416,7 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 44}</string>
+				<reference key="NSSuperview"/>
 				<object class="NSColor" key="IBUIBackgroundColor" id="144680521">
 					<int key="NSColorSpace">1</int>
 					<bytes key="NSRGB">MSAxIDEAA</bytes>
@@ -675,7 +676,7 @@
 				<reference key="IBUIContentView" ref="767027782"/>
 			</object>
 			<object class="IBUITableViewCell" id="963809274">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -689,7 +690,6 @@
 								<int key="NSvFlags">268</int>
 								<string key="NSFrame">{{218, 1}, {102, 64}}</string>
 								<reference key="NSSuperview" ref="578799204"/>
-								<reference key="NSWindow"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">4</int>
@@ -700,7 +700,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{67, 20}, {137, 21}}</string>
 								<reference key="NSSuperview" ref="578799204"/>
-								<reference key="NSWindow"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -720,7 +719,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{218, 1}, {102, 59}}</string>
 								<reference key="NSSuperview" ref="578799204"/>
-								<reference key="NSWindow"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -736,7 +734,6 @@
 						</object>
 						<string key="NSFrameSize">{320, 62}</string>
 						<reference key="NSSuperview" ref="963809274"/>
-						<reference key="NSWindow"/>
 						<reference key="IBUIBackgroundColor" ref="592030818"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -745,8 +742,6 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 62}</string>
-				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="IBUIBackgroundColor" ref="144680521"/>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<int key="IBUISelectionStyle">2</int>
@@ -1784,7 +1779,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{686, 55}, {320, 460}}</string>
+					<string>{{98, 131}, {320, 460}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{0, 930}, {325, 54}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

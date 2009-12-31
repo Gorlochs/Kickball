@@ -38,5 +38,6 @@
 - (IBAction) shout;
 - (void) doInitialDisplay;
 - (IBAction) addFriend;
+- (IBAction) refresh;
 
 @end

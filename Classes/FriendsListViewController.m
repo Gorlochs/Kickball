@@ -380,7 +380,12 @@
     [placesListController release];
 }
 
-- (IBAction) flipToMap {
+- (void) refresh {
+	[self startProgressBar:@"Retrieving friends' whereabouts..."];
+	[[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
+}
+
+- (void) flipToMap {
     FriendsMapViewController *mapViewController = [[FriendsMapViewController alloc] initWithNibName:@"FriendsMapView" bundle:nil];
     mapViewController.checkins = self.checkins;
     [self.navigationController pushViewController:mapViewController animated:YES];

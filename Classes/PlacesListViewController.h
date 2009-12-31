@@ -19,6 +19,7 @@ typedef enum {
     IBOutlet UITableView *theTableView;
     IBOutlet UITableViewCell *searchCell;
     IBOutlet UITextField *searchbox;
+    IBOutlet UITableViewCell *footerCell;
     CLLocationManager *locationManager;
     CLLocation *bestEffortAtLocation;
     NSDictionary *venues;

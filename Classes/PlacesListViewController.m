@@ -200,16 +200,16 @@
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [venues count];
+    return [venues count] + 1;
 }
 
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    for (NSString *key in [venues allKeys]) {
-        return [(NSArray*)[venues objectForKey:key] count];
+    if (section < [[venues allKeys] count]) {
+        return [(NSArray*)[venues objectForKey:[[venues allKeys] objectAtIndex:section]] count];
     }
-    return 0;
+    return 1;
 }
 
 
@@ -226,11 +226,13 @@
         //cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
-    if ([venues count] >= indexPath.section) {
+    if ([venues count] > indexPath.section) {
         FSVenue *venue = [self extractVenueFromDictionaryForRow:indexPath];
         cell.textLabel.text = venue.name;
         cell.detailTextLabel.text = venue.addressWithCrossstreet;
-	}
+	} else {
+        return footerCell;
+    }
     return cell;
 }
 
@@ -271,7 +273,11 @@
     headerLabel.font = [UIFont boldSystemFontOfSize:14];
     headerLabel.frame = CGRectMake(10.0, 0.0, 320.0, 24.0);
 
-    headerLabel.text = [[venues allKeys] objectAtIndex:section];
+    if (section < [venues count]) {
+        headerLabel.text = [[venues allKeys] objectAtIndex:section];
+    } else {
+        return nil;
+    }
     
     [customView addSubview:headerLabel];
     [headerLabel release];
@@ -289,6 +295,7 @@
 - (void)dealloc {
     [theTableView release];
     [searchCell release];
+    [footerCell release];
     [searchbox release];
     [locationManager release];
     [bestEffortAtLocation release];

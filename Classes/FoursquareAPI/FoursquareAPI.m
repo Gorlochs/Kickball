@@ -438,8 +438,8 @@ static FoursquareAPI *sharedInstance = nil;
 		for(int counter = 0; counter < [settingsResult childCount]; counter++) {
 			NSString * key = [[settingsResult childAtIndex:counter] name];
 			NSString * value = [[settingsResult childAtIndex:counter] stringValue];
-            if([key isEqualToString:@"get_pings"]){
-				isPingSet = [value isEqualToString:@"true"];
+            if([key isEqualToString:@"pings"]){
+				isPingSet = [value isEqualToString:@"on"];
             }
         }
     }
