@@ -233,13 +233,16 @@
         cell.textLabel.text = currentCheckin.user.firstnameLastInitial;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         NSLog(@"currentcheckin user: %@", currentCheckin.user);
+//        CGRect frame = CGRectMake(5, 5, 30, 30);
+//        cell.imageView.frame = frame;
+//        cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
         cell.imageView.image = [[Utilities sharedInstance] getCachedImage:currentCheckin.user.photo];
         cell.imageView.layer.masksToBounds = YES;
         cell.imageView.layer.cornerRadius = 4.0;
     } else if (indexPath.section == 7) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         FSTip *tip = (FSTip*) [venue.tips objectAtIndex:indexPath.row];
-        cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:16];
         cell.textLabel.text = [NSString stringWithFormat:@"%@ says,", tip.submittedBy.firstnameLastInitial];
         cell.detailTextLabel.numberOfLines = 2;
         cell.detailTextLabel.text = tip.text;

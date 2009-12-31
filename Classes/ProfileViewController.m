@@ -177,8 +177,10 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 1) {
-        if ([user.badges count] > 1) {
+    if (indexPath.section == 0) {
+        return 43;
+    } else if (indexPath.section == 1) {
+        if ([user.badges count] > 0) {
             return 60 * (([user.badges count]+BADGES_PER_ROW-1)/BADGES_PER_ROW) + 10;
         } else {
             return 0;

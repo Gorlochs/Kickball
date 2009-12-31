@@ -37,6 +37,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+//    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+//    recentCheckins = [standardUserDefaults objectForKey:@"recentCheckins"];
+//    yesterdayCheckins = [standardUserDefaults objectForKey:@"yesterdayCheckins"];
+//    todayCheckins = [standardUserDefaults objectForKey:@"todayCheckins"];
+    
     // this is so the cell doesn't show up before the table is filled in
     footerViewCell.hidden = YES;
     mapButton.hidden = YES;
@@ -77,6 +82,8 @@
     if (!hasViewedInstructions) {
         [self.view addSubview:instructionView];
     }
+//    NSLog(@"RECENT CHECKINS: %@", recentCheckins);    
+//    [theTableView reloadData];
 
 	[self startProgressBar:@"Retrieving friends' whereabouts..."];
 	[[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
@@ -175,8 +182,10 @@
         return [self.todayCheckins count];
     } else if (section == 2) {
         return [self.yesterdayCheckins count];
+    } else if (section == 3) {
+        return 1;
     }
-	return 1;
+	return 0;
 }
 
 
@@ -420,6 +429,22 @@
     footerViewCell.hidden = NO;
     mapButton.hidden = NO;
     [self stopProgressBar];
+    
+//    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+//    NSData *theData=[NSKeyedArchiver archivedDataWithRootObject:checkins];
+//    [standardUserDefaults setObject:theData forKey:@"checkinsData"];
+//    NSData *newData=[[NSUserDefaults standardUserDefaults] dataForKey:@"checkinsData"];
+//    if (newData != nil)
+//        NSLog(@"*************** unarchived checkins: %@", [NSKeyedUnarchiver unarchiveObjectWithData:newData]);
+//    
+//    
+//    [standardUserDefaults setObject:checkins forKey:@"checkins"]; 
+//    [standardUserDefaults setObject:recentCheckins forKey:@"recentCheckins"];
+//    [standardUserDefaults setObject:todayCheckins forKey:@"todayCheckins"];
+//    [standardUserDefaults setObject:yesterdayCheckins forKey:@"yesterdayCheckins"];
+//    NSLog(@"RECENT CHECKINS FROM STANDARD DEFAULT: %@", [standardUserDefaults objectForKey:@"recentCheckins"]);
+//    NSLog(@"ALL CHECKINS FROM STANDARD DEFAULT: %@", [standardUserDefaults objectForKey:@"checkins"]);
+//    NSLog(@"ALL CHECKINS FROM STANDARD DEFAULT: %@", [standardUserDefaults objectForKey:@"checkins"]);
 }
 
 - (void) shout {
