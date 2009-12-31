@@ -119,8 +119,7 @@
         mayorMapCell.imageView.image = [[Utilities sharedInstance] getCachedImage:venueToDisplay.mayor.photo];
         mayorNameLabel.text = venueToDisplay.mayor.firstnameLastInitial;
     } else {
-        // TODO: get Mikula to make this all pretty and stuff
-        mayorNameLabel.text = @"no mayor";
+        mayorNameLabel.text = @"No Mayor";
     }
     
     if (venueToDisplay.twitter != nil && ![venueToDisplay.twitter isEqualToString:@""]) {

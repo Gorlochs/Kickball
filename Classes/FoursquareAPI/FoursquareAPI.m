@@ -234,8 +234,9 @@ static FoursquareAPI *sharedInstance = nil;
 
 //	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"vid" andValue:venueId]];
 
-	[requestParams setObject:venueId forKey:@"vid"];	
-
+    if (venueId) {
+        [requestParams setObject:venueId forKey:@"vid"];	
+    }
 	if(shout){
 		[requestParams setObject:shout forKey:@"shout"];	
 //		[params addObject:[[MPURLRequestParameter alloc] initWithName:@"shout" andValue:shout]];

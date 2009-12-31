@@ -26,4 +26,5 @@
 - (void) refreshFriendPoints;
 - (void) setCheckins:(NSArray *) checkin;
 - (NSArray *) checkins;
+
 @end

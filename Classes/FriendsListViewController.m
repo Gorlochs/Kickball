@@ -462,5 +462,14 @@
     [friendsController release];
 }
 
+#pragma mark
+#pragma mark UITextFieldDelegate methods
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    [self shout];
+    return YES;
+}
+
 @end
 
