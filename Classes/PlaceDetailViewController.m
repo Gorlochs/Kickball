@@ -209,7 +209,7 @@
     } else if (indexPath.section == 1) {
         FSBadge *badge = (FSBadge*)[[self getSingleCheckin].badges objectAtIndex:0];
         badgeImage.image = [[Utilities sharedInstance] getCachedImage:badge.icon];
-        badgeLabel.text = badge.description;
+        badgeLabel.text = badge.badgeDescription;
         return badgeCell;
     } else if (indexPath.section == 2) {
         if ([self getSingleCheckin].user == nil) {

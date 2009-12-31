@@ -13,11 +13,11 @@
 	NSString * badgeId;
 	NSString * badgeName;
 	NSString * icon;
-	NSString * description;
+	NSString * badgeDescription;
 }
 @property (nonatomic, retain) NSString * badgeId;
 @property (nonatomic, retain) NSString * badgeName;
 @property (nonatomic, retain) NSString * icon;
-@property (nonatomic, retain) NSString * description;
+@property (nonatomic, retain) NSString * badgeDescription;
 
 @end

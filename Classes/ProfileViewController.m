@@ -43,7 +43,7 @@
 		NSLog(@"Foursquare is not authenticated");
 	} else {
         // TODO: will also have to make a call to our DB to get gift info
-        [self startProgressBar:@"Retrieving venue..."];
+        [self startProgressBar:@"Retrieving profile..."];
         [[FoursquareAPI sharedInstance] getUser:self.userId withTarget:self andAction:@selector(userResponseReceived:withResponseString:)];
 	}
 }
@@ -75,11 +75,13 @@
     // I'm sure there's a better way to do this, but this works.
     int x = 0;
     int y = 0;
+    int i = 0;
     for (FSBadge *badge in user.badges) {
         CGRect frame= CGRectMake(x*60 + 10, y*60 + 10, 50, 50);
         UIButton *btn = [[UIButton alloc] initWithFrame:frame];
         [btn setImage:[[Utilities sharedInstance] getCachedImage:badge.icon] forState:UIControlStateNormal];
-        btn.tag = [badge.badgeId intValue];
+        btn.tag = i++;
+        [btn addTarget:self action:@selector(didTapBadge:) forControlEvents:UIControlEventTouchUpInside];
         [badgeCell addSubview:btn];
         [badgeCell bringSubviewToFront:btn];
 
@@ -94,6 +96,14 @@
     
 	[theTableView reloadData];
     [self stopProgressBar];
+}
+
+
+- (void) didTapBadge: (UIControl *) button {
+    FSBadge *badge = (FSBadge*)[user.badges objectAtIndex:button.tag];
+    KBMessage *message = [[KBMessage alloc] initWithMember:badge.badgeName andSubtitle:nil andMessage:badge.badgeDescription];
+    [self displayPopupMessage:message];
+    [message release];
 }
 
 /*

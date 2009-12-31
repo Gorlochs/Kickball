@@ -853,7 +853,7 @@ static FoursquareAPI *sharedInstance = nil;
             } else if([key isEqualToString:@"icon"]){
                 currentBadgeInfo.icon = value;
             } else if([key isEqualToString:@"description"]){
-                currentBadgeInfo.description = value;
+                currentBadgeInfo.badgeDescription = value;
             }
         }
         [loggedUserBadges addObject:currentBadgeInfo];
