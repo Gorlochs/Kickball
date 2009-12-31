@@ -337,8 +337,8 @@
     if (indexPath.section == 5) {
         [self pushProfileDetailController:venue.mayor.userId];
     } else if (indexPath.section == 6) {
-        FSCheckin *checkin = ((FSCheckin*)[venue.currentCheckins objectAtIndex:indexPath.row]);
-        [self pushProfileDetailController:checkin.user.userId];
+        FSCheckin *tmpCheckin = ((FSCheckin*)[venue.currentCheckins objectAtIndex:indexPath.row]);
+        [self pushProfileDetailController:tmpCheckin.user.userId];
     } else if (indexPath.section == 7) {
         FSTip *tip = ((FSTip*)[venue.tips objectAtIndex:indexPath.row]);
         TipDetailViewController *tipController = [[TipDetailViewController alloc] initWithNibName:@"TipView" bundle:nil];
@@ -445,7 +445,7 @@
     GAConnectionManager *connectionManager_ = [[GAConnectionManager alloc] initWithAPIKey:@"K6afuuFTXK" delegate:self];
     CLLocationCoordinate2D location = venue.location;
 
-    [connectionManager_ requestBusinessesNearCoords:location withinRadius:100 maxResults:5];
+    [connectionManager_ requestBusinessesNearCoords:location withinRadius:50 maxResults:10];
 }
 
 - (void) showSpecial {

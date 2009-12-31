@@ -190,6 +190,7 @@
 
 - (void) searchByName {
     if (![nameText.text isEqualToString:@""]) {
+        [self startProgressBar:@"Searching..."];
         [[FoursquareAPI sharedInstance] findFriendsByName:nameText.text withTarget:self andAction:@selector(searchResponseReceived:withResponseString:)];
     } else {
         KBMessage *message = [[KBMessage alloc] initWithMember:@"Search Error" andSubtitle:@"Missing value" andMessage:@"Please fill in the name field"];
@@ -200,6 +201,7 @@
 
 - (void) searchByTwitter {
     if (![twitterText.text isEqualToString:@""]) {
+        [self startProgressBar:@"Searching..."];
         [[FoursquareAPI sharedInstance] findFriendsByTwitterName:twitterText.text withTarget:self andAction:@selector(searchResponseReceived:withResponseString:)];
     } else {
         KBMessage *message = [[KBMessage alloc] initWithMember:@"Search Error" andSubtitle:@"Missing value" andMessage:@"Please fill in the twitter field"];
@@ -211,6 +213,7 @@
 
 - (void) searchByPhone {
     if (![phoneText.text isEqualToString:@""]) {
+        [self startProgressBar:@"Searching..."];
         [[FoursquareAPI sharedInstance] findFriendsByPhone:phoneText.text withTarget:self andAction:@selector(searchResponseReceived:withResponseString:)];
     } else {
         KBMessage *message = [[KBMessage alloc] initWithMember:@"Search Error" andSubtitle:@"Missing value" andMessage:@"Please fill in the phone field"];
