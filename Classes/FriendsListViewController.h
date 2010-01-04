@@ -24,6 +24,8 @@
     
     IBOutlet InstructionView *instructionView;
     IBOutlet UITableViewCell *footerViewCell;
+    
+    NSMutableDictionary *userIcons;
 }
 
 @property (nonatomic, retain) NSArray * checkins;

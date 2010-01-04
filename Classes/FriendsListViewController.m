@@ -155,6 +155,7 @@
     [checkins release];
     [instructionView release];
     [footerViewCell release];
+    [userIcons release];
     [super dealloc];
 }
 
@@ -223,7 +224,7 @@
     // create icon image
 	NSString * path = checkUser.photo;
 	if (path) {
-        cell.profileIcon.image = [[Utilities sharedInstance] getCachedImage:checkUser.photo];
+        cell.profileIcon.image = [userIcons objectForKey:checkUser.userId];
         cell.profileIcon.layer.masksToBounds = YES;
         cell.profileIcon.layer.cornerRadius = 4.0;
         //cell.profileIcon.layer.borderWidth = 1.0;
@@ -403,6 +404,7 @@
     recentCheckins = [[NSMutableArray alloc] init];
     todayCheckins = [[NSMutableArray alloc] init];
     yesterdayCheckins = [[NSMutableArray alloc] init];
+    userIcons = [[NSMutableDictionary alloc] initWithCapacity:1];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EEE, dd MMM yy HH:mm:ss"];
@@ -421,6 +423,7 @@
         } else {
             [yesterdayCheckins addObject:checkin];
         }
+        [userIcons setObject:[[Utilities sharedInstance] getCachedImage:checkin.user.photo] forKey:checkin.user.userId];
     }
     NSLog(@"all checkins: %d", [checkins count]);
     NSLog(@"recent checkins: %d", [recentCheckins count]);
