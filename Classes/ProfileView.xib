@@ -12,10 +12,10 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="1"/>
-			<integer value="70"/>
 			<integer value="49"/>
+			<integer value="38"/>
 			<integer value="64"/>
+			<integer value="70"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -129,7 +129,6 @@
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
 								<reference key="IBUIFont" ref="805532983"/>
-								<string key="IBUINormalTitle">icon</string>
 								<reference key="IBUIHighlightedTitleColor" ref="850398413"/>
 								<object class="NSColor" key="IBUINormalTitleColor">
 									<int key="NSColorSpace">1</int>
@@ -302,10 +301,11 @@
 							<object class="IBUIButton" id="755550929">
 								<reference key="NSNextResponder" ref="924832044"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{65, 20}, {249, 25}}</string>
+								<string key="NSFrame">{{65, 20}, {250, 25}}</string>
 								<reference key="NSSuperview" ref="924832044"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+								<float key="IBUIAlpha">0.55633801221847534</float>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
 								<reference key="IBUIFont" ref="805532983"/>
@@ -315,6 +315,10 @@
 									<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="647369887"/>
+								<object class="NSCustomResource" key="IBUIHighlightedImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">button_select.png</string>
+								</object>
 							</object>
 						</object>
 						<string key="NSFrame">{{0, 50}, {320, 100}}</string>
