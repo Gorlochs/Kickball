@@ -10,7 +10,7 @@
 #import "FSUser.h"
 
 
-@interface FSMayor : NSObject {
+@interface FSMayor : NSObject <NSCoding> {
     FSUser *user;
     NSString *mayorCheckinMessage;
     NSInteger numCheckins;

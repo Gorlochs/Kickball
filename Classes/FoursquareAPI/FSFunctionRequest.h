@@ -3,7 +3,7 @@
 //  Kickball
 //
 //  Created by David Evans on 12/7/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Copyright 2009 Gorloch Interactive, LLC.. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

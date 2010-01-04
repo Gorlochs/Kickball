@@ -3,7 +3,7 @@
 //  FSApi
 //
 //  Created by David Evans on 11/3/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Copyright 2009 Gorloch Interactive, LLC.. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -18,7 +18,7 @@ typedef enum {
 
 @class FSCheckin;
 
-@interface FSUser : NSObject {
+@interface FSUser : NSObject <NSCoding> {
 	NSString * userId;
 	NSString * firstname;
 	NSString * lastname;

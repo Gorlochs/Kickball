@@ -37,10 +37,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-//    recentCheckins = [standardUserDefaults objectForKey:@"recentCheckins"];
-//    yesterdayCheckins = [standardUserDefaults objectForKey:@"yesterdayCheckins"];
-//    todayCheckins = [standardUserDefaults objectForKey:@"todayCheckins"];
+    NSData *recentCheckinsData=[[NSUserDefaults standardUserDefaults] dataForKey:@"recentCheckinsData"];
+    NSData *todayCheckinsData=[[NSUserDefaults standardUserDefaults] dataForKey:@"todayCheckinsData"];
+    NSData *yesterdayCheckinsData=[[NSUserDefaults standardUserDefaults] dataForKey:@"yesterdayCheckinsData"];
+    if (recentCheckinsData) {
+        self.recentCheckins = [NSKeyedUnarchiver unarchiveObjectWithData:recentCheckinsData];
+    }
+    if (todayCheckinsData) {
+        self.todayCheckins = [NSKeyedUnarchiver unarchiveObjectWithData:todayCheckinsData];
+    }
+    if (yesterdayCheckinsData) {
+        self.yesterdayCheckins = [NSKeyedUnarchiver unarchiveObjectWithData:yesterdayCheckinsData];
+    }
+    [theTableView reloadData];
     
     // this is so the cell doesn't show up before the table is filled in
     footerViewCell.hidden = YES;
@@ -82,8 +91,6 @@
     if (!hasViewedInstructions) {
         [self.view addSubview:instructionView];
     }
-//    NSLog(@"RECENT CHECKINS: %@", recentCheckins);    
-//    [theTableView reloadData];
 
 	[self startProgressBar:@"Retrieving friends' whereabouts..."];
 	[[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
@@ -96,8 +103,6 @@
 	// this didn't work in the appdelegate (timing issues), so it's in the first page, but it's going to set an appDelegate property
 	// probably should be put back in the appdelegate with a notification that this page checks for
 	[[FoursquareAPI sharedInstance] getUser:nil withTarget:self andAction:@selector(userResponseReceived:withResponseString:)];
-	
-	
 }
 
 //- (void)findFriendsResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
@@ -129,6 +134,13 @@
     NSLog(@"auth'd user: %@", user);
 //    [[LocationManager locationManager] stopUpdates];
     //[self displayPopupMessage:@"1" andSubtitle:@"2" andMessage:@"3"];
+    
+//    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+//    NSData *theData=[NSKeyedArchiver archivedDataWithRootObject:user.badges];
+//    [standardUserDefaults setObject:theData forKey:@"badgesTest"];
+//    NSData *newData=[[NSUserDefaults standardUserDefaults] dataForKey:@"badgesTest"];
+//    if (newData != nil)
+//        NSLog(@"*************** unarchived badges: %@", [NSKeyedUnarchiver unarchiveObjectWithData:newData]);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -438,9 +450,17 @@
     mapButton.hidden = NO;
     [self stopProgressBar];
     
-//    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-//    NSData *theData=[NSKeyedArchiver archivedDataWithRootObject:checkins];
-//    [standardUserDefaults setObject:theData forKey:@"checkinsData"];
+    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    NSData *theData=[NSKeyedArchiver archivedDataWithRootObject:checkins];
+    [standardUserDefaults setObject:theData forKey:@"checkinsData"];
+    
+    NSData *recentCheckinsData=[NSKeyedArchiver archivedDataWithRootObject:recentCheckins];
+    NSData *todayCheckinsData=[NSKeyedArchiver archivedDataWithRootObject:todayCheckins];
+    NSData *yesterdayCheckinsData=[NSKeyedArchiver archivedDataWithRootObject:yesterdayCheckins];
+    [standardUserDefaults setObject:recentCheckinsData forKey:@"recentCheckinsData"];
+    [standardUserDefaults setObject:todayCheckinsData forKey:@"todayCheckinsData"];
+    [standardUserDefaults setObject:yesterdayCheckinsData forKey:@"yesterdayCheckinsData"];
+    
 //    NSData *newData=[[NSUserDefaults standardUserDefaults] dataForKey:@"checkinsData"];
 //    if (newData != nil)
 //        NSLog(@"*************** unarchived checkins: %@", [NSKeyedUnarchiver unarchiveObjectWithData:newData]);

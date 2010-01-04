@@ -3,13 +3,13 @@
 //  FSApi
 //
 //  Created by David Evans on 11/3/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Copyright 2009 Gorloch Interactive, LLC.. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
 
-@interface FSBadge : NSObject {
+@interface FSBadge : NSObject <NSCoding> {
 	NSString * badgeId;
 	NSString * badgeName;
 	NSString * icon;

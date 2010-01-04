@@ -3,13 +3,13 @@
 //  Kickball
 //
 //  Created by David Evans on 11/4/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Copyright 2009 Gorloch Interactive, LLC.. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import "FSUser.h"
 
-@interface FSTip : NSObject {
+@interface FSTip : NSObject <NSCoding> {
 	FSUser * submittedBy;
 	NSString * text;
 	NSString * url;

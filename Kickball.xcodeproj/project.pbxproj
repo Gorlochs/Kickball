@@ -299,7 +299,6 @@
 		6A95A12410E2DEA900F1D57A /* wrongAdd01.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A95A11410E2DEA900F1D57A /* wrongAdd01.png */; };
 		6A95A12510E2DEA900F1D57A /* wrongAdd02.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A95A11510E2DEA900F1D57A /* wrongAdd02.png */; };
 		6A978A611099FBC000FCE8F1 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A978A601099FBC000FCE8F1 /* StoreKit.framework */; };
-		6A9FF5BA10AA830700E52FDA /* FSCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A9FF5B910AA830700E52FDA /* FSCity.m */; };
 		6AA8B86C10DDCECC005634D4 /* FSSpecial.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA8B86B10DDCECC005634D4 /* FSSpecial.m */; };
 		6AACC53210D48F240059E604 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AACC53110D48F240059E604 /* LocationManager.m */; };
 		6AACC62710D4ACEC0059E604 /* tmp-tips-for-adding.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AACC62610D4ACEC0059E604 /* tmp-tips-for-adding.png */; };
@@ -319,6 +318,7 @@
 		6AE4B93810D01E2F00C910A1 /* icon57x5702.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AE4B93710D01E2F00C910A1 /* icon57x5702.png */; };
 		6AE61217109AB04C008ABF79 /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AF96710109AA32700EF665D /* ProfileView.xib */; };
 		6AF26EE210F19F1F002A78B8 /* button_select.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AF26EE110F19F1F002A78B8 /* button_select.png */; };
+		6AF26EFB10F1A49E002A78B8 /* FSCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5566949A10AA535200DF19D5 /* FSCity.m */; };
 		6AF2F0AA10C2EA0B00A29C96 /* TipDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF2F0A910C2EA0B00A29C96 /* TipDetailViewController.m */; };
 		6AF2F0AE10C2EBB300A29C96 /* TipView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AF2F0AD10C2EBB300A29C96 /* TipView.xib */; };
 		6AF794AE10CCADFF00E77D49 /* FriendRequestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF794AC10CCADFF00E77D49 /* FriendRequestsViewController.m */; };
@@ -750,8 +750,6 @@
 		6A95A11410E2DEA900F1D57A /* wrongAdd01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wrongAdd01.png; sourceTree = "<group>"; };
 		6A95A11510E2DEA900F1D57A /* wrongAdd02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wrongAdd02.png; sourceTree = "<group>"; };
 		6A978A601099FBC000FCE8F1 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		6A9FF5B810AA830700E52FDA /* FSCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCity.h; sourceTree = "<group>"; };
-		6A9FF5B910AA830700E52FDA /* FSCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCity.m; sourceTree = "<group>"; };
 		6AA8B86A10DDCECC005634D4 /* FSSpecial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSpecial.h; sourceTree = "<group>"; };
 		6AA8B86B10DDCECC005634D4 /* FSSpecial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSSpecial.m; sourceTree = "<group>"; };
 		6AACC53010D48F240059E604 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
@@ -937,8 +935,6 @@
 		553C50FD10A1BD5000A74641 /* FoursquareAPI */ = {
 			isa = PBXGroup;
 			children = (
-				6A9FF5B810AA830700E52FDA /* FSCity.h */,
-				6A9FF5B910AA830700E52FDA /* FSCity.m */,
 				553C50FE10A1BD5000A74641 /* FoursquareAPI.h */,
 				553C50FF10A1BD5000A74641 /* FoursquareAPI.m */,
 				553C510010A1BD5000A74641 /* FSBadge.h */,
@@ -1825,6 +1821,7 @@
 				6A8EEEFC10A14F0F00DC630C /* MGTwitterStatusesParser.m in Sources */,
 				6A8EEEFD10A14F0F00DC630C /* MGTwitterUsersParser.m in Sources */,
 				6A8EEEFE10A14F0F00DC630C /* MGTwitterMessagesParser.m in Sources */,
+				6AF26EFB10F1A49E002A78B8 /* FSCity.m in Sources */,
 				6A8EEEFF10A14F0F00DC630C /* MGTwitterMiscParser.m in Sources */,
 				6A8EEF0610A14F0F00DC630C /* NSString+UUID.m in Sources */,
 				6A8EEF0710A14F0F00DC630C /* NSData+Base64.m in Sources */,
@@ -1893,7 +1890,6 @@
 				552AFDE410A27AED009300E2 /* FriendPlacemark.m in Sources */,
 				552AFE4110A285AC009300E2 /* FriendIconAnnotationView.m in Sources */,
 				6A7ED9F710A91DC9002FB1DC /* VenueAnnotation.m in Sources */,
-				6A9FF5BA10AA830700E52FDA /* FSCity.m in Sources */,
 				6A55B4D010B36EC60005E934 /* KBBaseViewController.m in Sources */,
 				5550EE1A10B4F9D00065C925 /* FSScoring.m in Sources */,
 				5550EE1D10B4FA3A0065C925 /* FSScore.m in Sources */,

@@ -3,14 +3,14 @@
 //  FSApi
 //
 //  Created by David Evans on 11/3/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Copyright 2009 Gorloch Interactive, LLC.. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 #import "FSUser.h"
 
-@interface FSVenue : NSObject {
+@interface FSVenue : NSObject <NSCoding> {
 	NSString * name;
 	NSString * geolat;
 	NSString * geolong;
@@ -22,13 +22,13 @@
 	NSString * phone;
 	NSString * crossStreet;
 	NSString * twitter;
-	int mayorCount;
+	NSInteger mayorCount;
 	FSUser * mayor;
 	NSArray * tips;
 	NSArray * currentCheckins;
 	BOOL friendsHaveBeenHere;
 	BOOL userHasBeenHere;
-	int userCheckinCount;
+	NSInteger userCheckinCount;
     NSString * addressWithCrossstreet;
 } 
 
@@ -43,13 +43,13 @@
 @property (nonatomic, retain) NSString * phone;
 @property (nonatomic, retain) NSString * crossStreet;
 @property (nonatomic, retain) NSString * twitter;
-@property (nonatomic) int mayorCount;
+@property (nonatomic) NSInteger mayorCount;
 @property (nonatomic, retain) FSUser * mayor;
 @property (nonatomic, retain) NSArray * tips;
 @property (nonatomic, retain) NSArray * currentCheckins;
 @property (nonatomic) BOOL friendsHaveBeenHere;
 @property (nonatomic) BOOL userHasBeenHere;
-@property (nonatomic) int userCheckinCount;
+@property (nonatomic) NSInteger userCheckinCount;
 @property (nonatomic, retain) NSString * addressWithCrossstreet;
 @property (nonatomic, readonly) CLLocationCoordinate2D location;
 

@@ -19,7 +19,7 @@
 #import <Foundation/Foundation.h>
 #import "FSVenue.h"
 
-@interface FSSpecial : NSObject {
+@interface FSSpecial : NSObject <NSCoding> {
     NSString *specialId;
     NSString *type;
     NSString *message;

@@ -3,7 +3,7 @@
 //  FSApi
 //
 //  Created by David Evans on 11/3/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Copyright 2009 Gorloch Interactive, LLC.. All rights reserved.
 //
 
 #import "FSVenue.h"
@@ -44,5 +44,50 @@
 	}
 	return loc;	
 }
+
+- (void) encodeWithCoder: (NSCoder *)coder { 
+    [coder encodeObject: name forKey:@"name"]; 
+    [coder encodeObject: geolat forKey:@"geolat"]; 
+    [coder encodeObject: geolong forKey:@"geolong"];
+    [coder encodeObject: venueAddress forKey:@"venueAddress"];
+    [coder encodeObject: zip forKey:@"zip"];
+    [coder encodeObject: city forKey:@"city"];
+    [coder encodeObject: venueState forKey:@"venueState"];
+    [coder encodeObject: venueid forKey:@"venueid"];
+    [coder encodeObject: phone forKey:@"phone"];
+    [coder encodeObject: crossStreet forKey:@"crossStreet"];
+    [coder encodeObject: twitter forKey:@"twitter"];
+    [coder encodeInteger: mayorCount forKey:@"mayorCount"];
+    [coder encodeObject: mayor forKey:@"mayor"];
+    [coder encodeObject: tips forKey:@"tips"];
+    [coder encodeObject: currentCheckins forKey:@"currentCheckins"];
+    [coder encodeBool: friendsHaveBeenHere forKey:@"friendsHaveBeenHere"];
+    [coder encodeBool: userHasBeenHere forKey:@"userHasBeenHere"];
+    [coder encodeInteger: userCheckinCount forKey:@"userCheckinCount"];
+} 
+
+- (id) initWithCoder: (NSCoder *)coder { 
+    if (self = [super init]) { 
+        [self setName: [coder decodeObjectForKey:@"name"]]; 
+        [self setGeolat:[coder decodeObjectForKey:@"geolat"]];  
+        [self setGeolong: [coder decodeObjectForKey:@"geolong"]];  
+        [self setVenueAddress: [coder decodeObjectForKey:@"venueAddress"]];  
+        [self setZip: [coder decodeObjectForKey:@"zip"]];  
+        [self setCity: [coder decodeObjectForKey:@"city"]];  
+        [self setVenueState: [coder decodeObjectForKey:@"venueState"]];  
+        [self setVenueid: [coder decodeObjectForKey:@"venueid"]];  
+        [self setPhone: [coder decodeObjectForKey:@"phone"]];  
+        [self setCrossStreet: [coder decodeObjectForKey:@"crossStreet"]];  
+        [self setTwitter: [coder decodeObjectForKey:@"twitter"]];  
+        [self setMayorCount: [coder decodeIntegerForKey:@"mayorCount"]];  
+        [self setMayor: [coder decodeObjectForKey:@"mayor"]];     
+        [self setTips: [coder decodeObjectForKey:@"tips"]];   
+        [self setCurrentCheckins: [coder decodeObjectForKey:@"currentCheckins"]];   
+        [self setFriendsHaveBeenHere: [coder decodeBoolForKey:@"friendsHaveBeenHere"]];   
+        [self setUserHasBeenHere: [coder decodeBoolForKey:@"userHasBeenHere"]];   
+        [self setUserCheckinCount: [coder decodeIntegerForKey:@"userCheckinCount"]]; 
+    } 
+    return self; 
+} 
 
 @end

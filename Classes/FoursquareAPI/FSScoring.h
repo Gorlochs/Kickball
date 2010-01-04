@@ -3,20 +3,20 @@
 //  Kickball
 //
 //  Created by David Evans on 11/08/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Copyright 2009 Gorloch Interactive, LLC.. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
 
-@interface FSScoring : NSObject {
+@interface FSScoring : NSObject <NSCoding> {
 	NSArray * scores;
-	int total;
+	NSInteger total;
 	NSString * message;
 }
 
 @property (nonatomic, retain) NSArray * scores;
-@property (nonatomic) int total;
+@property (nonatomic) NSInteger total;
 @property (nonatomic, retain) NSString * message;
 
 @end

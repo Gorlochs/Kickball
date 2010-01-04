@@ -3,7 +3,7 @@
 //  Kickball
 //
 //  Created by Shawn Bernard on 11/9/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Copyright 2009 Gorloch Interactive, LLC.. All rights reserved.
 //
 
 #import "VenueAnnotation.h"
