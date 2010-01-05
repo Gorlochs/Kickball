@@ -381,7 +381,7 @@
 							<object class="IBUIButton" id="281295563">
 								<reference key="NSNextResponder" ref="50082388"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{3, 3}, {98, 37}}</string>
+								<string key="NSFrame">{{2, 3}, {147, 37}}</string>
 								<reference key="NSSuperview" ref="50082388"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -396,7 +396,7 @@
 								<reference key="IBUINormalTitleShadowColor" ref="647369887"/>
 								<object class="NSCustomResource" key="IBUIHighlightedImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">profileCheckin02.png</string>
+									<string key="NSResourceName">profileHereToo02.png</string>
 								</object>
 								<object class="NSCustomResource" key="IBUISelectedImage">
 									<string key="NSClassName">NSImage</string>
@@ -404,13 +404,13 @@
 								</object>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">profileCheckin01.png</string>
+									<string key="NSResourceName">profileHereToo01.png</string>
 								</object>
 							</object>
 							<object class="IBUIButton" id="713834518">
 								<reference key="NSNextResponder" ref="50082388"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{104, 3}, {138, 37}}</string>
+								<string key="NSFrame">{{148, 3}, {170, 37}}</string>
 								<reference key="NSSuperview" ref="50082388"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -434,32 +434,6 @@
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">profilePings03.png</string>
-								</object>
-							</object>
-							<object class="IBUIButton" id="972126421">
-								<reference key="NSNextResponder" ref="50082388"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{244, 3}, {73, 37}}</string>
-								<reference key="NSSuperview" ref="50082388"/>
-								<bool key="IBUIOpaque">NO</bool>
-								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
-								<int key="IBUIContentHorizontalAlignment">0</int>
-								<int key="IBUIContentVerticalAlignment">0</int>
-								<reference key="IBUIFont" ref="805532983"/>
-								<reference key="IBUIHighlightedTitleColor" ref="850398413"/>
-								<object class="NSColor" key="IBUINormalTitleColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
-								</object>
-								<reference key="IBUINormalTitleShadowColor" ref="647369887"/>
-								<object class="NSCustomResource" key="IBUIHighlightedImage" id="584945821">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">profileUnfriend02.png</string>
-								</object>
-								<reference key="IBUISelectedImage" ref="584945821"/>
-								<object class="NSCustomResource" key="IBUINormalImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">profileUnfriend01.png</string>
 								</object>
 							</object>
 						</object>
@@ -764,15 +738,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">unfriend</string>
-						<reference key="source" ref="972126421"/>
-						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">74</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">togglePingsAndUpdates</string>
 						<reference key="source" ref="713834518"/>
 						<reference key="destination" ref="372490531"/>
@@ -918,7 +883,6 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="281295563"/>
 							<reference ref="713834518"/>
-							<reference ref="972126421"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Friend Cell</string>
@@ -947,11 +911,6 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">62</int>
 						<reference key="object" ref="713834518"/>
-						<reference key="parent" ref="330433458"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">63</int>
-						<reference key="object" ref="972126421"/>
 						<reference key="parent" ref="330433458"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -1019,7 +978,6 @@
 					<string>57.IBPluginDependency</string>
 					<string>60.IBPluginDependency</string>
 					<string>62.IBPluginDependency</string>
-					<string>63.IBPluginDependency</string>
 					<string>64.IBEditorWindowLastContentRect</string>
 					<string>64.IBPluginDependency</string>
 					<string>65.IBPluginDependency</string>
@@ -1051,7 +1009,6 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{0, 748}, {320, 247}}</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
