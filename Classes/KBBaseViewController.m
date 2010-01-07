@@ -12,6 +12,7 @@
 #import "ProfileViewController.h"
 #import "FoursquareAPI.h"
 #import "Utilities.h"
+#import "SettingsViewController.h"
 
 @implementation KBBaseViewController
 
@@ -146,6 +147,12 @@
     [UIView setAnimationDuration:0.7];
     popupView.view.alpha = 1.0;
     [UIView commitAnimations];
+}
+
+- (void) viewSettings {
+    SettingsViewController *settingsController = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:nil];
+    [self.navigationController pushViewController:settingsController animated:YES];
+    [settingsController release];
 }
 
 @end

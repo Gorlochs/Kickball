@@ -10,8 +10,8 @@
 #import "KBBaseViewController.h"
 
 
-@interface ViewFriendRequestsViewController : KBBaseViewController {
-
+@interface ViewFriendRequestsViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource> {
+    IBOutlet UITableView *theTableView;
 }
 
 @end

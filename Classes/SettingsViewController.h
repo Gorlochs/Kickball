@@ -7,10 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KBBaseViewController.h"
 
 
-@interface SettingsViewController : UIViewController {
-
+@interface SettingsViewController : KBBaseViewController {
+    IBOutlet UITextField *username;
+    IBOutlet UITextField *password;
+    IBOutlet UILabel *friendRequestCount;
 }
+
+- (IBAction) viewFriendRequests;
+- (IBAction) addFriends;
 
 @end
