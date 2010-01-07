@@ -18,10 +18,25 @@
     username.text = [[FoursquareAPI sharedInstance] userName];
     password.text = [[FoursquareAPI sharedInstance] passWord];
     [super viewDidLoad];
+    
+    [[FoursquareAPI sharedInstance] getPendingFriendRequests:self andAction:@selector(friendRequestResponseReceived:withResponseString:)];
+}
+
+- (void)friendRequestResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+    NSLog(@"pending friend requests: %@", inString);
+    pendingFriendRequests = [FoursquareAPI usersFromRequestResponseXML:inString];
+    friendRequestCount.text = [NSString stringWithFormat:@"%d", [pendingFriendRequests count]];
+    [self stopProgressBar];
+    NSLog(@"pendingFriendRequests: %@", pendingFriendRequests);
+    
+    //    KBMessage *message = [[KBMessage alloc] initWithMember:@"Friend Request" andSubtitle:@"Complete!" andMessage:@"Your future buddy has been sent a friend request."];
+    //    [self displayPopupMessage:message];
+    //    [message release];
 }
 
 - (void) viewFriendRequests {
     ViewFriendRequestsViewController *friendRequestsController = [[ViewFriendRequestsViewController alloc] initWithNibName:@"ViewFriendRequestsViewController" bundle:nil];
+    friendRequestsController.pendingFriendRequests = [[NSArray alloc] initWithArray:pendingFriendRequests];
     [self.navigationController pushViewController:friendRequestsController animated:YES];
     [friendRequestsController release];
 }

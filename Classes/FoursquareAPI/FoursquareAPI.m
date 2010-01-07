@@ -322,7 +322,7 @@ static FoursquareAPI *sharedInstance = nil;
 
 - (void) getPendingFriendRequests:(id)inTarget andAction:(SEL)inAction {
 //    [self.oauthAPI performMethod:@"/v1/friend/requests" withTarget:inTarget andAction:inAction doPost:NO];
-	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/friend/requests"] withUser:self.userName andPassword:self.passWord andParams:nil withTarget:inTarget andAction:inAction usingMethod:@"POST"];
+	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/friend/requests"] withUser:self.userName andPassword:self.passWord andParams:nil withTarget:inTarget andAction:inAction usingMethod:@"GET"];
 }
 
 - (void) addNewVenue:(NSString*)name atAddress:(NSString*)address andCrossstreet:(NSString*)crossStreet andCity:(NSString*)city andState:(NSString*)state  
@@ -458,6 +458,25 @@ static FoursquareAPI *sharedInstance = nil;
 	
 	//get the groups
 	allUsers = [userParser nodesForXPath:@"//users/user" error:nil];
+    NSLog(@"allusers: %@", allUsers);
+	for (CXMLElement *userResult in allUsers) {
+        [users addObject:[FoursquareAPI _userFromNode:userResult]];
+	}
+    [userParser release];
+	return users;
+}
+
++ (NSArray *) usersFromRequestResponseXML:(NSString *) inString {
+	
+	NSError * err;
+	CXMLDocument *userParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
+	NSLog(@"error: %@", [err localizedDescription]);
+	
+	NSArray * allUsers;
+    NSMutableArray * users = [[NSMutableArray alloc] initWithCapacity:1];
+	
+	//get the groups
+	allUsers = [userParser nodesForXPath:@"//requests/user" error:nil];
     NSLog(@"allusers: %@", allUsers);
 	for (CXMLElement *userResult in allUsers) {
         [users addObject:[FoursquareAPI _userFromNode:userResult]];

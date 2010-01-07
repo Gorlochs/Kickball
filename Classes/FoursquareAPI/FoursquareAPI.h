@@ -82,6 +82,7 @@
 + (NSArray *) _checkinsFromNode:(CXMLNode *) inputNode;
 
 + (NSArray *) usersFromResponseXML:(NSString *) inString;
++ (NSArray *) usersFromRequestResponseXML:(NSString *) inString;
 + (NSArray *) friendsFromResponseXML:(NSString *) inString;
 + (NSDictionary *) venuesFromResponseXML:(NSString *) inString;
 + (FSUser *) loggedInUserFromResponseXML:(NSString *) inString; 

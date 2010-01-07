@@ -14,6 +14,7 @@
     IBOutlet UITextField *username;
     IBOutlet UITextField *password;
     IBOutlet UILabel *friendRequestCount;
+    NSArray *pendingFriendRequests;
 }
 
 - (IBAction) viewFriendRequests;
