@@ -9,7 +9,7 @@
 #import "ViewFriendRequestsViewController.h"
 #import "FoursquareAPI.h"
 #import "FSUser.h"
-
+#import "KBMessage.h"
 
 @implementation ViewFriendRequestsViewController
 
@@ -56,18 +56,41 @@
     }
     
     cell.textLabel.text = ((FSUser*)[pendingFriendRequests objectAtIndex:indexPath.row]).firstnameLastInitial;
-	
+	// TODO: create two buttons, accept and deny; set button.tag to help identify which button is touched
+    
     return cell;
 }
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
-	// [self.navigationController pushViewController:anotherViewController];
-	// [anotherViewController release];
+    [self startProgressBar:@"Approving user..."];
+    [[FoursquareAPI sharedInstance] approveFriendRequest:((FSUser*)[pendingFriendRequests objectAtIndex:indexPath.row]).userId withTarget:self andAction:@selector(friendRequestResponseReceived:withResponseString:)];
 }
 
+- (void)friendRequestResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+    NSLog(@"pending friend requests: %@", inString);
+    FSUser *user = [FoursquareAPI userFromResponseXML:inString];
+    [self stopProgressBar];
+    NSLog(@"approved user: %@", user);
+    
+    KBMessage *message = nil;
+    if (user) {
+        message = [[KBMessage alloc] initWithMember:@"Friend Request" andSubtitle:@"Approved!" andMessage:@"You now have a new buddy."];
+        int i = 0;
+        for (FSUser *u in pendingFriendRequests) {
+            if (user.userId == u.userId) {
+                [pendingFriendRequests removeObjectAtIndex:i];
+                [theTableView reloadData];
+                break;
+            }
+            i++;
+        }
+    } else {
+        message = [[KBMessage alloc] initWithMember:@"Friend Request" andSubtitle:@"Error!" andMessage:@"Something went wrong."];
+    }
+    [self displayPopupMessage:message];
+    [message release];
+}
 
 - (void)dealloc {
     [theTableView release];

@@ -12,9 +12,9 @@
 
 @interface ViewFriendRequestsViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource> {
     IBOutlet UITableView *theTableView;
-    NSArray *pendingFriendRequests;
+    NSMutableArray *pendingFriendRequests;
 }
 
-@property (nonatomic, retain) NSArray *pendingFriendRequests;
+@property (nonatomic, retain) NSMutableArray *pendingFriendRequests;
 
 @end

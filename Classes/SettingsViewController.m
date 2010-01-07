@@ -18,8 +18,11 @@
     username.text = [[FoursquareAPI sharedInstance] userName];
     password.text = [[FoursquareAPI sharedInstance] passWord];
     [super viewDidLoad];
-    
+}
+
+- (void) viewWillAppear:(BOOL)animated {
     [[FoursquareAPI sharedInstance] getPendingFriendRequests:self andAction:@selector(friendRequestResponseReceived:withResponseString:)];
+    [super viewWillAppear:animated];
 }
 
 - (void)friendRequestResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
@@ -36,7 +39,7 @@
 
 - (void) viewFriendRequests {
     ViewFriendRequestsViewController *friendRequestsController = [[ViewFriendRequestsViewController alloc] initWithNibName:@"ViewFriendRequestsViewController" bundle:nil];
-    friendRequestsController.pendingFriendRequests = [[NSArray alloc] initWithArray:pendingFriendRequests];
+    friendRequestsController.pendingFriendRequests = [[NSMutableArray alloc] initWithArray:pendingFriendRequests];
     [self.navigationController pushViewController:friendRequestsController animated:YES];
     [friendRequestsController release];
 }
