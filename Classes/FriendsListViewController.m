@@ -37,6 +37,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self addHeaderAndFooter:theTableView];
     NSData *recentCheckinsData=[[NSUserDefaults standardUserDefaults] dataForKey:@"recentCheckinsData"];
     NSData *todayCheckinsData=[[NSUserDefaults standardUserDefaults] dataForKey:@"todayCheckinsData"];
     NSData *yesterdayCheckinsData=[[NSUserDefaults standardUserDefaults] dataForKey:@"yesterdayCheckinsData"];

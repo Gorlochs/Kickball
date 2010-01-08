@@ -155,4 +155,12 @@
     [settingsController release];
 }
 
+- (void) addHeaderAndFooter:(UITableView*)tableView {
+    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 0)];
+    v.backgroundColor = [UIColor clearColor];
+    //[tableView setTableHeaderView:v];
+    [tableView setTableFooterView:v];
+    [v release];
+}
+
 @end

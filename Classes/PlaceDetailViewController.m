@@ -75,6 +75,9 @@
     twitterButton.selected = isTwitterOn;
     pingToggleButton.selected = isPingOn;
     
+    [self addHeaderAndFooter:theTableView];
+    theTableView.separatorColor = [UIColor blackColor];
+    
     [self startProgressBar:@"Retrieving venue details..."];
     [[FoursquareAPI sharedInstance] getVenue:venueId withTarget:self andAction:@selector(venueResponseReceived:withResponseString:)];
 }
@@ -91,6 +94,7 @@
         [self checkinToVenue];
     }
 }
+
 
 - (void) prepViewWithVenueInfo:(FSVenue*)venueToDisplay {
     MKCoordinateRegion region;
@@ -188,7 +192,7 @@
     } else if (section == 8) { // bottom button row
         return 1;
     } else {
-        return 1;
+        return 0;
     }
 }
 
@@ -224,6 +228,7 @@
     } else if (indexPath.section == 4) {
         return giftCell;
     } else if (indexPath.section == 5) {
+        mayorMapCell.backgroundColor = [UIColor whiteColor];
         return mayorMapCell;
     } else if (indexPath.section == 6) {
         cell.detailTextLabel.numberOfLines = 1;
@@ -252,6 +257,10 @@
     }
 	
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    [cell setBackgroundColor:[UIColor whiteColor]];  
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

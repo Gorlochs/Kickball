@@ -43,5 +43,6 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 - (void) displayOverlayNavigation;
 - (void) displayPopupMessage:(KBMessage*)message;
 - (IBAction) viewSettings;
+- (void) addHeaderAndFooter:(UITableView*)tableView;
 
 @end

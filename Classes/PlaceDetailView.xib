@@ -12,11 +12,12 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="62"/>
 			<integer value="113"/>
+			<integer value="62"/>
+			<integer value="8"/>
+			<integer value="14"/>
 			<integer value="142"/>
 			<integer value="127"/>
-			<integer value="8"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -106,7 +107,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{0, 121}, {320, 340}}</string>
 						<reference key="NSSuperview" ref="40485673"/>
-						<reference key="IBUIBackgroundColor" ref="484015391"/>
+						<reference key="IBUIBackgroundColor" ref="147622804"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -676,7 +677,7 @@
 				<reference key="IBUIContentView" ref="767027782"/>
 			</object>
 			<object class="IBUITableViewCell" id="963809274">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -719,6 +720,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{218, 1}, {102, 59}}</string>
 								<reference key="NSSuperview" ref="578799204"/>
+								<reference key="IBUIBackgroundColor" ref="592030818"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -742,6 +744,7 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 62}</string>
+				<reference key="NSSuperview"/>
 				<reference key="IBUIBackgroundColor" ref="144680521"/>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<int key="IBUISelectionStyle">2</int>
@@ -894,7 +897,7 @@
 							<object class="IBUIView" id="777940844">
 								<reference key="NSNextResponder" ref="193095546"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{0, -1}, {320, 44}}</string>
+								<string key="NSFrameSize">{320, 44}</string>
 								<reference key="NSSuperview" ref="193095546"/>
 								<reference key="IBUIBackgroundColor" ref="147622804"/>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -1747,9 +1750,9 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{694, 401}, {320, 62}}</string>
+					<string>{{609, 430}, {320, 62}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{272, 679}, {320, 44}}</string>
+					<string>{{272, 680}, {320, 44}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1766,7 +1769,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{634, 612}, {320, 44}}</string>
+					<string>{{466, 580}, {320, 44}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{422, 473}, {320, 44}}</string>
@@ -1820,10 +1823,12 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>backOneView</string>
 							<string>goToHomeView</string>
+							<string>viewSettings</string>
 							<string>viewUserProfile</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>

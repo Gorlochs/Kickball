@@ -235,6 +235,8 @@
 		6A39EB5C1096584A006F76C3 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A39EB5B1096584A006F76C3 /* libsqlite3.dylib */; };
 		6A39EB6110965868006F76C3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A39EB6010965868006F76C3 /* CoreLocation.framework */; };
 		6A39EB6310965868006F76C3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A39EB6210965868006F76C3 /* SystemConfiguration.framework */; };
+		6A3DF73010F6E0ED008BD8AA /* KBTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A3DF72E10F6E0ED008BD8AA /* KBTextViewController.m */; };
+		6A3DF73110F6E0ED008BD8AA /* KBTextViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A3DF72F10F6E0ED008BD8AA /* KBTextViewController.xib */; };
 		6A402A9F10B755B200D9BCEB /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A402A8C10B755B200D9BCEB /* NSObject+SBJSON.m */; };
 		6A402AA010B755B200D9BCEB /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A402A8E10B755B200D9BCEB /* NSString+SBJSON.m */; };
 		6A402AA110B755B200D9BCEB /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A402A9010B755B200D9BCEB /* SBJSON.m */; };
@@ -649,6 +651,9 @@
 		6A39EB5B1096584A006F76C3 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = /usr/lib/libsqlite3.dylib; sourceTree = "<absolute>"; };
 		6A39EB6010965868006F76C3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = /System/Library/Frameworks/CoreLocation.framework; sourceTree = "<absolute>"; };
 		6A39EB6210965868006F76C3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = /System/Library/Frameworks/SystemConfiguration.framework; sourceTree = "<absolute>"; };
+		6A3DF72D10F6E0ED008BD8AA /* KBTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBTextViewController.h; sourceTree = "<group>"; };
+		6A3DF72E10F6E0ED008BD8AA /* KBTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTextViewController.m; sourceTree = "<group>"; };
+		6A3DF72F10F6E0ED008BD8AA /* KBTextViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.xib; path = KBTextViewController.xib; sourceTree = "<group>"; };
 		6A402A8A10B755B200D9BCEB /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
 		6A402A8B10B755B200D9BCEB /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
 		6A402A8C10B755B200D9BCEB /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
@@ -792,7 +797,7 @@
 		6AF794AD10CCADFF00E77D49 /* FriendRequestsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendRequestsViewController.xib; sourceTree = "<group>"; };
 		6AF794BD10CCAF4B00E77D49 /* ViewFriendRequestsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewFriendRequestsViewController.h; sourceTree = "<group>"; };
 		6AF794BE10CCAF4B00E77D49 /* ViewFriendRequestsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewFriendRequestsViewController.m; sourceTree = "<group>"; };
-		6AF794BF10CCAF4B00E77D49 /* ViewFriendRequestsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.xib; path = ViewFriendRequestsViewController.xib; sourceTree = "<group>"; };
+		6AF794BF10CCAF4B00E77D49 /* ViewFriendRequestsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewFriendRequestsViewController.xib; sourceTree = "<group>"; };
 		6AF96710109AA32700EF665D /* ProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfileView.xib; path = Classes/ProfileView.xib; sourceTree = "<group>"; };
 		6AFC1D9510BA42A9006B7E5F /* ProgressView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProgressView.xib; sourceTree = "<group>"; };
 		6AFC1D9810BA4320006B7E5F /* ProgressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressViewController.h; sourceTree = "<group>"; };
@@ -1427,6 +1432,9 @@
 				6A79D0D610E5E682009082E5 /* PopupMessageView.m */,
 				6A79D0FC10E68D1A009082E5 /* KBMessage.h */,
 				6A79D0FD10E68D1A009082E5 /* KBMessage.m */,
+				6A3DF72D10F6E0ED008BD8AA /* KBTextViewController.h */,
+				6A3DF72E10F6E0ED008BD8AA /* KBTextViewController.m */,
+				6A3DF72F10F6E0ED008BD8AA /* KBTextViewController.xib */,
 			);
 			name = General;
 			sourceTree = "<group>";
@@ -1944,6 +1952,8 @@
 				6A223A5010E46CE1003550F2 /* CreateTipTodoViewController.xib in Sources */,
 				6A79D0D710E5E682009082E5 /* PopupMessageView.m in Sources */,
 				6A79D0FE10E68D1A009082E5 /* KBMessage.m in Sources */,
+				6A3DF73010F6E0ED008BD8AA /* KBTextViewController.m in Sources */,
+				6A3DF73110F6E0ED008BD8AA /* KBTextViewController.xib in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

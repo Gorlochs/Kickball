@@ -40,7 +40,8 @@
                                                withTarget:self 
                                                 andAction:@selector(venuesResponseReceived:withResponseString:)
      ];
-                                                
+    
+    [self addHeaderAndFooter:theTableView];
     
 //    [self startProgressBar:@"Retrieving nearby venues..."];
 //    self.locationManager = [[[CLLocationManager alloc] init] autorelease];

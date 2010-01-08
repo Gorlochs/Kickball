@@ -38,6 +38,8 @@
     location.text = @"";
     lastCheckinAddress.text = @"";
     
+    [self addHeaderAndFooter:theTableView];
+    
     if(![[FoursquareAPI sharedInstance] isAuthenticated]){
 		//run sheet to log in.
 		NSLog(@"Foursquare is not authenticated");

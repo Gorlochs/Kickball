@@ -61,7 +61,6 @@
     return cell;
 }
 
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self startProgressBar:@"Approving user..."];
     [[FoursquareAPI sharedInstance] approveFriendRequest:((FSUser*)[pendingFriendRequests objectAtIndex:indexPath.row]).userId withTarget:self andAction:@selector(friendRequestResponseReceived:withResponseString:)];
@@ -79,6 +78,8 @@
         int i = 0;
         for (FSUser *u in pendingFriendRequests) {
             if (user.userId == u.userId) {
+                // need a better isEqual method for FSUser so I can use removeObject:
+                
                 [pendingFriendRequests removeObjectAtIndex:i];
                 [theTableView reloadData];
                 break;
@@ -92,7 +93,13 @@
     [message release];
 }
 
+- (void) denyFriendRequest:(NSInteger)row {
+    [self startProgressBar:@"Denying user..."];
+    [[FoursquareAPI sharedInstance] denyFriendRequest:((FSUser*)[pendingFriendRequests objectAtIndex:row]).userId withTarget:self andAction:@selector(friendRequestResponseReceived:withResponseString:)];
+}
+
 - (void)dealloc {
+    [pendingFriendRequests release];
     [theTableView release];
     [super dealloc];
 }
