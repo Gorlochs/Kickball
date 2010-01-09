@@ -15,7 +15,6 @@
 #import "FSBadge.h"
 #import "FSCheckin.h"
 #import "FSTip.h"
-#import "FSCity.h"
 #import "FSScoring.h"
 #import "FSScore.h"
 #import "FSFunctionRequest.h"

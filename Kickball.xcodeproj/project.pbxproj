@@ -317,7 +317,6 @@
 		6AE4B93810D01E2F00C910A1 /* icon57x5702.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AE4B93710D01E2F00C910A1 /* icon57x5702.png */; };
 		6AE61217109AB04C008ABF79 /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AF96710109AA32700EF665D /* ProfileView.xib */; };
 		6AF26EE210F19F1F002A78B8 /* button_select.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AF26EE110F19F1F002A78B8 /* button_select.png */; };
-		6AF26EFB10F1A49E002A78B8 /* FSCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5566949A10AA535200DF19D5 /* FSCity.m */; };
 		6AF26F9F10F2F348002A78B8 /* profilePings02.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AF26F9A10F2F348002A78B8 /* profilePings02.png */; };
 		6AF26FA010F2F348002A78B8 /* profilePings03.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AF26F9B10F2F348002A78B8 /* profilePings03.png */; };
 		6AF26FA110F2F348002A78B8 /* profilePings01.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AF26F9C10F2F348002A78B8 /* profilePings01.png */; };
@@ -482,8 +481,6 @@
 		5550EE1910B4F9D00065C925 /* FSScoring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSScoring.m; sourceTree = "<group>"; };
 		5550EE1B10B4FA3A0065C925 /* FSScore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSScore.h; sourceTree = "<group>"; };
 		5550EE1C10B4FA3A0065C925 /* FSScore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSScore.m; sourceTree = "<group>"; };
-		5566949910AA535200DF19D5 /* FSCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCity.h; sourceTree = "<group>"; };
-		5566949A10AA535200DF19D5 /* FSCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCity.m; sourceTree = "<group>"; };
 		55A8DD2D10CCD07300D3538A /* FSFunctionRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSFunctionRequest.h; sourceTree = "<group>"; };
 		55A8DD2E10CCD07300D3538A /* FSFunctionRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSFunctionRequest.m; sourceTree = "<group>"; };
 		6A044CA9109545200063FC33 /* FriendsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsListViewController.h; sourceTree = "<group>"; };
@@ -958,8 +955,6 @@
 				553C510710A1BD5000A74641 /* FSVenue.m */,
 				552AFD8010A270ED009300E2 /* FSTip.h */,
 				552AFD8110A270ED009300E2 /* FSTip.m */,
-				5566949910AA535200DF19D5 /* FSCity.h */,
-				5566949A10AA535200DF19D5 /* FSCity.m */,
 				5550EE1810B4F9D00065C925 /* FSScoring.h */,
 				5550EE1910B4F9D00065C925 /* FSScoring.m */,
 				5550EE1B10B4FA3A0065C925 /* FSScore.h */,
@@ -1841,7 +1836,6 @@
 				6A8EEEFC10A14F0F00DC630C /* MGTwitterStatusesParser.m in Sources */,
 				6A8EEEFD10A14F0F00DC630C /* MGTwitterUsersParser.m in Sources */,
 				6A8EEEFE10A14F0F00DC630C /* MGTwitterMessagesParser.m in Sources */,
-				6AF26EFB10F1A49E002A78B8 /* FSCity.m in Sources */,
 				6A8EEEFF10A14F0F00DC630C /* MGTwitterMiscParser.m in Sources */,
 				6A8EEF0610A14F0F00DC630C /* NSString+UUID.m in Sources */,
 				6A8EEF0710A14F0F00DC630C /* NSData+Base64.m in Sources */,

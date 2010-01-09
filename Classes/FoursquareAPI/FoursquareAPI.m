@@ -1010,24 +1010,24 @@ static FoursquareAPI *sharedInstance = nil;
                     }
                 }
             }
-		} else if([key isEqualToString:@"city"]){
-			NSArray * userCityXML = [usrAttr nodesForXPath:@"/city" error:nil];
-			for (CXMLElement *userCityNode in userCityXML) {
-				FSCity * userCity = [[FSCity alloc] init];
-				int counter;
-				for(counter = 0; counter < [userCityNode childCount]; counter++) {
-					NSString * key = [[userCityNode childAtIndex:counter] name];
-					NSString * value = [[userCityNode childAtIndex:counter] stringValue];
-					if([key isEqualToString:@"id"]){
-						userCity.cityid = value;
-					} else if([key isEqualToString:@"name"]){
-						userCity.cityname = value;
-					} else if([key isEqualToString:@"timezone"]){
-						userCity.citytimezone = value;
-					}
-				}
-				loggedInUser.userCity = userCity;
-			}
+//		} else if([key isEqualToString:@"city"]){
+//			NSArray * userCityXML = [usrAttr nodesForXPath:@"/city" error:nil];
+//			for (CXMLElement *userCityNode in userCityXML) {
+//				FSCity * userCity = [[FSCity alloc] init];
+//				int counter;
+//				for(counter = 0; counter < [userCityNode childCount]; counter++) {
+//					NSString * key = [[userCityNode childAtIndex:counter] name];
+//					NSString * value = [[userCityNode childAtIndex:counter] stringValue];
+//					if([key isEqualToString:@"id"]){
+//						userCity.cityid = value;
+//					} else if([key isEqualToString:@"name"]){
+//						userCity.cityname = value;
+//					} else if([key isEqualToString:@"timezone"]){
+//						userCity.citytimezone = value;
+//					}
+//				}
+//				loggedInUser.userCity = userCity;
+//			}
 		} else if([key compare:@"mayor"] == 0){
 			NSArray * userMayorshipXML = [usrAttr nodesForXPath:@"//mayor" error:nil];
 			if([userMayorshipXML count] > 0){

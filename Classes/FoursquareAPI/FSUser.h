@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FSCity.h"
 
 typedef enum {
 	FSStatusFriend = 0,
@@ -30,7 +29,6 @@ typedef enum {
     NSString * facebook;
 	NSArray * badges;
 	NSArray * mayorOf;
-    FSCity * userCity;
 	BOOL isFriend;
     FSFriendStatus friendStatus;
     FSCheckin * checkin;
@@ -59,7 +57,6 @@ typedef enum {
 @property (nonatomic, retain) NSString * facebook;
 @property (nonatomic, retain) NSArray * badges;
 @property (nonatomic, retain) NSArray * mayorOf;
-@property (nonatomic, retain) FSCity * userCity;
 @property (nonatomic, retain) FSCheckin * checkin;
 @property (nonatomic) BOOL isFriend;
 @property (nonatomic) BOOL isPingOn;

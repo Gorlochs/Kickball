@@ -11,7 +11,7 @@
 
 @implementation FSUser
 
-@synthesize	userId, firstname, lastname, photo, gender, badges, isFriend, firstnameLastInitial, userCity, mayorOf;
+@synthesize	userId, firstname, lastname, photo, gender, badges, isFriend, firstnameLastInitial, mayorOf;
 @synthesize twitter, icon, checkin, friendStatus, isPingOn, sendToTwitter, sendToFacebook, sendsPingsToSignedInUser, email, phone, facebook;
 
 - (id)init {
@@ -30,7 +30,7 @@
 }
 
 - (NSString*) description {
-    return [NSString stringWithFormat:@"(USER : userId=%@ ; firstname=%@ ; userCity=%@ ; photo=%@ ; pings=%d ; sendtotwitter=%d)", userId, firstname, userCity, photo, isPingOn, sendToTwitter];
+    return [NSString stringWithFormat:@"(USER : userId=%@ ; firstname=%@ ; photo=%@ ; pings=%d ; sendtotwitter=%d)", userId, firstname, photo, isPingOn, sendToTwitter];
 }
 
 - (void) encodeWithCoder: (NSCoder *)coder { 
@@ -40,8 +40,7 @@
     [coder encodeObject: photo forKey:@"photo"]; 
     [coder encodeObject: gender forKey:@"gender"]; 
     [coder encodeObject: badges forKey:@"badges"]; 
-    [coder encodeBool: isFriend forKey:@"isFriend"]; 
-    [coder encodeObject: userCity forKey:@"userCity"]; 
+    [coder encodeBool: isFriend forKey:@"isFriend"];
     [coder encodeObject: mayorOf forKey:@"mayorOf"]; 
     [coder encodeObject: twitter forKey:@"twitter"]; 
     [coder encodeObject: icon forKey:@"icon"]; 
@@ -64,8 +63,7 @@
         [self setPhoto: [coder decodeObjectForKey:@"photo"]]; 
         [self setGender: [coder decodeObjectForKey:@"gender"]]; 
         [self setBadges: [coder decodeObjectForKey:@"badges"]]; 
-        [self setIsFriend: [coder decodeBoolForKey:@"isFriend"]]; 
-        [self setUserCity: [coder decodeObjectForKey:@"userCity"]]; 
+        [self setIsFriend: [coder decodeBoolForKey:@"isFriend"]];
         [self setMayorOf: [coder decodeObjectForKey:@"mayorOf"]]; 
         [self setTwitter: [coder decodeObjectForKey:@"twitter"]]; 
         [self setIcon: [coder decodeObjectForKey:@"icon"]]; 

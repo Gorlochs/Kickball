@@ -254,6 +254,16 @@
 			6AFE1CDE10F7F94C005D1FD8 /* PBXTextBookmark */ = 6AFE1CDE10F7F94C005D1FD8 /* PBXTextBookmark */;
 			6AFE1CE210F7F9AF005D1FD8 /* PBXTextBookmark */ = 6AFE1CE210F7F9AF005D1FD8 /* PBXTextBookmark */;
 			6AFE1CE410F7F9D8005D1FD8 /* PBXTextBookmark */ = 6AFE1CE410F7F9D8005D1FD8 /* PBXTextBookmark */;
+			6AFE1CE810F80002005D1FD8 /* PBXTextBookmark */ = 6AFE1CE810F80002005D1FD8 /* PBXTextBookmark */;
+			6AFE1CE910F80002005D1FD8 /* PBXTextBookmark */ = 6AFE1CE910F80002005D1FD8 /* PBXTextBookmark */;
+			6AFE1CEA10F80002005D1FD8 /* PBXTextBookmark */ = 6AFE1CEA10F80002005D1FD8 /* PBXTextBookmark */;
+			6AFE1CEB10F80002005D1FD8 /* PBXTextBookmark */ = 6AFE1CEB10F80002005D1FD8 /* PBXTextBookmark */;
+			6AFE1CEC10F80002005D1FD8 /* PBXTextBookmark */ = 6AFE1CEC10F80002005D1FD8 /* PBXTextBookmark */;
+			6AFE1CF110F8001A005D1FD8 /* PBXTextBookmark */ = 6AFE1CF110F8001A005D1FD8 /* PBXTextBookmark */;
+			6AFE1CF410F8001C005D1FD8 /* PBXTextBookmark */ = 6AFE1CF410F8001C005D1FD8 /* PBXTextBookmark */;
+			6AFE1CF510F8001C005D1FD8 /* PBXTextBookmark */ = 6AFE1CF510F8001C005D1FD8 /* PBXTextBookmark */;
+			6AFE1CF610F8001C005D1FD8 /* PBXTextBookmark */ = 6AFE1CF610F8001C005D1FD8 /* PBXTextBookmark */;
+			6AFE1CF710F8001C005D1FD8 /* PBXTextBookmark */ = 6AFE1CF710F8001C005D1FD8 /* PBXTextBookmark */;
 			6AFF23AC10A22BEA00CD30E5 = 6AFF23AC10A22BEA00CD30E5 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 6A044CA7109544D50063FC33 /* Source Control */;
@@ -304,17 +314,17 @@
 	};
 	553C50FE10A1BD5000A74641 /* FoursquareAPI.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {2133, 1470}}";
-			sepNavSelRange = "{4691, 0}";
-			sepNavVisRange = "{974, 4326}";
+			sepNavIntBoundsRect = "{{0, 0}, {922, 1800}}";
+			sepNavSelRange = "{353, 0}";
+			sepNavVisRange = "{145, 470}";
 		};
 	};
 	553C50FF10A1BD5000A74641 /* FoursquareAPI.m */ = {
 		uiCtxt = {
-			sepNavFolds = "{\n    c =     (\n                {\n            l = \"(CXMLNode *)inputNode\";\n            r = \"{38938, 25}\";\n            s = 1;\n        }\n    );\n    r = \"{0, 56381}\";\n    s = 0;\n}";
-			sepNavIntBoundsRect = "{{0, 0}, {1671, 17535}}";
-			sepNavSelRange = "{14352, 92}";
-			sepNavVisRange = "{13057, 4591}";
+			sepNavFolds = "{\n    c =     (\n                {\n            l = \"(CXMLNode *)inputNode\";\n            r = \"{38938, 25}\";\n            s = 1;\n        }\n    );\n    r = \"{0, 56417}\";\n    s = 0;\n}";
+			sepNavIntBoundsRect = "{{0, 0}, {908, 18870}}";
+			sepNavSelRange = "{47002, 6}";
+			sepNavVisRange = "{46769, 961}";
 			sepNavWindowFrame = "{{15, 94}, {1362, 929}}";
 		};
 	};
@@ -348,16 +358,16 @@
 	};
 	553C510410A1BD5000A74641 /* FSUser.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1309, 1185}}";
-			sepNavSelRange = "{453, 0}";
-			sepNavVisRange = "{26, 1518}";
+			sepNavIntBoundsRect = "{{0, 0}, {1309, 1125}}";
+			sepNavSelRange = "{172, 0}";
+			sepNavVisRange = "{29, 1561}";
 		};
 	};
 	553C510510A1BD5000A74641 /* FSUser.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1356, 1290}}";
-			sepNavSelRange = "{3095, 0}";
-			sepNavVisRange = "{732, 2941}";
+			sepNavIntBoundsRect = "{{0, 0}, {1469, 1350}}";
+			sepNavSelRange = "{919, 0}";
+			sepNavVisRange = "{709, 460}";
 		};
 	};
 	553C510610A1BD5000A74641 /* FSVenue.h */ = {
@@ -508,13 +518,25 @@
 		};
 	};
 	5566949910AA535200DF19D5 /* FSCity.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.h;
+		name = FSCity.h;
+		path = /Users/shawnbernard/Documents/projects/Kickball/Classes/FoursquareAPI/FSCity.h;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1309, 866}}";
-			sepNavSelRange = "{210, 0}";
-			sepNavVisRange = "{0, 444}";
+			sepNavSelRange = "{218, 0}";
+			sepNavVisRange = "{0, 452}";
 		};
 	};
 	5566949A10AA535200DF19D5 /* FSCity.m */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.objc;
+		name = FSCity.m;
+		path = /Users/shawnbernard/Documents/projects/Kickball/Classes/FoursquareAPI/FSCity.m;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1309, 866}}";
 			sepNavSelRange = "{563, 0}";
@@ -1791,9 +1813,9 @@
 	};
 	6AC7E92F10994FD000776993 /* PlaceDetailViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1309, 9840}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1309, 10050}}";
 			sepNavSelRange = "{6431, 0}";
-			sepNavVisRange = "{7317, 2397}";
+			sepNavVisRange = "{5368, 2368}";
 			sepNavWindowFrame = "{{15, 100}, {1055, 923}}";
 		};
 	};
@@ -1962,7 +1984,7 @@
 		fRef = 553C510410A1BD5000A74641 /* FSUser.h */;
 		name = "FSUser.h: 24";
 		rLen = 0;
-		rLoc = 453;
+		rLoc = 434;
 		rType = 0;
 		vrLen = 1518;
 		vrLoc = 26;
@@ -2002,7 +2024,7 @@
 		fRef = 553C510510A1BD5000A74641 /* FSUser.m */;
 		name = "FSUser.m: 73";
 		rLen = 0;
-		rLoc = 3095;
+		rLoc = 2934;
 		rType = 0;
 		vrLen = 2941;
 		vrLoc = 732;
@@ -2417,6 +2439,100 @@
 		rType = 0;
 		vrLen = 2397;
 		vrLoc = 7317;
+	};
+	6AFE1CE810F80002005D1FD8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 553C510410A1BD5000A74641 /* FSUser.h */;
+		name = "FSUser.h: 59";
+		rLen = 0;
+		rLoc = 1501;
+		rType = 0;
+		vrLen = 773;
+		vrLoc = 1159;
+	};
+	6AFE1CE910F80002005D1FD8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 553C510510A1BD5000A74641 /* FSUser.m */;
+		name = "FSUser.m: 66";
+		rLen = 0;
+		rLoc = 2620;
+		rType = 0;
+		vrLen = 1150;
+		vrLoc = 2386;
+	};
+	6AFE1CEA10F80002005D1FD8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 553C50FE10A1BD5000A74641 /* FoursquareAPI.h */;
+		name = "FoursquareAPI.h: 17";
+		rLen = 0;
+		rLoc = 353;
+		rType = 0;
+		vrLen = 470;
+		vrLoc = 145;
+	};
+	6AFE1CEB10F80002005D1FD8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 553C50FF10A1BD5000A74641 /* FoursquareAPI.m */;
+		rLen = 6;
+		rLoc = 47026;
+		rType = 0;
+	};
+	6AFE1CEC10F80002005D1FD8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 553C50FF10A1BD5000A74641 /* FoursquareAPI.m */;
+		name = "FoursquareAPI.m: 1016";
+		rLen = 6;
+		rLoc = 47026;
+		rType = 0;
+		vrLen = 924;
+		vrLoc = 46793;
+	};
+	6AFE1CF110F8001A005D1FD8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 553C50FF10A1BD5000A74641 /* FoursquareAPI.m */;
+		name = "FoursquareAPI.m: 1016";
+		rLen = 6;
+		rLoc = 47026;
+		rType = 0;
+		vrLen = 961;
+		vrLoc = 46793;
+	};
+	6AFE1CF410F8001C005D1FD8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6AC7E92F10994FD000776993 /* PlaceDetailViewController.m */;
+		name = "PlaceDetailViewController.m: 206";
+		rLen = 0;
+		rLoc = 6431;
+		rType = 0;
+		vrLen = 2368;
+		vrLoc = 5368;
+	};
+	6AFE1CF510F8001C005D1FD8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 553C50FF10A1BD5000A74641 /* FoursquareAPI.m */;
+		name = "FoursquareAPI.m: 1013";
+		rLen = 771;
+		rLoc = 46825;
+		rType = 0;
+		vrLen = 3152;
+		vrLoc = 45690;
+	};
+	6AFE1CF610F8001C005D1FD8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 553C510410A1BD5000A74641 /* FSUser.h */;
+		rLen = 0;
+		rLoc = 172;
+		rType = 0;
+	};
+	6AFE1CF710F8001C005D1FD8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 553C510410A1BD5000A74641 /* FSUser.h */;
+		name = "FSUser.h: 9";
+		rLen = 0;
+		rLoc = 172;
+		rType = 0;
+		vrLen = 1561;
+		vrLoc = 29;
 	};
 	6AFF23AC10A22BEA00CD30E5 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
