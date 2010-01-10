@@ -37,6 +37,7 @@
     name.text = @"";
     location.text = @"";
     lastCheckinAddress.text = @"";
+    isDisplayingTwitter = NO;
     
     [self addHeaderAndFooter:theTableView];
     
@@ -322,14 +323,17 @@
         title = @"Yes, open Mail app";
         [self displayActionSheet:title];
     } else if (segmentedControl.selectedSegmentIndex == 3) {
+        isDisplayingTwitter = !isDisplayingTwitter;
         // display twitter table
         
         // TODO: figure out the best way to deal with the UITableViewDelegate methods with this table
         //       I don't want to use the ones in this controller (too big a pain in the ass)
         //       I guess I can just create a new controller and use that.
-        MGTwitterEngine *twitterEngine = [[MGTwitterEngine alloc] initWithDelegate:self];
-        NSString *twitters = [twitterEngine getUserTimelineFor:user.twitter sinceID:0 startingAtPage:0 count:20];
-        NSLog(@"twitter: %@", twitters);
+        if (isDisplayingTwitter) {
+            MGTwitterEngine *twitterEngine = [[MGTwitterEngine alloc] initWithDelegate:self];
+            NSString *twitters = [twitterEngine getUserTimelineFor:user.twitter sinceID:0 startingAtPage:0 count:20];
+            NSLog(@"twitter: %@", twitters);
+        }
     } else if (segmentedControl.selectedSegmentIndex == 4) {
         title = @"Yes, open Facebook app";
         [self displayActionSheet:title];

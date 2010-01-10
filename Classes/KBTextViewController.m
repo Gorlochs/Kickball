@@ -7,7 +7,8 @@
 //
 
 #import "KBTextViewController.h"
-
+#import "FoursquareAPI.h"
+#import "KBMessage.h"
 
 @implementation KBTextViewController
 
@@ -18,8 +19,35 @@
 }
 
 - (void) cancelView {
-//    [self.parentViewController.
     [self dismissModalViewControllerAnimated:YES];
+}
+
+- (void) shout {
+    if ([textView.text length] > 0) {
+        [[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:nil 
+                                                      andShout:textView.text 
+                                                       offGrid:NO
+                                                     toTwitter:NO
+                                                    withTarget:self 
+                                                     andAction:@selector(shoutResponseReceived:withResponseString:)];
+    } else {
+        NSLog(@"no text in shout field");
+    }
+}
+
+- (void)shoutResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+    NSLog(@"instring: %@", inString);
+	NSArray *shoutCheckins = [FoursquareAPI checkinsFromResponseXML:inString];
+    NSLog(@"shoutCheckins: %@", shoutCheckins);
+    
+    // TODO: confirm that the shout was sent?
+//    KBMessage *msg = [[KBMessage alloc] initWithMember:@"Kickball Notification" andSubtitle:@"Your shout was sent" andMessage:@"Thank you."];
+//    [self displayPopupMessage:msg];
+//    [msg release];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"shoutSent"
+                                                        object:nil
+                                                      userInfo:nil];
+    [self cancelView];
 }
 
 - (void)didReceiveMemoryWarning {

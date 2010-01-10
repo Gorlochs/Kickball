@@ -11,6 +11,7 @@
 #import "PopupMessageView.h"
 #import "FSUser.h"
 #import "KBMessage.h"
+#import "KBTextViewController.h"
 
 static const CGFloat KEYBOARD_ANIMATION_DURATION = 0.3;
 static const CGFloat MINIMUM_SCROLL_FRACTION = 0.2;
@@ -25,11 +26,14 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     ProgressViewController *progressViewController;
     LoginViewModalController *loginViewModal;
     PopupMessageView *popupView;
+    KBTextViewController *textViewController;
+    NSString *textViewReturnValue;
     
     NSTimer *touchTimer;
 }
 
 @property (nonatomic, retain) LoginViewModalController *loginViewModal;
+@property (nonatomic, retain) NSString *textViewReturnValue;
 
 - (IBAction) backOneView;
 - (IBAction) viewUserProfile;
@@ -44,5 +48,6 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 - (void) displayPopupMessage:(KBMessage*)message;
 - (IBAction) viewSettings;
 - (void) addHeaderAndFooter:(UITableView*)tableView;
+- (IBAction) displayTextView;
 
 @end

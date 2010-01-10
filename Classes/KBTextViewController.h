@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class KBBaseViewController;
 
 @interface KBTextViewController : UIViewController <UITextViewDelegate> {
     IBOutlet UITextView *textView;
 }
 
+- (IBAction) shout;
 - (IBAction) cancelView;
 
 @end

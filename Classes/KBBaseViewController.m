@@ -17,6 +17,7 @@
 @implementation KBBaseViewController
 
 @synthesize loginViewModal;
+@synthesize textViewReturnValue;
 
 //- (void) viewWillAppear:(BOOL)animated {
 //    signedInUserIcon.hidden = YES;
@@ -35,6 +36,14 @@
 //        signedInUserIcon.layer.masksToBounds = YES;
 //        signedInUserIcon.layer.cornerRadius = 4.0;
     }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(displayShoutMessage:) name:@"shoutSent" object:nil];
+}
+
+- (void) displayShoutMessage:(NSNotification *)inNotification {
+    KBMessage *msg = [[KBMessage alloc] initWithMember:@"Kickball Notification" andSubtitle:@"Your shout was sent" andMessage:@"Thank you."];
+    [self displayPopupMessage:msg];
+    [msg release];
 }
 
 - (void) touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event {
@@ -161,6 +170,11 @@
     //[tableView setTableHeaderView:v];
     [tableView setTableFooterView:v];
     [v release];
+}
+
+- (void) displayTextView {
+    textViewController = [[KBTextViewController alloc] initWithNibName:@"KBTextViewController" bundle:nil];
+    [self presentModalViewController:textViewController animated:YES];
 }
 
 @end
