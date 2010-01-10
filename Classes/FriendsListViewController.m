@@ -436,7 +436,10 @@
         } else {
             [yesterdayCheckins addObject:checkin];
         }
-        [userIcons setObject:[[Utilities sharedInstance] getCachedImage:checkin.user.photo] forKey:checkin.user.userId];
+        // create dictionary of icons to help speed up the scrolling
+        if (checkin.user && checkin.user.photo && checkin.user.userId) {
+            [userIcons setObject:[[Utilities sharedInstance] getCachedImage:checkin.user.photo] forKey:checkin.user.userId];
+        }
     }
     NSLog(@"all checkins: %d", [checkins count]);
     NSLog(@"recent checkins: %d", [recentCheckins count]);
