@@ -109,12 +109,17 @@ static Utilities *sharedInstance = nil;
     {
         NSLog(@"pulling image from cache: %@", filename);
         image = [UIImage imageWithContentsOfFile: uniquePath]; // this is the cached image
-    }
-    else
-    {
+    } else {
         // get a new one
-        [self cacheImage: imageURLString];
-        image = [UIImage imageWithContentsOfFile: uniquePath];
+        if ([imageURLString rangeOfString: @".gif" options: NSCaseInsensitiveSearch].location != NSNotFound) {
+            // this sucks
+            NSData *data = [[NSData alloc] initWithContentsOfURL: imageURL];
+            image = [[UIImage alloc] initWithData: data];
+            [data release];
+        } else {
+            [self cacheImage: imageURLString];
+            image = [UIImage imageWithContentsOfFile: uniquePath];
+        }
     }
     
     return image;
