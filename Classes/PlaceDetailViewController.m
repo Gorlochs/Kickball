@@ -56,6 +56,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(displayTodoTipMessage:) name:@"todoTipSent" object:nil];
+    
     // TODO: need a way to persist these? What is the business logic for displaying each cell?
     isUserCheckedIn = NO;
     
@@ -80,6 +82,12 @@
     
     [self startProgressBar:@"Retrieving venue details..."];
     [[FoursquareAPI sharedInstance] getVenue:venueId withTarget:self andAction:@selector(venueResponseReceived:withResponseString:)];
+}
+
+- (void) displayTodoTipMessage:(NSNotification *)inNotification {
+    KBMessage *msg = [[KBMessage alloc] initWithMember:@"Kickball Notification" andSubtitle:@"Your todo/tip was sent" andMessage:@"Thank you."];
+    [self displayPopupMessage:msg];
+    [msg release];
 }
 
 - (void)venueResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {

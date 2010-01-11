@@ -10,8 +10,9 @@
 
 static Utilities *sharedInstance = nil;
 
-#define TMP NSTemporaryDirectory()
-
+//#define TMP NSTemporaryDirectory()
+//#define TMP NSCachesDirectory
+#define TMP NSHomeDirectory()
 
 @implementation Utilities
 

@@ -52,6 +52,9 @@
     [self stopProgressBar];
     if (tipId != nil) {
         // present a thank you message
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"todoTipSent"
+                                                            object:nil
+                                                          userInfo:nil];
         [self dismissModalViewControllerAnimated:YES];
     } else {
         //sorry

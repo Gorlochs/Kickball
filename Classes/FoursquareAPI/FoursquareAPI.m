@@ -965,7 +965,7 @@ static FoursquareAPI *sharedInstance = nil;
 			loggedInUser.userId = value;
 		} else if([key isEqualToString:@"photo"]){
 			loggedInUser.photo = value;
-            [[Utilities sharedInstance] cacheImage:loggedInUser.photo];
+            //[[Utilities sharedInstance] cacheImage:loggedInUser.photo];
 		} else if([key isEqualToString:@"firstname"]){
 			loggedInUser.firstname = value;
 		} else if([key isEqualToString:@"lastname"]){
