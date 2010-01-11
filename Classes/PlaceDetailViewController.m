@@ -446,6 +446,14 @@
         specialsButton.hidden = NO;
     }
     [self stopProgressBar];
+    
+    NSString *checkinText = @"";
+    for (FSScore *score in ci.scoring.scores) {
+        checkinText = [checkinText stringByAppendingString:[NSString stringWithFormat:@"+%d %@ \n",     score.points, score.message]];
+    }
+    KBMessage *message = [[KBMessage alloc] initWithMember:@"Check-in" andSubtitle:@"Successful!" andMessage:checkinText];
+    [self displayPopupMessage:message];
+    [message release];
 }
 
 - (void) togglePing {
