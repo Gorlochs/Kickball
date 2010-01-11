@@ -13,6 +13,7 @@
 #import "PlaceDetailViewController.h"
 #import "MGTwitterEngine.h"
 #import "Utilities.h"
+#import "ProfileTwitterViewController.h"
 
 #define BADGES_PER_ROW 5
 
@@ -326,6 +327,7 @@
         isDisplayingTwitter = !isDisplayingTwitter;
         // display twitter table
         
+        [self startProgressBar:@"Retrieving tweets..."];
         // TODO: figure out the best way to deal with the UITableViewDelegate methods with this table
         //       I don't want to use the ones in this controller (too big a pain in the ass)
         //       I guess I can just create a new controller and use that.
@@ -484,6 +486,13 @@
 
 - (void)statusesReceived:(NSArray *)statuses forRequest:(NSString *)connectionIdentifier {
     twitterStatuses = [[NSArray alloc] initWithArray:statuses];
+    
+    [self stopProgressBar];
+    ProfileTwitterViewController *twitterController = [[ProfileTwitterViewController alloc] initWithNibName:@"ProfileTwitterViewController" bundle:nil];
+    twitterController.tweets = [[[NSArray alloc] initWithArray:twitterStatuses] autorelease];
+    [self presentModalViewController:twitterController animated:YES];
+    [twitterController release];
+    
     //[self.tableView reloadData];
     NSLog(@"statusesReceived: %@", statuses);
 }

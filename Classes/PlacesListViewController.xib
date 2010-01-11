@@ -257,7 +257,7 @@
 							<string key="NSResourceName">listMapToggle02.png</string>
 						</object>
 					</object>
-					<object class="IBUISearchBar" id="827653628">
+					<object class="IBUISearchBar" id="680145514">
 						<reference key="NSNextResponder" ref="12965882"/>
 						<int key="NSvFlags">290</int>
 						<string key="NSFrame">{{0, 50}, {320, 44}}</string>
@@ -380,7 +380,20 @@
 				<int key="IBUISelectionStyle">0</int>
 				<reference key="IBUIContentView" ref="345422996"/>
 			</object>
-			<object class="IBUISearchDisplayController" id="1062097815"/>
+			<object class="IBUISearchDisplayController" id="403213933"/>
+			<object class="IBUIView" id="563742530">
+				<reference key="NSNextResponder"/>
+				<int key="NSvFlags">292</int>
+				<string key="NSFrameSize">{320, 70}</string>
+				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
+				<object class="NSColor" key="IBUIBackgroundColor">
+					<int key="NSColorSpace">3</int>
+					<bytes key="NSWhite">MAA</bytes>
+					<reference key="NSCustomColorSpace" ref="119898047"/>
+				</object>
+				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
 			<object class="NSMutableArray" key="connectionRecords">
@@ -546,8 +559,8 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">searchBar</string>
-						<reference key="source" ref="1062097815"/>
-						<reference key="destination" ref="827653628"/>
+						<reference key="source" ref="403213933"/>
+						<reference key="destination" ref="680145514"/>
 					</object>
 					<int key="connectionID">60</int>
 				</object>
@@ -555,14 +568,14 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">searchDisplayController</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="1062097815"/>
+						<reference key="destination" ref="403213933"/>
 					</object>
 					<int key="connectionID">61</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">searchContentsController</string>
-						<reference key="source" ref="1062097815"/>
+						<reference key="source" ref="403213933"/>
 						<reference key="destination" ref="372490531"/>
 					</object>
 					<int key="connectionID">62</int>
@@ -570,7 +583,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">searchResultsDataSource</string>
-						<reference key="source" ref="1062097815"/>
+						<reference key="source" ref="403213933"/>
 						<reference key="destination" ref="372490531"/>
 					</object>
 					<int key="connectionID">63</int>
@@ -578,7 +591,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">searchResultsDelegate</string>
-						<reference key="source" ref="1062097815"/>
+						<reference key="source" ref="403213933"/>
 						<reference key="destination" ref="372490531"/>
 					</object>
 					<int key="connectionID">64</int>
@@ -586,7 +599,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">delegate</string>
-						<reference key="source" ref="1062097815"/>
+						<reference key="source" ref="403213933"/>
 						<reference key="destination" ref="372490531"/>
 					</object>
 					<int key="connectionID">65</int>
@@ -594,7 +607,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">delegate</string>
-						<reference key="source" ref="827653628"/>
+						<reference key="source" ref="680145514"/>
 						<reference key="destination" ref="372490531"/>
 					</object>
 					<int key="connectionID">66</int>
@@ -626,13 +639,13 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="873029372"/>
-							<reference ref="1037921556"/>
-							<reference ref="882464250"/>
 							<reference ref="542166593"/>
 							<reference ref="238232849"/>
 							<reference ref="798819852"/>
 							<reference ref="1058640374"/>
-							<reference ref="827653628"/>
+							<reference ref="882464250"/>
+							<reference ref="1037921556"/>
+							<reference ref="680145514"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -666,36 +679,9 @@
 						<reference key="parent" ref="12965882"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">32</int>
-						<reference key="object" ref="1037921556"/>
-						<object class="NSMutableArray" key="children">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="82049873"/>
-							<reference ref="726433261"/>
-							<reference ref="101132024"/>
-						</object>
-						<reference key="parent" ref="12965882"/>
-						<string key="objectName">Header View</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">33</int>
-						<reference key="object" ref="101132024"/>
-						<reference key="parent" ref="1037921556"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">30</int>
-						<reference key="object" ref="82049873"/>
-						<reference key="parent" ref="1037921556"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">37</int>
 						<reference key="object" ref="882464250"/>
 						<reference key="parent" ref="12965882"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">41</int>
-						<reference key="object" ref="726433261"/>
-						<reference key="parent" ref="1037921556"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">44</int>
@@ -733,13 +719,45 @@
 						<reference key="parent" ref="648908271"/>
 					</object>
 					<object class="IBObjectRecord">
+						<int key="objectID">59</int>
+						<reference key="object" ref="403213933"/>
+						<reference key="parent" ref="0"/>
+					</object>
+					<object class="IBObjectRecord">
 						<int key="objectID">58</int>
-						<reference key="object" ref="827653628"/>
+						<reference key="object" ref="680145514"/>
 						<reference key="parent" ref="12965882"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">59</int>
-						<reference key="object" ref="1062097815"/>
+						<int key="objectID">32</int>
+						<reference key="object" ref="1037921556"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="101132024"/>
+							<reference ref="726433261"/>
+							<reference ref="82049873"/>
+						</object>
+						<reference key="parent" ref="12965882"/>
+						<string key="objectName">Header View</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">33</int>
+						<reference key="object" ref="101132024"/>
+						<reference key="parent" ref="1037921556"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">41</int>
+						<reference key="object" ref="726433261"/>
+						<reference key="parent" ref="1037921556"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">30</int>
+						<reference key="object" ref="82049873"/>
+						<reference key="parent" ref="1037921556"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">69</int>
+						<reference key="object" ref="563742530"/>
 						<reference key="parent" ref="0"/>
 					</object>
 				</object>
@@ -768,6 +786,8 @@
 					<string>54.IBPluginDependency</string>
 					<string>55.IBPluginDependency</string>
 					<string>58.IBPluginDependency</string>
+					<string>69.IBEditorWindowLastContentRect</string>
+					<string>69.IBPluginDependency</string>
 					<string>8.IBEditorWindowLastContentRect</string>
 					<string>8.IBPluginDependency</string>
 				</object>
@@ -793,6 +813,8 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>{{52, 815}, {320, 70}}</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{693, 434}, {320, 460}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
@@ -813,7 +835,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">66</int>
+			<int key="maxID">69</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

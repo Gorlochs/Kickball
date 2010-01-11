@@ -299,6 +299,8 @@
 		6A95A12510E2DEA900F1D57A /* wrongAdd02.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A95A11510E2DEA900F1D57A /* wrongAdd02.png */; };
 		6A978A611099FBC000FCE8F1 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A978A601099FBC000FCE8F1 /* StoreKit.framework */; };
 		6AA8B86C10DDCECC005634D4 /* FSSpecial.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA8B86B10DDCECC005634D4 /* FSSpecial.m */; };
+		6AABEBD810FBB29500A5AF8B /* ProfileTwitterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AABEBD610FBB29500A5AF8B /* ProfileTwitterViewController.m */; };
+		6AABEBD910FBB29500A5AF8B /* ProfileTwitterViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6AABEBD710FBB29500A5AF8B /* ProfileTwitterViewController.xib */; };
 		6AACC53210D48F240059E604 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AACC53110D48F240059E604 /* LocationManager.m */; };
 		6AACC62710D4ACEC0059E604 /* tmp-tips-for-adding.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AACC62610D4ACEC0059E604 /* tmp-tips-for-adding.png */; };
 		6AACC63B10D4B1430059E604 /* AddPlaceTipsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AACC63910D4B1430059E604 /* AddPlaceTipsViewController.m */; };
@@ -753,6 +755,9 @@
 		6A978A601099FBC000FCE8F1 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		6AA8B86A10DDCECC005634D4 /* FSSpecial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSpecial.h; sourceTree = "<group>"; };
 		6AA8B86B10DDCECC005634D4 /* FSSpecial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSSpecial.m; sourceTree = "<group>"; };
+		6AABEBD510FBB29500A5AF8B /* ProfileTwitterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileTwitterViewController.h; sourceTree = "<group>"; };
+		6AABEBD610FBB29500A5AF8B /* ProfileTwitterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileTwitterViewController.m; sourceTree = "<group>"; };
+		6AABEBD710FBB29500A5AF8B /* ProfileTwitterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileTwitterViewController.xib; sourceTree = "<group>"; };
 		6AACC53010D48F240059E604 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
 		6AACC53110D48F240059E604 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
 		6AACC62610D4ACEC0059E604 /* tmp-tips-for-adding.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tmp-tips-for-adding.png"; sourceTree = "<group>"; };
@@ -1579,6 +1584,9 @@
 			children = (
 				6A8AC8EE109AB31400C4FE1B /* ProfileViewController.h */,
 				6A8AC8EF109AB31400C4FE1B /* ProfileViewController.m */,
+				6AABEBD510FBB29500A5AF8B /* ProfileTwitterViewController.h */,
+				6AABEBD610FBB29500A5AF8B /* ProfileTwitterViewController.m */,
+				6AABEBD710FBB29500A5AF8B /* ProfileTwitterViewController.xib */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -1948,6 +1956,8 @@
 				6A79D0FE10E68D1A009082E5 /* KBMessage.m in Sources */,
 				6A3DF73010F6E0ED008BD8AA /* KBTextViewController.m in Sources */,
 				6A3DF73110F6E0ED008BD8AA /* KBTextViewController.xib in Sources */,
+				6AABEBD810FBB29500A5AF8B /* ProfileTwitterViewController.m in Sources */,
+				6AABEBD910FBB29500A5AF8B /* ProfileTwitterViewController.xib in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
