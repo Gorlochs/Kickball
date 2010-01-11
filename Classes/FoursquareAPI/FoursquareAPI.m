@@ -10,6 +10,7 @@
 #import "Utilities.h"
 #import "FSMayor.h"
 #import "FSSpecial.h"
+#import "SFHFKeychainUtils.h"
 
 #define USER_AGENT @"UltraDudez"
 
@@ -99,7 +100,13 @@ static FoursquareAPI *sharedInstance = nil;
 }
 
 - (BOOL) isAuthenticated{
-
+    
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    //TODO: use a constant
+    self.userName = [prefs objectForKey:@"FSUsername"];
+    NSError *error = nil;
+    self.passWord = [SFHFKeychainUtils getPasswordForUsername:self.userName andServiceName:@"Kickball" error:&error];
+    
 	if(!self.userName){
 		return NO;
 	}
