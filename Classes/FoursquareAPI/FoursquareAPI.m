@@ -104,13 +104,13 @@ static FoursquareAPI *sharedInstance = nil;
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     //TODO: use a constant
     self.userName = [prefs objectForKey:@"FSUsername"];
-    NSError *error = nil;
-    self.passWord = [SFHFKeychainUtils getPasswordForUsername:self.userName andServiceName:@"Kickball" error:&error];
-    
-	if(!self.userName){
+    if (self.userName) {
+        NSError *error = nil;
+        self.passWord = [SFHFKeychainUtils getPasswordForUsername:self.userName andServiceName:@"Kickball" error:&error];
+        return YES;
+    } else {
 		return NO;
 	}
-	return YES;
 //	
 //	NSString *accessTokenSecret = [self.oauthAPI findValueFromKeychainUsingName:@"oauth_token_access_secret"];
 //    //NSLog(@"****** accessTokenSecret: %@", accessTokenSecret);

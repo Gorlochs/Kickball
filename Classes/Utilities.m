@@ -10,9 +10,8 @@
 
 static Utilities *sharedInstance = nil;
 
-//#define TMP NSTemporaryDirectory()
-//#define TMP NSCachesDirectory
-#define TMP NSHomeDirectory()
+#define TMP NSTemporaryDirectory()
+//#define TMP NSHomeDirectory()
 
 @implementation Utilities
 
@@ -103,7 +102,7 @@ static Utilities *sharedInstance = nil;
     NSString *filename = [[imageURL path] stringByReplacingOccurrencesOfString:@"/" withString:@""];
     NSString *uniquePath = [TMP stringByAppendingPathComponent: filename];
     
-    UIImage *image;
+    UIImage *image = nil;
     
     // Check for a cached version
     if([[NSFileManager defaultManager] fileExistsAtPath: uniquePath])

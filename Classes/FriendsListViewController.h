@@ -37,7 +37,6 @@
 - (IBAction) checkin;
 - (IBAction) flipToMap;
 - (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString;
-- (IBAction) shout;
 - (void) doInitialDisplay;
 - (IBAction) addFriend;
 - (IBAction) refresh;

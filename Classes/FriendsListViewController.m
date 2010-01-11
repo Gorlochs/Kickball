@@ -96,21 +96,11 @@
 	[self startProgressBar:@"Retrieving friends' whereabouts..."];
 	[[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
 	
-	// testing
-	//[[FoursquareAPI sharedInstance ] doSendFriendRequest:@"53961" withTarget:self andAction:@selector(sendFriendRequestResponseReceived:withResponseString:)];
-	//[[FoursquareAPI sharedInstance ] findFriendsByName:@"francine" withTarget:self andAction:@selector(findFriendsResponseReceived:withResponseString:)];
-	
     // FIXME: fix this. this seems out of place here
 	// this didn't work in the appdelegate (timing issues), so it's in the first page, but it's going to set an appDelegate property
 	// probably should be put back in the appdelegate with a notification that this page checks for
 	[[FoursquareAPI sharedInstance] getUser:nil withTarget:self andAction:@selector(userResponseReceived:withResponseString:)];
 }
-
-//- (void)findFriendsResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-//    NSLog(@"find friend instring: %@", inString);
-//    NSArray *users = [FoursquareAPI usersFromResponseXML:inString];
-//    NSLog(@"users: %@", users);
-//}
 
 - (void) addAuthToWebRequest:(NSMutableURLRequest*)requestObj email:(NSString*)email password:(NSString*)password{
     NSString *authString = [[[NSString stringWithFormat:@"%@:%@", email, password] dataUsingEncoding:NSUTF8StringEncoding] base64EncodingWithLineLength:0];
@@ -133,15 +123,6 @@
     
     [self setAuthenticatedUser:user];
     NSLog(@"auth'd user: %@", user);
-//    [[LocationManager locationManager] stopUpdates];
-    //[self displayPopupMessage:@"1" andSubtitle:@"2" andMessage:@"3"];
-    
-//    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-//    NSData *theData=[NSKeyedArchiver archivedDataWithRootObject:user.badges];
-//    [standardUserDefaults setObject:theData forKey:@"badgesTest"];
-//    NSData *newData=[[NSUserDefaults standardUserDefaults] dataForKey:@"badgesTest"];
-//    if (newData != nil)
-//        NSLog(@"*************** unarchived badges: %@", [NSKeyedUnarchiver unarchiveObjectWithData:newData]);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -406,10 +387,6 @@
     [mapViewController release];
 }
 
-//- (void)friendsResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-//    NSLog(@"friends: %@", inString);
-//}
-
 - (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
 	NSArray * allCheckins = [FoursquareAPI checkinsFromResponseXML:inString];
 	self.checkins = [allCheckins copy];
@@ -430,24 +407,23 @@
     for (FSCheckin *checkin in checkins) {
         NSDate *date = [dateFormatter dateFromString:checkin.created];
         if ([date compare:threeHoursFromNow] == NSOrderedDescending) {
-            [recentCheckins addObject:checkin];
+            [self.recentCheckins addObject:checkin];
         } else if ([date compare:threeHoursFromNow] == NSOrderedAscending && [date compare:twentyfourHoursFromNow] == NSOrderedDescending) {
-            [todayCheckins addObject:checkin];
+            [self.todayCheckins addObject:checkin];
         } else {
-            [yesterdayCheckins addObject:checkin];
+            [self.yesterdayCheckins addObject:checkin];
         }
         // create dictionary of icons to help speed up the scrolling
         if (checkin.user && checkin.user.photo && checkin.user.userId) {
-            [userIcons setObject:[[Utilities sharedInstance] getCachedImage:checkin.user.photo] forKey:checkin.user.userId];
+            UIImage *img = [[Utilities sharedInstance] getCachedImage:checkin.user.photo];
+            [userIcons setObject:img forKey:checkin.user.userId];
         }
     }
-    NSLog(@"all checkins: %d", [checkins count]);
-    NSLog(@"recent checkins: %d", [recentCheckins count]);
-    NSLog(@"today checkins: %d", [todayCheckins count]);
-    NSLog(@"yesterday checkins: %d", [yesterdayCheckins count]);
+    NSLog(@"all checkins: %d", [self.checkins count]);
+    NSLog(@"recent checkins: %d", [self.recentCheckins count]);
+    NSLog(@"today checkins: %d", [self.todayCheckins count]);
+    NSLog(@"yesterday checkins: %d", [self.yesterdayCheckins count]);
     
-//    [threeHoursFromNow release];
-//    [twentyfourHoursFromNow release];
     [dateFormatter release];
 	[self.theTableView reloadData];
     footerViewCell.hidden = NO;
@@ -464,19 +440,6 @@
     [standardUserDefaults setObject:recentCheckinsData forKey:@"recentCheckinsData"];
     [standardUserDefaults setObject:todayCheckinsData forKey:@"todayCheckinsData"];
     [standardUserDefaults setObject:yesterdayCheckinsData forKey:@"yesterdayCheckinsData"];
-    
-//    NSData *newData=[[NSUserDefaults standardUserDefaults] dataForKey:@"checkinsData"];
-//    if (newData != nil)
-//        NSLog(@"*************** unarchived checkins: %@", [NSKeyedUnarchiver unarchiveObjectWithData:newData]);
-//    
-//    
-//    [standardUserDefaults setObject:checkins forKey:@"checkins"]; 
-//    [standardUserDefaults setObject:recentCheckins forKey:@"recentCheckins"];
-//    [standardUserDefaults setObject:todayCheckins forKey:@"todayCheckins"];
-//    [standardUserDefaults setObject:yesterdayCheckins forKey:@"yesterdayCheckins"];
-//    NSLog(@"RECENT CHECKINS FROM STANDARD DEFAULT: %@", [standardUserDefaults objectForKey:@"recentCheckins"]);
-//    NSLog(@"ALL CHECKINS FROM STANDARD DEFAULT: %@", [standardUserDefaults objectForKey:@"checkins"]);
-//    NSLog(@"ALL CHECKINS FROM STANDARD DEFAULT: %@", [standardUserDefaults objectForKey:@"checkins"]);
 }
 
 - (void) addFriend {
@@ -493,11 +456,11 @@
     return NO;
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [textField resignFirstResponder];
-    [self shout];
-    return YES;
-}
+//- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+//    [textField resignFirstResponder];
+//    [self shout];
+//    return YES;
+//}
 
 
 @end
