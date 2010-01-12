@@ -19,5 +19,6 @@
 
 - (IBAction) viewFriendRequests;
 - (IBAction) addFriends;
+- (IBAction) validateNewUsernamePassword;
 
 @end

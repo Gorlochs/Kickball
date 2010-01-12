@@ -15,6 +15,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    tipTodoText.font = [UIFont systemFontOfSize:12.0];
     [tipTodoText becomeFirstResponder];
 }
 
@@ -38,12 +39,12 @@
 }
 
 #pragma mark 
-#pragma mark UITextFieldDelegate methods
+#pragma mark UITextViewDelegate methods
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    // submit tip/todo to Foursquare
-    
-    return YES;
+- (void)textViewDidChange:(UITextView *)textView {
+    if ([textView.text length] > 140) {
+        textView.text = [textView.text substringToIndex:139];
+    }
 }
 
 - (void)tipTodoResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {

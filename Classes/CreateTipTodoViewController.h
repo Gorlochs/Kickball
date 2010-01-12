@@ -10,9 +10,9 @@
 #import "KBBaseViewController.h"
 
 
-@interface CreateTipTodoViewController : KBBaseViewController <UITextFieldDelegate> {
+@interface CreateTipTodoViewController : KBBaseViewController <UITextViewDelegate> {
     IBOutlet UISegmentedControl *tipTodoSwitch;
-    IBOutlet UITextField *tipTodoText;
+    IBOutlet UITextView *tipTodoText;
     NSString *tipId;
     NSString *venueId;
 }
