@@ -95,6 +95,8 @@
 		6A145F6310FD81DA002CE938 /* back02.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A145F5F10FD81DA002CE938 /* back02.png */; };
 		6A145F6410FD81DA002CE938 /* home01.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A145F6010FD81DA002CE938 /* home01.png */; };
 		6A145F6510FD81DA002CE938 /* home02.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A145F6110FD81DA002CE938 /* home02.png */; };
+		6A145FB610FE74E7002CE938 /* ProfileFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A145FB410FE74E7002CE938 /* ProfileFriendsViewController.m */; };
+		6A145FB710FE74E7002CE938 /* ProfileFriendsViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A145FB510FE74E7002CE938 /* ProfileFriendsViewController.xib */; };
 		6A1526C71096BD7E00924D0E /* FriendsListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A1526C61096BD7E00924D0E /* FriendsListTableCell.m */; };
 		6A1526C91096BDB300924D0E /* FriendsListTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A1526C81096BDB300924D0E /* FriendsListTableCellView.xib */; };
 		6A16ABDB10CF251800CD5302 /* InstructionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A16ABDA10CF251800CD5302 /* InstructionView.m */; };
@@ -513,6 +515,9 @@
 		6A145F5F10FD81DA002CE938 /* back02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back02.png; sourceTree = "<group>"; };
 		6A145F6010FD81DA002CE938 /* home01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home01.png; sourceTree = "<group>"; };
 		6A145F6110FD81DA002CE938 /* home02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home02.png; sourceTree = "<group>"; };
+		6A145FB310FE74E7002CE938 /* ProfileFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileFriendsViewController.h; sourceTree = "<group>"; };
+		6A145FB410FE74E7002CE938 /* ProfileFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileFriendsViewController.m; sourceTree = "<group>"; };
+		6A145FB510FE74E7002CE938 /* ProfileFriendsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileFriendsViewController.xib; sourceTree = "<group>"; };
 		6A1526C51096BD7E00924D0E /* FriendsListTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsListTableCell.h; sourceTree = "<group>"; };
 		6A1526C61096BD7E00924D0E /* FriendsListTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsListTableCell.m; sourceTree = "<group>"; };
 		6A1526C81096BDB300924D0E /* FriendsListTableCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendsListTableCellView.xib; sourceTree = "<group>"; };
@@ -1611,6 +1616,9 @@
 				6AABEBD510FBB29500A5AF8B /* ProfileTwitterViewController.h */,
 				6AABEBD610FBB29500A5AF8B /* ProfileTwitterViewController.m */,
 				6AABEBD710FBB29500A5AF8B /* ProfileTwitterViewController.xib */,
+				6A145FB310FE74E7002CE938 /* ProfileFriendsViewController.h */,
+				6A145FB410FE74E7002CE938 /* ProfileFriendsViewController.m */,
+				6A145FB510FE74E7002CE938 /* ProfileFriendsViewController.xib */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -1990,6 +1998,8 @@
 				6A3DF73110F6E0ED008BD8AA /* KBTextViewController.xib in Sources */,
 				6AABEBD810FBB29500A5AF8B /* ProfileTwitterViewController.m in Sources */,
 				6AABEBD910FBB29500A5AF8B /* ProfileTwitterViewController.xib in Sources */,
+				6A145FB610FE74E7002CE938 /* ProfileFriendsViewController.m in Sources */,
+				6A145FB710FE74E7002CE938 /* ProfileFriendsViewController.xib in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

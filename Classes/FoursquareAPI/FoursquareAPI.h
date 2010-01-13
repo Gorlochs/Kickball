@@ -47,6 +47,7 @@
 //- (void)getUserById:(NSString *) userId withTarget:(id)inTarget andAction:(SEL)inAction;
 - (void)getCityNearestToLatitude:(NSString *) geolat andLongitude:(NSString *)geolong withTarget:(id)inTarget andAction:(SEL)inAction;
 - (void)getFriendsWithTarget:(id)inTarget andAction:(SEL)inAction;
+- (void)getFriendsWithUserIdAndTarget:(NSString*)userId andTarget:(id)inTarget andAction:(SEL)inAction;
 - (void)getFriendsWithTarget:(NSString*)username andPassword:(NSString*)password andTarget:(id)inTarget andAction:(SEL)inAction;
 - (void)getVenue:(NSString *)venueId withTarget:(id)inTarget andAction:(SEL)inAction;
 - (void)getUser:(NSString *)userId withTarget:(id)inTarget andAction:(SEL)inAction;
@@ -84,6 +85,7 @@
 + (NSArray *) usersFromResponseXML:(NSString *) inString;
 + (NSArray *) usersFromRequestResponseXML:(NSString *) inString;
 + (NSArray *) friendsFromResponseXML:(NSString *) inString;
++ (NSArray *) friendUsersFromRequestResponseXML:(NSString *) inString;
 + (NSDictionary *) venuesFromResponseXML:(NSString *) inString;
 + (FSUser *) loggedInUserFromResponseXML:(NSString *) inString; 
 + (NSArray *) checkinsFromResponseXML:(NSString *) inString;

@@ -14,6 +14,7 @@
 #import "MGTwitterEngine.h"
 #import "Utilities.h"
 #import "ProfileTwitterViewController.h"
+#import "ProfileFriendsViewController.h"
 
 #define BADGES_PER_ROW 5
 
@@ -184,8 +185,9 @@
         } else {
             return 1;
         }
-    }
-    if (section == 2) {
+    } else if (section == 1) { // badges
+        return 2;
+    } else if (section == 2) {
         return [user.mayorOf count];
     }
     return 1;
@@ -195,10 +197,14 @@
     if (indexPath.section == 0) {
         return 43;
     } else if (indexPath.section == 1) {
-        if ([user.badges count] > 0) {
-            return 60 * (([user.badges count]+BADGES_PER_ROW-1)/BADGES_PER_ROW) + 10;
-        } else {
-            return 0;
+        if (indexPath.row == 0) {
+            if ([user.badges count] > 0) {
+                return 60 * (([user.badges count]+BADGES_PER_ROW-1)/BADGES_PER_ROW) + 10;
+            } else {
+                return 0;
+            }
+        } else if (indexPath.row == 1) {
+            return 44;
         }
     }
     return 44;
@@ -214,7 +220,12 @@
         if (indexPath.section == 0) {
             return [self determineWhichFriendCellToDisplay:user.friendStatus];
         } else if (indexPath.section == 1) {
-            return badgeCell;
+            if (indexPath.row == 0) {
+                return badgeCell;
+            } else {
+                cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+                cell.selectionStyle = UITableViewCellSelectionStyleGray;
+            }
         } else {
             cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
             cell.selectionStyle = UITableViewCellSelectionStyleGray;
@@ -227,7 +238,10 @@
             return [self determineWhichFriendCellToDisplay:user.friendStatus];
             break;
         case 1:  // badges
-            return badgeCell;
+            if (indexPath.row == 0) {
+                return badgeCell;
+            }
+            cell.textLabel.text = @"Check out friends";
             break;
         case 2:  // mayors
             cell.textLabel.text = ((FSVenue*)[user.mayorOf objectAtIndex:indexPath.row]).name;
@@ -300,7 +314,13 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 2) { // mayor section
+    if (indexPath.section == 1 && indexPath.row == 1) { // badge-friends section
+        ProfileFriendsViewController *profileFriendsController = [[ProfileFriendsViewController alloc] initWithNibName:@"ProfileFriendsViewController" bundle:nil];
+        profileFriendsController.userId = user.userId;
+        [theTableView deselectRowAtIndexPath:indexPath animated:YES];
+        [self.navigationController pushViewController:profileFriendsController animated:YES];
+        [profileFriendsController release];
+    } else if (indexPath.section == 2) { // mayor section
         PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];
         placeDetailController.venueId = ((FSVenue*)[user.mayorOf objectAtIndex:indexPath.row]).venueid;
         [theTableView deselectRowAtIndexPath:indexPath animated:YES];

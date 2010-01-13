@@ -196,6 +196,13 @@ static FoursquareAPI *sharedInstance = nil;
 	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/friends"] withUser:self.userName andPassword:self.passWord andParams:nil withTarget:inTarget andAction:inAction usingMethod:@"GET"];
 }
 
+- (void)getFriendsWithUserIdAndTarget:(NSString*)userId andTarget:(id)inTarget andAction:(SEL)inAction {
+	//[self.oauthAPI performMethod:@"/v1/friends" withTarget:inTarget andAction:inAction];
+	NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:1];
+	[requestParams setObject:userId forKey:@"uid"];
+	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/friends"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"GET"];
+}
+
 // using this to authenticate against the API since Foursquare does not have simple authentication methods
 - (void)getFriendsWithTarget:(NSString*)username andPassword:(NSString*)password andTarget:(id)inTarget andAction:(SEL)inAction {
 	//[self.oauthAPI performMethod:@"/v1/friends" withTarget:inTarget andAction:inAction];
@@ -490,6 +497,25 @@ static FoursquareAPI *sharedInstance = nil;
 	
 	//get the groups
 	allUsers = [userParser nodesForXPath:@"//requests/user" error:nil];
+    NSLog(@"allusers: %@", allUsers);
+	for (CXMLElement *userResult in allUsers) {
+        [users addObject:[FoursquareAPI _userFromNode:userResult]];
+	}
+    [userParser release];
+	return users;
+}
+
++ (NSArray *) friendUsersFromRequestResponseXML:(NSString *) inString {
+	
+	NSError * err;
+	CXMLDocument *userParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
+	NSLog(@"error: %@", [err localizedDescription]);
+	
+	NSArray * allUsers;
+    NSMutableArray * users = [[NSMutableArray alloc] initWithCapacity:1];
+	
+	//get the groups
+	allUsers = [userParser nodesForXPath:@"//friends/user" error:nil];
     NSLog(@"allusers: %@", allUsers);
 	for (CXMLElement *userResult in allUsers) {
         [users addObject:[FoursquareAPI _userFromNode:userResult]];
