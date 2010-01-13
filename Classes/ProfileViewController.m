@@ -241,7 +241,7 @@
             if (indexPath.row == 0) {
                 return badgeCell;
             }
-            cell.textLabel.text = @"Check out friends";
+            cell.textLabel.text = [NSString stringWithFormat:@"Check out %@'s friends", user.firstname];
             break;
         case 2:  // mayors
             cell.textLabel.text = ((FSVenue*)[user.mayorOf objectAtIndex:indexPath.row]).name;
