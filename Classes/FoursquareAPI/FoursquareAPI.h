@@ -47,6 +47,7 @@
 //- (void)getUserById:(NSString *) userId withTarget:(id)inTarget andAction:(SEL)inAction;
 - (void)getCityNearestToLatitude:(NSString *) geolat andLongitude:(NSString *)geolong withTarget:(id)inTarget andAction:(SEL)inAction;
 - (void)getFriendsWithTarget:(id)inTarget andAction:(SEL)inAction;
+- (void)getFriendsWithTarget:(NSString*)username andPassword:(NSString*)password andTarget:(id)inTarget andAction:(SEL)inAction;
 - (void)getVenue:(NSString *)venueId withTarget:(id)inTarget andAction:(SEL)inAction;
 - (void)getUser:(NSString *)userId withTarget:(id)inTarget andAction:(SEL)inAction;
 - (void)setPings:(NSString*)pingStatus forUser:(NSString *)userId withTarget:(id)inTarget andAction:(SEL)inAction;

@@ -196,6 +196,12 @@ static FoursquareAPI *sharedInstance = nil;
 	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/friends"] withUser:self.userName andPassword:self.passWord andParams:nil withTarget:inTarget andAction:inAction usingMethod:@"GET"];
 }
 
+// using this to authenticate against the API since Foursquare does not have simple authentication methods
+- (void)getFriendsWithTarget:(NSString*)username andPassword:(NSString*)password andTarget:(id)inTarget andAction:(SEL)inAction {
+	//[self.oauthAPI performMethod:@"/v1/friends" withTarget:inTarget andAction:inAction];
+	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/friends"] withUser:username andPassword:password andParams:nil withTarget:inTarget andAction:inAction usingMethod:@"GET"];
+}
+
 - (void)getUserWithTarget:(id)inTarget andAction:(SEL)inAction{
 //	NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
 //	

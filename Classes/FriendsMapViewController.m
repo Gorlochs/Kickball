@@ -9,7 +9,10 @@
 //
 
 #import "FriendsMapViewController.h"
+#import "QuartzCore/QuartzCore.h"
 
+#define CONST_fps 25.0
+#define CONST_map_shift 0.15
 
 @implementation FriendsMapViewController
 
@@ -25,13 +28,13 @@
 }
 */
 
-/*
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    [[UIAccelerometer sharedAccelerometer] setDelegate:self];
+//    [[UIAccelerometer sharedAccelerometer] setUpdateInterval:(1.0 / CONST_fps)];
 }
-*/
-
+ 
 -(void) viewDidAppear:(BOOL)animated{
 	[super viewDidAppear:animated];
 	[self refreshFriendPoints];
@@ -56,6 +59,16 @@
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
 }
+
+//- (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {
+//    static CGFloat ZZ = 0.;
+//    CGFloat z = (atan2(acceleration.x, acceleration.y) + M_PI);
+//
+//    if (fabsf(ZZ - z) > CONST_map_shift)
+//    {
+//        mapViewer.layer.transform = CATransform3DMakeRotation(ZZ=z, 0., 0., 1.);
+//    }
+//}
 
 -(void) refreshMapRegion {
 	NSLog(@"Refresh map region");

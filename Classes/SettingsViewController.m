@@ -10,6 +10,8 @@
 #import "ViewFriendRequestsViewController.h"
 #import "FriendRequestsViewController.h"
 #import "FoursquareAPI.h"
+#import "SFHFKeychainUtils.h"
+#import "LoginViewModalController.h"
 
 
 @implementation SettingsViewController
@@ -51,7 +53,37 @@
 }
 
 - (void) validateNewUsernamePassword {
-    
+    [[FoursquareAPI sharedInstance] getFriendsWithTarget:username.text andPassword:password.text andTarget:self andAction:@selector(friendResponseReceived:withResponseString:)];
+}
+
+
+- (void)friendResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+    NSLog(@"friend response for login: %@", inString);
+    // cheap way of checking for successful authentication
+    BOOL containsUnauthorized = [inString rangeOfString:@"unauthorized" options:NSCaseInsensitiveSearch].length > 0;
+    if (containsUnauthorized) {
+        // display fail message
+        KBMessage *message = [[KBMessage alloc] initWithMember:@"Authentication" andSubtitle:@"Failed" andMessage:@"Please try again."];
+        [self displayPopupMessage:message];
+        [message release];
+    } else {
+        // display success message and save to keychain
+        KBMessage *message = [[KBMessage alloc] initWithMember:@"Authentication" andSubtitle:@"Success" andMessage:@"Your new username and password have been authentication."];
+        [self displayPopupMessage:message];
+        [message release];
+        
+        [[FoursquareAPI sharedInstance] doLoginUsername: username.text andPass:password.text];	
+        
+        NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+        [prefs setObject:username forKey:kUsernameDefaultsKey];
+        NSLog(@"Stored username: %@", username.text);
+        
+        NSError *error = nil;
+        [SFHFKeychainUtils storeUsername:username.text
+                             andPassword:password.text
+                          forServiceName:@"Kickball" 
+                          updateExisting:YES error:&error];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

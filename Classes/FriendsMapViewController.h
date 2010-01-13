@@ -13,7 +13,7 @@
 #import "FriendIconAnnotationView.h"
 #import "KBBaseViewController.h"
 
-@interface FriendsMapViewController : KBBaseViewController {
+@interface FriendsMapViewController : KBBaseViewController <UIAccelerometerDelegate> {
 	IBOutlet MKMapView * mapViewer;
 	NSArray * checkins;
 	MKCoordinateRegion mapRegion;
