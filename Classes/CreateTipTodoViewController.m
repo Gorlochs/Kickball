@@ -11,12 +11,14 @@
 
 @implementation CreateTipTodoViewController
 
-@synthesize venueId;
+@synthesize venue;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     tipTodoText.font = [UIFont systemFontOfSize:12.0];
     [tipTodoText becomeFirstResponder];
+    venueName.text = venue.name;
+    venueAddress.text = venue.addressWithCrossstreet;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -35,6 +37,7 @@
     [tipTodoText release];
     [tipTodoSwitch release];
     [tipId release];
+    [venue release];
     [super dealloc];
 }
 
@@ -73,8 +76,16 @@
         NSLog(@"submitting todo");
         tipOrTodo = @"todo";
     }
-    [[FoursquareAPI sharedInstance] createTipTodoForVenue:venueId type:tipOrTodo text:tipTodoText.text withTarget:self andAction:@selector(tipTodoResponseReceived:withResponseString:)];
+    [[FoursquareAPI sharedInstance] createTipTodoForVenue:venue.venueid type:tipOrTodo text:tipTodoText.text withTarget:self andAction:@selector(tipTodoResponseReceived:withResponseString:)];
     
+}
+
+- (void) callVenue {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", venue.phone]]];
+}
+
+- (void) cancel {
+    [self dismissModalViewControllerAnimated];
 }
 
 @end

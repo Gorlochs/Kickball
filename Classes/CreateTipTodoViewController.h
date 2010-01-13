@@ -8,18 +8,23 @@
 
 #import <UIKit/UIKit.h>
 #import "KBBaseViewController.h"
+#import "FSVenue.h"
 
 
 @interface CreateTipTodoViewController : KBBaseViewController <UITextViewDelegate> {
     IBOutlet UISegmentedControl *tipTodoSwitch;
     IBOutlet UITextView *tipTodoText;
     NSString *tipId;
-    NSString *venueId;
+    FSVenue *venue;
+    IBOutlet UILabel *venueName;
+    IBOutlet UILabel *venueAddress;
 }
 
-@property (nonatomic, retain) NSString *venueId;
+@property (nonatomic, retain) FSVenue *venue;
 
 - (void)tipTodoResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString;
 - (IBAction) submitTipOrTodoToFoursquare;
+- (IBAction) callVenue;
+- (IBAction) cancel;
 
 @end
