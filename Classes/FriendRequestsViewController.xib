@@ -293,7 +293,9 @@
 								<bool key="IBUIClearsOnBeginEditing">YES</bool>
 								<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
 								<float key="IBUIMinimumFontSize">17</float>
-								<object class="IBUITextInputTraits" key="IBUITextInputTraits"/>
+								<object class="IBUITextInputTraits" key="IBUITextInputTraits">
+									<int key="IBUIReturnKeyType">9</int>
+								</object>
 							</object>
 							<object class="IBUIButton" id="982577238">
 								<reference key="NSNextResponder" ref="559153001"/>
@@ -361,7 +363,9 @@
 								<bool key="IBUIClearsOnBeginEditing">YES</bool>
 								<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
 								<float key="IBUIMinimumFontSize">17</float>
-								<object class="IBUITextInputTraits" key="IBUITextInputTraits"/>
+								<object class="IBUITextInputTraits" key="IBUITextInputTraits">
+									<int key="IBUIReturnKeyType">9</int>
+								</object>
 							</object>
 							<object class="IBUIButton" id="85218549">
 								<reference key="NSNextResponder" ref="504384824"/>
@@ -429,7 +433,9 @@
 								<bool key="IBUIClearsOnBeginEditing">YES</bool>
 								<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
 								<float key="IBUIMinimumFontSize">17</float>
-								<object class="IBUITextInputTraits" key="IBUITextInputTraits"/>
+								<object class="IBUITextInputTraits" key="IBUITextInputTraits">
+									<int key="IBUIReturnKeyType">9</int>
+								</object>
 							</object>
 							<object class="IBUIButton" id="96262452">
 								<reference key="NSNextResponder" ref="550794286"/>
@@ -997,11 +1003,15 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>backOneView</string>
+							<string>displayTextView</string>
 							<string>goToHomeView</string>
+							<string>viewSettings</string>
 							<string>viewUserProfile</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
