@@ -500,7 +500,7 @@
 
 - (void) addTipTodo {
     CreateTipTodoViewController *tipController = [[CreateTipTodoViewController alloc] initWithNibName:@"CreateTipTodoViewController" bundle:nil];
-    tipController.venueId = venue.venueid;
+    tipController.venue = venue;
     [self presentModalViewController:tipController animated:YES];
     [tipController release];
 }
