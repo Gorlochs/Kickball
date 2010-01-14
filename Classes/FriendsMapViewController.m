@@ -12,10 +12,8 @@
 #import "QuartzCore/QuartzCore.h"
 #import "LocationManager.h"
 #import "ProfileViewController.h"
+#import "ProfileViewController.h"
 
-
-#define CONST_fps 25.0
-#define CONST_map_shift 0.15
 
 @implementation FriendsMapViewController
 
@@ -167,6 +165,10 @@
 			if(checkUser.photo != nil){
 				placemark.url = checkUser.photo;
 			}
+            placemark.title = checkUser.firstnameLastInitial;
+//            placemark.subtitle = checkUser.checkin.venue.name;
+            placemark.subtitle = checkUser.lastname;
+            placemark.userId = checkUser.userId;
 			[mapViewer addAnnotation:placemark];
             [placemark release];
 		}
@@ -187,14 +189,11 @@
 	
     if ([annotation isKindOfClass:[MKUserLocation class]]) return nil;
 	FriendIconAnnotationView* pinView = (FriendIconAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:@"CustomPinAnnotation"];
-//    [pinView addObserver:self
-//                          forKeyPath:@"selected"
-//                             options:NSKeyValueObservingOptionNew
-//                             context:@"annotationTouch"];
+
 	if (!pinView){
 		// If an existing pin view was not available, create one
-		//pinView = [[[FriendIconAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomPinAnnotation"] autorelease];
 		pinView = [[[FriendIconAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomPinAnnotation" andImageUrl:((FriendPlacemark *)annotation).url] autorelease];
+        
 //        pinView.userId = ((FriendPlacemark *)annotation).userId;
 //		pinView.pinColor = MKPinAnnotationColorRed;
 //		pinView.animatesDrop = YES;
@@ -203,22 +202,38 @@
 	} else {
         pinView.annotation = annotation;
     }
+    
+    // add an accessory button so user can click through to the venue page
+	UIButton *myDetailButton = [UIButton buttonWithType:UIButtonTypeCustom];
+	myDetailButton.frame = CGRectMake(0, 0, 23, 23);
+	myDetailButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+	myDetailButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+	
+	// Set the image for the button
+	[myDetailButton setImage:[UIImage imageNamed:@"button_right.png"] forState:UIControlStateNormal];
+	[myDetailButton addTarget:self action:@selector(showProfile:) forControlEvents:UIControlEventTouchUpInside]; 
+	
+    int postag = [((FriendPlacemark*)annotation).userId intValue];
+	myDetailButton.tag  = postag;
+	
+	// Set the button as the callout view
+	pinView.rightCalloutAccessoryView = myDetailButton;
+    
+    pinView.canShowCallout = YES;
+    pinView.calloutOffset = CGPointMake(-5, 5);
 		
 	return pinView;	
 }
 
-//- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
-//    
-//    NSString *action = (NSString*)context;
-//    
-//    NSLog(@"**************** annotation touched 1 *************");
-//    
-//    if([action isEqualToString:@"annotationTouch"]){
-//        BOOL annotationAppeared = [[change valueForKey:@"new"] boolValue];
-//        NSLog(@"**************** annotation touched 2 *************");
-//        // do something
-//    }
-//}
+- (void) showProfile:(id)sender {
+    int nrButtonPressed = ((UIButton *)sender).tag;
+    NSLog(@"annotation for profile pressed: %d", nrButtonPressed);
+    
+    ProfileViewController *profileDetailController = [[ProfileViewController alloc] initWithNibName:@"ProfileView" bundle:nil];;
+    profileDetailController.userId = [NSString stringWithFormat:@"%d", nrButtonPressed];
+    [self.navigationController pushViewController:profileDetailController animated:YES];
+    [profileDetailController release];
+}
 
 - (void)dealloc {
     [mapViewer release];

@@ -1,14 +1,16 @@
+//
+//  FriendPlacemark.h
+//  Kickball
+//
+//  Created by David Evans on 11/18/09.
+//  Copyright 2009 Gorloch Interactive, LLC. All rights reserved.
+//
+
 #import "FriendPlacemark.h"
 
 @implementation FriendPlacemark
-@synthesize coordinate, url, userId;
 
-- (NSString *)subtitle{
-	return @"Put some text here";
-}
-- (NSString *)title{
-	return @"Parked Location";
-}
+@synthesize coordinate, url, userId, title, subtitle;
 
 -(id)initWithCoordinate:(CLLocationCoordinate2D) c{
 	coordinate=c;
