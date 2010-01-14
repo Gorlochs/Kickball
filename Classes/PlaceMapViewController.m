@@ -8,7 +8,8 @@
 
 #import "PlaceMapViewController.h"
 #import "VenueAnnotation.h"
-
+#import "KBPin.h"
+#import "PlaceDetailViewController.h"
 
 @implementation PlaceMapViewController
 
@@ -38,23 +39,64 @@
     region.span = span;
     region.center = location;
     
-    [mapView setRegion:region animated:NO];
-    [mapView regionThatFits:region];
+    [theMapView setRegion:region animated:NO];
+    [theMapView regionThatFits:region];
     
     VenueAnnotation *anote = [[VenueAnnotation alloc] init];
     anote.coordinate = location;
     anote.title = venue.name;
+    anote.venueId = venue.venueid;
     anote.subtitle = venue.addressWithCrossstreet;
-    [mapView addAnnotation:anote];
+    
+    [theMapView addAnnotation:anote];
 }
 
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+- (void)mapViewDidFinishLoadingMap:(MKMapView *)mapView {
+    for (id<MKAnnotation> currentAnnotation in mapView.annotations) {       
+        //if ([currentAnnotation isEqual:annotationToSelect]) {
+            [mapView selectAnnotation:currentAnnotation animated:YES];
+        //}
+    }    
 }
-*/
+
+- (MKAnnotationView *) mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>) annotation{
+//	int postag = 0;
+    
+	KBPin *annView=[[KBPin alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomId"];
+	//annView.pinColor = MKPinAnnotationColorGreen;
+    annView.image = [UIImage imageNamed:@"pinRed.png"];
+    
+    // add an accessory button so user can click through to the venue page
+//	UIButton *myDetailButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//	myDetailButton.frame = CGRectMake(0, 0, 23, 23);
+//	myDetailButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+//	myDetailButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+//	
+//	// Set the image for the button
+//	[myDetailButton setImage:[UIImage imageNamed:@"button_right.png"] forState:UIControlStateNormal];
+//	[myDetailButton addTarget:self action:@selector(showVenue:) forControlEvents:UIControlEventTouchUpInside]; 
+//	
+//    postag = [((VenueAnnotation*)annotation).venueId intValue];
+//	myDetailButton.tag  = postag;
+//	
+//	// Set the button as the callout view
+//	annView.rightCalloutAccessoryView = myDetailButton;
+	
+	//annView.animatesDrop=TRUE;
+	annView.canShowCallout = YES;
+	annView.calloutOffset = CGPointMake(-5, 5);
+	return annView;
+}
+
+- (void) showVenue:(id)sender {
+    int nrButtonPressed = ((UIButton *)sender).tag;
+    NSLog(@"annotation for venue pressed: %d", nrButtonPressed);
+    
+    PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];;
+    placeDetailController.venueId = [NSString stringWithFormat:@"%d", nrButtonPressed];
+    [self.navigationController pushViewController:placeDetailController animated:YES];
+    [placeDetailController release];
+}
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.

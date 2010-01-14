@@ -13,10 +13,12 @@
 
 
 @interface PlaceMapViewController : KBBaseViewController <MKMapViewDelegate> {
-    IBOutlet MKMapView *mapView;
+    IBOutlet MKMapView *theMapView;
     FSVenue *venue;
 }
 
 @property (nonatomic, retain) FSVenue *venue;
+
+- (void) showVenue:(id)sender;
 
 @end
