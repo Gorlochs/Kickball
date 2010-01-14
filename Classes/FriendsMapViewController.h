@@ -22,9 +22,9 @@
 @property (nonatomic, retain) NSArray * checkins;
 @property (nonatomic, retain) MKMapView * mapViewer;
 
-
 - (void) refreshFriendPoints;
 - (void) setCheckins:(NSArray *) checkin;
 - (NSArray *) checkins;
+- (void) viewProfile:(NSString*)userId;
 
 @end

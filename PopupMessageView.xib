@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="3"/>
+			<integer value="1"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -120,7 +120,7 @@
 							<object class="IBUIButton" id="405891526">
 								<reference key="NSNextResponder" ref="755483764"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{283, 6}, {29, 27}}</string>
+								<string key="NSFrame">{{283, 6}, {29, 33}}</string>
 								<reference key="NSSuperview" ref="755483764"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -131,7 +131,6 @@
 									<double key="NSSize">15</double>
 									<int key="NSfFlags">16</int>
 								</object>
-								<int key="IBUIButtonType">1</int>
 								<string key="IBUINormalTitle">X</string>
 								<object class="NSColor" key="IBUIHighlightedTitleColor">
 									<int key="NSColorSpace">3</int>
@@ -144,6 +143,14 @@
 								<object class="NSColor" key="IBUINormalTitleShadowColor">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MC41AA</bytes>
+								</object>
+								<object class="NSCustomResource" key="IBUIHighlightedImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">x02.png</string>
+								</object>
+								<object class="NSCustomResource" key="IBUINormalImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">x01.png</string>
 								</object>
 							</object>
 						</object>
@@ -255,10 +262,10 @@
 						<reference key="object" ref="755483764"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="974369510"/>
 							<reference ref="645779144"/>
 							<reference ref="757968786"/>
 							<reference ref="405891526"/>
+							<reference ref="974369510"/>
 						</object>
 						<reference key="parent" ref="191373211"/>
 					</object>

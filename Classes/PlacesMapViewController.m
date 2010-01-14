@@ -9,6 +9,8 @@
 #import "PlacesMapViewController.h"
 #import "VenueAnnotation.h"
 #import "KBPin.h"
+#import "LocationManager.h"
+
 
 @implementation PlacesMapViewController
 
@@ -71,19 +73,23 @@
 }
 
 - (void) refreshVenuePoints{
+    MKCoordinateRegion region;
+    MKCoordinateSpan span;
+    span.latitudeDelta = 0.02;
+    span.longitudeDelta = 0.02;
+    
+    CLLocationCoordinate2D center;
+    center.latitude = [[LocationManager locationManager] latitude];
+    center.longitude = [[LocationManager locationManager] longitude];
+    
+    region.span = span;
+    region.center = center;
+    
 	for(FSVenue * venue in self.venues){
 		//FSVenue * checkVenue = checkin.venue;
 		if(venue.geolat && venue.geolong){
-            MKCoordinateRegion region;
-            MKCoordinateSpan span;
-            span.latitudeDelta = 0.01;
-            span.longitudeDelta = 0.01;
             
             CLLocationCoordinate2D location = venue.location;
-            
-            region.span = span;
-            region.center = location;
-            
             [mapViewer setRegion:region animated:NO];
             [mapViewer regionThatFits:region];
             

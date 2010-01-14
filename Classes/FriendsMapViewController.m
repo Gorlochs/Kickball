@@ -10,6 +10,9 @@
 
 #import "FriendsMapViewController.h"
 #import "QuartzCore/QuartzCore.h"
+#import "LocationManager.h"
+#import "ProfileViewController.h"
+
 
 #define CONST_fps 25.0
 #define CONST_map_shift 0.15
@@ -76,63 +79,64 @@
 	[mapViewer regionThatFits:mapRegion];
 }
 
-
+// map is to be centered on the user and a generic zoom level
+// FUTURE: allow user to set zoom level in settings
 - (void) setCheckins:(NSArray *) checkin{
 	[checkins release];
 	checkins = checkin;
 	[checkins retain];
-	
-    // TODO: center map on user's coordinate, which will be pulled from [FoursquareAPI user] or something
 
 	if (checkins && checkins.count > 0)
 	{
 		NSLog(@"checkins count: %d", checkins.count);
 		
-		double minLat = 1000;
-		double maxLat = -1000;
-		double minLong = 1000;
-		double maxLong = -1000;
-		
-		for (FSCheckin *checkin in checkins)
-		{
-			double lat = checkin.venue.geolat.doubleValue;
-			double lng = checkin.venue.geolong.doubleValue;
-			
-			if (lat < minLat)
-			{
-				minLat = lat;
-			}
-			if (lat > maxLat)
-			{
-				maxLat = lat;
-			}
-			
-			if (lng < minLong)
-			{
-				minLong = lng;
-			}
-			if (lng > maxLong)
-			{
-				maxLong = lng;
-			}
-		}
+//		double minLat = 1000;
+//		double maxLat = -1000;
+//		double minLong = 1000;
+//		double maxLong = -1000;
+//		
+//		for (FSCheckin *checkin in checkins)
+//		{
+//			double lat = checkin.venue.geolat.doubleValue;
+//			double lng = checkin.venue.geolong.doubleValue;
+//			
+//			if (lat < minLat)
+//			{
+//				minLat = lat;
+//			}
+//			if (lat > maxLat)
+//			{
+//				maxLat = lat;
+//			}
+//			
+//			if (lng < minLong)
+//			{
+//				minLong = lng;
+//			}
+//			if (lng > maxLong)
+//			{
+//				maxLong = lng;
+//			}
+//		}
 		
 		MKCoordinateRegion region;
 		MKCoordinateSpan span;
-		span.latitudeDelta=(maxLat - minLat);
-		if (span.latitudeDelta == 0)
-		{
-			span.latitudeDelta = 0.1;
-		}
-		span.longitudeDelta=(maxLong - minLong);
-		if (span.longitudeDelta == 0)
-		{
-			span.longitudeDelta = 0.1;
-		}
+//		span.latitudeDelta=(maxLat - minLat);
+//		if (span.latitudeDelta == 0)
+//		{
+			span.latitudeDelta = 0.05;
+//		}
+//		span.longitudeDelta=(maxLong - minLong);
+//		if (span.longitudeDelta == 0)
+//		{
+			span.longitudeDelta = 0.05;
+//		}
 		
 		CLLocationCoordinate2D center;
-		center.latitude = (minLat + maxLat) / 2;
-		center.longitude = (minLong + maxLong) / 2;
+//		center.latitude = (minLat + maxLat) / 2;
+        //		center.longitude = (minLong + maxLong) / 2;
+        center.latitude = [[LocationManager locationManager] latitude];
+        center.longitude = [[LocationManager locationManager] longitude];
 		
 		NSLog(@"Lat delta: %f.  Long delta: %f.  Lat: %f.  Long: %f", span.latitudeDelta, span.longitudeDelta, center.latitude, center.longitude);
 		
@@ -159,6 +163,7 @@
 			FSUser * checkUser = checkin.user;
 
 			FriendPlacemark *placemark=[[FriendPlacemark alloc] initWithCoordinate:location];
+            //placemark.userId = checkUser.userId;
 			if(checkUser.photo != nil){
 				placemark.url = checkUser.photo;
 			}
@@ -168,27 +173,56 @@
 	}	
 }
 
+- (void) viewProfile:(NSString*)userId {
+    ProfileViewController *profileController = [[ProfileViewController alloc] initWithNibName:@"ProfileView" bundle:nil];
+    profileController.userId = userId;
+    [self.navigationController pushViewController:profileController animated:YES];
+    [profileController release];
+}
+
 #pragma mark MapViewer functions
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
 	
     // If it's the user location, just return nil.
 	
     if ([annotation isKindOfClass:[MKUserLocation class]]) return nil;
-	FriendIconAnnotationView*    pinView = (FriendIconAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:@"CustomPinAnnotation"];
+	FriendIconAnnotationView* pinView = (FriendIconAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:@"CustomPinAnnotation"];
+//    [pinView addObserver:self
+//                          forKeyPath:@"selected"
+//                             options:NSKeyValueObservingOptionNew
+//                             context:@"annotationTouch"];
 	if (!pinView){
 		// If an existing pin view was not available, create one
 		//pinView = [[[FriendIconAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomPinAnnotation"] autorelease];
 		pinView = [[[FriendIconAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomPinAnnotation" andImageUrl:((FriendPlacemark *)annotation).url] autorelease];
+//        pinView.userId = ((FriendPlacemark *)annotation).userId;
 //		pinView.pinColor = MKPinAnnotationColorRed;
 //		pinView.animatesDrop = YES;
 //		pinView.canShowCallout = NO;
 		
-	} else
-		pinView.annotation = annotation;
+	} else {
+        pinView.annotation = annotation;
+    }
+		
 	return pinView;	
 }
 
+//- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+//    
+//    NSString *action = (NSString*)context;
+//    
+//    NSLog(@"**************** annotation touched 1 *************");
+//    
+//    if([action isEqualToString:@"annotationTouch"]){
+//        BOOL annotationAppeared = [[change valueForKey:@"new"] boolValue];
+//        NSLog(@"**************** annotation touched 2 *************");
+//        // do something
+//    }
+//}
+
 - (void)dealloc {
+    [mapViewer release];
+    [checkins release];
     [super dealloc];
 }
 

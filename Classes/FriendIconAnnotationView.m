@@ -8,13 +8,15 @@
 
 #import "FriendIconAnnotationView.h"
 #import "Utilities.h"
+#import "ProfileViewController.h"
+#import "FriendsMapViewController.h"
 
 #define kHeight 32
 #define kWidth 32
 #define kBorder 2
 
 @implementation FriendIconAnnotationView
-@synthesize imageView, userData, title, subtitle, url ;
+@synthesize imageView, userData, title, subtitle, url, userId;
 
 - (id)initWithAnnotation:(id )annotation reuseIdentifier:(NSString *)reuseIdentifier andImageUrl:(NSString *) inUrl{
 	self = [super initWithAnnotation:annotation reuseIdentifier:reuseIdentifier];
@@ -32,8 +34,14 @@
 	}
 		
 	return self;
-	
 }
+
+//- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+//    ProfileViewController *profileController = [[ProfileViewController alloc] initWithNibName:@"ProfileView" bundle:nil];
+//    profileController.userId = userId;
+//    [((FriendsMapViewController*)self.superview.superview.superview.superview.superview.superview.superview).navigationController pushViewController:profileController animated:YES];
+//    [profileController release];
+//}
 
 -(void) dealloc
 {

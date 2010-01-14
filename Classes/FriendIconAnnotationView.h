@@ -16,6 +16,7 @@
 	NSString* title;
 	NSString* subtitle;
 	NSString* userData;
+	NSString* userId;
 	NSURL* url;
 }
 
@@ -25,6 +26,7 @@
 @property (nonatomic, retain) NSString* userData;
 @property (nonatomic, retain) NSString* title;
 @property (nonatomic, retain) NSString* subtitle;
+@property (nonatomic, retain) NSString* userId;
 @property (nonatomic, retain) NSURL* url;
 
 

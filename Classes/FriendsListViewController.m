@@ -311,6 +311,7 @@
     return 44;
 }
 
+// TODO: most of the below header label stuff should be pulled up into a method in KBBBaseViewController
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
 	// create the parent view that will hold header Label
 	UIView* customView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 24.0)] autorelease];
