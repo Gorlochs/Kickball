@@ -81,6 +81,7 @@
             anote.venueId = venue.venueid;
             anote.subtitle = venue.addressWithCrossstreet;
             [mapViewer addAnnotation:anote];
+            [anote release];
             
 //            MKAnnotationView *av = [[MKAnnotationView alloc] initWithAnnotation:anote reuseIdentifier:@"testing"];
 //            av.rightCalloutAccessoryView
@@ -94,9 +95,11 @@
 - (MKAnnotationView *) mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>) annotation{
 	int postag = 0;
     
-	MKPinAnnotationView *annView=[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"currentloc"];
-	annView.pinColor = MKPinAnnotationColorGreen;
+	KBPin *annView=[[KBPin alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomId"];
+	//annView.pinColor = MKPinAnnotationColorGreen;
+    annView.image = [UIImage imageNamed:@"pinRed.png"];
     
+    // add an accessory button so user can click through to the venue page
 	UIButton *myDetailButton = [UIButton buttonWithType:UIButtonTypeCustom];
 	myDetailButton.frame = CGRectMake(0, 0, 23, 23);
 	myDetailButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
@@ -106,18 +109,13 @@
 	[myDetailButton setImage:[UIImage imageNamed:@"button_right.png"] forState:UIControlStateNormal];
 	[myDetailButton addTarget:self action:@selector(showVenue:) forControlEvents:UIControlEventTouchUpInside]; 
 	
-	if ([[annotation title] isEqualToString:@"Current Location"]) {
-		postag = 99999;
-	} else {
-        postag = [((VenueAnnotation*)annotation).venueId intValue];
-	} 
+    postag = [((VenueAnnotation*)annotation).venueId intValue];
 	myDetailButton.tag  = postag;
-	
 	
 	// Set the button as the callout view
 	annView.rightCalloutAccessoryView = myDetailButton;
 	
-	annView.animatesDrop=TRUE;
+	//annView.animatesDrop=TRUE;
 	annView.canShowCallout = YES;
 	annView.calloutOffset = CGPointMake(-5, 5);
 	return annView;

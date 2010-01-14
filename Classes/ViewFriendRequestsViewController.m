@@ -67,11 +67,6 @@
     return cell;
 }
 
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    [self startProgressBar:@"Approving user..."];
-//    [[FoursquareAPI sharedInstance] approveFriendRequest:((FSUser*)[pendingFriendRequests objectAtIndex:indexPath.row]).userId withTarget:self andAction:@selector(friendRequestResponseReceived:withResponseString:)];
-//}
-
 - (void)friendRequestResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     NSLog(@"pending friend requests: %@", inString);
     FSUser *user = [FoursquareAPI userFromResponseXML:inString];
