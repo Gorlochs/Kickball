@@ -17,37 +17,18 @@
 
 @implementation FriendsMapViewController
 
-@synthesize mapViewer;
+@synthesize mapViewer, checkins;
 
-/*
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    [[UIAccelerometer sharedAccelerometer] setDelegate:self];
-//    [[UIAccelerometer sharedAccelerometer] setUpdateInterval:(1.0 / CONST_fps)];
 }
  
 -(void) viewDidAppear:(BOOL)animated{
 	[super viewDidAppear:animated];
 	[self refreshFriendPoints];
 }
-
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -60,16 +41,6 @@
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
 }
-
-//- (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {
-//    static CGFloat ZZ = 0.;
-//    CGFloat z = (atan2(acceleration.x, acceleration.y) + M_PI);
-//
-//    if (fabsf(ZZ - z) > CONST_map_shift)
-//    {
-//        mapViewer.layer.transform = CATransform3DMakeRotation(ZZ=z, 0., 0., 1.);
-//    }
-//}
 
 -(void) refreshMapRegion {
 	NSLog(@"Refresh map region");
@@ -148,11 +119,6 @@
 	[self refreshFriendPoints];
 }
 
-
-- (NSArray *) checkins{
-	return checkins;
-}
-
 - (void) refreshFriendPoints{
 	for(FSCheckin * checkin in self.checkins){		
 		FSVenue * checkVenue = checkin.venue;
@@ -161,25 +127,18 @@
 			FSUser * checkUser = checkin.user;
 
 			FriendPlacemark *placemark=[[FriendPlacemark alloc] initWithCoordinate:location];
-            //placemark.userId = checkUser.userId;
 			if(checkUser.photo != nil){
 				placemark.url = checkUser.photo;
 			}
-            placemark.title = checkUser.firstnameLastInitial;
-//            placemark.subtitle = checkUser.checkin.venue.name;
-            placemark.subtitle = checkUser.lastname;
+            NSLog(@"checkuser: %@", checkUser);
+            placemark.title = checkin.display;
+            placemark.subtitle = checkin.venue.addressWithCrossstreet;
+            //placemark.subtitle = checkUser.lastname;
             placemark.userId = checkUser.userId;
 			[mapViewer addAnnotation:placemark];
             [placemark release];
 		}
 	}	
-}
-
-- (void) viewProfile:(NSString*)userId {
-    ProfileViewController *profileController = [[ProfileViewController alloc] initWithNibName:@"ProfileView" bundle:nil];
-    profileController.userId = userId;
-    [self.navigationController pushViewController:profileController animated:YES];
-    [profileController release];
 }
 
 #pragma mark MapViewer functions
@@ -193,12 +152,6 @@
 	if (!pinView){
 		// If an existing pin view was not available, create one
 		pinView = [[[FriendIconAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomPinAnnotation" andImageUrl:((FriendPlacemark *)annotation).url] autorelease];
-        
-//        pinView.userId = ((FriendPlacemark *)annotation).userId;
-//		pinView.pinColor = MKPinAnnotationColorRed;
-//		pinView.animatesDrop = YES;
-//		pinView.canShowCallout = NO;
-		
 	} else {
         pinView.annotation = annotation;
     }
