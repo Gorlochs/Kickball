@@ -19,7 +19,7 @@
     
     if (self)        
     {
-        UIImage*    theImage = [UIImage imageNamed:@"pin01.png"];
+        UIImage*    theImage = [UIImage imageNamed:@"pinRed.png"];
         
         if (!theImage)
             return nil;

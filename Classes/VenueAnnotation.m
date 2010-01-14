@@ -11,7 +11,7 @@
 
 @implementation VenueAnnotation
 
-@synthesize coordinate, title, subtitle;
+@synthesize coordinate, title, subtitle, venueId;
 
 //- (NSString *)subtitle{
 //	return nil;

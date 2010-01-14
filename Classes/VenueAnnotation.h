@@ -13,10 +13,12 @@
     NSString *title;
     NSString *subtitle;
 	CLLocationCoordinate2D coordinate;
+    NSString *venueId;
 }
 
 @property (nonatomic) CLLocationCoordinate2D coordinate;
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSString *subtitle;
+@property (nonatomic, retain) NSString *venueId;
 
 @end

@@ -10,41 +10,23 @@
 #import "VenueAnnotation.h"
 #import "KBPin.h"
 #import "LocationManager.h"
+#import "PlaceDetailViewController.h"
 
 
 @implementation PlacesMapViewController
 
 @synthesize mapViewer, bestEffortAtLocation;
 
-/*
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
- - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
- if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
- // Custom initialization
- }
- return self;
- }
- */
 
-/*
  // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
- - (void)viewDidLoad {
- [super viewDidLoad];
- }
- */
-
--(void) viewDidAppear:(BOOL)animated{
-	[super viewDidAppear:animated];
+- (void)viewDidLoad {
+    [super viewDidLoad];
 	[self refreshVenuePoints];
 }
 
-/*
- // Override to allow orientations other than the default portrait orientation.
- - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
- // Return YES for supported orientations
- return (interfaceOrientation == UIInterfaceOrientationPortrait);
- }
- */
+-(void) viewDidAppear:(BOOL)animated{
+	[super viewDidAppear:animated];
+}
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -59,7 +41,7 @@
 }
 
 
-- (void) setVenues:(NSArray *) venue{
+- (void) setVenues:(NSDictionary *) venue{
 	[venues release];
 	venues = venue;
 	[venues retain];
@@ -68,7 +50,7 @@
 }
 
 
-- (NSArray *) venues{
+- (NSDictionary *) venues{
 	return venues;
 }
 
@@ -96,6 +78,7 @@
             VenueAnnotation *anote = [[VenueAnnotation alloc] init];
             anote.coordinate = location;
             anote.title = venue.name;
+            anote.venueId = venue.venueid;
             anote.subtitle = venue.addressWithCrossstreet;
             [mapViewer addAnnotation:anote];
             
@@ -107,21 +90,78 @@
 
 
 #pragma mark MapViewer functions
+
+- (MKAnnotationView *) mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>) annotation{
+	int postag = 0;
+    
+	MKPinAnnotationView *annView=[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"currentloc"];
+	annView.pinColor = MKPinAnnotationColorGreen;
+    
+	UIButton *myDetailButton = [UIButton buttonWithType:UIButtonTypeCustom];
+	myDetailButton.frame = CGRectMake(0, 0, 23, 23);
+	myDetailButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+	myDetailButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+	
+	// Set the image for the button
+	[myDetailButton setImage:[UIImage imageNamed:@"button_right.png"] forState:UIControlStateNormal];
+	[myDetailButton addTarget:self action:@selector(showVenue:) forControlEvents:UIControlEventTouchUpInside]; 
+	
+	if ([[annotation title] isEqualToString:@"Current Location"]) {
+		postag = 99999;
+	} else {
+        postag = [((VenueAnnotation*)annotation).venueId intValue];
+	} 
+	myDetailButton.tag  = postag;
+	
+	
+	// Set the button as the callout view
+	annView.rightCalloutAccessoryView = myDetailButton;
+	
+	annView.animatesDrop=TRUE;
+	annView.canShowCallout = YES;
+	annView.calloutOffset = CGPointMake(-5, 5);
+	return annView;
+}
+
+- (void) showVenue:(id)sender {
+    int nrButtonPressed = ((UIButton *)sender).tag;
+    NSLog(@"annotation for venue pressed: %d", nrButtonPressed);
+    
+    PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];;
+    placeDetailController.venueId = [NSString stringWithFormat:@"%d", nrButtonPressed];
+    [self.navigationController pushViewController:placeDetailController animated:YES];
+    [placeDetailController release];
+}
+
 // this one displays the proper pin, but doesn't work with the pop up annotation
 //- (MKAnnotationView *) mapView: (MKMapView *) mapView viewForAnnotation: (id<MKAnnotation>) annotation {
-//        
-//    MKAnnotationView *annView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:nil];
-//    
-//    UIImage *image = [UIImage imageNamed:@"pin01.png"];
-//    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-//    [annView addSubview:imageView];
-//    [imageView release];
-//    
-//    MKPinAnnotationView *pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:nil];     
-//    [annView addSubview:pinView];
-//    [pinView release];
-//    
+//
+//    MKPinAnnotationView *annView=[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomId"];
+//    UIImage *image = [UIImage imageNamed:@"pinRed.png"];
+////    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+////    [annView addSubview:imageView];
+////    [imageView release];
+//    annView.image = image;
+//    [image release];
+//    annView.animatesDrop=TRUE;
+//    annView.canShowCallout = YES;
+//    annView.calloutOffset = CGPointMake(-5, 5);
+//    annView.
 //    return annView;
+//
+//    
+////    MKAnnotationView *annView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:nil];
+////    
+////    UIImage *image = [UIImage imageNamed:@"pinRed.png"];
+////    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+////    [annView addSubview:imageView];
+////    [imageView release];
+////    
+////    MKPinAnnotationView *pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:nil];     
+////    [annView addSubview:pinView];
+////    [pinView release];
+////    
+////    return annView;
 //}
     
 
@@ -173,7 +213,7 @@
     }
 }
 - (void)venuesResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-	NSArray *allVenues = [FoursquareAPI venuesFromResponseXML:inString];
+	NSDictionary *allVenues = [FoursquareAPI venuesFromResponseXML:inString];
 	self.venues = [[allVenues copy] objectAtIndex:0];
     [self stopProgressBar];
     //[self refreshVenuePoints];
