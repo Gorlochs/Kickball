@@ -17,4 +17,7 @@
 
 @property (nonatomic, retain) NSMutableArray *pendingFriendRequests;
 
+- (void) acceptFriend:(UIControl*) button;
+- (void) denyFriend:(UIControl*) button;
+
 @end

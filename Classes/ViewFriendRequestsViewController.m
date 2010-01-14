@@ -10,6 +10,7 @@
 #import "FoursquareAPI.h"
 #import "FSUser.h"
 #import "KBMessage.h"
+#import "ViewFriendRequestsTableCell.h"
 
 @implementation ViewFriendRequestsViewController
 
@@ -48,23 +49,28 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"FriendRequestCell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    ViewFriendRequestsTableCell *cell = (ViewFriendRequestsTableCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {        
+        UIViewController *vc = [[UIViewController alloc]initWithNibName:@"ViewFriendRequestsTableCell" bundle:nil];
+        cell = (ViewFriendRequestsTableCell*) vc.view;
+        cell.selectionStyle = UITableViewCellSelectionStyleGray;
+        [vc release];
     }
     
-    cell.textLabel.text = ((FSUser*)[pendingFriendRequests objectAtIndex:indexPath.row]).firstnameLastInitial;
-	// TODO: create two buttons, accept and deny; set button.tag to help identify which button is touched
+    cell.acceptFriendButton.tag = indexPath.row;
+    cell.friendName.text = ((FSUser*)[pendingFriendRequests objectAtIndex:indexPath.row]).firstnameLastInitial;
+    [cell.acceptFriendButton addTarget:self action:@selector(acceptFriend:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.acceptFriendButton addTarget:self action:@selector(denyFriend:) forControlEvents:UIControlEventTouchUpInside];
     
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self startProgressBar:@"Approving user..."];
-    [[FoursquareAPI sharedInstance] approveFriendRequest:((FSUser*)[pendingFriendRequests objectAtIndex:indexPath.row]).userId withTarget:self andAction:@selector(friendRequestResponseReceived:withResponseString:)];
-}
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//    [self startProgressBar:@"Approving user..."];
+//    [[FoursquareAPI sharedInstance] approveFriendRequest:((FSUser*)[pendingFriendRequests objectAtIndex:indexPath.row]).userId withTarget:self andAction:@selector(friendRequestResponseReceived:withResponseString:)];
+//}
 
 - (void)friendRequestResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     NSLog(@"pending friend requests: %@", inString);
@@ -93,9 +99,14 @@
     [message release];
 }
 
-- (void) denyFriendRequest:(NSInteger)row {
-    [self startProgressBar:@"Denying user..."];
-    [[FoursquareAPI sharedInstance] denyFriendRequest:((FSUser*)[pendingFriendRequests objectAtIndex:row]).userId withTarget:self andAction:@selector(friendRequestResponseReceived:withResponseString:)];
+- (void) acceptFriend:(UIControl*) button {
+    NSLog(@"acceptfriend tag: %d", button.tag);
+    [[FoursquareAPI sharedInstance] approveFriendRequest:((FSUser*)[pendingFriendRequests objectAtIndex:button.tag]).userId withTarget:self andAction:@selector(friendRequestResponseReceived:withResponseString:)];
+}
+
+- (void) denyFriend:(UIControl*) button {
+    NSLog(@"denyfriend tag: %d", button.tag);
+    [[FoursquareAPI sharedInstance] denyFriendRequest:((FSUser*)[pendingFriendRequests objectAtIndex:button.tag]).userId withTarget:self andAction:@selector(friendRequestResponseReceived:withResponseString:)];
 }
 
 - (void)dealloc {
