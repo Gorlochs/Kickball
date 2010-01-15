@@ -124,7 +124,7 @@
 - (void)venuesResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     NSLog(@"venues: %@", inString);
 	NSDictionary *allVenues = [FoursquareAPI venuesFromResponseXML:inString];
-	self.venues = [allVenues copy];
+	self.venues = [NSDictionary dictionaryWithDictionary:allVenues];
 	[theTableView reloadData];
     
     //move table to new entry
@@ -158,7 +158,7 @@
         venuesTypeToDisplay = KBSearchVenues;
         [self startProgressBar:@"Searching..."];
         // TODO: I am just replacing a space with a +, but other characters might give this method a headache.
-        [[FoursquareAPI sharedInstance] getVenuesByKeyword:[NSString stringWithFormat:@"%f",[[LocationManager locationManager] longitude]] 
+        [[FoursquareAPI sharedInstance] getVenuesByKeyword:[NSString stringWithFormat:@"%f",[[LocationManager locationManager] latitude]] 
                                               andLongitude:[NSString stringWithFormat:@"%f",[[LocationManager locationManager] longitude]] 
                                                andKeywords:[searchbox.text stringByReplacingOccurrencesOfString:@" " withString:@"+"]
                                                 withTarget:self 
@@ -181,6 +181,7 @@
     [mapViewController release];
 }
 
+// TODO: currently refresh button refreshes the list to the original list
 - (void) refresh: (UIControl *) button {
     [self startProgressBar:@"Retrieving nearby venues..."];
     [[FoursquareAPI sharedInstance] getVenuesNearLatitude:[NSString stringWithFormat:@"%f",[[LocationManager locationManager] latitude]] 
@@ -317,9 +318,9 @@
     [locationManager release];
     [bestEffortAtLocation release];
     [venues release];
+    [switchingButton release];
     [super dealloc];
 }
-
 
 @end
 
