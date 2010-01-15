@@ -28,8 +28,6 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     PopupMessageView *popupView;
     KBTextViewController *textViewController;
     NSString *textViewReturnValue;
-    
-    NSTimer *touchTimer;
 }
 
 @property (nonatomic, retain) LoginViewModalController *loginViewModal;
@@ -44,7 +42,6 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 - (void) startProgressBar:(NSString*)textToDisplay;
 - (void) stopProgressBar;
 - (void) doInitialDisplay;
-- (void) displayOverlayNavigation;
 - (void) displayPopupMessage:(KBMessage*)message;
 - (IBAction) viewSettings;
 - (void) addHeaderAndFooter:(UITableView*)tableView;

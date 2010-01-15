@@ -229,6 +229,8 @@
     
     [checkin release];
     [venues release];
+    
+    [noneOfTheseCell release];
     [super dealloc];
 }
 

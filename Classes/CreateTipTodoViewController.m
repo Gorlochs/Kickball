@@ -38,6 +38,8 @@
     [tipTodoSwitch release];
     [tipId release];
     [venue release];
+    [venueName release];
+    [venueAddress release];
     [super dealloc];
 }
 
@@ -85,7 +87,7 @@
 }
 
 - (void) cancel {
-    [self dismissModalViewControllerAnimated];
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 @end

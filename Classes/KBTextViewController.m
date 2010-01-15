@@ -41,9 +41,6 @@
     NSLog(@"shoutCheckins: %@", shoutCheckins);
     
     // TODO: confirm that the shout was sent?
-//    KBMessage *msg = [[KBMessage alloc] initWithMember:@"Kickball Notification" andSubtitle:@"Your shout was sent" andMessage:@"Thank you."];
-//    [self displayPopupMessage:msg];
-//    [msg release];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"shoutSent"
                                                         object:nil
                                                       userInfo:nil];

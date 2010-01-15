@@ -33,6 +33,11 @@
 }
 
 - (void)dealloc {
+    [message release];
+    [messageTitle release];
+    [subtitle release];
+    [text release];
+    [closeButton release];
     [super dealloc];
 }
 

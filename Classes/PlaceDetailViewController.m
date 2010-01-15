@@ -384,18 +384,26 @@
     [giftCell release];
     [pointsCell release];
     [badgeCell release];
+    [newMayorCell release];
+    [stillTheMayorCell release];
+    [bottomButtonCell release];
     [mapView release];
     
     [venueName release];
     [venueAddress release];
     [mayorNameLabel release];
-    [badgeCell release];
+    [badgeLabel release];
+    [newMayorshipLabel release];
+    [stillTheMayorLabel release];
+    
+    [badgeImage release];
     
     [twitterButton release];
     [pingToggleButton release];
     [twitterToggleButton release];
     [venueDetailButton release];
     [specialsButton release];
+    [mapButton release];
     
     [checkin release];
     [venue release];

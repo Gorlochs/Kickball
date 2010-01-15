@@ -99,6 +99,14 @@
     [saveCell release];
     [checkedInCell release];
     
+    [address release];
+    [crossstreet release];
+    [city release];
+    [state release];
+    [zip release];
+    [phone release];
+    [twitter release];
+    
     [super dealloc];
 }
 

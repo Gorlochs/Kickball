@@ -110,6 +110,8 @@
 
 
 - (void)dealloc {
+    [theMapView release];
+    [venue release];
     [super dealloc];
 }
 

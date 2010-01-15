@@ -19,13 +19,8 @@
 @synthesize loginViewModal;
 @synthesize textViewReturnValue;
 
-//- (void) viewWillAppear:(BOOL)animated {
-//    signedInUserIcon.hidden = YES;
-//}
-
 - (void) viewDidLoad {
     [super viewDidLoad];
-    //[self setUserInteractionEnabled:YES];
     [UIView setAnimationsEnabled:YES];
     
     FSUser *tmpUser = [self getAuthenticatedUser];
@@ -44,29 +39,6 @@
     KBMessage *msg = [[KBMessage alloc] initWithMember:@"Kickball Notification" andSubtitle:@"Your shout was sent" andMessage:@"Thank you."];
     [self displayPopupMessage:msg];
     [msg release];
-}
-
-- (void) touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event {
-    NSLog(@"touch started");
-    // TODO: this doesn't seem right now that I look at it again. We need to revisit this anyway.
-    touchTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(displayOverlayNavigation) userInfo:nil repeats:NO]; 
-	
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
-//    CGPoint pt = [[touches anyObject] locationInView:self];
-//	CGRect frame = self.frame;
-//    frame.size.width = pt.x;
-//    self.frame = frame;
-    [UIView commitAnimations];
-}
-
-- (void) displayOverlayNavigation {
-    NSLog(@"***** one second touch called the display navigation method *****");
-}
-
-- (void) touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event {
-    NSLog(@"touch ended");
-    //[touchTimer invalidate];
 }
 
 - (void) backOneView {
@@ -110,6 +82,9 @@
     [signedInUserIcon release];
     [progressViewController release];
     [loginViewModal release];
+    [popupView release];
+    [textViewController release];
+    [textViewReturnValue release];
     [super dealloc];
 }
 

@@ -90,6 +90,8 @@
 
 - (void)dealloc {
     [theTableView release];
+    [userId release];
+    [friends release];
     [super dealloc];
 }
 

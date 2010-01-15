@@ -52,6 +52,7 @@
 
 
 - (void)dealloc {
+    [webView release];
     [super dealloc];
 }
 

@@ -127,6 +127,7 @@
     [usernameField release];
     [passwordField release];
     [rootController release];
+    [forgottenPasswordButton release];
     [super dealloc];
 }
 
