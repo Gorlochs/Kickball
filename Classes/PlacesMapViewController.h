@@ -14,11 +14,12 @@
 #import "KBBaseViewController.h"
 
 
-@interface PlacesMapViewController : KBBaseViewController {
+@interface PlacesMapViewController : KBBaseViewController <UITextFieldDelegate> {
 	IBOutlet MKMapView * mapViewer;
 	NSArray * venues;
     CLLocation *bestEffortAtLocation;
     IBOutlet UITextField *searchbox;
+    IBOutlet UIButton *switchingButton;
 }
 
 @property (nonatomic, retain) NSArray * venues;
@@ -29,6 +30,8 @@
 - (void) setVenues:(NSArray *) venue;
 - (NSArray *) venues;
 - (IBAction) searchOnKeywordsandLatLong;
+- (IBAction) refresh: (UIControl *) button;
+- (void) cancelKeyboard: (UIControl *) button;
 
 @end
 

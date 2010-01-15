@@ -55,14 +55,63 @@
 }
 
 - (void) refreshVenuePoints{
+//    MKCoordinateRegion region;
+//    MKCoordinateSpan span;
+//    span.latitudeDelta = 0.02;
+//    span.longitudeDelta = 0.02;
+    
+//    CLLocationCoordinate2D center;
+//    center.latitude = [[LocationManager locationManager] latitude];
+//    center.longitude = [[LocationManager locationManager] longitude];
+//    
+//    region.span = span;
+//    region.center = center;
+  
+    double minLat = 1000;
+    double maxLat = -1000;
+    double minLong = 1000;
+    double maxLong = -1000;
+    
+    for (FSVenue *venue in self.venues)
+    {
+        double lat = venue.geolat.doubleValue;
+        double lng = venue.geolong.doubleValue;
+        
+        if (lat < minLat)
+        {
+            minLat = lat;
+        }
+        if (lat > maxLat)
+        {
+            maxLat = lat;
+        }
+        
+        if (lng < minLong)
+        {
+            minLong = lng;
+        }
+        if (lng > maxLong)
+        {
+            maxLong = lng;
+        }
+    }
+    
     MKCoordinateRegion region;
     MKCoordinateSpan span;
-    span.latitudeDelta = 0.02;
-    span.longitudeDelta = 0.02;
+    span.latitudeDelta=(maxLat - minLat);
+    if (span.latitudeDelta == 0)
+    {
+        span.latitudeDelta = 0.05;
+    }
+    span.longitudeDelta=(maxLong - minLong);
+    if (span.longitudeDelta == 0)
+    {
+        span.longitudeDelta = 0.05;
+    }
     
     CLLocationCoordinate2D center;
-    center.latitude = [[LocationManager locationManager] latitude];
-    center.longitude = [[LocationManager locationManager] longitude];
+    center.latitude = (minLat + maxLat) / 2;
+    center.longitude = (minLong + maxLong) / 2;
     
     region.span = span;
     region.center = center;
@@ -86,7 +135,62 @@
 //            MKAnnotationView *av = [[MKAnnotationView alloc] initWithAnnotation:anote reuseIdentifier:@"testing"];
 //            av.rightCalloutAccessoryView
 		}
-	}	
+	}
+    // does this go here?
+    [self stopProgressBar];
+}
+
+- (void) zoomToProperDepth {
+    if (self.venues && self.venues.count > 0)
+	{
+//		NSLog(@"checkins count: %d", checkins.count);
+		
+        double minLat = 1000;
+        double maxLat = -1000;
+        double minLong = 1000;
+        double maxLong = -1000;
+        
+        for (FSVenue *venue in self.venues)
+        {
+        	double lat = venue.geolat.doubleValue;
+        	double lng = venue.geolong.doubleValue;
+        	
+        	if (lat < minLat)
+        	{
+        		minLat = lat;
+        	}
+        	if (lat > maxLat)
+        	{
+        		maxLat = lat;
+        	}
+        	
+        	if (lng < minLong)
+        	{
+        		minLong = lng;
+        	}
+        	if (lng > maxLong)
+        	{
+        		maxLong = lng;
+        	}
+        }
+		
+		MKCoordinateRegion region;
+		MKCoordinateSpan span;
+        span.latitudeDelta=(maxLat - minLat);
+        if (span.latitudeDelta == 0)
+        {
+        span.latitudeDelta = 0.05;
+        }
+        span.longitudeDelta=(maxLong - minLong);
+        if (span.longitudeDelta == 0)
+        {
+        span.longitudeDelta = 0.05;
+        }
+		
+		CLLocationCoordinate2D center;
+        center.latitude = (minLat + maxLat) / 2;
+        center.longitude = (minLong + maxLong) / 2;
+    }
 }
 
 
@@ -125,104 +229,78 @@
     int nrButtonPressed = ((UIButton *)sender).tag;
     NSLog(@"annotation for venue pressed: %d", nrButtonPressed);
     
-    PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];;
+    PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];
     placeDetailController.venueId = [NSString stringWithFormat:@"%d", nrButtonPressed];
     [self.navigationController pushViewController:placeDetailController animated:YES];
     [placeDetailController release];
 }
 
-// this one displays the proper pin, but doesn't work with the pop up annotation
-//- (MKAnnotationView *) mapView: (MKMapView *) mapView viewForAnnotation: (id<MKAnnotation>) annotation {
-//
-//    MKPinAnnotationView *annView=[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomId"];
-//    UIImage *image = [UIImage imageNamed:@"pinRed.png"];
-////    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-////    [annView addSubview:imageView];
-////    [imageView release];
-//    annView.image = image;
-//    [image release];
-//    annView.animatesDrop=TRUE;
-//    annView.canShowCallout = YES;
-//    annView.calloutOffset = CGPointMake(-5, 5);
-//    annView.
-//    return annView;
-//
-//    
-////    MKAnnotationView *annView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:nil];
-////    
-////    UIImage *image = [UIImage imageNamed:@"pinRed.png"];
-////    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-////    [annView addSubview:imageView];
-////    [imageView release];
-////    
-////    MKPinAnnotationView *pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:nil];     
-////    [annView addSubview:pinView];
-////    [pinView release];
-////    
-////    return annView;
-//}
-    
-
-//{    
-//    MKPinAnnotationView *pin=[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomAnnotation"];
-////	[pin setPinColor:MKPinAnnotationColorRed];
-////    
-//	// Set up the Left callout
-//	UIButton *myDetailButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-//	myDetailButton.frame = CGRectMake(0, 0, 23, 23);
-//	myDetailButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-//	myDetailButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-////	[myDetailButton addTarget:self action:@selector(checkButtonTapped:event:) forControlEvents:UIControlEventTouchUpInside];
-//	
-//	
-//	pin.rightCalloutAccessoryView = myDetailButton;
-//	pin.animatesDrop = YES;
-//	pin.canShowCallout = YES;
-//    
-//    //	if (pin == nil)
-////    {
-////        //pin = [[[KBPin alloc] initWithAnnotation:annotation] autorelease];
-////
-////        pin = [[[MKPinAnnotationView alloc] initWithAnnotation: annotation reuseIdentifier: @"CustomAnnotation"] autorelease];
-////    }
-////    else
-////    {
-////        pin.annotation = annotation;
-////    }
-//    //pin.annotation.title = @"test";
-//    //pin.title = @"testing";
-////    pin.pinColor = MKPinAnnotationColorRed;
-//    //pin.animatesDrop = YES;
-//    return pin;
-//}
 
 #pragma mark IBAction methods
 
 -(void)searchOnKeywordsandLatLong {
+    [self startProgressBar:@"Searching..."];
     [searchbox resignFirstResponder];
     if (![searchbox.text isEqualToString:@""]) {
         // TODO: I am just replacing a space with a +, but other characters might give this method a headache.
-        [[FoursquareAPI sharedInstance] getVenuesByKeyword:[NSString stringWithFormat:@"%f",bestEffortAtLocation.coordinate.latitude] 
-                                              andLongitude:[NSString stringWithFormat:@"%f",bestEffortAtLocation.coordinate.longitude] 
+        [[FoursquareAPI sharedInstance] getVenuesByKeyword:[NSString stringWithFormat:@"%f",[[LocationManager locationManager] latitude]] 
+                                              andLongitude:[NSString stringWithFormat:@"%f",[[LocationManager locationManager] longitude]] 
                                                andKeywords:[searchbox.text stringByReplacingOccurrencesOfString:@" " withString:@"+"]
                                                 withTarget:self 
                                                  andAction:@selector(venuesResponseReceived:withResponseString:)
          ];
     }
 }
+
 - (void)venuesResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+    NSLog(@"venues from search - instring: %@", inString);
 	NSDictionary *allVenues = [FoursquareAPI venuesFromResponseXML:inString];
-	self.venues = [[allVenues copy] objectAtIndex:0];
+    NSMutableArray *venueArray = [[NSMutableArray alloc] initWithCapacity:1];
+    NSArray *keys = [allVenues allKeys];
+    for (NSString *key in keys) {
+        [venueArray addObjectsFromArray:[allVenues objectForKey:key]];
+    }
+	self.venues = [NSArray arrayWithArray:venueArray];
+    NSLog(@"searched on venues: %@", self.venues);
+    [venueArray release];
     [self stopProgressBar];
-    //[self refreshVenuePoints];
+    [self refreshVenuePoints];
 }
 
+- (void) cancelKeyboard: (UIControl *) button {
+    [searchbox resignFirstResponder];
+}
+
+- (void) refresh: (UIControl *) button {
+    [self refreshVenuePoints];
+}
+
+#pragma mark UITextFieldDelegate methods
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    [switchingButton setImage:[UIImage imageNamed:@"x01.png"] forState:UIControlStateNormal];
+    [switchingButton setImage:[UIImage imageNamed:@"x02.png"] forState:UIControlStateHighlighted];
+    [switchingButton addTarget:self action:@selector(cancelKeyboard:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    [switchingButton setImage:[UIImage imageNamed:@"resultsRefresh01.png"] forState:UIControlStateNormal];
+    [switchingButton setImage:[UIImage imageNamed:@"resultsRefresh02.png"] forState:UIControlStateHighlighted];
+    [switchingButton addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    [self searchOnKeywordsandLatLong];
+    return YES;
+}
 
 - (void)dealloc {
     [venues release];
     [mapViewer release];
     [bestEffortAtLocation release];
     [searchbox release];
+    [switchingButton release];
     [super dealloc];
 }
 @end
