@@ -41,7 +41,7 @@
 }
 
 
-- (void) setVenues:(NSDictionary *) venue{
+- (void) setVenues:(NSArray *) venue{
 	[venues release];
 	venues = venue;
 	[venues retain];
@@ -50,7 +50,7 @@
 }
 
 
-- (NSDictionary *) venues{
+- (NSArray *) venues{
 	return venues;
 }
 

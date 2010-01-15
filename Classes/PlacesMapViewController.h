@@ -16,18 +16,18 @@
 
 @interface PlacesMapViewController : KBBaseViewController {
 	IBOutlet MKMapView * mapViewer;
-	NSDictionary * venues;
+	NSArray * venues;
     CLLocation *bestEffortAtLocation;
     IBOutlet UITextField *searchbox;
 }
 
-@property (nonatomic, retain) NSDictionary * venues;
+@property (nonatomic, retain) NSArray * venues;
 @property (nonatomic, retain) MKMapView * mapViewer;
 @property (nonatomic, retain) CLLocation *bestEffortAtLocation;
 
 - (void) refreshVenuePoints;
-- (void) setVenues:(NSDictionary *) venue;
-- (NSDictionary *) venues;
+- (void) setVenues:(NSArray *) venue;
+- (NSArray *) venues;
 - (IBAction) searchOnKeywordsandLatLong;
 
 @end
