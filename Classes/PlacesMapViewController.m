@@ -55,17 +55,8 @@
 }
 
 - (void) refreshVenuePoints{
-//    MKCoordinateRegion region;
-//    MKCoordinateSpan span;
-//    span.latitudeDelta = 0.02;
-//    span.longitudeDelta = 0.02;
-    
-//    CLLocationCoordinate2D center;
-//    center.latitude = [[LocationManager locationManager] latitude];
-//    center.longitude = [[LocationManager locationManager] longitude];
-//    
-//    region.span = span;
-//    region.center = center;
+
+    [mapViewer removeAnnotations:mapViewer.annotations];
   
     double minLat = 1000;
     double maxLat = -1000;
