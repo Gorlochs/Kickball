@@ -181,7 +181,7 @@
     [mapViewController release];
 }
 
-- (void) refresh {
+- (void) refresh: (UIControl *) button {
     [self startProgressBar:@"Retrieving nearby venues..."];
     [[FoursquareAPI sharedInstance] getVenuesNearLatitude:[NSString stringWithFormat:@"%f",[[LocationManager locationManager] latitude]] 
                                              andLongitude:[NSString stringWithFormat:@"%f",[[LocationManager locationManager] longitude]]
@@ -196,6 +196,10 @@
     AddPlaceViewController *addPlaceController = [[AddPlaceViewController alloc] initWithNibName:@"AddPlaceViewController" bundle:nil];
     [self.navigationController pushViewController:addPlaceController animated:YES];
     [addPlaceController release];
+}
+
+- (void) cancelKeyboard: (UIControl *) button {
+    [searchbox resignFirstResponder];
 }
 
 #pragma mark Table view methods
@@ -286,6 +290,18 @@
 }
 
 #pragma mark UITextFieldDelegate methods
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    [switchingButton setImage:[UIImage imageNamed:@"x01.png"] forState:UIControlStateNormal];
+    [switchingButton setImage:[UIImage imageNamed:@"x02.png"] forState:UIControlStateHighlighted];
+    [switchingButton addTarget:self action:@selector(cancelKeyboard:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    [switchingButton setImage:[UIImage imageNamed:@"resultsRefresh01.png"] forState:UIControlStateNormal];
+    [switchingButton setImage:[UIImage imageNamed:@"resultsRefresh02.png"] forState:UIControlStateHighlighted];
+    [switchingButton addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventTouchUpInside];
+}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];

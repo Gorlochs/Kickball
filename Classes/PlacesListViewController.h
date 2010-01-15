@@ -24,6 +24,7 @@ typedef enum {
     CLLocation *bestEffortAtLocation;
     NSDictionary *venues;
     KBListType venuesTypeToDisplay;
+    IBOutlet UIButton *switchingButton;
 }
 
 @property (nonatomic, retain) UITableViewCell *searchCell;
@@ -33,7 +34,8 @@ typedef enum {
 
 - (IBAction) searchOnKeywordsandLatLong;
 - (IBAction) flipToMap;
-- (IBAction) refresh;
+- (IBAction) refresh: (UIControl *) button;
 - (IBAction) addNewVenue;
+- (IBAction) cancelKeyboard: (UIControl *) button;
 
 @end

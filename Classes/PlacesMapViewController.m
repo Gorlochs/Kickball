@@ -68,7 +68,7 @@
     region.center = center;
     
 	for(FSVenue * venue in self.venues){
-		//FSVenue * checkVenue = checkin.venue;
+		//FSVenue * checkVenue = checkin.venue; 
 		if(venue.geolat && venue.geolong){
             
             CLLocationCoordinate2D location = venue.location;
