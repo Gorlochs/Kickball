@@ -49,13 +49,12 @@
     anote.subtitle = venue.addressWithCrossstreet;
     
     [theMapView addAnnotation:anote];
+    [anote release];
 }
 
 - (void)mapViewDidFinishLoadingMap:(MKMapView *)mapView {
-    for (id<MKAnnotation> currentAnnotation in mapView.annotations) {       
-        //if ([currentAnnotation isEqual:annotationToSelect]) {
-            [mapView selectAnnotation:currentAnnotation animated:YES];
-        //}
+    for (id<MKAnnotation> currentAnnotation in mapView.annotations) { 
+        [mapView selectAnnotation:currentAnnotation animated:YES];
     }    
 }
 
@@ -63,7 +62,6 @@
 //	int postag = 0;
     
 	KBPin *annView=[[KBPin alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomId"];
-	//annView.pinColor = MKPinAnnotationColorGreen;
     annView.image = [UIImage imageNamed:@"pinRed.png"];
     
     // add an accessory button so user can click through to the venue page

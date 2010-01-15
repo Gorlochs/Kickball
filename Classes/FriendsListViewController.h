@@ -13,9 +13,8 @@
 #import "FriendsMapViewController.h"
 
 
-@interface FriendsListViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
+@interface FriendsListViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource> {
     IBOutlet UITableView *theTableView;
-    IBOutlet UITextField *shoutField;
     IBOutlet UIButton *mapButton;
 	NSArray * checkins;
 	NSMutableArray * recentCheckins;

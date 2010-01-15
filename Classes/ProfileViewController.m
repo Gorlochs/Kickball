@@ -225,10 +225,13 @@
             } else {
                 cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
                 cell.selectionStyle = UITableViewCellSelectionStyleGray;
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                cell.textLabel.adjustsFontSizeToFitWidth = YES;
             }
         } else {
             cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
             cell.selectionStyle = UITableViewCellSelectionStyleGray;
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
     }
     
@@ -241,7 +244,9 @@
             if (indexPath.row == 0) {
                 return badgeCell;
             }
-            cell.textLabel.text = [NSString stringWithFormat:@"Check out %@'s friends", user.firstname];
+            if (user) {
+                cell.textLabel.text = [NSString stringWithFormat:@"Check out %@'s friends", user.firstname];
+            }
             break;
         case 2:  // mayors
             cell.textLabel.text = ((FSVenue*)[user.mayorOf objectAtIndex:indexPath.row]).name;

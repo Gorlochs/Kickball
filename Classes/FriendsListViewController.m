@@ -141,7 +141,6 @@
 }
 
 - (void)dealloc {
-    [shoutField release];
     [recentCheckins release];
     [todayCheckins release];
     [yesterdayCheckins release];
@@ -448,21 +447,6 @@
     [self.navigationController pushViewController:friendsController animated:YES];
     [friendsController release];
 }
-
-#pragma mark
-#pragma mark UITextFieldDelegate methods
-
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-    [self displayTextView];
-    return NO;
-}
-
-//- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-//    [textField resignFirstResponder];
-//    [self shout];
-//    return YES;
-//}
-
 
 @end
 
