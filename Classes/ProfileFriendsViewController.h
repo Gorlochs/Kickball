@@ -14,6 +14,7 @@
     IBOutlet UITableView *theTableView;
     NSString *userId;
     NSArray *friends;
+    NSMutableDictionary *userIcons;
 }
 
 @property (nonatomic, retain) NSString *userId;

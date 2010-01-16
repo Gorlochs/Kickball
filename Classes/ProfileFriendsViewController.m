@@ -27,6 +27,15 @@
 - (void)friendsResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     NSLog(@"friends: %@", inString);
     friends = [FoursquareAPI friendUsersFromRequestResponseXML:inString];
+    // create dictionary of icons to help speed up the scrolling
+    
+    userIcons = [[NSMutableDictionary alloc] initWithCapacity:1];
+    for (FSUser *user in friends) {
+        if (user && user.photo && user.userId) {
+            UIImage *img = [[Utilities sharedInstance] getCachedImage:user.photo];
+            [userIcons setObject:img forKey:user.userId];
+        }
+    }
     [theTableView reloadData];
     [self stopProgressBar];
 }
@@ -71,7 +80,7 @@
     // Set up the cell...
     FSUser *user = (FSUser*)[friends objectAtIndex:indexPath.row];
     cell.textLabel.text = user.firstnameLastInitial;
-    cell.imageView.image = [[Utilities sharedInstance] getCachedImage:user.photo];
+    cell.imageView.image = [userIcons objectForKey:user.userId];
     cell.imageView.layer.masksToBounds = YES;
     cell.imageView.layer.cornerRadius = 4.0;
     
