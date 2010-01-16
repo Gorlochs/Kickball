@@ -666,6 +666,8 @@ static FoursquareAPI *sharedInstance = nil;
                 oneCheckin.shout = value;
             } else if([key isEqualToString:@"display"]){
                 oneCheckin.display = value;
+            } else if([key isEqualToString:@"ismayor"]){
+                oneCheckin.isMayor = [value isEqualToString:@"true"];
             }
         
             if([key compare:@"user"] == 0){

@@ -19,7 +19,6 @@
     return self;
 }
 
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
 
     [super setSelected:selected animated:animated];
@@ -27,6 +26,23 @@
     // Configure the view for the selected state
 }
 
+- (void) showHideMayorImage:(BOOL)isMayor {
+    if (isMayor) {
+        [self displayMayorImage];
+    } else {
+        [self hideMayorImage];
+    }
+}
+
+- (void) displayMayorImage {
+    mayorImage.image = [UIImage imageNamed:@"crumbProfile.png"];
+    checkinDisplayLabel.frame = CGRectMake(65.0, checkinDisplayLabel.frame.origin.y, checkinDisplayLabel.frame.size.width, checkinDisplayLabel.frame.size.height);
+}
+
+- (void) hideMayorImage {
+    mayorImage.image = nil;
+    checkinDisplayLabel.frame = CGRectMake(44.0, checkinDisplayLabel.frame.origin.y, checkinDisplayLabel.frame.size.width, checkinDisplayLabel.frame.size.height);
+}
 
 - (void)dealloc {
     [profileIcon release];
@@ -34,6 +50,7 @@
 	[addressLabel release];
     [timeUnits release];
     [numberOfTimeUnits release];
+    [mayorImage release];
     [super dealloc];
 }
 

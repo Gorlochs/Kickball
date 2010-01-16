@@ -24,6 +24,7 @@
 	FSUser * user; // not sure if this is supposed to represent the mayor or not
 	FSMayor * mayor;
 	FSScoring * scoring;
+    BOOL isMayor; // is the checked in user the mayor?
 }
 
 @property (nonatomic, retain) NSString * message;
@@ -37,4 +38,6 @@
 @property (nonatomic, retain) FSUser * user;
 @property (nonatomic, retain) FSScoring * scoring;
 @property (nonatomic, retain) FSMayor * mayor;
+@property (nonatomic) BOOL isMayor;
+
 @end

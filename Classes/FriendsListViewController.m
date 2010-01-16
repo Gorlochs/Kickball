@@ -232,6 +232,8 @@
         cell.addressLabel.text = checkin.venue.venueAddress;
     }
     
+    [cell showHideMayorImage:checkin.isMayor];
+    
     // probably break this out into another method
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EEE, dd MMM yy HH:mm:ss"];

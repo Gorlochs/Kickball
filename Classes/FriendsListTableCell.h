@@ -15,6 +15,7 @@
 	IBOutlet UILabel * addressLabel;
     IBOutlet UILabel * timeUnits;
     IBOutlet UILabel * numberOfTimeUnits;
+    IBOutlet UIImageView *mayorImage;
 }
 
 @property (nonatomic, retain) UIImageView * profileIcon;
@@ -22,5 +23,9 @@
 @property (nonatomic, retain) UILabel * addressLabel;
 @property (nonatomic, retain) UILabel * timeUnits;
 @property (nonatomic, retain) UILabel * numberOfTimeUnits;
+
+- (void) showHideMayorImage:(BOOL)isMayor;
+- (void) displayMayorImage;
+- (void) hideMayorImage;
 
 @end
