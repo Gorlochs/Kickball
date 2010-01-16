@@ -138,6 +138,7 @@
             if ([friendRequests count] > 0) {
                 headerLabel.text = [NSString stringWithFormat:@"%d friend(s) found. Don't add any baddies.", [friendRequests count]];
             } else {
+                [headerLabel release];
                 return nil;
             }
             break;
@@ -239,6 +240,7 @@
         }
     }
     [[FoursquareAPI sharedInstance] findFriendsByPhone:[phones componentsJoinedByString:@","] withTarget:self andAction:@selector(searchResponseReceived:withResponseString:)];
+    [phones release];
 }
 
 - (void)searchResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {

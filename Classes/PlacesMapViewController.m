@@ -165,7 +165,7 @@
         	}
         }
 		
-		MKCoordinateRegion region;
+		//MKCoordinateRegion region;
 		MKCoordinateSpan span;
         span.latitudeDelta=(maxLat - minLat);
         if (span.latitudeDelta == 0)
@@ -190,7 +190,7 @@
 - (MKAnnotationView *) mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>) annotation{
 	int postag = 0;
     
-	KBPin *annView=[[KBPin alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomId"];
+	KBPin *annView=[[[KBPin alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomId"] autorelease];
 	//annView.pinColor = MKPinAnnotationColorGreen;
     annView.image = [UIImage imageNamed:@"pinRed.png"];
     

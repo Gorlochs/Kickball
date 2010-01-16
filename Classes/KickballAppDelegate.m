@@ -11,6 +11,11 @@
 #import "Beacon.h"
 #import <CoreLocation/CoreLocation.h>
 #import "LocationManager.h"
+#import "ASIHTTPRequest.h"
+
+#define kApplicationKey @"qpHHiOCAT8iYATFJa4dsIQ"
+#define kApplicationSecret @"PGTRPo6OTI2dvtz2xw-vfw"
+
 
 @implementation KickballAppDelegate
 
@@ -18,6 +23,8 @@
 @synthesize viewController;
 @synthesize navigationController;
 @synthesize user;
+@synthesize deviceToken;
+@synthesize deviceAlias;
 
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {    
@@ -40,6 +47,10 @@
         [servicesDisabledAlert show];
         [servicesDisabledAlert release];
     } else {
+        [[UIApplication sharedApplication]
+         registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+                                             UIRemoteNotificationTypeSound |
+                                             UIRemoteNotificationTypeAlert)];
         [[LocationManager locationManager] startUpdates];
     }
     
@@ -48,6 +59,86 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     [Beacon endBeacon];
+}
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)_deviceToken {
+    NSLog(@"didRegisterForRemoteNotificationsWithDeviceToken");
+	// Get a hex string from the device token with no spaces or < >
+	self.deviceToken = [[[[_deviceToken description] stringByReplacingOccurrencesOfString:@"<"withString:@""] 
+                         stringByReplacingOccurrencesOfString:@">" withString:@""] 
+                        stringByReplacingOccurrencesOfString: @" " withString: @""];
+    
+	
+	//Update View with the current token
+//	[[viewController tokenDisplay] setText:  self.deviceToken];
+    
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	
+    self.deviceAlias = [userDefaults stringForKey: @"_UADeviceAliasKey"];
+    
+	// Display the network activity indicator
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+	
+	// We like to use ASIHttpRequest classes, but you can make this register call how ever you like
+	// just notice that it's an http PUT
+	NSOperationQueue *queue = [[[NSOperationQueue alloc] init] autorelease];
+	NSString *UAServer = @"https://go.urbanairship.com";
+	NSString *urlString = [NSString stringWithFormat:@"%@%@%@/", UAServer, @"/api/device_tokens/", self.deviceToken];
+	NSURL *url = [NSURL URLWithString:  urlString];
+	ASIHTTPRequest *request = [[[ASIHTTPRequest alloc] initWithURL:url] autorelease];
+	request.requestMethod = @"PUT";
+	
+	// Send along our device alias as the JSON encoded request body
+	if(self.deviceAlias != nil && [self.deviceAlias length] > 0) {
+		[request addRequestHeader: @"Content-Type" value: @"application/json"];
+		[request appendPostData:[[NSString stringWithFormat: @"{\"alias\": \"%@\"}", self.deviceAlias]
+                                 dataUsingEncoding:NSUTF8StringEncoding]];
+	}
+    
+	// Authenticate to the server
+	request.username = kApplicationKey;
+	request.password = kApplicationSecret;
+	
+	[request setDelegate:self];
+	[request setDidFinishSelector: @selector(successMethod:)];
+	[request setDidFailSelector: @selector(requestWentWrong:)];
+	[queue addOperation:request];
+	
+	NSLog(@"Device Token: %@", self.deviceToken);
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *) error {
+	NSLog(@"Failed to register with error: %@", error);
+}
+
+- (void)successMethod:(ASIHTTPRequest *) request {
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	[userDefaults setValue: self.deviceToken forKey: @"_UALastDeviceToken"];
+	[userDefaults setValue: self.deviceAlias forKey: @"_UALastAlias"];
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+}
+
+- (void)requestWentWrong:(ASIHTTPRequest *)request {
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+	NSError *error = [request error];
+	UIAlertView *someError = [[UIAlertView alloc] initWithTitle: 
+							  @"Network error" message: @"Error registering with server"
+                                                       delegate: self
+                                              cancelButtonTitle: @"Ok"
+                                              otherButtonTitles: nil];
+	[someError show];
+	[someError release];
+	NSLog(@"ERROR: NSError query result: %@", error);
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+	NSLog(@"remote notification: %@",[userInfo description]);
+	NSLog(@"%@", [userInfo objectForKey: @"aps"]);
+    //	NSString *message = [userInfo descriptionWithLocale:nil indent:1];
+	NSString* message =  [[userInfo objectForKey: @"aps"] objectForKey: @"alert"];
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Remote Notification" message:message delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
+    [alert show];
+    [alert release];
+    
 }
 
 - (void)dealloc {

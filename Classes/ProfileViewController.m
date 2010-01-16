@@ -357,7 +357,7 @@
         //       I don't want to use the ones in this controller (too big a pain in the ass)
         //       I guess I can just create a new controller and use that.
         if (isDisplayingTwitter) {
-            MGTwitterEngine *twitterEngine = [[MGTwitterEngine alloc] initWithDelegate:self];
+            MGTwitterEngine *twitterEngine = [[[MGTwitterEngine alloc] initWithDelegate:self] autorelease];
             NSString *twitters = [twitterEngine getUserTimelineFor:user.twitter sinceID:0 startingAtPage:0 count:20];
             NSLog(@"twitter: %@", twitters);
         }

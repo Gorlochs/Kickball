@@ -16,11 +16,15 @@
     FriendsListViewController *viewController;
     UINavigationController *navigationController;
     FSUser *user;
+	NSString *deviceToken;
+	NSString *deviceAlias;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet FriendsListViewController *viewController;
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
 @property (nonatomic, retain) IBOutlet FSUser *user;
+@property (nonatomic, retain) NSString *deviceToken;
+@property (nonatomic, retain) NSString *deviceAlias;
 
 @end

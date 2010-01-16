@@ -28,7 +28,7 @@
     // TODO: figure out why this isn't working (i.e., the navigation bar isn't being displayed)
     venueLabel.text = venueName;
 
-    MGTwitterEngine *twitterEngine = [[MGTwitterEngine alloc] initWithDelegate:self];
+    MGTwitterEngine *twitterEngine = [[[MGTwitterEngine alloc] initWithDelegate:self] autorelease];
     NSString *timeline = [twitterEngine getUserTimelineFor:twitterName sinceID:0 startingAtPage:0 count:20];
     NSLog(@"timeline: %@", timeline);
 }

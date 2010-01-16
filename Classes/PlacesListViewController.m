@@ -282,6 +282,7 @@
     if (section < [venues count]) {
         headerLabel.text = [[venues allKeys] objectAtIndex:section];
     } else {
+        [headerLabel release];
         return nil;
     }
     

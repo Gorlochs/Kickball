@@ -114,7 +114,7 @@ static Utilities *sharedInstance = nil;
         if ([imageURLString rangeOfString: @".gif" options: NSCaseInsensitiveSearch].location != NSNotFound) {
             // this sucks
             NSData *data = [[NSData alloc] initWithContentsOfURL: imageURL];
-            image = [[UIImage alloc] initWithData: data];
+            image = [[[UIImage alloc] initWithData: data] autorelease];
             [data release];
         } else {
             [self cacheImage: imageURLString];

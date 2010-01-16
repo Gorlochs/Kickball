@@ -18,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    GAConnectionManager *connectionManager_ = [[GAConnectionManager alloc] initWithAPIKey:@"K6afuuFTXK" delegate:self];
+    GAConnectionManager *connectionManager_ = [[[GAConnectionManager alloc] initWithAPIKey:@"K6afuuFTXK" delegate:self] autorelease];
     [connectionManager_ requestListingForPlace:place.guid];
 }
 
@@ -26,7 +26,7 @@
     NSLog(@"geoapi response string: %@", responseString);
     
     //label.text = responseString;
-    SBJSON *parser = [SBJSON new];
+    SBJSON *parser = [[SBJSON new] autorelease];
     id dict = [parser objectWithString:responseString error:NULL];
     NSDictionary *results = [(NSDictionary*)dict objectForKey:@"result"];
     
