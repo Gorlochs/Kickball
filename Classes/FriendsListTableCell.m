@@ -35,7 +35,7 @@
 }
 
 - (void) displayMayorImage {
-    mayorImage.image = [UIImage imageNamed:@"crumbProfile.png"];
+    mayorImage.image = [UIImage imageNamed:@"crown.png"];
     checkinDisplayLabel.frame = CGRectMake(65.0, checkinDisplayLabel.frame.origin.y, checkinDisplayLabel.frame.size.width, checkinDisplayLabel.frame.size.height);
 }
 
