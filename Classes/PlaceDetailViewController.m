@@ -253,8 +253,11 @@
 //        cell.imageView.frame = frame;
 //        cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
         cell.imageView.image = [[Utilities sharedInstance] getCachedImage:currentCheckin.user.photo];
+        float sw=32/cell.imageView.image.size.width;
+        float sh=32/cell.imageView.image.size.height;
+        cell.imageView.transform=CGAffineTransformMakeScale(sw,sh);
         cell.imageView.layer.masksToBounds = YES;
-        cell.imageView.layer.cornerRadius = 4.0;
+        cell.imageView.layer.cornerRadius = 8.0;         
     } else if (indexPath.section == 7) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         FSTip *tip = (FSTip*) [venue.tips objectAtIndex:indexPath.row];

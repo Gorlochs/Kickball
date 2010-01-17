@@ -81,8 +81,12 @@
     FSUser *user = (FSUser*)[friends objectAtIndex:indexPath.row];
     cell.textLabel.text = user.firstnameLastInitial;
     cell.imageView.image = [userIcons objectForKey:user.userId];
+    
+    float sw=32/cell.imageView.image.size.width;
+    float sh=32/cell.imageView.image.size.height;
+    cell.imageView.transform=CGAffineTransformMakeScale(sw,sh);
     cell.imageView.layer.masksToBounds = YES;
-    cell.imageView.layer.cornerRadius = 4.0;
+    cell.imageView.layer.cornerRadius = 8.0; 
     
     return cell;
 }
