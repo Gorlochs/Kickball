@@ -222,6 +222,7 @@
         FSBadge *badge = (FSBadge*)[[self getSingleCheckin].badges objectAtIndex:0];
         badgeImage.image = [[Utilities sharedInstance] getCachedImage:badge.icon];
         badgeLabel.text = badge.badgeDescription;
+        badgeTitleLabel.text = badge.badgeName;
         return badgeCell;
     } else if (indexPath.section == 2) {
         if ([self getSingleCheckin].user == nil) {
@@ -393,6 +394,7 @@
     [venueAddress release];
     [mayorNameLabel release];
     [badgeLabel release];
+    [badgeTitleLabel release];
     [newMayorshipLabel release];
     [stillTheMayorLabel release];
     

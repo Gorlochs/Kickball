@@ -12,10 +12,12 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="72"/>
-			<integer value="62"/>
-			<integer value="155"/>
+			<integer value="113"/>
 			<integer value="36"/>
+			<integer value="62"/>
+			<integer value="72"/>
+			<integer value="127"/>
+			<integer value="107"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -523,7 +525,7 @@
 				<reference key="IBUIContentView" ref="396356087"/>
 			</object>
 			<object class="IBUITableViewCell" id="268361089">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -535,12 +537,17 @@
 							<object class="IBUILabel" id="666751943">
 								<reference key="NSNextResponder" ref="57690639"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{76, 8}, {224, 50}}</string>
+								<string key="NSFrame">{{76, 25}, {224, 33}}</string>
 								<reference key="NSSuperview" ref="57690639"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="IBUIText">Badge cell</string>
+								<object class="NSFont" key="IBUIFont">
+									<string key="NSName">Helvetica</string>
+									<double key="NSSize">15</double>
+									<int key="NSfFlags">16</int>
+								</object>
 								<reference key="IBUITextColor" ref="147622804"/>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">1</int>
@@ -557,6 +564,25 @@
 								<int key="IBUIContentMode">4</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 							</object>
+							<object class="IBUILabel" id="717953053">
+								<reference key="NSNextResponder" ref="57690639"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{76, 5}, {147, 21}}</string>
+								<reference key="NSSuperview" ref="57690639"/>
+								<bool key="IBUIOpaque">NO</bool>
+								<bool key="IBUIClipsSubviews">YES</bool>
+								<bool key="IBUIUserInteractionEnabled">NO</bool>
+								<string key="IBUIText">Badge Name</string>
+								<object class="NSFont" key="IBUIFont" id="211810784">
+									<string key="NSName">Helvetica-Bold</string>
+									<double key="NSSize">17</double>
+									<int key="NSfFlags">16</int>
+								</object>
+								<reference key="IBUITextColor" ref="147622804"/>
+								<nil key="IBUIHighlightedColor"/>
+								<int key="IBUIBaselineAdjustment">1</int>
+								<float key="IBUIMinimumFontSize">10</float>
+							</object>
 						</object>
 						<string key="NSFrameSize">{320, 65}</string>
 						<reference key="NSSuperview" ref="268361089"/>
@@ -568,6 +594,7 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 66}</string>
+				<reference key="NSSuperview"/>
 				<reference key="IBUIBackgroundColor" ref="144680521"/>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<int key="IBUISeparatorStyle">1</int>
@@ -746,11 +773,7 @@
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="IBUIText"/>
-								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">Helvetica-Bold</string>
-									<double key="NSSize">17</double>
-									<int key="NSfFlags">16</int>
-								</object>
+								<reference key="IBUIFont" ref="211810784"/>
 								<reference key="IBUITextColor" ref="147622804"/>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">1</int>
@@ -869,7 +892,7 @@
 				<reference key="IBUIContentView" ref="166623049"/>
 			</object>
 			<object class="IBUITableViewCell" id="514027558">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -901,8 +924,8 @@
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="IBUIText">You're still the mayor!</string>
-								<object class="NSFont" key="IBUIFont" id="690329775">
-									<string key="NSName">Helvetica</string>
+								<object class="NSFont" key="IBUIFont">
+									<string key="NSName">Helvetica-Bold</string>
 									<double key="NSSize">14</double>
 									<int key="NSfFlags">16</int>
 								</object>
@@ -920,7 +943,11 @@
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="IBUIText">Serve your people well!</string>
-								<reference key="IBUIFont" ref="690329775"/>
+								<object class="NSFont" key="IBUIFont">
+									<string key="NSName">Helvetica</string>
+									<double key="NSSize">14</double>
+									<int key="NSfFlags">16</int>
+								</object>
 								<reference key="IBUITextColor" ref="147622804"/>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">1</int>
@@ -937,6 +964,7 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 44}</string>
+				<reference key="NSSuperview"/>
 				<reference key="IBUIBackgroundColor" ref="144680521"/>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<int key="IBUISeparatorStyle">1</int>
@@ -1402,6 +1430,14 @@
 					</object>
 					<int key="connectionID">159</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">badgeTitleLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="717953053"/>
+					</object>
+					<int key="connectionID">164</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -1608,6 +1644,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="1068209857"/>
 							<reference ref="666751943"/>
+							<reference ref="717953053"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Badge Cell</string>
@@ -1757,6 +1794,11 @@
 						<reference key="object" ref="317623767"/>
 						<reference key="parent" ref="127141232"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">163</int>
+						<reference key="object" ref="717953053"/>
+						<reference key="parent" ref="268361089"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -1791,6 +1833,7 @@
 					<string>155.IBPluginDependency</string>
 					<string>156.IBPluginDependency</string>
 					<string>157.IBPluginDependency</string>
+					<string>163.IBPluginDependency</string>
 					<string>36.IBEditorWindowLastContentRect</string>
 					<string>36.IBPluginDependency</string>
 					<string>38.IBPluginDependency</string>
@@ -1853,6 +1896,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{42, 478}, {320, 62}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1902,7 +1946,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">162</int>
+			<int key="maxID">164</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1995,6 +2039,7 @@
 							<string>badgeCell</string>
 							<string>badgeImage</string>
 							<string>badgeLabel</string>
+							<string>badgeTitleLabel</string>
 							<string>bottomButtonCell</string>
 							<string>checkinCell</string>
 							<string>giftCell</string>
@@ -2020,6 +2065,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UITableViewCell</string>
 							<string>UIImageView</string>
+							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UITableViewCell</string>
 							<string>UITableViewCell</string>
