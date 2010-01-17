@@ -259,6 +259,12 @@
     [placeDetailController release];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == [venues count]) {
+        return 50;
+    }
+    return 44;
+}
 
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
 	return 24.0;
