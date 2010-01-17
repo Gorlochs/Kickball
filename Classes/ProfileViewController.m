@@ -389,12 +389,12 @@
 
 - (void) checkinToProfilesVenue {
     [self startProgressBar:@"Checking in to this venue..."];
-    [[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:user.checkin.venue.venueid 
-                                                  andShout:nil 
-                                                   offGrid:!isPingOn
-                                                 toTwitter:isTwitterOn
-                                                withTarget:self 
-                                                 andAction:@selector(checkinResponseReceived:withResponseString:)];
+	
+	PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];    
+    placeDetailController.venueId = user.checkin.venue.venueid;
+    placeDetailController.doCheckin = YES;
+    [self.navigationController pushViewController:placeDetailController animated:YES];
+    [placeDetailController release];
 }
 
 - (void) unfriend {
