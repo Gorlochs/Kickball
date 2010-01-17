@@ -275,7 +275,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.section) {
         case 0:
-            return 44;
+            return 36;
         case 1:
             return 66;
         case 2:
