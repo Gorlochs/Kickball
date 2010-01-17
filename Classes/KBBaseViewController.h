@@ -33,6 +33,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 @property (nonatomic, retain) LoginViewModalController *loginViewModal;
 @property (nonatomic, retain) NSString *textViewReturnValue;
 
+- (void) setUserIconView:(FSUser*)user;
 - (IBAction) backOneView;
 - (IBAction) viewUserProfile;
 - (IBAction) goToHomeView;

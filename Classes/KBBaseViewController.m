@@ -24,15 +24,22 @@
     [UIView setAnimationsEnabled:YES];
     
     FSUser *tmpUser = [self getAuthenticatedUser];
-    if (tmpUser != nil) {
-        [signedInUserIcon setImage:[[Utilities sharedInstance] getCachedImage:tmpUser.photo] forState:UIControlStateNormal];
-        NSLog(@"icon being retrieved and displayed: %@", [signedInUserIcon imageForState:UIControlStateNormal]);
-        signedInUserIcon.hidden = NO;
-//        signedInUserIcon.layer.masksToBounds = YES;
-//        signedInUserIcon.layer.cornerRadius = 4.0;
-    }
+    [self setUserIconView:tmpUser];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(displayShoutMessage:) name:@"shoutSent" object:nil];
+}
+
+- (void) setUserIconView:(FSUser*)user {
+    if (user) {
+        UIImage *image = [[Utilities sharedInstance] getCachedImage:user.photo];
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(285, 9, 32, 32)];
+        imageView.image = image;
+        [image release];
+        [self.view addSubview:imageView];
+        imageView.layer.masksToBounds = YES;
+        imageView.layer.cornerRadius = 4.0;
+        [self.view bringSubviewToFront:signedInUserIcon];
+    }
 }
 
 - (void) displayShoutMessage:(NSNotification *)inNotification {

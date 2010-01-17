@@ -116,11 +116,7 @@
 
 - (void)userResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
 	FSUser* user = [FoursquareAPI userFromResponseXML:inString];
-    
-    [signedInUserIcon setImage:[[Utilities sharedInstance] getCachedImage:user.photo] forState:UIControlStateNormal];
-//    signedInUserIcon.imageView.image = [[Utilities sharedInstance] getCachedImage:user.photo];
-    signedInUserIcon.hidden = NO;
-    
+    [self setUserIconView:user];
     [self setAuthenticatedUser:user];
     NSLog(@"auth'd user: %@", user);
 }
