@@ -74,8 +74,10 @@
     signedInUserIcon.hidden = NO;
     isPingOn = tmpUser.isPingOn;
     isTwitterOn = tmpUser.sendToTwitter;
-    twitterButton.selected = isTwitterOn;
-    pingToggleButton.selected = isPingOn;
+    [self setProperTwitterButtonState];
+    [self setProperPingButtonState];
+//    twitterButton.selected = isTwitterOn;
+//    pingToggleButton.selected = isPingOn;
     
     [self addHeaderAndFooter:theTableView];
     theTableView.separatorColor = [UIColor blackColor];
@@ -468,14 +470,30 @@
 
 - (void) togglePing {
     isPingOn = !isPingOn;
-    pingToggleButton.selected = isPingOn;
+    [self setProperPingButtonState];
     NSLog(@"is ping on: %d", isPingOn);
 }
 
 - (void) toggleTwitter {
     isTwitterOn = !isTwitterOn;
-    twitterToggleButton.selected = isTwitterOn;
+    [self setProperTwitterButtonState];
     NSLog(@"is twitter on: %d", isTwitterOn);
+}
+
+- (void) setProperTwitterButtonState {
+    if (isTwitterOn) {
+        [twitterToggleButton setImage:[UIImage imageNamed:@"twitter01.png"] forState:UIControlStateNormal];
+    } else {
+        [twitterToggleButton setImage:[UIImage imageNamed:@"twitter03.png"] forState:UIControlStateNormal];
+    }
+}
+
+- (void) setProperPingButtonState {
+    if (isPingOn) {
+        [pingToggleButton setImage:[UIImage imageNamed:@"ping01.png"] forState:UIControlStateNormal];
+    } else {
+        [pingToggleButton setImage:[UIImage imageNamed:@"ping03.png"] forState:UIControlStateNormal];
+    }
 }
 
 - (void) doGeoAPICall {

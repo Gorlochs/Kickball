@@ -78,5 +78,7 @@
 - (IBAction) markVenueClosed;
 - (FSCheckin*) getSingleCheckin;
 - (BOOL) hasMayorCell;
+- (void) setProperTwitterButtonState;
+- (void) setProperPingButtonState;
 
 @end
