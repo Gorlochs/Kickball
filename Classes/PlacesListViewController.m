@@ -294,14 +294,14 @@
 #pragma mark UITextFieldDelegate methods
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
-    [switchingButton setImage:[UIImage imageNamed:@"x01.png"] forState:UIControlStateNormal];
-    [switchingButton setImage:[UIImage imageNamed:@"x02.png"] forState:UIControlStateHighlighted];
+    [switchingButton setImage:[UIImage imageNamed:@"resultsClear.png"] forState:UIControlStateNormal];
+    [switchingButton setImage:[UIImage imageNamed:@"resultsClear02.png"] forState:UIControlStateHighlighted];
     [switchingButton addTarget:self action:@selector(cancelKeyboard:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-    [switchingButton setImage:[UIImage imageNamed:@"resultsClear.png"] forState:UIControlStateNormal];
-    [switchingButton setImage:[UIImage imageNamed:@"resultsClear.png"] forState:UIControlStateHighlighted];
+    [switchingButton setImage:[UIImage imageNamed:@"resultsRefresh01.png"] forState:UIControlStateNormal];
+    [switchingButton setImage:[UIImage imageNamed:@"resultsRefresh02.png"] forState:UIControlStateHighlighted];
     [switchingButton addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventTouchUpInside];
 }
 
