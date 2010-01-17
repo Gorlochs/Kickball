@@ -22,7 +22,6 @@
 #import "Utilities.h"
 #import "FSBadge.h"
 #import "FSSpecial.h"
-#import "PlaceMapViewController.h"
 #import "CreateTipTodoViewController.h"
 
 @interface PlaceDetailViewController (Private)
@@ -108,20 +107,29 @@
 
 - (void) prepViewWithVenueInfo:(FSVenue*)venueToDisplay {
     MKCoordinateRegion region;
+    MKCoordinateRegion fullRegion;
     MKCoordinateSpan span;
+    MKCoordinateSpan fullSpan;
     span.latitudeDelta = 0.002;
     span.longitudeDelta = 0.002;
+    fullSpan.latitudeDelta = 0.02;
+    fullSpan.longitudeDelta = 0.02;
     
     CLLocationCoordinate2D location = venueToDisplay.location;
     
+    fullRegion.span = fullSpan;
+    fullRegion.center = location;
     region.span = span;
     region.center = location;
     
     [mapView setRegion:region animated:NO];
     [mapView regionThatFits:region];
+    [fullMapView setRegion:fullRegion animated:NO];
+    [fullMapView regionThatFits:fullRegion];
     
     VenueAnnotation *venueAnnotation = [[VenueAnnotation alloc] initWithCoordinate:location];
     [mapView addAnnotation:venueAnnotation];
+    [fullMapView addAnnotation:venueAnnotation];
     [venueAnnotation release];
     
     venueName.text = venueToDisplay.name;
@@ -249,9 +257,6 @@
         cell.textLabel.text = currentCheckin.user.firstnameLastInitial;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         NSLog(@"currentcheckin user: %@", currentCheckin.user);
-//        CGRect frame = CGRectMake(5, 5, 30, 30);
-//        cell.imageView.frame = frame;
-//        cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
         cell.imageView.image = [[Utilities sharedInstance] getCachedImage:currentCheckin.user.photo];
         float sw=32/cell.imageView.image.size.width;
         float sh=32/cell.imageView.image.size.height;
@@ -522,11 +527,36 @@
 }
 
 - (void) viewVenueMap {
-    PlaceMapViewController *placeMapController = [[PlaceMapViewController alloc] initWithNibName:@"PlaceMapViewController" bundle:nil];
-    placeMapController.venue = venue;
-    [self.navigationController pushViewController:placeMapController animated:YES];
-//    [self presentModalViewController:placeMapController animated:YES];
-    [placeMapController release];
+//    PlaceMapViewController *placeMapController = [[PlaceMapViewController alloc] initWithNibName:@"PlaceMapViewController" bundle:nil];
+//    placeMapController.venue = venue;
+//    [self.navigationController pushViewController:placeMapController animated:YES];
+//    [placeMapController release];
+
+    // tried to animate the small map into a full size map
+    // It didn't work. The mapView is stuck as part of the table view
+    // I don't know if I can pull it out of that view or not.
+//    [self.view sendSubviewToBack:theTableView];
+//    [self.view bringSubviewToFront:mapView];
+//    [UIView beginAnimations:nil context:NULL];
+//    [UIView setAnimationBeginsFromCurrentState:YES];
+//    [UIView setAnimationDuration:1.0];
+//    
+//    //theTableView.hidden = YES;
+//    mapView.frame = CGRectMake(0, 0, 320, 340);
+//    
+//    [UIView commitAnimations];
+    
+    fullMapView.alpha = 0;
+    fullMapView.frame = CGRectMake(0, 121, 320, 340);
+    [self.view addSubview:fullMapView];
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:1.0];
+    
+    fullMapView.alpha = 1.0;
+    
+    [UIView commitAnimations];
 }
 
 - (void) addTipTodo {

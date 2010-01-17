@@ -98,28 +98,29 @@ static Utilities *sharedInstance = nil;
 
 - (UIImage *) getCachedImage: (NSString *) imageURLString
 {
-    NSURL *imageURL = [NSURL URLWithString: imageURLString];
-    NSString *filename = [[imageURL path] stringByReplacingOccurrencesOfString:@"/" withString:@""];
-    NSString *uniquePath = [TMP stringByAppendingPathComponent: filename];
-    
     UIImage *image = nil;
-    
-    // Check for a cached version
-    if([[NSFileManager defaultManager] fileExistsAtPath: uniquePath])
-    {
-        NSLog(@"pulling image from cache: %@", filename);
-        image = [UIImage imageWithContentsOfFile: uniquePath]; // this is the cached image
-    } else {
-        // get a new one
-        if ([imageURLString rangeOfString: @".gif" options: NSCaseInsensitiveSearch].location != NSNotFound) {
-            // this sucks
-            NSData *data = [[NSData alloc] initWithContentsOfURL: imageURL];
-            image = [[[UIImage alloc] initWithData: data] autorelease];
-            [data release];
+    if (imageURLString != nil) {
+        NSURL *imageURL = [NSURL URLWithString: imageURLString];
+        NSString *filename = [[imageURL path] stringByReplacingOccurrencesOfString:@"/" withString:@""];
+        NSString *uniquePath = [TMP stringByAppendingPathComponent: filename];
+        
+        // Check for a cached version
+        if([[NSFileManager defaultManager] fileExistsAtPath: uniquePath])
+        {
+            NSLog(@"pulling image from cache: %@", filename);
+            image = [UIImage imageWithContentsOfFile: uniquePath]; // this is the cached image
         } else {
-            [self cacheImage: imageURLString];
-            image = [UIImage imageWithContentsOfFile: uniquePath];
-        }
+            // get a new one
+            if ([imageURLString rangeOfString: @".gif" options: NSCaseInsensitiveSearch].location != NSNotFound) {
+                // this sucks
+                NSData *data = [[NSData alloc] initWithContentsOfURL: imageURL];
+                image = [[[UIImage alloc] initWithData: data] autorelease];
+                [data release];
+            } else {
+                [self cacheImage: imageURLString];
+                image = [UIImage imageWithContentsOfFile: uniquePath];
+            }
+        }        
     }
     
     return image;
