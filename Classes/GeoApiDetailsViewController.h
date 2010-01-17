@@ -12,12 +12,20 @@
 #import "GAPlace.h"
 
 
-@interface GeoApiDetailsViewController : KBBaseViewController <GAConnectionDelegate, UITableViewDelegate, UITableViewDataSource> {
+@interface GeoApiDetailsViewController : KBBaseViewController <GAConnectionDelegate, UITextFieldDelegate> {
     GAPlace *place;
     
-    IBOutlet UITableView *theTableView;
+    IBOutlet UILabel *venueName;
+    IBOutlet UILabel *venueAddress;
+    IBOutlet UIImageView *webRating;
+    IBOutlet UITextView *hours;
+    IBOutlet UITextView *features;
+    IBOutlet UITextView *tags;
 }
 
 @property (nonatomic, retain) GAPlace *place;
+
+- (IBAction) callVenue;
+- (IBAction) visitWebsite;
 
 @end
