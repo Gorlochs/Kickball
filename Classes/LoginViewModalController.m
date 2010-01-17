@@ -111,7 +111,7 @@
     NSURL *url = [NSURL URLWithString:@"http://foursquare.com/change_password"];
     
     if (![[UIApplication sharedApplication] openURL:url])  {
-        NSLog(@"%@%@",@"Failed to open url:",[url description]);
+        NSLog(@"Failed to open url: %@" ,[url description]);
     }
 //    ForgotPasswordWebViewController *fpwvc = [[ForgotPasswordWebViewController alloc] initWithNibName:@"ForgotPasswordWebViewController" bundle:nil];
 //    UIWebView *webView = [[UIWebView alloc] init];
