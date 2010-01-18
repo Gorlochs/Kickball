@@ -254,6 +254,7 @@
 		6A313A141102CEA6008100C4 /* rating-8.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A313A091102CEA6008100C4 /* rating-8.png */; };
 		6A313A151102CEA6008100C4 /* rating-9.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A313A0A1102CEA6008100C4 /* rating-9.png */; };
 		6A313A161102CEA6008100C4 /* rating-10.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A313A0B1102CEA6008100C4 /* rating-10.png */; };
+		6A313BEA1104F8DC008100C4 /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A313BE91104F8DC008100C4 /* pin.png */; };
 		6A3900B110D6F1A0001D133C /* AddPlaceFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A3900AF10D6F1A0001D133C /* AddPlaceFormViewController.m */; };
 		6A3900B210D6F1A0001D133C /* AddPlaceFormViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A3900B010D6F1A0001D133C /* AddPlaceFormViewController.xib */; };
 		6A39EB5C1096584A006F76C3 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A39EB5B1096584A006F76C3 /* libsqlite3.dylib */; };
@@ -388,7 +389,7 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* KickballAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KickballAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* KickballAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KickballAppDelegate.m; sourceTree = "<group>"; };
-		1D6058910D05DD3D006BFB54 /* Kickball.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kickball.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* kickball.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kickball.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
@@ -711,6 +712,7 @@
 		6A313A091102CEA6008100C4 /* rating-8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rating-8.png"; sourceTree = "<group>"; };
 		6A313A0A1102CEA6008100C4 /* rating-9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rating-9.png"; sourceTree = "<group>"; };
 		6A313A0B1102CEA6008100C4 /* rating-10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rating-10.png"; sourceTree = "<group>"; };
+		6A313BE91104F8DC008100C4 /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin.png; sourceTree = "<group>"; };
 		6A3900AE10D6F1A0001D133C /* AddPlaceFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPlaceFormViewController.h; sourceTree = "<group>"; };
 		6A3900AF10D6F1A0001D133C /* AddPlaceFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPlaceFormViewController.m; sourceTree = "<group>"; };
 		6A3900B010D6F1A0001D133C /* AddPlaceFormViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddPlaceFormViewController.xib; sourceTree = "<group>"; };
@@ -966,7 +968,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* Kickball.app */,
+				1D6058910D05DD3D006BFB54 /* kickball.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1463,6 +1465,7 @@
 		6A39EC4B109662D3006F76C3 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				6A313BE91104F8DC008100C4 /* pin.png */,
 				6A3139651102B657008100C4 /* featuresBG.png */,
 				6A3139661102B657008100C4 /* hoursBG.png */,
 				6A3139671102B657008100C4 /* rating */,
@@ -1755,9 +1758,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1D6058900D05DD3D006BFB54 /* Kickball */ = {
+		1D6058900D05DD3D006BFB54 /* kickball */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Kickball" */;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "kickball" */;
 			buildPhases = (
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
@@ -1767,9 +1770,9 @@
 			);
 			dependencies = (
 			);
-			name = Kickball;
+			name = kickball;
 			productName = Kickball;
-			productReference = 1D6058910D05DD3D006BFB54 /* Kickball.app */;
+			productReference = 1D6058910D05DD3D006BFB54 /* kickball.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1784,7 +1787,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1D6058900D05DD3D006BFB54 /* Kickball */,
+				1D6058900D05DD3D006BFB54 /* kickball */,
 			);
 		};
 /* End PBXProject section */
@@ -2007,6 +2010,7 @@
 				6A313A141102CEA6008100C4 /* rating-8.png in Resources */,
 				6A313A151102CEA6008100C4 /* rating-9.png in Resources */,
 				6A313A161102CEA6008100C4 /* rating-10.png in Resources */,
+				6A313BEA1104F8DC008100C4 /* pin.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2187,7 +2191,7 @@
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/libs\"",
 				);
-				PRODUCT_NAME = Kickball;
+				PRODUCT_NAME = kickball;
 			};
 			name = Debug;
 		};
@@ -2228,7 +2232,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7C29CE78-4C19-4BCF-A7E6-E1BE7236E0A8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "80CEF5BD-5322-4AFC-8D6D-7ECB0CFA60A0";
 				SDKROOT = iphoneos3.1;
 			};
 			name = Debug;
@@ -2251,7 +2255,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Kickball" */ = {
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "kickball" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,

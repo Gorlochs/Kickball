@@ -52,7 +52,7 @@
 //	int postag = 0;
     
 	KBPin *annView = [[[KBPin alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomId"] autorelease];
-    annView.image = [UIImage imageNamed:@"pinRed.png"];
+    annView.image = [UIImage imageNamed:@"pin.png"];
     
     // add an accessory button so user can click through to the venue page
 //	UIButton *myDetailButton = [UIButton buttonWithType:UIButtonTypeCustom];

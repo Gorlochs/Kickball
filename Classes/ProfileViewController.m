@@ -455,7 +455,7 @@
                 [[UIApplication sharedApplication] openURL: [NSURL URLWithString: [NSString stringWithFormat:@"mailto:%@", user.email]]];
                 break;
             case 4:
-                [[UIApplication sharedApplication] openURL: [NSURL URLWithString: [NSString stringWithFormat:@"facebook:%@", user.facebook]]];
+                [[UIApplication sharedApplication] openURL: [NSURL URLWithString: [NSString stringWithFormat:@"fb://%@", user.facebook]]];
                 break;
             default:
                 break;
@@ -473,7 +473,6 @@
     user.friendStatus = FSStatusPendingYou;
     [theTableView reloadData];
     
-    // TODO: convert this to our custom popup
     KBMessage *msg = [[KBMessage alloc] initWithMember:@"Kickball Notification" andSubtitle:@"Friend Request" andMessage:@"Your request has been sent."];
     [self displayPopupMessage:msg];
     [msg release];
@@ -485,7 +484,12 @@
     NSLog(@"new ping setting: %d", newPingSetting);
     user.sendsPingsToSignedInUser = newPingSetting;
     isPingAndUpdatesOn = newPingSetting;
-    pingsAndUpdates.selected = isPingAndUpdatesOn;
+    //pingsAndUpdates.selected = isPingAndUpdatesOn;
+    if (isPingAndUpdatesOn) {
+        [pingsAndUpdates setImage:[UIImage imageNamed:@"profilePings01.png"] forState:UIControlStateNormal];
+    } else {
+        [pingsAndUpdates setImage:[UIImage imageNamed:@"profilePings03.png"] forState:UIControlStateNormal];
+    }
     [self stopProgressBar];
 }
 

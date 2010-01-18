@@ -725,10 +725,10 @@ static FoursquareAPI *sharedInstance = nil;
                             special.type = value;
                         } else if ([key isEqualToString:@"venue"]) {
                             // FIXME: this was done for expediency's sake
-                            NSArray *venueArray = [FoursquareAPI _venuesFromNode:[checkinAttr nodesForXPath:@"//special/venue" error:nil]];
-                            if ([venueArray count] > 0) {
-                                special.venue = [venueArray objectAtIndex:0];
-                            }
+//                            NSArray *venueArray = [FoursquareAPI _venuesFromNode:[checkinAttr nodesForXPath:@"//special/venue" error:nil]];
+//                            if ([venueArray count] > 0) {
+//                                special.venue = [venueArray objectAtIndex:0];
+//                            }
                         }
                     }
                     [specialArray addObject:special];
@@ -860,7 +860,35 @@ static FoursquareAPI *sharedInstance = nil;
 //                    }
 //                    newVenue.currentCheckins = allCheckins;   
 //                }
-			}
+            } 
+            else if ([key compare:@"specials"] == 0) {
+                NSArray *specialNodes = [venueResult nodesForXPath:@"//specials/special" error:nil];
+                NSMutableArray *specialArray = [[NSMutableArray alloc] initWithCapacity:1];
+                for (CXMLElement *specialNode in specialNodes) {
+                    FSSpecial *special = [[FSSpecial alloc] init];
+                    for (int counter = 0; counter < [specialNode childCount]; counter++) {
+                        NSString * key = [[specialNode childAtIndex:counter] name];
+                        NSString * value = [[specialNode childAtIndex:counter] stringValue];
+                        if ([key isEqualToString:@"message"]) {
+                            special.message = value;
+                        } else if ([key isEqualToString:@"id"]) {
+                            special.specialId = value;
+                        } else if ([key isEqualToString:@"type"]) {
+                            special.type = value;
+                        } else if ([key isEqualToString:@"venue"]) {
+                            // FIXME: this was done for expediency's sake
+//                            NSArray *venueArray = [FoursquareAPI _venuesFromNode:[venueResult nodesForXPath:@"//special/venue" error:nil]];
+//                            if ([venueArray count] > 0) {
+//                                special.venue = [venueArray objectAtIndex:0];
+//                            }
+                        }
+                    }
+                    [specialArray addObject:special];
+                    [special release];
+                }
+                newVenue.specials = specialArray;
+                [specialArray release];
+            }
 			
 		}
 		[groupOfVenues addObject:newVenue];

@@ -102,6 +102,9 @@
     if (doCheckin) {
         [self checkinToVenue];
     }
+    
+//    if (self.venue.spe
+//    specialsButton.hidden = NO;
 }
 
 
