@@ -12,6 +12,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "LocationManager.h"
 #import "ASIHTTPRequest.h"
+#import "FoursquareAPI.h"
 
 #define kApplicationKey @"qpHHiOCAT8iYATFJa4dsIQ"
 #define kApplicationSecret @"PGTRPo6OTI2dvtz2xw-vfw"
@@ -67,13 +68,26 @@
                          stringByReplacingOccurrencesOfString:@">" withString:@""] 
                         stringByReplacingOccurrencesOfString: @" " withString: @""];
     
-	
+    if ([[FoursquareAPI sharedInstance] isAuthenticated]) {
+        
+    }
+}
+
+- (void) setupAuthenticatedUserAndPushNotifications {
+    [[FoursquareAPI sharedInstance] getUser:nil withTarget:self andAction:@selector(userResponseReceived:withResponseString:)];
+}
+
+- (void)userResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+	FSUser* user = [FoursquareAPI userFromResponseXML:inString];
+    [[FoursquareAPI sharedInstance] setCurrentUser:user];
+    
 	//Update View with the current token
 //	[[viewController tokenDisplay] setText:  self.deviceToken];
     
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	
-    self.deviceAlias = [userDefaults stringForKey: @"_UADeviceAliasKey"];
+    //self.deviceAlias = [userDefaults stringForKey: @"_UADeviceAliasKey"];
+    self.deviceAlias = user.userId;
     
 	// Display the network activity indicator
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;

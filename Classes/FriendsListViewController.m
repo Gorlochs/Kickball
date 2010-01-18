@@ -96,11 +96,6 @@
 
 	[self startProgressBar:@"Retrieving friends' whereabouts..."];
 	[[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
-	
-    // FIXME: fix this. this seems out of place here
-	// this didn't work in the appdelegate (timing issues), so it's in the first page, but it's going to set an appDelegate property
-	// probably should be put back in the appdelegate with a notification that this page checks for
-	[[FoursquareAPI sharedInstance] getUser:nil withTarget:self andAction:@selector(userResponseReceived:withResponseString:)];
 }
 
 - (void) addAuthToWebRequest:(NSMutableURLRequest*)requestObj email:(NSString*)email password:(NSString*)password{

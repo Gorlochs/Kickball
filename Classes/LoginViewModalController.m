@@ -8,6 +8,7 @@
 
 #import "LoginViewModalController.h"
 #import "ForgotPasswordWebViewController.h"
+#import "KickballAppDelegate.h"
 
 @interface LoginViewModalController (PrivateMethods)
 
@@ -100,6 +101,9 @@
 						 andPassword:password
 					  forServiceName:@"Kickball" 
 					  updateExisting:YES error:&error];
+    
+    KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
+    [appDelegate setupAuthenticatedUserAndPushNotifications];
 	
 	if([self.rootController respondsToSelector:@selector(doInitialDisplay)]){
 		[(KBBaseViewController *)self.rootController doInitialDisplay];

@@ -27,4 +27,6 @@
 @property (nonatomic, retain) NSString *deviceToken;
 @property (nonatomic, retain) NSString *deviceAlias;
 
+- (void) setupAuthenticatedUserAndPushNotifications;
+
 @end
