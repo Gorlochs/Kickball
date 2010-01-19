@@ -21,6 +21,7 @@
     FSUser *user;
 	NSString *deviceToken;
 	NSString *deviceAlias;
+    NSString *pushNotificationVenueId;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -29,7 +30,9 @@
 @property (nonatomic, retain) IBOutlet FSUser *user;
 @property (nonatomic, retain) NSString *deviceToken;
 @property (nonatomic, retain) NSString *deviceAlias;
+@property (nonatomic, retain) NSString *pushNotificationVenueId;
 
 - (void) setupAuthenticatedUserAndPushNotifications;
+- (void) displayPushNotificationView:(NSNotification *)inNotification;
 
 @end

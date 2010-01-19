@@ -47,5 +47,6 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 - (IBAction) viewSettings;
 - (void) addHeaderAndFooter:(UITableView*)tableView;
 - (IBAction) displayTextView;
+- (void) displayPushedVenueId;
 
 @end

@@ -21,6 +21,7 @@
 #import "Utilities.h"
 #import "LocationManager.h"
 #import "FriendRequestsViewController.h"
+#import "KickballAppDelegate.h"
 
 @interface FriendsListViewController (Private)
 
@@ -73,16 +74,6 @@
 	} else {
 		[self doInitialDisplay];
 	}
-//    NSURL *url = [NSURL URLWithString:@"https://go.urbanairship.com/api/app/content"];
-//    NSMutableURLRequest *requestObj = [NSMutableURLRequest requestWithURL:url];
-//    
-//    // TEST: this is just testing communication with Airship's servers
-//    [self addAuthToWebRequest:requestObj email:@"qpHHiOCAT8iYATFJa4dsIQ" password:@"PGTRPo6OTI2dvtz2xw-vfw"];    
-//    NSURLResponse *response = nil;
-//    NSError *error = nil;
-//    NSData *returnData = [NSURLConnection sendSynchronousRequest:requestObj returningResponse:&response error:&error];
-//    NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-//    NSLog(@"return string: %@", returnString);
 }
 
 - (void) doInitialDisplay {

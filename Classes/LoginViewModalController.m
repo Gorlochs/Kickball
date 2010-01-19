@@ -108,6 +108,9 @@
 	if([self.rootController respondsToSelector:@selector(doInitialDisplay)]){
 		[(KBBaseViewController *)self.rootController doInitialDisplay];
 	}
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"signInComplete"
+                                                        object:nil
+                                                      userInfo:nil];
 	[self dismissModalViewControllerAnimated:true];
 }
 

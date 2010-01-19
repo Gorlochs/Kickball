@@ -13,6 +13,7 @@
 #import "FoursquareAPI.h"
 #import "Utilities.h"
 #import "SettingsViewController.h"
+#import "PlaceDetailViewController.h"
 
 @implementation KBBaseViewController
 
@@ -27,6 +28,29 @@
     [self setUserIconView:tmpUser];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(displayShoutMessage:) name:@"shoutSent" object:nil];
+    
+    KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
+    [appDelegate.pushNotificationVenueId addObserver:self forKeyPath:@"pushVenueId" options:0 context:nil];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    NSLog(@"observed value change");
+    if ([keyPath isEqualToString:@"pushVenueId"] ) {
+        NSLog(@"observed value changed for pushnotification venueid");
+        KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
+        if (appDelegate.pushNotificationVenueId != nil) {
+            [self displayPushedVenueId];
+        }
+    }    
+}
+
+- (void) displayPushedVenueId {
+    KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
+    PlaceDetailViewController *placeController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];
+    placeController.venueId = appDelegate.pushNotificationVenueId;
+    appDelegate.pushNotificationVenueId = nil;
+    [self.navigationController pushViewController:placeController animated:YES];
+    [placeController release];
 }
 
 - (void) setUserIconView:(FSUser*)user {

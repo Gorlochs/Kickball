@@ -13,6 +13,7 @@
 #import "LocationManager.h"
 #import "ASIHTTPRequest.h"
 #import "FoursquareAPI.h"
+#import "PlaceDetailViewController.h"
 
 
 @implementation KickballAppDelegate
@@ -23,6 +24,7 @@
 @synthesize user;
 @synthesize deviceToken;
 @synthesize deviceAlias;
+@synthesize pushNotificationVenueId;
 
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {    
@@ -31,6 +33,7 @@
     //[window addSubview:viewController.view];
     [window addSubview:navigationController.view];
     [window makeKeyAndVisible];
+    application.applicationIconBadgeNumber = 0;
     
     // Pinch Analytics
     NSString *applicationCode = @"51512b37fa78552a6981778e1e652682";
@@ -145,11 +148,26 @@
 	NSLog(@"remote notification: %@",[userInfo description]);
 	NSLog(@"%@", [userInfo objectForKey: @"aps"]);
     //	NSString *message = [userInfo descriptionWithLocale:nil indent:1];
-	NSString* message =  [[userInfo objectForKey: @"aps"] objectForKey: @"alert"];
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Remote Notification" message:message delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
-    [alert show];
-    [alert release];
+	//NSString* message =  [[[userInfo objectForKey: @"aps"] objectForKey: @"vid"] stringValue];
+    pushNotificationVenueId = [[[userInfo objectForKey: @"aps"] objectForKey: @"vid"] stringValue];
+//	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Remote Notification" message:message delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
+//    [alert show];
+//    [alert release];
     
+    // TODO: put up message box giving them a choice to go to the page
+    if ([[FoursquareAPI sharedInstance] isAuthenticated]) {
+        [self displayPushNotificationView:nil];
+    } else {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(displayPushNotificationView:) name:@"signInComplete" object:nil];
+    }
+}
+
+- (void) displayPushNotificationView:(NSNotification *)inNotification {
+    PlaceDetailViewController *placeController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];
+    placeController.venueId = self.pushNotificationVenueId;
+    self.pushNotificationVenueId = nil;
+    [self.navigationController pushViewController:placeController animated:YES];
+    [placeController release];
 }
 
 - (void)dealloc {
