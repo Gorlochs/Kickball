@@ -173,7 +173,7 @@
 	pinView.rightCalloutAccessoryView = myDetailButton;
     
     pinView.canShowCallout = YES;
-    pinView.calloutOffset = CGPointMake(-5, 5);
+    //pinView.calloutOffset = CGPointMake(-5, 5);
 		
 	return pinView;	
 }

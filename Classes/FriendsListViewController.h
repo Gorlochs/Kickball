@@ -33,7 +33,6 @@
 @property (nonatomic, retain) NSMutableArray * yesterdayCheckins;
 @property (nonatomic, retain) UITableView *theTableView;
 
-- (IBAction) checkin;
 - (IBAction) flipToMap;
 - (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString;
 - (void) doInitialDisplay;

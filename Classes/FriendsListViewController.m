@@ -358,12 +358,6 @@
 
 #pragma mark IBAction methods
 
-- (void) checkin {
-    PlacesListViewController *placesListController = [[PlacesListViewController alloc] initWithNibName:@"PlacesListViewController" bundle:nil];
-    [self.navigationController pushViewController:placesListController animated:YES];
-    [placesListController release];
-}
-
 - (void) refresh {
 	[self startProgressBar:@"Retrieving friends' whereabouts..."];
 	[[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];

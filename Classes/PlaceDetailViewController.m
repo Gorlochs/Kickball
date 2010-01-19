@@ -619,7 +619,7 @@
 //    [UIView commitAnimations];
     
     fullMapView.alpha = 0;
-    fullMapView.frame = CGRectMake(0, 121, 320, 340);
+    fullMapView.frame = CGRectMake(0, 113, 320, 340);
     [self.view addSubview:fullMapView];
     
     [UIView beginAnimations:nil context:NULL];

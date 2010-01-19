@@ -212,7 +212,7 @@
 	
 	//annView.animatesDrop=TRUE;
 	annView.canShowCallout = YES;
-	annView.calloutOffset = CGPointMake(-5, 5);
+	//annView.calloutOffset = CGPointMake(-5, 5);
 	return annView;
 }
 

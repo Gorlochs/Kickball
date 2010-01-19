@@ -14,6 +14,7 @@
 #import "Utilities.h"
 #import "SettingsViewController.h"
 #import "PlaceDetailViewController.h"
+#import "PlacesListViewController.h"
 
 @implementation KBBaseViewController
 
@@ -181,6 +182,12 @@
 - (void) displayTextView {
     textViewController = [[KBTextViewController alloc] initWithNibName:@"KBTextViewController" bundle:nil];
     [self presentModalViewController:textViewController animated:YES];
+}
+
+- (void) checkin {
+    PlacesListViewController *placesListController = [[PlacesListViewController alloc] initWithNibName:@"PlacesListViewController" bundle:nil];
+    [self.navigationController pushViewController:placesListController animated:YES];
+    [placesListController release];
 }
 
 @end
