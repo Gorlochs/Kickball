@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "FSUser.h"
 
+#define kApplicationKey @"qpHHiOCAT8iYATFJa4dsIQ"
+#define kApplicationSecret @"PGTRPo6OTI2dvtz2xw-vfw"
+
 @class FriendsListViewController;
 
 @interface KickballAppDelegate : NSObject <UIApplicationDelegate> {

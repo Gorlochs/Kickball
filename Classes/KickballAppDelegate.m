@@ -14,9 +14,6 @@
 #import "ASIHTTPRequest.h"
 #import "FoursquareAPI.h"
 
-#define kApplicationKey @"qpHHiOCAT8iYATFJa4dsIQ"
-#define kApplicationSecret @"PGTRPo6OTI2dvtz2xw-vfw"
-
 
 @implementation KickballAppDelegate
 
@@ -78,8 +75,8 @@
 }
 
 - (void)userResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-	FSUser* user = [FoursquareAPI userFromResponseXML:inString];
-    [[FoursquareAPI sharedInstance] setCurrentUser:user];
+	FSUser* theUser = [FoursquareAPI userFromResponseXML:inString];
+    [[FoursquareAPI sharedInstance] setCurrentUser:theUser];
     
 	//Update View with the current token
 //	[[viewController tokenDisplay] setText:  self.deviceToken];
@@ -87,7 +84,7 @@
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	
     //self.deviceAlias = [userDefaults stringForKey: @"_UADeviceAliasKey"];
-    self.deviceAlias = user.userId;
+    self.deviceAlias = theUser.userId;
     
 	// Display the network activity indicator
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;

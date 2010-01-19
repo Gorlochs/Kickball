@@ -23,6 +23,8 @@
 #import "FSBadge.h"
 #import "FSSpecial.h"
 #import "CreateTipTodoViewController.h"
+#import "ASIFormDataRequest.h"
+#import "KickballAppDelegate.h"
 
 @interface PlaceDetailViewController (Private)
 
@@ -206,7 +208,7 @@
     } else if (section == 5) { // mayor & map cell
         return 1;
     } else if (section == 6) { // people here
-        return [venue.currentCheckins count];
+        return [venue.currentCheckins count] + 1;
     } else if (section == 7) { // tips
         return [venue.tips count];
         return [venue.currentCheckins count];
@@ -253,19 +255,23 @@
         mayorMapCell.backgroundColor = [UIColor whiteColor];
         return mayorMapCell;
     } else if (indexPath.section == 6) {
-        cell.detailTextLabel.numberOfLines = 1;
-        cell.detailTextLabel.text = nil;
-        cell.textLabel.font = [UIFont boldSystemFontOfSize:16];
-        FSCheckin *currentCheckin = ((FSCheckin*)[venue.currentCheckins objectAtIndex:indexPath.row]);
-        cell.textLabel.text = currentCheckin.user.firstnameLastInitial;
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        NSLog(@"currentcheckin user: %@", currentCheckin.user);
-        cell.imageView.image = [[Utilities sharedInstance] getCachedImage:currentCheckin.user.photo];
-        float sw=32/cell.imageView.image.size.width;
-        float sh=32/cell.imageView.image.size.height;
-        cell.imageView.transform=CGAffineTransformMakeScale(sw,sh);
-        cell.imageView.layer.masksToBounds = YES;
-        cell.imageView.layer.cornerRadius = 8.0;         
+        if (indexPath.row < [venue.currentCheckins count]) {
+            cell.detailTextLabel.numberOfLines = 1;
+            cell.detailTextLabel.text = nil;
+            cell.textLabel.font = [UIFont boldSystemFontOfSize:16];
+            FSCheckin *currentCheckin = ((FSCheckin*)[venue.currentCheckins objectAtIndex:indexPath.row]);
+            cell.textLabel.text = currentCheckin.user.firstnameLastInitial;
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            NSLog(@"currentcheckin user: %@", currentCheckin.user);
+            cell.imageView.image = [[Utilities sharedInstance] getCachedImage:currentCheckin.user.photo];
+            float sw=32/cell.imageView.image.size.width;
+            float sh=32/cell.imageView.image.size.height;
+            cell.imageView.transform=CGAffineTransformMakeScale(sw,sh);
+            cell.imageView.layer.masksToBounds = YES;
+            cell.imageView.layer.cornerRadius = 8.0;   
+        } else {
+            return detailButtonCell;
+        }
     } else if (indexPath.section == 7) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         FSTip *tip = (FSTip*) [venue.tips objectAtIndex:indexPath.row];
@@ -390,7 +396,6 @@
     [profileDetailController release];
 }
 
-
 - (void)dealloc {
     [theTableView release];
     [mayorMapCell release];
@@ -401,6 +406,7 @@
     [newMayorCell release];
     [stillTheMayorCell release];
     [bottomButtonCell release];
+    [detailButtonCell release];
     [mapView release];
     
     [venueName release];
@@ -477,6 +483,69 @@
     KBMessage *message = [[KBMessage alloc] initWithMember:@"Check-in" andSubtitle:@"Successful!" andMessage:checkinText];
     [self displayPopupMessage:message];
     [message release];
+    
+    // TODO: make this asynchronous
+    // TODO: send over userId and venueId and calculate who gets a push notification (i.e., people who are signed up for pings from that user)
+    //       Then only send out push to the proper people.
+    NSString *push = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://www.literalshore.com/gorloch/kickball/test_push.php"]];
+    NSLog(@"push: %@", push);
+//    NSString *deviceToken = [[[[_deviceToken description] stringByReplacingOccurrencesOfString:@"<"withString:@""] 
+//                    stringByReplacingOccurrencesOfString:@">" withString:@""] 
+//                   stringByReplacingOccurrencesOfString: @" " withString: @""];
+    
+//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//	NSString *deviceToken = [userDefaults stringForKey: @"_UALastDeviceToken"];
+//	NSString *deviceAlias = [userDefaults stringForKey: @"_UADeviceAliasKey"];
+//    
+//    NSOperationQueue *queue = [[[NSOperationQueue alloc] init] autorelease];
+//	NSString *UAServer = @"https://go.urbanairship.com";
+//	NSString *urlString = [NSString stringWithFormat:@"%@%@", UAServer, @"/api/push/"];
+//	NSURL *url = [NSURL URLWithString:  urlString];
+//	ASIHTTPRequest *request = [[[ASIHTTPRequest alloc] initWithURL:url] autorelease];
+//	request.requestMethod = @"POST";
+//	
+//	// Send along our device alias as the JSON encoded request body
+//	//if(self.deviceAlias != nil && [self.deviceAlias length] > 0) {
+//    [request addRequestHeader: @"Content-Type" value: @"application/json"];
+//    [request appendPostData:[[NSString stringWithFormat: @"{\"aps\": {\"badge\": 42, \"alert\": \"Hello from Kickball!\"}, \"aliases\": [\"28592\"]}"]
+//                             dataUsingEncoding:NSUTF8StringEncoding]];
+//    //[request appendPostData:[@"\"aps\": {\"badge\": 42,\"alert\": \"Hello from Kickball!\"}" dataUsingEncoding:NSUTF8StringEncoding]];
+//    
+//	//}
+//    
+//	// Authenticate to the server
+//	request.username = kApplicationKey;
+//	request.password = kApplicationSecret;
+//    
+//    NSLog(@"push request: %@", request);
+//	
+//	[request setDelegate:self];
+//	[request setDidFinishSelector: @selector(successMethod:)];
+//	[request setDidFailSelector: @selector(requestWentWrong:)];
+//	[queue addOperation:request];
+}
+
+- (void)successMethod:(ASIHTTPRequest *) request {
+    NSLog(@"push request successMethod: %@", request);
+    
+//	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//	[userDefaults setValue: self.deviceToken forKey: @"_UALastDeviceToken"];
+//	[userDefaults setValue: self.deviceAlias forKey: @"_UALastAlias"];
+//	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+}
+
+- (void)requestWentWrong:(ASIHTTPRequest *)request {
+    NSLog(@"push request successMethod: %@", request);
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+	NSError *error = [request error];
+	UIAlertView *someError = [[UIAlertView alloc] initWithTitle: 
+							  @"Network error" message: @"Error registering with server"
+                                                       delegate: self
+                                              cancelButtonTitle: @"Ok"
+                                              otherButtonTitles: nil];
+	[someError show];
+	[someError release];
+	NSLog(@"ERROR: NSError query result: %@", error);
 }
 
 - (void) togglePing {

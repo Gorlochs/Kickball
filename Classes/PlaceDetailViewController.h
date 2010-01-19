@@ -25,6 +25,7 @@
     IBOutlet UITableViewCell *newMayorCell;
     IBOutlet UITableViewCell *stillTheMayorCell;
     IBOutlet UITableViewCell *bottomButtonCell;
+    IBOutlet UITableViewCell *detailButtonCell;
     IBOutlet MKMapView *mapView;
     IBOutlet MKMapView *fullMapView;
     
