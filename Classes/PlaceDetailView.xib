@@ -1062,14 +1062,13 @@
 							<object class="IBUIButton" id="163948843">
 								<reference key="NSNextResponder" ref="459649593"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{161, 3}, {157, 37}}</string>
+								<string key="NSFrame">{{159, -5}, {160, 53}}</string>
 								<reference key="NSSuperview" ref="459649593"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
 								<reference key="IBUIFont" ref="741906914"/>
-								<int key="IBUIButtonType">1</int>
 								<reference key="IBUIHighlightedTitleColor" ref="484015391"/>
 								<object class="NSColor" key="IBUINormalTitleColor">
 									<int key="NSColorSpace">1</int>
@@ -1079,6 +1078,10 @@
 								<object class="NSCustomResource" key="IBUIHighlightedImage">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">venueTwitter02.png</string>
+								</object>
+								<object class="NSCustomResource" key="IBUIDisabledImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">venueTwitterOFF.png</string>
 								</object>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
@@ -1103,7 +1106,7 @@
 				<int key="IBUISelectionStyle">0</int>
 				<reference key="IBUIContentView" ref="459649593"/>
 			</object>
-			<object class="IBUIButton" id="780885164">
+			<object class="IBUIButton" id="228461735">
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<string key="NSFrameSize">{45, 45}</string>
@@ -1495,7 +1498,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">closeMap</string>
-						<reference key="source" ref="780885164"/>
+						<reference key="source" ref="228461735"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -1505,7 +1508,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">closeMapButton</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="780885164"/>
+						<reference key="destination" ref="228461735"/>
 					</object>
 					<int key="connectionID">178</int>
 				</object>
@@ -1874,7 +1877,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">176</int>
-						<reference key="object" ref="780885164"/>
+						<reference key="object" ref="228461735"/>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Close Map Button</string>
 					</object>
