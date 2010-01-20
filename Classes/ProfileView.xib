@@ -12,11 +12,11 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="49"/>
-			<integer value="57"/>
 			<integer value="64"/>
-			<integer value="35"/>
+			<integer value="57"/>
 			<integer value="70"/>
+			<integer value="35"/>
+			<integer value="49"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -195,7 +195,7 @@
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="IBUIText">Dominic O. </string>
-								<object class="NSFont" key="IBUIFont">
+								<object class="NSFont" key="IBUIFont" id="441598618">
 									<string key="NSName">Helvetica-Bold</string>
 									<double key="NSSize">14</double>
 									<int key="NSfFlags">16</int>
@@ -533,12 +533,13 @@
 							<object class="IBUILabel" id="934902798">
 								<reference key="NSNextResponder" ref="412030332"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{12, 9}, {296, 21}}</string>
+								<string key="NSFrame">{{27, 9}, {268, 21}}</string>
 								<reference key="NSSuperview" ref="412030332"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="IBUIText">Your friendship is pending.  Good luck!</string>
+								<reference key="IBUIFont" ref="441598618"/>
 								<reference key="IBUITextColor" ref="438622392"/>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">1</int>

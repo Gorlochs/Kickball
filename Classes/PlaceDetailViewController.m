@@ -589,7 +589,7 @@
 }
 
 - (void) showSpecial {
-    FSSpecial *special = ((FSSpecial*)[[self getSingleCheckin].specials objectAtIndex:0]);
+    FSSpecial *special = ((FSSpecial*)[[self venue].specials objectAtIndex:0]);
     KBMessage *msg = [[KBMessage alloc] initWithMember:special.venue.name andSubtitle:special.venue.addressWithCrossstreet andMessage:special.message];
     [self displayPopupMessage:msg];
     [msg release];
