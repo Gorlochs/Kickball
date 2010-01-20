@@ -619,9 +619,12 @@
 //    
 //    [UIView commitAnimations];
     
+    closeMapButton.alpha = 0;
+    closeMapButton.frame = CGRectMake(280, 113, 45, 45);
     fullMapView.alpha = 0;
     fullMapView.frame = CGRectMake(0, 113, 320, 340);
     [self.view addSubview:fullMapView];
+    [self.view addSubview:closeMapButton];
     
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
@@ -629,6 +632,7 @@
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
     
     fullMapView.alpha = 1.0;
+    closeMapButton.alpha = 1.0;
     
     [UIView commitAnimations];
 }
@@ -642,6 +646,18 @@
 
 - (void) markVenueWrongAddress {
     
+}
+
+- (void) closeMap {
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:1.0];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    
+    fullMapView.alpha = 0.0;
+    closeMapButton.alpha = 0.0;
+    
+    [UIView commitAnimations];
 }
 
 - (void) markVenueClosed {

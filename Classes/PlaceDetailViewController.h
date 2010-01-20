@@ -45,6 +45,7 @@
     IBOutlet UIButton *venueDetailButton;
     IBOutlet UIButton *specialsButton;
     IBOutlet UIButton *mapButton;
+    IBOutlet UIButton *closeMapButton;
     
     NSArray *checkin;
     FSVenue *venue;
@@ -78,6 +79,7 @@
 - (IBAction) addTipTodo;
 - (IBAction) markVenueWrongAddress;
 - (IBAction) markVenueClosed;
+- (IBAction) closeMap;
 - (FSCheckin*) getSingleCheckin;
 - (BOOL) hasMayorCell;
 - (void) setProperTwitterButtonState;
