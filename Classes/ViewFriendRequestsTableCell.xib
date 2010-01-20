@@ -3,7 +3,7 @@
 	<data>
 		<int key="IBDocument.SystemTarget">784</int>
 		<string key="IBDocument.SystemVersion">10C540</string>
-		<string key="IBDocument.InterfaceBuilderVersion">732</string>
+		<string key="IBDocument.InterfaceBuilderVersion">740</string>
 		<string key="IBDocument.AppKitVersion">1038.25</string>
 		<string key="IBDocument.HIToolboxVersion">458.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
@@ -65,7 +65,7 @@
 							<object class="IBUIButton" id="89989106">
 								<reference key="NSNextResponder" ref="18164360"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{275, 7}, {34, 28}}</string>
+								<string key="NSFrame">{{274, 1}, {44, 41}}</string>
 								<reference key="NSSuperview" ref="18164360"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -76,8 +76,6 @@
 									<double key="NSSize">15</double>
 									<int key="NSfFlags">16</int>
 								</object>
-								<int key="IBUIButtonType">1</int>
-								<string key="IBUINormalTitle">Y</string>
 								<object class="NSColor" key="IBUIHighlightedTitleColor" id="765042664">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MQA</bytes>
@@ -90,25 +88,36 @@
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MC41AA</bytes>
 								</object>
+								<object class="NSCustomResource" key="IBUIHighlightedImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">thumbsUp02.png</string>
+								</object>
+								<object class="NSCustomResource" key="IBUINormalImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">thumbsUp01.png</string>
+								</object>
 							</object>
 							<object class="IBUIButton" id="986615763">
 								<reference key="NSNextResponder" ref="18164360"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{227, 7}, {33, 28}}</string>
+								<string key="NSFrame">{{228, 1}, {44, 41}}</string>
 								<reference key="NSSuperview" ref="18164360"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
 								<reference key="IBUIFont" ref="12389089"/>
-								<int key="IBUIButtonType">1</int>
-								<string key="IBUINormalTitle">N</string>
 								<reference key="IBUIHighlightedTitleColor" ref="765042664"/>
 								<object class="NSColor" key="IBUINormalTitleColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="191566914"/>
+								<object class="NSCustomResource" key="IBUIHighlightedImage" id="224215669">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">thumbsDown01.png</string>
+								</object>
+								<reference key="IBUINormalImage" ref="224215669"/>
 							</object>
 						</object>
 						<string key="NSFrameSize">{320, 43}</string>
@@ -237,7 +246,7 @@
 					<string>ViewFriendRequestsViewController</string>
 					<string>UIResponder</string>
 					<string>ViewFriendRequestsTableCell</string>
-					<string>{{610, 607}, {320, 44}}</string>
+					<string>{{335, 820}, {320, 44}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -273,6 +282,7 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>backOneView</string>
+							<string>checkin</string>
 							<string>displayTextView</string>
 							<string>goToHomeView</string>
 							<string>viewSettings</string>
@@ -280,6 +290,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
