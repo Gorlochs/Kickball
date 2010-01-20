@@ -63,7 +63,7 @@
     isUserCheckedIn = NO;
     
     venueDetailButton.hidden = YES;
-    //twitterButton.hidden = YES;
+    twitterButton.enabled = NO;
     
     // this is to clear out the placeholder text, which is useful in IB
     venueName.text = @"";
@@ -151,7 +151,9 @@
     }
     
     if (venueToDisplay.twitter != nil && ![venueToDisplay.twitter isEqualToString:@""]) {
-        twitterButton.hidden = NO;
+        twitterButton.enabled = YES;
+    } else {
+        twitterButton.enabled = NO;
     }
 }
 
