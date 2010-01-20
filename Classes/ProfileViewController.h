@@ -32,6 +32,7 @@
     IBOutlet UIImageView *userIcon;
     IBOutlet UISegmentedControl *segmentedControl;
     IBOutlet UIButton *pingsAndUpdates;
+    IBOutlet UIButton *hereIAmButton;
     
     // not sure what these are doing here
     bool isPingOn;

@@ -66,8 +66,8 @@
             cell.textLabel.text = ((FSUser*)[friendRequests objectAtIndex:indexPath.row]).firstnameLastInitial;
             
             UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
-            [btn setImage:[UIImage imageNamed:@"add01.png"] forState:UIControlStateNormal];
-            [btn setImage:[UIImage imageNamed:@"add02.png"] forState:UIControlStateHighlighted];
+            [btn setImage:[UIImage imageNamed:@"addFriend/add01.png"] forState:UIControlStateNormal];
+            [btn setImage:[UIImage imageNamed:@"addFriend/add02.png"] forState:UIControlStateHighlighted];
             btn.frame = CGRectMake(-40, 0, 80, 15);
             btn.userInteractionEnabled = YES;
             btn.tag = indexPath.row;

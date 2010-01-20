@@ -60,11 +60,14 @@
     if ([user.checkin.display rangeOfString:@"[off the grid]"].location != NSNotFound) {
         location.text = @"[off the grid]";
         lastCheckinAddress.text = @"...location unknown...";
+        hereIAmButton.enabled = NO;
     } else if (user.checkin.shout != nil) {
         lastCheckinAddress.text = user.checkin.shout;
+        hereIAmButton.enabled = NO;
     } else {
         location.text = user.checkin.venue.name;
         lastCheckinAddress.text = user.checkin.venue.venueAddress;
+        hereIAmButton.enabled = YES;
     }
     
     isPingAndUpdatesOn = user.sendsPingsToSignedInUser;
