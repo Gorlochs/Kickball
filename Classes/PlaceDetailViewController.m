@@ -379,8 +379,10 @@
     if (indexPath.section == 5) {
         [self pushProfileDetailController:venue.mayor.userId];
     } else if (indexPath.section == 6) {
-        FSCheckin *tmpCheckin = ((FSCheckin*)[venue.currentCheckins objectAtIndex:indexPath.row]);
-        [self pushProfileDetailController:tmpCheckin.user.userId];
+        if (indexPath.row < [venue.currentCheckins count]) {
+            FSCheckin *tmpCheckin = ((FSCheckin*)[venue.currentCheckins objectAtIndex:indexPath.row]);
+            [self pushProfileDetailController:tmpCheckin.user.userId];
+        }
     } else if (indexPath.section == 7) {
         FSTip *tip = ((FSTip*)[venue.tips objectAtIndex:indexPath.row]);
         TipDetailViewController *tipController = [[TipDetailViewController alloc] initWithNibName:@"TipView" bundle:nil];
