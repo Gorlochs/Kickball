@@ -39,7 +39,6 @@
     name.text = @"";
     location.text = @"";
     lastCheckinAddress.text = @"";
-    isDisplayingTwitter = NO;
     
     [self addHeaderAndFooter:theTableView];
     
@@ -165,8 +164,12 @@
     [nightsOut release];
     [totalCheckins release];
     [userIcon release];
-    [segmentedControl release];
     [pingsAndUpdates release];
+    [textButton release];
+    [callButton release];
+    [emailButton release];
+    [twitterButton release];
+    [facebookButton release];
     
     [super dealloc];
 }
@@ -340,36 +343,31 @@
 #pragma mark
 #pragma mark IBAction methods
 
-- (void) clickSegmentedControl {
-    NSString *title = nil;
-    if (segmentedControl.selectedSegmentIndex == 0) {
-        title = @"Yes, open SMS app";
-        [self displayActionSheet:title];
-    } else if (segmentedControl.selectedSegmentIndex == 1) {
-        title = @"Yes, open Phone app";
-        [self displayActionSheet:title];
-    } else if (segmentedControl.selectedSegmentIndex == 2) {
-        title = @"Yes, open Mail app";
-        [self displayActionSheet:title];
-    } else if (segmentedControl.selectedSegmentIndex == 3) {
-        isDisplayingTwitter = !isDisplayingTwitter;
-        // display twitter table
-        
-        [self startProgressBar:@"Retrieving tweets..."];
-        // TODO: figure out the best way to deal with the UITableViewDelegate methods with this table
-        //       I don't want to use the ones in this controller (too big a pain in the ass)
-        //       I guess I can just create a new controller and use that.
-        if (isDisplayingTwitter) {
-            MGTwitterEngine *twitterEngine = [[[MGTwitterEngine alloc] initWithDelegate:self] autorelease];
-            NSString *twitters = [twitterEngine getUserTimelineFor:user.twitter sinceID:0 startingAtPage:0 count:20];
-            NSLog(@"twitter: %@", twitters);
-        }
-    } else if (segmentedControl.selectedSegmentIndex == 4) {
-        title = @"Yes, open Facebook app";
-        [self displayActionSheet:title];
-    }
+- (void) textProfile {
+    [self displayActionSheet:@"Yes, open SMS app" withTag:0];
 }
-- (void) displayActionSheet:(NSString*)title {
+
+- (void) callProfile {    
+    [self displayActionSheet:@"Yes, open Phone app" withTag:1];
+}
+
+- (void) emailProfile {
+    [self displayActionSheet:@"Yes, open Mail app" withTag:2];
+}
+
+- (void) viewProfilesTwitterFeed {
+    [self startProgressBar:@"Retrieving tweets..."];
+
+    MGTwitterEngine *twitterEngine = [[[MGTwitterEngine alloc] initWithDelegate:self] autorelease];
+    NSString *twitters = [twitterEngine getUserTimelineFor:user.twitter sinceID:0 startingAtPage:0 count:20];
+    NSLog(@"twitter: %@", twitters);
+}
+
+- (void) facebookProfile {
+    [self displayActionSheet:@"Yes, open Facebook app" withTag:4];
+}
+
+- (void) displayActionSheet:(NSString*)title withTag:(NSInteger)tag {
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"You will be leaving the Kickball app. Are you sure?"
                                                              delegate:self
                                                     cancelButtonTitle:@"Cancel"
@@ -377,7 +375,7 @@
                                                     otherButtonTitles:title,nil];
     
     actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-    actionSheet.tag = segmentedControl.selectedSegmentIndex;
+    actionSheet.tag = tag;
     [actionSheet showInView:self.view];
     [actionSheet release];
 }
@@ -424,20 +422,20 @@
 
 - (void) disableUnavailableSegments {
     if (user.phone == nil) {
-        [segmentedControl setEnabled:NO forSegmentAtIndex:0];
-        [segmentedControl setEnabled:NO forSegmentAtIndex:1];
+        textButton.enabled = NO;
+        callButton.enabled = NO;
     }
     
     if (user.email == nil) {
-        [segmentedControl setEnabled:NO forSegmentAtIndex:2];
+        emailButton.enabled = NO;
     }
     
     if (user.twitter == nil) {
-        [segmentedControl setEnabled:NO forSegmentAtIndex:3];
+        twitterButton.enabled = NO;
     }
     
     if (user.facebook == nil) {
-        [segmentedControl setEnabled:NO forSegmentAtIndex:4];
+        facebookButton = NO;
     }
 }
 
@@ -531,10 +529,13 @@
 
 - (void)requestSucceeded:(NSString *)connectionIdentifier {
     NSLog(@"requestSucceeded: %@", connectionIdentifier);
+    [self stopProgressBar];
 }
 
 - (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error {
     NSLog(@"requestFailed: %@", connectionIdentifier);
+    NSLog(@"error: %@", error);
+    [self stopProgressBar];
 }
 
 @end

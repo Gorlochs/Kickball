@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "FSUser.h"
+#import "Reachability.h"
 
 #define kApplicationKey @"qpHHiOCAT8iYATFJa4dsIQ"
 #define kApplicationSecret @"PGTRPo6OTI2dvtz2xw-vfw"
@@ -22,6 +23,10 @@
 	NSString *deviceToken;
 	NSString *deviceAlias;
     NSString *pushNotificationVenueId;
+    
+    Reachability* hostReach;
+    Reachability* internetReach;
+    Reachability* wifiReach;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;

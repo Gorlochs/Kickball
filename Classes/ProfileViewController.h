@@ -30,26 +30,35 @@
     IBOutlet UILabel *nightsOut;
     IBOutlet UILabel *totalCheckins;
     IBOutlet UIImageView *userIcon;
-    IBOutlet UISegmentedControl *segmentedControl;
     IBOutlet UIButton *pingsAndUpdates;
     IBOutlet UIButton *hereIAmButton;
+    
+    IBOutlet UIButton *textButton;
+    IBOutlet UIButton *callButton;
+    IBOutlet UIButton *emailButton;
+    IBOutlet UIButton *twitterButton;
+    IBOutlet UIButton *facebookButton;
     
     // not sure what these are doing here
     bool isPingOn;
     bool isTwitterOn;
     
     bool isPingAndUpdatesOn;
-    bool isDisplayingTwitter;
 }
 
 @property (nonatomic, retain) UITableViewCell *badgeCell;
 @property (nonatomic, retain) NSString *userId;
 
-- (IBAction) clickSegmentedControl;
+- (void) displayActionSheet:(NSString*)title withTag:(NSInteger)tag;
 - (IBAction) viewVenue;
 - (IBAction) checkinToProfilesVenue;
 - (IBAction) unfriend;
 - (IBAction) togglePingsAndUpdates;
 - (IBAction) friendUser;
+- (IBAction) textProfile;
+- (IBAction) callProfile;
+- (IBAction) emailProfile;
+- (IBAction) viewProfilesTwitterFeed;
+- (IBAction) facebookProfile;
 
 @end

@@ -21,6 +21,7 @@
 	NSMutableArray * todayCheckins;
 	NSMutableArray * yesterdayCheckins;
     
+    IBOutlet UIView *noNetworkView;
     IBOutlet InstructionView *instructionView;
     IBOutlet UITableViewCell *footerViewCell;
     

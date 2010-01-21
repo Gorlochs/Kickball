@@ -23,6 +23,7 @@
 }
 
 - (void) viewWillAppear:(BOOL)animated {
+    [self startProgressBar:@"Retrieving settings..."];
     [[FoursquareAPI sharedInstance] getPendingFriendRequests:self andAction:@selector(friendRequestResponseReceived:withResponseString:)];
     [super viewWillAppear:animated];
 }
@@ -53,12 +54,14 @@
 }
 
 - (void) validateNewUsernamePassword {
+    [self startProgressBar:@"Retrieving new username and password..."];
     [[FoursquareAPI sharedInstance] getFriendsWithTarget:username.text andPassword:password.text andTarget:self andAction:@selector(friendResponseReceived:withResponseString:)];
 }
 
 
 - (void)friendResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     NSLog(@"friend response for login: %@", inString);
+    [self stopProgressBar];
     // cheap way of checking for successful authentication
     BOOL containsUnauthorized = [inString rangeOfString:@"unauthorized" options:NSCaseInsensitiveSearch].length > 0;
     if (containsUnauthorized) {

@@ -351,6 +351,10 @@
 		6AE4B92A10D01B8900C910A1 /* icon57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AE4B92910D01B8900C910A1 /* icon57x57.png */; };
 		6AE4B93810D01E2F00C910A1 /* icon57x5702.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AE4B93710D01E2F00C910A1 /* icon57x5702.png */; };
 		6AE61217109AB04C008ABF79 /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AF96710109AA32700EF665D /* ProfileView.xib */; };
+		6AEE01271107C7F80088A488 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AEE01261107C7F80088A488 /* Reachability.m */; };
+		6AEE016D1107DD3E0088A488 /* twitter_OFF.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AEE016C1107DD3E0088A488 /* twitter_OFF.png */; };
+		6AEE017A1107DE8B0088A488 /* twitter_02.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AEE01781107DE8B0088A488 /* twitter_02.png */; };
+		6AEE017B1107DE8B0088A488 /* twitter_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AEE01791107DE8B0088A488 /* twitter_01.png */; };
 		6AF0563311066DDB0056327E /* add01.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AF0561311066DDB0056327E /* add01.png */; };
 		6AF0563411066DDB0056327E /* add02.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AF0561411066DDB0056327E /* add02.png */; };
 		6AF0563511066DDB0056327E /* addFriendHdr.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AF0561511066DDB0056327E /* addFriendHdr.png */; };
@@ -933,6 +937,11 @@
 		6AE4B92910D01B8900C910A1 /* icon57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon57x57.png; sourceTree = "<group>"; };
 		6AE4B93710D01E2F00C910A1 /* icon57x5702.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon57x5702.png; sourceTree = "<group>"; };
 		6AE611A3109AA462008ABF79 /* ProfileMainTableCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileMainTableCellView.xib; sourceTree = "<group>"; };
+		6AEE01251107C7F80088A488 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		6AEE01261107C7F80088A488 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		6AEE016C1107DD3E0088A488 /* twitter_OFF.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter_OFF.png; sourceTree = "<group>"; };
+		6AEE01781107DE8B0088A488 /* twitter_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter_02.png; sourceTree = "<group>"; };
+		6AEE01791107DE8B0088A488 /* twitter_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter_01.png; sourceTree = "<group>"; };
 		6AF0561311066DDB0056327E /* add01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add01.png; sourceTree = "<group>"; };
 		6AF0561411066DDB0056327E /* add02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add02.png; sourceTree = "<group>"; };
 		6AF0561511066DDB0056327E /* addFriendHdr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addFriendHdr.png; sourceTree = "<group>"; };
@@ -1083,6 +1092,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				6AEE011E1107C7E00088A488 /* Reachability */,
 				6AFF0FD8110178F900AD6E55 /* ASI */,
 				0300485410D85F8C004590BD /* Keychain */,
 				6A402A8910B755B200D9BCEB /* JSON */,
@@ -1605,6 +1615,9 @@
 		6A39EC4B109662D3006F76C3 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				6AEE016C1107DD3E0088A488 /* twitter_OFF.png */,
+				6AEE01781107DE8B0088A488 /* twitter_02.png */,
+				6AEE01791107DE8B0088A488 /* twitter_01.png */,
 				6AF056F51106BF120056327E /* placeMapClose01.png */,
 				6AF056F61106BF120056327E /* placeMapClose02.png */,
 				6AF056CE1106B8980056327E /* venueTwitterOFF.png */,
@@ -1865,6 +1878,15 @@
 				6A3900B010D6F1A0001D133C /* AddPlaceFormViewController.xib */,
 			);
 			name = "Add Venue";
+			sourceTree = "<group>";
+		};
+		6AEE011E1107C7E00088A488 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				6AEE01251107C7F80088A488 /* Reachability.h */,
+				6AEE01261107C7F80088A488 /* Reachability.m */,
+			);
+			name = Reachability;
 			sourceTree = "<group>";
 		};
 		6AF0561211066DDB0056327E /* addFriend */ = {
@@ -2339,6 +2361,9 @@
 				6AF057031106C7440056327E /* cantfindme.png in Resources */,
 				6AF0574C110765270056327E /* venueTwitter02.png in Resources */,
 				6AF0574D110765270056327E /* venueTwitter01.png in Resources */,
+				6AEE016D1107DD3E0088A488 /* twitter_OFF.png in Resources */,
+				6AEE017A1107DE8B0088A488 /* twitter_02.png in Resources */,
+				6AEE017B1107DE8B0088A488 /* twitter_01.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2492,6 +2517,7 @@
 				6AFF0FE2110178F900AD6E55 /* ASIHTTPRequest.m in Sources */,
 				6AFF0FE3110178F900AD6E55 /* ASINetworkQueue.m in Sources */,
 				6AFF0FE4110178F900AD6E55 /* NSHTTPCookieAdditions.m in Sources */,
+				6AEE01271107C7F80088A488 /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

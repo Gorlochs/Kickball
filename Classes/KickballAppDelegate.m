@@ -38,7 +38,11 @@
     // Pinch Analytics
     NSString *applicationCode = @"51512b37fa78552a6981778e1e652682";
     [Beacon initAndStartBeaconWithApplicationCode:applicationCode
-                                  useCoreLocation:YES useOnlyWiFi:NO];    
+                                  useCoreLocation:YES useOnlyWiFi:NO];
+    
+    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(reachabilityChanged:) name: kReachabilityChangedNotification object: nil];
+	hostReach = [[Reachability reachabilityWithHostName: @"api.foursquare.com"] retain];
+	[hostReach startNotifer];
     
     // this is just a sample. this should be removed eventually.
     [[Beacon shared] startSubBeaconWithName:@"App launched!" timeSession:NO];
@@ -84,7 +88,7 @@
 	//Update View with the current token
 //	[[viewController tokenDisplay] setText:  self.deviceToken];
     
-	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	//NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	
     //self.deviceAlias = [userDefaults stringForKey: @"_UADeviceAliasKey"];
     self.deviceAlias = theUser.userId;
@@ -169,6 +173,47 @@
     [self.navigationController pushViewController:placeController animated:YES];
     [placeController release];
 }
+
+//Called by Reachability whenever status changes.
+- (void) reachabilityChanged: (NSNotification* )note {
+    NSLog(@"################## reachability has changed ####################### - ", [note object]);
+	Reachability* curReach = [note object];
+	NSParameterAssert([curReach isKindOfClass: [Reachability class]]);
+	//[self updateInterfaceWithReachability: curReach];
+    
+    NetworkStatus netStatus = [curReach currentReachabilityStatus];
+    //BOOL connectionRequired= [curReach connectionRequired];
+    //NSString* statusString= @"";
+    switch (netStatus)
+    {
+        case NotReachable:
+        {
+            // TODO: pop up the sorry message
+            NSLog(@"*****************************************************************************");
+            NSLog(@"******************* NO ACCESS TO FOURSQUARE API!!!! *************************");
+            NSLog(@"*****************************************************************************");
+//            statusString = @"Access Not Available";
+//            imageView.image = [UIImage imageNamed: @"stop-32.png"] ;
+//            //Minor interface detail- connectionRequired may return yes, even when the host is unreachable.  We cover that up here...
+//            connectionRequired= NO;  
+            break;
+        }
+            
+//        case ReachableViaWWAN:
+//        {
+////            statusString = @"Reachable WWAN";
+////            imageView.image = [UIImage imageNamed: @"WWAN5.png"];
+//            break;
+//        }
+//        case ReachableViaWiFi:
+//        {
+////            statusString= @"Reachable WiFi";
+////            imageView.image = [UIImage imageNamed: @"Airport.png"];
+//            break;
+//        }
+    }
+}
+
 
 - (void)dealloc {
     [viewController release];
