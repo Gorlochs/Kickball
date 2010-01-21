@@ -12,7 +12,7 @@
 #import "FSSpecial.h"
 #import "SFHFKeychainUtils.h"
 
-#define USER_AGENT @"UltraDudez"
+#define USER_AGENT @"UltraDudez:0.0.1"
 
 static FoursquareAPI *sharedInstance = nil;
 

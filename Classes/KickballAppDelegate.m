@@ -41,7 +41,7 @@
                                   useCoreLocation:YES useOnlyWiFi:NO];
     
     [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(reachabilityChanged:) name: kReachabilityChangedNotification object: nil];
-	hostReach = [[Reachability reachabilityWithHostName: @"api.foursquare.com"] retain];
+	hostReach = [[Reachability reachabilityWithHostName: @"api.foursquare.com/v1/test"] retain];
 	[hostReach startNotifer];
     
     // this is just a sample. this should be removed eventually.

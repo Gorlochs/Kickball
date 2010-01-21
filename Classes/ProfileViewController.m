@@ -435,7 +435,7 @@
     }
     
     if (user.facebook == nil) {
-        facebookButton = NO;
+        facebookButton.enabled = NO;
     }
 }
 
