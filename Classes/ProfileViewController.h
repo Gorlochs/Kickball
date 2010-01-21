@@ -18,7 +18,6 @@
     IBOutlet UITableViewCell *addFriendCell;
     IBOutlet UITableViewCell *friendActionCell;
     IBOutlet UITableViewCell *friendPendingCell;
-    IBOutlet UITableView *twitterTable;
     NSString *userId;
     FSUser *user;
     NSArray *twitterStatuses;

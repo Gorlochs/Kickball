@@ -87,6 +87,10 @@
 
 	[self startProgressBar:@"Retrieving friends' whereabouts..."];
 	[[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
+    
+    if (![self getAuthenticatedUser]) {
+        [[FoursquareAPI sharedInstance] getUser:nil withTarget:self andAction:@selector(userResponseReceived:withResponseString:)];
+    }
 }
 
 - (void) addAuthToWebRequest:(NSMutableURLRequest*)requestObj email:(NSString*)email password:(NSString*)password{

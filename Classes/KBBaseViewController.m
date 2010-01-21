@@ -56,8 +56,9 @@
 
 - (void) setUserIconView:(FSUser*)user {
     if (user) {
+        NSLog(@"user is not null");
         UIImage *image = [[Utilities sharedInstance] getCachedImage:user.photo];
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(285, 9, 32, 32)];
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(285, 3, 32, 32)];
         imageView.image = image;
         [image release];
         [self.view addSubview:imageView];

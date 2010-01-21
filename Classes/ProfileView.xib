@@ -12,10 +12,6 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="49"/>
-			<integer value="57"/>
-			<integer value="64"/>
-			<integer value="70"/>
 			<integer value="38"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
@@ -485,6 +481,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{2, 3}, {147, 37}}</string>
 								<reference key="NSSuperview" ref="50082388"/>
+								<reference key="NSWindow"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -518,6 +515,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{148, 3}, {170, 37}}</string>
 								<reference key="NSSuperview" ref="50082388"/>
+								<reference key="NSWindow"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -545,6 +543,7 @@
 						</object>
 						<string key="NSFrameSize">{320, 42}</string>
 						<reference key="NSSuperview" ref="330433458"/>
+						<reference key="NSWindow"/>
 						<reference key="IBUIBackgroundColor" ref="348901533"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -554,6 +553,7 @@
 				</object>
 				<string key="NSFrameSize">{320, 43}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="IBUIBackgroundColor" ref="537609086"/>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<int key="IBUISeparatorStyle">1</int>
@@ -573,8 +573,9 @@
 							<object class="IBUIButton" id="673779468">
 								<reference key="NSNextResponder" ref="946116099"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{3, 4}, {315, 37}}</string>
+								<string key="NSFrame">{{3, 3}, {315, 37}}</string>
 								<reference key="NSSuperview" ref="946116099"/>
+								<reference key="NSWindow"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -602,6 +603,7 @@
 						</object>
 						<string key="NSFrameSize">{320, 42}</string>
 						<reference key="NSSuperview" ref="153034303"/>
+						<reference key="NSWindow"/>
 						<reference key="IBUIBackgroundColor" ref="348901533"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -611,13 +613,14 @@
 				</object>
 				<string key="NSFrameSize">{320, 43}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="IBUIBackgroundColor" ref="537609086"/>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<int key="IBUISeparatorStyle">1</int>
 				<reference key="IBUIContentView" ref="946116099"/>
 			</object>
 			<object class="IBUITableViewCell" id="322235984">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -652,28 +655,10 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 43}</string>
-				<reference key="NSSuperview"/>
 				<reference key="IBUIBackgroundColor" ref="537609086"/>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<int key="IBUISeparatorStyle">1</int>
 				<reference key="IBUIContentView" ref="412030332"/>
-			</object>
-			<object class="IBUITableView" id="902377314">
-				<reference key="NSNextResponder"/>
-				<int key="NSvFlags">274</int>
-				<string key="NSFrameSize">{320, 310}</string>
-				<reference key="NSSuperview"/>
-				<reference key="IBUIBackgroundColor" ref="850398413"/>
-				<bool key="IBUIOpaque">NO</bool>
-				<bool key="IBUIClipsSubviews">YES</bool>
-				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
-				<bool key="IBUIBouncesZoom">NO</bool>
-				<int key="IBUISeparatorStyle">1</int>
-				<int key="IBUISectionIndexMinimumDisplayRowCount">0</int>
-				<bool key="IBUIShowsSelectionImmediatelyOnTouchBegin">YES</bool>
-				<float key="IBUIRowHeight">44</float>
-				<float key="IBUISectionHeaderHeight">22</float>
-				<float key="IBUISectionFooterHeight">22</float>
 			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -750,14 +735,6 @@
 						<reference key="destination" ref="579526517"/>
 					</object>
 					<int key="connectionID">53</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">twitterTable</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="902377314"/>
-					</object>
-					<int key="connectionID">58</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -1071,12 +1048,6 @@
 						<reference key="parent" ref="330433458"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">57</int>
-						<reference key="object" ref="902377314"/>
-						<reference key="parent" ref="0"/>
-						<string key="objectName">Twitter Table View</string>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">59</int>
 						<reference key="object" ref="410792140"/>
 						<reference key="parent" ref="306659321"/>
@@ -1180,8 +1151,6 @@
 					<string>49.IBEditorWindowLastContentRect</string>
 					<string>49.IBPluginDependency</string>
 					<string>50.IBPluginDependency</string>
-					<string>57.IBEditorWindowLastContentRect</string>
-					<string>57.IBPluginDependency</string>
 					<string>60.IBPluginDependency</string>
 					<string>62.IBPluginDependency</string>
 					<string>64.IBEditorWindowLastContentRect</string>
@@ -1217,8 +1186,6 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{175, 762}, {320, 43}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{609, 167}, {320, 310}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

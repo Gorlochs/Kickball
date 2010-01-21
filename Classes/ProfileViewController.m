@@ -113,14 +113,6 @@
     [message release];
 }
 
-/*
- // Override to allow orientations other than the default portrait orientation.
- - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
- // Return YES for supported orientations
- return (interfaceOrientation == UIInterfaceOrientationPortrait);
- }
- */
-
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
@@ -145,14 +137,12 @@
     userIcon = nil;
 }
 
-
 - (void)dealloc {
     [theTableView release];
     [badgeCell release];
     [addFriendCell release];
     [friendActionCell release];
     [friendPendingCell release];
-    [twitterTable release];
     [userId release];
     [user release];
     [twitterStatuses release];
