@@ -13,7 +13,7 @@
 #import "LocationManager.h"
 #import "ASIHTTPRequest.h"
 #import "FoursquareAPI.h"
-#import "PlaceDetailViewController.h"
+#import "ProfileViewController.h"
 
 
 @implementation KickballAppDelegate
@@ -153,7 +153,7 @@
 	NSLog(@"%@", [userInfo objectForKey: @"aps"]);
     //	NSString *message = [userInfo descriptionWithLocale:nil indent:1];
 	//NSString* message =  [[[userInfo objectForKey: @"aps"] objectForKey: @"vid"] stringValue];
-    pushNotificationVenueId = [[[userInfo objectForKey: @"aps"] objectForKey: @"vid"] stringValue];
+    self.pushNotificationVenueId = [[[userInfo objectForKey: @"aps"] objectForKey: @"vid"] stringValue];
 //	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Remote Notification" message:message delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
 //    [alert show];
 //    [alert release];
@@ -167,11 +167,11 @@
 }
 
 - (void) displayPushNotificationView:(NSNotification *)inNotification {
-    PlaceDetailViewController *placeController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];
-    placeController.venueId = self.pushNotificationVenueId;
+    ProfileViewController *profileController = [[ProfileViewController alloc] initWithNibName:@"ProfileView" bundle:nil];
+    profileController.userId = self.pushNotificationVenueId;
     self.pushNotificationVenueId = nil;
-    [self.navigationController pushViewController:placeController animated:YES];
-    [placeController release];
+    [self.navigationController pushViewController:profileController animated:YES];
+    [profileController release];
 }
 
 //Called by Reachability whenever status changes.

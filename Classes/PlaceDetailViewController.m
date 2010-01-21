@@ -493,74 +493,38 @@
     // TODO: send over userId and venueId and calculate who gets a push notification (i.e., people who are signed up for pings from that user)
     //       Then only send out push to the proper people.
     FSUser *user = [self getAuthenticatedUser];
-    // TODO: escape spaces in name
-    // TODO: user firstnamelastinitial
-    NSString *urlstring = [NSString stringWithFormat:@"http://www.literalshore.com/gorloch/kickball/test_push.php?uid=%@&un=%@&vn=%@", [user.userId stringByReplacingOccurrencesOfString:@" " withString:@"+"], [user.firstname stringByReplacingOccurrencesOfString:@" " withString:@"+"], [venue.name stringByReplacingOccurrencesOfString:@" " withString:@"+"]];
+    NSString *uid = [user.userId stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+    NSString *un = [user.firstnameLastInitial stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+    NSString *vn = [venue.name stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+    NSString *urlstring = [NSString stringWithFormat:@"http://www.literalshore.com/gorloch/kickball/test_push.php?uid=%@&un=%@&vn=%@", uid, un, vn];
     NSLog(@"urlstring: %@", urlstring);
     NSString *push = [NSString stringWithContentsOfURL:[NSURL URLWithString:urlstring]];
     NSLog(@"push: %@", push);
 
-    
-    
-    
-    //    NSString *deviceToken = [[[[_deviceToken description] stringByReplacingOccurrencesOfString:@"<"withString:@""] 
-//                    stringByReplacingOccurrencesOfString:@">" withString:@""] 
-//                   stringByReplacingOccurrencesOfString: @" " withString: @""];
-    
-//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-//	NSString *deviceToken = [userDefaults stringForKey: @"_UALastDeviceToken"];
-//	NSString *deviceAlias = [userDefaults stringForKey: @"_UADeviceAliasKey"];
-//    
-//    NSOperationQueue *queue = [[[NSOperationQueue alloc] init] autorelease];
-//	NSString *UAServer = @"https://go.urbanairship.com";
-//	NSString *urlString = [NSString stringWithFormat:@"%@%@", UAServer, @"/api/push/"];
-//	NSURL *url = [NSURL URLWithString:  urlString];
-//	ASIHTTPRequest *request = [[[ASIHTTPRequest alloc] initWithURL:url] autorelease];
-//	request.requestMethod = @"POST";
-//	
-//	// Send along our device alias as the JSON encoded request body
-//	//if(self.deviceAlias != nil && [self.deviceAlias length] > 0) {
-//    [request addRequestHeader: @"Content-Type" value: @"application/json"];
-//    [request appendPostData:[[NSString stringWithFormat: @"{\"aps\": {\"badge\": 42, \"alert\": \"Hello from Kickball!\"}, \"aliases\": [\"28592\"]}"]
-//                             dataUsingEncoding:NSUTF8StringEncoding]];
-//    //[request appendPostData:[@"\"aps\": {\"badge\": 42,\"alert\": \"Hello from Kickball!\"}" dataUsingEncoding:NSUTF8StringEncoding]];
-//    
-//	//}
-//    
-//	// Authenticate to the server
-//	request.username = kApplicationKey;
-//	request.password = kApplicationSecret;
-//    
-//    NSLog(@"push request: %@", request);
-//	
-//	[request setDelegate:self];
-//	[request setDidFinishSelector: @selector(successMethod:)];
-//	[request setDidFailSelector: @selector(requestWentWrong:)];
-//	[queue addOperation:request];
 }
 
-- (void)successMethod:(ASIHTTPRequest *) request {
-    NSLog(@"push request successMethod: %@", request);
-    
-//	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-//	[userDefaults setValue: self.deviceToken forKey: @"_UALastDeviceToken"];
-//	[userDefaults setValue: self.deviceAlias forKey: @"_UALastAlias"];
+//- (void)successMethod:(ASIHTTPRequest *) request {
+//    NSLog(@"push request successMethod: %@", request);
+//    
+////	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+////	[userDefaults setValue: self.deviceToken forKey: @"_UALastDeviceToken"];
+////	[userDefaults setValue: self.deviceAlias forKey: @"_UALastAlias"];
+////	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+//}
+//
+//- (void)requestWentWrong:(ASIHTTPRequest *)request {
+//    NSLog(@"push request successMethod: %@", request);
 //	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-}
-
-- (void)requestWentWrong:(ASIHTTPRequest *)request {
-    NSLog(@"push request successMethod: %@", request);
-	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-	NSError *error = [request error];
-	UIAlertView *someError = [[UIAlertView alloc] initWithTitle: 
-							  @"Network error" message: @"Error registering with server"
-                                                       delegate: self
-                                              cancelButtonTitle: @"Ok"
-                                              otherButtonTitles: nil];
-	[someError show];
-	[someError release];
-	NSLog(@"ERROR: NSError query result: %@", error);
-}
+//	NSError *error = [request error];
+//	UIAlertView *someError = [[UIAlertView alloc] initWithTitle: 
+//							  @"Network error" message: @"Error registering with server"
+//                                                       delegate: self
+//                                              cancelButtonTitle: @"Ok"
+//                                              otherButtonTitles: nil];
+//	[someError show];
+//	[someError release];
+//	NSLog(@"ERROR: NSError query result: %@", error);
+//}
 
 - (void) togglePing {
     isPingOn = !isPingOn;
