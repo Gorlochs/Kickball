@@ -379,7 +379,7 @@
 }
 
 - (void) checkinToProfilesVenue {
-    [self startProgressBar:@"Checking in to this venue..."];
+    //[self startProgressBar:@"Checking in to this venue..."];
 	
 	PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];    
     placeDetailController.venueId = user.checkin.venue.venueid;
