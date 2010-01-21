@@ -492,9 +492,18 @@
     // TODO: make this asynchronous
     // TODO: send over userId and venueId and calculate who gets a push notification (i.e., people who are signed up for pings from that user)
     //       Then only send out push to the proper people.
-    NSString *push = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://www.literalshore.com/gorloch/kickball/test_push.php"]];
+    FSUser *user = [self getAuthenticatedUser];
+    // TODO: escape spaces in name
+    // TODO: user firstnamelastinitial
+    NSString *urlstring = [NSString stringWithFormat:@"http://www.literalshore.com/gorloch/kickball/test_push.php?uid=%@&un=%@&vn=%@", [user.userId stringByReplacingOccurrencesOfString:@" " withString:@"+"], [user.firstname stringByReplacingOccurrencesOfString:@" " withString:@"+"], [venue.name stringByReplacingOccurrencesOfString:@" " withString:@"+"]];
+    NSLog(@"urlstring: %@", urlstring);
+    NSString *push = [NSString stringWithContentsOfURL:[NSURL URLWithString:urlstring]];
     NSLog(@"push: %@", push);
-//    NSString *deviceToken = [[[[_deviceToken description] stringByReplacingOccurrencesOfString:@"<"withString:@""] 
+
+    
+    
+    
+    //    NSString *deviceToken = [[[[_deviceToken description] stringByReplacingOccurrencesOfString:@"<"withString:@""] 
 //                    stringByReplacingOccurrencesOfString:@">" withString:@""] 
 //                   stringByReplacingOccurrencesOfString: @" " withString: @""];
     
