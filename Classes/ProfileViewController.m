@@ -349,6 +349,7 @@
     [self startProgressBar:@"Retrieving tweets..."];
 
     MGTwitterEngine *twitterEngine = [[[MGTwitterEngine alloc] initWithDelegate:self] autorelease];
+    NSLog(@"twitter username: %@", user.twitter);
     NSString *twitters = [twitterEngine getUserTimelineFor:user.twitter sinceID:0 startingAtPage:0 count:20];
     NSLog(@"twitter: %@", twitters);
 }
@@ -523,6 +524,9 @@
 }
 
 - (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error {
+    KBMessage *message = [[KBMessage alloc] initWithMember:@"Twitter" andSubtitle:@"Fail Whale" andMessage:@"Sorry. It seems that Twitter is down. Try again later."];
+    [self displayPopupMessage:message];
+    [message release];
     NSLog(@"requestFailed: %@", connectionIdentifier);
     NSLog(@"error: %@", error);
     [self stopProgressBar];

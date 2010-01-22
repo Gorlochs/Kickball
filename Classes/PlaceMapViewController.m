@@ -49,32 +49,61 @@
 }
 
 - (MKAnnotationView *) mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>) annotation{
-//	int postag = 0;
+	int postag = 0;
     
-	KBPin *annView = [[[KBPin alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomId"] autorelease];
+	KBPin *annView=[[[KBPin alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomId"] autorelease];
+	//annView.pinColor = MKPinAnnotationColorGreen;
     annView.image = [UIImage imageNamed:@"pin.png"];
     
     // add an accessory button so user can click through to the venue page
-//	UIButton *myDetailButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//	myDetailButton.frame = CGRectMake(0, 0, 23, 23);
-//	myDetailButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-//	myDetailButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-//	
-//	// Set the image for the button
-//	[myDetailButton setImage:[UIImage imageNamed:@"button_right.png"] forState:UIControlStateNormal];
-//	[myDetailButton addTarget:self action:@selector(showVenue:) forControlEvents:UIControlEventTouchUpInside]; 
-//	
-//    postag = [((VenueAnnotation*)annotation).venueId intValue];
-//	myDetailButton.tag  = postag;
-//	
-//	// Set the button as the callout view
-//	annView.rightCalloutAccessoryView = myDetailButton;
+	UIButton *myDetailButton = [UIButton buttonWithType:UIButtonTypeCustom];
+	myDetailButton.frame = CGRectMake(0, 0, 23, 23);
+	myDetailButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+	myDetailButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+	
+	// Set the image for the button
+	[myDetailButton setImage:[UIImage imageNamed:@"button_right.png"] forState:UIControlStateNormal];
+	[myDetailButton addTarget:self action:@selector(showVenue:) forControlEvents:UIControlEventTouchUpInside]; 
+	
+    postag = [((VenueAnnotation*)annotation).venueId intValue];
+	myDetailButton.tag  = postag;
+	
+	// Set the button as the callout view
+	annView.rightCalloutAccessoryView = myDetailButton;
 	
 	//annView.animatesDrop=TRUE;
 	annView.canShowCallout = YES;
-	annView.calloutOffset = CGPointMake(-5, 5);
+	//annView.calloutOffset = CGPointMake(-5, 5);
 	return annView;
 }
+
+//- (MKAnnotationView *) mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>) annotation{
+////	int postag = 0;
+//    
+//	KBPin *annView = [[[KBPin alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomId"] autorelease];
+//    annView.image = [UIImage imageNamed:@"pin.png"];
+//    
+//    // add an accessory button so user can click through to the venue page
+////	UIButton *myDetailButton = [UIButton buttonWithType:UIButtonTypeCustom];
+////	myDetailButton.frame = CGRectMake(0, 0, 23, 23);
+////	myDetailButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+////	myDetailButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+////	
+////	// Set the image for the button
+////	[myDetailButton setImage:[UIImage imageNamed:@"button_right.png"] forState:UIControlStateNormal];
+////	[myDetailButton addTarget:self action:@selector(showVenue:) forControlEvents:UIControlEventTouchUpInside]; 
+////	
+////    postag = [((VenueAnnotation*)annotation).venueId intValue];
+////	myDetailButton.tag  = postag;
+////	
+////	// Set the button as the callout view
+////	annView.rightCalloutAccessoryView = myDetailButton;
+//	
+//	//annView.animatesDrop=TRUE;
+//	annView.canShowCallout = YES;
+//	annView.calloutOffset = CGPointMake(-5, 5);
+//	return annView;
+//}
 
 - (void) showVenue:(id)sender {
     int nrButtonPressed = ((UIButton *)sender).tag;

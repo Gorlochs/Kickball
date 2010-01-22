@@ -14,10 +14,12 @@
     IBOutlet UITableView *theTableView;
     
     NSArray *tweets;
+    NSArray *sortedTweets;
 }
 
 @property (nonatomic, retain) NSArray *tweets;
 
 - (IBAction) dismiss;
+NSInteger dateSort(id letter1, id letter2, void *dummy);
 
 @end

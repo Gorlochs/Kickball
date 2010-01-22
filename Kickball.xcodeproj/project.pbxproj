@@ -281,6 +281,19 @@
 		6A4C30CB10DF24FD00C89F55 /* PlaceMapViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A4C30C910DF24FD00C89F55 /* PlaceMapViewController.xib */; };
 		6A55B4D010B36EC60005E934 /* KBBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A55B4CF10B36EC60005E934 /* KBBaseViewController.m */; };
 		6A5F8F3C10B7707100914709 /* GeoAPIView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A5F8F3B10B7707100914709 /* GeoAPIView.xib */; };
+		6A63DDA41108EDBA00E2F9BB /* IFTweetLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A63DD9E1108EDBA00E2F9BB /* IFTweetLabel.m */; };
+		6A63DDA51108EDBA00E2F9BB /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A63DDA11108EDBA00E2F9BB /* RegexKitLite.m */; };
+		6A63DDA61108EDBA00E2F9BB /* RKLMatchEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A63DDA31108EDBA00E2F9BB /* RKLMatchEnumerator.m */; };
+		6A63DDCF1108EF4B00E2F9BB /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A63DDCE1108EF4B00E2F9BB /* libicucore.dylib */; };
+		6A63DF04110956F000E2F9BB /* welcome07.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A63DEFC110956F000E2F9BB /* welcome07.png */; };
+		6A63DF05110956F000E2F9BB /* welcome06.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A63DEFD110956F000E2F9BB /* welcome06.png */; };
+		6A63DF06110956F000E2F9BB /* welcome05.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A63DEFE110956F000E2F9BB /* welcome05.png */; };
+		6A63DF08110956F000E2F9BB /* welcome04.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A63DF00110956F000E2F9BB /* welcome04.png */; };
+		6A63DF09110956F000E2F9BB /* welcome03.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A63DF01110956F000E2F9BB /* welcome03.png */; };
+		6A63DF0A110956F000E2F9BB /* welcome02.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A63DF02110956F000E2F9BB /* welcome02.png */; };
+		6A63DF0B110956F000E2F9BB /* welcome01.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A63DF03110956F000E2F9BB /* welcome01.png */; };
+		6A63DF0E110957B500E2F9BB /* saveSettings01.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A63DF0C110957B500E2F9BB /* saveSettings01.png */; };
+		6A63DF0F110957B500E2F9BB /* saveSettings02.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A63DF0D110957B500E2F9BB /* saveSettings02.png */; };
 		6A79D0D710E5E682009082E5 /* PopupMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A79D0D610E5E682009082E5 /* PopupMessageView.m */; };
 		6A79D0D910E5E692009082E5 /* PopupMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A79D0D810E5E692009082E5 /* PopupMessageView.xib */; };
 		6A79D0FE10E68D1A009082E5 /* KBMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A79D0FD10E68D1A009082E5 /* KBMessage.m */; };
@@ -833,6 +846,22 @@
 		6A55B4CE10B36EC60005E934 /* KBBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBBaseViewController.h; sourceTree = "<group>"; };
 		6A55B4CF10B36EC60005E934 /* KBBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBBaseViewController.m; sourceTree = "<group>"; };
 		6A5F8F3B10B7707100914709 /* GeoAPIView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GeoAPIView.xib; sourceTree = "<group>"; };
+		6A63DD9D1108EDBA00E2F9BB /* IFTweetLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFTweetLabel.h; sourceTree = "<group>"; };
+		6A63DD9E1108EDBA00E2F9BB /* IFTweetLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFTweetLabel.m; sourceTree = "<group>"; };
+		6A63DDA01108EDBA00E2F9BB /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
+		6A63DDA11108EDBA00E2F9BB /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
+		6A63DDA21108EDBA00E2F9BB /* RKLMatchEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKLMatchEnumerator.h; sourceTree = "<group>"; };
+		6A63DDA31108EDBA00E2F9BB /* RKLMatchEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKLMatchEnumerator.m; sourceTree = "<group>"; };
+		6A63DDCE1108EF4B00E2F9BB /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		6A63DEFC110956F000E2F9BB /* welcome07.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome07.png; sourceTree = "<group>"; };
+		6A63DEFD110956F000E2F9BB /* welcome06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome06.png; sourceTree = "<group>"; };
+		6A63DEFE110956F000E2F9BB /* welcome05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome05.png; sourceTree = "<group>"; };
+		6A63DF00110956F000E2F9BB /* welcome04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome04.png; sourceTree = "<group>"; };
+		6A63DF01110956F000E2F9BB /* welcome03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome03.png; sourceTree = "<group>"; };
+		6A63DF02110956F000E2F9BB /* welcome02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome02.png; sourceTree = "<group>"; };
+		6A63DF03110956F000E2F9BB /* welcome01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome01.png; sourceTree = "<group>"; };
+		6A63DF0C110957B500E2F9BB /* saveSettings01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = saveSettings01.png; sourceTree = "<group>"; };
+		6A63DF0D110957B500E2F9BB /* saveSettings02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = saveSettings02.png; sourceTree = "<group>"; };
 		6A79D0D510E5E682009082E5 /* PopupMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopupMessageView.h; sourceTree = "<group>"; };
 		6A79D0D610E5E682009082E5 /* PopupMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopupMessageView.m; sourceTree = "<group>"; };
 		6A79D0D810E5E692009082E5 /* PopupMessageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupMessageView.xib; sourceTree = "<group>"; };
@@ -1074,6 +1103,7 @@
 				6A8F68EA10E9B9FC00E0275E /* AddressBook.framework in Frameworks */,
 				6AFF0FFF1101796600AD6E55 /* CFNetwork.framework in Frameworks */,
 				6AFF10051101798000AD6E55 /* libz.1.2.3.dylib in Frameworks */,
+				6A63DDCF1108EF4B00E2F9BB /* libicucore.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1092,6 +1122,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				6A63DD9A1108EDAA00E2F9BB /* FancyLabels */,
 				6AEE011E1107C7E00088A488 /* Reachability */,
 				6AFF0FD8110178F900AD6E55 /* ASI */,
 				0300485410D85F8C004590BD /* Keychain */,
@@ -1132,6 +1163,7 @@
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				6AFF10041101798000AD6E55 /* libz.1.2.3.dylib */,
+				6A63DDCE1108EF4B00E2F9BB /* libicucore.dylib */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -1615,6 +1647,15 @@
 		6A39EC4B109662D3006F76C3 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				6A63DF0C110957B500E2F9BB /* saveSettings01.png */,
+				6A63DF0D110957B500E2F9BB /* saveSettings02.png */,
+				6A63DEFC110956F000E2F9BB /* welcome07.png */,
+				6A63DEFD110956F000E2F9BB /* welcome06.png */,
+				6A63DEFE110956F000E2F9BB /* welcome05.png */,
+				6A63DF00110956F000E2F9BB /* welcome04.png */,
+				6A63DF01110956F000E2F9BB /* welcome03.png */,
+				6A63DF02110956F000E2F9BB /* welcome02.png */,
+				6A63DF03110956F000E2F9BB /* welcome01.png */,
 				6AEE016C1107DD3E0088A488 /* twitter_OFF.png */,
 				6AEE01781107DE8B0088A488 /* twitter_02.png */,
 				6AEE01791107DE8B0088A488 /* twitter_01.png */,
@@ -1751,6 +1792,27 @@
 				6A3DF72F10F6E0ED008BD8AA /* KBTextViewController.xib */,
 			);
 			name = General;
+			sourceTree = "<group>";
+		};
+		6A63DD9A1108EDAA00E2F9BB /* FancyLabels */ = {
+			isa = PBXGroup;
+			children = (
+				6A63DD9D1108EDBA00E2F9BB /* IFTweetLabel.h */,
+				6A63DD9E1108EDBA00E2F9BB /* IFTweetLabel.m */,
+				6A63DD9F1108EDBA00E2F9BB /* RegexKitLite */,
+			);
+			name = FancyLabels;
+			sourceTree = "<group>";
+		};
+		6A63DD9F1108EDBA00E2F9BB /* RegexKitLite */ = {
+			isa = PBXGroup;
+			children = (
+				6A63DDA01108EDBA00E2F9BB /* RegexKitLite.h */,
+				6A63DDA11108EDBA00E2F9BB /* RegexKitLite.m */,
+				6A63DDA21108EDBA00E2F9BB /* RKLMatchEnumerator.h */,
+				6A63DDA31108EDBA00E2F9BB /* RKLMatchEnumerator.m */,
+			);
+			path = RegexKitLite;
 			sourceTree = "<group>";
 		};
 		6A8EEEC110A14ED200DC630C /* MGTwitterEngine */ = {
@@ -2364,6 +2426,15 @@
 				6AEE016D1107DD3E0088A488 /* twitter_OFF.png in Resources */,
 				6AEE017A1107DE8B0088A488 /* twitter_02.png in Resources */,
 				6AEE017B1107DE8B0088A488 /* twitter_01.png in Resources */,
+				6A63DF04110956F000E2F9BB /* welcome07.png in Resources */,
+				6A63DF05110956F000E2F9BB /* welcome06.png in Resources */,
+				6A63DF06110956F000E2F9BB /* welcome05.png in Resources */,
+				6A63DF08110956F000E2F9BB /* welcome04.png in Resources */,
+				6A63DF09110956F000E2F9BB /* welcome03.png in Resources */,
+				6A63DF0A110956F000E2F9BB /* welcome02.png in Resources */,
+				6A63DF0B110956F000E2F9BB /* welcome01.png in Resources */,
+				6A63DF0E110957B500E2F9BB /* saveSettings01.png in Resources */,
+				6A63DF0F110957B500E2F9BB /* saveSettings02.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2518,6 +2589,9 @@
 				6AFF0FE3110178F900AD6E55 /* ASINetworkQueue.m in Sources */,
 				6AFF0FE4110178F900AD6E55 /* NSHTTPCookieAdditions.m in Sources */,
 				6AEE01271107C7F80088A488 /* Reachability.m in Sources */,
+				6A63DDA41108EDBA00E2F9BB /* IFTweetLabel.m in Sources */,
+				6A63DDA51108EDBA00E2F9BB /* RegexKitLite.m in Sources */,
+				6A63DDA61108EDBA00E2F9BB /* RKLMatchEnumerator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

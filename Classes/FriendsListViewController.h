@@ -26,6 +26,13 @@
     IBOutlet UITableViewCell *footerViewCell;
     
     NSMutableDictionary *userIcons;
+    
+    int welcomePageNum;
+    IBOutlet UIButton *nextWelcomeImage;
+    IBOutlet UIButton *previousWelcomeImage;
+    IBOutlet UIImageView *welcomeImage;
+    
+    BOOL hasViewedInstructions;
 }
 
 @property (nonatomic, retain) NSArray * checkins;
@@ -39,5 +46,7 @@
 - (void) doInitialDisplay;
 - (IBAction) addFriend;
 - (IBAction) refresh;
+- (IBAction) viewNextWelcomeImage;
+- (IBAction) viewPreviousWelcomeImage;
 
 @end

@@ -25,6 +25,7 @@
 #import "CreateTipTodoViewController.h"
 #import "ASIFormDataRequest.h"
 #import "KickballAppDelegate.h"
+#import "KBPin.h"
 
 @interface PlaceDetailViewController (Private)
 
@@ -81,7 +82,7 @@
 //    pingToggleButton.selected = isPingOn;
     
     [self addHeaderAndFooter:theTableView];
-    theTableView.separatorColor = [UIColor blackColor];
+    //theTableView.separatorColor = [UIColor blackColor];
     
     [self startProgressBar:@"Retrieving venue details..."];
     [[FoursquareAPI sharedInstance] getVenue:venueId withTarget:self andAction:@selector(venueResponseReceived:withResponseString:)];
@@ -128,13 +129,15 @@
     region.span = span;
     region.center = location;
     
-    [mapView setRegion:region animated:NO];
-    [mapView regionThatFits:region];
+    [smallMapView setRegion:region animated:NO];
+    [smallMapView regionThatFits:region];
+    [smallMapView setShowsUserLocation:YES];
     [fullMapView setRegion:fullRegion animated:NO];
     [fullMapView regionThatFits:fullRegion];
+    [fullMapView setShowsUserLocation:YES];
     
     VenueAnnotation *venueAnnotation = [[VenueAnnotation alloc] initWithCoordinate:location];
-    [mapView addAnnotation:venueAnnotation];
+    [smallMapView addAnnotation:venueAnnotation];
     [fullMapView addAnnotation:venueAnnotation];
     [venueAnnotation release];
     
@@ -166,7 +169,7 @@
     mayorMapCell = nil;
     checkinCell = nil;
     giftCell = nil;
-    mapView = nil;
+    smallMapView = nil;
     venueName = nil;
     venueAddress = nil;
     mayorNameLabel = nil;
@@ -180,7 +183,7 @@
     mayorMapCell = nil;
     checkinCell = nil;
     giftCell = nil;
-    mapView = nil;
+    smallMapView = nil;
     venueName = nil;
     venueAddress = nil;
     mayorNameLabel = nil;
@@ -412,7 +415,7 @@
     [stillTheMayorCell release];
     [bottomButtonCell release];
     [detailButtonCell release];
-    [mapView release];
+    [smallMapView release];
     
     [venueName release];
     [venueAddress release];
@@ -599,7 +602,7 @@
     closeMapButton.alpha = 0;
     closeMapButton.frame = CGRectMake(280, 113, 45, 45);
     fullMapView.alpha = 0;
-    fullMapView.frame = CGRectMake(0, 113, 320, 340);
+    fullMapView.frame = CGRectMake(0, 102, 320, 359);
     [self.view addSubview:fullMapView];
     [self.view addSubview:closeMapButton];
     
@@ -612,6 +615,16 @@
     closeMapButton.alpha = 1.0;
     
     [UIView commitAnimations];
+}
+
+- (void) showVenue:(id)sender {
+//    int nrButtonPressed = ((UIButton *)sender).tag;
+    NSLog(@"annotation for venue pressed");
+    
+//    PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];
+//    placeDetailController.venueId = venue.venueid;
+//    [self.navigationController pushViewController:placeDetailController animated:YES];
+//    [placeDetailController release];
 }
 
 - (void) addTipTodo {
@@ -697,6 +710,43 @@
 - (void)requestFailed:(NSError *)error {
     // TODO: probably want to pop up error message for user
     NSLog(@"geoapi error string: %@", error);
+}
+
+#pragma mark 
+#pragma mark MapKit methods
+
+- (MKAnnotationView *) mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>) annotation{
+	
+    if (annotation == mapView.userLocation) {
+        return nil;
+    }
+    
+    int postag = 0;
+    
+	KBPin *annView=[[[KBPin alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomId"] autorelease];
+	//annView.pinColor = MKPinAnnotationColorGreen;
+    annView.image = [UIImage imageNamed:@"pin.png"];
+    
+    // add an accessory button so user can click through to the venue page
+	UIButton *myDetailButton = [UIButton buttonWithType:UIButtonTypeCustom];
+	myDetailButton.frame = CGRectMake(0, 0, 23, 23);
+	myDetailButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+	myDetailButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+	
+	// Set the image for the button
+	[myDetailButton setImage:[UIImage imageNamed:@"button_right.png"] forState:UIControlStateNormal];
+	[myDetailButton addTarget:self action:@selector(showVenue:) forControlEvents:UIControlEventTouchUpInside]; 
+	
+    postag = [((VenueAnnotation*)annotation).venueId intValue];
+	myDetailButton.tag  = postag;
+	
+	// Set the button as the callout view
+	annView.rightCalloutAccessoryView = myDetailButton;
+	
+	//annView.animatesDrop=TRUE;
+	annView.canShowCallout = YES;
+	//annView.calloutOffset = CGPointMake(-5, 5);
+	return annView;
 }
 
 //#pragma mark Image Picker Delegate methods

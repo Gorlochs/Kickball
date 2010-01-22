@@ -38,8 +38,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    welcomePageNum = 1;
+    
+    // check to see if we need to display the instruction view
+    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    hasViewedInstructions = [standardUserDefaults boolForKey:@"viewedInstructions"];
+    instructionView.backgroundColor = [UIColor clearColor];
+    
     [self addHeaderAndFooter:theTableView];
-    theTableView.separatorColor = [UIColor blackColor];
+    //theTableView.separatorColor = [UIColor blackColor];
     NSData *recentCheckinsData=[[NSUserDefaults standardUserDefaults] dataForKey:@"recentCheckinsData"];
     NSData *todayCheckinsData=[[NSUserDefaults standardUserDefaults] dataForKey:@"todayCheckinsData"];
     NSData *yesterdayCheckinsData=[[NSUserDefaults standardUserDefaults] dataForKey:@"yesterdayCheckinsData"];
@@ -77,15 +84,15 @@
 }
 
 - (void) doInitialDisplay {
-    // check to see if we need to display the instruction view
-    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-    BOOL hasViewedInstructions = [standardUserDefaults boolForKey:@"viewedInstructions"];
     NSLog(@"hasViewedInstructions: %d", hasViewedInstructions);
     if (!hasViewedInstructions) {
+        [self startProgressBar:@"Loading Everything..."];
         [self.view addSubview:instructionView];
+    } else {
+       [self startProgressBar:@"Retrieving friends' whereabouts..."]; 
     }
 
-	[self startProgressBar:@"Retrieving friends' whereabouts..."];
+	
 	[[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
     
     if (![self getAuthenticatedUser]) {
@@ -415,8 +422,9 @@
 	[self.theTableView reloadData];
     footerViewCell.hidden = NO;
     mapButton.hidden = NO;
-    [self stopProgressBar];
-    
+    if (hasViewedInstructions) {
+        [self stopProgressBar];
+    }
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
     NSData *theData=[NSKeyedArchiver archivedDataWithRootObject:checkins];
     [standardUserDefaults setObject:theData forKey:@"checkinsData"];
@@ -433,6 +441,26 @@
     FriendRequestsViewController *friendsController = [[FriendRequestsViewController alloc] initWithNibName:@"FriendRequestsViewController" bundle:nil];
     [self.navigationController pushViewController:friendsController animated:YES];
     [friendsController release];
+}
+
+- (void) viewNextWelcomeImage {
+    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    [standardUserDefaults setBool:YES forKey:@"viewedInstructions"];
+    if (welcomePageNum < 7) {
+        welcomeImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"welcome0%d.png", welcomePageNum + 1]];
+        welcomePageNum++;
+    } else if (welcomePageNum == 7) {
+        [instructionView removeFromSuperview];
+        [self stopProgressBar];
+        [signedInUserIcon setHidden:NO];
+    }
+}
+
+- (void) viewPreviousWelcomeImage {
+    if (welcomePageNum > 1) {
+        welcomeImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"welcome0%d.png", welcomePageNum - 1]];
+        welcomePageNum--;
+    }
 }
 
 @end
