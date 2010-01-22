@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="5"/>
+			<integer value="1"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -265,21 +265,27 @@
 					<object class="IBUIButton" id="867696137">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{40, 162}, {246, 37}}</string>
+						<string key="NSFrame">{{37, 160}, {246, 37}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<reference key="IBUIFont" ref="919802292"/>
-						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">Save new Username/Password</string>
 						<reference key="IBUIHighlightedTitleColor" ref="856964356"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="244735299"/>
+						<object class="NSCustomResource" key="IBUIHighlightedImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">saveSettings02.png</string>
+						</object>
+						<object class="NSCustomResource" key="IBUINormalImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">saveSettings01.png</string>
+						</object>
 					</object>
 					<object class="IBUIImageView" id="219888567">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -508,8 +514,8 @@
 							<reference ref="219888567"/>
 							<reference ref="970395583"/>
 							<reference ref="918217441"/>
-							<reference ref="867696137"/>
 							<reference ref="655745279"/>
+							<reference ref="867696137"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -655,7 +661,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>SettingsViewController</string>
 					<string>UIResponder</string>
-					<string>{{240, 181}, {320, 480}}</string>
+					<string>{{575, 379}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
