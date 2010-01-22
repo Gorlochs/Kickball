@@ -447,7 +447,9 @@
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
     [standardUserDefaults setBool:YES forKey:@"viewedInstructions"];
     if (welcomePageNum < 7) {
-        welcomeImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"welcome0%d.png", welcomePageNum + 1]];
+        NSString *imageName = [NSString stringWithFormat:@"welcome0%d.png", welcomePageNum + 1];
+        NSLog(@"image name: %@", imageName);
+        welcomeImage.image = [UIImage imageNamed:imageName];
         welcomePageNum++;
     } else if (welcomePageNum == 7) {
         [instructionView removeFromSuperview];
