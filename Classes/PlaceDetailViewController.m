@@ -58,6 +58,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [fullMapView setShowsUserLocation:YES];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(displayTodoTipMessage:) name:@"todoTipSent" object:nil];
     
     // TODO: need a way to persist these? What is the business logic for displaying each cell?

@@ -22,6 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	[self refreshVenuePoints];
+    [mapViewer setShowsUserLocation:YES];
 }
 
 -(void) viewDidAppear:(BOOL)animated{
@@ -188,6 +189,9 @@
 #pragma mark MapViewer functions
 
 - (MKAnnotationView *) mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>) annotation{
+    if (annotation == mapView.userLocation) {
+        return nil;
+    }
 	int postag = 0;
     
 	KBPin *annView=[[[KBPin alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomId"] autorelease];
