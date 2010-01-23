@@ -207,7 +207,8 @@
     } else if (section == 1) { // badge
         return isUserCheckedIn && [[self getSingleCheckin].badges count] > 0;
     } else if (section == 2) { // checkin mayor
-        return [self hasMayorCell];
+        // return [self hasMayorCell];
+        return [self getSingleCheckin].mayor && [[self getSingleCheckin].mayor.user.userId isEqualToString:[self getAuthenticatedUser].userId];
     } else if (section == 3) { // checkin
         return !isUserCheckedIn;
     } else if (section == 4) { // gift
@@ -248,7 +249,9 @@
         badgeTitleLabel.text = badge.badgeName;
         return badgeCell;
     } else if (indexPath.section == 2) {
-        if ([self getSingleCheckin].user == nil && [[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"nochange"]) {
+        if ([[self getSingleCheckin].mayor.user.userId isEqualToString:[self getAuthenticatedUser].userId] 
+                && [[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"nochange"]) {
+            
             stillTheMayorLabel.text = [NSString stringWithFormat:@"You're still the mayor of %@!", venue.name];
             return stillTheMayorCell;
         } else if ([[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"stolen"]) {
@@ -542,7 +545,7 @@
     GAConnectionManager *connectionManager_ = [[[GAConnectionManager alloc] initWithAPIKey:@"K6afuuFTXK" delegate:self] autorelease];
     CLLocationCoordinate2D location = venue.location;
 
-    [connectionManager_ requestBusinessesNearCoords:location withinRadius:50 maxResults:10];
+    [connectionManager_ requestBusinessesNearCoords:location withinRadius:50 maxResults:15];
 }
 
 - (void) showSpecial {

@@ -89,7 +89,8 @@ NSInteger dateSort(id s1, id s2, void *context)
 	[tweetLabel setTextColor:[UIColor blackColor]];
 	[tweetLabel setBackgroundColor:[UIColor clearColor]];
 	[tweetLabel setNumberOfLines:0];
-	[tweetLabel setText:[NSString stringWithFormat:@"%@  (%@)", [dict objectForKey:@"text"], [dateFormatter stringFromDate:[dict objectForKey:@"created_at"]]]];
+	//[tweetLabel setText:[NSString stringWithFormat:@"%@  (%@)", [dict objectForKey:@"text"], [dateFormatter stringFromDate:[dict objectForKey:@"created_at"]]]];
+    [tweetLabel setText:[dict objectForKey:@"text"]];
 	[tweetLabel setLinksEnabled:YES];
 	
     //[tweetLabel release];
