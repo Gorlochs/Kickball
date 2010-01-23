@@ -36,12 +36,12 @@
 
 - (void) displayMayorImage {
     mayorImage.image = [UIImage imageNamed:@"crown.png"];
-    checkinDisplayLabel.frame = CGRectMake(65.0, checkinDisplayLabel.frame.origin.y, checkinDisplayLabel.frame.size.width, checkinDisplayLabel.frame.size.height);
+    checkinDisplayLabel.frame = CGRectMake(75.0, checkinDisplayLabel.frame.origin.y, checkinDisplayLabel.frame.size.width, checkinDisplayLabel.frame.size.height);
 }
 
 - (void) hideMayorImage {
     mayorImage.image = nil;
-    checkinDisplayLabel.frame = CGRectMake(44.0, checkinDisplayLabel.frame.origin.y, checkinDisplayLabel.frame.size.width, checkinDisplayLabel.frame.size.height);
+    checkinDisplayLabel.frame = CGRectMake(56.0, checkinDisplayLabel.frame.origin.y, checkinDisplayLabel.frame.size.width, checkinDisplayLabel.frame.size.height);
 }
 
 - (void)dealloc {
