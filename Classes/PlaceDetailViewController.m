@@ -446,6 +446,7 @@
 #pragma mark IBAction methods
 
 - (void) callVenue {
+    [[Beacon shared] startSubBeaconWithName:@"call Venue"];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", venue.phone]]];
 }
 
@@ -588,7 +589,10 @@
 }
 
 - (void) markVenueWrongAddress {
-    
+    [[Beacon shared] startSubBeaconWithName:@"Wrong Address"];
+    KBMessage *msg = [[KBMessage alloc] initWithMember:@"Sorry" andSubtitle:@"" andMessage:@"This functionality was not implemented in the Foursquare API. We will add it as soon as it is made available to us"];
+    [self displayPopupMessage:msg];
+    [msg release];
 }
 
 - (void) closeMap {

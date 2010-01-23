@@ -222,6 +222,7 @@
 }
 
 - (void) showVenue:(id)sender {
+    [[Beacon shared] startSubBeaconWithName:@"Clicked on Show Venue from Map Annotation"];
     int nrButtonPressed = ((UIButton *)sender).tag;
     NSLog(@"annotation for venue pressed: %d", nrButtonPressed);
     

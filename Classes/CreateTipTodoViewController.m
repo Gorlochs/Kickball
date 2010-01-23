@@ -73,9 +73,11 @@
     [self startProgressBar:@"Submitting Tip/Todo..."];
     NSString *tipOrTodo = nil;
     if (tipTodoSwitch.selectedSegmentIndex = 0) {
+        [[Beacon shared] startSubBeaconWithName:@"Creating Tip"];
         NSLog(@"submitting tip");
         tipOrTodo = @"tip";
     } else {
+        [[Beacon shared] startSubBeaconWithName:@"Creating Todo"];
         NSLog(@"submitting todo");
         tipOrTodo = @"todo";
     }

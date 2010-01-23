@@ -19,6 +19,7 @@
 }
 
 - (void) cancelView {
+    [[Beacon shared] startSubBeaconWithName:@"Cancel Shout"];
     [self dismissModalViewControllerAnimated:YES];
 }
 
@@ -30,6 +31,7 @@
                                                      toTwitter:NO
                                                     withTarget:self 
                                                      andAction:@selector(shoutResponseReceived:withResponseString:)];
+        [[Beacon shared] startSubBeaconWithName:@"Shout"];
     } else {
         NSLog(@"no text in shout field");
     }
