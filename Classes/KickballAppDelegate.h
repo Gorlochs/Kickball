@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "FSUser.h"
 #import "Reachability.h"
+#import "KBPushNotificationView.h"
 
 #define kApplicationKey @"qpHHiOCAT8iYATFJa4dsIQ"
 #define kApplicationSecret @"PGTRPo6OTI2dvtz2xw-vfw"
@@ -22,11 +23,13 @@
     FSUser *user;
 	NSString *deviceToken;
 	NSString *deviceAlias;
-    NSString *pushNotificationVenueId;
+    NSString *pushNotificationUserId;
     
     Reachability* hostReach;
     Reachability* internetReach;
     Reachability* wifiReach;
+    
+    KBPushNotificationView *pushView;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -35,7 +38,7 @@
 @property (nonatomic, retain) IBOutlet FSUser *user;
 @property (nonatomic, retain) NSString *deviceToken;
 @property (nonatomic, retain) NSString *deviceAlias;
-@property (nonatomic, retain) NSString *pushNotificationVenueId;
+@property (nonatomic, retain) NSString *pushNotificationUserId;
 
 - (void) setupAuthenticatedUserAndPushNotifications;
 - (void) displayPushNotificationView:(NSNotification *)inNotification;

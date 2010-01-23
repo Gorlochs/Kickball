@@ -24,7 +24,7 @@
 @synthesize user;
 @synthesize deviceToken;
 @synthesize deviceAlias;
-@synthesize pushNotificationVenueId;
+@synthesize pushNotificationUserId;
 
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {    
@@ -153,25 +153,69 @@
 	NSLog(@"%@", [userInfo objectForKey: @"aps"]);
     //	NSString *message = [userInfo descriptionWithLocale:nil indent:1];
 	//NSString* message =  [[[userInfo objectForKey: @"aps"] objectForKey: @"vid"] stringValue];
-    self.pushNotificationVenueId = [[[userInfo objectForKey: @"aps"] objectForKey: @"vid"] stringValue];
+    self.pushNotificationUserId = [[userInfo objectForKey: @"aps"] objectForKey: @"uid"];
 //	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Remote Notification" message:message delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
 //    [alert show];
 //    [alert release];
     
-    // TODO: put up message box giving them a choice to go to the page
-    if ([[FoursquareAPI sharedInstance] isAuthenticated]) {
-        [self displayPushNotificationView:nil];
-    } else {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(displayPushNotificationView:) name:@"signInComplete" object:nil];
-    }
+    // retrieve user info to get all the relavent data to display
+    [[FoursquareAPI sharedInstance] getUser:self.pushNotificationUserId withTarget:self andAction:@selector(pushUserResponseReceived:withResponseString:)];
+    
+    
+//    UIButton *pushButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//	pushButton.frame = CGRectMake(0, 0, 320, 23);
+//	pushButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+//	pushButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+//	
+//	// Set the image for the button
+//	[pushButton setImage:[UIImage imageNamed:@"pushMsgBG01.png"] forState:UIControlStateNormal];
+////	[pushButton setImage:[UIImage imageNamed:@"pushMsgBG02.png"] forState:UIControlStateHighlighted];
+//	[pushButton addTarget:self action:@selector(showUser:) forControlEvents:UIControlEventTouchUpInside]; 
+    
+//    // TODO: put up message box giving them a choice to go to the page
+//    if ([[FoursquareAPI sharedInstance] isAuthenticated]) {
+//        [self displayPushNotificationView:nil];
+//    } else {
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(displayPushNotificationView:) name:@"signInComplete" object:nil];
+//    }
+}
+
+- (void)pushUserResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+	FSUser *pushedUser = [FoursquareAPI userFromResponseXML:inString];
+    NSLog(@"pushed user: %@", pushedUser);
+    
+    pushView = [[KBPushNotificationView alloc] initWithNibName:@"PushNotificationView" bundle:nil];
+    pushView.view.frame = CGRectMake(0, 436, 241, 39);
+    pushView.messageLabel.text = [NSString stringWithFormat:@"%@ just checked in!", pushedUser.firstnameLastInitial];
+    pushView.addressLabel.text = [NSString stringWithFormat:@"%@ / %@", pushedUser.checkin.venue.name, pushedUser.checkin.venue.addressWithCrossstreet];
+    [pushView.button addTarget:self action:@selector(dismissPushNotification:) forControlEvents:UIControlEventTouchUpInside]; 
+    pushView.view.alpha = 0;
+    [navigationController.view addSubview:pushView.view];
+    
+    [UIView setAnimationsEnabled:YES];
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:0.50];
+    pushView.view.alpha = 1.0;
+    [UIView commitAnimations];
 }
 
 - (void) displayPushNotificationView:(NSNotification *)inNotification {
     ProfileViewController *profileController = [[ProfileViewController alloc] initWithNibName:@"ProfileView" bundle:nil];
-    profileController.userId = self.pushNotificationVenueId;
-    self.pushNotificationVenueId = nil;
+    profileController.userId = self.pushNotificationUserId;
+    self.pushNotificationUserId = nil;
     [self.navigationController pushViewController:profileController animated:YES];
     [profileController release];
+}
+
+- (void) dismissPushNotification:(id)sender {
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:0.50];
+    pushView.view.alpha = 0.0;
+    [UIView commitAnimations];
+    //[pushView.view removeFromSuperview];
 }
 
 //Called by Reachability whenever status changes.

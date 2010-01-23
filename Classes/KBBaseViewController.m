@@ -37,15 +37,15 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(displayShoutMessage:) name:@"shoutSent" object:nil];
     
     KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
-    [appDelegate.pushNotificationVenueId addObserver:self forKeyPath:@"pushVenueId" options:0 context:nil];
+    [appDelegate.pushNotificationUserId addObserver:self forKeyPath:@"pushUserId" options:0 context:nil];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     NSLog(@"observed value change");
-    if ([keyPath isEqualToString:@"pushVenueId"] ) {
+    if ([keyPath isEqualToString:@"pushUserId"] ) {
         NSLog(@"observed value changed for pushnotification venueid");
         KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
-        if (appDelegate.pushNotificationVenueId != nil) {
+        if (appDelegate.pushNotificationUserId != nil) {
             [self displayPushedVenueId];
         }
     }    
@@ -54,8 +54,8 @@
 - (void) displayPushedVenueId {
     KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
     PlaceDetailViewController *placeController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];
-    placeController.venueId = appDelegate.pushNotificationVenueId;
-    appDelegate.pushNotificationVenueId = nil;
+    placeController.venueId = appDelegate.pushNotificationUserId;
+    appDelegate.pushNotificationUserId = nil;
     [self.navigationController pushViewController:placeController animated:YES];
     [placeController release];
 }

@@ -503,7 +503,7 @@
     // TODO: send over userId and venueId and calculate who gets a push notification (i.e., people who are signed up for pings from that user)
     //       Then only send out push to the proper people.
     FSUser *user = [self getAuthenticatedUser];
-    NSString *uid = [user.userId stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+    NSString *uid = user.userId;
     NSString *un = [user.firstnameLastInitial stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     NSString *vn = [venue.name stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     NSString *urlstring = [NSString stringWithFormat:@"http://www.literalshore.com/gorloch/kickball/test_push.php?uid=%@&un=%@&vn=%@", uid, un, vn];
