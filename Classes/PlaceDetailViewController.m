@@ -601,7 +601,7 @@
 //    [UIView commitAnimations];
     
     closeMapButton.alpha = 0;
-    closeMapButton.frame = CGRectMake(280, 113, 45, 45);
+    closeMapButton.frame = CGRectMake(280, 102, 45, 45);
     fullMapView.alpha = 0;
     fullMapView.frame = CGRectMake(0, 102, 320, 359);
     [self.view addSubview:fullMapView];

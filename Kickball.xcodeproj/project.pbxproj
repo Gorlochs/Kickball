@@ -272,8 +272,8 @@
 		6A402AA710B755B200D9BCEB /* GAPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A402A9E10B755B200D9BCEB /* GAPlace.m */; };
 		6A402B2F10B769A800D9BCEB /* GeoApiTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A402B2D10B769A800D9BCEB /* GeoApiTableViewController.m */; };
 		6A402B3010B769A900D9BCEB /* GeoApiTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A402B2E10B769A800D9BCEB /* GeoApiTableViewController.xib */; };
-		6A47C00610DCA8DE00DCF011 /* ForgotPasswordWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A47C00410DCA8DE00DCF011 /* ForgotPasswordWebViewController.m */; };
-		6A47C00710DCA8DE00DCF011 /* ForgotPasswordWebViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A47C00510DCA8DE00DCF011 /* ForgotPasswordWebViewController.xib */; };
+		6A47C00610DCA8DE00DCF011 /* KBWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A47C00410DCA8DE00DCF011 /* KBWebViewController.m */; };
+		6A47C00710DCA8DE00DCF011 /* KBWebViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A47C00510DCA8DE00DCF011 /* KBWebViewController.xib */; };
 		6A4C30C510DED6E300C89F55 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4C30C310DED6E300C89F55 /* SettingsViewController.m */; };
 		6A4C30C610DED6E300C89F55 /* SettingsViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A4C30C410DED6E300C89F55 /* SettingsViewController.xib */; };
 		6A4C30CA10DF24FD00C89F55 /* PlaceMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4C30C810DF24FD00C89F55 /* PlaceMapViewController.m */; };
@@ -833,9 +833,9 @@
 		6A402B2C10B769A800D9BCEB /* GeoApiTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeoApiTableViewController.h; sourceTree = "<group>"; };
 		6A402B2D10B769A800D9BCEB /* GeoApiTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeoApiTableViewController.m; sourceTree = "<group>"; };
 		6A402B2E10B769A800D9BCEB /* GeoApiTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GeoApiTableViewController.xib; path = Classes/GeoApiTableViewController.xib; sourceTree = "<group>"; };
-		6A47C00310DCA8DE00DCF011 /* ForgotPasswordWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgotPasswordWebViewController.h; sourceTree = "<group>"; };
-		6A47C00410DCA8DE00DCF011 /* ForgotPasswordWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgotPasswordWebViewController.m; sourceTree = "<group>"; };
-		6A47C00510DCA8DE00DCF011 /* ForgotPasswordWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgotPasswordWebViewController.xib; sourceTree = "<group>"; };
+		6A47C00310DCA8DE00DCF011 /* KBWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBWebViewController.h; sourceTree = "<group>"; };
+		6A47C00410DCA8DE00DCF011 /* KBWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBWebViewController.m; sourceTree = "<group>"; };
+		6A47C00510DCA8DE00DCF011 /* KBWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KBWebViewController.xib; sourceTree = "<group>"; };
 		6A4C30C210DED6E300C89F55 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		6A4C30C310DED6E300C89F55 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		6A4C30C410DED6E300C89F55 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
@@ -1777,9 +1777,9 @@
 				6ADC9C1910D1EE5100CFDCA7 /* Utilities.m */,
 				6AACC53010D48F240059E604 /* LocationManager.h */,
 				6AACC53110D48F240059E604 /* LocationManager.m */,
-				6A47C00310DCA8DE00DCF011 /* ForgotPasswordWebViewController.h */,
-				6A47C00410DCA8DE00DCF011 /* ForgotPasswordWebViewController.m */,
-				6A47C00510DCA8DE00DCF011 /* ForgotPasswordWebViewController.xib */,
+				6A47C00310DCA8DE00DCF011 /* KBWebViewController.h */,
+				6A47C00410DCA8DE00DCF011 /* KBWebViewController.m */,
+				6A47C00510DCA8DE00DCF011 /* KBWebViewController.xib */,
 				6A4C30C210DED6E300C89F55 /* SettingsViewController.h */,
 				6A4C30C310DED6E300C89F55 /* SettingsViewController.m */,
 				6A4C30C410DED6E300C89F55 /* SettingsViewController.xib */,
@@ -2565,8 +2565,8 @@
 				6A3900B210D6F1A0001D133C /* AddPlaceFormViewController.xib in Sources */,
 				6ABB8B2F10D88C99001ECDAD /* FSMayor.m in Sources */,
 				03CECEA510D8B62C00E06966 /* SFHFKeychainUtils.m in Sources */,
-				6A47C00610DCA8DE00DCF011 /* ForgotPasswordWebViewController.m in Sources */,
-				6A47C00710DCA8DE00DCF011 /* ForgotPasswordWebViewController.xib in Sources */,
+				6A47C00610DCA8DE00DCF011 /* KBWebViewController.m in Sources */,
+				6A47C00710DCA8DE00DCF011 /* KBWebViewController.xib in Sources */,
 				6AA8B86C10DDCECC005634D4 /* FSSpecial.m in Sources */,
 				6A4C30C510DED6E300C89F55 /* SettingsViewController.m in Sources */,
 				6A4C30C610DED6E300C89F55 /* SettingsViewController.xib in Sources */,

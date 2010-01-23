@@ -9,10 +9,14 @@
 #import <UIKit/UIKit.h>
 
 
-@interface ForgotPasswordWebViewController : UIViewController {
+@interface KBWebViewController : UIViewController {
     UIWebView *webView;
+    NSString *urlString;
 }
 
 @property (nonatomic, retain) IBOutlet UIWebView *webView;
+@property (nonatomic, retain) NSString *urlString;
+
+- (IBAction) dismiss;
 
 @end

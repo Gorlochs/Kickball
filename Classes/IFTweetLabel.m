@@ -78,7 +78,10 @@ static NSArray *expressions = nil;
 	}
 	else
 	{
-		button = [UIButton buttonWithType:UIButtonTypeRoundedRect]; // autoreleased
+		button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.backgroundColor = [UIColor whiteColor];
+        //button.titleLabel.textColor = [UIColor redColor];
+//		button = [UIButton buttonWithType:UIButtonTypeRoundedRect]; // autoreleased
 	}
 	[button setFrame:frame];
 	[button setFont:self.label.font];

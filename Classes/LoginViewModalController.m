@@ -7,7 +7,6 @@
 //
 
 #import "LoginViewModalController.h"
-#import "ForgotPasswordWebViewController.h"
 #import "KickballAppDelegate.h"
 
 @interface LoginViewModalController (PrivateMethods)

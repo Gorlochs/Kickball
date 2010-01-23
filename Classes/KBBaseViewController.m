@@ -15,6 +15,7 @@
 #import "SettingsViewController.h"
 #import "PlaceDetailViewController.h"
 #import "PlacesListViewController.h"
+#import "KBWebViewController.h"
 
 @implementation KBBaseViewController
 
@@ -189,6 +190,13 @@
     PlacesListViewController *placesListController = [[PlacesListViewController alloc] initWithNibName:@"PlacesListViewController" bundle:nil];
     [self.navigationController pushViewController:placesListController animated:YES];
     [placesListController release];
+}
+
+- (void) openWebView:(NSString*)url {
+    KBWebViewController *webController = [[KBWebViewController alloc] initWithNibName:@"KBWebViewController" bundle:nil];
+    webController.urlString = url;
+    [self presentModalViewController:webController animated:YES];
+    [webController release];
 }
 
 @end

@@ -76,8 +76,8 @@ NSInteger dateSort(id s1, id s2, void *context)
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         cell.textLabel.font = [UIFont systemFontOfSize:14.0];
-        
         [cell addSubview:tweetLabel];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -114,6 +114,7 @@ NSInteger dateSort(id s1, id s2, void *context)
 }
 
 - (void)handleTweetNotification:(NSNotification *)notification {
+    [self openWebView:[notification object]];
 	NSLog(@"handleTweetNotification: notification = %@", notification);
 }
 

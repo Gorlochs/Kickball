@@ -8,6 +8,7 @@
 
 #import "PlaceTwitterViewController.h"
 #import "MGTwitterEngine.h"
+#import "IFTweetLabel.h"
 
 @implementation PlaceTwitterViewController
 
@@ -24,6 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTweetNotification:) name:IFTweetLabelURLNotification object:nil];
     
     // TODO: figure out why this isn't working (i.e., the navigation bar isn't being displayed)
     venueLabel.text = venueName;
@@ -73,33 +75,36 @@
     
     static NSString *CellIdentifier = @"Cell";
     
+    IFTweetLabel *tweetLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(10.0f, 3.0f, 300.0f, 60.0f)];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         cell.textLabel.font = [UIFont systemFontOfSize:14.0];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        [cell addSubview:tweetLabel];
     }
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss GMT"];
+    [dateFormatter setDateFormat:@"MM-dd-YYYY"];
+    
+    NSDictionary *dict = (NSDictionary*)[twitterStatuses objectAtIndex:indexPath.row];
+    [tweetLabel setFont:[UIFont systemFontOfSize:12.0f]];
+	[tweetLabel setTextColor:[UIColor blackColor]];
+	[tweetLabel setBackgroundColor:[UIColor clearColor]];
+	[tweetLabel setNumberOfLines:0];
+	[tweetLabel setText:[NSString stringWithFormat:@"%@  (%@)", [dict objectForKey:@"text"], [dateFormatter stringFromDate:[dict objectForKey:@"created_at"]]]];
+	[tweetLabel setLinksEnabled:YES];
+    [dateFormatter release];
     
     // Set up the cell...
-    cell.textLabel.numberOfLines = 3;
-    NSDictionary *dict = (NSDictionary*)[twitterStatuses objectAtIndex:indexPath.row];
-//    NSLog(@"date: %@", [dict objectForKey:@"created_at"]);
-//    NSDate *tweetDate = [dateFormatter dateFromString:[dict objectForKey:@"created_at"]];
-//    [dateFormatter setDateFormat:@"MM-dd-YYYY HH:mm:ss"];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ (%@)", [dict objectForKey:@"text"], [dict objectForKey:@"created_at"]];
-    [dateFormatter release];
+//    cell.textLabel.numberOfLines = 3;
+//    NSDictionary *dict = (NSDictionary*)[twitterStatuses objectAtIndex:indexPath.row];
+////    NSLog(@"date: %@", [dict objectForKey:@"created_at"]);
+////    NSDate *tweetDate = [dateFormatter dateFromString:[dict objectForKey:@"created_at"]];
+////    [dateFormatter setDateFormat:@"MM-dd-YYYY HH:mm:ss"];
+//    cell.textLabel.text = [NSString stringWithFormat:@"%@ (%@)", [dict objectForKey:@"text"], [dict objectForKey:@"created_at"]];
 	
     return cell;
-}
-
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
-	// [self.navigationController pushViewController:anotherViewController];
-	// [anotherViewController release];
 }
 
 - (void)dealloc {
@@ -109,6 +114,11 @@
     [venueLabel release];
     [theTableView release];
     [super dealloc];
+}
+
+- (void)handleTweetNotification:(NSNotification *)notification {
+    [self openWebView:[notification object]];
+	NSLog(@"handleTweetNotification: notification = %@", notification);
 }
 
 #pragma mark UITableView methods
