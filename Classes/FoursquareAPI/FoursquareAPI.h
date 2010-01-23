@@ -40,18 +40,18 @@
 @property (nonatomic, retain) NSMutableDictionary * activeRequests;
 
 - (BOOL) isAuthenticated;
-- (void)getVenuesNearLatitude:(NSString *)geolat andLongitude:(NSString *)geolong withTarget:(id)inTarget andAction:(SEL)inAction;
-- (void)getVenuesByKeyword: (NSString *)geolat andLongitude:(NSString *) geolong andKeywords:(NSString *) keywords withTarget:(id)inTarget andAction:(SEL)inAction;
-- (void)getCheckinsWithTarget:(id)inTarget andAction:(SEL)inAction;
-- (void)getUserWithTarget:(id)inTarget andAction:(SEL)inAction;
+- (void) getVenuesNearLatitude:(NSString *)geolat andLongitude:(NSString *)geolong withTarget:(id)inTarget andAction:(SEL)inAction;
+- (void) getVenuesByKeyword: (NSString *)geolat andLongitude:(NSString *) geolong andKeywords:(NSString *) keywords withTarget:(id)inTarget andAction:(SEL)inAction;
+- (void) getCheckinsWithTarget:(id)inTarget andAction:(SEL)inAction;
+- (void) getUserWithTarget:(id)inTarget andAction:(SEL)inAction;
 //- (void)getUserById:(NSString *) userId withTarget:(id)inTarget andAction:(SEL)inAction;
-- (void)getCityNearestToLatitude:(NSString *) geolat andLongitude:(NSString *)geolong withTarget:(id)inTarget andAction:(SEL)inAction;
-- (void)getFriendsWithTarget:(id)inTarget andAction:(SEL)inAction;
-- (void)getFriendsWithUserIdAndTarget:(NSString*)userId andTarget:(id)inTarget andAction:(SEL)inAction;
-- (void)getFriendsWithTarget:(NSString*)username andPassword:(NSString*)password andTarget:(id)inTarget andAction:(SEL)inAction;
-- (void)getVenue:(NSString *)venueId withTarget:(id)inTarget andAction:(SEL)inAction;
-- (void)getUser:(NSString *)userId withTarget:(id)inTarget andAction:(SEL)inAction;
-- (void)setPings:(NSString*)pingStatus forUser:(NSString *)userId withTarget:(id)inTarget andAction:(SEL)inAction;
+- (void) getCityNearestToLatitude:(NSString *) geolat andLongitude:(NSString *)geolong withTarget:(id)inTarget andAction:(SEL)inAction;
+- (void) getFriendsWithTarget:(id)inTarget andAction:(SEL)inAction;
+- (void) getFriendsWithUserIdAndTarget:(NSString*)userId andTarget:(id)inTarget andAction:(SEL)inAction;
+- (void) getFriendsWithTarget:(NSString*)username andPassword:(NSString*)password andTarget:(id)inTarget andAction:(SEL)inAction;
+- (void) getVenue:(NSString *)venueId withTarget:(id)inTarget andAction:(SEL)inAction;
+- (void) getUser:(NSString *)userId withTarget:(id)inTarget andAction:(SEL)inAction;
+- (void) setPings:(NSString*)pingStatus forUser:(NSString *)userId withTarget:(id)inTarget andAction:(SEL)inAction;
 - (void) doVenuelessCheckin:(NSString*)venueName withTarget:(id)inTarget andAction:(SEL)inAction;
 - (void) doCheckinAtVenueWithId:(NSString *)venueId andShout:(NSString *)shout offGrid:(BOOL)offGrid toTwitter:(BOOL)toTwitter withTarget:(id)inTarget andAction:(SEL)inAction;
 - (void) doSendFriendRequest:(NSString*)userId withTarget:(id)inTarget andAction:(SEL)inAction;
@@ -67,8 +67,8 @@
 - (void) createTipTodoForVenue:(NSString*)venueId type:(NSString*)tipOrTodo text:(NSString*)tipTodoText withTarget:(id)inTarget andAction:(SEL)inAction;
 - (void) markTipAsTodo:(NSString*)tipId withTarget:(id)inTarget andAction:(SEL)inAction;
 - (void) markTipAsDone:(NSString*)tipId withTarget:(id)inTarget andAction:(SEL)inAction;
-
-- (void)doLoginUsername: (NSString *)fsUser andPass:(NSString *) fsPass;
+- (void) doFoursquareApiTest:(id)inTarget andAction:(SEL)inAction;
+- (void) doLoginUsername: (NSString *)fsUser andPass:(NSString *) fsPass;
 
 + (FoursquareAPI *)sharedInstance;
 

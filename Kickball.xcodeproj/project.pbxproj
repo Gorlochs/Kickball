@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0331DFD110D36749009C5089 /* libPMAnalytics-r69.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0331DFD010D36749009C5089 /* libPMAnalytics-r69.a */; };
 		03CECEA510D8B62C00E06966 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CECEA410D8B62C00E06966 /* SFHFKeychainUtils.m */; };
 		1D3623260D0F684500981E51 /* KickballAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* KickballAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
@@ -297,6 +296,7 @@
 		6A79D0D710E5E682009082E5 /* PopupMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A79D0D610E5E682009082E5 /* PopupMessageView.m */; };
 		6A79D0D910E5E692009082E5 /* PopupMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A79D0D810E5E692009082E5 /* PopupMessageView.xib */; };
 		6A79D0FE10E68D1A009082E5 /* KBMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A79D0FD10E68D1A009082E5 /* KBMessage.m */; };
+		6A7EA25D110AAC8A00453C0C /* libPMAnalytics-r91.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A7EA25C110AAC8A00453C0C /* libPMAnalytics-r91.a */; };
 		6A7ED9F710A91DC9002FB1DC /* VenueAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A7ED9F610A91DC9002FB1DC /* VenueAnnotation.m */; };
 		6A812E8310FED18A00BB51A0 /* x01.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A812E8110FED18A00BB51A0 /* x01.png */; };
 		6A812E8410FED18A00BB51A0 /* x02.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A812E8210FED18A00BB51A0 /* x02.png */; };
@@ -470,7 +470,6 @@
 
 /* Begin PBXFileReference section */
 		0331DFCE10D36737009C5089 /* libisimulate.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libisimulate.a; path = libs/libisimulate.a; sourceTree = "<group>"; };
-		0331DFD010D36749009C5089 /* libPMAnalytics-r69.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPMAnalytics-r69.a"; path = "libs/libPMAnalytics-r69.a"; sourceTree = "<group>"; };
 		03CECEA310D8B62C00E06966 /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
 		03CECEA410D8B62C00E06966 /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -867,6 +866,7 @@
 		6A79D0D810E5E692009082E5 /* PopupMessageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupMessageView.xib; sourceTree = "<group>"; };
 		6A79D0FC10E68D1A009082E5 /* KBMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBMessage.h; sourceTree = "<group>"; };
 		6A79D0FD10E68D1A009082E5 /* KBMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBMessage.m; sourceTree = "<group>"; };
+		6A7EA25C110AAC8A00453C0C /* libPMAnalytics-r91.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPMAnalytics-r91.a"; path = "/Users/shawnbernard/Desktop/PinchAnalytics-r91/libPMAnalytics-r91.a"; sourceTree = "<absolute>"; };
 		6A7ED9F510A91DC9002FB1DC /* VenueAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VenueAnnotation.h; sourceTree = "<group>"; };
 		6A7ED9F610A91DC9002FB1DC /* VenueAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueAnnotation.m; sourceTree = "<group>"; };
 		6A812E8110FED18A00BB51A0 /* x01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = x01.png; sourceTree = "<group>"; };
@@ -1099,11 +1099,11 @@
 				6A8EEF0B10A14F3F00DC630C /* libxml2.dylib in Frameworks */,
 				553C51BF10A1BD8100A74641 /* Security.framework in Frameworks */,
 				6A16AC5710CF5A9500CD5302 /* QuartzCore.framework in Frameworks */,
-				0331DFD110D36749009C5089 /* libPMAnalytics-r69.a in Frameworks */,
 				6A8F68EA10E9B9FC00E0275E /* AddressBook.framework in Frameworks */,
 				6AFF0FFF1101796600AD6E55 /* CFNetwork.framework in Frameworks */,
 				6AFF10051101798000AD6E55 /* libz.1.2.3.dylib in Frameworks */,
 				6A63DDCF1108EF4B00E2F9BB /* libicucore.dylib in Frameworks */,
+				6A7EA25D110AAC8A00453C0C /* libPMAnalytics-r91.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1162,8 +1162,6 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				6AFF10041101798000AD6E55 /* libz.1.2.3.dylib */,
-				6A63DDCE1108EF4B00E2F9BB /* libicucore.dylib */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -1220,9 +1218,11 @@
 				6A8EEF0A10A14F3F00DC630C /* libxml2.dylib */,
 				6A16AC5610CF5A9500CD5302 /* QuartzCore.framework */,
 				553C51BE10A1BD8100A74641 /* Security.framework */,
-				0331DFD010D36749009C5089 /* libPMAnalytics-r69.a */,
+				6AFF10041101798000AD6E55 /* libz.1.2.3.dylib */,
+				6A63DDCE1108EF4B00E2F9BB /* libicucore.dylib */,
 				6A8F68E910E9B9FC00E0275E /* AddressBook.framework */,
 				6AFF0FFE1101796600AD6E55 /* CFNetwork.framework */,
+				6A7EA25C110AAC8A00453C0C /* libPMAnalytics-r91.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2618,6 +2618,7 @@
 					"\"$(SRCROOT)/../../../Desktop/libYAJLIPhone-0.2.10 Folder\"",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/libs\"",
+					"\"$(SRCROOT)/../../../Desktop/PinchAnalytics-r91\"",
 				);
 				PRODUCT_NAME = kickball;
 			};
@@ -2641,6 +2642,7 @@
 					"\"$(SRCROOT)/../../../Desktop/libYAJLIPhone-0.2.10 Folder\"",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/libs\"",
+					"\"$(SRCROOT)/../../../Desktop/PinchAnalytics-r91\"",
 				);
 				PRODUCT_NAME = Kickball;
 			};

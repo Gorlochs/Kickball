@@ -386,6 +386,11 @@ static FoursquareAPI *sharedInstance = nil;
 	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/tip/markdone"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"POST"];    
 }
 
+- (void) doFoursquareApiTest:(id)inTarget andAction:(SEL)inAction {
+	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/test"] withUser:self.userName andPassword:self.passWord andParams:nil withTarget:inTarget andAction:inAction usingMethod:@"POST"];    
+}
+
+#pragma mark
 #pragma mark response parsers
 
 + (NSArray *) friendRequestsFromResponseXML:(NSString *) inString {
