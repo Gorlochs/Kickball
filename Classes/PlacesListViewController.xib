@@ -3,7 +3,7 @@
 	<data>
 		<int key="IBDocument.SystemTarget">784</int>
 		<string key="IBDocument.SystemVersion">10C540</string>
-		<string key="IBDocument.InterfaceBuilderVersion">740</string>
+		<string key="IBDocument.InterfaceBuilderVersion">732</string>
 		<string key="IBDocument.AppKitVersion">1038.25</string>
 		<string key="IBDocument.HIToolboxVersion">458.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
@@ -13,7 +13,6 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="8"/>
-			<integer value="54"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -168,11 +167,11 @@
 					<object class="IBUITableView" id="873029372">
 						<reference key="NSNextResponder" ref="12965882"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{0, 82}, {320, 378}}</string>
+						<string key="NSFrame">{{0, 82}, {320, 379}}</string>
 						<reference key="NSSuperview" ref="12965882"/>
-						<object class="NSColor" key="IBUIBackgroundColor" id="591868864">
+						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MQA</bytes>
+							<bytes key="NSWhite">MAA</bytes>
 							<object class="NSColorSpace" key="NSCustomColorSpace" id="119898047">
 								<int key="NSID">2</int>
 							</object>
@@ -270,7 +269,11 @@
 				</object>
 				<string key="NSFrameSize">{320, 460}</string>
 				<reference key="NSSuperview"/>
-				<reference key="IBUIBackgroundColor" ref="591868864"/>
+				<object class="NSColor" key="IBUIBackgroundColor">
+					<int key="NSColorSpace">3</int>
+					<bytes key="NSWhite">MQA</bytes>
+					<reference key="NSCustomColorSpace" ref="119898047"/>
+				</object>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 			</object>
 			<object class="IBUITableViewCell" id="836931522">
@@ -304,7 +307,7 @@
 				<reference key="IBUIContentView" ref="611032846"/>
 			</object>
 			<object class="IBUITableViewCell" id="608899563">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -365,7 +368,6 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 50}</string>
-				<reference key="NSSuperview"/>
 				<reference key="IBUIBackgroundColor" ref="509255023"/>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<int key="IBUISelectionStyle">0</int>
@@ -705,7 +707,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{577, 145}, {320, 460}}</string>
+					<string>{{438, 172}, {320, 460}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>
@@ -739,6 +741,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>backOneView</string>
 							<string>checkin</string>
+							<string>dismiss</string>
 							<string>displayTextView</string>
 							<string>goToHomeView</string>
 							<string>viewSettings</string>
@@ -746,6 +749,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>

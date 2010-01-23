@@ -273,6 +273,9 @@
 	return 24.0;
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    [cell setBackgroundColor:[UIColor whiteColor]];  
+}
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     // create the parent view that will hold header Label

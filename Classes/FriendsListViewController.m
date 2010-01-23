@@ -194,7 +194,11 @@
         // TODO: I'm not sure that this is the best way to do this with 3.x - there might be a better way to do it now
         UIViewController *vc = [[UIViewController alloc]initWithNibName:@"FriendsListTableCellView" bundle:nil];
         cell = (FriendsListTableCell*) vc.view;
-        cell.selectionStyle = UITableViewCellSelectionStyleGray;
+        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+        cell.checkinDisplayLabel.highlightedTextColor = [UIColor whiteColor];
+        cell.addressLabel.highlightedTextColor = [UIColor whiteColor];
+        cell.timeUnits.highlightedTextColor = [UIColor whiteColor];
+        cell.numberOfTimeUnits.highlightedTextColor = [UIColor whiteColor];
         [vc release];
     }
     
@@ -324,7 +328,7 @@
 	headerLabel.backgroundColor = [UIColor blackColor];
 	headerLabel.opaque = NO;
 	headerLabel.textColor = [UIColor grayColor];
-	headerLabel.highlightedTextColor = [UIColor grayColor];
+	headerLabel.highlightedTextColor = [UIColor whiteColor];
 	headerLabel.font = [UIFont boldSystemFontOfSize:12];
 	headerLabel.frame = CGRectMake(10.0, 0.0, 320.0, 24.0);
     
