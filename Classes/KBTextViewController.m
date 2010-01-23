@@ -9,6 +9,7 @@
 #import "KBTextViewController.h"
 #import "FoursquareAPI.h"
 #import "KBMessage.h"
+#import "Beacon.h"
 
 @implementation KBTextViewController
 

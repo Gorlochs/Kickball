@@ -9,6 +9,7 @@
 #import "PlaceTwitterViewController.h"
 #import "MGTwitterEngine.h"
 #import "IFTweetLabel.h"
+#import "Beacon.h"
 
 @implementation PlaceTwitterViewController
 

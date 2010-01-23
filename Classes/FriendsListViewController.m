@@ -88,6 +88,7 @@
     NSLog(@"hasViewedInstructions: %d", hasViewedInstructions);
     if (!hasViewedInstructions) {
         [self startProgressBar:@"Loading Everything..."];
+        [iconImageView setHidden:YES];
         [self.view addSubview:instructionView];
     } else {
        [self startProgressBar:@"Retrieving friends' whereabouts..."]; 
@@ -114,7 +115,9 @@
 
 - (void)userResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
 	FSUser* user = [FoursquareAPI userFromResponseXML:inString];
-    [self setUserIconView:user];
+//    if (!hasViewedInstructions) {
+//        [self setUserIconView:user];
+//    }
     [self setAuthenticatedUser:user];
     NSLog(@"auth'd user: %@", user);
 }
@@ -454,7 +457,8 @@
     } else if (welcomePageNum == 7) {
         [instructionView removeFromSuperview];
         [self stopProgressBar];
-        [signedInUserIcon setHidden:NO];
+        [self setUserIconView:[self getAuthenticatedUser]];
+//        [iconImageView setHidden:NO];
     }
 }
 

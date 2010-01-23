@@ -26,8 +26,13 @@
     [super viewDidLoad];
     [UIView setAnimationsEnabled:YES];
     
-    FSUser *tmpUser = [self getAuthenticatedUser];
-    [self setUserIconView:tmpUser];
+    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    BOOL hasViewedInstructions = [standardUserDefaults boolForKey:@"viewedInstructions"];
+    
+    if (hasViewedInstructions) {
+        FSUser *tmpUser = [self getAuthenticatedUser];
+        [self setUserIconView:tmpUser];
+    }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(displayShoutMessage:) name:@"shoutSent" object:nil];
     
@@ -59,12 +64,12 @@
     if (user) {
         NSLog(@"user is not null");
         UIImage *image = [[Utilities sharedInstance] getCachedImage:user.photo];
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(285, 3, 32, 32)];
-        imageView.image = image;
+        iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(285, 3, 32, 32)];
+        iconImageView.image = image;
         [image release];
-        [self.view addSubview:imageView];
-        imageView.layer.masksToBounds = YES;
-        imageView.layer.cornerRadius = 4.0;
+        [self.view addSubview:iconImageView];
+        iconImageView.layer.masksToBounds = YES;
+        iconImageView.layer.cornerRadius = 4.0;
         [self.view bringSubviewToFront:signedInUserIcon];
     }
 }
