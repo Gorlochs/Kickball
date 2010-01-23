@@ -314,7 +314,7 @@
     if (indexPath.section == 3) {
         return 50;
     }
-    return 54;
+    return 49;
 }
 
 // TODO: most of the below header label stuff should be pulled up into a method in KBBBaseViewController
