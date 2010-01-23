@@ -82,37 +82,68 @@
 	}
 }
 
-- (IBAction) login: (id) sender
-{
-    [[Beacon shared] startSubBeaconWithName:@"Logging in"];
-	NSString *username = usernameField.text;
-	NSString *password = passwordField.text;
-	[[FoursquareAPI sharedInstance] doLoginUsername: username andPass:password];	
-	
-	if (username)
-	{
-		NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-		[prefs setObject:username forKey:kUsernameDefaultsKey];
-		
-		NSLog(@"Stored username: %@", username);
-	}
+- (IBAction) login: (id) sender {
+    [self startProgressBar:@"Retrieving new username and password..."];
+    [[FoursquareAPI sharedInstance] getFriendsWithTarget:usernameField.text andPassword:passwordField.text andTarget:self andAction:@selector(friendResponseReceived:withResponseString:)];
+}
 
-	NSError *error = nil;
-	[SFHFKeychainUtils storeUsername:username
-						 andPassword:password
-					  forServiceName:@"Kickball" 
-					  updateExisting:YES error:&error];
-    
-    KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
-    [appDelegate setupAuthenticatedUserAndPushNotifications];
-	
-	if([self.rootController respondsToSelector:@selector(doInitialDisplay)]){
-		[(KBBaseViewController *)self.rootController doInitialDisplay];
-	}
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"signInComplete"
-                                                        object:nil
-                                                      userInfo:nil];
-	[self dismissModalViewControllerAnimated:true];
+- (void)friendResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+    NSLog(@"friend response for login: %@", inString);
+    [self stopProgressBar];
+    // cheap way of checking for successful authentication
+    BOOL containsUnauthorized = [inString rangeOfString:@"unauthorized" options:NSCaseInsensitiveSearch].length > 0;
+    if (containsUnauthorized) {
+        // display fail message
+        KBMessage *message = [[KBMessage alloc] initWithMember:@"Authentication" andSubtitle:@"Failed" andMessage:@"Please try again."];
+        [self displayPopupMessage:message];
+        [message release];
+    } else {
+        [[Beacon shared] startSubBeaconWithName:@"Logging in"];
+        NSString *username = usernameField.text;
+        NSString *password = passwordField.text;
+        [[FoursquareAPI sharedInstance] doLoginUsername: username andPass:password];	
+        
+        if (username)
+        {
+            NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+            [prefs setObject:username forKey:kUsernameDefaultsKey];
+            
+            NSLog(@"Stored username: %@", username);
+        }
+        
+        NSError *error = nil;
+        [SFHFKeychainUtils storeUsername:username
+                             andPassword:password
+                          forServiceName:@"Kickball" 
+                          updateExisting:YES error:&error];
+        
+        KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
+        [appDelegate setupAuthenticatedUserAndPushNotifications];
+        
+        if([self.rootController respondsToSelector:@selector(doInitialDisplay)]){
+            [(KBBaseViewController *)self.rootController doInitialDisplay];
+        }
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"signInComplete"
+                                                            object:nil
+                                                          userInfo:nil];
+        [self dismissModalViewControllerAnimated:true];
+//        // display success message and save to keychain
+//        KBMessage *message = [[KBMessage alloc] initWithMember:@"Authentication" andSubtitle:@"Success" andMessage:@"Your new username and password have been authenticated."];
+//        [self displayPopupMessage:message];
+//        [message release];
+//        
+//        [[FoursquareAPI sharedInstance] doLoginUsername: username.text andPass:password.text];	
+//        
+//        NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+//        [prefs setObject:username forKey:kUsernameDefaultsKey];
+//        NSLog(@"Stored username: %@", username.text);
+//        
+//        NSError *error = nil;
+//        [SFHFKeychainUtils storeUsername:username.text
+//                             andPassword:password.text
+//                          forServiceName:@"Kickball" 
+//                          updateExisting:YES error:&error];
+    }
 }
 
 - (IBAction) openFoursquareForgottenPasswordWebPage {

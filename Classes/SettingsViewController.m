@@ -72,7 +72,7 @@
         [message release];
     } else {
         // display success message and save to keychain
-        KBMessage *message = [[KBMessage alloc] initWithMember:@"Authentication" andSubtitle:@"Success" andMessage:@"Your new username and password have been authentication."];
+        KBMessage *message = [[KBMessage alloc] initWithMember:@"Authentication" andSubtitle:@"Success" andMessage:@"Your new username and password have been authenticated."];
         [self displayPopupMessage:message];
         [message release];
         

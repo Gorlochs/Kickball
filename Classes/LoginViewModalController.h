@@ -10,10 +10,11 @@
 #import "KBBaseViewController.h"
 #import "FoursquareAPI.h"
 #import "SFHFKeychainUtils.h"
+#import "KBBaseViewController.h"
 
 #define kUsernameDefaultsKey @"FSUsername"
 
-@interface LoginViewModalController : UIViewController {
+@interface LoginViewModalController : KBBaseViewController {
 	IBOutlet UITextField *usernameField;
 	IBOutlet UITextField *passwordField;
     IBOutlet UIButton *forgottenPasswordButton;
