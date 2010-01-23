@@ -117,10 +117,6 @@
 
 #pragma mark UITableView methods
 
-- (void) close {
-    [self dismissModalViewControllerAnimated:YES];
-}
-
 #pragma mark MGTwitterEngineDelegate methods
 
 - (void)statusesReceived:(NSArray *)statuses forRequest:(NSString *)connectionIdentifier {

@@ -47,8 +47,5 @@
     [super dealloc];
 }
 
-- (void) dismiss {
-    [self dismissModalViewControllerAnimated:YES];
-}
 
 @end

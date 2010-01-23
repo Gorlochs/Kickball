@@ -3,7 +3,7 @@
 	<data>
 		<int key="IBDocument.SystemTarget">784</int>
 		<string key="IBDocument.SystemVersion">10C540</string>
-		<string key="IBDocument.InterfaceBuilderVersion">740</string>
+		<string key="IBDocument.InterfaceBuilderVersion">732</string>
 		<string key="IBDocument.AppKitVersion">1038.25</string>
 		<string key="IBDocument.HIToolboxVersion">458.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
@@ -491,6 +491,14 @@
 					</object>
 					<int key="connectionID">45</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">websiteButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="272020110"/>
+					</object>
+					<int key="connectionID">46</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -693,7 +701,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">45</int>
+			<int key="maxID">46</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -724,6 +732,7 @@
 							<string>venueAddress</string>
 							<string>venueName</string>
 							<string>webRating</string>
+							<string>websiteButton</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -733,6 +742,7 @@
 							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UIImageView</string>
+							<string>UIButton</string>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
@@ -749,6 +759,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>backOneView</string>
 							<string>checkin</string>
+							<string>dismiss</string>
 							<string>displayTextView</string>
 							<string>goToHomeView</string>
 							<string>viewSettings</string>
@@ -756,6 +767,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>

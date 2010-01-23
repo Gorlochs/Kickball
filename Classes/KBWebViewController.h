@@ -7,16 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KBBaseViewController.h"
 
-
-@interface KBWebViewController : UIViewController {
+@interface KBWebViewController : KBBaseViewController {
     UIWebView *webView;
     NSString *urlString;
 }
 
 @property (nonatomic, retain) IBOutlet UIWebView *webView;
 @property (nonatomic, retain) NSString *urlString;
-
-- (IBAction) dismiss;
 
 @end

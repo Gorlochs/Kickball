@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="8"/>
+			<integer value="9"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -188,7 +188,7 @@
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">21</int>
+					<int key="connectionID">22</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -278,7 +278,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{329, 504}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{733, 334}, {320, 460}}</string>
+					<string>{{707, 334}, {320, 460}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{0, 930}, {325, 54}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -300,7 +300,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">21</int>
+			<int key="maxID">22</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -314,6 +314,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>backOneView</string>
 							<string>checkin</string>
+							<string>dismiss</string>
 							<string>displayTextView</string>
 							<string>goToHomeView</string>
 							<string>viewSettings</string>
@@ -321,6 +322,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -355,10 +357,6 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">ProfileTwitterViewController</string>
 					<string key="superclassName">KBBaseViewController</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">dismiss</string>
-						<string key="NS.object.0">id</string>
-					</object>
 					<object class="NSMutableDictionary" key="outlets">
 						<string key="NS.key.0">theTableView</string>
 						<string key="NS.object.0">UITableView</string>

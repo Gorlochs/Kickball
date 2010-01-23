@@ -21,6 +21,7 @@
     IBOutlet UITextView *hours;
     IBOutlet UITextView *features;
     IBOutlet UITextView *tags;
+    IBOutlet UIButton *websiteButton;
 }
 
 @property (nonatomic, retain) GAPlace *place;

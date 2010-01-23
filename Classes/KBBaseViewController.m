@@ -206,4 +206,8 @@
     [webController release];
 }
 
+- (void) dismiss {
+    [self dismissModalViewControllerAnimated:YES];
+}
+
 @end

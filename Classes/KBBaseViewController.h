@@ -52,5 +52,6 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 - (void) displayPushedVenueId;
 - (IBAction) checkin;
 - (void) openWebView:(NSString*)url;
+- (IBAction) dismiss;
 
 @end

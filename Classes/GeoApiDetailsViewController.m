@@ -72,6 +72,10 @@
     } else {
         tags.text = @"Tags not available";
     }
+    
+    if ([[place.listing objectForKey:@"listing-url"] isKindOfClass:[NSNull class]]) {
+        websiteButton.enabled = NO;
+    }
 }
 
 - (void)requestFailed:(NSError *)error {
@@ -83,7 +87,8 @@
 }
 
 - (void) visitWebsite {
-    
+    NSLog(@"site to visit: %@", [place.listing objectForKey:@"listing-url"]);
+    [self openWebView:[place.listing objectForKey:@"listing-url"]];
 }
 
 - (void)dealloc {

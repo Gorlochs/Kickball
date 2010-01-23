@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "MGTwitterEngineDelegate.h"
+#import "KBBaseViewController.h"
 
-@interface PlaceTwitterViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, MGTwitterEngineDelegate> {
+
+@interface PlaceTwitterViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource, MGTwitterEngineDelegate> {
     NSString *twitterName;
     NSArray *twitterStatuses;
     NSString *venueName;
@@ -19,7 +21,5 @@
 
 @property (nonatomic, retain) NSString *twitterName;
 @property (nonatomic, retain) NSString *venueName;
-
-- (IBAction) close;
 
 @end

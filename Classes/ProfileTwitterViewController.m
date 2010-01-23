@@ -45,10 +45,6 @@ NSInteger dateSort(id s1, id s2, void *context)
 	// e.g. self.myOutlet = nil;
 }
 
-- (void) dismiss {
-    [self dismissModalViewControllerAnimated:YES];
-}
-
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
