@@ -54,6 +54,7 @@
 		[self setPasswordFromKeychain];		
 	}
 	
+    [[Beacon shared] startSubBeaconWithName:@"Login View"];
 	[super viewDidLoad];
 }
 
@@ -83,6 +84,7 @@
 
 - (IBAction) login: (id) sender
 {
+    [[Beacon shared] startSubBeaconWithName:@"Logging in"];
 	NSString *username = usernameField.text;
 	NSString *password = passwordField.text;
 	[[FoursquareAPI sharedInstance] doLoginUsername: username andPass:password];	
@@ -114,6 +116,7 @@
 }
 
 - (IBAction) openFoursquareForgottenPasswordWebPage {
+    [[Beacon shared] startSubBeaconWithName:@"Exiting for Forgotten Password"];
     NSURL *url = [NSURL URLWithString:@"http://foursquare.com/change_password"];
     
     if (![[UIApplication sharedApplication] openURL:url])  {

@@ -19,6 +19,7 @@
 - (void)viewDidLoad {
     username.text = [[FoursquareAPI sharedInstance] userName];
     password.text = [[FoursquareAPI sharedInstance] passWord];
+    [[Beacon shared] startSubBeaconWithName:@"Settings View"];
     [super viewDidLoad];
 }
 

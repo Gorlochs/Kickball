@@ -23,6 +23,7 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[Beacon shared] startSubBeaconWithName:@"Friends Map View"];
 }
  
 -(void) viewDidAppear:(BOOL)animated{
@@ -179,6 +180,7 @@
 }
 
 - (void) showProfile:(id)sender {
+    [[Beacon shared] startSubBeaconWithName:@"Clicked on Profile from Friends Map"];
     int nrButtonPressed = ((UIButton *)sender).tag;
     NSLog(@"annotation for profile pressed: %d", nrButtonPressed);
     

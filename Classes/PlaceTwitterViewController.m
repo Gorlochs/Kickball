@@ -14,14 +14,6 @@
 
 @synthesize twitterName, venueName;
 
-/*
-- (id)initWithStyle:(UITableViewStyle)style {
-    // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-    if (self = [super initWithStyle:style]) {
-    }
-    return self;
-}
-*/
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -33,6 +25,7 @@
     MGTwitterEngine *twitterEngine = [[[MGTwitterEngine alloc] initWithDelegate:self] autorelease];
     NSString *timeline = [twitterEngine getUserTimelineFor:twitterName sinceID:0 startingAtPage:0 count:20];
     NSLog(@"timeline: %@", timeline);
+    [[Beacon shared] startSubBeaconWithName:@"Venue Twitter Feed"];
 }
 
 - (void)didReceiveMemoryWarning {

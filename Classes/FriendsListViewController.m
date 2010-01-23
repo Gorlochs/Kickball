@@ -84,6 +84,7 @@
 }
 
 - (void) doInitialDisplay {
+    [[Beacon shared] startSubBeaconWithName:@"Initial Friends List Display"];
     NSLog(@"hasViewedInstructions: %d", hasViewedInstructions);
     if (!hasViewedInstructions) {
         [self startProgressBar:@"Loading Everything..."];
@@ -92,7 +93,6 @@
        [self startProgressBar:@"Retrieving friends' whereabouts..."]; 
     }
 
-	
 	[[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
     
     if (![self getAuthenticatedUser]) {

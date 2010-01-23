@@ -17,6 +17,7 @@
 @synthesize pendingFriendRequests;
 
 - (void)viewDidLoad {
+    [[Beacon shared] startSubBeaconWithName:@"View Pending Friend Requests"];
     [super viewDidLoad];
 }
 
@@ -95,11 +96,13 @@
 }
 
 - (void) acceptFriend:(UIControl*) button {
+    [[Beacon shared] startSubBeaconWithName:@"Accept Friend"];
     NSLog(@"acceptfriend tag: %d", button.tag);
     [[FoursquareAPI sharedInstance] approveFriendRequest:((FSUser*)[pendingFriendRequests objectAtIndex:button.tag]).userId withTarget:self andAction:@selector(friendRequestResponseReceived:withResponseString:)];
 }
 
 - (void) denyFriend:(UIControl*) button {
+    [[Beacon shared] startSubBeaconWithName:@"Deny Friend"];
     NSLog(@"denyfriend tag: %d", button.tag);
     [[FoursquareAPI sharedInstance] denyFriendRequest:((FSUser*)[pendingFriendRequests objectAtIndex:button.tag]).userId withTarget:self andAction:@selector(friendRequestResponseReceived:withResponseString:)];
 }

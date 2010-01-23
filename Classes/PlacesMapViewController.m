@@ -23,6 +23,7 @@
     [super viewDidLoad];
 	[self refreshVenuePoints];
     [mapViewer setShowsUserLocation:YES];
+    [[Beacon shared] startSubBeaconWithName:@"Venues Map"];
 }
 
 -(void) viewDidAppear:(BOOL)animated{

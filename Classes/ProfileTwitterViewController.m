@@ -18,10 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTweetNotification:) name:IFTweetLabelURLNotification object:nil];
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    //sortedTweets = [tweets sortedArrayUsingFunction:dateSort context:NULL];
-
+    [[Beacon shared] startSubBeaconWithName:@"Profile Twitter View"];
 }
 
 NSInteger dateSort(id s1, id s2, void *context)

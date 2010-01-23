@@ -19,6 +19,7 @@
     [tipTodoText becomeFirstResponder];
     venueName.text = venue.name;
     venueAddress.text = venue.addressWithCrossstreet;
+    [[Beacon shared] startSubBeaconWithName:@"Create Tip or Todo"];
 }
 
 - (void)didReceiveMemoryWarning {

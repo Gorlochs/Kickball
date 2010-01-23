@@ -87,6 +87,7 @@
     
     [self startProgressBar:@"Retrieving venue details..."];
     [[FoursquareAPI sharedInstance] getVenue:venueId withTarget:self andAction:@selector(venueResponseReceived:withResponseString:)];
+    [[Beacon shared] startSubBeaconWithName:@"Venue Detail"];
 }
 
 - (void) displayTodoTipMessage:(NSNotification *)inNotification {
@@ -247,10 +248,10 @@
         badgeTitleLabel.text = badge.badgeName;
         return badgeCell;
     } else if (indexPath.section == 2) {
-        if ([self getSingleCheckin].user == nil) {
+        if ([self getSingleCheckin].user == nil && [[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"nochange"]) {
             stillTheMayorLabel.text = [NSString stringWithFormat:@"You're still the mayor of %@!", venue.name];
             return stillTheMayorCell;
-        } else {
+        } else if ([[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"stolen"]) {
             newMayorshipLabel.text = [self getSingleCheckin].mayor.mayorCheckinMessage;
             return newMayorCell;
         }
@@ -471,6 +472,7 @@
                                                  toTwitter:isTwitterOn
                                                 withTarget:self 
                                                  andAction:@selector(checkinResponseReceived:withResponseString:)];
+    [[Beacon shared] startSubBeaconWithName:@"Check in to Venue"];
 }
 
 - (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
@@ -506,29 +508,6 @@
     NSLog(@"push: %@", push);
 
 }
-
-//- (void)successMethod:(ASIHTTPRequest *) request {
-//    NSLog(@"push request successMethod: %@", request);
-//    
-////	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-////	[userDefaults setValue: self.deviceToken forKey: @"_UALastDeviceToken"];
-////	[userDefaults setValue: self.deviceAlias forKey: @"_UALastAlias"];
-////	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-//}
-//
-//- (void)requestWentWrong:(ASIHTTPRequest *)request {
-//    NSLog(@"push request successMethod: %@", request);
-//	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-//	NSError *error = [request error];
-//	UIAlertView *someError = [[UIAlertView alloc] initWithTitle: 
-//							  @"Network error" message: @"Error registering with server"
-//                                                       delegate: self
-//                                              cancelButtonTitle: @"Ok"
-//                                              otherButtonTitles: nil];
-//	[someError show];
-//	[someError release];
-//	NSLog(@"ERROR: NSError query result: %@", error);
-//}
 
 - (void) togglePing {
     isPingOn = !isPingOn;
@@ -581,25 +560,7 @@
 }
 
 - (void) viewVenueMap {
-//    PlaceMapViewController *placeMapController = [[PlaceMapViewController alloc] initWithNibName:@"PlaceMapViewController" bundle:nil];
-//    placeMapController.venue = venue;
-//    [self.navigationController pushViewController:placeMapController animated:YES];
-//    [placeMapController release];
 
-    // tried to animate the small map into a full size map
-    // It didn't work. The mapView is stuck as part of the table view
-    // I don't know if I can pull it out of that view or not.
-//    [self.view sendSubviewToBack:theTableView];
-//    [self.view bringSubviewToFront:mapView];
-//    [UIView beginAnimations:nil context:NULL];
-//    [UIView setAnimationBeginsFromCurrentState:YES];
-//    [UIView setAnimationDuration:1.0];
-//    
-//    //theTableView.hidden = YES;
-//    mapView.frame = CGRectMake(0, 0, 320, 340);
-//    
-//    [UIView commitAnimations];
-    
     closeMapButton.alpha = 0;
     closeMapButton.frame = CGRectMake(280, 102, 45, 45);
     fullMapView.alpha = 0;
@@ -616,16 +577,7 @@
     closeMapButton.alpha = 1.0;
     
     [UIView commitAnimations];
-}
-
-- (void) showVenue:(id)sender {
-//    int nrButtonPressed = ((UIButton *)sender).tag;
-    NSLog(@"annotation for venue pressed");
-    
-//    PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];
-//    placeDetailController.venueId = venue.venueid;
-//    [self.navigationController pushViewController:placeDetailController animated:YES];
-//    [placeDetailController release];
+    [[Beacon shared] startSubBeaconWithName:@"View Venue Map"];
 }
 
 - (void) addTipTodo {
@@ -654,6 +606,7 @@
 - (void) markVenueClosed {
     [self startProgressBar:@"Sending closure notification..."];
     [[FoursquareAPI sharedInstance] flagVenueAsClosed:venue.venueid withTarget:self andAction:@selector(okResponseReceived:withResponseString:)];
+    [[Beacon shared] startSubBeaconWithName:@"Mark Venue Closed"];
 }
 
 - (void)okResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
@@ -688,8 +641,9 @@
         
         // removing 'The' and all spaces from both words, then doing a string compare.  Should probably remove all non alphanumeric characters, too
         if ([[[place.name stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"The"]] stringByReplacingOccurrencesOfString:@" " withString:@""] 
-             rangeOfString:[[venue.name stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"The"]] stringByReplacingOccurrencesOfString:@" " withString:@""] options:NSCaseInsensitiveSearch].location != NSNotFound) {
+               rangeOfString:[[venue.name stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"The"]] stringByReplacingOccurrencesOfString:@" " withString:@""] options:NSCaseInsensitiveSearch].location != NSNotFound) {
             GeoApiDetailsViewController *vc = [[GeoApiDetailsViewController alloc] initWithNibName:@"GeoApiDetailsView" bundle:nil];
+            [[Beacon shared] startSubBeaconWithName:@"GeoAPI call found proper venue"];
             vc.place = place;
             [place release];
             [self.navigationController pushViewController:vc animated:YES];
@@ -701,6 +655,7 @@
         }
     }
     GeoApiTableViewController *vc = [[GeoApiTableViewController alloc] initWithNibName:@"GeoAPIView" bundle:nil];
+    [[Beacon shared] startSubBeaconWithName:@"GeoAPI could not find proper venue - going to list view"];
     vc.geoAPIResults = objArray;
     [objArray release];
     [self.navigationController pushViewController:vc animated:YES];

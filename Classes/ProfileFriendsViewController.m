@@ -21,6 +21,7 @@
     
     [self startProgressBar:@"Retrieving friends..."];
     [[FoursquareAPI sharedInstance] getFriendsWithUserIdAndTarget:userId andTarget:self andAction:@selector(friendsResponseReceived:withResponseString:)];
+    [[Beacon shared] startSubBeaconWithName:@"View Users Friends"];
 }
 
 

@@ -42,6 +42,7 @@
      ];
     
     [self addHeaderAndFooter:theTableView];
+    [[Beacon shared] startSubBeaconWithName:@"Venue List"];
     
 //    [self startProgressBar:@"Retrieving nearby venues..."];
 //    self.locationManager = [[[CLLocationManager alloc] init] autorelease];
@@ -164,6 +165,7 @@
                                                 withTarget:self 
                                                  andAction:@selector(venuesResponseReceived:withResponseString:)
          ];
+        [[Beacon shared] startSubBeaconWithName:@"Venue Search from Venue List View"];
     }
 }
 
@@ -189,6 +191,7 @@
                                                withTarget:self 
                                                 andAction:@selector(venuesResponseReceived:withResponseString:)
      ];
+    [[Beacon shared] startSubBeaconWithName:@"Refreshing Venue List"];
     
     venuesTypeToDisplay = KBNearbyVenues;
 }

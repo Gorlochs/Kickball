@@ -12,14 +12,10 @@
 @implementation FriendRequestsViewController
 
 
-/*
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [[Beacon shared] startSubBeaconWithName:@"Search for Friends View"];
 }
-*/
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -98,6 +94,7 @@
     NSLog(@"friendize button tapped: %d", button.tag);
     [self startProgressBar:@"Sending friend request..."];
     [[FoursquareAPI sharedInstance] doSendFriendRequest:((FSUser*)[friendRequests objectAtIndex:button.tag]).userId withTarget:self andAction:@selector(friendRequestResponseReceived:withResponseString:)];
+    [[Beacon shared] startSubBeaconWithName:@"Friend Someone"];
 }
 
 
@@ -193,6 +190,7 @@
     if (![nameText.text isEqualToString:@""]) {
         [self startProgressBar:@"Searching..."];
         [[FoursquareAPI sharedInstance] findFriendsByName:nameText.text withTarget:self andAction:@selector(searchResponseReceived:withResponseString:)];
+        [[Beacon shared] startSubBeaconWithName:@"Searching For Friend By Name"];
     } else {
         KBMessage *message = [[KBMessage alloc] initWithMember:@"Search Error" andSubtitle:@"Missing value" andMessage:@"Please fill in the name field"];
         [self displayPopupMessage:message];
@@ -204,6 +202,7 @@
     if (![twitterText.text isEqualToString:@""]) {
         [self startProgressBar:@"Searching..."];
         [[FoursquareAPI sharedInstance] findFriendsByTwitterName:twitterText.text withTarget:self andAction:@selector(searchResponseReceived:withResponseString:)];
+        [[Beacon shared] startSubBeaconWithName:@"Searching For Friend By Twitter"];
     } else {
         KBMessage *message = [[KBMessage alloc] initWithMember:@"Search Error" andSubtitle:@"Missing value" andMessage:@"Please fill in the twitter field"];
         [self displayPopupMessage:message];
@@ -216,6 +215,7 @@
     if (![phoneText.text isEqualToString:@""]) {
         [self startProgressBar:@"Searching..."];
         [[FoursquareAPI sharedInstance] findFriendsByPhone:phoneText.text withTarget:self andAction:@selector(searchResponseReceived:withResponseString:)];
+        [[Beacon shared] startSubBeaconWithName:@"Searching For Friend By Phone"];
     } else {
         KBMessage *message = [[KBMessage alloc] initWithMember:@"Search Error" andSubtitle:@"Missing value" andMessage:@"Please fill in the phone field"];
         [self displayPopupMessage:message];
@@ -240,6 +240,7 @@
         }
     }
     [[FoursquareAPI sharedInstance] findFriendsByPhone:[phones componentsJoinedByString:@","] withTarget:self andAction:@selector(searchResponseReceived:withResponseString:)];
+    [[Beacon shared] startSubBeaconWithName:@"Scanning Address Book"];
     [phones release];
 }
 

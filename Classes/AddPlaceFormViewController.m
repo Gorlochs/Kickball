@@ -23,6 +23,7 @@
     NSLog(@"user checkin venue: %@", user.checkin.venue);
     city.text = user.checkin.venue.city;
     state.text = user.checkin.venue.venueState;
+    [[Beacon shared] startSubBeaconWithName:@"Add Venue Form View"];
 }
 
 - (void)didReceiveMemoryWarning {

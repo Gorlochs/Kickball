@@ -36,7 +36,7 @@
     application.applicationIconBadgeNumber = 0;
     
     // Pinch Analytics
-    NSString *applicationCode = @"51512b37fa78552a6981778e1e652682";
+    NSString *applicationCode = @"00a9861658fbc22f2177620f22d9bb66";
     [Beacon initAndStartBeaconWithApplicationCode:applicationCode
                                   useCoreLocation:YES useOnlyWiFi:NO];
     

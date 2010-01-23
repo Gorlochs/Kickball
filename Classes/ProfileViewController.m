@@ -42,14 +42,9 @@
     
     [self addHeaderAndFooter:theTableView];
     
-    if(![[FoursquareAPI sharedInstance] isAuthenticated]){
-		//run sheet to log in.
-		NSLog(@"Foursquare is not authenticated");
-	} else {
-        // TODO: will also have to make a call to our DB to get gift info
-        [self startProgressBar:@"Retrieving profile..."];
-        [[FoursquareAPI sharedInstance] getUser:self.userId withTarget:self andAction:@selector(userResponseReceived:withResponseString:)];
-	}
+    [self startProgressBar:@"Retrieving profile..."];
+    [[FoursquareAPI sharedInstance] getUser:self.userId withTarget:self andAction:@selector(userResponseReceived:withResponseString:)];
+    [[Beacon shared] startSubBeaconWithName:@"Profile"];
 }
 
 - (void)userResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
@@ -111,6 +106,7 @@
     KBMessage *message = [[KBMessage alloc] initWithMember:badge.badgeName andSubtitle:nil andMessage:badge.badgeDescription];
     [self displayPopupMessage:message];
     [message release];
+    [[Beacon shared] startSubBeaconWithName:@"View Badge Details"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -396,6 +392,7 @@
 - (void) friendUser {
     [self startProgressBar:@"Sending Friend Request..."];
     [[FoursquareAPI sharedInstance] doSendFriendRequest:user.userId withTarget:self andAction:@selector(friendRequestResponseReceived:withResponseString:)];
+    [[Beacon shared] startSubBeaconWithName:@"Friend User from Profile View"];
 }
 
 - (void) togglePingsAndUpdates {
@@ -438,15 +435,19 @@
     if (buttonIndex == 0) {
         switch (actionSheet.tag) {
             case 0:
+                [[Beacon shared] startSubBeaconWithName:@"SMS User"];
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"sms:%@", user.phone]]];
                 break;
             case 1:
+                [[Beacon shared] startSubBeaconWithName:@"Phone User"];
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", user.phone]]];
                 break;
             case 2:
+                [[Beacon shared] startSubBeaconWithName:@"Email User"];
                 [[UIApplication sharedApplication] openURL: [NSURL URLWithString: [NSString stringWithFormat:@"mailto:%@", user.email]]];
                 break;
             case 4:
+                [[Beacon shared] startSubBeaconWithName:@"Facebook User"];
                 [[UIApplication sharedApplication] openURL: [NSURL URLWithString: [NSString stringWithFormat:@"fb://%@", user.facebook]]];
                 break;
             default:

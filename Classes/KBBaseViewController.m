@@ -85,6 +85,7 @@
 
 - (void) viewUserProfile {
     // take user to their profile
+    [[Beacon shared] startSubBeaconWithName:@"View User Profile from Top Nav Icon"];
     ProfileViewController *pvc = [[ProfileViewController alloc] initWithNibName:@"ProfileView" bundle:nil];
     pvc.userId = [self getAuthenticatedUser].userId;
     [self.navigationController pushViewController:pvc animated:YES];
@@ -193,6 +194,7 @@
 }
 
 - (void) openWebView:(NSString*)url {
+    [[Beacon shared] startSubBeaconWithName:@"Opening link from Twitter feed"];
     KBWebViewController *webController = [[KBWebViewController alloc] initWithNibName:@"KBWebViewController" bundle:nil];
     webController.urlString = url;
     [self presentModalViewController:webController animated:YES];

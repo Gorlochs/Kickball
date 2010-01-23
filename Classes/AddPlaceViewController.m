@@ -29,6 +29,7 @@
     isTwitterOn = tmpUser.sendToTwitter;
     twitterToggleButton.selected = isTwitterOn;
     pingToggleButton.selected = isPingOn;
+    [[Beacon shared] startSubBeaconWithName:@"Add Venue"];
 }
 
 - (void)didReceiveMemoryWarning {
