@@ -387,7 +387,7 @@ static FoursquareAPI *sharedInstance = nil;
 }
 
 - (void) doFoursquareApiTest:(id)inTarget andAction:(SEL)inAction {
-	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/test"] withUser:self.userName andPassword:self.passWord andParams:nil withTarget:inTarget andAction:inAction usingMethod:@"POST"];    
+	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/test"] withUser:nil andPassword:nil andParams:nil withTarget:inTarget andAction:inAction usingMethod:@"GET"];    
 }
 
 #pragma mark

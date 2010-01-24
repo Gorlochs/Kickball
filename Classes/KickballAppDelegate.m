@@ -60,6 +60,27 @@
     }
     
     [manager release];
+    
+    //[[FoursquareAPI sharedInstance] doFoursquareApiTest:self andAction:@selector(apiTestResponseReceived:withResponseString:)];
+    NSError *error = nil;
+    NSString *apiTestResponse = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/test"] encoding:NSASCIIStringEncoding error:&error];
+    NSLog(@"api test error: %@", error);
+    NSLog(@"api test response: %@", apiTestResponse);
+    if (error || [apiTestResponse rangeOfString:@"ok"].length == NSNotFound) {
+        UIAlertView *apiAlert = [[UIAlertView alloc] initWithTitle:@"Foursquare is Down" message:@"We're sorry. It looks like FourSquare servers are down temporarily. Please try again in a few minutes." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [apiAlert show];
+        [apiAlert release];
+    }
+}
+
+- (void)apiTestResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+    NSLog(@"api test response: %@", inString);
+    BOOL isTestSuccessful = [FoursquareAPI simpleBooleanFromResponseXML:inString];
+    if (!isTestSuccessful) {
+        UIAlertView *apiAlert = [[UIAlertView alloc] initWithTitle:@"Foursquare is Down" message:@"We're sorry. It looks like FourSquare servers are down temporarily. Please try again in a few minutes." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [apiAlert show];
+        [apiAlert release];
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -151,33 +172,7 @@
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
 	NSLog(@"remote notification: %@",[userInfo description]);
 	NSLog(@"%@", [userInfo objectForKey: @"aps"]);
-    //	NSString *message = [userInfo descriptionWithLocale:nil indent:1];
-	//NSString* message =  [[[userInfo objectForKey: @"aps"] objectForKey: @"vid"] stringValue];
     self.pushNotificationUserId = [[userInfo objectForKey: @"aps"] objectForKey: @"uid"];
-//	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Remote Notification" message:message delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
-//    [alert show];
-//    [alert release];
-    
-    // retrieve user info to get all the relavent data to display
-    [[FoursquareAPI sharedInstance] getUser:self.pushNotificationUserId withTarget:self andAction:@selector(pushUserResponseReceived:withResponseString:)];
-    
-    
-//    UIButton *pushButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//	pushButton.frame = CGRectMake(0, 0, 320, 23);
-//	pushButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-//	pushButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-//	
-//	// Set the image for the button
-//	[pushButton setImage:[UIImage imageNamed:@"pushMsgBG01.png"] forState:UIControlStateNormal];
-////	[pushButton setImage:[UIImage imageNamed:@"pushMsgBG02.png"] forState:UIControlStateHighlighted];
-//	[pushButton addTarget:self action:@selector(showUser:) forControlEvents:UIControlEventTouchUpInside]; 
-    
-//    // TODO: put up message box giving them a choice to go to the page
-//    if ([[FoursquareAPI sharedInstance] isAuthenticated]) {
-//        [self displayPushNotificationView:nil];
-//    } else {
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(displayPushNotificationView:) name:@"signInComplete" object:nil];
-//    }
 }
 
 - (void)pushUserResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
@@ -196,7 +191,7 @@
     
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationDuration:2.5];
+    [UIView setAnimationDuration:3.0];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
     pushView.view.alpha = 1.0;
     [UIView setAnimationDelegate:self];
@@ -217,7 +212,7 @@
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-    [UIView setAnimationDuration:2.5];
+    [UIView setAnimationDuration:3.0];
     pushView.view.alpha = 0.0;
     [UIView commitAnimations];
 }
