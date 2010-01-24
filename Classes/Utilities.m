@@ -10,8 +10,8 @@
 
 static Utilities *sharedInstance = nil;
 
-#define TMP NSTemporaryDirectory()
-//#define TMP NSHomeDirectory()
+//#define TMP NSTemporaryDirectory()
+#define TMP NSHomeDirectory()
 
 @implementation Utilities
 
@@ -63,7 +63,8 @@ static Utilities *sharedInstance = nil;
     
     // Generate a unique path to a resource representing the image you want
     NSString *filename = [[imageURL path] stringByReplacingOccurrencesOfString:@"/" withString:@""];
-    NSString *uniquePath = [TMP stringByAppendingPathComponent: filename];
+    NSString *homeLibraryCache = [TMP stringByAppendingPathComponent:@"/Library/Caches"];
+    NSString *uniquePath = [homeLibraryCache stringByAppendingPathComponent: filename];
     
     // Check for file existence
     if(![[NSFileManager defaultManager] fileExistsAtPath: uniquePath])
@@ -102,7 +103,8 @@ static Utilities *sharedInstance = nil;
     if (imageURLString != nil) {
         NSURL *imageURL = [NSURL URLWithString: imageURLString];
         NSString *filename = [[imageURL path] stringByReplacingOccurrencesOfString:@"/" withString:@""];
-        NSString *uniquePath = [TMP stringByAppendingPathComponent: filename];
+        NSString *homeLibraryCache = [TMP stringByAppendingPathComponent:@"/Library/Caches"];
+        NSString *uniquePath = [homeLibraryCache stringByAppendingPathComponent: filename];
         
         // Check for a cached version
         if([[NSFileManager defaultManager] fileExistsAtPath: uniquePath])
