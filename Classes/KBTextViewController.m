@@ -43,6 +43,15 @@
 	NSArray *shoutCheckins = [FoursquareAPI checkinsFromResponseXML:inString];
     NSLog(@"shoutCheckins: %@", shoutCheckins);
     
+    FSUser *user = [[FoursquareAPI sharedInstance] currentUser];
+    NSString *uid = user.userId;
+    NSString *un = [user.firstnameLastInitial stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+    NSString *shout = [textView.text stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+    NSString *urlstring = [NSString stringWithFormat:@"http://www.literalshore.com/gorloch/kickball/test_push.php?shout=%@&uid=%@&un=%@", shout, uid, un];
+    NSLog(@"urlstring: %@", urlstring);
+    NSString *push = [NSString stringWithContentsOfURL:[NSURL URLWithString:urlstring]];
+    NSLog(@"push: %@", push);
+    
     // TODO: confirm that the shout was sent?
     [[NSNotificationCenter defaultCenter] postNotificationName:@"shoutSent"
                                                         object:nil

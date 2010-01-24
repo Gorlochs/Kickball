@@ -30,6 +30,7 @@
     Reachability* wifiReach;
     
     KBPushNotificationView *pushView;
+    NSDictionary *pushUserInfo;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;

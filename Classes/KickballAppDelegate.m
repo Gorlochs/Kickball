@@ -170,9 +170,13 @@
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    //pushUserInfo = [[[NSDictionary alloc] initWithDictionary:userInfo] autorelease];
 	NSLog(@"remote notification: %@",[userInfo description]);
 	NSLog(@"%@", [userInfo objectForKey: @"aps"]);
     self.pushNotificationUserId = [[userInfo objectForKey: @"aps"] objectForKey: @"uid"];
+    
+    // retrieve user info to get all the relavent data to display
+    [[FoursquareAPI sharedInstance] getUser:self.pushNotificationUserId withTarget:self andAction:@selector(pushUserResponseReceived:withResponseString:)];
 }
 
 - (void)pushUserResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
@@ -181,8 +185,14 @@
     
     pushView = [[KBPushNotificationView alloc] initWithNibName:@"PushNotificationView" bundle:nil];
     pushView.view.frame = CGRectMake(0, 436, 241, 39);
-    pushView.messageLabel.text = [NSString stringWithFormat:@"%@ just checked in!", pushedUser.firstnameLastInitial];
-    pushView.addressLabel.text = [NSString stringWithFormat:@"%@ / %@", pushedUser.checkin.venue.name, pushedUser.checkin.venue.addressWithCrossstreet];
+    NSLog(@"pushed user shout: %@", pushedUser.checkin.shout);
+    if (pushedUser.checkin.shout != nil) {
+        pushView.messageLabel.text = [NSString stringWithFormat:@"%@ just shouted!", pushedUser.firstnameLastInitial];
+        pushView.addressLabel.text = [NSString stringWithFormat:@"%@", pushedUser.checkin.shout];
+    } else {
+        pushView.messageLabel.text = [NSString stringWithFormat:@"%@ just checked in!", pushedUser.firstnameLastInitial];
+        pushView.addressLabel.text = [NSString stringWithFormat:@"%@ / %@", pushedUser.checkin.venue.name, pushedUser.checkin.venue.addressWithCrossstreet];
+    }
     [pushView.button addTarget:self action:@selector(viewUserProfile:) forControlEvents:UIControlEventTouchUpInside]; 
     pushView.view.alpha = 0;
     [navigationController.view addSubview:pushView.view];
@@ -191,7 +201,7 @@
     
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationDuration:3.0];
+    [UIView setAnimationDuration:4.0];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
     pushView.view.alpha = 1.0;
     [UIView setAnimationDelegate:self];
@@ -212,7 +222,7 @@
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-    [UIView setAnimationDuration:3.0];
+    [UIView setAnimationDuration:4.0];
     pushView.view.alpha = 0.0;
     [UIView commitAnimations];
 }

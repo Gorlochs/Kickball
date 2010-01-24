@@ -1125,6 +1125,8 @@ static FoursquareAPI *sharedInstance = nil;
                 NSString * value = [[checkinElement childAtIndex:i] stringValue];
                 if ([key isEqualToString:@"id"]) {
                     checkin.checkinId = value;
+                } else if([key isEqualToString:@"shout"]){
+                    checkin.shout = value;
                 } else if ([key isEqualToString:@"display"]) {
                     checkin.display = value;
                 } else if ([key isEqualToString:@"venue"]) {
