@@ -202,6 +202,7 @@
 - (void) openWebView:(NSString*)url {
     [[Beacon shared] startSubBeaconWithName:@"Opening link from Twitter feed"];
     KBWebViewController *webController = [[KBWebViewController alloc] initWithNibName:@"KBWebViewController" bundle:nil];
+    NSLog(@"website url: %@", url);
     webController.urlString = url;
     [self presentModalViewController:webController animated:YES];
     [webController release];
