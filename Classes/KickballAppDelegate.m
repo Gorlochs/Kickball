@@ -201,7 +201,7 @@
     
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationDuration:4.0];
+    [UIView setAnimationDuration:3.0];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
     pushView.view.alpha = 1.0;
     [UIView setAnimationDelegate:self];
@@ -219,10 +219,14 @@
 
 
 -(void)animationDidStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context {
+    [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(startFadeOut:) userInfo:nil repeats:NO];
+}
+
+-(void) startFadeOut:(NSTimer*)theTimer {
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-    [UIView setAnimationDuration:4.0];
+    [UIView setAnimationDuration:3.0];
     pushView.view.alpha = 0.0;
     [UIView commitAnimations];
 }
