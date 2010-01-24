@@ -188,7 +188,7 @@
     pushView.view.frame = CGRectMake(0, 436, 241, 39);
     pushView.messageLabel.text = [NSString stringWithFormat:@"%@ just checked in!", pushedUser.firstnameLastInitial];
     pushView.addressLabel.text = [NSString stringWithFormat:@"%@ / %@", pushedUser.checkin.venue.name, pushedUser.checkin.venue.addressWithCrossstreet];
-    [pushView.button addTarget:self action:@selector(dismissPushNotification:) forControlEvents:UIControlEventTouchUpInside]; 
+    [pushView.button addTarget:self action:@selector(viewUserProfile:) forControlEvents:UIControlEventTouchUpInside]; 
     pushView.view.alpha = 0;
     [navigationController.view addSubview:pushView.view];
     
@@ -196,8 +196,11 @@
     
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationDuration:0.50];
+    [UIView setAnimationDuration:2.0];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
     pushView.view.alpha = 1.0;
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];
     [UIView commitAnimations];
 }
 
@@ -209,13 +212,23 @@
     [profileController release];
 }
 
-- (void) dismissPushNotification:(id)sender {
+
+-(void)animationDidStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context {
+    NSLog(@"!!!!!!!!!!!!!!!!!!!!!!! animation did stop !!!!!!!!!!!!!!!!!");
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationDuration:0.50];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    [UIView setAnimationDuration:2.0];
     pushView.view.alpha = 0.0;
     [UIView commitAnimations];
-    //[pushView.view removeFromSuperview];
+}
+
+- (void) viewUserProfile:(id)sender {
+    ProfileViewController *profileController = [[ProfileViewController alloc] initWithNibName:@"ProfileView" bundle:nil];
+    profileController.userId = self.pushNotificationUserId;
+    self.pushNotificationUserId = nil;
+    [self.navigationController pushViewController:profileController animated:YES];
+    [profileController release];
 }
 
 //Called by Reachability whenever status changes.
