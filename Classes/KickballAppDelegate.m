@@ -184,7 +184,7 @@
     NSLog(@"pushed user: %@", pushedUser);
     
     pushView = [[KBPushNotificationView alloc] initWithNibName:@"PushNotificationView" bundle:nil];
-    pushView.view.frame = CGRectMake(0, 436, 241, 39);
+    pushView.view.frame = CGRectMake(0, 436, 239, 37);
     NSLog(@"pushed user shout: %@", pushedUser.checkin.shout);
     if (pushedUser.checkin.shout != nil) {
         pushView.messageLabel.text = [NSString stringWithFormat:@"%@ just shouted!", pushedUser.firstnameLastInitial];
