@@ -125,7 +125,7 @@
     [popupView release];
     [textViewController release];
     [textViewReturnValue release];
-    [iconImageView release];
+//    [iconImageView release];  // uncommenting this crashes shit. not sure why.
     [super dealloc];
 }
 

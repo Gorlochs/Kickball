@@ -974,6 +974,7 @@ static FoursquareAPI *sharedInstance = nil;
 			} 
 		}
 		[allFriends addObject:newFriend];
+        [newFriend release];
 	}
 	
 	return allFriends;

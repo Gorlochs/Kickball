@@ -51,19 +51,19 @@
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">push01.png</string>
+							<string key="NSResourceName">pushBG.png</string>
 						</object>
 					</object>
 					<object class="IBUILabel" id="483282543">
 						<reference key="NSNextResponder" ref="993269396"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{7, 1}, {228, 21}}</string>
+						<string key="NSFrame">{{8, 0}, {228, 21}}</string>
 						<reference key="NSSuperview" ref="993269396"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="IBUIText">Label</string>
-						<object class="NSFont" key="IBUIFont" id="576270263">
+						<object class="NSFont" key="IBUIFont" id="155246685">
 							<string key="NSName">Helvetica-Bold</string>
 							<double key="NSSize">15</double>
 							<int key="NSfFlags">16</int>
@@ -76,33 +76,44 @@
 							</object>
 						</object>
 						<nil key="IBUIHighlightedColor"/>
+						<object class="NSColor" key="IBUIShadowColor">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MCAwLjMzAA</bytes>
+							<reference key="NSCustomColorSpace" ref="399449847"/>
+						</object>
+						<string key="IBUIShadowOffset">{1, 1}</string>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
 					</object>
 					<object class="IBUILabel" id="770525379">
 						<reference key="NSNextResponder" ref="993269396"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{7, 18}, {228, 21}}</string>
+						<string key="NSFrame">{{8, 15}, {228, 21}}</string>
 						<reference key="NSSuperview" ref="993269396"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="IBUIText">Label</string>
+						<string key="IBUIText">Label - this is the text</string>
 						<object class="NSFont" key="IBUIFont">
 							<string key="NSName">Helvetica</string>
-							<double key="NSSize">12</double>
+							<double key="NSSize">11</double>
 							<int key="NSfFlags">16</int>
 						</object>
 						<object class="NSColor" key="IBUITextColor">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MC43NQA</bytes>
-							<reference key="NSCustomColorSpace" ref="399449847"/>
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC44Njc0NzgzNjYgMC45MzE2MTA1Mzk4IDEAA</bytes>
 						</object>
 						<nil key="IBUIHighlightedColor"/>
+						<object class="NSColor" key="IBUIShadowColor">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MCAwLjMzAA</bytes>
+							<reference key="NSCustomColorSpace" ref="399449847"/>
+						</object>
+						<string key="IBUIShadowOffset">{1, 1}</string>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
 					</object>
-					<object class="IBUIButton" id="828220834">
+					<object class="IBUIButton" id="584061834">
 						<reference key="NSNextResponder" ref="993269396"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{0, 1}, {241, 37}}</string>
@@ -111,7 +122,7 @@
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<reference key="IBUIFont" ref="576270263"/>
+						<reference key="IBUIFont" ref="155246685"/>
 						<object class="NSColor" key="IBUIHighlightedTitleColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
@@ -167,7 +178,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">button</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="828220834"/>
+						<reference key="destination" ref="584061834"/>
 					</object>
 					<int key="connectionID">12</int>
 				</object>
@@ -200,7 +211,7 @@
 							<reference ref="960300692"/>
 							<reference ref="483282543"/>
 							<reference ref="770525379"/>
-							<reference ref="828220834"/>
+							<reference ref="584061834"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -221,7 +232,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">11</int>
-						<reference key="object" ref="828220834"/>
+						<reference key="object" ref="584061834"/>
 						<reference key="parent" ref="993269396"/>
 					</object>
 				</object>
@@ -243,7 +254,7 @@
 					<string>KBPushNotificationView</string>
 					<string>UIResponder</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{636, 812}, {239, 37}}</string>
+					<string>{{277, 564}, {239, 37}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

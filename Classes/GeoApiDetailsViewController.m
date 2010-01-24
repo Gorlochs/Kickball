@@ -28,7 +28,7 @@
     tags.text = @"";
     hours.text = @"";
 
-    GAConnectionManager *connectionManager_ = [[GAConnectionManager alloc] initWithAPIKey:@"K6afuuFTXK" delegate:self];
+    GAConnectionManager *connectionManager_ = [[[GAConnectionManager alloc] initWithAPIKey:@"K6afuuFTXK" delegate:self] autorelease];
     [connectionManager_ requestListingForPlace:place.guid];
 }
 

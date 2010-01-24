@@ -86,6 +86,7 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     [Beacon endBeacon];
 }
+
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)_deviceToken {
     NSLog(@"didRegisterForRemoteNotificationsWithDeviceToken");
 	// Get a hex string from the device token with no spaces or < >
@@ -201,7 +202,7 @@
     
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationDuration:3.0];
+    [UIView setAnimationDuration:1.0];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
     pushView.view.alpha = 1.0;
     [UIView setAnimationDelegate:self];
@@ -226,7 +227,7 @@
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-    [UIView setAnimationDuration:3.0];
+    [UIView setAnimationDuration:1.0];
     pushView.view.alpha = 0.0;
     [UIView commitAnimations];
 }

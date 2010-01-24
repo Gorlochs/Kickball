@@ -7,10 +7,11 @@
 //
 
 #import "Utilities.h"
+#import "FoursquareAPI.h"
+#import "FSUser.h"
 
 static Utilities *sharedInstance = nil;
 
-//#define TMP NSTemporaryDirectory()
 #define TMP NSHomeDirectory()
 
 @implementation Utilities
@@ -127,4 +128,24 @@ static Utilities *sharedInstance = nil;
     
     return image;
 }
+
+- (NSArray*) retrieveAllFriendsWithPingOn {
+    [[FoursquareAPI sharedInstance] getFriendsWithTarget:self andAction:@selector(friendsResponseReceived:withResponseString:)];
+}
+
+
+- (void)friendsResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+    if (friendsWithPingOn == nil) {
+        NSArray *allFriends = [FoursquareAPI friendUsersFromRequestResponseXML:inString];
+        friendsWithPingOn = [[NSMutableArray alloc] initWithCapacity:1];
+        for (FSUser *friend in allFriends) {
+            if (friend.sendsPingsToSignedInUser) {
+                [friendsWithPingOn addObject:friend];
+            }
+        }
+    }
+    
+    return friendsWithPingOn;
+}
+
 @end
