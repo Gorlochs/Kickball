@@ -40,6 +40,10 @@
 	// e.g. self.myOutlet = nil;
 }
 
+- (void) dismissView {
+    [self dismissModalViewControllerAnimated:YES];
+}
+
 
 - (void)dealloc {
     [webView release];

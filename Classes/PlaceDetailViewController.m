@@ -641,6 +641,7 @@
     id dict = [parser objectWithString:responseString error:NULL];
     NSArray *array = [(NSDictionary*)dict objectForKey:@"entity"];
     NSMutableArray *objArray = [[NSMutableArray alloc] initWithCapacity:[array count]];
+    bool isMatched = NO;
     for (NSDictionary *dict in array) {
         GAPlace *place = [[GAPlace alloc] init];
         place.guid = [dict objectForKey:@"guid"];
@@ -656,6 +657,7 @@
             [[Beacon shared] startSubBeaconWithName:@"GeoAPI call found proper venue"];
             vc.place = place;
             [place release];
+            isMatched = YES;
             [self.navigationController pushViewController:vc animated:YES];
             [vc release];
             break;
@@ -664,13 +666,15 @@
             [place release];
         }
     }
-    GeoApiTableViewController *vc = [[GeoApiTableViewController alloc] initWithNibName:@"GeoAPIView" bundle:nil];
-    [[Beacon shared] startSubBeaconWithName:@"GeoAPI could not find proper venue - going to list view"];
-    vc.geoAPIResults = objArray;
-    [objArray release];
-    [self.navigationController pushViewController:vc animated:YES];
-    [vc release];
-    NSLog(@"dictionary?: %@", [(NSDictionary*)dict objectForKey:@"entity"]);
+    if (!isMatched) {
+        GeoApiTableViewController *vc = [[GeoApiTableViewController alloc] initWithNibName:@"GeoAPIView" bundle:nil];
+        [[Beacon shared] startSubBeaconWithName:@"GeoAPI could not find proper venue - going to list view"];
+        vc.geoAPIResults = objArray;
+        [objArray release];
+        [self.navigationController pushViewController:vc animated:YES];
+        [vc release];
+        NSLog(@"dictionary?: %@", [(NSDictionary*)dict objectForKey:@"entity"]);   
+    }
 }
 
 - (void)requestFailed:(NSError *)error {

@@ -17,4 +17,6 @@
 @property (nonatomic, retain) IBOutlet UIWebView *webView;
 @property (nonatomic, retain) NSString *urlString;
 
+- (IBAction) dismissView;
+
 @end
