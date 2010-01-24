@@ -207,8 +207,7 @@
     } else if (section == 1) { // badge
         return isUserCheckedIn && [[self getSingleCheckin].badges count] > 0;
     } else if (section == 2) { // checkin mayor
-        // return [self hasMayorCell];
-        return [self getSingleCheckin].mayor && [[self getSingleCheckin].mayor.user.userId isEqualToString:[self getAuthenticatedUser].userId];
+        return [self hasMayorCell];
     } else if (section == 3) { // checkin
         return !isUserCheckedIn;
     } else if (section == 4) { // gift
@@ -220,7 +219,7 @@
         return [venue.currentCheckins count] + 1;
     } else if (section == 7) { // tips
         return [venue.tips count];
-        return [venue.currentCheckins count];
+        //return [venue.currentCheckins count];  // WTF? Where did this come from?
     } else if (section == 8) { // bottom button row
         return 1;
     } else {
@@ -249,7 +248,7 @@
         badgeTitleLabel.text = badge.badgeName;
         return badgeCell;
     } else if (indexPath.section == 2) {
-        if ([[self getSingleCheckin].mayor.user.userId isEqualToString:[self getAuthenticatedUser].userId] 
+        if ([self getSingleCheckin].mayor.user == nil
                 && [[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"nochange"]) {
             
             stillTheMayorLabel.text = [NSString stringWithFormat:@"You're still the mayor of %@!", venue.name];
@@ -309,7 +308,7 @@
         case 1:
             return 66;
         case 2:
-            if ([self getSingleCheckin].user == nil) {
+            if ([[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"stolen"]) {
                 return 70;
             } else {
                 return 44;
@@ -562,7 +561,9 @@
 }
 
 - (BOOL) hasMayorCell {
-    return [self getSingleCheckin] != nil && [self getSingleCheckin].mayor && [self getSingleCheckin].mayor.user == nil;
+    return [[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"stolen"] 
+                || [[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"new"] 
+                || ([self getSingleCheckin].mayor.user == nil && [[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"nochange"]);
 }
 
 - (void) viewVenueMap {

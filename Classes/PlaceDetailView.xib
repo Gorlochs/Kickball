@@ -3,7 +3,7 @@
 	<data>
 		<int key="IBDocument.SystemTarget">784</int>
 		<string key="IBDocument.SystemVersion">10C540</string>
-		<string key="IBDocument.InterfaceBuilderVersion">732</string>
+		<string key="IBDocument.InterfaceBuilderVersion">740</string>
 		<string key="IBDocument.AppKitVersion">1038.25</string>
 		<string key="IBDocument.HIToolboxVersion">458.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
@@ -13,6 +13,8 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="83"/>
+			<integer value="107"/>
+			<integer value="113"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -454,7 +456,7 @@
 				<reference key="IBUIContentView" ref="396356087"/>
 			</object>
 			<object class="IBUITableViewCell" id="268361089">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -466,7 +468,7 @@
 							<object class="IBUILabel" id="666751943">
 								<reference key="NSNextResponder" ref="57690639"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{76, 25}, {224, 33}}</string>
+								<string key="NSFrame">{{76, 26}, {224, 33}}</string>
 								<reference key="NSSuperview" ref="57690639"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -482,6 +484,7 @@
 								<int key="IBUIBaselineAdjustment">1</int>
 								<float key="IBUIMinimumFontSize">10</float>
 								<int key="IBUINumberOfLines">2</int>
+								<int key="IBUILineBreakMode">0</int>
 							</object>
 							<object class="IBUIImageView" id="1068209857">
 								<reference key="NSNextResponder" ref="57690639"/>
@@ -523,6 +526,7 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 66}</string>
+				<reference key="NSSuperview"/>
 				<reference key="IBUIBackgroundColor" ref="144680521"/>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<int key="IBUISeparatorStyle">1</int>
@@ -743,7 +747,7 @@
 				<string key="IBUIReuseIdentifier">MayorCell</string>
 			</object>
 			<object class="IBUITableViewCell" id="340386414">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -812,6 +816,7 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 70}</string>
+				<reference key="NSSuperview"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MAA</bytes>
@@ -823,7 +828,7 @@
 				<reference key="IBUIContentView" ref="166623049"/>
 			</object>
 			<object class="IBUITableViewCell" id="514027558">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -837,6 +842,7 @@
 								<int key="NSvFlags">256</int>
 								<string key="NSFrame">{{6, 4}, {34, 33}}</string>
 								<reference key="NSSuperview" ref="20780933"/>
+								<reference key="NSWindow"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">4</int>
@@ -851,6 +857,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{48, 4}, {260, 21}}</string>
 								<reference key="NSSuperview" ref="20780933"/>
+								<reference key="NSWindow"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -870,6 +877,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{48, 20}, {122, 21}}</string>
 								<reference key="NSSuperview" ref="20780933"/>
+								<reference key="NSWindow"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -887,6 +895,7 @@
 						</object>
 						<string key="NSFrameSize">{320, 43}</string>
 						<reference key="NSSuperview" ref="514027558"/>
+						<reference key="NSWindow"/>
 						<reference key="IBUIBackgroundColor" ref="592030818"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -895,6 +904,8 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 44}</string>
+				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="IBUIBackgroundColor" ref="144680521"/>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<int key="IBUISeparatorStyle">1</int>
@@ -1721,8 +1732,8 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="1068209857"/>
-							<reference ref="666751943"/>
 							<reference ref="717953053"/>
+							<reference ref="666751943"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Badge Cell</string>
@@ -2069,6 +2080,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>backOneView</string>
 							<string>checkin</string>
+							<string>dismiss</string>
 							<string>displayTextView</string>
 							<string>goToHomeView</string>
 							<string>viewSettings</string>
@@ -2076,6 +2088,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
