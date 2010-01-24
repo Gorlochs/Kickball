@@ -91,6 +91,7 @@
 
 - (void)dealloc {
     [theTableView release];
+    [newVenueName release];
     
     [addressCell release];
     [crossstreetCell release];

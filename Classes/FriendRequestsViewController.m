@@ -179,6 +179,8 @@
     [twitterText release];
     [nameText release];
     [phoneText release];
+    
+    [friendRequests release];
     [super dealloc];
 }
 

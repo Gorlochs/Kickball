@@ -106,6 +106,7 @@
     [theTableView release];
     [userId release];
     [friends release];
+    [userIcons release];
     [super dealloc];
 }
 

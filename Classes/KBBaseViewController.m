@@ -125,6 +125,7 @@
     [popupView release];
     [textViewController release];
     [textViewReturnValue release];
+    [iconImageView release];
     [super dealloc];
 }
 

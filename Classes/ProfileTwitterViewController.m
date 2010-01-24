@@ -115,6 +115,7 @@ NSInteger dateSort(id s1, id s2, void *context)
 - (void)dealloc {
     [theTableView release];
     [tweets release];
+    [sortedTweets release];
     [super dealloc];
 }
 

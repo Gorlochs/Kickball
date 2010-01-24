@@ -421,6 +421,7 @@
     [bottomButtonCell release];
     [detailButtonCell release];
     [smallMapView release];
+    [fullMapView release];
     
     [venueName release];
     [venueAddress release];
@@ -438,6 +439,7 @@
     [venueDetailButton release];
     [specialsButton release];
     [mapButton release];
+    [closeMapButton release];
     
     [checkin release];
     [venue release];

@@ -45,6 +45,11 @@
 
 -(void) dealloc
 {
+    [title release];
+    [subtitle release];
+    [url release];
+    [userId release];
+    [userData release];
 	[imageView release];
 	[super dealloc];
 }

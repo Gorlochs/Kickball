@@ -17,4 +17,12 @@
 	return self;
 }
 
+- (void) dealloc {
+    [url release];
+    [userId release];
+    [title release];
+    [subtitle release];
+    [super dealloc];
+}
+
 @end

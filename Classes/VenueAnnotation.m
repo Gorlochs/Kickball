@@ -18,4 +18,11 @@
 	return self;
 }
 
+- (void) dealloc {
+    [title release];
+    [subtitle release];
+    [venueId release];
+    [super dealloc];
+}
+
 @end

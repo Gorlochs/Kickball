@@ -196,7 +196,7 @@
     
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationDuration:2.0];
+    [UIView setAnimationDuration:2.5];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
     pushView.view.alpha = 1.0;
     [UIView setAnimationDelegate:self];
@@ -214,11 +214,10 @@
 
 
 -(void)animationDidStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context {
-    NSLog(@"!!!!!!!!!!!!!!!!!!!!!!! animation did stop !!!!!!!!!!!!!!!!!");
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-    [UIView setAnimationDuration:2.0];
+    [UIView setAnimationDuration:2.5];
     pushView.view.alpha = 0.0;
     [UIView commitAnimations];
 }

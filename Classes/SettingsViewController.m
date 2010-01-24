@@ -107,6 +107,7 @@
     [username release];
     [password release];
     [friendRequestCount release];
+    [pendingFriendRequests release];
     [super dealloc];
 }
 

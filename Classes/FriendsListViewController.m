@@ -91,7 +91,7 @@
         [iconImageView setHidden:YES];
         [self.view addSubview:instructionView];
     } else {
-       [self startProgressBar:@"Retrieving friends' whereabouts..."]; 
+        [self startProgressBar:@"Retrieving friends' whereabouts..."]; 
     }
 
 	[[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
@@ -115,9 +115,9 @@
 
 - (void)userResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
 	FSUser* user = [FoursquareAPI userFromResponseXML:inString];
-//    if (!hasViewedInstructions) {
-//        [self setUserIconView:user];
-//    }
+    if (hasViewedInstructions) {
+        [self setUserIconView:user];
+    }
     [self setAuthenticatedUser:user];
     NSLog(@"auth'd user: %@", user);
 }
@@ -143,9 +143,14 @@
     [yesterdayCheckins release];
     [theTableView release];
     [checkins release];
+    [mapButton release];
     [instructionView release];
+    [noNetworkView release];
     [footerViewCell release];
     [userIcons release];
+    [nextWelcomeImage release];
+    [previousWelcomeImage release];
+    [welcomeImage release];
     [super dealloc];
 }
 
@@ -462,7 +467,7 @@
         [instructionView removeFromSuperview];
         [self stopProgressBar];
         [self setUserIconView:[self getAuthenticatedUser]];
-//        [iconImageView setHidden:NO];
+        [iconImageView setHidden:NO];
     }
 }
 

@@ -22,5 +22,12 @@
     return self;
 }
 
+- (void) dealloc {
+    [mainTitle release];
+    [subtitle release];
+    [message release];
+    [super dealloc];
+}
+
 
 @end
