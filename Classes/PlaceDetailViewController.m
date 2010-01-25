@@ -569,9 +569,9 @@
 - (void) viewVenueMap {
 
     closeMapButton.alpha = 0;
-    closeMapButton.frame = CGRectMake(280, 102, 45, 45);
+    closeMapButton.frame = CGRectMake(276, 146, 45, 45);
     fullMapView.alpha = 0;
-    fullMapView.frame = CGRectMake(0, 102, 320, 359);
+    fullMapView.frame = CGRectMake(0, 146, 320, 315);
     [self.view addSubview:fullMapView];
     [self.view addSubview:closeMapButton];
     
