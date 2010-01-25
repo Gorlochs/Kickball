@@ -27,6 +27,8 @@
     features.text = @"";
     tags.text = @"";
     hours.text = @"";
+    venueName.text = @"";
+    venueAddress.text = @"";
 
     GAConnectionManager *connectionManager_ = [[GAConnectionManager alloc] initWithAPIKey:@"K6afuuFTXK" delegate:self];
     [connectionManager_ requestListingForPlace:place.guid];
@@ -44,8 +46,10 @@
     NSLog(@"place listing: %@", place.listing);
     place.name = [results objectForKey:@"name"];
     place.address = [results objectForKey:@"address"];
-    int rating = [[results objectForKey:@"web-wide-rating"] doubleValue] * 2;
-    webRating.image = [UIImage imageNamed:[NSString stringWithFormat:@"rating-%d.png", rating]];
+    if ([results objectForKey:@"web-wide-rating"] == nil) {
+        int rating = [[results objectForKey:@"web-wide-rating"] doubleValue] * 2;
+        webRating.image = [UIImage imageNamed:[NSString stringWithFormat:@"rating-%d.png", rating]];
+    }
     
     venueName.text = place.name;
     venueAddress.text = [[results objectForKey:@"address"] componentsJoinedByString:@", "];
