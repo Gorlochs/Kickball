@@ -49,6 +49,8 @@
     if ([results objectForKey:@"web-wide-rating"] == nil) {
         int rating = [[results objectForKey:@"web-wide-rating"] doubleValue] * 2;
         webRating.image = [UIImage imageNamed:[NSString stringWithFormat:@"rating-%d.png", rating]];
+    } else {
+        webRating.image = [UIImage imageNamed:@"webrating-na.png"];
     }
     
     venueName.text = place.name;
