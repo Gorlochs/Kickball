@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="1"/>
+			<integer value="4"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -122,7 +122,7 @@
 							<object class="IBUIButton" id="278600773">
 								<reference key="NSNextResponder" ref="217398424"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{-1, 1}, {41, 37}}</string>
+								<string key="NSFrame">{{-2, 1}, {41, 37}}</string>
 								<reference key="NSSuperview" ref="217398424"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -135,11 +135,14 @@
 									<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="102530421"/>
-								<object class="NSCustomResource" key="IBUIHighlightedImage" id="540435404">
+								<object class="NSCustomResource" key="IBUIHighlightedImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">resultsClear.png</string>
+									<string key="NSResourceName">x-modal02.png</string>
 								</object>
-								<reference key="IBUINormalImage" ref="540435404"/>
+								<object class="NSCustomResource" key="IBUINormalImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">x-modal01.png</string>
+								</object>
 							</object>
 						</object>
 						<string key="NSFrameSize">{320, 39}</string>
