@@ -54,6 +54,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
     // Set up the cell...
@@ -64,6 +65,7 @@
             UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
             [btn setImage:[UIImage imageNamed:@"add01.png"] forState:UIControlStateNormal];
             [btn setImage:[UIImage imageNamed:@"add02.png"] forState:UIControlStateHighlighted];
+            [btn setImage:[UIImage imageNamed:@"checkButton.png"] forState:UIControlStateDisabled];
             btn.frame = CGRectMake(-2, 3, 50, 47);
             btn.userInteractionEnabled = YES;
             btn.tag = indexPath.row;
@@ -95,6 +97,8 @@
     [self startProgressBar:@"Sending friend request..."];
     [[FoursquareAPI sharedInstance] doSendFriendRequest:((FSUser*)[friendRequests objectAtIndex:button.tag]).userId withTarget:self andAction:@selector(friendRequestResponseReceived:withResponseString:)];
     [[Beacon shared] startSubBeaconWithName:@"Friend Someone"];
+    button.enabled = NO;
+    button.alpha = 0.5;
 }
 
 
