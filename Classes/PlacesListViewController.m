@@ -232,7 +232,11 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
         cell.textLabel.font = [UIFont boldSystemFontOfSize:15.0];
         cell.detailTextLabel.font = [UIFont systemFontOfSize:12.0];
-        //cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 43, 320, 1)];
+        line.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.13];
+        [cell addSubview:line];
+        [line release];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
     if ([venues count] > indexPath.section) {
