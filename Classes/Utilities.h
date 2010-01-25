@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+// Salt for hash function. Can be any arbitrary value, but must be shared with server
+extern const NSString *kKBHashSalt;
 
 @interface Utilities : NSObject {
     NSMutableArray *friendsWithPingOn;

@@ -10,6 +10,8 @@
 #import "FoursquareAPI.h"
 #import "KBMessage.h"
 #import "Beacon.h"
+#import "MD5.h"
+#import "Utilities.h"
 
 @implementation KBTextViewController
 
@@ -47,7 +49,10 @@
     NSString *uid = user.userId;
     NSString *un = [user.firstnameLastInitial stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     NSString *shout = [theTextView.text stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-    NSString *urlstring = [NSString stringWithFormat:@"http://www.literalshore.com/gorloch/kickball/test_push.php?shout=%@&uid=%@&un=%@", shout, uid, un];
+	NSString *hashInput = [NSString stringWithFormat:@"%@%@%@%@", uid, un, shout, kKBHashSalt];
+	NSString *hash = [NSString md5: hashInput];
+    NSString *urlstring = [NSString stringWithFormat:
+						   @"http://www.literalshore.com/gorloch/kickball/test_push.php?shout=%@&uid=%@&un=%@&ck=%@", shout, uid, un, hash];
     NSLog(@"urlstring: %@", urlstring);
     NSString *push = [NSString stringWithContentsOfURL:[NSURL URLWithString:urlstring]];
     NSLog(@"push: %@", push);
