@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KBBaseViewController.h"
 
-@class KBBaseViewController;
-
-@interface KBTextViewController : UIViewController <UITextViewDelegate> {
-    IBOutlet UITextView *textView;
+@interface KBTextViewController : KBBaseViewController <UITextViewDelegate> {
+    IBOutlet UITextView *theTextView;
 }
 
 - (IBAction) shout;

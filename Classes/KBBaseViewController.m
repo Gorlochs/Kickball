@@ -16,6 +16,7 @@
 #import "PlaceDetailViewController.h"
 #import "PlacesListViewController.h"
 #import "KBWebViewController.h"
+#import "KBTextViewController.h"
 
 @implementation KBBaseViewController
 
@@ -123,7 +124,6 @@
     [progressViewController release];
     [loginViewModal release];
     [popupView release];
-    [textViewController release];
     [textViewReturnValue release];
 //    [iconImageView release];  // uncommenting this crashes shit. not sure why.
     [super dealloc];
@@ -188,11 +188,6 @@
     [v release];
 }
 
-- (void) displayTextView {
-    textViewController = [[KBTextViewController alloc] initWithNibName:@"KBTextViewController" bundle:nil];
-    [self presentModalViewController:textViewController animated:YES];
-}
-
 - (void) checkin {
     PlacesListViewController *placesListController = [[PlacesListViewController alloc] initWithNibName:@"PlacesListViewController" bundle:nil];
     [self.navigationController pushViewController:placesListController animated:YES];
@@ -206,6 +201,10 @@
     webController.urlString = url;
     [self presentModalViewController:webController animated:YES];
     [webController release];
+}
+- (void) displayTextView {
+    KBTextViewController *textViewController = [[KBTextViewController alloc] initWithNibName:@"KBTextViewController" bundle:nil];
+    [self presentModalViewController:textViewController animated:YES];
 }
 
 - (void) dismiss {

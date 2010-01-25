@@ -16,7 +16,7 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [textView becomeFirstResponder];
+    [theTextView becomeFirstResponder];
 }
 
 - (void) cancelView {
@@ -25,9 +25,9 @@
 }
 
 - (void) shout {
-    if ([textView.text length] > 0) {
+    if ([theTextView.text length] > 0) {
         [[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:nil 
-                                                      andShout:textView.text 
+                                                      andShout:theTextView.text 
                                                        offGrid:NO
                                                      toTwitter:NO
                                                     withTarget:self 
@@ -46,7 +46,7 @@
     FSUser *user = [[FoursquareAPI sharedInstance] currentUser];
     NSString *uid = user.userId;
     NSString *un = [user.firstnameLastInitial stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-    NSString *shout = [textView.text stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+    NSString *shout = [theTextView.text stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     NSString *urlstring = [NSString stringWithFormat:@"http://www.literalshore.com/gorloch/kickball/test_push.php?shout=%@&uid=%@&un=%@", shout, uid, un];
     NSLog(@"urlstring: %@", urlstring);
     NSString *push = [NSString stringWithContentsOfURL:[NSURL URLWithString:urlstring]];
@@ -71,9 +71,27 @@
 	// e.g. self.myOutlet = nil;
 }
 
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    // Any new character added is passed in as the "text" parameter
+    if ([text isEqualToString:@"\n"]) {
+        // Be sure to test for equality using the "isEqualToString" message
+        [textView resignFirstResponder];
+        [self shout];
+        // Return FALSE so that the final '\n' character doesn't get added
+        return FALSE;
+    }
+    // For any other character return TRUE so that the text gets added to the view
+    return TRUE;
+}
+
+//- (BOOL)textViewShouldEndEditing:(UITextView *)textView {
+//    [textView resignFirstResponder];
+//    [self shout];
+//    return YES;
+//}
 
 - (void)dealloc {
-    [textView release];
+    [theTextView release];
     [super dealloc];
 }
 

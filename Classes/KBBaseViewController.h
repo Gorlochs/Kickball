@@ -11,7 +11,6 @@
 #import "PopupMessageView.h"
 #import "FSUser.h"
 #import "KBMessage.h"
-#import "KBTextViewController.h"
 #import "Beacon.h"
 
 static const CGFloat KEYBOARD_ANIMATION_DURATION = 0.3;
@@ -27,9 +26,8 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     ProgressViewController *progressViewController;
     LoginViewModalController *loginViewModal;
     PopupMessageView *popupView;
-    KBTextViewController *textViewController;
-    NSString *textViewReturnValue;
     UIImageView *iconImageView;
+    NSString *textViewReturnValue;
 }
 
 @property (nonatomic, retain) LoginViewModalController *loginViewModal;
