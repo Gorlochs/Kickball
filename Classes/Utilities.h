@@ -15,11 +15,13 @@ extern const NSString *kKBHashSalt;
     NSMutableArray *friendsWithPingOn;
 }
 
+@property (nonatomic, retain) NSMutableArray *friendsWithPingOn;
+
 + (Utilities *)sharedInstance;
 
 - (void) cacheImage: (NSString *) ImageURLString;
 - (UIImage *) getCachedImage: (NSString *) ImageURLString;
 //- (UIImage *) roundCorners: (UIImage*) img;
-- (NSArray*) retrieveAllFriendsWithPingOn;
+- (void) retrieveAllFriendsWithPingOn;
 
 @end

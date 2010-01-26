@@ -18,6 +18,8 @@ static Utilities *sharedInstance = nil;
 
 @implementation Utilities
 
+@synthesize friendsWithPingOn;
+
 + (Utilities*)sharedInstance
 {
     @synchronized(self)
@@ -131,23 +133,37 @@ static Utilities *sharedInstance = nil;
     return image;
 }
 
-- (NSArray*) retrieveAllFriendsWithPingOn {
-    [[FoursquareAPI sharedInstance] getFriendsWithTarget:self andAction:@selector(friendsResponseReceived:withResponseString:)];
+- (NSMutableArray*) friendsWithPingOn {
+    if (friendsWithPingOn) {
+        return friendsWithPingOn;
+    } else {
+        [self retrieveAllFriendsWithPingOn];
+        return nil;
+    }
 }
 
+- (void) retrieveAllFriendsWithPingOn {
+    [[FoursquareAPI sharedInstance] getFriendsWithTarget:self andAction:@selector(friendsResponseReceived:withResponseString:)];
+}
 
 - (void)friendsResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     if (friendsWithPingOn == nil) {
         NSArray *allFriends = [FoursquareAPI friendUsersFromRequestResponseXML:inString];
         friendsWithPingOn = [[NSMutableArray alloc] initWithCapacity:1];
         for (FSUser *friend in allFriends) {
-            if (friend.sendsPingsToSignedInUser) {
-                [friendsWithPingOn addObject:friend];
-            }
+            NSLog(@"friend: %@", friend);
+            [[FoursquareAPI sharedInstance] getUser:friend.userId withTarget:self andAction:@selector(aFriendResponseReceived:withResponseString:)];
         }
     }
-    
-    return friendsWithPingOn;
+    [[NSNotificationCenter defaultCenter] postNotificationName: @"friendsWithPingOnReceived" object: nil];
+}
+
+- (void)aFriendResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+    NSLog(@"friend: %@", inString);
+    FSUser *friend = [FoursquareAPI userFromResponseXML:inString];
+    if (friend.sendsPingsToSignedInUser) {
+        [friendsWithPingOn addObject:friend];
+    }
 }
 
 @end

@@ -170,23 +170,33 @@
 	NSLog(@"ERROR: NSError query result: %@", error);
 }
 
+// this is called when a user received a push notification but does NOT have the app open
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    NSLog(@"launch options: %@", launchOptions);
+    [self applicationDidFinishLaunching:application];
+    self.pushNotificationUserId = [[[launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey] objectForKey: @"aps"] objectForKey: @"uid"];
+    if (launchOptions) {
+        [self application:application didReceiveRemoteNotification:[launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey]];
+    }
+    return YES;
+}
+
+// this is called when a user received a push notification but DOES have the app open
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    //pushUserInfo = [[[NSDictionary alloc] initWithDictionary:userInfo] autorelease];
-	NSLog(@"remote notification: %@",[userInfo description]);
-	NSLog(@"%@", [userInfo objectForKey: @"aps"]);
     self.pushNotificationUserId = [[userInfo objectForKey: @"aps"] objectForKey: @"uid"];
-    
+
     // retrieve user info to get all the relavent data to display
-    [[FoursquareAPI sharedInstance] getUser:self.pushNotificationUserId withTarget:self andAction:@selector(pushUserResponseReceived:withResponseString:)];
+    if([[FoursquareAPI sharedInstance] isAuthenticated]){
+        [[FoursquareAPI sharedInstance] getUser:self.pushNotificationUserId withTarget:self andAction:@selector(pushUserResponseReceived:withResponseString:)];
+    } else {
+        NSLog(@"this shouldn't happen ever!");
+    }
 }
 
 - (void)pushUserResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
 	FSUser *pushedUser = [FoursquareAPI userFromResponseXML:inString];
-    NSLog(@"pushed user: %@", pushedUser);
-    
     pushView = [[KBPushNotificationView alloc] initWithNibName:@"PushNotificationView" bundle:nil];
     pushView.view.frame = CGRectMake(0, 436, 239, 37);
-    NSLog(@"pushed user shout: %@", pushedUser.checkin.shout);
     if (pushedUser.checkin.shout != nil) {
         pushView.messageLabel.text = [NSString stringWithFormat:@"%@ just shouted!", pushedUser.firstnameLastInitial];
         pushView.addressLabel.text = [NSString stringWithFormat:@"%@", pushedUser.checkin.shout];

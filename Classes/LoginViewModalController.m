@@ -53,7 +53,7 @@
 		usernameField.text = username;
 		[self setPasswordFromKeychain];		
 	}
-	
+	[usernameField becomeFirstResponder];
     [[Beacon shared] startSubBeaconWithName:@"Login View"];
 	[super viewDidLoad];
 }

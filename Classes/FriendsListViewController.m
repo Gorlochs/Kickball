@@ -90,6 +90,8 @@
         [self startProgressBar:@"Loading Everything..."];
         [iconImageView setHidden:YES];
         [self.view addSubview:instructionView];
+        [self.view bringSubviewToFront:nextWelcomeImage];
+        [self.view bringSubviewToFront:previousWelcomeImage];
     } else {
         [self startProgressBar:@"Retrieving friends' whereabouts..."]; 
     }
@@ -188,14 +190,14 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"FriendCell";
     
     FriendsListTableCell *cell = (FriendsListTableCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
     if (cell == nil) {
         if (indexPath.section == 3) {
             return footerViewCell;
         }
-        //cell = [[[FriendsListTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         // TODO: I'm not sure that this is the best way to do this with 3.x - there might be a better way to do it now
         UIViewController *vc = [[UIViewController alloc]initWithNibName:@"FriendsListTableCellView" bundle:nil];
         cell = (FriendsListTableCell*) vc.view;
@@ -240,6 +242,7 @@
     
     [cell showHideMayorImage:checkin.isMayor];
     
+    // FIXME: this should be put into the Checkin object and the object should NOT be recalculated every time the method is called
     // probably break this out into another method
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EEE, dd MMM yy HH:mm:ss"];
@@ -462,6 +465,8 @@
         NSString *imageName = [NSString stringWithFormat:@"welcome0%d.png", welcomePageNum + 1];
         NSLog(@"image name: %@", imageName);
         welcomeImage.image = [UIImage imageNamed:imageName];
+        [self.view bringSubviewToFront:nextWelcomeImage];
+        [self.view bringSubviewToFront:previousWelcomeImage];
         welcomePageNum++;
     } else if (welcomePageNum == 7) {
         [instructionView removeFromSuperview];

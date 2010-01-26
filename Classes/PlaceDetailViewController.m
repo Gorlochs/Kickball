@@ -196,31 +196,33 @@
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 9;
+    return 10;
 }
 
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 0) { // points
+    if (section == 0) { // shout
         return isUserCheckedIn;
-    } else if (section == 1) { // badge
+    } else if (section == 1) { // points
+        return isUserCheckedIn;
+    } else if (section == 2) { // badge
         return isUserCheckedIn && [[self getSingleCheckin].badges count] > 0;
-    } else if (section == 2) { // checkin mayor
+    } else if (section == 3) { // checkin mayor
         return [self hasMayorCell];
-    } else if (section == 3) { // checkin
+    } else if (section == 4) { // checkin
         return !isUserCheckedIn;
-    } else if (section == 4) { // gift
+    } else if (section == 5) { // gift
         return NO;
         //return isUserCheckedIn;
-    } else if (section == 5) { // mayor & map cell
+    } else if (section == 6) { // mayor & map cell
         return 1;
-    } else if (section == 6) { // people here
+    } else if (section == 7) { // people here
         return [venue.currentCheckins count] + 1;
-    } else if (section == 7) { // tips
+    } else if (section == 8) { // tips
         return [venue.tips count];
         //return [venue.currentCheckins count];  // WTF? Where did this come from?
-    } else if (section == 8) { // bottom button row
+    } else if (section == 9) { // bottom button row
         return 1;
     } else {
         return 0;
@@ -239,15 +241,16 @@
     
     // Set up the cell...
     if (indexPath.section == 0) {
-        // FIXME: fill in the points the user received for checking in
-        return pointsCell;
+        return shoutCell;
     } else if (indexPath.section == 1) {
+        return pointsCell;
+    } else if (indexPath.section == 2) {
         FSBadge *badge = (FSBadge*)[[self getSingleCheckin].badges objectAtIndex:0];
         badgeImage.image = [[Utilities sharedInstance] getCachedImage:badge.icon];
         badgeLabel.text = badge.badgeDescription;
         badgeTitleLabel.text = badge.badgeName;
         return badgeCell;
-    } else if (indexPath.section == 2) {
+    } else if (indexPath.section == 3) {
         if ([self getSingleCheckin].mayor.user == nil
                 && [[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"nochange"]) {
             
@@ -257,14 +260,14 @@
             newMayorshipLabel.text = [self getSingleCheckin].mayor.mayorCheckinMessage;
             return newMayorCell;
         }
-    } else if (indexPath.section == 3) {
-        return checkinCell;
     } else if (indexPath.section == 4) {
-        return giftCell;
+        return checkinCell;
     } else if (indexPath.section == 5) {
+        return giftCell;
+    } else if (indexPath.section == 6) {
         mayorMapCell.backgroundColor = [UIColor whiteColor];
         return mayorMapCell;
-    } else if (indexPath.section == 6) {
+    } else if (indexPath.section == 7) {
         if (indexPath.row < [venue.currentCheckins count]) {
             cell.detailTextLabel.numberOfLines = 1;
             cell.detailTextLabel.text = nil;
@@ -282,7 +285,7 @@
         } else {
             return detailButtonCell;
         }
-    } else if (indexPath.section == 7) {
+    } else if (indexPath.section == 8) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         FSTip *tip = (FSTip*) [venue.tips objectAtIndex:indexPath.row];
         cell.textLabel.font = [UIFont boldSystemFontOfSize:16];
@@ -290,7 +293,7 @@
         cell.detailTextLabel.numberOfLines = 2;
         cell.detailTextLabel.text = tip.text;
         cell.imageView.image = nil;
-    } else if (indexPath.section == 8) {
+    } else if (indexPath.section == 9) {
         return bottomButtonCell;
     }
 	
@@ -304,26 +307,28 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.section) {
         case 0:
-            return 36;
+            return 44;
         case 1:
-            return 66;
+            return 36;
         case 2:
+            return 66;
+        case 3:
             if ([[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"stolen"]) {
                 return 70;
             } else {
                 return 44;
             }
-        case 3:
-            return 44;
         case 4:
-            return 70;
-        case 5:
-            return 62;
-        case 6:
             return 44;
-        case 7:
+        case 5:
+            return 70;
+        case 6:
             return 62;
+        case 7:
+            return 44;
         case 8:
+            return 62;
+        case 9:
             return 44;
         default:
             return 44;
@@ -355,20 +360,21 @@
         case 2:
         case 3:
         case 4:
+        case 5:
             [headerLabel release];
             return nil;
             break;
-        case 5:
+        case 6:
             // TODO: fix this
             headerLabel.text = @"Mayor                                                           Map";
             break;
-        case 6:
+        case 7:
             headerLabel.text = [NSString stringWithFormat:@"%d %@ Here", [venue.currentCheckins count], [venue.currentCheckins count] == 1 ? @"Person" : @"People"];
             break;
-        case 7:
+        case 8:
             headerLabel.text = [NSString stringWithFormat:@"%d %@", [venue.tips count], [venue.tips count] == 1 ? @"Tip" : @"Tips"];
             break;
-        case 8:  
+        case 9:  
             [headerLabel release];
             return nil;
             break;
@@ -419,6 +425,7 @@
     [stillTheMayorCell release];
     [bottomButtonCell release];
     [detailButtonCell release];
+    [shoutCell release];
     [smallMapView release];
     [fullMapView release];
     
@@ -503,6 +510,11 @@
     // TODO: make this asynchronous
     // TODO: send over userId and venueId and calculate who gets a push notification (i.e., people who are signed up for pings from that user)
     //       Then only send out push to the proper people.
+//    if ([[Utilities sharedInstance] friendsWithPingOn]) {
+//        NSLog(@"friends with ping on pulled from cache: %@", [[[Utilities sharedInstance] friendsWithPingOn] componentsJoinedByString:@","]);
+//    } else {
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(friendsReceived:) name:@"friendsWithPingOnReceived" object:nil];
+//    }
     FSUser *user = [self getAuthenticatedUser];
     NSString *uid = user.userId;
     NSString *un = [user.firstnameLastInitial stringByReplacingOccurrencesOfString:@" " withString:@"+"];
@@ -511,7 +523,10 @@
     NSLog(@"urlstring: %@", urlstring);
     NSString *push = [NSString stringWithContentsOfURL:[NSURL URLWithString:urlstring]];
     NSLog(@"push: %@", push);
+}
 
+- (void)friendsReceived:(NSNotification *)inNotification {
+    NSLog(@"friends with ping on calculated: %@", [[[Utilities sharedInstance] friendsWithPingOn] componentsJoinedByString:@","]);
 }
 
 - (void) togglePing {
@@ -666,6 +681,8 @@
             [place release];
         }
     }
+    // if you don't avoid the next block, it still gets executed even if the above code pushes another view onto the navController, 
+    // resulting in an extra view controller on the stack.
     if (!isMatched) {
         GeoApiTableViewController *vc = [[GeoApiTableViewController alloc] initWithNibName:@"GeoAPIView" bundle:nil];
         [[Beacon shared] startSubBeaconWithName:@"GeoAPI could not find proper venue - going to list view"];
