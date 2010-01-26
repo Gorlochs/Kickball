@@ -53,7 +53,8 @@
     NSLog(@"hash input: %@", hashInput);
 	NSString *hash = [NSString md5: hashInput];
     NSString *urlstring = [NSString stringWithFormat:
-						   @"http://www.literalshore.com/gorloch/kickball/test_push.php?shout=%@&uid=%@&un=%@&ck=%@", shout, uid, un, hash];
+//						   @"http://www.literalshore.com/gorloch/kickball/test_push.php?shout=%@&uid=%@&un=%@&ck=%@", shout, uid, un, hash];
+                           @"https://www.gorlochs.com/kickball/push.php?shout=%@&uid=%@&un=%@&ck=%@", shout, uid, un, hash];
     NSLog(@"urlstring: %@", urlstring);
     
     NSString *push = [NSString stringWithContentsOfURL:[NSURL URLWithString:urlstring]];
