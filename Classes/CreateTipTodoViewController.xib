@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="1"/>
+			<integer value="4"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -105,14 +105,13 @@
 							<object class="IBUIButton" id="921099866">
 								<reference key="NSNextResponder" ref="354065979"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{11, 7}, {60, 24}}</string>
+								<string key="NSFrame">{{-2, 1}, {40, 37}}</string>
 								<reference key="NSSuperview" ref="354065979"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
 								<reference key="IBUIFont" ref="874383039"/>
-								<int key="IBUIButtonType">1</int>
 								<string key="IBUINormalTitle">cancel</string>
 								<reference key="IBUIHighlightedTitleColor" ref="548158928"/>
 								<object class="NSColor" key="IBUINormalTitleColor">
@@ -120,6 +119,14 @@
 									<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="236440299"/>
+								<object class="NSCustomResource" key="IBUIHighlightedImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">x-modal02.png</string>
+								</object>
+								<object class="NSCustomResource" key="IBUINormalImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">x-modal01.png</string>
+								</object>
 							</object>
 						</object>
 						<string key="NSFrameSize">{320, 39}</string>
@@ -451,8 +458,8 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="213153407"/>
-							<reference ref="921099866"/>
 							<reference ref="116258931"/>
+							<reference ref="921099866"/>
 						</object>
 						<reference key="parent" ref="191373211"/>
 						<string key="objectName">Header View</string>
@@ -632,6 +639,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>backOneView</string>
 							<string>checkin</string>
+							<string>dismiss</string>
 							<string>displayTextView</string>
 							<string>goToHomeView</string>
 							<string>viewSettings</string>
@@ -639,6 +647,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
