@@ -307,6 +307,7 @@
 		6A79D0D710E5E682009082E5 /* PopupMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A79D0D610E5E682009082E5 /* PopupMessageView.m */; };
 		6A79D0D910E5E692009082E5 /* PopupMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A79D0D810E5E692009082E5 /* PopupMessageView.xib */; };
 		6A79D0FE10E68D1A009082E5 /* KBMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A79D0FD10E68D1A009082E5 /* KBMessage.m */; };
+		6A7DEA6E110F9CB3006339F1 /* mayorbadge-big.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A7DEA6D110F9CB3006339F1 /* mayorbadge-big.png */; };
 		6A7EA25F110AAD3500453C0C /* libPMAnalytics-r91.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A7EA25E110AAD3500453C0C /* libPMAnalytics-r91.a */; };
 		6A7EA344110B847400453C0C /* welcome01.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A7EA343110B847400453C0C /* welcome01.png */; };
 		6A7ED9F710A91DC9002FB1DC /* VenueAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A7ED9F610A91DC9002FB1DC /* VenueAnnotation.m */; };
@@ -895,6 +896,7 @@
 		6A79D0D810E5E692009082E5 /* PopupMessageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupMessageView.xib; sourceTree = "<group>"; };
 		6A79D0FC10E68D1A009082E5 /* KBMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBMessage.h; sourceTree = "<group>"; };
 		6A79D0FD10E68D1A009082E5 /* KBMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBMessage.m; sourceTree = "<group>"; };
+		6A7DEA6D110F9CB3006339F1 /* mayorbadge-big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mayorbadge-big.png"; sourceTree = "<group>"; };
 		6A7EA25E110AAD3500453C0C /* libPMAnalytics-r91.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPMAnalytics-r91.a"; sourceTree = "<group>"; };
 		6A7EA343110B847400453C0C /* welcome01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome01.png; sourceTree = "<group>"; };
 		6A7ED9F510A91DC9002FB1DC /* VenueAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VenueAnnotation.h; sourceTree = "<group>"; };
@@ -1680,6 +1682,7 @@
 		6A39EC4B109662D3006F76C3 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				6A7DEA6D110F9CB3006339F1 /* mayorbadge-big.png */,
 				6A00546C110D5B6800EB941C /* shoutbox.png */,
 				6A005442110D579D00EB941C /* loadmore01.png */,
 				6A005443110D579D00EB941C /* loadmore02.png */,
@@ -2498,6 +2501,7 @@
 				6A00543E110D55C000EB941C /* x-modal01.png in Resources */,
 				6A00543F110D55C000EB941C /* x-modal02.png in Resources */,
 				6A00546D110D5B6800EB941C /* shoutbox.png in Resources */,
+				6A7DEA6E110F9CB3006339F1 /* mayorbadge-big.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
