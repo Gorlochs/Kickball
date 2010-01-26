@@ -91,7 +91,7 @@
 }
 
 - (void) displayTodoTipMessage:(NSNotification *)inNotification {
-    KBMessage *msg = [[KBMessage alloc] initWithMember:@"Kickball Notification" andSubtitle:@"Your todo/tip was sent" andMessage:@"Thank you."];
+    KBMessage *msg = [[KBMessage alloc] initWithMember:@"Kickball Notification" andMessage:@"Your todo/tip was sent"];
     [self displayPopupMessage:msg];
     [msg release];
 }
@@ -503,7 +503,7 @@
     for (FSScore *score in ci.scoring.scores) {
         checkinText = [checkinText stringByAppendingString:[NSString stringWithFormat:@"+%d %@ \n", score.points, score.message]];
     }
-    KBMessage *message = [[KBMessage alloc] initWithMember:@"Check-in" andSubtitle:@"Successful!" andMessage:checkinText];
+    KBMessage *message = [[KBMessage alloc] initWithMember:@"Check in successful" andMessage:checkinText];
     [self displayPopupMessage:message];
     [message release];
     
@@ -566,7 +566,7 @@
 
 - (void) showSpecial {
     FSSpecial *special = ((FSSpecial*)[[self venue].specials objectAtIndex:0]);
-    KBMessage *msg = [[KBMessage alloc] initWithMember:special.venue.name andSubtitle:special.venue.addressWithCrossstreet andMessage:special.message];
+    KBMessage *msg = [[KBMessage alloc] initWithMember:special.venue.name andMessage:[[special.venue.addressWithCrossstreet stringByAppendingString:@"\n"] stringByAppendingString:special.message]];
     [self displayPopupMessage:msg];
     [msg release];
 }
@@ -611,7 +611,7 @@
 
 - (void) markVenueWrongAddress {
     [[Beacon shared] startSubBeaconWithName:@"Wrong Address"];
-    KBMessage *msg = [[KBMessage alloc] initWithMember:@"Sorry" andSubtitle:@"" andMessage:@"This functionality was not implemented in the Foursquare API. We will add it as soon as it is made available to us"];
+    KBMessage *msg = [[KBMessage alloc] initWithMember:@"Sorry" andMessage:@"This functionality was not implemented in the Foursquare API. We will add it as soon as it is made available to us"];
     [self displayPopupMessage:msg];
     [msg release];
 }
@@ -641,7 +641,7 @@
     [self stopProgressBar];
     
     if (isOK) {
-        KBMessage *msg = [[KBMessage alloc] initWithMember:@"Foursquare Notification" andSubtitle:@"Venue Closure" andMessage:@"Thank you for notifying Foursquare."];
+        KBMessage *msg = [[KBMessage alloc] initWithMember:@"Foursquare Notification" andMessage:@"Thank you for notifying Foursquare of the venue closure."];
         [self displayPopupMessage:msg];
         [msg release];
     }

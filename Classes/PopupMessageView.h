@@ -12,7 +12,7 @@
 @interface PopupMessageView : UIViewController {
     KBMessage *message;
     IBOutlet UILabel *messageTitle;
-    IBOutlet UILabel *subtitle;
+    //IBOutlet UILabel *subtitle;
     IBOutlet UILabel *text;
     IBOutlet UIButton *closeButton;
 }

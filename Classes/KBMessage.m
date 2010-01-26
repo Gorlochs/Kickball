@@ -13,6 +13,15 @@
 
 @synthesize mainTitle, subtitle, message;
 
+
+- (id) initWithMember: (NSString*)maintitle andMessage:(NSString*)msg
+{
+    self = [super init];
+    self.mainTitle = maintitle;
+    self.message = msg;
+    return self;
+}
+
 - (id) initWithMember: (NSString*)maintitle andSubtitle:(NSString*)subTitle andMessage:(NSString*)msg
 {
     self = [super init];

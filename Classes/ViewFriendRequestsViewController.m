@@ -76,7 +76,7 @@
     
     KBMessage *message = nil;
     if (user) {
-        message = [[KBMessage alloc] initWithMember:@"Friend Request" andSubtitle:@"Approved!" andMessage:@"You now have a new buddy."];
+        message = [[KBMessage alloc] initWithMember:@"Friend Request Approved" andMessage:@"You now have a new buddy."];
         int i = 0;
         for (FSUser *u in pendingFriendRequests) {
             if (user.userId == u.userId) {
@@ -89,7 +89,7 @@
             i++;
         }
     } else {
-        message = [[KBMessage alloc] initWithMember:@"Friend Request" andSubtitle:@"Error!" andMessage:@"Something went wrong."];
+        message = [[KBMessage alloc] initWithMember:@"Friend Request Error" andMessage:@"Something went wrong."];
     }
     [self displayPopupMessage:message];
     [message release];

@@ -94,7 +94,7 @@
     BOOL containsUnauthorized = [inString rangeOfString:@"unauthorized" options:NSCaseInsensitiveSearch].length > 0;
     if (containsUnauthorized) {
         // display fail message
-        KBMessage *message = [[KBMessage alloc] initWithMember:@"Authentication" andSubtitle:@"Failed" andMessage:@"Please try again."];
+        KBMessage *message = [[KBMessage alloc] initWithMember:@"Authentication Failed" andMessage:@"Please try again."];
         [self displayPopupMessage:message];
         [message release];
     } else {

@@ -19,6 +19,7 @@
 @property (nonatomic, retain) NSString *subtitle;
 @property (nonatomic, retain) NSString *message;
 
+- (id) initWithMember: (NSString*)maintitle andMessage:(NSString*)msg;
 - (id) initWithMember: (NSString*)maintitle andSubtitle:(NSString*)subTitle andMessage:(NSString*)msg;
 
 @end

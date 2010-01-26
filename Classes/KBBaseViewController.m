@@ -76,7 +76,7 @@
 }
 
 - (void) displayShoutMessage:(NSNotification *)inNotification {
-    KBMessage *msg = [[KBMessage alloc] initWithMember:@"Kickball Notification" andSubtitle:@"Your shout was sent" andMessage:@"Thank you."];
+    KBMessage *msg = [[KBMessage alloc] initWithMember:@"Kickball Notification" andMessage:@"Your shout was sent."];
     [self displayPopupMessage:msg];
     [msg release];
 }
@@ -165,6 +165,7 @@
     popupView = [[PopupMessageView alloc] initWithNibName:@"PopupMessageView" bundle:nil];
     popupView.message = message;
     popupView.view.alpha = 0;
+//    popupView.view.layer.cornerRadius = 8.0;
     [self.view addSubview:popupView.view];
     
     [UIView beginAnimations:nil context:NULL];

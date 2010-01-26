@@ -107,7 +107,7 @@
     [self stopProgressBar];
     NSLog(@"user sent a friend request: %@", user);
     
-    KBMessage *message = [[KBMessage alloc] initWithMember:@"Friend Request" andSubtitle:@"Complete!" andMessage:@"Your future buddy has been sent a friend request."];
+    KBMessage *message = [[KBMessage alloc] initWithMember:@"Friend Request" andMessage:@"Your future buddy has been sent a friend request."];
     [self displayPopupMessage:message];
     [message release];
 }
@@ -198,7 +198,7 @@
         [[FoursquareAPI sharedInstance] findFriendsByName:nameText.text withTarget:self andAction:@selector(searchResponseReceived:withResponseString:)];
         [[Beacon shared] startSubBeaconWithName:@"Searching For Friend By Name"];
     } else {
-        KBMessage *message = [[KBMessage alloc] initWithMember:@"Search Error" andSubtitle:@"Missing value" andMessage:@"Please fill in the name field"];
+        KBMessage *message = [[KBMessage alloc] initWithMember:@"Search Error" andMessage:@"Missing value. Please fill in the name field"];
         [self displayPopupMessage:message];
         [message release];
     }
@@ -210,7 +210,7 @@
         [[FoursquareAPI sharedInstance] findFriendsByTwitterName:twitterText.text withTarget:self andAction:@selector(searchResponseReceived:withResponseString:)];
         [[Beacon shared] startSubBeaconWithName:@"Searching For Friend By Twitter"];
     } else {
-        KBMessage *message = [[KBMessage alloc] initWithMember:@"Search Error" andSubtitle:@"Missing value" andMessage:@"Please fill in the twitter field"];
+        KBMessage *message = [[KBMessage alloc] initWithMember:@"Search Error" andMessage:@"Please fill in the twitter field"];
         [self displayPopupMessage:message];
         [message release];
     }
@@ -223,7 +223,7 @@
         [[FoursquareAPI sharedInstance] findFriendsByPhone:phoneText.text withTarget:self andAction:@selector(searchResponseReceived:withResponseString:)];
         [[Beacon shared] startSubBeaconWithName:@"Searching For Friend By Phone"];
     } else {
-        KBMessage *message = [[KBMessage alloc] initWithMember:@"Search Error" andSubtitle:@"Missing value" andMessage:@"Please fill in the phone field"];
+        KBMessage *message = [[KBMessage alloc] initWithMember:@"Search Error" andMessage:@"Please fill in the phone field"];
         [self displayPopupMessage:message];
         [message release];
     }

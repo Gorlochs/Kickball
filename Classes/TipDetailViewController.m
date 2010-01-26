@@ -32,12 +32,12 @@
     NSLog(@"returned tip id: %@", tipId);
     if (tipId != nil) {
         // display thank you message
-        KBMessage *message = [[KBMessage alloc] initWithMember:@"Tips" andSubtitle:@"Success" andMessage:@"Thank you."];
+        KBMessage *message = [[KBMessage alloc] initWithMember:@"Tips" andMessage:@"Success"];
         [self displayPopupMessage:message];
         [message release];
     } else {
         // display error message
-        KBMessage *message = [[KBMessage alloc] initWithMember:@"Tips" andSubtitle:@"Error" andMessage:@"We apologize for the error. Please try again later."];
+        KBMessage *message = [[KBMessage alloc] initWithMember:@"Tips" andMessage:@"Error. We apologize for the error. Please try again later."];
         [self displayPopupMessage:message];
         [message release];
     }

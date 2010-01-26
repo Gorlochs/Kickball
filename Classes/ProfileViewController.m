@@ -103,7 +103,7 @@
 
 - (void) didTapBadge: (UIControl *) button {
     FSBadge *badge = (FSBadge*)[user.badges objectAtIndex:button.tag];
-    KBMessage *message = [[KBMessage alloc] initWithMember:badge.badgeName andSubtitle:nil andMessage:badge.badgeDescription];
+    KBMessage *message = [[KBMessage alloc] initWithMember:badge.badgeName andMessage:badge.badgeDescription];
     [self displayPopupMessage:message];
     [message release];
     [[Beacon shared] startSubBeaconWithName:@"View Badge Details"];
@@ -466,7 +466,7 @@
     user.friendStatus = FSStatusPendingYou;
     [theTableView reloadData];
     
-    KBMessage *msg = [[KBMessage alloc] initWithMember:@"Kickball Notification" andSubtitle:@"Friend Request" andMessage:@"Your request has been sent."];
+    KBMessage *msg = [[KBMessage alloc] initWithMember:@"Kickball Notification" andMessage:@"Your friend request has been sent."];
     [self displayPopupMessage:msg];
     [msg release];
 }
@@ -498,7 +498,7 @@
     [self stopProgressBar];
     
     // TODO: figure out what we want to do here. How do we show points?
-    KBMessage *msg = [[KBMessage alloc] initWithMember:@"Kickball Notification" andSubtitle:@"Checking in" andMessage:@"Thank you for checking in"];
+    KBMessage *msg = [[KBMessage alloc] initWithMember:@"Kickball Notification" andMessage:@"Thank you for checking in"];
     [self displayPopupMessage:msg];
     [msg release];
 }
@@ -525,7 +525,7 @@
 }
 
 - (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error {
-    KBMessage *message = [[KBMessage alloc] initWithMember:@"Twitter" andSubtitle:@"Fail Whale" andMessage:@"Sorry. It seems that Twitter is down. Try again later."];
+    KBMessage *message = [[KBMessage alloc] initWithMember:@"Twitter" andMessage:@"Sorry. It seems that Twitter is down. Try again later."];
     [self displayPopupMessage:message];
     [message release];
     NSLog(@"requestFailed: %@", connectionIdentifier);

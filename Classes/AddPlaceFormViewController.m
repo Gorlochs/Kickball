@@ -137,7 +137,7 @@
                                          withTarget:self 
                                           andAction:@selector(newVenueResponseReceived:withResponseString:)];
     } else {
-        KBMessage *msg = [[KBMessage alloc] initWithMember:@"Form Error!" andSubtitle:@"Please fix the following error:" andMessage:@"All the required fields need to be filled in"];
+        KBMessage *msg = [[KBMessage alloc] initWithMember:@"Form Error!" andMessage:@"All the required fields need to be filled in"];
         [self displayPopupMessage:msg];
         [msg release];
     }
@@ -169,7 +169,7 @@
     [self stopProgressBar];
     
     // TODO: we should probably take the user off this page.
-    KBMessage *msg = [[KBMessage alloc] initWithMember:@"Checkin Successful" andSubtitle:@"Nice job!" andMessage:checkin.message];
+    KBMessage *msg = [[KBMessage alloc] initWithMember:@"Check in Successful" andMessage:checkin.message];
     [self displayPopupMessage:msg];
     [msg release];
 }

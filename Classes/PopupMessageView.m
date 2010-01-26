@@ -16,7 +16,7 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
     messageTitle.text = message.mainTitle;
-    subtitle.text = message.subtitle;
+    //subtitle.text = message.subtitle;
     text.text = message.message; // yikes, this is one scary line of code. I couldn't have done this on purpose.
 }
 
@@ -35,7 +35,7 @@
 - (void)dealloc {
     [message release];
     [messageTitle release];
-    [subtitle release];
+    //[subtitle release];
     [text release];
     [closeButton release];
     [super dealloc];
