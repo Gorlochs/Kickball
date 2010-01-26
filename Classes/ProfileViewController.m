@@ -65,7 +65,12 @@
     }
     
     isPingAndUpdatesOn = user.sendsPingsToSignedInUser;
-    pingsAndUpdates.selected = user.sendsPingsToSignedInUser;
+    if (isPingAndUpdatesOn) {
+        [pingsAndUpdates setImage:[UIImage imageNamed:@"profilePings01.png"] forState:UIControlStateNormal];
+    } else {
+        [pingsAndUpdates setImage:[UIImage imageNamed:@"profilePings03.png"] forState:UIControlStateNormal];
+    }
+    //pingsAndUpdates.selected = user.sendsPingsToSignedInUser;
     
     // user icon
     userIcon.image = [[Utilities sharedInstance] getCachedImage:user.photo];
@@ -475,8 +480,8 @@
     NSLog(@"instring: %@", inString);
 	BOOL newPingSetting = [FoursquareAPI pingSettingFromResponseXML:inString];
     NSLog(@"new ping setting: %d", newPingSetting);
-    user.sendsPingsToSignedInUser = newPingSetting;
-    isPingAndUpdatesOn = newPingSetting;
+    user.sendsPingsToSignedInUser = !user.sendsPingsToSignedInUser;
+    isPingAndUpdatesOn = !isPingAndUpdatesOn;
     //pingsAndUpdates.selected = isPingAndUpdatesOn;
     if (isPingAndUpdatesOn) {
         [pingsAndUpdates setImage:[UIImage imageNamed:@"profilePings01.png"] forState:UIControlStateNormal];

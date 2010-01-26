@@ -13,7 +13,7 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="72"/>
-			<integer value="113"/>
+			<integer value="187"/>
 			<integer value="8"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
@@ -755,7 +755,7 @@
 						<int key="NSvFlags">256</int>
 						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBUIImageView" id="189869910">
+							<object class="IBUIImageView" id="588751849">
 								<reference key="NSNextResponder" ref="166623049"/>
 								<int key="NSvFlags">256</int>
 								<string key="NSFrameSize">{320, 221}</string>
@@ -789,7 +789,7 @@
 								<float key="IBUIMinimumFontSize">10</float>
 								<int key="IBUINumberOfLines">2</int>
 							</object>
-							<object class="IBUILabel" id="251648828">
+							<object class="IBUILabel" id="417723779">
 								<reference key="NSNextResponder" ref="166623049"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{8, 23}, {174, 20}}</string>
@@ -1138,21 +1138,21 @@
 					<string key="NSResourceName">placeMapClose01.png</string>
 				</object>
 			</object>
-			<object class="IBUITableViewCell" id="609769252">
+			<object class="IBUITableViewCell" id="365405591">
 				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<object class="IBUIView" id="10691854">
-						<reference key="NSNextResponder" ref="609769252"/>
+					<object class="IBUIView" id="589675461">
+						<reference key="NSNextResponder" ref="365405591"/>
 						<int key="NSvFlags">256</int>
 						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBUIButton" id="856620385">
-								<reference key="NSNextResponder" ref="10691854"/>
+							<object class="IBUIButton" id="1045893512">
+								<reference key="NSNextResponder" ref="589675461"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrameSize">{320, 43}</string>
-								<reference key="NSSuperview" ref="10691854"/>
+								<reference key="NSSuperview" ref="589675461"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -1175,7 +1175,7 @@
 							</object>
 						</object>
 						<string key="NSFrameSize">{320, 43}</string>
-						<reference key="NSSuperview" ref="609769252"/>
+						<reference key="NSSuperview" ref="365405591"/>
 						<reference key="IBUIBackgroundColor" ref="592030818"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -1187,7 +1187,7 @@
 				<reference key="IBUIBackgroundColor" ref="144680521"/>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<int key="IBUISeparatorStyle">1</int>
-				<reference key="IBUIContentView" ref="10691854"/>
+				<reference key="IBUIContentView" ref="589675461"/>
 			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -1589,14 +1589,14 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">shoutCell</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="609769252"/>
+						<reference key="destination" ref="365405591"/>
 					</object>
 					<int key="connectionID">185</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">displayTextView</string>
-						<reference key="source" ref="856620385"/>
+						<reference key="source" ref="1045893512"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -1814,9 +1814,9 @@
 						<reference key="object" ref="340386414"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="189869910"/>
+							<reference ref="588751849"/>
 							<reference ref="494498104"/>
-							<reference ref="251648828"/>
+							<reference ref="417723779"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">New Mayor Cell</string>
@@ -1960,27 +1960,27 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">183</int>
-						<reference key="object" ref="609769252"/>
+						<reference key="object" ref="365405591"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="856620385"/>
+							<reference ref="1045893512"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Shout Cell</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">184</int>
-						<reference key="object" ref="856620385"/>
-						<reference key="parent" ref="609769252"/>
+						<reference key="object" ref="1045893512"/>
+						<reference key="parent" ref="365405591"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">187</int>
-						<reference key="object" ref="189869910"/>
+						<reference key="object" ref="588751849"/>
 						<reference key="parent" ref="340386414"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">188</int>
-						<reference key="object" ref="251648828"/>
+						<reference key="object" ref="417723779"/>
 						<reference key="parent" ref="340386414"/>
 					</object>
 				</object>
@@ -2066,7 +2066,7 @@
 					<string>{{385, 770}, {320, 66}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{316, 574}, {320, 222}}</string>
+					<string>{{172, 665}, {320, 222}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -2259,6 +2259,7 @@
 							<string>mayorNameLabel</string>
 							<string>newMayorCell</string>
 							<string>newMayorshipLabel</string>
+							<string>newMayorshipSublabel</string>
 							<string>pingToggleButton</string>
 							<string>pointsCell</string>
 							<string>shoutCell</string>
@@ -2289,6 +2290,7 @@
 							<string>UITableViewCell</string>
 							<string>UILabel</string>
 							<string>UITableViewCell</string>
+							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UIButton</string>
 							<string>UITableViewCell</string>

@@ -464,6 +464,7 @@ static FoursquareAPI *sharedInstance = nil;
 			NSString * key = [[settingsResult childAtIndex:counter] name];
 			NSString * value = [[settingsResult childAtIndex:counter] stringValue];
             if([key isEqualToString:@"pings"]){
+                NSLog(@"isPingSet (FoursquareAPI): %@", value);
 				isPingSet = [value isEqualToString:@"on"];
             }
         }
