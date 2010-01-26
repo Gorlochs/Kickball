@@ -261,6 +261,9 @@
             return stillTheMayorCell;
         } else if ([[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"stolen"]) {
             newMayorshipLabel.text = [self getSingleCheckin].mayor.mayorCheckinMessage;
+            if ([[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"stolen"]) {
+                newMayorshipSublabel.text = [NSString stringWithFormat:@"(Crown stolen from %@)", [self getSingleCheckin].mayor.user.firstnameLastInitial];
+            }
             return newMayorCell;
         }
     } else if (indexPath.section == 4) {
@@ -318,8 +321,8 @@
         case 2:
             return 66;
         case 3:
-            if ([[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"stolen"]) {
-                return 70;
+            if ([[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"stolen"] || [[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"new"]) {
+                return 221;
             } else {
                 return 44;
             }
@@ -440,6 +443,7 @@
     [badgeLabel release];
     [badgeTitleLabel release];
     [newMayorshipLabel release];
+    [newMayorshipSublabel release];
     [stillTheMayorLabel release];
     
     [badgeImage release];
