@@ -12,8 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="184"/>
-			<integer value="107"/>
+			<integer value="72"/>
 			<integer value="113"/>
 			<integer value="8"/>
 		</object>
@@ -411,7 +410,7 @@
 				<reference key="IBUIContentView" ref="218964591"/>
 			</object>
 			<object class="IBUITableViewCell" id="127141232">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -423,15 +422,15 @@
 							<object class="IBUILabel" id="325447686">
 								<reference key="NSNextResponder" ref="396356087"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{15, 7}, {365, 21}}</string>
+								<string key="NSFrame">{{68, 7}, {180, 21}}</string>
 								<reference key="NSSuperview" ref="396356087"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<string key="IBUIText">Success! You're all checked in. Now, how about goodies?</string>
-								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">Helvetica</string>
-									<double key="NSSize">11</double>
+								<string key="IBUIText">Success! You’re all checked in.</string>
+								<object class="NSFont" key="IBUIFont" id="154782799">
+									<string key="NSName">Helvetica-Bold</string>
+									<double key="NSSize">12</double>
 									<int key="NSfFlags">16</int>
 								</object>
 								<reference key="IBUITextColor" ref="147622804"/>
@@ -450,6 +449,7 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{317, 36}</string>
+				<reference key="NSSuperview"/>
 				<reference key="IBUIBackgroundColor" ref="144680521"/>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<int key="IBUISeparatorStyle">1</int>
@@ -457,7 +457,7 @@
 				<reference key="IBUIContentView" ref="396356087"/>
 			</object>
 			<object class="IBUITableViewCell" id="268361089">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -527,7 +527,6 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 66}</string>
-				<reference key="NSSuperview"/>
 				<reference key="IBUIBackgroundColor" ref="144680521"/>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<int key="IBUISeparatorStyle">1</int>
@@ -795,11 +794,7 @@
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="IBUIText">You just became Mayor of Clyde Common</string>
-								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">Helvetica-Bold</string>
-									<double key="NSSize">12</double>
-									<int key="NSfFlags">16</int>
-								</object>
+								<reference key="IBUIFont" ref="154782799"/>
 								<reference key="IBUITextColor" ref="144680521"/>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">1</int>
@@ -1135,21 +1130,21 @@
 					<string key="NSResourceName">placeMapClose01.png</string>
 				</object>
 			</object>
-			<object class="IBUITableViewCell" id="825333232">
-				<reference key="NSNextResponder"/>
+			<object class="IBUITableViewCell" id="292431238">
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<object class="IBUIView" id="684592942">
-						<reference key="NSNextResponder" ref="825333232"/>
+					<object class="IBUIView" id="397037726">
+						<reference key="NSNextResponder" ref="292431238"/>
 						<int key="NSvFlags">256</int>
 						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBUIButton" id="706943233">
-								<reference key="NSNextResponder" ref="684592942"/>
+							<object class="IBUIButton" id="201631023">
+								<reference key="NSNextResponder" ref="397037726"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrameSize">{320, 43}</string>
-								<reference key="NSSuperview" ref="684592942"/>
+								<reference key="NSSuperview" ref="397037726"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -1172,7 +1167,7 @@
 							</object>
 						</object>
 						<string key="NSFrameSize">{320, 43}</string>
-						<reference key="NSSuperview" ref="825333232"/>
+						<reference key="NSSuperview" ref="292431238"/>
 						<reference key="IBUIBackgroundColor" ref="592030818"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -1181,11 +1176,10 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 44}</string>
-				<reference key="NSSuperview"/>
 				<reference key="IBUIBackgroundColor" ref="144680521"/>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<int key="IBUISeparatorStyle">1</int>
-				<reference key="IBUIContentView" ref="684592942"/>
+				<reference key="IBUIContentView" ref="397037726"/>
 			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -1587,14 +1581,14 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">shoutCell</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="825333232"/>
+						<reference key="destination" ref="292431238"/>
 					</object>
 					<int key="connectionID">185</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">displayTextView</string>
-						<reference key="source" ref="706943233"/>
+						<reference key="source" ref="201631023"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -1971,18 +1965,18 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">183</int>
-						<reference key="object" ref="825333232"/>
+						<reference key="object" ref="292431238"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="706943233"/>
+							<reference ref="201631023"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Shout Cell</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">184</int>
-						<reference key="object" ref="706943233"/>
-						<reference key="parent" ref="825333232"/>
+						<reference key="object" ref="201631023"/>
+						<reference key="parent" ref="292431238"/>
 					</object>
 				</object>
 			</object>
@@ -2125,7 +2119,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{637, 434}, {320, 460}}</string>
+					<string>{{603, 209}, {320, 460}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{0, 930}, {325, 54}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
