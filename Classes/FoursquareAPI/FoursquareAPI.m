@@ -400,7 +400,7 @@ static FoursquareAPI *sharedInstance = nil;
 	NSLog(@"error: %@", [err localizedDescription]);
 	
 	NSArray * allUsers;
-    NSMutableArray * users = [[NSMutableArray alloc] initWithCapacity:1];
+    NSMutableArray * users = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
 	
 	//get the groups
 	allUsers = [userParser nodesForXPath:@"//requests/user" error:nil];
@@ -479,7 +479,7 @@ static FoursquareAPI *sharedInstance = nil;
 	NSLog(@"error: %@", [err localizedDescription]);
 	
 	NSArray * allUsers;
-    NSMutableArray * users = [[NSMutableArray alloc] initWithCapacity:1];
+    NSMutableArray * users = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
 	
 	//get the groups
 	allUsers = [userParser nodesForXPath:@"//users/user" error:nil];
@@ -498,7 +498,7 @@ static FoursquareAPI *sharedInstance = nil;
 	NSLog(@"error: %@", [err localizedDescription]);
 	
 	NSArray * allUsers;
-    NSMutableArray * users = [[NSMutableArray alloc] initWithCapacity:1];
+    NSMutableArray * users = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
 	
 	//get the groups
 	allUsers = [userParser nodesForXPath:@"//requests/user" error:nil];
@@ -517,7 +517,7 @@ static FoursquareAPI *sharedInstance = nil;
 	NSLog(@"error: %@", [err localizedDescription]);
 	
 	NSArray * allUsers;
-    NSMutableArray * users = [[NSMutableArray alloc] initWithCapacity:1];
+    NSMutableArray * users = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
 	
 	//get the groups
 	allUsers = [userParser nodesForXPath:@"//friends/user" error:nil];
@@ -652,7 +652,7 @@ static FoursquareAPI *sharedInstance = nil;
 }
 
 + (NSArray *) _checkinsFromNode:(CXMLNode *) inputNode {
-    NSMutableArray * allCheckins = [[NSMutableArray alloc] initWithCapacity:1];
+    NSMutableArray * allCheckins = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
     //FSCheckin * oneCheckin = [[FSCheckin alloc] init];
 	NSArray * checkinsReturned = [inputNode nodesForXPath:@"//checkin" error:nil];
 	for (CXMLElement *checkinAttr in checkinsReturned) {
@@ -749,7 +749,7 @@ static FoursquareAPI *sharedInstance = nil;
 }
 
 + (FSScoring *) _scoringFromNode:(CXMLNode *) inputNode{
-	NSMutableArray * allScores = [[NSMutableArray alloc] initWithCapacity:1];
+	NSMutableArray * allScores = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
 	FSScoring *theScoring = [[FSScoring alloc] init];
 	
 	//get all the scores in the checkin
@@ -794,7 +794,7 @@ static FoursquareAPI *sharedInstance = nil;
 }
 
 + (NSArray *) _venuesFromNode:(CXMLNode *) inputNode{
-	NSMutableArray * groupOfVenues = [[NSMutableArray alloc] initWithCapacity:1];
+	NSMutableArray * groupOfVenues = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
 	
 	//now grab the venues in each group	
 	NSArray * venuesInGroup = [inputNode nodesForXPath:@"venue" error:nil];
@@ -903,7 +903,7 @@ static FoursquareAPI *sharedInstance = nil;
 }
 
 + (NSArray *) _tipsFromNode:(CXMLNode *) inputNode{
-	NSMutableArray * allTips = [[NSMutableArray alloc] initWithCapacity:1];
+	NSMutableArray * allTips = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
 	
 	NSArray * tips = [inputNode nodesForXPath:@"//tip" error:nil];
 	for (CXMLElement *tipResult in tips) {
@@ -930,7 +930,7 @@ static FoursquareAPI *sharedInstance = nil;
 }
 
 + (NSArray *) _badgesFromNode:(CXMLNode *) inputNode {
-    NSMutableArray * loggedUserBadges = [[NSMutableArray alloc] initWithCapacity:1];
+    NSMutableArray * loggedUserBadges = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
     
     NSArray * userBadgeXML = [inputNode nodesForXPath:@"//badges/badge" error:nil];
     for (CXMLElement *loggedBadge in userBadgeXML) {
@@ -955,7 +955,7 @@ static FoursquareAPI *sharedInstance = nil;
 }
 
 + (NSArray *) _friendsFromNode:(CXMLNode *) inputNode{
-	NSMutableArray * allFriends = [[NSMutableArray alloc] initWithCapacity:1];
+	NSMutableArray * allFriends = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
 	
 	NSArray * friends = [inputNode nodesForXPath:@"//friend" error:nil];
 	for (CXMLElement *friendResult in friends) {

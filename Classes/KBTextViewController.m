@@ -50,10 +50,12 @@
     NSString *un = [user.firstnameLastInitial stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     NSString *shout = [theTextView.text stringByReplacingOccurrencesOfString:@" " withString:@"+"];
 	NSString *hashInput = [NSString stringWithFormat:@"%@%@%@%@", uid, un, shout, kKBHashSalt];
+    NSLog(@"hash input: %@", hashInput);
 	NSString *hash = [NSString md5: hashInput];
     NSString *urlstring = [NSString stringWithFormat:
 						   @"http://www.literalshore.com/gorloch/kickball/test_push.php?shout=%@&uid=%@&un=%@&ck=%@", shout, uid, un, hash];
     NSLog(@"urlstring: %@", urlstring);
+    
     NSString *push = [NSString stringWithContentsOfURL:[NSURL URLWithString:urlstring]];
     NSLog(@"push: %@", push);
     
