@@ -395,7 +395,7 @@ static FoursquareAPI *sharedInstance = nil;
 
 + (NSArray *) friendRequestsFromResponseXML:(NSString *) inString {
 	
-	NSError * err;
+	NSError * err = nil;
 	CXMLDocument *userParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
 	NSLog(@"error: %@", [err localizedDescription]);
 	
@@ -413,7 +413,7 @@ static FoursquareAPI *sharedInstance = nil;
 }
 
 + (NSString*) tipIdFromResponseXML:(NSString *) inString {
-	NSError * err;
+	NSError * err = nil;
 	CXMLDocument *settingsParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
 	NSLog(@"error: %@", [err localizedDescription]);
     
@@ -433,7 +433,7 @@ static FoursquareAPI *sharedInstance = nil;
 }
 
 + (BOOL) simpleBooleanFromResponseXML:(NSString *) inString {
-	NSError * err;
+	NSError * err = nil;
 	CXMLDocument *settingsParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
 	NSLog(@"error: %@", [err localizedDescription]);
     
@@ -453,7 +453,7 @@ static FoursquareAPI *sharedInstance = nil;
 }
 
 + (BOOL) pingSettingFromResponseXML:(NSString *) inString {
-	NSError * err;
+	NSError * err = nil;
 	CXMLDocument *settingsParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
 	NSLog(@"error: %@", [err localizedDescription]);
     
@@ -474,7 +474,7 @@ static FoursquareAPI *sharedInstance = nil;
 
 + (NSArray *) usersFromResponseXML:(NSString *) inString {
 	
-	NSError * err;
+	NSError * err = nil;
 	CXMLDocument *userParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
 	NSLog(@"error: %@", [err localizedDescription]);
 	
@@ -493,7 +493,7 @@ static FoursquareAPI *sharedInstance = nil;
 
 + (NSArray *) usersFromRequestResponseXML:(NSString *) inString {
 	
-	NSError * err;
+	NSError * err = nil;
 	CXMLDocument *userParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
 	NSLog(@"error: %@", [err localizedDescription]);
 	
@@ -512,7 +512,7 @@ static FoursquareAPI *sharedInstance = nil;
 
 + (NSArray *) friendUsersFromRequestResponseXML:(NSString *) inString {
 	
-	NSError * err;
+	NSError * err = nil;
 	CXMLDocument *userParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
 	NSLog(@"error: %@", [err localizedDescription]);
 	
@@ -531,7 +531,7 @@ static FoursquareAPI *sharedInstance = nil;
 
 + (NSArray *) friendsFromResponseXML:(NSString *) inString{
 	
-	NSError * err;
+	NSError * err = nil;
 	CXMLDocument *friendParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
 	NSLog(@"%@", [err localizedDescription]);
 	
@@ -548,13 +548,13 @@ static FoursquareAPI *sharedInstance = nil;
 
 + (NSDictionary *) venuesFromResponseXML:(NSString *) inString{
 
-	NSError * err;
+	NSError * err = nil;
 	CXMLDocument *venueParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
 	NSLog(@"venues xml: %@", venueParser);
 	NSLog(@"error: %@", [err localizedDescription]);
 
-    NSMutableDictionary *allVenues = [[NSMutableDictionary alloc] initWithCapacity:1];
-	NSMutableArray * allVens = [[NSMutableArray alloc] initWithCapacity:1];
+    NSMutableDictionary *allVenues = [[[NSMutableDictionary alloc] initWithCapacity:1] autorelease];
+	NSMutableArray * allVens = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
 
 	NSArray *allGroups = NULL;
 
@@ -565,13 +565,13 @@ static FoursquareAPI *sharedInstance = nil;
         [allVenues setObject:[groupOfVenues copy] forKey:[[groupResult attributeForName:@"type"] stringValue]];
 		[allVens addObject:[groupOfVenues copy]];
 	}
-	return allVenues;
     [venueParser release];
+	return allVenues;
 }
 
 + (FSUser *) userFromResponseXML:(NSString *) inString{
 	
-	NSError * err;
+	NSError * err = nil;
 	CXMLDocument *userParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
     NSLog(@"user xml: %@", userParser);
 	NSLog(@"%@", [err description]);
@@ -750,7 +750,7 @@ static FoursquareAPI *sharedInstance = nil;
 
 + (FSScoring *) _scoringFromNode:(CXMLNode *) inputNode{
 	NSMutableArray * allScores = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
-	FSScoring *theScoring = [[FSScoring alloc] init];
+	FSScoring *theScoring = [[[FSScoring alloc] init] autorelease];
 	
 	//get all the scores in the checkin
 	NSArray * scoresReturned = [inputNode nodesForXPath:@"//score" error:nil];
@@ -897,6 +897,7 @@ static FoursquareAPI *sharedInstance = nil;
 			
 		}
 		[groupOfVenues addObject:newVenue];
+        [newVenue release];
 	}
 
 	return groupOfVenues;
@@ -924,6 +925,7 @@ static FoursquareAPI *sharedInstance = nil;
 			}
 		}
 		[allTips addObject:newTip];
+        [newTip release];
 	}
 	
 	return allTips;
@@ -950,6 +952,7 @@ static FoursquareAPI *sharedInstance = nil;
             }
         }
         [loggedUserBadges addObject:currentBadgeInfo];
+        [currentBadgeInfo release];
     }
     return loggedUserBadges;
 }
