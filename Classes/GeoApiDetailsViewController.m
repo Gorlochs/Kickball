@@ -46,7 +46,7 @@
     NSLog(@"place listing: %@", place.listing);
     place.name = [results objectForKey:@"name"];
     place.address = [results objectForKey:@"address"];
-    if ([[results objectForKey:@"web-wide-rating"] isKindOfClass:[NSNull class]]) {
+    if (![[results objectForKey:@"web-wide-rating"] isKindOfClass:[NSNull class]]) {
         int rating = [[results objectForKey:@"web-wide-rating"] doubleValue] * 2;
         webRating.image = [UIImage imageNamed:[NSString stringWithFormat:@"rating-%d.png", rating]];
     } else {

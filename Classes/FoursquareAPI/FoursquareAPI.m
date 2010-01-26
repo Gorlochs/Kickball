@@ -479,7 +479,7 @@ static FoursquareAPI *sharedInstance = nil;
 	NSLog(@"error: %@", [err localizedDescription]);
 	
 	NSArray * allUsers;
-    NSMutableArray * users = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
+    NSMutableArray * users = [[NSMutableArray alloc] initWithCapacity:1];
 	
 	//get the groups
 	allUsers = [userParser nodesForXPath:@"//users/user" error:nil];

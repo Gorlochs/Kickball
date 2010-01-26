@@ -35,6 +35,7 @@
     
     NSLog(@"PlacesListViewController get venue - geolat: %f", [[LocationManager locationManager] latitude]);
     NSLog(@"PlacesListViewController get venue - geolong: %f", [[LocationManager locationManager] longitude]);
+    [self startProgressBar:@"Retrieving nearby venues..."];
     [[FoursquareAPI sharedInstance] getVenuesNearLatitude:[NSString stringWithFormat:@"%f",[[LocationManager locationManager] latitude]]
                                              andLongitude:[NSString stringWithFormat:@"%f",[[LocationManager locationManager] longitude]]
                                                withTarget:self 
@@ -126,6 +127,7 @@
     NSLog(@"venues: %@", inString);
 	NSDictionary *allVenues = [FoursquareAPI venuesFromResponseXML:inString];
 	self.venues = [NSDictionary dictionaryWithDictionary:allVenues];
+    [self stopProgressBar];
 	[theTableView reloadData];
     
     //move table to new entry
@@ -133,7 +135,6 @@
         NSUInteger indexArr[] = {0,0};
         [theTableView scrollToRowAtIndexPath:[NSIndexPath indexPathWithIndexes:indexArr length:2] atScrollPosition:UITableViewScrollPositionTop animated:YES];
     }
-    [self stopProgressBar];
 }
 
 - (void)didReceiveMemoryWarning {

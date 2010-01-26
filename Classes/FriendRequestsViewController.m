@@ -248,6 +248,8 @@
     [[FoursquareAPI sharedInstance] findFriendsByPhone:[phones componentsJoinedByString:@","] withTarget:self andAction:@selector(searchResponseReceived:withResponseString:)];
     [[Beacon shared] startSubBeaconWithName:@"Scanning Address Book"];
     [phones release];
+    [people release];
+    [addressBook release];
 }
 
 - (void)searchResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {

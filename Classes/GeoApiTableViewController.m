@@ -111,6 +111,7 @@
     vc.place = [geoAPIResults objectAtIndex:indexPath.row];
 	[self.navigationController pushViewController:vc animated:YES];
 	[vc release];
+    [theTableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 
