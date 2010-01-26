@@ -687,11 +687,11 @@
         GeoApiTableViewController *vc = [[GeoApiTableViewController alloc] initWithNibName:@"GeoAPIView" bundle:nil];
         [[Beacon shared] startSubBeaconWithName:@"GeoAPI could not find proper venue - going to list view"];
         vc.geoAPIResults = objArray;
-        [objArray release];
         [self.navigationController pushViewController:vc animated:YES];
         [vc release];
         NSLog(@"dictionary?: %@", [(NSDictionary*)dict objectForKey:@"entity"]);   
     }
+    [objArray release];
 }
 
 - (void)requestFailed:(NSError *)error {

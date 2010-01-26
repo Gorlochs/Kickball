@@ -554,7 +554,7 @@ static FoursquareAPI *sharedInstance = nil;
 	NSLog(@"error: %@", [err localizedDescription]);
 
     NSMutableDictionary *allVenues = [[[NSMutableDictionary alloc] initWithCapacity:1] autorelease];
-	NSMutableArray * allVens = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
+	//NSMutableArray * allVens = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
 
 	NSArray *allGroups = NULL;
 
@@ -563,7 +563,7 @@ static FoursquareAPI *sharedInstance = nil;
 	for (CXMLElement *groupResult in allGroups) {
 		NSArray * groupOfVenues = [FoursquareAPI _venuesFromNode:groupResult];
         [allVenues setObject:[groupOfVenues copy] forKey:[[groupResult attributeForName:@"type"] stringValue]];
-		[allVens addObject:[groupOfVenues copy]];
+		//[allVens addObject:[groupOfVenues copy]];
 	}
     [venueParser release];
 	return allVenues;
@@ -604,7 +604,7 @@ static FoursquareAPI *sharedInstance = nil;
 	NSError * err;
 	CXMLDocument *venueParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
 	NSLog(@"venue xml: %@", venueParser);
-	FSVenue * thisVenue = [[FSVenue alloc] init];
+	FSVenue * thisVenue = [[[FSVenue alloc] init] autorelease];
 	
 	NSArray *allGroups = [venueParser nodesForXPath:@"/" error:nil];
 	
@@ -744,6 +744,7 @@ static FoursquareAPI *sharedInstance = nil;
             }
         }
         [allCheckins addObject:oneCheckin];
+        [oneCheckin release];
     }
     return allCheckins;
 }
@@ -1272,7 +1273,7 @@ int encode(unsigned s_len, char *src, unsigned d_len, char *dst)
 	}
 	
 	[theRequest setHTTPMethod:httpMethod];
-    NSURLConnection * theConnection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+    NSURLConnection * theConnection = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
 
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     if (theConnection) {
