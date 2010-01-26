@@ -389,14 +389,14 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 5) {
+    if (indexPath.section == 6) {
         [self pushProfileDetailController:venue.mayor.userId];
-    } else if (indexPath.section == 6) {
+    } else if (indexPath.section == 7) {
         if (indexPath.row < [venue.currentCheckins count]) {
             FSCheckin *tmpCheckin = ((FSCheckin*)[venue.currentCheckins objectAtIndex:indexPath.row]);
             [self pushProfileDetailController:tmpCheckin.user.userId];
         }
-    } else if (indexPath.section == 7) {
+    } else if (indexPath.section == 8) {
         FSTip *tip = ((FSTip*)[venue.tips objectAtIndex:indexPath.row]);
         TipDetailViewController *tipController = [[TipDetailViewController alloc] initWithNibName:@"TipView" bundle:nil];
         tipController.tip = tip;
