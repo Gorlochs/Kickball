@@ -219,8 +219,24 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [textField resignFirstResponder];
-    return YES;
+    bool shouldReturn = NO;
+    if (textField == address) {
+        [crossstreet becomeFirstResponder];
+    } else if (textField == crossstreet) {
+        [city becomeFirstResponder];
+    } else if (textField == city) {
+        [state becomeFirstResponder];
+    } else if (textField == state) {
+        [zip becomeFirstResponder];
+    } else if (textField == zip) {
+        [twitter becomeFirstResponder];
+    } else if (textField == twitter) {
+        [phone becomeFirstResponder];
+    } else {
+        [textField resignFirstResponder];
+        shouldReturn = YES;
+    }
+    return shouldReturn;
 }
 
 @end
