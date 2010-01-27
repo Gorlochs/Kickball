@@ -268,6 +268,8 @@
             newMayorshipLabel.text = [self getSingleCheckin].mayor.mayorCheckinMessage;
             if ([[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"stolen"]) {
                 newMayorshipSublabel.text = [NSString stringWithFormat:@"(Crown stolen from %@)", [self getSingleCheckin].mayor.user.firstnameLastInitial];
+            } else {
+                newMayorshipSublabel.text = @"";
             }
             return newMayorCell;
         }
