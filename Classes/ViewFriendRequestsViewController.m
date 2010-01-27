@@ -63,7 +63,7 @@
     cell.acceptFriendButton.tag = indexPath.row;
     cell.friendName.text = ((FSUser*)[pendingFriendRequests objectAtIndex:indexPath.row]).firstnameLastInitial;
     [cell.acceptFriendButton addTarget:self action:@selector(acceptFriend:) forControlEvents:UIControlEventTouchUpInside];
-    [cell.acceptFriendButton addTarget:self action:@selector(denyFriend:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.denyFriendButton addTarget:self action:@selector(denyFriend:) forControlEvents:UIControlEventTouchUpInside];
     
     return cell;
 }
@@ -79,7 +79,7 @@
         message = [[KBMessage alloc] initWithMember:@"Friend Request Approved" andMessage:@"You now have a new buddy."];
         int i = 0;
         for (FSUser *u in pendingFriendRequests) {
-            if (user.userId == u.userId) {
+            if ([user.userId isEqualToString:u.userId]) {
                 // need a better isEqual method for FSUser so I can use removeObject:
                 
                 [pendingFriendRequests removeObjectAtIndex:i];

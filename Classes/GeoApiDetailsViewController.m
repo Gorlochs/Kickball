@@ -30,6 +30,7 @@
     venueName.text = @"";
     venueAddress.text = @"";
 
+    [self startProgressBar:@"Retrieving venue details..."];
     GAConnectionManager *connectionManager_ = [[GAConnectionManager alloc] initWithAPIKey:@"K6afuuFTXK" delegate:self];
     [connectionManager_ requestListingForPlace:place.guid];
 }
@@ -83,6 +84,7 @@
         websiteButton.enabled = NO;
     }
     [parser release];
+    [self stopProgressBar];
 }
 
 - (void)requestFailed:(NSError *)error {

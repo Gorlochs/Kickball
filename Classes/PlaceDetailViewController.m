@@ -576,6 +576,7 @@
     GAConnectionManager *connectionManager_ = [[[GAConnectionManager alloc] initWithAPIKey:@"K6afuuFTXK" delegate:self] autorelease];
     CLLocationCoordinate2D location = venue.location;
 
+    [self startProgressBar:@"Searching for the venue..."];
     [connectionManager_ requestBusinessesNearCoords:location withinRadius:50 maxResults:30];
 }
 
@@ -710,6 +711,7 @@
         NSLog(@"dictionary?: %@", [(NSDictionary*)dict objectForKey:@"entity"]);   
     }
     [objArray release];
+    [self stopProgressBar];
 }
 
 - (void)requestFailed:(NSError *)error {
