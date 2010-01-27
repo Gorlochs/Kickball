@@ -12,6 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="87"/>
 			<integer value="36"/>
 			<integer value="113"/>
 		</object>
@@ -291,7 +292,7 @@
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 			</object>
 			<object class="IBUITableViewCell" id="982918165">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -371,17 +372,18 @@
 									<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="657622904"/>
-								<object class="NSCustomResource" key="IBUIHighlightedImage">
+								<object class="NSCustomResource" key="IBUIHighlightedImage" id="924329712">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">twitter02.png</string>
+									<string key="NSResourceName">twitter02disable.png</string>
 								</object>
+								<reference key="IBUIDisabledImage" ref="924329712"/>
 								<object class="NSCustomResource" key="IBUISelectedImage">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">twitter01.png</string>
 								</object>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">twitter03.png</string>
+									<string key="NSResourceName">twitter01on.png</string>
 								</object>
 							</object>
 						</object>
@@ -398,6 +400,7 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 44}</string>
+				<reference key="NSSuperview"/>
 				<object class="NSColor" key="IBUIBackgroundColor" id="144680521">
 					<int key="NSColorSpace">1</int>
 					<bytes key="NSRGB">MSAxIDEAA</bytes>
@@ -408,7 +411,7 @@
 				<reference key="IBUIContentView" ref="218964591"/>
 			</object>
 			<object class="IBUITableViewCell" id="127141232">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -422,7 +425,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{15, 7}, {180, 21}}</string>
 								<reference key="NSSuperview" ref="396356087"/>
-								<reference key="NSWindow"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -440,7 +442,6 @@
 						</object>
 						<string key="NSFrameSize">{317, 35}</string>
 						<reference key="NSSuperview" ref="127141232"/>
-						<reference key="NSWindow"/>
 						<reference key="IBUIBackgroundColor" ref="592030818"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -449,8 +450,6 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{317, 36}</string>
-				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="IBUIBackgroundColor" ref="144680521"/>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<int key="IBUISeparatorStyle">1</int>
@@ -813,7 +812,7 @@
 				<reference key="IBUIContentView" ref="166623049"/>
 			</object>
 			<object class="IBUITableViewCell" id="514027558">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -827,7 +826,6 @@
 								<int key="NSvFlags">256</int>
 								<string key="NSFrame">{{6, 4}, {34, 33}}</string>
 								<reference key="NSSuperview" ref="20780933"/>
-								<reference key="NSWindow"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">4</int>
@@ -842,7 +840,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{48, 3}, {260, 21}}</string>
 								<reference key="NSSuperview" ref="20780933"/>
-								<reference key="NSWindow"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -862,7 +859,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{48, 19}, {122, 21}}</string>
 								<reference key="NSSuperview" ref="20780933"/>
-								<reference key="NSWindow"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -880,7 +876,6 @@
 						</object>
 						<string key="NSFrameSize">{320, 43}</string>
 						<reference key="NSSuperview" ref="514027558"/>
-						<reference key="NSWindow"/>
 						<reference key="IBUIBackgroundColor" ref="592030818"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -889,8 +884,6 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 44}</string>
-				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="IBUIBackgroundColor" ref="144680521"/>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<int key="IBUISeparatorStyle">1</int>
@@ -2238,7 +2231,6 @@
 							<string>mayorNameLabel</string>
 							<string>newMayorCell</string>
 							<string>newMayorshipLabel</string>
-							<string>newMayorshipSublabel</string>
 							<string>pingToggleButton</string>
 							<string>pointsCell</string>
 							<string>shoutCell</string>
@@ -2269,7 +2261,6 @@
 							<string>UITableViewCell</string>
 							<string>UILabel</string>
 							<string>UITableViewCell</string>
-							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UIButton</string>
 							<string>UITableViewCell</string>

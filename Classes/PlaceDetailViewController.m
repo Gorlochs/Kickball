@@ -557,10 +557,12 @@
 }
 
 - (void) setProperTwitterButtonState {
-    if (isTwitterOn) {
-        [twitterToggleButton setImage:[UIImage imageNamed:@"twitter01.png"] forState:UIControlStateNormal];
+    if ([self getAuthenticatedUser].twitter == nil) {
+        twitterToggleButton.enabled = NO;
+    } else if (isTwitterOn) {
+        [twitterToggleButton setImage:[UIImage imageNamed:@"twitter01on.png"] forState:UIControlStateNormal];
     } else {
-        [twitterToggleButton setImage:[UIImage imageNamed:@"twitter03.png"] forState:UIControlStateNormal];
+        [twitterToggleButton setImage:[UIImage imageNamed:@"twitter03off.png"] forState:UIControlStateNormal];
     }
 }
 
