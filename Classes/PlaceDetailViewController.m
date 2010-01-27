@@ -259,17 +259,14 @@
     } else if (indexPath.section == 3) {
         if ([self getSingleCheckin].mayor.user == nil
                 && [[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"nochange"]) {
-            NSLog(@"***************** STILL MAYOR CELL *********************");
             
             stillTheMayorLabel.text = [NSString stringWithFormat:@"You're still the mayor of %@!", venue.name];
             return stillTheMayorCell;
         } else if ([[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"stolen"] || [[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"new"]) {
-            NSLog(@"***************** NEW MAYOR CELL *********************");
-            newMayorshipLabel.text = [self getSingleCheckin].mayor.mayorCheckinMessage;
             if ([[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"stolen"]) {
-                newMayorshipSublabel.text = [NSString stringWithFormat:@"(Crown stolen from %@)", [self getSingleCheckin].mayor.user.firstnameLastInitial];
+                newMayorshipLabel.text = [NSString stringWithFormat:@"%@ (Crown stolen from %@)", [self getSingleCheckin].mayor.mayorCheckinMessage, [self getSingleCheckin].mayor.user.firstnameLastInitial];
             } else {
-                newMayorshipSublabel.text = @"";
+                newMayorshipLabel.text = [self getSingleCheckin].mayor.mayorCheckinMessage;
             }
             return newMayorCell;
         }
@@ -447,7 +444,6 @@
     [badgeLabel release];
     [badgeTitleLabel release];
     [newMayorshipLabel release];
-    [newMayorshipSublabel release];
     [stillTheMayorLabel release];
     
     [badgeImage release];
@@ -520,26 +516,32 @@
     [self displayPopupMessage:message];
     [message release];
     
-    // TODO: make this asynchronous
-    // TODO: send over userId and venueId and calculate who gets a push notification (i.e., people who are signed up for pings from that user)
-    //       Then only send out push to the proper people.
-    if ([[Utilities sharedInstance] friendsWithPingOn]) {
-        NSLog(@"friends with ping on pulled from cache: %@", [[[Utilities sharedInstance] friendsWithPingOn] componentsJoinedByString:@","]);
-    } else {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(friendsReceived:) name:@"friendsWithPingOnReceived" object:nil];
+    if (isPingOn) {
+        // TODO: make this asynchronous
+        if ([[Utilities sharedInstance] friendsWithPingOn]) {
+            NSLog(@"friends with ping on pulled from cache: %@", [[[Utilities sharedInstance] friendsWithPingOn] componentsJoinedByString:@","]);
+        } else {
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(friendsReceived:) name:@"friendsWithPingOnReceived" object:nil];
+        }   
     }
+}
+
+- (void)friendsReceived:(NSNotification *)inNotification {
+    NSMutableArray *friendIds = [[NSMutableArray alloc] initWithCapacity:1];
+    for (FSUser* friend in [[Utilities sharedInstance] friendsWithPingOn]) {
+        [friendIds addObject:friend.userId];
+    }
+    NSString *friendIdsString = [friendIds componentsJoinedByString:@","];
+    
     FSUser *user = [self getAuthenticatedUser];
     NSString *uid = user.userId;
     NSString *un = [user.firstnameLastInitial stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     NSString *vn = [venue.name stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-    NSString *urlstring = [NSString stringWithFormat:@"http://www.literalshore.com/gorloch/kickball/test_push.php?uid=%@&un=%@&vn=%@", uid, un, vn];
+    NSString *urlstring = [NSString stringWithFormat:@"http://www.literalshore.com/gorloch/kickball/test_push.php?uid=%@&un=%@&vn=%@&fids=%@", uid, un, vn, friendIdsString];
     NSLog(@"urlstring: %@", urlstring);
     NSString *push = [NSString stringWithContentsOfURL:[NSURL URLWithString:urlstring]];
     NSLog(@"push: %@", push);
-}
-
-- (void)friendsReceived:(NSNotification *)inNotification {
-    NSLog(@"friends with ping on calculated: %@", [[[Utilities sharedInstance] friendsWithPingOn] componentsJoinedByString:@","]);
+//    NSLog(@"friends with ping on calculated: %@", [[[Utilities sharedInstance] friendsWithPingOn] componentsJoinedByString:@","]);
 }
 
 - (void) togglePing {
@@ -574,7 +576,7 @@
     GAConnectionManager *connectionManager_ = [[[GAConnectionManager alloc] initWithAPIKey:@"K6afuuFTXK" delegate:self] autorelease];
     CLLocationCoordinate2D location = venue.location;
 
-    [connectionManager_ requestBusinessesNearCoords:location withinRadius:50 maxResults:15];
+    [connectionManager_ requestBusinessesNearCoords:location withinRadius:50 maxResults:30];
 }
 
 - (void) showSpecial {
@@ -679,6 +681,7 @@
         place.address = [NSString stringWithFormat:@"%@, %@, %@", [tmp objectAtIndex:0], [tmp objectAtIndex:1], [tmp objectAtIndex:2]];
         [objArray addObject:place];
         
+        // TODO: we can reverse the below comparison, too. compare each result to the 4sq venue name
         // removing 'The' and all spaces from both words, then doing a string compare.  Should probably remove all non alphanumeric characters, too
         if ([[[place.name stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"The"]] stringByReplacingOccurrencesOfString:@" " withString:@""] 
                rangeOfString:[[venue.name stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"The"]] stringByReplacingOccurrencesOfString:@" " withString:@""] options:NSCaseInsensitiveSearch].location != NSNotFound) {

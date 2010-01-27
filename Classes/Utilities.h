@@ -13,7 +13,8 @@ extern const NSString *kKBHashSalt;
 
 @interface Utilities : NSObject {
     NSMutableArray *friendsWithPingOn;
-    NSString *lastUserId; // this is a hack to user
+    int runningTotalNumberOfUsersBeingPushed;
+    int totalNumberOfUsersForPush;
 }
 
 @property (nonatomic, retain) NSMutableArray *friendsWithPingOn;

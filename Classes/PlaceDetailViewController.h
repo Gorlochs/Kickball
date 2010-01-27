@@ -36,7 +36,6 @@
     IBOutlet UILabel *badgeLabel;
     IBOutlet UILabel *badgeTitleLabel;
     IBOutlet UILabel *newMayorshipLabel;
-    IBOutlet UILabel *newMayorshipSublabel;
     IBOutlet UILabel *stillTheMayorLabel;
     
     IBOutlet UIImageView *badgeImage;

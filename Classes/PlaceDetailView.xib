@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="8"/>
+			<integer value="36"/>
 			<integer value="113"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
@@ -773,7 +773,7 @@
 							<object class="IBUILabel" id="494498104">
 								<reference key="NSNextResponder" ref="166623049"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{8, 4}, {300, 20}}</string>
+								<string key="NSFrame">{{8, 2}, {300, 38}}</string>
 								<reference key="NSSuperview" ref="166623049"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -787,26 +787,6 @@
 								<reference key="IBUITextColor" ref="144680521"/>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">1</int>
-								<float key="IBUIMinimumFontSize">10</float>
-								<int key="IBUINumberOfLines">2</int>
-							</object>
-							<object class="IBUILabel" id="417723779">
-								<reference key="NSNextResponder" ref="166623049"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{8, 23}, {174, 20}}</string>
-								<reference key="NSSuperview" ref="166623049"/>
-								<bool key="IBUIOpaque">NO</bool>
-								<bool key="IBUIClipsSubviews">YES</bool>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<string key="IBUIText">(Crown stolen from Charlie G)</string>
-								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">Helvetica</string>
-									<double key="NSSize">11</double>
-									<int key="NSfFlags">16</int>
-								</object>
-								<reference key="IBUITextColor" ref="144680521"/>
-								<nil key="IBUIHighlightedColor"/>
-								<int key="IBUIBaselineAdjustment">0</int>
 								<float key="IBUIMinimumFontSize">10</float>
 								<int key="IBUINumberOfLines">2</int>
 							</object>
@@ -1609,14 +1589,6 @@
 					</object>
 					<int key="connectionID">186</int>
 				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">newMayorshipSublabel</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="417723779"/>
-					</object>
-					<int key="connectionID">189</int>
-				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -1831,7 +1803,6 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="588751849"/>
 							<reference ref="494498104"/>
-							<reference ref="417723779"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">New Mayor Cell</string>
@@ -1993,11 +1964,6 @@
 						<reference key="object" ref="588751849"/>
 						<reference key="parent" ref="340386414"/>
 					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">188</int>
-						<reference key="object" ref="417723779"/>
-						<reference key="parent" ref="340386414"/>
-					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -2043,7 +2009,6 @@
 					<string>183.IBEditorWindowLastContentRect</string>
 					<string>183.IBPluginDependency</string>
 					<string>184.IBPluginDependency</string>
-					<string>188.IBPluginDependency</string>
 					<string>36.IBEditorWindowLastContentRect</string>
 					<string>36.IBPluginDependency</string>
 					<string>38.IBPluginDependency</string>
@@ -2113,7 +2078,6 @@
 					<string>{{42, 893}, {45, 45}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{661, 513}, {320, 44}}</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{42, 478}, {320, 62}}</string>
