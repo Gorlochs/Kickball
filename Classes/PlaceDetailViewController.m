@@ -237,10 +237,11 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
+//        line = [[UIView alloc] initWithFrame:CGRectMake(0, cell.frame.size.height - 1, 320, 1)];
+//        line.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.13];
+//        [cell addSubview:line];
     }
     
-    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, cell.frame.size.height - 1, 320, 1)];
-    line.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.13];
     
     // Set up the cell...
     if (indexPath.section == 0) {
@@ -288,7 +289,6 @@
             cell.imageView.transform=CGAffineTransformMakeScale(sw,sh);
             cell.imageView.layer.masksToBounds = YES;
             cell.imageView.layer.cornerRadius = 8.0;
-            [cell addSubview:line];
         } else {
             return detailButtonCell;
         }
@@ -300,7 +300,6 @@
         cell.detailTextLabel.numberOfLines = 2;
         cell.detailTextLabel.text = tip.text;
         cell.imageView.image = nil;
-        [cell addSubview:line];
     } else if (indexPath.section == 9) {
         return bottomButtonCell;
     }
