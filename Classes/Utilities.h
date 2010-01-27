@@ -13,6 +13,7 @@ extern const NSString *kKBHashSalt;
 
 @interface Utilities : NSObject {
     NSMutableArray *friendsWithPingOn;
+    NSString *lastUserId; // this is a hack to user
 }
 
 @property (nonatomic, retain) NSMutableArray *friendsWithPingOn;

@@ -259,10 +259,12 @@
     } else if (indexPath.section == 3) {
         if ([self getSingleCheckin].mayor.user == nil
                 && [[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"nochange"]) {
+            NSLog(@"***************** STILL MAYOR CELL *********************");
             
             stillTheMayorLabel.text = [NSString stringWithFormat:@"You're still the mayor of %@!", venue.name];
             return stillTheMayorCell;
-        } else if ([[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"stolen"]) {
+        } else if ([[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"stolen"] || [[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"new"]) {
+            NSLog(@"***************** NEW MAYOR CELL *********************");
             newMayorshipLabel.text = [self getSingleCheckin].mayor.mayorCheckinMessage;
             if ([[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"stolen"]) {
                 newMayorshipSublabel.text = [NSString stringWithFormat:@"(Crown stolen from %@)", [self getSingleCheckin].mayor.user.firstnameLastInitial];
@@ -519,11 +521,11 @@
     // TODO: make this asynchronous
     // TODO: send over userId and venueId and calculate who gets a push notification (i.e., people who are signed up for pings from that user)
     //       Then only send out push to the proper people.
-//    if ([[Utilities sharedInstance] friendsWithPingOn]) {
-//        NSLog(@"friends with ping on pulled from cache: %@", [[[Utilities sharedInstance] friendsWithPingOn] componentsJoinedByString:@","]);
-//    } else {
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(friendsReceived:) name:@"friendsWithPingOnReceived" object:nil];
-//    }
+    if ([[Utilities sharedInstance] friendsWithPingOn]) {
+        NSLog(@"friends with ping on pulled from cache: %@", [[[Utilities sharedInstance] friendsWithPingOn] componentsJoinedByString:@","]);
+    } else {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(friendsReceived:) name:@"friendsWithPingOnReceived" object:nil];
+    }
     FSUser *user = [self getAuthenticatedUser];
     NSString *uid = user.userId;
     NSString *un = [user.firstnameLastInitial stringByReplacingOccurrencesOfString:@" " withString:@"+"];

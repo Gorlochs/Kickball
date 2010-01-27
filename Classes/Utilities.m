@@ -153,9 +153,10 @@ static Utilities *sharedInstance = nil;
         for (FSUser *friend in allFriends) {
             NSLog(@"friend: %@", friend);
             [[FoursquareAPI sharedInstance] getUser:friend.userId withTarget:self andAction:@selector(aFriendResponseReceived:withResponseString:)];
+            lastUserId = friend.userId;
         }
     }
-    [[NSNotificationCenter defaultCenter] postNotificationName: @"friendsWithPingOnReceived" object: nil];
+    
 }
 
 - (void)aFriendResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
@@ -163,6 +164,9 @@ static Utilities *sharedInstance = nil;
     FSUser *friend = [FoursquareAPI userFromResponseXML:inString];
     if (friend.sendsPingsToSignedInUser) {
         [friendsWithPingOn addObject:friend];
+    }
+    if ([friend.userId isEqualToString:lastUserId]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName: @"friendsWithPingOnReceived" object: nil];
     }
 }
 
