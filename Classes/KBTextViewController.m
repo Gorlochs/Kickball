@@ -50,10 +50,8 @@
     NSString *un = [user.firstnameLastInitial stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     NSString *shout = [theTextView.text stringByReplacingOccurrencesOfString:@" " withString:@"+"];
 	NSString *hashInput = [NSString stringWithFormat:@"%@%@%@%@", uid, un, shout, kKBHashSalt];
-    NSLog(@"hash input: %@", hashInput);
-	NSString *hash = [NSString md5: hashInput];
+    NSString *hash = [NSString md5: hashInput];
     NSString *urlstring = [NSString stringWithFormat:
-//						   @"http://www.literalshore.com/gorloch/kickball/test_push.php?shout=%@&uid=%@&un=%@&ck=%@", shout, uid, un, hash];
                            @"https://www.gorlochs.com/kickball/push.php?shout=%@&uid=%@&un=%@&ck=%@", shout, uid, un, hash];
     NSLog(@"urlstring: %@", urlstring);
     
@@ -92,16 +90,9 @@
     return TRUE;
 }
 
-//- (BOOL)textViewShouldEndEditing:(UITextView *)textView {
-//    [textView resignFirstResponder];
-//    [self shout];
-//    return YES;
-//}
-
 - (void)dealloc {
     [theTextView release];
     [super dealloc];
 }
-
 
 @end

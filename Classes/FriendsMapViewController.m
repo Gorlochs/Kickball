@@ -120,7 +120,7 @@
 	[self refreshFriendPoints];
 }
 
-- (void) refreshFriendPoints{
+- (void) refreshFriendPoints {
 	for(FSCheckin * checkin in self.checkins){		
 		FSVenue * checkVenue = checkin.venue;
 		if(checkVenue.geolat && checkVenue.geolong){
@@ -140,6 +140,16 @@
             [placemark release];
 		}
 	}	
+}
+
+- (void) retrieveNewFriendLocationsAndRefresh {
+	[[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
+}
+
+- (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+	checkins = [FoursquareAPI checkinsFromResponseXML:inString];
+    [mapViewer removeAnnotations:mapViewer.annotations];
+    [self refreshFriendPoints];
 }
 
 #pragma mark MapViewer functions

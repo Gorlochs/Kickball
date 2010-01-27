@@ -27,5 +27,6 @@
 - (NSArray *) checkins;
 //- (void) viewProfile:(NSString*)userId;
 - (void) showProfile:(id)sender;
+- (IBAction) retrieveNewFriendLocationsAndRefresh;
 
 @end

@@ -190,10 +190,18 @@
         [[FoursquareAPI sharedInstance] getUser:self.pushNotificationUserId withTarget:self andAction:@selector(pushUserResponseReceived:withResponseString:)];
     } else {
         NSLog(@"this shouldn't happen ever!");
+//        UIAlertView *someError = [[UIAlertView alloc] initWithTitle: @"Error authenticating"
+//                                                            message: @"trying to authenticate when receiving a push notification"
+//                                                           delegate: self
+//                                                  cancelButtonTitle: @"Ok"
+//                                                  otherButtonTitles: nil];
+//        [someError show];
+//        [someError release];
     }
 }
 
 - (void)pushUserResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+    NSLog(@"push notification response received");
 	FSUser *pushedUser = [FoursquareAPI userFromResponseXML:inString];
     pushView = [[KBPushNotificationView alloc] initWithNibName:@"PushNotificationView" bundle:nil];
     pushView.view.frame = CGRectMake(0, 436, 239, 37);
@@ -243,6 +251,7 @@
 }
 
 - (void) viewUserProfile:(id)sender {
+    NSLog(@"user pressed the view user profile push notification button");
     ProfileViewController *profileController = [[ProfileViewController alloc] initWithNibName:@"ProfileView" bundle:nil];
     profileController.userId = self.pushNotificationUserId;
     self.pushNotificationUserId = nil;

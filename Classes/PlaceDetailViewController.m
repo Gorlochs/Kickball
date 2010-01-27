@@ -237,9 +237,11 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
-//        line = [[UIView alloc] initWithFrame:CGRectMake(0, cell.frame.size.height - 1, 320, 1)];
-//        line.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.13];
-//        [cell addSubview:line];
+        
+        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 43, 320, 1)];
+        line.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.13];
+        [cell addSubview:line];
+        [line release];
     }
     
     
@@ -295,15 +297,14 @@
     } else if (indexPath.section == 8) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         FSTip *tip = (FSTip*) [venue.tips objectAtIndex:indexPath.row];
-        cell.textLabel.font = [UIFont boldSystemFontOfSize:16];
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:12];
         cell.textLabel.text = [NSString stringWithFormat:@"%@ says,", tip.submittedBy.firstnameLastInitial];
-        cell.detailTextLabel.numberOfLines = 2;
+        //cell.detailTextLabel.numberOfLines = 2;
         cell.detailTextLabel.text = tip.text;
         cell.imageView.image = nil;
     } else if (indexPath.section == 9) {
         return bottomButtonCell;
     }
-    [line release];
     return cell;
 }
 
@@ -334,7 +335,7 @@
         case 7:
             return 44;
         case 8:
-            return 62;
+            return 44;
         case 9:
             return 44;
         default:
