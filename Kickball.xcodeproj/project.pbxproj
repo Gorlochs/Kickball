@@ -97,6 +97,7 @@
 		6A044CB7109545450063FC33 /* FriendsMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A044CB5109545450063FC33 /* FriendsMapView.xib */; };
 		6A0D9FAF109D97B300F9E1D6 /* UploadGiftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A0D9FAD109D97B300F9E1D6 /* UploadGiftViewController.m */; };
 		6A0D9FB0109D97B300F9E1D6 /* UploadGiftViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A0D9FAE109D97B300F9E1D6 /* UploadGiftViewController.xib */; };
+		6A0FCB4B111163A500AA4C91 /* mayorbadge-big2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A0FCB4A111163A500AA4C91 /* mayorbadge-big2.png */; };
 		6A10E61610BE0541006538DB /* LoginViewModalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A10E61410BE0541006538DB /* LoginViewModalController.m */; };
 		6A10E61710BE0541006538DB /* LoginViewModalController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A10E61510BE0541006538DB /* LoginViewModalController.xib */; };
 		6A12EC6110B772D60013BA52 /* GeoApiDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A12EC6010B772D60013BA52 /* GeoApiDetailsViewController.m */; };
@@ -307,7 +308,6 @@
 		6A79D0D710E5E682009082E5 /* PopupMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A79D0D610E5E682009082E5 /* PopupMessageView.m */; };
 		6A79D0D910E5E692009082E5 /* PopupMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A79D0D810E5E692009082E5 /* PopupMessageView.xib */; };
 		6A79D0FE10E68D1A009082E5 /* KBMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A79D0FD10E68D1A009082E5 /* KBMessage.m */; };
-		6A7DEA6E110F9CB3006339F1 /* mayorbadge-big.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A7DEA6D110F9CB3006339F1 /* mayorbadge-big.png */; };
 		6A7EA25F110AAD3500453C0C /* libPMAnalytics-r91.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A7EA25E110AAD3500453C0C /* libPMAnalytics-r91.a */; };
 		6A7EA344110B847400453C0C /* welcome01.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A7EA343110B847400453C0C /* welcome01.png */; };
 		6A7ED9F710A91DC9002FB1DC /* VenueAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A7ED9F610A91DC9002FB1DC /* VenueAnnotation.m */; };
@@ -655,6 +655,7 @@
 		6A0D9FAC109D97B300F9E1D6 /* UploadGiftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadGiftViewController.h; sourceTree = "<group>"; };
 		6A0D9FAD109D97B300F9E1D6 /* UploadGiftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadGiftViewController.m; sourceTree = "<group>"; };
 		6A0D9FAE109D97B300F9E1D6 /* UploadGiftViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = UploadGiftViewController.xib; path = Classes/UploadGiftViewController.xib; sourceTree = "<group>"; };
+		6A0FCB4A111163A500AA4C91 /* mayorbadge-big2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mayorbadge-big2.png"; sourceTree = "<group>"; };
 		6A10E61310BE0541006538DB /* LoginViewModalController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewModalController.h; sourceTree = "<group>"; };
 		6A10E61410BE0541006538DB /* LoginViewModalController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewModalController.m; sourceTree = "<group>"; };
 		6A10E61510BE0541006538DB /* LoginViewModalController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginViewModalController.xib; path = Classes/LoginViewModalController.xib; sourceTree = "<group>"; };
@@ -896,7 +897,6 @@
 		6A79D0D810E5E692009082E5 /* PopupMessageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupMessageView.xib; sourceTree = "<group>"; };
 		6A79D0FC10E68D1A009082E5 /* KBMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBMessage.h; sourceTree = "<group>"; };
 		6A79D0FD10E68D1A009082E5 /* KBMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBMessage.m; sourceTree = "<group>"; };
-		6A7DEA6D110F9CB3006339F1 /* mayorbadge-big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mayorbadge-big.png"; sourceTree = "<group>"; };
 		6A7EA25E110AAD3500453C0C /* libPMAnalytics-r91.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPMAnalytics-r91.a"; sourceTree = "<group>"; };
 		6A7EA343110B847400453C0C /* welcome01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome01.png; sourceTree = "<group>"; };
 		6A7ED9F510A91DC9002FB1DC /* VenueAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VenueAnnotation.h; sourceTree = "<group>"; };
@@ -1682,7 +1682,7 @@
 		6A39EC4B109662D3006F76C3 /* images */ = {
 			isa = PBXGroup;
 			children = (
-				6A7DEA6D110F9CB3006339F1 /* mayorbadge-big.png */,
+				6A0FCB4A111163A500AA4C91 /* mayorbadge-big2.png */,
 				6A00546C110D5B6800EB941C /* shoutbox.png */,
 				6A005442110D579D00EB941C /* loadmore01.png */,
 				6A005443110D579D00EB941C /* loadmore02.png */,
@@ -2501,7 +2501,7 @@
 				6A00543E110D55C000EB941C /* x-modal01.png in Resources */,
 				6A00543F110D55C000EB941C /* x-modal02.png in Resources */,
 				6A00546D110D5B6800EB941C /* shoutbox.png in Resources */,
-				6A7DEA6E110F9CB3006339F1 /* mayorbadge-big.png in Resources */,
+				6A0FCB4B111163A500AA4C91 /* mayorbadge-big2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

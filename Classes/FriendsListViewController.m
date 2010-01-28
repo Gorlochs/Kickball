@@ -39,6 +39,7 @@
     [super viewDidLoad];
     
     welcomePageNum = 1;
+    isDisplayingMore = NO;
     
     // check to see if we need to display the instruction view
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
@@ -149,6 +150,7 @@
     [instructionView release];
     [noNetworkView release];
     [footerViewCell release];
+    [moreCell release];
     [userIcons release];
     [nextWelcomeImage release];
     [previousWelcomeImage release];
@@ -159,35 +161,28 @@
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//    int rows = 0;
-//    if ([self.recentCheckins count] > 0) 
-//        rows++;
-//    if ([self.todayCheckins count] > 0) 
-//        rows++;
-//    if ([self.yesterdayCheckins count] > 0) 
-//        rows++;
-//    return rows;
-    return 4;
+    return 5;
 }
 
-
-// Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
 	if (section == 0) {
 		return [self.recentCheckins count];
 	} else if (section == 1) {
         return [self.todayCheckins count];
     } else if (section == 2) {
-        return [self.yesterdayCheckins count];
+        if (isDisplayingMore) {
+            return [self.yesterdayCheckins count];
+        } else {
+            return 0;
+        }
     } else if (section == 3) {
+        return !isDisplayingMore;
+    } else if (section == 4) {
         return 1;
     }
 	return 0;
 }
 
-
-// Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier = @"FriendCell";
@@ -195,9 +190,9 @@
     FriendsListTableCell *cell = (FriendsListTableCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil) {
-        if (indexPath.section == 3) {
-            return footerViewCell;
-        }
+//        if (indexPath.section == 3) {
+//            return footerViewCell;
+//        }
         // TODO: I'm not sure that this is the best way to do this with 3.x - there might be a better way to do it now
         UIViewController *vc = [[UIViewController alloc]initWithNibName:@"FriendsListTableCellView" bundle:nil];
         cell = (FriendsListTableCell*) vc.view;
@@ -215,8 +210,14 @@
     } else if (indexPath.section == 1) {
         checkin = [self.todayCheckins objectAtIndex:indexPath.row];
     } else if (indexPath.section == 2) {
-        checkin = [self.yesterdayCheckins objectAtIndex:indexPath.row];
+        if (isDisplayingMore) {
+            checkin = [self.yesterdayCheckins objectAtIndex:indexPath.row];
+        } else {
+            return nil;
+        }
     } else if (indexPath.section == 3) {
+        return moreCell;
+    } else if (indexPath.section == 4) {
         return footerViewCell;
     }
 	
@@ -362,21 +363,21 @@
             }
             break;
         case 2:
-            if ([yesterdayCheckins count] > 0) {
+            if ([yesterdayCheckins count] > 0 && isDisplayingMore) {
                 headerLabel.text = @"Older";
             } else {
                 [headerLabel release];
                 return nil;
             }
             break;
-        case 3:  // footer cell
+        case 3:  // more cell
+        case 4:  // footer cell
             [headerLabel release];
             return nil;
         default:
             headerLabel.text = @"You shouldn't see this";
             break;
     }
-	//headerLabel.text = <Put here whatever you want to display> // i.e. array element
 	[customView addSubview:headerLabel];
     [headerLabel release];
 	return customView;
@@ -483,6 +484,11 @@
         welcomeImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"welcome0%d.png", welcomePageNum - 1]];
         welcomePageNum--;
     }
+}
+
+- (void) displayOlderCheckins {
+    isDisplayingMore = YES;
+    [theTableView reloadData];
 }
 
 @end

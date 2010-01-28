@@ -25,6 +25,7 @@
     IBOutlet UIView *noNetworkView;
     IBOutlet InstructionView *instructionView;
     IBOutlet UITableViewCell *footerViewCell;
+    IBOutlet UITableViewCell *moreCell;
     
     NSMutableDictionary *userIcons;
     
@@ -34,6 +35,7 @@
     IBOutlet UIImageView *welcomeImage;
     
     BOOL hasViewedInstructions;
+    BOOL isDisplayingMore;
 }
 
 @property (nonatomic, retain) NSArray * checkins;
@@ -49,5 +51,6 @@
 - (IBAction) refresh;
 - (IBAction) viewNextWelcomeImage;
 - (IBAction) viewPreviousWelcomeImage;
+- (IBAction) displayOlderCheckins;
 
 @end
