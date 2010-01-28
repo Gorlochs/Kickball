@@ -204,7 +204,7 @@
     NSLog(@"push notification response received");
 	FSUser *pushedUser = [FoursquareAPI userFromResponseXML:inString];
     pushView = [[KBPushNotificationView alloc] initWithNibName:@"PushNotificationView" bundle:nil];
-    pushView.view.frame = CGRectMake(0, 436, 239, 37);
+    pushView.view.frame = CGRectMake(3, 430, 239, 37);
     if (pushedUser.checkin.shout != nil) {
         pushView.messageLabel.text = [NSString stringWithFormat:@"%@ just shouted!", pushedUser.firstnameLastInitial];
         pushView.addressLabel.text = [NSString stringWithFormat:@"%@", pushedUser.checkin.shout];

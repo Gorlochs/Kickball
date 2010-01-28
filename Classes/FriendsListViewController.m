@@ -84,7 +84,6 @@
 }
 
 - (void) doInitialDisplay {
-    [[Beacon shared] startSubBeaconWithName:@"Initial Friends List Display"];
     NSLog(@"hasViewedInstructions: %d", hasViewedInstructions);
     if (!hasViewedInstructions) {
         [self startProgressBar:@"Loading Everything..."];
@@ -93,13 +92,14 @@
         [self.view bringSubviewToFront:nextWelcomeImage];
         [self.view bringSubviewToFront:previousWelcomeImage];
     } else {
+        [[Beacon shared] startSubBeaconWithName:@"Initial Friends List Display"];
         [self startProgressBar:@"Retrieving friends' whereabouts..."]; 
-    }
-
-	[[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
-    
-    if (![self getAuthenticatedUser]) {
-        [[FoursquareAPI sharedInstance] getUser:nil withTarget:self andAction:@selector(userResponseReceived:withResponseString:)];
+        
+        [[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
+        
+        if (![self getAuthenticatedUser]) {
+            [[FoursquareAPI sharedInstance] getUser:nil withTarget:self andAction:@selector(userResponseReceived:withResponseString:)];
+        }
     }
 }
 
@@ -461,6 +461,7 @@
 - (void) viewNextWelcomeImage {
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
     [standardUserDefaults setBool:YES forKey:@"viewedInstructions"];
+    hasViewedInstructions = YES;
     if (welcomePageNum < 7) {
         NSString *imageName = [NSString stringWithFormat:@"welcome0%d.png", welcomePageNum + 1];
         NSLog(@"image name: %@", imageName);
@@ -473,6 +474,7 @@
         [self stopProgressBar];
         [self setUserIconView:[self getAuthenticatedUser]];
         [iconImageView setHidden:NO];
+        [self doInitialDisplay];
     }
 }
 
