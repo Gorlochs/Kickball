@@ -45,6 +45,23 @@
 	NSArray *shoutCheckins = [FoursquareAPI checkinsFromResponseXML:inString];
     NSLog(@"shoutCheckins: %@", shoutCheckins);
     
+    // TODO: make this asynchronous
+    if ([[Utilities sharedInstance] friendsWithPingOn]) {
+        NSLog(@"friends with ping on pulled from cache: %@", [[[Utilities sharedInstance] friendsWithPingOn] componentsJoinedByString:@","]);
+        [self friendsReceived:nil];
+    } else {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(friendsReceived:) name:@"friendsWithPingOnReceived" object:nil];
+    }
+}
+
+- (void)friendsReceived:(NSNotification *)inNotification {
+    
+    NSMutableArray *friendIds = [[NSMutableArray alloc] initWithCapacity:1];
+    for (FSUser* friend in [[Utilities sharedInstance] friendsWithPingOn]) {
+        [friendIds addObject:friend.userId];
+    }
+    NSString *friendIdsString = [friendIds componentsJoinedByString:@","];
+    
     FSUser *user = [[FoursquareAPI sharedInstance] currentUser];
     NSString *uid = user.userId;
     NSString *un = [user.firstnameLastInitial stringByReplacingOccurrencesOfString:@" " withString:@"+"];
@@ -52,7 +69,7 @@
 	NSString *hashInput = [NSString stringWithFormat:@"%@%@%@%@", uid, un, shout, kKBHashSalt];
     NSString *hash = [NSString md5: hashInput];
     NSString *urlstring = [NSString stringWithFormat:
-                           @"https://www.gorlochs.com/kickball/push.php?shout=%@&uid=%@&un=%@&ck=%@", shout, uid, un, hash];
+                           @"http://www.gorlochs.com/kickball/push.php?shout=%@&uid=%@&un=%@&fids=%@&ck=%@", shout, uid, un, friendIdsString, hash];
     NSLog(@"urlstring: %@", urlstring);
     
     NSString *push = [NSString stringWithContentsOfURL:[NSURL URLWithString:urlstring]];

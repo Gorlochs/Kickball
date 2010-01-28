@@ -26,6 +26,7 @@
 #import "ASIFormDataRequest.h"
 #import "KickballAppDelegate.h"
 #import "KBPin.h"
+#import "MD5.h"
 
 @interface PlaceDetailViewController (Private)
 
@@ -520,6 +521,7 @@
         // TODO: make this asynchronous
         if ([[Utilities sharedInstance] friendsWithPingOn]) {
             NSLog(@"friends with ping on pulled from cache: %@", [[[Utilities sharedInstance] friendsWithPingOn] componentsJoinedByString:@","]);
+            [self friendsReceived:nil];
         } else {
             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(friendsReceived:) name:@"friendsWithPingOnReceived" object:nil];
         }   
@@ -537,7 +539,10 @@
     NSString *uid = user.userId;
     NSString *un = [user.firstnameLastInitial stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     NSString *vn = [venue.name stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-    NSString *urlstring = [NSString stringWithFormat:@"http://www.literalshore.com/gorloch/kickball/test_push.php?uid=%@&un=%@&vn=%@&fids=%@", uid, un, vn, friendIdsString];
+    NSString *hashInput = [NSString stringWithFormat:@"%@%@%@%@", uid, un, vn, kKBHashSalt];
+    NSString *hash = [NSString md5: hashInput];
+    NSString *urlstring = [NSString stringWithFormat:
+                           @"http://www.gorlochs.com/kickball/push.php?vn=%@&uid=%@&un=%@&fids=%@&ck=%@", vn, uid, un, friendIdsString, hash];
     NSLog(@"urlstring: %@", urlstring);
     NSString *push = [NSString stringWithContentsOfURL:[NSURL URLWithString:urlstring]];
     NSLog(@"push: %@", push);

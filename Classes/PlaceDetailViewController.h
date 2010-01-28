@@ -85,5 +85,6 @@
 - (BOOL) hasMayorCell;
 - (void) setProperTwitterButtonState;
 - (void) setProperPingButtonState;
+- (void)friendsReceived:(NSNotification *)inNotification;
 
 @end

@@ -15,5 +15,6 @@
 
 - (IBAction) shout;
 - (IBAction) cancelView;
+- (void)friendsReceived:(NSNotification *)inNotification;
 
 @end
