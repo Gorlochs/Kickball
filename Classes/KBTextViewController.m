@@ -61,6 +61,7 @@
         [friendIds addObject:friend.userId];
     }
     NSString *friendIdsString = [friendIds componentsJoinedByString:@","];
+    [friendIds release];
     
     FSUser *user = [[FoursquareAPI sharedInstance] currentUser];
     NSString *uid = user.userId;

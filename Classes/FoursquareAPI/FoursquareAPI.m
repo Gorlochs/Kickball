@@ -1248,6 +1248,7 @@ int encode(unsigned s_len, char *src, unsigned d_len, char *dst)
     dataStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
     NSString * authenticationString = [@"" stringByAppendingFormat:@"Basic %@", dataStr];
 	[dataStr release];
+    [data release];
     // Create asynchronous request
     NSMutableURLRequest * theRequest=(NSMutableURLRequest*)[NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
     [theRequest addValue:authenticationString forHTTPHeaderField:@"Authorization"];
@@ -1272,6 +1273,7 @@ int encode(unsigned s_len, char *src, unsigned d_len, char *dst)
 		[theRequest setURL:[NSURL URLWithString:urlString]];
 		
 	}
+    [parameterString release];
 	
 	[theRequest setHTTPMethod:httpMethod];
     NSURLConnection * theConnection = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];

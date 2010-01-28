@@ -249,7 +249,7 @@
     [[Beacon shared] startSubBeaconWithName:@"Scanning Address Book"];
     [phones release];
     [people release];
-    [addressBook release];
+    //[addressBook release];
 }
 
 - (void)searchResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
