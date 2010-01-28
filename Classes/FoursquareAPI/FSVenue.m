@@ -64,7 +64,7 @@
     [coder encodeBool: friendsHaveBeenHere forKey:@"friendsHaveBeenHere"];
     [coder encodeBool: userHasBeenHere forKey:@"userHasBeenHere"];
     [coder encodeInteger: userCheckinCount forKey:@"userCheckinCount"];
-    [coder encodeInteger: specials forKey:@"specials"];
+    [coder encodeObject: specials forKey:@"specials"];
 } 
 
 - (id) initWithCoder: (NSCoder *)coder { 
@@ -87,7 +87,7 @@
         [self setFriendsHaveBeenHere: [coder decodeBoolForKey:@"friendsHaveBeenHere"]];   
         [self setUserHasBeenHere: [coder decodeBoolForKey:@"userHasBeenHere"]];   
         [self setUserCheckinCount: [coder decodeIntegerForKey:@"userCheckinCount"]]; 
-        [self specials: [coder decodeIntegerForKey:@"specials"]]; 
+        [self setSpecials: [coder decodeObjectForKey:@"specials"]]; 
     } 
     return self; 
 } 
