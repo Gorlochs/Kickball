@@ -25,7 +25,6 @@
 - (void) refreshFriendPoints;
 - (void) setCheckins:(NSArray *) checkin;
 - (NSArray *) checkins;
-//- (void) viewProfile:(NSString*)userId;
 - (void) showProfile:(id)sender;
 - (IBAction) retrieveNewFriendLocationsAndRefresh;
 

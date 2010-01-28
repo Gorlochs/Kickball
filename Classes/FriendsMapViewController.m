@@ -143,11 +143,13 @@
 }
 
 - (void) retrieveNewFriendLocationsAndRefresh {
+    self.checkins = nil;
+    [mapViewer removeAnnotations:mapViewer.annotations];
 	[[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
 }
 
 - (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-	checkins = [FoursquareAPI checkinsFromResponseXML:inString];
+	self.checkins = [FoursquareAPI checkinsFromResponseXML:inString];
     [mapViewer removeAnnotations:mapViewer.annotations];
     [self refreshFriendPoints];
 }
