@@ -265,7 +265,11 @@
             return stillTheMayorCell;
         } else if ([[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"stolen"] || [[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"new"]) {
             if ([[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"stolen"]) {
-                newMayorshipLabel.text = [NSString stringWithFormat:@"%@ (Crown stolen from %@)", [self getSingleCheckin].mayor.mayorCheckinMessage, [self getSingleCheckin].mayor.user.firstnameLastInitial];
+                //newMayorshipLabel.text = [NSString stringWithFormat:@"%@ (Crown stolen from %@)", [self getSingleCheckin].mayor.mayorCheckinMessage, [self getSingleCheckin].mayor.user.firstnameLastInitial];
+                newMayorshipLabel.text = [NSString stringWithFormat:@"Congrats! %@ is yours with %d check ins and %@ lost her crown %@", 
+                                          [self getSingleCheckin].venue.name, 
+                                          [self getSingleCheckin].mayor.numCheckins, 
+                                          [self getSingleCheckin].mayor.user.firstnameLastInitial];
             } else {
                 newMayorshipLabel.text = [self getSingleCheckin].mayor.mayorCheckinMessage;
             }
