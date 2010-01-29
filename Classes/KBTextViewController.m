@@ -12,6 +12,8 @@
 #import "Beacon.h"
 #import "MD5.h"
 #import "Utilities.h"
+#import "ASIFormDataRequest.h"
+
 
 @implementation KBTextViewController
 
@@ -66,15 +68,31 @@
     FSUser *user = [[FoursquareAPI sharedInstance] currentUser];
     NSString *uid = user.userId;
     NSString *un = [user.firstnameLastInitial stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-    NSString *shout = [theTextView.text stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+    NSString *shout = theTextView.text;
 	NSString *hashInput = [NSString stringWithFormat:@"%@%@%@%@", uid, un, shout, kKBHashSalt];
     NSString *hash = [NSString md5: hashInput];
-    NSString *urlstring = [NSString stringWithFormat:
-                           @"http://www.gorlochs.com/kickball/push.php?shout=%@&uid=%@&un=%@&fids=%@&ck=%@", shout, uid, un, friendIdsString, hash];
-    NSLog(@"urlstring: %@", urlstring);
+    NSString *urlstring = @"http://www.gorlochs.com/kickball/push.php";//?shout=%@&uid=%@&un=%@&fids=%@&ck=%@", shout, uid, un, friendIdsString, hash];
+	
+	NSURL *url = [NSURL URLWithString:urlstring];
+	NSOperationQueue *queue = [[[NSOperationQueue alloc] init] autorelease];
+	ASIFormDataRequest *request = [[ASIFormDataRequest alloc] initWithURL:url];
+	[request setPostValue:shout forKey:@"shout"];
+	[request setPostValue:uid forKey:@"uid"];
+	[request setPostValue:un forKey:@"un"];
+	[request setPostValue:friendIdsString forKey:@"fids"];
+	[request setPostValue:hash forKey:@"ck"];
+	
+	[request setDelegate:self];
+	[request setDidFinishSelector: @selector(pushCompleted:)];
+	//[request setDidFailSelector: @selector(requestWentWrong:)];
+	[queue addOperation:request];
+	
+	
+	
+
     
-    NSString *push = [NSString stringWithContentsOfURL:[NSURL URLWithString:urlstring]];
-    NSLog(@"push: %@", push);
+//    NSString *push = [NSString stringWithContentsOfURL:[NSURL URLWithString:urlstring]];
+//    NSLog(@"push: %@", push);
     
     // TODO: confirm that the shout was sent?
     [[NSNotificationCenter defaultCenter] postNotificationName:@"shoutSent"
@@ -82,6 +100,12 @@
                                                       userInfo:nil];
     [self cancelView];
 }
+
+- (void)pushCompleted:(ASIHTTPRequest *) request {
+	NSString *result = request.responseString;
+	NSLog(@"Response from push: %@", result);
+}
+
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
