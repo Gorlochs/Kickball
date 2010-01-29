@@ -10,7 +10,8 @@
 #import "FoursquareAPI.h"
 #import "KBMessage.h"
 #import "Beacon.h"
-#import "MD5.h"
+#import "NSString+hmac.h"
+#import "MPOAuthSignatureParameter.h"
 #import "Utilities.h"
 #import "ASIFormDataRequest.h"
 
@@ -67,11 +68,11 @@
     
     FSUser *user = [[FoursquareAPI sharedInstance] currentUser];
     NSString *uid = user.userId;
-    NSString *un = [user.firstnameLastInitial stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+    NSString *un = user.firstnameLastInitial;
     NSString *shout = theTextView.text;
-	NSString *hashInput = [NSString stringWithFormat:@"%@%@%@%@", uid, un, shout, kKBHashSalt];
-    NSString *hash = [NSString md5: hashInput];
-    NSString *urlstring = @"http://www.gorlochs.com/kickball/push.php";//?shout=%@&uid=%@&un=%@&fids=%@&ck=%@", shout, uid, un, friendIdsString, hash];
+	NSString *hashInput = [NSString stringWithFormat:@"%@%@%@", uid, un, shout];
+    NSString *hash = [hashInput hmacSha1:kKBHashSalt];
+    NSString *urlstring = @"http://www.gorlochs.com/kickball/push.php";
 	
 	NSURL *url = [NSURL URLWithString:urlstring];
 	NSOperationQueue *queue = [[[NSOperationQueue alloc] init] autorelease];

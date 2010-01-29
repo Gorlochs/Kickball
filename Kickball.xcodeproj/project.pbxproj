@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		035C1FD41112A2E10075E553 /* NSString+hmac.m in Sources */ = {isa = PBXBuildFile; fileRef = 035C1FD31112A2E10075E553 /* NSString+hmac.m */; };
 		03CECEA510D8B62C00E06966 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CECEA410D8B62C00E06966 /* SFHFKeychainUtils.m */; };
 		03E1476E110DBD8600A71D77 /* MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E1476D110DBD8600A71D77 /* MD5.m */; };
 		1D3623260D0F684500981E51 /* KickballAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* KickballAppDelegate.m */; };
@@ -487,6 +488,8 @@
 
 /* Begin PBXFileReference section */
 		0331DFCE10D36737009C5089 /* libisimulate.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libisimulate.a; path = libs/libisimulate.a; sourceTree = "<group>"; };
+		035C1FD21112A2E10075E553 /* NSString+hmac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+hmac.h"; sourceTree = "<group>"; };
+		035C1FD31112A2E10075E553 /* NSString+hmac.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+hmac.m"; sourceTree = "<group>"; };
 		03CECEA310D8B62C00E06966 /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
 		03CECEA410D8B62C00E06966 /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
 		03E1476C110DBD8600A71D77 /* MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD5.h; sourceTree = "<group>"; };
@@ -1851,6 +1854,8 @@
 				6AEB63D6110BAA8C0066DD05 /* KBPushNotificationView.m */,
 				03E1476C110DBD8600A71D77 /* MD5.h */,
 				03E1476D110DBD8600A71D77 /* MD5.m */,
+				035C1FD21112A2E10075E553 /* NSString+hmac.h */,
+				035C1FD31112A2E10075E553 /* NSString+hmac.m */,
 			);
 			name = General;
 			sourceTree = "<group>";
@@ -2670,6 +2675,7 @@
 				6AEB63D4110BA9BE0066DD05 /* PushNotificationView.xib in Sources */,
 				6AEB63D7110BAA8C0066DD05 /* KBPushNotificationView.m in Sources */,
 				03E1476E110DBD8600A71D77 /* MD5.m in Sources */,
+				035C1FD41112A2E10075E553 /* NSString+hmac.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
