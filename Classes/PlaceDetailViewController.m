@@ -26,7 +26,7 @@
 #import "ASIFormDataRequest.h"
 #import "KickballAppDelegate.h"
 #import "KBPin.h"
-#import "MD5.h"
+#import "NSString+hmac.h"
 
 @interface PlaceDetailViewController (Private)
 
@@ -542,17 +542,39 @@
     
     FSUser *user = [self getAuthenticatedUser];
     NSString *uid = user.userId;
-    NSString *un = [user.firstnameLastInitial stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-    NSString *vn = [venue.name stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-    NSString *hashInput = [NSString stringWithFormat:@"%@%@%@%@", uid, un, vn, kKBHashSalt];
-    NSString *hash = [NSString md5: hashInput];
-    NSString *urlstring = [NSString stringWithFormat:
-                           @"http://www.gorlochs.com/kickball/push.php?vn=%@&uid=%@&un=%@&fids=%@&ck=%@", vn, uid, un, friendIdsString, hash];
-    NSLog(@"urlstring: %@", urlstring);
-    NSString *push = [NSString stringWithContentsOfURL:[NSURL URLWithString:urlstring]];
-    NSLog(@"push: %@", push);
-//    NSLog(@"friends with ping on calculated: %@", [[[Utilities sharedInstance] friendsWithPingOn] componentsJoinedByString:@","]);
+    NSString *un = user.firstnameLastInitial;
+    NSString *vn = venue.name;
+    NSString *hashInput = [NSString stringWithFormat:@"%@%@%@", uid, un, vn];
+    NSString *hash = [hashInput hmacSha1:kKBHashSalt];
+    NSString *urlstring = @"http://www.gorlochs.com/kickball/push.php";//?vn=%@&uid=%@&un=%@&fids=%@&ck=%@", vn, uid, un, friendIdsString, hash];
+	
+	NSURL *url = [NSURL URLWithString:urlstring];
+	NSOperationQueue *queue = [[[NSOperationQueue alloc] init] autorelease];
+	ASIFormDataRequest *request = [[ASIFormDataRequest alloc] initWithURL:url];
+	[request setPostValue:vn forKey:@"vn"];
+	[request setPostValue:uid forKey:@"uid"];
+	[request setPostValue:un forKey:@"un"];
+	[request setPostValue:friendIdsString forKey:@"fids"];
+	[request setPostValue:hash forKey:@"ck"];
+	
+	[request setDelegate:self];
+	[request setDidFinishSelector: @selector(pushCompleted:)];
+	[request setDidFailSelector: @selector(pushFailed:)];
+	[queue addOperation:request];
 }
+
+- (void)pushCompleted:(ASIHTTPRequest *) request {
+	NSString *result = request.responseString;
+	NSLog(@"Response from push: %@", result);
+	
+}
+
+- (void)pushFailed:(ASIHTTPRequest *) request {
+	NSString *result = request.responseString;
+	NSLog(@"Failure from push: %@", result);
+}
+
+	
 
 - (void) togglePing {
     isPingOn = !isPingOn;

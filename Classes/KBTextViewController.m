@@ -85,26 +85,26 @@
 	
 	[request setDelegate:self];
 	[request setDidFinishSelector: @selector(pushCompleted:)];
-	//[request setDidFailSelector: @selector(requestWentWrong:)];
+	[request setDidFailSelector: @selector(pushFailed:)];
 	[queue addOperation:request];
-	
-	
-	
-
     
-//    NSString *push = [NSString stringWithContentsOfURL:[NSURL URLWithString:urlstring]];
-//    NSLog(@"push: %@", push);
-    
-    // TODO: confirm that the shout was sent?
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"shoutSent"
-                                                        object:nil
-                                                      userInfo:nil];
     [self cancelView];
 }
 
 - (void)pushCompleted:(ASIHTTPRequest *) request {
 	NSString *result = request.responseString;
 	NSLog(@"Response from push: %@", result);
+	
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"shoutSent"
+                                                        object:nil
+                                                      userInfo:nil];	
+}
+
+- (void)pushFailed:(ASIHTTPRequest *) request {
+	NSString *result = request.responseString;
+	NSLog(@"Failure from push: %@", result);
+	
+	//TODO: Alert user to failure
 }
 
 
