@@ -72,7 +72,7 @@
     NSString *shout = theTextView.text;
 	NSString *hashInput = [NSString stringWithFormat:@"%@%@%@", uid, un, shout];
     NSString *hash = [hashInput hmacSha1:kKBHashSalt];
-    NSString *urlstring = @"http://www.gorlochs.com/kickball/push.php";
+    NSString *urlstring = @"https://www.gorlochs.com/kickball/push.php";
 	
 	NSURL *url = [NSURL URLWithString:urlstring];
 	NSOperationQueue *queue = [[[NSOperationQueue alloc] init] autorelease];
