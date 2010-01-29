@@ -546,7 +546,7 @@
     NSString *vn = venue.name;
     NSString *hashInput = [NSString stringWithFormat:@"%@%@%@", uid, un, vn];
     NSString *hash = [hashInput hmacSha1:kKBHashSalt];
-    NSString *urlstring = @"https://www.gorlochs.com/kickball/push.php";//?vn=%@&uid=%@&un=%@&fids=%@&ck=%@", vn, uid, un, friendIdsString, hash];
+    NSString *urlstring = @"https://www.gorlochs.com/kickball/push.php";
 	
 	NSURL *url = [NSURL URLWithString:urlstring];
 	NSOperationQueue *queue = [[[NSOperationQueue alloc] init] autorelease];
