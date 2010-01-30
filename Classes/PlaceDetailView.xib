@@ -12,9 +12,9 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="87"/>
 			<integer value="36"/>
 			<integer value="113"/>
+			<integer value="62"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -345,7 +345,7 @@
 								<reference key="IBUINormalTitleShadowColor" ref="657622904"/>
 								<object class="NSCustomResource" key="IBUIHighlightedImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">ping02.png</string>
+									<string key="NSResourceName">placePingPress.png</string>
 								</object>
 								<object class="NSCustomResource" key="IBUISelectedImage">
 									<string key="NSClassName">NSImage</string>
@@ -372,11 +372,14 @@
 									<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="657622904"/>
-								<object class="NSCustomResource" key="IBUIHighlightedImage" id="846051595">
+								<object class="NSCustomResource" key="IBUIHighlightedImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">placeTwitterPress.png</string>
+								</object>
+								<object class="NSCustomResource" key="IBUIDisabledImage">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">twitter02disable.png</string>
 								</object>
-								<reference key="IBUIDisabledImage" ref="846051595"/>
 								<object class="NSCustomResource" key="IBUISelectedImage">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">twitter01.png</string>
