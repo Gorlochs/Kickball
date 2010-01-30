@@ -74,7 +74,7 @@
 							<object class="IBUIButton" id="55520027">
 								<reference key="NSNextResponder" ref="691472663"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{-1, 1}, {41, 37}}</string>
+								<string key="NSFrame">{{-2, 1}, {41, 37}}</string>
 								<reference key="NSSuperview" ref="691472663"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -97,11 +97,14 @@
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MC41AA</bytes>
 								</object>
-								<object class="NSCustomResource" key="IBUIHighlightedImage" id="123458551">
+								<object class="NSCustomResource" key="IBUIHighlightedImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">resultsClear.png</string>
+									<string key="NSResourceName">x-modal02.png</string>
 								</object>
-								<reference key="IBUINormalImage" ref="123458551"/>
+								<object class="NSCustomResource" key="IBUINormalImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">x-modal01.png</string>
+								</object>
 							</object>
 						</object>
 						<string key="NSFrameSize">{320, 39}</string>
@@ -282,7 +285,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{329, 504}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{27, 242}, {320, 460}}</string>
+					<string>{{538, 315}, {320, 460}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>
