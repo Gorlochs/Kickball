@@ -11,6 +11,7 @@
 #import "FSMayor.h"
 #import "FSSpecial.h"
 #import "SFHFKeychainUtils.h"
+#import "LocationManager.h"
 
 #define USER_AGENT @"UltraDudez:0.0.1"
 
@@ -275,6 +276,8 @@ static FoursquareAPI *sharedInstance = nil;
 		[requestParams setObject:@"0" forKey:@"twitter"];	
 //		[params addObject:[[MPURLRequestParameter alloc] initWithName:@"twitter" andValue:@"0"]];
 	}
+	[requestParams setObject:[NSString stringWithFormat:@"%f", [[LocationManager locationManager] latitude]]  forKey:@"geolat"];	
+	[requestParams setObject:[NSString stringWithFormat:@"%f", [[LocationManager locationManager] longitude]]  forKey:@"geolong"];	
 	NSLog(@"checkin params: %@", requestParams);
 	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/checkin"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"POST"];
 //    [self.oauthAPI performMethod:@"/v1/checkin" withTarget:inTarget withParameters:params andAction:inAction doPost:YES];
