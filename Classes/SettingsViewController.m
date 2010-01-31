@@ -62,6 +62,8 @@
 
 - (void)friendResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     NSLog(@"friend response for login: %@", inString);
+    [username resignFirstResponder];
+    [password resignFirstResponder];
     [self stopProgressBar];
     // cheap way of checking for successful authentication
     BOOL containsUnauthorized = [inString rangeOfString:@"unauthorized" options:NSCaseInsensitiveSearch].length > 0;
@@ -79,7 +81,7 @@
         [[FoursquareAPI sharedInstance] doLoginUsername: username.text andPass:password.text];	
         
         NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-        [prefs setObject:username forKey:kUsernameDefaultsKey];
+        [prefs setObject:username.text forKey:kUsernameDefaultsKey];
         NSLog(@"Stored username: %@", username.text);
         
         NSError *error = nil;

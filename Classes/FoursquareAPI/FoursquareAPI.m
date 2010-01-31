@@ -664,6 +664,7 @@ static FoursquareAPI *sharedInstance = nil;
         //NSLog(@"xml element checkin attr: %@", checkinAttr);
 		for (int counter = 0; counter < [checkinAttr childCount]; counter++) {
             NSString * key = [[checkinAttr childAtIndex:counter] name];
+            NSLog(@"checkins from node key: %@", key);
             NSString * value = [[checkinAttr childAtIndex:counter] stringValue];
             if([key isEqualToString:@"message"]){
                 oneCheckin.message = value;
@@ -689,6 +690,7 @@ static FoursquareAPI *sharedInstance = nil;
                 FSVenue * currentVenueInfo = [[FoursquareAPI _venuesFromNode:checkinAttr] objectAtIndex:0];
                 oneCheckin.venue = currentVenueInfo;
             } else if ([key compare:@"scoring"] == 0) {
+                NSLog(@"found the checkin scoring node");
                 FSScoring * currentCheckinScoring = [FoursquareAPI _scoringFromNode:checkinAttr];
                 oneCheckin.scoring = currentCheckinScoring;
             } else if ([key compare:@"badges"] == 0) {
@@ -775,6 +777,7 @@ static FoursquareAPI *sharedInstance = nil;
 			}
 		}
 		[allScores addObject:newScore];
+        [newScore release];
 	}
 	theScoring.scores = allScores;
 	

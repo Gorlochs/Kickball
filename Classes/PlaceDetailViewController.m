@@ -503,7 +503,7 @@
 
 - (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     NSLog(@"instring: %@", inString);
-	self.checkin = [FoursquareAPI checkinsFromResponseXML:inString];
+	self.checkin = [FoursquareAPI checkinFromResponseXML:inString];
     NSLog(@"checkin: %@", checkin);
     isUserCheckedIn = YES;
 	[theTableView reloadData];
@@ -513,12 +513,15 @@
     }
     [self stopProgressBar];
     
-    NSString *checkinText = @"";
+    NSMutableString *checkinText = [[NSMutableString alloc] initWithCapacity:1];
     for (FSScore *score in ci.scoring.scores) {
-        checkinText = [checkinText stringByAppendingString:[NSString stringWithFormat:@"+%d %@ \n", score.points, score.message]];
+        [checkinText appendFormat:[NSString stringWithFormat:@"+%d %@ \n", score.points, score.message]];
+        NSLog(@"checkin text: %@", checkinText);
+//        checkinText = [checkinText stringByAppendingString:[NSString stringWithFormat:@"+%d %@ \n", score.points, score.message]];
     }
     KBMessage *message = [[KBMessage alloc] initWithMember:@"Check in successful" andMessage:checkinText];
     [self displayPopupMessage:message];
+    [checkinText release];
     [message release];
     
     if (isPingOn) {
