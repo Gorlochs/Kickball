@@ -36,6 +36,8 @@
     
     BOOL hasViewedInstructions;
     BOOL isDisplayingMore;
+    
+    IBOutlet UIImageView *splashView;
 }
 
 @property (nonatomic, retain) NSArray * checkins;
@@ -52,5 +54,7 @@
 - (IBAction) viewNextWelcomeImage;
 - (IBAction) viewPreviousWelcomeImage;
 - (IBAction) displayOlderCheckins;
+- (void) showSplash;
+- (void) setupSplashAnimation;
 
 @end

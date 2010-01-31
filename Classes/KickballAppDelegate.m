@@ -84,6 +84,7 @@
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
+    [[LocationManager locationManager] stopUpdates];
     [Beacon endBeacon];
 }
 

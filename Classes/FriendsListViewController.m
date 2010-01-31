@@ -35,9 +35,25 @@
 
 @synthesize checkins, recentCheckins, todayCheckins, yesterdayCheckins, theTableView;
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self showSplash];
+}
+
+-(void)showSplash {
+    [self setupSplashAnimation];
+    UIViewController *modalViewController = [[UIViewController alloc] init];
+    modalViewController.view = splashView;
+    [self presentModalViewController:modalViewController animated:NO];
+    [splashView startAnimating];
+    [self performSelector:@selector(hideSplash) withObject:nil afterDelay:3.16];
+}
+
+- (void)hideSplash {
+    [splashView stopAnimating];
+    [[self modalViewController] dismissModalViewControllerAnimated:NO];    
+
     welcomePageNum = 1;
     isDisplayingMore = NO;
     
@@ -491,6 +507,17 @@
 - (void) displayOlderCheckins {
     isDisplayingMore = YES;
     [theTableView reloadData];
+}
+
+- (void) setupSplashAnimation {
+    NSMutableArray *images = [[NSMutableArray alloc] initWithCapacity:111];
+    for (int i = 1; i < 112; i++) {
+        [images addObject:[UIImage imageNamed:[NSString stringWithFormat:@"kbLOADER %03d.png", i]]];
+    }
+    
+    splashView.animationImages = [NSArray arrayWithArray:images];
+    splashView.animationDuration = 3.66;
+    splashView.animationRepeatCount = 0;
 }
 
 @end

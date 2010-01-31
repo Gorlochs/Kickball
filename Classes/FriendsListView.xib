@@ -12,8 +12,9 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="11"/>
 			<integer value="109"/>
+			<integer value="11"/>
+			<integer value="115"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -262,7 +263,7 @@
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 			</object>
 			<object class="IBUIView" id="167704769">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -271,7 +272,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrameSize">{325, 19}</string>
 						<reference key="NSSuperview" ref="167704769"/>
-						<reference key="NSWindow"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MAA</bytes>
@@ -284,7 +284,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{-5, 421}, {325, 19}}</string>
 						<reference key="NSSuperview" ref="167704769"/>
-						<reference key="NSWindow"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MAA</bytes>
@@ -297,7 +296,6 @@
 						<int key="NSvFlags">256</int>
 						<string key="NSFrame">{{0, 7}, {320, 420}}</string>
 						<reference key="NSSuperview" ref="167704769"/>
-						<reference key="NSWindow"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">4</int>
@@ -312,7 +310,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{183, 0}, {137, 460}}</string>
 						<reference key="NSSuperview" ref="167704769"/>
-						<reference key="NSWindow"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -330,7 +327,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{1, 1}, {137, 460}}</string>
 						<reference key="NSSuperview" ref="167704769"/>
-						<reference key="NSWindow"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -345,8 +341,6 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 460}</string>
-				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
@@ -355,7 +349,7 @@
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 			</object>
 			<object class="IBUITableViewCell" id="800991454">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -374,7 +368,6 @@
 										<int key="NSvFlags">292</int>
 										<string key="NSFrame">{{3, 6}, {128, 37}}</string>
 										<reference key="NSSuperview" ref="1000401801"/>
-										<reference key="NSWindow"/>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 										<int key="IBUIContentHorizontalAlignment">0</int>
@@ -400,14 +393,12 @@
 								</object>
 								<string key="NSFrameSize">{320, 50}</string>
 								<reference key="NSSuperview" ref="313005752"/>
-								<reference key="NSWindow"/>
 								<reference key="IBUIBackgroundColor" ref="799418983"/>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 							</object>
 						</object>
 						<string key="NSFrameSize">{320, 49}</string>
 						<reference key="NSSuperview" ref="800991454"/>
-						<reference key="NSWindow"/>
 						<object class="NSColor" key="IBUIBackgroundColor" id="556744363">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MCAwAA</bytes>
@@ -419,8 +410,6 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 50}</string>
-				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="IBUIBackgroundColor" ref="799418983"/>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<int key="IBUISeparatorStyle">1</int>
@@ -515,6 +504,18 @@
 				<int key="IBUISeparatorStyle">1</int>
 				<int key="IBUISelectionStyle">0</int>
 				<reference key="IBUIContentView" ref="313371893"/>
+			</object>
+			<object class="IBUIView" id="639669828">
+				<reference key="NSNextResponder"/>
+				<int key="NSvFlags">292</int>
+				<string key="NSFrameSize">{320, 460}</string>
+				<reference key="NSSuperview"/>
+				<object class="NSColor" key="IBUIBackgroundColor">
+					<int key="NSColorSpace">3</int>
+					<bytes key="NSWhite">MQA</bytes>
+					<reference key="NSCustomColorSpace" ref="1048325629"/>
+				</object>
+				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -714,6 +715,14 @@
 					</object>
 					<int key="connectionID">114</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">splashView</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="639669828"/>
+					</object>
+					<int key="connectionID">117</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -898,6 +907,15 @@
 						<reference key="object" ref="857200925"/>
 						<reference key="parent" ref="831572603"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">115</int>
+						<reference key="object" ref="639669828"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+						</object>
+						<reference key="parent" ref="0"/>
+						<string key="objectName">Splash Image View</string>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -912,6 +930,9 @@
 					<string>11.IBPluginDependency</string>
 					<string>111.IBEditorWindowLastContentRect</string>
 					<string>111.IBPluginDependency</string>
+					<string>115.CustomClassName</string>
+					<string>115.IBEditorWindowLastContentRect</string>
+					<string>115.IBPluginDependency</string>
 					<string>17.IBPluginDependency</string>
 					<string>21.IBPluginDependency</string>
 					<string>25.IBEditorWindowLastContentRect</string>
@@ -947,6 +968,9 @@
 					<string>{{238, 190}, {320, 460}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{21, 928}, {320, 44}}</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>UIImageView</string>
+					<string>{{0, 524}, {320, 460}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -991,7 +1015,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">114</int>
+			<int key="maxID">117</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1031,6 +1055,7 @@
 							<string>nextWelcomeImage</string>
 							<string>noNetworkView</string>
 							<string>previousWelcomeImage</string>
+							<string>splashView</string>
 							<string>theTableView</string>
 							<string>welcomeImage</string>
 						</object>
@@ -1043,6 +1068,7 @@
 							<string>UIButton</string>
 							<string>UIView</string>
 							<string>UIButton</string>
+							<string>UIImageView</string>
 							<string>UITableView</string>
 							<string>UIImageView</string>
 						</object>
