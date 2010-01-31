@@ -84,7 +84,7 @@
 
 + (NSArray *) usersFromResponseXML:(NSString *) inString;
 + (NSArray *) usersFromRequestResponseXML:(NSString *) inString;
-+ (NSArray *) friendsFromResponseXML:(NSString *) inString;
+//+ (NSArray *) friendsFromResponseXML:(NSString *) inString;
 + (NSArray *) friendUsersFromRequestResponseXML:(NSString *) inString;
 + (NSDictionary *) venuesFromResponseXML:(NSString *) inString;
 + (FSUser *) loggedInUserFromResponseXML:(NSString *) inString; 

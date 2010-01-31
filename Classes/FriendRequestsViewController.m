@@ -254,7 +254,7 @@
 
 - (void)searchResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     NSLog(@"search response: %@", inString);
-    friendRequests = [FoursquareAPI usersFromResponseXML:inString];
+    friendRequests = [[FoursquareAPI usersFromResponseXML:inString] retain];
     [theTableView reloadData];
     [self stopProgressBar];
 }

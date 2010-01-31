@@ -31,7 +31,7 @@
 
 - (void)friendRequestResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     NSLog(@"pending friend requests: %@", inString);
-    pendingFriendRequests = [FoursquareAPI usersFromRequestResponseXML:inString];
+    pendingFriendRequests = [[FoursquareAPI usersFromRequestResponseXML:inString] retain];
     friendRequestCount.text = [NSString stringWithFormat:@"%d", [pendingFriendRequests count]];
     [self stopProgressBar];
     NSLog(@"pendingFriendRequests: %@", pendingFriendRequests);

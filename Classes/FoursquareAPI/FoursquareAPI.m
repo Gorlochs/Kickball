@@ -409,7 +409,7 @@ static FoursquareAPI *sharedInstance = nil;
 	allUsers = [userParser nodesForXPath:@"//requests/user" error:nil];
     NSLog(@"allusers: %@", allUsers);
 	for (CXMLElement *userResult in allUsers) {
-        [users addObject:[FoursquareAPI _userFromNode:userResult]];
+        [users addObject:[[FoursquareAPI _userFromNode:userResult] retain]];
 	}
     [userParser release];
 	return users;
@@ -483,7 +483,7 @@ static FoursquareAPI *sharedInstance = nil;
 	NSLog(@"error: %@", [err localizedDescription]);
 	
 	NSArray * allUsers;
-    NSMutableArray * users = [[NSMutableArray alloc] initWithCapacity:1];
+    NSMutableArray * users = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
 	
 	//get the groups
 	allUsers = [userParser nodesForXPath:@"//users/user" error:nil];
@@ -502,7 +502,7 @@ static FoursquareAPI *sharedInstance = nil;
 	NSLog(@"error: %@", [err localizedDescription]);
 	
 	NSArray * allUsers;
-    NSMutableArray * users = [[NSMutableArray alloc] initWithCapacity:1];
+    NSMutableArray * users = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
 	
 	//get the groups
 	allUsers = [userParser nodesForXPath:@"//requests/user" error:nil];
@@ -521,7 +521,7 @@ static FoursquareAPI *sharedInstance = nil;
 	NSLog(@"error: %@", [err localizedDescription]);
 	
 	NSArray * allUsers;
-    NSMutableArray * users = [[NSMutableArray alloc] initWithCapacity:1];
+    NSMutableArray * users = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
 	
 	//get the groups
 	allUsers = [userParser nodesForXPath:@"//friends/user" error:nil];
@@ -533,22 +533,22 @@ static FoursquareAPI *sharedInstance = nil;
 	return users;
 }
 
-+ (NSArray *) friendsFromResponseXML:(NSString *) inString{
-	
-	NSError * err = nil;
-	CXMLDocument *friendParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
-	NSLog(@"%@", [err localizedDescription]);
-	
-	NSArray * allFriends;
-	
-	//get the groups
-	allFriends = [friendParser nodesForXPath:@"//friends/friend" error:nil];
-	for (CXMLElement *friendResult in allFriends) {
-		allFriends = [[FoursquareAPI _friendsFromNode:friendResult] mutableCopy];
-	}
-    [friendParser release];
-	return allFriends;
-}
+//+ (NSArray *) friendsFromResponseXML:(NSString *) inString{
+//	
+//	NSError * err = nil;
+//	CXMLDocument *friendParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
+//	NSLog(@"%@", [err localizedDescription]);
+//	
+//	NSArray * allFriends = nil;
+//	
+//	//get the groups
+//	allFriends = [friendParser nodesForXPath:@"//friends/friend" error:nil];
+//	for (CXMLElement *friendResult in allFriends) {
+//		allFriends = [[FoursquareAPI _friendsFromNode:friendResult] mutableCopy];
+//	}
+//    [friendParser release];
+//	return allFriends;
+//}
 
 + (NSDictionary *) venuesFromResponseXML:(NSString *) inString{
 
@@ -558,16 +558,11 @@ static FoursquareAPI *sharedInstance = nil;
 	NSLog(@"error: %@", [err localizedDescription]);
 
     NSMutableDictionary *allVenues = [[[NSMutableDictionary alloc] initWithCapacity:1] autorelease];
-	//NSMutableArray * allVens = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
 
-	NSArray *allGroups = NULL;
-
-	//get the groups
-	allGroups = [venueParser nodesForXPath:@"//venues/group" error:nil];
+	NSArray *allGroups = [venueParser nodesForXPath:@"//venues/group" error:nil];
 	for (CXMLElement *groupResult in allGroups) {
 		NSArray * groupOfVenues = [FoursquareAPI _venuesFromNode:groupResult];
         [allVenues setObject:[groupOfVenues copy] forKey:[[groupResult attributeForName:@"type"] stringValue]];
-		//[allVens addObject:[groupOfVenues copy]];
 	}
     [venueParser release];
 	return allVenues;
@@ -577,15 +572,17 @@ static FoursquareAPI *sharedInstance = nil;
 	
 	NSError * err = nil;
 	CXMLDocument *userParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
-    NSLog(@"user xml: %@", userParser);
+    //NSLog(@"user xml: %@", userParser);
 	NSLog(@"%@", [err description]);
 	
 	NSArray *allUserAttrs = [userParser nodesForXPath:@"user" error:nil];
+    FSUser *user = nil;
 	for (CXMLElement *usrAttr in allUserAttrs) {
-		return [FoursquareAPI _userFromNode:usrAttr];
+		user = [FoursquareAPI _userFromNode:usrAttr];
+        break;
 	}
     [userParser release];
-	return nil;
+	return user;
 }
 
 + (FSUser *) loggedInUserFromResponseXML:(NSString *) inString{
@@ -593,14 +590,15 @@ static FoursquareAPI *sharedInstance = nil;
 	CXMLDocument *userParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
 	NSLog(@"%@", [err description]);
 
-	
+	FSUser *user = nil;
 	NSArray *allUserAttrs = [userParser nodesForXPath:@"user" error:nil];
 	for (CXMLElement *usrAttr in allUserAttrs) {
-		return [FoursquareAPI _userFromNode:usrAttr];
+		user = [FoursquareAPI _userFromNode:usrAttr];
+        break;
 	}
     [userParser release];
 	
-	return nil;
+	return user;
 }
 
 + (FSVenue *) venueFromResponseXML:(NSString *) inString{
@@ -630,12 +628,13 @@ static FoursquareAPI *sharedInstance = nil;
     
 	NSArray *allCheckinAttrs = [checkinParser nodesForXPath:@"//checkins" error:nil];
     
+    NSArray *checkins = nil;
 	for (CXMLElement *checkinAttr in allCheckinAttrs) {
-        return [FoursquareAPI _checkinsFromNode:checkinAttr];
+        checkins = [FoursquareAPI _checkinsFromNode:checkinAttr];
     }
     [checkinParser release];
     
-    return nil;
+    return checkins;
 }
 
 + (NSArray *) checkinFromResponseXML:(NSString *) inString{
@@ -646,13 +645,13 @@ static FoursquareAPI *sharedInstance = nil;
 	NSLog(@"checkins xml: %@", checkinParser);
     
 	NSArray *allCheckinAttrs = [checkinParser nodesForXPath:@"//checkin" error:nil];
-    
+    NSArray *checkins = nil;
 	for (CXMLElement *checkinAttr in allCheckinAttrs) {
-        return [FoursquareAPI _checkinsFromNode:checkinAttr];
+        checkins = [FoursquareAPI _checkinsFromNode:checkinAttr];
     }
     [checkinParser release];
     
-    return nil;
+    return checkins;
 }
 
 + (NSArray *) _checkinsFromNode:(CXMLNode *) inputNode {
@@ -929,7 +928,7 @@ static FoursquareAPI *sharedInstance = nil;
 			} else if([key isEqualToString:@"url"]){
 				newTip.url = value;
 			}  else if([key isEqualToString:@"user"]){
-				newTip.submittedBy = [FoursquareAPI _shortUserFromNode:[[tipResult nodesForXPath:@"user" error:nil] objectAtIndex:0]];
+				newTip.submittedBy = [[FoursquareAPI _shortUserFromNode:[[tipResult nodesForXPath:@"user" error:nil] objectAtIndex:0]] retain];
 			}
 		}
 		[allTips addObject:newTip];
@@ -1014,7 +1013,7 @@ static FoursquareAPI *sharedInstance = nil;
 // very short version of user for certain uses (e.g., tips)
 + (FSUser *) _shortUserFromNode:(CXMLElement *) usrAttr {
     
-	FSUser * loggedInUser = [[FSUser alloc] init];
+	FSUser * loggedInUser = [[[FSUser alloc] init] autorelease];
     
 	int counter;
     

@@ -27,7 +27,7 @@
 
 - (void)friendsResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     NSLog(@"friends: %@", inString);
-    friends = [FoursquareAPI friendUsersFromRequestResponseXML:inString];
+    friends = [[FoursquareAPI friendUsersFromRequestResponseXML:inString] retain];
     // create dictionary of icons to help speed up the scrolling
     
     userIcons = [[NSMutableDictionary alloc] initWithCapacity:1];
