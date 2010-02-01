@@ -70,19 +70,24 @@
 
 - (void) submitTipOrTodoToFoursquare {
     [tipTodoText resignFirstResponder];
-    [self startProgressBar:@"Submitting Tip/Todo..."];
-    NSString *tipOrTodo = nil;
-    if (tipTodoSwitch.selectedSegmentIndex = 0) {
-        [[Beacon shared] startSubBeaconWithName:@"Creating Tip"];
-        NSLog(@"submitting tip");
-        tipOrTodo = @"tip";
+    if ([tipTodoText.text length] == 0) {
+        KBMessage *message = [[KBMessage alloc] initWithMember:@"Submission Failed" andMessage:@"Please enter in some text and try again."];
+        [self displayPopupMessage:message];
+        [message release];
     } else {
-        [[Beacon shared] startSubBeaconWithName:@"Creating Todo"];
-        NSLog(@"submitting todo");
-        tipOrTodo = @"todo";
+        [self startProgressBar:@"Submitting Tip/Todo..."];
+        NSString *tipOrTodo = nil;
+        if (tipTodoSwitch.selectedSegmentIndex = 0) {
+            [[Beacon shared] startSubBeaconWithName:@"Creating Tip"];
+            NSLog(@"submitting tip");
+            tipOrTodo = @"tip";
+        } else {
+            [[Beacon shared] startSubBeaconWithName:@"Creating Todo"];
+            NSLog(@"submitting todo");
+            tipOrTodo = @"todo";
+        }
+        [[FoursquareAPI sharedInstance] createTipTodoForVenue:venue.venueid type:tipOrTodo text:tipTodoText.text withTarget:self andAction:@selector(tipTodoResponseReceived:withResponseString:)];
     }
-    [[FoursquareAPI sharedInstance] createTipTodoForVenue:venue.venueid type:tipOrTodo text:tipTodoText.text withTarget:self andAction:@selector(tipTodoResponseReceived:withResponseString:)];
-    
 }
 
 - (void) callVenue {
