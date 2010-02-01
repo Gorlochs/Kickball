@@ -47,6 +47,7 @@
     IBOutlet UIButton *specialsButton;
     IBOutlet UIButton *mapButton;
     IBOutlet UIButton *closeMapButton;
+    IBOutlet UIButton *phoneButton;
     
     NSArray *checkin;
     FSVenue *venue;

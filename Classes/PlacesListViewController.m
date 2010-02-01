@@ -237,7 +237,7 @@
         line.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.13];
         [cell addSubview:line];
         [line release];
-        cell.selectionStyle = UITableViewCellSelectionStyleGray;
+        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     }
     
     if ([venues count] > indexPath.section) {

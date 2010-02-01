@@ -149,6 +149,10 @@
     
     venueDetailButton.hidden = NO;
     
+    if (!venueToDisplay.phone) {
+        phoneButton.hidden = YES;
+    }
+    
     if (venueToDisplay.mayor != nil) {
         mayorMapCell.imageView.image = [[Utilities sharedInstance] getCachedImage:venueToDisplay.mayor.photo];
         mayorNameLabel.text = venueToDisplay.mayor.firstnameLastInitial;
@@ -237,7 +241,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
-        cell.selectionStyle = UITableViewCellSelectionStyleGray;
+        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
         
         UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 43, 320, 1)];
         line.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.13];
@@ -460,6 +464,7 @@
     [specialsButton release];
     [mapButton release];
     [closeMapButton release];
+    [phoneButton release];
     
     [checkin release];
     [venue release];
@@ -471,6 +476,7 @@
 #pragma mark IBAction methods
 
 - (void) callVenue {
+    NSLog(@"phone number to call: %@", [NSString stringWithFormat:@"tel:%@", venue.phone]);
     [[Beacon shared] startSubBeaconWithName:@"call Venue"];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", venue.phone]]];
 }
