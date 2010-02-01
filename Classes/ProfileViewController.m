@@ -84,7 +84,7 @@
     int y = 0;
     int i = 0;
     for (FSBadge *badge in user.badges) {
-        CGRect frame= CGRectMake(x*60 + 10, y*60 + 10, 50, 50);
+        CGRect frame= CGRectMake(x*60 + 11, y*60 + 10, 50, 50);
         UIButton *btn = [[UIButton alloc] initWithFrame:frame];
         [btn setImage:[[Utilities sharedInstance] getCachedImage:badge.icon] forState:UIControlStateNormal];
         btn.tag = i++;

@@ -169,7 +169,7 @@
     [self stopProgressBar];
     
     // TODO: we should probably take the user off this page.
-    KBMessage *msg = [[KBMessage alloc] initWithMember:@"Check in Successful" andMessage:checkin.message];
+    KBMessage *msg = [[KBMessage alloc] initWithMember:@"Check-in Successful" andMessage:checkin.message];
     [self displayPopupMessage:msg];
     [msg release];
 }
