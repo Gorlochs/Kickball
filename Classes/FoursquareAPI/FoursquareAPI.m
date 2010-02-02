@@ -663,7 +663,6 @@ static FoursquareAPI *sharedInstance = nil;
         //NSLog(@"xml element checkin attr: %@", checkinAttr);
 		for (int counter = 0; counter < [checkinAttr childCount]; counter++) {
             NSString * key = [[checkinAttr childAtIndex:counter] name];
-            NSLog(@"checkins from node key: %@", key);
             NSString * value = [[checkinAttr childAtIndex:counter] stringValue];
             if([key isEqualToString:@"message"]){
                 oneCheckin.message = value;

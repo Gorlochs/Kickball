@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="5"/>
+			<integer value="1"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -43,7 +43,7 @@
 					<object class="IBUITextView" id="416782817">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{0, 58}, {320, 460}}</string>
+						<string key="NSFrame">{{0, 46}, {320, 460}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -52,7 +52,16 @@
 						<bool key="IBUIDelaysContentTouches">NO</bool>
 						<bool key="IBUICanCancelContentTouches">NO</bool>
 						<bool key="IBUIBouncesZoom">NO</bool>
-						<string key="IBUIText">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+						<string type="base64-UTF8" key="IBUIText">Rm9yIGNoYWlucyBvciB2ZW51ZXMgd2l0aCBtdWx0aXBsZSBsb2NhdGlvbnMsIHlvdSBubyBsb25nZXIg
+bmVlZCB0byBhZGQgYSBsb2NhdGlvbiBzdWZmaXguIFNvIOKAnFN0YXJidWNrc+KAnW9yIOKAnEFwcGxl
+IFN0b3Jl4oCdIGlzIGZpbmUgKGluc3RlYWQgb2Yg4oCcU3RhcmJ1Y2tzIOKAkyBRdWVlbiBBbm5l4oCd
+IG9yIOKAnEFwcGxlIFN0b3JlIOKAkyBVcHRvd27igJ0pLiBXaGVuIHBvc3NpYmxlIHN0aWNrIHdpdGgg
+YWJicmV2aWF0aW9uczog4oCcQXZl4oCdIGluc3RlYWQgb2Yg4oCcQXZlbnVl4oCdLCDigJxTdOKAnSBp
+bnN0ZWFkIOKAnFN0cmVldOKAnSwgZXRjCkNyb3NzIFN0cmVldCBzaG91bGQgYmUgbGlrZSBvbmUgb2Yg
+dGhlIGZvbGxvd2luZzoKCiAgICAqIGF0IE1haW4gU3QgKGZvciB2ZW51ZXMgb24gYSBjb3JuZXIpCiAg
+ICAqIGJ0dyAybmQgJiAzcmQgQXZlIChmb3IgdmVudWVzIGluIHRoZSBtaWRkbGUgb2YgYSBibG9jaykg
+Q3Jvc3MgU3RyZWV0IHNob3VsZCBub3QgcmVwZWF0IHRoZSBuYW1lIG9mIHRoZSBzdHJlZXQgaW4gdGhl
+IGFkZHJlc3MKA</string>
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits">
 							<int key="IBUIAutocapitalizationType">2</int>
 						</object>
@@ -241,8 +250,8 @@
 						<reference key="object" ref="191373211"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="416782817"/>
 							<reference ref="236895864"/>
+							<reference ref="416782817"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -364,6 +373,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>backOneView</string>
 							<string>checkin</string>
+							<string>dismiss</string>
 							<string>displayTextView</string>
 							<string>goToHomeView</string>
 							<string>viewSettings</string>
@@ -371,6 +381,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>

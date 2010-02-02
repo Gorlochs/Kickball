@@ -245,6 +245,7 @@
             [phone release];
         }
     }
+    NSLog(@"phones: %@", phones);
     [[FoursquareAPI sharedInstance] findFriendsByPhone:[phones componentsJoinedByString:@","] withTarget:self andAction:@selector(searchResponseReceived:withResponseString:)];
     [[Beacon shared] startSubBeaconWithName:@"Scanning Address Book"];
     [phones release];

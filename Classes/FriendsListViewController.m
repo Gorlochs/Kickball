@@ -8,6 +8,7 @@
 //  Standard table view of friends' recent activity
 //
 
+#import <MediaPlayer/MediaPlayer.h>
 #import <QuartzCore/QuartzCore.h>
 #import "FriendsListViewController.h"
 #import "FriendsListTableCell.h"
@@ -43,9 +44,40 @@
 //}
 //
 //-(void)showSplash {
-////    UIViewController *modalViewController = [[UIViewController alloc] init];
-////    modalViewController.view = splashView;
-////    [self presentModalViewController:modalViewController animated:NO];
+//    MPMoviePlayerController* theMovie = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"kickballLoadingV2iphone" ofType:@"mp4"]]];
+//    NSLog(@"movie: %@", theMovie);
+//    theMovie.scalingMode = MPMovieScalingModeAspectFit;
+//    theMovie.movieControlMode = MPMovieControlModeHidden;
+//    
+//    // Register for the playback finished notification
+//    [[NSNotificationCenter defaultCenter]
+//         addObserver: self
+//         selector: @selector(myMovieFinishedCallback:)
+//         name: MPMoviePlayerPlaybackDidFinishNotification
+//         object: theMovie];
+//    
+//    // Movie playback is asynchronous, so this method returns immediately.
+//    [theMovie play];
+//}
+//
+//// When the movie is done, release the controller.
+//-(void) myMovieFinishedCallback: (NSNotification*) aNotification {
+//    MPMoviePlayerController* theMovie = [aNotification object];
+//    
+//    [[NSNotificationCenter defaultCenter]
+//         removeObserver: self
+//         name: MPMoviePlayerPlaybackDidFinishNotification
+//         object: theMovie];
+//    
+//    // Release the movie instance created in playMovieAtURL:
+//    [theMovie release];
+    
+//}
+    
+    
+//    UIViewController *modalViewController = [[UIViewController alloc] init];
+//    modalViewController.view = splashView;
+//    [self presentModalViewController:modalViewController animated:NO];
 //    [self.view addSubview:splashView];
 //    [splashView startAnimating];
 //    //[UIView setAnimationDidStopSelector:@selector(hideSplash:finished:context:)];
@@ -514,62 +546,62 @@
 }
 
 - (void) setupSplashAnimation {
-//    NSMutableArray *images = [[NSMutableArray alloc] initWithCapacity:111];
-//    for (int i = 1; i < 112; i++) {
-//        [images addObject:[UIImage imageNamed:[NSString stringWithFormat:@"kbLOADER %03d.png", i]]];
-//    }
+    NSMutableArray *images = [[NSMutableArray alloc] initWithCapacity:1];
+    for (int i = 1; i < 112; i = i + 3) {
+        [images addObject:[UIImage imageNamed:[NSString stringWithFormat:@"kbLOADER%03d.png", i]]];
+    }
     
-    splashView.animationImages = [NSArray arrayWithObjects:
-                                    [UIImage imageNamed:@"kbLOADER001.png"],
-                                    [UIImage imageNamed:@"kbLOADER002.png"],
-                                    [UIImage imageNamed:@"kbLOADER003.png"],
-                                    [UIImage imageNamed:@"kbLOADER004.png"],
-                                    [UIImage imageNamed:@"kbLOADER005.png"],
-                                    [UIImage imageNamed:@"kbLOADER006.png"],
-                                    [UIImage imageNamed:@"kbLOADER007.png"],
-                                  [UIImage imageNamed:@"kbLOADER008.png"],
-                                  [UIImage imageNamed:@"kbLOADER009.png"],
-                                  [UIImage imageNamed:@"kbLOADER010.png"],
-                                  [UIImage imageNamed:@"kbLOADER011.png"],
-                                  [UIImage imageNamed:@"kbLOADER012.png"],
-                                  [UIImage imageNamed:@"kbLOADER013.png"],
-                                  [UIImage imageNamed:@"kbLOADER014.png"],
-                                  [UIImage imageNamed:@"kbLOADER015.png"],
-                                  [UIImage imageNamed:@"kbLOADER016.png"],
-                                  [UIImage imageNamed:@"kbLOADER017.png"],
-                                  [UIImage imageNamed:@"kbLOADER018.png"],
-                                  [UIImage imageNamed:@"kbLOADER019.png"],
-                                  [UIImage imageNamed:@"kbLOADER020.png"],
-                                  [UIImage imageNamed:@"kbLOADER021.png"],
-                                  [UIImage imageNamed:@"kbLOADER022.png"],
-                                  [UIImage imageNamed:@"kbLOADER023.png"],
-                                  [UIImage imageNamed:@"kbLOADER024.png"],
-                                  [UIImage imageNamed:@"kbLOADER025.png"],
-                                  [UIImage imageNamed:@"kbLOADER026.png"],
-                                  [UIImage imageNamed:@"kbLOADER027.png"],
-                                  [UIImage imageNamed:@"kbLOADER028.png"],
-                                  [UIImage imageNamed:@"kbLOADER029.png"],
-                                  [UIImage imageNamed:@"kbLOADER030.png"],
-                                  [UIImage imageNamed:@"kbLOADER031.png"],
-                                  [UIImage imageNamed:@"kbLOADER032.png"],
-                                  [UIImage imageNamed:@"kbLOADER033.png"],
-                                  [UIImage imageNamed:@"kbLOADER034.png"],
-                                  [UIImage imageNamed:@"kbLOADER035.png"],
-                                  [UIImage imageNamed:@"kbLOADER036.png"],
-                                  [UIImage imageNamed:@"kbLOADER037.png"],
-                                  [UIImage imageNamed:@"kbLOADER038.png"],
-                                  [UIImage imageNamed:@"kbLOADER039.png"],
-                                  [UIImage imageNamed:@"kbLOADER040.png"],
-                                  [UIImage imageNamed:@"kbLOADER041.png"],
-                                  [UIImage imageNamed:@"kbLOADER042.png"],
-                                  [UIImage imageNamed:@"kbLOADER043.png"],
-                                  [UIImage imageNamed:@"kbLOADER044.png"],
-                                  [UIImage imageNamed:@"kbLOADER045.png"],
-                                  [UIImage imageNamed:@"kbLOADER046.png"],
-                                  [UIImage imageNamed:@"kbLOADER047.png"],
-                                  [UIImage imageNamed:@"kbLOADER048.png"],
-                                  [UIImage imageNamed:@"kbLOADER049.png"],
-                                  [UIImage imageNamed:@"kbLOADER050.png"],
+//    splashView.animationImages = [NSArray arrayWithObjects:
+//                                    [UIImage imageNamed:@"kbLOADER001.png"],
+//                                    [UIImage imageNamed:@"kbLOADER002.png"],
+//                                    [UIImage imageNamed:@"kbLOADER003.png"],
+//                                    [UIImage imageNamed:@"kbLOADER004.png"],
+//                                    [UIImage imageNamed:@"kbLOADER005.png"],
+//                                    [UIImage imageNamed:@"kbLOADER006.png"],
+//                                    [UIImage imageNamed:@"kbLOADER007.png"],
+//                                  [UIImage imageNamed:@"kbLOADER008.png"],
+//                                  [UIImage imageNamed:@"kbLOADER009.png"],
+//                                  [UIImage imageNamed:@"kbLOADER010.png"],
+//                                  [UIImage imageNamed:@"kbLOADER011.png"],
+//                                  [UIImage imageNamed:@"kbLOADER012.png"],
+//                                  [UIImage imageNamed:@"kbLOADER013.png"],
+//                                  [UIImage imageNamed:@"kbLOADER014.png"],
+//                                  [UIImage imageNamed:@"kbLOADER015.png"],
+//                                  [UIImage imageNamed:@"kbLOADER016.png"],
+//                                  [UIImage imageNamed:@"kbLOADER017.png"],
+//                                  [UIImage imageNamed:@"kbLOADER018.png"],
+//                                  [UIImage imageNamed:@"kbLOADER019.png"],
+//                                  [UIImage imageNamed:@"kbLOADER020.png"],
+//                                  [UIImage imageNamed:@"kbLOADER021.png"],
+//                                  [UIImage imageNamed:@"kbLOADER022.png"],
+//                                  [UIImage imageNamed:@"kbLOADER023.png"],
+//                                  [UIImage imageNamed:@"kbLOADER024.png"],
+//                                  [UIImage imageNamed:@"kbLOADER025.png"],
+//                                  [UIImage imageNamed:@"kbLOADER026.png"],
+//                                  [UIImage imageNamed:@"kbLOADER027.png"],
+//                                  [UIImage imageNamed:@"kbLOADER028.png"],
+//                                  [UIImage imageNamed:@"kbLOADER029.png"],
+//                                  [UIImage imageNamed:@"kbLOADER030.png"],
+//                                  [UIImage imageNamed:@"kbLOADER031.png"],
+//                                  [UIImage imageNamed:@"kbLOADER032.png"],
+//                                  [UIImage imageNamed:@"kbLOADER033.png"],
+//                                  [UIImage imageNamed:@"kbLOADER034.png"],
+//                                  [UIImage imageNamed:@"kbLOADER035.png"],
+//                                  [UIImage imageNamed:@"kbLOADER036.png"],
+//                                  [UIImage imageNamed:@"kbLOADER037.png"],
+//                                  [UIImage imageNamed:@"kbLOADER038.png"],
+//                                  [UIImage imageNamed:@"kbLOADER039.png"],
+//                                  [UIImage imageNamed:@"kbLOADER040.png"],
+//                                  [UIImage imageNamed:@"kbLOADER041.png"],
+//                                  [UIImage imageNamed:@"kbLOADER042.png"],
+//                                  [UIImage imageNamed:@"kbLOADER043.png"],
+//                                  [UIImage imageNamed:@"kbLOADER044.png"],
+//                                  [UIImage imageNamed:@"kbLOADER045.png"],
+//                                  [UIImage imageNamed:@"kbLOADER046.png"],
+//                                  [UIImage imageNamed:@"kbLOADER047.png"],
+//                                  [UIImage imageNamed:@"kbLOADER048.png"],
+//                                  [UIImage imageNamed:@"kbLOADER049.png"],
+//                                  [UIImage imageNamed:@"kbLOADER050.png"],
 //                                  [UIImage imageNamed:@"kbLOADER051.png"],
 //                                  [UIImage imageNamed:@"kbLOADER052.png"],
 //                                  [UIImage imageNamed:@"kbLOADER053.png"],
@@ -631,7 +663,7 @@
 //                                  [UIImage imageNamed:@"kbLOADER109.png"],
 //                                  [UIImage imageNamed:@"kbLOADER110.png"],
 //                                  [UIImage imageNamed:@"kbLOADER111.png"],
-                                                nil];
+//                                                nil];
     
 //    splashView.animationImages = [[NSArray alloc] initWithArray:images];
     splashView.animationDuration = 3.66;
