@@ -219,13 +219,13 @@
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">search.png</string>
+							<string key="NSResourceName">search_new.png</string>
 						</object>
 					</object>
 					<object class="IBUITextField" id="830336758">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{9, 45}, {228, 31}}</string>
+						<string key="NSFrame">{{38, 45}, {228, 31}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -250,6 +250,7 @@
 							<int key="IBUIAutocapitalizationType">1</int>
 							<int key="IBUIReturnKeyType">6</int>
 						</object>
+						<int key="IBUIClearButtonMode">1</int>
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 460}</string>
