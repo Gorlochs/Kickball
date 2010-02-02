@@ -26,5 +26,7 @@
 - (IBAction) checkinToNewVenue;
 - (IBAction) viewTipsForAddingNewPlace;
 - (IBAction) switchToTextFields;
+- (IBAction) checkListings;
+- (IBAction) doVenuelessCheckin;
 
 @end

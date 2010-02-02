@@ -195,11 +195,38 @@
     return nil;
 }
 
+- (void) checkListings {
+    [newPlaceName resignFirstResponder];
+    [self checkinToNewVenue];
+}
+
+- (void) doVenuelessCheckin {
+    if ([newPlaceName.text isEqualToString:@""]){
+        KBMessage *msg = [[KBMessage alloc] initWithMember:@"Error" andMessage:@"Please fill out a venue name"];
+        [self displayPopupMessage:msg];
+        [msg release];
+    } else {
+        [self startProgressBar:@"Checking you in..."];
+        [[FoursquareAPI sharedInstance] doVenuelessCheckin:newPlaceName.text withTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
+    }
+}
+
+- (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+    NSLog(@"new checkin instring: %@", inString);
+	NSArray *checkins = [FoursquareAPI checkinFromResponseXML:inString];
+    FSCheckin *ci = [checkins objectAtIndex:0];
+    NSLog(@"venueless checkin: %@", checkins);
+    [self stopProgressBar];
+
+    KBMessage *msg = [[KBMessage alloc] initWithMember:@"Check-in Successful" andMessage:ci.message];
+    [self displayPopupMessage:msg];
+    [msg release];
+}
+
 #pragma mark UITextFieldDelegate methods
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [textField resignFirstResponder];
-    [self checkinToNewVenue];
+    [self checkListings];
     return YES;
 }
 
@@ -207,6 +234,8 @@
 - (void)dealloc {
     [theTableView release];
     [newPlaceName release];
+    
+    [noneOfTheseCell release];
     
     [checkin release];
     [venues release];

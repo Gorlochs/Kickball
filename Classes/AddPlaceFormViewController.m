@@ -156,11 +156,6 @@
     [placeDetailController release];
 }
 
-- (void) doVenuelessCheckin {
-    [self startProgressBar:@"Checking you in..."];
-    [[FoursquareAPI sharedInstance] doVenuelessCheckin:newVenueName withTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
-}
-
 - (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     NSLog(@"new checkin instring: %@", inString);
 	NSArray *checkins = [FoursquareAPI checkinFromResponseXML:inString];
