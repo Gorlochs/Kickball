@@ -11,7 +11,7 @@
 
 
 @interface AddPlaceTipsViewController : KBBaseViewController {
-
+    IBOutlet UITextView *theTextView;
 }
 
 @end

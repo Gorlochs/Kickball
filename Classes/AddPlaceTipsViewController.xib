@@ -43,7 +43,7 @@
 					<object class="IBUITextView" id="416782817">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{0, 46}, {320, 460}}</string>
+						<string key="NSFrame">{{5, 47}, {309, 460}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -53,15 +53,15 @@
 						<bool key="IBUICanCancelContentTouches">NO</bool>
 						<bool key="IBUIBouncesZoom">NO</bool>
 						<string type="base64-UTF8" key="IBUIText">Rm9yIGNoYWlucyBvciB2ZW51ZXMgd2l0aCBtdWx0aXBsZSBsb2NhdGlvbnMsIHlvdSBubyBsb25nZXIg
-bmVlZCB0byBhZGQgYSBsb2NhdGlvbiBzdWZmaXguIFNvIOKAnFN0YXJidWNrc+KAnW9yIOKAnEFwcGxl
-IFN0b3Jl4oCdIGlzIGZpbmUgKGluc3RlYWQgb2Yg4oCcU3RhcmJ1Y2tzIOKAkyBRdWVlbiBBbm5l4oCd
-IG9yIOKAnEFwcGxlIFN0b3JlIOKAkyBVcHRvd27igJ0pLiBXaGVuIHBvc3NpYmxlIHN0aWNrIHdpdGgg
-YWJicmV2aWF0aW9uczog4oCcQXZl4oCdIGluc3RlYWQgb2Yg4oCcQXZlbnVl4oCdLCDigJxTdOKAnSBp
-bnN0ZWFkIOKAnFN0cmVldOKAnSwgZXRjCkNyb3NzIFN0cmVldCBzaG91bGQgYmUgbGlrZSBvbmUgb2Yg
-dGhlIGZvbGxvd2luZzoKCiAgICAqIGF0IE1haW4gU3QgKGZvciB2ZW51ZXMgb24gYSBjb3JuZXIpCiAg
-ICAqIGJ0dyAybmQgJiAzcmQgQXZlIChmb3IgdmVudWVzIGluIHRoZSBtaWRkbGUgb2YgYSBibG9jaykg
-Q3Jvc3MgU3RyZWV0IHNob3VsZCBub3QgcmVwZWF0IHRoZSBuYW1lIG9mIHRoZSBzdHJlZXQgaW4gdGhl
-IGFkZHJlc3MKA</string>
+bmVlZCB0byBhZGQgYSBsb2NhdGlvbiBzdWZmaXguIFNvIOKAnFN0YXJidWNrc+KAnSBvciDigJxBcHBs
+ZSBTdG9yZeKAnSBpcyBmaW5lIChpbnN0ZWFkIG9mIOKAnFN0YXJidWNrcyDigJMgUXVlZW4gQW5uZeKA
+nSBvciDigJxBcHBsZSBTdG9yZSDigJMgVXB0b3du4oCdKS4gV2hlbiBwb3NzaWJsZSBzdGljayB3aXRo
+IGFiYnJldmlhdGlvbnM6IOKAnEF2ZeKAnSBpbnN0ZWFkIG9mIOKAnEF2ZW51ZeKAnSwg4oCcU3TigJ0g
+aW5zdGVhZCDigJxTdHJlZXTigJ0sIGV0Yy4gQ3Jvc3MgU3RyZWV0IHNob3VsZCBiZSBsaWtlIG9uZSBv
+ZiB0aGUgZm9sbG93aW5nOgoKICAgICogYXQgTWFpbiBTdCAoZm9yIHZlbnVlcyBvbiBhIGNvcm5lcikK
+ICAgICogYnR3IDJuZCAmIDNyZCBBdmUgKGZvciB2ZW51ZXMgaW4gdGhlIG1pZGRsZSBvZiBhIGJsb2Nr
+KSBDcm9zcyBTdHJlZXQgc2hvdWxkIG5vdCByZXBlYXQgdGhlIG5hbWUgb2YgdGhlIHN0cmVldCBpbiB0
+aGUgYWRkcmVzcwo</string>
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits">
 							<int key="IBUIAutocapitalizationType">2</int>
 						</object>
@@ -235,6 +235,14 @@ IGFkZHJlc3MKA</string>
 					</object>
 					<int key="connectionID">15</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">theTextView</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="416782817"/>
+					</object>
+					<int key="connectionID">16</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -351,7 +359,7 @@ IGFkZHJlc3MKA</string>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">15</int>
+			<int key="maxID">16</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -359,6 +367,10 @@ IGFkZHJlc3MKA</string>
 				<object class="IBPartialClassDescription">
 					<string key="className">AddPlaceTipsViewController</string>
 					<string key="superclassName">KBBaseViewController</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">theTextView</string>
+						<string key="NS.object.0">UITextView</string>
+					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">Classes/AddPlaceTipsViewController.h</string>

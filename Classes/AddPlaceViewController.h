@@ -12,24 +12,18 @@
 
 @interface AddPlaceViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
     IBOutlet UITableView *theTableView;
-    IBOutlet UIButton *pingToggleButton;
-    IBOutlet UIButton *twitterToggleButton;
     IBOutlet UITextField *newPlaceName;
     
-    bool isPingOn;
-    bool isTwitterOn;
+    IBOutlet UITableViewCell *noneOfTheseCell;
+    
     NSArray *checkin;
     NSDictionary *venues;
-    
-    IBOutlet UITableViewCell *noneOfTheseCell;
 }
 
 @property (nonatomic, retain) NSArray *checkin;
 
 - (FSVenue*) extractVenueFromDictionaryForRow:(NSIndexPath*)indexPath;
 - (IBAction) checkinToNewVenue;
-- (IBAction) togglePing;
-- (IBAction) toggleTwitter;
 - (IBAction) viewTipsForAddingNewPlace;
 - (IBAction) switchToTextFields;
 

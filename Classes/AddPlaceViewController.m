@@ -23,12 +23,8 @@
     
     // pull this up into a method (or property)
     FSUser *tmpUser = [self getAuthenticatedUser];
-    signedInUserIcon.imageView.image = [[Utilities sharedInstance] getCachedImage:tmpUser.photo];
-    signedInUserIcon.hidden = NO;
-    isPingOn = tmpUser.isPingOn;
-    isTwitterOn = tmpUser.sendToTwitter;
-    twitterToggleButton.selected = isTwitterOn;
-    pingToggleButton.selected = isPingOn;
+//    signedInUserIcon.imageView.image = [[Utilities sharedInstance] getCachedImage:tmpUser.photo];
+//    signedInUserIcon.hidden = NO;
     [[Beacon shared] startSubBeaconWithName:@"Add Venue"];
 }
 
@@ -66,13 +62,6 @@
 	venues = [allVenues copy];
 	[theTableView reloadData];
     [self stopProgressBar];
-    
-//    //move table to new entry
-//    if ([theTableView numberOfSections] != 0) {
-//        NSUInteger indexArr[] = {0,0};
-//        [theTableView scrollToRowAtIndexPath:[NSIndexPath indexPathWithIndexes:indexArr length:2] atScrollPosition:UITableViewScrollPositionTop animated:YES];
-//        [self stopProgressBar];   
-//    }
 }
 
 #pragma mark IBOutlet methods
@@ -91,18 +80,6 @@
                                                  andAction:@selector(venuesResponseReceived:withResponseString:)
          ];
     }
-}
-
-- (void) togglePing {
-    isPingOn = !isPingOn;
-    pingToggleButton.selected = isPingOn;
-    NSLog(@"is ping on: %d", isPingOn);
-}
-
-- (void) toggleTwitter {
-    isTwitterOn = !isTwitterOn;
-    twitterToggleButton.selected = isTwitterOn;
-    NSLog(@"is twitter on: %d", isTwitterOn);
 }
 
 - (void) viewTipsForAddingNewPlace {
@@ -192,17 +169,22 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (section == 0 && [venues count] > 0) {
         // create the parent view that will hold header Label
-        UIView* customView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 24.0)] autorelease];
+        UIView* customView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 44.0)] autorelease];
         customView.backgroundColor = [UIColor whiteColor];
+        
+        UIImageView *gradient = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"gradient-top.png"]];
+        gradient.frame = CGRectMake(0, 38, gradient.frame.size.width, gradient.frame.size.height);
+        [customView addSubview:gradient];
+        [gradient release];
         
         // create the button object
         UILabel * headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        headerLabel.backgroundColor = [UIColor whiteColor];
+        headerLabel.backgroundColor = [UIColor clearColor];
         headerLabel.opaque = NO;
         headerLabel.textColor = [UIColor grayColor];
         headerLabel.highlightedTextColor = [UIColor grayColor];
         headerLabel.font = [UIFont systemFontOfSize:16];
-        headerLabel.frame = CGRectMake(10.0, 0.0, 320.0, 24.0);
+        headerLabel.frame = CGRectMake(15.0, 0.0, 320.0, 24.0);
         
         headerLabel.text = @"Did you mean...";
         
@@ -224,14 +206,11 @@
 
 - (void)dealloc {
     [theTableView release];
-    [pingToggleButton release];
-    [twitterToggleButton release];
     [newPlaceName release];
     
     [checkin release];
     [venues release];
     
-    [noneOfTheseCell release];
     [super dealloc];
 }
 

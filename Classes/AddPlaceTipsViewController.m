@@ -13,6 +13,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    theTextView.font = [UIFont systemFontOfSize:14.0];
     [[Beacon shared] startSubBeaconWithName:@"Add Venue Advice View"];
 }
 
@@ -30,6 +31,7 @@
 
 
 - (void)dealloc {
+    [theTextView release];
     [super dealloc];
 }
 
