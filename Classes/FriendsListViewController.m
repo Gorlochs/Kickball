@@ -39,11 +39,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    [self setupSplashAnimation];
-//    [self showSplash];
-//}
-//
-//-(void)showSplash {
+    [self setupSplashAnimation];
+    [self showSplash];
+}
+
+-(void)showSplash {
 //    MPMoviePlayerController* theMovie = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"kickballLoadingV2iphone" ofType:@"mp4"]]];
 //    NSLog(@"movie: %@", theMovie);
 //    theMovie.scalingMode = MPMovieScalingModeAspectFit;
@@ -75,19 +75,20 @@
 //}
     
     
-//    UIViewController *modalViewController = [[UIViewController alloc] init];
-//    modalViewController.view = splashView;
-//    [self presentModalViewController:modalViewController animated:NO];
-//    [self.view addSubview:splashView];
-//    [splashView startAnimating];
-//    //[UIView setAnimationDidStopSelector:@selector(hideSplash:finished:context:)];
-//    //[self performSelector:@selector(hideSplash) withObject:nil afterDelay:3.66];
-//}
-//
+    UIViewController *modalViewController = [[UIViewController alloc] init];
+    modalViewController.view = splashView;
+    //[self presentModalViewController:modalViewController animated:NO];
+    [self.view addSubview:splashView];
+    [splashView startAnimating];
+    //[UIView setAnimationDidStopSelector:@selector(hideSplash:finished:context:)];
+    [self performSelector:@selector(hideSplash) withObject:nil afterDelay:2.0];
+}
+
 //- (void)hideSplash:(NSString*)animationID finished:(BOOL)finished context:(void *)context {
-//    [splashView stopAnimating];
-//    //[[self modalViewController] dismissModalViewControllerAnimated:NO];
-//    [splashView removeFromSuperview];
+- (void) hideSplash {
+    [splashView stopAnimating];
+    //[[self modalViewController] dismissModalViewControllerAnimated:NO];
+    [splashView removeFromSuperview];
 
     welcomePageNum = 1;
     isDisplayingMore = NO;
@@ -446,7 +447,7 @@
 
 - (void) flipToMap {
     FriendsMapViewController *mapViewController = [[FriendsMapViewController alloc] initWithNibName:@"FriendsMapView" bundle:nil];
-    mapViewController.checkins = self.checkins;
+    mapViewController.checkins = [[NSArray arrayWithArray:self.recentCheckins] arrayByAddingObjectsFromArray:self.todayCheckins];
     [self.navigationController pushViewController:mapViewController animated:YES];
     [mapViewController release];
 }
@@ -546,111 +547,111 @@
 }
 
 - (void) setupSplashAnimation {
-    NSMutableArray *images = [[NSMutableArray alloc] initWithCapacity:1];
-    for (int i = 1; i < 112; i = i + 3) {
-        [images addObject:[UIImage imageNamed:[NSString stringWithFormat:@"kbLOADER%03d.png", i]]];
-    }
+//    NSMutableArray *images = [[NSMutableArray alloc] initWithCapacity:1];
+//    for (int i = 1; i < 112; i = i + 3) {
+//        [images addObject:[UIImage imageNamed:[NSString stringWithFormat:@"kbLOADER%03d.png", i]]];
+//    }
     
-//    splashView.animationImages = [NSArray arrayWithObjects:
-//                                    [UIImage imageNamed:@"kbLOADER001.png"],
-//                                    [UIImage imageNamed:@"kbLOADER002.png"],
-//                                    [UIImage imageNamed:@"kbLOADER003.png"],
-//                                    [UIImage imageNamed:@"kbLOADER004.png"],
-//                                    [UIImage imageNamed:@"kbLOADER005.png"],
-//                                    [UIImage imageNamed:@"kbLOADER006.png"],
-//                                    [UIImage imageNamed:@"kbLOADER007.png"],
-//                                  [UIImage imageNamed:@"kbLOADER008.png"],
-//                                  [UIImage imageNamed:@"kbLOADER009.png"],
-//                                  [UIImage imageNamed:@"kbLOADER010.png"],
-//                                  [UIImage imageNamed:@"kbLOADER011.png"],
-//                                  [UIImage imageNamed:@"kbLOADER012.png"],
-//                                  [UIImage imageNamed:@"kbLOADER013.png"],
-//                                  [UIImage imageNamed:@"kbLOADER014.png"],
-//                                  [UIImage imageNamed:@"kbLOADER015.png"],
-//                                  [UIImage imageNamed:@"kbLOADER016.png"],
-//                                  [UIImage imageNamed:@"kbLOADER017.png"],
-//                                  [UIImage imageNamed:@"kbLOADER018.png"],
-//                                  [UIImage imageNamed:@"kbLOADER019.png"],
-//                                  [UIImage imageNamed:@"kbLOADER020.png"],
-//                                  [UIImage imageNamed:@"kbLOADER021.png"],
-//                                  [UIImage imageNamed:@"kbLOADER022.png"],
-//                                  [UIImage imageNamed:@"kbLOADER023.png"],
-//                                  [UIImage imageNamed:@"kbLOADER024.png"],
-//                                  [UIImage imageNamed:@"kbLOADER025.png"],
-//                                  [UIImage imageNamed:@"kbLOADER026.png"],
-//                                  [UIImage imageNamed:@"kbLOADER027.png"],
-//                                  [UIImage imageNamed:@"kbLOADER028.png"],
-//                                  [UIImage imageNamed:@"kbLOADER029.png"],
-//                                  [UIImage imageNamed:@"kbLOADER030.png"],
-//                                  [UIImage imageNamed:@"kbLOADER031.png"],
-//                                  [UIImage imageNamed:@"kbLOADER032.png"],
-//                                  [UIImage imageNamed:@"kbLOADER033.png"],
-//                                  [UIImage imageNamed:@"kbLOADER034.png"],
-//                                  [UIImage imageNamed:@"kbLOADER035.png"],
-//                                  [UIImage imageNamed:@"kbLOADER036.png"],
-//                                  [UIImage imageNamed:@"kbLOADER037.png"],
-//                                  [UIImage imageNamed:@"kbLOADER038.png"],
-//                                  [UIImage imageNamed:@"kbLOADER039.png"],
-//                                  [UIImage imageNamed:@"kbLOADER040.png"],
-//                                  [UIImage imageNamed:@"kbLOADER041.png"],
-//                                  [UIImage imageNamed:@"kbLOADER042.png"],
-//                                  [UIImage imageNamed:@"kbLOADER043.png"],
-//                                  [UIImage imageNamed:@"kbLOADER044.png"],
-//                                  [UIImage imageNamed:@"kbLOADER045.png"],
-//                                  [UIImage imageNamed:@"kbLOADER046.png"],
-//                                  [UIImage imageNamed:@"kbLOADER047.png"],
-//                                  [UIImage imageNamed:@"kbLOADER048.png"],
-//                                  [UIImage imageNamed:@"kbLOADER049.png"],
-//                                  [UIImage imageNamed:@"kbLOADER050.png"],
-//                                  [UIImage imageNamed:@"kbLOADER051.png"],
-//                                  [UIImage imageNamed:@"kbLOADER052.png"],
-//                                  [UIImage imageNamed:@"kbLOADER053.png"],
-//                                  [UIImage imageNamed:@"kbLOADER054.png"],
-//                                  [UIImage imageNamed:@"kbLOADER055.png"],
-//                                  [UIImage imageNamed:@"kbLOADER056.png"],
-//                                  [UIImage imageNamed:@"kbLOADER057.png"],
-//                                  [UIImage imageNamed:@"kbLOADER058.png"],
-//                                  [UIImage imageNamed:@"kbLOADER059.png"],
-//                                  [UIImage imageNamed:@"kbLOADER060.png"],
-//                                  [UIImage imageNamed:@"kbLOADER061.png"],
-//                                  [UIImage imageNamed:@"kbLOADER062.png"],
-//                                  [UIImage imageNamed:@"kbLOADER063.png"],
-//                                  [UIImage imageNamed:@"kbLOADER064.png"],
-//                                  [UIImage imageNamed:@"kbLOADER065.png"],
-//                                  [UIImage imageNamed:@"kbLOADER066.png"],
-//                                  [UIImage imageNamed:@"kbLOADER067.png"],
-//                                  [UIImage imageNamed:@"kbLOADER068.png"],
-//                                  [UIImage imageNamed:@"kbLOADER069.png"],
-//                                  [UIImage imageNamed:@"kbLOADER070.png"],
-//                                  [UIImage imageNamed:@"kbLOADER071.png"],
-//                                  [UIImage imageNamed:@"kbLOADER072.png"],
-//                                  [UIImage imageNamed:@"kbLOADER073.png"],
-//                                  [UIImage imageNamed:@"kbLOADER074.png"],
-//                                  [UIImage imageNamed:@"kbLOADER075.png"],
-//                                  [UIImage imageNamed:@"kbLOADER076.png"],
-//                                  [UIImage imageNamed:@"kbLOADER077.png"],
-//                                  [UIImage imageNamed:@"kbLOADER078.png"],
-//                                  [UIImage imageNamed:@"kbLOADER079.png"],
-//                                  [UIImage imageNamed:@"kbLOADER080.png"],
-//                                  [UIImage imageNamed:@"kbLOADER081.png"],
-//                                  [UIImage imageNamed:@"kbLOADER082.png"],
-//                                  [UIImage imageNamed:@"kbLOADER083.png"],
-//                                  [UIImage imageNamed:@"kbLOADER084.png"],
-//                                  [UIImage imageNamed:@"kbLOADER085.png"],
-//                                  [UIImage imageNamed:@"kbLOADER086.png"],
-//                                  [UIImage imageNamed:@"kbLOADER087.png"],
-//                                  [UIImage imageNamed:@"kbLOADER088.png"],
-//                                  [UIImage imageNamed:@"kbLOADER089.png"],
-//                                  [UIImage imageNamed:@"kbLOADER090.png"],
-//                                  [UIImage imageNamed:@"kbLOADER091.png"],
-//                                  [UIImage imageNamed:@"kbLOADER092.png"],
-//                                  [UIImage imageNamed:@"kbLOADER093.png"],
-//                                  [UIImage imageNamed:@"kbLOADER094.png"],
-//                                  [UIImage imageNamed:@"kbLOADER095.png"],
-//                                  [UIImage imageNamed:@"kbLOADER096.png"],
-//                                  [UIImage imageNamed:@"kbLOADER097.png"],
-//                                  [UIImage imageNamed:@"kbLOADER098.png"],
-//                                  [UIImage imageNamed:@"kbLOADER099.png"],
+    splashView.animationImages = [NSArray arrayWithObjects:
+                                    [UIImage imageNamed:@"kickballLoading01.png"],
+                                    [UIImage imageNamed:@"kickballLoading02.png"],
+                                    [UIImage imageNamed:@"kickballLoading03.png"],
+                                    [UIImage imageNamed:@"kickballLoading04.png"],
+                                    [UIImage imageNamed:@"kickballLoading05.png"],
+                                    [UIImage imageNamed:@"kickballLoading06.png"],
+                                    [UIImage imageNamed:@"kickballLoading07.png"],
+                                  [UIImage imageNamed:@"kickballLoading08.png"],
+                                  [UIImage imageNamed:@"kickballLoading09.png"],
+                                  [UIImage imageNamed:@"kickballLoading10.png"],
+                                  [UIImage imageNamed:@"kickballLoading11.png"],
+                                  [UIImage imageNamed:@"kickballLoading12.png"],
+                                  [UIImage imageNamed:@"kickballLoading13.png"],
+                                  [UIImage imageNamed:@"kickballLoading14.png"],
+                                  [UIImage imageNamed:@"kickballLoading15.png"],
+                                  [UIImage imageNamed:@"kickballLoading16.png"],
+                                  [UIImage imageNamed:@"kickballLoading17.png"],
+                                  [UIImage imageNamed:@"kickballLoading18.png"],
+                                  [UIImage imageNamed:@"kickballLoading19.png"],
+                                  [UIImage imageNamed:@"kickballLoading20.png"],
+                                  [UIImage imageNamed:@"kickballLoading21.png"],
+                                  [UIImage imageNamed:@"kickballLoading22.png"],
+                                  [UIImage imageNamed:@"kickballLoading23.png"],
+                                  [UIImage imageNamed:@"kickballLoading24.png"],
+                                  [UIImage imageNamed:@"kickballLoading25.png"],
+                                  [UIImage imageNamed:@"kickballLoading26.png"],
+                                  [UIImage imageNamed:@"kickballLoading27.png"],
+                                  [UIImage imageNamed:@"kickballLoading28.png"],
+                                  [UIImage imageNamed:@"kickballLoading29.png"],
+                                  [UIImage imageNamed:@"kickballLoading30.png"],
+                                  [UIImage imageNamed:@"kickballLoading31.png"],
+                                  [UIImage imageNamed:@"kickballLoading32.png"],
+                                  [UIImage imageNamed:@"kickballLoading33.png"],
+                                  [UIImage imageNamed:@"kickballLoading34.png"],
+                                  [UIImage imageNamed:@"kickballLoading35.png"],
+                                  [UIImage imageNamed:@"kickballLoading36.png"],
+                                  [UIImage imageNamed:@"kickballLoading37.png"],
+                                  [UIImage imageNamed:@"kickballLoading38.png"],
+                                  [UIImage imageNamed:@"kickballLoading39.png"],
+                                  [UIImage imageNamed:@"kickballLoading40.png"],
+                                  [UIImage imageNamed:@"kickballLoading41.png"],
+                                  [UIImage imageNamed:@"kickballLoading42.png"],
+                                  [UIImage imageNamed:@"kickballLoading43.png"],
+                                  [UIImage imageNamed:@"kickballLoading44.png"],
+                                  [UIImage imageNamed:@"kickballLoading45.png"],
+                                  [UIImage imageNamed:@"kickballLoading46.png"],
+                                  [UIImage imageNamed:@"kickballLoading47.png"],
+                                  [UIImage imageNamed:@"kickballLoading48.png"],
+                                  [UIImage imageNamed:@"kickballLoading49.png"],
+                                  [UIImage imageNamed:@"kickballLoading50.png"],
+                                  [UIImage imageNamed:@"kickballLoading51.png"],
+                                  [UIImage imageNamed:@"kickballLoading52.png"],
+                                  [UIImage imageNamed:@"kickballLoading53.png"],
+                                  [UIImage imageNamed:@"kickballLoading54.png"],
+                                  [UIImage imageNamed:@"kickballLoading55.png"],
+                                  [UIImage imageNamed:@"kickballLoading56.png"],
+                                  [UIImage imageNamed:@"kickballLoading57.png"],
+                                  [UIImage imageNamed:@"kickballLoading58.png"],
+                                  [UIImage imageNamed:@"kickballLoading59.png"],
+                                  [UIImage imageNamed:@"kickballLoading60.png"],
+                                  [UIImage imageNamed:@"kickballLoading61.png"],
+//                                  [UIImage imageNamed:@"kickballLoading62.png"],
+//                                  [UIImage imageNamed:@"kickballLoading63.png"],
+//                                  [UIImage imageNamed:@"kickballLoading64.png"],
+//                                  [UIImage imageNamed:@"kickballLoading65.png"],
+//                                  [UIImage imageNamed:@"kickballLoading66.png"],
+//                                  [UIImage imageNamed:@"kickballLoading67.png"],
+//                                  [UIImage imageNamed:@"kickballLoading68.png"],
+//                                  [UIImage imageNamed:@"kickballLoading69.png"],
+//                                  [UIImage imageNamed:@"kickballLoading70.png"],
+//                                  [UIImage imageNamed:@"kickballLoading71.png"],
+//                                  [UIImage imageNamed:@"kickballLoading72.png"],
+//                                  [UIImage imageNamed:@"kickballLoading73.png"],
+//                                  [UIImage imageNamed:@"kickballLoading74.png"],
+//                                  [UIImage imageNamed:@"kickballLoading75.png"],
+//                                  [UIImage imageNamed:@"kickballLoading76.png"],
+//                                  [UIImage imageNamed:@"kickballLoading77.png"],
+//                                  [UIImage imageNamed:@"kickballLoading78.png"],
+//                                  [UIImage imageNamed:@"kickballLoading79.png"],
+//                                  [UIImage imageNamed:@"kickballLoading80.png"],
+//                                  [UIImage imageNamed:@"kickballLoading81.png"],
+//                                  [UIImage imageNamed:@"kickballLoading82.png"],
+//                                  [UIImage imageNamed:@"kickballLoading83.png"],
+//                                  [UIImage imageNamed:@"kickballLoading84.png"],
+//                                  [UIImage imageNamed:@"kickballLoading85.png"],
+//                                  [UIImage imageNamed:@"kickballLoading86.png"],
+//                                  [UIImage imageNamed:@"kickballLoading87.png"],
+//                                  [UIImage imageNamed:@"kickballLoading88.png"],
+//                                  [UIImage imageNamed:@"kickballLoading89.png"],
+//                                  [UIImage imageNamed:@"kickballLoading90.png"],
+//                                  [UIImage imageNamed:@"kickballLoading91.png"],
+//                                  [UIImage imageNamed:@"kickballLoading92.png"],
+//                                  [UIImage imageNamed:@"kickballLoading93.png"],
+//                                  [UIImage imageNamed:@"kickballLoading94.png"],
+//                                  [UIImage imageNamed:@"kickballLoading95.png"],
+//                                  [UIImage imageNamed:@"kickballLoading96.png"],
+//                                  [UIImage imageNamed:@"kickballLoading97.png"],
+//                                  [UIImage imageNamed:@"kickballLoading98.png"],
+//                                  [UIImage imageNamed:@"kickballLoading99.png"],
 //                                  [UIImage imageNamed:@"kbLOADER100.png"],
 //                                  [UIImage imageNamed:@"kbLOADER101.png"],
 //                                  [UIImage imageNamed:@"kbLOADER102.png"],
@@ -663,10 +664,10 @@
 //                                  [UIImage imageNamed:@"kbLOADER109.png"],
 //                                  [UIImage imageNamed:@"kbLOADER110.png"],
 //                                  [UIImage imageNamed:@"kbLOADER111.png"],
-//                                                nil];
+                                                nil];
     
 //    splashView.animationImages = [[NSArray alloc] initWithArray:images];
-    splashView.animationDuration = 3.66;
+    splashView.animationDuration = 2.0;
     splashView.animationRepeatCount = 0;
 }
 
