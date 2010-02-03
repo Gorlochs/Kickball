@@ -518,20 +518,20 @@
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
     [standardUserDefaults setBool:YES forKey:@"viewedInstructions"];
     hasViewedInstructions = YES;
-    if (welcomePageNum < 7) {
-        NSString *imageName = [NSString stringWithFormat:@"welcome0%d.png", welcomePageNum + 1];
-        NSLog(@"image name: %@", imageName);
-        welcomeImage.image = [UIImage imageNamed:imageName];
-        [self.view bringSubviewToFront:nextWelcomeImage];
-        [self.view bringSubviewToFront:previousWelcomeImage];
-        welcomePageNum++;
-    } else if (welcomePageNum == 7) {
+//    if (welcomePageNum == 1) {
+//        NSString *imageName = [NSString stringWithFormat:@"welcome0%d.png", welcomePageNum + 1];
+//        NSLog(@"image name: %@", imageName);
+//        welcomeImage.image = [UIImage imageNamed:imageName];
+//        [self.view bringSubviewToFront:nextWelcomeImage];
+//        [self.view bringSubviewToFront:previousWelcomeImage];
+//        welcomePageNum++;
+//    } else {
         [instructionView removeFromSuperview];
         [self stopProgressBar];
         [self setUserIconView:[self getAuthenticatedUser]];
         [iconImageView setHidden:NO];
         [self doInitialDisplay];
-    }
+//    }
 }
 
 - (void) viewPreviousWelcomeImage {
