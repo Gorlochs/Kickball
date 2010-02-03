@@ -14,13 +14,7 @@
     IBOutlet UITableView *theTableView;
     NSString *newVenueName;
     
-    IBOutlet UITableViewCell *addressCell;
-    IBOutlet UITableViewCell *crossstreetCell;
-    IBOutlet UITableViewCell *cityCell;
-    IBOutlet UITableViewCell *phoneCell;
-    IBOutlet UITableViewCell *twitterCell;
-    IBOutlet UITableViewCell *saveCell;
-    IBOutlet UITableViewCell *checkedInCell;
+    IBOutlet UITableViewCell *formCell;
     
     IBOutlet UITextField *address;
     IBOutlet UITextField *crossstreet;
@@ -30,6 +24,8 @@
     IBOutlet UITextField *phone;
     IBOutlet UITextField *twitter;
     
+    IBOutlet UILabel *venueName;
+    
     CGFloat animatedDistance;
 }
 
@@ -37,7 +33,6 @@
 
 - (IBAction) clearFields;
 - (IBAction) saveVenueAndCheckin;
-- (IBAction) doVenuelessCheckin;
-- (void)newVenueResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString;
+- (void) newVenueResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString;
 
 @end

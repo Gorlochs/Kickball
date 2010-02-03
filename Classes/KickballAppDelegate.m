@@ -39,10 +39,7 @@
     NSString *applicationCode = @"00a9861658fbc22f2177620f22d9bb66";
     [Beacon initAndStartBeaconWithApplicationCode:applicationCode
                                   useCoreLocation:YES useOnlyWiFi:NO];
-    
-    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(reachabilityChanged:) name: kReachabilityChangedNotification object: nil];
-	hostReach = [[Reachability reachabilityWithHostName: @"api.foursquare.com/v1/test"] retain];
-	[hostReach startNotifer];
+
     
     // this is just a sample. this should be removed eventually.
     [[Beacon shared] startSubBeaconWithName:@"App launched!" timeSession:NO];
@@ -62,26 +59,31 @@
     [manager release];
     
     //[[FoursquareAPI sharedInstance] doFoursquareApiTest:self andAction:@selector(apiTestResponseReceived:withResponseString:)];
-    NSError *error = nil;
-    NSString *apiTestResponse = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/test"] encoding:NSASCIIStringEncoding error:&error];
-    NSLog(@"api test error: %@", error);
-    NSLog(@"api test response: %@", apiTestResponse);
-    if (error || [apiTestResponse rangeOfString:@"ok"].length == NSNotFound) {
-        UIAlertView *apiAlert = [[UIAlertView alloc] initWithTitle:@"Foursquare is Down" message:@"We're sorry. It looks like FourSquare servers are down temporarily. Please try again in a few minutes." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [apiAlert show];
-        [apiAlert release];
-    }
+//    NSError *error = nil;
+//    NSString *apiTestResponse = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/test"] encoding:NSASCIIStringEncoding error:&error];
+//    NSLog(@"api test error: %@", error);
+//    NSLog(@"api test response: %@", apiTestResponse);
+//    if (error || [apiTestResponse rangeOfString:@"ok"].length == NSNotFound) {
+//        UIAlertView *apiAlert = [[UIAlertView alloc] initWithTitle:@"Foursquare is Down" message:@"We're sorry. It looks like FourSquare servers are down temporarily. Please try again in a few minutes." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//        [apiAlert show];
+//        [apiAlert release];
+//    }
+    
+    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(reachabilityChanged:) name: kReachabilityChangedNotification object: nil];
+	hostReach = [[Reachability reachabilityWithHostName: @"apple.com"] retain];
+//	hostReach = [[Reachability reachabilityWithHostName: @"api.foursquare.com/v1/test"] retain];
+	[hostReach startNotifer];
 }
 
-- (void)apiTestResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    NSLog(@"api test response: %@", inString);
-    BOOL isTestSuccessful = [FoursquareAPI simpleBooleanFromResponseXML:inString];
-    if (!isTestSuccessful) {
-        UIAlertView *apiAlert = [[UIAlertView alloc] initWithTitle:@"Foursquare is Down" message:@"We're sorry. It looks like FourSquare servers are down temporarily. Please try again in a few minutes." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [apiAlert show];
-        [apiAlert release];
-    }
-}
+//- (void)apiTestResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+//    NSLog(@"api test response: %@", inString);
+//    BOOL isTestSuccessful = [FoursquareAPI simpleBooleanFromResponseXML:inString];
+//    if (!isTestSuccessful) {
+//        UIAlertView *apiAlert = [[UIAlertView alloc] initWithTitle:@"Foursquare is Down" message:@"We're sorry. It looks like FourSquare servers are down temporarily. Please try again in a few minutes." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//        [apiAlert show];
+//        [apiAlert release];
+//    }
+//}
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     [[LocationManager locationManager] stopUpdates];
@@ -262,7 +264,6 @@
 
 //Called by Reachability whenever status changes.
 - (void) reachabilityChanged: (NSNotification* )note {
-    NSLog(@"################## reachability has changed ####################### - ", [note object]);
 	Reachability* curReach = [note object];
 	NSParameterAssert([curReach isKindOfClass: [Reachability class]]);
 	//[self updateInterfaceWithReachability: curReach];
@@ -274,14 +275,25 @@
     {
         case NotReachable:
         {
-            // TODO: pop up the sorry message
-            NSLog(@"*****************************************************************************");
-            NSLog(@"******************* NO ACCESS TO FOURSQUARE API!!!! *************************");
-            NSLog(@"*****************************************************************************");
 //            statusString = @"Access Not Available";
 //            imageView.image = [UIImage imageNamed: @"stop-32.png"] ;
 //            //Minor interface detail- connectionRequired may return yes, even when the host is unreachable.  We cover that up here...
 //            connectionRequired= NO;  
+            
+//            NSError *error = nil;
+//            NSString *apiTestResponse = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://www.apple.com"] encoding:NSASCIIStringEncoding error:&error];
+//            NSLog(@"api test error: %@", error);
+//            NSLog(@"api test response: %@", apiTestResponse);
+//            if (error || [apiTestResponse rangeOfString:@"ok"].length == NSNotFound) {
+//                UIAlertView *apiAlert = [[UIAlertView alloc] initWithTitle:@"Foursquare is Down" message:@"We're sorry. It looks like FourSquare servers are down temporarily. Please try again in a few minutes." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//                [apiAlert show];
+//                [apiAlert release];
+//            } else {
+                KBMessage *message = [[KBMessage alloc] initWithMember:@"Network Error" andMessage:@"The network is down. Please try again shortly."];
+                [self displayPopupMessage:message];
+                [message release];
+                
+//            }
             break;
         }
             

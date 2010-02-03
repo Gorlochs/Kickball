@@ -258,13 +258,15 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];
-    FSVenue *venue = [self extractVenueFromDictionaryForRow:indexPath];
-    [theTableView deselectRowAtIndexPath:indexPath animated:YES];
-   
-    placeDetailController.venueId = venue.venueid;
-    [self.navigationController pushViewController:placeDetailController animated:YES];
-    [placeDetailController release];
+    if ([venues count] > indexPath.section) {
+        PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];
+        FSVenue *venue = [self extractVenueFromDictionaryForRow:indexPath];
+        [theTableView deselectRowAtIndexPath:indexPath animated:YES];
+        
+        placeDetailController.venueId = venue.venueid;
+        [self.navigationController pushViewController:placeDetailController animated:YES];
+        [placeDetailController release];   
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

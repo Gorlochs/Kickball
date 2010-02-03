@@ -33,6 +33,7 @@
     IBOutlet UILabel *venueName;
     IBOutlet UILabel *venueAddress;
     IBOutlet UILabel *mayorNameLabel;
+    IBOutlet UILabel *mayorCheckinCountLabel;
     IBOutlet UILabel *badgeLabel;
     IBOutlet UILabel *badgeTitleLabel;
     IBOutlet UILabel *newMayorshipLabel;

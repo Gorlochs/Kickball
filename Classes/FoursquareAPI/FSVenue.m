@@ -10,6 +10,7 @@
 
 
 @implementation FSVenue
+
 @synthesize name, geolat, geolong, venueAddress, 
 				zip, city, venueState, venueid, 
 				phone, crossStreet, twitter, mayorCount, 

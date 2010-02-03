@@ -156,6 +156,7 @@
     if (venueToDisplay.mayor != nil) {
         mayorMapCell.imageView.image = [[Utilities sharedInstance] getCachedImage:venueToDisplay.mayor.photo];
         mayorNameLabel.text = venueToDisplay.mayor.firstnameLastInitial;
+        mayorCheckinCountLabel.text = [NSString stringWithFormat:@"(%d checkins)", venueToDisplay.mayorCount];
     } else {
         mayorNameLabel.text = @"No Mayor";
     }
@@ -450,6 +451,7 @@
     [venueName release];
     [venueAddress release];
     [mayorNameLabel release];
+    [mayorCheckinCountLabel release];
     [badgeLabel release];
     [badgeTitleLabel release];
     [newMayorshipLabel release];

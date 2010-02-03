@@ -19,11 +19,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    venueName.text = newVenueName;
+    [self addHeaderAndFooter:theTableView];
     FSUser *user = [self getAuthenticatedUser];
     NSLog(@"user checkin venue: %@", user.checkin.venue);
     city.text = user.checkin.venue.city;
     state.text = user.checkin.venue.venueState;
     [[Beacon shared] startSubBeaconWithName:@"Add Venue Form View"];
+    [address becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -48,7 +51,7 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 6;
+    return 1;
 }
 
 
@@ -62,30 +65,7 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    switch (indexPath.row) {
-        case 0:
-            cell.textLabel.text = [NSString stringWithString:newVenueName];
-            break;
-        case 1:
-            return addressCell;
-            break;
-        case 2:
-            return crossstreetCell;
-            break;
-        case 3:
-            return cityCell;
-            break;
-        case 4:
-            return phoneCell;
-            break;
-        case 5:
-            return twitterCell;
-            break;
-        default:
-            break;
-    }
-    
-    return cell;
+    return formCell;
 }
 
 
@@ -93,13 +73,7 @@
     [theTableView release];
     [newVenueName release];
     
-    [addressCell release];
-    [crossstreetCell release];
-    [cityCell release];
-    [phoneCell release];
-    [twitterCell release];
-    [saveCell release];
-    [checkedInCell release];
+    [formCell release];
     
     [address release];
     [crossstreet release];
@@ -115,12 +89,12 @@
 #pragma mark IBAction methods
 
 - (void) clearFields {
-    addressCell.textLabel.text = @"";
-    crossstreetCell.textLabel.text = @"";
-    cityCell.textLabel.text = @"";
-    phoneCell.textLabel.text = @"";
-    twitterCell.textLabel.text = @"";
-    saveCell.textLabel.text = @"";
+//    addressCell.textLabel.text = @"";
+//    crossstreetCell.textLabel.text = @"";
+//    cityCell.textLabel.text = @"";
+//    phoneCell.textLabel.text = @"";
+//    twitterCell.textLabel.text = @"";
+//    saveCell.textLabel.text = @"";
 }
 
 - (void) saveVenueAndCheckin {
@@ -170,6 +144,7 @@
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
+    NSLog(@"text field did begin editing: %@", textField);
     CGRect textFieldRect = [self.view.window convertRect:textField.bounds fromView:textField];
     CGRect viewRect = [self.view.window convertRect:self.view.bounds fromView:self.view];
     CGFloat midline = textFieldRect.origin.y + 0.5 * textFieldRect.size.height;
@@ -201,6 +176,7 @@
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
+    NSLog(@"text field did end editing: %@", textField);
     CGRect viewFrame = self.view.frame;
     viewFrame.origin.y += animatedDistance;
     
@@ -214,6 +190,7 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    NSLog(@"text field should return: %@", textField);
     bool shouldReturn = NO;
     if (textField == address) {
         [crossstreet becomeFirstResponder];

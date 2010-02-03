@@ -841,7 +841,7 @@ static FoursquareAPI *sharedInstance = nil;
 					newVenue.mayor = [FoursquareAPI _userFromNode:[mayorNodes objectAtIndex:0]];
 				}
 				
-				NSArray * countNodes = [venueResult nodesForXPath:@"stats/count" error:nil];
+				NSArray * countNodes = [venueResult nodesForXPath:@"stats/mayor/count" error:nil];
 				if(countNodes && [countNodes count] > 0){
 					CXMLNode * countNode = [countNodes objectAtIndex:0];
 					newVenue.mayorCount = [[countNode stringValue]  intValue]; 
