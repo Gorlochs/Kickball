@@ -26,7 +26,7 @@
     city.text = user.checkin.venue.city;
     state.text = user.checkin.venue.venueState;
     [[Beacon shared] startSubBeaconWithName:@"Add Venue Form View"];
-    [address becomeFirstResponder];
+    //[address becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning {
