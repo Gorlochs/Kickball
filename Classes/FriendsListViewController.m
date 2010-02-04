@@ -39,59 +39,62 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setupSplashAnimation];
-    [self showSplash];
-}
-
--(void)showSplash {
-//    MPMoviePlayerController* theMovie = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"kickballLoadingV2iphone" ofType:@"mp4"]]];
-//    NSLog(@"movie: %@", theMovie);
-//    theMovie.scalingMode = MPMovieScalingModeAspectFit;
-//    theMovie.movieControlMode = MPMovieControlModeHidden;
-//    
-//    // Register for the playback finished notification
-//    [[NSNotificationCenter defaultCenter]
-//         addObserver: self
-//         selector: @selector(myMovieFinishedCallback:)
-//         name: MPMoviePlayerPlaybackDidFinishNotification
-//         object: theMovie];
-//    
-//    // Movie playback is asynchronous, so this method returns immediately.
-//    [theMovie play];
+//    [self setupSplashAnimation];
+//    [self showSplash];
 //}
 //
-//// When the movie is done, release the controller.
-//-(void) myMovieFinishedCallback: (NSNotification*) aNotification {
-//    MPMoviePlayerController* theMovie = [aNotification object];
+//-(void)showSplash {
+////    MPMoviePlayerController* theMovie = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"kickballLoadingV2iphone" ofType:@"mp4"]]];
+////    NSLog(@"movie: %@", theMovie);
+////    theMovie.scalingMode = MPMovieScalingModeAspectFit;
+////    theMovie.movieControlMode = MPMovieControlModeHidden;
+////    
+////    // Register for the playback finished notification
+////    [[NSNotificationCenter defaultCenter]
+////         addObserver: self
+////         selector: @selector(myMovieFinishedCallback:)
+////         name: MPMoviePlayerPlaybackDidFinishNotification
+////         object: theMovie];
+////    
+////    // Movie playback is asynchronous, so this method returns immediately.
+////    [theMovie play];
+////}
+////
+////// When the movie is done, release the controller.
+////-(void) myMovieFinishedCallback: (NSNotification*) aNotification {
+////    MPMoviePlayerController* theMovie = [aNotification object];
+////    
+////    [[NSNotificationCenter defaultCenter]
+////         removeObserver: self
+////         name: MPMoviePlayerPlaybackDidFinishNotification
+////         object: theMovie];
+////    
+////    // Release the movie instance created in playMovieAtURL:
+////    [theMovie release];
 //    
-//    [[NSNotificationCenter defaultCenter]
-//         removeObserver: self
-//         name: MPMoviePlayerPlaybackDidFinishNotification
-//         object: theMovie];
+////}
 //    
-//    // Release the movie instance created in playMovieAtURL:
-//    [theMovie release];
-    
+//    
+//    UIViewController *modalViewController = [[UIViewController alloc] init];
+//    modalViewController.view = splashView;
+//    //[self presentModalViewController:modalViewController animated:NO];
+//    [self.view addSubview:splashView];
+//    //[UIView setAnimationDidStopSelector:@selector(hideSplash:finished:context:)];
+//    [self performSelector:@selector(hideSplash) withObject:nil afterDelay:2.05];
+//    [splashView startAnimating];
 //}
-    
-    
-    UIViewController *modalViewController = [[UIViewController alloc] init];
-    modalViewController.view = splashView;
-    //[self presentModalViewController:modalViewController animated:NO];
-    [self.view addSubview:splashView];
-    //[UIView setAnimationDidStopSelector:@selector(hideSplash:finished:context:)];
-    [self performSelector:@selector(hideSplash) withObject:nil afterDelay:2.05];
-    [splashView startAnimating];
-}
-
-//- (void)hideSplash:(NSString*)animationID finished:(BOOL)finished context:(void *)context {
-- (void) hideSplash {
-    [splashView stopAnimating];
-    //[[self modalViewController] dismissModalViewControllerAnimated:NO];
-    [splashView removeFromSuperview];
+//
+////- (void)hideSplash:(NSString*)animationID finished:(BOOL)finished context:(void *)context {
+//- (void) hideSplash {
+//    [splashView stopAnimating];
+//    //[[self modalViewController] dismissModalViewControllerAnimated:NO];
+//    [splashView removeFromSuperview];
 
     welcomePageNum = 1;
     isDisplayingMore = NO;
+    
+    dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"EEE, dd MMM yy HH:mm:ss"];
     
     // check to see if we need to display the instruction view
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
@@ -208,6 +211,7 @@
     [previousWelcomeImage release];
     [welcomeImage release];
     [splashView release];
+    [dateFormatter release];
     [super dealloc];
 }
 
@@ -254,6 +258,9 @@
         cell.addressLabel.highlightedTextColor = [UIColor whiteColor];
         cell.timeUnits.highlightedTextColor = [UIColor whiteColor];
         cell.numberOfTimeUnits.highlightedTextColor = [UIColor whiteColor];
+        cell.profileIcon.layer.masksToBounds = YES;
+        cell.profileIcon.layer.cornerRadius = 4.0;
+        //cell.profileIcon.layer.borderWidth = 1.0;
         [vc release];
     }
     
@@ -273,16 +280,11 @@
     } else if (indexPath.section == 4) {
         return footerViewCell;
     }
-	
-	FSUser * checkUser = checkin.user;
-	
+
     // create icon image
-	NSString * path = checkUser.photo;
+	NSString * path = checkin.user.photo;
 	if (path) {
-        cell.profileIcon.image = [userIcons objectForKey:checkUser.userId];
-        cell.profileIcon.layer.masksToBounds = YES;
-        cell.profileIcon.layer.cornerRadius = 4.0;
-        //cell.profileIcon.layer.borderWidth = 1.0;
+        cell.profileIcon.image = [userIcons objectForKey:checkin.user.userId];
     }
 	cell.checkinDisplayLabel.text = checkin.display;
     // TODO: check to see if there is a better way to check for [off the grid]
@@ -296,31 +298,8 @@
     
     [cell showHideMayorImage:checkin.isMayor];
     
-    // FIXME: this should be put into the Checkin object and the object should NOT be recalculated every time the method is called
-    // probably break this out into another method
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"EEE, dd MMM yy HH:mm:ss"];
-    NSDate *checkinDate = [dateFormatter dateFromString:checkin.created];
-    
-    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    NSUInteger unitFlags = NSMinuteCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit;
-    NSDateComponents *components = [gregorian components:unitFlags fromDate:[self convertToUTC:[NSDate date]] toDate:checkinDate options:0];
-    NSInteger minutes = [components minute] * -1;
-    NSInteger hours = [components hour] * -1;
-    NSInteger days = [components day] * -1;
-
-    // odd logic, I know, but the logical logic didn't work
-    if (days == 0 && hours == 0) {
-        cell.timeUnits.text = @"min.";
-        cell.numberOfTimeUnits.text = [NSString stringWithFormat:@"%02d", minutes];
-    } else if (days == 0) {
-        cell.timeUnits.text = @"hours";
-        cell.numberOfTimeUnits.text = [NSString stringWithFormat:@"%02d", hours];
-    } else {
-        cell.timeUnits.text = @"days";
-        cell.numberOfTimeUnits.text = [NSString stringWithFormat:@"%02d", days];
-    }
-    [dateFormatter release];
+    cell.timeUnits.text = [cachedTimeUnitsLabel objectForKey:checkin.checkinId];
+    cell.numberOfTimeUnits.text = [cachedTimeLabel objectForKey:checkin.checkinId];
     
 	return cell;
 }
@@ -461,14 +440,16 @@
     yesterdayCheckins = [[NSMutableArray alloc] init];
     userIcons = [[NSMutableDictionary alloc] initWithCapacity:1];
     
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"EEE, dd MMM yy HH:mm:ss"];
+//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//    [dateFormatter setDateFormat:@"EEE, dd MMM yy HH:mm:ss"];
     
     NSDate *threeHoursFromNow = [[NSDate alloc] initWithTimeIntervalSinceNow:-60*60*3];
     NSDate *twentyfourHoursFromNow = [[NSDate alloc] initWithTimeIntervalSinceNow:-60*60*24];
     threeHoursFromNow = [self convertToUTC:threeHoursFromNow];
     twentyfourHoursFromNow = [self convertToUTC:twentyfourHoursFromNow];
     
+    cachedTimeUnitsLabel = [[NSMutableDictionary alloc] initWithCapacity:[checkins count]];
+    cachedTimeLabel = [[NSMutableDictionary alloc] initWithCapacity:[checkins count]];
     for (FSCheckin *checkin in checkins) {
         NSDate *date = [dateFormatter dateFromString:checkin.created];
         if ([date compare:threeHoursFromNow] == NSOrderedDescending) {
@@ -483,13 +464,33 @@
             UIImage *img = [[Utilities sharedInstance] getCachedImage:checkin.user.photo];
             [userIcons setObject:img forKey:checkin.user.userId];
         }
+        
+        // setting the labels for the table cell. It sucks that I am doing it here, but it seems like the best place
+        NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+        NSUInteger unitFlags = NSMinuteCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit;
+        NSDateComponents *components = [gregorian components:unitFlags fromDate:[self convertToUTC:[NSDate date]] toDate:date options:0];
+        NSInteger minutes = [components minute] * -1;
+        NSInteger hours = [components hour] * -1;
+        NSInteger days = [components day] * -1;
+        
+        if (days == 0 && hours == 0) {
+            [cachedTimeUnitsLabel setObject:@"min." forKey:checkin.checkinId];
+            [cachedTimeLabel setObject:[NSString stringWithFormat:@"%02d", minutes] forKey:checkin.checkinId];
+        } else if (days == 0) {
+            [cachedTimeUnitsLabel setObject:@"hours" forKey:checkin.checkinId];
+            [cachedTimeLabel setObject:[NSString stringWithFormat:@"%02d", hours] forKey:checkin.checkinId];
+        } else {
+            [cachedTimeUnitsLabel setObject:@"days" forKey:checkin.checkinId];
+            [cachedTimeLabel setObject:[NSString stringWithFormat:@"%02d", days] forKey:checkin.checkinId];
+        }
     }
+    
     NSLog(@"all checkins: %d", [self.checkins count]);
     NSLog(@"recent checkins: %d", [self.recentCheckins count]);
     NSLog(@"today checkins: %d", [self.todayCheckins count]);
     NSLog(@"yesterday checkins: %d", [self.yesterdayCheckins count]);
     
-    [dateFormatter release];
+    //[dateFormatter release];
 	[self.theTableView reloadData];
     footerViewCell.hidden = NO;
     mapButton.hidden = NO;

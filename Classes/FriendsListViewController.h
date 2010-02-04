@@ -38,6 +38,10 @@
     BOOL isDisplayingMore;
     
     IBOutlet UIImageView *splashView;
+    NSDateFormatter *dateFormatter;
+    
+    NSMutableDictionary *cachedTimeLabel;
+    NSMutableDictionary *cachedTimeUnitsLabel;
 }
 
 @property (nonatomic, retain) NSArray * checkins;
