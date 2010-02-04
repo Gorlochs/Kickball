@@ -79,9 +79,9 @@
     modalViewController.view = splashView;
     //[self presentModalViewController:modalViewController animated:NO];
     [self.view addSubview:splashView];
-    [splashView startAnimating];
     //[UIView setAnimationDidStopSelector:@selector(hideSplash:finished:context:)];
-    [self performSelector:@selector(hideSplash) withObject:nil afterDelay:2.0];
+    [self performSelector:@selector(hideSplash) withObject:nil afterDelay:2.05];
+    [splashView startAnimating];
 }
 
 //- (void)hideSplash:(NSString*)animationID finished:(BOOL)finished context:(void *)context {

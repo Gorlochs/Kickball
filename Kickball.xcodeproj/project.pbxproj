@@ -291,6 +291,7 @@
 		6A4C30C610DED6E300C89F55 /* SettingsViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A4C30C410DED6E300C89F55 /* SettingsViewController.xib */; };
 		6A4C30CA10DF24FD00C89F55 /* PlaceMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4C30C810DF24FD00C89F55 /* PlaceMapViewController.m */; };
 		6A4C30CB10DF24FD00C89F55 /* PlaceMapViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A4C30C910DF24FD00C89F55 /* PlaceMapViewController.xib */; };
+		6A4E0771111A244C00B3C56D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4E0770111A244C00B3C56D /* Default.png */; };
 		6A55B4D010B36EC60005E934 /* KBBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A55B4CF10B36EC60005E934 /* KBBaseViewController.m */; };
 		6A5F8F3C10B7707100914709 /* GeoAPIView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A5F8F3B10B7707100914709 /* GeoAPIView.xib */; };
 		6A63DDA41108EDBA00E2F9BB /* IFTweetLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A63DD9E1108EDBA00E2F9BB /* IFTweetLabel.m */; };
@@ -950,6 +951,7 @@
 		6A4C30C710DF24FD00C89F55 /* PlaceMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceMapViewController.h; sourceTree = "<group>"; };
 		6A4C30C810DF24FD00C89F55 /* PlaceMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceMapViewController.m; sourceTree = "<group>"; };
 		6A4C30C910DF24FD00C89F55 /* PlaceMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaceMapViewController.xib; sourceTree = "<group>"; };
+		6A4E0770111A244C00B3C56D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		6A55B4CE10B36EC60005E934 /* KBBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBBaseViewController.h; sourceTree = "<group>"; };
 		6A55B4CF10B36EC60005E934 /* KBBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBBaseViewController.m; sourceTree = "<group>"; };
 		6A5F8F3B10B7707100914709 /* GeoAPIView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GeoAPIView.xib; sourceTree = "<group>"; };
@@ -1834,6 +1836,7 @@
 		6A39EC4B109662D3006F76C3 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				6A4E0770111A244C00B3C56D /* Default.png */,
 				6AE37E60111925CE00C6585B /* kbloader */,
 				6AE37D801118DA7400C6585B /* gradient-bottom.png */,
 				6AE37D811118DA7400C6585B /* gradient-top.png */,
@@ -2812,6 +2815,7 @@
 				6AE37EDC111925D800C6585B /* kickballLoading02.png in Resources */,
 				6AE37EDD111925D800C6585B /* kickballLoading01.png in Resources */,
 				6AE37F381119467F00C6585B /* welcome01.png in Resources */,
+				6A4E0771111A244C00B3C56D /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,6 +10,7 @@
 #import "FoursquareAPI.h"
 #import "PlaceDetailViewController.h"
 #import "FSCheckin.h"
+#import "AddPlaceTipsViewController.h"
 
 
 @implementation AddPlaceFormViewController
@@ -89,12 +90,19 @@
 #pragma mark IBAction methods
 
 - (void) clearFields {
-//    addressCell.textLabel.text = @"";
-//    crossstreetCell.textLabel.text = @"";
-//    cityCell.textLabel.text = @"";
-//    phoneCell.textLabel.text = @"";
-//    twitterCell.textLabel.text = @"";
-//    saveCell.textLabel.text = @"";
+    address.text = @"";
+    crossstreet.text = @"";
+    city.text = @"";
+    phone.text = @"";
+    twitter.text = @"";
+    zip.text = @"";
+    state.text = @"";
+}
+
+- (void) viewTipsForAddingNewPlace {
+    AddPlaceTipsViewController *tipController = [[AddPlaceTipsViewController alloc] initWithNibName:@"AddPlaceTipsViewController" bundle:nil];
+    [self.navigationController pushViewController:tipController animated:YES];
+    [tipController release];
 }
 
 - (void) saveVenueAndCheckin {

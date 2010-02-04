@@ -646,6 +646,15 @@
 					</object>
 					<int key="connectionID">132</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">viewTipsForAddingNewPlace</string>
+						<reference key="source" ref="144370952"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">133</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -878,7 +887,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">132</int>
+			<int key="maxID">133</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -892,9 +901,11 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>clearFields</string>
 							<string>saveVenueAndCheckin</string>
+							<string>viewTipsForAddingNewPlace</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 						</object>

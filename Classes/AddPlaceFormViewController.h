@@ -33,6 +33,7 @@
 
 - (IBAction) clearFields;
 - (IBAction) saveVenueAndCheckin;
+- (IBAction) viewTipsForAddingNewPlace;
 - (void) newVenueResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString;
 
 @end

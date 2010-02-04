@@ -105,7 +105,7 @@
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     for (NSString *key in [venues allKeys]) {
-        return [(NSArray*)[venues objectForKey:key] count] + 1;
+        return [(NSArray*)[venues objectForKey:key] count];
     }
     return 1;
 }
@@ -126,7 +126,7 @@
     }
 	
     // FIXME: find a better way to do this!
-    if (indexPath.row == [(NSArray*)[venues objectForKey:@"Matching Places"] count] && ![newPlaceName.text isEqualToString:@""]) {
+    if ([venues count] == 0 && ![newPlaceName.text isEqualToString:@""]) {
         return noneOfTheseCell;
     }
     if ([venues count] >= indexPath.section) {
