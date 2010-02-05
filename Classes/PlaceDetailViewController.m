@@ -59,10 +59,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [fullMapView setShowsUserLocation:YES];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(displayTodoTipMessage:) name:@"todoTipSent" object:nil];
     
-    // TODO: need a way to persist these? What is the business logic for displaying each cell?
     isUserCheckedIn = NO;
     
     venueDetailButton.hidden = YES;
@@ -140,8 +138,8 @@
     [fullMapView setShowsUserLocation:YES];
     
     VenueAnnotation *venueAnnotation = [[VenueAnnotation alloc] initWithCoordinate:location];
-    [smallMapView addAnnotation:venueAnnotation];
     [fullMapView addAnnotation:venueAnnotation];
+    [smallMapView addAnnotation:venueAnnotation];
     [venueAnnotation release];
     
     venueName.text = venueToDisplay.name;
@@ -266,8 +264,8 @@
         if ([self getSingleCheckin].mayor.user == nil
                 && [[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"nochange"]) {
             
-            stillTheMayorLabel.text = [NSString stringWithFormat:@"You're still the mayor of %@!", venue.name];
-            return stillTheMayorCell;
+            newMayorshipLabel.text = [NSString stringWithFormat:@"You're still the mayor of %@!", venue.name];
+            return newMayorCell;
         } else if ([[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"stolen"] || [[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"new"]) {
             if ([[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"stolen"]) {
                 //newMayorshipLabel.text = [NSString stringWithFormat:@"%@ (Crown stolen from %@)", [self getSingleCheckin].mayor.mayorCheckinMessage, [self getSingleCheckin].mayor.user.firstnameLastInitial];
@@ -332,11 +330,7 @@
         case 2:
             return 66;
         case 3:
-            if ([[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"stolen"] || [[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"new"]) {
-                return 221;
-            } else {
-                return 44;
-            }
+            return 221;
         case 4:
             return 44;
         case 5:

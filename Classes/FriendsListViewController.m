@@ -212,6 +212,8 @@
     [welcomeImage release];
     [splashView release];
     [dateFormatter release];
+    [cachedTimeLabel release];
+    [cachedTimeUnitsLabel release];
     [super dealloc];
 }
 
