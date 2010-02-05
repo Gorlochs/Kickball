@@ -244,24 +244,32 @@
     
     static NSString *CellIdentifier = @"FriendCell";
     
-    FriendsListTableCell *cell = (FriendsListTableCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
+//    FriendsListTableCell *cell = (FriendsListTableCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    
+//    if (cell == nil) {
+//        // TODO: I'm not sure that this is the best way to do this with 3.x - there might be a better way to do it now
+//        UIViewController *vc = [[UIViewController alloc]initWithNibName:@"FriendsListTableCellView" bundle:nil];
+//        cell = (FriendsListTableCell*) vc.view;
+//        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+//        cell.checkinDisplayLabel.highlightedTextColor = [UIColor whiteColor];
+//        cell.addressLabel.highlightedTextColor = [UIColor whiteColor];
+//        cell.timeUnits.highlightedTextColor = [UIColor whiteColor];
+//        cell.numberOfTimeUnits.highlightedTextColor = [UIColor whiteColor];
+//        cell.profileIcon.layer.masksToBounds = YES;
+//        cell.profileIcon.layer.cornerRadius = 4.0;
+//        //cell.profileIcon.layer.borderWidth = 1.0;
+//        [vc release];
+//    }
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-//        if (indexPath.section == 3) {
-//            return footerViewCell;
-//        }
-        // TODO: I'm not sure that this is the best way to do this with 3.x - there might be a better way to do it now
-        UIViewController *vc = [[UIViewController alloc]initWithNibName:@"FriendsListTableCellView" bundle:nil];
-        cell = (FriendsListTableCell*) vc.view;
-        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-        cell.checkinDisplayLabel.highlightedTextColor = [UIColor whiteColor];
-        cell.addressLabel.highlightedTextColor = [UIColor whiteColor];
-        cell.timeUnits.highlightedTextColor = [UIColor whiteColor];
-        cell.numberOfTimeUnits.highlightedTextColor = [UIColor whiteColor];
-        cell.profileIcon.layer.masksToBounds = YES;
-        cell.profileIcon.layer.cornerRadius = 4.0;
-        //cell.profileIcon.layer.borderWidth = 1.0;
-        [vc release];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:14.0];
+        cell.detailTextLabel.font = [UIFont systemFontOfSize:12.0];
+        
+        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 52, 320, 1)];
+        line.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.13];
+        [cell addSubview:line];
+        [line release];
     }
     
     FSCheckin *checkin = nil;
@@ -282,24 +290,55 @@
     }
 
     // create icon image
-	NSString * path = checkin.user.photo;
-	if (path) {
-        cell.profileIcon.image = [userIcons objectForKey:checkin.user.userId];
-    }
-	cell.checkinDisplayLabel.text = checkin.display;
-    // TODO: check to see if there is a better way to check for [off the grid]
+//	NSString * path = checkin.user.photo;
+//	if (path) {
+//        cell.profileIcon.image = [userIcons objectForKey:checkin.user.userId];
+//    }
+    cell.imageView.image = [userIcons objectForKey:checkin.user.userId];
+    float sw=32/cell.imageView.image.size.width;
+    float sh=32/cell.imageView.image.size.height;
+    cell.imageView.transform=CGAffineTransformMakeScale(sw,sh);
+    cell.imageView.layer.masksToBounds = YES;
+    cell.imageView.layer.cornerRadius = 8.0;
+    
+    cell.textLabel.text = checkin.display;
     if ([checkin.display rangeOfString:@"[off the grid]"].location != NSNotFound) {
-        cell.addressLabel.text = @"...location unknown...";
+        cell.detailTextLabel.text = @"...location unknown...";
     } else if (checkin.shout != nil) {
-        cell.addressLabel.text = checkin.shout;
+        cell.detailTextLabel.text = checkin.shout;
     } else {
-        cell.addressLabel.text = checkin.venue.venueAddress;
+        cell.detailTextLabel.text = checkin.venue.venueAddress;
     }
     
-    [cell showHideMayorImage:checkin.isMayor];
+//	cell.checkinDisplayLabel.text = checkin.display;
+//    // TODO: check to see if there is a better way to check for [off the grid]
+//    if ([checkin.display rangeOfString:@"[off the grid]"].location != NSNotFound) {
+//        cell.addressLabel.text = @"...location unknown...";
+//    } else if (checkin.shout != nil) {
+//        cell.addressLabel.text = checkin.shout;
+//    } else {
+//        cell.addressLabel.text = checkin.venue.venueAddress;
+//    }
+//    
+//    [cell showHideMayorImage:checkin.isMayor];
+//    
+//    cell.timeUnits.text = [cachedTimeUnitsLabel objectForKey:checkin.checkinId];
+//    cell.numberOfTimeUnits.text = [cachedTimeLabel objectForKey:checkin.checkinId];
     
-    cell.timeUnits.text = [cachedTimeUnitsLabel objectForKey:checkin.checkinId];
-    cell.numberOfTimeUnits.text = [cachedTimeLabel objectForKey:checkin.checkinId];
+    UILabel *timeUnitsLabel = [[UILabel alloc] initWithFrame:CGRectMake(281, 35, 30, 12)];
+    timeUnitsLabel.text = [cachedTimeUnitsLabel objectForKey:checkin.checkinId];
+    timeUnitsLabel.font = [UIFont systemFontOfSize:11.0];
+    timeUnitsLabel.textColor = [UIColor colorWithWhite:0.0 alpha:0.3];
+    [cell addSubview:timeUnitsLabel];
+    [timeUnitsLabel release];
+    
+    UILabel *numberOfTimeUnits = [[UILabel alloc] initWithFrame:CGRectMake(285, 5, 30, 20)];
+    numberOfTimeUnits.text = [cachedTimeLabel objectForKey:checkin.checkinId];
+    numberOfTimeUnits.font = [UIFont boldSystemFontOfSize:24.0];
+    numberOfTimeUnits.textColor = [UIColor colorWithWhite:0.0 alpha:0.3];
+    //numberOfTimeUnits.backgroundColor = [UIColor yellowColor];
+    cell.accessoryView = numberOfTimeUnits;
+    [numberOfTimeUnits release];
     
 	return cell;
 }
@@ -357,7 +396,7 @@
     } else if (indexPath.section == 3) {
         return 44;
     }
-    return 49;
+    return 52;
 }
 
 // TODO: most of the below header label stuff should be pulled up into a method in KBBBaseViewController
@@ -548,73 +587,73 @@
 }
 
 - (void) setupSplashAnimation {
-//    NSMutableArray *images = [[NSMutableArray alloc] initWithCapacity:1];
-//    for (int i = 1; i < 112; i = i + 3) {
-//        [images addObject:[UIImage imageNamed:[NSString stringWithFormat:@"kbLOADER%03d.png", i]]];
-//    }
+    NSMutableArray *images = [[NSMutableArray alloc] initWithCapacity:1];
+    for (int i = 1; i < 61; i++) {
+        [images addObject:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"kickballLoading%02d", i] ofType:@"png"]]];
+    }
     
-    splashView.animationImages = [NSArray arrayWithObjects:
-                                    [UIImage imageNamed:@"kickballLoading01.png"],
-                                    [UIImage imageNamed:@"kickballLoading02.png"],
-                                    [UIImage imageNamed:@"kickballLoading03.png"],
-                                    [UIImage imageNamed:@"kickballLoading04.png"],
-                                    [UIImage imageNamed:@"kickballLoading05.png"],
-                                    [UIImage imageNamed:@"kickballLoading06.png"],
-                                    [UIImage imageNamed:@"kickballLoading07.png"],
-                                  [UIImage imageNamed:@"kickballLoading08.png"],
-                                  [UIImage imageNamed:@"kickballLoading09.png"],
-                                  [UIImage imageNamed:@"kickballLoading10.png"],
-                                  [UIImage imageNamed:@"kickballLoading11.png"],
-                                  [UIImage imageNamed:@"kickballLoading12.png"],
-                                  [UIImage imageNamed:@"kickballLoading13.png"],
-                                  [UIImage imageNamed:@"kickballLoading14.png"],
-                                  [UIImage imageNamed:@"kickballLoading15.png"],
-                                  [UIImage imageNamed:@"kickballLoading16.png"],
-                                  [UIImage imageNamed:@"kickballLoading17.png"],
-                                  [UIImage imageNamed:@"kickballLoading18.png"],
-                                  [UIImage imageNamed:@"kickballLoading19.png"],
-                                  [UIImage imageNamed:@"kickballLoading20.png"],
-                                  [UIImage imageNamed:@"kickballLoading21.png"],
-                                  [UIImage imageNamed:@"kickballLoading22.png"],
-                                  [UIImage imageNamed:@"kickballLoading23.png"],
-                                  [UIImage imageNamed:@"kickballLoading24.png"],
-                                  [UIImage imageNamed:@"kickballLoading25.png"],
-                                  [UIImage imageNamed:@"kickballLoading26.png"],
-                                  [UIImage imageNamed:@"kickballLoading27.png"],
-                                  [UIImage imageNamed:@"kickballLoading28.png"],
-                                  [UIImage imageNamed:@"kickballLoading29.png"],
-                                  [UIImage imageNamed:@"kickballLoading30.png"],
-                                  [UIImage imageNamed:@"kickballLoading31.png"],
-                                  [UIImage imageNamed:@"kickballLoading32.png"],
-                                  [UIImage imageNamed:@"kickballLoading33.png"],
-                                  [UIImage imageNamed:@"kickballLoading34.png"],
-                                  [UIImage imageNamed:@"kickballLoading35.png"],
-                                  [UIImage imageNamed:@"kickballLoading36.png"],
-                                  [UIImage imageNamed:@"kickballLoading37.png"],
-                                  [UIImage imageNamed:@"kickballLoading38.png"],
-                                  [UIImage imageNamed:@"kickballLoading39.png"],
-                                  [UIImage imageNamed:@"kickballLoading40.png"],
-                                  [UIImage imageNamed:@"kickballLoading41.png"],
-                                  [UIImage imageNamed:@"kickballLoading42.png"],
-                                  [UIImage imageNamed:@"kickballLoading43.png"],
-                                  [UIImage imageNamed:@"kickballLoading44.png"],
-                                  [UIImage imageNamed:@"kickballLoading45.png"],
-                                  [UIImage imageNamed:@"kickballLoading46.png"],
-                                  [UIImage imageNamed:@"kickballLoading47.png"],
-                                  [UIImage imageNamed:@"kickballLoading48.png"],
-                                  [UIImage imageNamed:@"kickballLoading49.png"],
-                                  [UIImage imageNamed:@"kickballLoading50.png"],
-                                  [UIImage imageNamed:@"kickballLoading51.png"],
-                                  [UIImage imageNamed:@"kickballLoading52.png"],
-                                  [UIImage imageNamed:@"kickballLoading53.png"],
-                                  [UIImage imageNamed:@"kickballLoading54.png"],
-                                  [UIImage imageNamed:@"kickballLoading55.png"],
-                                  [UIImage imageNamed:@"kickballLoading56.png"],
-                                  [UIImage imageNamed:@"kickballLoading57.png"],
-                                  [UIImage imageNamed:@"kickballLoading58.png"],
-                                  [UIImage imageNamed:@"kickballLoading59.png"],
-                                  [UIImage imageNamed:@"kickballLoading60.png"],
-                                  [UIImage imageNamed:@"kickballLoading61.png"],
+//    splashView.animationImages = [NSArray arrayWithObjects:
+//                                    [UIImage imageNamed:@"kickballLoading01.png"],
+//                                    [UIImage imageNamed:@"kickballLoading02.png"],
+//                                    [UIImage imageNamed:@"kickballLoading03.png"],
+//                                    [UIImage imageNamed:@"kickballLoading04.png"],
+//                                    [UIImage imageNamed:@"kickballLoading05.png"],
+//                                    [UIImage imageNamed:@"kickballLoading06.png"],
+//                                    [UIImage imageNamed:@"kickballLoading07.png"],
+//                                  [UIImage imageNamed:@"kickballLoading08.png"],
+//                                  [UIImage imageNamed:@"kickballLoading09.png"],
+//                                  [UIImage imageNamed:@"kickballLoading10.png"],
+//                                  [UIImage imageNamed:@"kickballLoading11.png"],
+//                                  [UIImage imageNamed:@"kickballLoading12.png"],
+//                                  [UIImage imageNamed:@"kickballLoading13.png"],
+//                                  [UIImage imageNamed:@"kickballLoading14.png"],
+//                                  [UIImage imageNamed:@"kickballLoading15.png"],
+//                                  [UIImage imageNamed:@"kickballLoading16.png"],
+//                                  [UIImage imageNamed:@"kickballLoading17.png"],
+//                                  [UIImage imageNamed:@"kickballLoading18.png"],
+//                                  [UIImage imageNamed:@"kickballLoading19.png"],
+//                                  [UIImage imageNamed:@"kickballLoading20.png"],
+//                                  [UIImage imageNamed:@"kickballLoading21.png"],
+//                                  [UIImage imageNamed:@"kickballLoading22.png"],
+//                                  [UIImage imageNamed:@"kickballLoading23.png"],
+//                                  [UIImage imageNamed:@"kickballLoading24.png"],
+//                                  [UIImage imageNamed:@"kickballLoading25.png"],
+//                                  [UIImage imageNamed:@"kickballLoading26.png"],
+//                                  [UIImage imageNamed:@"kickballLoading27.png"],
+//                                  [UIImage imageNamed:@"kickballLoading28.png"],
+//                                  [UIImage imageNamed:@"kickballLoading29.png"],
+//                                  [UIImage imageNamed:@"kickballLoading30.png"],
+//                                  [UIImage imageNamed:@"kickballLoading31.png"],
+//                                  [UIImage imageNamed:@"kickballLoading32.png"],
+//                                  [UIImage imageNamed:@"kickballLoading33.png"],
+//                                  [UIImage imageNamed:@"kickballLoading34.png"],
+//                                  [UIImage imageNamed:@"kickballLoading35.png"],
+//                                  [UIImage imageNamed:@"kickballLoading36.png"],
+//                                  [UIImage imageNamed:@"kickballLoading37.png"],
+//                                  [UIImage imageNamed:@"kickballLoading38.png"],
+//                                  [UIImage imageNamed:@"kickballLoading39.png"],
+//                                  [UIImage imageNamed:@"kickballLoading40.png"],
+//                                  [UIImage imageNamed:@"kickballLoading41.png"],
+//                                  [UIImage imageNamed:@"kickballLoading42.png"],
+//                                  [UIImage imageNamed:@"kickballLoading43.png"],
+//                                  [UIImage imageNamed:@"kickballLoading44.png"],
+//                                  [UIImage imageNamed:@"kickballLoading45.png"],
+//                                  [UIImage imageNamed:@"kickballLoading46.png"],
+//                                  [UIImage imageNamed:@"kickballLoading47.png"],
+//                                  [UIImage imageNamed:@"kickballLoading48.png"],
+//                                  [UIImage imageNamed:@"kickballLoading49.png"],
+//                                  [UIImage imageNamed:@"kickballLoading50.png"],
+//                                  [UIImage imageNamed:@"kickballLoading51.png"],
+//                                  [UIImage imageNamed:@"kickballLoading52.png"],
+//                                  [UIImage imageNamed:@"kickballLoading53.png"],
+//                                  [UIImage imageNamed:@"kickballLoading54.png"],
+//                                  [UIImage imageNamed:@"kickballLoading55.png"],
+//                                  [UIImage imageNamed:@"kickballLoading56.png"],
+//                                  [UIImage imageNamed:@"kickballLoading57.png"],
+//                                  [UIImage imageNamed:@"kickballLoading58.png"],
+//                                  [UIImage imageNamed:@"kickballLoading59.png"],
+//                                  [UIImage imageNamed:@"kickballLoading60.png"],
+//                                  [UIImage imageNamed:@"kickballLoading61.png"],
 //                                  [UIImage imageNamed:@"kickballLoading62.png"],
 //                                  [UIImage imageNamed:@"kickballLoading63.png"],
 //                                  [UIImage imageNamed:@"kickballLoading64.png"],
@@ -665,9 +704,10 @@
 //                                  [UIImage imageNamed:@"kbLOADER109.png"],
 //                                  [UIImage imageNamed:@"kbLOADER110.png"],
 //                                  [UIImage imageNamed:@"kbLOADER111.png"],
-                                                nil];
+//                                                nil];
     
-//    splashView.animationImages = [[NSArray alloc] initWithArray:images];
+    splashView.animationImages = [[NSArray alloc] initWithArray:images];
+    [images release];
     splashView.animationDuration = 2.0;
     splashView.animationRepeatCount = 0;
 }

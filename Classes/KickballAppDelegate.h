@@ -10,6 +10,7 @@
 #import "FSUser.h"
 #import "Reachability.h"
 #import "KBPushNotificationView.h"
+#import "KBMessage.h"
 
 #define kApplicationKey @"qpHHiOCAT8iYATFJa4dsIQ"
 #define kApplicationSecret @"PGTRPo6OTI2dvtz2xw-vfw"
@@ -43,5 +44,7 @@
 
 - (void) setupAuthenticatedUserAndPushNotifications;
 - (void) displayPushNotificationView:(NSNotification *)inNotification;
+- (void) displayPopupMessage:(KBMessage*)message;
+- (void) checkForEmergencyMessage;
 
 @end

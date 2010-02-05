@@ -14,6 +14,7 @@
 #import "ASIHTTPRequest.h"
 #import "FoursquareAPI.h"
 #import "ProfileViewController.h"
+#import "PopupMessageView.h"
 
 
 @implementation KickballAppDelegate
@@ -73,6 +74,8 @@
 	hostReach = [[Reachability reachabilityWithHostName: @"apple.com"] retain];
 //	hostReach = [[Reachability reachabilityWithHostName: @"api.foursquare.com/v1/test"] retain];
 	[hostReach startNotifer];
+    
+    [self checkForEmergencyMessage];
 }
 
 //- (void)apiTestResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
@@ -312,6 +315,32 @@
     }
 }
 
+- (void) displayPopupMessage:(KBMessage*)message {
+    
+    PopupMessageView *popupView = [[PopupMessageView alloc] initWithNibName:@"PopupMessageView" bundle:nil];
+    popupView.message = message;
+    popupView.view.alpha = 0;
+    [navigationController.view addSubview:popupView.view];
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:0.7];
+    popupView.view.alpha = 1.0;
+    popupView.view.frame = CGRectMake(0, 0, popupView.view.frame.size.width, popupView.view.frame.size.height + 21);
+    [UIView commitAnimations];
+}
+
+- (void) checkForEmergencyMessage {
+    NSError *error = nil;
+	NSString *emergencyMessage = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://www.gorlochs.com/kickball/messages/kb.emergency.message"] 
+                                                          encoding:NSASCIIStringEncoding
+                                                             error:&error];
+    if (emergencyMessage != nil && ![emergencyMessage isEqualToString:@""]) {
+        KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:emergencyMessage];
+        [self displayPopupMessage:message];
+        [message release];
+	}
+}
 
 - (void)dealloc {
     [viewController release];
