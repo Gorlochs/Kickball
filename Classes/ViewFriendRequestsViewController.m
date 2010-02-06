@@ -95,6 +95,34 @@
     [message release];
 }
 
+// cheap and crappy, but I don't have the time
+- (void)denyFriendRequestResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+    NSLog(@"pending friend requests: %@", inString);
+    FSUser *user = [FoursquareAPI userFromResponseXML:inString];
+    [self stopProgressBar];
+    NSLog(@"approved user: %@", user);
+    
+    KBMessage *message = nil;
+    if (user) {
+        message = [[KBMessage alloc] initWithMember:@"Friend Request Denied" andMessage:@"Sorry buddy, not this time!"];
+        int i = 0;
+        for (FSUser *u in pendingFriendRequests) {
+            if ([user.userId isEqualToString:u.userId]) {
+                // need a better isEqual method for FSUser so I can use removeObject:
+                
+                [pendingFriendRequests removeObjectAtIndex:i];
+                [theTableView reloadData];
+                break;
+            }
+            i++;
+        }
+    } else {
+        message = [[KBMessage alloc] initWithMember:@"Friend Request Error" andMessage:@"Something went wrong."];
+    }
+    [self displayPopupMessage:message];
+    [message release];
+}
+
 - (void) acceptFriend:(UIControl*) button {
     [[Beacon shared] startSubBeaconWithName:@"Accept Friend"];
     NSLog(@"acceptfriend tag: %d", button.tag);
@@ -106,7 +134,7 @@
     [[Beacon shared] startSubBeaconWithName:@"Deny Friend"];
     NSLog(@"denyfriend tag: %d", button.tag);
     [self startProgressBar:@"Denying your new friend..."];
-    [[FoursquareAPI sharedInstance] denyFriendRequest:((FSUser*)[pendingFriendRequests objectAtIndex:button.tag]).userId withTarget:self andAction:@selector(friendRequestResponseReceived:withResponseString:)];
+    [[FoursquareAPI sharedInstance] denyFriendRequest:((FSUser*)[pendingFriendRequests objectAtIndex:button.tag]).userId withTarget:self andAction:@selector(denyFriendRequestResponseReceived:withResponseString:)];
 }
 
 - (void)dealloc {
