@@ -98,12 +98,14 @@
 - (void) acceptFriend:(UIControl*) button {
     [[Beacon shared] startSubBeaconWithName:@"Accept Friend"];
     NSLog(@"acceptfriend tag: %d", button.tag);
+    [self startProgressBar:@"Accepting your new friend..."];
     [[FoursquareAPI sharedInstance] approveFriendRequest:((FSUser*)[pendingFriendRequests objectAtIndex:button.tag]).userId withTarget:self andAction:@selector(friendRequestResponseReceived:withResponseString:)];
 }
 
 - (void) denyFriend:(UIControl*) button {
     [[Beacon shared] startSubBeaconWithName:@"Deny Friend"];
     NSLog(@"denyfriend tag: %d", button.tag);
+    [self startProgressBar:@"Denying your new friend..."];
     [[FoursquareAPI sharedInstance] denyFriendRequest:((FSUser*)[pendingFriendRequests objectAtIndex:button.tag]).userId withTarget:self andAction:@selector(friendRequestResponseReceived:withResponseString:)];
 }
 
