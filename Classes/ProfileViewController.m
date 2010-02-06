@@ -55,6 +55,7 @@
         location.text = @"[off the grid]";
         lastCheckinAddress.text = @"...location unknown...";
         hereIAmButton.enabled = NO;
+        locationOverlayButton.enabled = NO;
     } else if (user.checkin.shout != nil) {
         lastCheckinAddress.text = user.checkin.shout;
         hereIAmButton.enabled = NO;

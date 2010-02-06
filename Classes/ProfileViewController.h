@@ -31,6 +31,7 @@
     IBOutlet UIImageView *userIcon;
     IBOutlet UIButton *pingsAndUpdates;
     IBOutlet UIButton *hereIAmButton;
+    IBOutlet UIButton *locationOverlayButton;
     
     IBOutlet UIButton *textButton;
     IBOutlet UIButton *callButton;
