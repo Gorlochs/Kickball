@@ -237,8 +237,11 @@ static FoursquareAPI *sharedInstance = nil;
 
 - (void)setPings:(NSString*)pingStatus forUser:(NSString *)userId withTarget:(id)inTarget andAction:(SEL)inAction {
     NSLog(@"setting ping status (%@) for user: %@", pingStatus, userId);
-    NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:1];
-	[requestParams setObject:pingStatus forKey:userId];
+    NSMutableDictionary *requestParams = nil;
+    if (userId != nil) {
+        requestParams = [[NSMutableDictionary alloc] initWithCapacity:1];
+        [requestParams setObject:pingStatus forKey:userId];
+    }
 	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/settings/setpings"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"POST"];
 }
 

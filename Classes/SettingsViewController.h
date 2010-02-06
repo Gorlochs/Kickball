@@ -15,10 +15,13 @@
     IBOutlet UITextField *password;
     IBOutlet UILabel *friendRequestCount;
     NSArray *pendingFriendRequests;
+    bool isPingAndUpdatesOn;
+    IBOutlet UIButton *pingsAndUpdates;
 }
 
 - (IBAction) viewFriendRequests;
 - (IBAction) addFriends;
 - (IBAction) validateNewUsernamePassword;
+- (IBAction) togglePingsAndUpdates;
 
 @end

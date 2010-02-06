@@ -104,6 +104,29 @@
 	// e.g. self.myOutlet = nil;
 }
 
+- (void) togglePingsAndUpdates {
+    [self startProgressBar:@"Changing your ping update preferences..."];
+    //NSArray *yesnoArray = [NSArray arrayWithObjects:@"off", @"on", nil];
+    NSString *ping = @"on";
+    if (isPingAndUpdatesOn) {
+        ping = @"off";
+    }
+    [[FoursquareAPI sharedInstance] setPings:ping forUser:nil withTarget:self andAction:@selector(pingUpdateResponseReceived:withResponseString:)];
+}
+
+- (void) pingUpdateResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+    NSLog(@"instring: %@", inString);
+	BOOL newPingSetting = [FoursquareAPI pingSettingFromResponseXML:inString];
+    NSLog(@"new ping setting: %d", newPingSetting);
+    isPingAndUpdatesOn = !isPingAndUpdatesOn;
+    //pingsAndUpdates.selected = isPingAndUpdatesOn;
+    if (isPingAndUpdatesOn) {
+        [pingsAndUpdates setImage:[UIImage imageNamed:@"profilePings01.png"] forState:UIControlStateNormal];
+    } else {
+        [pingsAndUpdates setImage:[UIImage imageNamed:@"profilePings03.png"] forState:UIControlStateNormal];
+    }
+    [self stopProgressBar];
+}
 
 - (void)dealloc {
     [username release];

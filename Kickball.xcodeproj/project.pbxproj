@@ -360,6 +360,10 @@
 		6AACC62710D4ACEC0059E604 /* tmp-tips-for-adding.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AACC62610D4ACEC0059E604 /* tmp-tips-for-adding.png */; };
 		6AACC63B10D4B1430059E604 /* AddPlaceTipsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AACC63910D4B1430059E604 /* AddPlaceTipsViewController.m */; };
 		6AACC63C10D4B1430059E604 /* AddPlaceTipsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AACC63A10D4B1430059E604 /* AddPlaceTipsViewController.xib */; };
+		6AB0D335111D468300B97FD1 /* loginLogin01a.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AB0D333111D468200B97FD1 /* loginLogin01a.png */; };
+		6AB0D336111D468300B97FD1 /* loginLogin02a.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AB0D334111D468200B97FD1 /* loginLogin02a.png */; };
+		6AB0D346111D470900B97FD1 /* loginFields2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AB0D345111D470900B97FD1 /* loginFields2.png */; };
+		6AB0D349111D472500B97FD1 /* loginBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AB0D348111D472500B97FD1 /* loginBG.png */; };
 		6ABA7858109BDCAF001E7293 /* PlacesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABA7856109BDCAF001E7293 /* PlacesListViewController.m */; };
 		6ABA7859109BDCAF001E7293 /* PlacesListViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6ABA7857109BDCAF001E7293 /* PlacesListViewController.xib */; };
 		6ABB8B2F10D88C99001ECDAD /* FSMayor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABB8B2E10D88C99001ECDAD /* FSMayor.m */; };
@@ -1052,6 +1056,12 @@
 		6AACC63810D4B1430059E604 /* AddPlaceTipsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPlaceTipsViewController.h; sourceTree = "<group>"; };
 		6AACC63910D4B1430059E604 /* AddPlaceTipsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPlaceTipsViewController.m; sourceTree = "<group>"; };
 		6AACC63A10D4B1430059E604 /* AddPlaceTipsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddPlaceTipsViewController.xib; sourceTree = "<group>"; };
+		6AB0D331111D466000B97FD1 /* loginForgot01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginForgot01.png; sourceTree = "<group>"; };
+		6AB0D332111D466000B97FD1 /* loginForgot02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginForgot02.png; sourceTree = "<group>"; };
+		6AB0D333111D468200B97FD1 /* loginLogin01a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginLogin01a.png; sourceTree = "<group>"; };
+		6AB0D334111D468200B97FD1 /* loginLogin02a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginLogin02a.png; sourceTree = "<group>"; };
+		6AB0D345111D470900B97FD1 /* loginFields2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginFields2.png; sourceTree = "<group>"; };
+		6AB0D348111D472500B97FD1 /* loginBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginBG.png; sourceTree = "<group>"; };
 		6ABA7855109BDCAF001E7293 /* PlacesListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlacesListViewController.h; sourceTree = "<group>"; };
 		6ABA7856109BDCAF001E7293 /* PlacesListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlacesListViewController.m; sourceTree = "<group>"; };
 		6ABA7857109BDCAF001E7293 /* PlacesListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PlacesListViewController.xib; path = Classes/PlacesListViewController.xib; sourceTree = "<group>"; };
@@ -1836,6 +1846,12 @@
 		6A39EC4B109662D3006F76C3 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				6AB0D345111D470900B97FD1 /* loginFields2.png */,
+				6AB0D333111D468200B97FD1 /* loginLogin01a.png */,
+				6AB0D334111D468200B97FD1 /* loginLogin02a.png */,
+				6AB0D331111D466000B97FD1 /* loginForgot01.png */,
+				6AB0D332111D466000B97FD1 /* loginForgot02.png */,
+				6AB0D348111D472500B97FD1 /* loginBG.png */,
 				6A4E0770111A244C00B3C56D /* Default.png */,
 				6AE37E60111925CE00C6585B /* kbloader */,
 				6AE37D801118DA7400C6585B /* gradient-bottom.png */,
@@ -2816,6 +2832,10 @@
 				6AE37EDD111925D800C6585B /* kickballLoading01.png in Resources */,
 				6AE37F381119467F00C6585B /* welcome01.png in Resources */,
 				6A4E0771111A244C00B3C56D /* Default.png in Resources */,
+				6AB0D335111D468300B97FD1 /* loginLogin01a.png in Resources */,
+				6AB0D336111D468300B97FD1 /* loginLogin02a.png in Resources */,
+				6AB0D346111D470900B97FD1 /* loginFields2.png in Resources */,
+				6AB0D349111D472500B97FD1 /* loginBG.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
