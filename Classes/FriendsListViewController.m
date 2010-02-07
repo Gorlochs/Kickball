@@ -149,6 +149,10 @@
         [self.view bringSubviewToFront:nextWelcomeImage];
         [self.view bringSubviewToFront:previousWelcomeImage];
     } else {
+        nextWelcomeImage = nil;
+        previousWelcomeImage = nil;
+        welcomeImage = nil;
+        instructionView = nil;
         [[Beacon shared] startSubBeaconWithName:@"Initial Friends List Display"];
         [self startProgressBar:@"Retrieving friends' whereabouts..."]; 
         
@@ -187,7 +191,13 @@
     NSLog(@"******************* MEMORY WARNING!!! ****************");
     NSLog(@"******************************************************");
     [super didReceiveMemoryWarning];
-    theTableView = nil;
+    instructionView = nil;
+    noNetworkView = nil;
+    nextWelcomeImage = nil;
+    previousWelcomeImage = nil;
+    welcomeImage = nil;
+    splashView = nil;
+    //theTableView = nil;
     
 	// Release any cached data, images, etc that aren't in use.
 }
@@ -304,8 +314,8 @@
 //    float sw=32/cell.imageView.image.size.width;
 //    float sh=32/cell.imageView.image.size.height;
 //    cell.imageView.transform=CGAffineTransformMakeScale(sw,sh);
-    cell.imageView.layer.masksToBounds = YES;
-    cell.imageView.layer.cornerRadius = 8.0;
+//    cell.imageView.layer.masksToBounds = YES;
+//    cell.imageView.layer.cornerRadius = 8.0;
     
     cell.textLabel.text = checkin.display;
     if ([checkin.display rangeOfString:@"[off the grid]"].location != NSNotFound) {
@@ -478,6 +488,7 @@
 - (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
 	NSArray * allCheckins = [FoursquareAPI checkinsFromResponseXML:inString];
 	self.checkins = [allCheckins copy];
+    allCheckins = nil;
     
     recentCheckins = [[NSMutableArray alloc] init];
     todayCheckins = [[NSMutableArray alloc] init];
@@ -510,7 +521,7 @@
             UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
             UIGraphicsEndImageContext();
 
-            [userIcons setObject:newImage forKey:checkin.user.userId];
+            [userIcons setObject:[Utilities makeRoundCornerImage:newImage cornerwidth:4 cornerheight:4] forKey:checkin.user.userId];
         }
         
         NSDateComponents *components = [gregorian components:unitFlags fromDate:[self convertToUTC:[NSDate date]] toDate:date options:0];

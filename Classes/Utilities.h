@@ -25,5 +25,6 @@ extern const NSString *kKBHashSalt;
 - (UIImage *) getCachedImage: (NSString *) ImageURLString;
 //- (UIImage *) roundCorners: (UIImage*) img;
 - (void) retrieveAllFriendsWithPingOn;
++(UIImage *)makeRoundCornerImage:(UIImage*)img cornerwidth:(int) cornerWidth cornerheight:(int) cornerHeight;
 
 @end
