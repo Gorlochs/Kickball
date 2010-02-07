@@ -143,7 +143,7 @@
 - (void) doInitialDisplay {
     NSLog(@"hasViewedInstructions: %d", hasViewedInstructions);
     if (!hasViewedInstructions) {
-        [self startProgressBar:@"Loading Everything..."];
+        //[self startProgressBar:@"Loading Everything..."];
         [iconImageView setHidden:YES];
         [self.view addSubview:instructionView];
         [self.view bringSubviewToFront:nextWelcomeImage];
@@ -246,6 +246,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    NSLog(@"section: %d, row: %d", indexPath.section, indexPath.row);
     static NSString *CellIdentifier = @"FriendCell";
     
 //    FriendsListTableCell *cell = (FriendsListTableCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -299,10 +300,10 @@
 //        cell.profileIcon.image = [userIcons objectForKey:checkin.user.userId];
 //    }
     cell.imageView.image = [userIcons objectForKey:checkin.user.userId];
-    float sw=32/cell.imageView.image.size.width;
-    float sh=32/cell.imageView.image.size.height;
-    cell.imageView.transform=CGAffineTransformMakeScale(sw,sh);
-    cell.imageView.layer.masksToBounds = YES;
+//    float sw=32/cell.imageView.image.size.width;
+//    float sh=32/cell.imageView.image.size.height;
+//    cell.imageView.transform=CGAffineTransformMakeScale(sw,sh);
+//    cell.imageView.layer.masksToBounds = YES;
     cell.imageView.layer.cornerRadius = 8.0;
     
     cell.textLabel.text = checkin.display;
@@ -505,7 +506,14 @@
         // create dictionary of icons to help speed up the scrolling
         if (checkin.user && checkin.user.photo && checkin.user.userId) {
             UIImage *img = [[Utilities sharedInstance] getCachedImage:checkin.user.photo];
-            [userIcons setObject:img forKey:checkin.user.userId];
+         
+            CGSize newSize = CGSizeMake(36.0, 36.0);
+            UIGraphicsBeginImageContext( newSize );
+            [img drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+            UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+
+            [userIcons setObject:newImage forKey:checkin.user.userId];
         }
         
         NSUInteger unitFlags = NSMinuteCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit;
@@ -585,6 +593,7 @@
 
 - (void) displayOlderCheckins {
     isDisplayingMore = YES;
+    NSLog(@"displayolder checkins: %d", isDisplayingMore);
     [theTableView reloadData];
 }
 
