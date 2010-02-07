@@ -10,7 +10,7 @@
 
 
 @implementation FSCheckin
-@synthesize message, venue, badges, specials, created, checkinId, shout, display, user, scoring, mayor, isMayor;
+@synthesize message, venue, badges, specials, created, checkinId, shout, display, user, scoring, mayor, isMayor, truncatedTimeUnits, truncatedTimeNumeral;
 
 
 - (NSString*) description {
@@ -30,6 +30,8 @@
     [coder encodeObject: user forKey:@"user"]; 
     [coder encodeObject: scoring forKey:@"scoring"]; 
     [coder encodeObject: mayor forKey:@"mayor"]; 
+    [coder encodeObject: truncatedTimeUnits forKey:@"truncatedTimeUnits"]; 
+    [coder encodeObject: truncatedTimeNumeral forKey:@"truncatedTimeNumeral"]; 
 } 
 
 - (id) initWithCoder: (NSCoder *)coder { 
@@ -45,6 +47,8 @@
         [self setUser: [coder decodeObjectForKey:@"user"]]; 
         [self setScoring: [coder decodeObjectForKey:@"scoring"]]; 
         [self setMayor: [coder decodeObjectForKey:@"mayor"]]; 
+        [self setMayor: [coder decodeObjectForKey:@"truncatedTimeUnits"]]; 
+        [self setMayor: [coder decodeObjectForKey:@"truncatedTimeNumeral"]]; 
     } 
     return self; 
 } 

@@ -34,7 +34,7 @@
 
 @implementation FriendsListViewController
 
-@synthesize checkins, recentCheckins, todayCheckins, yesterdayCheckins, theTableView;
+@synthesize checkins, recentCheckins, todayCheckins, yesterdayCheckins;
 
 
 - (void)viewDidLoad {
@@ -183,6 +183,9 @@
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
+    NSLog(@"******************************************************");
+    NSLog(@"******************* MEMORY WARNING!!! ****************");
+    NSLog(@"******************************************************");
     [super didReceiveMemoryWarning];
     theTableView = nil;
     
@@ -213,8 +216,6 @@
     [welcomeImage release];
     [splashView release];
     [dateFormatter release];
-    [cachedTimeLabel release];
-    [cachedTimeUnitsLabel release];
     [gregorian release];
     [super dealloc];
 }
@@ -247,7 +248,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     NSLog(@"section: %d, row: %d", indexPath.section, indexPath.row);
-    static NSString *CellIdentifier = @"FriendCell";
+    static NSString *CellIdentifier = @"MyCell";
     
 //    FriendsListTableCell *cell = (FriendsListTableCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 //    
@@ -271,7 +272,7 @@
         cell.textLabel.font = [UIFont boldSystemFontOfSize:14.0];
         cell.detailTextLabel.font = [UIFont systemFontOfSize:12.0];
         
-        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 52, 320, 1)];
+        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 51, 320, 1)];
         line.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.13];
         [cell addSubview:line];
         [line release];
@@ -303,7 +304,7 @@
 //    float sw=32/cell.imageView.image.size.width;
 //    float sh=32/cell.imageView.image.size.height;
 //    cell.imageView.transform=CGAffineTransformMakeScale(sw,sh);
-//    cell.imageView.layer.masksToBounds = YES;
+    cell.imageView.layer.masksToBounds = YES;
     cell.imageView.layer.cornerRadius = 8.0;
     
     cell.textLabel.text = checkin.display;
@@ -331,17 +332,16 @@
 //    cell.numberOfTimeUnits.text = [cachedTimeLabel objectForKey:checkin.checkinId];
     
     UILabel *timeUnitsLabel = [[UILabel alloc] initWithFrame:CGRectMake(281, 35, 30, 12)];
-    timeUnitsLabel.text = [cachedTimeUnitsLabel objectForKey:checkin.checkinId];
+    timeUnitsLabel.text = checkin.truncatedTimeUnits;
     timeUnitsLabel.font = [UIFont systemFontOfSize:11.0];
     timeUnitsLabel.textColor = [UIColor colorWithWhite:0.0 alpha:0.3];
     [cell addSubview:timeUnitsLabel];
     [timeUnitsLabel release];
     
     UILabel *numberOfTimeUnits = [[UILabel alloc] initWithFrame:CGRectMake(285, 5, 30, 20)];
-    numberOfTimeUnits.text = [cachedTimeLabel objectForKey:checkin.checkinId];
+    numberOfTimeUnits.text = checkin.truncatedTimeNumeral;
     numberOfTimeUnits.font = [UIFont boldSystemFontOfSize:24.0];
     numberOfTimeUnits.textColor = [UIColor colorWithWhite:0.0 alpha:0.3];
-    //numberOfTimeUnits.backgroundColor = [UIColor yellowColor];
     cell.accessoryView = numberOfTimeUnits;
     [numberOfTimeUnits release];
     
@@ -484,16 +484,13 @@
     yesterdayCheckins = [[NSMutableArray alloc] init];
     userIcons = [[NSMutableDictionary alloc] initWithCapacity:1];
     
-//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-//    [dateFormatter setDateFormat:@"EEE, dd MMM yy HH:mm:ss"];
-    
     NSDate *threeHoursFromNow = [[NSDate alloc] initWithTimeIntervalSinceNow:-60*60*3];
     NSDate *twentyfourHoursFromNow = [[NSDate alloc] initWithTimeIntervalSinceNow:-60*60*24];
     threeHoursFromNow = [self convertToUTC:threeHoursFromNow];
     twentyfourHoursFromNow = [self convertToUTC:twentyfourHoursFromNow];
     
-    cachedTimeUnitsLabel = [[NSMutableDictionary alloc] initWithCapacity:[checkins count]];
-    cachedTimeLabel = [[NSMutableDictionary alloc] initWithCapacity:[checkins count]];
+    NSUInteger unitFlags = NSMinuteCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit;
+    
     for (FSCheckin *checkin in checkins) {
         NSDate *date = [dateFormatter dateFromString:checkin.created];
         if ([date compare:threeHoursFromNow] == NSOrderedDescending) {
@@ -516,21 +513,20 @@
             [userIcons setObject:newImage forKey:checkin.user.userId];
         }
         
-        NSUInteger unitFlags = NSMinuteCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit;
         NSDateComponents *components = [gregorian components:unitFlags fromDate:[self convertToUTC:[NSDate date]] toDate:date options:0];
         NSInteger minutes = [components minute] * -1;
         NSInteger hours = [components hour] * -1;
         NSInteger days = [components day] * -1;
         
         if (days == 0 && hours == 0) {
-            [cachedTimeUnitsLabel setObject:@"min." forKey:checkin.checkinId];
-            [cachedTimeLabel setObject:[NSString stringWithFormat:@"%02d", minutes] forKey:checkin.checkinId];
+            checkin.truncatedTimeUnits = @"min.";
+            checkin.truncatedTimeNumeral = [NSString stringWithFormat:@"%02d", minutes];
         } else if (days == 0) {
-            [cachedTimeUnitsLabel setObject:@"hours" forKey:checkin.checkinId];
-            [cachedTimeLabel setObject:[NSString stringWithFormat:@"%02d", hours] forKey:checkin.checkinId];
+            checkin.truncatedTimeUnits = @"hours";
+            checkin.truncatedTimeNumeral = [NSString stringWithFormat:@"%02d", hours];
         } else {
-            [cachedTimeUnitsLabel setObject:@"days" forKey:checkin.checkinId];
-            [cachedTimeLabel setObject:[NSString stringWithFormat:@"%02d", days] forKey:checkin.checkinId];
+            checkin.truncatedTimeUnits = @"days";
+            checkin.truncatedTimeNumeral = [NSString stringWithFormat:@"%02d", days];
         }
     }
     
@@ -539,8 +535,7 @@
     NSLog(@"today checkins: %d", [self.todayCheckins count]);
     NSLog(@"yesterday checkins: %d", [self.yesterdayCheckins count]);
     
-    //[dateFormatter release];
-	[self.theTableView reloadData];
+	[theTableView reloadData];
     footerViewCell.hidden = NO;
     mapButton.hidden = NO;
     if (hasViewedInstructions) {

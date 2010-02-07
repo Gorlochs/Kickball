@@ -40,9 +40,6 @@
     IBOutlet UIImageView *splashView;
     NSDateFormatter *dateFormatter;
     
-    NSMutableDictionary *cachedTimeLabel;
-    NSMutableDictionary *cachedTimeUnitsLabel;
-    
     NSCalendar *gregorian;
 }
 
@@ -50,7 +47,6 @@
 @property (nonatomic, retain) NSMutableArray * recentCheckins;
 @property (nonatomic, retain) NSMutableArray * todayCheckins;
 @property (nonatomic, retain) NSMutableArray * yesterdayCheckins;
-@property (nonatomic, retain) UITableView *theTableView;
 
 - (IBAction) flipToMap;
 - (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString;

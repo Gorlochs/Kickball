@@ -25,6 +25,9 @@
 	FSMayor * mayor;
 	FSScoring * scoring;
     BOOL isMayor; // is the checked in user the mayor?
+    
+    NSString *truncatedTimeUnits;
+    NSString *truncatedTimeNumeral;
 }
 
 @property (nonatomic, retain) NSString * message;
@@ -39,5 +42,8 @@
 @property (nonatomic, retain) FSScoring * scoring;
 @property (nonatomic, retain) FSMayor * mayor;
 @property (nonatomic) BOOL isMayor;
+
+@property (nonatomic, retain) NSString * truncatedTimeUnits;
+@property (nonatomic, retain) NSString * truncatedTimeNumeral;
 
 @end
