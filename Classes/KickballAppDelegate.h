@@ -11,6 +11,7 @@
 #import "Reachability.h"
 #import "KBPushNotificationView.h"
 #import "KBMessage.h"
+#import "PopupMessageView.h"
 
 #define kApplicationKey @"qpHHiOCAT8iYATFJa4dsIQ"
 #define kApplicationSecret @"PGTRPo6OTI2dvtz2xw-vfw"
@@ -32,6 +33,7 @@
     
     KBPushNotificationView *pushView;
     NSDictionary *pushUserInfo;
+    PopupMessageView *popupView;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;

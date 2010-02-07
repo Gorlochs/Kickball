@@ -173,7 +173,7 @@
     [UIView setAnimationDuration:0.7];
     popupView.view.alpha = 1.0;
     [UIView commitAnimations];
-    [self performSelector:@selector(fadePopupMessage) withObject:nil afterDelay:2];
+    [self performSelector:@selector(fadePopupMessage) withObject:nil afterDelay:3];
 }
 
 - (void) fadePopupMessage {
