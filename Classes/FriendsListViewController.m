@@ -226,7 +226,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSLog(@"section: %d, row: %d", indexPath.section, indexPath.row);
+    //NSLog(@"section: %d, row: %d", indexPath.section, indexPath.row);
     static NSString *CellIdentifier = @"MyCell";
     
 //    FriendsListTableCell *cell = (FriendsListTableCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
