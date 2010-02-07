@@ -95,6 +95,7 @@
     
     dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EEE, dd MMM yy HH:mm:ss"];
+    gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     
     // check to see if we need to display the instruction view
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
@@ -214,6 +215,7 @@
     [dateFormatter release];
     [cachedTimeLabel release];
     [cachedTimeUnitsLabel release];
+    [gregorian release];
     [super dealloc];
 }
 
@@ -506,8 +508,6 @@
             [userIcons setObject:img forKey:checkin.user.userId];
         }
         
-        // setting the labels for the table cell. It sucks that I am doing it here, but it seems like the best place
-        NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
         NSUInteger unitFlags = NSMinuteCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit;
         NSDateComponents *components = [gregorian components:unitFlags fromDate:[self convertToUTC:[NSDate date]] toDate:date options:0];
         NSInteger minutes = [components minute] * -1;

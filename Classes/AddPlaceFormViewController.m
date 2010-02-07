@@ -21,7 +21,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     venueName.text = newVenueName;
-    [self addHeaderAndFooter:theTableView];
     FSUser *user = [self getAuthenticatedUser];
     NSLog(@"user checkin venue: %@", user.checkin.venue);
     city.text = user.checkin.venue.city;
@@ -43,38 +42,8 @@
 }
 
 
-#pragma mark Table view methods
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-
-// Customize the number of rows in the table view.
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
-}
-
-
-// Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-    }
-    
-    return formCell;
-}
-
-
 - (void)dealloc {
-    [theTableView release];
     [newVenueName release];
-    
-    [formCell release];
     
     [address release];
     [crossstreet release];

@@ -22,7 +22,7 @@
     [super viewDidLoad];
     
     // pull this up into a method (or property)
-    FSUser *tmpUser = [self getAuthenticatedUser];
+    //FSUser *tmpUser = [self getAuthenticatedUser];
 //    signedInUserIcon.imageView.image = [[Utilities sharedInstance] getCachedImage:tmpUser.photo];
 //    signedInUserIcon.hidden = NO;
     [[Beacon shared] startSubBeaconWithName:@"Add Venue"];

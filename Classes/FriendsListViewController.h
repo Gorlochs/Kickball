@@ -42,6 +42,8 @@
     
     NSMutableDictionary *cachedTimeLabel;
     NSMutableDictionary *cachedTimeUnitsLabel;
+    
+    NSCalendar *gregorian;
 }
 
 @property (nonatomic, retain) NSArray * checkins;
@@ -58,7 +60,6 @@
 - (IBAction) viewNextWelcomeImage;
 - (IBAction) viewPreviousWelcomeImage;
 - (IBAction) displayOlderCheckins;
-- (void) showSplash;
 - (void) setupSplashAnimation;
 
 @end
