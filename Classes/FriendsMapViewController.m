@@ -23,6 +23,7 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self startProgressBar:@"Retrieving map..."];
     [[Beacon shared] startSubBeaconWithName:@"Friends Map View"];
 }
  
@@ -139,7 +140,8 @@
 			[mapViewer addAnnotation:placemark];
             [placemark release];
 		}
-	}	
+	}
+    [self stopProgressBar];
 }
 
 - (void) retrieveNewFriendLocationsAndRefresh {

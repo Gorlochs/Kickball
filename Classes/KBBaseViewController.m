@@ -41,6 +41,13 @@
     [appDelegate.pushNotificationUserId addObserver:self forKeyPath:@"pushUserId" options:0 context:nil];
 }
 
+- (void) viewDidUnload {
+    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:@"shoutSent"];
+    KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
+    [appDelegate.pushNotificationUserId removeObserver:self forKeyPath:@"pushUserId"];
+    [super viewDidUnload];
+}
+
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     NSLog(@"observed value change");
     if ([keyPath isEqualToString:@"pushUserId"] ) {
@@ -112,12 +119,6 @@
 	
 	// Release any cached data, images, etc that aren't in use.
 }
-
-- (void)viewDidUnload {
-	// Release any retained subviews of the main view.
-	// e.g. self.myOutlet = nil;
-}
-
 
 - (void)dealloc {
     [signedInUserIcon release];

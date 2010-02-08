@@ -247,23 +247,26 @@
 					<object class="IBUIButton" id="1058640374">
 						<reference key="NSNextResponder" ref="12965882"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{243, 415}, {79, 41}}</string>
+						<string key="NSFrame">{{264, 407}, {71, 63}}</string>
 						<reference key="NSSuperview" ref="12965882"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<reference key="IBUIFont" ref="545247730"/>
-						<string key="IBUINormalTitle">List</string>
 						<reference key="IBUIHighlightedTitleColor" ref="937759410"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="367608096"/>
+						<object class="NSCustomResource" key="IBUIHighlightedImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">map02.png</string>
+						</object>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">listMapToggle02.png</string>
+							<string key="NSResourceName">map01.png</string>
 						</object>
 					</object>
 				</object>
@@ -550,10 +553,10 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="542166593"/>
 							<reference ref="798819852"/>
-							<reference ref="1058640374"/>
 							<reference ref="1037921556"/>
 							<reference ref="882464250"/>
 							<reference ref="873029372"/>
+							<reference ref="1058640374"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -584,11 +587,6 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">37</int>
 						<reference key="object" ref="882464250"/>
-						<reference key="parent" ref="12965882"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">51</int>
-						<reference key="object" ref="1058640374"/>
 						<reference key="parent" ref="12965882"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -653,6 +651,11 @@
 						<int key="objectID">71</int>
 						<reference key="object" ref="555462710"/>
 						<reference key="parent" ref="1037921556"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">51</int>
+						<reference key="object" ref="1058640374"/>
+						<reference key="parent" ref="12965882"/>
 					</object>
 				</object>
 			</object>

@@ -299,7 +299,7 @@
     } else if (checkin.shout != nil) {
         cell.detailTextLabel.text = checkin.shout;
     } else {
-        cell.detailTextLabel.text = checkin.venue.venueAddress;
+        cell.detailTextLabel.text = checkin.venue.addressWithCrossstreet;
     }
     
 //    if (checkin.isMayor) {
@@ -490,7 +490,7 @@
             UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
             UIGraphicsEndImageContext();
 
-            [userIcons setObject:[[Utilities makeRoundCornerImage:newImage cornerwidth:4 cornerheight:4] retain] forKey:checkin.user.userId];
+            [userIcons setObject:[Utilities makeRoundCornerImage:newImage cornerwidth:4 cornerheight:4] forKey:checkin.user.userId];
         }
         
         NSDateComponents *components = [gregorian components:unitFlags fromDate:[self convertToUTC:[NSDate date]] toDate:date options:0];

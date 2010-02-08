@@ -189,23 +189,26 @@
 					<object class="IBUIButton" id="693180562">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{243, 415}, {79, 41}}</string>
+						<string key="NSFrame">{{259, 406}, {79, 65}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<reference key="IBUIFont" ref="979992664"/>
-						<string key="IBUINormalTitle">List</string>
 						<reference key="IBUIHighlightedTitleColor" ref="649471163"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="625879539"/>
+						<object class="NSCustomResource" key="IBUIHighlightedImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">list02.png</string>
+						</object>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">listMapToggle02.png</string>
+							<string key="NSResourceName">list01.png</string>
 						</object>
 					</object>
 					<object class="IBUIImageView" id="23996462">
@@ -384,10 +387,10 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="1022280926"/>
 							<reference ref="535513639"/>
-							<reference ref="693180562"/>
 							<reference ref="331853428"/>
 							<reference ref="23996462"/>
 							<reference ref="830336758"/>
+							<reference ref="693180562"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
