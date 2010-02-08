@@ -129,7 +129,7 @@ static FoursquareAPI *sharedInstance = nil;
 //	//[params addObject:[[MPURLRequestParameter alloc] initWithName:@"l" andValue:@"100"]];  // seems that there is a limit of 50 veunes returned
 //	
 //	[self.oauthAPI performMethod:@"/v1/venues" withTarget:inTarget withParameters:params  andAction:inAction];
-	NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:3];
+	NSMutableDictionary * requestParams = [[[NSMutableDictionary alloc] initWithCapacity:3] autorelease];
     
     // TODO: maybe make the num returned (l) a parameter?
 	[requestParams setObject:geolat forKey:@"geolat"];
@@ -150,7 +150,7 @@ static FoursquareAPI *sharedInstance = nil;
 //	
 //	[self.oauthAPI performMethod:@"/v1/venues" withTarget:inTarget withParameters:params  andAction:inAction];
 	
-	NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:3];
+	NSMutableDictionary * requestParams = [[[NSMutableDictionary alloc] initWithCapacity:3] autorelease];
 	
 	[requestParams setObject:geolat forKey:@"geolat"];
 	[requestParams setObject:geolong forKey:@"geolong"];
@@ -164,20 +164,20 @@ static FoursquareAPI *sharedInstance = nil;
 //	NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
 //	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"vid" andValue:venueId]];
 //	[self.oauthAPI performMethod:@"/v1/venue" withTarget:inTarget withParameters:params  andAction:inAction];
-	NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:1];
+	NSMutableDictionary * requestParams = [[[NSMutableDictionary alloc] initWithCapacity:1] autorelease];
 	[requestParams setObject:venueId forKey:@"vid"];	
 	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/venue"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"GET"];
 
 }
 
-- (void)getUser:(NSString *)userId withTarget:(id)inTarget andAction:(SEL)inAction{
+- (void) getUser:(NSString *)userId withTarget:(id)inTarget andAction:(SEL)inAction{
 //	NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
 //	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"uid" andValue:userId]];
 //	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"badges" andValue:@"1"]];
 //	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"mayor" andValue:@"1"]];
 //	[self.oauthAPI performMethod:@"/v1/user" withTarget:inTarget withParameters:params  andAction:inAction];
 
-	NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:3];
+	NSMutableDictionary * requestParams = [[[NSMutableDictionary alloc] initWithCapacity:3] autorelease];
 	if(userId != nil){
 		[requestParams setObject:userId forKey:@"uid"];
 	}
@@ -186,37 +186,40 @@ static FoursquareAPI *sharedInstance = nil;
 	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/user"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"GET"];
 }
 
-- (void)getCheckinsWithTarget:(id)inTarget andAction:(SEL)inAction{
+- (void) getCheckinsWithTarget:(id)inTarget andAction:(SEL)inAction {
 	//	[self.oauthAPI performMethod:@"/v1/checkins" withTarget:inTarget andAction:inAction];
 	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/checkins"] withUser:self.userName andPassword:self.passWord andParams:nil withTarget:inTarget andAction:inAction usingMethod:@"GET"];
-
 }
 
-- (void)getFriendsWithTarget:(id)inTarget andAction:(SEL)inAction{
+- (void) getCheckinHistoryWithTarget:(id)inTarget andAction:(SEL)inAction{
+	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/history"] withUser:self.userName andPassword:self.passWord andParams:nil withTarget:inTarget andAction:inAction usingMethod:@"GET"];
+}
+
+- (void) getFriendsWithTarget:(id)inTarget andAction:(SEL)inAction{
 	//[self.oauthAPI performMethod:@"/v1/friends" withTarget:inTarget andAction:inAction];
 	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/friends"] withUser:self.userName andPassword:self.passWord andParams:nil withTarget:inTarget andAction:inAction usingMethod:@"GET"];
 }
 
-- (void)getFriendsWithUserIdAndTarget:(NSString*)userId andTarget:(id)inTarget andAction:(SEL)inAction {
+- (void) getFriendsWithUserIdAndTarget:(NSString*)userId andTarget:(id)inTarget andAction:(SEL)inAction {
 	//[self.oauthAPI performMethod:@"/v1/friends" withTarget:inTarget andAction:inAction];
-	NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:1];
+	NSMutableDictionary * requestParams = [[[NSMutableDictionary alloc] initWithCapacity:1] autorelease];
 	[requestParams setObject:userId forKey:@"uid"];
 	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/friends"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"GET"];
 }
 
 // using this to authenticate against the API since Foursquare does not have simple authentication methods
-- (void)getFriendsWithTarget:(NSString*)username andPassword:(NSString*)password andTarget:(id)inTarget andAction:(SEL)inAction {
+- (void) getFriendsWithTarget:(NSString*)username andPassword:(NSString*)password andTarget:(id)inTarget andAction:(SEL)inAction {
 	//[self.oauthAPI performMethod:@"/v1/friends" withTarget:inTarget andAction:inAction];
 	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/friends"] withUser:username andPassword:password andParams:nil withTarget:inTarget andAction:inAction usingMethod:@"GET"];
 }
 
-- (void)getUserWithTarget:(id)inTarget andAction:(SEL)inAction{
+- (void) getUserWithTarget:(id)inTarget andAction:(SEL)inAction{
 //	NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
 //	
 //	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"badges" andValue:@"1"]];
 //	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"mayor" andValue:@"1"]];
 //	[self.oauthAPI performMethod:@"/v1/user" withTarget:inTarget withParameters:params andAction:inAction];
-	NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:3];
+	NSMutableDictionary * requestParams = [[[NSMutableDictionary alloc] initWithCapacity:3] autorelease];
 	[requestParams setObject:@"1" forKey:@"badges"];	
 	[requestParams setObject:@"1" forKey:@"mayor"];	
 	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/user"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"GET"];
@@ -229,7 +232,7 @@ static FoursquareAPI *sharedInstance = nil;
 //	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"geolat" andValue:geolat]];
 //	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"geolong" andValue:geolong]];
 //	[self.oauthAPI performMethod:@"/v1/checkcity" withTarget:inTarget withParameters:params andAction:inAction];
-	NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:3];
+	NSMutableDictionary * requestParams = [[[NSMutableDictionary alloc] initWithCapacity:3] autorelease];
 	[requestParams setObject:geolat forKey:@"geolat"];	
 	[requestParams setObject:geolong forKey:@"geolong"];	
 	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/checkcity"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"GET"];
@@ -246,7 +249,7 @@ static FoursquareAPI *sharedInstance = nil;
 }
 
 - (void) doVenuelessCheckin:(NSString*)venueName withTarget:(id)inTarget andAction:(SEL)inAction {
-    NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:1];
+    NSMutableDictionary * requestParams = [[[NSMutableDictionary alloc] initWithCapacity:1] autorelease];
     
 	[requestParams setObject:venueName forKey:@"venue"];
     [self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/checkin"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"POST"];
@@ -254,7 +257,7 @@ static FoursquareAPI *sharedInstance = nil;
 
 - (void) doCheckinAtVenueWithId:(NSString *)venueId andShout:(NSString *)shout offGrid:(BOOL)offGrid toTwitter:(BOOL)toTwitter withTarget:(id)inTarget andAction:(SEL)inAction {
 //	NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
-	NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:3];
+	NSMutableDictionary * requestParams = [[[NSMutableDictionary alloc] initWithCapacity:3] autorelease];
 
 //	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"vid" andValue:venueId]];
 
@@ -291,7 +294,7 @@ static FoursquareAPI *sharedInstance = nil;
 //    [params addObject:[[MPURLRequestParameter alloc] initWithName:@"uid" andValue:userId]];
 //    [self.oauthAPI performMethod:@"/v1/friend/sendrequest" withTarget:inTarget withParameters:params andAction:inAction doPost:YES];
     
-    NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:1];
+    NSMutableDictionary * requestParams = [[[NSMutableDictionary alloc] initWithCapacity:1] autorelease];
 	[requestParams setObject:userId forKey:@"uid"];	
 	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/friend/sendrequest"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"POST"];
 }
@@ -301,7 +304,7 @@ static FoursquareAPI *sharedInstance = nil;
 //    [params addObject:[[MPURLRequestParameter alloc] initWithName:@"uid" andValue:userId]];
 //    [self.oauthAPI performMethod:@"/v1/friend/approve" withTarget:inTarget withParameters:params andAction:inAction doPost:YES];
     
-    NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:1];
+    NSMutableDictionary * requestParams = [[[NSMutableDictionary alloc] initWithCapacity:1] autorelease];
 	[requestParams setObject:userId forKey:@"uid"];	
 	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/friend/approve"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"POST"];    
 }
@@ -311,7 +314,7 @@ static FoursquareAPI *sharedInstance = nil;
 //    [params addObject:[[MPURLRequestParameter alloc] initWithName:@"uid" andValue:userId]];
 //    [self.oauthAPI performMethod:@"/v1/friend/deny" withTarget:inTarget withParameters:params andAction:inAction doPost:YES];
     
-    NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:1];
+    NSMutableDictionary * requestParams = [[[NSMutableDictionary alloc] initWithCapacity:1] autorelease];
 	[requestParams setObject:userId forKey:@"uid"];	
 	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/friend/deny"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"POST"];
 }
@@ -321,7 +324,7 @@ static FoursquareAPI *sharedInstance = nil;
 //    [params addObject:[[MPURLRequestParameter alloc] initWithName:@"q" andValue:name]];
 //    [self.oauthAPI performMethod:@"/v1/findfriends/byname" withTarget:inTarget withParameters:params andAction:inAction doPost:NO];
     
-    NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:1];
+    NSMutableDictionary * requestParams = [[[NSMutableDictionary alloc] initWithCapacity:1] autorelease];
 	[requestParams setObject:name forKey:@"q"];	
 	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/findfriends/byname"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"GET"];
 }
@@ -331,7 +334,7 @@ static FoursquareAPI *sharedInstance = nil;
 //    [params addObject:[[MPURLRequestParameter alloc] initWithName:@"q" andValue:phone]];
 //    [self.oauthAPI performMethod:@"/v1/findfriends/byphone" withTarget:inTarget withParameters:params andAction:inAction doPost:NO];
     
-    NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:1];
+    NSMutableDictionary * requestParams = [[[NSMutableDictionary alloc] initWithCapacity:1] autorelease];
 	[requestParams setObject:phone forKey:@"q"];	
 	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/findfriends/byphone"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"GET"];
 }
@@ -341,7 +344,7 @@ static FoursquareAPI *sharedInstance = nil;
 //    [params addObject:[[MPURLRequestParameter alloc] initWithName:@"q" andValue:twitterName]];
 //    [self.oauthAPI performMethod:@"/v1/findfriends/bytwitter" withTarget:inTarget withParameters:params andAction:inAction doPost:NO];
     
-    NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:1];
+    NSMutableDictionary * requestParams = [[[NSMutableDictionary alloc] initWithCapacity:1] autorelease];
 	[requestParams setObject:twitterName forKey:@"q"];	
 	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/findfriends/bytwitter"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"GET"];
 }
@@ -367,13 +370,13 @@ static FoursquareAPI *sharedInstance = nil;
 }
 
 - (void) flagVenueAsClosed:(NSString*)venueId withTarget:(id)inTarget andAction:(SEL)inAction {
-    NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:1];
+    NSMutableDictionary * requestParams = [[[NSMutableDictionary alloc] initWithCapacity:1] autorelease];
 	[requestParams setObject:venueId forKey:@"vid"];	
 	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/venue/flagclosed"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"POST"];
 }
 
 - (void) createTipTodoForVenue:(NSString*)venueId type:(NSString*)tipOrTodo text:(NSString*)tipTodoText withTarget:(id)inTarget andAction:(SEL)inAction {
-    NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:1];
+    NSMutableDictionary * requestParams = [[[NSMutableDictionary alloc] initWithCapacity:1] autorelease];
 	[requestParams setObject:venueId forKey:@"vid"];
 	[requestParams setObject:tipTodoText forKey:@"text"];
 	[requestParams setObject:tipOrTodo forKey:@"type"];
@@ -381,13 +384,13 @@ static FoursquareAPI *sharedInstance = nil;
 }
 
 - (void) markTipAsTodo:(NSString*)tipId withTarget:(id)inTarget andAction:(SEL)inAction {
-    NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:1];
+    NSMutableDictionary * requestParams = [[[NSMutableDictionary alloc] initWithCapacity:1] autorelease];
 	[requestParams setObject:tipId forKey:@"tid"];
 	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/tip/marktodo"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"POST"];    
 }
 
 - (void) markTipAsDone:(NSString*)tipId withTarget:(id)inTarget andAction:(SEL)inAction {
-    NSMutableDictionary * requestParams =[[NSMutableDictionary alloc] initWithCapacity:1];
+    NSMutableDictionary * requestParams = [[[NSMutableDictionary alloc] initWithCapacity:1] autorelease];
 	[requestParams setObject:tipId forKey:@"tid"];
 	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/tip/markdone"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"POST"];    
 }

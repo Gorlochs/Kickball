@@ -218,7 +218,7 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
 		CGImageRef imageMasked = CGBitmapContextCreateImage(context);
 		CGContextRelease(context);
 		CGColorSpaceRelease(colorSpace);
-		[img release];
+		//[img release];
         
 		newImage = [[UIImage imageWithCGImage:imageMasked] retain];
 		CGImageRelease(imageMasked);

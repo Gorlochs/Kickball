@@ -228,6 +228,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    NSLog(@"starting cell for row: %d", indexPath.row);
+    
     //NSLog(@"section: %d, row: %d", indexPath.section, indexPath.row);
     static NSString *CellIdentifier = @"MyCell";
     
@@ -300,37 +302,11 @@
         cell.detailTextLabel.text = checkin.venue.venueAddress;
     }
     
-//	cell.checkinDisplayLabel.text = checkin.display;
-//    // TODO: check to see if there is a better way to check for [off the grid]
-//    if ([checkin.display rangeOfString:@"[off the grid]"].location != NSNotFound) {
-//        cell.addressLabel.text = @"...location unknown...";
-//    } else if (checkin.shout != nil) {
-//        cell.addressLabel.text = checkin.shout;
+//    if (checkin.isMayor) {
+//        cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"01.png"]];
 //    } else {
-//        cell.addressLabel.text = checkin.venue.venueAddress;
+//        cell.backgroundView = nil;
 //    }
-//    
-//    [cell showHideMayorImage:checkin.isMayor];
-//    
-//    cell.timeUnits.text = [cachedTimeUnitsLabel objectForKey:checkin.checkinId];
-//    cell.numberOfTimeUnits.text = [cachedTimeLabel objectForKey:checkin.checkinId];
-//    UIImageView *mayorView = nil;   
-    if (checkin.isMayor) {
-//        mayorView = [[UIImageView alloc] initWithImage:mayorImage];
-        cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"01.png"]];
-//        [cell addSubview:mayorImageView];
-        //[mayorView release];
-    } else {
-        cell.backgroundView = nil;
-//        [mayorImageView removeFromSuperview];
-        //mayorView = [[UIImageView alloc] initWithFrame:CGRectZero];
-        //[cell addSubview:mayorView];
-        //[mayorView release];
-    }
-//    mayorView.hidden = !checkin.isMayor;
-//    NSLog(@"checkin user: %@", checkin.user.firstnameLastInitial);
-//    NSLog(@"!isMayor: %d", !checkin.isMayor);
-//    NSLog(@"mayorView.hidden: %d", mayorView.hidden);
     
     UILabel *timeUnitsLabel = [[UILabel alloc] initWithFrame:CGRectMake(281, 35, 30, 12)];
     timeUnitsLabel.text = checkin.truncatedTimeUnits;
@@ -346,6 +322,7 @@
     cell.accessoryView = numberOfTimeUnits;
     [numberOfTimeUnits release];
     
+    NSLog(@"returning cell for row: %d", indexPath.row);
 	return cell;
 }
 
@@ -378,14 +355,14 @@
             break;
     }
     
-    [theTableView deselectRowAtIndexPath:indexPath animated:YES];
-	ProfileViewController *profileController = [[ProfileViewController alloc] initWithNibName:@"ProfileView" bundle:nil];
 	//handle off the grid checkins.
 	if (user.userId != nil) {
+        [theTableView deselectRowAtIndexPath:indexPath animated:YES];
+        ProfileViewController *profileController = [[ProfileViewController alloc] initWithNibName:@"ProfileView" bundle:nil];
         profileController.userId = user.userId;
         [self.navigationController pushViewController:profileController animated:YES];
+        [profileController release];
 	}
-    [profileController release];
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -513,7 +490,7 @@
             UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
             UIGraphicsEndImageContext();
 
-            [userIcons setObject:[Utilities makeRoundCornerImage:newImage cornerwidth:4 cornerheight:4] forKey:checkin.user.userId];
+            [userIcons setObject:[[Utilities makeRoundCornerImage:newImage cornerwidth:4 cornerheight:4] retain] forKey:checkin.user.userId];
         }
         
         NSDateComponents *components = [gregorian components:unitFlags fromDate:[self convertToUTC:[NSDate date]] toDate:date options:0];
@@ -555,6 +532,7 @@
     [standardUserDefaults setObject:recentCheckinsData forKey:@"recentCheckinsData"];
     [standardUserDefaults setObject:todayCheckinsData forKey:@"todayCheckinsData"];
     [standardUserDefaults setObject:yesterdayCheckinsData forKey:@"yesterdayCheckinsData"];
+    NSLog(@"finished with checkin response");
 }
 
 - (void) addFriend {

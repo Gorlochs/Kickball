@@ -421,6 +421,25 @@
 									<string key="NSResourceName">facebook01.png</string>
 								</object>
 							</object>
+							<object class="IBUIButton" id="148537479">
+								<reference key="NSNextResponder" ref="924832044"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{197, 32}, {75, 37}}</string>
+								<reference key="NSSuperview" ref="924832044"/>
+								<bool key="IBUIOpaque">NO</bool>
+								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+								<int key="IBUIContentHorizontalAlignment">0</int>
+								<int key="IBUIContentVerticalAlignment">0</int>
+								<reference key="IBUIFont" ref="805532983"/>
+								<int key="IBUIButtonType">1</int>
+								<string key="IBUINormalTitle">history</string>
+								<reference key="IBUIHighlightedTitleColor" ref="850398413"/>
+								<object class="NSColor" key="IBUINormalTitleColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
+								</object>
+								<reference key="IBUINormalTitleShadowColor" ref="647369887"/>
+							</object>
 						</object>
 						<string key="NSFrame">{{0, 39}, {320, 100}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
@@ -931,6 +950,15 @@
 					</object>
 					<int key="connectionID">103</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">viewHistory</string>
+						<reference key="source" ref="148537479"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">105</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -1007,6 +1035,7 @@
 							<reference ref="985109612"/>
 							<reference ref="696654597"/>
 							<reference ref="755550929"/>
+							<reference ref="148537479"/>
 						</object>
 						<reference key="parent" ref="191373211"/>
 					</object>
@@ -1126,6 +1155,11 @@
 						<reference key="object" ref="696654597"/>
 						<reference key="parent" ref="924832044"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">104</int>
+						<reference key="object" ref="148537479"/>
+						<reference key="parent" ref="924832044"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -1136,6 +1170,7 @@
 					<string>-2.CustomClassName</string>
 					<string>1.IBEditorWindowLastContentRect</string>
 					<string>1.IBPluginDependency</string>
+					<string>104.IBPluginDependency</string>
 					<string>14.IBPluginDependency</string>
 					<string>31.IBEditorWindowLastContentRect</string>
 					<string>31.IBPluginDependency</string>
@@ -1171,6 +1206,7 @@
 					<string>ProfileViewController</string>
 					<string>UIResponder</string>
 					<string>{{155, 194}, {320, 480}}</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{143, 382}, {320, 71}}</string>
@@ -1219,7 +1255,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">103</int>
+			<int key="maxID">105</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1288,11 +1324,13 @@
 							<string>textProfile</string>
 							<string>togglePingsAndUpdates</string>
 							<string>unfriend</string>
+							<string>viewHistory</string>
 							<string>viewProfilesTwitterFeed</string>
 							<string>viewVenue</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>

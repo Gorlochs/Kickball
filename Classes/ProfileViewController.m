@@ -15,6 +15,8 @@
 #import "Utilities.h"
 #import "ProfileTwitterViewController.h"
 #import "ProfileFriendsViewController.h"
+#import "HistoryViewController.h"
+
 
 #define BADGES_PER_ROW 5
 
@@ -411,6 +413,12 @@
     [[FoursquareAPI sharedInstance] setPings:ping forUser:user.userId withTarget:self andAction:@selector(pingUpdateResponseReceived:withResponseString:)];
 }
 
+- (void) viewHistory {
+    HistoryViewController *historyController = [[HistoryViewController alloc] initWithNibName:@"HistoryViewController" bundle:nil];
+    [self.navigationController pushViewController:historyController animated:YES];
+    [historyController release];
+}
+
 #pragma mark
 #pragma mark private methods
 
@@ -464,6 +472,7 @@
 
 #pragma mark
 #pragma mark selectors for FoursquareAPI calls
+
 
 - (void) friendRequestResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     NSLog(@"friend request instring: %@", inString);

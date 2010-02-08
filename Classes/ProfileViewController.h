@@ -60,5 +60,6 @@
 - (IBAction) emailProfile;
 - (IBAction) viewProfilesTwitterFeed;
 - (IBAction) facebookProfile;
+- (IBAction) viewHistory;
 
 @end
