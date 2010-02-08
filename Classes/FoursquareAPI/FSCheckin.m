@@ -14,7 +14,7 @@
 
 
 - (NSString*) description {
-    return [NSString stringWithFormat:@"(CHECKIN : message=%@ ; venue=%@ ; created=%@ ; user=%@ ; checkinId=%@ ; badges=%@ ; mayor=%@)", message, venue, created, user, checkinId, badges, mayor];
+    return [NSString stringWithFormat:@"(CHECKIN : message=%@ ; venue=%@ ; created=%@ ; user=%@ ; checkinId=%@ ; badges=%@ ; mayor=%@; isMayor=%d)", message, venue, created, user, checkinId, badges, mayor, isMayor];
 }
 
 

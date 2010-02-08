@@ -91,6 +91,8 @@
     footerViewCell.hidden = YES;
     mapButton.hidden = YES;
     
+//    mayorImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"crown.png"]];
+    
 	if(![[FoursquareAPI sharedInstance] isAuthenticated]){
 		//run sheet to log in.
 		NSLog(@"Foursquare is not authenticated");
@@ -246,6 +248,7 @@
 //        [vc release];
 //    }
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    UIImageView *mayorView = nil; //[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
         cell.textLabel.font = [UIFont boldSystemFontOfSize:14.0];
@@ -255,6 +258,8 @@
         line.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.13];
         [cell addSubview:line];
         [line release];
+        
+//        [cell addSubview:mayorView];
     }
     
     FSCheckin *checkin = nil;
@@ -309,6 +314,23 @@
 //    
 //    cell.timeUnits.text = [cachedTimeUnitsLabel objectForKey:checkin.checkinId];
 //    cell.numberOfTimeUnits.text = [cachedTimeLabel objectForKey:checkin.checkinId];
+//    UIImageView *mayorView = nil;   
+    if (checkin.isMayor) {
+//        mayorView = [[UIImageView alloc] initWithImage:mayorImage];
+        cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"01.png"]];
+//        [cell addSubview:mayorImageView];
+        //[mayorView release];
+    } else {
+        cell.backgroundView = nil;
+//        [mayorImageView removeFromSuperview];
+        //mayorView = [[UIImageView alloc] initWithFrame:CGRectZero];
+        //[cell addSubview:mayorView];
+        //[mayorView release];
+    }
+//    mayorView.hidden = !checkin.isMayor;
+//    NSLog(@"checkin user: %@", checkin.user.firstnameLastInitial);
+//    NSLog(@"!isMayor: %d", !checkin.isMayor);
+//    NSLog(@"mayorView.hidden: %d", mayorView.hidden);
     
     UILabel *timeUnitsLabel = [[UILabel alloc] initWithFrame:CGRectMake(281, 35, 30, 12)];
     timeUnitsLabel.text = checkin.truncatedTimeUnits;
@@ -509,6 +531,7 @@
             checkin.truncatedTimeUnits = @"days";
             checkin.truncatedTimeNumeral = [NSString stringWithFormat:@"%02d", days];
         }
+//        NSLog(@"checkin: %@", checkin);
     }
     
     NSLog(@"all checkins: %d", [self.checkins count]);

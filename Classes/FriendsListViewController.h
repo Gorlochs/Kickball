@@ -41,6 +41,7 @@
     NSDateFormatter *dateFormatter;
     
     NSCalendar *gregorian;
+//    UIImageView *mayorImageView;
 }
 
 @property (nonatomic, retain) NSArray * checkins;
