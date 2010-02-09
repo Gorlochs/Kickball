@@ -154,7 +154,7 @@ static FoursquareAPI *sharedInstance = nil;
 	
 	[requestParams setObject:geolat forKey:@"geolat"];
 	[requestParams setObject:geolong forKey:@"geolong"];
-	[requestParams setObject:[keywords stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding] forKey:@"q"];
+	[requestParams setObject:[keywords stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] forKey:@"q"];
 	
 	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/venues"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"GET"];
 
