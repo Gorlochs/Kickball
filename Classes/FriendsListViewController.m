@@ -117,22 +117,23 @@
         //[self startProgressBar:@"Loading Everything..."];
         [iconImageView setHidden:YES];
         [self.view addSubview:instructionView];
-        [self.view bringSubviewToFront:nextWelcomeImage];
-        [self.view bringSubviewToFront:previousWelcomeImage];
-    } else {
-        nextWelcomeImage = nil;
-        previousWelcomeImage = nil;
-        welcomeImage = nil;
-        instructionView = nil;
+//        [self.view bringSubviewToFront:nextWelcomeImage];
+//        [self.view bringSubviewToFront:previousWelcomeImage];
+    } //else {
+//        nextWelcomeImage = nil;
+//        previousWelcomeImage = nil;
+//        welcomeImage = nil;
+//        instructionView = nil;
         [[Beacon shared] startSubBeaconWithName:@"Initial Friends List Display"];
-        [self startProgressBar:@"Retrieving friends' whereabouts..."]; 
+    [self startProgressBar:@"Retrieving friends' whereabouts..."]; 
+    [self.view bringSubviewToFront:instructionView];
         
         [[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
         
         if (![self getAuthenticatedUser]) {
             [[FoursquareAPI sharedInstance] getUser:nil withTarget:self andAction:@selector(userResponseReceived:withResponseString:)];
         }
-    }
+    //}
 }
 
 - (void) addAuthToWebRequest:(NSMutableURLRequest*)requestObj email:(NSString*)email password:(NSString*)password{
@@ -533,6 +534,13 @@
     [standardUserDefaults setObject:todayCheckinsData forKey:@"todayCheckinsData"];
     [standardUserDefaults setObject:yesterdayCheckinsData forKey:@"yesterdayCheckinsData"];
     NSLog(@"finished with checkin response");
+    
+    if (!hasViewedInstructions) {
+        [self stopProgressBar];
+        [standardUserDefaults setBool:YES forKey:@"viewedInstructions"];
+        hasViewedInstructions = YES;
+        [instructionView removeFromSuperview];
+    }
 }
 
 - (void) addFriend {
@@ -542,30 +550,30 @@
 }
 
 - (void) viewNextWelcomeImage {
-    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-    [standardUserDefaults setBool:YES forKey:@"viewedInstructions"];
-    hasViewedInstructions = YES;
-//    if (welcomePageNum == 1) {
-//        NSString *imageName = [NSString stringWithFormat:@"welcome0%d.png", welcomePageNum + 1];
-//        NSLog(@"image name: %@", imageName);
-//        welcomeImage.image = [UIImage imageNamed:imageName];
-//        [self.view bringSubviewToFront:nextWelcomeImage];
-//        [self.view bringSubviewToFront:previousWelcomeImage];
-//        welcomePageNum++;
-//    } else {
-        [instructionView removeFromSuperview];
-        [self stopProgressBar];
-        [self setUserIconView:[self getAuthenticatedUser]];
-        [iconImageView setHidden:NO];
-        [self doInitialDisplay];
-//    }
+//    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+//    [standardUserDefaults setBool:YES forKey:@"viewedInstructions"];
+//    hasViewedInstructions = YES;
+////    if (welcomePageNum == 1) {
+////        NSString *imageName = [NSString stringWithFormat:@"welcome0%d.png", welcomePageNum + 1];
+////        NSLog(@"image name: %@", imageName);
+////        welcomeImage.image = [UIImage imageNamed:imageName];
+////        [self.view bringSubviewToFront:nextWelcomeImage];
+////        [self.view bringSubviewToFront:previousWelcomeImage];
+////        welcomePageNum++;
+////    } else {
+//        [instructionView removeFromSuperview];
+//        [self stopProgressBar];
+//        [self setUserIconView:[self getAuthenticatedUser]];
+//        [iconImageView setHidden:NO];
+//        [self doInitialDisplay];
+////    }
 }
 
 - (void) viewPreviousWelcomeImage {
-    if (welcomePageNum > 1) {
-        welcomeImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"welcome0%d.png", welcomePageNum - 1]];
-        welcomePageNum--;
-    }
+//    if (welcomePageNum > 1) {
+//        welcomeImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"welcome0%d.png", welcomePageNum - 1]];
+//        welcomePageNum--;
+//    }
 }
 
 - (void) displayOlderCheckins {
