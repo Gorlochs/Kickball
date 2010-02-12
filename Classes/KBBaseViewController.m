@@ -92,6 +92,10 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void) backOneViewNotAnimated {
+    [self.navigationController popViewControllerAnimated:NO];
+}
+
 - (void) goToHomeView {
     [self.navigationController popToRootViewControllerAnimated:YES];
 }

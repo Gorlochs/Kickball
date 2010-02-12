@@ -181,7 +181,7 @@
     
 	mapViewController.venues = allvenues;
     [allvenues release];
-    [self.navigationController pushViewController:mapViewController animated:YES];
+    [self.navigationController pushViewController:mapViewController animated:NO];
     [mapViewController release];
 }
 
@@ -206,12 +206,6 @@
 
 - (void) cancelKeyboard: (UIControl *) button {
     [searchbox resignFirstResponder];
-}
-
-- (void) backToFriendsList {
-    FriendsListViewController *friendsController = [[FriendsListViewController alloc] initWithNibName:@"FriendsListView" bundle:nil];
-    [self.navigationController pushViewController:friendsController animated:NO];
-    [friendsController release];
 }
 
 #pragma mark Table view methods

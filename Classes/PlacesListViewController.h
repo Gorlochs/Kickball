@@ -37,6 +37,5 @@ typedef enum {
 - (IBAction) refresh: (UIControl *) button;
 - (IBAction) addNewVenue;
 - (IBAction) cancelKeyboard: (UIControl *) button;
-- (IBAction) backToFriendsList;
 
 @end
