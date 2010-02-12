@@ -12,6 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="54"/>
 			<integer value="8"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
@@ -129,7 +130,7 @@
 									<string key="NSResourceName">friends03.png</string>
 								</object>
 							</object>
-							<object class="IBUIButton" id="129322087">
+							<object class="IBUIButton" id="927362636">
 								<reference key="NSNextResponder" ref="1037921556"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{0, 2}, {41, 42}}</string>
@@ -327,7 +328,7 @@
 				<reference key="IBUIContentView" ref="611032846"/>
 			</object>
 			<object class="IBUITableViewCell" id="608899563">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -344,7 +345,7 @@
 									<object class="IBUIButton" id="1062736602">
 										<reference key="NSNextResponder" ref="648908271"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{3, 6}, {128, 37}}</string>
+										<string key="NSFrame">{{2, 3}, {128, 44}}</string>
 										<reference key="NSSuperview" ref="648908271"/>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -360,7 +361,7 @@
 										<reference key="IBUINormalTitleShadowColor" ref="367608096"/>
 										<object class="NSCustomResource" key="IBUIHighlightedImage">
 											<string key="NSClassName">NSImage</string>
-											<string key="NSResourceName">addPlace02.png</string>
+											<string key="NSResourceName">addPlace02b.png</string>
 										</object>
 										<object class="NSCustomResource" key="IBUISelectedImage">
 											<string key="NSClassName">NSImage</string>
@@ -368,7 +369,7 @@
 										</object>
 										<object class="NSCustomResource" key="IBUINormalImage">
 											<string key="NSClassName">NSImage</string>
-											<string key="NSResourceName">addPlace01.png</string>
+											<string key="NSResourceName">addPlace01b.png</string>
 										</object>
 									</object>
 								</object>
@@ -388,6 +389,7 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 50}</string>
+				<reference key="NSSuperview"/>
 				<reference key="IBUIBackgroundColor" ref="509255023"/>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<int key="IBUISelectionStyle">0</int>
@@ -528,7 +530,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">viewSettings</string>
-						<reference key="source" ref="129322087"/>
+						<reference key="source" ref="927362636"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -627,7 +629,7 @@
 							<reference ref="101132024"/>
 							<reference ref="726433261"/>
 							<reference ref="243184694"/>
-							<reference ref="129322087"/>
+							<reference ref="927362636"/>
 						</object>
 						<reference key="parent" ref="12965882"/>
 						<string key="objectName">Header View</string>
@@ -664,7 +666,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">85</int>
-						<reference key="object" ref="129322087"/>
+						<reference key="object" ref="927362636"/>
 						<reference key="parent" ref="1037921556"/>
 					</object>
 					<object class="IBObjectRecord">
