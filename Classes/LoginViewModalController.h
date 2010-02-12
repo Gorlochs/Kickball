@@ -27,5 +27,6 @@
 
 - (IBAction) login: (id) sender;
 - (IBAction) openFoursquareForgottenPasswordWebPage;
+- (IBAction) openFoursquareNewAccountWebPage;
 
 @end

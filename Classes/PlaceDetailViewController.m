@@ -155,8 +155,9 @@
         mayorMapCell.imageView.image = [[Utilities sharedInstance] getCachedImage:venueToDisplay.mayor.photo];
         mayorNameLabel.text = venueToDisplay.mayor.firstnameLastInitial;
         mayorCheckinCountLabel.text = [NSString stringWithFormat:@"(%d checkins)", venueToDisplay.mayorCount];
+        noMayorImage.hidden = YES;
     } else {
-        mayorNameLabel.text = @"No Mayor";
+        noMayorImage.hidden = NO;
     }
     
     if (venueToDisplay.twitter != nil && ![venueToDisplay.twitter isEqualToString:@""]) {
@@ -336,7 +337,7 @@
         case 5:
             return 70;
         case 6:
-            return 62;
+            return 55; // mayor-map cell
         case 7:
             return 44;
         case 8:

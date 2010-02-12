@@ -49,6 +49,7 @@
     IBOutlet UIButton *mapButton;
     IBOutlet UIButton *closeMapButton;
     IBOutlet UIButton *phoneButton;
+    IBOutlet UIImageView *noMayorImage;
     
     NSArray *checkin;
     FSVenue *venue;
