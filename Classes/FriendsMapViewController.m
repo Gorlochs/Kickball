@@ -39,6 +39,10 @@
 	// Release any cached data, images, etc that aren't in use.
 }
 
+//- (void) viewDidDisappear:(BOOL)animated {
+//    [mapViewer removeAnnotations:mapViewer.annotations];
+//}
+
 - (void)viewDidUnload {
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;

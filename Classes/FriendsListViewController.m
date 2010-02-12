@@ -46,19 +46,20 @@
 //-(void)showSplash {
 //    UIViewController *modalViewController = [[UIViewController alloc] init];
 //    modalViewController.view = splashView;
-//    //[self presentModalViewController:modalViewController animated:NO];
-//    [self.view addSubview:splashView];
+//    [self presentModalViewController:modalViewController animated:NO];
+////    [self.view addSubview:splashView];
 //    //[UIView setAnimationDidStopSelector:@selector(hideSplash:finished:context:)];
-//    [self performSelector:@selector(hideSplash) withObject:nil afterDelay:2.05];
+//    [self performSelector:@selector(hideSplash) withObject:nil afterDelay:2.0];
 //    [splashView startAnimating];
 //}
 //
 ////- (void)hideSplash:(NSString*)animationID finished:(BOOL)finished context:(void *)context {
 //- (void) hideSplash {
 //    [splashView stopAnimating];
-//    //[[self modalViewController] dismissModalViewControllerAnimated:NO];
-//    [splashView removeFromSuperview];
-
+//    //splashView = nil;
+//    [self.modalViewController dismissModalViewControllerAnimated:NO];
+//    //[splashView removeFromSuperview];
+    
     welcomePageNum = 1;
     isDisplayingMore = NO;
     
@@ -443,6 +444,12 @@
 
 #pragma mark IBAction methods
 
+- (void) checkin {
+    PlacesListViewController *placesListController = [[PlacesListViewController alloc] initWithNibName:@"PlacesListViewController" bundle:nil];
+    [self.navigationController pushViewController:placesListController animated:NO];
+    [placesListController release];
+}
+
 - (void) refresh {
 	[self startProgressBar:@"Retrieving friends' whereabouts..."];
 	[[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
@@ -451,7 +458,7 @@
 - (void) flipToMap {
     FriendsMapViewController *mapViewController = [[FriendsMapViewController alloc] initWithNibName:@"FriendsMapView" bundle:nil];
     mapViewController.checkins = [[NSArray arrayWithArray:self.recentCheckins] arrayByAddingObjectsFromArray:self.todayCheckins];
-    [self.navigationController pushViewController:mapViewController animated:YES];
+    [self.navigationController pushViewController:mapViewController animated:NO];
     [mapViewController release];
 }
 
@@ -584,8 +591,9 @@
 
 - (void) setupSplashAnimation {
     NSMutableArray *images = [[NSMutableArray alloc] initWithCapacity:1];
-    for (int i = 1; i < 61; i++) {
-        [images addObject:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"kickballLoading%02d", i] ofType:@"png"]]];
+    for (int i = 1; i < 40; i++) {
+        [images addObject:[UIImage imageNamed:[NSString stringWithFormat:@"kickballLoading%02d.png", i]]];
+//        [images addObject:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"kickballLoading%02d", i] ofType:@"png"]]];
     }
     
 //    splashView.animationImages = [NSArray arrayWithObjects:
@@ -705,7 +713,7 @@
     splashView.animationImages = [[NSArray alloc] initWithArray:images];
     [images release];
     splashView.animationDuration = 2.0;
-    splashView.animationRepeatCount = 0;
+    splashView.animationRepeatCount = 1;
 }
 
 @end
