@@ -221,7 +221,7 @@
         return NO;
         //return isUserCheckedIn;
     } else if (section == 6) { // mayor & map cell
-        return 1;
+        return ![self isNewMayor];
     } else if (section == 7) { // people here
         return [venue.currentCheckins count] + 1;
     } else if (section == 8) { // tips
@@ -259,6 +259,7 @@
         FSBadge *badge = (FSBadge*)[[self getSingleCheckin].badges objectAtIndex:0];
         badgeImage.image = [[Utilities sharedInstance] getCachedImage:badge.icon];
         badgeLabel.text = badge.badgeDescription;
+        badgeLabel.numberOfLines = 2;
         badgeTitleLabel.text = badge.badgeName;
         return badgeCell;
     } else if (indexPath.section == 3) {
@@ -633,9 +634,11 @@
 }
 
 - (BOOL) hasMayorCell {
-    return [[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"stolen"] 
-                || [[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"new"] 
-                || ([self getSingleCheckin].mayor.user == nil && [[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"nochange"]);
+    return [self isNewMayor] || ([self getSingleCheckin].mayor.user == nil && [[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"nochange"]);
+}
+
+- (BOOL) isNewMayor {
+    return [[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"stolen"] || [[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"new"];
 }
 
 - (void) viewVenueMap {

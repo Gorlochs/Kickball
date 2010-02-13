@@ -18,6 +18,7 @@
     IBOutlet UITableViewCell *addFriendCell;
     IBOutlet UITableViewCell *friendActionCell;
     IBOutlet UITableViewCell *friendPendingCell;
+    IBOutlet UITableViewCell *friendHistoryCell;
     NSString *userId;
     FSUser *user;
     NSArray *twitterStatuses;
@@ -61,5 +62,6 @@
 - (IBAction) viewProfilesTwitterFeed;
 - (IBAction) facebookProfile;
 - (IBAction) viewHistory;
+- (IBAction) viewProfilesFriends;
 
 @end

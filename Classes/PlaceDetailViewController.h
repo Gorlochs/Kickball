@@ -86,6 +86,7 @@
 - (IBAction) closeMap;
 - (FSCheckin*) getSingleCheckin;
 - (BOOL) hasMayorCell;
+- (BOOL) isNewMayor;
 - (void) setProperTwitterButtonState;
 - (void) setProperPingButtonState;
 - (void)friendsReceived:(NSNotification *)inNotification;

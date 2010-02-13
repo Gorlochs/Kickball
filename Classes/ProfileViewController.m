@@ -147,6 +147,7 @@
     [addFriendCell release];
     [friendActionCell release];
     [friendPendingCell release];
+    [friendHistoryCell release];
     [userId release];
     [user release];
     [twitterStatuses release];
@@ -245,7 +246,8 @@
                 return badgeCell;
             }
             if (user) {
-                cell.textLabel.text = [NSString stringWithFormat:@"Check out %@'s friends", user.firstname];
+                return friendHistoryCell;
+                //cell.textLabel.text = [NSString stringWithFormat:@"Check out %@'s friends", user.firstname];
             }
             break;
         case 2:  // mayors
@@ -319,13 +321,14 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 1 && indexPath.row == 1) { // badge-friends section
-        ProfileFriendsViewController *profileFriendsController = [[ProfileFriendsViewController alloc] initWithNibName:@"ProfileFriendsViewController" bundle:nil];
-        profileFriendsController.userId = user.userId;
-        [theTableView deselectRowAtIndexPath:indexPath animated:YES];
-        [self.navigationController pushViewController:profileFriendsController animated:YES];
-        [profileFriendsController release];
-    } else if (indexPath.section == 2) { // mayor section
+//    if (indexPath.section == 1 && indexPath.row == 1) { // badge-friends section
+//        ProfileFriendsViewController *profileFriendsController = [[ProfileFriendsViewController alloc] initWithNibName:@"ProfileFriendsViewController" bundle:nil];
+//        profileFriendsController.userId = user.userId;
+//        [theTableView deselectRowAtIndexPath:indexPath animated:YES];
+//        [self.navigationController pushViewController:profileFriendsController animated:YES];
+//        [profileFriendsController release];
+//    } else 
+    if (indexPath.section == 2) { // mayor section
         PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];
         placeDetailController.venueId = ((FSVenue*)[user.mayorOf objectAtIndex:indexPath.row]).venueid;
         [theTableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -336,6 +339,13 @@
 
 #pragma mark
 #pragma mark IBAction methods
+
+- (void) viewProfilesFriends {
+    ProfileFriendsViewController *profileFriendsController = [[ProfileFriendsViewController alloc] initWithNibName:@"ProfileFriendsViewController" bundle:nil];
+    profileFriendsController.userId = user.userId;
+    [self.navigationController pushViewController:profileFriendsController animated:YES];
+    [profileFriendsController release];
+}
 
 - (void) textProfile {
     [self displayActionSheet:@"Yes, open SMS app" withTag:0];
