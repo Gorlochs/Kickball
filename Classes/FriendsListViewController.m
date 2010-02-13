@@ -310,16 +310,16 @@
 //        cell.backgroundView = nil;
 //    }
     
-    UILabel *timeUnitsLabel = [[UILabel alloc] initWithFrame:CGRectMake(281, 35, 30, 12)];
-    timeUnitsLabel.text = checkin.truncatedTimeUnits;
-    timeUnitsLabel.font = [UIFont systemFontOfSize:11.0];
-    timeUnitsLabel.textColor = [UIColor colorWithWhite:0.0 alpha:0.3];
-    [cell addSubview:timeUnitsLabel];
-    [timeUnitsLabel release];
+//    UILabel *timeUnitsLabel = [[UILabel alloc] initWithFrame:CGRectMake(281, 35, 30, 12)];
+//    timeUnitsLabel.text = checkin.truncatedTimeUnits;
+//    timeUnitsLabel.font = [UIFont systemFontOfSize:11.0];
+//    timeUnitsLabel.textColor = [UIColor colorWithWhite:0.0 alpha:0.3];
+//    [cell addSubview:timeUnitsLabel];
+//    [timeUnitsLabel release];
     
     UILabel *numberOfTimeUnits = [[UILabel alloc] initWithFrame:CGRectMake(285, 5, 30, 20)];
     numberOfTimeUnits.text = checkin.truncatedTimeNumeral;
-    numberOfTimeUnits.font = [UIFont boldSystemFontOfSize:24.0];
+    numberOfTimeUnits.font = [UIFont systemFontOfSize:20.0];
     numberOfTimeUnits.textColor = [UIColor colorWithWhite:0.0 alpha:0.3];
     cell.accessoryView = numberOfTimeUnits;
     [numberOfTimeUnits release];
@@ -407,7 +407,7 @@
     switch (section) {
         case 0:
             if ([recentCheckins count] > 0) {
-                headerLabel.text = @"Last 3 Hours";
+                headerLabel.text = @"Recent Check-ins                                                 Mins ago";
             } else {
                 [headerLabel release];
                 return nil;
@@ -415,7 +415,7 @@
             break;
         case 1:
             if ([todayCheckins count] > 0) {
-                headerLabel.text = @"Today";
+                headerLabel.text = @"Today                                                                     Hours ago";
             } else {
                 [headerLabel release];
                 return nil;
@@ -423,7 +423,7 @@
             break;
         case 2:
             if ([yesterdayCheckins count] > 0 && isDisplayingMore) {
-                headerLabel.text = @"Older";
+                headerLabel.text = @"Older                                                                        Days ago";
             } else {
                 [headerLabel release];
                 return nil;
@@ -472,18 +472,18 @@
     yesterdayCheckins = [[NSMutableArray alloc] init];
     userIcons = [[NSMutableDictionary alloc] initWithCapacity:1];
     
-    NSDate *threeHoursFromNow = [[NSDate alloc] initWithTimeIntervalSinceNow:-60*60*3];
+    NSDate *oneHourFromNow = [[NSDate alloc] initWithTimeIntervalSinceNow:-60*60*1];
     NSDate *twentyfourHoursFromNow = [[NSDate alloc] initWithTimeIntervalSinceNow:-60*60*24];
-    threeHoursFromNow = [self convertToUTC:threeHoursFromNow];
+    oneHourFromNow = [self convertToUTC:oneHourFromNow];
     twentyfourHoursFromNow = [self convertToUTC:twentyfourHoursFromNow];
     
     NSUInteger unitFlags = NSMinuteCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit;
     
     for (FSCheckin *checkin in checkins) {
         NSDate *date = [dateFormatter dateFromString:checkin.created];
-        if ([date compare:threeHoursFromNow] == NSOrderedDescending) {
+        if ([date compare:oneHourFromNow] == NSOrderedDescending) {
             [self.recentCheckins addObject:checkin];
-        } else if ([date compare:threeHoursFromNow] == NSOrderedAscending && [date compare:twentyfourHoursFromNow] == NSOrderedDescending) {
+        } else if ([date compare:oneHourFromNow] == NSOrderedAscending && [date compare:twentyfourHoursFromNow] == NSOrderedDescending) {
             [self.todayCheckins addObject:checkin];
         } else {
             [self.yesterdayCheckins addObject:checkin];
@@ -507,13 +507,13 @@
         NSInteger days = [components day] * -1;
         
         if (days == 0 && hours == 0) {
-            checkin.truncatedTimeUnits = @"min.";
+            //checkin.truncatedTimeUnits = @"min.";
             checkin.truncatedTimeNumeral = [NSString stringWithFormat:@"%02d", minutes];
         } else if (days == 0) {
-            checkin.truncatedTimeUnits = @"hours";
+            //checkin.truncatedTimeUnits = @"hours";
             checkin.truncatedTimeNumeral = [NSString stringWithFormat:@"%02d", hours];
         } else {
-            checkin.truncatedTimeUnits = @"days";
+            //checkin.truncatedTimeUnits = @"days";
             checkin.truncatedTimeNumeral = [NSString stringWithFormat:@"%02d", days];
         }
 //        NSLog(@"checkin: %@", checkin);
