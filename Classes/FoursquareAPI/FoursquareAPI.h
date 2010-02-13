@@ -31,6 +31,7 @@
 	NSString * userName;
 	NSString * passWord;
 	NSMutableDictionary * activeRequests;
+    NSDictionary *cachedVenues;
 }
 
 @property (nonatomic, retain) MPOAuthAPI * oauthAPI;
@@ -38,6 +39,7 @@
 @property (nonatomic, retain) NSString * userName;
 @property (nonatomic, retain) NSString * passWord;
 @property (nonatomic, retain) NSMutableDictionary * activeRequests;
+@property (nonatomic, retain) NSDictionary *cachedVenues;
 
 - (BOOL) isAuthenticated;
 - (void) getVenuesNearLatitude:(NSString *)geolat andLongitude:(NSString *)geolong withTarget:(id)inTarget andAction:(SEL)inAction;

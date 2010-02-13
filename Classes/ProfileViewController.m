@@ -69,9 +69,9 @@
     
     isPingAndUpdatesOn = user.sendsPingsToSignedInUser;
     if (isPingAndUpdatesOn) {
-        [pingsAndUpdates setImage:[UIImage imageNamed:@"allPings01.png"] forState:UIControlStateNormal];
+        [pingsAndUpdates setImage:[UIImage imageNamed:@"profilePings01x.png"] forState:UIControlStateNormal];
     } else {
-        [pingsAndUpdates setImage:[UIImage imageNamed:@"allPings03.png"] forState:UIControlStateNormal];
+        [pingsAndUpdates setImage:[UIImage imageNamed:@"profilePings03x.png"] forState:UIControlStateNormal];
     }
     //pingsAndUpdates.selected = user.sendsPingsToSignedInUser;
     
@@ -205,7 +205,7 @@
                 return 0;
             }
         } else if (indexPath.row == 1) {
-            return 44;
+            return 42;
         }
     }
     return 44;
@@ -504,9 +504,9 @@
     isPingAndUpdatesOn = !isPingAndUpdatesOn;
     //pingsAndUpdates.selected = isPingAndUpdatesOn;
     if (isPingAndUpdatesOn) {
-        [pingsAndUpdates setImage:[UIImage imageNamed:@"profilePings01.png"] forState:UIControlStateNormal];
+        [pingsAndUpdates setImage:[UIImage imageNamed:@"profilePings01x.png"] forState:UIControlStateNormal];
     } else {
-        [pingsAndUpdates setImage:[UIImage imageNamed:@"profilePings03.png"] forState:UIControlStateNormal];
+        [pingsAndUpdates setImage:[UIImage imageNamed:@"profilePings03x.png"] forState:UIControlStateNormal];
     }
     [self stopProgressBar];
 }

@@ -316,6 +316,9 @@
 		6A39CE9A112626600093F157 /* hereToo02.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A39CE94112626600093F157 /* hereToo02.png */; };
 		6A39CE9B112626600093F157 /* seeFriends01.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A39CE95112626600093F157 /* seeFriends01.png */; };
 		6A39CE9C112626600093F157 /* seeFriends02.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A39CE96112626600093F157 /* seeFriends02.png */; };
+		6A39CED2112650F10093F157 /* profilePings02x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A39CECF112650F10093F157 /* profilePings02x.png */; };
+		6A39CED3112650F10093F157 /* profilePings03x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A39CED0112650F10093F157 /* profilePings03x.png */; };
+		6A39CED4112650F10093F157 /* profilePings01x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A39CED1112650F10093F157 /* profilePings01x.png */; };
 		6A39EB5C1096584A006F76C3 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A39EB5B1096584A006F76C3 /* libsqlite3.dylib */; };
 		6A39EB6110965868006F76C3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A39EB6010965868006F76C3 /* CoreLocation.framework */; };
 		6A39EB6310965868006F76C3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A39EB6210965868006F76C3 /* SystemConfiguration.framework */; };
@@ -609,9 +612,6 @@
 		6AF200DF10FCF39400AFD663 /* addTipLarge02.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AF200DC10FCF39400AFD663 /* addTipLarge02.png */; };
 		6AF200E010FCF39400AFD663 /* tipFieldBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AF200DD10FCF39400AFD663 /* tipFieldBG.png */; };
 		6AF26EE210F19F1F002A78B8 /* button_select.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AF26EE110F19F1F002A78B8 /* button_select.png */; };
-		6AF26F9F10F2F348002A78B8 /* profilePings02.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AF26F9A10F2F348002A78B8 /* profilePings02.png */; };
-		6AF26FA010F2F348002A78B8 /* profilePings03.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AF26F9B10F2F348002A78B8 /* profilePings03.png */; };
-		6AF26FA110F2F348002A78B8 /* profilePings01.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AF26F9C10F2F348002A78B8 /* profilePings01.png */; };
 		6AF26FA210F2F348002A78B8 /* profileHereToo02.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AF26F9D10F2F348002A78B8 /* profileHereToo02.png */; };
 		6AF26FA310F2F348002A78B8 /* profileHereToo01.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AF26F9E10F2F348002A78B8 /* profileHereToo01.png */; };
 		6AF2F0AA10C2EA0B00A29C96 /* TipDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF2F0A910C2EA0B00A29C96 /* TipDetailViewController.m */; };
@@ -1033,6 +1033,9 @@
 		6A39CE94112626600093F157 /* hereToo02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hereToo02.png; sourceTree = "<group>"; };
 		6A39CE95112626600093F157 /* seeFriends01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = seeFriends01.png; sourceTree = "<group>"; };
 		6A39CE96112626600093F157 /* seeFriends02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = seeFriends02.png; sourceTree = "<group>"; };
+		6A39CECF112650F10093F157 /* profilePings02x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profilePings02x.png; sourceTree = "<group>"; };
+		6A39CED0112650F10093F157 /* profilePings03x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profilePings03x.png; sourceTree = "<group>"; };
+		6A39CED1112650F10093F157 /* profilePings01x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profilePings01x.png; sourceTree = "<group>"; };
 		6A39EB4310965675006F76C3 /* Beacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Beacon.h; sourceTree = "<group>"; };
 		6A39EB4410965675006F76C3 /* Beacon+FBConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Beacon+FBConnect.h"; sourceTree = "<group>"; };
 		6A39EB5B1096584A006F76C3 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = /usr/lib/libsqlite3.dylib; sourceTree = "<absolute>"; };
@@ -1388,9 +1391,6 @@
 		6AF26EE110F19F1F002A78B8 /* button_select.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_select.png; sourceTree = "<group>"; };
 		6AF26F9810F2F2EA002A78B8 /* placeTwitterPress.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeTwitterPress.png; sourceTree = "<group>"; };
 		6AF26F9910F2F2EA002A78B8 /* placePingPress.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placePingPress.png; sourceTree = "<group>"; };
-		6AF26F9A10F2F348002A78B8 /* profilePings02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profilePings02.png; sourceTree = "<group>"; };
-		6AF26F9B10F2F348002A78B8 /* profilePings03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profilePings03.png; sourceTree = "<group>"; };
-		6AF26F9C10F2F348002A78B8 /* profilePings01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profilePings01.png; sourceTree = "<group>"; };
 		6AF26F9D10F2F348002A78B8 /* profileHereToo02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profileHereToo02.png; sourceTree = "<group>"; };
 		6AF26F9E10F2F348002A78B8 /* profileHereToo01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profileHereToo01.png; sourceTree = "<group>"; };
 		6AF2F0A810C2EA0B00A29C96 /* TipDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipDetailViewController.h; sourceTree = "<group>"; };
@@ -1985,6 +1985,9 @@
 		6A39EC4B109662D3006F76C3 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				6A39CECF112650F10093F157 /* profilePings02x.png */,
+				6A39CED0112650F10093F157 /* profilePings03x.png */,
+				6A39CED1112650F10093F157 /* profilePings01x.png */,
 				6A39CE91112626600093F157 /* checkinHistory01.png */,
 				6A39CE92112626600093F157 /* checkinHistory02.png */,
 				6A39CE93112626600093F157 /* hereToo01.png */,
@@ -2155,9 +2158,6 @@
 				6AF200DD10FCF39400AFD663 /* tipFieldBG.png */,
 				6AF26F9810F2F2EA002A78B8 /* placeTwitterPress.png */,
 				6AF26F9910F2F2EA002A78B8 /* placePingPress.png */,
-				6AF26F9A10F2F348002A78B8 /* profilePings02.png */,
-				6AF26F9B10F2F348002A78B8 /* profilePings03.png */,
-				6AF26F9C10F2F348002A78B8 /* profilePings01.png */,
 				6AF26F9D10F2F348002A78B8 /* profileHereToo02.png */,
 				6AF26F9E10F2F348002A78B8 /* profileHereToo01.png */,
 				6AF26EE110F19F1F002A78B8 /* button_select.png */,
@@ -2833,9 +2833,6 @@
 				6A95A12510E2DEA900F1D57A /* wrongAdd02.png in Resources */,
 				6A79D0D910E5E692009082E5 /* PopupMessageView.xib in Resources */,
 				6AF26EE210F19F1F002A78B8 /* button_select.png in Resources */,
-				6AF26F9F10F2F348002A78B8 /* profilePings02.png in Resources */,
-				6AF26FA010F2F348002A78B8 /* profilePings03.png in Resources */,
-				6AF26FA110F2F348002A78B8 /* profilePings01.png in Resources */,
 				6AF26FA210F2F348002A78B8 /* profileHereToo02.png in Resources */,
 				6AF26FA310F2F348002A78B8 /* profileHereToo01.png in Resources */,
 				6AF200DE10FCF39400AFD663 /* addTipLarge01.png in Resources */,
@@ -3120,6 +3117,9 @@
 				6A39CE9A112626600093F157 /* hereToo02.png in Resources */,
 				6A39CE9B112626600093F157 /* seeFriends01.png in Resources */,
 				6A39CE9C112626600093F157 /* seeFriends02.png in Resources */,
+				6A39CED2112650F10093F157 /* profilePings02x.png in Resources */,
+				6A39CED3112650F10093F157 /* profilePings03x.png in Resources */,
+				6A39CED4112650F10093F157 /* profilePings01x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

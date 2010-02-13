@@ -13,13 +13,13 @@
 #import "SFHFKeychainUtils.h"
 #import "LocationManager.h"
 
-#define USER_AGENT @"UltraDudez:0.0.1"
+#define USER_AGENT @"UltraDudez:0.0.2"
 
 static FoursquareAPI *sharedInstance = nil;
 
 @implementation FoursquareAPI
 
-@synthesize oauthAPI, currentUser, userName, passWord, activeRequests;
+@synthesize oauthAPI, currentUser, userName, passWord, activeRequests, cachedVenues;
 
 #pragma mark -
 #pragma mark class instance methods
