@@ -12,7 +12,7 @@
 #import "QuartzCore/QuartzCore.h"
 #import "LocationManager.h"
 #import "ProfileViewController.h"
-#import "ProfileViewController.h"
+#import "PlacesListViewController.h"
 
 
 @implementation FriendsMapViewController
@@ -158,6 +158,12 @@
 	self.checkins = [FoursquareAPI checkinsFromResponseXML:inString];
     [mapViewer removeAnnotations:mapViewer.annotations];
     [self refreshFriendPoints];
+}
+
+- (void) checkin {
+    PlacesListViewController *placesListController = [[PlacesListViewController alloc] initWithNibName:@"PlacesListViewController" bundle:nil];
+    [self.navigationController pushViewController:placesListController animated:NO];
+    [placesListController release];
 }
 
 #pragma mark MapViewer functions

@@ -27,6 +27,5 @@
 - (NSArray *) checkins;
 - (void) showProfile:(id)sender;
 - (IBAction) retrieveNewFriendLocationsAndRefresh;
-- (IBAction) flipToList;
 
 @end

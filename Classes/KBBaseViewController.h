@@ -38,6 +38,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 - (IBAction) backOneViewNotAnimated;
 - (IBAction) viewUserProfile;
 - (IBAction) goToHomeView;
+- (IBAction) goToHomeViewNotAnimated;
 - (void) setAuthenticatedUser:(FSUser*)user;
 - (FSUser*) getAuthenticatedUser;
 - (void) doLoginUsername: (NSString *)fsUser andPass:(NSString *) fsPass;

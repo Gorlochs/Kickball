@@ -100,6 +100,10 @@
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
+- (void) goToHomeViewNotAnimated {
+    [self.navigationController popToRootViewControllerAnimated:NO];
+}
+
 - (void) viewUserProfile {
     // take user to their profile
     [[Beacon shared] startSubBeaconWithName:@"View User Profile from Top Nav Icon"];
