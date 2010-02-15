@@ -18,6 +18,8 @@
 
 @implementation KBTextViewController
 
+@synthesize venueId;
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -27,6 +29,29 @@
 - (void) cancelView {
     [[Beacon shared] startSubBeaconWithName:@"Cancel Shout"];
     [self dismissModalViewControllerAnimated:YES];
+}
+
+- (void) shoutAndCheckin {
+    
+    if ([theTextView.text length] > 0) {
+        NSDictionary *userInfo = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:theTextView.text, nil] forKeys:[NSArray arrayWithObjects:@"shout", nil]];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"shoutAndCheckinSent"
+                                                            object:nil
+                                                          userInfo:userInfo];	
+    } else {
+        
+    }
+//    if ([theTextView.text length] > 0) {
+//        [[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:self.venueId 
+//                                                      andShout:theTextView.text 
+//                                                       offGrid:NO
+//                                                     toTwitter:NO
+//                                                    withTarget:self 
+//                                                     andAction:@selector(checkinResponseReceived:withResponseString:)];
+//        [[Beacon shared] startSubBeaconWithName:@"Shout"];
+//    } else {
+//        NSLog(@"no text in shout field");
+//    }
 }
 
 - (void) shout {
@@ -125,7 +150,7 @@
     if ([text isEqualToString:@"\n"]) {
         // Be sure to test for equality using the "isEqualToString" message
         [textView resignFirstResponder];
-        [self shout];
+        //[self shout];
         // Return FALSE so that the final '\n' character doesn't get added
         return FALSE;
     }

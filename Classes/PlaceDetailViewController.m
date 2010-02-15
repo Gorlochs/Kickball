@@ -60,6 +60,7 @@
     [super viewDidLoad];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(displayTodoTipMessage:) name:@"todoTipSent" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shoutAndCheckin:) name:@"shoutAndCheckinSent" object:nil];
     
     isUserCheckedIn = NO;
     
@@ -493,6 +494,18 @@
     vc.venueName = venue.name;
     [self presentModalViewController:vc animated:YES];
     [vc release];
+}
+
+- (void) checkinAndShoutToVenue:(NSNotification *)inNotification {
+    NSLog(@"notification from shout %@", inNotification);
+//    [self startProgressBar:@"Checking in and shouting to this venue..."];
+//    [[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:venue.venueid 
+//                                                  andShout:nil 
+//                                                   offGrid:!isPingOn
+//                                                 toTwitter:isTwitterOn
+//                                                withTarget:self 
+//                                                 andAction:@selector(checkinResponseReceived:withResponseString:)];
+//    [[Beacon shared] startSubBeaconWithName:@"Check in and shout to Venue"];
 }
 
 - (void) checkinToVenue {

@@ -11,9 +11,13 @@
 
 @interface KBTextViewController : KBBaseViewController <UITextViewDelegate> {
     IBOutlet UITextView *theTextView;
+    NSString *venueId;
 }
 
+@property (nonatomic, retain) NSString *venueId;
+
 - (IBAction) shout;
+- (IBAction) shoutAndCheckin;
 - (IBAction) cancelView;
 - (void)friendsReceived:(NSNotification *)inNotification;
 
