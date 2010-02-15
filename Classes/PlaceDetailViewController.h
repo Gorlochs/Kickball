@@ -12,9 +12,6 @@
 #import "KBBaseViewController.h"
 #import "GAConnectionDelegate.h"
 
-// just testing this snippet out that I picked up somewhere
-#define DebugLog( s, ... ) NSLog( @"<%p %@:(%d)> %@", self, [[NSString stringWithUTF8String:__FILE__] lastPathComponent], __LINE__, [NSString stringWithFormat:(s), ##__VA_ARGS__] )
-
 @interface PlaceDetailViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate, GAConnectionDelegate> {
     IBOutlet UITableView *theTableView;
     IBOutlet UITableViewCell *checkinCell;
@@ -42,8 +39,8 @@
     IBOutlet UIImageView *badgeImage;
     
     IBOutlet UIButton *twitterButton;
-    IBOutlet UIButton *pingToggleButton;
-    IBOutlet UIButton *twitterToggleButton;
+    IBOutlet UIButton *pingAndTwitterToggleButton;
+//     IBOutlet UIButton *twitterToggleButton;
     IBOutlet UIButton *venueDetailButton;
     IBOutlet UIButton *specialsButton;
     IBOutlet UIButton *mapButton;
@@ -57,7 +54,7 @@
     
     bool isUserCheckedIn;
     bool isPingOn;
-    bool isTwitterOn;
+    bool isTwitterOn;  
     
     // set to YES if the user should be checked in with the initialization of this view
     BOOL doCheckin;
@@ -75,8 +72,7 @@
 - (IBAction) uploadImageToServer;
 - (IBAction) showTwitterFeed;
 - (IBAction) checkinToVenue;
-- (IBAction) togglePing;
-- (IBAction) toggleTwitter;
+- (IBAction) togglePingsAndTwitter;
 - (IBAction) doGeoAPICall;
 - (IBAction) showSpecial;
 - (IBAction) viewVenueMap;
@@ -89,6 +85,7 @@
 - (BOOL) isNewMayor;
 - (void) setProperTwitterButtonState;
 - (void) setProperPingButtonState;
+- (void) setProperButtonStates;
 - (void)friendsReceived:(NSNotification *)inNotification;
 
 @end

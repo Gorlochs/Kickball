@@ -332,7 +332,7 @@
 							<object class="IBUIButton" id="318754006">
 								<reference key="NSNextResponder" ref="218964591"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{200, -2}, {120, 41}}</string>
+								<string key="NSFrame">{{202, -2}, {118, 41}}</string>
 								<reference key="NSSuperview" ref="218964591"/>
 								<object class="NSColor" key="IBUIBackgroundColor" id="592030818">
 									<int key="NSColorSpace">3</int>
@@ -1300,15 +1300,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">toggleTwitter</string>
-						<reference key="source" ref="318754006"/>
-						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">91</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">callVenue</string>
 						<reference key="source" ref="431145987"/>
 						<reference key="destination" ref="372490531"/>
@@ -1632,6 +1623,23 @@
 						<int key="IBEventType">7</int>
 					</object>
 					<int key="connectionID">205</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">togglePingsAndTwitter</string>
+						<reference key="source" ref="318754006"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">206</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">pingAndTwitterToggleButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="318754006"/>
+					</object>
+					<int key="connectionID">208</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -2193,7 +2201,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">205</int>
+			<int key="maxID">208</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2268,12 +2276,14 @@
 							<string>showSpecial</string>
 							<string>showTwitterFeed</string>
 							<string>togglePing</string>
+							<string>togglePingsAndTwitter</string>
 							<string>toggleTwitter</string>
 							<string>uploadImageToServer</string>
 							<string>viewVenueMap</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -2311,7 +2321,7 @@
 							<string>newMayorshipLabel</string>
 							<string>noMayorImage</string>
 							<string>phoneButton</string>
-							<string>pingToggleButton</string>
+							<string>pingAndTwitterToggleButton</string>
 							<string>pointsCell</string>
 							<string>shoutCell</string>
 							<string>smallMapView</string>
@@ -2320,7 +2330,6 @@
 							<string>stillTheMayorLabel</string>
 							<string>theTableView</string>
 							<string>twitterButton</string>
-							<string>twitterToggleButton</string>
 							<string>venueAddress</string>
 							<string>venueDetailButton</string>
 							<string>venueName</string>
@@ -2353,7 +2362,6 @@
 							<string>UITableViewCell</string>
 							<string>UILabel</string>
 							<string>UITableView</string>
-							<string>UIButton</string>
 							<string>UIButton</string>
 							<string>UILabel</string>
 							<string>UIButton</string>

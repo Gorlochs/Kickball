@@ -72,12 +72,14 @@
     
     // pull this up into a method (or property)
     FSUser *tmpUser = [self getAuthenticatedUser];
+    NSLog(@"auth'd user: %@", tmpUser);
     signedInUserIcon.imageView.image = [[Utilities sharedInstance] getCachedImage:tmpUser.photo];
     signedInUserIcon.hidden = NO;
     isPingOn = tmpUser.isPingOn;
     isTwitterOn = tmpUser.sendToTwitter;
-    [self setProperTwitterButtonState];
-    [self setProperPingButtonState];
+    [self setProperButtonStates];
+//    [self setProperTwitterButtonState];
+//    [self setProperPingButtonState];
 //    twitterButton.selected = isTwitterOn;
 //    pingToggleButton.selected = isPingOn;
     
@@ -456,8 +458,7 @@
     [badgeImage release];
     
     [twitterButton release];
-    [pingToggleButton release];
-    [twitterToggleButton release];
+    [pingAndTwitterToggleButton release];
     [venueDetailButton release];
     [specialsButton release];
     [mapButton release];
@@ -581,35 +582,31 @@
 	NSLog(@"Failure from push: %@", result);
 }
 
-	
-
-- (void) togglePing {
-    isPingOn = !isPingOn;
-    [self setProperPingButtonState];
-    NSLog(@"is ping on: %d", isPingOn);
-}
-
-- (void) toggleTwitter {
-    isTwitterOn = !isTwitterOn;
-    [self setProperTwitterButtonState];
-    NSLog(@"is twitter on: %d", isTwitterOn);
-}
-
-- (void) setProperTwitterButtonState {
-    if ([self getAuthenticatedUser].twitter == nil) {
-        twitterToggleButton.enabled = NO;
-    } else if (isTwitterOn) {
-        [twitterToggleButton setImage:[UIImage imageNamed:@"twitter01on.png"] forState:UIControlStateNormal];
+- (void) togglePingsAndTwitter {
+    if (isTwitterOn && isPingOn) {
+        isTwitterOn = NO;
+    } else if (isPingOn) {
+        isPingOn = NO;
     } else {
-        [twitterToggleButton setImage:[UIImage imageNamed:@"twitter03off.png"] forState:UIControlStateNormal];
+        isTwitterOn = YES;
+        isPingOn = YES;
     }
+    [self setProperButtonStates];
 }
 
-- (void) setProperPingButtonState {
-    if (isPingOn) {
-        [pingToggleButton setImage:[UIImage imageNamed:@"ping01.png"] forState:UIControlStateNormal];
+- (void) setProperButtonStates {
+    if (isTwitterOn && isPingOn) {
+        NSLog(@"twitter and ping is on");
+        [pingAndTwitterToggleButton setImage:[UIImage imageNamed:@"ping01b.png"] forState:UIControlStateNormal];
+        [pingAndTwitterToggleButton setImage:[UIImage imageNamed:@"ping02b.png"] forState:UIControlStateHighlighted];
+    } else if (isPingOn) {
+        NSLog(@"ping is on");
+        [pingAndTwitterToggleButton setImage:[UIImage imageNamed:@"ping03b.png"] forState:UIControlStateNormal];
+        [pingAndTwitterToggleButton setImage:[UIImage imageNamed:@"ping04b.png"] forState:UIControlStateHighlighted];
     } else {
-        [pingToggleButton setImage:[UIImage imageNamed:@"ping03.png"] forState:UIControlStateNormal];
+        NSLog(@"everything is off");
+        [pingAndTwitterToggleButton setImage:[UIImage imageNamed:@"ping05b.png"] forState:UIControlStateNormal];
+        [pingAndTwitterToggleButton setImage:[UIImage imageNamed:@"ping06b.png"] forState:UIControlStateHighlighted];
     }
 }
 
