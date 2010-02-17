@@ -209,7 +209,7 @@
 							<object class="IBUIImageView" id="244968735">
 								<reference key="NSNextResponder" ref="44535751"/>
 								<int key="NSvFlags">256</int>
-								<string key="NSFrame">{{46, 10}, {243, 29}}</string>
+								<string key="NSFrame">{{46, 11}, {243, 29}}</string>
 								<reference key="NSSuperview" ref="44535751"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -300,39 +300,10 @@
 						<int key="NSvFlags">256</int>
 						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBUIButton" id="781132145">
-								<reference key="NSNextResponder" ref="218964591"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{-1, -1}, {109, 40}}</string>
-								<reference key="NSSuperview" ref="218964591"/>
-								<bool key="IBUIOpaque">NO</bool>
-								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
-								<int key="IBUIContentHorizontalAlignment">0</int>
-								<int key="IBUIContentVerticalAlignment">0</int>
-								<reference key="IBUIFont" ref="741906914"/>
-								<reference key="IBUIHighlightedTitleColor" ref="484015391"/>
-								<object class="NSColor" key="IBUINormalTitleColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
-								</object>
-								<reference key="IBUINormalTitleShadowColor" ref="657622904"/>
-								<object class="NSCustomResource" key="IBUIHighlightedImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">imhere02.png</string>
-								</object>
-								<object class="NSCustomResource" key="IBUISelectedImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">placeCheckin02.png</string>
-								</object>
-								<object class="NSCustomResource" key="IBUINormalImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">imhere01.png</string>
-								</object>
-							</object>
 							<object class="IBUIButton" id="318754006">
 								<reference key="NSNextResponder" ref="218964591"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{202, -2}, {118, 41}}</string>
+								<string key="NSFrame">{{192, -2}, {128, 41}}</string>
 								<reference key="NSSuperview" ref="218964591"/>
 								<object class="NSColor" key="IBUIBackgroundColor" id="592030818">
 									<int key="NSColorSpace">3</int>
@@ -366,14 +337,43 @@
 									<string key="NSResourceName">ping01b.png</string>
 								</object>
 							</object>
+							<object class="IBUIButton" id="781132145">
+								<reference key="NSNextResponder" ref="218964591"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{-1, -1}, {110, 40}}</string>
+								<reference key="NSSuperview" ref="218964591"/>
+								<bool key="IBUIOpaque">NO</bool>
+								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+								<int key="IBUIContentHorizontalAlignment">0</int>
+								<int key="IBUIContentVerticalAlignment">0</int>
+								<reference key="IBUIFont" ref="741906914"/>
+								<reference key="IBUIHighlightedTitleColor" ref="484015391"/>
+								<object class="NSColor" key="IBUINormalTitleColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
+								</object>
+								<reference key="IBUINormalTitleShadowColor" ref="657622904"/>
+								<object class="NSCustomResource" key="IBUIHighlightedImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">imhere02.png</string>
+								</object>
+								<object class="NSCustomResource" key="IBUISelectedImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">placeCheckin02.png</string>
+								</object>
+								<object class="NSCustomResource" key="IBUINormalImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">imhere01.png</string>
+								</object>
+							</object>
 							<object class="IBUIButton" id="832128043">
 								<reference key="NSNextResponder" ref="218964591"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{107, 0}, {95, 37}}</string>
 								<reference key="NSSuperview" ref="218964591"/>
 								<object class="NSColor" key="IBUIBackgroundColor">
-									<int key="NSColorSpace">2</int>
-									<bytes key="NSRGB">MC45Mjk0MTE4Mjg1IDAuOTI5NDExODI4NSAwLjkyOTQxMTgyODUAA</bytes>
+									<int key="NSColorSpace">3</int>
+									<bytes key="NSWhite">MSAwAA</bytes>
 								</object>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -1720,8 +1720,8 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="781132145"/>
-							<reference ref="832128043"/>
 							<reference ref="318754006"/>
+							<reference ref="832128043"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Checkin Cell</string>
@@ -2172,7 +2172,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{57, 896}, {320, 37}}</string>
+					<string>{{175, 744}, {320, 37}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{642, 352}, {317, 36}}</string>
