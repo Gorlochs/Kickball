@@ -60,7 +60,7 @@
     [super viewDidLoad];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(displayTodoTipMessage:) name:@"todoTipSent" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shoutAndCheckin:) name:@"shoutAndCheckinSent" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkinAndShoutToVenue:) name:@"shoutAndCheckinSent" object:nil];
     
     isUserCheckedIn = NO;
     
