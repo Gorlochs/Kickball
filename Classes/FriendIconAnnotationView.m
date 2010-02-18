@@ -27,10 +27,11 @@
 //		NSData *data = [NSData dataWithContentsOfURL:imgUrl];
 //		UIImage *img = [[UIImage alloc] initWithData:data];
 		
+        NSLog(@"map icon url: %@", inUrl);
 		imageView = [[UIImageView alloc] initWithImage:[[Utilities sharedInstance] getCachedImage:inUrl]];
 		imageView.frame = CGRectMake(kBorder, kBorder, kWidth - 2 * kBorder, kWidth - 2 * kBorder);
 		[self addSubview:imageView];
-//        [img release];
+        //        [img release];
 	}
 		
 	return self;

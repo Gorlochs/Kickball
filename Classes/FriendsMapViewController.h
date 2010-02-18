@@ -23,6 +23,7 @@
 @property (nonatomic, retain) MKMapView * mapViewer;
 
 - (void) refreshFriendPoints;
+- (void) refreshMapRegion;
 - (void) setCheckins:(NSArray *) checkin;
 - (NSArray *) checkins;
 - (void) showProfile:(id)sender;

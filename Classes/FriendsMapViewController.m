@@ -30,6 +30,7 @@
 -(void) viewDidAppear:(BOOL)animated{
 	[super viewDidAppear:animated];
 	[self refreshFriendPoints];
+    [self refreshMapRegion];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -48,7 +49,7 @@
 	// e.g. self.myOutlet = nil;
 }
 
--(void) refreshMapRegion {
+- (void) refreshMapRegion {
 	NSLog(@"Refresh map region");
 	[mapViewer setRegion:mapRegion animated:TRUE];
 	[mapViewer regionThatFits:mapRegion];
@@ -57,59 +58,20 @@
 // map is to be centered on the user and a generic zoom level
 // FUTURE: allow user to set zoom level in settings
 - (void) setCheckins:(NSArray *) checkin{
-	[checkins release];
+	[self.checkins release];
 	checkins = checkin;
-	[checkins retain];
+	[self.checkins retain];
 
-	if (checkins && checkins.count > 0)
-	{
-		NSLog(@"checkins count: %d", checkins.count);
-		
-//		double minLat = 1000;
-//		double maxLat = -1000;
-//		double minLong = 1000;
-//		double maxLong = -1000;
-//		
-//		for (FSCheckin *checkin in checkins)
-//		{
-//			double lat = checkin.venue.geolat.doubleValue;
-//			double lng = checkin.venue.geolong.doubleValue;
-//			
-//			if (lat < minLat)
-//			{
-//				minLat = lat;
-//			}
-//			if (lat > maxLat)
-//			{
-//				maxLat = lat;
-//			}
-//			
-//			if (lng < minLong)
-//			{
-//				minLong = lng;
-//			}
-//			if (lng > maxLong)
-//			{
-//				maxLong = lng;
-//			}
-//		}
+	if (self.checkins && self.checkins.count > 0) {
+		NSLog(@"checkins count: %d", self.checkins.count);
 		
 		MKCoordinateRegion region;
 		MKCoordinateSpan span;
-//		span.latitudeDelta=(maxLat - minLat);
-//		if (span.latitudeDelta == 0)
-//		{
-			span.latitudeDelta = 0.05;
-//		}
-//		span.longitudeDelta=(maxLong - minLong);
-//		if (span.longitudeDelta == 0)
-//		{
-			span.longitudeDelta = 0.05;
-//		}
+
+        span.latitudeDelta = 0.05;
+        span.longitudeDelta = 0.05;
 		
 		CLLocationCoordinate2D center;
-//		center.latitude = (minLat + maxLat) / 2;
-        //		center.longitude = (minLong + maxLong) / 2;
         center.latitude = [[LocationManager locationManager] latitude];
         center.longitude = [[LocationManager locationManager] longitude];
 		
@@ -122,7 +84,7 @@
 		[self performSelectorOnMainThread:@selector(refreshMapRegion) withObject:nil waitUntilDone:NO];	
 	}
 	
-	[self refreshFriendPoints];
+	//[self refreshFriendPoints];
 }
 
 - (void) refreshFriendPoints {
@@ -149,13 +111,15 @@
 }
 
 - (void) retrieveNewFriendLocationsAndRefresh {
-    self.checkins = nil;
+    //self.checkins = nil;
+    [self startProgressBar:@"Refreshing friends' locations..."];
     [mapViewer removeAnnotations:mapViewer.annotations];
 	[[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
 }
 
 - (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-	self.checkins = [FoursquareAPI checkinsFromResponseXML:inString];
+    [self setCheckins:[FoursquareAPI checkinsFromResponseXML:inString]];
+//	self.checkins = [FoursquareAPI checkinsFromResponseXML:inString];
     [mapViewer removeAnnotations:mapViewer.annotations];
     [self refreshFriendPoints];
 }
