@@ -72,7 +72,7 @@
     if (user) {
         NSLog(@"user is not null");
         UIImage *image = [[Utilities sharedInstance] getCachedImage:user.photo];
-        iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(278, 0, 42, 42)];
+        iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(278, 2, 42, 42)];
         iconImageView.image = image;
         [image release];
         [self.view addSubview:iconImageView];
