@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	[self refreshVenuePoints];
-    [mapViewer setShowsUserLocation:YES];
+    //[mapViewer setShowsUserLocation:YES];
     [[Beacon shared] startSubBeaconWithName:@"Venues Map"];
 }
 
@@ -52,13 +52,18 @@
 }
 
 
-- (NSArray *) venues{
+- (NSArray *) venues {
 	return venues;
 }
 
-- (void) refreshVenuePoints{
+- (void) refreshVenuePoints {
 
-    [mapViewer removeAnnotations:mapViewer.annotations];
+    NSMutableArray *tmpArray = [[NSMutableArray alloc] initWithCapacity:1];
+    for (id<MKAnnotation> annotation in mapViewer.annotations) {
+        if( ![[annotation title] isEqualToString:@"Current Location"] ) {
+            [tmpArray addObject:annotation];
+        }
+    }
   
     double minLat = 1000;
     double maxLat = -1000;
@@ -108,7 +113,8 @@
     
     region.span = span;
     region.center = center;
-    
+
+    [mapViewer removeAnnotations:tmpArray];
 	for(FSVenue * venue in self.venues){
 		//FSVenue * checkVenue = checkin.venue; 
 		if(venue.geolat && venue.geolong){
@@ -129,9 +135,11 @@
 //            av.rightCalloutAccessoryView
 		}
 	}
+    
     // does this go here?
     [self stopProgressBar];
 }
+
 
 - (void) zoomToProperDepth {
     if (self.venues && self.venues.count > 0)
@@ -191,76 +199,37 @@
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
 	
-	if (annotation == mapView.userLocation) {
-        MKAnnotationView* annotationView;
-		annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:@"blueDot"];
-		if (annotationView != nil) {
-			annotationView.annotation = annotation;
-		} else {
-			annotationView = [[[NSClassFromString(@"MKUserLocationView") alloc] initWithAnnotation:annotation reuseIdentifier:@"blueDot"] autorelease];
-		}
-        return annotationView;
-	} else {
-        int postag = 0;
-        
-        KBPin *annView=[[[KBPin alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomId"] autorelease];
-        //annView.pinColor = MKPinAnnotationColorGreen;
-        annView.image = [UIImage imageNamed:@"pin.png"];
-        
-        // add an accessory button so user can click through to the venue page
-        UIButton *myDetailButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        myDetailButton.frame = CGRectMake(0, 0, 23, 23);
-        myDetailButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-        myDetailButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-        
-        // Set the image for the button
-        [myDetailButton setImage:[UIImage imageNamed:@"button_right.png"] forState:UIControlStateNormal];
-        [myDetailButton addTarget:self action:@selector(showVenue:) forControlEvents:UIControlEventTouchUpInside]; 
-        
-        postag = [((VenueAnnotation*)annotation).venueId intValue];
-        myDetailButton.tag  = postag;
-        
-        // Set the button as the callout view
-        annView.rightCalloutAccessoryView = myDetailButton;
-        
-        //annView.animatesDrop=TRUE;
-        annView.canShowCallout = YES;
-        //annView.calloutOffset = CGPointMake(-5, 5);
-        return annView;
-    }
-}
+    if( [[annotation title] isEqualToString:@"Current Location"] ) {
+		return nil;
+	}
 
-//- (MKAnnotationView *) mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>) annotation{
-//    if (annotation == mapView.userLocation) {
-//        return nil;
-//    }
-//	int postag = 0;
-//    
-//	KBPin *annView=[[[KBPin alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomId"] autorelease];
-//	//annView.pinColor = MKPinAnnotationColorGreen;
-//    annView.image = [UIImage imageNamed:@"pin.png"];
-//    
-//    // add an accessory button so user can click through to the venue page
-//	UIButton *myDetailButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//	myDetailButton.frame = CGRectMake(0, 0, 23, 23);
-//	myDetailButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-//	myDetailButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-//	
-//	// Set the image for the button
-//	[myDetailButton setImage:[UIImage imageNamed:@"button_right.png"] forState:UIControlStateNormal];
-//	[myDetailButton addTarget:self action:@selector(showVenue:) forControlEvents:UIControlEventTouchUpInside]; 
-//	
-//    postag = [((VenueAnnotation*)annotation).venueId intValue];
-//	myDetailButton.tag  = postag;
-//	
-//	// Set the button as the callout view
-//	annView.rightCalloutAccessoryView = myDetailButton;
-//	
-//	//annView.animatesDrop=TRUE;
-//	annView.canShowCallout = YES;
-//	//annView.calloutOffset = CGPointMake(-5, 5);
-//	return annView;
-//}
+    int postag = 0;
+    
+    KBPin *annView=[[[KBPin alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomId"] autorelease];
+    //annView.pinColor = MKPinAnnotationColorGreen;
+    annView.image = [UIImage imageNamed:@"pin.png"];
+    
+    // add an accessory button so user can click through to the venue page
+    UIButton *myDetailButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    myDetailButton.frame = CGRectMake(0, 0, 23, 23);
+    myDetailButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    myDetailButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+    
+    // Set the image for the button
+    [myDetailButton setImage:[UIImage imageNamed:@"button_right.png"] forState:UIControlStateNormal];
+    [myDetailButton addTarget:self action:@selector(showVenue:) forControlEvents:UIControlEventTouchUpInside]; 
+    
+    postag = [((VenueAnnotation*)annotation).venueId intValue];
+    myDetailButton.tag  = postag;
+    
+    // Set the button as the callout view
+    annView.rightCalloutAccessoryView = myDetailButton;
+    
+    //annView.animatesDrop=TRUE;
+    annView.canShowCallout = YES;
+    //annView.calloutOffset = CGPointMake(-5, 5);
+    return annView;
+}
 
 - (void) showVenue:(id)sender {
     [[Beacon shared] startSubBeaconWithName:@"Clicked on Show Venue from Map Annotation"];
@@ -273,10 +242,10 @@
     [placeDetailController release];
 }
 
-
 #pragma mark IBAction methods
 
 -(void)searchOnKeywordsandLatLong {
+    
     [self startProgressBar:@"Searching..."];
     [searchbox resignFirstResponder];
     if (![searchbox.text isEqualToString:@""]) {
