@@ -27,7 +27,6 @@
 }
 
 - (void) cancelView {
-    [[Beacon shared] startSubBeaconWithName:@"Cancel Shout"];
     [self dismissModalViewControllerAnimated:YES];
 }
 
@@ -38,6 +37,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"shoutAndCheckinSent"
                                                             object:nil
                                                           userInfo:userInfo];	
+        [self cancelView];
     } else {
         
     }

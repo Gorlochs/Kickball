@@ -113,28 +113,20 @@
 }
 
 - (void) doInitialDisplay {
-    NSLog(@"hasViewedInstructions: %d", hasViewedInstructions);
+    [[Beacon shared] startSubBeaconWithName:@"Initial Friends List Display"];
+    [self startProgressBar:@"Retrieving friends' whereabouts..."]; 
+    
     if (!hasViewedInstructions) {
-        //[self startProgressBar:@"Loading Everything..."];
         [iconImageView setHidden:YES];
         [self.view addSubview:instructionView];
-//        [self.view bringSubviewToFront:nextWelcomeImage];
-//        [self.view bringSubviewToFront:previousWelcomeImage];
-    } //else {
-//        nextWelcomeImage = nil;
-//        previousWelcomeImage = nil;
-//        welcomeImage = nil;
-//        instructionView = nil;
-        [[Beacon shared] startSubBeaconWithName:@"Initial Friends List Display"];
-    [self startProgressBar:@"Retrieving friends' whereabouts..."]; 
-    [self.view bringSubviewToFront:instructionView];
-        
-        [[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
-        
-        if (![self getAuthenticatedUser]) {
-            [[FoursquareAPI sharedInstance] getUser:nil withTarget:self andAction:@selector(userResponseReceived:withResponseString:)];
-        }
-    //}
+        [self.view bringSubviewToFront:instructionView];
+    }
+    
+    [[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
+    
+    if (![self getAuthenticatedUser]) {
+        [[FoursquareAPI sharedInstance] getUser:nil withTarget:self andAction:@selector(userResponseReceived:withResponseString:)];
+    }
 }
 
 - (void) addAuthToWebRequest:(NSMutableURLRequest*)requestObj email:(NSString*)email password:(NSString*)password{

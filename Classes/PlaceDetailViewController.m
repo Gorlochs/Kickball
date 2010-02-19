@@ -498,14 +498,14 @@
 
 - (void) checkinAndShoutToVenue:(NSNotification *)inNotification {
     NSLog(@"notification from shout %@", inNotification);
-//    [self startProgressBar:@"Checking in and shouting to this venue..."];
-//    [[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:venue.venueid 
-//                                                  andShout:nil 
-//                                                   offGrid:!isPingOn
-//                                                 toTwitter:isTwitterOn
-//                                                withTarget:self 
-//                                                 andAction:@selector(checkinResponseReceived:withResponseString:)];
-//    [[Beacon shared] startSubBeaconWithName:@"Check in and shout to Venue"];
+    [self startProgressBar:@"Checking in and shouting to this venue..."];
+    [[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:venue.venueid 
+                                                  andShout:[[inNotification userInfo] objectForKey:@"shout"] 
+                                                   offGrid:!isPingOn
+                                                 toTwitter:isTwitterOn
+                                                withTarget:self 
+                                                 andAction:@selector(checkinResponseReceived:withResponseString:)];
+    [[Beacon shared] startSubBeaconWithName:@"Check in and shout to Venue"];
 }
 
 - (void) checkinToVenue {
