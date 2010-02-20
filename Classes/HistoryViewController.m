@@ -8,6 +8,7 @@
 
 #import "HistoryViewController.h"
 #import "FoursquareAPI.h"
+#import "PlaceDetailViewController.h"
 
 @implementation HistoryViewController
 
@@ -59,20 +60,32 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:14.0];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
     FSCheckin *checkin = [checkins objectAtIndex:indexPath.row];
-    cell.textLabel.text = checkin.venue.name;
+    if (checkin.shout) {
+        cell.textLabel.text = [NSString stringWithFormat:@"shout: \"%@\"", checkin.shout];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    } else {
+        cell.textLabel.text = checkin.venue.name;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
     cell.detailTextLabel.text = checkin.created;
 	return cell;
 }
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
-	// [self.navigationController pushViewController:anotherViewController];
-	// [anotherViewController release];
+    PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];
+    
+    FSCheckin *checkin = [checkins objectAtIndex:indexPath.row];
+    if (checkin.venue) {
+        placeDetailController.venueId = checkin.venue.venueid;
+        [self.navigationController pushViewController:placeDetailController animated:YES];
+        [placeDetailController release];        
+    }
 }
 
 

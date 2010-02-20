@@ -17,6 +17,7 @@
 @implementation SettingsViewController
 
 - (void)viewDidLoad {
+    NSLog(@"auth'd user: %@", [self getAuthenticatedUser]);
     username.text = [[FoursquareAPI sharedInstance] userName];
     password.text = [[FoursquareAPI sharedInstance] passWord];
     [[Beacon shared] startSubBeaconWithName:@"Settings View"];
@@ -33,6 +34,7 @@
     NSLog(@"pending friend requests: %@", inString);
     pendingFriendRequests = [[FoursquareAPI usersFromRequestResponseXML:inString] retain];
     friendRequestCount.text = [NSString stringWithFormat:@"%d", [pendingFriendRequests count]];
+    
     [self stopProgressBar];
     NSLog(@"pendingFriendRequests: %@", pendingFriendRequests);
     
@@ -120,12 +122,16 @@
     NSLog(@"new ping setting: %d", newPingSetting);
     isPingAndUpdatesOn = !isPingAndUpdatesOn;
     //pingsAndUpdates.selected = isPingAndUpdatesOn;
+    [self setPingAndUpdatesButton];
+    [self stopProgressBar];
+}
+
+- (void) setPingAndUpdatesButton {
     if (isPingAndUpdatesOn) {
         [pingsAndUpdates setImage:[UIImage imageNamed:@"allPings01.png"] forState:UIControlStateNormal];
     } else {
         [pingsAndUpdates setImage:[UIImage imageNamed:@"allPings03.png"] forState:UIControlStateNormal];
     }
-    [self stopProgressBar];
 }
 
 - (void)dealloc {

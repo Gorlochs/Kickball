@@ -23,5 +23,6 @@
 - (IBAction) addFriends;
 - (IBAction) validateNewUsernamePassword;
 - (IBAction) togglePingsAndUpdates;
+- (void) setPingAndUpdatesButton;
 
 @end
