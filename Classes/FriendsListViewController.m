@@ -258,24 +258,12 @@
         return footerViewCell;
     }
     
-    //cell.imageView.image = [userIcons objectForKey:checkin.user.userId];
-    
     NSLog(@"photo: %@", checkin.user.photo);
 	CGRect imageViewFrame = CGRectMake(5, 8, 36, 36);
     UIImageView *iview = [[UIImageView alloc] initWithFrame:imageViewFrame];
-//	CGRect frame = CGRectMake(0, 0, 36, 36);
-//    if ([userIcons objectForKey:checkin.checkinId]){
-        [iview addSubview:[userIcons objectForKey:checkin.checkinId]];
-//    } else {
-//        KBAsyncImageView* asyncImage = [[[KBAsyncImageView alloc] initWithFrame:frame] autorelease];
-//        [asyncImage loadImageFromURL:[NSURL URLWithString:checkin.user.photo] withRoundedEdges: YES];
-//        [iview addSubview:asyncImage];
-//        [userIcons setObject:asyncImage forKey:checkin.checkinId];
-//    }
+    [iview addSubview:[userIcons objectForKey:checkin.checkinId]];
     [cell addSubview:iview];
     [iview release];
-//    cell.imageView.image = asyncImage.image;
-	//[cell addSubview: asyncImage];
     
     cell.textLabel.text = checkin.display;
     
@@ -463,18 +451,6 @@
         KBAsyncImageView* asyncImage = [[[KBAsyncImageView alloc] initWithFrame:frame] autorelease];
         [asyncImage loadImageFromURL:[NSURL URLWithString:checkin.user.photo] withRoundedEdges: YES];
         [userIcons setObject:asyncImage forKey:checkin.checkinId];
-        
-//        if (checkin.user && checkin.user.photo && checkin.user.userId) {
-//            UIImage *img = [[Utilities sharedInstance] getCachedImage:checkin.user.photo];
-//         
-//            CGSize newSize = CGSizeMake(36.0, 36.0);
-//            UIGraphicsBeginImageContext( newSize );
-//            [img drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
-//            UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
-//            UIGraphicsEndImageContext();
-//
-//            [userIcons setObject:[Utilities makeRoundCornerImage:newImage cornerwidth:4 cornerheight:4] forKey:checkin.user.userId];
-//        }
         
         NSDateComponents *components = [gregorian components:unitFlags fromDate:[self convertToUTC:[NSDate date]] toDate:date options:0];
         NSInteger minutes = [components minute] * -1;

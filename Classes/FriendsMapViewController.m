@@ -119,7 +119,6 @@
 
 - (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     [self setCheckins:[FoursquareAPI checkinsFromResponseXML:inString]];
-//	self.checkins = [FoursquareAPI checkinsFromResponseXML:inString];
     [mapViewer removeAnnotations:mapViewer.annotations];
     [self refreshFriendPoints];
 }
@@ -136,8 +135,9 @@
     // If it's the user location, just return nil.
 	
     if ([annotation isKindOfClass:[MKUserLocation class]]) return nil;
-	FriendIconAnnotationView* pinView = (FriendIconAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:@"CustomPinAnnotation"];
-
+    // removing dequeueing because it is screwing up the refresh of the friends, plus there really isn't that much to dequeue.
+//	FriendIconAnnotationView* pinView = (FriendIconAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:@"CustomPinAnnotation"];
+	FriendIconAnnotationView* pinView = nil;
 	if (!pinView){
 		// If an existing pin view was not available, create one
 		pinView = [[[FriendIconAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomPinAnnotation" andImageUrl:((FriendPlacemark *)annotation).url] autorelease];
