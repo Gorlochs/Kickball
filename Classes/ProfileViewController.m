@@ -419,7 +419,6 @@
 
 - (void) togglePingsAndUpdates {
     [self startProgressBar:@"Changing your ping update preferences..."];
-    //NSArray *yesnoArray = [NSArray arrayWithObjects:@"off", @"on", nil];
     NSString *ping = @"on";
     if (isPingAndUpdatesOn) {
         ping = @"off";

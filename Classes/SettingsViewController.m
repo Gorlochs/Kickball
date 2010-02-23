@@ -21,6 +21,10 @@
     username.text = [[FoursquareAPI sharedInstance] userName];
     password.text = [[FoursquareAPI sharedInstance] passWord];
     [[Beacon shared] startSubBeaconWithName:@"Settings View"];
+    
+    isPingAndUpdatesOn = [self getAuthenticatedUser].isPingOn;
+    [self setPingAndUpdatesButton];
+    
     [super viewDidLoad];
 }
 
@@ -108,12 +112,11 @@
 
 - (void) togglePingsAndUpdates {
     [self startProgressBar:@"Changing your ping update preferences..."];
-    //NSArray *yesnoArray = [NSArray arrayWithObjects:@"off", @"on", nil];
     NSString *ping = @"on";
     if (isPingAndUpdatesOn) {
         ping = @"off";
     }
-    [[FoursquareAPI sharedInstance] setPings:ping forUser:nil withTarget:self andAction:@selector(pingUpdateResponseReceived:withResponseString:)];
+    [[FoursquareAPI sharedInstance] setPings:ping forUser:@"self" withTarget:self andAction:@selector(pingUpdateResponseReceived:withResponseString:)];
 }
 
 - (void) pingUpdateResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
@@ -121,7 +124,6 @@
 	BOOL newPingSetting = [FoursquareAPI pingSettingFromResponseXML:inString];
     NSLog(@"new ping setting: %d", newPingSetting);
     isPingAndUpdatesOn = !isPingAndUpdatesOn;
-    //pingsAndUpdates.selected = isPingAndUpdatesOn;
     [self setPingAndUpdatesButton];
     [self stopProgressBar];
 }
