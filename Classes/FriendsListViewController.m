@@ -23,6 +23,7 @@
 #import "LocationManager.h"
 #import "FriendRequestsViewController.h"
 #import "KickballAppDelegate.h"
+#import "KBAsyncImageView.h"
 
 @interface FriendsListViewController (Private)
 
@@ -222,40 +223,22 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSLog(@"starting cell for row: %d", indexPath.row);
+    //NSLog(@"starting cell for row: %d", indexPath.row);
     
     //NSLog(@"section: %d, row: %d", indexPath.section, indexPath.row);
     static NSString *CellIdentifier = @"MyCell";
     
-//    FriendsListTableCell *cell = (FriendsListTableCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//    
-//    if (cell == nil) {
-//        // TODO: I'm not sure that this is the best way to do this with 3.x - there might be a better way to do it now
-//        UIViewController *vc = [[UIViewController alloc]initWithNibName:@"FriendsListTableCellView" bundle:nil];
-//        cell = (FriendsListTableCell*) vc.view;
-//        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-//        cell.checkinDisplayLabel.highlightedTextColor = [UIColor whiteColor];
-//        cell.addressLabel.highlightedTextColor = [UIColor whiteColor];
-//        cell.timeUnits.highlightedTextColor = [UIColor whiteColor];
-//        cell.numberOfTimeUnits.highlightedTextColor = [UIColor whiteColor];
-//        cell.profileIcon.layer.masksToBounds = YES;
-//        cell.profileIcon.layer.cornerRadius = 4.0;
-//        //cell.profileIcon.layer.borderWidth = 1.0;
-//        [vc release];
-//    }
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//    UIImageView *mayorView = nil; //[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
         cell.textLabel.font = [UIFont boldSystemFontOfSize:14.0];
         cell.detailTextLabel.font = [UIFont systemFontOfSize:12.0];
+        cell.imageView.image = [UIImage imageNamed:@"goodieChange02.png"];
         
         UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 51, 320, 1)];
         line.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.13];
         [cell addSubview:line];
         [line release];
-        
-//        [cell addSubview:mayorView];
     }
     
     FSCheckin *checkin = nil;
@@ -274,20 +257,28 @@
     } else if (indexPath.section == 4) {
         return footerViewCell;
     }
-
-    // create icon image
-//	NSString * path = checkin.user.photo;
-//	if (path) {
-//        cell.profileIcon.image = [userIcons objectForKey:checkin.user.userId];
+    
+    //cell.imageView.image = [userIcons objectForKey:checkin.user.userId];
+    
+    NSLog(@"photo: %@", checkin.user.photo);
+	CGRect imageViewFrame = CGRectMake(5, 8, 36, 36);
+    UIImageView *iview = [[UIImageView alloc] initWithFrame:imageViewFrame];
+//	CGRect frame = CGRectMake(0, 0, 36, 36);
+//    if ([userIcons objectForKey:checkin.checkinId]){
+        [iview addSubview:[userIcons objectForKey:checkin.checkinId]];
+//    } else {
+//        KBAsyncImageView* asyncImage = [[[KBAsyncImageView alloc] initWithFrame:frame] autorelease];
+//        [asyncImage loadImageFromURL:[NSURL URLWithString:checkin.user.photo] withRoundedEdges: YES];
+//        [iview addSubview:asyncImage];
+//        [userIcons setObject:asyncImage forKey:checkin.checkinId];
 //    }
-    cell.imageView.image = [userIcons objectForKey:checkin.user.userId];
-//    float sw=32/cell.imageView.image.size.width;
-//    float sh=32/cell.imageView.image.size.height;
-//    cell.imageView.transform=CGAffineTransformMakeScale(sw,sh);
-//    cell.imageView.layer.masksToBounds = YES;
-//    cell.imageView.layer.cornerRadius = 8.0;
+    [cell addSubview:iview];
+    [iview release];
+//    cell.imageView.image = asyncImage.image;
+	//[cell addSubview: asyncImage];
     
     cell.textLabel.text = checkin.display;
+    
     if ([checkin.display rangeOfString:@"[off the grid]"].location != NSNotFound) {
         cell.detailTextLabel.text = @"...location unknown...";
     } else if (checkin.shout != nil) {
@@ -296,19 +287,6 @@
         cell.detailTextLabel.text = checkin.venue.addressWithCrossstreet;
     }
     
-//    if (checkin.isMayor) {
-//        cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"01.png"]];
-//    } else {
-//        cell.backgroundView = nil;
-//    }
-    
-//    UILabel *timeUnitsLabel = [[UILabel alloc] initWithFrame:CGRectMake(281, 35, 30, 12)];
-//    timeUnitsLabel.text = checkin.truncatedTimeUnits;
-//    timeUnitsLabel.font = [UIFont systemFontOfSize:11.0];
-//    timeUnitsLabel.textColor = [UIColor colorWithWhite:0.0 alpha:0.3];
-//    [cell addSubview:timeUnitsLabel];
-//    [timeUnitsLabel release];
-    
     UILabel *numberOfTimeUnits = [[UILabel alloc] initWithFrame:CGRectMake(285, 5, 30, 20)];
     numberOfTimeUnits.text = checkin.truncatedTimeNumeral;
     numberOfTimeUnits.font = [UIFont systemFontOfSize:20.0];
@@ -316,7 +294,7 @@
     cell.accessoryView = numberOfTimeUnits;
     [numberOfTimeUnits release];
     
-    NSLog(@"returning cell for row: %d", indexPath.row);
+    //NSLog(@"returning cell for row: %d", indexPath.row);
 	return cell;
 }
 
@@ -481,17 +459,22 @@
             [self.yesterdayCheckins addObject:checkin];
         }
         // create dictionary of icons to help speed up the scrolling
-        if (checkin.user && checkin.user.photo && checkin.user.userId) {
-            UIImage *img = [[Utilities sharedInstance] getCachedImage:checkin.user.photo];
-         
-            CGSize newSize = CGSizeMake(36.0, 36.0);
-            UIGraphicsBeginImageContext( newSize );
-            [img drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
-            UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
-            UIGraphicsEndImageContext();
-
-            [userIcons setObject:[Utilities makeRoundCornerImage:newImage cornerwidth:4 cornerheight:4] forKey:checkin.user.userId];
-        }
+        CGRect frame = CGRectMake(0, 0, 36, 36);
+        KBAsyncImageView* asyncImage = [[[KBAsyncImageView alloc] initWithFrame:frame] autorelease];
+        [asyncImage loadImageFromURL:[NSURL URLWithString:checkin.user.photo] withRoundedEdges: YES];
+        [userIcons setObject:asyncImage forKey:checkin.checkinId];
+        
+//        if (checkin.user && checkin.user.photo && checkin.user.userId) {
+//            UIImage *img = [[Utilities sharedInstance] getCachedImage:checkin.user.photo];
+//         
+//            CGSize newSize = CGSizeMake(36.0, 36.0);
+//            UIGraphicsBeginImageContext( newSize );
+//            [img drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+//            UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+//            UIGraphicsEndImageContext();
+//
+//            [userIcons setObject:[Utilities makeRoundCornerImage:newImage cornerwidth:4 cornerheight:4] forKey:checkin.user.userId];
+//        }
         
         NSDateComponents *components = [gregorian components:unitFlags fromDate:[self convertToUTC:[NSDate date]] toDate:date options:0];
         NSInteger minutes = [components minute] * -1;
