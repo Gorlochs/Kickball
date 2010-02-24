@@ -178,7 +178,7 @@
 									<string key="NSResourceName">placeSpecials01.png</string>
 								</object>
 							</object>
-							<object class="IBUIButton" id="953939527">
+							<object class="IBUIButton" id="1056662391">
 								<reference key="NSNextResponder" ref="920997831"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{154, 12}, {74, 35}}</string>
@@ -1671,18 +1671,18 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">choosePhotoButton</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="953939527"/>
+						<reference key="destination" ref="1056662391"/>
 					</object>
 					<int key="connectionID">211</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">getPhoto:</string>
-						<reference key="source" ref="953939527"/>
+						<string key="label">choosePhotoSelectMethod</string>
+						<reference key="source" ref="1056662391"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">212</int>
+					<int key="connectionID">213</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -2053,7 +2053,7 @@
 							<reference ref="431145987"/>
 							<reference ref="692896833"/>
 							<reference ref="963747359"/>
-							<reference ref="953939527"/>
+							<reference ref="1056662391"/>
 						</object>
 						<reference key="parent" ref="40485673"/>
 						<string key="objectName">Title View</string>
@@ -2080,7 +2080,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">210</int>
-						<reference key="object" ref="953939527"/>
+						<reference key="object" ref="1056662391"/>
 						<reference key="parent" ref="920997831"/>
 					</object>
 				</object>
@@ -2252,7 +2252,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">212</int>
+			<int key="maxID">213</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2320,9 +2320,9 @@
 							<string>addTipTodo</string>
 							<string>callVenue</string>
 							<string>checkinToVenue</string>
+							<string>choosePhotoSelectMethod</string>
 							<string>closeMap</string>
 							<string>doGeoAPICall</string>
-							<string>getPhoto:</string>
 							<string>markVenueClosed</string>
 							<string>markVenueWrongAddress</string>
 							<string>showSpecial</string>

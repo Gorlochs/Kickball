@@ -822,19 +822,36 @@
     [self uploadImage:UIImageJPEGRepresentation([info objectForKey:UIImagePickerControllerOriginalImage], 1.0) filename:@"gift.jpg"];
 }
 
+#pragma mark
+#pragma mark UIActionSheetDelegate methods
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        [self getPhoto:UIImagePickerControllerSourceTypePhotoLibrary];
+    } else if (buttonIndex == 1) {
+        [self getPhoto:UIImagePickerControllerSourceTypeCamera];
+    }
+}
+
 #pragma mark -
 
--(IBAction) getPhoto:(id) sender {
+- (void) choosePhotoSelectMethod {
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"How would you like to select a photo?"
+                                                             delegate:self
+                                                    cancelButtonTitle:@"Cancel"
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:@"Photo Album", @"Take New Photo", nil];
+    
+    actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+    [actionSheet showInView:self.view];
+    [actionSheet release];
+}
+
+- (void) getPhoto:(UIImagePickerControllerSourceType)sourceType {
 	UIImagePickerController * picker = [[UIImagePickerController alloc] init];
 	picker.delegate = self;
-    
-	if((UIButton *) sender == choosePhotoButton) {
-		picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-	} else {
-		picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-	}
-    
-	[self presentModalViewController:picker animated:YES];
+    picker.sourceType = sourceType;
+    [self presentModalViewController:picker animated:YES];
 }
 
 - (void) imageRequestDidFinish:(ASIHTTPRequest *) request {
@@ -868,8 +885,8 @@
     [networkQueue setDelegate:self];
     
     // Initilize Variables
-    NSURL *url;
-    ASIFormDataRequest * request;
+    NSURL *url = nil;
+    ASIFormDataRequest *request = nil;
     
     // Add Image
     //NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);

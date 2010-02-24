@@ -12,7 +12,9 @@
 #import "KBBaseViewController.h"
 #import "GAConnectionDelegate.h"
 
-@interface PlaceDetailViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate, GAConnectionDelegate> {
+@interface PlaceDetailViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource, 
+                                                                UINavigationControllerDelegate, UIImagePickerControllerDelegate, 
+                                                                GAConnectionDelegate, UIActionSheetDelegate> {
     IBOutlet UITableView *theTableView;
     IBOutlet UITableViewCell *checkinCell;
     IBOutlet UITableViewCell *giftCell;
@@ -88,6 +90,7 @@
 //- (void) setProperPingButtonState;
 - (void) setProperButtonStates;
 - (void)friendsReceived:(NSNotification *)inNotification;
--(IBAction) getPhoto:(id) sender;
+- (IBAction) choosePhotoSelectMethod;
+- (void) getPhoto:(UIImagePickerControllerSourceType)sourceType;
 
 @end
