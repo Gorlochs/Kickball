@@ -46,6 +46,7 @@
     IBOutlet UIButton *mapButton;
     IBOutlet UIButton *closeMapButton;
     IBOutlet UIButton *phoneButton;
+    IBOutlet UIButton *choosePhotoButton;
     IBOutlet UIImageView *noMayorImage;
     
     NSArray *checkin;
@@ -83,9 +84,10 @@
 - (FSCheckin*) getSingleCheckin;
 - (BOOL) hasMayorCell;
 - (BOOL) isNewMayor;
-- (void) setProperTwitterButtonState;
-- (void) setProperPingButtonState;
+//- (void) setProperTwitterButtonState;
+//- (void) setProperPingButtonState;
 - (void) setProperButtonStates;
 - (void)friendsReceived:(NSNotification *)inNotification;
+-(IBAction) getPhoto:(id) sender;
 
 @end

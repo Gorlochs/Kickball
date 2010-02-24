@@ -27,6 +27,7 @@
 #import "KickballAppDelegate.h"
 #import "KBPin.h"
 #import "NSString+hmac.h"
+#import "ASINetworkQueue.h"
 
 @interface PlaceDetailViewController (Private)
 
@@ -809,82 +810,93 @@
 	return annView;
 }
 
-//#pragma mark Image Picker Delegate methods
-//
-//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-//    // hide picker
-//    [picker dismissModalViewControllerAnimated:YES];
-//    
-//    // upload image
-//    // TODO: we'd have to confirm success to the user.
-//    //       we also need to send a notification to the gift recipient
-//    [self uploadImage:UIImageJPEGRepresentation([info objectForKey:UIImagePickerControllerOriginalImage], 1.0) filename:@"foobar2.jpg"];
-//}
-//
-//#pragma mark private methods
-//
-//// TODO: set max file size    
-//- (BOOL)uploadImage:(NSData *)imageData filename:(NSString *)filename{
-//    //TweetPhotoAppDelegate* myApp = (TweetPhotoAppDelegate*)[[UIApplication sharedApplication] delegate];
-//    
-//    NSString *url = [NSString stringWithFormat:@"http://www.literalshore.com/gorloch/kickball/upload.php"];
-//    
-//    NSString * boundary = @"kickballBoundaryParm";
-//    NSMutableData *postData = [NSMutableData dataWithCapacity:[imageData length] + 1024];
-//    
-//    NSString * venueIdString = [NSString stringWithFormat:@"Content-Disposition: form-data; name=\"venueId\"\r\n\r\n%@", venue.venueid];
-//    NSString * submitterIdString = [NSString stringWithFormat:@"Content-Disposition: form-data; name=\"submitterId\"\r\n\r\n%@", @"sabernar"];
-//    NSString * receiverIdString = [NSString stringWithFormat:@"Content-Disposition: form-data; name=\"receiverId\"\r\n\r\n%@", @""];
-//    NSString * isPrivateString = [NSString stringWithFormat:@"Content-Disposition: form-data; name=\"isPrivate\"\r\n\r\n%@", @"1"];
-//    NSString * messageString = [NSString stringWithFormat:@"Content-Disposition: form-data; name=\"message\"\r\n\r\n%@", @"test message"];
-//    NSString * boundaryString = [NSString stringWithFormat:@"\r\n--%@\r\n", boundary];
-//    NSString * boundaryStringFinal = [NSString stringWithFormat:@"\r\n--%@--\r\n", boundary];
-//    
-//    [postData appendData:[boundaryString dataUsingEncoding:NSUTF8StringEncoding]];
-//    [postData appendData:[venueIdString dataUsingEncoding:NSUTF8StringEncoding]];
-//    [postData appendData:[boundaryString dataUsingEncoding:NSUTF8StringEncoding]];
-//    [postData appendData:[submitterIdString dataUsingEncoding:NSUTF8StringEncoding]];
-//    [postData appendData:[boundaryString dataUsingEncoding:NSUTF8StringEncoding]];
-//    [postData appendData:[receiverIdString dataUsingEncoding:NSUTF8StringEncoding]];
-//    [postData appendData:[boundaryString dataUsingEncoding:NSUTF8StringEncoding]];
-//    [postData appendData:[isPrivateString dataUsingEncoding:NSUTF8StringEncoding]];
-//    [postData appendData:[boundaryString dataUsingEncoding:NSUTF8StringEncoding]];
-//    [postData appendData:[messageString dataUsingEncoding:NSUTF8StringEncoding]];
-//    [postData appendData:[boundaryString dataUsingEncoding:NSUTF8StringEncoding]];
-//   
-//    [postData appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"photo\";\r\nfilename=\"foobar.jpg\"\r\nContent-Type: application/octet-stream\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-//    [postData appendData:imageData];
-//    [postData appendData:[boundaryStringFinal dataUsingEncoding:NSUTF8StringEncoding]];
-//    
-//    NSMutableURLRequest * theRequest=(NSMutableURLRequest*)[NSMutableURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
-//    
-//    [theRequest setHTTPMethod:@"POST"];
-//    
-//    [theRequest addValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary] forHTTPHeaderField:@"Content-Type"];
-//    [theRequest addValue:@"www.literalshore.com" forHTTPHeaderField:@"Host"];
-//    NSString * dataLength = [NSString stringWithFormat:@"%d", [postData length]];
-//    [theRequest addValue:dataLength forHTTPHeaderField:@"Content-Length"];
-//    [theRequest setHTTPBody:(NSData*)postData];
-//    
-//    NSURLResponse *response = nil;
-//    NSError *error = nil;
-//    NSData *returnData = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:&response error:&error];
-//    NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-//    NSLog(@"return string: %@", returnString);
-//    NSLog(@"response: %@", response);
-//    NSLog(@"error: %@", error);
-//    
-////    NSURLConnection * theConnection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
-//    
-////    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-////    if (theConnection) {
-////        receivedData=[[NSMutableData data] retain];
-////    }
-////    else {
-////        [myApp addTextToLog:@"Could not connect to the network" withCaption:@"tweetPhoto"];
-////    }
-//    return ([returnString isEqualToString:@"OK"]);
-//}
+#pragma mark Image Picker Delegate methods
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    // hide picker
+    [picker dismissModalViewControllerAnimated:YES];
+    
+    // upload image
+    // TODO: we'd have to confirm success to the user.
+    //       we also need to send a notification to the gift recipient
+    [self uploadImage:UIImageJPEGRepresentation([info objectForKey:UIImagePickerControllerOriginalImage], 1.0) filename:@"gift.jpg"];
+}
+
+#pragma mark -
+
+-(IBAction) getPhoto:(id) sender {
+	UIImagePickerController * picker = [[UIImagePickerController alloc] init];
+	picker.delegate = self;
+    
+	if((UIButton *) sender == choosePhotoButton) {
+		picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+	} else {
+		picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+	}
+    
+	[self presentModalViewController:picker animated:YES];
+}
+
+- (void) imageRequestDidFinish:(ASIHTTPRequest *) request {
+    NSLog(@"YAY! Image uploaded!");
+    KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"Image upload has been completed!"];
+    [self displayPopupMessage:message];
+    [message release];
+}
+
+- (void) imageQueueDidFinish:(ASIHTTPRequest *) request {
+    NSLog(@"YAY! Image queue is complete!");
+}
+
+- (void) imageRequestDidFail:(ASIHTTPRequest *) request {
+    NSLog(@"Uhoh, it did fail!");
+}
+
+- (void) imageRequestWentWrong:(ASIHTTPRequest *) request {
+    NSLog(@"Uhoh, request went wrong!");
+}
+
+// TODO: set max file size    
+- (BOOL)uploadImage:(NSData *)imageData filename:(NSString *)filename{
+    // Initilize Queue
+    ASINetworkQueue *networkQueue = [[ASINetworkQueue alloc] init];
+    //[networkQueue setUploadProgressDelegate:statusProgressView];
+    [networkQueue setRequestDidFinishSelector:@selector(imageRequestDidFinish:)];
+    [networkQueue setQueueDidFinishSelector:@selector(imageQueueDidFinish:)];
+    [networkQueue setRequestDidFailSelector:@selector(imageRequestDidFail:)];
+    [networkQueue setShowAccurateProgress:true];
+    [networkQueue setDelegate:self];
+    
+    // Initilize Variables
+    NSURL *url;
+    ASIFormDataRequest * request;
+    
+    // Add Image
+    //NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    //NSString *documentsDirectory = [paths objectAtIndex:0];
+    //NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:@"gift.jpg"];
+    
+    // Get Image
+    //NSData *imageData = [[[NSData alloc] initWithContentsOfFile:dataPath] autorelease];
+    
+    // Return if there is no image
+    if(imageData != nil){
+        url = [NSURL URLWithString:@"http://kickball.gorlochs.com/kickball/gifts.xml"];
+        request = [[[ASIFormDataRequest alloc] initWithURL:url] autorelease];
+        [request setPostValue:venue.venueid forKey:@"gift[venud_id]"];
+        [request setPostValue:[self getAuthenticatedUser].userId forKey:@"gift[owner_id]"];
+//        [request setPostValue:@"" forKey:@"gift[recipient_id]"];
+        [request setPostValue:@"1" forKey:@"gift[is_public]"];
+        [request setPostValue:@"testing from the simulator (or device)" forKey:@"gift[message_text]"];
+        [request setData:imageData forKey:@"gift[photo]"];
+        [request setDidFailSelector:@selector(imageRequestWentWrong:)];
+        [request setTimeOutSeconds:500];
+        [networkQueue addOperation:request];
+        //queueCount++;
+    }
+    [networkQueue go];	
+    return YES;
+}
 
 @end
 
