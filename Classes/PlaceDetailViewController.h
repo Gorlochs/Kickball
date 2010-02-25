@@ -12,9 +12,7 @@
 #import "KBBaseViewController.h"
 #import "GAConnectionDelegate.h"
 
-@interface PlaceDetailViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource, 
-                                                                UINavigationControllerDelegate, UIImagePickerControllerDelegate, 
-                                                                GAConnectionDelegate, UIActionSheetDelegate> {
+@interface PlaceDetailViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate, GAConnectionDelegate, UIActionSheetDelegate> {
     IBOutlet UITableView *theTableView;
     IBOutlet UITableViewCell *checkinCell;
     IBOutlet UITableViewCell *giftCell;
@@ -61,6 +59,8 @@
     
     // set to YES if the user should be checked in with the initialization of this view
     BOOL doCheckin;
+                                                                    
+    NSMutableArray *gifts;
 }
 
 @property (nonatomic, retain) UITableViewCell *mayorMapCell;

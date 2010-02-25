@@ -28,6 +28,7 @@
 #import "KBPin.h"
 #import "NSString+hmac.h"
 #import "ASINetworkQueue.h"
+#import "KBGoody.h"
 
 @interface PlaceDetailViewController (Private)
 
@@ -92,9 +93,85 @@
     [[FoursquareAPI sharedInstance] getVenue:venueId withTarget:self andAction:@selector(venueResponseReceived:withResponseString:)];
     [[Beacon shared] startSubBeaconWithName:@"Venue Detail"];
     
-    NSString *gorlochUrlString = [NSString stringWithFormat:@"http://kickball.gorlochs.com/kickball/gifts_by_venue/%@", venue.venueid];
-    ASIHTTPRequest *gorlochRequest = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:gorlochUrlString]];
+    // get gift info
+    NSString *gorlochUrlString = [NSString stringWithFormat:@"http://kickball.gorlochs.com/kickball/gifts/venue/%@.xml", venueId];
+    NSLog(@"url: %@", gorlochUrlString);
+    ASIHTTPRequest *gorlochRequest = [[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:gorlochUrlString]] autorelease];
+            
+    [gorlochRequest setDidFailSelector:@selector(venueRequestWentWrong:)];
+    [gorlochRequest setDidFinishSelector:@selector(venueRequestDidFinish:)];
+    [gorlochRequest setTimeOutSeconds:500];
+    [gorlochRequest setDelegate:self];
+    [gorlochRequest startAsynchronous];
+}
+
+
+- (void) venueRequestWentWrong:(ASIHTTPRequest *) request {
+    NSLog(@"BOOOOOOOOOOOO!");
+}
+
+- (void) venueRequestDidFinish:(ASIHTTPRequest *) request {
+    NSLog(@"YAY! Venue queue is complete! response: %@", [request responseString]);
     
+    goodies = [[NSMutableArray alloc] initWithCapacity:1];
+    
+    CXMLDocument *rssParser = [[[CXMLDocument alloc] initWithXMLString:[request responseString] options:0 error:nil] autorelease];
+    
+    // Create a new Array object to be used with the looping of the results from the rssParser
+    NSArray *resultNodes = NULL;
+    
+    // Set the resultNodes Array to contain an object for every instance of an  node in our RSS feed
+    resultNodes = [rssParser nodesForXPath:@"//gift" error:nil];
+    
+    // Loop through the resultNodes to access each items actual data
+    for (CXMLElement *resultElement in resultNodes) {
+        
+//        // Create a temporary MutableDictionary to store the items fields in, which will eventually end up in blogEntries
+//        NSMutableDictionary *blogItem = [[NSMutableDictionary alloc] init];
+//        
+//        // Create a counter variable as type "int"
+//        int counter;
+        
+        KBGoody *goody = [[KBGoody alloc] init];
+        
+        // Loop through the children of the current  node
+        for (int counter = 0; counter < [resultElement childCount]; counter++) {
+            
+            // TODO: we can also just pass in the resultElement into a KBGoody constructor and let the object take care of the object construction
+//            NSLog(@"resultsElement stringValue: %@", [[resultElement childAtIndex:counter] stringValue]);
+//            NSLog(@"resultsElement name: %@", [[resultElement childAtIndex:counter] name]);
+            
+            NSString *name = [[resultElement childAtIndex:counter] name];
+            NSString *value = [[resultElement childAtIndex:counter] stringValue];
+            if ([name isEqualToString:@"is-banned"]) {
+                goody.isBanned = [value boolValue];
+            } else if ([name isEqualToString:@"is-public"]) {
+                goody.isPublic = [value boolValue];
+            } else if ([name isEqualToString:@"message-text"]) {
+                goody.messageText = value;
+            } else if ([name isEqualToString:@"name"]) {
+                
+            } else if ([name isEqualToString:@"owner-id"]) {
+                goody.ownerId = value;
+            } else if ([name isEqualToString:@"photo-file-name"]) {
+                goody.imageName = value;
+            } else if ([name isEqualToString:@"recipient-id"]) {
+                goody.recipientId = value;
+            } else if ([name isEqualToString:@"uuid"]) {
+                goody.goodyId = value;
+            } else if ([name isEqualToString:@"venue-id"]) {
+                goody.venueId = value;
+            }
+        }
+        
+        [goodies addObject:goody];
+        [goody release];
+        
+        // Add the blogItem to the global blogEntries Array so that the view can access it.
+        //[blogEntries addObject:[blogItem copy]];
+    }
+    NSLog(@"goodies: %@", goodies);
+    NSLog(@"goodies count: %d", [goodies count]);
 }
 
 - (void) displayTodoTipMessage:(NSNotification *)inNotification {
@@ -904,12 +981,12 @@
     if(imageData != nil){
         url = [NSURL URLWithString:@"http://kickball.gorlochs.com/kickball/gifts.xml"];
         request = [[[ASIFormDataRequest alloc] initWithURL:url] autorelease];
-        [request setPostValue:venue.venueid forKey:@"gift[venud_id]"];
+        [request setPostValue:venueId forKey:@"gift[venue_id]"];
         [request setPostValue:[self getAuthenticatedUser].userId forKey:@"gift[owner_id]"];
 //        [request setPostValue:@"" forKey:@"gift[recipient_id]"];
         [request setPostValue:@"1" forKey:@"gift[is_public]"];
         [request setPostValue:@"testing from the simulator (or device)" forKey:@"gift[message_text]"];
-        [request setData:imageData forKey:@"gift[photo]"];
+        [request setData:imageData withFileName:filename andContentType:@"image/jpeg" forKey:@"gift[photo]"];
         [request setDidFailSelector:@selector(imageRequestWentWrong:)];
         [request setTimeOutSeconds:500];
         [networkQueue addOperation:request];
