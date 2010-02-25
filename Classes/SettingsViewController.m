@@ -130,9 +130,11 @@
 
 - (void) setPingAndUpdatesButton {
     if (isPingAndUpdatesOn) {
-        [pingsAndUpdates setImage:[UIImage imageNamed:@"allPings01.png"] forState:UIControlStateNormal];
+        [pingsAndUpdates setImage:[UIImage imageNamed:@"settingsCheckins01.png"] forState:UIControlStateNormal];
+        [pingsAndUpdates setImage:[UIImage imageNamed:@"settingsCheckins02.png"] forState:UIControlStateHighlighted];
     } else {
-        [pingsAndUpdates setImage:[UIImage imageNamed:@"allPings03.png"] forState:UIControlStateNormal];
+        [pingsAndUpdates setImage:[UIImage imageNamed:@"settingsCheckins03.png"] forState:UIControlStateNormal];
+        [pingsAndUpdates setImage:[UIImage imageNamed:@"settingsCheckins04.png"] forState:UIControlStateHighlighted];
     }
 }
 
