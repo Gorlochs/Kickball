@@ -81,7 +81,9 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	UIImage *img = [UIImage imageWithData: imgData];
 	if(roundEdges) {
 		self.image = [Utilities makeRoundCornerImage:img cornerwidth:8 cornerheight:8];
-	}
+	} else {
+        self.image = img;
+    }
 	self.frame = self.bounds;
 	
 	[self setNeedsLayout];	

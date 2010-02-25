@@ -60,7 +60,7 @@
     // set to YES if the user should be checked in with the initialization of this view
     BOOL doCheckin;
                                                                     
-    NSMutableArray *gifts;
+    NSMutableArray *goodies;
 }
 
 @property (nonatomic, retain) UITableViewCell *mayorMapCell;
