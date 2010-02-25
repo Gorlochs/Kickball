@@ -38,6 +38,10 @@
 @synthesize checkins, recentCheckins, todayCheckins, yesterdayCheckins;
 
 
+-(void) viewWillAppear:(BOOL)animated{
+    NSLog(@"*********** list view will appear ***************");
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    [self setupSplashAnimation];

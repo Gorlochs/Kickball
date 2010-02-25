@@ -36,21 +36,13 @@
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-	
-	// Release any cached data, images, etc that aren't in use.
 }
 
-//- (void) viewDidDisappear:(BOOL)animated {
-//    [mapViewer removeAnnotations:mapViewer.annotations];
-//}
-
 - (void)viewDidUnload {
-	// Release any retained subviews of the main view.
-	// e.g. self.myOutlet = nil;
+    self.mapViewer = nil;
 }
 
 - (void) refreshMapRegion {
-	NSLog(@"Refresh map region");
 	[mapViewer setRegion:mapRegion animated:TRUE];
 	[mapViewer regionThatFits:mapRegion];
 }
@@ -83,8 +75,6 @@
 		mapRegion = region;
 		[self performSelectorOnMainThread:@selector(refreshMapRegion) withObject:nil waitUntilDone:NO];	
 	}
-	
-	//[self refreshFriendPoints];
 }
 
 - (void) refreshFriendPoints {
@@ -179,9 +169,16 @@
 }
 
 - (void)dealloc {
-    [mapViewer release];
+    // all this is a fix for the MKMapView bug where the bouncing blue dot animation causes a crash when you go back one view
+    [self.mapViewer removeAnnotations:self.mapViewer.annotations];
+    self.mapViewer.delegate = nil;
+    self.mapViewer.showsUserLocation = NO;
+    self.mapViewer = nil;
+    
+    [mapViewer performSelector:@selector(release) withObject:nil afterDelay:4.0f];
+    //[mapViewer release];
     [checkins release];
-    [super dealloc];
+    if (false) [super dealloc]; // I assume that this is just so that there is no Xcode warning
 }
 
 @end
