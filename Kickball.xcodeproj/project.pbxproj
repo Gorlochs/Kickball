@@ -627,10 +627,6 @@
 		6AFC1D9A10BA4320006B7E5F /* ProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AFC1D9910BA4320006B7E5F /* ProgressViewController.m */; };
 		6AFF0E9910FFD6CD00AD6E55 /* shout.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AFF0E9810FFD6CD00AD6E55 /* shout.png */; };
 		6AFF0E9B10FFD6D400AD6E55 /* shout02.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AFF0E9A10FFD6D400AD6E55 /* shout02.png */; };
-		6AFF0FE1110178F900AD6E55 /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AFF0FDA110178F900AD6E55 /* ASIFormDataRequest.m */; };
-		6AFF0FE2110178F900AD6E55 /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AFF0FDC110178F900AD6E55 /* ASIHTTPRequest.m */; };
-		6AFF0FE3110178F900AD6E55 /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AFF0FDE110178F900AD6E55 /* ASINetworkQueue.m */; };
-		6AFF0FE4110178F900AD6E55 /* NSHTTPCookieAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AFF0FE0110178F900AD6E55 /* NSHTTPCookieAdditions.m */; };
 		6AFF0FFF1101796600AD6E55 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AFF0FFE1101796600AD6E55 /* CFNetwork.framework */; };
 		6AFF10051101798000AD6E55 /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AFF10041101798000AD6E55 /* libz.1.2.3.dylib */; };
 		6AFF23F110A247B100CD30E5 /* PlaceTwitterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AFF23EF10A247B100CD30E5 /* PlaceTwitterViewController.m */; };
@@ -1413,14 +1409,6 @@
 		6AFC1D9910BA4320006B7E5F /* ProgressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressViewController.m; sourceTree = "<group>"; };
 		6AFF0E9810FFD6CD00AD6E55 /* shout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shout.png; sourceTree = "<group>"; };
 		6AFF0E9A10FFD6D400AD6E55 /* shout02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shout02.png; sourceTree = "<group>"; };
-		6AFF0FD9110178F900AD6E55 /* ASIFormDataRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIFormDataRequest.h; sourceTree = "<group>"; };
-		6AFF0FDA110178F900AD6E55 /* ASIFormDataRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIFormDataRequest.m; sourceTree = "<group>"; };
-		6AFF0FDB110178F900AD6E55 /* ASIHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHTTPRequest.h; sourceTree = "<group>"; };
-		6AFF0FDC110178F900AD6E55 /* ASIHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIHTTPRequest.m; sourceTree = "<group>"; };
-		6AFF0FDD110178F900AD6E55 /* ASINetworkQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASINetworkQueue.h; sourceTree = "<group>"; };
-		6AFF0FDE110178F900AD6E55 /* ASINetworkQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASINetworkQueue.m; sourceTree = "<group>"; };
-		6AFF0FDF110178F900AD6E55 /* NSHTTPCookieAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSHTTPCookieAdditions.h; sourceTree = "<group>"; };
-		6AFF0FE0110178F900AD6E55 /* NSHTTPCookieAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSHTTPCookieAdditions.m; sourceTree = "<group>"; };
 		6AFF0FFE1101796600AD6E55 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		6AFF10041101798000AD6E55 /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
 		6AFF23EE10A247B100CD30E5 /* PlaceTwitterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceTwitterViewController.h; sourceTree = "<group>"; };
@@ -2616,14 +2604,6 @@
 		6AFF0FD8110178F900AD6E55 /* ASI */ = {
 			isa = PBXGroup;
 			children = (
-				6AFF0FD9110178F900AD6E55 /* ASIFormDataRequest.h */,
-				6AFF0FDA110178F900AD6E55 /* ASIFormDataRequest.m */,
-				6AFF0FDB110178F900AD6E55 /* ASIHTTPRequest.h */,
-				6AFF0FDC110178F900AD6E55 /* ASIHTTPRequest.m */,
-				6AFF0FDD110178F900AD6E55 /* ASINetworkQueue.h */,
-				6AFF0FDE110178F900AD6E55 /* ASINetworkQueue.m */,
-				6AFF0FDF110178F900AD6E55 /* NSHTTPCookieAdditions.h */,
-				6AFF0FE0110178F900AD6E55 /* NSHTTPCookieAdditions.m */,
 			);
 			path = ASI;
 			sourceTree = "<group>";
@@ -3278,10 +3258,6 @@
 				6A145FB710FE74E7002CE938 /* ProfileFriendsViewController.xib in Sources */,
 				6A812ED410FF465600BB51A0 /* ViewFriendRequestsTableCell.m in Sources */,
 				6A812ED610FF467100BB51A0 /* ViewFriendRequestsTableCell.xib in Sources */,
-				6AFF0FE1110178F900AD6E55 /* ASIFormDataRequest.m in Sources */,
-				6AFF0FE2110178F900AD6E55 /* ASIHTTPRequest.m in Sources */,
-				6AFF0FE3110178F900AD6E55 /* ASINetworkQueue.m in Sources */,
-				6AFF0FE4110178F900AD6E55 /* NSHTTPCookieAdditions.m in Sources */,
 				6AEE01271107C7F80088A488 /* Reachability.m in Sources */,
 				6A63DDA41108EDBA00E2F9BB /* IFTweetLabel.m in Sources */,
 				6A63DDA51108EDBA00E2F9BB /* RegexKitLite.m in Sources */,

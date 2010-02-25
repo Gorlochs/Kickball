@@ -91,6 +91,10 @@
     [self startProgressBar:@"Retrieving venue details..."];
     [[FoursquareAPI sharedInstance] getVenue:venueId withTarget:self andAction:@selector(venueResponseReceived:withResponseString:)];
     [[Beacon shared] startSubBeaconWithName:@"Venue Detail"];
+    
+    NSString *gorlochUrlString = [NSString stringWithFormat:@"http://kickball.gorlochs.com/kickball/gifts_by_venue/%@", venue.venueid];
+    ASIHTTPRequest *gorlochRequest = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:gorlochUrlString]];
+    
 }
 
 - (void) displayTodoTipMessage:(NSNotification *)inNotification {
