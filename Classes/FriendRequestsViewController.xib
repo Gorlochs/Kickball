@@ -13,10 +13,10 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="42"/>
-			<integer value="33"/>
 			<integer value="32"/>
+			<integer value="20"/>
+			<integer value="33"/>
 			<integer value="48"/>
-			<integer value="8"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -69,9 +69,23 @@
 						<int key="NSvFlags">292</int>
 						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBUIImageView" id="301883362">
+								<reference key="NSNextResponder" ref="762504057"/>
+								<int key="NSvFlags">256</int>
+								<string key="NSFrame">{{47, 10}, {243, 29}}</string>
+								<reference key="NSSuperview" ref="762504057"/>
+								<bool key="IBUIOpaque">NO</bool>
+								<bool key="IBUIClipsSubviews">YES</bool>
+								<int key="IBUIContentMode">4</int>
+								<bool key="IBUIMultipleTouchEnabled">YES</bool>
+								<object class="NSCustomResource" key="IBUIImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">kbTitle01.png</string>
+								</object>
+							</object>
 							<object class="IBUIButton" id="981565877">
 								<reference key="NSNextResponder" ref="762504057"/>
-								<int key="NSvFlags">-2147483356</int>
+								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{270, 0}, {50, 50}}</string>
 								<reference key="NSSuperview" ref="762504057"/>
 								<bool key="IBUIOpaque">NO</bool>
@@ -93,20 +107,6 @@
 								<object class="NSColor" key="IBUINormalTitleShadowColor" id="1054943060">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MC41AA</bytes>
-								</object>
-							</object>
-							<object class="IBUIImageView" id="301883362">
-								<reference key="NSNextResponder" ref="762504057"/>
-								<int key="NSvFlags">256</int>
-								<string key="NSFrame">{{47, 10}, {243, 29}}</string>
-								<reference key="NSSuperview" ref="762504057"/>
-								<bool key="IBUIOpaque">NO</bool>
-								<bool key="IBUIClipsSubviews">YES</bool>
-								<int key="IBUIContentMode">4</int>
-								<bool key="IBUIMultipleTouchEnabled">YES</bool>
-								<object class="NSCustomResource" key="IBUIImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">kbTitle01.png</string>
 								</object>
 							</object>
 						</object>
