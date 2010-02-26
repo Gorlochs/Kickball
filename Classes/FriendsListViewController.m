@@ -496,10 +496,10 @@
     NSLog(@"finished with checkin response");
     
     if (!hasViewedInstructions) {
-        [self stopProgressBar];
+        //[self stopProgressBar];
         [standardUserDefaults setBool:YES forKey:@"viewedInstructions"];
         hasViewedInstructions = YES;
-        [instructionView removeFromSuperview];
+        //[instructionView removeFromSuperview];
     }
 }
 
@@ -510,6 +510,8 @@
 }
 
 - (void) viewNextWelcomeImage {
+    [self stopProgressBar];
+    [instructionView removeFromSuperview];
 //    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
 //    [standardUserDefaults setBool:YES forKey:@"viewedInstructions"];
 //    hasViewedInstructions = YES;
