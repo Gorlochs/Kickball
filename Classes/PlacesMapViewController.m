@@ -64,7 +64,9 @@
             [tmpArray addObject:annotation];
         }
     }
-  
+    [mapViewer removeAnnotations:tmpArray];
+    [tmpArray release];
+    
     double minLat = 1000;
     double maxLat = -1000;
     double minLong = 1000;
@@ -114,7 +116,6 @@
     region.span = span;
     region.center = center;
 
-    [mapViewer removeAnnotations:tmpArray];
 	for(FSVenue * venue in self.venues){
 		//FSVenue * checkVenue = checkin.venue; 
 		if(venue.geolat && venue.geolong){

@@ -415,7 +415,9 @@ static FoursquareAPI *sharedInstance = nil;
 	allUsers = [userParser nodesForXPath:@"//requests/user" error:nil];
     NSLog(@"allusers: %@", allUsers);
 	for (CXMLElement *userResult in allUsers) {
-        [users addObject:[[FoursquareAPI _userFromNode:userResult] retain]];
+        FSUser *user = [FoursquareAPI _userFromNode:userResult];
+        [users addObject:user];
+        [user release];
 	}
     [userParser release];
 	return users;
@@ -495,7 +497,9 @@ static FoursquareAPI *sharedInstance = nil;
 	allUsers = [userParser nodesForXPath:@"//users/user" error:nil];
     NSLog(@"allusers: %@", allUsers);
 	for (CXMLElement *userResult in allUsers) {
-        [users addObject:[FoursquareAPI _userFromNode:userResult]];
+        FSUser *user = [FoursquareAPI _userFromNode:userResult];
+        [users addObject:user];
+        [user release];
 	}
     [userParser release];
 	return users;
@@ -514,7 +518,9 @@ static FoursquareAPI *sharedInstance = nil;
 	allUsers = [userParser nodesForXPath:@"//requests/user" error:nil];
     NSLog(@"allusers: %@", allUsers);
 	for (CXMLElement *userResult in allUsers) {
-        [users addObject:[FoursquareAPI _userFromNode:userResult]];
+        FSUser *user = [FoursquareAPI _userFromNode:userResult];
+        [users addObject:user];
+        [user release];
 	}
     [userParser release];
 	return users;
@@ -533,7 +539,9 @@ static FoursquareAPI *sharedInstance = nil;
 	allUsers = [userParser nodesForXPath:@"//friends/user" error:nil];
     NSLog(@"allusers: %@", allUsers);
 	for (CXMLElement *userResult in allUsers) {
-        [users addObject:[FoursquareAPI _userFromNode:userResult]];
+        FSUser *user = [FoursquareAPI _userFromNode:userResult];
+        [users addObject:user];
+        [user release];
 	}
     [userParser release];
 	return users;
@@ -599,7 +607,7 @@ static FoursquareAPI *sharedInstance = nil;
 	FSUser *user = nil;
 	NSArray *allUserAttrs = [userParser nodesForXPath:@"user" error:nil];
 	for (CXMLElement *usrAttr in allUserAttrs) {
-		user = [FoursquareAPI _userFromNode:usrAttr];
+		user = [[FoursquareAPI _userFromNode:usrAttr] retain];
         break;
 	}
     [userParser release];
@@ -687,7 +695,7 @@ static FoursquareAPI *sharedInstance = nil;
             if([key compare:@"user"] == 0){
                 NSArray * checkinUser = [checkinAttr elementsForName:@"user"];
                 for (CXMLElement *checkedUser in checkinUser) {
-                    FSUser * currentUserInfo = [FoursquareAPI _userFromNode:checkedUser];
+                    FSUser * currentUserInfo = [[FoursquareAPI _userFromNode:checkedUser] retain];
                     oneCheckin.user = currentUserInfo;
                 }
             } else if([key compare:@"venue"] == 0){
@@ -707,7 +715,7 @@ static FoursquareAPI *sharedInstance = nil;
                 FSMayor *checkinMayor = [[FSMayor alloc] init];
                 NSArray * mayorUserNodes = [checkinAttr nodesForXPath:@"//mayor/user" error:nil];
                 if(mayorUserNodes && [mayorUserNodes count] > 0){
-                    checkinMayor.user = [FoursquareAPI _userFromNode:[mayorUserNodes objectAtIndex:0]];
+                    checkinMayor.user = [[FoursquareAPI _userFromNode:[mayorUserNodes objectAtIndex:0]] retain];
                 }
                 for (CXMLElement *mayorNode in mayorNodes) {
                     for (int counter = 0; counter < [mayorNode childCount]; counter++) {
@@ -844,7 +852,7 @@ static FoursquareAPI *sharedInstance = nil;
 			} else if([key isEqualToString:@"stats"]){
 				NSArray * mayorNodes = [venueResult nodesForXPath:@"stats/mayor/user" error:nil];
 				if(mayorNodes && [mayorNodes count] > 0){
-					newVenue.mayor = [FoursquareAPI _userFromNode:[mayorNodes objectAtIndex:0]];
+					newVenue.mayor = [[FoursquareAPI _userFromNode:[mayorNodes objectAtIndex:0]] retain];
 				}
 				
 				NSArray * countNodes = [venueResult nodesForXPath:@"stats/mayor/count" error:nil];
@@ -1043,7 +1051,7 @@ static FoursquareAPI *sharedInstance = nil;
 
 + (FSUser *) _userFromNode:(CXMLElement *) usrAttr {
 
-	FSUser * loggedInUser = [[FSUser alloc] init];
+	FSUser * loggedInUser = [[[FSUser alloc] init] autorelease];
 
 	int counter;
 

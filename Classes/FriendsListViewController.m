@@ -38,10 +38,6 @@
 @synthesize checkins, recentCheckins, todayCheckins, yesterdayCheckins;
 
 
--(void) viewWillAppear:(BOOL)animated{
-    NSLog(@"*********** list view will appear ***************");
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    [self setupSplashAnimation];
@@ -148,12 +144,13 @@
 
 - (void)userResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     NSLog(@"authenticated user: %@", inString);
-	FSUser* user = [FoursquareAPI userFromResponseXML:inString];
+	FSUser* user = [[FoursquareAPI userFromResponseXML:inString] retain];
     if (hasViewedInstructions) {
         [self setUserIconView:user];
     }
     [self setAuthenticatedUser:user];
     NSLog(@"auth'd user: %@", user);
+    [user release];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -238,7 +235,7 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
         cell.textLabel.font = [UIFont boldSystemFontOfSize:14.0];
         cell.detailTextLabel.font = [UIFont systemFontOfSize:12.0];
-        cell.imageView.image = [UIImage imageNamed:@"goodieChange02.png"];
+        cell.imageView.image = [UIImage imageNamed:@"blank_boy.png"];
         
         UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 51, 320, 1)];
         line.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.13];
@@ -264,7 +261,7 @@
     }
     
     NSLog(@"photo: %@", checkin.user.photo);
-	CGRect imageViewFrame = CGRectMake(5, 8, 36, 36);
+	CGRect imageViewFrame = CGRectMake(8, 8, 36, 36);
     UIImageView *iview = [[UIImageView alloc] initWithFrame:imageViewFrame];
     [iview addSubview:[userIcons objectForKey:checkin.checkinId]];
     [cell addSubview:iview];

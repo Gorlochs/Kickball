@@ -78,10 +78,10 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];
     
     FSCheckin *checkin = [checkins objectAtIndex:indexPath.row];
     if (checkin.venue) {
+        PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];
         placeDetailController.venueId = checkin.venue.venueid;
         [self.navigationController pushViewController:placeDetailController animated:YES];
         [placeDetailController release];        
