@@ -50,7 +50,7 @@
 }
 
 - (void)userResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-	user = [FoursquareAPI userFromResponseXML:inString];
+	user = [[FoursquareAPI userFromResponseXML:inString] retain];
     name.text = user.firstnameLastInitial;
     
     if ([user.checkin.display rangeOfString:@"[off the grid]"].location != NSNotFound) {

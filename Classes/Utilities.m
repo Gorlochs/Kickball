@@ -148,7 +148,7 @@ static Utilities *sharedInstance = nil;
 
 - (void)friendsResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     if (friendsWithPingOn == nil) {
-        NSArray *allFriends = [FoursquareAPI friendUsersFromRequestResponseXML:inString];
+        NSArray *allFriends = [[FoursquareAPI friendUsersFromRequestResponseXML:inString] retain];
         totalNumberOfUsersForPush = [allFriends count];
         NSLog(@"total number of friends: %d", totalNumberOfUsersForPush);
         friendsWithPingOn = [[NSMutableArray alloc] initWithCapacity:1];

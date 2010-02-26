@@ -417,7 +417,7 @@ static FoursquareAPI *sharedInstance = nil;
 	for (CXMLElement *userResult in allUsers) {
         FSUser *user = [FoursquareAPI _userFromNode:userResult];
         [users addObject:user];
-        [user release];
+        //[user release];
 	}
     [userParser release];
 	return users;
@@ -499,7 +499,7 @@ static FoursquareAPI *sharedInstance = nil;
 	for (CXMLElement *userResult in allUsers) {
         FSUser *user = [FoursquareAPI _userFromNode:userResult];
         [users addObject:user];
-        [user release];
+        //[user release];
 	}
     [userParser release];
 	return users;
@@ -520,7 +520,7 @@ static FoursquareAPI *sharedInstance = nil;
 	for (CXMLElement *userResult in allUsers) {
         FSUser *user = [FoursquareAPI _userFromNode:userResult];
         [users addObject:user];
-        [user release];
+        //[user release];
 	}
     [userParser release];
 	return users;
@@ -541,7 +541,7 @@ static FoursquareAPI *sharedInstance = nil;
 	for (CXMLElement *userResult in allUsers) {
         FSUser *user = [FoursquareAPI _userFromNode:userResult];
         [users addObject:user];
-        [user release];
+        //[user release];
 	}
     [userParser release];
 	return users;
