@@ -11,7 +11,7 @@
 #import "PlacesMapViewController.h"
 #import "FoursquareAPI.h"
 #import "FSCheckin.h"
-#import "AddPlaceViewController.h"
+#import "AddPlaceFormViewController.h"
 #import "LocationManager.h"
 #import "FriendsListViewController.h"
 
@@ -132,9 +132,13 @@
 }
 
 - (void) addNewVenue {
-    AddPlaceViewController *addPlaceController = [[AddPlaceViewController alloc] initWithNibName:@"AddPlaceViewController" bundle:nil];
+    AddPlaceFormViewController *addPlaceController = [[AddPlaceFormViewController alloc] initWithNibName:@"AddPlaceFormViewController" bundle:nil];
+    addPlaceController.newVenueName = searchbox.text;
     [self.navigationController pushViewController:addPlaceController animated:YES];
     [addPlaceController release];
+//    AddPlaceViewController *addPlaceController = [[AddPlaceViewController alloc] initWithNibName:@"AddPlaceViewController" bundle:nil];
+//    [self.navigationController pushViewController:addPlaceController animated:YES];
+//    [addPlaceController release];
 }
 
 - (void) cancelKeyboard: (UIControl *) button {

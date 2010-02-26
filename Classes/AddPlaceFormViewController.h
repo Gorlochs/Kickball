@@ -10,7 +10,9 @@
 #import "KBBaseViewController.h"
 
 
-@interface AddPlaceFormViewController : KBBaseViewController <UITextFieldDelegate> {
+@interface AddPlaceFormViewController : KBBaseViewController <UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource> {
+    IBOutlet UITableView *theTableView;
+    IBOutlet UITableViewCell *tableCell;
     NSString *newVenueName;
     
     IBOutlet UITextField *address;
