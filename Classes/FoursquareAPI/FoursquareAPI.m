@@ -576,7 +576,7 @@ static FoursquareAPI *sharedInstance = nil;
 	NSArray *allGroups = [venueParser nodesForXPath:@"//venues/group" error:nil];
 	for (CXMLElement *groupResult in allGroups) {
 		NSArray * groupOfVenues = [FoursquareAPI _venuesFromNode:groupResult];
-        [allVenues setObject:[groupOfVenues copy] forKey:[[groupResult attributeForName:@"type"] stringValue]];
+        [allVenues setObject:groupOfVenues forKey:[[groupResult attributeForName:@"type"] stringValue]];
 	}
     [venueParser release];
 	return allVenues;
@@ -599,6 +599,7 @@ static FoursquareAPI *sharedInstance = nil;
 	return user;
 }
 
+// TODO: this might have a memory leak in it, but it's not currently being used
 + (FSUser *) loggedInUserFromResponseXML:(NSString *) inString{
 	NSError * err;
 	CXMLDocument *userParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
