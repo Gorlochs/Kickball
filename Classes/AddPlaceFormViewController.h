@@ -25,6 +25,8 @@
     
     IBOutlet UILabel *venueName;
     
+    IBOutlet UIToolbar *toolbar;
+    
     CGFloat animatedDistance;
 }
 
@@ -33,6 +35,9 @@
 - (IBAction) clearFields;
 - (IBAction) saveVenueAndCheckin;
 - (IBAction) viewTipsForAddingNewPlace;
+- (IBAction) cancelEditing;
+- (IBAction) editNextField;
+- (IBAction) editPreviousField;
 - (void) newVenueResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString;
 
 @end

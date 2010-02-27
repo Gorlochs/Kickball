@@ -12,8 +12,9 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="139"/>
+			<integer value="144"/>
 			<integer value="138"/>
+			<integer value="36"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -477,7 +478,7 @@
 								<int key="IBUIClearButtonMode">1</int>
 							</object>
 						</object>
-						<string key="NSFrameSize">{320, 214}</string>
+						<string key="NSFrameSize">{320, 215}</string>
 						<reference key="NSSuperview" ref="952993647"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -496,8 +497,39 @@
 					<bytes key="NSRGB">MSAxIDEAA</bytes>
 				</object>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
-				<int key="IBUISeparatorStyle">1</int>
+				<int key="IBUISelectionStyle">0</int>
 				<reference key="IBUIContentView" ref="221822603"/>
+			</object>
+			<object class="IBUIToolbar" id="415660468">
+				<reference key="NSNextResponder"/>
+				<int key="NSvFlags">266</int>
+				<string key="NSFrameSize">{320, 44}</string>
+				<reference key="NSSuperview"/>
+				<bool key="IBUIOpaque">NO</bool>
+				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+				<int key="IBUIBarStyle">1</int>
+				<object class="NSMutableArray" key="IBUIItems">
+					<bool key="EncodedWithXMLCoder">YES</bool>
+					<object class="IBUIBarButtonItem" id="866179501">
+						<string key="IBUITitle">Prev</string>
+						<int key="IBUIStyle">1</int>
+						<reference key="IBUIToolbar" ref="415660468"/>
+					</object>
+					<object class="IBUIBarButtonItem" id="598614859">
+						<string key="IBUITitle">Next</string>
+						<int key="IBUIStyle">1</int>
+						<reference key="IBUIToolbar" ref="415660468"/>
+					</object>
+					<object class="IBUIBarButtonItem" id="512412467">
+						<reference key="IBUIToolbar" ref="415660468"/>
+						<int key="IBUISystemItemIdentifier">5</int>
+					</object>
+					<object class="IBUIBarButtonItem" id="468645805">
+						<string key="IBUITitle">Cancel</string>
+						<int key="IBUIStyle">1</int>
+						<reference key="IBUIToolbar" ref="415660468"/>
+					</object>
+				</object>
 			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -707,6 +739,56 @@
 					</object>
 					<int key="connectionID">143</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">toolbar</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="415660468"/>
+					</object>
+					<int key="connectionID">149</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">backOneView</string>
+						<reference key="source" ref="1028771042"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">150</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">goToHomeView</string>
+						<reference key="source" ref="666271568"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">151</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">editNextField</string>
+						<reference key="source" ref="598614859"/>
+						<reference key="destination" ref="372490531"/>
+					</object>
+					<int key="connectionID">152</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">editPreviousField</string>
+						<reference key="source" ref="866179501"/>
+						<reference key="destination" ref="372490531"/>
+					</object>
+					<int key="connectionID">153</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">cancelEditing</string>
+						<reference key="source" ref="468645805"/>
+						<reference key="destination" ref="372490531"/>
+					</object>
+					<int key="connectionID">154</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -871,6 +953,38 @@
 						<reference key="object" ref="377366092"/>
 						<reference key="parent" ref="828114201"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">144</int>
+						<reference key="object" ref="415660468"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="866179501"/>
+							<reference ref="512412467"/>
+							<reference ref="468645805"/>
+							<reference ref="598614859"/>
+						</object>
+						<reference key="parent" ref="0"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">145</int>
+						<reference key="object" ref="598614859"/>
+						<reference key="parent" ref="415660468"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">146</int>
+						<reference key="object" ref="866179501"/>
+						<reference key="parent" ref="415660468"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">147</int>
+						<reference key="object" ref="512412467"/>
+						<reference key="parent" ref="415660468"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">148</int>
+						<reference key="object" ref="468645805"/>
+						<reference key="parent" ref="415660468"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -891,6 +1005,12 @@
 					<string>138.IBEditorWindowLastContentRect</string>
 					<string>138.IBPluginDependency</string>
 					<string>139.IBPluginDependency</string>
+					<string>144.IBEditorWindowLastContentRect</string>
+					<string>144.IBPluginDependency</string>
+					<string>145.IBPluginDependency</string>
+					<string>146.IBPluginDependency</string>
+					<string>147.IBPluginDependency</string>
+					<string>148.IBPluginDependency</string>
 					<string>36.IBEditorWindowLastContentRect</string>
 					<string>36.IBPluginDependency</string>
 					<string>37.IBEditorWindowLastContentRect</string>
@@ -919,7 +1039,13 @@
 					<string>{{0, 769}, {320, 215}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{194, 374}, {320, 460}}</string>
+					<string>{{649, 704}, {320, 44}}</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>{{199, 186}, {320, 460}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{0, 930}, {325, 54}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -948,7 +1074,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">143</int>
+			<int key="maxID">154</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -960,12 +1086,18 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>cancelEditing</string>
 							<string>clearFields</string>
+							<string>editNextField</string>
+							<string>editPreviousField</string>
 							<string>saveVenueAndCheckin</string>
 							<string>viewTipsForAddingNewPlace</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -982,6 +1114,7 @@
 							<string>state</string>
 							<string>tableCell</string>
 							<string>theTableView</string>
+							<string>toolbar</string>
 							<string>twitter</string>
 							<string>venueName</string>
 							<string>zip</string>
@@ -995,6 +1128,7 @@
 							<string>UITextField</string>
 							<string>UITableViewCell</string>
 							<string>UITableView</string>
+							<string>UIToolbar</string>
 							<string>UITextField</string>
 							<string>UILabel</string>
 							<string>UITextField</string>
@@ -1195,6 +1329,22 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
+					<string key="className">UIBarButtonItem</string>
+					<string key="superclassName">UIBarItem</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">UIKit.framework/Headers/UIBarButtonItem.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">UIBarItem</string>
+					<string key="superclassName">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">UIKit.framework/Headers/UIBarItem.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
 					<string key="className">UIButton</string>
 					<string key="superclassName">UIControl</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
@@ -1277,6 +1427,14 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="609792524">
 						<string key="majorKey">IBFrameworkSource</string>
 						<string key="minorKey">UIKit.framework/Headers/UITextField.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">UIToolbar</string>
+					<string key="superclassName">UIView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">UIKit.framework/Headers/UIToolbar.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">

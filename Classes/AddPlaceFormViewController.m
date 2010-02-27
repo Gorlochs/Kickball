@@ -27,6 +27,56 @@
     state.text = user.checkin.venue.venueState;
     [[Beacon shared] startSubBeaconWithName:@"Add Venue Form View"];
     //[address becomeFirstResponder];
+    
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc addObserver:self selector:@selector(keyboardDidShow:) name: UIKeyboardDidShowNotification object:nil];
+    [nc addObserver:self selector:@selector(keyboardWillShow:) name: UIKeyboardWillShowNotification object:nil];
+    [nc addObserver:self selector:@selector(keyboardWillHide:) name: UIKeyboardWillHideNotification object:nil];  
+    
+    toolbar.frame = CGRectMake(0, 436, 320, 44);
+    [self.view addSubview:toolbar];
+    toolbar.hidden = YES;
+}
+
+-(void) keyboardWillShow:(NSNotification *) note {
+
+}
+
+-(void) keyboardDidShow:(NSNotification *) note {
+
+//    NSDictionary* info = [note userInfo];
+//	
+//	// Get the size of the keyboard.
+//	NSValue* aValue = [info objectForKey:UIKeyboardBoundsUserInfoKey];
+//	CGSize keyboardSize = [aValue CGRectValue].size;
+//	[UIView beginAnimations:nil context:nil];
+//	[UIView setAnimationDuration:0.3];
+//	CGRect rect = toolbar.frame;
+//	rect.origin.y = 204;
+//	toolbar.frame = rect;
+//	[self.view addSubview:toolbar];//I am not sure this is the way to add the toolbar
+//	[UIView commitAnimations];
+    
+    
+//    toolbar.frame = CGRectMake(0, 480 - 116, 320, 44);
+//    [self.view addSubview:toolbar];
+    
+//    [UIView beginAnimations:nil context:NULL];
+//    [UIView setAnimationDuration:0.3];
+//    CGAffineTransform transform = CGAffineTransformMakeTranslation(0.0, -216.0);
+//    toolbar.transform = transform;
+//    [UIView commitAnimations];
+//    NSLog(@"toolbar: %@", toolbar);
+//    NSLog(@"toolbar frame: %@", toolbar.frame);
+}
+
+-(void) keyboardWillHide:(NSNotification *) note {
+//    [toolbar removeFromSuperview];
+//    [UIView beginAnimations:nil context:NULL];
+//    [UIView setAnimationDuration:0.3];
+//    CGAffineTransform transform = CGAffineTransformMakeTranslation(0.0, 216.0);
+//    toolbar.transform = transform;
+//    [UIView commitAnimations];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -66,6 +116,66 @@
     twitter.text = @"";
     zip.text = @"";
     state.text = @"";
+}
+
+- (void) cancelEditing {
+    [address resignFirstResponder];
+    [crossstreet resignFirstResponder];
+    [city resignFirstResponder];
+    [phone resignFirstResponder];
+    [twitter resignFirstResponder];
+    [zip resignFirstResponder];
+    [state resignFirstResponder];
+    
+    // slide toolbar downward with keyboard
+    CGRect toolbarFrame = toolbar.frame;
+    toolbarFrame.origin.y = 500;
+        
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
+    
+    [toolbar setFrame:toolbarFrame];
+    
+    [UIView commitAnimations];
+}
+
+// this is hacky, too. There should be an array of textfields and then just advance to the next one or something
+// but I'm tired of all this shit, so I'm doing it the 'easy' way
+- (void) editNextField {
+    if ([address isFirstResponder]) {
+        [crossstreet becomeFirstResponder];
+    } else if ([crossstreet isFirstResponder]) {
+        [city becomeFirstResponder];
+    } else if ([city isFirstResponder]) {
+        [state becomeFirstResponder];
+    } else if ([state isFirstResponder]) {
+        [zip becomeFirstResponder];
+    } else if ([zip isFirstResponder]) {
+        [twitter becomeFirstResponder];
+    } else if ([twitter isFirstResponder]) {
+        [phone becomeFirstResponder];
+    } else {
+        [self cancelEditing];
+    }
+}
+
+- (void) editPreviousField {
+    if ([address isFirstResponder]) {
+        [self cancelEditing];
+    } else if ([crossstreet isFirstResponder]) {
+        [address becomeFirstResponder];
+    } else if ([city isFirstResponder]) {
+        [crossstreet becomeFirstResponder];
+    } else if ([state isFirstResponder]) {
+        [city becomeFirstResponder];
+    } else if ([zip isFirstResponder]) {
+        [state becomeFirstResponder];
+    } else if ([twitter isFirstResponder]) {
+        [zip becomeFirstResponder];
+    } else if ([phone isFirstResponder]) {
+        [twitter becomeFirstResponder];
+    }
 }
 
 - (void) viewTipsForAddingNewPlace {
@@ -121,7 +231,7 @@
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
-    NSLog(@"text field did begin editing: %@", textField);
+    //NSLog(@"text field did begin editing: %@", textField);
     CGRect textFieldRect = [self.view.window convertRect:textField.bounds fromView:textField];
     CGRect viewRect = [self.view.window convertRect:self.view.bounds fromView:self.view];
     CGFloat midline = textFieldRect.origin.y + 0.5 * textFieldRect.size.height;
@@ -133,8 +243,7 @@
     } else if (heightFraction > 1.0) {
         heightFraction = 1.0;
     }
-    UIInterfaceOrientation orientation =
-    [[UIApplication sharedApplication] statusBarOrientation];
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
     if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown) {
         animatedDistance = floor(PORTRAIT_KEYBOARD_HEIGHT * heightFraction);
     } else {
@@ -142,18 +251,38 @@
     }
     CGRect viewFrame = self.view.frame;
     viewFrame.origin.y -= animatedDistance;
+    NSLog(@"animated distance: %f", animatedDistance);
+    NSLog(@"viewframe origin y: %f", viewFrame.origin.y);
+    
+    // toolbar stuff
+    toolbar.hidden = NO;
+    CGRect toolbarFrame = toolbar.frame;
+    
+    // SUPER HACK!!!
+    if (textField == address) {
+        toolbarFrame.origin.y = 234;
+    } else if (textField == crossstreet) {
+        toolbarFrame.origin.y = 266;
+    } else if (textField == city) {
+        toolbarFrame.origin.y = 300;
+    } else if (textField == state || textField == zip) {
+        toolbarFrame.origin.y = 337;
+    } else if (textField == twitter || textField == phone) {
+        toolbarFrame.origin.y = 368;
+    }
     
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
     [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
     
+    [toolbar setFrame:toolbarFrame];
     [self.view setFrame:viewFrame];
     
     [UIView commitAnimations];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-    NSLog(@"text field did end editing: %@", textField);
+    //NSLog(@"text field did end editing: %@", textField);
     CGRect viewFrame = self.view.frame;
     viewFrame.origin.y += animatedDistance;
     
@@ -167,7 +296,7 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    NSLog(@"text field should return: %@", textField);
+    //NSLog(@"text field should return: %@", textField);
     bool shouldReturn = NO;
     if (textField == address) {
         [crossstreet becomeFirstResponder];
@@ -203,7 +332,6 @@
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     return tableCell;
 }
 
