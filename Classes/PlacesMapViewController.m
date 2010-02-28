@@ -304,11 +304,18 @@
 }
 
 - (void)dealloc {
+    // all this is a fix for the MKMapView bug where the bouncing blue dot animation causes a crash when you go back one view
+    [self.mapViewer removeAnnotations:self.mapViewer.annotations];
+    self.mapViewer.delegate = nil;
+    self.mapViewer.showsUserLocation = NO;
+    self.mapViewer = nil;
+    [mapViewer performSelector:@selector(release) withObject:nil afterDelay:4.0f];
+    
     [venues release];
-    [mapViewer release];
+    //[mapViewer release];
     [bestEffortAtLocation release];
     [searchbox release];
     [switchingButton release];
-    [super dealloc];
+    if (false) [super dealloc]; // I assume that this is just so that there is no Xcode warning
 }
 @end
