@@ -52,6 +52,7 @@
         [self stopProgressBar];
     }
     
+    isSearchEmpty = NO;
     [[Beacon shared] startSubBeaconWithName:@"Venue List"];
 }
 
@@ -62,6 +63,9 @@
 	self.venues = [NSDictionary dictionaryWithDictionary:allVenues];
     [FoursquareAPI sharedInstance].cachedVenues = [[NSDictionary alloc] initWithDictionary:self.venues];
     [self stopProgressBar];
+    if ([self.venues count] == 0) {
+        isSearchEmpty = YES;
+    }
 	[theTableView reloadData];
     
     //move table to new entry
@@ -90,6 +94,7 @@
 // TODO: this should probably use a different @selector and set a instance variable?
 -(void)searchOnKeywordsandLatLong {
     [searchbox resignFirstResponder];
+    isSearchEmpty = NO;
     if (![searchbox.text isEqualToString:@""]) {
         venuesTypeToDisplay = KBSearchVenues;
         [self startProgressBar:@"Searching..."];
@@ -120,6 +125,7 @@
 
 // TODO: currently refresh button refreshes the list to the original list
 - (void) refresh: (UIControl *) button {
+    isSearchEmpty = NO;
     [self startProgressBar:@"Retrieving nearby venues..."];
     [[FoursquareAPI sharedInstance] getVenuesNearLatitude:[NSString stringWithFormat:@"%f",[[LocationManager locationManager] latitude]] 
                                              andLongitude:[NSString stringWithFormat:@"%f",[[LocationManager locationManager] longitude]]
@@ -148,16 +154,25 @@
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [venues count] + 1;
+    if (isSearchEmpty) {
+        return 1;
+    } else {
+        return [venues count] + 1;
+    }
 }
 
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section < [[venues allKeys] count]) {
-        return [(NSArray*)[venues objectForKey:[[venues allKeys] objectAtIndex:section]] count];
+    if (isSearchEmpty) {
+        return 2;
+    } else {
+        if (section < [[venues allKeys] count]) {
+            return [(NSArray*)[venues objectForKey:[[venues allKeys] objectAtIndex:section]] count];
+        } else {
+            return 1;
+        }
     }
-    return 1;
 }
 
 
@@ -178,12 +193,21 @@
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     }
     
-    if ([venues count] > indexPath.section) {
-        FSVenue *venue = [self extractVenueFromDictionaryForRow:indexPath];
-        cell.textLabel.text = venue.name;
-        cell.detailTextLabel.text = venue.addressWithCrossstreet;
-	} else {
-        return footerCell;
+    if (isSearchEmpty) {
+        if (indexPath.row == 0) {
+            cell.textLabel.text = @"No search results found.";
+            cell.detailTextLabel.text = @"";
+        } else {
+            return footerCell;
+        }
+    } else {
+        if ([venues count] > indexPath.section) {
+            FSVenue *venue = [self extractVenueFromDictionaryForRow:indexPath];
+            cell.textLabel.text = venue.name;
+            cell.detailTextLabel.text = venue.addressWithCrossstreet;
+        } else {
+            return footerCell;
+        }        
     }
     return cell;
 }
@@ -208,10 +232,19 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == [venues count]) {
-        return 50;
+    if (isSearchEmpty) {
+        if (indexPath.section == 0) {
+            return 44;
+        } else {
+            return 50;
+        }
+    } else {
+        if (indexPath.section == [venues count]) {
+            return 50;
+        } else {
+            return 44;
+        }
     }
-    return 44;
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -223,30 +256,34 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    // create the parent view that will hold header Label
-    UIView* customView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 24.0)] autorelease];
-    customView.backgroundColor = [UIColor whiteColor];
-    customView.alpha = 0.85;
-    
-    // create the button object
-    UILabel * headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    headerLabel.backgroundColor = [UIColor clearColor];
-    headerLabel.opaque = NO;
-    headerLabel.textColor = [UIColor grayColor];
-    headerLabel.highlightedTextColor = [UIColor grayColor];
-    headerLabel.font = [UIFont boldSystemFontOfSize:12];
-    headerLabel.frame = CGRectMake(10.0, 0.0, 320.0, 24.0);
-
-    if (section < [venues count]) {
-        headerLabel.text = [[venues allKeys] objectAtIndex:section];
-    } else {
-        [headerLabel release];
+    if (isSearchEmpty) {
         return nil;
+    } else {
+        // create the parent view that will hold header Label
+        UIView* customView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 24.0)] autorelease];
+        customView.backgroundColor = [UIColor whiteColor];
+        customView.alpha = 0.85;
+        
+        // create the button object
+        UILabel * headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        headerLabel.backgroundColor = [UIColor clearColor];
+        headerLabel.opaque = NO;
+        headerLabel.textColor = [UIColor grayColor];
+        headerLabel.highlightedTextColor = [UIColor grayColor];
+        headerLabel.font = [UIFont boldSystemFontOfSize:12];
+        headerLabel.frame = CGRectMake(10.0, 0.0, 320.0, 24.0);
+        
+        if (section < [venues count]) {
+            headerLabel.text = [[venues allKeys] objectAtIndex:section];
+        } else {
+            [headerLabel release];
+            return nil;
+        }
+        
+        [customView addSubview:headerLabel];
+        [headerLabel release];
+        return customView;
     }
-    
-    [customView addSubview:headerLabel];
-    [headerLabel release];
-    return customView;
 }
 
 #pragma mark UITextFieldDelegate methods
