@@ -48,6 +48,8 @@
     IBOutlet UIButton *phoneButton;
     IBOutlet UIButton *choosePhotoButton;
     IBOutlet UIImageView *noMayorImage;
+    IBOutlet UIImageView *mayorOverlay;
+    IBOutlet UIImageView *mayorArrow;
     
     NSArray *checkin;
     FSVenue *venue;

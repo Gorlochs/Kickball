@@ -221,10 +221,13 @@
     
     CLLocationCoordinate2D location = venueToDisplay.location;
     
+    double tmp = [[NSNumber numberWithDouble:location.longitude] doubleValue];
+    CLLocationCoordinate2D shiftedLocation = {latitude: venueToDisplay.location.latitude , longitude: (CLLocationDegrees)(tmp - 0.0045) };
+    
     fullRegion.span = fullSpan;
     fullRegion.center = location;
     region.span = span;
-    region.center = location;
+    region.center = shiftedLocation;
     
     [smallMapView setRegion:region animated:NO];
     [smallMapView regionThatFits:region];
@@ -249,11 +252,21 @@
     
     if (venueToDisplay.mayor != nil) {
         mayorMapCell.imageView.image = [[Utilities sharedInstance] getCachedImage:venueToDisplay.mayor.photo];
+        float sw=45/mayorMapCell.imageView.image.size.width;
+        float sh=45/mayorMapCell.imageView.image.size.height;
+        mayorMapCell.imageView.transform=CGAffineTransformMakeScale(sw,sh);
+        mayorMapCell.imageView.layer.masksToBounds = YES;
+        mayorMapCell.imageView.layer.cornerRadius = 4.0;
+        
         mayorNameLabel.text = venueToDisplay.mayor.firstnameLastInitial;
-        mayorCheckinCountLabel.text = [NSString stringWithFormat:@"(%d checkins)", venueToDisplay.mayorCount];
+        mayorCheckinCountLabel.text = [NSString stringWithFormat:@"Mayor, %d check-ins", venueToDisplay.mayorCount];
         noMayorImage.hidden = YES;
+        mayorOverlay.hidden = NO;
+        mayorArrow.hidden = NO;
     } else {
         noMayorImage.hidden = NO;
+        mayorOverlay.hidden = YES;
+        mayorArrow.hidden = YES;
     }
     
     if (venueToDisplay.twitter != nil && ![venueToDisplay.twitter isEqualToString:@""]) {
@@ -447,7 +460,7 @@
         case 5:
             return 64; // photos
         case 6:
-            return 55; // mayor-map cell
+            return 69; // mayor-map cell
         case 7:
             return 44;
         case 8:
@@ -579,6 +592,8 @@
     [goodies release];
     
     [photoView release];
+    [mayorOverlay release];
+    [firstTimePhotoButton release];
     
     [super dealloc];
 }
