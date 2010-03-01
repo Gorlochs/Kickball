@@ -505,10 +505,20 @@
             return nil;
             break;
         case 7:
-            headerLabel.text = [NSString stringWithFormat:@"%d %@ Here", [venue.currentCheckins count], [venue.currentCheckins count] == 1 ? @"Person" : @"People"];
+            if ([venue.currentCheckins count] == 0 ) {
+                [headerLabel release];
+                return nil;
+            } else {
+                headerLabel.text = [NSString stringWithFormat:@"%d %@ Here", [venue.currentCheckins count], [venue.currentCheckins count] == 1 ? @"Person" : @"People"];
+            }
             break;
         case 8:
-            headerLabel.text = [NSString stringWithFormat:@"%d %@", [venue.tips count], [venue.tips count] == 1 ? @"Tip" : @"Tips"];
+            if ([venue.tips count] == 0) {
+                [headerLabel release];
+                return nil;
+            } else {
+                headerLabel.text = [NSString stringWithFormat:@"%d %@", [venue.tips count], [venue.tips count] == 1 ? @"Tip" : @"Tips"];
+            }
             break;
         case 9:  
             [headerLabel release];
