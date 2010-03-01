@@ -46,6 +46,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 - (void) stopProgressBar;
 - (void) doInitialDisplay;
 - (void) displayPopupMessage:(KBMessage*)message;
+- (void) displayPopupMessageForLogin:(KBMessage*)message;
 - (IBAction) viewSettings;
 - (void) addHeaderAndFooter:(UITableView*)tableView;
 - (IBAction) displayTextView;

@@ -171,16 +171,36 @@
 
 - (void) displayPopupMessage:(KBMessage*)message {
     
+    [self stopProgressBar];
     popupView = [[PopupMessageView alloc] initWithNibName:@"PopupMessageView" bundle:nil];
     popupView.message = message;
     popupView.view.alpha = 0;
-//    popupView.view.layer.cornerRadius = 8.0;
+    //    popupView.view.layer.cornerRadius = 8.0;
     [self.view addSubview:popupView.view];
     
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
     [UIView setAnimationDuration:0.7];
     popupView.view.alpha = 1.0;
+    
+    [UIView commitAnimations];
+    [self performSelector:@selector(fadePopupMessage) withObject:nil afterDelay:3];
+}
+
+- (void) displayPopupMessageForLogin:(KBMessage*)message {
+    
+    [self stopProgressBar];
+    popupView = [[PopupMessageView alloc] initWithNibName:@"PopupMessageView" bundle:nil];
+    popupView.message = message;
+    popupView.view.alpha = 0;
+    //    popupView.view.layer.cornerRadius = 8.0;
+    [self.view addSubview:popupView.view];
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:0.7];
+    popupView.view.alpha = 1.0;
+    popupView.view.frame = CGRectMake(0, -212, popupView.view.frame.size.width, popupView.view.frame.size.height);
     [UIView commitAnimations];
     [self performSelector:@selector(fadePopupMessage) withObject:nil afterDelay:3];
 }

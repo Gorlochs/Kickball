@@ -83,7 +83,7 @@
 }
 
 - (IBAction) login: (id) sender {
-    [self startProgressBar:@"Retrieving new username and password..."];
+    //[self startProgressBar:@"Retrieving new username and password..."];
     [[FoursquareAPI sharedInstance] getFriendsWithTarget:usernameField.text andPassword:passwordField.text andTarget:self andAction:@selector(friendResponseReceived:withResponseString:)];
 }
 
@@ -95,7 +95,7 @@
     if (containsUnauthorized) {
         // display fail message
         KBMessage *message = [[KBMessage alloc] initWithMember:@"Authentication Failed" andMessage:@"Please try again."];
-        [self displayPopupMessage:message];
+        [self displayPopupMessageForLogin:message];
         [message release];
     } else {
         [[Beacon shared] startSubBeaconWithName:@"Logging in"];
@@ -127,22 +127,6 @@
                                                             object:nil
                                                           userInfo:nil];
         [self dismissModalViewControllerAnimated:true];
-//        // display success message and save to keychain
-//        KBMessage *message = [[KBMessage alloc] initWithMember:@"Authentication" andSubtitle:@"Success" andMessage:@"Your new username and password have been authenticated."];
-//        [self displayPopupMessage:message];
-//        [message release];
-//        
-//        [[FoursquareAPI sharedInstance] doLoginUsername: username.text andPass:password.text];	
-//        
-//        NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-//        [prefs setObject:username forKey:kUsernameDefaultsKey];
-//        NSLog(@"Stored username: %@", username.text);
-//        
-//        NSError *error = nil;
-//        [SFHFKeychainUtils storeUsername:username.text
-//                             andPassword:password.text
-//                          forServiceName:@"Kickball" 
-//                          updateExisting:YES error:&error];
     }
 }
 
