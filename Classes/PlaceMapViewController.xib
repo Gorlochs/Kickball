@@ -45,6 +45,20 @@
 						<int key="NSvFlags">292</int>
 						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBUIImageView" id="1024272916">
+								<reference key="NSNextResponder" ref="1029558340"/>
+								<int key="NSvFlags">256</int>
+								<string key="NSFrameSize">{320, 45}</string>
+								<reference key="NSSuperview" ref="1029558340"/>
+								<bool key="IBUIOpaque">NO</bool>
+								<bool key="IBUIClipsSubviews">YES</bool>
+								<int key="IBUIContentMode">4</int>
+								<bool key="IBUIMultipleTouchEnabled">YES</bool>
+								<object class="NSCustomResource" key="IBUIImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">homeKickball.png</string>
+								</object>
+							</object>
 							<object class="IBUIButton" id="67063788">
 								<reference key="NSNextResponder" ref="1029558340"/>
 								<int key="NSvFlags">292</int>
@@ -71,20 +85,6 @@
 								<object class="NSColor" key="IBUINormalTitleShadowColor" id="555861790">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MC41AA</bytes>
-								</object>
-							</object>
-							<object class="IBUIImageView" id="299040138">
-								<reference key="NSNextResponder" ref="1029558340"/>
-								<int key="NSvFlags">256</int>
-								<string key="NSFrame">{{51, 10}, {243, 29}}</string>
-								<reference key="NSSuperview" ref="1029558340"/>
-								<bool key="IBUIOpaque">NO</bool>
-								<bool key="IBUIClipsSubviews">YES</bool>
-								<int key="IBUIContentMode">4</int>
-								<bool key="IBUIMultipleTouchEnabled">YES</bool>
-								<object class="NSCustomResource" key="IBUIImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">kbTitle01.png</string>
 								</object>
 							</object>
 							<object class="IBUIButton" id="789730333">
@@ -278,9 +278,9 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="67063788"/>
-							<reference ref="299040138"/>
 							<reference ref="789730333"/>
 							<reference ref="818904919"/>
+							<reference ref="1024272916"/>
 						</object>
 						<reference key="parent" ref="191373211"/>
 						<string key="objectName">Header View</string>
@@ -291,11 +291,6 @@
 						<reference key="parent" ref="1029558340"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">10</int>
-						<reference key="object" ref="299040138"/>
-						<reference key="parent" ref="1029558340"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">25</int>
 						<reference key="object" ref="789730333"/>
 						<reference key="parent" ref="1029558340"/>
@@ -303,6 +298,11 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">26</int>
 						<reference key="object" ref="818904919"/>
+						<reference key="parent" ref="1029558340"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">29</int>
+						<reference key="object" ref="1024272916"/>
 						<reference key="parent" ref="1029558340"/>
 					</object>
 				</object>
@@ -352,7 +352,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">28</int>
+			<int key="maxID">29</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -369,6 +369,7 @@
 							<string>checkin</string>
 							<string>dismiss</string>
 							<string>displayTextView</string>
+							<string>displayTextViewForCheckin</string>
 							<string>goToHomeView</string>
 							<string>goToHomeViewNotAnimated</string>
 							<string>viewSettings</string>
@@ -376,6 +377,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>

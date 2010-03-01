@@ -12,9 +12,9 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="36"/>
-			<integer value="138"/>
 			<integer value="144"/>
+			<integer value="138"/>
+			<integer value="37"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -47,10 +47,10 @@
 						<int key="NSvFlags">292</int>
 						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBUIImageView" id="400017376">
+							<object class="IBUIImageView" id="254981165">
 								<reference key="NSNextResponder" ref="470633824"/>
 								<int key="NSvFlags">256</int>
-								<string key="NSFrame">{{43, 11}, {243, 29}}</string>
+								<string key="NSFrameSize">{320, 45}</string>
 								<reference key="NSSuperview" ref="470633824"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -58,7 +58,7 @@
 								<bool key="IBUIMultipleTouchEnabled">YES</bool>
 								<object class="NSCustomResource" key="IBUIImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">kbTitle01.png</string>
+									<string key="NSResourceName">homeKickball.png</string>
 								</object>
 							</object>
 							<object class="IBUIButton" id="1071671645">
@@ -832,16 +832,11 @@
 						<reference key="object" ref="470633824"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="400017376"/>
 							<reference ref="1071671645"/>
+							<reference ref="254981165"/>
 						</object>
 						<reference key="parent" ref="828114201"/>
 						<string key="objectName">Header View</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">39</int>
-						<reference key="object" ref="400017376"/>
-						<reference key="parent" ref="470633824"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">40</int>
@@ -985,6 +980,11 @@
 						<reference key="object" ref="468645805"/>
 						<reference key="parent" ref="415660468"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">155</int>
+						<reference key="object" ref="254981165"/>
+						<reference key="parent" ref="470633824"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -1074,7 +1074,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">154</int>
+			<int key="maxID">155</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1151,6 +1151,7 @@
 							<string>checkin</string>
 							<string>dismiss</string>
 							<string>displayTextView</string>
+							<string>displayTextViewForCheckin</string>
 							<string>goToHomeView</string>
 							<string>goToHomeViewNotAnimated</string>
 							<string>viewSettings</string>
@@ -1158,6 +1159,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>

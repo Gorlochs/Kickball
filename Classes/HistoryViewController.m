@@ -9,12 +9,19 @@
 #import "HistoryViewController.h"
 #import "FoursquareAPI.h"
 #import "PlaceDetailViewController.h"
+#import "FSCheckin.h"
 
 @implementation HistoryViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[FoursquareAPI sharedInstance] getCheckinHistoryWithTarget:self andAction:@selector(historyResponseReceived:withResponseString:)];
+    
+    dateFormatterD2S = [[NSDateFormatter alloc] init];
+    [dateFormatterD2S setDateFormat: @"HH:mma "]; // 2009-02-01 19:50:41 PST
+    
+    dateFormatterS2D = [[NSDateFormatter alloc] init];
+    [dateFormatterS2D setDateFormat:@"EEE, dd MMM yy HH:mm:ss"];
 }
 
 - (void) historyResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
@@ -23,6 +30,19 @@
     checkins = [allCheckins copy];
     //[allCheckins release];
     NSLog(@"checkins: %@", checkins);
+    
+    NSDateFormatter *dayOfWeekFormatter = [[NSDateFormatter alloc] init];
+    [dayOfWeekFormatter setDateFormat: @"cccc"];
+    checkinDaysOfWeek = [[NSMutableArray alloc] initWithCapacity:1];
+    
+    for (FSCheckin *checkin in checkins) {
+        NSDate *date = [dateFormatterS2D dateFromString:checkin.created];
+        NSString *dayOfWeek = [dayOfWeekFormatter stringFromDate:date];
+        if (![checkinDaysOfWeek containsObject:dayOfWeek]) {
+            [checkinDaysOfWeek addObject:dayOfWeek];
+        }
+    }
+    
     [theTableView reloadData];
 }
 
@@ -42,13 +62,17 @@
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return [checkinDaysOfWeek count];
 }
 
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [checkins count];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return [checkinDaysOfWeek objectAtIndex:section];
 }
 
 
@@ -61,7 +85,7 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
         cell.textLabel.font = [UIFont boldSystemFontOfSize:14.0];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.detailTextLabel.font = [UIFont systemFontOfSize:10.0];
     }
     
     FSCheckin *checkin = [checkins objectAtIndex:indexPath.row];
@@ -72,10 +96,10 @@
         cell.textLabel.text = checkin.venue.name;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    cell.detailTextLabel.text = checkin.created;
+    NSDate *date = [dateFormatterS2D dateFromString:checkin.created];
+    cell.detailTextLabel.text = [dateFormatterD2S stringFromDate:date];
 	return cell;
 }
-
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -92,6 +116,8 @@
 - (void)dealloc {
     [theTableView release];
     [checkins release];
+    [dateFormatterS2D release];
+    [dateFormatterD2S release];
     [super dealloc];
 }
 

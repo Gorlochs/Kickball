@@ -13,6 +13,10 @@
 @interface HistoryViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource> {
     IBOutlet UITableView *theTableView;
     NSArray *checkins;
+    NSDateFormatter *dateFormatterS2D;
+    NSDateFormatter *dateFormatterD2S;
+    
+    NSMutableArray *checkinDaysOfWeek;
 }
 
 @end
