@@ -648,7 +648,7 @@
 							<object class="IBUIButton" id="231562490">
 								<reference key="NSNextResponder" ref="578799204"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{190, 0}, {131, 69}}</string>
+								<string key="NSFrame">{{192, -1}, {131, 69}}</string>
 								<reference key="NSSuperview" ref="578799204"/>
 								<reference key="IBUIBackgroundColor" ref="592030818"/>
 								<bool key="IBUIOpaque">NO</bool>
@@ -677,7 +677,7 @@
 									<string key="NSResourceName">noMayorOverlay.png</string>
 								</object>
 							</object>
-							<object class="IBUIImageView" id="122101925">
+							<object class="IBUIImageView" id="606824199">
 								<reference key="NSNextResponder" ref="578799204"/>
 								<int key="NSvFlags">-2147483392</int>
 								<string key="NSFrame">{{0, -1}, {192, 70}}</string>
@@ -725,7 +725,7 @@
 								<int key="IBUIBaselineAdjustment">1</int>
 								<float key="IBUIMinimumFontSize">10</float>
 							</object>
-							<object class="IBUIImageView" id="767188428">
+							<object class="IBUIImageView" id="717930398">
 								<reference key="NSNextResponder" ref="578799204"/>
 								<int key="NSvFlags">-2147483392</int>
 								<string key="NSFrame">{{175, 29}, {7, 11}}</string>
@@ -1616,7 +1616,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">mayorOverlay</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="122101925"/>
+						<reference key="destination" ref="606824199"/>
 					</object>
 					<int key="connectionID">223</int>
 				</object>
@@ -1624,9 +1624,17 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">mayorArrow</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="767188428"/>
+						<reference key="destination" ref="717930398"/>
 					</object>
 					<int key="connectionID">225</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="853261904"/>
+						<reference key="destination" ref="372490531"/>
+					</object>
+					<int key="connectionID">226</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1678,9 +1686,9 @@
 							<reference ref="671817252"/>
 							<reference ref="946327817"/>
 							<reference ref="157335694"/>
+							<reference ref="606824199"/>
+							<reference ref="717930398"/>
 							<reference ref="231562490"/>
-							<reference ref="122101925"/>
-							<reference ref="767188428"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Mayor Map Cell</string>
@@ -2010,12 +2018,12 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">222</int>
-						<reference key="object" ref="122101925"/>
+						<reference key="object" ref="606824199"/>
 						<reference key="parent" ref="963809274"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">224</int>
-						<reference key="object" ref="767188428"/>
+						<reference key="object" ref="717930398"/>
 						<reference key="parent" ref="963809274"/>
 					</object>
 				</object>
@@ -2108,7 +2116,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{626, 785}, {320, 69}}</string>
+					<string>{{626, 786}, {320, 69}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{272, 680}, {320, 44}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -2177,7 +2185,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">225</int>
+			<int key="maxID">226</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

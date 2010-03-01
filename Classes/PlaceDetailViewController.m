@@ -237,8 +237,8 @@
     [fullMapView setShowsUserLocation:YES];
     
     VenueAnnotation *venueAnnotation = [[VenueAnnotation alloc] initWithCoordinate:location];
-    [fullMapView addAnnotation:venueAnnotation];
     [smallMapView addAnnotation:venueAnnotation];
+    [fullMapView addAnnotation:venueAnnotation];
     [venueAnnotation release];
     
     venueName.text = venueToDisplay.name;
@@ -504,7 +504,7 @@
             break;
         case 6:
             // TODO: fix this
-            headerLabel.text = @"Mayor                                                           Map";
+            headerLabel.text = @"Mayor                                                   Map";
             break;
         case 7:
             headerLabel.text = [NSString stringWithFormat:@"%d %@ Here", [venue.currentCheckins count], [venue.currentCheckins count] == 1 ? @"Person" : @"People"];
