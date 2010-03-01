@@ -14,16 +14,26 @@
 #import "MPOAuthSignatureParameter.h"
 #import "Utilities.h"
 #import "ASIFormDataRequest.h"
+#import "FriendsListViewController.h"
 
 
 @implementation KBTextViewController
 
 @synthesize venueId;
+@synthesize isCheckin;
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
     [theTextView becomeFirstResponder];
+    
+    if (isCheckin) {
+        nonCheckinView.hidden = YES;
+        checkinView.hidden = NO;
+    } else {
+        nonCheckinView.hidden = NO;
+        checkinView.hidden = YES;
+    }
 }
 
 - (void) cancelView {

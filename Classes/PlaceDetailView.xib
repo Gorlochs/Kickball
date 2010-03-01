@@ -13,7 +13,8 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="14"/>
-			<integer value="84"/>
+			<integer value="36"/>
+			<integer value="62"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -343,7 +344,7 @@
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 			</object>
 			<object class="IBUITableViewCell" id="982918165">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -458,6 +459,7 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 37}</string>
+				<reference key="NSSuperview"/>
 				<object class="NSColor" key="IBUIBackgroundColor" id="144680521">
 					<int key="NSColorSpace">1</int>
 					<bytes key="NSRGB">MSAxIDEAA</bytes>
@@ -677,7 +679,7 @@
 									<string key="NSResourceName">noMayorOverlay.png</string>
 								</object>
 							</object>
-							<object class="IBUIImageView" id="606824199">
+							<object class="IBUIImageView" id="277051839">
 								<reference key="NSNextResponder" ref="578799204"/>
 								<int key="NSvFlags">-2147483392</int>
 								<string key="NSFrame">{{0, -1}, {192, 70}}</string>
@@ -725,7 +727,7 @@
 								<int key="IBUIBaselineAdjustment">1</int>
 								<float key="IBUIMinimumFontSize">10</float>
 							</object>
-							<object class="IBUIImageView" id="717930398">
+							<object class="IBUIImageView" id="246190014">
 								<reference key="NSNextResponder" ref="578799204"/>
 								<int key="NSvFlags">-2147483392</int>
 								<string key="NSFrame">{{175, 29}, {7, 11}}</string>
@@ -1587,15 +1589,6 @@
 					<int key="connectionID">208</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">displayTextView</string>
-						<reference key="source" ref="832128043"/>
-						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">209</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">photoView</string>
 						<reference key="source" ref="372490531"/>
@@ -1616,7 +1609,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">mayorOverlay</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="606824199"/>
+						<reference key="destination" ref="277051839"/>
 					</object>
 					<int key="connectionID">223</int>
 				</object>
@@ -1624,7 +1617,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">mayorArrow</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="717930398"/>
+						<reference key="destination" ref="246190014"/>
 					</object>
 					<int key="connectionID">225</int>
 				</object>
@@ -1635,6 +1628,15 @@
 						<reference key="destination" ref="372490531"/>
 					</object>
 					<int key="connectionID">226</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">displayTextViewForCheckin</string>
+						<reference key="source" ref="832128043"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">227</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1686,8 +1688,8 @@
 							<reference ref="671817252"/>
 							<reference ref="946327817"/>
 							<reference ref="157335694"/>
-							<reference ref="606824199"/>
-							<reference ref="717930398"/>
+							<reference ref="277051839"/>
+							<reference ref="246190014"/>
 							<reference ref="231562490"/>
 						</object>
 						<reference key="parent" ref="0"/>
@@ -2018,12 +2020,12 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">222</int>
-						<reference key="object" ref="606824199"/>
+						<reference key="object" ref="277051839"/>
 						<reference key="parent" ref="963809274"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">224</int>
-						<reference key="object" ref="717930398"/>
+						<reference key="object" ref="246190014"/>
 						<reference key="parent" ref="963809274"/>
 					</object>
 				</object>
@@ -2160,7 +2162,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{614, 566}, {320, 77}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{700, 237}, {320, 460}}</string>
+					<string>{{700, 238}, {320, 460}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{0, 930}, {325, 54}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -2185,7 +2187,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">226</int>
+			<int key="maxID">227</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2202,6 +2204,7 @@
 							<string>checkin</string>
 							<string>dismiss</string>
 							<string>displayTextView</string>
+							<string>displayTextViewForCheckin</string>
 							<string>goToHomeView</string>
 							<string>goToHomeViewNotAnimated</string>
 							<string>viewSettings</string>
@@ -2209,6 +2212,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>

@@ -221,8 +221,15 @@
     [self presentModalViewController:webController animated:YES];
     [webController release];
 }
+
 - (void) displayTextView {
     KBTextViewController *textViewController = [[KBTextViewController alloc] initWithNibName:@"KBTextViewController" bundle:nil];
+    [self presentModalViewController:textViewController animated:YES];
+}
+
+- (void) displayTextViewForCheckin {
+    KBTextViewController *textViewController = [[KBTextViewController alloc] initWithNibName:@"KBTextViewController" bundle:nil];
+    textViewController.isCheckin = YES;
     [self presentModalViewController:textViewController animated:YES];
 }
 

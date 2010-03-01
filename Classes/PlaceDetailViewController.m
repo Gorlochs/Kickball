@@ -478,18 +478,18 @@
 
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    // create the parent view that will hold header Label
-    UIView* customView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 24.0)] autorelease];
-    customView.backgroundColor = [UIColor blackColor];
-    
-    // create the button object
-    UILabel * headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    headerLabel.backgroundColor = [UIColor blackColor];
-    headerLabel.opaque = NO;
-    headerLabel.textColor = [UIColor grayColor];
-    headerLabel.highlightedTextColor = [UIColor grayColor];
-    headerLabel.font = [UIFont boldSystemFontOfSize:12];
-    headerLabel.frame = CGRectMake(10.0, 0.0, 320.0, 24.0);
+	UIView* customView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 24.0)] autorelease];
+    customView.backgroundColor = [UIColor whiteColor];
+    customView.alpha = 0.85;
+	
+	// create the button object
+	UILabel * headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+	headerLabel.backgroundColor = [UIColor clearColor];
+	headerLabel.opaque = NO;
+	headerLabel.textColor = [UIColor grayColor];
+	headerLabel.highlightedTextColor = [UIColor whiteColor];
+	headerLabel.font = [UIFont boldSystemFontOfSize:12];
+	headerLabel.frame = CGRectMake(10.0, 0.0, 320.0, 24.0);
     
     switch (section) {
         case 0:
@@ -498,13 +498,9 @@
         case 3:
         case 4:
         case 5:
+        case 6:
             [headerLabel release];
             return nil;
-            //headerLabel.text = @"Photos";
-            break;
-        case 6:
-            // TODO: fix this
-            headerLabel.text = @"Mayor                                                   Map";
             break;
         case 7:
             headerLabel.text = [NSString stringWithFormat:@"%d %@ Here", [venue.currentCheckins count], [venue.currentCheckins count] == 1 ? @"Person" : @"People"];

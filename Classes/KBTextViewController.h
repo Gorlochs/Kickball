@@ -12,12 +12,18 @@
 @interface KBTextViewController : KBBaseViewController <UITextViewDelegate> {
     IBOutlet UITextView *theTextView;
     NSString *venueId;
+    IBOutlet UIView *checkinView;
+    IBOutlet UIView *nonCheckinView;
+    BOOL isCheckin;
 }
 
 @property (nonatomic, retain) NSString *venueId;
+@property (nonatomic) BOOL isCheckin;
 
 - (IBAction) shout;
+- (IBAction) shoutAndTweet;
 - (IBAction) shoutAndCheckin;
+- (IBAction) shoutAndTweetAndCheckin;
 - (IBAction) cancelView;
 - (void)friendsReceived:(NSNotification *)inNotification;
 
