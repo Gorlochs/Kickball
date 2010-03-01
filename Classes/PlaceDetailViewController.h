@@ -50,6 +50,7 @@
     IBOutlet UIImageView *noMayorImage;
     IBOutlet UIImageView *mayorOverlay;
     IBOutlet UIImageView *mayorArrow;
+    IBOutlet UIImageView *mayorCrown;
     
     NSArray *checkin;
     FSVenue *venue;

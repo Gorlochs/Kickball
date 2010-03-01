@@ -263,10 +263,12 @@
         noMayorImage.hidden = YES;
         mayorOverlay.hidden = NO;
         mayorArrow.hidden = NO;
+        mayorCrown.hidden = NO;
     } else {
         noMayorImage.hidden = NO;
         mayorOverlay.hidden = YES;
         mayorArrow.hidden = YES;
+        mayorCrown.hidden = YES;
     }
     
     if (venueToDisplay.twitter != nil && ![venueToDisplay.twitter isEqualToString:@""]) {
