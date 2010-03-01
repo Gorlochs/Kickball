@@ -12,6 +12,15 @@
 @implementation FSCheckin
 @synthesize message, venue, badges, specials, created, checkinId, shout, display, user, scoring, mayor, isMayor, truncatedTimeUnits, truncatedTimeNumeral;
 
+- (NSDate*) convertUTCCheckinDateToLocal {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"EEE, dd MMM yy HH:mm:ss"];
+    NSDate *gmtDate = [dateFormatter dateFromString:self.created];
+    NSTimeInterval timeZoneOffset = [[NSTimeZone defaultTimeZone] secondsFromGMT];
+    NSTimeInterval localTimeInterval = [gmtDate timeIntervalSinceReferenceDate] + timeZoneOffset;
+    NSDate *localDate = [NSDate dateWithTimeIntervalSinceReferenceDate:localTimeInterval];
+    return localDate;
+}
 
 - (NSString*) description {
     return [NSString stringWithFormat:@"(CHECKIN : message=%@ ; venue=%@ ; created=%@ ; user=%@ ; checkinId=%@ ; badges=%@ ; mayor=%@; isMayor=%d)", message, venue, created, user, checkinId, badges, mayor, isMayor];

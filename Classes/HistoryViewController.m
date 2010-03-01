@@ -25,21 +25,25 @@
 }
 
 - (void) historyResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    NSLog(@"history instring: %@", inString);
     NSArray *allCheckins = [FoursquareAPI checkinsFromResponseXML:inString];
     checkins = [allCheckins copy];
-    //[allCheckins release];
-    NSLog(@"checkins: %@", checkins);
     
     NSDateFormatter *dayOfWeekFormatter = [[NSDateFormatter alloc] init];
-    [dayOfWeekFormatter setDateFormat: @"cccc"];
+    [dayOfWeekFormatter setDateFormat: @"EEEE, MMMM d "];
     checkinDaysOfWeek = [[NSMutableArray alloc] initWithCapacity:1];
+    checkinsByDate = [[NSMutableArray alloc] initWithCapacity:1];
     
     for (FSCheckin *checkin in checkins) {
-        NSDate *date = [dateFormatterS2D dateFromString:checkin.created];
-        NSString *dayOfWeek = [dayOfWeekFormatter stringFromDate:date];
+        NSString *dayOfWeek = [dayOfWeekFormatter stringFromDate:[checkin convertUTCCheckinDateToLocal]];
+        
         if (![checkinDaysOfWeek containsObject:dayOfWeek]) {
             [checkinDaysOfWeek addObject:dayOfWeek];
+            NSMutableArray *tempCheckinArray = [[NSMutableArray alloc] initWithObjects:checkin, nil];
+            [checkinsByDate addObject:tempCheckinArray];
+            [tempCheckinArray release];
+        } else {
+            NSMutableArray *arr = [checkinsByDate objectAtIndex:[checkinsByDate count] - 1];
+            [arr addObject:checkin];
         }
     }
     
@@ -68,7 +72,7 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [checkins count];
+    return [(NSArray*)[checkinsByDate objectAtIndex:section] count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -88,7 +92,7 @@
         cell.detailTextLabel.font = [UIFont systemFontOfSize:10.0];
     }
     
-    FSCheckin *checkin = [checkins objectAtIndex:indexPath.row];
+    FSCheckin *checkin = [[checkinsByDate objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     if (checkin.shout) {
         cell.textLabel.text = [NSString stringWithFormat:@"shout: \"%@\"", checkin.shout];
         cell.accessoryType = UITableViewCellAccessoryNone;
@@ -96,8 +100,20 @@
         cell.textLabel.text = checkin.venue.name;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    NSDate *date = [dateFormatterS2D dateFromString:checkin.created];
-    cell.detailTextLabel.text = [dateFormatterD2S stringFromDate:date];
+//    NSDate *date = [dateFormatterS2D dateFromString:[checkin convertUTCCheckinDateToLocal]];
+//    cell.detailTextLabel.text = [dateFormatterD2S stringFromDate:date];
+    
+    NSCalendar *gregorian = [[NSCalendar alloc]
+                             initWithCalendarIdentifier:NSGregorianCalendar];
+    
+    unsigned unitFlags = NSHourCalendarUnit | NSMinuteCalendarUnit;
+    NSDateComponents *comps = [gregorian components:unitFlags fromDate:[checkin convertUTCCheckinDateToLocal]];
+    NSLog(@"date components: %@", comps);
+    if ([comps hour] > 12) {
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%02d:%02dpm", [comps hour] - 12, [comps minute]];
+    } else {
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%02d:%02dam", [comps hour], [comps minute]];
+    }
 	return cell;
 }
 

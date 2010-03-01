@@ -46,4 +46,6 @@
 @property (nonatomic, retain) NSString * truncatedTimeUnits;
 @property (nonatomic, retain) NSString * truncatedTimeNumeral;
 
+- (NSDate*) convertUTCCheckinDateToLocal;
+
 @end

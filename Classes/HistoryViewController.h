@@ -17,6 +17,7 @@
     NSDateFormatter *dateFormatterD2S;
     
     NSMutableArray *checkinDaysOfWeek;
+    NSMutableArray *checkinsByDate;
 }
 
 @end
