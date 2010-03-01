@@ -165,7 +165,22 @@
         // Add the blogItem to the global blogEntries Array so that the view can access it.
         //[blogEntries addObject:[blogItem copy]];
     }
-    [theTableView reloadData];
+    if ([goodies count] > 0) {
+        firstTimePhotoButton.hidden = YES;
+        
+        int i = 0;
+        for (KBGoody *goody in goodies) {
+            CGRect frame = CGRectMake(0, i*72, 72, 72);
+            KBAsyncImageView* asyncImage = [[[KBAsyncImageView alloc] initWithFrame:frame] autorelease];
+            NSLog(@"********** mediumimage path: %@", goody.mediumImagePath);
+            asyncImage.contentMode = UIViewContentModeCenter;
+            asyncImage.clipsToBounds = YES;
+            [asyncImage loadImageFromURL:[NSURL URLWithString:goody.mediumImagePath] withRoundedEdges:NO];
+            [photoView addSubview:asyncImage];
+            i++;
+        }
+    }
+    //[theTableView reloadData];
     NSLog(@"goodies: %@", goodies);
     NSLog(@"goodies count: %d", [goodies count]);
 }
@@ -299,7 +314,8 @@
     } else if (section == 4) { // checkin
         return !isUserCheckedIn;
     } else if (section == 5) { // gift
-        return (goodies != nil && [goodies count] > 0);
+        return 0;  // photos being moved out of the table
+        //return (goodies != nil && [goodies count] > 0);
         //return isUserCheckedIn;
     } else if (section == 6) { // mayor & map cell
         return ![self isNewMayor];
@@ -364,17 +380,18 @@
     } else if (indexPath.section == 4) {
         return checkinCell;
     } else if (indexPath.section == 5) {
-        int i = 0;
-        for (KBGoody *goody in goodies) {
-            CGRect frame = CGRectMake(0, i*77, 77, 77);
-            KBAsyncImageView* asyncImage = [[[KBAsyncImageView alloc] initWithFrame:frame] autorelease];
-            NSLog(@"********** mediumimage path: %@", goody.mediumImagePath);
-            asyncImage.contentMode = UIViewContentModeCenter;
-            asyncImage.clipsToBounds = YES;
-            [asyncImage loadImageFromURL:[NSURL URLWithString:goody.mediumImagePath] withRoundedEdges:NO];
-            [giftCell addSubview:asyncImage];
-            i++;
-        }
+        // photos have been moved out of the table
+//        int i = 0;
+//        for (KBGoody *goody in goodies) {
+//            CGRect frame = CGRectMake(0, i*64, 64, 64);
+//            KBAsyncImageView* asyncImage = [[[KBAsyncImageView alloc] initWithFrame:frame] autorelease];
+//            NSLog(@"********** mediumimage path: %@", goody.mediumImagePath);
+//            asyncImage.contentMode = UIViewContentModeCenter;
+//            asyncImage.clipsToBounds = YES;
+//            [asyncImage loadImageFromURL:[NSURL URLWithString:goody.mediumImagePath] withRoundedEdges:NO];
+//            [giftCell addSubview:asyncImage];
+//            i++;
+//        }
         return giftCell;
     } else if (indexPath.section == 6) {
         mayorMapCell.backgroundColor = [UIColor whiteColor];
@@ -428,7 +445,7 @@
         case 4:
             return 37;
         case 5:
-            return 77;
+            return 64; // photos
         case 6:
             return 55; // mayor-map cell
         case 7:
@@ -467,11 +484,10 @@
         case 2:
         case 3:
         case 4:
+        case 5:
             [headerLabel release];
             return nil;
-            break;
-        case 5:
-            headerLabel.text = @"Goodies";
+            //headerLabel.text = @"Photos";
             break;
         case 6:
             // TODO: fix this
@@ -561,6 +577,8 @@
     [venue release];
     [venueId release];
     [goodies release];
+    
+    [photoView release];
     
     [super dealloc];
 }

@@ -59,8 +59,11 @@
     
     // set to YES if the user should be checked in with the initialization of this view
     BOOL doCheckin;
-                                                                    
+    
+    // photo related objects
     NSMutableArray *goodies;
+    IBOutlet UIView *photoView;
+    IBOutlet UIButton *firstTimePhotoButton;
 }
 
 @property (nonatomic, retain) UITableViewCell *mayorMapCell;
