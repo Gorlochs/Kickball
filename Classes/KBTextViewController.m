@@ -43,7 +43,7 @@
 - (void) shoutAndCheckin {
     
     if ([theTextView.text length] > 0) {
-        NSDictionary *userInfo = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:theTextView.text, nil] forKeys:[NSArray arrayWithObjects:@"shout", nil]];
+        NSDictionary *userInfo = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:theTextView.text, @"NO", nil] forKeys:[NSArray arrayWithObjects:@"shout", @"isTweet", nil]];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"shoutAndCheckinSent"
                                                             object:nil
                                                           userInfo:userInfo];	
@@ -51,17 +51,6 @@
     } else {
         
     }
-//    if ([theTextView.text length] > 0) {
-//        [[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:self.venueId 
-//                                                      andShout:theTextView.text 
-//                                                       offGrid:NO
-//                                                     toTwitter:NO
-//                                                    withTarget:self 
-//                                                     andAction:@selector(checkinResponseReceived:withResponseString:)];
-//        [[Beacon shared] startSubBeaconWithName:@"Shout"];
-//    } else {
-//        NSLog(@"no text in shout field");
-//    }
 }
 
 - (void) shout {
@@ -75,6 +64,32 @@
         [[Beacon shared] startSubBeaconWithName:@"Shout"];
     } else {
         NSLog(@"no text in shout field");
+    }
+}
+
+- (void) shoutAndTweet {
+    if ([theTextView.text length] > 0) {
+        [[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:nil 
+                                                      andShout:theTextView.text 
+                                                       offGrid:NO
+                                                     toTwitter:YES
+                                                    withTarget:self 
+                                                     andAction:@selector(shoutResponseReceived:withResponseString:)];
+        [[Beacon shared] startSubBeaconWithName:@"Shout"];
+    } else {
+        NSLog(@"no text in shout field");
+    }
+}
+
+- (void) shoutAndTweetAndCheckin {
+    if ([theTextView.text length] > 0) {
+        NSDictionary *userInfo = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:theTextView.text, @"YES", nil] forKeys:[NSArray arrayWithObjects:@"shout", @"isTweet", nil]];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"shoutAndCheckinSent"
+                                                            object:nil
+                                                          userInfo:userInfo];	
+        [self cancelView];
+    } else {
+        
     }
 }
 

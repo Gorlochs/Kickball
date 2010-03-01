@@ -623,7 +623,7 @@
     [[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:venue.venueid 
                                                   andShout:[[inNotification userInfo] objectForKey:@"shout"] 
                                                    offGrid:!isPingOn
-                                                 toTwitter:isTwitterOn
+                                                 toTwitter:[[[inNotification userInfo] objectForKey:@"isTweet"] boolValue]
                                                 withTarget:self 
                                                  andAction:@selector(checkinResponseReceived:withResponseString:)];
     [[Beacon shared] startSubBeaconWithName:@"Check in and shout to Venue"];

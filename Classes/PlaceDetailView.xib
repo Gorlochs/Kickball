@@ -576,7 +576,7 @@
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="IBUIText">Badge Name</string>
-								<object class="NSFont" key="IBUIFont" id="211810784">
+								<object class="NSFont" key="IBUIFont">
 									<string key="NSName">Helvetica-Bold</string>
 									<double key="NSSize">17</double>
 									<int key="NSfFlags">16</int>
@@ -679,7 +679,7 @@
 									<string key="NSResourceName">noMayorOverlay.png</string>
 								</object>
 							</object>
-							<object class="IBUIImageView" id="277051839">
+							<object class="IBUIImageView" id="615701204">
 								<reference key="NSNextResponder" ref="578799204"/>
 								<int key="NSvFlags">-2147483392</int>
 								<string key="NSFrame">{{0, -1}, {192, 70}}</string>
@@ -702,7 +702,7 @@
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="IBUIText"/>
-								<reference key="IBUIFont" ref="211810784"/>
+								<reference key="IBUIFont" ref="741906914"/>
 								<reference key="IBUITextColor" ref="144680521"/>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">1</int>
@@ -727,7 +727,7 @@
 								<int key="IBUIBaselineAdjustment">1</int>
 								<float key="IBUIMinimumFontSize">10</float>
 							</object>
-							<object class="IBUIImageView" id="246190014">
+							<object class="IBUIImageView" id="397815997">
 								<reference key="NSNextResponder" ref="578799204"/>
 								<int key="NSvFlags">-2147483392</int>
 								<string key="NSFrame">{{175, 29}, {7, 11}}</string>
@@ -1609,7 +1609,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">mayorOverlay</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="277051839"/>
+						<reference key="destination" ref="615701204"/>
 					</object>
 					<int key="connectionID">223</int>
 				</object>
@@ -1617,7 +1617,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">mayorArrow</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="246190014"/>
+						<reference key="destination" ref="397815997"/>
 					</object>
 					<int key="connectionID">225</int>
 				</object>
@@ -1688,8 +1688,8 @@
 							<reference ref="671817252"/>
 							<reference ref="946327817"/>
 							<reference ref="157335694"/>
-							<reference ref="277051839"/>
-							<reference ref="246190014"/>
+							<reference ref="615701204"/>
+							<reference ref="397815997"/>
 							<reference ref="231562490"/>
 						</object>
 						<reference key="parent" ref="0"/>
@@ -2020,12 +2020,12 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">222</int>
-						<reference key="object" ref="277051839"/>
+						<reference key="object" ref="615701204"/>
 						<reference key="parent" ref="963809274"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">224</int>
-						<reference key="object" ref="246190014"/>
+						<reference key="object" ref="397815997"/>
 						<reference key="parent" ref="963809274"/>
 					</object>
 				</object>
