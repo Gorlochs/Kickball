@@ -48,7 +48,7 @@
 							<object class="IBUILabel" id="939108982">
 								<reference key="NSNextResponder" ref="18164360"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{20, 10}, {196, 21}}</string>
+								<string key="NSFrame">{{20, 11}, {177, 21}}</string>
 								<reference key="NSSuperview" ref="18164360"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -65,7 +65,7 @@
 							<object class="IBUIButton" id="89989106">
 								<reference key="NSNextResponder" ref="18164360"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{274, 1}, {44, 41}}</string>
+								<string key="NSFrame">{{275, 0}, {46, 44}}</string>
 								<reference key="NSSuperview" ref="18164360"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -90,17 +90,21 @@
 								</object>
 								<object class="NSCustomResource" key="IBUIHighlightedImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">thumbsUp02.png</string>
+									<string key="NSResourceName">up02.png</string>
+								</object>
+								<object class="NSCustomResource" key="IBUIDisabledImage" id="122001832">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">check.png</string>
 								</object>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">thumbsUp01.png</string>
+									<string key="NSResourceName">up01.png</string>
 								</object>
 							</object>
 							<object class="IBUIButton" id="986615763">
 								<reference key="NSNextResponder" ref="18164360"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{228, 1}, {44, 41}}</string>
+								<string key="NSFrame">{{229, 0}, {48, 43}}</string>
 								<reference key="NSSuperview" ref="18164360"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -113,11 +117,29 @@
 									<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="191566914"/>
-								<object class="NSCustomResource" key="IBUIHighlightedImage" id="224215669">
+								<object class="NSCustomResource" key="IBUIHighlightedImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">thumbsDown01.png</string>
+									<string key="NSResourceName">down02.png</string>
 								</object>
-								<reference key="IBUINormalImage" ref="224215669"/>
+								<reference key="IBUIDisabledImage" ref="122001832"/>
+								<object class="NSCustomResource" key="IBUINormalImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">down01.png</string>
+								</object>
+							</object>
+							<object class="IBUIImageView" id="622383148">
+								<reference key="NSNextResponder" ref="18164360"/>
+								<int key="NSvFlags">256</int>
+								<string key="NSFrame">{{213, 16}, {7, 11}}</string>
+								<reference key="NSSuperview" ref="18164360"/>
+								<bool key="IBUIOpaque">NO</bool>
+								<bool key="IBUIClipsSubviews">YES</bool>
+								<int key="IBUIContentMode">4</int>
+								<bool key="IBUIMultipleTouchEnabled">YES</bool>
+								<object class="NSCustomResource" key="IBUIImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">chev01.png</string>
+								</object>
 							</object>
 						</object>
 						<string key="NSFrameSize">{320, 43}</string>
@@ -179,6 +201,14 @@
 					</object>
 					<int key="connectionID">10</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">rowCarat</string>
+						<reference key="source" ref="912846446"/>
+						<reference key="destination" ref="622383148"/>
+					</object>
+					<int key="connectionID">15</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -208,6 +238,7 @@
 							<reference ref="939108982"/>
 							<reference ref="89989106"/>
 							<reference ref="986615763"/>
+							<reference ref="622383148"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -224,6 +255,11 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">6</int>
 						<reference key="object" ref="986615763"/>
+						<reference key="parent" ref="912846446"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">12</int>
+						<reference key="object" ref="622383148"/>
 						<reference key="parent" ref="912846446"/>
 					</object>
 				</object>
@@ -269,7 +305,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">11</int>
+			<int key="maxID">15</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -282,14 +318,22 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>backOneView</string>
+							<string>backOneViewNotAnimated</string>
 							<string>checkin</string>
+							<string>dismiss</string>
 							<string>displayTextView</string>
+							<string>displayTextViewForCheckin</string>
 							<string>goToHomeView</string>
+							<string>goToHomeViewNotAnimated</string>
 							<string>viewSettings</string>
 							<string>viewUserProfile</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -331,12 +375,14 @@
 							<string>acceptFriendButton</string>
 							<string>denyFriendButton</string>
 							<string>friendName</string>
+							<string>rowCarat</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UIButton</string>
 							<string>UIButton</string>
 							<string>UILabel</string>
+							<string>UIImageView</string>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
@@ -506,6 +552,14 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBFrameworkSource</string>
 						<string key="minorKey">UIKit.framework/Headers/UIControl.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">UIImageView</string>
+					<string key="superclassName">UIView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">UIKit.framework/Headers/UIImageView.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">

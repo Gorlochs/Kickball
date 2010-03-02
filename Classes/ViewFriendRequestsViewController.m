@@ -64,11 +64,13 @@
         cell.friendName.text = @"No current friend requests";
         cell.acceptFriendButton.hidden = YES;
         cell.denyFriendButton.hidden = YES;
+        cell.rowCarat.hidden = YES;
     } else {
         cell.acceptFriendButton.tag = indexPath.row;
         cell.friendName.text = ((FSUser*)[pendingFriendRequests objectAtIndex:indexPath.row]).firstnameLastInitial;
         cell.acceptFriendButton.hidden = NO;
         cell.denyFriendButton.hidden = NO;
+        cell.rowCarat.hidden = NO;
         [cell.acceptFriendButton addTarget:self action:@selector(acceptFriend:) forControlEvents:UIControlEventTouchUpInside];
         [cell.denyFriendButton addTarget:self action:@selector(denyFriend:) forControlEvents:UIControlEventTouchUpInside];
     }

@@ -13,10 +13,12 @@
     IBOutlet UIButton *acceptFriendButton;
     IBOutlet UIButton *denyFriendButton;
     IBOutlet UILabel *friendName;
+    IBOutlet UIImageView *rowCarat;
 }
 
 @property (nonatomic, retain) UIButton *acceptFriendButton;
 @property (nonatomic, retain) UIButton *denyFriendButton;
 @property (nonatomic, retain) UILabel *friendName;
+@property (nonatomic, retain) UIImageView *rowCarat;
 
 @end

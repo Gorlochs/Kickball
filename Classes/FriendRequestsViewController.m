@@ -8,6 +8,8 @@
 
 #import "FriendRequestsViewController.h"
 #import "FoursquareAPI.h"
+#import "FriendSearchResultsViewController.h"
+
 
 @implementation FriendRequestsViewController
 
@@ -255,9 +257,16 @@
 
 - (void)searchResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     NSLog(@"search response: %@", inString);
-    friendRequests = [[FoursquareAPI usersFromResponseXML:inString] retain];
-    [theTableView reloadData];
+    
+    FriendSearchResultsViewController *vc = [[FriendSearchResultsViewController alloc] initWithNibName:@"FriendSearchResultsViewController" bundle:nil];
+    vc.searchResults = [[FoursquareAPI usersFromResponseXML:inString] retain];
     [self stopProgressBar];
+    [self.view addSubview:vc.view];
+    [vc release];
+    
+//    friendRequests = [[FoursquareAPI usersFromResponseXML:inString] retain];
+//    [theTableView reloadData];
+
 }
 
 #pragma mark
@@ -309,6 +318,9 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
+    if (textField == twitterText) {
+        [self searchByTwitter];
+    }
     return YES;
 }
 

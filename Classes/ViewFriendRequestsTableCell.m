@@ -11,7 +11,7 @@
 
 @implementation ViewFriendRequestsTableCell
 
-@synthesize acceptFriendButton, denyFriendButton, friendName;
+@synthesize acceptFriendButton, denyFriendButton, friendName, rowCarat;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
@@ -33,6 +33,7 @@
     [acceptFriendButton release];
     [denyFriendButton release];
     [friendName release];
+    [rowCarat release];
     [super dealloc];
 }
 
