@@ -15,6 +15,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self startProgressBar:@"Retrieving your check-in history..."];
     [[FoursquareAPI sharedInstance] getCheckinHistoryWithTarget:self andAction:@selector(historyResponseReceived:withResponseString:)];
     
     dateFormatterD2S = [[NSDateFormatter alloc] init];
@@ -46,7 +47,7 @@
             [arr addObject:checkin];
         }
     }
-    
+    [self stopProgressBar];
     [theTableView reloadData];
 }
 

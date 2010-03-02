@@ -152,6 +152,7 @@
     [friendActionCell release];
     [friendPendingCell release];
     [friendHistoryCell release];
+    [friendHistorySplitCell release];
     [userId release];
     [user release];
     [twitterStatuses release];
@@ -250,8 +251,11 @@
                 return badgeCell;
             }
             if (user) {
-                return friendHistoryCell;
-                //cell.textLabel.text = [NSString stringWithFormat:@"Check out %@'s friends", user.firstname];
+                if ([user.userId isEqualToString:[self getAuthenticatedUser].userId]) {
+                    return friendHistorySplitCell;
+                } else {
+                    return friendHistoryCell;
+                }
             }
             break;
         case 2:  // mayors

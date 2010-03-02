@@ -284,6 +284,12 @@
     cell.accessoryView = numberOfTimeUnits;
     [numberOfTimeUnits release];
     
+    if (checkin.isMayor) {
+        cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"crown_bg.png"]];
+    } else {
+        cell.backgroundView = nil;
+    }
+    
     //NSLog(@"returning cell for row: %d", indexPath.row);
 	return cell;
 }

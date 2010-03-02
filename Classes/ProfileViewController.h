@@ -19,6 +19,7 @@
     IBOutlet UITableViewCell *friendActionCell;
     IBOutlet UITableViewCell *friendPendingCell;
     IBOutlet UITableViewCell *friendHistoryCell;
+    IBOutlet UITableViewCell *friendHistorySplitCell;
     NSString *userId;
     FSUser *user;
     NSArray *twitterStatuses;
