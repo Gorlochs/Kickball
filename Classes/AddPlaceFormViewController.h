@@ -22,6 +22,7 @@
     IBOutlet UITextField *zip;
     IBOutlet UITextField *phone;
     IBOutlet UITextField *twitter;
+    IBOutlet UITextField *placeName;
     
     IBOutlet UILabel *venueName;
     

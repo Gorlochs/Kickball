@@ -95,6 +95,11 @@
 		6A044CAD109545200063FC33 /* FriendsListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A044CAB109545200063FC33 /* FriendsListView.xib */; };
 		6A044CB6109545450063FC33 /* FriendsMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A044CB4109545450063FC33 /* FriendsMapViewController.m */; };
 		6A044CB7109545450063FC33 /* FriendsMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A044CB5109545450063FC33 /* FriendsMapView.xib */; };
+		6A06B95A113C80E000BAB8CF /* mapGradient.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A06B959113C80E000BAB8CF /* mapGradient.png */; };
+		6A06B95D113C82E900BAB8CF /* addafriend_fieldsNote.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A06B95B113C82E900BAB8CF /* addafriend_fieldsNote.png */; };
+		6A06B95E113C82E900BAB8CF /* addaplace_fields.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A06B95C113C82E900BAB8CF /* addaplace_fields.png */; };
+		6A06B962113C85EA00BAB8CF /* saveCheckin02.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A06B960113C85EA00BAB8CF /* saveCheckin02.png */; };
+		6A06B963113C85EA00BAB8CF /* saveCheckin01.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A06B961113C85EA00BAB8CF /* saveCheckin01.png */; };
 		6A0D9FAF109D97B300F9E1D6 /* UploadGiftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A0D9FAD109D97B300F9E1D6 /* UploadGiftViewController.m */; };
 		6A0D9FB0109D97B300F9E1D6 /* UploadGiftViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A0D9FAE109D97B300F9E1D6 /* UploadGiftViewController.xib */; };
 		6A0FCB4B111163A500AA4C91 /* mayorbadge-big2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A0FCB4A111163A500AA4C91 /* mayorbadge-big2.png */; };
@@ -831,6 +836,11 @@
 		6A044CB3109545450063FC33 /* FriendsMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsMapViewController.h; sourceTree = "<group>"; };
 		6A044CB4109545450063FC33 /* FriendsMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsMapViewController.m; sourceTree = "<group>"; };
 		6A044CB5109545450063FC33 /* FriendsMapView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FriendsMapView.xib; path = Classes/FriendsMapView.xib; sourceTree = "<group>"; };
+		6A06B959113C80E000BAB8CF /* mapGradient.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapGradient.png; sourceTree = "<group>"; };
+		6A06B95B113C82E900BAB8CF /* addafriend_fieldsNote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addafriend_fieldsNote.png; sourceTree = "<group>"; };
+		6A06B95C113C82E900BAB8CF /* addaplace_fields.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addaplace_fields.png; sourceTree = "<group>"; };
+		6A06B960113C85EA00BAB8CF /* saveCheckin02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = saveCheckin02.png; sourceTree = "<group>"; };
+		6A06B961113C85EA00BAB8CF /* saveCheckin01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = saveCheckin01.png; sourceTree = "<group>"; };
 		6A0D9FAC109D97B300F9E1D6 /* UploadGiftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadGiftViewController.h; sourceTree = "<group>"; };
 		6A0D9FAD109D97B300F9E1D6 /* UploadGiftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadGiftViewController.m; sourceTree = "<group>"; };
 		6A0D9FAE109D97B300F9E1D6 /* UploadGiftViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = UploadGiftViewController.xib; path = Classes/UploadGiftViewController.xib; sourceTree = "<group>"; };
@@ -2073,6 +2083,11 @@
 		6A39EC4B109662D3006F76C3 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				6A06B960113C85EA00BAB8CF /* saveCheckin02.png */,
+				6A06B961113C85EA00BAB8CF /* saveCheckin01.png */,
+				6A06B95B113C82E900BAB8CF /* addafriend_fieldsNote.png */,
+				6A06B95C113C82E900BAB8CF /* addaplace_fields.png */,
+				6A06B959113C80E000BAB8CF /* mapGradient.png */,
 				6A1433A1113C406B0034DB51 /* settingsCheckins03.png */,
 				6A1433A2113C406B0034DB51 /* settingsCheckins02.png */,
 				6A1433A3113C406B0034DB51 /* settingsCheckins01.png */,
@@ -3230,6 +3245,11 @@
 				6A1433A4113C406B0034DB51 /* settingsCheckins03.png in Resources */,
 				6A1433A5113C406B0034DB51 /* settingsCheckins02.png in Resources */,
 				6A1433A6113C406B0034DB51 /* settingsCheckins01.png in Resources */,
+				6A06B95A113C80E000BAB8CF /* mapGradient.png in Resources */,
+				6A06B95D113C82E900BAB8CF /* addafriend_fieldsNote.png in Resources */,
+				6A06B95E113C82E900BAB8CF /* addaplace_fields.png in Resources */,
+				6A06B962113C85EA00BAB8CF /* saveCheckin02.png in Resources */,
+				6A06B963113C85EA00BAB8CF /* saveCheckin01.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
