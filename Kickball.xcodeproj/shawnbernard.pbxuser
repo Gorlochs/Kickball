@@ -45,7 +45,7 @@
 		);
 		breakpoints = (
 			6AFA81F510ED4FB40063F45D /* FoursquareAPI.m:472 */,
-			6A1432D8113B90B60034DB51 /* PlaceDetailViewController.m:931 */,
+			6A1432D8113B90B60034DB51 /* PlaceDetailViewController.m:927 */,
 		);
 		codeSenseManager = 6A044CA8109544D50063FC33 /* Code sense */;
 		executables = (
@@ -182,6 +182,8 @@
 			6A06B9BC113CDF6800BAB8CF /* PBXTextBookmark */ = 6A06B9BC113CDF6800BAB8CF /* PBXTextBookmark */;
 			6A06B9BD113CDF6800BAB8CF /* PBXTextBookmark */ = 6A06B9BD113CDF6800BAB8CF /* PBXTextBookmark */;
 			6A06B9BE113CDF6800BAB8CF /* PBXTextBookmark */ = 6A06B9BE113CDF6800BAB8CF /* PBXTextBookmark */;
+			6A06B9CB113CE6C300BAB8CF /* PBXTextBookmark */ = 6A06B9CB113CE6C300BAB8CF /* PBXTextBookmark */;
+			6A06B9CE113CE90C00BAB8CF /* PBXTextBookmark */ = 6A06B9CE113CE90C00BAB8CF /* PBXTextBookmark */;
 			6A1431211138EFDA0034DB51 = 6A1431211138EFDA0034DB51 /* PBXTextBookmark */;
 			6A143186113A1AFF0034DB51 = 6A143186113A1AFF0034DB51 /* PBXTextBookmark */;
 			6A1431E7113A2DE00034DB51 = 6A1431E7113A2DE00034DB51 /* PBXTextBookmark */;
@@ -837,7 +839,7 @@
 		fRef = 6AC7E92F10994FD000776993 /* PlaceDetailViewController.m */;
 		name = "PlaceDetailViewController.m: 510";
 		rLen = 0;
-		rLoc = 20292;
+		rLoc = 20214;
 		rType = 0;
 		vrLen = 2073;
 		vrLoc = 18896;
@@ -847,7 +849,7 @@
 		fRef = 6AC7E92F10994FD000776993 /* PlaceDetailViewController.m */;
 		name = "PlaceDetailViewController.m: 399";
 		rLen = 585;
-		rLoc = 15587;
+		rLoc = 15718;
 		rType = 0;
 		vrLen = 3527;
 		vrLoc = 13903;
@@ -867,7 +869,7 @@
 		fRef = 6AC7E92F10994FD000776993 /* PlaceDetailViewController.m */;
 		name = "PlaceDetailViewController.m: 399";
 		rLen = 585;
-		rLoc = 15587;
+		rLoc = 15718;
 		rType = 0;
 		vrLen = 3527;
 		vrLoc = 13903;
@@ -877,7 +879,7 @@
 		fRef = 6AC7E92F10994FD000776993 /* PlaceDetailViewController.m */;
 		name = "PlaceDetailViewController.m: 401";
 		rLen = 0;
-		rLoc = 15701;
+		rLoc = 15832;
 		rType = 0;
 		vrLen = 3609;
 		vrLoc = 13770;
@@ -887,7 +889,7 @@
 		fRef = 6AC7E92F10994FD000776993 /* PlaceDetailViewController.m */;
 		name = "PlaceDetailViewController.m: 333";
 		rLen = 0;
-		rLoc = 12255;
+		rLoc = 12341;
 		rType = 0;
 		vrLen = 2146;
 		vrLoc = 11304;
@@ -907,7 +909,7 @@
 		fRef = 6AC7E92F10994FD000776993 /* PlaceDetailViewController.m */;
 		name = "PlaceDetailViewController.m: 503";
 		rLen = 0;
-		rLoc = 20060;
+		rLoc = 20076;
 		rType = 0;
 		vrLen = 1929;
 		vrLoc = 18732;
@@ -917,10 +919,30 @@
 		fRef = 6AC7E92F10994FD000776993 /* PlaceDetailViewController.m */;
 		name = "PlaceDetailViewController.m: 504";
 		rLen = 0;
-		rLoc = 19731;
+		rLoc = 19747;
 		rType = 0;
 		vrLen = 2034;
 		vrLoc = 19123;
+	};
+	6A06B9CB113CE6C300BAB8CF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6AC7E92F10994FD000776993 /* PlaceDetailViewController.m */;
+		name = "PlaceDetailViewController.m: 545";
+		rLen = 0;
+		rLoc = 21169;
+		rType = 0;
+		vrLen = 2353;
+		vrLoc = 20454;
+	};
+	6A06B9CE113CE90C00BAB8CF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6AC7E92F10994FD000776993 /* PlaceDetailViewController.m */;
+		name = "PlaceDetailViewController.m: 537";
+		rLen = 0;
+		rLoc = 20950;
+		rType = 0;
+		vrLen = 2069;
+		vrLoc = 18653;
 	};
 	6A0D9FAC109D97B300F9E1D6 /* UploadGiftViewController.h */ = {
 		uiCtxt = {
@@ -1034,7 +1056,7 @@
 		vrLen = 1944;
 		vrLoc = 1391;
 	};
-	6A1432D8113B90B60034DB51 /* PlaceDetailViewController.m:931 */ = {
+	6A1432D8113B90B60034DB51 /* PlaceDetailViewController.m:927 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -1046,9 +1068,9 @@
 		functionName = "-mapView:viewForAnnotation:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 931;
+		lineNumber = 927;
 		location = kickball;
-		modificationTime = 289202029.448972;
+		modificationTime = 289203921.364826;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -1077,7 +1099,7 @@
 		fRef = 6AC7E92F10994FD000776993 /* PlaceDetailViewController.m */;
 		name = "PlaceDetailViewController.m: 510";
 		rLen = 0;
-		rLoc = 20292;
+		rLoc = 20214;
 		rType = 0;
 		vrLen = 2136;
 		vrLoc = 18896;
@@ -1429,9 +1451,9 @@
 	};
 	6A47C00410DCA8DE00DCF011 /* KBWebViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1309, 868}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1303, 840}}";
 			sepNavSelRange = "{910, 0}";
-			sepNavVisRange = "{0, 1064}";
+			sepNavVisRange = "{0, 1057}";
 			sepNavWindowFrame = "{{15, 94}, {1362, 929}}";
 		};
 	};
@@ -1835,9 +1857,9 @@
 	};
 	6AC7E92F10994FD000776993 /* PlaceDetailViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1309, 15900}}";
-			sepNavSelRange = "{19731, 0}";
-			sepNavVisRange = "{19123, 2034}";
+			sepNavIntBoundsRect = "{{0, 0}, {1468, 15795}}";
+			sepNavSelRange = "{20950, 0}";
+			sepNavVisRange = "{18653, 2069}";
 			sepNavWindowFrame = "{{15, 100}, {1055, 923}}";
 		};
 	};
@@ -2018,7 +2040,7 @@
 		ignoreCount = 0;
 		lineNumber = 472;
 		location = Kickball;
-		modificationTime = 289202029.448898;
+		modificationTime = 289203921.364777;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -2052,9 +2074,10 @@
 	};
 	6AFF23EF10A247B100CD30E5 /* PlaceTwitterViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1309, 2310}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1303, 2280}}";
 			sepNavSelRange = "{3849, 0}";
-			sepNavVisRange = "{3184, 2054}";
+			sepNavVisRange = "{3184, 1918}";
+			sepNavWindowFrame = "{{15, 94}, {1362, 929}}";
 		};
 	};
 	6AFF23F010A247B100CD30E5 /* PlaceTwitterViewController.xib */ = {
