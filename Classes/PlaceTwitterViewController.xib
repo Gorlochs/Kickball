@@ -48,7 +48,7 @@
 							<object class="IBUILabel" id="882067745">
 								<reference key="NSNextResponder" ref="691472663"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{36, 3}, {233, 32}}</string>
+								<string key="NSFrame">{{41, 7}, {233, 32}}</string>
 								<reference key="NSSuperview" ref="691472663"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -74,7 +74,7 @@
 							<object class="IBUIButton" id="55520027">
 								<reference key="NSNextResponder" ref="691472663"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{-2, 1}, {41, 37}}</string>
+								<string key="NSFrame">{{-3, 0}, {48, 46}}</string>
 								<reference key="NSSuperview" ref="691472663"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -99,15 +99,15 @@
 								</object>
 								<object class="NSCustomResource" key="IBUIHighlightedImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">x-modal02.png</string>
+									<string key="NSResourceName">x02top.png</string>
 								</object>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">x-modal01.png</string>
+									<string key="NSResourceName">x01top.png</string>
 								</object>
 							</object>
 						</object>
-						<string key="NSFrameSize">{320, 39}</string>
+						<string key="NSFrameSize">{320, 47}</string>
 						<reference key="NSSuperview" ref="353873286"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
@@ -118,7 +118,7 @@
 					<object class="IBUITableView" id="873029372">
 						<reference key="NSNextResponder" ref="353873286"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{0, 39}, {320, 421}}</string>
+						<string key="NSFrame">{{0, 47}, {320, 413}}</string>
 						<reference key="NSSuperview" ref="353873286"/>
 						<reference key="IBUIBackgroundColor" ref="368057377"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -318,15 +318,21 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>backOneView</string>
+							<string>backOneViewNotAnimated</string>
 							<string>checkin</string>
 							<string>dismiss</string>
 							<string>displayTextView</string>
+							<string>displayTextViewForCheckin</string>
 							<string>goToHomeView</string>
+							<string>goToHomeViewNotAnimated</string>
 							<string>viewSettings</string>
 							<string>viewUserProfile</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>

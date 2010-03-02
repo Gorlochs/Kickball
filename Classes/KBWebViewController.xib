@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="4"/>
+			<integer value="1"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -62,7 +62,7 @@
 							<object class="IBUIButton" id="30728704">
 								<reference key="NSNextResponder" ref="653750726"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{-3, 1}, {43, 37}}</string>
+								<string key="NSFrame">{{-2, 0}, {46, 47}}</string>
 								<reference key="NSSuperview" ref="653750726"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -87,11 +87,11 @@
 								</object>
 								<object class="NSCustomResource" key="IBUIHighlightedImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">x-modal02.png</string>
+									<string key="NSResourceName">x02top.png</string>
 								</object>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">x-modal01.png</string>
+									<string key="NSResourceName">x01top.png</string>
 								</object>
 							</object>
 						</object>
@@ -193,8 +193,8 @@
 						<reference key="object" ref="653750726"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="30728704"/>
 							<reference ref="615775786"/>
+							<reference ref="30728704"/>
 						</object>
 						<reference key="parent" ref="191373211"/>
 						<string key="objectName">Header View</string>

@@ -329,8 +329,8 @@
     } else if (section == 4) { // checkin
         return !isUserCheckedIn;
     } else if (section == 5) { // gift
-        return 0;  // photos being moved out of the table
-        //return (goodies != nil && [goodies count] > 0);
+        //return 0;  // photos being moved out of the table
+        return (goodies != nil && [goodies count] > 0);
         //return isUserCheckedIn;
     } else if (section == 6) { // mayor & map cell
         return ![self isNewMayor];
@@ -396,17 +396,17 @@
         return checkinCell;
     } else if (indexPath.section == 5) {
         // photos have been moved out of the table
-//        int i = 0;
-//        for (KBGoody *goody in goodies) {
-//            CGRect frame = CGRectMake(0, i*64, 64, 64);
-//            KBAsyncImageView* asyncImage = [[[KBAsyncImageView alloc] initWithFrame:frame] autorelease];
-//            NSLog(@"********** mediumimage path: %@", goody.mediumImagePath);
-//            asyncImage.contentMode = UIViewContentModeCenter;
-//            asyncImage.clipsToBounds = YES;
-//            [asyncImage loadImageFromURL:[NSURL URLWithString:goody.mediumImagePath] withRoundedEdges:NO];
-//            [giftCell addSubview:asyncImage];
-//            i++;
-//        }
+        int i = 0;
+        for (KBGoody *goody in goodies) {
+            CGRect frame = CGRectMake(0, i*74, 74, 74);
+            KBAsyncImageView* asyncImage = [[[KBAsyncImageView alloc] initWithFrame:frame] autorelease];
+            NSLog(@"********** mediumimage path: %@", goody.mediumImagePath);
+            asyncImage.contentMode = UIViewContentModeCenter;
+            asyncImage.clipsToBounds = YES;
+            [asyncImage loadImageFromURL:[NSURL URLWithString:goody.mediumImagePath] withRoundedEdges:NO];
+            [giftCell addSubview:asyncImage];
+            i++;
+        }
         return giftCell;
     } else if (indexPath.section == 6) {
         mayorMapCell.backgroundColor = [UIColor whiteColor];
@@ -460,7 +460,7 @@
         case 4:
             return 37;
         case 5:
-            return 64; // photos
+            return 74; // photos
         case 6:
             return 69; // mayor-map cell
         case 7:
@@ -499,7 +499,17 @@
         case 2:
         case 3:
         case 4:
+            [headerLabel release];
+            return nil;
+            break;
         case 5:
+            if (goodies != nil && [goodies count] > 0) {
+                headerLabel.text = [NSString stringWithFormat:@"%d %@", [goodies count], [goodies count] == 1 ? @"Photo" : @"Photos"];
+            } else {
+                [headerLabel release];
+                return nil;
+            }
+            break;
         case 6:
             [headerLabel release];
             return nil;
