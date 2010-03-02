@@ -11,7 +11,7 @@
 
 @implementation FSUser
 
-@synthesize	userId, firstname, lastname, photo, gender, badges, isFriend, firstnameLastInitial, mayorOf;
+@synthesize	userId, firstname, lastname, photo, gender, badges, isFriend, firstnameLastInitial, fullname, mayorOf;
 @synthesize twitter, icon, checkin, friendStatus, isPingOn, sendToTwitter, sendToFacebook, sendsPingsToSignedInUser, email, phone, facebook;
 
 - (id)init {
@@ -24,6 +24,14 @@
 - (NSString*) firstnameLastInitial {
     if (lastname != nil) {
         return [NSString stringWithFormat:@"%@ %@.", firstname, [lastname substringToIndex:1]];
+    } else {
+        return firstname;
+    }
+}
+
+- (NSString*) fullname {
+    if (lastname != nil) {
+        return [NSString stringWithFormat:@"%@ %@", firstname, lastname];
     } else {
         return firstname;
     }

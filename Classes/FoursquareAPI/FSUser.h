@@ -43,6 +43,7 @@ typedef enum {
     
     // convenience property
     NSString *firstnameLastInitial;
+    NSString *fullname;
     UIImage *icon;
 }
 
@@ -66,6 +67,7 @@ typedef enum {
 @property (nonatomic) FSFriendStatus friendStatus;
 
 @property (nonatomic, retain) NSString * firstnameLastInitial;
+@property (nonatomic, retain) NSString * fullname;
 @property (nonatomic, retain) UIImage *icon;
 
 

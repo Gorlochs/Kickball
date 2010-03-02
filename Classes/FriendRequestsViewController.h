@@ -12,10 +12,6 @@
 
 @interface FriendRequestsViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
     IBOutlet UITableView *theTableView;
-    IBOutlet UITableViewCell *addressBookCell;
-    IBOutlet UITableViewCell *twitterCell;
-    IBOutlet UITableViewCell *nameCell;
-    IBOutlet UITableViewCell *phoneCell;
     
     IBOutlet UIButton *addressBookSearchButton;
     IBOutlet UIButton *twitterSearchButton;

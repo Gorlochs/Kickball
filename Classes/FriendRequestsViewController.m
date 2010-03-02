@@ -35,15 +35,12 @@
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 5;
+    return 1;
 }
 
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 0) {
-        return [friendRequests count];
-    }
     return 1;
 }
 
@@ -74,18 +71,6 @@
             [btn addTarget:self action:@selector(didTapFriendizeButton:withEvent:) forControlEvents:UIControlEventTouchUpInside];
             cell.accessoryView = btn;
             
-            break;
-        case 1:
-            return addressBookCell;
-            break;
-        case 2:
-            return twitterCell;
-            break;
-        case 3:
-            return nameCell;
-            break;
-        case 4:
-            return phoneCell;
             break;
         default:
             break;
@@ -172,10 +157,6 @@
 
 - (void)dealloc {
     [theTableView release];
-    [addressBookCell release];
-    [twitterCell release];
-    [nameCell release];
-    [phoneCell release];
     
     [addressBookSearchButton release];
     [twitterSearchButton release];
@@ -261,7 +242,7 @@
     FriendSearchResultsViewController *vc = [[FriendSearchResultsViewController alloc] initWithNibName:@"FriendSearchResultsViewController" bundle:nil];
     vc.searchResults = [[FoursquareAPI usersFromResponseXML:inString] retain];
     [self stopProgressBar];
-    [self.view addSubview:vc.view];
+    [self.navigationController pushViewController:vc animated:YES];
     [vc release];
     
 //    friendRequests = [[FoursquareAPI usersFromResponseXML:inString] retain];
@@ -320,6 +301,10 @@
     [textField resignFirstResponder];
     if (textField == twitterText) {
         [self searchByTwitter];
+    } else if (textField == phoneText) {
+        [self searchByPhone];
+    } else if (textField == nameText) {
+        [self searchByName];
     }
     return YES;
 }
