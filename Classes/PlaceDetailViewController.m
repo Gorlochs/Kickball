@@ -328,12 +328,12 @@
         return [self hasMayorCell];
     } else if (section == 4) { // checkin
         return !isUserCheckedIn;
-    } else if (section == 5) { // gift
+    } else if (section == 5) { // mayor & map cell
+        return ![self isNewMayor];
+    } else if (section == 6) { // gift
         //return 0;  // photos being moved out of the table
         return (goodies != nil && [goodies count] > 0);
         //return isUserCheckedIn;
-    } else if (section == 6) { // mayor & map cell
-        return ![self isNewMayor];
     } else if (section == 7) { // people here
         return [venue.currentCheckins count] + 1;
     } else if (section == 8) { // tips
@@ -395,6 +395,9 @@
     } else if (indexPath.section == 4) {
         return checkinCell;
     } else if (indexPath.section == 5) {
+        mayorMapCell.backgroundColor = [UIColor whiteColor];
+        return mayorMapCell;
+    } else if (indexPath.section == 6) {
         // photos have been moved out of the table
         int i = 0;
         for (KBGoody *goody in goodies) {
@@ -408,9 +411,6 @@
             i++;
         }
         return giftCell;
-    } else if (indexPath.section == 6) {
-        mayorMapCell.backgroundColor = [UIColor whiteColor];
-        return mayorMapCell;
     } else if (indexPath.section == 7) {
         if (indexPath.row < [venue.currentCheckins count]) {
             cell.detailTextLabel.numberOfLines = 1;
@@ -460,9 +460,9 @@
         case 4:
             return 37;
         case 5:
-            return 74; // photos
-        case 6:
             return 69; // mayor-map cell
+        case 6:
+            return 74; // photos
         case 7:
             return 44;
         case 8:
@@ -499,20 +499,17 @@
         case 2:
         case 3:
         case 4:
+        case 5:
             [headerLabel release];
             return nil;
             break;
-        case 5:
+        case 6:
             if (goodies != nil && [goodies count] > 0) {
                 headerLabel.text = [NSString stringWithFormat:@"%d %@", [goodies count], [goodies count] == 1 ? @"Photo" : @"Photos"];
             } else {
                 [headerLabel release];
                 return nil;
             }
-            break;
-        case 6:
-            [headerLabel release];
-            return nil;
             break;
         case 7:
             if ([venue.currentCheckins count] == 0 ) {
@@ -538,14 +535,13 @@
             headerLabel.text = @"You shouldn't see this";
             break;
     }
-    //headerLabel.text = <Put here whatever you want to display> // i.e. array element
     [customView addSubview:headerLabel];
     [headerLabel release];
     return customView;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 6) {
+    if (indexPath.section == 5) {
         [self pushProfileDetailController:venue.mayor.userId];
     } else if (indexPath.section == 7) {
         if (indexPath.row < [venue.currentCheckins count]) {

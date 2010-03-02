@@ -43,7 +43,7 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [pendingFriendRequests count];
+    return [pendingFriendRequests count] == 0 ? 1 : [pendingFriendRequests count];
 }
 
 
@@ -60,10 +60,18 @@
         [vc release];
     }
     
-    cell.acceptFriendButton.tag = indexPath.row;
-    cell.friendName.text = ((FSUser*)[pendingFriendRequests objectAtIndex:indexPath.row]).firstnameLastInitial;
-    [cell.acceptFriendButton addTarget:self action:@selector(acceptFriend:) forControlEvents:UIControlEventTouchUpInside];
-    [cell.denyFriendButton addTarget:self action:@selector(denyFriend:) forControlEvents:UIControlEventTouchUpInside];
+    if ([pendingFriendRequests count] == 0) {
+        cell.friendName.text = @"No current friend requests";
+        cell.acceptFriendButton.hidden = YES;
+        cell.denyFriendButton.hidden = YES;
+    } else {
+        cell.acceptFriendButton.tag = indexPath.row;
+        cell.friendName.text = ((FSUser*)[pendingFriendRequests objectAtIndex:indexPath.row]).firstnameLastInitial;
+        cell.acceptFriendButton.hidden = NO;
+        cell.denyFriendButton.hidden = NO;
+        [cell.acceptFriendButton addTarget:self action:@selector(acceptFriend:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.denyFriendButton addTarget:self action:@selector(denyFriend:) forControlEvents:UIControlEventTouchUpInside];
+    }
     
     return cell;
 }
