@@ -427,6 +427,9 @@
 		6A402AA710B755B200D9BCEB /* GAPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A402A9E10B755B200D9BCEB /* GAPlace.m */; };
 		6A402B2F10B769A800D9BCEB /* GeoApiTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A402B2D10B769A800D9BCEB /* GeoApiTableViewController.m */; };
 		6A402B3010B769A900D9BCEB /* GeoApiTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A402B2E10B769A800D9BCEB /* GeoApiTableViewController.xib */; };
+		6A4788C7113DB4B200B96305 /* venueBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4788C6113DB4B200B96305 /* venueBG.png */; };
+		6A4788C9113DB4B900B96305 /* settingsFieldBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4788C8113DB4B900B96305 /* settingsFieldBG.png */; };
+		6A4788CD113DB64600B96305 /* settingsFieldUpdate.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4788CC113DB64600B96305 /* settingsFieldUpdate.png */; };
 		6A47C00610DCA8DE00DCF011 /* KBWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A47C00410DCA8DE00DCF011 /* KBWebViewController.m */; };
 		6A47C00710DCA8DE00DCF011 /* KBWebViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A47C00510DCA8DE00DCF011 /* KBWebViewController.xib */; };
 		6A4ADB5F1125C5D900B003DA /* settings01b.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4ADB5D1125C5D900B003DA /* settings01b.png */; };
@@ -1187,6 +1190,9 @@
 		6A402B2C10B769A800D9BCEB /* GeoApiTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeoApiTableViewController.h; sourceTree = "<group>"; };
 		6A402B2D10B769A800D9BCEB /* GeoApiTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeoApiTableViewController.m; sourceTree = "<group>"; };
 		6A402B2E10B769A800D9BCEB /* GeoApiTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GeoApiTableViewController.xib; path = Classes/GeoApiTableViewController.xib; sourceTree = "<group>"; };
+		6A4788C6113DB4B200B96305 /* venueBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = venueBG.png; sourceTree = "<group>"; };
+		6A4788C8113DB4B900B96305 /* settingsFieldBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settingsFieldBG.png; sourceTree = "<group>"; };
+		6A4788CC113DB64600B96305 /* settingsFieldUpdate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settingsFieldUpdate.png; sourceTree = "<group>"; };
 		6A47C00310DCA8DE00DCF011 /* KBWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBWebViewController.h; sourceTree = "<group>"; };
 		6A47C00410DCA8DE00DCF011 /* KBWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBWebViewController.m; sourceTree = "<group>"; };
 		6A47C00510DCA8DE00DCF011 /* KBWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KBWebViewController.xib; sourceTree = "<group>"; };
@@ -2056,6 +2062,9 @@
 		6A39EC4B109662D3006F76C3 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				6A4788CC113DB64600B96305 /* settingsFieldUpdate.png */,
+				6A4788C6113DB4B200B96305 /* venueBG.png */,
+				6A4788C8113DB4B900B96305 /* settingsFieldBG.png */,
 				6A06BA39113D7F8E00BAB8CF /* scan02.png */,
 				6A06BA3A113D7F8E00BAB8CF /* scan01.png */,
 				6A06BA2F113D7F7800BAB8CF /* check.png */,
@@ -3186,6 +3195,9 @@
 				6A06BA38113D7F7800BAB8CF /* up01.png in Resources */,
 				6A06BA3B113D7F8E00BAB8CF /* scan02.png in Resources */,
 				6A06BA3C113D7F8E00BAB8CF /* scan01.png in Resources */,
+				6A4788C7113DB4B200B96305 /* venueBG.png in Resources */,
+				6A4788C9113DB4B900B96305 /* settingsFieldBG.png in Resources */,
+				6A4788CD113DB64600B96305 /* settingsFieldUpdate.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

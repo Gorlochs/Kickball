@@ -12,8 +12,9 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="4"/>
 			<integer value="73"/>
+			<integer value="4"/>
+			<integer value="169"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -997,7 +998,7 @@
 				<bool key="IBUIMultipleTouchEnabled">YES</bool>
 			</object>
 			<object class="IBUITableViewCell" id="983826607">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1006,6 +1007,20 @@
 						<int key="NSvFlags">256</int>
 						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBUIImageView" id="598788987">
+								<reference key="NSNextResponder" ref="459649593"/>
+								<int key="NSvFlags">256</int>
+								<string key="NSFrameSize">{320, 42}</string>
+								<reference key="NSSuperview" ref="459649593"/>
+								<bool key="IBUIOpaque">NO</bool>
+								<bool key="IBUIClipsSubviews">YES</bool>
+								<int key="IBUIContentMode">4</int>
+								<bool key="IBUIMultipleTouchEnabled">YES</bool>
+								<object class="NSCustomResource" key="IBUIImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">venueBG.png</string>
+								</object>
+							</object>
 							<object class="IBUIButton" id="446633818">
 								<reference key="NSNextResponder" ref="459649593"/>
 								<int key="NSvFlags">292</int>
@@ -1071,6 +1086,7 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 44}</string>
+				<reference key="NSSuperview"/>
 				<reference key="IBUIBackgroundColor" ref="144680521"/>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<int key="IBUISeparatorStyle">1</int>
@@ -1858,6 +1874,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="446633818"/>
 							<reference ref="163948843"/>
+							<reference ref="598788987"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Details Button Cell</string>
@@ -1986,6 +2003,11 @@
 						<reference key="object" ref="1073022957"/>
 						<reference key="parent" ref="118555116"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">233</int>
+						<reference key="object" ref="598788987"/>
+						<reference key="parent" ref="983826607"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -2087,7 +2109,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{309, 546}, {321, 358}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{196, 101}, {320, 44}}</string>
+					<string>{{474, 121}, {320, 44}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -2141,7 +2163,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">232</int>
+			<int key="maxID">233</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
