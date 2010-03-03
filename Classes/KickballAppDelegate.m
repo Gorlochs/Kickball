@@ -27,9 +27,7 @@
 @synthesize deviceAlias;
 @synthesize pushNotificationUserId;
 
-- (void) moviePlayBackDidFinish:(NSNotification*)notification
-{
-    
+- (void) moviePlayBackDidFinish:(NSNotification*)notification {
     [mMoviePlayer release];
 }
 
@@ -38,7 +36,7 @@
     NSBundle *bundle = [NSBundle mainBundle];
     if (bundle) 
     {
-        NSString *moviePath = [bundle pathForResource:@"sequence" ofType:@"m4v"];
+        NSString *moviePath = [bundle pathForResource:@"landscape_intro" ofType:@"m4v"];
         if (moviePath)
         {
             mMovieURL = [NSURL fileURLWithPath:moviePath];
