@@ -111,6 +111,8 @@
 - (void)dealloc {
     [theTableView release];
     [tweets release];
+    [orderedTweets release];
+    [sortedKeys release];
     [super dealloc];
 }
 

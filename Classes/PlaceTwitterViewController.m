@@ -23,6 +23,7 @@
     // TODO: figure out why this isn't working (i.e., the navigation bar isn't being displayed)
     venueLabel.text = venueName;
 
+    [self startProgressBar:@"Retrieving tweets..."];
     MGTwitterEngine *twitterEngine = [[[MGTwitterEngine alloc] initWithDelegate:self] autorelease];
     NSString *timeline = [twitterEngine getUserTimelineFor:twitterName sinceID:0 startingAtPage:0 count:20];
     NSLog(@"timeline: %@", timeline);
@@ -111,6 +112,8 @@
     [venueName release];
     [venueLabel release];
     [theTableView release];
+    [orderedTweets release];
+    [sortedKeys release];
     [super dealloc];
 }
 
@@ -138,32 +141,20 @@
     [theTableView reloadData];
 }
 
-//- (void)directMessagesReceived:(NSArray *)messages forRequest:(NSString *)connectionIdentifier {
-//    NSLog(@"directMessagesReceived: %@", messages);
-//    
-//}
-//- (void)userInfoReceived:(NSArray *)userInfo forRequest:(NSString *)connectionIdentifier {
-//    NSLog(@"userInfoReceived: %@", userInfo);
-//    
-//}
-//- (void)miscInfoReceived:(NSArray *)miscInfo forRequest:(NSString *)connectionIdentifier {
-//    NSLog(@"miscInfoReceived: %@", miscInfo);
-//    
-//}
-//- (void)connectionFinished:(NSString *)connectionIdentifier {
-//    NSLog(@"connectionFinished: %@", connectionIdentifier);
-//    
-//}
 - (void)requestSucceeded:(NSString *)connectionIdentifier {
+    [self stopProgressBar];
     NSLog(@"requestSucceeded: %@", connectionIdentifier);
     
 }
+
 - (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error {
+    [self stopProgressBar];
     NSLog(@"requestFailed: %@ - error: %@", connectionIdentifier, error);
-    KBMessage *message = [[KBMessage alloc] initWithMember:@"Twitter Error" andMessage:error];
+    KBMessage *message = [[KBMessage alloc] initWithMember:@"Twitter Error" andMessage:[error localizedDescription]];
     [self displayPopupMessage:message];
     [message release];
     
 }
+
 @end
 

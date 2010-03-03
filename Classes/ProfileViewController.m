@@ -557,7 +557,7 @@
 }
 
 - (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error {
-    KBMessage *message = [[KBMessage alloc] initWithMember:@"Twitter" andMessage:@"Sorry. It seems that Twitter is down. Try again later."];
+    KBMessage *message = [[KBMessage alloc] initWithMember:@"Twitter Error" andMessage:@"Sorry. It seems that Twitter is down. Try again later."];
     [self displayPopupMessage:message];
     [message release];
     NSLog(@"requestFailed: %@", connectionIdentifier);
