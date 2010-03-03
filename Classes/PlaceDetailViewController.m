@@ -327,7 +327,8 @@
     } else if (section == 3) { // checkin mayor
         return [self hasMayorCell];
     } else if (section == 4) { // checkin
-        return !isUserCheckedIn;
+        return 0; // checkin buttons pulled out of table
+        //return !isUserCheckedIn;
     } else if (section == 5) { // mayor & map cell
         return ![self isNewMayor];
     } else if (section == 6) { // gift
@@ -393,7 +394,8 @@
             return newMayorCell;
         }
     } else if (indexPath.section == 4) {
-        return checkinCell;
+        return nil;
+        //return checkinCell;
     } else if (indexPath.section == 5) {
         mayorMapCell.backgroundColor = [UIColor whiteColor];
         return mayorMapCell;
