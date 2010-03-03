@@ -38,6 +38,8 @@
     BOOL isDisplayingMore;
     
     IBOutlet UIImageView *splashView;
+    IBOutlet UIImageView *fadeOutImage;
+    
     NSDateFormatter *dateFormatter;
     
     NSCalendar *gregorian;
@@ -58,5 +60,6 @@
 - (IBAction) viewPreviousWelcomeImage;
 - (IBAction) displayOlderCheckins;
 - (void) setupSplashAnimation;
+- (void) showSplash;
 
 @end

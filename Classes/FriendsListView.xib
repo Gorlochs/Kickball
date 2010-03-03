@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="25"/>
+			<integer value="11"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -279,6 +279,24 @@
 							<string key="NSResourceName">shoutBig01.png</string>
 						</object>
 					</object>
+					<object class="IBUIImageView" id="539709171">
+						<reference key="NSNextResponder" ref="580314856"/>
+						<int key="NSvFlags">-2147483356</int>
+						<string key="NSFrame">{{0, -2}, {320, 480}}</string>
+						<reference key="NSSuperview" ref="580314856"/>
+						<object class="NSColor" key="IBUIBackgroundColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MCAwIDAAA</bytes>
+						</object>
+						<bool key="IBUIOpaque">NO</bool>
+						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+						<int key="IBUIContentMode">4</int>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<object class="NSCustomResource" key="IBUIImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">kickballLoading40.png</string>
+						</object>
+					</object>
 				</object>
 				<string key="NSFrameSize">{320, 460}</string>
 				<reference key="NSSuperview"/>
@@ -519,29 +537,8 @@
 			<object class="IBUIView" id="1001107543">
 				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
-				<object class="NSMutableArray" key="NSSubviews">
-					<bool key="EncodedWithXMLCoder">YES</bool>
-					<object class="IBUIImageView" id="817340380">
-						<reference key="NSNextResponder" ref="1001107543"/>
-						<int key="NSvFlags">256</int>
-						<string key="NSFrameSize">{320, 460}</string>
-						<reference key="NSSuperview" ref="1001107543"/>
-						<bool key="IBUIOpaque">NO</bool>
-						<bool key="IBUIClipsSubviews">YES</bool>
-						<int key="IBUIContentMode">4</int>
-						<bool key="IBUIMultipleTouchEnabled">YES</bool>
-						<object class="NSCustomResource" key="IBUIImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">kickballLoading01.png</string>
-						</object>
-					</object>
-				</object>
-				<string key="NSFrameSize">{320, 460}</string>
-				<object class="NSColor" key="IBUIBackgroundColor">
-					<int key="NSColorSpace">3</int>
-					<bytes key="NSWhite">MQA</bytes>
-					<reference key="NSCustomColorSpace" ref="1048325629"/>
-				</object>
+				<string key="NSFrame">{{0, -127}, {320, 460}}</string>
+				<reference key="IBUIBackgroundColor" ref="799418983"/>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 			</object>
 		</object>
@@ -733,6 +730,14 @@
 					</object>
 					<int key="connectionID">128</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">fadeOutImage</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="539709171"/>
+					</object>
+					<int key="connectionID">134</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -764,6 +769,7 @@
 							<reference ref="564801686"/>
 							<reference ref="904734850"/>
 							<reference ref="1042192864"/>
+							<reference ref="539709171"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -888,24 +894,9 @@
 						<reference key="parent" ref="831572603"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">115</int>
-						<reference key="object" ref="1001107543"/>
-						<object class="NSMutableArray" key="children">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="817340380"/>
-						</object>
-						<reference key="parent" ref="0"/>
-						<string key="objectName">Splash Image View</string>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">21</int>
 						<reference key="object" ref="564801686"/>
 						<reference key="parent" ref="580314856"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">119</int>
-						<reference key="object" ref="817340380"/>
-						<reference key="parent" ref="1001107543"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">121</int>
@@ -932,6 +923,17 @@
 						<reference key="object" ref="632051091"/>
 						<reference key="parent" ref="754042065"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">115</int>
+						<reference key="object" ref="1001107543"/>
+						<reference key="parent" ref="0"/>
+						<string key="objectName">Splash Image View</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">133</int>
+						<reference key="object" ref="539709171"/>
+						<reference key="parent" ref="580314856"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -951,6 +953,8 @@
 					<string>115.IBPluginDependency</string>
 					<string>121.IBPluginDependency</string>
 					<string>127.IBPluginDependency</string>
+					<string>133.IBEditorWindowLastContentRect</string>
+					<string>133.IBPluginDependency</string>
 					<string>17.IBPluginDependency</string>
 					<string>21.IBPluginDependency</string>
 					<string>25.IBEditorWindowLastContentRect</string>
@@ -989,6 +993,8 @@
 					<string>{{633, 186}, {320, 460}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>{{676, 422}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1031,7 +1037,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">132</int>
+			<int key="maxID">134</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1064,6 +1070,7 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>fadeOutImage</string>
 							<string>footerViewCell</string>
 							<string>instructionView</string>
 							<string>mapButton</string>
@@ -1077,6 +1084,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>UIImageView</string>
 							<string>UITableViewCell</string>
 							<string>InstructionView</string>
 							<string>UIButton</string>

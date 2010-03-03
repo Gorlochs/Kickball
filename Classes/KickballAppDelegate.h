@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MediaPlayer/MediaPlayer.h>
 #import "FSUser.h"
 #import "Reachability.h"
 #import "KBPushNotificationView.h"
@@ -18,7 +19,7 @@
 
 @class FriendsListViewController;
 
-@interface KickballAppDelegate : NSObject <UIApplicationDelegate> {
+@interface KickballAppDelegate : NSObject <UIApplicationDelegate    > {
     UIWindow *window;
     FriendsListViewController *viewController;
     UINavigationController *navigationController;
@@ -34,6 +35,8 @@
     KBPushNotificationView *pushView;
     NSDictionary *pushUserInfo;
     PopupMessageView *popupView;
+    
+    MPMoviePlayerController * mMoviePlayer;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;

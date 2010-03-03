@@ -37,30 +37,46 @@
 
 @synthesize checkins, recentCheckins, todayCheckins, yesterdayCheckins;
 
-
-- (void)viewDidLoad {
+- (void) viewDidLoad {
     [super viewDidLoad];
 //    [self setupSplashAnimation];
-//    [self showSplash];
-//}
-//
-//-(void)showSplash {
-//    UIViewController *modalViewController = [[UIViewController alloc] init];
-//    modalViewController.view = splashView;
-//    [self presentModalViewController:modalViewController animated:NO];
-////    [self.view addSubview:splashView];
-//    //[UIView setAnimationDidStopSelector:@selector(hideSplash:finished:context:)];
-//    [self performSelector:@selector(hideSplash) withObject:nil afterDelay:2.0];
+////    [self showSplash];
+////}
+////
+////- (void) showSplash {
+//    UIViewController *modalSplashViewController = [[UIViewController alloc] init];
+//    modalSplashViewController.view = splashView;
+//    splashView.image = [UIImage imageNamed:@"kickballLoading40.png"];
+//    [self presentModalViewController:modalSplashViewController animated:NO];
+//    fadeOutImage.hidden = NO;
+//    //[self.view addSubview:splashView];
+//    [self performSelector:@selector(hideSplash) withObject:nil afterDelay:1.33];
 //    [splashView startAnimating];
 //}
 //
 ////- (void)hideSplash:(NSString*)animationID finished:(BOOL)finished context:(void *)context {
 //- (void) hideSplash {
+//    
+//    [self.view bringSubviewToFront:fadeOutImage];
 //    [splashView stopAnimating];
-//    //splashView = nil;
 //    [self.modalViewController dismissModalViewControllerAnimated:NO];
+//    //splashView = nil;
+//    //[self.modalViewController dismissModalViewControllerAnimated:NO];
+//    [UIView setAnimationsEnabled:YES];
+//    
+//    [UIView beginAnimations:nil context:NULL];
+//    [UIView setAnimationBeginsFromCurrentState:YES];
+//    [UIView setAnimationDuration:1.5];
+////    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+//    fadeOutImage.alpha = 0;
+//    [UIView setAnimationDelegate:self];
+//    [UIView setAnimationDidStopSelector:@selector(continueLoadingView)];
+//    [UIView commitAnimations];
 //    //[splashView removeFromSuperview];
-    
+//    
+//}
+//
+//- (void) continueLoadingView {
     welcomePageNum = 1;
     isDisplayingMore = NO;
     
@@ -552,14 +568,14 @@
 
 - (void) setupSplashAnimation {
     NSMutableArray *images = [[NSMutableArray alloc] initWithCapacity:1];
-    for (int i = 1; i < 40; i++) {
+    for (int i = 1; i < 41; i++) {
         [images addObject:[UIImage imageNamed:[NSString stringWithFormat:@"kickballLoading%02d.png", i]]];
 //        [images addObject:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"kickballLoading%02d", i] ofType:@"png"]]];
     }
     
     splashView.animationImages = [[NSArray alloc] initWithArray:images];
     [images release];
-    splashView.animationDuration = 2.0;
+    splashView.animationDuration = 1.33;
     splashView.animationRepeatCount = 1;
 }
 

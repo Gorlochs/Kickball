@@ -27,12 +27,38 @@
 @synthesize deviceAlias;
 @synthesize pushNotificationUserId;
 
+- (void) moviePlayBackDidFinish:(NSNotification*)notification
+{
+    
+    [mMoviePlayer release];
+}
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {    
+    NSURL* mMovieURL;
+    NSBundle *bundle = [NSBundle mainBundle];
+    if (bundle) 
+    {
+        NSString *moviePath = [bundle pathForResource:@"sequence" ofType:@"m4v"];
+        if (moviePath)
+        {
+            mMovieURL = [NSURL fileURLWithPath:moviePath];
+            [mMovieURL retain];
+        }
+    }
+	mMoviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:mMovieURL];
+    mMoviePlayer.movieControlMode = MPMovieControlModeHidden;
+    [mMovieURL release];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+											 selector:@selector(moviePlayBackDidFinish:) 
+												 name:MPMoviePlayerPlaybackDidFinishNotification 
+											   object:mMoviePlayer];
+	[mMoviePlayer play];
     
     // Override point for customization after app launch    
     //[window addSubview:viewController.view];
-    [window addSubview:navigationController.view];
+//    [window addSubview:navigationController.view];
     [window makeKeyAndVisible];
     application.applicationIconBadgeNumber = 0;
     
