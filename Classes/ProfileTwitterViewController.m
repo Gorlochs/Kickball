@@ -19,19 +19,17 @@
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTweetNotification:) name:IFTweetLabelURLNotification object:nil];
     [[Beacon shared] startSubBeaconWithName:@"Profile Twitter View"];
+    
+    NSMutableArray *arr = [[NSMutableArray alloc] initWithCapacity:1];
+    orderedTweets = [[NSMutableDictionary alloc] initWithCapacity:1];
+    for (NSDictionary *tweet in tweets) {
+        [arr addObject:[tweet objectForKey:@"id"]];
+    }
+    orderedTweets = [[NSMutableDictionary alloc] initWithObjects:tweets forKeys:arr];
+    NSArray *tempArray = [[NSArray alloc] initWithArray:[orderedTweets allKeys]];
+    sortedKeys = [[NSArray alloc] initWithArray:[tempArray sortedArrayUsingSelector:@selector(compare:)]];
+    [tempArray release];
 }
-
-NSInteger dateSort(id s1, id s2, void *context)
-{
-    //NSDateFormatter* format = (NSDateFormatter*)TWITTER_DATE_FORMAT;
-    NSDate* d1 = [s1 objectForKey:@"created_at"]; //[format dateFromString:s1];
-    NSDate* d2 = [s2 objectForKey:@"created_at"]; //[format dateFromString:s2];
-    NSLog(@"date 1: %@", [s1 objectForKey:@"created_at"]);
-    NSLog(@"date 2: %@", [s2 objectForKey:@"created_at"]);
-    NSLog(@"[d1 compare:d2], %d", ![d1 compare:d2]);
-    return [d1 compare:d2];
-}
-
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -77,20 +75,18 @@ NSInteger dateSort(id s1, id s2, void *context)
     [dateFormatter setDateFormat:TWITTER_DATE_FORMAT];
     //[dateFormatter setDateFormat:@"yyyy-MM-dd"];
     
-    NSDictionary *dict = (NSDictionary*)[tweets objectAtIndex:indexPath.row];
-    NSLog(@"created at: %@", [dict objectForKey:@"created_at"]);
-    NSLog(@"created at class: %@", [[dict objectForKey:@"created_at"] class]);
+    // reverse sort!
+    NSDictionary *tweet = [orderedTweets objectForKey:[sortedKeys objectAtIndex:[sortedKeys count] - indexPath.row - 1]];
+    
     //NSDate *date = [dateFormatter dateFromString:[dict objectForKey:@"created_at"]];
     [dateFormatter setDateFormat:@"MM-dd-YYYY"];
     
-//    [tweetLabel setNormalImage:[UIImage imageNamed:@"weatherBG.png"]];
-//    [tweetLabel setHighlightImage:[UIImage imageNamed:@"weatherBG.png"]];
 	[tweetLabel setFont:[UIFont systemFontOfSize:12.0f]];
 	[tweetLabel setTextColor:[UIColor blackColor]];
 	[tweetLabel setBackgroundColor:[UIColor clearColor]];
 	[tweetLabel setNumberOfLines:0];
-	//[tweetLabel setText:[NSString stringWithFormat:@"%@  (%@)", [dict objectForKey:@"text"], [dateFormatter stringFromDate:[dict objectForKey:@"created_at"]]]];
-    [tweetLabel setText:[dict objectForKey:@"text"]];
+	//[tweetLabel setText:[NSString stringWithFormat:@"%@  (%@)", [tweet objectForKey:@"text"], [dateFormatter stringFromDate:[tweet objectForKey:@"created_at"]]]];
+    [tweetLabel setText:[tweet objectForKey:@"text"]];
 	[tweetLabel setLinksEnabled:YES];
 	
     //[tweetLabel release];
@@ -115,7 +111,6 @@ NSInteger dateSort(id s1, id s2, void *context)
 - (void)dealloc {
     [theTableView release];
     [tweets release];
-    [sortedTweets release];
     [super dealloc];
 }
 

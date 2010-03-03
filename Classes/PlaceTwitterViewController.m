@@ -57,7 +57,7 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [twitterStatuses count];
+    return [sortedKeys count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -81,15 +81,18 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MM-dd-YYYY"];
     
-    NSDictionary *dict = (NSDictionary*)[twitterStatuses objectAtIndex:indexPath.row];
+    // reverse sort!
+    NSDictionary *tweet = [orderedTweets objectForKey:[sortedKeys objectAtIndex:[sortedKeys count] - indexPath.row - 1]];
+    
     [tweetLabel setFont:[UIFont systemFontOfSize:12.0f]];
-	[tweetLabel setTextColor:[UIColor blackColor]];
-	[tweetLabel setBackgroundColor:[UIColor clearColor]];
-	[tweetLabel setNumberOfLines:0];
-//	[tweetLabel setText:[NSString stringWithFormat:@"%@  (%@)", [dict objectForKey:@"text"], [dateFormatter stringFromDate:[dict objectForKey:@"created_at"]]]];
-	[tweetLabel setText:[dict objectForKey:@"text"]];
-	[tweetLabel setLinksEnabled:YES];
-    [dateFormatter release];
+    [tweetLabel setTextColor:[UIColor blackColor]];
+    [tweetLabel setBackgroundColor:[UIColor clearColor]];
+    [tweetLabel setNumberOfLines:0];
+    //	[tweetLabel setText:[NSString stringWithFormat:@"%@  (%@)", [tweet objectForKey:@"text"], [dateFormatter stringFromDate:[tweet objectForKey:@"created_at"]]]];
+    [tweetLabel setText:[tweet objectForKey:@"text"]];
+    [tweetLabel setLinksEnabled:YES];
+    [dateFormatter release];   
+
     
     // Set up the cell...
 //    cell.textLabel.numberOfLines = 3;
@@ -122,9 +125,19 @@
 
 - (void)statusesReceived:(NSArray *)statuses forRequest:(NSString *)connectionIdentifier {
     twitterStatuses = [[NSArray alloc] initWithArray:statuses];
+    NSLog(@"number of tweets: %d", [twitterStatuses count]);
+    NSMutableArray *arr = [[NSMutableArray alloc] initWithCapacity:1];
+    orderedTweets = [[NSMutableDictionary alloc] initWithCapacity:1];
+    for (NSDictionary *tweet in twitterStatuses) {
+        [arr addObject:[tweet objectForKey:@"id"]];
+    }
+    orderedTweets = [[NSMutableDictionary alloc] initWithObjects:statuses forKeys:arr];
+    NSArray *tempArray = [[NSArray alloc] initWithArray:[orderedTweets allKeys]];
+    sortedKeys = [[NSArray alloc] initWithArray:[tempArray sortedArrayUsingSelector:@selector(compare:)]];
+    [tempArray release];
     [theTableView reloadData];
-    NSLog(@"statusesReceived: %@", statuses);
 }
+
 //- (void)directMessagesReceived:(NSArray *)messages forRequest:(NSString *)connectionIdentifier {
 //    NSLog(@"directMessagesReceived: %@", messages);
 //    
@@ -146,7 +159,10 @@
     
 }
 - (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error {
-    NSLog(@"requestFailed: %@", connectionIdentifier);
+    NSLog(@"requestFailed: %@ - error: %@", connectionIdentifier, error);
+    KBMessage *message = [[KBMessage alloc] initWithMember:@"Twitter Error" andMessage:error];
+    [self displayPopupMessage:message];
+    [message release];
     
 }
 @end

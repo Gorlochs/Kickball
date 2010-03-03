@@ -14,7 +14,9 @@
     IBOutlet UITableView *theTableView;
     
     NSArray *tweets;
-    NSArray *sortedTweets;
+    
+    NSMutableDictionary *orderedTweets;
+    NSArray *sortedKeys;
 }
 
 @property (nonatomic, retain) NSArray *tweets;

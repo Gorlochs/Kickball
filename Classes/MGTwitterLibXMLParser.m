@@ -31,6 +31,19 @@ connectionIdentifier:(NSString *)identifier requestType:(MGTwitterRequestType)re
 	return [parser autorelease];
 }
 
+- (NSNumber *)_nodeValueAsLongLong
+{
+	xmlChar *nodeValue = [self _nodeValue];
+	if (! nodeValue)
+	{
+		return nil;
+	}
+	
+	NSString *intString = [NSString stringWithUTF8String:(const char *)nodeValue];
+	xmlFree(nodeValue);
+	return [NSNumber numberWithLongLong:[intString longLongValue]];
+}
+
 
 - (id)initWithXML:(NSData *)theXML delegate:(NSObject *)theDelegate 
 connectionIdentifier:(NSString *)theIdentifier requestType:(MGTwitterRequestType)reqType 
@@ -199,7 +212,9 @@ connectionIdentifier:(NSString *)theIdentifier requestType:(MGTwitterRequestType
 			else if (xmlStrEqual(name, BAD_CAST "id") || xmlStrEqual(name, BAD_CAST "in_reply_to_user_id") || xmlStrEqual(name, BAD_CAST "in_reply_to_status_id"))
 			{
 				// process element as an integer
-				NSNumber *number = [self _nodeValueAsInt];
+                NSNumber *number = [self _nodeValueAsLongLong];
+
+//				NSNumber *number = [self _nodeValueAsInt];
 				if (number)
 				{
 					[dictionary setObject:number forKey:[NSString stringWithUTF8String:(const char *)name]];
@@ -268,7 +283,9 @@ connectionIdentifier:(NSString *)theIdentifier requestType:(MGTwitterRequestType
 					|| xmlStrEqual(name, BAD_CAST "statuses_count"))
 			{
 				// process element as an integer
-				NSNumber *number = [self _nodeValueAsInt];
+                NSNumber *number = [self _nodeValueAsLongLong];
+
+//				NSNumber *number = [self _nodeValueAsInt];
 				if (number)
 				{
 					[dictionary setObject:number forKey:[NSString stringWithUTF8String:(const char *)name]];
@@ -324,7 +341,9 @@ connectionIdentifier:(NSString *)theIdentifier requestType:(MGTwitterRequestType
 					|| xmlStrEqual(name, BAD_CAST "reset-time-in-seconds"))
 			{
 				// process element as an integer
-				NSNumber *number = [self _nodeValueAsInt];
+                NSNumber *number = [self _nodeValueAsLongLong];
+
+//				NSNumber *number = [self _nodeValueAsInt];
 				if (number)
 				{
 					[dictionary setObject:number forKey:[NSString stringWithUTF8String:(const char *)name]];

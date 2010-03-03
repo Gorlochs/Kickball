@@ -10,13 +10,14 @@
 #import "MGTwitterEngineDelegate.h"
 #import "KBBaseViewController.h"
 
-
 @interface PlaceTwitterViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource, MGTwitterEngineDelegate> {
     NSString *twitterName;
     NSArray *twitterStatuses;
     NSString *venueName;
     IBOutlet UILabel *venueLabel;
     IBOutlet UITableView *theTableView;
+    NSMutableDictionary *orderedTweets;
+    NSArray *sortedKeys;
 }
 
 @property (nonatomic, retain) NSString *twitterName;

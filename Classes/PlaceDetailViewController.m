@@ -1043,6 +1043,7 @@
         //        [request setPostValue:@"" forKey:@"gift[recipient_id]"];
         [request setPostValue:@"1" forKey:@"gift[is_public]"];
         [request setPostValue:@"0" forKey:@"gift[is_banned]"];
+        [request setPostValue:@"0" forKey:@"gift[is_flagged]"];
         [request setPostValue:@"testing from the simulator (or device)" forKey:@"gift[message_text]"];
         [request setData:imageData withFileName:filename andContentType:@"image/jpeg" forKey:@"gift[photo]"];
         [request setDidFailSelector:@selector(imageRequestWentWrong:)];
