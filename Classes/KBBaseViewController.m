@@ -184,7 +184,7 @@
     popupView.view.alpha = 1.0;
     
     [UIView commitAnimations];
-    [self performSelector:@selector(fadePopupMessage) withObject:nil afterDelay:3];
+    //[self performSelector:@selector(fadePopupMessage) withObject:nil afterDelay:3];
 }
 
 - (void) displayPopupMessageForLogin:(KBMessage*)message {
@@ -202,7 +202,7 @@
     popupView.view.alpha = 1.0;
     popupView.view.frame = CGRectMake(0, -212, popupView.view.frame.size.width, popupView.view.frame.size.height);
     [UIView commitAnimations];
-    [self performSelector:@selector(fadePopupMessage) withObject:nil afterDelay:3];
+    //[self performSelector:@selector(fadePopupMessage) withObject:nil afterDelay:3];
 }
 
 - (void) fadePopupMessage {
