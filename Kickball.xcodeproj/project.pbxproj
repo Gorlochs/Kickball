@@ -549,6 +549,7 @@
 		6ACBCCCA111FD2B900CF400C /* HistoryViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6ACBCCC8111FD2B900CF400C /* HistoryViewController.xib */; };
 		6AD0BF97113DDFF100A971E3 /* sequence.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 6AD0BF96113DDFF100A971E3 /* sequence.m4v */; };
 		6AD0BFA1113DE80900A971E3 /* landscape_intro.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 6AD0BFA0113DE80900A971E3 /* landscape_intro.m4v */; };
+		6AD0C135113E3F2B00A971E3 /* KBTwitterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD0C134113E3F2B00A971E3 /* KBTwitterCell.m */; };
 		6ADB704A1116AE3300A26D35 /* saveClose02a.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ADB703F1116AE3300A26D35 /* saveClose02a.png */; };
 		6ADB704B1116AE3300A26D35 /* saveClose01a.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ADB70401116AE3300A26D35 /* saveClose01a.png */; };
 		6ADB704C1116AE3300A26D35 /* clearFields02a.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ADB70411116AE3300A26D35 /* clearFields02a.png */; };
@@ -1358,6 +1359,8 @@
 		6ACBCCC8111FD2B900CF400C /* HistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistoryViewController.xib; sourceTree = "<group>"; };
 		6AD0BF96113DDFF100A971E3 /* sequence.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = sequence.m4v; sourceTree = "<group>"; };
 		6AD0BFA0113DE80900A971E3 /* landscape_intro.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = landscape_intro.m4v; sourceTree = "<group>"; };
+		6AD0C133113E3F2B00A971E3 /* KBTwitterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBTwitterCell.h; sourceTree = "<group>"; };
+		6AD0C134113E3F2B00A971E3 /* KBTwitterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTwitterCell.m; sourceTree = "<group>"; };
 		6ADB703F1116AE3300A26D35 /* saveClose02a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = saveClose02a.png; sourceTree = "<group>"; };
 		6ADB70401116AE3300A26D35 /* saveClose01a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = saveClose01a.png; sourceTree = "<group>"; };
 		6ADB70411116AE3300A26D35 /* clearFields02a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clearFields02a.png; sourceTree = "<group>"; };
@@ -2377,6 +2380,8 @@
 				6AEB63D6110BAA8C0066DD05 /* KBPushNotificationView.m */,
 				035C1FD21112A2E10075E553 /* NSString+hmac.h */,
 				035C1FD31112A2E10075E553 /* NSString+hmac.m */,
+				6AD0C133113E3F2B00A971E3 /* KBTwitterCell.h */,
+				6AD0C134113E3F2B00A971E3 /* KBTwitterCell.m */,
 			);
 			name = General;
 			sourceTree = "<group>";
@@ -3384,6 +3389,7 @@
 				6A06BA67113D8F6300BAB8CF /* FriendSearchResultsViewController.xib in Sources */,
 				6A47899C113DCE0100B96305 /* PhotoDetailViewController.m in Sources */,
 				6A47899D113DCE0100B96305 /* PhotoDetailViewController.xib in Sources */,
+				6AD0C135113E3F2B00A971E3 /* KBTwitterCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

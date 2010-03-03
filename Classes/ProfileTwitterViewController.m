@@ -7,7 +7,7 @@
 //
 
 #import "ProfileTwitterViewController.h"
-#import "IFTweetLabel.h"
+#import "KBTwitterCell.h"
 
 #define TWITTER_DATE_FORMAT @"ccc MMM dd HH:mm:ss Z yyyy"
 
@@ -62,12 +62,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"Cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    IFTweetLabel *tweetLabel = [[[IFTweetLabel alloc] initWithFrame:CGRectMake(10.0f, 3.0f, 300.0f, 60.0f)] autorelease];
+    KBTwitterCell *cell = (KBTwitterCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-        cell.textLabel.font = [UIFont systemFontOfSize:14.0];
-        [cell addSubview:tweetLabel];
+        cell = [[[KBTwitterCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
@@ -79,26 +76,13 @@
     NSDictionary *tweet = [orderedTweets objectForKey:[sortedKeys objectAtIndex:[sortedKeys count] - indexPath.row - 1]];
     
     //NSDate *date = [dateFormatter dateFromString:[dict objectForKey:@"created_at"]];
-    [dateFormatter setDateFormat:@"MM-dd-YYYY"];
+    //[dateFormatter setDateFormat:@"MM-dd-YYYY"];
     
-	[tweetLabel setFont:[UIFont systemFontOfSize:12.0f]];
-	[tweetLabel setTextColor:[UIColor blackColor]];
-	[tweetLabel setBackgroundColor:[UIColor clearColor]];
-	[tweetLabel setNumberOfLines:0];
 	//[tweetLabel setText:[NSString stringWithFormat:@"%@  (%@)", [tweet objectForKey:@"text"], [dateFormatter stringFromDate:[tweet objectForKey:@"created_at"]]]];
-    [tweetLabel setText:[tweet objectForKey:@"text"]];
-	[tweetLabel setLinksEnabled:YES];
+    [cell.tweetLabel setText:[tweet objectForKey:@"text"]];
+    [cell.tweetLabel setLinksEnabled:YES];
 	
-    //[tweetLabel release];
-    
-    // Set up the cell...
-//    cell.textLabel.numberOfLines = 3;
-//    NSDictionary *dict = (NSDictionary*)[tweets objectAtIndex:indexPath.row];
-//    //    NSLog(@"date: %@", [dict objectForKey:@"created_at"]);
-//    //    NSDate *tweetDate = [dateFormatter dateFromString:[dict objectForKey:@"created_at"]];
-//    //    [dateFormatter setDateFormat:@"MM-dd-YYYY HH:mm:ss"];
-//    cell.textLabel.text = [NSString stringWithFormat:@"%@ (%@)", [dict objectForKey:@"text"], [dict objectForKey:@"created_at"]];
-    [dateFormatter release];
+    //[dateFormatter release];
 	
     return cell;
 }
