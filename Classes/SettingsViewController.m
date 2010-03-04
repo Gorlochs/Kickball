@@ -134,7 +134,7 @@
         [pingsAndUpdates setImage:[UIImage imageNamed:@"settingsCheckins02.png"] forState:UIControlStateHighlighted];
     } else {
         [pingsAndUpdates setImage:[UIImage imageNamed:@"settingsCheckins03.png"] forState:UIControlStateNormal];
-        [pingsAndUpdates setImage:[UIImage imageNamed:@"settingsCheckins04.png"] forState:UIControlStateHighlighted];
+        [pingsAndUpdates setImage:[UIImage imageNamed:@"settingsCheckins02.png"] forState:UIControlStateHighlighted];
     }
 }
 
