@@ -636,7 +636,7 @@
 									<string key="NSResourceName">photo_bg.png</string>
 								</object>
 							</object>
-							<object class="IBUIButton" id="269045439">
+							<object class="IBUIButton" id="616508844">
 								<reference key="NSNextResponder" ref="767027782"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{0, -1}, {320, 74}}</string>
@@ -661,10 +661,10 @@
 									<string key="NSResourceName">addFirst01.png</string>
 								</object>
 							</object>
-							<object class="IBUIButton" id="124009584">
+							<object class="IBUIButton" id="674051390">
 								<reference key="NSNextResponder" ref="767027782"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{7, 31}, {143, 37}}</string>
+								<string key="NSFrame">{{3, 34}, {143, 37}}</string>
 								<reference key="NSSuperview" ref="767027782"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -1734,17 +1734,9 @@
 					<int key="connectionID">240</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">firstTimePhotoButton</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="269045439"/>
-					</object>
-					<int key="connectionID">244</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">choosePhotoSelectMethod</string>
-						<reference key="source" ref="269045439"/>
+						<reference key="source" ref="616508844"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -1753,7 +1745,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">choosePhotoSelectMethod</string>
-						<reference key="source" ref="124009584"/>
+						<reference key="source" ref="674051390"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -1779,9 +1771,17 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">addPhotoButton</string>
 						<reference key="source" ref="118555116"/>
-						<reference key="destination" ref="124009584"/>
+						<reference key="destination" ref="674051390"/>
 					</object>
 					<int key="connectionID">275</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">firstTimePhotoButton</string>
+						<reference key="source" ref="118555116"/>
+						<reference key="destination" ref="616508844"/>
+					</object>
+					<int key="connectionID">276</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1887,8 +1887,8 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="1073022957"/>
-							<reference ref="269045439"/>
-							<reference ref="124009584"/>
+							<reference ref="616508844"/>
+							<reference ref="674051390"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Gift Cell</string>
@@ -2192,12 +2192,12 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">243</int>
-						<reference key="object" ref="269045439"/>
+						<reference key="object" ref="616508844"/>
 						<reference key="parent" ref="118555116"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">246</int>
-						<reference key="object" ref="124009584"/>
+						<reference key="object" ref="674051390"/>
 						<reference key="parent" ref="118555116"/>
 					</object>
 				</object>
@@ -2367,7 +2367,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">275</int>
+			<int key="maxID">276</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2422,11 +2422,13 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>addPhotoButton</string>
 							<string>bgImage</string>
+							<string>firstTimePhotoButton</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UIButton</string>
 							<string>UIImageView</string>
+							<string>UIButton</string>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
@@ -2501,7 +2503,6 @@
 							<string>choosePhotoButton</string>
 							<string>closeMapButton</string>
 							<string>detailButtonCell</string>
-							<string>firstTimePhotoButton</string>
 							<string>fullMapView</string>
 							<string>giftCell</string>
 							<string>mapButton</string>
@@ -2540,7 +2541,6 @@
 							<string>UIButton</string>
 							<string>UIButton</string>
 							<string>UITableViewCell</string>
-							<string>UIButton</string>
 							<string>MKMapView</string>
 							<string>KBPhotoThumbnailCell</string>
 							<string>UIButton</string>

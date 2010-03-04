@@ -12,7 +12,7 @@
 
 @implementation KBPhotoThumbnailCell
 
-@synthesize goodies, bgImage;
+@synthesize goodies, bgImage, addPhotoButton, firstTimePhotoButton;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
@@ -20,39 +20,6 @@
     }
     return self;
 }
-
-- (void) setGoodies:(NSArray *)theGoodies {
-    goodies = [theGoodies retain];
-    [theGoodies release];
-    
-//    int i = 0;
-//    for (KBGoody *goody in goodies) {
-//        CGRect frame = CGRectMake(i*74, 0, 74, 74);
-//        TTImageView *ttImage = [[TTImageView alloc] initWithFrame:frame];
-//        ttImage.urlPath = goody.mediumImagePath;
-//        ttImage.clipsToBounds = YES;
-//        ttImage.contentMode = UIViewContentModeCenter;
-//        [self addSubview:ttImage];
-//        
-//        UIButton *button = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
-//        button.frame = CGRectMake(i*74, 0, 74, 74);
-//        button.showsTouchWhenHighlighted = YES;
-//        [button addTarget:self action:@selector(displayImages:) forControlEvents:UIControlEventTouchUpInside]; 
-//        //[buttonArray addObject:button];
-//        [self addSubview:button];
-//        [button release];
-//        i++;
-//        if (i > 9) {
-//            // TODO: add 'more' button here
-//            break;
-//        }
-//    }
-}
-
-- (void) displayImages:(id)sender {
-    
-}
-
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
 
@@ -64,6 +31,9 @@
 
 - (void)dealloc {
     [goodies release];
+    [firstTimePhotoButton release];
+    [addPhotoButton release];
+    [bgImage release];
     [super dealloc];
 }
 

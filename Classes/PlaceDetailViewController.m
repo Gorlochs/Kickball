@@ -171,7 +171,7 @@
         //[blogEntries addObject:[blogItem copy]];
     }
     if ([goodies count] > 0) {
-        firstTimePhotoButton.hidden = YES;
+        giftCell.firstTimePhotoButton.hidden = YES;
         
         int i = 0;
         
@@ -209,7 +209,8 @@
         photoSource = [[MockPhotoSource alloc] initWithType:MockPhotoSourceNormal title:venue.name photos:tempTTPhotoArray photos2:nil];
         [tempTTPhotoArray release];
     } else {
-        firstTimePhotoButton.hidden = NO;
+        giftCell.firstTimePhotoButton.hidden = NO;
+        giftCell.addPhotoButton.hidden = YES;
     }
     [theTableView reloadData];
 }
@@ -649,7 +650,6 @@
     
     [photoView release];
     [mayorOverlay release];
-    [firstTimePhotoButton release];
     
     [super dealloc];
 }
