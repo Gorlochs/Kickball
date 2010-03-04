@@ -138,10 +138,34 @@
     }
 }
 
+- (void) cancelEdit {
+    [username resignFirstResponder];
+    [password resignFirstResponder];
+
+    [self.view addSubview:toolbar];
+    [self animateToolbar:CGRectMake(0, 480, 320, 40)];
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    toolbar.frame = CGRectMake(0, 480, 320, 40);
+    [self.view addSubview:toolbar];
+    [self animateToolbar:CGRectMake(0, 205, 320, 40)];
+}
+
+- (void) animateToolbar:(CGRect)toolbarFrame {
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
+    
+    [toolbar setFrame:toolbarFrame];
+    
+    [UIView commitAnimations];
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
 	// When the user presses return, take focus away from the text field so that the keyboard is dismissed.
 	if (theTextField == password) {
-        
+        toolbar.hidden = YES;
 		[password resignFirstResponder];
 		[self validateNewUsernamePassword];
         // Invoke the method that changes the greeting.
@@ -158,6 +182,7 @@
     [password release];
     [friendRequestCount release];
     [pendingFriendRequests release];
+    [toolbar release];
     [super dealloc];
 }
 

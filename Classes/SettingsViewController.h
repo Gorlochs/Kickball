@@ -17,6 +17,7 @@
     NSArray *pendingFriendRequests;
     bool isPingAndUpdatesOn;
     IBOutlet UIButton *pingsAndUpdates;
+    IBOutlet UIToolbar *toolbar;
 }
 
 - (IBAction) viewFriendRequests;
@@ -24,5 +25,7 @@
 - (IBAction) validateNewUsernamePassword;
 - (IBAction) togglePingsAndUpdates;
 - (void) setPingAndUpdatesButton;
+- (IBAction) cancelEdit;
+- (void) animateToolbar:(CGRect)toolbarFrame;
 
 @end
