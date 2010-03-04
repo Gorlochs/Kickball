@@ -30,11 +30,12 @@
 #import "ASINetworkQueue.h"
 #import "KBGoody.h"
 #import "KBAsyncImageView.h"
+#import "KBPhotoViewController.h"
 
 @interface PlaceDetailViewController (Private)
 
-- (BOOL)uploadImage:(NSData *)imageData filename:(NSString *)filename;
-- (void)venueResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString;
+- (BOOL) uploadImage:(NSData *)imageData filename:(NSString *)filename;
+- (void) venueResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString;
 - (void) prepViewWithVenueInfo:(FSVenue*)venueToDisplay;
 - (void) pushProfileDetailController:(NSString*)profileUserId;
 
@@ -58,7 +59,10 @@
     return self;
 }
 
-// FIXME: add a check to make sure that a valid venueId exists, since this page will crap out if it doesn't.
+- (void)viewWillAppear:(BOOL)animated {
+    self.navigationController.navigationBar.hidden = YES;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -82,13 +86,10 @@
     isPingOn = tmpUser.isPingOn;
     isTwitterOn = tmpUser.sendToTwitter;
     [self setProperButtonStates];
-//    [self setProperTwitterButtonState];
-//    [self setProperPingButtonState];
-//    twitterButton.selected = isTwitterOn;
-//    pingToggleButton.selected = isPingOn;
+    
+    mayorCrown.hidden = YES;
     
     [self addHeaderAndFooter:theTableView];
-    //theTableView.separatorColor = [UIColor blackColor];
     
     [self startProgressBar:@"Retrieving venue details..."];
     [[FoursquareAPI sharedInstance] getVenue:venueId withTarget:self andAction:@selector(venueResponseReceived:withResponseString:)];
@@ -156,6 +157,10 @@
                 goody.goodyId = value;
             } else if ([name isEqualToString:@"venue-id"]) {
                 goody.venueId = value;
+            } else if ([name isEqualToString:@"venue-name"]) {
+                goody.venueName = value;
+            } else if ([name isEqualToString:@"owner-name"]) {
+                goody.ownerName = value;
             }
         }
         
@@ -169,7 +174,15 @@
         firstTimePhotoButton.hidden = YES;
         
         int i = 0;
+        
+        NSMutableArray *tempTTPhotoArray = [[NSMutableArray alloc] initWithCapacity:[goodies count]];
         for (KBGoody *goody in goodies) {
+            
+            NSString *caption = [NSString stringWithFormat:@"%@ @ %@ on %@", goody.ownerName, goody.venueName, @"date/time"];
+            MockPhoto *photo = [[MockPhoto alloc] initWithURL:goody.imagePath smallURL:goody.mediumImagePath size:CGSizeMake(320, 480) caption:caption];
+            [tempTTPhotoArray addObject:photo];
+            [photo release];
+            
             CGRect frame = CGRectMake(0, i*72, 72, 72);
             KBAsyncImageView* asyncImage = [[[KBAsyncImageView alloc] initWithFrame:frame] autorelease];
             NSLog(@"********** mediumimage path: %@", goody.mediumImagePath);
@@ -179,8 +192,12 @@
             [photoView addSubview:asyncImage];
             i++;
         }
+        photoSource = [[MockPhotoSource alloc] initWithType:MockPhotoSourceNormal title:venue.name photos:tempTTPhotoArray photos2:nil];
+        [tempTTPhotoArray release];
+    } else {
+        firstTimePhotoButton.hidden = NO;
     }
-    //[theTableView reloadData];
+    [theTableView reloadData];
     NSLog(@"goodies: %@", goodies);
     NSLog(@"goodies count: %d", [goodies count]);
 }
@@ -332,8 +349,9 @@
     } else if (section == 5) { // mayor & map cell
         return ![self isNewMayor];
     } else if (section == 6) { // gift
+        return 1;
         //return 0;  // photos being moved out of the table
-        return (goodies != nil && [goodies count] > 0);
+        //return (goodies != nil && [goodies count] > 0);
         //return isUserCheckedIn;
     } else if (section == 7) { // people here
         return [venue.currentCheckins count] + 1;
@@ -615,6 +633,13 @@
 }
 
 #pragma mark IBAction methods
+
+- (void) viewPhotos {
+    
+    KBPhotoViewController *photoController = [[KBPhotoViewController alloc] initWithPhotoSource:photoSource];
+    [self.navigationController pushViewController:photoController animated:YES];
+    [photoController release]; 
+}
 
 - (void) callVenue {
     NSLog(@"phone number to call: %@", [NSString stringWithFormat:@"tel:%@", venue.phone]);
@@ -1046,6 +1071,8 @@
         [request setPostValue:@"1" forKey:@"gift[is_public]"];
         [request setPostValue:@"0" forKey:@"gift[is_banned]"];
         [request setPostValue:@"0" forKey:@"gift[is_flagged]"];
+        [request setPostValue:venue.name forKey:@"gift[venue_name]"];
+        [request setPostValue:[self getAuthenticatedUser].firstnameLastInitial forKey:@"gift[owner_name]"];
         [request setPostValue:@"testing from the simulator (or device)" forKey:@"gift[message_text]"];
         [request setData:imageData withFileName:filename andContentType:@"image/jpeg" forKey:@"gift[photo]"];
         [request setDidFailSelector:@selector(imageRequestWentWrong:)];

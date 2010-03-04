@@ -22,6 +22,8 @@
     BOOL isPublic;
     NSDate *createdAt;
     NSString *goodyId;
+    NSString *ownerName;
+    NSString *venueName;
 }
 
 @property (nonatomic, retain) NSString *imagePath;
@@ -36,5 +38,7 @@
 @property (nonatomic) BOOL isPublic;
 @property (nonatomic, retain) NSDate *createdAt;
 @property (nonatomic, retain) NSString *goodyId;
+@property (nonatomic, retain) NSString *ownerName;
+@property (nonatomic, retain) NSString *venueName;
 
 @end

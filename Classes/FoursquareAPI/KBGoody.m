@@ -23,6 +23,8 @@
 @synthesize isPublic;
 @synthesize createdAt;
 @synthesize goodyId;
+@synthesize ownerName;
+@synthesize venueName;
 
 - (NSString*) imagePath {
     return [NSString stringWithFormat:@"https://kickball.s3.amazonaws.com/photos/%@/original/%@.jpg", goodyId, goodyId];

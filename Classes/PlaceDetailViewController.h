@@ -11,6 +11,7 @@
 #import "FSVenue.h"
 #import "KBBaseViewController.h"
 #import "GAConnectionDelegate.h"
+#import "MockPhotoSource.h"
 
 @interface PlaceDetailViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate, GAConnectionDelegate, UIActionSheetDelegate> {
     IBOutlet UITableView *theTableView;
@@ -67,6 +68,7 @@
     NSMutableArray *goodies;
     IBOutlet UIView *photoView;
     IBOutlet UIButton *firstTimePhotoButton;
+    MockPhotoSource *photoSource;
 }
 
 @property (nonatomic, retain) UITableViewCell *mayorMapCell;
@@ -98,5 +100,6 @@
 - (void)friendsReceived:(NSNotification *)inNotification;
 - (IBAction) choosePhotoSelectMethod;
 - (void) getPhoto:(UIImagePickerControllerSourceType)sourceType;
+- (IBAction) viewPhotos;
 
 @end
