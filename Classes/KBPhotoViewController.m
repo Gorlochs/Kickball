@@ -12,4 +12,6 @@
 
 @implementation KBPhotoViewController
 
+@synthesize startIndex;
+
 @end

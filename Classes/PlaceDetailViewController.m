@@ -181,26 +181,47 @@
             NSString *caption = [NSString stringWithFormat:@"%@ @ %@ on %@", goody.ownerName, goody.venueName, @"date/time"];
             MockPhoto *photo = [[MockPhoto alloc] initWithURL:goody.imagePath smallURL:goody.mediumImagePath size:CGSizeMake(320, 480) caption:caption];
             [tempTTPhotoArray addObject:photo];
-            [photo release];
             
-            CGRect frame = CGRectMake(0, i*72, 72, 72);
-            KBAsyncImageView* asyncImage = [[[KBAsyncImageView alloc] initWithFrame:frame] autorelease];
-            NSLog(@"********** mediumimage path: %@", goody.mediumImagePath);
-            asyncImage.contentMode = UIViewContentModeCenter;
-            asyncImage.clipsToBounds = YES;
-            [asyncImage loadImageFromURL:[NSURL URLWithString:goody.mediumImagePath] withRoundedEdges:NO];
-            [photoView addSubview:asyncImage];
+            CGRect frame = CGRectMake(i*74, 0, 74, 74);
+            TTImageView *ttImage = [[TTImageView alloc] initWithFrame:frame];
+            ttImage.urlPath = goody.mediumImagePath;
+            ttImage.clipsToBounds = YES;
+            ttImage.contentMode = UIViewContentModeCenter;
+            [giftCell addSubview:ttImage];
+            
+            UIButton *button = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+            button.frame = CGRectMake(i*74, 0, 74, 74);
+            button.tag = i;
+            button.showsTouchWhenHighlighted = YES;
+            [button addTarget:self action:@selector(displayImages:) forControlEvents:UIControlEventTouchUpInside]; 
+            //[buttonArray addObject:button];
+            [giftCell addSubview:button];
+            [button release];
             i++;
+            if (i > 9) {
+                // TODO: add 'more' button here
+                break;
+            }
         }
+        
         photoSource = [[MockPhotoSource alloc] initWithType:MockPhotoSourceNormal title:venue.name photos:tempTTPhotoArray photos2:nil];
         [tempTTPhotoArray release];
     } else {
         firstTimePhotoButton.hidden = NO;
     }
     [theTableView reloadData];
-    NSLog(@"goodies: %@", goodies);
-    NSLog(@"goodies count: %d", [goodies count]);
 }
+
+- (void) displayImages:(id)sender {
+    int buttonPressedIndex = ((UIButton *)sender).tag;
+    KBPhotoViewController *photoController = [[KBPhotoViewController alloc] initWithPhotoSource:photoSource];
+    photoController.centerPhoto = [photoSource photoAtIndex:buttonPressedIndex];
+    [self.navigationController pushViewController:photoController animated:YES];
+    [photoController release]; 
+    
+//    [self viewPhotos];
+}
+
 
 - (void) displayTodoTipMessage:(NSNotification *)inNotification {
     KBMessage *msg = [[KBMessage alloc] initWithMember:@"Kickball Notification" andMessage:@"Your todo/tip was sent"];
@@ -418,18 +439,17 @@
         mayorMapCell.backgroundColor = [UIColor whiteColor];
         return mayorMapCell;
     } else if (indexPath.section == 6) {
-        // photos have been moved out of the table
-        int i = 0;
-        for (KBGoody *goody in goodies) {
-            CGRect frame = CGRectMake(0, i*74, 74, 74);
-            KBAsyncImageView* asyncImage = [[[KBAsyncImageView alloc] initWithFrame:frame] autorelease];
-            NSLog(@"********** mediumimage path: %@", goody.mediumImagePath);
-            asyncImage.contentMode = UIViewContentModeCenter;
-            asyncImage.clipsToBounds = YES;
-            [asyncImage loadImageFromURL:[NSURL URLWithString:goody.mediumImagePath] withRoundedEdges:NO];
-            [giftCell addSubview:asyncImage];
-            i++;
-        }
+//        int i = 0;
+//        for (KBGoody *goody in goodies) {
+//            CGRect frame = CGRectMake(i*74, 0, 74, 74);
+//            KBAsyncImageView* asyncImage = [[[KBAsyncImageView alloc] initWithFrame:frame] autorelease];
+//            NSLog(@"********** mediumimage path: %@", goody.mediumImagePath);
+//            asyncImage.contentMode = UIViewContentModeCenter;
+//            asyncImage.clipsToBounds = YES;
+//            [asyncImage loadImageFromURL:[NSURL URLWithString:goody.mediumImagePath] withRoundedEdges:NO];
+//            [giftCell addSubview:asyncImage];
+//            i++;
+//        }
         return giftCell;
     } else if (indexPath.section == 7) {
         if (indexPath.row < [venue.currentCheckins count]) {
@@ -482,7 +502,7 @@
         case 5:
             return 69; // mayor-map cell
         case 6:
-            return 74; // photos
+            return [goodies count] < 6 ? 74 : 148; // photos
         case 7:
             return 44;
         case 8:
@@ -635,8 +655,8 @@
 #pragma mark IBAction methods
 
 - (void) viewPhotos {
-    
     KBPhotoViewController *photoController = [[KBPhotoViewController alloc] initWithPhotoSource:photoSource];
+    //photoController.centerPhoto 
     [self.navigationController pushViewController:photoController animated:YES];
     [photoController release]; 
 }

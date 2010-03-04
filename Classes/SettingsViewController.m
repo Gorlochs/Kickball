@@ -138,6 +138,21 @@
     }
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
+	// When the user presses return, take focus away from the text field so that the keyboard is dismissed.
+	if (theTextField == password) {
+        
+		[password resignFirstResponder];
+		[self validateNewUsernamePassword];
+        // Invoke the method that changes the greeting.
+	} else if (theTextField == username) {
+		[password becomeFirstResponder];
+		// Invoke the method that changes the greeting.
+		
+	}
+	return YES;
+}
+
 - (void)dealloc {
     [username release];
     [password release];

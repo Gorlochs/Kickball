@@ -453,6 +453,7 @@
 		6A649998113F33E700052FF9 /* addFirst01.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A649994113F33E700052FF9 /* addFirst01.png */; };
 		6A649999113F33E700052FF9 /* addPhoto02.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A649995113F33E700052FF9 /* addPhoto02.png */; };
 		6A64999A113F33E700052FF9 /* addPhoto01.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A649996113F33E700052FF9 /* addPhoto01.png */; };
+		6A649A0B113F629800052FF9 /* KBPhotoThumbnailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A649A0A113F629800052FF9 /* KBPhotoThumbnailCell.m */; };
 		6A79D0D710E5E682009082E5 /* PopupMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A79D0D610E5E682009082E5 /* PopupMessageView.m */; };
 		6A79D0D910E5E692009082E5 /* PopupMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A79D0D810E5E692009082E5 /* PopupMessageView.xib */; };
 		6A79D0FE10E68D1A009082E5 /* KBMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A79D0FD10E68D1A009082E5 /* KBMessage.m */; };
@@ -1254,6 +1255,8 @@
 		6A649994113F33E700052FF9 /* addFirst01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addFirst01.png; sourceTree = "<group>"; };
 		6A649995113F33E700052FF9 /* addPhoto02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addPhoto02.png; sourceTree = "<group>"; };
 		6A649996113F33E700052FF9 /* addPhoto01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addPhoto01.png; sourceTree = "<group>"; };
+		6A649A09113F629800052FF9 /* KBPhotoThumbnailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBPhotoThumbnailCell.h; sourceTree = "<group>"; };
+		6A649A0A113F629800052FF9 /* KBPhotoThumbnailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBPhotoThumbnailCell.m; sourceTree = "<group>"; };
 		6A79D0D510E5E682009082E5 /* PopupMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopupMessageView.h; sourceTree = "<group>"; };
 		6A79D0D610E5E682009082E5 /* PopupMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopupMessageView.m; sourceTree = "<group>"; };
 		6A79D0D810E5E692009082E5 /* PopupMessageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupMessageView.xib; sourceTree = "<group>"; };
@@ -2551,6 +2554,8 @@
 				6AD0C283113F0BFA00A971E3 /* KBPhotoViewController.m */,
 				6AD0C28D113F0CBA00A971E3 /* MockPhotoSource.h */,
 				6AD0C28E113F0CBA00A971E3 /* MockPhotoSource.m */,
+				6A649A09113F629800052FF9 /* KBPhotoThumbnailCell.h */,
+				6A649A0A113F629800052FF9 /* KBPhotoThumbnailCell.m */,
 			);
 			name = Place;
 			sourceTree = "<group>";
@@ -3457,6 +3462,7 @@
 				6AD0C135113E3F2B00A971E3 /* KBTwitterCell.m in Sources */,
 				6AD0C284113F0BFA00A971E3 /* KBPhotoViewController.m in Sources */,
 				6AD0C28F113F0CBA00A971E3 /* MockPhotoSource.m in Sources */,
+				6A649A0B113F629800052FF9 /* KBPhotoThumbnailCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

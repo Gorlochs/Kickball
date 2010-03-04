@@ -12,11 +12,12 @@
 #import "KBBaseViewController.h"
 #import "GAConnectionDelegate.h"
 #import "MockPhotoSource.h"
+#import "KBPhotoThumbnailCell.h"
 
 @interface PlaceDetailViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate, GAConnectionDelegate, UIActionSheetDelegate> {
     IBOutlet UITableView *theTableView;
     IBOutlet UITableViewCell *checkinCell;
-    IBOutlet UITableViewCell *giftCell;
+    IBOutlet KBPhotoThumbnailCell *giftCell;
     IBOutlet UITableViewCell *mayorMapCell;
     IBOutlet UITableViewCell *pointsCell;
     IBOutlet UITableViewCell *badgeCell;

@@ -11,7 +11,9 @@
 
 
 @interface KBPhotoViewController : TTPhotoViewController {
-
+    NSInteger startIndex;
 }
+
+@property (nonatomic) NSInteger startIndex;
 
 @end

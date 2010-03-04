@@ -10,7 +10,7 @@
 #import "KBBaseViewController.h"
 
 
-@interface SettingsViewController : KBBaseViewController {
+@interface SettingsViewController : KBBaseViewController <UITextFieldDelegate> {
     IBOutlet UITextField *username;
     IBOutlet UITextField *password;
     IBOutlet UILabel *friendRequestCount;
