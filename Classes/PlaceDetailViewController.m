@@ -194,15 +194,17 @@
             button.tag = i;
             button.showsTouchWhenHighlighted = YES;
             [button addTarget:self action:@selector(displayImages:) forControlEvents:UIControlEventTouchUpInside]; 
-            //[buttonArray addObject:button];
             [giftCell addSubview:button];
+            [giftCell sendSubviewToBack:ttImage];
             [button release];
+            [ttImage release];
             i++;
             if (i > 9) {
                 // TODO: add 'more' button here
                 break;
             }
         }
+        [giftCell sendSubviewToBack:giftCell.bgImage];
         
         photoSource = [[MockPhotoSource alloc] initWithType:MockPhotoSourceNormal title:venue.name photos:tempTTPhotoArray photos2:nil];
         [tempTTPhotoArray release];
