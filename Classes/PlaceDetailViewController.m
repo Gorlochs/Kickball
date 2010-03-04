@@ -32,6 +32,9 @@
 #import "KBAsyncImageView.h"
 #import "KBPhotoViewController.h"
 
+#define PHOTOS_PER_ROW 5
+#define THUMBNAIL_IMAGE_SIZE 74
+
 @interface PlaceDetailViewController (Private)
 
 - (BOOL) uploadImage:(NSData *)imageData filename:(NSString *)filename;
@@ -84,7 +87,7 @@
     signedInUserIcon.imageView.image = [[Utilities sharedInstance] getCachedImage:tmpUser.photo];
     signedInUserIcon.hidden = NO;
     isPingOn = tmpUser.isPingOn;
-    isTwitterOn = tmpUser.sendToTwitter;
+    isTwitterOn = tmpUser.sendToTwitter && [self getAuthenticatedUser].twitter;
     [self setProperButtonStates];
     
     mayorCrown.hidden = YES;
@@ -173,8 +176,11 @@
     if ([goodies count] > 0) {
         giftCell.firstTimePhotoButton.hidden = YES;
         giftCell.addPhotoButton.hidden = NO;
+
         
         int i = 0;
+        int x = 0;
+        int y = 0;
         
         NSMutableArray *tempTTPhotoArray = [[NSMutableArray alloc] initWithCapacity:[goodies count]];
         for (KBGoody *goody in goodies) {
@@ -183,26 +189,26 @@
             MockPhoto *photo = [[MockPhoto alloc] initWithURL:goody.imagePath smallURL:goody.mediumImagePath size:CGSizeMake(320, 480) caption:caption];
             [tempTTPhotoArray addObject:photo];
             
-            CGRect frame = CGRectMake(i*74, 0, 74, 74);
+            CGRect frame = CGRectMake(x*THUMBNAIL_IMAGE_SIZE, y*THUMBNAIL_IMAGE_SIZE, THUMBNAIL_IMAGE_SIZE, THUMBNAIL_IMAGE_SIZE);
             TTImageView *ttImage = [[TTImageView alloc] initWithFrame:frame];
             ttImage.urlPath = goody.mediumImagePath;
             ttImage.clipsToBounds = YES;
             ttImage.contentMode = UIViewContentModeCenter;
             [giftCell insertSubview:ttImage belowSubview:giftCell.addPhotoButton];
-            //[giftCell addSubview:ttImage];
             
             UIButton *button = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
-            button.frame = CGRectMake(i*74, 0, 74, 74);
-            button.tag = i;
+            button.frame = frame;
+            button.tag = i++;
             button.showsTouchWhenHighlighted = YES;
             [button addTarget:self action:@selector(displayImages:) forControlEvents:UIControlEventTouchUpInside]; 
-            //[giftCell addSubview:button];
             [giftCell insertSubview:button belowSubview:giftCell.addPhotoButton];
-            //[giftCell sendSubviewToBack:button];
-            //[giftCell sendSubviewToBack:ttImage];
             [button release];
             [ttImage release];
-            i++;
+            x++;
+            if (x%PHOTOS_PER_ROW == 0) {
+                x = 0;
+                y++;
+            }
             if (i > 9) {
                 // TODO: add 'more' button here
                 break;
@@ -224,11 +230,9 @@
 - (void) displayImages:(id)sender {
     int buttonPressedIndex = ((UIButton *)sender).tag;
     KBPhotoViewController *photoController = [[KBPhotoViewController alloc] initWithPhotoSource:photoSource];
-    photoController.centerPhoto = [photoSource photoAtIndex:buttonPressedIndex];
+    photoController.centerPhoto = [photoSource photoAtIndex:buttonPressedIndex];  // sets the photo displayer to the correct image
     [self.navigationController pushViewController:photoController animated:YES];
-    [photoController release]; 
-    
-//    [self viewPhotos];
+    [photoController release];
 }
 
 
@@ -795,7 +799,7 @@
     } else if (isPingOn) {
         isPingOn = NO;
     } else {
-        isTwitterOn = YES;
+        isTwitterOn = YES && [self getAuthenticatedUser].twitter;
         isPingOn = YES;
     }
     [self setProperButtonStates];
