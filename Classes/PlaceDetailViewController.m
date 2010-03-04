@@ -172,6 +172,7 @@
     }
     if ([goodies count] > 0) {
         giftCell.firstTimePhotoButton.hidden = YES;
+        giftCell.addPhotoButton.hidden = NO;
         
         int i = 0;
         
@@ -187,15 +188,18 @@
             ttImage.urlPath = goody.mediumImagePath;
             ttImage.clipsToBounds = YES;
             ttImage.contentMode = UIViewContentModeCenter;
-            [giftCell addSubview:ttImage];
+            [giftCell insertSubview:ttImage belowSubview:giftCell.addPhotoButton];
+            //[giftCell addSubview:ttImage];
             
             UIButton *button = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
             button.frame = CGRectMake(i*74, 0, 74, 74);
             button.tag = i;
             button.showsTouchWhenHighlighted = YES;
             [button addTarget:self action:@selector(displayImages:) forControlEvents:UIControlEventTouchUpInside]; 
-            [giftCell addSubview:button];
-            [giftCell sendSubviewToBack:ttImage];
+            //[giftCell addSubview:button];
+            [giftCell insertSubview:button belowSubview:giftCell.addPhotoButton];
+            //[giftCell sendSubviewToBack:button];
+            //[giftCell sendSubviewToBack:ttImage];
             [button release];
             [ttImage release];
             i++;
@@ -204,6 +208,7 @@
                 break;
             }
         }
+        [giftCell addSubview:giftCell.addPhotoButton]; // this is a hack, but I couldn't bring the button up to the top level
         [giftCell sendSubviewToBack:giftCell.bgImage];
         
         photoSource = [[MockPhotoSource alloc] initWithType:MockPhotoSourceNormal title:venue.name photos:tempTTPhotoArray photos2:nil];
@@ -212,6 +217,7 @@
         giftCell.firstTimePhotoButton.hidden = NO;
         giftCell.addPhotoButton.hidden = YES;
     }
+    [giftCell bringSubviewToFront:giftCell.addPhotoButton];
     [theTableView reloadData];
 }
 
