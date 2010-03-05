@@ -164,6 +164,10 @@
                 goody.venueName = value;
             } else if ([name isEqualToString:@"owner-name"]) {
                 goody.ownerName = value;
+            } else if ([name isEqualToString:@"photo-height"]) {
+                goody.imageHeight = [value intValue];
+            } else if ([name isEqualToString:@"photo-width"]) {
+                goody.imageWidth = [value intValue];
             }
         }
         
@@ -186,12 +190,13 @@
         for (KBGoody *goody in goodies) {
             
             NSString *caption = [NSString stringWithFormat:@"%@ @ %@ on %@", goody.ownerName, goody.venueName, @"date/time"];
-            MockPhoto *photo = [[MockPhoto alloc] initWithURL:goody.imagePath smallURL:goody.mediumImagePath size:CGSizeMake(320, 480) caption:caption];
+            NSLog(@"large image size: %@", NSStringFromCGSize([goody largeImageSize]));
+            MockPhoto *photo = [[MockPhoto alloc] initWithURL:goody.largeImagePath smallURL:goody.mediumImagePath size:[goody largeImageSize] caption:caption];
             [tempTTPhotoArray addObject:photo];
             
             CGRect frame = CGRectMake(x*THUMBNAIL_IMAGE_SIZE, y*THUMBNAIL_IMAGE_SIZE, THUMBNAIL_IMAGE_SIZE, THUMBNAIL_IMAGE_SIZE);
             TTImageView *ttImage = [[TTImageView alloc] initWithFrame:frame];
-            ttImage.urlPath = goody.mediumImagePath;
+            ttImage.urlPath = goody.thumbnailImagePath;
             ttImage.clipsToBounds = YES;
             ttImage.contentMode = UIViewContentModeCenter;
             [giftCell insertSubview:ttImage belowSubview:giftCell.addPhotoButton];
@@ -1013,10 +1018,19 @@
     // hide picker
     [picker dismissModalViewControllerAnimated:YES];
     
+    NSLog(@"image picker info: %@", info);
+    UIImage *img = (UIImage*)[info objectForKey:UIImagePickerControllerOriginalImage];
+    NSLog(@"image height: %f", img.size.height);
+    NSLog(@"image width: %f", img.size.width);
+    NSLog(@"image orientation: %d", img.imageOrientation);
+    
     // upload image
     // TODO: we'd have to confirm success to the user.
     //       we also need to send a notification to the gift recipient
-    [self uploadImage:UIImageJPEGRepresentation([info objectForKey:UIImagePickerControllerOriginalImage], 1.0) filename:@"gift.jpg"];
+    [self uploadImage:UIImageJPEGRepresentation([info objectForKey:UIImagePickerControllerOriginalImage], 1.0) 
+             filename:@"gift.jpg" 
+            withWidth:img.size.width 
+            andHeight:img.size.height];
 }
 
 #pragma mark
@@ -1071,7 +1085,7 @@
 }
 
 // TODO: set max file size    
-- (BOOL)uploadImage:(NSData *)imageData filename:(NSString *)filename{
+- (BOOL)uploadImage:(NSData *)imageData filename:(NSString *)filename withWidth:(float)width andHeight:(float)height {
     // Initilize Queue
     ASINetworkQueue *networkQueue = [[ASINetworkQueue alloc] init];
     //[networkQueue setUploadProgressDelegate:statusProgressView];
@@ -1104,8 +1118,10 @@
         [request setPostValue:@"0" forKey:@"gift[is_banned]"];
         [request setPostValue:@"0" forKey:@"gift[is_flagged]"];
         [request setPostValue:venue.name forKey:@"gift[venue_name]"];
+        [request setPostValue:[NSString stringWithFormat:@"%f", height]  forKey:@"gift[photo_height]"];
+        [request setPostValue:[NSString stringWithFormat:@"%f", width] forKey:@"gift[photo_width]"];
         [request setPostValue:[self getAuthenticatedUser].firstnameLastInitial forKey:@"gift[owner_name]"];
-        [request setPostValue:@"testing from the simulator (or device)" forKey:@"gift[message_text]"];
+        [request setPostValue:@"testing" forKey:@"gift[message_text]"];
         [request setData:imageData withFileName:filename andContentType:@"image/jpeg" forKey:@"gift[photo]"];
         [request setDidFailSelector:@selector(imageRequestWentWrong:)];
         [request setTimeOutSeconds:500];
