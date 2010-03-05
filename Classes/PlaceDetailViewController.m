@@ -77,6 +77,9 @@
     venueDetailButton.hidden = YES;
     twitterButton.enabled = NO;
     
+    giftCell.addPhotoButton.hidden = YES;
+    giftCell.firstTimePhotoButton.hidden = YES;
+    
     // this is to clear out the placeholder text, which is useful in IB
     venueName.text = @"";
     venueAddress.text = @"";
@@ -98,6 +101,10 @@
     [[FoursquareAPI sharedInstance] getVenue:venueId withTarget:self andAction:@selector(venueResponseReceived:withResponseString:)];
     [[Beacon shared] startSubBeaconWithName:@"Venue Detail"];
     
+    [self retrievePhotos];
+}
+
+- (void) retrievePhotos {
     // get gift info
     NSString *gorlochUrlString = [NSString stringWithFormat:@"http://kickball.gorlochs.com/kickball/gifts/venue/%@.xml", venueId];
     NSLog(@"url: %@", gorlochUrlString);
@@ -1024,6 +1031,7 @@
     NSLog(@"image width: %f", img.size.width);
     NSLog(@"image orientation: %d", img.imageOrientation);
     
+    [self startProgressBar:@"Uploading photo..."];
     // upload image
     // TODO: we'd have to confirm success to the user.
     //       we also need to send a notification to the gift recipient
@@ -1066,6 +1074,7 @@
 }
 
 - (void) imageRequestDidFinish:(ASIHTTPRequest *) request {
+    [self stopProgressBar];
     NSLog(@"YAY! Image uploaded!");
     KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"Image upload has been completed!"];
     [self displayPopupMessage:message];
@@ -1073,14 +1082,19 @@
 }
 
 - (void) imageQueueDidFinish:(ASIHTTPRequest *) request {
+    [self stopProgressBar];
     NSLog(@"YAY! Image queue is complete!");
+    
+    [self retrievePhotos];
 }
 
 - (void) imageRequestDidFail:(ASIHTTPRequest *) request {
+    [self stopProgressBar];
     NSLog(@"Uhoh, it did fail!");
 }
 
 - (void) imageRequestWentWrong:(ASIHTTPRequest *) request {
+    [self stopProgressBar];
     NSLog(@"Uhoh, request went wrong!");
 }
 

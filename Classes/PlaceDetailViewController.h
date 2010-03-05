@@ -79,6 +79,7 @@
 @property (nonatomic, retain) NSString *venueId;
 @property (nonatomic) BOOL doCheckin;
 
+- (void) retrievePhotos;
 - (IBAction) callVenue;
 - (IBAction) uploadImageToServer;
 - (IBAction) showTwitterFeed;
