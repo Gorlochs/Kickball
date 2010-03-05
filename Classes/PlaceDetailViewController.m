@@ -64,6 +64,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBar.hidden = YES;
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
 }
 
 - (void)viewDidLoad {
@@ -1085,6 +1086,7 @@
     [self stopProgressBar];
     NSLog(@"YAY! Image queue is complete!");
     
+    // TODO: this should probably capture the response, parse it into a KBGoody, then add it to the goodies object - it would save an API hit
     [self retrievePhotos];
 }
 
