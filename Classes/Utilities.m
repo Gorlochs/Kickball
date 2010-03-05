@@ -229,4 +229,12 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
     return newImage;
 }
 
+
++ (NSDate*) convertUTCCheckinDateToLocal:(NSDate*)utcDate {
+    NSTimeInterval timeZoneOffset = [[NSTimeZone defaultTimeZone] secondsFromGMT];
+    NSTimeInterval localTimeInterval = [utcDate timeIntervalSinceReferenceDate] + timeZoneOffset;
+    NSDate *localDate = [NSDate dateWithTimeIntervalSinceReferenceDate:localTimeInterval];
+    return localDate;
+}
+
 @end

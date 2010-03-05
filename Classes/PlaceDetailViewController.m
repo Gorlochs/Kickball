@@ -63,6 +63,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    // this is to clean up some stuff that gets set by the photo viewer
     self.navigationController.navigationBar.hidden = YES;
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
 }
@@ -136,6 +137,11 @@
     // Set the resultNodes Array to contain an object for every instance of an  node in our RSS feed
     resultNodes = [rssParser nodesForXPath:@"//gift" error:nil];
     
+    // prepare date formatter
+    //                2010-03-05T02:19:07Z
+    NSDateFormatter *goodyDateFormatter = [[NSDateFormatter alloc] init];
+    [goodyDateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    
     // Loop through the resultNodes to access each items actual data
     for (CXMLElement *resultElement in resultNodes) {
         
@@ -176,28 +182,32 @@
                 goody.imageHeight = [value intValue];
             } else if ([name isEqualToString:@"photo-width"]) {
                 goody.imageWidth = [value intValue];
+            } else if ([name isEqualToString:@"created-at"]) {
+                NSLog(@"created at: %@", value);
+                goody.createdAt = [Utilities convertUTCCheckinDateToLocal:[goodyDateFormatter dateFromString:[[value stringByReplacingOccurrencesOfString:@"T" withString:@" "] stringByReplacingOccurrencesOfString:@"Z" withString:@" "]]];
             }
         }
         
         [goodies addObject:goody];
         [goody release];
-        
-        // Add the blogItem to the global blogEntries Array so that the view can access it.
-        //[blogEntries addObject:[blogItem copy]];
     }
     if ([goodies count] > 0) {
         giftCell.firstTimePhotoButton.hidden = YES;
         giftCell.addPhotoButton.hidden = NO;
 
-        
         int i = 0;
         int x = 0;
         int y = 0;
         
+        //Thur 04 Mar 7:55 PM
+        NSDateFormatter *dateFormatter2 = [[NSDateFormatter alloc] init];
+        [dateFormatter2 setDateFormat:@"ccc dd LLL hh:mm a"];
+        
         NSMutableArray *tempTTPhotoArray = [[NSMutableArray alloc] initWithCapacity:[goodies count]];
         for (KBGoody *goody in goodies) {
             
-            NSString *caption = [NSString stringWithFormat:@"%@ @ %@ on %@", goody.ownerName, goody.venueName, @"date/time"];
+            NSLog(@"date: %@", goody.createdAt);
+            NSString *caption = [NSString stringWithFormat:@"%@ @ %@ on %@", goody.ownerName, goody.venueName, [dateFormatter2 stringFromDate:goody.createdAt]];
             NSLog(@"large image size: %@", NSStringFromCGSize([goody largeImageSize]));
             MockPhoto *photo = [[MockPhoto alloc] initWithURL:goody.largeImagePath smallURL:goody.mediumImagePath size:[goody largeImageSize] caption:caption];
             [tempTTPhotoArray addObject:photo];
