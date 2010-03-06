@@ -149,8 +149,8 @@
         [[FoursquareAPI sharedInstance] addNewVenue:newVenueName 
                                           atAddress:address.text 
                                      andCrossstreet:crossstreet.text 
-                                            andCity:self.city
-                                           andState:self.state
+                                            andCity:user.checkin.venue != nil && user.checkin.venue.city != nil ? user.checkin.venue.city : @""
+                                           andState:user.checkin.venue != nil && user.checkin.venue.venueState != nil ? user.checkin.venue.venueState : @""
                                      andOptionalZip:zip.text 
                                   andRequiredCityId:city.text 
                                    andOptionalPhone:phone.text 
