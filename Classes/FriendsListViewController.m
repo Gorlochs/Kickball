@@ -11,7 +11,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import <QuartzCore/QuartzCore.h>
 #import "FriendsListViewController.h"
-#import "FriendsListTableCell.h"
+#import "FriendsListTableCellv2.h"
 #import "PlaceDetailViewController.h"
 #import "PlacesListViewController.h"
 #import "ProfileViewController.h"
@@ -24,6 +24,7 @@
 #import "FriendRequestsViewController.h"
 #import "KickballAppDelegate.h"
 #import "KBAsyncImageView.h"
+
 
 @interface FriendsListViewController (Private)
 
@@ -246,9 +247,9 @@
     //NSLog(@"section: %d, row: %d", indexPath.section, indexPath.row);
     static NSString *CellIdentifier = @"MyCell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    FriendsListTableCellv2 *cell = (FriendsListTableCellv2*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[FriendsListTableCellv2 alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
         cell.textLabel.font = [UIFont boldSystemFontOfSize:14.0];
         cell.detailTextLabel.font = [UIFont systemFontOfSize:12.0];
         cell.imageView.image = [UIImage imageNamed:@"blank_boy2.png"];
@@ -276,13 +277,7 @@
         return footerViewCell;
     }
     
-    NSLog(@"photo: %@", checkin.user.photo);
-	CGRect imageViewFrame = CGRectMake(8, 8, 36, 36);
-    UIImageView *iview = [[UIImageView alloc] initWithFrame:imageViewFrame];
-    [iview addSubview:[userIcons objectForKey:checkin.checkinId]];
-    [cell addSubview:iview];
-    [iview release];
-    
+    cell.userIcon.urlPath = checkin.user.photo;
     cell.textLabel.text = checkin.display;
     
     if ([checkin.display rangeOfString:@"[off the grid]"].location != NSNotFound) {
@@ -471,10 +466,10 @@
             [self.yesterdayCheckins addObject:checkin];
         }
         // create dictionary of icons to help speed up the scrolling
-        CGRect frame = CGRectMake(0, 0, 36, 36);
-        KBAsyncImageView* asyncImage = [[[KBAsyncImageView alloc] initWithFrame:frame] autorelease];
-        [asyncImage loadImageFromURL:[NSURL URLWithString:checkin.user.photo] withRoundedEdges: YES];
-        [userIcons setObject:asyncImage forKey:checkin.checkinId];
+//        CGRect frame = CGRectMake(0, 0, 36, 36);
+//        KBAsyncImageView* asyncImage = [[[KBAsyncImageView alloc] initWithFrame:frame] autorelease];
+//        [asyncImage loadImageFromURL:[NSURL URLWithString:checkin.user.photo] withRoundedEdges: YES];
+//        [userIcons setObject:asyncImage forKey:checkin.checkinId];
         
         NSDateComponents *components = [gregorian components:unitFlags fromDate:[self convertToUTC:[NSDate date]] toDate:date options:0];
         NSInteger minutes = [components minute] * -1;

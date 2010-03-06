@@ -663,6 +663,7 @@
 		6AF794C110CCAF4B00E77D49 /* ViewFriendRequestsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AF794BF10CCAF4B00E77D49 /* ViewFriendRequestsViewController.xib */; };
 		6AFC1D9610BA42A9006B7E5F /* ProgressView.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6AFC1D9510BA42A9006B7E5F /* ProgressView.xib */; };
 		6AFC1D9A10BA4320006B7E5F /* ProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AFC1D9910BA4320006B7E5F /* ProgressViewController.m */; };
+		6AFC882C1141D82B00B171C9 /* FriendsListTableCellv2.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AFC882B1141D82B00B171C9 /* FriendsListTableCellv2.m */; };
 		6AFF0E9910FFD6CD00AD6E55 /* shout.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AFF0E9810FFD6CD00AD6E55 /* shout.png */; };
 		6AFF0E9B10FFD6D400AD6E55 /* shout02.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AFF0E9A10FFD6D400AD6E55 /* shout02.png */; };
 		6AFF0FFF1101796600AD6E55 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AFF0FFE1101796600AD6E55 /* CFNetwork.framework */; };
@@ -1531,6 +1532,8 @@
 		6AFC1D9510BA42A9006B7E5F /* ProgressView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProgressView.xib; sourceTree = "<group>"; };
 		6AFC1D9810BA4320006B7E5F /* ProgressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressViewController.h; sourceTree = "<group>"; };
 		6AFC1D9910BA4320006B7E5F /* ProgressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressViewController.m; sourceTree = "<group>"; };
+		6AFC882A1141D82B00B171C9 /* FriendsListTableCellv2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsListTableCellv2.h; sourceTree = "<group>"; };
+		6AFC882B1141D82B00B171C9 /* FriendsListTableCellv2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsListTableCellv2.m; sourceTree = "<group>"; };
 		6AFF0E9810FFD6CD00AD6E55 /* shout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shout.png; sourceTree = "<group>"; };
 		6AFF0E9A10FFD6D400AD6E55 /* shout02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shout02.png; sourceTree = "<group>"; };
 		6AFF0FFE1101796600AD6E55 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -1908,6 +1911,8 @@
 				6A1526C61096BD7E00924D0E /* FriendsListTableCell.m */,
 				552AFE3F10A285AC009300E2 /* FriendIconAnnotationView.h */,
 				552AFE4010A285AC009300E2 /* FriendIconAnnotationView.m */,
+				6AFC882A1141D82B00B171C9 /* FriendsListTableCellv2.h */,
+				6AFC882B1141D82B00B171C9 /* FriendsListTableCellv2.m */,
 			);
 			name = Friends;
 			sourceTree = "<group>";
@@ -3526,6 +3531,7 @@
 				6A70A0B711417C8D00999FD4 /* EXFMetaData.m in Sources */,
 				6A70A0B811417C8D00999FD4 /* EXFTagDefinitionHolder.m in Sources */,
 				6A70A0B911417C8D00999FD4 /* EXFUtils.m in Sources */,
+				6AFC882C1141D82B00B171C9 /* FriendsListTableCellv2.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
