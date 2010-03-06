@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "KBAsyncImageView.h"
 
 @interface KBPhotoThumbnailCell : UITableViewCell {
     NSArray *goodies;

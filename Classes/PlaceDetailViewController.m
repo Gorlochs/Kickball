@@ -29,7 +29,6 @@
 #import "NSString+hmac.h"
 #import "ASINetworkQueue.h"
 #import "KBGoody.h"
-#import "KBAsyncImageView.h"
 #import "KBPhotoViewController.h"
 #import "EXFJpeg.h"
 
@@ -126,7 +125,7 @@
 }
 
 - (void) venueRequestDidFinish:(ASIHTTPRequest *) request {
-    NSLog(@"YAY! Venue queue is complete! response: %@", [request responseString]);
+    //NSLog(@"YAY! Venue queue is complete! response: %@", [request responseString]);
     
     goodies = [[NSMutableArray alloc] initWithCapacity:1];
     
@@ -1122,24 +1121,55 @@
     EXFMetaData* exifData = jpegScanner.exifMetaData;
     NSLog(@"exif: %@", exifData);
     
-    NSNumber *tagKey = [NSNumber numberWithInteger:6];
-//    if (orientation == UIImageOrientationLeft) {
-//        tagKey = [NSNumber numberWithInteger:6];
-//    } else if (orientation == UIImageOrientationRight) {
-//        tagKey = [NSNumber numberWithInteger:8];
-//    } else if (orientation == UIImageOrientationUp) {
-//        tagKey = [NSNumber numberWithInteger:1];
-//    } else if (orientation == UIImageOrientationDown) {
-//        tagKey = [NSNumber numberWithInteger:3];
-//    }
+    for (NSString* key in [exifData.keyedTagValues allKeys]) {
+        NSLog(@"exif key: %x; value: %@", key, [exifData.keyedTagValues objectForKey:key]);
+    }
+    
+    NSNumber *tagKey = [NSNumber numberWithInteger:1];
+    if (orientation == UIImageOrientationLeft) {
+        tagKey = [NSNumber numberWithInteger:6];
+    } else if (orientation == UIImageOrientationRight) {
+        tagKey = [NSNumber numberWithInteger:8];
+    } else if (orientation == UIImageOrientationUp) {
+        tagKey = [NSNumber numberWithInteger:1];
+    } else if (orientation == UIImageOrientationDown) {
+        tagKey = [NSNumber numberWithInteger:3];
+    }
     NSLog(@"orientation: %d", orientation);
     NSLog(@"tagKey: %@", tagKey);
     [jpegScanner.exifMetaData addTagValue:tagKey forKey:[NSNumber numberWithInt:EXIF_Orientation]];
+    [jpegScanner.exifMetaData addTagValue:[NSNumber numberWithInteger:(int)width] forKey:[NSNumber numberWithInt:EXIF_ImageWidth]];
+    [jpegScanner.exifMetaData addTagValue:[NSNumber numberWithInteger:(int)height] forKey:[NSNumber numberWithInt:EXIF_ImageLength]];
     //[jpegScanner setExifMetaData:exifData];
+    
+//    NSArray *objects = [[NSArray alloc] initWithObjects:tagKey,[NSNumber numberWithInteger:(int)width],[NSNumber numberWithInteger:(int)height],nil];
+//    NSArray *keys = [[NSArray alloc] initWithObjects:[NSNumber numberWithInt:40961],[NSNumber numberWithInt:40962],[NSNumber numberWithInt:40963],nil];
+//    NSDictionary *dict = [[NSDictionary alloc] initWithObjects:objects forKeys:keys];
+//    [jpegScanner.exifMetaData addTagValue:dict forKey:[NSNumber numberWithInt:34665]];
+    
+    for (NSString* key in [jpegScanner.exifMetaData.keyedTagValues allKeys]) {
+        NSLog(@"exif2 key: %@; value: %@", key, [exifData.keyedTagValues objectForKey:key]);
+//        if ([key intValue] == 34665) {
+//            NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
+//            [f setNumberStyle:NSNumberFormatterDecimalStyle];
+//            NSNumber * myNumber = [f numberFromString:key];
+//            [f release];
+//
+//            NSArray *objects = [[NSArray alloc] initWithObjects:tagKey,[NSNumber numberWithInteger:(int)width],[NSNumber numberWithInteger:(int)height],nil];
+//            NSArray *keys = [[NSArray alloc] initWithObjects:[NSNumber numberWithInt:40961],[NSNumber numberWithInt:40962],[NSNumber numberWithInt:40963],nil];
+//            NSDictionary *dict = [[NSDictionary alloc] initWithObjects:objects forKeys:keys];
+//            [jpegScanner.exifMetaData addTagValue:dict forKey:myNumber];
+//            
+////            NSLog(@"**************** 34655 found **********************");
+////            [[jpegScanner.exifMetaData.keyedTagValues objectForKey:key] setObject:tagKey forKey:[NSNumber numberWithInt:40961]];
+////            [[jpegScanner.exifMetaData.keyedTagValues objectForKey:key] setObject:[NSNumber numberWithInteger:(int)width] forKey:[NSNumber numberWithInt:40962]];
+////            [[jpegScanner.exifMetaData.keyedTagValues objectForKey:key] setObject:[NSNumber numberWithInteger:(int)height] forKey:[NSNumber numberWithInt:40963]];
+//        }
+    }
+    
     NSMutableData *newData = [[NSMutableData alloc] initWithCapacity:1]; 
     [jpegScanner populateImageData:newData];
-    
-    
+
     // Initilize Queue
     ASINetworkQueue *networkQueue = [[ASINetworkQueue alloc] init];
     //[networkQueue setUploadProgressDelegate:statusProgressView];
@@ -1152,14 +1182,6 @@
     // Initilize Variables
     NSURL *url = nil;
     ASIFormDataRequest *request = nil;
-    
-    // Add Image
-    //NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    //NSString *documentsDirectory = [paths objectAtIndex:0];
-    //NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:@"gift.jpg"];
-    
-    // Get Image
-    //NSData *imageData = [[[NSData alloc] initWithContentsOfFile:dataPath] autorelease];
     
     // Return if there is no image
     if(imageData != nil){
@@ -1176,6 +1198,7 @@
         [request setPostValue:[NSString stringWithFormat:@"%d", (int)width] forKey:@"gift[photo_width]"];
         [request setPostValue:[self getAuthenticatedUser].firstnameLastInitial forKey:@"gift[owner_name]"];
         [request setPostValue:@"testing" forKey:@"gift[message_text]"];
+        [request setPostValue:[tagKey stringValue] forKey:@"gift[iphone_orientation]"];
         [request setData:newData withFileName:filename andContentType:@"image/jpeg" forKey:@"gift[photo]"];
         [request setDidFailSelector:@selector(imageRequestWentWrong:)];
         [request setTimeOutSeconds:500];

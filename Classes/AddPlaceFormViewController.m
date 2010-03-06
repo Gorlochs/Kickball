@@ -149,8 +149,8 @@
         [[FoursquareAPI sharedInstance] addNewVenue:newVenueName 
                                           atAddress:address.text 
                                      andCrossstreet:crossstreet.text 
-                                            andCity:user.checkin.venue.city 
-                                           andState:user.checkin.venue.venueState
+                                            andCity:self.city
+                                           andState:self.state
                                      andOptionalZip:zip.text 
                                   andRequiredCityId:city.text 
                                    andOptionalPhone:phone.text 
@@ -166,7 +166,7 @@
 - (void)newVenueResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     BOOL hasError = [inString rangeOfString:@"<error>"].location != NSNotFound;
     if (hasError) {
-        KBMessage *msg = [[KBMessage alloc] initWithMember:@"Foursquare Error" andMessage:@"The venue could not be created, possibly because of it is a duplicate venue."];
+        KBMessage *msg = [[KBMessage alloc] initWithMember:@"Foursquare Error" andMessage:@"The venue could not be created, possibly because it is a duplicate venue."];
         [self displayPopupMessage:msg];
         [msg release];
     } else {

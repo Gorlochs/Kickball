@@ -32,6 +32,8 @@
 }
 
 @property (nonatomic, retain) NSString *newVenueName;
+@property (nonatomic, retain) NSString *city;
+@property (nonatomic, retain) NSString *state;
 
 - (IBAction) clearFields;
 - (IBAction) saveVenueAndCheckin;

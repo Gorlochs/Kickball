@@ -23,7 +23,6 @@
 #import "LocationManager.h"
 #import "FriendRequestsViewController.h"
 #import "KickballAppDelegate.h"
-#import "KBAsyncImageView.h"
 
 
 @interface FriendsListViewController (Private)
@@ -109,8 +108,6 @@
     // this is so the cell doesn't show up before the table is filled in
     footerViewCell.hidden = YES;
     mapButton.hidden = YES;
-    
-//    mayorImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"crown.png"]];
     
 	if(![[FoursquareAPI sharedInstance] isAuthenticated]){
 		//run sheet to log in.

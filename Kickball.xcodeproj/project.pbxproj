@@ -200,8 +200,6 @@
 		6A145F6510FD81DA002CE938 /* home02.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A145F6110FD81DA002CE938 /* home02.png */; };
 		6A145FB610FE74E7002CE938 /* ProfileFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A145FB410FE74E7002CE938 /* ProfileFriendsViewController.m */; };
 		6A145FB710FE74E7002CE938 /* ProfileFriendsViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A145FB510FE74E7002CE938 /* ProfileFriendsViewController.xib */; };
-		6A1526C71096BD7E00924D0E /* FriendsListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A1526C61096BD7E00924D0E /* FriendsListTableCell.m */; };
-		6A1526C91096BDB300924D0E /* FriendsListTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A1526C81096BDB300924D0E /* FriendsListTableCellView.xib */; };
 		6A16ABDB10CF251800CD5302 /* InstructionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A16ABDA10CF251800CD5302 /* InstructionView.m */; };
 		6A16AC5710CF5A9500CD5302 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A16AC5610CF5A9500CD5302 /* QuartzCore.framework */; };
 		6A16AE3A10CFFA2C00CD5302 /* 01.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A16AE2910CFFA2C00CD5302 /* 01.png */; };
@@ -976,9 +974,6 @@
 		6A145FB310FE74E7002CE938 /* ProfileFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileFriendsViewController.h; sourceTree = "<group>"; };
 		6A145FB410FE74E7002CE938 /* ProfileFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileFriendsViewController.m; sourceTree = "<group>"; };
 		6A145FB510FE74E7002CE938 /* ProfileFriendsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileFriendsViewController.xib; sourceTree = "<group>"; };
-		6A1526C51096BD7E00924D0E /* FriendsListTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsListTableCell.h; sourceTree = "<group>"; };
-		6A1526C61096BD7E00924D0E /* FriendsListTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsListTableCell.m; sourceTree = "<group>"; };
-		6A1526C81096BDB300924D0E /* FriendsListTableCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendsListTableCellView.xib; sourceTree = "<group>"; };
 		6A16ABD910CF251800CD5302 /* InstructionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstructionView.h; sourceTree = "<group>"; };
 		6A16ABDA10CF251800CD5302 /* InstructionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstructionView.m; sourceTree = "<group>"; };
 		6A16AC5610CF5A9500CD5302 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -1660,7 +1655,6 @@
 				6ADC9EC510D3F08600CFDCA7 /* AddPlaceViewController.xib */,
 				6A0D9FAE109D97B300F9E1D6 /* UploadGiftViewController.xib */,
 				6ABA7857109BDCAF001E7293 /* PlacesListViewController.xib */,
-				6A1526C81096BDB300924D0E /* FriendsListTableCellView.xib */,
 				6A12EC6210B772FA0013BA52 /* GeoApiDetailsView.xib */,
 				6AFC1D9510BA42A9006B7E5F /* ProgressView.xib */,
 				6AF2F0AD10C2EBB300A29C96 /* TipView.xib */,
@@ -1907,8 +1901,6 @@
 				6A044CAA109545200063FC33 /* FriendsListViewController.m */,
 				6A044CB3109545450063FC33 /* FriendsMapViewController.h */,
 				6A044CB4109545450063FC33 /* FriendsMapViewController.m */,
-				6A1526C51096BD7E00924D0E /* FriendsListTableCell.h */,
-				6A1526C61096BD7E00924D0E /* FriendsListTableCell.m */,
 				552AFE3F10A285AC009300E2 /* FriendIconAnnotationView.h */,
 				552AFE4010A285AC009300E2 /* FriendIconAnnotationView.m */,
 				6AFC882A1141D82B00B171C9 /* FriendsListTableCellv2.h */,
@@ -2885,7 +2877,6 @@
 				6AE61217109AB04C008ABF79 /* ProfileView.xib in Resources */,
 				6AACC63C10D4B1430059E604 /* AddPlaceTipsViewController.xib in Resources */,
 				6ADC9EC710D3F08600CFDCA7 /* AddPlaceViewController.xib in Resources */,
-				6A1526C91096BDB300924D0E /* FriendsListTableCellView.xib in Resources */,
 				6A5F8F3C10B7707100914709 /* GeoAPIView.xib in Resources */,
 				6A10E61710BE0541006538DB /* LoginViewModalController.xib in Resources */,
 				6A402B3010B769A900D9BCEB /* GeoApiTableViewController.xib in Resources */,
@@ -3366,7 +3357,6 @@
 				1D3623260D0F684500981E51 /* KickballAppDelegate.m in Sources */,
 				6A044CAC109545200063FC33 /* FriendsListViewController.m in Sources */,
 				6A044CB6109545450063FC33 /* FriendsMapViewController.m in Sources */,
-				6A1526C71096BD7E00924D0E /* FriendsListTableCell.m in Sources */,
 				6AC7E93110994FD000776993 /* PlaceDetailViewController.m in Sources */,
 				6A8AC8F1109AB31400C4FE1B /* ProfileViewController.m in Sources */,
 				6ABA7858109BDCAF001E7293 /* PlacesListViewController.m in Sources */,

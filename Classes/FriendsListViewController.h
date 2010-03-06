@@ -10,8 +10,6 @@
 #import "FriendsMapViewController.h"
 #import "LoginViewModalController.h"
 #import "InstructionView.h"
-#import "FriendsMapViewController.h"
-#import "FriendsListTableCell.h"
 
 
 @interface FriendsListViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource> {
