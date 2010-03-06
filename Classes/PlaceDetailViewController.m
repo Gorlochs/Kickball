@@ -31,6 +31,7 @@
 #import "KBGoody.h"
 #import "KBAsyncImageView.h"
 #import "KBPhotoViewController.h"
+#import "EXFJpeg.h"
 
 #define PHOTOS_PER_ROW 5
 #define THUMBNAIL_IMAGE_SIZE 74
@@ -183,7 +184,6 @@
             } else if ([name isEqualToString:@"photo-width"]) {
                 goody.imageWidth = [value intValue];
             } else if ([name isEqualToString:@"created-at"]) {
-                NSLog(@"created at: %@", value);
                 goody.createdAt = [Utilities convertUTCCheckinDateToLocal:[goodyDateFormatter dateFromString:[[value stringByReplacingOccurrencesOfString:@"T" withString:@" "] stringByReplacingOccurrencesOfString:@"Z" withString:@" "]]];
             }
         }
@@ -206,9 +206,8 @@
         NSMutableArray *tempTTPhotoArray = [[NSMutableArray alloc] initWithCapacity:[goodies count]];
         for (KBGoody *goody in goodies) {
             
-            NSLog(@"date: %@", goody.createdAt);
             NSString *caption = [NSString stringWithFormat:@"%@ @ %@ on %@", goody.ownerName, goody.venueName, [dateFormatter2 stringFromDate:goody.createdAt]];
-            NSLog(@"large image size: %@", NSStringFromCGSize([goody largeImageSize]));
+            //NSLog(@"large image size: %@", NSStringFromCGSize([goody largeImageSize]));
             MockPhoto *photo = [[MockPhoto alloc] initWithURL:goody.largeImagePath smallURL:goody.mediumImagePath size:[goody largeImageSize] caption:caption];
             [tempTTPhotoArray addObject:photo];
             
@@ -1049,7 +1048,8 @@
     [self uploadImage:UIImageJPEGRepresentation([info objectForKey:UIImagePickerControllerOriginalImage], 1.0) 
              filename:@"gift.jpg" 
             withWidth:img.size.width 
-            andHeight:img.size.height];
+            andHeight:img.size.height
+       andOrientation:img.imageOrientation];
 }
 
 #pragma mark
@@ -1111,7 +1111,35 @@
 }
 
 // TODO: set max file size    
-- (BOOL)uploadImage:(NSData *)imageData filename:(NSString *)filename withWidth:(float)width andHeight:(float)height {
+- (BOOL)uploadImage:(NSData *)imageData filename:(NSString *)filename withWidth:(float)width andHeight:(float)height andOrientation:(UIImageOrientation)orientation {
+    
+    EXFJpeg *jpegScanner = [[EXFJpeg alloc] init];
+    [jpegScanner scanImageData: imageData];
+    
+//    imageData = jpegScanner;
+//    [jpegScanner release];
+    
+    EXFMetaData* exifData = jpegScanner.exifMetaData;
+    NSLog(@"exif: %@", exifData);
+    
+    NSNumber *tagKey = [NSNumber numberWithInteger:6];
+//    if (orientation == UIImageOrientationLeft) {
+//        tagKey = [NSNumber numberWithInteger:6];
+//    } else if (orientation == UIImageOrientationRight) {
+//        tagKey = [NSNumber numberWithInteger:8];
+//    } else if (orientation == UIImageOrientationUp) {
+//        tagKey = [NSNumber numberWithInteger:1];
+//    } else if (orientation == UIImageOrientationDown) {
+//        tagKey = [NSNumber numberWithInteger:3];
+//    }
+    NSLog(@"orientation: %d", orientation);
+    NSLog(@"tagKey: %@", tagKey);
+    [jpegScanner.exifMetaData addTagValue:tagKey forKey:[NSNumber numberWithInt:EXIF_Orientation]];
+    //[jpegScanner setExifMetaData:exifData];
+    NSMutableData *newData = [[NSMutableData alloc] initWithCapacity:1]; 
+    [jpegScanner populateImageData:newData];
+    
+    
     // Initilize Queue
     ASINetworkQueue *networkQueue = [[ASINetworkQueue alloc] init];
     //[networkQueue setUploadProgressDelegate:statusProgressView];
@@ -1144,11 +1172,11 @@
         [request setPostValue:@"0" forKey:@"gift[is_banned]"];
         [request setPostValue:@"0" forKey:@"gift[is_flagged]"];
         [request setPostValue:venue.name forKey:@"gift[venue_name]"];
-        [request setPostValue:[NSString stringWithFormat:@"%f", height]  forKey:@"gift[photo_height]"];
-        [request setPostValue:[NSString stringWithFormat:@"%f", width] forKey:@"gift[photo_width]"];
+        [request setPostValue:[NSString stringWithFormat:@"%d", (int)height]  forKey:@"gift[photo_height]"];
+        [request setPostValue:[NSString stringWithFormat:@"%d", (int)width] forKey:@"gift[photo_width]"];
         [request setPostValue:[self getAuthenticatedUser].firstnameLastInitial forKey:@"gift[owner_name]"];
         [request setPostValue:@"testing" forKey:@"gift[message_text]"];
-        [request setData:imageData withFileName:filename andContentType:@"image/jpeg" forKey:@"gift[photo]"];
+        [request setData:newData withFileName:filename andContentType:@"image/jpeg" forKey:@"gift[photo]"];
         [request setDidFailSelector:@selector(imageRequestWentWrong:)];
         [request setTimeOutSeconds:500];
         [networkQueue addOperation:request];

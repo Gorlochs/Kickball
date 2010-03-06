@@ -22,10 +22,6 @@
     [super viewDidLoad];
     //venueName.text = newVenueName;
     placeName.text = newVenueName;
-    FSUser *user = [self getAuthenticatedUser];
-    NSLog(@"user checkin venue: %@", user.checkin.venue);
-    city.text = user.checkin.venue.city;
-    state.text = user.checkin.venue.venueState;
     [[Beacon shared] startSubBeaconWithName:@"Add Venue Form View"];
     
     toolbar.frame = CGRectMake(0, 436, 320, 44);
@@ -146,13 +142,15 @@
 }
 
 - (void) saveVenueAndCheckin {
-    if (![address.text isEqualToString:@""] && ![city.text isEqualToString:@""] && ![state.text isEqualToString:@""]) {
+    if (![address.text isEqualToString:@""]) {
+        FSUser *user = [self getAuthenticatedUser];
+        
         [self startProgressBar:@"Adding new venue and checking you in..."];
         [[FoursquareAPI sharedInstance] addNewVenue:newVenueName 
                                           atAddress:address.text 
                                      andCrossstreet:crossstreet.text 
-                                            andCity:city.text 
-                                           andState:state.text 
+                                            andCity:user.checkin.venue.city 
+                                           andState:user.checkin.venue.venueState
                                      andOptionalZip:zip.text 
                                   andRequiredCityId:city.text 
                                    andOptionalPhone:phone.text 
@@ -166,16 +164,23 @@
 }
 
 - (void)newVenueResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    NSLog(@"new venue instring: %@", inString);
-	FSVenue *venue = [FoursquareAPI venueFromResponseXML:inString];
+    BOOL hasError = [inString rangeOfString:@"<error>"].location != NSNotFound;
+    if (hasError) {
+        KBMessage *msg = [[KBMessage alloc] initWithMember:@"Foursquare Error" andMessage:@"The venue could not be created, possibly because of it is a duplicate venue."];
+        [self displayPopupMessage:msg];
+        [msg release];
+    } else {
+        NSLog(@"new venue instring: %@", inString);
+        FSVenue *venue = [FoursquareAPI venueFromResponseXML:inString];
+        
+        // TODO: we should think about removing the Add Venue pages from the stack so users can't use the BACK button to return to them
+        PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];    
+        placeDetailController.venueId = venue.venueid;
+        placeDetailController.doCheckin = YES;
+        [self.navigationController pushViewController:placeDetailController animated:YES];
+        [placeDetailController release]; 
+    }
     [self stopProgressBar];
-    
-    // TODO: we should think about removing the Add Venue pages from the stack so users can't use the BACK button to return to them
-    PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];    
-    placeDetailController.venueId = venue.venueid;
-    placeDetailController.doCheckin = YES;
-    [self.navigationController pushViewController:placeDetailController animated:YES];
-    [placeDetailController release];
 }
 
 - (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
@@ -280,6 +285,11 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     return tableCell;
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 313;
 }
 
 @end

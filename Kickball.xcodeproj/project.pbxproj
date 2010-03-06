@@ -455,6 +455,13 @@
 		6A64999A113F33E700052FF9 /* addPhoto01.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A649996113F33E700052FF9 /* addPhoto01.png */; };
 		6A649A0B113F629800052FF9 /* KBPhotoThumbnailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A649A0A113F629800052FF9 /* KBPhotoThumbnailCell.m */; };
 		6A649B08113F84E100052FF9 /* blank_boy2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A649B07113F84E100052FF9 /* blank_boy2.png */; };
+		6A70A0B311417C8D00999FD4 /* EXFGPS.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A70A0A411417C8D00999FD4 /* EXFGPS.m */; };
+		6A70A0B411417C8D00999FD4 /* EXFHandlers.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A70A0A611417C8D00999FD4 /* EXFHandlers.m */; };
+		6A70A0B511417C8D00999FD4 /* EXFJFIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A70A0A811417C8D00999FD4 /* EXFJFIF.m */; };
+		6A70A0B611417C8D00999FD4 /* EXFJpeg.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A70A0AA11417C8D00999FD4 /* EXFJpeg.m */; };
+		6A70A0B711417C8D00999FD4 /* EXFMetaData.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A70A0AD11417C8D00999FD4 /* EXFMetaData.m */; };
+		6A70A0B811417C8D00999FD4 /* EXFTagDefinitionHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A70A0B011417C8D00999FD4 /* EXFTagDefinitionHolder.m */; };
+		6A70A0B911417C8D00999FD4 /* EXFUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A70A0B211417C8D00999FD4 /* EXFUtils.m */; };
 		6A79D0D710E5E682009082E5 /* PopupMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A79D0D610E5E682009082E5 /* PopupMessageView.m */; };
 		6A79D0D910E5E692009082E5 /* PopupMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A79D0D810E5E692009082E5 /* PopupMessageView.xib */; };
 		6A79D0FE10E68D1A009082E5 /* KBMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A79D0FD10E68D1A009082E5 /* KBMessage.m */; };
@@ -1259,6 +1266,24 @@
 		6A649A09113F629800052FF9 /* KBPhotoThumbnailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBPhotoThumbnailCell.h; sourceTree = "<group>"; };
 		6A649A0A113F629800052FF9 /* KBPhotoThumbnailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBPhotoThumbnailCell.m; sourceTree = "<group>"; };
 		6A649B07113F84E100052FF9 /* blank_boy2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blank_boy2.png; sourceTree = "<group>"; };
+		6A70A0A111417C8D00999FD4 /* EXF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXF.h; sourceTree = "<group>"; };
+		6A70A0A211417C8D00999FD4 /* EXFConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXFConstants.h; sourceTree = "<group>"; };
+		6A70A0A311417C8D00999FD4 /* EXFGPS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXFGPS.h; sourceTree = "<group>"; };
+		6A70A0A411417C8D00999FD4 /* EXFGPS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXFGPS.m; sourceTree = "<group>"; };
+		6A70A0A511417C8D00999FD4 /* EXFHandlers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXFHandlers.h; sourceTree = "<group>"; };
+		6A70A0A611417C8D00999FD4 /* EXFHandlers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXFHandlers.m; sourceTree = "<group>"; };
+		6A70A0A711417C8D00999FD4 /* EXFJFIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXFJFIF.h; sourceTree = "<group>"; };
+		6A70A0A811417C8D00999FD4 /* EXFJFIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXFJFIF.m; sourceTree = "<group>"; };
+		6A70A0A911417C8D00999FD4 /* EXFJpeg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXFJpeg.h; sourceTree = "<group>"; };
+		6A70A0AA11417C8D00999FD4 /* EXFJpeg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXFJpeg.m; sourceTree = "<group>"; };
+		6A70A0AB11417C8D00999FD4 /* EXFLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXFLogging.h; sourceTree = "<group>"; };
+		6A70A0AC11417C8D00999FD4 /* EXFMetaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXFMetaData.h; sourceTree = "<group>"; };
+		6A70A0AD11417C8D00999FD4 /* EXFMetaData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXFMetaData.m; sourceTree = "<group>"; };
+		6A70A0AE11417C8D00999FD4 /* EXFMutableMetaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXFMutableMetaData.h; sourceTree = "<group>"; };
+		6A70A0AF11417C8D00999FD4 /* EXFTagDefinitionHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXFTagDefinitionHolder.h; sourceTree = "<group>"; };
+		6A70A0B011417C8D00999FD4 /* EXFTagDefinitionHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXFTagDefinitionHolder.m; sourceTree = "<group>"; };
+		6A70A0B111417C8D00999FD4 /* EXFUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXFUtils.h; sourceTree = "<group>"; };
+		6A70A0B211417C8D00999FD4 /* EXFUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXFUtils.m; sourceTree = "<group>"; };
 		6A79D0D510E5E682009082E5 /* PopupMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopupMessageView.h; sourceTree = "<group>"; };
 		6A79D0D610E5E682009082E5 /* PopupMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopupMessageView.m; sourceTree = "<group>"; };
 		6A79D0D810E5E692009082E5 /* PopupMessageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupMessageView.xib; sourceTree = "<group>"; };
@@ -1557,6 +1582,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				6A70A034114176F500999FD4 /* exif */,
 				6A1F166F1135F73B004C1F7F /* ASI */,
 				6A63DD9A1108EDAA00E2F9BB /* FancyLabels */,
 				0300485410D85F8C004590BD /* Keychain */,
@@ -2443,6 +2469,32 @@
 				6A63DDA31108EDBA00E2F9BB /* RKLMatchEnumerator.m */,
 			);
 			path = RegexKitLite;
+			sourceTree = "<group>";
+		};
+		6A70A034114176F500999FD4 /* exif */ = {
+			isa = PBXGroup;
+			children = (
+				6A70A0A111417C8D00999FD4 /* EXF.h */,
+				6A70A0A211417C8D00999FD4 /* EXFConstants.h */,
+				6A70A0A311417C8D00999FD4 /* EXFGPS.h */,
+				6A70A0A411417C8D00999FD4 /* EXFGPS.m */,
+				6A70A0A511417C8D00999FD4 /* EXFHandlers.h */,
+				6A70A0A611417C8D00999FD4 /* EXFHandlers.m */,
+				6A70A0A711417C8D00999FD4 /* EXFJFIF.h */,
+				6A70A0A811417C8D00999FD4 /* EXFJFIF.m */,
+				6A70A0A911417C8D00999FD4 /* EXFJpeg.h */,
+				6A70A0AA11417C8D00999FD4 /* EXFJpeg.m */,
+				6A70A0AB11417C8D00999FD4 /* EXFLogging.h */,
+				6A70A0AC11417C8D00999FD4 /* EXFMetaData.h */,
+				6A70A0AD11417C8D00999FD4 /* EXFMetaData.m */,
+				6A70A0AE11417C8D00999FD4 /* EXFMutableMetaData.h */,
+				6A70A0AF11417C8D00999FD4 /* EXFTagDefinitionHolder.h */,
+				6A70A0B011417C8D00999FD4 /* EXFTagDefinitionHolder.m */,
+				6A70A0B111417C8D00999FD4 /* EXFUtils.h */,
+				6A70A0B211417C8D00999FD4 /* EXFUtils.m */,
+			);
+			name = exif;
+			path = include;
 			sourceTree = "<group>";
 		};
 		6A8EEEC110A14ED200DC630C /* MGTwitterEngine */ = {
@@ -3467,6 +3519,13 @@
 				6AD0C284113F0BFA00A971E3 /* KBPhotoViewController.m in Sources */,
 				6AD0C28F113F0CBA00A971E3 /* MockPhotoSource.m in Sources */,
 				6A649A0B113F629800052FF9 /* KBPhotoThumbnailCell.m in Sources */,
+				6A70A0B311417C8D00999FD4 /* EXFGPS.m in Sources */,
+				6A70A0B411417C8D00999FD4 /* EXFHandlers.m in Sources */,
+				6A70A0B511417C8D00999FD4 /* EXFJFIF.m in Sources */,
+				6A70A0B611417C8D00999FD4 /* EXFJpeg.m in Sources */,
+				6A70A0B711417C8D00999FD4 /* EXFMetaData.m in Sources */,
+				6A70A0B811417C8D00999FD4 /* EXFTagDefinitionHolder.m in Sources */,
+				6A70A0B911417C8D00999FD4 /* EXFUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3502,6 +3561,7 @@
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/libs\"",
 					"\"$(SRCROOT)/../../../Desktop/PinchAnalytics-r91\"",
+					"\"$(SRCROOT)/../../../Desktop/iphone-exif-0-9.1 Folder/Release-iphoneos\"",
 				);
 				PRODUCT_NAME = kickball;
 			};
@@ -3526,6 +3586,7 @@
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/libs\"",
 					"\"$(SRCROOT)/../../../Desktop/PinchAnalytics-r91\"",
+					"\"$(SRCROOT)/../../../Desktop/iphone-exif-0-9.1 Folder/Release-iphoneos\"",
 				);
 				PRODUCT_NAME = Kickball;
 			};

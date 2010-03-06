@@ -363,8 +363,8 @@ static FoursquareAPI *sharedInstance = nil;
 	[requestParams setObject:crossStreet forKey:@"crossstreet"];
 	[requestParams setObject:city forKey:@"city"];
 	[requestParams setObject:state forKey:@"state"];
-	[requestParams setObject:zip forKey:@"zip"];
-	[requestParams setObject:cityId forKey:@"cityId"];
+	//[requestParams setObject:zip forKey:@"zip"];
+	//[requestParams setObject:cityId forKey:@"cityId"];
 	[requestParams setObject:phone forKey:@"phone"];
 	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/addvenue"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"POST"];
 }
@@ -628,7 +628,9 @@ static FoursquareAPI *sharedInstance = nil;
 	for (CXMLElement *groupResult in allGroups) {
 		NSArray * groupOfVenues = [FoursquareAPI _venuesFromNode:groupResult];
         NSLog(@"group of venues: %@", groupOfVenues);
-		thisVenue = (FSVenue *)[groupOfVenues objectAtIndex:0];
+        if ([groupOfVenues count] > 0) {
+            thisVenue = (FSVenue *)[groupOfVenues objectAtIndex:0];
+        }
 	}
     [venueParser release];
 	return thisVenue;

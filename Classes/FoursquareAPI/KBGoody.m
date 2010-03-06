@@ -49,7 +49,6 @@
 
 - (CGSize) largeImageSize {
     float ratio = self.imageWidth > self.imageHeight ? (float)self.imageWidth / kLargePhotoMaxSize : (float)self.imageHeight / kLargePhotoMaxSize;
-    NSLog(@"ratio: %f", ratio);
     if (ratio < 1) {
         ratio = 1;
     }

@@ -102,6 +102,6 @@
 - (IBAction) choosePhotoSelectMethod;
 - (void) getPhoto:(UIImagePickerControllerSourceType)sourceType;
 - (IBAction) viewPhotos;
-- (BOOL)uploadImage:(NSData *)imageData filename:(NSString *)filename withWidth:(float)width andHeight:(float)height;
+- (BOOL)uploadImage:(NSData *)imageData filename:(NSString *)filename withWidth:(float)width andHeight:(float)height andOrientation:(UIImageOrientation)orientation;
 
 @end

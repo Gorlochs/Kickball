@@ -19,7 +19,7 @@
 
 @class FriendsListViewController;
 
-@interface KickballAppDelegate : NSObject <UIApplicationDelegate    > {
+@interface KickballAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
     FriendsListViewController *viewController;
     UINavigationController *navigationController;
