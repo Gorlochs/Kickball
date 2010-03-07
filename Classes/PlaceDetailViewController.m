@@ -240,6 +240,8 @@
         
         photoSource = [[MockPhotoSource alloc] initWithType:MockPhotoSourceNormal title:venue.name photos:tempTTPhotoArray photos2:nil];
         [tempTTPhotoArray release];
+        giftCell.firstTimePhotoButton.hidden = YES;
+        giftCell.addPhotoButton.hidden = NO;
     } else {
         giftCell.firstTimePhotoButton.hidden = NO;
         giftCell.addPhotoButton.hidden = YES;
@@ -1096,6 +1098,7 @@
     NSLog(@"YAY! Image queue is complete!");
     
     // TODO: this should probably capture the response, parse it into a KBGoody, then add it to the goodies object - it would save an API hit
+    
     [self retrievePhotos];
 }
 
