@@ -146,7 +146,7 @@
         FSUser *user = [self getAuthenticatedUser];
         
         [self startProgressBar:@"Adding new venue and checking you in..."];
-        [[FoursquareAPI sharedInstance] addNewVenue:newVenueName 
+        [[FoursquareAPI sharedInstance] addNewVenue:placeName.text 
                                           atAddress:address.text 
                                      andCrossstreet:crossstreet.text 
                                             andCity:user.checkin.venue != nil && user.checkin.venue.city != nil ? user.checkin.venue.city : @""
