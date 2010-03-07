@@ -42,6 +42,11 @@
     location.text = @"";
     lastCheckinAddress.text = @"";
     
+    if ([userId isEqualToString:[self getAuthenticatedUser].userId]) {
+        NSLog(@"***************** disable button ********************");
+        signedInUserIcon.enabled = NO;
+    }
+    
     [self addHeaderAndFooter:theTableView];
     
     [self startProgressBar:@"Retrieving profile..."];
