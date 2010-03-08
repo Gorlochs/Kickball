@@ -35,16 +35,15 @@
 }
 
 - (void)friendRequestResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    NSLog(@"pending friend requests: %@", inString);
-    pendingFriendRequests = [[FoursquareAPI usersFromRequestResponseXML:inString] retain];
-    friendRequestCount.text = [NSString stringWithFormat:@"%d", [pendingFriendRequests count]];
-    
+    NSString *errorMessage = [FoursquareAPI errorFromResponseXML:inString];
+    if (errorMessage) {
+        [self displayFoursquareErrorMessage:errorMessage];
+    } else {
+        NSLog(@"pending friend requests: %@", inString);
+        pendingFriendRequests = [[FoursquareAPI usersFromRequestResponseXML:inString] retain];
+        friendRequestCount.text = [NSString stringWithFormat:@"%d", [pendingFriendRequests count]];
+    }
     [self stopProgressBar];
-    NSLog(@"pendingFriendRequests: %@", pendingFriendRequests);
-    
-    //    KBMessage *message = [[KBMessage alloc] initWithMember:@"Friend Request" andSubtitle:@"Complete!" andMessage:@"Your future buddy has been sent a friend request."];
-    //    [self displayPopupMessage:message];
-    //    [message release];
 }
 
 - (void) viewFriendRequests {

@@ -28,5 +28,6 @@
 - (NSArray *) checkins;
 - (void) showProfile:(id)sender;
 - (IBAction) retrieveNewFriendLocationsAndRefresh;
+- (IBAction) viewPlacesMap;
 
 @end

@@ -54,18 +54,23 @@
 }
 
 - (void)tipTodoResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-	tipId = [FoursquareAPI tipIdFromResponseXML:inString];
-    NSLog(@"tipid: %@", tipId);
-    [self stopProgressBar];
-    if (tipId != nil) {
-        // present a thank you message
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"todoTipSent"
-                                                            object:nil
-                                                          userInfo:nil];
-        [self dismissModalViewControllerAnimated:YES];
+    NSString *errorMessage = [FoursquareAPI errorFromResponseXML:inString];
+    if (errorMessage) {
+        [self displayFoursquareErrorMessage:errorMessage];
     } else {
-        //sorry
+        tipId = [FoursquareAPI tipIdFromResponseXML:inString];
+        NSLog(@"tipid: %@", tipId);
+        if (tipId != nil) {
+            // present a thank you message
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"todoTipSent"
+                                                                object:nil
+                                                              userInfo:nil];
+            [self dismissModalViewControllerAnimated:YES];
+        } else {
+            //sorry
+        }
     }
+    [self stopProgressBar];
 }
 
 - (void) submitTipOrTodoToFoursquare {

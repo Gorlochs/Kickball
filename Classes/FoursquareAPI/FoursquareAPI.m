@@ -671,6 +671,45 @@ static FoursquareAPI *sharedInstance = nil;
     return checkins;
 }
 
++ (NSString*) errorFromResponseXML:(NSString*) inString {
+    NSLog(@"instring for error check: %@", inString);
+    BOOL hasError = [inString rangeOfString:@"<error>"].location != NSNotFound;
+    if (hasError) {
+        NSError * err;
+        CXMLDocument *errorParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
+        NSArray *errorAttrs = [errorParser nodesForXPath:@"/" error:nil];
+        NSString *errorMessage = nil;
+        for (CXMLElement *errorAttr in errorAttrs) {
+            errorMessage = [FoursquareAPI _errorsFromNode:errorAttr];
+            break;
+        }
+        [errorParser release];
+        
+        return errorMessage;
+    } else {
+        return nil;
+    }
+}
+
++ (NSString *) _errorsFromNode:(CXMLNode *) inputNode {
+    NSString *errorMessage = nil;
+    NSLog(@"inside _errors");
+    NSArray * errorXML = [inputNode nodesForXPath:@"/" error:nil];
+    for (CXMLElement *error in errorXML) {
+        NSLog(@"looping through %d errors", [error childCount]);
+        int counter;
+        for(counter = 0; counter < [error childCount]; counter++) {
+            NSString * key = [[error childAtIndex:counter] name];
+            NSString * value = [[error childAtIndex:counter] stringValue];
+            if([key isEqualToString:@"error"]){
+                errorMessage = value;
+                NSLog(@"error message: %@", errorMessage);
+            }
+        }
+    }
+    return errorMessage;
+}
+
 + (NSArray *) _checkinsFromNode:(CXMLNode *) inputNode {
     NSMutableArray * allCheckins = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
     //FSCheckin * oneCheckin = [[FSCheckin alloc] init];

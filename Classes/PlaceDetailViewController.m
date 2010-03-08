@@ -266,20 +266,25 @@
 }
 
 - (void)venueResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    NSLog(@"venue response string: %@", inString);
-	self.venue = [FoursquareAPI venueFromResponseXML:inString];
-    [self prepViewWithVenueInfo:self.venue];
+    NSString *errorMessage = [FoursquareAPI errorFromResponseXML:inString];
+    if (errorMessage) {
+        [self displayFoursquareErrorMessage:errorMessage];
+    } else {
+        NSLog(@"venue response string: %@", inString);
+        self.venue = [FoursquareAPI venueFromResponseXML:inString];
+        [self prepViewWithVenueInfo:self.venue];
 
-	[theTableView reloadData];
+        [theTableView reloadData];
+        
+        if (doCheckin) {
+            [self checkinToVenue];
+        }
+        
+        if (self.venue.specials != nil &&[self.venue.specials count] > 0) {
+            specialsButton.hidden = NO;
+        }
+    }
     [self stopProgressBar];
-    
-    if (doCheckin) {
-        [self checkinToVenue];
-    }
-    
-    if (self.venue.specials != nil &&[self.venue.specials count] > 0) {
-        specialsButton.hidden = NO;
-    }
 }
 
 
@@ -741,37 +746,42 @@
 }
 
 - (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    NSLog(@"instring: %@", inString);
-	self.checkin = [FoursquareAPI checkinFromResponseXML:inString];
-    NSLog(@"checkin: %@", checkin);
-    isUserCheckedIn = YES;
-	[theTableView reloadData];
-    FSCheckin *ci = [self getSingleCheckin];
-    if (ci.specials != nil) {
-        specialsButton.hidden = NO;
+    NSString *errorMessage = [FoursquareAPI errorFromResponseXML:inString];
+    if (errorMessage) {
+        [self displayFoursquareErrorMessage:errorMessage];
+    } else {
+        NSLog(@"instring: %@", inString);
+        self.checkin = [FoursquareAPI checkinFromResponseXML:inString];
+        NSLog(@"checkin: %@", checkin);
+        isUserCheckedIn = YES;
+        [theTableView reloadData];
+        FSCheckin *ci = [self getSingleCheckin];
+        if (ci.specials != nil) {
+            specialsButton.hidden = NO;
+        }
+        
+        NSMutableString *checkinText = [[NSMutableString alloc] initWithCapacity:1];
+        for (FSScore *score in ci.scoring.scores) {
+            [checkinText appendFormat:[NSString stringWithFormat:@"+%d %@ \n", score.points, score.message]];
+            NSLog(@"checkin text: %@", checkinText);
+    //        checkinText = [checkinText stringByAppendingString:[NSString stringWithFormat:@"+%d %@ \n", score.points, score.message]];
+        }
+        KBMessage *message = [[KBMessage alloc] initWithMember:@"Check-in successful" andMessage:checkinText];
+        [self displayPopupMessage:message];
+        [checkinText release];
+        [message release];
+        
+        if (isPingOn) {
+            // TODO: make this asynchronous
+            if ([[Utilities sharedInstance] friendsWithPingOn]) {
+                NSLog(@"friends with ping on pulled from cache: %@", [[[Utilities sharedInstance] friendsWithPingOn] componentsJoinedByString:@","]);
+                [self friendsReceived:nil];
+            } else {
+                [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(friendsReceived:) name:@"friendsWithPingOnReceived" object:nil];
+            }   
+        }
     }
     [self stopProgressBar];
-    
-    NSMutableString *checkinText = [[NSMutableString alloc] initWithCapacity:1];
-    for (FSScore *score in ci.scoring.scores) {
-        [checkinText appendFormat:[NSString stringWithFormat:@"+%d %@ \n", score.points, score.message]];
-        NSLog(@"checkin text: %@", checkinText);
-//        checkinText = [checkinText stringByAppendingString:[NSString stringWithFormat:@"+%d %@ \n", score.points, score.message]];
-    }
-    KBMessage *message = [[KBMessage alloc] initWithMember:@"Check-in successful" andMessage:checkinText];
-    [self displayPopupMessage:message];
-    [checkinText release];
-    [message release];
-    
-    if (isPingOn) {
-        // TODO: make this asynchronous
-        if ([[Utilities sharedInstance] friendsWithPingOn]) {
-            NSLog(@"friends with ping on pulled from cache: %@", [[[Utilities sharedInstance] friendsWithPingOn] componentsJoinedByString:@","]);
-            [self friendsReceived:nil];
-        } else {
-            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(friendsReceived:) name:@"friendsWithPingOnReceived" object:nil];
-        }   
-    }
 }
 
 - (void)friendsReceived:(NSNotification *)inNotification {

@@ -257,4 +257,10 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
+- (void) displayFoursquareErrorMessage:(NSString*)errorMessage {
+    KBMessage *message = [[KBMessage alloc] initWithMember:@"Foursquare Error" andMessage:errorMessage];
+    [self displayPopupMessage:message];
+    [message release];
+}
+
 @end

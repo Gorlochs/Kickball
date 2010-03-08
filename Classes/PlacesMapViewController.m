@@ -21,9 +21,37 @@
  // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-	[self refreshVenuePoints];
+    
+    // this hack is here to help make the toggle 'global'
+    if (self.venues == nil) {
+        [self startProgressBar:@"Retrieving venues..."];
+        [[FoursquareAPI sharedInstance] getVenuesNearLatitude:[NSString stringWithFormat:@"%f",[[LocationManager locationManager] latitude]]
+                                                 andLongitude:[NSString stringWithFormat:@"%f",[[LocationManager locationManager] longitude]]
+                                                   withTarget:self 
+                                                    andAction:@selector(venuesResponseReceived:withResponseString:)
+         
+         ];   
+    } else {
+        [self refreshVenuePoints];
+    }
+	
     //[mapViewer setShowsUserLocation:YES];
     [[Beacon shared] startSubBeaconWithName:@"Venues Map"];
+}
+
+- (void)venuesResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+    NSLog(@"venues: %@", inString);
+	NSDictionary *allVenues = [FoursquareAPI venuesFromResponseXML:inString];
+    self.venues = [[NSMutableArray alloc] initWithCapacity:1];
+    for (NSString *key in [allVenues allKeys]) {
+        [self.venues addObjectsFromArray:[allVenues objectForKey:key]];
+    }
+    [self stopProgressBar];
+    [self refreshVenuePoints];
+}
+
+- (void) viewFriendsMap {
+    
 }
 
 -(void) viewDidAppear:(BOOL)animated{
@@ -43,7 +71,7 @@
 }
 
 
-- (void) setVenues:(NSArray *) venue{
+- (void) setVenues:(NSMutableArray *) venue{
 	[venues release];
 	venues = venue;
 	[venues retain];
@@ -255,12 +283,12 @@
                                               andLongitude:[NSString stringWithFormat:@"%f",[[LocationManager locationManager] longitude]] 
                                                andKeywords:[searchbox.text stringByReplacingOccurrencesOfString:@" " withString:@"+"]
                                                 withTarget:self 
-                                                 andAction:@selector(venuesResponseReceived:withResponseString:)
+                                                 andAction:@selector(allVenuesResponseReceived:withResponseString:)
          ];
     }
 }
 
-- (void)venuesResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+- (void)allVenuesResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     NSLog(@"venues from search - instring: %@", inString);
 	NSDictionary *allVenues = [FoursquareAPI venuesFromResponseXML:inString];
     NSMutableArray *venueArray = [[NSMutableArray alloc] initWithCapacity:1];

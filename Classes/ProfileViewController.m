@@ -54,65 +54,70 @@
 }
 
 - (void)userResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-	user = [[FoursquareAPI userFromResponseXML:inString] retain];
-    name.text = user.firstnameLastInitial;
-    
-    if ([user.checkin.display rangeOfString:@"[off the grid]"].location != NSNotFound) {
-        location.text = @"[off the grid]";
-        lastCheckinAddress.text = @"...location unknown...";
-        hereIAmButton.enabled = NO;
-        locationOverlayButton.enabled = NO;
+    NSString *errorMessage = [FoursquareAPI errorFromResponseXML:inString];
+    if (errorMessage) {
+        [self displayFoursquareErrorMessage:errorMessage];
     } else {
-        if (user.checkin.shout != nil) {
-            lastCheckinAddress.text = user.checkin.shout;
+        user = [[FoursquareAPI userFromResponseXML:inString] retain];
+        name.text = user.firstnameLastInitial;
+        
+        if ([user.checkin.display rangeOfString:@"[off the grid]"].location != NSNotFound) {
+            location.text = @"[off the grid]";
+            lastCheckinAddress.text = @"...location unknown...";
             hereIAmButton.enabled = NO;
+            locationOverlayButton.enabled = NO;
         } else {
-            lastCheckinAddress.text = user.checkin.venue.venueAddress;
-            hereIAmButton.enabled = YES;
+            if (user.checkin.shout != nil) {
+                lastCheckinAddress.text = user.checkin.shout;
+                hereIAmButton.enabled = NO;
+            } else {
+                lastCheckinAddress.text = user.checkin.venue.venueAddress;
+                hereIAmButton.enabled = YES;
+            }
+            if (user.checkin.venue) {
+                location.text = user.checkin.venue.name;
+            }
         }
-        if (user.checkin.venue) {
-            location.text = user.checkin.venue.name;
+        
+        isPingAndUpdatesOn = user.sendsPingsToSignedInUser;
+        if (isPingAndUpdatesOn) {
+            [pingsAndUpdates setImage:[UIImage imageNamed:@"profilePings01x.png"] forState:UIControlStateNormal];
+        } else {
+            [pingsAndUpdates setImage:[UIImage imageNamed:@"profilePings03x.png"] forState:UIControlStateNormal];
         }
-    }
-    
-    isPingAndUpdatesOn = user.sendsPingsToSignedInUser;
-    if (isPingAndUpdatesOn) {
-        [pingsAndUpdates setImage:[UIImage imageNamed:@"profilePings01x.png"] forState:UIControlStateNormal];
-    } else {
-        [pingsAndUpdates setImage:[UIImage imageNamed:@"profilePings03x.png"] forState:UIControlStateNormal];
-    }
-    //pingsAndUpdates.selected = user.sendsPingsToSignedInUser;
-    
-    // user icon
-    userIcon.image = [[Utilities sharedInstance] getCachedImage:user.photo];
-    userIcon.layer.masksToBounds = YES;
-    userIcon.layer.cornerRadius = 5.0;
-    
-    // badges
-    // I was hoping for something elegant, and it seemed like I was going to get there, but, as you can see, I didn't quite make it
-    // I'm sure there's a better way to do this, but this works.
-    int x = 0;
-    int y = 0;
-    int i = 0;
-    for (FSBadge *badge in user.badges) {
-        CGRect frame= CGRectMake(x*60 + 15, y*60 + 10, 50, 50);
-        UIButton *btn = [[UIButton alloc] initWithFrame:frame];
-        [btn setImage:[[Utilities sharedInstance] getCachedImage:badge.icon] forState:UIControlStateNormal];
-        btn.tag = i++;
-        [btn addTarget:self action:@selector(didTapBadge:) forControlEvents:UIControlEventTouchUpInside];
-        [badgeCell addSubview:btn];
-        [badgeCell bringSubviewToFront:btn];
+        //pingsAndUpdates.selected = user.sendsPingsToSignedInUser;
+        
+        // user icon
+        userIcon.image = [[Utilities sharedInstance] getCachedImage:user.photo];
+        userIcon.layer.masksToBounds = YES;
+        userIcon.layer.cornerRadius = 5.0;
+        
+        // badges
+        // I was hoping for something elegant, and it seemed like I was going to get there, but, as you can see, I didn't quite make it
+        // I'm sure there's a better way to do this, but this works.
+        int x = 0;
+        int y = 0;
+        int i = 0;
+        for (FSBadge *badge in user.badges) {
+            CGRect frame= CGRectMake(x*60 + 15, y*60 + 10, 50, 50);
+            UIButton *btn = [[UIButton alloc] initWithFrame:frame];
+            [btn setImage:[[Utilities sharedInstance] getCachedImage:badge.icon] forState:UIControlStateNormal];
+            btn.tag = i++;
+            [btn addTarget:self action:@selector(didTapBadge:) forControlEvents:UIControlEventTouchUpInside];
+            [badgeCell addSubview:btn];
+            [badgeCell bringSubviewToFront:btn];
 
-        x++;
-        if (x%BADGES_PER_ROW == 0) {
-            x = 0;
-            y++;
+            x++;
+            if (x%BADGES_PER_ROW == 0) {
+                x = 0;
+                y++;
+            }
         }
+        
+        [self disableUnavailableSegments];
+        
+        [theTableView reloadData];
     }
-    
-    [self disableUnavailableSegments];
-    
-	[theTableView reloadData];
     [self stopProgressBar];
 }
 
@@ -286,21 +291,26 @@
 	return 24.0;
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    [cell setBackgroundColor:[UIColor whiteColor]];  
+}
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (section == 0) {
         return NULL;
     } else {
         // create the parent view that will hold header Label
         UIView* customView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 24.0)] autorelease];
-        customView.backgroundColor = [UIColor blackColor];
+        customView.backgroundColor = [UIColor whiteColor];
+        customView.alpha = 0.85;
         
         // create the button object
         UILabel * headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        headerLabel.backgroundColor = [UIColor blackColor];
+        headerLabel.backgroundColor = [UIColor clearColor];
         headerLabel.opaque = NO;
         headerLabel.textColor = [UIColor grayColor];
-        headerLabel.highlightedTextColor = [UIColor grayColor];
-        headerLabel.font = [UIFont boldSystemFontOfSize:14];
+        headerLabel.highlightedTextColor = [UIColor whiteColor];
+        headerLabel.font = [UIFont boldSystemFontOfSize:12];
         headerLabel.frame = CGRectMake(10.0, 0.0, 320.0, 24.0);
         
         // If you want to align the header text as centered

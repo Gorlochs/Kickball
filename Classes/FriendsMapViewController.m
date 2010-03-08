@@ -13,6 +13,7 @@
 #import "LocationManager.h"
 #import "ProfileViewController.h"
 #import "PlacesListViewController.h"
+#import "PlacesMapViewController.h"
 
 
 @implementation FriendsMapViewController
@@ -111,6 +112,12 @@
     [self setCheckins:[FoursquareAPI checkinsFromResponseXML:inString]];
     [mapViewer removeAnnotations:mapViewer.annotations];
     [self refreshFriendPoints];
+}
+
+- (void) viewPlacesMap {
+    PlacesMapViewController *placesMapController = [[PlacesMapViewController alloc] initWithNibName:@"PlacesMapView" bundle:nil];
+    [self.navigationController pushViewController:placesMapController animated:NO];
+    [placesMapController release];
 }
 
 - (void) checkin {

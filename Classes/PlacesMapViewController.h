@@ -16,22 +16,23 @@
 
 @interface PlacesMapViewController : KBBaseViewController <UITextFieldDelegate> {
 	IBOutlet MKMapView * mapViewer;
-	NSArray * venues;
+	NSMutableArray * venues;
     CLLocation *bestEffortAtLocation;
     IBOutlet UITextField *searchbox;
     IBOutlet UIButton *switchingButton;
 }
 
-@property (nonatomic, retain) NSArray * venues;
+@property (nonatomic, retain) NSMutableArray * venues;
 @property (nonatomic, retain) MKMapView * mapViewer;
 @property (nonatomic, retain) CLLocation *bestEffortAtLocation;
 
 - (void) refreshVenuePoints;
-- (void) setVenues:(NSArray *) venue;
+- (void) setVenues:(NSMutableArray *) venue;
 - (NSArray *) venues;
 - (IBAction) searchOnKeywordsandLatLong;
 - (IBAction) refresh: (UIControl *) button;
 - (void) cancelKeyboard: (UIControl *) button;
+- (IBAction) viewFriendsMap;
 
 @end
 

@@ -84,6 +84,7 @@
 //+ (FSCheckin *) _checkinFromNode:(CXMLNode *) inputNode;
 + (NSArray *) _badgesFromNode:(CXMLNode *) inputNode;
 + (NSArray *) _checkinsFromNode:(CXMLNode *) inputNode;
++ (NSString *) _errorsFromNode:(CXMLNode *) inputNode;
 
 + (NSArray *) usersFromResponseXML:(NSString *) inString;
 + (NSArray *) usersFromRequestResponseXML:(NSString *) inString;
@@ -98,5 +99,6 @@
 + (BOOL) pingSettingFromResponseXML:(NSString *) inString;
 + (BOOL) simpleBooleanFromResponseXML:(NSString *) inString;
 + (NSString*) tipIdFromResponseXML:(NSString *) inString;
++ (NSString*) errorFromResponseXML:(NSString*) inString;
 
 @end

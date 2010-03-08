@@ -156,12 +156,9 @@
 		6A06BA3C113D7F8E00BAB8CF /* scan01.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A06BA3A113D7F8E00BAB8CF /* scan01.png */; };
 		6A06BA66113D8F6300BAB8CF /* FriendSearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A06BA64113D8F6300BAB8CF /* FriendSearchResultsViewController.m */; };
 		6A06BA67113D8F6300BAB8CF /* FriendSearchResultsViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A06BA65113D8F6300BAB8CF /* FriendSearchResultsViewController.xib */; };
-		6A0D9FAF109D97B300F9E1D6 /* UploadGiftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A0D9FAD109D97B300F9E1D6 /* UploadGiftViewController.m */; };
-		6A0D9FB0109D97B300F9E1D6 /* UploadGiftViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A0D9FAE109D97B300F9E1D6 /* UploadGiftViewController.xib */; };
 		6A0FCB4B111163A500AA4C91 /* mayorbadge-big2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A0FCB4A111163A500AA4C91 /* mayorbadge-big2.png */; };
 		6A10E61610BE0541006538DB /* LoginViewModalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A10E61410BE0541006538DB /* LoginViewModalController.m */; };
 		6A10E61710BE0541006538DB /* LoginViewModalController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A10E61510BE0541006538DB /* LoginViewModalController.xib */; };
-		6A1101DE111640AC00E56197 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A1101DD111640AC00E56197 /* Default.png */; };
 		6A12EC6110B772D60013BA52 /* GeoApiDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A12EC6010B772D60013BA52 /* GeoApiDetailsViewController.m */; };
 		6A12EC6310B772FA0013BA52 /* GeoApiDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A12EC6210B772FA0013BA52 /* GeoApiDetailsView.xib */; };
 		6A14323C113B1D8B0034DB51 /* photo_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A14323B113B1D8B0034DB51 /* photo_bg.png */; };
@@ -432,7 +429,6 @@
 		6A4C30C610DED6E300C89F55 /* SettingsViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A4C30C410DED6E300C89F55 /* SettingsViewController.xib */; };
 		6A4C30CA10DF24FD00C89F55 /* PlaceMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4C30C810DF24FD00C89F55 /* PlaceMapViewController.m */; };
 		6A4C30CB10DF24FD00C89F55 /* PlaceMapViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A4C30C910DF24FD00C89F55 /* PlaceMapViewController.xib */; };
-		6A4E0771111A244C00B3C56D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4E0770111A244C00B3C56D /* Default.png */; };
 		6A55B4D010B36EC60005E934 /* KBBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A55B4CF10B36EC60005E934 /* KBBaseViewController.m */; };
 		6A5F8F3C10B7707100914709 /* GeoAPIView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A5F8F3B10B7707100914709 /* GeoAPIView.xib */; };
 		6A63DDA41108EDBA00E2F9BB /* IFTweetLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A63DD9E1108EDBA00E2F9BB /* IFTweetLabel.m */; };
@@ -559,6 +555,9 @@
 		6AD0C1FE113F04F500A971E3 /* Three20.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6AD0C1FD113F04F500A971E3 /* Three20.bundle */; };
 		6AD0C284113F0BFA00A971E3 /* KBPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD0C283113F0BFA00A971E3 /* KBPhotoViewController.m */; };
 		6AD0C28F113F0CBA00A971E3 /* MockPhotoSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD0C28E113F0CBA00A971E3 /* MockPhotoSource.m */; };
+		6AD9D8C8114594580060E486 /* homeSearchClose01.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AD9D8C7114594580060E486 /* homeSearchClose01.png */; };
+		6AD9D8CA1145945F0060E486 /* homeSearchClose02.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AD9D8C91145945F0060E486 /* homeSearchClose02.png */; };
+		6AD9D8CC114594A40060E486 /* homeSearch.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AD9D8CB114594A40060E486 /* homeSearch.png */; };
 		6ADB704A1116AE3300A26D35 /* saveClose02a.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ADB703F1116AE3300A26D35 /* saveClose02a.png */; };
 		6ADB704B1116AE3300A26D35 /* saveClose01a.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ADB70401116AE3300A26D35 /* saveClose01a.png */; };
 		6ADB704C1116AE3300A26D35 /* clearFields02a.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ADB70411116AE3300A26D35 /* clearFields02a.png */; };
@@ -926,14 +925,10 @@
 		6A06BA63113D8F6300BAB8CF /* FriendSearchResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendSearchResultsViewController.h; sourceTree = "<group>"; };
 		6A06BA64113D8F6300BAB8CF /* FriendSearchResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendSearchResultsViewController.m; sourceTree = "<group>"; };
 		6A06BA65113D8F6300BAB8CF /* FriendSearchResultsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendSearchResultsViewController.xib; sourceTree = "<group>"; };
-		6A0D9FAC109D97B300F9E1D6 /* UploadGiftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadGiftViewController.h; sourceTree = "<group>"; };
-		6A0D9FAD109D97B300F9E1D6 /* UploadGiftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadGiftViewController.m; sourceTree = "<group>"; };
-		6A0D9FAE109D97B300F9E1D6 /* UploadGiftViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = UploadGiftViewController.xib; path = Classes/UploadGiftViewController.xib; sourceTree = "<group>"; };
 		6A0FCB4A111163A500AA4C91 /* mayorbadge-big2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mayorbadge-big2.png"; sourceTree = "<group>"; };
 		6A10E61310BE0541006538DB /* LoginViewModalController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewModalController.h; sourceTree = "<group>"; };
 		6A10E61410BE0541006538DB /* LoginViewModalController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewModalController.m; sourceTree = "<group>"; };
 		6A10E61510BE0541006538DB /* LoginViewModalController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginViewModalController.xib; path = Classes/LoginViewModalController.xib; sourceTree = "<group>"; };
-		6A1101DD111640AC00E56197 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		6A12EC5F10B772D60013BA52 /* GeoApiDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeoApiDetailsViewController.h; sourceTree = "<group>"; };
 		6A12EC6010B772D60013BA52 /* GeoApiDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeoApiDetailsViewController.m; sourceTree = "<group>"; };
 		6A12EC6210B772FA0013BA52 /* GeoApiDetailsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeoApiDetailsView.xib; sourceTree = "<group>"; };
@@ -1236,7 +1231,6 @@
 		6A4C30C710DF24FD00C89F55 /* PlaceMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceMapViewController.h; sourceTree = "<group>"; };
 		6A4C30C810DF24FD00C89F55 /* PlaceMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceMapViewController.m; sourceTree = "<group>"; };
 		6A4C30C910DF24FD00C89F55 /* PlaceMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaceMapViewController.xib; sourceTree = "<group>"; };
-		6A4E0770111A244C00B3C56D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		6A55B4CE10B36EC60005E934 /* KBBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBBaseViewController.h; sourceTree = "<group>"; };
 		6A55B4CF10B36EC60005E934 /* KBBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBBaseViewController.m; sourceTree = "<group>"; };
 		6A5F8F3B10B7707100914709 /* GeoAPIView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GeoAPIView.xib; sourceTree = "<group>"; };
@@ -1416,6 +1410,9 @@
 		6AD0C283113F0BFA00A971E3 /* KBPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBPhotoViewController.m; sourceTree = "<group>"; };
 		6AD0C28D113F0CBA00A971E3 /* MockPhotoSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MockPhotoSource.h; path = Classes/MockPhotoSource.h; sourceTree = SOURCE_ROOT; };
 		6AD0C28E113F0CBA00A971E3 /* MockPhotoSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MockPhotoSource.m; path = Classes/MockPhotoSource.m; sourceTree = SOURCE_ROOT; };
+		6AD9D8C7114594580060E486 /* homeSearchClose01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeSearchClose01.png; sourceTree = "<group>"; };
+		6AD9D8C91145945F0060E486 /* homeSearchClose02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeSearchClose02.png; sourceTree = "<group>"; };
+		6AD9D8CB114594A40060E486 /* homeSearch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeSearch.png; sourceTree = "<group>"; };
 		6ADB703F1116AE3300A26D35 /* saveClose02a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = saveClose02a.png; sourceTree = "<group>"; };
 		6ADB70401116AE3300A26D35 /* saveClose01a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = saveClose01a.png; sourceTree = "<group>"; };
 		6ADB70411116AE3300A26D35 /* clearFields02a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clearFields02a.png; sourceTree = "<group>"; };
@@ -1592,7 +1589,6 @@
 				553C516510A1BD5100A74641 /* TouchXML */,
 				6A39EB3E10965666006F76C3 /* Pinch */,
 				6A8EEEC110A14ED200DC630C /* MGTwitterEngine */,
-				6A0D9FAB109D97A200F9E1D6 /* Gift */,
 				6AF9670D109AA2FE00EF665D /* Profile */,
 				6AC7E92D10994FB500776993 /* Place */,
 				6AF794AA10CCAD9A00E77D49 /* Requests */,
@@ -1653,7 +1649,6 @@
 				8D1107310486CEB800E47090 /* Kickball-Info.plist */,
 				6AC5817A10B517FB0043B90C /* PlacesMapView.xib */,
 				6ADC9EC510D3F08600CFDCA7 /* AddPlaceViewController.xib */,
-				6A0D9FAE109D97B300F9E1D6 /* UploadGiftViewController.xib */,
 				6ABA7857109BDCAF001E7293 /* PlacesListViewController.xib */,
 				6A12EC6210B772FA0013BA52 /* GeoApiDetailsView.xib */,
 				6AFC1D9510BA42A9006B7E5F /* ProgressView.xib */,
@@ -1909,15 +1904,6 @@
 			name = Friends;
 			sourceTree = "<group>";
 		};
-		6A0D9FAB109D97A200F9E1D6 /* Gift */ = {
-			isa = PBXGroup;
-			children = (
-				6A0D9FAC109D97B300F9E1D6 /* UploadGiftViewController.h */,
-				6A0D9FAD109D97B300F9E1D6 /* UploadGiftViewController.m */,
-			);
-			name = Gift;
-			sourceTree = "<group>";
-		};
 		6A12EC5E10B772B60013BA52 /* GeoAPI related */ = {
 			isa = PBXGroup;
 			children = (
@@ -2136,6 +2122,9 @@
 		6A39EC4B109662D3006F76C3 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				6AD9D8CB114594A40060E486 /* homeSearch.png */,
+				6AD9D8C91145945F0060E486 /* homeSearchClose02.png */,
+				6AD9D8C7114594580060E486 /* homeSearchClose01.png */,
 				6A649B07113F84E100052FF9 /* blank_boy2.png */,
 				6A649993113F33E700052FF9 /* addFirst02.png */,
 				6A649994113F33E700052FF9 /* addFirst01.png */,
@@ -2263,7 +2252,6 @@
 				6AB0D345111D470900B97FD1 /* loginFields2.png */,
 				6AB0D333111D468200B97FD1 /* loginLogin01a.png */,
 				6AB0D334111D468200B97FD1 /* loginLogin02a.png */,
-				6A4E0770111A244C00B3C56D /* Default.png */,
 				6AE37D801118DA7400C6585B /* gradient-bottom.png */,
 				6AE37D811118DA7400C6585B /* gradient-top.png */,
 				6AE37D6B1118C68A00C6585B /* show02.png */,
@@ -2280,7 +2268,6 @@
 				6ADB70471116AE3300A26D35 /* justCheckin01a.png */,
 				6ADB70481116AE3300A26D35 /* checkListings02a.png */,
 				6ADB70491116AE3300A26D35 /* checkListings01a.png */,
-				6A1101DD111640AC00E56197 /* Default.png */,
 				6A0FCB4A111163A500AA4C91 /* mayorbadge-big2.png */,
 				6A00546C110D5B6800EB941C /* shoutbox.png */,
 				6A005442110D579D00EB941C /* loadmore01.png */,
@@ -2883,7 +2870,6 @@
 				6AC7E93210994FD000776993 /* PlaceDetailView.xib in Resources */,
 				6AF2F0AE10C2EBB300A29C96 /* TipView.xib in Resources */,
 				6AFF241210A24A0900CD30E5 /* PlaceTwitterViewController.xib in Resources */,
-				6A0D9FB0109D97B300F9E1D6 /* UploadGiftViewController.xib in Resources */,
 				553C519410A1BD5100A74641 /* oauthAutoConfig.plist in Resources */,
 				6A12EC6310B772FA0013BA52 /* GeoApiDetailsView.xib in Resources */,
 				6A16AE3A10CFFA2C00CD5302 /* 01.png in Resources */,
@@ -3155,7 +3141,6 @@
 				6A00543F110D55C000EB941C /* x-modal02.png in Resources */,
 				6A00546D110D5B6800EB941C /* shoutbox.png in Resources */,
 				6A0FCB4B111163A500AA4C91 /* mayorbadge-big2.png in Resources */,
-				6A1101DE111640AC00E56197 /* Default.png in Resources */,
 				6ADB704A1116AE3300A26D35 /* saveClose02a.png in Resources */,
 				6ADB704B1116AE3300A26D35 /* saveClose01a.png in Resources */,
 				6ADB704C1116AE3300A26D35 /* clearFields02a.png in Resources */,
@@ -3173,7 +3158,6 @@
 				6AE37D821118DA7400C6585B /* gradient-bottom.png in Resources */,
 				6AE37D831118DA7400C6585B /* gradient-top.png in Resources */,
 				6AE37F381119467F00C6585B /* welcome01.png in Resources */,
-				6A4E0771111A244C00B3C56D /* Default.png in Resources */,
 				6AB0D335111D468300B97FD1 /* loginLogin01a.png in Resources */,
 				6AB0D336111D468300B97FD1 /* loginLogin02a.png in Resources */,
 				6AB0D346111D470900B97FD1 /* loginFields2.png in Resources */,
@@ -3343,6 +3327,9 @@
 				6A649999113F33E700052FF9 /* addPhoto02.png in Resources */,
 				6A64999A113F33E700052FF9 /* addPhoto01.png in Resources */,
 				6A649B08113F84E100052FF9 /* blank_boy2.png in Resources */,
+				6AD9D8C8114594580060E486 /* homeSearchClose01.png in Resources */,
+				6AD9D8CA1145945F0060E486 /* homeSearchClose02.png in Resources */,
+				6AD9D8CC114594A40060E486 /* homeSearch.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3361,7 +3348,6 @@
 				6A8AC8F1109AB31400C4FE1B /* ProfileViewController.m in Sources */,
 				6ABA7858109BDCAF001E7293 /* PlacesListViewController.m in Sources */,
 				6ABA7859109BDCAF001E7293 /* PlacesListViewController.xib in Sources */,
-				6A0D9FAF109D97B300F9E1D6 /* UploadGiftViewController.m in Sources */,
 				6A8EEEF410A14F0F00DC630C /* MGTwitterEngine.m in Sources */,
 				6A8EEEF510A14F0F00DC630C /* MGTwitterHTTPURLConnection.m in Sources */,
 				6A8EEEF610A14F0F00DC630C /* MGTwitterLibXMLParser.m in Sources */,

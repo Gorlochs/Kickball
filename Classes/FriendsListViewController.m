@@ -437,83 +437,88 @@
 }
 
 - (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-	NSArray * allCheckins = [FoursquareAPI checkinsFromResponseXML:inString];
-	self.checkins = [allCheckins copy];
-    allCheckins = nil;
-    
-    recentCheckins = [[NSMutableArray alloc] init];
-    todayCheckins = [[NSMutableArray alloc] init];
-    yesterdayCheckins = [[NSMutableArray alloc] init];
-    userIcons = [[NSMutableDictionary alloc] initWithCapacity:1];
-    
-    NSDate *oneHourFromNow = [[NSDate alloc] initWithTimeIntervalSinceNow:-60*60*1];
-    NSDate *twentyfourHoursFromNow = [[NSDate alloc] initWithTimeIntervalSinceNow:-60*60*24];
-    oneHourFromNow = [self convertToUTC:oneHourFromNow];
-    twentyfourHoursFromNow = [self convertToUTC:twentyfourHoursFromNow];
-    
-    NSUInteger unitFlags = NSMinuteCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit;
-    
-    for (FSCheckin *checkin in checkins) {
-        NSDate *date = [dateFormatter dateFromString:checkin.created];
-        if ([date compare:oneHourFromNow] == NSOrderedDescending) {
-            [self.recentCheckins addObject:checkin];
-        } else if ([date compare:oneHourFromNow] == NSOrderedAscending && [date compare:twentyfourHoursFromNow] == NSOrderedDescending) {
-            [self.todayCheckins addObject:checkin];
-        } else {
-            [self.yesterdayCheckins addObject:checkin];
-        }
-        // create dictionary of icons to help speed up the scrolling
-//        CGRect frame = CGRectMake(0, 0, 36, 36);
-//        KBAsyncImageView* asyncImage = [[[KBAsyncImageView alloc] initWithFrame:frame] autorelease];
-//        [asyncImage loadImageFromURL:[NSURL URLWithString:checkin.user.photo] withRoundedEdges: YES];
-//        [userIcons setObject:asyncImage forKey:checkin.checkinId];
+    NSString *errorMessage = [FoursquareAPI errorFromResponseXML:inString];
+    if (errorMessage) {
+        [self displayFoursquareErrorMessage:errorMessage];
+    } else {
+        NSArray * allCheckins = [FoursquareAPI checkinsFromResponseXML:inString];
+        self.checkins = [allCheckins copy];
+        allCheckins = nil;
         
-        NSDateComponents *components = [gregorian components:unitFlags fromDate:[self convertToUTC:[NSDate date]] toDate:date options:0];
-        NSInteger minutes = [components minute] * -1;
-        NSInteger hours = [components hour] * -1;
-        NSInteger days = [components day] * -1;
+        recentCheckins = [[NSMutableArray alloc] init];
+        todayCheckins = [[NSMutableArray alloc] init];
+        yesterdayCheckins = [[NSMutableArray alloc] init];
+        userIcons = [[NSMutableDictionary alloc] initWithCapacity:1];
         
-        if (days == 0 && hours == 0) {
-            //checkin.truncatedTimeUnits = @"min.";
-            checkin.truncatedTimeNumeral = [NSString stringWithFormat:@"%02d", minutes];
-        } else if (days == 0) {
-            //checkin.truncatedTimeUnits = @"hours";
-            checkin.truncatedTimeNumeral = [NSString stringWithFormat:@"%02d", hours];
-        } else {
-            //checkin.truncatedTimeUnits = @"days";
-            checkin.truncatedTimeNumeral = [NSString stringWithFormat:@"%02d", days];
+        NSDate *oneHourFromNow = [[NSDate alloc] initWithTimeIntervalSinceNow:-60*60*1];
+        NSDate *twentyfourHoursFromNow = [[NSDate alloc] initWithTimeIntervalSinceNow:-60*60*24];
+        oneHourFromNow = [self convertToUTC:oneHourFromNow];
+        twentyfourHoursFromNow = [self convertToUTC:twentyfourHoursFromNow];
+        
+        NSUInteger unitFlags = NSMinuteCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit;
+        
+        for (FSCheckin *checkin in checkins) {
+            NSDate *date = [dateFormatter dateFromString:checkin.created];
+            if ([date compare:oneHourFromNow] == NSOrderedDescending) {
+                [self.recentCheckins addObject:checkin];
+            } else if ([date compare:oneHourFromNow] == NSOrderedAscending && [date compare:twentyfourHoursFromNow] == NSOrderedDescending) {
+                [self.todayCheckins addObject:checkin];
+            } else {
+                [self.yesterdayCheckins addObject:checkin];
+            }
+            // create dictionary of icons to help speed up the scrolling
+    //        CGRect frame = CGRectMake(0, 0, 36, 36);
+    //        KBAsyncImageView* asyncImage = [[[KBAsyncImageView alloc] initWithFrame:frame] autorelease];
+    //        [asyncImage loadImageFromURL:[NSURL URLWithString:checkin.user.photo] withRoundedEdges: YES];
+    //        [userIcons setObject:asyncImage forKey:checkin.checkinId];
+            
+            NSDateComponents *components = [gregorian components:unitFlags fromDate:[self convertToUTC:[NSDate date]] toDate:date options:0];
+            NSInteger minutes = [components minute] * -1;
+            NSInteger hours = [components hour] * -1;
+            NSInteger days = [components day] * -1;
+            
+            if (days == 0 && hours == 0) {
+                //checkin.truncatedTimeUnits = @"min.";
+                checkin.truncatedTimeNumeral = [NSString stringWithFormat:@"%02d", minutes];
+            } else if (days == 0) {
+                //checkin.truncatedTimeUnits = @"hours";
+                checkin.truncatedTimeNumeral = [NSString stringWithFormat:@"%02d", hours];
+            } else {
+                //checkin.truncatedTimeUnits = @"days";
+                checkin.truncatedTimeNumeral = [NSString stringWithFormat:@"%02d", days];
+            }
+    //        NSLog(@"checkin: %@", checkin);
         }
-//        NSLog(@"checkin: %@", checkin);
-    }
-    
-    NSLog(@"all checkins: %d", [self.checkins count]);
-    NSLog(@"recent checkins: %d", [self.recentCheckins count]);
-    NSLog(@"today checkins: %d", [self.todayCheckins count]);
-    NSLog(@"yesterday checkins: %d", [self.yesterdayCheckins count]);
-    
-	[theTableView reloadData];
-    footerViewCell.hidden = NO;
-    mapButton.hidden = NO;
-    if (hasViewedInstructions) {
-        [self stopProgressBar];
-    }
-    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-    NSData *theData=[NSKeyedArchiver archivedDataWithRootObject:checkins];
-    [standardUserDefaults setObject:theData forKey:@"checkinsData"];
-    
-    NSData *recentCheckinsData=[NSKeyedArchiver archivedDataWithRootObject:recentCheckins];
-    NSData *todayCheckinsData=[NSKeyedArchiver archivedDataWithRootObject:todayCheckins];
-    NSData *yesterdayCheckinsData=[NSKeyedArchiver archivedDataWithRootObject:yesterdayCheckins];
-    [standardUserDefaults setObject:recentCheckinsData forKey:@"recentCheckinsData"];
-    [standardUserDefaults setObject:todayCheckinsData forKey:@"todayCheckinsData"];
-    [standardUserDefaults setObject:yesterdayCheckinsData forKey:@"yesterdayCheckinsData"];
-    NSLog(@"finished with checkin response");
-    
-    if (!hasViewedInstructions) {
-        //[self stopProgressBar];
-        [standardUserDefaults setBool:YES forKey:@"viewedInstructions"];
-        hasViewedInstructions = YES;
-        //[instructionView removeFromSuperview];
+        
+        NSLog(@"all checkins: %d", [self.checkins count]);
+        NSLog(@"recent checkins: %d", [self.recentCheckins count]);
+        NSLog(@"today checkins: %d", [self.todayCheckins count]);
+        NSLog(@"yesterday checkins: %d", [self.yesterdayCheckins count]);
+        
+        [theTableView reloadData];
+        footerViewCell.hidden = NO;
+        mapButton.hidden = NO;
+        if (hasViewedInstructions) {
+            [self stopProgressBar];
+        }
+        NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+        NSData *theData=[NSKeyedArchiver archivedDataWithRootObject:checkins];
+        [standardUserDefaults setObject:theData forKey:@"checkinsData"];
+        
+        NSData *recentCheckinsData=[NSKeyedArchiver archivedDataWithRootObject:recentCheckins];
+        NSData *todayCheckinsData=[NSKeyedArchiver archivedDataWithRootObject:todayCheckins];
+        NSData *yesterdayCheckinsData=[NSKeyedArchiver archivedDataWithRootObject:yesterdayCheckins];
+        [standardUserDefaults setObject:recentCheckinsData forKey:@"recentCheckinsData"];
+        [standardUserDefaults setObject:todayCheckinsData forKey:@"todayCheckinsData"];
+        [standardUserDefaults setObject:yesterdayCheckinsData forKey:@"yesterdayCheckinsData"];
+        NSLog(@"finished with checkin response");
+        
+        if (!hasViewedInstructions) {
+            //[self stopProgressBar];
+            [standardUserDefaults setBool:YES forKey:@"viewedInstructions"];
+            hasViewedInstructions = YES;
+            //[instructionView removeFromSuperview];
+        }
     }
 }
 

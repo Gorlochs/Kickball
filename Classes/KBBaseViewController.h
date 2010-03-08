@@ -55,5 +55,6 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 - (IBAction) checkin;
 - (void) openWebView:(NSString*)url;
 - (IBAction) dismiss;
+- (void) displayFoursquareErrorMessage:(NSString*)errorMessage;
 
 @end

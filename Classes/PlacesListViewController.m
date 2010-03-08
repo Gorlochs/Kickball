@@ -46,7 +46,6 @@
          
          ];   
     } else {
-        NSLog(@"Pulling cached venue dictionary");
         self.venues = [NSDictionary dictionaryWithDictionary:[FoursquareAPI sharedInstance].cachedVenues];
         [theTableView reloadData];
         [self stopProgressBar];
@@ -58,21 +57,26 @@
 
 
 - (void)venuesResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    NSLog(@"venues: %@", inString);
-	NSDictionary *allVenues = [FoursquareAPI venuesFromResponseXML:inString];
-	self.venues = [NSDictionary dictionaryWithDictionary:allVenues];
-    [FoursquareAPI sharedInstance].cachedVenues = [[NSDictionary alloc] initWithDictionary:self.venues];
+    NSString *errorMessage = [FoursquareAPI errorFromResponseXML:inString];
+    if (errorMessage) {
+        [self displayFoursquareErrorMessage:errorMessage];
+    } else {
+        NSLog(@"venues: %@", inString);
+        NSDictionary *allVenues = [FoursquareAPI venuesFromResponseXML:inString];
+        self.venues = [NSDictionary dictionaryWithDictionary:allVenues];
+        [FoursquareAPI sharedInstance].cachedVenues = [[NSDictionary alloc] initWithDictionary:self.venues];
+        if ([self.venues count] == 0) {
+            isSearchEmpty = YES;
+        }
+        [theTableView reloadData];
+        
+        //move table to new entry
+        if ([theTableView numberOfSections] != 0) {
+            NSUInteger indexArr[] = {0,0};
+            [theTableView scrollToRowAtIndexPath:[NSIndexPath indexPathWithIndexes:indexArr length:2] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+        }
+    }
     [self stopProgressBar];
-    if ([self.venues count] == 0) {
-        isSearchEmpty = YES;
-    }
-	[theTableView reloadData];
-    
-    //move table to new entry
-    if ([theTableView numberOfSections] != 0) {
-        NSUInteger indexArr[] = {0,0};
-        [theTableView scrollToRowAtIndexPath:[NSIndexPath indexPathWithIndexes:indexArr length:2] atScrollPosition:UITableViewScrollPositionTop animated:YES];
-    }
 }
 
 - (void)didReceiveMemoryWarning {
