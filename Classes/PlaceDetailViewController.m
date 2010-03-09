@@ -229,7 +229,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
                 x = 0;
                 y++;
             }
-            if (i > (PHOTOS_PER_ROW * 2) - 1) {
+            if (i >= PHOTOS_PER_ROW) {
                 break;
             }
         }
@@ -303,6 +303,8 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     CLLocationCoordinate2D location = venueToDisplay.location;
     
     double tmp = [[NSNumber numberWithDouble:location.longitude] doubleValue];
+    // need to shift the pin location because the pin needs to be centered in the right box 
+    // but the map extends underneath the mayor section of the table cell
     CLLocationCoordinate2D shiftedLocation = {latitude: venueToDisplay.location.latitude , longitude: (CLLocationDegrees)(tmp - 0.0045) };
     
     fullRegion.span = fullSpan;
@@ -414,9 +416,6 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         return ![self isNewMayor];
     } else if (section == 6) { // gift
         return 1;
-        //return 0;  // photos being moved out of the table
-        //return (goodies != nil && [goodies count] > 0);
-        //return isUserCheckedIn;
     } else if (section == 7) { // people here
         return [venue.currentCheckins count] + 1;
     } else if (section == 8) { // tips
@@ -482,17 +481,6 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         mayorMapCell.backgroundColor = [UIColor whiteColor];
         return mayorMapCell;
     } else if (indexPath.section == 6) {
-//        int i = 0;
-//        for (KBGoody *goody in goodies) {
-//            CGRect frame = CGRectMake(i*74, 0, 74, 74);
-//            KBAsyncImageView* asyncImage = [[[KBAsyncImageView alloc] initWithFrame:frame] autorelease];
-//            NSLog(@"********** mediumimage path: %@", goody.mediumImagePath);
-//            asyncImage.contentMode = UIViewContentModeCenter;
-//            asyncImage.clipsToBounds = YES;
-//            [asyncImage loadImageFromURL:[NSURL URLWithString:goody.mediumImagePath] withRoundedEdges:NO];
-//            [giftCell addSubview:asyncImage];
-//            i++;
-//        }
         return giftCell;
     } else if (indexPath.section == 7) {
         if (indexPath.row < [venue.currentCheckins count]) {
@@ -548,7 +536,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
             if ([goodies count] == 0) {
                 return 102;
             } else {
-                return [goodies count] < 6 ? THUMBNAIL_IMAGE_SIZE : THUMBNAIL_IMAGE_SIZE * 2;
+                return THUMBNAIL_IMAGE_SIZE;
             }
         case 7:
             return 44;
