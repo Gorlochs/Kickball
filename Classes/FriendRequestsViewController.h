@@ -24,6 +24,7 @@
     
     NSArray *friendRequests;
     CGFloat animatedDistance;
+    IBOutlet UIToolbar *toolbar;
 }
 
 - (IBAction) searchAddressBook;
@@ -31,5 +32,8 @@
 - (IBAction) searchByTwitter;
 - (IBAction) searchByPhone;
 - (void) didTapFriendizeButton: (UIControl *) button withEvent: (UIEvent *) event;
+- (void) resignAllResponders;
+- (void) animateToolbar:(CGRect)toolbarFrame;
+- (IBAction) cancelEdit;
 
 @end

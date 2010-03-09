@@ -17,6 +17,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[Beacon shared] startSubBeaconWithName:@"Search for Friends View"];
+    toolbar.frame = CGRectMake(0, 436, 320, 44);
+    [self.view addSubview:toolbar];
+    toolbar.hidden = YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -168,6 +171,7 @@
     [phoneText release];
     
     [friendRequests release];
+    [toolbar release];
     [super dealloc];
 }
 
@@ -215,6 +219,7 @@
 
 - (void) searchAddressBook {
     [self startProgressBar:@"Searching address book..."];
+    [self resignAllResponders];
     ABAddressBookRef addressBook = ABAddressBookCreate();
     NSArray *people = (NSArray*)ABAddressBookCopyArrayOfAllPeople(addressBook);
     NSMutableArray *phones = [[NSMutableArray alloc] initWithCapacity:1];
@@ -236,6 +241,15 @@
     //[addressBook release];
 }
 
+- (void) resignAllResponders {
+    [twitterText resignFirstResponder];
+    [phoneText resignFirstResponder];
+    [nameText resignFirstResponder];
+    
+    [self.view addSubview:toolbar];
+    [self animateToolbar:CGRectMake(0, 480, 320, 40)];
+}
+
 - (void)searchResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     NSLog(@"search response: %@", inString);
     
@@ -244,10 +258,6 @@
     [self stopProgressBar];
     [self.navigationController pushViewController:vc animated:YES];
     [vc release];
-    
-//    friendRequests = [[FoursquareAPI usersFromResponseXML:inString] retain];
-//    [theTableView reloadData];
-
 }
 
 #pragma mark
@@ -275,11 +285,25 @@
     CGRect viewFrame = self.view.frame;
     viewFrame.origin.y -= animatedDistance;
     
+    toolbar.hidden = NO;
+    CGRect toolbarFrame = toolbar.frame;
+    
+    if (textField == twitterText) {
+        toolbarFrame.origin.y = 242;
+    } else if (textField == phoneText) {
+        toolbarFrame.origin.y = 289;
+    } else if (textField == nameText) {
+        toolbarFrame.origin.y = 335;
+    }
+    
+    [self.view addSubview:toolbar];
+    
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
     [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
     
     [self.view setFrame:viewFrame];
+    [toolbar setFrame:toolbarFrame];
     
     [UIView commitAnimations];
 }
@@ -293,6 +317,20 @@
     [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
     
     [self.view setFrame:viewFrame];
+    
+    [UIView commitAnimations];
+}
+
+- (void) cancelEdit {
+    [self resignAllResponders];
+}
+
+- (void) animateToolbar:(CGRect)toolbarFrame {
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
+    
+    [toolbar setFrame:toolbarFrame];
     
     [UIView commitAnimations];
 }
