@@ -10,6 +10,8 @@
 #import "MockPhotoSource.h"
 #import "ASIHTTPRequest.h"
 #import "KBGoody.h"
+#import "KBMessage.h"
+
 
 
 @implementation KBPhotoViewController
@@ -68,11 +70,34 @@
 }
 
 - (void) flagWentWrong:(ASIHTTPRequest *) request {
-    NSLog(@"flagging went wrong");
+    NSLog(@"flagging went wrong: %@", [request responseString]);
+    KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"There was an error with the flagging of this photo.  Please try again later."];
+    [self displayPopupMessage:message];
+    [message release];
 }
 
 - (void) flagDidFinish:(ASIHTTPRequest *) request {
-    NSLog(@"flagged inappropriate");
+    NSLog(@"flagged inappropriate: %@", [request responseString]);
+    KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"We have flagged this photo and will review it shortly. Thanks for making the world a safer place."];
+    [self displayPopupMessage:message];
+    [message release];
+}
+
+// copy and paste from KBBaseViewController
+- (void) displayPopupMessage:(KBMessage*)message {
+    
+    popupView = [[PopupMessageView alloc] initWithNibName:@"PopupMessageView" bundle:nil];
+    popupView.message = message;
+    popupView.view.alpha = 0;
+    //    popupView.view.layer.cornerRadius = 8.0;
+    [self.view addSubview:popupView.view];
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:0.7];
+    popupView.view.alpha = 1.0;
+    
+    [UIView commitAnimations];
 }
 
 @end
