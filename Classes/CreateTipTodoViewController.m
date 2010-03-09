@@ -83,7 +83,7 @@
     } else {
         [self startProgressBar:@"Submitting Tip/Todo..."];
         NSString *tipOrTodo = nil;
-        if (tipTodoSwitch.selectedSegmentIndex = 0) {
+        if (tipTodoSwitch.selectedSegmentIndex == 0) {
             [[Beacon shared] startSubBeaconWithName:@"Creating Tip"];
             NSLog(@"submitting tip");
             tipOrTodo = @"tip";
