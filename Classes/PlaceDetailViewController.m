@@ -80,7 +80,6 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     venueDetailButton.hidden = YES;
     twitterButton.enabled = NO;
     
-    giftCell.addPhotoButton.hidden = YES;
     giftCell.firstTimePhotoButton.hidden = YES;
     
     // this is to clear out the placeholder text, which is useful in IB
@@ -193,7 +192,6 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     }
     if ([goodies count] > 0) {
         giftCell.firstTimePhotoButton.hidden = YES;
-        giftCell.addPhotoButton.hidden = NO;
 
         int i = 0;
         int x = 0;
@@ -205,7 +203,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         
         NSMutableArray *tempTTPhotoArray = [[NSMutableArray alloc] initWithCapacity:[goodies count]];
         for (KBGoody *goody in goodies) {
-            
+            NSLog(@"goody %d", i);
             NSString *caption = [NSString stringWithFormat:@"%@ @ %@ on %@", goody.ownerName, goody.venueName, [dateFormatter2 stringFromDate:goody.createdAt]];
             //NSLog(@"large image size: %@", NSStringFromCGSize([goody largeImageSize]));
             MockPhoto *photo = [[MockPhoto alloc] initWithURL:goody.largeImagePath smallURL:goody.mediumImagePath size:[goody largeImageSize] caption:caption];
@@ -216,14 +214,14 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
             ttImage.urlPath = goody.thumbnailImagePath;
             ttImage.clipsToBounds = YES;
             ttImage.contentMode = UIViewContentModeCenter;
-            [giftCell insertSubview:ttImage belowSubview:giftCell.addPhotoButton];
+            [giftCell addSubview:ttImage];
             
             UIButton *button = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
             button.frame = frame;
             button.tag = i++;
             button.showsTouchWhenHighlighted = YES;
             [button addTarget:self action:@selector(displayImages:) forControlEvents:UIControlEventTouchUpInside]; 
-            [giftCell insertSubview:button belowSubview:giftCell.addPhotoButton];
+            [giftCell addSubview:button];
             [button release];
             [ttImage release];
             x++;
@@ -231,23 +229,18 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
                 x = 0;
                 y++;
             }
-            if (i > 9) {
-                // TODO: add 'more' button here
+            if (i > (PHOTOS_PER_ROW * 2) - 1) {
                 break;
             }
         }
-        [giftCell addSubview:giftCell.addPhotoButton]; // this is a hack, but I couldn't bring the button up to the top level
         [giftCell sendSubviewToBack:giftCell.bgImage];
         
         photoSource = [[MockPhotoSource alloc] initWithType:MockPhotoSourceNormal title:venue.name photos:tempTTPhotoArray photos2:nil];
         [tempTTPhotoArray release];
         giftCell.firstTimePhotoButton.hidden = YES;
-        giftCell.addPhotoButton.hidden = NO;
     } else {
         giftCell.firstTimePhotoButton.hidden = NO;
-        giftCell.addPhotoButton.hidden = YES;
     }
-    [giftCell bringSubviewToFront:giftCell.addPhotoButton];
     [theTableView reloadData];
 }
 
@@ -255,6 +248,13 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     int buttonPressedIndex = ((UIButton *)sender).tag;
     KBPhotoViewController *photoController = [[KBPhotoViewController alloc] initWithPhotoSource:photoSource];
     photoController.centerPhoto = [photoSource photoAtIndex:buttonPressedIndex];  // sets the photo displayer to the correct image
+    photoController.goodies = goodies;
+    [self.navigationController pushViewController:photoController animated:YES];
+    [photoController release];
+}
+
+- (void) displayAllImages {
+    KBPhotoViewController *photoController = [[KBPhotoViewController alloc] initWithPhotoSource:photoSource];
     photoController.goodies = goodies;
     [self.navigationController pushViewController:photoController animated:YES];
     [photoController release];
@@ -562,6 +562,9 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (section == 6) { // photos
+        return 38;
+    }
 	return 24.0;
 }
 
@@ -591,12 +594,8 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
             return nil;
             break;
         case 6:
-            if (goodies != nil && [goodies count] > 0) {
-                headerLabel.text = [NSString stringWithFormat:@"%d %@", [goodies count], [goodies count] == 1 ? @"Photo" : @"Photos"];
-            } else {
-                [headerLabel release];
-                return nil;
-            }
+            photoHeaderLabel.text = [NSString stringWithFormat:@"%d %@", [goodies count], [goodies count] == 1 ? @"Photo" : @"Photos"];
+            return photoHeaderView;
             break;
         case 7:
             if ([venue.currentCheckins count] == 0 ) {
@@ -691,9 +690,13 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     [venue release];
     [venueId release];
     [goodies release];
+    [photoSource release];
     
     [photoView release];
     [mayorOverlay release];
+    [mayorCrown release];
+    [mayorArrow release];
+    [photoHeaderLabel release];
     
     [super dealloc];
 }

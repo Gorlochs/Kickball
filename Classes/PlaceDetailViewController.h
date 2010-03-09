@@ -69,6 +69,8 @@
     NSMutableArray *goodies;
     IBOutlet UIView *photoView;
     MockPhotoSource *photoSource;
+    IBOutlet UILabel *photoHeaderLabel;
+    IBOutlet UIView *photoHeaderView;
 }
 
 @property (nonatomic, retain) UITableViewCell *mayorMapCell;
@@ -104,5 +106,6 @@
 - (IBAction) viewPhotos;
 - (BOOL)uploadImage:(NSData *)imageData filename:(NSString *)filename withWidth:(float)width andHeight:(float)height andOrientation:(UIImageOrientation)orientation;
 - (UIImage*)imageByScalingToSize:(UIImage*)image toSize:(CGSize)targetSize;
+- (IBAction) displayAllImages;
 
 @end

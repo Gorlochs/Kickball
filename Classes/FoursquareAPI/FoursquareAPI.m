@@ -376,7 +376,10 @@ static FoursquareAPI *sharedInstance = nil;
 }
 
 - (void) createTipTodoForVenue:(NSString*)venueId type:(NSString*)tipOrTodo text:(NSString*)tipTodoText withTarget:(id)inTarget andAction:(SEL)inAction {
-    NSMutableDictionary * requestParams = [[[NSMutableDictionary alloc] initWithCapacity:1] autorelease];
+    NSLog(@"venueid: %@", venueId);
+    NSLog(@"tipOrTodo: %@", tipOrTodo);
+    NSLog(@"tipTodoText: %@", tipTodoText);
+    NSMutableDictionary * requestParams = [[[NSMutableDictionary alloc] initWithCapacity:3] autorelease];
 	[requestParams setObject:venueId forKey:@"vid"];
 	[requestParams setObject:tipTodoText forKey:@"text"];
 	[requestParams setObject:tipOrTodo forKey:@"type"];
