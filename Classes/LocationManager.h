@@ -17,7 +17,14 @@
     float longitude;
     
     BOOL locationDenied;
+    
+    // stuff from Apple's LocateMe app
+    NSMutableArray *locationMeasurements;
+    CLLocation *bestEffortAtLocation;
 }
+
+@property (nonatomic, retain) NSMutableArray *locationMeasurements;
+@property (nonatomic, retain) CLLocation *bestEffortAtLocation;
 
 + (LocationManager*)locationManager;
 
@@ -29,5 +36,6 @@
 - (float) longitude;
 
 - (BOOL) locationServicesEnabled;
++ (void) stopAllUpdates:(NSString *)state;
 
 @end

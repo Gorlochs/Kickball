@@ -180,7 +180,7 @@
 					<object class="IBUITableView" id="873029372">
 						<reference key="NSNextResponder" ref="580314856"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{0, 128}, {320, 333}}</string>
+						<string key="NSFrame">{{0, 126}, {320, 335}}</string>
 						<reference key="NSSuperview" ref="580314856"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -257,10 +257,11 @@
 					<object class="IBUIButton" id="904734850">
 						<reference key="NSNextResponder" ref="580314856"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{0, 85}, {320, 43}}</string>
+						<string key="NSFrame">{{3, 87}, {314, 37}}</string>
 						<reference key="NSSuperview" ref="580314856"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+						<int key="IBUIContentMode">4</int>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<reference key="IBUIFont" ref="386227388"/>
@@ -276,25 +277,7 @@
 						</object>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">shoutBig01.png</string>
-						</object>
-					</object>
-					<object class="IBUIImageView" id="539709171">
-						<reference key="NSNextResponder" ref="580314856"/>
-						<int key="NSvFlags">-2147483356</int>
-						<string key="NSFrame">{{0, -2}, {320, 480}}</string>
-						<reference key="NSSuperview" ref="580314856"/>
-						<object class="NSColor" key="IBUIBackgroundColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MCAwIDAAA</bytes>
-						</object>
-						<bool key="IBUIOpaque">NO</bool>
-						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
-						<int key="IBUIContentMode">4</int>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<object class="NSCustomResource" key="IBUIImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">kickballLoading40.png</string>
+							<string key="NSResourceName">homeShout.png</string>
 						</object>
 					</object>
 				</object>
@@ -730,14 +713,6 @@
 					</object>
 					<int key="connectionID">128</int>
 				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">fadeOutImage</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="539709171"/>
-					</object>
-					<int key="connectionID">134</int>
-				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -769,7 +744,6 @@
 							<reference ref="564801686"/>
 							<reference ref="904734850"/>
 							<reference ref="1042192864"/>
-							<reference ref="539709171"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -929,11 +903,6 @@
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Splash Image View</string>
 					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">133</int>
-						<reference key="object" ref="539709171"/>
-						<reference key="parent" ref="580314856"/>
-					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -953,8 +922,6 @@
 					<string>115.IBPluginDependency</string>
 					<string>121.IBPluginDependency</string>
 					<string>127.IBPluginDependency</string>
-					<string>133.IBEditorWindowLastContentRect</string>
-					<string>133.IBPluginDependency</string>
 					<string>17.IBPluginDependency</string>
 					<string>21.IBPluginDependency</string>
 					<string>25.IBEditorWindowLastContentRect</string>
@@ -993,8 +960,6 @@
 					<string>{{633, 186}, {320, 460}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{676, 422}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1037,7 +1002,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">134</int>
+			<int key="maxID">136</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

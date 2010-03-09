@@ -13,9 +13,15 @@ static BOOL initialized = NO;
 
 @implementation LocationManager
 
+@synthesize locationMeasurements;
+@synthesize bestEffortAtLocation;
+
 + (LocationManager*)locationManager {
-	if(!globalLocationManager) 
-		globalLocationManager = [[LocationManager allocWithZone:nil] init];
+	if(!globalLocationManager)  {
+        globalLocationManager = [[LocationManager allocWithZone:nil] init];
+        //kCLLocationAccuracyBest
+    }
+		
 	return globalLocationManager;
 }
 
@@ -71,6 +77,7 @@ static BOOL initialized = NO;
 	initialized = YES;
 	locationDenied = NO;
 	[self reset];
+    [self performSelector:@selector(stopAllUpdates:) withObject:@"Timed Out" afterDelay:[[NSNumber numberWithDouble:60] doubleValue]];
     return self;
 }
 
@@ -80,12 +87,17 @@ static BOOL initialized = NO;
 	[super dealloc];
 }
 
+- (void) stopAllUpdates:(NSString *)state {
+	[self stopUpdates];
+}
+
 - (void) stopUpdates {
 	if (locationManager) {
         NSLog(@"stopping updates!");
 		[locationManager stopUpdatingLocation];
+        NSLog(@"***** STOPPING LOCATION MANAGER UPDATES ******");
 	}
-	[self reset];
+	//[self reset];
 }
 
 - (void) startUpdates {
@@ -103,7 +115,8 @@ static BOOL initialized = NO;
 		locationManager = [[CLLocationManager alloc] init];
 		locationManager.delegate = self;
 		locationManager.distanceFilter = 100;
-		locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+//		locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+		locationManager.desiredAccuracy = kCLLocationAccuracyBest;
         NSLog(@"starting updateslocationmanager: %@", locationManager);
 	}
 	
@@ -122,12 +135,46 @@ static BOOL initialized = NO;
     
 //	if(![self longURL] || ![[self longURL] isEqualToString:[self longURLWithLatitude:newLocation.coordinate.latitude longitude:newLocation.coordinate.longitude]])
 //	{
-		latitude = newLocation.coordinate.latitude;
-    longitude = newLocation.coordinate.longitude;
-    NSLog(@"latitude: %f", latitude);
-    NSLog(@"longitude: %f", longitude);
+    
+    // store all of the measurements, just so we can see what kind of data we might receive
+    [locationMeasurements addObject:newLocation];
+    // test the age of the location measurement to determine if the measurement is cached
+    // in most cases you will not want to rely on cached measurements
+//    NSTimeInterval locationAge = -[newLocation.timestamp timeIntervalSinceNow];
+//    if (locationAge > 5.0) return;
+//    // test that the horizontal accuracy does not indicate an invalid measurement
+//    if (newLocation.horizontalAccuracy < 0) return;
+//    // test the measurement to see if it is more accurate than the previous measurement
+//    if (bestEffortAtLocation == nil || bestEffortAtLocation.horizontalAccuracy < newLocation.horizontalAccuracy) {
+//        // store the location as the "best effort"
+//        self.bestEffortAtLocation = newLocation;
+        
+        latitude = newLocation.coordinate.latitude;
+        longitude = newLocation.coordinate.longitude;
+        NSLog(@"latitude: %f", latitude);
+        NSLog(@"longitude: %f", longitude);
+        NSLog(@"bestEffortAtLocation: %@", bestEffortAtLocation);
+        
 		locationDefined = YES;
 		[[NSNotificationCenter defaultCenter] postNotificationName: @"UpdateLocationNotification" object: nil];
+        
+//        // test the measurement to see if it meets the desired accuracy
+//        //
+//        // IMPORTANT!!! kCLLocationAccuracyBest should not be used for comparison with location coordinate or altitidue 
+//        // accuracy because it is a negative value. Instead, compare against some predetermined "real" measure of 
+//        // acceptable accuracy, or depend on the timeout to stop updating. This sample depends on the timeout.
+//        //
+////        if (newLocation.horizontalAccuracy <= locationManager.desiredAccuracy) {
+////            // we have a measurement that meets our requirements, so we can stop updating the location
+////            // 
+////            // IMPORTANT!!! Minimize power usage by stopping the location manager as soon as possible.
+////            //
+////            // we can also cancel our previous performSelector:withObject:afterDelay: - it's no longer necessary
+////            NSLog(@"***** STOPPING LOCATION MANAGER UPDATES ******");
+////            [self stopUpdates];
+////            [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(stopUpdates) object:nil];
+////        }
+//    }
 //	}
 }
 
