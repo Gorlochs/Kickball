@@ -7,6 +7,7 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
+#import "Three20/Three20.h"
 #import "ProfileFriendsViewController.h"
 #import "FoursquareAPI.h"
 #import "ProfileViewController.h"
@@ -30,13 +31,13 @@
     friends = [[FoursquareAPI friendUsersFromRequestResponseXML:inString] retain];
     // create dictionary of icons to help speed up the scrolling
     
-    userIcons = [[NSMutableDictionary alloc] initWithCapacity:1];
-    for (FSUser *user in friends) {
-        if (user && user.photo && user.userId) {
-            UIImage *img = [[Utilities sharedInstance] getCachedImage:user.photo];
-            [userIcons setObject:img forKey:user.userId];
-        }
-    }
+//    userIcons = [[NSMutableDictionary alloc] initWithCapacity:1];
+//    for (FSUser *user in friends) {
+//        if (user && user.photo && user.userId) {
+//            UIImage *img = [[Utilities sharedInstance] getCachedImage:user.photo];
+//            [userIcons setObject:img forKey:user.userId];
+//        }
+//    }
     [theTableView reloadData];
     [self stopProgressBar];
 }
@@ -76,12 +77,20 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.imageView.image = [UIImage imageNamed:@"blank_boy2.png"];
     }
     
     // Set up the cell...
     FSUser *user = (FSUser*)[friends objectAtIndex:indexPath.row];
     cell.textLabel.text = user.firstnameLastInitial;
-    cell.imageView.image = [userIcons objectForKey:user.userId];
+    
+    CGRect frame = CGRectMake(4,4,36,36);
+    TTImageView *ttImage = [[TTImageView alloc] initWithFrame:frame];
+    ttImage.urlPath = user.photo;
+    ttImage.backgroundColor = [UIColor clearColor];
+    ttImage.defaultImage = [UIImage imageNamed:@"blank_boy2.png"];
+    ttImage.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
+    [cell addSubview:ttImage];
     
     float sw=32/cell.imageView.image.size.width;
     float sh=32/cell.imageView.image.size.height;
