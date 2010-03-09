@@ -157,6 +157,7 @@ static Utilities *sharedInstance = nil;
             [[FoursquareAPI sharedInstance] getUser:friend.userId withTarget:self andAction:@selector(aFriendResponseReceived:withResponseString:)];
             NSLog(@"running total: %d", runningTotalNumberOfUsersBeingPushed);
         }
+        [allFriends release];
     }
     
 }

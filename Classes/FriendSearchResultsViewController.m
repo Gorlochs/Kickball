@@ -69,6 +69,7 @@
     if ([self.searchResults count] > 0) {
         headerLabel.text = [NSString stringWithFormat:@"%d %@ Found", [self.searchResults count], [self.searchResults count] == 1 ? @"Friend" : @"Friends"];
     } else {
+        [headerLabel release];
         return nil;
     }
 	[customView addSubview:headerLabel];

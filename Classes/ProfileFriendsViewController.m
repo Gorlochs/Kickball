@@ -85,7 +85,7 @@
     cell.textLabel.text = user.firstnameLastInitial;
     
     CGRect frame = CGRectMake(4,4,36,36);
-    TTImageView *ttImage = [[TTImageView alloc] initWithFrame:frame];
+    TTImageView *ttImage = [[[TTImageView alloc] initWithFrame:frame] autorelease];
     ttImage.urlPath = user.photo;
     ttImage.backgroundColor = [UIColor clearColor];
     ttImage.defaultImage = [UIImage imageNamed:@"blank_boy2.png"];

@@ -47,6 +47,7 @@
             [arr addObject:checkin];
         }
     }
+    [dayOfWeekFormatter release];
     [self stopProgressBar];
     [theTableView reloadData];
 }
@@ -104,8 +105,7 @@
 //    NSDate *date = [dateFormatterS2D dateFromString:[checkin convertUTCCheckinDateToLocal]];
 //    cell.detailTextLabel.text = [dateFormatterD2S stringFromDate:date];
     
-    NSCalendar *gregorian = [[NSCalendar alloc]
-                             initWithCalendarIdentifier:NSGregorianCalendar];
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     
     unsigned unitFlags = NSHourCalendarUnit | NSMinuteCalendarUnit;
     NSDateComponents *comps = [gregorian components:unitFlags fromDate:[checkin convertUTCCheckinDateToLocal]];
@@ -115,6 +115,7 @@
     } else {
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%02d:%02dam", [comps hour], [comps minute]];
     }
+    [gregorian release];
 	return cell;
 }
 

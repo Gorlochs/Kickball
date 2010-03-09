@@ -10,14 +10,12 @@
 
 @interface KBPhotoThumbnailCell : UITableViewCell {
     NSArray *goodies;
-    IBOutlet UIButton *addPhotoButton;
     IBOutlet UIButton *firstTimePhotoButton;
     IBOutlet UIImageView *bgImage;
 }
 
 @property (nonatomic, retain) NSArray *goodies;
 @property (nonatomic, retain) UIImageView *bgImage;
-@property (nonatomic, retain) UIButton *addPhotoButton;
 @property (nonatomic, retain) UIButton *firstTimePhotoButton;
 
 @end

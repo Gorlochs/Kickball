@@ -71,6 +71,8 @@
     MockPhotoSource *photoSource;
     IBOutlet UILabel *photoHeaderLabel;
     IBOutlet UIView *photoHeaderView;
+    IBOutlet UIButton *seeAllPhotosButton;
+    IBOutlet UIButton *addPhotoButton;
 }
 
 @property (nonatomic, retain) UITableViewCell *mayorMapCell;

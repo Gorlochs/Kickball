@@ -122,6 +122,7 @@
     orderedTweets = [[NSMutableDictionary alloc] initWithObjects:statuses forKeys:arr];
     NSArray *tempArray = [[NSArray alloc] initWithArray:[orderedTweets allKeys]];
     sortedKeys = [[NSArray alloc] initWithArray:[tempArray sortedArrayUsingSelector:@selector(compare:)]];
+    [arr release];
     [tempArray release];
     [theTableView reloadData];
 }

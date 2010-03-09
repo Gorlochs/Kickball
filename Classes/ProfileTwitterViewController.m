@@ -26,6 +26,7 @@
         [arr addObject:[tweet objectForKey:@"id"]];
     }
     orderedTweets = [[NSMutableDictionary alloc] initWithObjects:tweets forKeys:arr];
+    [arr release];
     NSArray *tempArray = [[NSArray alloc] initWithArray:[orderedTweets allKeys]];
     sortedKeys = [[NSArray alloc] initWithArray:[tempArray sortedArrayUsingSelector:@selector(compare:)]];
     [tempArray release];
@@ -82,7 +83,7 @@
     [cell.tweetLabel setText:[tweet objectForKey:@"text"]];
     [cell.tweetLabel setLinksEnabled:YES];
 	
-    //[dateFormatter release];
+    [dateFormatter release];
 	
     return cell;
 }

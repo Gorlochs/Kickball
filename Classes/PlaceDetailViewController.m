@@ -238,8 +238,14 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         photoSource = [[MockPhotoSource alloc] initWithType:MockPhotoSourceNormal title:venue.name photos:tempTTPhotoArray photos2:nil];
         [tempTTPhotoArray release];
         giftCell.firstTimePhotoButton.hidden = YES;
+        seeAllPhotosButton.hidden = NO;
+        addPhotoButton.hidden = NO;
+        photoHeaderLabel.hidden = NO;
     } else {
         giftCell.firstTimePhotoButton.hidden = NO;
+        seeAllPhotosButton.hidden = YES;
+        addPhotoButton.hidden = YES;
+        photoHeaderLabel.hidden = YES;
     }
     [theTableView reloadData];
 }
@@ -582,8 +588,12 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
             return nil;
             break;
         case 6:
-            photoHeaderLabel.text = [NSString stringWithFormat:@"%d %@", [goodies count], [goodies count] == 1 ? @"Photo" : @"Photos"];
-            return photoHeaderView;
+            if ([goodies count] == 0) {
+                return nil;
+            } else {
+                photoHeaderLabel.text = [NSString stringWithFormat:@"%d %@", [goodies count], [goodies count] == 1 ? @"Photo" : @"Photos"];
+                return photoHeaderView;   
+            }
             break;
         case 7:
             if ([venue.currentCheckins count] == 0 ) {
@@ -685,6 +695,8 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     [mayorCrown release];
     [mayorArrow release];
     [photoHeaderLabel release];
+    [addPhotoButton release];
+    [seeAllPhotosButton release];
     
     [super dealloc];
 }
@@ -1042,6 +1054,8 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     // hide picker
     [picker dismissModalViewControllerAnimated:YES];
+    
+    /////////// Start Activity Indicator Here //////////////
     
     NSLog(@"image picker info: %@", info);
     UIImage *img = [self imageByScalingToSize:(UIImage*)[info objectForKey:UIImagePickerControllerOriginalImage] toSize:CGSizeMake(480.0, 320.0)];
