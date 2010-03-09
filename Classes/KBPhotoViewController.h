@@ -10,8 +10,10 @@
 #import "Three20/Three20.h"
 
 
-@interface KBPhotoViewController : TTPhotoViewController {
+@interface KBPhotoViewController : TTPhotoViewController <UIActionSheetDelegate> {
     NSInteger startIndex;
+    
+    UIBarButtonItem* _flagButton;
 }
 
 @property (nonatomic) NSInteger startIndex;

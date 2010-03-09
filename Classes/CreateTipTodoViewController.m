@@ -54,6 +54,7 @@
 }
 
 - (void)tipTodoResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+    NSLog(@"tip/todo response string: %@", inString);
     NSString *errorMessage = [FoursquareAPI errorFromResponseXML:inString];
     if (errorMessage) {
         [self displayFoursquareErrorMessage:errorMessage];

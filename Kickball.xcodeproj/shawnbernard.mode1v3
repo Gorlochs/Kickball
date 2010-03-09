@@ -230,8 +230,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -276,20 +274,21 @@
 								<string>6A044CB8109545580063FC33</string>
 								<string>6A55B4CC10B36E9A0005E934</string>
 								<string>29B97317FDCFA39411CA2CEA</string>
+								<string>6A39EC4B109662D3006F76C3</string>
 								<string>1C37FBAC04509CD000000102</string>
 								<string>1C37FAAC04509CD000000102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>42</integer>
-									<integer>40</integer>
+									<integer>60</integer>
+									<integer>50</integer>
 									<integer>2</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 412}, {288, 910}}</string>
+							<string>{{0, 425}, {288, 910}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -319,12 +318,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>CreateTipTodoViewController.m</string>
+								<string>KBPhotoViewController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -332,20 +333,20 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>CreateTipTodoViewController.m</string>
+										<string>KBPhotoViewController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>6AD9D8B711458DE60060E486</string>
+										<string>6AD9DAF6114615F40060E486</string>
 										<key>history</key>
 										<array>
-											<string>6AD9D8B011458DE60060E486</string>
 											<string>6AD9D8B111458DE60060E486</string>
 											<string>6AD9D8B211458DE60060E486</string>
 											<string>6AD9D8B311458DE60060E486</string>
 											<string>6AD9D8B411458DE60060E486</string>
 											<string>6AD9D8B511458DE60060E486</string>
-											<string>6AD9D8B611458DE60060E486</string>
+											<string>6AD9DA0C1145BA080060E486</string>
+											<string>6AD9DAF3114615DE0060E486</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -543,7 +544,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>6AD9D8A411458ABD0060E486</string>
+		<string>6AD9DAF5114615DE0060E486</string>
 		<string>6AD9D87211456DE20060E486</string>
 		<string>6AD9D87411456DE20060E486</string>
 		<string>1CD10A99069EF8BA00B06720</string>
@@ -569,14 +570,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>CreateTipTodoViewController.m</string>
+								<string>KBPhotoViewController.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -585,7 +584,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {987, 196}}</string>
 								<key>RubberWindowFrame</key>
-								<string>383 179 987 699 0 0 1680 1028 </string>
+								<string>414 80 987 699 0 0 1680 1028 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -593,6 +592,8 @@
 							<string>196pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -609,7 +610,7 @@
 								<key>Frame</key>
 								<string>{{0, 201}, {987, 457}}</string>
 								<key>RubberWindowFrame</key>
-								<string>383 179 987 699 0 0 1680 1028 </string>
+								<string>414 80 987 699 0 0 1680 1028 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXBuildResultsModule</string>
@@ -641,7 +642,7 @@
 			<key>WindowContentMinSize</key>
 			<string>486 300</string>
 			<key>WindowString</key>
-			<string>383 179 987 699 0 0 1680 1028 </string>
+			<string>414 80 987 699 0 0 1680 1028 </string>
 			<key>WindowToolGUID</key>
 			<string>6A044CB9109545940063FC33</string>
 			<key>WindowToolIsVisible</key>
@@ -794,7 +795,7 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>&lt;No Editor&gt;</string>
+										<string></string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>
@@ -815,6 +816,8 @@
 							<string>480pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
