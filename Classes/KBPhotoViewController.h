@@ -14,8 +14,11 @@
     NSInteger startIndex;
     
     UIBarButtonItem* _flagButton;
+    
+    NSArray *goodies;
 }
 
 @property (nonatomic) NSInteger startIndex;
+@property (nonatomic, retain) NSArray *goodies;
 
 @end

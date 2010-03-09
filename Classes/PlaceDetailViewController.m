@@ -201,7 +201,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         
         //Thur 04 Mar 7:55 PM
         NSDateFormatter *dateFormatter2 = [[NSDateFormatter alloc] init];
-        [dateFormatter2 setDateFormat:@"ccc dd LLL hh:mm a"];
+        [dateFormatter2 setDateFormat:@"LLLL dd, hh:mm a"];
         
         NSMutableArray *tempTTPhotoArray = [[NSMutableArray alloc] initWithCapacity:[goodies count]];
         for (KBGoody *goody in goodies) {
@@ -255,6 +255,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     int buttonPressedIndex = ((UIButton *)sender).tag;
     KBPhotoViewController *photoController = [[KBPhotoViewController alloc] initWithPhotoSource:photoSource];
     photoController.centerPhoto = [photoSource photoAtIndex:buttonPressedIndex];  // sets the photo displayer to the correct image
+    photoController.goodies = goodies;
     [self.navigationController pushViewController:photoController animated:YES];
     [photoController release];
 }
@@ -544,7 +545,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         case 5:
             return 69; // mayor-map cell
         case 6:
-            return [goodies count] < 6 ? 74 : 148; // photos
+            return [goodies count] < 6 ? THUMBNAIL_IMAGE_SIZE : THUMBNAIL_IMAGE_SIZE * 2; // photos
         case 7:
             return 44;
         case 8:
