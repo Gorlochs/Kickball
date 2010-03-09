@@ -31,7 +31,6 @@
 #import "KBGoody.h"
 #import "KBPhotoViewController.h"
 #import "EXFJpeg.h"
-#import "Image.h"
 
 static inline double radians (double degrees) {return degrees * M_PI/180;}
 
