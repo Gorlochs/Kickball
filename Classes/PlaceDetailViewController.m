@@ -721,6 +721,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     imagePickerController.delegate = self;
     imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     [self presentModalViewController:imagePickerController animated:YES];
+    [imagePickerController release];
 }
 
 - (void) showTwitterFeed {
@@ -1105,6 +1106,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 	picker.delegate = self;
     picker.sourceType = sourceType;
     [self presentModalViewController:picker animated:YES];
+    [picker release];
 }
 
 - (void) imageRequestDidFinish:(ASIHTTPRequest *) request {

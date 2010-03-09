@@ -245,12 +245,14 @@
 - (void) displayTextView {
     KBTextViewController *textViewController = [[KBTextViewController alloc] initWithNibName:@"KBTextViewController" bundle:nil];
     [self presentModalViewController:textViewController animated:YES];
+    [textViewController release];
 }
 
 - (void) displayTextViewForCheckin {
     KBTextViewController *textViewController = [[KBTextViewController alloc] initWithNibName:@"KBTextViewController" bundle:nil];
     textViewController.isCheckin = YES;
     [self presentModalViewController:textViewController animated:YES];
+    [textViewController release];
 }
 
 - (void) dismiss {
