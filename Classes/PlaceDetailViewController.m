@@ -542,10 +542,14 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
             return 221;
         case 4:
             return 37;
-        case 5:
-            return 69; // mayor-map cell
-        case 6:
-            return [goodies count] < 6 ? THUMBNAIL_IMAGE_SIZE : THUMBNAIL_IMAGE_SIZE * 2; // photos
+        case 5: // mayor-map cell
+            return 69;
+        case 6: // photos
+            if ([goodies count] == 0) {
+                return 102;
+            } else {
+                return [goodies count] < 6 ? THUMBNAIL_IMAGE_SIZE : THUMBNAIL_IMAGE_SIZE * 2;
+            }
         case 7:
             return 44;
         case 8:
