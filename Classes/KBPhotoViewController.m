@@ -35,7 +35,7 @@
                       space, _previousButton, space, _flagButton, space, _nextButton, space, nil];
     
     
-    self.defaultImage = TTIMAGE(@"imgLoader.png");
+    self.defaultImage = [UIImage imageNamed:@"imgLoader.png"];
 }
 
 - (void)flagAction {
