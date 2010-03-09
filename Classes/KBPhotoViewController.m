@@ -36,6 +36,8 @@
     
     
     self.defaultImage = [UIImage imageNamed:@"imgLoader.png"];
+    
+    self.navigationController.navigationBarHidden = NO;
 }
 
 - (void)flagAction {
