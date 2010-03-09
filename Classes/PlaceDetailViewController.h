@@ -103,5 +103,6 @@
 - (void) getPhoto:(UIImagePickerControllerSourceType)sourceType;
 - (IBAction) viewPhotos;
 - (BOOL)uploadImage:(NSData *)imageData filename:(NSString *)filename withWidth:(float)width andHeight:(float)height andOrientation:(UIImageOrientation)orientation;
+- (UIImage*)imageByScalingToSize:(UIImage*)image toSize:(CGSize)targetSize;
 
 @end

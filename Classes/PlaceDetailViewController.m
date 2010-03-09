@@ -31,6 +31,9 @@
 #import "KBGoody.h"
 #import "KBPhotoViewController.h"
 #import "EXFJpeg.h"
+#import "Image.h"
+
+static inline double radians (double degrees) {return degrees * M_PI/180;}
 
 #define PHOTOS_PER_ROW 5
 #define THUMBNAIL_IMAGE_SIZE 74
@@ -786,8 +789,8 @@
 
 - (void)friendsReceived:(NSNotification *)inNotification {
     NSMutableArray *friendIds = [[NSMutableArray alloc] initWithCapacity:1];
-    for (FSUser* friend in [[Utilities sharedInstance] friendsWithPingOn]) {
-        [friendIds addObject:friend.userId];
+    for (FSUser *friend2 in [[Utilities sharedInstance] friendsWithPingOn]) {
+        [friendIds addObject:friend2.userId];
     }
     NSString *friendIdsString = [friendIds componentsJoinedByString:@","];
     [friendIds release];
@@ -1047,16 +1050,38 @@
     [picker dismissModalViewControllerAnimated:YES];
     
     NSLog(@"image picker info: %@", info);
-    UIImage *img = (UIImage*)[info objectForKey:UIImagePickerControllerOriginalImage];
+    UIImage *img = [self imageByScalingToSize:(UIImage*)[info objectForKey:UIImagePickerControllerOriginalImage] toSize:CGSizeMake(480.0, 320.0)];
+//    UIImage *img = [self imageByScalingToSize:(UIImage*)[info objectForKey:UIImagePickerControllerOriginalImage] toSize:CGSizeMake(320.0, 480.0)];
     NSLog(@"image height: %f", img.size.height);
     NSLog(@"image width: %f", img.size.width);
     NSLog(@"image orientation: %d", img.imageOrientation);
+    
+//    //////////////////////////////////////////////////////////
+//    
+//    // convert to grey scale and shrink the image by 4 - this makes processing a lot faster!
+//    ImageWrapper *cppImage = Image::createImage(img, img.size.width/4, img.size.height/4, NO);
+//    
+////    NSData *stringData = [ dataUsingEncoding:NSUTF8StringEncoding];
+////    NSUInteger dataLen = [stringData length];
+////    uint8_t *bytes = (uint8_t *)[UIImageJPEGRepresentation([info objectForKey:UIImagePickerControllerOriginalImage], 1.0) bytes];
+////    ImageWrapper *cppImage = Image::createImage(bytes, (int)img.size.width, (int)img.size.height, YES);
+//    
+//    // do a gaussian blur and then extract edges using the canny edge detector
+//    // you can play around with the numbers to see how it effects the edge extraction
+//    // typical numbers are  tlow 0.20-0.50, thigh 0.60-0.90
+//    //ImageWrapper *edges = greyScale.image->gaussianBlur().image->cannyEdgeExtract(0.3,0.7);
+////    ImageWrapper *shrunkImage = cppImage.image->resize(img.size.width/4, img.size.height/4);
+//    // show the results
+//    UIImage *resultImage = cppImage.image->toUIImage();
+//    
+//    //////////////////////////////////////////////////////////
     
     [self startProgressBar:@"Uploading photo..."];
     // upload image
     // TODO: we'd have to confirm success to the user.
     //       we also need to send a notification to the gift recipient
-    [self uploadImage:UIImageJPEGRepresentation([info objectForKey:UIImagePickerControllerOriginalImage], 1.0) 
+    [self uploadImage:UIImageJPEGRepresentation(img, 1.0) 
+//     [self uploadImage:UIImageJPEGRepresentation(resultImage, 1.0) 
              filename:@"gift.jpg" 
             withWidth:img.size.width 
             andHeight:img.size.height
@@ -1122,66 +1147,116 @@
     NSLog(@"Uhoh, request went wrong!");
 }
 
+-(UIImage*)imageByScalingToSize:(UIImage*)image toSize:(CGSize)targetSize {
+	UIImage* sourceImage = image; 
+    NSLog(@"************************* source orientation: %d", sourceImage.imageOrientation);
+	CGFloat targetWidth = targetSize.width;
+	CGFloat targetHeight = targetSize.height;
+    
+	CGImageRef imageRef = [sourceImage CGImage];
+	CGBitmapInfo bitmapInfo = CGImageGetBitmapInfo(imageRef);
+	CGColorSpaceRef colorSpaceInfo = CGImageGetColorSpace(imageRef);
+	
+	if (bitmapInfo == kCGImageAlphaNone) {
+		bitmapInfo = kCGImageAlphaNoneSkipLast;
+	}
+	
+	CGContextRef bitmap;
+	
+	if (sourceImage.imageOrientation == UIImageOrientationUp || sourceImage.imageOrientation == UIImageOrientationDown) {
+		bitmap = CGBitmapContextCreate(NULL, targetWidth, targetHeight, CGImageGetBitsPerComponent(imageRef), CGImageGetBytesPerRow(imageRef), colorSpaceInfo, bitmapInfo);
+	} else {
+		bitmap = CGBitmapContextCreate(NULL, targetHeight, targetWidth, CGImageGetBitsPerComponent(imageRef), CGImageGetBytesPerRow(imageRef), colorSpaceInfo, bitmapInfo);
+	}	
+	
+	
+	// In the right or left cases, we need to switch scaledWidth and scaledHeight,
+	// and also the thumbnail point
+	if (sourceImage.imageOrientation == UIImageOrientationLeft) {
+		CGContextRotateCTM (bitmap, radians(90));
+		CGContextTranslateCTM (bitmap, 0, -targetHeight);
+		
+	} else if (sourceImage.imageOrientation == UIImageOrientationRight) {
+		CGContextRotateCTM (bitmap, radians(-90));
+		CGContextTranslateCTM (bitmap, -targetWidth, 0);
+		
+	} else if (sourceImage.imageOrientation == UIImageOrientationUp) {
+		// NOTHING
+	} else if (sourceImage.imageOrientation == UIImageOrientationDown) {
+		CGContextTranslateCTM (bitmap, targetWidth, targetHeight);
+		CGContextRotateCTM (bitmap, radians(-180.));
+	}
+	
+	CGContextDrawImage(bitmap, CGRectMake(0, 0, targetWidth, targetHeight), imageRef);
+	CGImageRef ref = CGBitmapContextCreateImage(bitmap);
+	UIImage* newImage = [UIImage imageWithCGImage:ref];
+	
+	CGContextRelease(bitmap);
+	CGImageRelease(ref);
+	
+	return newImage; 
+}
+
 // TODO: set max file size    
 - (BOOL)uploadImage:(NSData *)imageData filename:(NSString *)filename withWidth:(float)width andHeight:(float)height andOrientation:(UIImageOrientation)orientation {
     
-    EXFJpeg *jpegScanner = [[EXFJpeg alloc] init];
-    [jpegScanner scanImageData: imageData];
-    
-//    imageData = jpegScanner;
-//    [jpegScanner release];
-    
-    EXFMetaData* exifData = jpegScanner.exifMetaData;
-    NSLog(@"exif: %@", exifData);
-    
-    for (NSString* key in [exifData.keyedTagValues allKeys]) {
-        NSLog(@"exif key: %x; value: %@", key, [exifData.keyedTagValues objectForKey:key]);
-    }
+//    EXFJpeg *jpegScanner = [[EXFJpeg alloc] init];
+//    [jpegScanner scanImageData: imageData];
+//    
+////    imageData = jpegScanner;
+////    [jpegScanner release];
+//    
+//    EXFMetaData* exifData = jpegScanner.exifMetaData;
+//    NSLog(@"exif: %@", exifData);
+//    
+//    for (NSString* key in [exifData.keyedTagValues allKeys]) {
+//        NSLog(@"exif key: %x; value: %@", key, [exifData.keyedTagValues objectForKey:key]);
+//    }
     
     NSNumber *tagKey = [NSNumber numberWithInteger:1];
-    if (orientation == UIImageOrientationLeft) {
-        tagKey = [NSNumber numberWithInteger:6];
-    } else if (orientation == UIImageOrientationRight) {
-        tagKey = [NSNumber numberWithInteger:8];
-    } else if (orientation == UIImageOrientationUp) {
-        tagKey = [NSNumber numberWithInteger:1];
-    } else if (orientation == UIImageOrientationDown) {
-        tagKey = [NSNumber numberWithInteger:3];
-    }
-    NSLog(@"orientation: %d", orientation);
-    NSLog(@"tagKey: %@", tagKey);
-    [jpegScanner.exifMetaData addTagValue:tagKey forKey:[NSNumber numberWithInt:EXIF_Orientation]];
-    [jpegScanner.exifMetaData addTagValue:[NSNumber numberWithInteger:(int)width] forKey:[NSNumber numberWithInt:EXIF_ImageWidth]];
-    [jpegScanner.exifMetaData addTagValue:[NSNumber numberWithInteger:(int)height] forKey:[NSNumber numberWithInt:EXIF_ImageLength]];
-    //[jpegScanner setExifMetaData:exifData];
-    
-//    NSArray *objects = [[NSArray alloc] initWithObjects:tagKey,[NSNumber numberWithInteger:(int)width],[NSNumber numberWithInteger:(int)height],nil];
-//    NSArray *keys = [[NSArray alloc] initWithObjects:[NSNumber numberWithInt:40961],[NSNumber numberWithInt:40962],[NSNumber numberWithInt:40963],nil];
-//    NSDictionary *dict = [[NSDictionary alloc] initWithObjects:objects forKeys:keys];
-//    [jpegScanner.exifMetaData addTagValue:dict forKey:[NSNumber numberWithInt:34665]];
-    
-    for (NSString* key in [jpegScanner.exifMetaData.keyedTagValues allKeys]) {
-        NSLog(@"exif2 key: %@; value: %@", key, [exifData.keyedTagValues objectForKey:key]);
-//        if ([key intValue] == 34665) {
-//            NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
-//            [f setNumberStyle:NSNumberFormatterDecimalStyle];
-//            NSNumber * myNumber = [f numberFromString:key];
-//            [f release];
-//
-//            NSArray *objects = [[NSArray alloc] initWithObjects:tagKey,[NSNumber numberWithInteger:(int)width],[NSNumber numberWithInteger:(int)height],nil];
-//            NSArray *keys = [[NSArray alloc] initWithObjects:[NSNumber numberWithInt:40961],[NSNumber numberWithInt:40962],[NSNumber numberWithInt:40963],nil];
-//            NSDictionary *dict = [[NSDictionary alloc] initWithObjects:objects forKeys:keys];
-//            [jpegScanner.exifMetaData addTagValue:dict forKey:myNumber];
-//            
-////            NSLog(@"**************** 34655 found **********************");
-////            [[jpegScanner.exifMetaData.keyedTagValues objectForKey:key] setObject:tagKey forKey:[NSNumber numberWithInt:40961]];
-////            [[jpegScanner.exifMetaData.keyedTagValues objectForKey:key] setObject:[NSNumber numberWithInteger:(int)width] forKey:[NSNumber numberWithInt:40962]];
-////            [[jpegScanner.exifMetaData.keyedTagValues objectForKey:key] setObject:[NSNumber numberWithInteger:(int)height] forKey:[NSNumber numberWithInt:40963]];
-//        }
-    }
-    
-    NSMutableData *newData = [[NSMutableData alloc] initWithCapacity:1]; 
-    [jpegScanner populateImageData:newData];
+//    if (orientation == UIImageOrientationLeft) {
+//        tagKey = [NSNumber numberWithInteger:6];
+//    } else if (orientation == UIImageOrientationRight) {
+//        tagKey = [NSNumber numberWithInteger:8];
+//    } else if (orientation == UIImageOrientationUp) {
+//        tagKey = [NSNumber numberWithInteger:1];
+//    } else if (orientation == UIImageOrientationDown) {
+//        tagKey = [NSNumber numberWithInteger:3];
+//    }
+//    NSLog(@"orientation: %d", orientation);
+//    NSLog(@"tagKey: %@", tagKey);
+//    [jpegScanner.exifMetaData addTagValue:tagKey forKey:[NSNumber numberWithInt:EXIF_Orientation]];
+//    [jpegScanner.exifMetaData addTagValue:[NSNumber numberWithInteger:(int)width] forKey:[NSNumber numberWithInt:EXIF_ImageWidth]];
+//    [jpegScanner.exifMetaData addTagValue:[NSNumber numberWithInteger:(int)height] forKey:[NSNumber numberWithInt:EXIF_ImageLength]];
+//    //[jpegScanner setExifMetaData:exifData];
+//    
+////    NSArray *objects = [[NSArray alloc] initWithObjects:tagKey,[NSNumber numberWithInteger:(int)width],[NSNumber numberWithInteger:(int)height],nil];
+////    NSArray *keys = [[NSArray alloc] initWithObjects:[NSNumber numberWithInt:40961],[NSNumber numberWithInt:40962],[NSNumber numberWithInt:40963],nil];
+////    NSDictionary *dict = [[NSDictionary alloc] initWithObjects:objects forKeys:keys];
+////    [jpegScanner.exifMetaData addTagValue:dict forKey:[NSNumber numberWithInt:34665]];
+//    
+//    for (NSString* key in [jpegScanner.exifMetaData.keyedTagValues allKeys]) {
+//        NSLog(@"exif2 key: %@; value: %@", key, [exifData.keyedTagValues objectForKey:key]);
+////        if ([key intValue] == 34665) {
+////            NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
+////            [f setNumberStyle:NSNumberFormatterDecimalStyle];
+////            NSNumber * myNumber = [f numberFromString:key];
+////            [f release];
+////
+////            NSArray *objects = [[NSArray alloc] initWithObjects:tagKey,[NSNumber numberWithInteger:(int)width],[NSNumber numberWithInteger:(int)height],nil];
+////            NSArray *keys = [[NSArray alloc] initWithObjects:[NSNumber numberWithInt:40961],[NSNumber numberWithInt:40962],[NSNumber numberWithInt:40963],nil];
+////            NSDictionary *dict = [[NSDictionary alloc] initWithObjects:objects forKeys:keys];
+////            [jpegScanner.exifMetaData addTagValue:dict forKey:myNumber];
+////            
+//////            NSLog(@"**************** 34655 found **********************");
+//////            [[jpegScanner.exifMetaData.keyedTagValues objectForKey:key] setObject:tagKey forKey:[NSNumber numberWithInt:40961]];
+//////            [[jpegScanner.exifMetaData.keyedTagValues objectForKey:key] setObject:[NSNumber numberWithInteger:(int)width] forKey:[NSNumber numberWithInt:40962]];
+//////            [[jpegScanner.exifMetaData.keyedTagValues objectForKey:key] setObject:[NSNumber numberWithInteger:(int)height] forKey:[NSNumber numberWithInt:40963]];
+////        }
+//    }
+//    
+//    NSMutableData *newData = [[NSMutableData alloc] initWithCapacity:1]; 
+//    [jpegScanner populateImageData:newData];
 
     // Initilize Queue
     ASINetworkQueue *networkQueue = [[ASINetworkQueue alloc] init];
@@ -1212,7 +1287,7 @@
         [request setPostValue:[self getAuthenticatedUser].firstnameLastInitial forKey:@"gift[owner_name]"];
         [request setPostValue:@"testing" forKey:@"gift[message_text]"];
         [request setPostValue:[tagKey stringValue] forKey:@"gift[iphone_orientation]"];
-        [request setData:newData withFileName:filename andContentType:@"image/jpeg" forKey:@"gift[photo]"];
+        [request setData:imageData withFileName:filename andContentType:@"image/jpeg" forKey:@"gift[photo]"];
         [request setDidFailSelector:@selector(imageRequestWentWrong:)];
         [request setTimeOutSeconds:500];
         [networkQueue addOperation:request];
