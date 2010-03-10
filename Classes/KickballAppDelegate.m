@@ -84,9 +84,6 @@
     
     [manager release];
     
-    // for exif data
-    BOOL gLogging = FALSE;
-    
     //[[FoursquareAPI sharedInstance] doFoursquareApiTest:self andAction:@selector(apiTestResponseReceived:withResponseString:)];
 //    NSError *error = nil;
 //    NSString *apiTestResponse = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/test"] encoding:NSASCIIStringEncoding error:&error];

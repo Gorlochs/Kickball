@@ -13,7 +13,7 @@
 #import "SFHFKeychainUtils.h"
 #import "LocationManager.h"
 
-#define USER_AGENT @"UltraDudez:0.0.2"
+#define USER_AGENT @"Kickball:1.0.0"
 
 static FoursquareAPI *sharedInstance = nil;
 

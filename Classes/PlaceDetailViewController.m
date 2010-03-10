@@ -1056,10 +1056,27 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     // hide picker
     [picker dismissModalViewControllerAnimated:YES];
     
-    /////////// Start Activity Indicator Here //////////////
+    UIImage *initialImage = (UIImage*)[info objectForKey:UIImagePickerControllerOriginalImage];
+    float initialHeight = initialImage.size.height;
+    float initialWidth = initialImage.size.width;
+    
+    float ratio = 1.0f;
+    if (initialHeight > initialWidth) {
+        ratio = initialHeight/initialWidth;
+    } else {
+        ratio = initialWidth/initialHeight;
+    }
+    NSString *roundedFloatString = [NSString stringWithFormat:@"%.1f", ratio];
+    float roundedFloat = [roundedFloatString floatValue];
+    
+//    if (ratio < 1.4) {
+    UIImage *img = [self imageByScalingToSize:initialImage toSize:CGSizeMake(480.0, round(480.0/roundedFloat))];
+//    } else {
+//        UIImage *img = [self imageByScalingToSize:initialImage toSize:CGSizeMake(480.0, 360.0)];
+//    }
     
     NSLog(@"image picker info: %@", info);
-    UIImage *img = [self imageByScalingToSize:(UIImage*)[info objectForKey:UIImagePickerControllerOriginalImage] toSize:CGSizeMake(480.0, 320.0)];
+    
 //    UIImage *img = [self imageByScalingToSize:(UIImage*)[info objectForKey:UIImagePickerControllerOriginalImage] toSize:CGSizeMake(320.0, 480.0)];
     NSLog(@"image height: %f", img.size.height);
     NSLog(@"image width: %f", img.size.width);
@@ -1067,7 +1084,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     
     [self startProgressBar:@"Uploading photo..."];
     // TODO: we'd have to confirm success to the user.
-    //       we also need to send a notification to the gift recipient
+    //       we also need to send a notification to the gift recipie    nt
     [self uploadImage:UIImageJPEGRepresentation(img, 1.0) 
              filename:@"gift.jpg" 
             withWidth:img.size.width 
