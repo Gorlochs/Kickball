@@ -676,7 +676,7 @@ static FoursquareAPI *sharedInstance = nil;
 
 + (NSString*) errorFromResponseXML:(NSString*) inString {
     NSLog(@"instring for error check: %@", inString);
-    BOOL hasError = [inString rangeOfString:@"<error>"].location || [inString rangeOfString:@"<ratelimit>"].location != NSNotFound;
+    BOOL hasError = [inString rangeOfString:@"<error>"].location || [inString rangeOfString:@"<ratelimited>"].location != NSNotFound;
     if (hasError) {
         NSError * err;
         CXMLDocument *errorParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
@@ -707,7 +707,7 @@ static FoursquareAPI *sharedInstance = nil;
             if ([key isEqualToString:@"error"]) {
                 errorMessage = value;
                 NSLog(@"error message: %@", errorMessage);
-            } else if ([key isEqualToString:@"ratelimit"]) {
+            } else if ([key isEqualToString:@"ratelimited"]) {
                 errorMessage = value;
                 NSLog(@"rate limit message: %@", errorMessage);
             }
