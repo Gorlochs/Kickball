@@ -275,6 +275,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 
 - (void)venueResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     NSString *errorMessage = [FoursquareAPI errorFromResponseXML:inString];
+    [self stopProgressBar];
     if (errorMessage) {
         [self displayFoursquareErrorMessage:errorMessage];
     } else {
@@ -292,7 +293,6 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
             specialsButton.hidden = NO;
         }
     }
-    [self stopProgressBar];
 }
 
 
@@ -757,6 +757,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 
 - (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     NSString *errorMessage = [FoursquareAPI errorFromResponseXML:inString];
+    [self stopProgressBar];
     if (errorMessage) {
         [self displayFoursquareErrorMessage:errorMessage];
     } else {
@@ -791,7 +792,6 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
             }   
         }
     }
-    [self stopProgressBar];
 }
 
 - (void)friendsReceived:(NSNotification *)inNotification {
