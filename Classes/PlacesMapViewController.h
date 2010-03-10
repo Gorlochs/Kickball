@@ -34,6 +34,7 @@
 - (void) cancelKeyboard: (UIControl *) button;
 - (IBAction) cancelTheKeyboard;
 - (IBAction) viewFriendsMap;
+- (IBAction) viewPlacesList;
 
 @end
 

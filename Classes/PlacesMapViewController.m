@@ -11,6 +11,8 @@
 #import "KBPin.h"
 #import "LocationManager.h"
 #import "PlaceDetailViewController.h"
+#import "PlacesListViewController.h"
+#import "FriendsListViewController.h"
 
 
 @implementation PlacesMapViewController
@@ -35,7 +37,6 @@
         [self refreshVenuePoints];
     }
 	
-    //[mapViewer setShowsUserLocation:YES];
     [[Beacon shared] startSubBeaconWithName:@"Venues Map"];
 }
 
@@ -313,6 +314,12 @@
 
 - (void) refresh: (UIControl *) button {
     [self refreshVenuePoints];
+}
+
+- (void) viewPlacesList {
+    PlacesListViewController *placesListController = [[PlacesListViewController alloc] initWithNibName:@"PlacesListViewController" bundle:nil];
+    [self.navigationController pushViewController:placesListController animated:NO];
+    [placesListController release];
 }
 
 #pragma mark UITextFieldDelegate methods
