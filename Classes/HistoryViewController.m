@@ -121,8 +121,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    FSCheckin *checkin = [checkins objectAtIndex:indexPath.row];
+    FSCheckin *checkin = [[checkinsByDate objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     if (checkin.venue) {
+        [theTableView deselectRowAtIndexPath:indexPath animated:YES];
         PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];
         placeDetailController.venueId = checkin.venue.venueid;
         [self.navigationController pushViewController:placeDetailController animated:YES];

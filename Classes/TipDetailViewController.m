@@ -47,9 +47,20 @@
     [super viewDidLoad];
     
     authorNameLabel.text = [NSString stringWithFormat:@"%@ says,", tip.submittedBy.firstnameLastInitial];
-    tipText.text = tip.text;
     venueName.text = venue.name;
     venueAddress.text = venue.venueAddress;
+    
+    CGSize maximumLabelSize = CGSizeMake(310,80);
+    CGSize expectedLabelSize = [tip.text sizeWithFont:tipText.font 
+                                    constrainedToSize:maximumLabelSize 
+                                        lineBreakMode:tipText.lineBreakMode]; 
+    
+    //adjust the label the the new height.
+    CGRect newFrame = tipText.frame;
+    newFrame.size.height = expectedLabelSize.height;
+    tipText.frame = newFrame;
+    
+    tipText.text = tip.text;
 }
 
 - (void)didReceiveMemoryWarning {

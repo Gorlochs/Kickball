@@ -11,6 +11,7 @@
 #import "FSUser.h"
 #import "KBMessage.h"
 #import "ViewFriendRequestsTableCell.h"
+#import "ProfileViewController.h"
 
 @implementation ViewFriendRequestsViewController
 
@@ -76,6 +77,14 @@
     }
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [theTableView deselectRowAtIndexPath:indexPath animated:YES];
+    ProfileViewController *profileController = [[ProfileViewController alloc] initWithNibName:@"ProfileView" bundle:nil];
+    profileController.userId = ((FSUser*)[pendingFriendRequests objectAtIndex:indexPath.row]).userId;
+    [self.navigationController pushViewController:profileController animated:YES];
+    [profileController release];
 }
 
 - (void)friendRequestResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {

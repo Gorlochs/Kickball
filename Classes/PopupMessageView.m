@@ -16,27 +16,24 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
     messageTitle.text = message.mainTitle;
-    //subtitle.text = message.subtitle;
-    text.text = message.message; // yikes, this is one scary line of code. I couldn't have done this on purpose.
-}
-
-- (void)didReceiveMemoryWarning {
-	// Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-	
-	// Release any cached data, images, etc that aren't in use.
-}
-
-- (void)viewDidUnload {
-	// Release any retained subviews of the main view.
-	// e.g. self.myOutlet = nil;
+    
+    CGSize maximumLabelSize = CGSizeMake(237,63);
+    CGSize expectedLabelSize = [message.message sizeWithFont:messageText.font 
+                                           constrainedToSize:maximumLabelSize 
+                                               lineBreakMode:messageText.lineBreakMode]; 
+    
+    //adjust the label the the new height.
+    CGRect newFrame = messageText.frame;
+    newFrame.size.height = expectedLabelSize.height;
+    messageText.frame = newFrame;
+    
+    messageText.text = message.message; // yikes, this is one scary line of code. I couldn't have done this on purpose.
 }
 
 - (void)dealloc {
     [message release];
     [messageTitle release];
-    //[subtitle release];
-    [text release];
+    [messageText release];
     [closeButton release];
     [super dealloc];
 }

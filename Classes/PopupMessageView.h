@@ -13,7 +13,7 @@
     KBMessage *message;
     IBOutlet UILabel *messageTitle;
     //IBOutlet UILabel *subtitle;
-    IBOutlet UILabel *text;
+    IBOutlet UILabel *messageText;
     IBOutlet UIButton *closeButton;
 }
 
