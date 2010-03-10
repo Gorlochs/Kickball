@@ -160,7 +160,7 @@
     NSLog(@"authenticated user: %@", inString);
 	FSUser* user = [[FoursquareAPI userFromResponseXML:inString] retain];
     if (hasViewedInstructions) {
-        [self setUserIconView:user];
+        [self setUserIconViewCustom:user];
     }
     [self setAuthenticatedUser:user];
     NSLog(@"auth'd user: %@", user);
@@ -528,10 +528,24 @@
     [friendsController release];
 }
 
+- (void) setUserIconViewCustom:(FSUser*)user {
+    if (user) {
+        NSLog(@"user is not null");
+        UIImage *image = [[Utilities sharedInstance] getCachedImage:user.photo];
+        iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(278, 2, 42, 42)];
+        iconImageView.image = image;
+        [image release];
+        [self.view insertSubview:iconImageView belowSubview:instructionView];
+        iconImageView.layer.masksToBounds = YES;
+        iconImageView.layer.cornerRadius = 4.0;
+        [self.view bringSubviewToFront:signedInUserIcon];
+    }
+}
+
 - (void) viewNextWelcomeImage {
     [self stopProgressBar];
     [instructionView removeFromSuperview];
-    [self setUserIconView:[self getAuthenticatedUser]];
+    [self setUserIconViewCustom:[self getAuthenticatedUser]];
     [iconImageView setHidden:NO];
 //    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
 //    [standardUserDefaults setBool:YES forKey:@"viewedInstructions"];
