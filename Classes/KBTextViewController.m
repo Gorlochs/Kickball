@@ -69,6 +69,7 @@
 
 - (void) shoutAndTweet {
     if ([theTextView.text length] > 0) {
+        [self startProgressBar:@"Shouting and tweeting..."];
         [[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:nil 
                                                       andShout:theTextView.text 
                                                        offGrid:NO
@@ -97,6 +98,7 @@
     NSLog(@"instring: %@", inString);
 	NSArray *shoutCheckins = [FoursquareAPI checkinsFromResponseXML:inString];
     NSLog(@"shoutCheckins: %@", shoutCheckins);
+    [self stopProgressBar];
     
     // TODO: make this asynchronous
     if ([[Utilities sharedInstance] friendsWithPingOn]) {
