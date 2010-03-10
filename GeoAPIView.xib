@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="3"/>
+			<integer value="1"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -165,7 +165,7 @@
 					<object class="IBUITableView" id="526473598">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{0, 84}, {320, 376}}</string>
+						<string key="NSFrame">{{0, 85}, {320, 375}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="IBUIBackgroundColor" ref="34471109"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -214,24 +214,21 @@
 							<int key="NSfFlags">16</int>
 						</object>
 						<object class="NSColor" key="IBUITextColor">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MC43NQA</bytes>
-							<object class="NSColorSpace" key="NSCustomColorSpace" id="294190678">
-								<int key="NSID">2</int>
-							</object>
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC43MzQ2OTM4Nzc2IDAuNzM0NjkzODc3NiAwLjczNDY5Mzg3NzYAA</bytes>
 						</object>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
 					</object>
-					<object class="IBUIView" id="177639074">
+					<object class="IBUIView" id="614158137">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{0, 84}, {320, 6}}</string>
+						<string key="NSFrame">{{0, 85}, {320, 1}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MC44ODY4NjEzMTM5AA</bytes>
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC44NTIwNDA4MTYzIDAuODUyMDQwODE2MyAwLjg1MjA0MDgxNjMAA</bytes>
 						</object>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 					</object>
@@ -241,7 +238,9 @@
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
-					<reference key="NSCustomColorSpace" ref="294190678"/>
+					<object class="NSColorSpace" key="NSCustomColorSpace">
+						<int key="NSID">2</int>
+					</object>
 				</object>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
 			</object>
@@ -335,7 +334,7 @@
 							<reference ref="526473598"/>
 							<reference ref="405956165"/>
 							<reference ref="155593040"/>
-							<reference ref="177639074"/>
+							<reference ref="614158137"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -389,11 +388,6 @@
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">20</int>
-						<reference key="object" ref="177639074"/>
-						<reference key="parent" ref="191373211"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">21</int>
 						<reference key="object" ref="592417089"/>
 						<reference key="parent" ref="682048676"/>
@@ -402,6 +396,11 @@
 						<int key="objectID">22</int>
 						<reference key="object" ref="515482492"/>
 						<reference key="parent" ref="682048676"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">26</int>
+						<reference key="object" ref="614158137"/>
+						<reference key="parent" ref="191373211"/>
 					</object>
 				</object>
 			</object>
@@ -415,9 +414,9 @@
 					<string>1.IBPluginDependency</string>
 					<string>18.IBPluginDependency</string>
 					<string>19.IBPluginDependency</string>
-					<string>20.IBPluginDependency</string>
 					<string>21.IBPluginDependency</string>
 					<string>22.IBPluginDependency</string>
+					<string>26.IBPluginDependency</string>
 					<string>3.IBEditorWindowLastContentRect</string>
 					<string>3.IBPluginDependency</string>
 					<string>4.IBEditorWindowLastContentRect</string>
@@ -460,7 +459,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">25</int>
+			<int key="maxID">26</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -489,6 +488,7 @@
 							<string>checkin</string>
 							<string>dismiss</string>
 							<string>displayTextView</string>
+							<string>displayTextViewForCheckin</string>
 							<string>goToHomeView</string>
 							<string>goToHomeViewNotAnimated</string>
 							<string>viewSettings</string>
@@ -496,6 +496,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>

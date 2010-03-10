@@ -289,7 +289,7 @@
     CGRect toolbarFrame = toolbar.frame;
     
     if (textField == twitterText) {
-        toolbarFrame.origin.y = 242;
+        toolbarFrame.origin.y = 244;
     } else if (textField == phoneText) {
         toolbarFrame.origin.y = 289;
     } else if (textField == nameText) {
