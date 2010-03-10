@@ -566,6 +566,8 @@
 		6AD9DB751146BD660060E486 /* addPhotoHeader02.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AD9DB711146BD660060E486 /* addPhotoHeader02.png */; };
 		6AD9DB761146BD660060E486 /* addPhotoHeader01.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AD9DB721146BD660060E486 /* addPhotoHeader01.png */; };
 		6AD9DC2B1146DB670060E486 /* homeShout.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AD9DC2A1146DB670060E486 /* homeShout.png */; };
+		6ADB237F114824FD003294F7 /* submitTip01.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ADB237D114824FD003294F7 /* submitTip01.png */; };
+		6ADB2380114824FD003294F7 /* submitTip02.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ADB237E114824FD003294F7 /* submitTip02.png */; };
 		6ADB704A1116AE3300A26D35 /* saveClose02a.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ADB703F1116AE3300A26D35 /* saveClose02a.png */; };
 		6ADB704B1116AE3300A26D35 /* saveClose01a.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ADB70401116AE3300A26D35 /* saveClose01a.png */; };
 		6ADB704C1116AE3300A26D35 /* clearFields02a.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ADB70411116AE3300A26D35 /* clearFields02a.png */; };
@@ -1417,6 +1419,8 @@
 		6AD9DB711146BD660060E486 /* addPhotoHeader02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addPhotoHeader02.png; sourceTree = "<group>"; };
 		6AD9DB721146BD660060E486 /* addPhotoHeader01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addPhotoHeader01.png; sourceTree = "<group>"; };
 		6AD9DC2A1146DB670060E486 /* homeShout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeShout.png; sourceTree = "<group>"; };
+		6ADB237D114824FD003294F7 /* submitTip01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = submitTip01.png; sourceTree = "<group>"; };
+		6ADB237E114824FD003294F7 /* submitTip02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = submitTip02.png; sourceTree = "<group>"; };
 		6ADB703F1116AE3300A26D35 /* saveClose02a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = saveClose02a.png; sourceTree = "<group>"; };
 		6ADB70401116AE3300A26D35 /* saveClose01a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = saveClose01a.png; sourceTree = "<group>"; };
 		6ADB70411116AE3300A26D35 /* clearFields02a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clearFields02a.png; sourceTree = "<group>"; };
@@ -2123,6 +2127,8 @@
 		6A39EC4B109662D3006F76C3 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				6ADB237D114824FD003294F7 /* submitTip01.png */,
+				6ADB237E114824FD003294F7 /* submitTip02.png */,
 				6AD9DC2A1146DB670060E486 /* homeShout.png */,
 				6AD9DB6F1146BD660060E486 /* seePhotoHeader02.png */,
 				6AD9DB701146BD660060E486 /* seePhotoHeader01.png */,
@@ -2783,9 +2789,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1D6058900D05DD3D006BFB54 /* Kickball */ = {
+		1D6058900D05DD3D006BFB54 /* kickball */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Kickball" */;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "kickball" */;
 			buildPhases = (
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
@@ -2796,7 +2802,7 @@
 			dependencies = (
 				6AD0C1FB113F04C200A971E3 /* PBXTargetDependency */,
 			);
-			name = Kickball;
+			name = kickball;
 			productName = Kickball;
 			productReference = 1D6058910D05DD3D006BFB54 /* kickball.app */;
 			productType = "com.apple.product-type.application";
@@ -2819,7 +2825,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				1D6058900D05DD3D006BFB54 /* Kickball */,
+				1D6058900D05DD3D006BFB54 /* kickball */,
 			);
 		};
 /* End PBXProject section */
@@ -3337,6 +3343,8 @@
 				6AD9DB751146BD660060E486 /* addPhotoHeader02.png in Resources */,
 				6AD9DB761146BD660060E486 /* addPhotoHeader01.png in Resources */,
 				6AD9DC2B1146DB670060E486 /* homeShout.png in Resources */,
+				6ADB237F114824FD003294F7 /* submitTip01.png in Resources */,
+				6ADB2380114824FD003294F7 /* submitTip02.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3569,7 +3577,7 @@
 					"\"$(SRCROOT)/../../../Desktop/PinchAnalytics-r91\"",
 					"\"$(SRCROOT)/../../../Desktop/iphone-exif-0-9.1 Folder/Release-iphoneos\"",
 				);
-				PRODUCT_NAME = Kickball;
+				PRODUCT_NAME = kickball;
 			};
 			name = Release;
 		};
@@ -3622,7 +3630,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Kickball" */ = {
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "kickball" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,

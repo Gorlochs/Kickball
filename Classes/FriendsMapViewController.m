@@ -24,12 +24,12 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self startProgressBar:@"Retrieving map..."];
     [[Beacon shared] startSubBeaconWithName:@"Friends Map View"];
 }
  
 -(void) viewDidAppear:(BOOL)animated{
 	[super viewDidAppear:animated];
+    [self startProgressBar:@"Retrieving map..."];
 	[self refreshFriendPoints];
     [self refreshMapRegion];
 }
