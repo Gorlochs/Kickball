@@ -531,6 +531,8 @@
 - (void) viewNextWelcomeImage {
     [self stopProgressBar];
     [instructionView removeFromSuperview];
+    [self setUserIconView:[self getAuthenticatedUser]];
+    [iconImageView setHidden:NO];
 //    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
 //    [standardUserDefaults setBool:YES forKey:@"viewedInstructions"];
 //    hasViewedInstructions = YES;
