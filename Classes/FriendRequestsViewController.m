@@ -192,6 +192,7 @@
 }
 
 - (void) searchByTwitter {
+    [self resignAllResponders];
     if (![twitterText.text isEqualToString:@""]) {
         [self startProgressBar:@"Searching..."];
         [[FoursquareAPI sharedInstance] findFriendsByTwitterName:twitterText.text withTarget:self andAction:@selector(searchResponseReceived:withResponseString:)];
@@ -205,6 +206,7 @@
 }
 
 - (void) searchByPhone {
+    [self resignAllResponders];
     if (![phoneText.text isEqualToString:@""]) {
         [self startProgressBar:@"Searching..."];
         [[FoursquareAPI sharedInstance] findFriendsByPhone:phoneText.text withTarget:self andAction:@selector(searchResponseReceived:withResponseString:)];
@@ -247,7 +249,7 @@
     [nameText resignFirstResponder];
     
     [self.view addSubview:toolbar];
-    [self animateToolbar:CGRectMake(0, 480, 320, 40)];
+    [self animateToolbar:CGRectMake(0, 480, 320, 44)];
 }
 
 - (void)searchResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {

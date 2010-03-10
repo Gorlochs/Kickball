@@ -142,13 +142,13 @@
     [password resignFirstResponder];
 
     [self.view addSubview:toolbar];
-    [self animateToolbar:CGRectMake(0, 480, 320, 40)];
+    [self animateToolbar:CGRectMake(0, 480, 320, 44)];
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     toolbar.frame = CGRectMake(0, 480, 320, 40);
     [self.view addSubview:toolbar];
-    [self animateToolbar:CGRectMake(0, 205, 320, 40)];
+    [self animateToolbar:CGRectMake(0, 201, 320, 44)];
 }
 
 - (void) animateToolbar:(CGRect)toolbarFrame {
