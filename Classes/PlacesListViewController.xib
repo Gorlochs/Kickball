@@ -434,7 +434,7 @@
 				</object>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 			</object>
-			<object class="IBUIToolbar" id="182049191">
+			<object class="IBUIToolbar" id="752503773">
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">266</int>
 				<string key="NSFrameSize">{320, 44}</string>
@@ -444,14 +444,14 @@
 				<int key="IBUIBarStyle">1</int>
 				<object class="NSMutableArray" key="IBUIItems">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<object class="IBUIBarButtonItem" id="448368997">
-						<reference key="IBUIToolbar" ref="182049191"/>
+					<object class="IBUIBarButtonItem" id="32243930">
+						<reference key="IBUIToolbar" ref="752503773"/>
 						<int key="IBUISystemItemIdentifier">5</int>
 					</object>
-					<object class="IBUIBarButtonItem" id="523577444">
+					<object class="IBUIBarButtonItem" id="763716559">
 						<string key="IBUITitle">Cancel</string>
 						<int key="IBUIStyle">1</int>
-						<reference key="IBUIToolbar" ref="182049191"/>
+						<reference key="IBUIToolbar" ref="752503773"/>
 					</object>
 				</object>
 			</object>
@@ -586,29 +586,29 @@
 					<int key="connectionID">88</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">cancelTheKeyboard</string>
-						<reference key="source" ref="651561012"/>
-						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">109</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">toolbar</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="182049191"/>
+						<reference key="destination" ref="752503773"/>
 					</object>
 					<int key="connectionID">113</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">cancelEdit</string>
-						<reference key="source" ref="523577444"/>
+						<reference key="source" ref="763716559"/>
 						<reference key="destination" ref="372490531"/>
 					</object>
 					<int key="connectionID">115</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">clearSearch</string>
+						<reference key="source" ref="651561012"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">116</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -756,23 +756,23 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">110</int>
-						<reference key="object" ref="182049191"/>
+						<reference key="object" ref="752503773"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="448368997"/>
-							<reference ref="523577444"/>
+							<reference ref="32243930"/>
+							<reference ref="763716559"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">111</int>
-						<reference key="object" ref="448368997"/>
-						<reference key="parent" ref="182049191"/>
+						<reference key="object" ref="32243930"/>
+						<reference key="parent" ref="752503773"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">112</int>
-						<reference key="object" ref="523577444"/>
-						<reference key="parent" ref="182049191"/>
+						<reference key="object" ref="763716559"/>
+						<reference key="parent" ref="752503773"/>
 					</object>
 				</object>
 			</object>
@@ -859,7 +859,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">115</int>
+			<int key="maxID">116</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -930,6 +930,7 @@
 							<string>cancelEdit</string>
 							<string>cancelKeyboard:</string>
 							<string>cancelTheKeyboard</string>
+							<string>clearSearch</string>
 							<string>flipToMap</string>
 							<string>refresh:</string>
 							<string>searchOnKeywordsandLatLong</string>
@@ -939,6 +940,7 @@
 							<string>id</string>
 							<string>id</string>
 							<string>UIControl</string>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>UIControl</string>

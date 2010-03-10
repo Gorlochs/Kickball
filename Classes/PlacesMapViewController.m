@@ -355,6 +355,10 @@
     return YES;
 }
 
+- (void) clearSearch {
+    searchbox.text = @"";
+}
+
 - (void)dealloc {
     // all this is a fix for the MKMapView bug where the bouncing blue dot animation causes a crash when you go back one view
     [self.mapViewer removeAnnotations:self.mapViewer.annotations];

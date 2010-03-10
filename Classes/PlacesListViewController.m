@@ -316,6 +316,10 @@
     [self animateToolbar:CGRectMake(0, 480, 320, 40)];
 }
 
+- (void) clearSearch {
+    searchbox.text = @"";
+}
+
 - (void) animateToolbar:(CGRect)toolbarFrame {
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];

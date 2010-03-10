@@ -260,6 +260,10 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 }
 
 - (void) displayAllImages {
+//    TTThumbsViewController *thumbs = [[TTThumbsViewController alloc] initWithDelegate:self];
+//    thumbs.photoSource = photoSource;
+//    [self.navigationController pushViewController:thumbs animated:YES];
+//    [thumbs release];
     KBPhotoViewController *photoController = [[KBPhotoViewController alloc] initWithPhotoSource:photoSource];
     photoController.goodies = goodies;
     [self.navigationController pushViewController:photoController animated:YES];

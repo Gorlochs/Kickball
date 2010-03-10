@@ -38,6 +38,7 @@
 - (IBAction) viewPlacesList;
 - (void) animateToolbar:(CGRect)toolbarFrame;
 - (IBAction) cancelEdit;
+- (IBAction) clearSearch;
 
 @end
 

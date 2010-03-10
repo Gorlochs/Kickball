@@ -41,5 +41,6 @@ typedef enum {
 - (IBAction) cancelTheKeyboard;
 - (void) animateToolbar:(CGRect)toolbarFrame;
 - (IBAction) cancelEdit;
+- (IBAction) clearSearch;
 
 @end
