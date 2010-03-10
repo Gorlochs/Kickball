@@ -32,6 +32,7 @@
 - (IBAction) searchOnKeywordsandLatLong;
 - (IBAction) refresh: (UIControl *) button;
 - (void) cancelKeyboard: (UIControl *) button;
+- (IBAction) cancelTheKeyboard;
 - (IBAction) viewFriendsMap;
 
 @end

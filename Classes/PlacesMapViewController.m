@@ -304,6 +304,10 @@
 }
 
 - (void) cancelKeyboard: (UIControl *) button {
+    [self cancelTheKeyboard];
+}
+
+- (void) cancelTheKeyboard {
     [searchbox resignFirstResponder];
 }
 
