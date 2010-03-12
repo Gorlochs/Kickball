@@ -500,13 +500,15 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
             FSCheckin *currentCheckin = ((FSCheckin*)[venue.currentCheckins objectAtIndex:indexPath.row]);
             cell.textLabel.text = currentCheckin.user.firstnameLastInitial;
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            NSLog(@"currentcheckin user: %@", currentCheckin.user);
-            cell.imageView.image = [[Utilities sharedInstance] getCachedImage:currentCheckin.user.photo];
-            float sw=32/cell.imageView.image.size.width;
-            float sh=32/cell.imageView.image.size.height;
-            cell.imageView.transform=CGAffineTransformMakeScale(sw,sh);
-            cell.imageView.layer.masksToBounds = YES;
-            cell.imageView.layer.cornerRadius = 8.0;
+            cell.imageView.image = [UIImage imageNamed:@"blank_boy2.png"];
+            
+            CGRect frame = CGRectMake(-3,-3,36,36);
+            TTImageView *ttImage = [[[TTImageView alloc] initWithFrame:frame] autorelease];
+            ttImage.urlPath = currentCheckin.user.photo;
+            ttImage.backgroundColor = [UIColor clearColor];
+            ttImage.defaultImage = [UIImage imageNamed:@"blank_boy2.png"];
+            ttImage.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
+            [cell.imageView addSubview:ttImage];
         } else {
             return detailButtonCell;
         }
@@ -701,6 +703,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     [photoHeaderLabel release];
     [addPhotoButton release];
     [seeAllPhotosButton release];
+    [photoHeaderView release];
     
     [super dealloc];
 }
