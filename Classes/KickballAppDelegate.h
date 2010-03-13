@@ -15,7 +15,7 @@
 #import "PopupMessageView.h"
 
 #define kApplicationKey @"yRIla6gWSyWVmizCFl13Nw"
-#define kApplicationSecret @"yEjZjvUKQLCwXUC_vS_jUg"
+#define kApplicationSecret @"-BnhB82eSrWrGG0aXm2PLQ"
 
 @class FriendsListViewController;
 
