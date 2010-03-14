@@ -218,7 +218,7 @@
             // need to set the imageView to reserve the spot for the ttImage
             cell.imageView.image = [UIImage imageNamed:@"blank.png"];
             
-            CGRect frame = CGRectMake(4,4,32,32);
+            CGRect frame = CGRectMake(0,0,32,32);
             TTImageView *ttImage = [[[TTImageView alloc] initWithFrame:frame] autorelease];
             if (venue.primaryCategory.iconUrl) {
                 ttImage.urlPath = venue.primaryCategory.iconUrl;
