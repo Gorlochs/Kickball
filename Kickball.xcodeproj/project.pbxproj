@@ -449,6 +449,7 @@
 		6A64999A113F33E700052FF9 /* addPhoto01.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A649996113F33E700052FF9 /* addPhoto01.png */; };
 		6A649A0B113F629800052FF9 /* KBPhotoThumbnailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A649A0A113F629800052FF9 /* KBPhotoThumbnailCell.m */; };
 		6A649B08113F84E100052FF9 /* blank_boy2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A649B07113F84E100052FF9 /* blank_boy2.png */; };
+		6A72CF34114C8A0000800692 /* FSCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A72CF33114C8A0000800692 /* FSCategory.m */; };
 		6A79D0D710E5E682009082E5 /* PopupMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A79D0D610E5E682009082E5 /* PopupMessageView.m */; };
 		6A79D0D910E5E692009082E5 /* PopupMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A79D0D810E5E692009082E5 /* PopupMessageView.xib */; };
 		6A79D0FE10E68D1A009082E5 /* KBMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A79D0FD10E68D1A009082E5 /* KBMessage.m */; };
@@ -1266,6 +1267,8 @@
 		6A649A09113F629800052FF9 /* KBPhotoThumbnailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBPhotoThumbnailCell.h; sourceTree = "<group>"; };
 		6A649A0A113F629800052FF9 /* KBPhotoThumbnailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBPhotoThumbnailCell.m; sourceTree = "<group>"; };
 		6A649B07113F84E100052FF9 /* blank_boy2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blank_boy2.png; sourceTree = "<group>"; };
+		6A72CF32114C8A0000800692 /* FSCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCategory.h; sourceTree = "<group>"; };
+		6A72CF33114C8A0000800692 /* FSCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCategory.m; sourceTree = "<group>"; };
 		6A79D0D510E5E682009082E5 /* PopupMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopupMessageView.h; sourceTree = "<group>"; };
 		6A79D0D610E5E682009082E5 /* PopupMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopupMessageView.m; sourceTree = "<group>"; };
 		6A79D0D810E5E692009082E5 /* PopupMessageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupMessageView.xib; sourceTree = "<group>"; };
@@ -1716,6 +1719,8 @@
 				6AA8B86B10DDCECC005634D4 /* FSSpecial.m */,
 				6A1F16F211362449004C1F7F /* KBGoody.h */,
 				6A1F16F311362449004C1F7F /* KBGoody.m */,
+				6A72CF32114C8A0000800692 /* FSCategory.h */,
+				6A72CF33114C8A0000800692 /* FSCategory.m */,
 			);
 			path = FoursquareAPI;
 			sourceTree = "<group>";
@@ -3515,6 +3520,7 @@
 				6AD0C28F113F0CBA00A971E3 /* MockPhotoSource.m in Sources */,
 				6A649A0B113F629800052FF9 /* KBPhotoThumbnailCell.m in Sources */,
 				6AFC882C1141D82B00B171C9 /* FriendsListTableCellv2.m in Sources */,
+				6A72CF34114C8A0000800692 /* FSCategory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

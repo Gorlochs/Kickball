@@ -38,6 +38,17 @@
     self.defaultImage = [UIImage imageNamed:@"imgLoader.png"];
     
     self.navigationController.navigationBarHidden = NO;
+    //[self showThumbnails];
+}
+
+- (void)showThumbnails {
+    if (!_thumbsController) {
+        // The photo source had no URL mapping in TTURLMap, so we let the subclass show the thumbs
+        _thumbsController = [[self createThumbsViewController] retain];
+        _thumbsController.photoSource = _photoSource;
+    }
+    
+    [self.navigationController pushViewController:_thumbsController animatedWithTransition:UIViewAnimationTransitionNone];
 }
 
 - (void)flagAction {

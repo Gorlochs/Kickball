@@ -15,7 +15,8 @@
 				zip, city, venueState, venueid, 
 				phone, crossStreet, twitter, mayorCount, 
 				mayor, tips, currentCheckins, friendsHaveBeenHere, 
-                userHasBeenHere, userCheckinCount, addressWithCrossstreet, specials;
+                userHasBeenHere, userCheckinCount, addressWithCrossstreet, 
+                specials, primaryCategory;
 
 
 - (id) init{

@@ -12,6 +12,7 @@
 #import "FSSpecial.h"
 #import "SFHFKeychainUtils.h"
 #import "LocationManager.h"
+#import "FSCategory.h"
 
 #define USER_AGENT @"Kickball:1.0.0"
 
@@ -875,29 +876,35 @@ static FoursquareAPI *sharedInstance = nil;
 			
 			if([key isEqualToString:@"id"]){
 				newVenue.venueid = value;
-			} else if([key isEqualToString:@"phone"]){
+			} else if ([key isEqualToString:@"phone"]){
 				newVenue.phone = value;
-			} else if([key isEqualToString:@"geolat"]){
+			} else if ([key isEqualToString:@"geolat"]){
 				newVenue.geolat = value;
-			} else if([key isEqualToString:@"geolong"]){
+			} else if ([key isEqualToString:@"geolong"]){
 				newVenue.geolong = value;
-			} else if([key isEqualToString:@"name"]){
+			} else if ([key isEqualToString:@"name"]){
 				newVenue.name = value;
-			} else if([key isEqualToString:@"crossstreet"]){
+			} else if ([key isEqualToString:@"crossstreet"]){
 				newVenue.crossStreet = value;
-			} else if([key isEqualToString:@"address"]){
+			} else if ([key isEqualToString:@"address"]){
 				newVenue.venueAddress = value;
-			} else if([key isEqualToString:@"city"]){
+			} else if ([key isEqualToString:@"city"]){
 				newVenue.city = value;
-			} else if([key isEqualToString:@"state"]){
+			} else if ([key isEqualToString:@"state"]){
 				newVenue.venueState = value;
-			} else if([key isEqualToString:@"zip"]){
+			} else if ([key isEqualToString:@"zip"]){
 				newVenue.zip = value;
-			} else if([key isEqualToString:@"twitter"]){
+			} else if ([key isEqualToString:@"twitter"]){
 				newVenue.twitter = value;
-			} else if([key isEqualToString:@"tips"]){
+			} else if ([key isEqualToString:@"tips"]){
 				newVenue.tips = [FoursquareAPI _tipsFromNode:venueResult];
-			} else if([key isEqualToString:@"stats"]){
+			} else if ([key isEqualToString:@"primarycategory"]){
+				NSArray *categoryAttrs = [venueResult nodesForXPath:@"primarycategory" error:nil];
+                for (CXMLElement *categoryAttr in categoryAttrs) {
+                    newVenue.primaryCategory = [FoursquareAPI _categoryFromNode:categoryAttr];
+                    break;
+                }
+			} else if ([key isEqualToString:@"stats"]){
 				NSArray * mayorNodes = [venueResult nodesForXPath:@"stats/mayor/user" error:nil];
 				if(mayorNodes && [mayorNodes count] > 0){
 					newVenue.mayor = [[FoursquareAPI _userFromNode:[mayorNodes objectAtIndex:0]] retain];
@@ -915,26 +922,14 @@ static FoursquareAPI *sharedInstance = nil;
 					newVenue.userCheckinCount = [[checkinsNode stringValue]  intValue]; 
 				}
 
-			} 
-            else if([key isEqualToString:@"checkins"]){
+			} else if ([key isEqualToString:@"checkins"]){
                 NSLog(@"checkin name: %@", value);
 				NSArray * allCheckinAttrs = [venueResult nodesForXPath:@"//venue/checkins" error:nil];
                 for (CXMLElement *checkinAttr in allCheckinAttrs) {
                     newVenue.currentCheckins = [FoursquareAPI _checkinsFromNode:checkinAttr];
                     break;
                 }
-                
-//                [FoursquareAPI _checkinsFromNode:<#(CXMLNode *)inputNode#>
-//                if ([allCheckinTags count] > 0) {
-//                    NSMutableArray * allCheckins = [[NSMutableArray alloc] initWithCapacity:1];
-//                    for (CXMLElement *checkinTag in allCheckinTags) {
-//                        NSLog(@"looping through checkins: %@", checkinTag);
-//                        [allCheckins addObject:[FoursquareAPI _checkinFromNode:checkinTag]];
-//                    }
-//                    newVenue.currentCheckins = allCheckins;   
-//                }
-            } 
-            else if ([key compare:@"specials"] == 0) {
+            } else if ([key compare:@"specials"] == 0) {
                 NSArray *specialNodes = [venueResult nodesForXPath:@"//specials/special" error:nil];
                 NSMutableArray *specialArray = [[NSMutableArray alloc] initWithCapacity:1];
                 for (CXMLElement *specialNode in specialNodes) {
@@ -1095,6 +1090,30 @@ static FoursquareAPI *sharedInstance = nil;
 		}
     }
     return loggedInUser;
+}
+
++ (FSCategory*) _categoryFromNode:(CXMLElement*)categoryAttr {
+    
+	FSCategory *category = [[[FSCategory alloc] init] autorelease];
+    
+	int counter;
+    
+	for(counter = 0; counter < [categoryAttr childCount]; counter++) {
+		NSString * key = [[categoryAttr childAtIndex:counter] name];
+		NSString * value = [[categoryAttr childAtIndex:counter] stringValue];
+		
+		if([key isEqualToString:@"id"]){
+			category.categoryId = value;
+		} else if([key isEqualToString:@"fullpathname"]){
+			category.fullPathName = value;
+		} else if([key isEqualToString:@"nodename"]){
+			category.nodeName = value;
+		} else if([key isEqualToString:@"iconurl"]){
+			category.iconUrl = value;
+		}
+    }
+    
+    return category;
 }
 
 + (FSUser *) _userFromNode:(CXMLElement *) usrAttr {

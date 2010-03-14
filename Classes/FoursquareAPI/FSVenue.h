@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 #import "FSUser.h"
+#import "FSCategory.h"
 
 @interface FSVenue : NSObject <NSCoding> {
 	NSString * name;
@@ -31,6 +32,7 @@
 	BOOL userHasBeenHere;
 	NSInteger userCheckinCount;
     NSString * addressWithCrossstreet;
+    FSCategory *primaryCategory;
 } 
 
 @property (nonatomic, retain) NSString * name;
@@ -53,6 +55,7 @@
 @property (nonatomic) BOOL userHasBeenHere;
 @property (nonatomic) NSInteger userCheckinCount;
 @property (nonatomic, retain) NSString * addressWithCrossstreet;
+@property (nonatomic, retain) FSCategory *primaryCategory;
 @property (nonatomic, readonly) CLLocationCoordinate2D location;
 
 @end

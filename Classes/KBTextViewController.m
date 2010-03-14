@@ -55,6 +55,8 @@
 
 - (void) shout {
     if ([theTextView.text length] > 0) {
+        [theTextView resignFirstResponder];
+        [self startProgressBar:@"Shouting..."];
         [[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:nil 
                                                       andShout:theTextView.text 
                                                        offGrid:NO
@@ -69,6 +71,7 @@
 
 - (void) shoutAndTweet {
     if ([theTextView.text length] > 0) {
+        [theTextView resignFirstResponder];
         [self startProgressBar:@"Shouting and tweeting..."];
         [[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:nil 
                                                       andShout:theTextView.text 
@@ -106,6 +109,7 @@
         [self friendsReceived:nil];
     } else {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(friendsReceived:) name:@"friendsWithPingOnReceived" object:nil];
+        [self stopProgressBar];
     }
 }
 
@@ -140,6 +144,7 @@
 	[request setDidFailSelector: @selector(pushFailed:)];
 	[queue addOperation:request];
     
+    [self stopProgressBar];
     [self cancelView];
 }
 

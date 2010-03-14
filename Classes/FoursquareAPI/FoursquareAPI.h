@@ -85,6 +85,7 @@
 + (NSArray *) _badgesFromNode:(CXMLNode *) inputNode;
 + (NSArray *) _checkinsFromNode:(CXMLNode *) inputNode;
 + (NSString *) _errorsFromNode:(CXMLNode *) inputNode;
++ (FSCategory*) _categoryFromNode:(CXMLElement*)categoryAttr;
 
 + (NSArray *) usersFromResponseXML:(NSString *) inString;
 + (NSArray *) usersFromRequestResponseXML:(NSString *) inString;
