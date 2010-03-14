@@ -214,17 +214,20 @@
             FSVenue *venue = [self extractVenueFromDictionaryForRow:indexPath];
             cell.textLabel.text = venue.name;
             cell.detailTextLabel.text = venue.addressWithCrossstreet;
+            
+            // need to set the imageView to reserve the spot for the ttImage
+            cell.imageView.image = [UIImage imageNamed:@"blank.png"];
+            
+            CGRect frame = CGRectMake(4,4,32,32);
+            TTImageView *ttImage = [[[TTImageView alloc] initWithFrame:frame] autorelease];
             if (venue.primaryCategory.iconUrl) {
-                cell.imageView.image = [UIImage imageNamed:@"x01top.png"];
-                
-                CGRect frame = CGRectMake(2,2,36,36);
-                TTImageView *ttImage = [[[TTImageView alloc] initWithFrame:frame] autorelease];
                 ttImage.urlPath = venue.primaryCategory.iconUrl;
-                ttImage.backgroundColor = [UIColor clearColor];
-                ttImage.defaultImage = [UIImage imageNamed:@"x01top.png"];
-                ttImage.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
-                [cell.imageView addSubview:ttImage];
             }
+            ttImage.backgroundColor = [UIColor clearColor];
+            ttImage.defaultImage = [UIImage imageNamed:@"blank.png"];
+            ttImage.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
+            [cell.imageView addSubview:ttImage];
+
             NSLog(@"category: %@", venue.primaryCategory.iconUrl);
         } else {
             return footerCell;
