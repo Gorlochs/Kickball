@@ -25,7 +25,7 @@
     [super viewDidLoad];
     
     // this hack is here to help make the toggle 'global'
-    if (self.venues == nil) {
+    if (self.venues == nil || [self.venues count] == 0) {
         [self startProgressBar:@"Retrieving venues..."];
         [[FoursquareAPI sharedInstance] getVenuesNearLatitude:[NSString stringWithFormat:@"%f",[[LocationManager locationManager] latitude]]
                                                  andLongitude:[NSString stringWithFormat:@"%f",[[LocationManager locationManager] longitude]]
@@ -313,7 +313,14 @@
 }
 
 - (void) refresh: (UIControl *) button {
-    [self refreshVenuePoints];
+    [self startProgressBar:@"Retrieving venues..."];
+    [[FoursquareAPI sharedInstance] getVenuesNearLatitude:[NSString stringWithFormat:@"%f",[[LocationManager locationManager] latitude]]
+                                             andLongitude:[NSString stringWithFormat:@"%f",[[LocationManager locationManager] longitude]]
+                                               withTarget:self 
+                                                andAction:@selector(venuesResponseReceived:withResponseString:)
+     
+     ];
+//    [self refreshVenuePoints];
 }
 
 - (void) viewPlacesList {
