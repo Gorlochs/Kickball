@@ -143,9 +143,6 @@
 	[request setDidFinishSelector: @selector(pushCompleted:)];
 	[request setDidFailSelector: @selector(pushFailed:)];
 	[queue addOperation:request];
-    
-    [self stopProgressBar];
-    [self cancelView];
 }
 
 - (void)pushCompleted:(ASIHTTPRequest *) request {
@@ -155,6 +152,8 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"shoutSent"
                                                         object:nil
                                                       userInfo:nil];	
+    
+    [self closeUpShop];
 }
 
 - (void)pushFailed:(ASIHTTPRequest *) request {
@@ -162,8 +161,14 @@
 	NSLog(@"Failure from push: %@", result);
 	
 	//TODO: Alert user to failure
+    
+    [self closeUpShop];
 }
 
+- (void) closeUpShop {
+    [self stopProgressBar];
+    [self cancelView];
+}
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.

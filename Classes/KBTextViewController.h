@@ -26,5 +26,6 @@
 - (IBAction) shoutAndTweetAndCheckin;
 - (IBAction) cancelView;
 - (void)friendsReceived:(NSNotification *)inNotification;
+- (void) closeUpShop;
 
 @end
