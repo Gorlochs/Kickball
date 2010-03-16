@@ -101,7 +101,7 @@
     NSLog(@"instring: %@", inString);
 	NSArray *shoutCheckins = [FoursquareAPI checkinsFromResponseXML:inString];
     NSLog(@"shoutCheckins: %@", shoutCheckins);
-    [self stopProgressBar];
+    //[self stopProgressBar];
     
     // TODO: make this asynchronous
     if ([[Utilities sharedInstance] friendsWithPingOn]) {
@@ -109,7 +109,7 @@
         [self friendsReceived:nil];
     } else {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(friendsReceived:) name:@"friendsWithPingOnReceived" object:nil];
-        [self stopProgressBar];
+        //[self stopProgressBar];
     }
 }
 

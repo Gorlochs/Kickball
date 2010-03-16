@@ -67,15 +67,17 @@
             hereIAmButton.enabled = NO;
             locationOverlayButton.enabled = NO;
         } else {
-            if (user.checkin.shout != nil) {
-                lastCheckinAddress.text = user.checkin.shout;
-                hereIAmButton.enabled = NO;
-            } else {
-                lastCheckinAddress.text = user.checkin.venue.venueAddress;
-                hereIAmButton.enabled = YES;
-            }
             if (user.checkin.venue) {
                 location.text = user.checkin.venue.name;
+                hereIAmButton.enabled = YES;
+                if (user.checkin.shout) {
+                    lastCheckinAddress.text = user.checkin.shout;
+                } else {
+                    lastCheckinAddress.text = user.checkin.venue.venueAddress;
+                }
+            } else {
+                lastCheckinAddress.text = user.checkin.shout;
+                hereIAmButton.enabled = NO;
             }
         }
         
