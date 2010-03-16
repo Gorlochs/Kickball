@@ -384,6 +384,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     pointsCell = nil;
     stillTheMayorCell = nil;
     badgeImage = nil;
+    smallMapView = nil;
 }
 
 - (void)viewDidUnload {
@@ -394,6 +395,28 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     pointsCell = nil;
     stillTheMayorCell = nil;
     badgeImage = nil;
+    smallMapView = nil;
+    
+    theTableView = nil;
+    checkinCell = nil;
+    giftCell = nil;
+    mayorMapCell = nil;
+    pointsCell = nil;
+    badgeCell = nil;
+    newMayorCell = nil;
+    stillTheMayorCell = nil;
+    bottomButtonCell = nil;
+    detailButtonCell = nil;
+    shoutCell = nil;
+    
+    venueName = nil;
+    venueAddress = nil;
+    mayorNameLabel = nil;
+    mayorCheckinCountLabel = nil;
+    badgeLabel = nil;
+    badgeTitleLabel = nil;
+    newMayorshipLabel = nil;
+    stillTheMayorLabel = nil;
 }
 
 #pragma mark Table view methods
@@ -689,7 +712,6 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     [goodies release];
     [photoSource release];
     
-    [photoView release];
     [mayorOverlay release];
     [mayorCrown release];
     [mayorArrow release];

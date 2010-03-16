@@ -67,7 +67,6 @@
     
     // photo related objects
     NSMutableArray *goodies;
-    IBOutlet UIView *photoView;
     MockPhotoSource *photoSource;
     IBOutlet UILabel *photoHeaderLabel;
     IBOutlet UIView *photoHeaderView;
