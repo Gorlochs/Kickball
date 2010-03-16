@@ -44,6 +44,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 - (FSUser*) getAuthenticatedUser;
 - (void) doLoginUsername: (NSString *)fsUser andPass:(NSString *) fsPass;
 - (void) startProgressBar:(NSString*)textToDisplay;
+- (void) startProgressBar:(NSString*)textToDisplay withTimer:(BOOL)shouldSetTimer;
 - (void) stopProgressBar;
 - (void) doInitialDisplay;
 - (void) displayPopupMessage:(KBMessage*)message;

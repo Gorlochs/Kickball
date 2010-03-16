@@ -151,7 +151,7 @@
 	[self dismissModalViewControllerAnimated:YES];
 }
 
-- (void) startProgressBar:(NSString*)textToDisplay {
+- (void) startProgressBar:(NSString*)textToDisplay withTimer:(BOOL)shouldSetTimer {
     if (textToDisplay == nil) {
         textToDisplay = @"Processing...";
     }
@@ -161,7 +161,13 @@
     [progressViewController.activityLabel setShadowColor:[UIColor blackColor]];
     [progressViewController.activityLabel setShadowOffset:CGSizeMake(1, 1)];
     
-    progressBarTimer = [NSTimer scheduledTimerWithTimeInterval:20.0 target:self selector:@selector(stopProgressBarAndDisplayErrorMessage:) userInfo:nil repeats:NO];
+    if (shouldSetTimer) {
+        progressBarTimer = [NSTimer scheduledTimerWithTimeInterval:20.0 target:self selector:@selector(stopProgressBarAndDisplayErrorMessage:) userInfo:nil repeats:NO];        
+    }
+}
+
+- (void) startProgressBar:(NSString*)textToDisplay {
+    [self startProgressBar:textToDisplay withTimer:YES];
 }
 
 -(void) stopProgressBarAndDisplayErrorMessage:(NSTimer*)theTimer {

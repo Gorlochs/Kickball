@@ -1090,7 +1090,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     NSLog(@"image width: %f", img.size.width);
     NSLog(@"image orientation: %d", img.imageOrientation);
     
-    [self startProgressBar:@"Uploading photo..."];
+    [self startProgressBar:@"Uploading photo..." withTimer:NO];
     // TODO: we'd have to confirm success to the user.
     //       we also need to send a notification to the gift recipie    nt
     [self uploadImage:UIImageJPEGRepresentation(img, 1.0) 
