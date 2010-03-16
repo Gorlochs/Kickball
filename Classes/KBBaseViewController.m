@@ -160,9 +160,21 @@
     progressViewController.activityLabel.text = textToDisplay;
     [progressViewController.activityLabel setShadowColor:[UIColor blackColor]];
     [progressViewController.activityLabel setShadowOffset:CGSizeMake(1, 1)];
+    
+    progressBarTimer = [NSTimer scheduledTimerWithTimeInterval:20.0 target:self selector:@selector(stopProgressBarAndDisplayErrorMessage:) userInfo:nil repeats:NO];
+}
+
+-(void) stopProgressBarAndDisplayErrorMessage:(NSTimer*)theTimer {
+        [self stopProgressBar];
+        
+        KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"Foursquare is not currently responding. Please try again shortly."];
+        [self displayPopupMessage:message];
+        [message release];
 }
 
 - (void) stopProgressBar {
+    [progressBarTimer invalidate];
+    progressBarTimer = nil;
     [progressViewController.view removeFromSuperview];
 }
 

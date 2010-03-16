@@ -28,6 +28,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     PopupMessageView *popupView;
     UIImageView *iconImageView;
     NSString *textViewReturnValue;
+    NSTimer *progressBarTimer;
 }
 
 @property (nonatomic, retain) LoginViewModalController *loginViewModal;
@@ -56,5 +57,6 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 - (void) openWebView:(NSString*)url;
 - (IBAction) dismiss;
 - (void) displayFoursquareErrorMessage:(NSString*)errorMessage;
+-(void) stopProgressBarAndDisplayErrorMessage:(NSTimer*)theTimer;
 
 @end

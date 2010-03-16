@@ -25,7 +25,6 @@ typedef enum {
     NSDictionary *venues;
     KBListType venuesTypeToDisplay;
     bool isSearchEmpty;
-    IBOutlet UIToolbar *toolbar;
 }
 
 @property (nonatomic, retain) UITableViewCell *searchCell;
@@ -39,8 +38,6 @@ typedef enum {
 - (IBAction) addNewVenue;
 - (IBAction) cancelKeyboard: (UIControl *) button;
 - (IBAction) cancelTheKeyboard;
-- (void) animateToolbar:(CGRect)toolbarFrame;
 - (IBAction) cancelEdit;
-- (IBAction) clearSearch;
 
 @end

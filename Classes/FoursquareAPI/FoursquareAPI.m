@@ -919,7 +919,13 @@ static FoursquareAPI *sharedInstance = nil;
 				NSArray * checkinNodes = [venueResult nodesForXPath:@"stats/checkins" error:nil];
 				if(checkinNodes && [checkinNodes count] > 0){
 					CXMLNode * checkinsNode = [checkinNodes objectAtIndex:0];
-					newVenue.userCheckinCount = [[checkinsNode stringValue]  intValue]; 
+					newVenue.userCheckinCount = [[checkinsNode stringValue] intValue]; 
+				}
+				
+				NSArray * hereNowNodes = [venueResult nodesForXPath:@"stats/herenow" error:nil];
+				if(hereNowNodes && [hereNowNodes count] > 0){
+					CXMLNode * hereNowNode = [hereNowNodes objectAtIndex:0];
+					newVenue.hereNow = [[hereNowNode stringValue] intValue]; 
 				}
 
 			} else if ([key isEqualToString:@"checkins"]){

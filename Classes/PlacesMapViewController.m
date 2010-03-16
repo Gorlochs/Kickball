@@ -331,39 +331,15 @@
 
 #pragma mark UITextFieldDelegate methods
 
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-    toolbar.frame = CGRectMake(0, 480, 320, 44);
-    [self.view addSubview:toolbar];
-    [self animateToolbar:CGRectMake(0, 201, 320, 44)];
-}
-
 - (void) cancelEdit {
-    [searchbox resignFirstResponder];
-    
-    [self.view addSubview:toolbar];
-    [self animateToolbar:CGRectMake(0, 480, 320, 44)];
-}
-
-- (void) animateToolbar:(CGRect)toolbarFrame {
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
-    
-    [toolbar setFrame:toolbarFrame];
-    
-    [UIView commitAnimations];
+    [self cancelTheKeyboard];
+    searchbox.text = @"";
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
-    [self animateToolbar:CGRectMake(0, 480, 320, 40)];
     [self searchOnKeywordsandLatLong];
     return YES;
-}
-
-- (void) clearSearch {
-    searchbox.text = @"";
 }
 
 - (void)dealloc {

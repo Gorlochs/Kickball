@@ -278,6 +278,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 }
 
 - (void)venueResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+    //NSLog(@"instring for venue detail: %@", inString);
     NSString *errorMessage = [FoursquareAPI errorFromResponseXML:inString];
     [self stopProgressBar];
     if (errorMessage) {
@@ -602,11 +603,11 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
             }
             break;
         case 7:
-            if ([venue.currentCheckins count] == 0 ) {
+            if (venue.hereNow == 0 ) {
                 [headerLabel release];
                 return nil;
             } else {
-                headerLabel.text = [NSString stringWithFormat:@"%d %@ Here", [venue.currentCheckins count], [venue.currentCheckins count] == 1 ? @"Person" : @"People"];
+                headerLabel.text = [NSString stringWithFormat:@"%d %@ Here", venue.hereNow, venue.hereNow == 1 ? @"Person" : @"People"];
             }
             break;
         case 8:

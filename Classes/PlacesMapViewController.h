@@ -20,7 +20,6 @@
     CLLocation *bestEffortAtLocation;
     IBOutlet UITextField *searchbox;
     IBOutlet UIButton *switchingButton;
-    IBOutlet UIToolbar *toolbar;
 }
 
 @property (nonatomic, retain) NSMutableArray * venues;
@@ -36,9 +35,7 @@
 - (IBAction) cancelTheKeyboard;
 - (IBAction) viewFriendsMap;
 - (IBAction) viewPlacesList;
-- (void) animateToolbar:(CGRect)toolbarFrame;
 - (IBAction) cancelEdit;
-- (IBAction) clearSearch;
 
 @end
 

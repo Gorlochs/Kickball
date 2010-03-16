@@ -312,38 +312,15 @@
 
 #pragma mark UITextFieldDelegate methods
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-    toolbar.frame = CGRectMake(0, 480, 320, 44);
-    [self.view addSubview:toolbar];
-    [self animateToolbar:CGRectMake(0, 201, 320, 44)];
-}
-
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [searchbox resignFirstResponder];
-    [self animateToolbar:CGRectMake(0, 480, 320, 44)];
     [self searchOnKeywordsandLatLong];
     return YES;
 }
 
 - (void) cancelEdit {
-    [searchbox resignFirstResponder];
-    
-    [self.view addSubview:toolbar];
-    [self animateToolbar:CGRectMake(0, 480, 320, 44)];
-}
-
-- (void) clearSearch {
+    [self cancelTheKeyboard];
     searchbox.text = @"";
-}
-
-- (void) animateToolbar:(CGRect)toolbarFrame {
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
-    
-    [toolbar setFrame:toolbarFrame];
-    
-    [UIView commitAnimations];
 }
 
 - (void)dealloc {
@@ -354,7 +331,6 @@
     [locationManager release];
     [bestEffortAtLocation release];
     [venues release];
-    [toolbar release];
     [super dealloc];
 }
 

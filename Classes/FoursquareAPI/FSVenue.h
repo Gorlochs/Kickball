@@ -31,6 +31,7 @@
 	BOOL friendsHaveBeenHere;
 	BOOL userHasBeenHere;
 	NSInteger userCheckinCount;
+	NSInteger hereNow;
     NSString * addressWithCrossstreet;
     FSCategory *primaryCategory;
 } 
@@ -54,6 +55,7 @@
 @property (nonatomic) BOOL friendsHaveBeenHere;
 @property (nonatomic) BOOL userHasBeenHere;
 @property (nonatomic) NSInteger userCheckinCount;
+@property (nonatomic) NSInteger hereNow;
 @property (nonatomic, retain) NSString * addressWithCrossstreet;
 @property (nonatomic, retain) FSCategory *primaryCategory;
 @property (nonatomic, readonly) CLLocationCoordinate2D location;
