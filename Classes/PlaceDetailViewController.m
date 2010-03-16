@@ -372,43 +372,35 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     }
 }
 
+
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
 	
 	// Release any cached data, images, etc that aren't in use.
-    theTableView = nil;
-    mayorMapCell = nil;
-    checkinCell = nil;
-    giftCell = nil;
-    smallMapView = nil;
-    venueName = nil;
-    venueAddress = nil;
-    mayorNameLabel = nil;
-    twitterButton = nil;
+    fullMapView = nil;
+    badgeCell = nil;
+    newMayorCell = nil;
+    pointsCell = nil;
+    stillTheMayorCell = nil;
+    badgeImage = nil;
 }
 
 - (void)viewDidUnload {
 	// Release any retained subviews of the main view.
-	// e.g. self.myOutlet = nil;
-    theTableView = nil;
-    mayorMapCell = nil;
-    checkinCell = nil;
-    giftCell = nil;
-    smallMapView = nil;
-    venueName = nil;
-    venueAddress = nil;
-    mayorNameLabel = nil;
-    twitterButton = nil;
+    fullMapView = nil;
+    badgeCell = nil;
+    newMayorCell = nil;
+    pointsCell = nil;
+    stillTheMayorCell = nil;
+    badgeImage = nil;
 }
-
 
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 10;
 }
-
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -782,8 +774,9 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         NSMutableString *checkinText = [[NSMutableString alloc] initWithCapacity:1];
         for (FSScore *score in ci.scoring.scores) {
             [checkinText appendFormat:[NSString stringWithFormat:@"+%d %@ \n", score.points, score.message]];
-            NSLog(@"checkin text: %@", checkinText);
-    //        checkinText = [checkinText stringByAppendingString:[NSString stringWithFormat:@"+%d %@ \n", score.points, score.message]];
+        }
+        if (checkinText == nil || [checkinText isEqualToString:@""]) {
+            [checkinText appendString:ci.message];
         }
         KBMessage *message = [[KBMessage alloc] initWithMember:@"Check-in successful" andMessage:checkinText];
         [self displayPopupMessage:message];
