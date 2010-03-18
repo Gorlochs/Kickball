@@ -264,6 +264,8 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 //    thumbs.photoSource = photoSource;
 //    [self.navigationController pushViewController:thumbs animated:YES];
 //    [thumbs release];
+    
+    [[Beacon shared] startSubBeaconWithName:@"View All Photos"];
     KBPhotoViewController *photoController = [[KBPhotoViewController alloc] initWithPhotoSource:photoSource];
     photoController.goodies = goodies;
     [self.navigationController pushViewController:photoController animated:YES];
@@ -1124,8 +1126,10 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
+        [[Beacon shared] startSubBeaconWithName:@"Choose Photo: Library"];
         [self getPhoto:UIImagePickerControllerSourceTypePhotoLibrary];
     } else if (buttonIndex == 1) {
+        [[Beacon shared] startSubBeaconWithName:@"Choose Photo: New"];
         [self getPhoto:UIImagePickerControllerSourceTypeCamera];
     }
 }
@@ -1159,6 +1163,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"Image upload has been completed!"];
     [self displayPopupMessage:message];
     [message release];
+    [[Beacon shared] startSubBeaconWithName:@"Image Upload Completed"];
 }
 
 - (void) imageQueueDidFinish:(ASIHTTPRequest *) request {
