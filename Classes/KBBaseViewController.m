@@ -18,6 +18,8 @@
 #import "KBWebViewController.h"
 #import "KBTextViewController.h"
 
+#define PROGRESS_BAR_TIMER_LENGTH 30.0
+
 @implementation KBBaseViewController
 
 @synthesize loginViewModal;
@@ -162,7 +164,7 @@
     [progressViewController.activityLabel setShadowOffset:CGSizeMake(1, 1)];
     
     if (shouldSetTimer) {
-        progressBarTimer = [NSTimer scheduledTimerWithTimeInterval:20.0 target:self selector:@selector(stopProgressBarAndDisplayErrorMessage:) userInfo:nil repeats:NO];        
+        progressBarTimer = [NSTimer scheduledTimerWithTimeInterval:PROGRESS_BAR_TIMER_LENGTH target:self selector:@selector(stopProgressBarAndDisplayErrorMessage:) userInfo:nil repeats:NO];        
     }
 }
 

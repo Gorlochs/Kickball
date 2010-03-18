@@ -384,7 +384,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     pointsCell = nil;
     stillTheMayorCell = nil;
     badgeImage = nil;
-    smallMapView = nil;
+    //smallMapView = nil;
 }
 
 - (void)viewDidUnload {
@@ -409,8 +409,8 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     detailButtonCell = nil;
     shoutCell = nil;
     
-    venueName = nil;
-    venueAddress = nil;
+    //venueName = nil;
+    //venueAddress = nil;
     mayorNameLabel = nil;
     mayorCheckinCountLabel = nil;
     badgeLabel = nil;
@@ -673,6 +673,10 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 }
 
 - (void)dealloc {
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:@"todoTipSent"];
+    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:@"shoutAndCheckinSent"];
+    
     [theTableView release];
     [mayorMapCell release];
     [checkinCell release];
