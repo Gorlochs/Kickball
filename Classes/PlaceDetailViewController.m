@@ -125,7 +125,6 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 }
 
 - (void) venueRequestDidFinish:(ASIHTTPRequest *) request {
-    //NSLog(@"YAY! Venue queue is complete! response: %@", [request responseString]);
     
     goodies = [[NSMutableArray alloc] initWithCapacity:1];
     
@@ -138,7 +137,6 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     resultNodes = [rssParser nodesForXPath:@"//gift" error:nil];
     
     // prepare date formatter
-    //                2010-03-05T02:19:07Z
     NSDateFormatter *goodyDateFormatter = [[NSDateFormatter alloc] init];
     [goodyDateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     
@@ -151,8 +149,6 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         for (int counter = 0; counter < [resultElement childCount]; counter++) {
             
             // TODO: we can also just pass in the resultElement into a KBGoody constructor and let the object take care of the object construction
-//            NSLog(@"resultsElement stringValue: %@", [[resultElement childAtIndex:counter] stringValue]);
-//            NSLog(@"resultsElement name: %@", [[resultElement childAtIndex:counter] name]);
             
             NSString *name = [[resultElement childAtIndex:counter] name];
             NSString *value = [[resultElement childAtIndex:counter] stringValue];
@@ -197,7 +193,6 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         int x = 0;
         int y = 0;
         
-        //Thur 04 Mar 7:55 PM
         NSDateFormatter *dateFormatter2 = [[NSDateFormatter alloc] init];
         [dateFormatter2 setDateFormat:@"LLLL dd, hh:mm a"];
         
@@ -205,7 +200,6 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         for (KBGoody *goody in goodies) {
             NSLog(@"goody %d", i);
             NSString *caption = [NSString stringWithFormat:@"%@ @ %@ on %@", goody.ownerName, goody.venueName, [dateFormatter2 stringFromDate:goody.createdAt]];
-            //NSLog(@"large image size: %@", NSStringFromCGSize([goody largeImageSize]));
             MockPhoto *photo = [[MockPhoto alloc] initWithURL:goody.largeImagePath smallURL:goody.mediumImagePath size:[goody largeImageSize] caption:caption];
             [tempTTPhotoArray addObject:photo];
             
@@ -260,11 +254,6 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 }
 
 - (void) displayAllImages {
-//    TTThumbsViewController *thumbs = [[TTThumbsViewController alloc] initWithDelegate:self];
-//    thumbs.photoSource = photoSource;
-//    [self.navigationController pushViewController:thumbs animated:YES];
-//    [thumbs release];
-    
     [[Beacon shared] startSubBeaconWithName:@"View All Photos"];
     KBPhotoViewController *photoController = [[KBPhotoViewController alloc] initWithPhotoSource:photoSource];
     photoController.goodies = goodies;
@@ -492,7 +481,6 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
             return newMayorCell;
         } else if ([[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"stolen"] || [[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"new"]) {
             if ([[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"stolen"]) {
-                //newMayorshipLabel.text = [NSString stringWithFormat:@"%@ (Crown stolen from %@)", [self getSingleCheckin].mayor.mayorCheckinMessage, [self getSingleCheckin].mayor.user.firstnameLastInitial];
                 newMayorshipLabel.text = [NSString stringWithFormat:@"Congrats! %@ is yours with %d check-ins and %@ lost their crown.", 
                                           [self getSingleCheckin].venue.name, 
                                           [self getSingleCheckin].mayor.numCheckins, 
@@ -1098,22 +1086,17 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     NSString *roundedFloatString = [NSString stringWithFormat:@"%.1f", ratio];
     float roundedFloat = [roundedFloatString floatValue];
     
-//    if (ratio < 1.4) {
     UIImage *img = [self imageByScalingToSize:initialImage toSize:CGSizeMake(480.0, round(480.0/roundedFloat))];
-//    } else {
-//        UIImage *img = [self imageByScalingToSize:initialImage toSize:CGSizeMake(480.0, 360.0)];
-//    }
     
     NSLog(@"image picker info: %@", info);
     
-//    UIImage *img = [self imageByScalingToSize:(UIImage*)[info objectForKey:UIImagePickerControllerOriginalImage] toSize:CGSizeMake(320.0, 480.0)];
     NSLog(@"image height: %f", img.size.height);
     NSLog(@"image width: %f", img.size.width);
     NSLog(@"image orientation: %d", img.imageOrientation);
     
     [self startProgressBar:@"Uploading photo..." withTimer:NO];
     // TODO: we'd have to confirm success to the user.
-    //       we also need to send a notification to the gift recipie    nt
+    //       we also need to send a notification to the gift recipient
     [self uploadImage:UIImageJPEGRepresentation(img, 1.0) 
              filename:@"gift.jpg" 
             withWidth:img.size.width 
