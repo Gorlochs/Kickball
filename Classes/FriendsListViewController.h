@@ -58,6 +58,6 @@
 - (IBAction) viewPreviousWelcomeImage;
 - (IBAction) displayOlderCheckins;
 - (void) setupSplashAnimation;
-- (void) showSplash;
+//- (void) showSplash;
 
 @end

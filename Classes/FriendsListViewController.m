@@ -129,7 +129,7 @@
 
 - (void) doInitialDisplay {
     [[Beacon shared] startSubBeaconWithName:@"Initial Friends List Display"];
-    [self startProgressBar:@"Retrieving friends' whereabouts..."]; 
+    [self startProgressBar:@"Retrieving friends' whereabouts..." withTimer:NO];
     
     if (!hasViewedInstructions) {
         [iconImageView setHidden:YES];
