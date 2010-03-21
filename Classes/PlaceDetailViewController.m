@@ -825,7 +825,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     NSString *vn = venue.name;
     NSString *hashInput = [NSString stringWithFormat:@"%@%@%@", uid, un, vn];
     NSString *hash = [hashInput hmacSha1:kKBHashSalt];
-    NSString *urlstring = @"https://www.gorlochs.com/kickball/push.php";
+    NSString *urlstring = @"https://www.gorlochs.com/kickball/app/push.php";
 	
 	NSURL *url = [NSURL URLWithString:urlstring];
 	NSOperationQueue *queue = [[[NSOperationQueue alloc] init] autorelease];

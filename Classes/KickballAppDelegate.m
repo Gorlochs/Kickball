@@ -366,7 +366,7 @@
 
 - (void) checkForEmergencyMessage {
     NSError *error = nil;
-	NSString *emergencyMessage = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://www.gorlochs.com/kickball/messages/kb.emergency.message"] 
+	NSString *emergencyMessage = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://www.gorlochs.com/kickball/app/messages/kb.emergency.message"] 
                                                           encoding:NSASCIIStringEncoding
                                                              error:&error];
     if (emergencyMessage != nil && ![emergencyMessage isEqualToString:@""]) {
