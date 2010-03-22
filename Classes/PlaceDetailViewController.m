@@ -179,14 +179,14 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
             } else if ([name isEqualToString:@"photo-width"]) {
                 goody.imageWidth = [value intValue];
             } else if ([name isEqualToString:@"created-at"]) {
-                goody.createdAt = [Utilities convertUTCCheckinDateToLocal:[goodyDateFormatter dateFromString:[[value stringByReplacingOccurrencesOfString:@"T" withString:@" "] stringByReplacingOccurrencesOfString:@"Z" withString:@" "]]];
+                goody.createdAt = [Utilities convertUTCCheckinDateToLocal:[goodyDateFormatter dateFromString:[[value stringByReplacingOccurrencesOfString:@"T" withString:@" "] stringByReplacingOccurrencesOfString:@"Z" withString:@""]]];
             }
         }
         
         [goodies addObject:goody];
         [goody release];
-        [goodyDateFormatter release];
     }
+    [goodyDateFormatter release];
     if ([goodies count] > 0) {
         giftCell.firstTimePhotoButton.hidden = YES;
 
