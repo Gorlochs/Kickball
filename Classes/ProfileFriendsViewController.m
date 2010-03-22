@@ -77,7 +77,7 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.imageView.image = [UIImage imageNamed:@"blank_boy2.png"];
+        cell.imageView.image = [UIImage imageNamed:@"blank_boy.png"];   
     }
     
     // Set up the cell...
@@ -88,7 +88,7 @@
     TTImageView *ttImage = [[[TTImageView alloc] initWithFrame:frame] autorelease];
     ttImage.urlPath = user.photo;
     ttImage.backgroundColor = [UIColor clearColor];
-    ttImage.defaultImage = [UIImage imageNamed:@"blank_boy2.png"];
+    ttImage.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
     ttImage.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
     [cell addSubview:ttImage];
     

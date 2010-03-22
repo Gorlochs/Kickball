@@ -249,7 +249,7 @@
         cell = [[[FriendsListTableCellv2 alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
         cell.textLabel.font = [UIFont boldSystemFontOfSize:14.0];
         cell.detailTextLabel.font = [UIFont systemFontOfSize:12.0];
-        cell.imageView.image = [UIImage imageNamed:@"blank_boy2.png"];
+        cell.imageView.image = [UIImage imageNamed:@"blank_boy.png"];
         
         UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 51, 320, 1)];
         line.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.13];
