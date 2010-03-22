@@ -185,6 +185,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         
         [goodies addObject:goody];
         [goody release];
+        [goodyDateFormatter release];
     }
     if ([goodies count] > 0) {
         giftCell.firstTimePhotoButton.hidden = YES;
@@ -202,6 +203,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
             NSString *caption = [NSString stringWithFormat:@"%@ @ %@ on %@", goody.ownerName, goody.venueName, [dateFormatter2 stringFromDate:goody.createdAt]];
             MockPhoto *photo = [[MockPhoto alloc] initWithURL:goody.largeImagePath smallURL:goody.mediumImagePath size:[goody largeImageSize] caption:caption];
             [tempTTPhotoArray addObject:photo];
+            [photo release];
             
             CGRect frame = CGRectMake(x*THUMBNAIL_IMAGE_SIZE, y*THUMBNAIL_IMAGE_SIZE, THUMBNAIL_IMAGE_SIZE, THUMBNAIL_IMAGE_SIZE);
             TTImageView *ttImage = [[TTImageView alloc] initWithFrame:frame];
@@ -228,6 +230,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
             }
         }
         [giftCell sendSubviewToBack:giftCell.bgImage];
+        [dateFormatter2 release];
         
         photoSource = [[MockPhotoSource alloc] initWithType:MockPhotoSourceNormal title:venue.name photos:tempTTPhotoArray photos2:nil];
         [tempTTPhotoArray release];
@@ -601,6 +604,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
             break;
         case 6:
             if ([goodies count] == 0) {
+                [headerLabel release];
                 return nil;
             } else {
                 photoHeaderLabel.text = [NSString stringWithFormat:@"%d %@", [goodies count], [goodies count] == 1 ? @"Photo" : @"Photos"];

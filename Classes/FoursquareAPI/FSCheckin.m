@@ -16,6 +16,7 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EEE, dd MMM yy HH:mm:ss"];
     NSDate *gmtDate = [dateFormatter dateFromString:self.created];
+    [dateFormatter release];
     NSTimeInterval timeZoneOffset = [[NSTimeZone defaultTimeZone] secondsFromGMT];
     NSTimeInterval localTimeInterval = [gmtDate timeIntervalSinceReferenceDate] + timeZoneOffset;
     NSDate *localDate = [NSDate dateWithTimeIntervalSinceReferenceDate:localTimeInterval];
