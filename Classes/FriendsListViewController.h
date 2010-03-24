@@ -25,8 +25,6 @@
     IBOutlet UITableViewCell *footerViewCell;
     IBOutlet UITableViewCell *moreCell;
     
-    NSMutableDictionary *userIcons;
-    
     int welcomePageNum;
     IBOutlet UIButton *nextWelcomeImage;
     IBOutlet UIButton *previousWelcomeImage;

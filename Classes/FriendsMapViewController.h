@@ -29,5 +29,6 @@
 - (void) showProfile:(id)sender;
 - (IBAction) retrieveNewFriendLocationsAndRefresh;
 - (IBAction) viewPlacesMap;
+- (void) refreshEverything;
 
 @end

@@ -202,7 +202,6 @@
     [noNetworkView release];
     [footerViewCell release];
     [moreCell release];
-    [userIcons release];
     [nextWelcomeImage release];
     [previousWelcomeImage release];
     [welcomeImage release];
@@ -448,7 +447,6 @@
         recentCheckins = [[NSMutableArray alloc] init];
         todayCheckins = [[NSMutableArray alloc] init];
         yesterdayCheckins = [[NSMutableArray alloc] init];
-        userIcons = [[NSMutableDictionary alloc] initWithCapacity:1];
         
         NSDate *oneHourFromNow = [[NSDate alloc] initWithTimeIntervalSinceNow:-60*60*1];
         NSDate *twentyfourHoursFromNow = [[NSDate alloc] initWithTimeIntervalSinceNow:-60*60*24];
@@ -466,11 +464,6 @@
             } else {
                 [self.yesterdayCheckins addObject:checkin];
             }
-            // create dictionary of icons to help speed up the scrolling
-    //        CGRect frame = CGRectMake(0, 0, 36, 36);
-    //        KBAsyncImageView* asyncImage = [[[KBAsyncImageView alloc] initWithFrame:frame] autorelease];
-    //        [asyncImage loadImageFromURL:[NSURL URLWithString:checkin.user.photo] withRoundedEdges: YES];
-    //        [userIcons setObject:asyncImage forKey:checkin.checkinId];
             
             NSDateComponents *components = [gregorian components:unitFlags fromDate:[self convertToUTC:[NSDate date]] toDate:date options:0];
             NSInteger minutes = [components minute] * -1;
@@ -514,10 +507,8 @@
         NSLog(@"finished with checkin response");
         
         if (!hasViewedInstructions) {
-            //[self stopProgressBar];
             [standardUserDefaults setBool:YES forKey:@"viewedInstructions"];
             hasViewedInstructions = YES;
-            //[instructionView removeFromSuperview];
         }
     }
 }

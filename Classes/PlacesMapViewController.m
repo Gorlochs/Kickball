@@ -13,6 +13,7 @@
 #import "PlaceDetailViewController.h"
 #import "PlacesListViewController.h"
 #import "FriendsListViewController.h"
+#import "FriendsMapViewController.h"
 
 
 @implementation PlacesMapViewController
@@ -52,7 +53,9 @@
 }
 
 - (void) viewFriendsMap {
-    
+    FriendsMapViewController *friendsMapController = [[FriendsMapViewController alloc] initWithNibName:@"FriendsMapView" bundle:nil];
+    [self.navigationController pushViewController:friendsMapController animated:NO];
+    [friendsMapController release];
 }
 
 -(void) viewDidAppear:(BOOL)animated{
@@ -336,13 +339,13 @@
     searchbox.text = @"";
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+- (BOOL) textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     [self searchOnKeywordsandLatLong];
     return YES;
 }
 
-- (void)dealloc {
+- (void) dealloc {
     // all this is a fix for the MKMapView bug where the bouncing blue dot animation causes a crash when you go back one view
     [self.mapViewer removeAnnotations:self.mapViewer.annotations];
     self.mapViewer.delegate = nil;

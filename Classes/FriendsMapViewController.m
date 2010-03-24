@@ -14,6 +14,7 @@
 #import "ProfileViewController.h"
 #import "PlacesListViewController.h"
 #import "PlacesMapViewController.h"
+#import "Utilities.h"
 
 
 @implementation FriendsMapViewController
@@ -30,7 +31,46 @@
 -(void) viewDidAppear:(BOOL)animated{
 	[super viewDidAppear:animated];
     [self startProgressBar:@"Retrieving map..."];
-	[self refreshFriendPoints];
+    if (checkins) {
+        [self refreshEverything];
+    } else {
+        [[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
+    }
+}
+
+//- (void)initialCheckinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+//    NSString *errorMessage = [FoursquareAPI errorFromResponseXML:inString];
+//    if (errorMessage) {
+//        [self displayFoursquareErrorMessage:errorMessage];
+//    } else {
+//        NSArray * allCheckins = [FoursquareAPI checkinsFromResponseXML:inString];
+//        self.checkins = [allCheckins copy];
+//        allCheckins = nil;
+//        
+//        checkins = [[NSMutableArray alloc] init];
+//        
+//        NSDate *oneHourFromNow = [[NSDate alloc] initWithTimeIntervalSinceNow:-60*60*1];
+//        NSDate *twentyfourHoursFromNow = [[NSDate alloc] initWithTimeIntervalSinceNow:-60*60*24];
+//        oneHourFromNow = [Utilities convertUTCCheckinDateToLocal:oneHourFromNow];
+//        twentyfourHoursFromNow = [Utilities convertUTCCheckinDateToLocal:twentyfourHoursFromNow];
+//        
+//        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//        [dateFormatter setDateFormat:@"EEE, dd MMM yy HH:mm:ss"];
+//        for (FSCheckin *checkin in checkins) {
+//            NSDate *date = [dateFormatter dateFromString:checkin.created];
+//            if ([date compare:oneHourFromNow] == NSOrderedDescending) {
+//                [checkins addObject:checkin];
+//            } else if ([date compare:oneHourFromNow] == NSOrderedAscending && [date compare:twentyfourHoursFromNow] == NSOrderedDescending) {
+//                [checkins addObject:checkin];
+//            }
+//        }
+//    }
+//    [self refreshEverything];
+//    [self stopProgressBar];
+//}
+
+- (void) refreshEverything {
+    [self refreshFriendPoints];
     [self refreshMapRegion];
 }
 
@@ -50,7 +90,7 @@
 
 // map is to be centered on the user and a generic zoom level
 // FUTURE: allow user to set zoom level in settings
-- (void) setCheckins:(NSArray *) checkin{
+- (void) setCheckins:(NSArray *) checkin {
 	[self.checkins release];
 	checkins = checkin;
 	[self.checkins retain];
