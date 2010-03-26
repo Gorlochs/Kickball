@@ -10,16 +10,19 @@
 
 @implementation FriendPlacemark
 
-@synthesize coordinate, url, userId, title, subtitle;
+@synthesize coordinate, checkin, title, subtitle;
 
--(id)initWithCoordinate:(CLLocationCoordinate2D) c{
-	coordinate=c;
+-(id)initWithCoordinate:(CLLocationCoordinate2D) c {
+	coordinate = c;
+//    subtitle = checkin.venue.addressWithCrossstreet;
+//    title = checkin.display;
 	return self;
 }
 
 - (void) dealloc {
-    [url release];
-    [userId release];
+//    [url release];
+//    [userId release];
+    [checkin release];
     [title release];
     [subtitle release];
     [super dealloc];

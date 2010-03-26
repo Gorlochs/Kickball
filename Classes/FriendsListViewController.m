@@ -81,8 +81,10 @@
     isDisplayingMore = NO;
     
     dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
     [dateFormatter setDateFormat:@"EEE, dd MMM yy HH:mm:ss"];
     gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    [gregorian setLocale:[NSLocale currentLocale]];
     
     // check to see if we need to display the instruction view
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
@@ -157,7 +159,7 @@
 }
 
 - (void)userResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    NSLog(@"authenticated user: %@", inString);
+    //NSLog(@"authenticated user: %@", inString);
 	FSUser* user = [[FoursquareAPI userFromResponseXML:inString] retain];
     if (hasViewedInstructions) {
         [self setUserIconViewCustom:user];
@@ -284,7 +286,7 @@
         cell.detailTextLabel.text = checkin.venue.addressWithCrossstreet;
     }
     
-    UILabel *numberOfTimeUnits = [[UILabel alloc] initWithFrame:CGRectMake(285, 5, 30, 20)];
+    UILabel *numberOfTimeUnits = [[UILabel alloc] initWithFrame:CGRectMake(290, 5, 37, 20)];
     numberOfTimeUnits.text = checkin.truncatedTimeNumeral;
     numberOfTimeUnits.font = [UIFont systemFontOfSize:20.0];
     numberOfTimeUnits.textColor = [UIColor colorWithWhite:0.0 alpha:0.3];

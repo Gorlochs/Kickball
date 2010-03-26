@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import	<MapKit/MapKit.h>
+#import "FSCheckin.h"
 
 
 @interface FriendIconAnnotationView : MKAnnotationView {
@@ -20,7 +21,7 @@
 	NSURL* url;
 }
 
-- (id)initWithAnnotation:(id )annotation reuseIdentifier:(NSString *)reuseIdentifier andImageUrl:(NSString *) url;
+- (id)initWithAnnotation:(id )annotation reuseIdentifier:(NSString *)reuseIdentifier andCheckin:(FSCheckin *) url;
 
 @property (nonatomic, retain) UIImageView * imageView;
 @property (nonatomic, retain) NSString* userData;

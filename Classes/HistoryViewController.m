@@ -19,9 +19,11 @@
     [[FoursquareAPI sharedInstance] getCheckinHistoryWithTarget:self andAction:@selector(historyResponseReceived:withResponseString:)];
     
     dateFormatterD2S = [[NSDateFormatter alloc] init];
+    [dateFormatterD2S setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
     [dateFormatterD2S setDateFormat: @"HH:mma "]; // 2009-02-01 19:50:41 PST
     
     dateFormatterS2D = [[NSDateFormatter alloc] init];
+    [dateFormatterS2D setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
     [dateFormatterS2D setDateFormat:@"EEE, dd MMM yy HH:mm:ss"];
 }
 
@@ -31,6 +33,7 @@
     
     NSDateFormatter *dayOfWeekFormatter = [[NSDateFormatter alloc] init];
     [dayOfWeekFormatter setDateFormat: @"EEEE, MMMM d "];
+    //[dayOfWeekFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
     checkinDaysOfWeek = [[NSMutableArray alloc] initWithCapacity:1];
     checkinsByDate = [[NSMutableArray alloc] initWithCapacity:1];
     

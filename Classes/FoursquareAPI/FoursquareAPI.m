@@ -645,7 +645,7 @@ static FoursquareAPI *sharedInstance = nil;
 	CXMLDocument *checkinParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
 	NSLog(@"%@", [err localizedDescription]);
 	
-	NSLog(@"checkins xml: %@", checkinParser);
+	//NSLog(@"checkins xml: %@", checkinParser);
     
 	NSArray *allCheckinAttrs = [checkinParser nodesForXPath:@"//checkins" error:nil];
     
@@ -663,7 +663,7 @@ static FoursquareAPI *sharedInstance = nil;
 	CXMLDocument *checkinParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
 	NSLog(@"%@", [err localizedDescription]);
 	
-	NSLog(@"checkins xml: %@", checkinParser);
+	//NSLog(@"checkins xml: %@", checkinParser);
     
 	NSArray *allCheckinAttrs = [checkinParser nodesForXPath:@"//checkin" error:nil];
     NSArray *checkins = nil;
@@ -676,7 +676,7 @@ static FoursquareAPI *sharedInstance = nil;
 }
 
 + (NSString*) errorFromResponseXML:(NSString*) inString {
-    NSLog(@"instring for error check: %@", inString);
+    //NSLog(@"instring for error check: %@", inString);
     BOOL hasError = [inString rangeOfString:@"<error>"].location || [inString rangeOfString:@"<ratelimited>"].location != NSNotFound;
     if (hasError) {
         NSError * err;

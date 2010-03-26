@@ -140,6 +140,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     
     // prepare date formatter
     NSDateFormatter *goodyDateFormatter = [[NSDateFormatter alloc] init];
+    [goodyDateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
     [goodyDateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     
     // Loop through the resultNodes to access each items actual data
@@ -197,6 +198,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         int y = 0;
         
         NSDateFormatter *dateFormatter2 = [[NSDateFormatter alloc] init];
+        [dateFormatter2 setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
         [dateFormatter2 setDateFormat:@"LLLL dd, hh:mm a"];
         
         NSMutableArray *tempTTPhotoArray = [[NSMutableArray alloc] initWithCapacity:[goodies count]];
@@ -511,13 +513,13 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
             FSCheckin *currentCheckin = ((FSCheckin*)[venue.currentCheckins objectAtIndex:indexPath.row]);
             cell.textLabel.text = currentCheckin.user.firstnameLastInitial;
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            cell.imageView.image = [UIImage imageNamed:@"blank_boy2.png"];
+            cell.imageView.image = [UIImage imageNamed:@"blank_boy.png"];
             
-            CGRect frame = CGRectMake(-3,-3,36,36);
+            CGRect frame = CGRectMake(0,0,36,36);
             TTImageView *ttImage = [[[TTImageView alloc] initWithFrame:frame] autorelease];
             ttImage.urlPath = currentCheckin.user.photo;
             ttImage.backgroundColor = [UIColor clearColor];
-            ttImage.defaultImage = [UIImage imageNamed:@"blank_boy2.png"];
+            ttImage.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
             ttImage.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
             [cell.imageView addSubview:ttImage];
         } else {
@@ -770,7 +772,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     [self startProgressBar:@"Checking in to this venue..."];
     [[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:venue.venueid 
                                                   andShout:nil 
-                                                   offGrid:!isPingOn
+                                                   offGrid:doCheckin ? NO : !isPingOn
                                                  toTwitter:isTwitterOn
                                                 withTarget:self 
                                                  andAction:@selector(checkinResponseReceived:withResponseString:)];

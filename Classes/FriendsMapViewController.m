@@ -126,14 +126,11 @@
 			FSUser * checkUser = checkin.user;
 
 			FriendPlacemark *placemark=[[FriendPlacemark alloc] initWithCoordinate:location];
-			if(checkUser.photo != nil){
-				placemark.url = checkUser.photo;
-			}
+
             NSLog(@"checkuser: %@", checkUser);
+            placemark.checkin = checkin;
             placemark.title = checkin.display;
             placemark.subtitle = checkin.venue.addressWithCrossstreet;
-            //placemark.subtitle = checkUser.lastname;
-            placemark.userId = checkUser.userId;
 			[mapViewer addAnnotation:placemark];
             [placemark release];
 		}
@@ -177,7 +174,7 @@
 	FriendIconAnnotationView* pinView = nil;
 	if (!pinView){
 		// If an existing pin view was not available, create one
-		pinView = [[[FriendIconAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomPinAnnotation" andImageUrl:((FriendPlacemark *)annotation).url] autorelease];
+		pinView = [[[FriendIconAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomPinAnnotation" andCheckin:((FriendPlacemark *)annotation).checkin] autorelease];
 	} else {
         pinView.annotation = annotation;
     }
@@ -192,7 +189,7 @@
 	[myDetailButton setImage:[UIImage imageNamed:@"button_right.png"] forState:UIControlStateNormal];
 	[myDetailButton addTarget:self action:@selector(showProfile:) forControlEvents:UIControlEventTouchUpInside]; 
 	
-    int postag = [((FriendPlacemark*)annotation).userId intValue];
+    int postag = [((FriendPlacemark*)annotation).checkin.user.userId intValue];
 	myDetailButton.tag  = postag;
 	
 	// Set the button as the callout view

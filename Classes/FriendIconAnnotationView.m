@@ -18,34 +18,24 @@
 @implementation FriendIconAnnotationView
 @synthesize imageView, userData, title, subtitle, url, userId;
 
-- (id)initWithAnnotation:(id )annotation reuseIdentifier:(NSString *)reuseIdentifier andImageUrl:(NSString *) inUrl{
+- (id)initWithAnnotation:(id )annotation reuseIdentifier:(NSString *)reuseIdentifier andCheckin:(FSCheckin *) checkin{
 	self = [super initWithAnnotation:annotation reuseIdentifier:reuseIdentifier];
 	self.frame = CGRectMake(0, 0, kWidth, kHeight);
 	self.backgroundColor = [UIColor whiteColor];
-	if(inUrl){
-//		NSURL *imgUrl = [NSURL URLWithString:inUrl];
-//		NSData *data = [NSData dataWithContentsOfURL:imgUrl];
-//		UIImage *img = [[UIImage alloc] initWithData:data];
-		
-        NSLog(@"map icon url: %@", inUrl);
-		imageView = [[UIImageView alloc] initWithImage:[[Utilities sharedInstance] getCachedImage:inUrl]];
+	if (checkin.user.photo){
+        //NSLog(@"map icon url: %@", inUrl);
+        imageView = [[UIImageView alloc] initWithImage:[[Utilities sharedInstance] getCachedImage:checkin.user.photo]];
 		imageView.frame = CGRectMake(kBorder, kBorder, kWidth - 2 * kBorder, kWidth - 2 * kBorder);
+        imageView.alpha = 1.0;
+        self.alpha = 1.0;
+        imageView.backgroundColor = [UIColor clearColor];
 		[self addSubview:imageView];
-        //        [img release];
 	}
 		
 	return self;
 }
 
-//- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-//    ProfileViewController *profileController = [[ProfileViewController alloc] initWithNibName:@"ProfileView" bundle:nil];
-//    profileController.userId = userId;
-//    [((FriendsMapViewController*)self.superview.superview.superview.superview.superview.superview.superview).navigationController pushViewController:profileController animated:YES];
-//    [profileController release];
-//}
-
--(void) dealloc
-{
+-(void) dealloc {
     [title release];
     [subtitle release];
     [url release];
