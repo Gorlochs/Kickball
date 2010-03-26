@@ -7,6 +7,7 @@
 //
 
 #import "FSCheckin.h"
+#import "Utilities.h"
 
 
 @implementation FSCheckin
