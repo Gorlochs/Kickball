@@ -68,7 +68,8 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
         NSLog(@"INAPPROPRIATE!!!!");
-        NSString *gorlochUrlString = [NSString stringWithFormat:@"http://kickball.gorlochs.com/kickball/gifts/inappropriate/%@.xml", 
+        NSString *gorlochUrlString = [NSString stringWithFormat:@"%@/gifts/inappropriate/%@.xml",
+                                      kickballDomain,
                                       ((KBGoody*)[goodies objectAtIndex:actionSheet.tag]).goodyId];
         NSLog(@"url: %@", gorlochUrlString);
         ASIHTTPRequest *gorlochRequest = [[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:gorlochUrlString]] autorelease];

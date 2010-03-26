@@ -24,7 +24,6 @@
 #import "FriendRequestsViewController.h"
 #import "KickballAppDelegate.h"
 
-
 @interface FriendsListViewController (Private)
 
 - (NSDate*) convertToUTC:(NSDate*)sourceDate;
@@ -39,6 +38,7 @@
 
 - (void) viewDidLoad {
     [super viewDidLoad];
+    
 //    [self setupSplashAnimation];
 ////    [self showSplash];
 ////}

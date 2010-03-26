@@ -488,12 +488,14 @@
 		6ADC9C1A10D1EE5100CFDCA7 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ADC9C1910D1EE5100CFDCA7 /* Utilities.m */; };
 		6ADC9EC610D3F08600CFDCA7 /* AddPlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ADC9EC410D3F08600CFDCA7 /* AddPlaceViewController.m */; };
 		6ADC9EC710D3F08600CFDCA7 /* AddPlaceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6ADC9EC510D3F08600CFDCA7 /* AddPlaceViewController.xib */; };
+		6ADD23B7115AE24E005D14BE /* changelog in Resources */ = {isa = PBXBuildFile; fileRef = 6ADD23B6115AE24E005D14BE /* changelog */; };
 		6AE37D6E1118C68A00C6585B /* show02.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AE37D6B1118C68A00C6585B /* show02.png */; };
 		6AE37D6F1118C68A00C6585B /* show01.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AE37D6C1118C68A00C6585B /* show01.png */; };
 		6AE37D701118C68A00C6585B /* search_new.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AE37D6D1118C68A00C6585B /* search_new.png */; };
 		6AE37D821118DA7400C6585B /* gradient-bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AE37D801118DA7400C6585B /* gradient-bottom.png */; };
 		6AE37D831118DA7400C6585B /* gradient-top.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AE37D811118DA7400C6585B /* gradient-top.png */; };
 		6AE61217109AB04C008ABF79 /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AF96710109AA32700EF665D /* ProfileView.xib */; };
+		6AE7FB68115D1F5B0073979E /* KBStats.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AE7FB67115D1F5B0073979E /* KBStats.m */; };
 		6AEB63D4110BA9BE0066DD05 /* PushNotificationView.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6AEB63D3110BA9BE0066DD05 /* PushNotificationView.xib */; };
 		6AEB63D7110BAA8C0066DD05 /* KBPushNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AEB63D6110BAA8C0066DD05 /* KBPushNotificationView.m */; };
 		6AEE016D1107DD3E0088A488 /* twitter_OFF.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AEE016C1107DD3E0088A488 /* twitter_OFF.png */; };
@@ -1237,11 +1239,14 @@
 		6ADC9EC310D3F08600CFDCA7 /* AddPlaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPlaceViewController.h; sourceTree = "<group>"; };
 		6ADC9EC410D3F08600CFDCA7 /* AddPlaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPlaceViewController.m; sourceTree = "<group>"; };
 		6ADC9EC510D3F08600CFDCA7 /* AddPlaceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AddPlaceViewController.xib; path = Classes/AddPlaceViewController.xib; sourceTree = "<group>"; };
+		6ADD23B6115AE24E005D14BE /* changelog */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = changelog; sourceTree = "<group>"; };
 		6AE37D6B1118C68A00C6585B /* show02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = show02.png; sourceTree = "<group>"; };
 		6AE37D6C1118C68A00C6585B /* show01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = show01.png; sourceTree = "<group>"; };
 		6AE37D6D1118C68A00C6585B /* search_new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_new.png; sourceTree = "<group>"; };
 		6AE37D801118DA7400C6585B /* gradient-bottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gradient-bottom.png"; sourceTree = "<group>"; };
 		6AE37D811118DA7400C6585B /* gradient-top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gradient-top.png"; sourceTree = "<group>"; };
+		6AE7FB66115D1F5B0073979E /* KBStats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBStats.h; sourceTree = "<group>"; };
+		6AE7FB67115D1F5B0073979E /* KBStats.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBStats.m; sourceTree = "<group>"; };
 		6AEB63D3110BA9BE0066DD05 /* PushNotificationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PushNotificationView.xib; sourceTree = "<group>"; };
 		6AEB63D5110BAA8C0066DD05 /* KBPushNotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBPushNotificationView.h; sourceTree = "<group>"; };
 		6AEB63D6110BAA8C0066DD05 /* KBPushNotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBPushNotificationView.m; sourceTree = "<group>"; };
@@ -1378,6 +1383,7 @@
 				6A402A8910B755B200D9BCEB /* JSON */,
 				6A402A9710B755B200D9BCEB /* GeoAPI */,
 				553C50FD10A1BD5000A74641 /* FoursquareAPI */,
+				6AE7FB64115D1F160073979E /* Kickball Stats API */,
 				553C510810A1BD5000A74641 /* MPOAuth */,
 				553C512E10A1BD5000A74641 /* tidy */,
 				553C516510A1BD5100A74641 /* TouchXML */,
@@ -1447,6 +1453,7 @@
 				6AF2F0AD10C2EBB300A29C96 /* TipView.xib */,
 				6A79D0D810E5E692009082E5 /* PopupMessageView.xib */,
 				6AEB63D3110BA9BE0066DD05 /* PushNotificationView.xib */,
+				6ADD23B6115AE24E005D14BE /* changelog */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -2340,6 +2347,15 @@
 			name = "Add Venue";
 			sourceTree = "<group>";
 		};
+		6AE7FB64115D1F160073979E /* Kickball Stats API */ = {
+			isa = PBXGroup;
+			children = (
+				6AE7FB66115D1F5B0073979E /* KBStats.h */,
+				6AE7FB67115D1F5B0073979E /* KBStats.m */,
+			);
+			name = "Kickball Stats API";
+			sourceTree = "<group>";
+		};
 		6AF0561C11066DDB0056327E /* addPlace */ = {
 			isa = PBXGroup;
 			children = (
@@ -2894,6 +2910,7 @@
 				6AB58F051156D7890023C7C3 /* justChecked.png in Resources */,
 				6AB58F131156D81C0023C7C3 /* settingsFriendRequests01.png in Resources */,
 				6AB58F141156D81C0023C7C3 /* settingsFriendRequests02.png in Resources */,
+				6ADD23B7115AE24E005D14BE /* changelog in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3065,6 +3082,7 @@
 				6A649A0B113F629800052FF9 /* KBPhotoThumbnailCell.m in Sources */,
 				6AFC882C1141D82B00B171C9 /* FriendsListTableCellv2.m in Sources */,
 				6A72CF34114C8A0000800692 /* FSCategory.m in Sources */,
+				6AE7FB68115D1F5B0073979E /* KBStats.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

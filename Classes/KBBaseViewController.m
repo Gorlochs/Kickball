@@ -20,6 +20,8 @@
 
 #define PROGRESS_BAR_TIMER_LENGTH 30.0
 
+const NSString *kickballDomain = @"http://gorlochs.literalshore.com:3000/kickball";
+
 @implementation KBBaseViewController
 
 @synthesize loginViewModal;

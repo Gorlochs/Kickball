@@ -31,6 +31,7 @@
 #import "KBGoody.h"
 #import "KBPhotoViewController.h"
 #import "LocationManager.h"
+#import "KBStats.h"
 
 static inline double radians (double degrees) {return degrees * M_PI/180;}
 
@@ -109,7 +110,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 
 - (void) retrievePhotos {
     // get gift info
-    NSString *gorlochUrlString = [NSString stringWithFormat:@"http://kickball.gorlochs.com/kickball/gifts/venue/%@.xml", venueId];
+    NSString *gorlochUrlString = [NSString stringWithFormat:@"%@/gifts/venue/%@.xml", kickballDomain, venueId];
     NSLog(@"url: %@", gorlochUrlString);
     ASIHTTPRequest *gorlochRequest = [[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:gorlochUrlString]] autorelease];
             
@@ -788,6 +789,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         isUserCheckedIn = YES;
         [theTableView reloadData];
         FSCheckin *ci = [self getSingleCheckin];
+        [[KBStats stats] checkinStat:ci];
         if (ci.specials != nil) {
             specialsButton.hidden = NO;
         }
@@ -1242,7 +1244,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     
     // Return if there is no image
     if(imageData != nil){
-        url = [NSURL URLWithString:@"http://kickball.gorlochs.com/kickball/gifts.xml"];
+        url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/gifts.xml", kickballDomain]];
         request = [[[ASIFormDataRequest alloc] initWithURL:url] autorelease];
         [request setPostValue:venueId forKey:@"gift[venue_id]"];
         [request setPostValue:[self getAuthenticatedUser].userId forKey:@"gift[owner_id]"];
