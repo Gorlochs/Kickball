@@ -80,9 +80,6 @@
     welcomePageNum = 1;
     isDisplayingMore = NO;
     
-    dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
-    [dateFormatter setDateFormat:@"EEE, dd MMM yy HH:mm:ss"];
     gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     [gregorian setLocale:[NSLocale currentLocale]];
     
@@ -208,7 +205,6 @@
     [previousWelcomeImage release];
     [welcomeImage release];
     [splashView release];
-    [dateFormatter release];
     [gregorian release];
     [super dealloc];
 }
@@ -458,7 +454,7 @@
         NSUInteger unitFlags = NSMinuteCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit;
         
         for (FSCheckin *checkin in checkins) {
-            NSDate *date = [dateFormatter dateFromString:checkin.created];
+            NSDate *date = [[[Utilities sharedInstance] foursquareCheckinDateFormatter] dateFromString:checkin.created];
             if ([date compare:oneHourFromNow] == NSOrderedDescending) {
                 [self.recentCheckins addObject:checkin];
             } else if ([date compare:oneHourFromNow] == NSOrderedAscending && [date compare:twentyfourHoursFromNow] == NSOrderedDescending) {

@@ -21,10 +21,6 @@
     dateFormatterD2S = [[NSDateFormatter alloc] init];
     [dateFormatterD2S setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
     [dateFormatterD2S setDateFormat: @"HH:mma "]; // 2009-02-01 19:50:41 PST
-    
-    dateFormatterS2D = [[NSDateFormatter alloc] init];
-    [dateFormatterS2D setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
-    [dateFormatterS2D setDateFormat:@"EEE, dd MMM yy HH:mm:ss"];
 }
 
 - (void) historyResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
@@ -105,8 +101,6 @@
         cell.textLabel.text = checkin.venue.name;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-//    NSDate *date = [dateFormatterS2D dateFromString:[checkin convertUTCCheckinDateToLocal]];
-//    cell.detailTextLabel.text = [dateFormatterD2S stringFromDate:date];
     
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     
@@ -138,7 +132,6 @@
 - (void)dealloc {
     [theTableView release];
     [checkins release];
-    [dateFormatterS2D release];
     [dateFormatterD2S release];
     [super dealloc];
 }

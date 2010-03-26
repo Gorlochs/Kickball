@@ -18,7 +18,7 @@ static Utilities *sharedInstance = nil;
 
 @implementation Utilities
 
-@synthesize friendsWithPingOn;
+@synthesize friendsWithPingOn, foursquareCheckinDateFormatter;
 
 + (Utilities*)sharedInstance
 {
@@ -62,8 +62,16 @@ static Utilities *sharedInstance = nil;
     return self;
 }
 
-- (void) cacheImage: (NSString *) imageURLString
-{
+- (NSDateFormatter*) foursquareCheckinDateFormatter {
+    if (!foursquareCheckinDateFormatter) {
+        foursquareCheckinDateFormatter = [[NSDateFormatter alloc] init];
+        [foursquareCheckinDateFormatter setDateFormat:@"EEE, dd MMM yy HH:mm:ss"];
+        [foursquareCheckinDateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];  
+    }
+    return foursquareCheckinDateFormatter;
+}
+
+- (void) cacheImage: (NSString *) imageURLString {
     NSURL *imageURL = [NSURL URLWithString: imageURLString];
     
     // Generate a unique path to a resource representing the image you want

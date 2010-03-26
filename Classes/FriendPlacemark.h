@@ -12,17 +12,12 @@
 
 @interface FriendPlacemark : NSObject<MKAnnotation> {
 	CLLocationCoordinate2D coordinate;
-//	NSString *url;
-//    NSString *userId;
     NSString *title;
     NSString *subtitle;
-    
     FSCheckin *checkin;
 }
 
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
-//@property (nonatomic, retain) NSString * url;
-//@property (nonatomic, retain) NSString * userId;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * subtitle;
 @property (nonatomic, retain) FSCheckin *checkin;

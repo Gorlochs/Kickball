@@ -36,8 +36,6 @@
     IBOutlet UIImageView *splashView;
     IBOutlet UIImageView *fadeOutImage;
     
-    NSDateFormatter *dateFormatter;
-    
     NSCalendar *gregorian;
 //    UIImageView *mayorImageView;
 }

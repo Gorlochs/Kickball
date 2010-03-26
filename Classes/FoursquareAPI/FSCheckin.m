@@ -13,12 +13,8 @@
 @synthesize message, venue, badges, specials, created, checkinId, shout, display, user, scoring, mayor, isMayor, truncatedTimeUnits, truncatedTimeNumeral;
 
 - (NSDate*) convertUTCCheckinDateToLocal {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"EEE, dd MMM yy HH:mm:ss"];
-    [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
-    NSDate *gmtDate = [dateFormatter dateFromString:self.created];
+    NSDate *gmtDate = [[[Utilities sharedInstance] foursquareCheckinDateFormatter] dateFromString:self.created];
     NSLog(@"checkin created on: %@", self.created);
-    [dateFormatter release];
     NSTimeInterval timeZoneOffset = [[NSTimeZone defaultTimeZone] secondsFromGMT];
     NSTimeInterval localTimeInterval = [gmtDate timeIntervalSinceReferenceDate] + timeZoneOffset;
     NSDate *localDate = [NSDate dateWithTimeIntervalSinceReferenceDate:localTimeInterval];
