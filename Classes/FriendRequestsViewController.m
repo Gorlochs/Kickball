@@ -20,6 +20,7 @@
     toolbar.frame = CGRectMake(0, 436, 320, 44);
     [self.view addSubview:toolbar];
     toolbar.hidden = YES;
+//    doneButton.hidden = YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -347,6 +348,17 @@
         [self searchByName];
     }
     return YES;
+}
+
+- (void) doneEditing {
+    if ([twitterText isFirstResponder]) {
+        [self searchByTwitter];
+    } else if ([phoneText isFirstResponder]) {
+        [self searchByPhone];
+    } else if ([nameText isFirstResponder]) {
+        [self searchByName];
+    }
+    [self resignAllResponders];
 }
 
 @end

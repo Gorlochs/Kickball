@@ -25,6 +25,7 @@
     NSArray *friendRequests;
     CGFloat animatedDistance;
     IBOutlet UIToolbar *toolbar;
+    IBOutlet UIBarButtonItem *doneButton;
 }
 
 - (IBAction) searchAddressBook;
@@ -35,5 +36,6 @@
 - (void) resignAllResponders;
 - (void) animateToolbar:(CGRect)toolbarFrame;
 - (IBAction) cancelEdit;
+- (IBAction) doneEditing;
 
 @end
