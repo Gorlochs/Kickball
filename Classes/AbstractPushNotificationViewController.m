@@ -76,10 +76,13 @@
 	NSString *result = request.responseString;
 	NSLog(@"Response from push: %@", result);
 	
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"shoutSent"
-                                                        object:nil
-                                                      userInfo:nil];
-
+    // without the hasPhoto check, the user gets two popup messages, which sucks
+    if (!self.venueToPush) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"shoutSent"
+                                                            object:nil
+                                                          userInfo:nil];
+    }
+    
     // change hasPhoto to NO just in case a user checks into a venue AFTER uploading a photo
     self.hasPhoto = NO;
 }
