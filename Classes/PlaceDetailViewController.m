@@ -407,8 +407,6 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     detailButtonCell = nil;
     shoutCell = nil;
     
-    //venueName = nil;
-    //venueAddress = nil;
     mayorNameLabel = nil;
     mayorCheckinCountLabel = nil;
     badgeLabel = nil;
@@ -444,7 +442,6 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         return [venue.currentCheckins count] + 1;
     } else if (section == 8) { // tips
         return [venue.tips count];
-        //return [venue.currentCheckins count];  // WTF? Where did this come from?
     } else if (section == 9) { // bottom button row
         return 1;
     } else {
@@ -808,58 +805,9 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         [checkinText release];
         [message release];
         
-        if (isPingOn) {
-            // TODO: make this asynchronous
-            if ([[Utilities sharedInstance] friendsWithPingOn]) {
-                NSLog(@"friends with ping on pulled from cache: %@", [[[Utilities sharedInstance] friendsWithPingOn] componentsJoinedByString:@","]);
-                [self friendsReceived:nil];
-            } else {
-                [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(friendsReceived:) name:@"friendsWithPingOnReceived" object:nil];
-            }   
-        }
+        self.venueToPush = ci.venue;
+        [self sendPushNotification];
     }
-}
-
-- (void)friendsReceived:(NSNotification *)inNotification {
-    NSMutableArray *friendIds = [[NSMutableArray alloc] initWithCapacity:1];
-    for (FSUser *friend2 in [[Utilities sharedInstance] friendsWithPingOn]) {
-        [friendIds addObject:friend2.userId];
-    }
-    NSString *friendIdsString = [friendIds componentsJoinedByString:@","];
-    [friendIds release];
-    
-    FSUser *user = [self getAuthenticatedUser];
-    NSString *uid = user.userId;
-    NSString *un = user.firstnameLastInitial;
-    NSString *vn = venue.name;
-    NSString *hashInput = [NSString stringWithFormat:@"%@%@%@", uid, un, vn];
-    NSString *hash = [hashInput hmacSha1:kKBHashSalt];
-    NSString *urlstring = @"https://www.gorlochs.com/kickball/app/push.php";
-	
-	NSURL *url = [NSURL URLWithString:urlstring];
-	NSOperationQueue *queue = [[[NSOperationQueue alloc] init] autorelease];
-	ASIFormDataRequest *request = [[ASIFormDataRequest alloc] initWithURL:url];
-	[request setPostValue:vn forKey:@"vn"];
-	[request setPostValue:uid forKey:@"uid"];
-	[request setPostValue:un forKey:@"un"];
-	[request setPostValue:friendIdsString forKey:@"fids"];
-	[request setPostValue:hash forKey:@"ck"];
-	
-	[request setDelegate:self];
-	[request setDidFinishSelector: @selector(pushCompleted:)];
-	[request setDidFailSelector: @selector(pushFailed:)];
-	[queue addOperation:request];
-}
-
-- (void)pushCompleted:(ASIHTTPRequest *) request {
-	NSString *result = request.responseString;
-	NSLog(@"Response from push: %@", result);
-	
-}
-
-- (void)pushFailed:(ASIHTTPRequest *) request {
-	NSString *result = request.responseString;
-	NSLog(@"Failure from push: %@", result);
 }
 
 - (void) togglePingsAndTwitter {
@@ -1155,6 +1103,10 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"Image upload has been completed!"];
     [self displayPopupMessage:message];
     [message release];
+    
+    self.venueToPush = self.venue;
+    self.hasPhoto = YES;
+    [self sendPushNotification];
     [[Beacon shared] startSubBeaconWithName:@"Image Upload Completed"];
 }
 

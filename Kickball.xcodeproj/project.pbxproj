@@ -496,6 +496,7 @@
 		6AE37D831118DA7400C6585B /* gradient-top.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AE37D811118DA7400C6585B /* gradient-top.png */; };
 		6AE61217109AB04C008ABF79 /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AF96710109AA32700EF665D /* ProfileView.xib */; };
 		6AE7FB68115D1F5B0073979E /* KBStats.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AE7FB67115D1F5B0073979E /* KBStats.m */; };
+		6AE7FD3F115DA11B0073979E /* AbstractPushNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AE7FD3E115DA11B0073979E /* AbstractPushNotificationViewController.m */; };
 		6AEB63D4110BA9BE0066DD05 /* PushNotificationView.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6AEB63D3110BA9BE0066DD05 /* PushNotificationView.xib */; };
 		6AEB63D7110BAA8C0066DD05 /* KBPushNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AEB63D6110BAA8C0066DD05 /* KBPushNotificationView.m */; };
 		6AEE016D1107DD3E0088A488 /* twitter_OFF.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AEE016C1107DD3E0088A488 /* twitter_OFF.png */; };
@@ -1247,6 +1248,8 @@
 		6AE37D811118DA7400C6585B /* gradient-top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gradient-top.png"; sourceTree = "<group>"; };
 		6AE7FB66115D1F5B0073979E /* KBStats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBStats.h; sourceTree = "<group>"; };
 		6AE7FB67115D1F5B0073979E /* KBStats.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBStats.m; sourceTree = "<group>"; };
+		6AE7FD3D115DA11B0073979E /* AbstractPushNotificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractPushNotificationViewController.h; sourceTree = "<group>"; };
+		6AE7FD3E115DA11B0073979E /* AbstractPushNotificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractPushNotificationViewController.m; sourceTree = "<group>"; };
 		6AEB63D3110BA9BE0066DD05 /* PushNotificationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PushNotificationView.xib; sourceTree = "<group>"; };
 		6AEB63D5110BAA8C0066DD05 /* KBPushNotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBPushNotificationView.h; sourceTree = "<group>"; };
 		6AEB63D6110BAA8C0066DD05 /* KBPushNotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBPushNotificationView.m; sourceTree = "<group>"; };
@@ -2180,6 +2183,8 @@
 				035C1FD31112A2E10075E553 /* NSString+hmac.m */,
 				6AD0C133113E3F2B00A971E3 /* KBTwitterCell.h */,
 				6AD0C134113E3F2B00A971E3 /* KBTwitterCell.m */,
+				6AE7FD3D115DA11B0073979E /* AbstractPushNotificationViewController.h */,
+				6AE7FD3E115DA11B0073979E /* AbstractPushNotificationViewController.m */,
 			);
 			name = General;
 			sourceTree = "<group>";
@@ -3083,6 +3088,7 @@
 				6AFC882C1141D82B00B171C9 /* FriendsListTableCellv2.m in Sources */,
 				6A72CF34114C8A0000800692 /* FSCategory.m in Sources */,
 				6AE7FB68115D1F5B0073979E /* KBStats.m in Sources */,
+				6AE7FD3F115DA11B0073979E /* AbstractPushNotificationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

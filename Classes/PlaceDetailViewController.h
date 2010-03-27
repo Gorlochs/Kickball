@@ -9,12 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import "FSVenue.h"
-#import "KBBaseViewController.h"
+#import "AbstractPushNotificationViewController.h"
 #import "GAConnectionDelegate.h"
 #import "MockPhotoSource.h"
 #import "KBPhotoThumbnailCell.h"
 
-@interface PlaceDetailViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate, GAConnectionDelegate, UIActionSheetDelegate> {
+@interface PlaceDetailViewController : AbstractPushNotificationViewController <UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate, GAConnectionDelegate, UIActionSheetDelegate> {
     IBOutlet UITableView *theTableView;
     IBOutlet UITableViewCell *checkinCell;
     IBOutlet KBPhotoThumbnailCell *giftCell;
@@ -42,7 +42,6 @@
     
     IBOutlet UIButton *twitterButton;
     IBOutlet UIButton *pingAndTwitterToggleButton;
-//     IBOutlet UIButton *twitterToggleButton;
     IBOutlet UIButton *venueDetailButton;
     IBOutlet UIButton *specialsButton;
     IBOutlet UIButton *mapButton;
@@ -98,10 +97,7 @@
 - (FSCheckin*) getSingleCheckin;
 - (BOOL) hasMayorCell;
 - (BOOL) isNewMayor;
-//- (void) setProperTwitterButtonState;
-//- (void) setProperPingButtonState;
 - (void) setProperButtonStates;
-- (void)friendsReceived:(NSNotification *)inNotification;
 - (IBAction) choosePhotoSelectMethod;
 - (void) getPhoto:(UIImagePickerControllerSourceType)sourceType;
 - (IBAction) viewPhotos;

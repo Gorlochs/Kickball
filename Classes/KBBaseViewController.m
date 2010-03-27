@@ -17,6 +17,7 @@
 #import "PlacesListViewController.h"
 #import "KBWebViewController.h"
 #import "KBTextViewController.h"
+#import "ASIFormDataRequest.h"
 
 #define PROGRESS_BAR_TIMER_LENGTH 30.0
 

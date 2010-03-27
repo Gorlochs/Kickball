@@ -12,6 +12,7 @@
 #import "FSUser.h"
 #import "KBMessage.h"
 #import "Beacon.h"
+#import "FSVenue.h"
 
 static const CGFloat KEYBOARD_ANIMATION_DURATION = 0.3;
 static const CGFloat MINIMUM_SCROLL_FRACTION = 0.2;
@@ -59,6 +60,6 @@ extern const NSString *kickballDomain;
 - (void) openWebView:(NSString*)url;
 - (IBAction) dismiss;
 - (void) displayFoursquareErrorMessage:(NSString*)errorMessage;
--(void) stopProgressBarAndDisplayErrorMessage:(NSTimer*)theTimer;
+- (void) stopProgressBarAndDisplayErrorMessage:(NSTimer*)theTimer;
 
 @end

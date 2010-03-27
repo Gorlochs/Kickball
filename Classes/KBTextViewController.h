@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "KBBaseViewController.h"
+#import "AbstractPushNotificationViewController.h"
 
-@interface KBTextViewController : KBBaseViewController <UITextViewDelegate> {
+@interface KBTextViewController : AbstractPushNotificationViewController <UITextViewDelegate> {
     IBOutlet UITextView *theTextView;
     NSString *venueId;
     IBOutlet UIView *checkinView;
@@ -25,7 +25,6 @@
 - (IBAction) shoutAndCheckin;
 - (IBAction) shoutAndTweetAndCheckin;
 - (IBAction) cancelView;
-- (void)friendsReceived:(NSNotification *)inNotification;
 - (void) closeUpShop;
 
 @end

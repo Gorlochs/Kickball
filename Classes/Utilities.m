@@ -161,17 +161,16 @@ static Utilities *sharedInstance = nil;
         NSLog(@"total number of friends: %d", totalNumberOfUsersForPush);
         friendsWithPingOn = [[NSMutableArray alloc] initWithCapacity:1];
         for (FSUser *friend in allFriends) {
-            NSLog(@"friend: %@", friend);
+            //NSLog(@"friend: %@", friend);
             [[FoursquareAPI sharedInstance] getUser:friend.userId withTarget:self andAction:@selector(aFriendResponseReceived:withResponseString:)];
             NSLog(@"running total: %d", runningTotalNumberOfUsersBeingPushed);
         }
         [allFriends release];
     }
-    
 }
 
 - (void)aFriendResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    NSLog(@"friend: %@", inString);
+    //NSLog(@"friend: %@", inString);
     FSUser *friend = [FoursquareAPI userFromResponseXML:inString];
     if (friend.sendsPingsToSignedInUser) {
         [friendsWithPingOn addObject:friend];
