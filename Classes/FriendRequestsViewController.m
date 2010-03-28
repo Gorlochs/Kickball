@@ -20,7 +20,9 @@
     toolbar.frame = CGRectMake(0, 436, 320, 44);
     [self.view addSubview:toolbar];
     toolbar.hidden = YES;
-//    doneButton.hidden = YES;
+    
+    space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:
+                         UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -173,6 +175,10 @@
     
     [friendRequests release];
     [toolbar release];
+    [doneButton release];
+    [cancelEditButton release];
+    [space release];
+    
     [super dealloc];
 }
 
@@ -292,10 +298,13 @@
     CGRect toolbarFrame = toolbar.frame;
     
     if (textField == twitterText) {
+        toolbar.items = [NSArray arrayWithObjects:space, cancelEditButton, nil];
         toolbarFrame.origin.y = 244;
     } else if (textField == phoneText) {
+        toolbar.items = [NSArray arrayWithObjects:space, cancelEditButton, doneButton, nil];
         toolbarFrame.origin.y = 289;
     } else if (textField == nameText) {
+        toolbar.items = [NSArray arrayWithObjects:space, cancelEditButton, nil];
         toolbarFrame.origin.y = 335;
     }
     

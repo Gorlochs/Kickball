@@ -26,6 +26,8 @@
     CGFloat animatedDistance;
     IBOutlet UIToolbar *toolbar;
     IBOutlet UIBarButtonItem *doneButton;
+    IBOutlet UIBarButtonItem *cancelEditButton;
+    UIBarItem *space;
 }
 
 - (IBAction) searchAddressBook;

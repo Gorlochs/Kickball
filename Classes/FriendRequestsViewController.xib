@@ -188,7 +188,7 @@
 						<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
 						<float key="IBUIMinimumFontSize">17</float>
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits">
-							<int key="IBUIReturnKeyType">9</int>
+							<int key="IBUIReturnKeyType">6</int>
 						</object>
 					</object>
 					<object class="IBUITextField" id="645129024">
@@ -212,7 +212,7 @@
 						<float key="IBUIMinimumFontSize">17</float>
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits">
 							<int key="IBUIKeyboardType">5</int>
-							<int key="IBUIReturnKeyType">9</int>
+							<int key="IBUIReturnKeyType">6</int>
 						</object>
 					</object>
 					<object class="IBUITextField" id="1056786112">
@@ -235,7 +235,7 @@
 						<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
 						<float key="IBUIMinimumFontSize">17</float>
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits">
-							<int key="IBUIReturnKeyType">9</int>
+							<int key="IBUIReturnKeyType">6</int>
 						</object>
 					</object>
 					<object class="IBUIButton" id="498329013">
@@ -288,7 +288,7 @@
 						<int key="IBUIStyle">1</int>
 						<reference key="IBUIToolbar" ref="1020551040"/>
 					</object>
-					<object class="IBUIBarButtonItem" id="805197280">
+					<object class="IBUIBarButtonItem" id="309724998">
 						<int key="IBUIStyle">1</int>
 						<reference key="IBUIToolbar" ref="1020551040"/>
 						<int key="IBUISystemItemIdentifier">0</int>
@@ -427,17 +427,25 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">doneButton</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="805197280"/>
+						<reference key="destination" ref="309724998"/>
 					</object>
 					<int key="connectionID">94</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">doneEditing</string>
-						<reference key="source" ref="805197280"/>
+						<reference key="source" ref="309724998"/>
 						<reference key="destination" ref="372490531"/>
 					</object>
 					<int key="connectionID">95</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">cancelEditButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="31781363"/>
+					</object>
+					<int key="connectionID">96</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -539,7 +547,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="31781363"/>
 							<reference ref="23041889"/>
-							<reference ref="805197280"/>
+							<reference ref="309724998"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -555,7 +563,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">92</int>
-						<reference key="object" ref="805197280"/>
+						<reference key="object" ref="309724998"/>
 						<reference key="parent" ref="1020551040"/>
 					</object>
 				</object>
@@ -621,7 +629,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">95</int>
+			<int key="maxID">96</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -655,6 +663,7 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>addressBookSearchButton</string>
+							<string>cancelEditButton</string>
 							<string>doneButton</string>
 							<string>nameSearchButton</string>
 							<string>nameText</string>
@@ -668,6 +677,7 @@
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UIButton</string>
+							<string>UIBarButtonItem</string>
 							<string>UIBarButtonItem</string>
 							<string>UIButton</string>
 							<string>UITextField</string>
