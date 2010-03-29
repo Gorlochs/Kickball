@@ -13,6 +13,7 @@
 #import "GAConnectionDelegate.h"
 #import "MockPhotoSource.h"
 #import "KBPhotoThumbnailCell.h"
+#import "PhotoMessageViewController.h"
 
 @interface PlaceDetailViewController : AbstractPushNotificationViewController <UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate, GAConnectionDelegate, UIActionSheetDelegate> {
     IBOutlet UITableView *theTableView;
@@ -71,6 +72,8 @@
     IBOutlet UIView *photoHeaderView;
     IBOutlet UIButton *seeAllPhotosButton;
     IBOutlet UIButton *addPhotoButton;
+    UIImage *photoImage;
+    PhotoMessageViewController *photoMessageViewController;
 }
 
 @property (nonatomic, retain) UITableViewCell *mayorMapCell;
@@ -79,6 +82,7 @@
 @property (nonatomic, retain) NSArray *checkin;
 @property (nonatomic, retain) FSVenue *venue;
 @property (nonatomic, retain) NSString *venueId;
+@property (nonatomic, retain) UIImage *photoImage;
 @property (nonatomic) BOOL doCheckin;
 
 - (void) retrievePhotos;
@@ -101,8 +105,9 @@
 - (IBAction) choosePhotoSelectMethod;
 - (void) getPhoto:(UIImagePickerControllerSourceType)sourceType;
 - (IBAction) viewPhotos;
-- (BOOL)uploadImage:(NSData *)imageData filename:(NSString *)filename withWidth:(float)width andHeight:(float)height andOrientation:(UIImageOrientation)orientation;
+- (BOOL)uploadImage:(NSData *)imageData filename:(NSString *)filename withWidth:(float)width andHeight:(float)height andMessage:(NSString*)message andOrientation:(UIImageOrientation)orientation;
 - (UIImage*)imageByScalingToSize:(UIImage*)image toSize:(CGSize)targetSize;
 - (IBAction) displayAllImages;
+- (void) returnFromMessageView:(NSString*)message;
 
 @end

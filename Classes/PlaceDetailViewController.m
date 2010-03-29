@@ -57,6 +57,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 @synthesize checkinCell;
 @synthesize giftCell;
 @synthesize doCheckin;
+@synthesize photoImage;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
@@ -204,7 +205,13 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         NSMutableArray *tempTTPhotoArray = [[NSMutableArray alloc] initWithCapacity:[goodies count]];
         for (KBGoody *goody in goodies) {
             NSLog(@"goody %d", i);
-            NSString *caption = [NSString stringWithFormat:@"%@ @ %@ on %@", goody.ownerName, goody.venueName, [dateFormatter2 stringFromDate:goody.createdAt]];
+            NSString *caption = nil;
+            if (goody.messageText != nil) {
+                caption = [NSString stringWithFormat:@"%@ \n %@ @ %@ on %@", goody.messageText, goody.ownerName, goody.venueName, [dateFormatter2 stringFromDate:goody.createdAt]];
+            } else {
+                caption = [NSString stringWithFormat:@"%@ @ %@ on %@", goody.ownerName, goody.venueName, [dateFormatter2 stringFromDate:goody.createdAt]];
+            }
+            
             MockPhoto *photo = [[MockPhoto alloc] initWithURL:goody.largeImagePath smallURL:goody.mediumImagePath size:[goody largeImageSize] caption:caption];
             [tempTTPhotoArray addObject:photo];
             [photo release];
@@ -718,6 +725,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     [addPhotoButton release];
     [seeAllPhotosButton release];
     [photoHeaderView release];
+    [photoImage release];
     
     [super dealloc];
 }
@@ -1027,8 +1035,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 #pragma mark Image Picker Delegate methods
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    // hide picker
-    [picker dismissModalViewControllerAnimated:YES];
+    [picker dismissModalViewControllerAnimated:NO];
     
     UIImage *initialImage = (UIImage*)[info objectForKey:UIImagePickerControllerOriginalImage];
     float initialHeight = initialImage.size.height;
@@ -1043,22 +1050,35 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     NSString *roundedFloatString = [NSString stringWithFormat:@"%.1f", ratio];
     float roundedFloat = [roundedFloatString floatValue];
     
-    UIImage *img = [self imageByScalingToSize:initialImage toSize:CGSizeMake(480.0, round(480.0/roundedFloat))];
+    self.photoImage = [self imageByScalingToSize:initialImage toSize:CGSizeMake(480.0, round(480.0/roundedFloat))];
     
     NSLog(@"image picker info: %@", info);
     
-    NSLog(@"image height: %f", img.size.height);
-    NSLog(@"image width: %f", img.size.width);
-    NSLog(@"image orientation: %d", img.imageOrientation);
+//    NSLog(@"image height: %f", photoImage.size.height);
+//    NSLog(@"image width: %f", photoImage.size.width);
+//    NSLog(@"image orientation: %d", photoImage.imageOrientation);
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(returnFromMessageView:) name:@"attachMessageToPhoto" object:nil];
+    
+    photoMessageViewController = [[PhotoMessageViewController alloc] initWithNibName:@"PhotoMessageViewController" bundle:nil];
+    [self.navigationController presentModalViewController:photoMessageViewController animated:YES];
+    [photoMessageViewController release];
+}
+
+- (void) returnFromMessageView:(NSNotification *)inNotification {
+    NSString *message = [[inNotification userInfo] objectForKey:@"message"];
+    [photoMessageViewController dismissModalViewControllerAnimated:NO];
     [self startProgressBar:@"Uploading photo..." withTimer:NO];
     // TODO: we'd have to confirm success to the user.
     //       we also need to send a notification to the gift recipient
-    [self uploadImage:UIImageJPEGRepresentation(img, 1.0) 
+    [self uploadImage:UIImageJPEGRepresentation(self.photoImage, 1.0) 
              filename:@"gift.jpg" 
-            withWidth:img.size.width 
-            andHeight:img.size.height
-       andOrientation:img.imageOrientation];
+            withWidth:self.photoImage.size.width 
+            andHeight:self.photoImage.size.height
+           andMessage:message ? message : @""
+       andOrientation:self.photoImage.imageOrientation];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:@"attachMessageToPhoto"];
 }
 
 #pragma mark
@@ -1179,7 +1199,8 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 }
 
 // TODO: set max file size    
-- (BOOL)uploadImage:(NSData *)imageData filename:(NSString *)filename withWidth:(float)width andHeight:(float)height andOrientation:(UIImageOrientation)orientation {
+- (BOOL)uploadImage:(NSData *)imageData filename:(NSString *)filename withWidth:(float)width andHeight:(float)height 
+         andMessage:(NSString*)message andOrientation:(UIImageOrientation)orientation {
     
     NSNumber *tagKey = [NSNumber numberWithInteger:1];
 
@@ -1212,7 +1233,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         [request setPostValue:[NSString stringWithFormat:@"%d", (int)height]  forKey:@"gift[photo_height]"];
         [request setPostValue:[NSString stringWithFormat:@"%d", (int)width] forKey:@"gift[photo_width]"];
         [request setPostValue:[self getAuthenticatedUser].firstnameLastInitial forKey:@"gift[owner_name]"];
-        [request setPostValue:@"testing" forKey:@"gift[message_text]"];
+        [request setPostValue:message ? message : @"" forKey:@"gift[message_text]"];
         [request setPostValue:[tagKey stringValue] forKey:@"gift[iphone_orientation]"];
         [request setData:imageData withFileName:filename andContentType:@"image/jpeg" forKey:@"gift[photo]"];
         [request setDidFailSelector:@selector(imageRequestWentWrong:)];

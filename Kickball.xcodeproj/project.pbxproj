@@ -364,6 +364,8 @@
 		6A812EBB10FEE96E00BB51A0 /* button_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A812EBA10FEE96E00BB51A0 /* button_right.png */; };
 		6A812ED410FF465600BB51A0 /* ViewFriendRequestsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A812ED310FF465600BB51A0 /* ViewFriendRequestsTableCell.m */; };
 		6A812ED610FF467100BB51A0 /* ViewFriendRequestsTableCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A812ED510FF467100BB51A0 /* ViewFriendRequestsTableCell.xib */; };
+		6A8AC21711612EE5009082F2 /* PhotoMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A8AC21511612EE5009082F2 /* PhotoMessageViewController.m */; };
+		6A8AC21811612EE5009082F2 /* PhotoMessageViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A8AC21611612EE5009082F2 /* PhotoMessageViewController.xib */; };
 		6A8AC8F1109AB31400C4FE1B /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A8AC8EF109AB31400C4FE1B /* ProfileViewController.m */; };
 		6A8CE6BE10B52AC000BE05F9 /* KBPin.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A8CE6BD10B52AC000BE05F9 /* KBPin.m */; };
 		6A8EEE1A10A1227000DC630C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A8EEE1910A1227000DC630C /* MapKit.framework */; };
@@ -1082,6 +1084,9 @@
 		6A812ED210FF465600BB51A0 /* ViewFriendRequestsTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewFriendRequestsTableCell.h; sourceTree = "<group>"; };
 		6A812ED310FF465600BB51A0 /* ViewFriendRequestsTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewFriendRequestsTableCell.m; sourceTree = "<group>"; };
 		6A812ED510FF467100BB51A0 /* ViewFriendRequestsTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewFriendRequestsTableCell.xib; sourceTree = "<group>"; };
+		6A8AC21411612EE5009082F2 /* PhotoMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoMessageViewController.h; sourceTree = "<group>"; };
+		6A8AC21511612EE5009082F2 /* PhotoMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoMessageViewController.m; sourceTree = "<group>"; };
+		6A8AC21611612EE5009082F2 /* PhotoMessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoMessageViewController.xib; sourceTree = "<group>"; };
 		6A8AC8EE109AB31400C4FE1B /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		6A8AC8EF109AB31400C4FE1B /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		6A8CE6BC10B52AC000BE05F9 /* KBPin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBPin.h; sourceTree = "<group>"; };
@@ -1199,8 +1204,8 @@
 		6AD0C1FD113F04F500A971E3 /* Three20.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Three20.bundle; path = ../three20/src/Three20.bundle; sourceTree = SOURCE_ROOT; };
 		6AD0C282113F0BFA00A971E3 /* KBPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBPhotoViewController.h; sourceTree = "<group>"; };
 		6AD0C283113F0BFA00A971E3 /* KBPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBPhotoViewController.m; sourceTree = "<group>"; };
-		6AD0C28D113F0CBA00A971E3 /* MockPhotoSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MockPhotoSource.h; path = Classes/MockPhotoSource.h; sourceTree = SOURCE_ROOT; };
-		6AD0C28E113F0CBA00A971E3 /* MockPhotoSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MockPhotoSource.m; path = Classes/MockPhotoSource.m; sourceTree = SOURCE_ROOT; };
+		6AD0C28D113F0CBA00A971E3 /* MockPhotoSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockPhotoSource.h; sourceTree = "<group>"; };
+		6AD0C28E113F0CBA00A971E3 /* MockPhotoSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockPhotoSource.m; sourceTree = "<group>"; };
 		6AD9D8C7114594580060E486 /* homeSearchClose01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeSearchClose01.png; sourceTree = "<group>"; };
 		6AD9D8C91145945F0060E486 /* homeSearchClose02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeSearchClose02.png; sourceTree = "<group>"; };
 		6AD9D8CB114594A40060E486 /* homeSearch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeSearch.png; sourceTree = "<group>"; };
@@ -2210,6 +2215,38 @@
 			path = RegexKitLite;
 			sourceTree = "<group>";
 		};
+		6A8AC21111612EAC009082F2 /* Photo */ = {
+			isa = PBXGroup;
+			children = (
+				6AD0C282113F0BFA00A971E3 /* KBPhotoViewController.h */,
+				6AD0C283113F0BFA00A971E3 /* KBPhotoViewController.m */,
+				6AD0C28D113F0CBA00A971E3 /* MockPhotoSource.h */,
+				6AD0C28E113F0CBA00A971E3 /* MockPhotoSource.m */,
+				6A649A09113F629800052FF9 /* KBPhotoThumbnailCell.h */,
+				6A649A0A113F629800052FF9 /* KBPhotoThumbnailCell.m */,
+				6A8AC21411612EE5009082F2 /* PhotoMessageViewController.h */,
+				6A8AC21511612EE5009082F2 /* PhotoMessageViewController.m */,
+				6A8AC21611612EE5009082F2 /* PhotoMessageViewController.xib */,
+			);
+			name = Photo;
+			sourceTree = "<group>";
+		};
+		6A8AC21311612EC1009082F2 /* Maps */ = {
+			isa = PBXGroup;
+			children = (
+				6A7ED9F510A91DC9002FB1DC /* VenueAnnotation.h */,
+				6A7ED9F610A91DC9002FB1DC /* VenueAnnotation.m */,
+				6AC5817810B517FB0043B90C /* PlacesMapViewController.h */,
+				6AC5817910B517FB0043B90C /* PlacesMapViewController.m */,
+				6A8CE6BC10B52AC000BE05F9 /* KBPin.h */,
+				6A8CE6BD10B52AC000BE05F9 /* KBPin.m */,
+				6A4C30C710DF24FD00C89F55 /* PlaceMapViewController.h */,
+				6A4C30C810DF24FD00C89F55 /* PlaceMapViewController.m */,
+				6A4C30C910DF24FD00C89F55 /* PlaceMapViewController.xib */,
+			);
+			name = Maps;
+			sourceTree = "<group>";
+		};
 		6A8EEEC110A14ED200DC630C /* MGTwitterEngine */ = {
 			isa = PBXGroup;
 			children = (
@@ -2300,6 +2337,8 @@
 		6AC7E92D10994FB500776993 /* Place */ = {
 			isa = PBXGroup;
 			children = (
+				6A8AC21311612EC1009082F2 /* Maps */,
+				6A8AC21111612EAC009082F2 /* Photo */,
 				6A223A4B10E46CBE003550F2 /* Tip Todo */,
 				6ADC9EBE10D3EF4900CFDCA7 /* Add Venue */,
 				6A12EC5E10B772B60013BA52 /* GeoAPI related */,
@@ -2309,21 +2348,6 @@
 				6ABA7856109BDCAF001E7293 /* PlacesListViewController.m */,
 				6AFF23EE10A247B100CD30E5 /* PlaceTwitterViewController.h */,
 				6AFF23EF10A247B100CD30E5 /* PlaceTwitterViewController.m */,
-				6A7ED9F510A91DC9002FB1DC /* VenueAnnotation.h */,
-				6A7ED9F610A91DC9002FB1DC /* VenueAnnotation.m */,
-				6AC5817810B517FB0043B90C /* PlacesMapViewController.h */,
-				6AC5817910B517FB0043B90C /* PlacesMapViewController.m */,
-				6A8CE6BC10B52AC000BE05F9 /* KBPin.h */,
-				6A8CE6BD10B52AC000BE05F9 /* KBPin.m */,
-				6A4C30C710DF24FD00C89F55 /* PlaceMapViewController.h */,
-				6A4C30C810DF24FD00C89F55 /* PlaceMapViewController.m */,
-				6A4C30C910DF24FD00C89F55 /* PlaceMapViewController.xib */,
-				6AD0C282113F0BFA00A971E3 /* KBPhotoViewController.h */,
-				6AD0C283113F0BFA00A971E3 /* KBPhotoViewController.m */,
-				6AD0C28D113F0CBA00A971E3 /* MockPhotoSource.h */,
-				6AD0C28E113F0CBA00A971E3 /* MockPhotoSource.m */,
-				6A649A09113F629800052FF9 /* KBPhotoThumbnailCell.h */,
-				6A649A0A113F629800052FF9 /* KBPhotoThumbnailCell.m */,
 			);
 			name = Place;
 			sourceTree = "<group>";
@@ -3089,6 +3113,8 @@
 				6A72CF34114C8A0000800692 /* FSCategory.m in Sources */,
 				6AE7FB68115D1F5B0073979E /* KBStats.m in Sources */,
 				6AE7FD3F115DA11B0073979E /* AbstractPushNotificationViewController.m in Sources */,
+				6A8AC21711612EE5009082F2 /* PhotoMessageViewController.m in Sources */,
+				6A8AC21811612EE5009082F2 /* PhotoMessageViewController.xib in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
