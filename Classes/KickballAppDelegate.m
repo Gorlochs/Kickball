@@ -221,13 +221,6 @@
         [[FoursquareAPI sharedInstance] getUser:self.pushNotificationUserId withTarget:self andAction:@selector(pushUserResponseReceived:withResponseString:)];
     } else {
         NSLog(@"this shouldn't happen ever!");
-//        UIAlertView *someError = [[UIAlertView alloc] initWithTitle: @"Error authenticating"
-//                                                            message: @"trying to authenticate when receiving a push notification"
-//                                                           delegate: self
-//                                                  cancelButtonTitle: @"Ok"
-//                                                  otherButtonTitles: nil];
-//        [someError show];
-//        [someError release];
     }
 }
 
@@ -235,7 +228,7 @@
     NSLog(@"push notification response received");
 	FSUser *pushedUser = [FoursquareAPI userFromResponseXML:inString];
     pushView = [[KBPushNotificationView alloc] initWithNibName:@"PushNotificationView" bundle:nil];
-    pushView.view.frame = CGRectMake(3, 440, 273, 37);
+    pushView.view.frame = CGRectMake(3, 435, 273, 42);
     if (pushedUser.checkin.shout != nil) {
         pushView.messageLabel.text = [NSString stringWithFormat:@"%@ just shouted!", pushedUser.firstnameLastInitial];
         pushView.addressLabel.text = [NSString stringWithFormat:@"%@", pushedUser.checkin.shout];
