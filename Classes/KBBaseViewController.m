@@ -21,7 +21,8 @@
 
 #define PROGRESS_BAR_TIMER_LENGTH 30.0
 
-const NSString *kickballDomain = @"http://gorlochs.literalshore.com:3000/kickball";
+//const NSString *kickballDomain = @"http://gorlochs.literalshore.com:3000/kickball";
+const NSString *kickballDomain = @"http://kickball.gorlochs.com/kickball";
 
 @implementation KBBaseViewController
 

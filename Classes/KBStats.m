@@ -11,6 +11,9 @@
 #import "LocationManager.h"
 #import "FoursquareAPI.h"
 
+#define CHECKIN_URL @"http://kickball.gorlochs.com/kickball/checkin_stats.xml"
+//#define CHECKIN_URL @"http://gorlochs.literalshore.com:3000/kickball/checkin_stats.xml"
+
 static KBStats* _stats = nil;
 
 @implementation KBStats
@@ -18,8 +21,7 @@ static KBStats* _stats = nil;
 
 - (void) checkinStat:(FSCheckin*)checkin {
     NSLog(@"stat checkin: %@", checkin);
-    NSString *url = @"http://gorlochs.literalshore.com:3000/kickball/checkin_stats.xml";
-    ASIFormDataRequest *statRequest = [[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:url]] autorelease];
+    ASIFormDataRequest *statRequest = [[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:CHECKIN_URL]] autorelease];
     
     [statRequest setRequestMethod:@"POST"];
     [statRequest setPostValue:[[FoursquareAPI sharedInstance] currentUser].userId forKey:@"checkin_stat[userId]"];

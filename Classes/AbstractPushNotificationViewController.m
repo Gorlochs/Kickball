@@ -10,9 +10,9 @@
 #import "Utilities.h"
 #import "ASIFormDataRequest.h"
 #import "NSString+hmac.h"
-
-//#define PUSH_URL @"https://www.gorlochs.com/kickball/app/push.php"
-#define PUSH_URL @"http://www.literalshore.com/gorloch/kickball/push.php"
+    
+#define PUSH_URL @"https://www.gorlochs.com/kickball/app/push.1.0.1.php"
+//#define PUSH_URL @"http://www.literalshore.com/gorloch/kickball/push.php"
 
 @implementation AbstractPushNotificationViewController
 
