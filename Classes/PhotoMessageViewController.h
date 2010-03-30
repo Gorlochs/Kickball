@@ -10,8 +10,9 @@
 #import "KBBaseViewController.h"
 
 
-@interface PhotoMessageViewController : KBBaseViewController {
+@interface PhotoMessageViewController : KBBaseViewController <UITextViewDelegate> {
     IBOutlet UITextView *photoMessage;
+    IBOutlet UILabel *numCharacters;
 }
 
 - (IBAction) addMessageToPhoto;

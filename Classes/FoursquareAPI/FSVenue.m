@@ -16,7 +16,7 @@
 				phone, crossStreet, twitter, mayorCount, 
 				mayor, tips, currentCheckins, friendsHaveBeenHere, 
                 userHasBeenHere, userCheckinCount, addressWithCrossstreet, 
-                specials, primaryCategory, hereNow;
+                specials, primaryCategory, hereNow, distanceFromUser;
 
 
 - (id) init{

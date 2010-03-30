@@ -896,6 +896,8 @@ static FoursquareAPI *sharedInstance = nil;
 				newVenue.zip = value;
 			} else if ([key isEqualToString:@"twitter"]){
 				newVenue.twitter = value;
+			} else if ([key isEqualToString:@"distance"]){
+				newVenue.distanceFromUser = [value intValue];
 			} else if ([key isEqualToString:@"tips"]){
 				newVenue.tips = [FoursquareAPI _tipsFromNode:venueResult];
 			} else if ([key isEqualToString:@"primarycategory"]){

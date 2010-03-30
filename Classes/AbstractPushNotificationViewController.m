@@ -11,14 +11,15 @@
 #import "ASIFormDataRequest.h"
 #import "NSString+hmac.h"
     
-#define PUSH_URL @"https://www.gorlochs.com/kickball/app/push.1.0.1.php"
-//#define PUSH_URL @"http://www.literalshore.com/gorloch/kickball/push.php"
+//#define PUSH_URL @"https://www.gorlochs.com/kickball/app/push.1.1.php"
+#define PUSH_URL @"http://www.literalshore.com/gorloch/kickball/push.1.1.php"
 
 @implementation AbstractPushNotificationViewController
 
 @synthesize shoutToPush;
 @synthesize venueToPush;
 @synthesize hasPhoto;
+@synthesize photoMessageToPush;
 
 - (void) sendPushNotification {
     if ([[Utilities sharedInstance] friendsWithPingOn]) {
@@ -65,6 +66,7 @@
 	[request setPostValue:un forKey:@"un"];
 	[request setPostValue:friendIdsString forKey:@"fids"];
 	[request setPostValue:hash forKey:@"ck"];
+	[request setPostValue:self.photoMessageToPush forKey:@"photoMessage"];
 	
 	[request setDelegate:self];
 	[request setDidFinishSelector: @selector(pushCompleted:)];

@@ -206,7 +206,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         for (KBGoody *goody in goodies) {
             NSLog(@"goody %d", i);
             NSString *caption = nil;
-            if (goody.messageText != nil) {
+            if (goody.messageText != nil && ![goody.messageText isEqualToString:@"testing"]) {
                 caption = [NSString stringWithFormat:@"%@ \n %@ @ %@ on %@", goody.messageText, goody.ownerName, goody.venueName, [dateFormatter2 stringFromDate:goody.createdAt]];
             } else {
                 caption = [NSString stringWithFormat:@"%@ @ %@ on %@", goody.ownerName, goody.venueName, [dateFormatter2 stringFromDate:goody.createdAt]];
@@ -1067,6 +1067,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 
 - (void) returnFromMessageView:(NSNotification *)inNotification {
     NSString *message = [[inNotification userInfo] objectForKey:@"message"];
+    self.photoMessageToPush = message;
     [photoMessageViewController dismissModalViewControllerAnimated:NO];
     [self startProgressBar:@"Uploading photo..." withTimer:NO];
     // TODO: we'd have to confirm success to the user.
@@ -1078,7 +1079,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
            andMessage:message ? message : @""
        andOrientation:self.photoImage.imageOrientation];
     
-    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:@"attachMessageToPhoto"];
+    //[[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:@"attachMessageToPhoto"];
 }
 
 #pragma mark
@@ -1124,6 +1125,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     [self displayPopupMessage:message];
     [message release];
     
+    // NOTE: the self.photoMessageToPush is being set above in the returnFromMessageView: method
     self.venueToPush = self.venue;
     self.hasPhoto = YES;
     [self sendPushNotification];

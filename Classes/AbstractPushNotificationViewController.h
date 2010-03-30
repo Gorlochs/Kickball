@@ -13,11 +13,13 @@
 @interface AbstractPushNotificationViewController : KBBaseViewController {
     FSVenue *venueToPush;
     NSString *shoutToPush;
+    NSString *photoMessageToPush;
     BOOL hasPhoto;
 }
 
 @property (nonatomic, retain) FSVenue *venueToPush;
 @property (nonatomic, retain) NSString *shoutToPush;
+@property (nonatomic, retain) NSString *photoMessageToPush;
 @property (nonatomic) BOOL hasPhoto;
 
 - (void) sendPushNotification;

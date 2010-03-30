@@ -108,6 +108,6 @@
 - (BOOL)uploadImage:(NSData *)imageData filename:(NSString *)filename withWidth:(float)width andHeight:(float)height andMessage:(NSString*)message andOrientation:(UIImageOrientation)orientation;
 - (UIImage*)imageByScalingToSize:(UIImage*)image toSize:(CGSize)targetSize;
 - (IBAction) displayAllImages;
-- (void) returnFromMessageView:(NSString*)message;
+- (void) returnFromMessageView:(NSNotification *)inNotification;
 
 @end

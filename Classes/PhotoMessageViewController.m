@@ -30,6 +30,13 @@
                                                       userInfo:nil];	
 }
 
+- (void)textViewDidChange:(UITextView *)textView {
+    if ([textView.text length] > 50) {
+        textView.text = [textView.text substringToIndex:50];
+    }
+    numCharacters.text = [NSString stringWithFormat:@"%02d", [textView.text length]];
+}
+
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
