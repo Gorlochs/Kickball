@@ -11,7 +11,7 @@
 
 @implementation FriendsListTableCellv2
 
-@synthesize userIcon, _cancelTouches;
+@synthesize userIcon, _cancelTouches, venueId;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
@@ -29,9 +29,10 @@
 -(void) tapNHoldFired {
     self->_cancelTouches = YES;
     // DO WHATEVER YOU LIKE HERE!!!
-    UIAlertView *apiAlert = [[UIAlertView alloc] initWithTitle:@"touch test" message:@"normally this would check you in" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [apiAlert show];
-    [apiAlert release];
+    NSDictionary *messageInfo = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:self.venueId, nil] forKeys:[NSArray arrayWithObjects:@"venueIdOfCell", nil]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"touchAndHoldCheckin"
+                                                        object:nil
+                                                      userInfo:messageInfo];
 }
 
 -(void) cancelTapNHold {

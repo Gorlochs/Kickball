@@ -54,6 +54,8 @@
 - (IBAction) viewPreviousWelcomeImage;
 - (IBAction) displayOlderCheckins;
 - (void) setupSplashAnimation;
+- (void) instaCheckin:(NSNotification *)inNotification;
+- (void) setUserIconViewCustom:(FSUser*)user;
 //- (void) showSplash;
 
 @end

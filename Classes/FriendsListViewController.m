@@ -129,6 +129,7 @@
 - (void) doInitialDisplay {
     [[Beacon shared] startSubBeaconWithName:@"Initial Friends List Display"];
     [self startProgressBar:@"Retrieving friends' whereabouts..." withTimer:NO];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(instaCheckin:) name:@"touchAndHoldCheckin" object:nil];
     
     if (!hasViewedInstructions) {
         [iconImageView setHidden:YES];
@@ -141,6 +142,15 @@
     if (![self getAuthenticatedUser]) {
         [[FoursquareAPI sharedInstance] getUser:nil withTarget:self andAction:@selector(userResponseReceived:withResponseString:)];
     }
+}
+
+- (void) instaCheckin:(NSNotification *)inNotification {
+    NSString *venueId = [[inNotification userInfo] objectForKey:@"venueIdOfCell"];
+    PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];    
+    placeDetailController.venueId = venueId;
+    placeDetailController.doCheckin = YES;
+    [self.navigationController pushViewController:placeDetailController animated:YES];
+    [placeDetailController release]; 
 }
 
 - (void) addAuthToWebRequest:(NSMutableURLRequest*)requestObj email:(NSString*)email password:(NSString*)password{
@@ -269,6 +279,10 @@
         return moreCell;
     } else if (indexPath.section == 4) {
         return footerViewCell;
+    }
+    
+    if (checkin.venue) {
+        cell.venueId = checkin.venue.venueid;
     }
     
     cell.userIcon.urlPath = checkin.user.photo;
