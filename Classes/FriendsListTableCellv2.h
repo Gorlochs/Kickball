@@ -11,8 +11,10 @@
 
 @interface FriendsListTableCellv2 : UITableViewCell {
     TTImageView *userIcon;
+    BOOL _cancelTouches;
 }
 
+@property (nonatomic) BOOL _cancelTouches;
 @property (nonatomic, retain) TTImageView *userIcon;
 
 @end
