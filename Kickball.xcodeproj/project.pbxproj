@@ -420,6 +420,7 @@
 		6ABB8B2F10D88C99001ECDAD /* FSMayor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABB8B2E10D88C99001ECDAD /* FSMayor.m */; };
 		6ABD307A1163D89C008F6A5D /* KickballAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABD30791163D89C008F6A5D /* KickballAPI.m */; };
 		6ABD313D116438E1008F6A5D /* KBGenericPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABD313C116438E1008F6A5D /* KBGenericPhotoViewController.m */; };
+		6ABD31D61164FBEF008F6A5D /* KBInstacheckinTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABD31D51164FBEF008F6A5D /* KBInstacheckinTableCell.m */; };
 		6AC5817B10B517FB0043B90C /* PlacesMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC5817910B517FB0043B90C /* PlacesMapViewController.m */; };
 		6AC5817C10B517FB0043B90C /* PlacesMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AC5817A10B517FB0043B90C /* PlacesMapView.xib */; };
 		6AC6A7E610FF8B3100C1FEB4 /* shoutField.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC6A7E310FF8B3100C1FEB4 /* shoutField.png */; };
@@ -1171,6 +1172,8 @@
 		6ABD30791163D89C008F6A5D /* KickballAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KickballAPI.m; sourceTree = "<group>"; };
 		6ABD313B116438E1008F6A5D /* KBGenericPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBGenericPhotoViewController.h; sourceTree = "<group>"; };
 		6ABD313C116438E1008F6A5D /* KBGenericPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBGenericPhotoViewController.m; sourceTree = "<group>"; };
+		6ABD31D41164FBEF008F6A5D /* KBInstacheckinTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBInstacheckinTableCell.h; sourceTree = "<group>"; };
+		6ABD31D51164FBEF008F6A5D /* KBInstacheckinTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBInstacheckinTableCell.m; sourceTree = "<group>"; };
 		6AC5817810B517FB0043B90C /* PlacesMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlacesMapViewController.h; sourceTree = "<group>"; };
 		6AC5817910B517FB0043B90C /* PlacesMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlacesMapViewController.m; sourceTree = "<group>"; };
 		6AC5817A10B517FB0043B90C /* PlacesMapView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PlacesMapView.xib; path = Classes/PlacesMapView.xib; sourceTree = "<group>"; };
@@ -2196,6 +2199,8 @@
 				6AD0C134113E3F2B00A971E3 /* KBTwitterCell.m */,
 				6AE7FD3D115DA11B0073979E /* AbstractPushNotificationViewController.h */,
 				6AE7FD3E115DA11B0073979E /* AbstractPushNotificationViewController.m */,
+				6ABD31D41164FBEF008F6A5D /* KBInstacheckinTableCell.h */,
+				6ABD31D51164FBEF008F6A5D /* KBInstacheckinTableCell.m */,
 			);
 			name = General;
 			sourceTree = "<group>";
@@ -3127,6 +3132,7 @@
 				6A8AC21811612EE5009082F2 /* PhotoMessageViewController.xib in Sources */,
 				6ABD307A1163D89C008F6A5D /* KickballAPI.m in Sources */,
 				6ABD313D116438E1008F6A5D /* KBGenericPhotoViewController.m in Sources */,
+				6ABD31D61164FBEF008F6A5D /* KBInstacheckinTableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

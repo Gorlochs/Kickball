@@ -448,6 +448,7 @@
 }
 
 - (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+    NSLog(@"checkins: %@", inString);
     NSString *errorMessage = [FoursquareAPI errorFromResponseXML:inString];
     if (errorMessage) {
         [self displayFoursquareErrorMessage:errorMessage];

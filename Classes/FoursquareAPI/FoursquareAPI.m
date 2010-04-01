@@ -189,7 +189,10 @@ static FoursquareAPI *sharedInstance = nil;
 
 - (void) getCheckinsWithTarget:(id)inTarget andAction:(SEL)inAction {
 	//	[self.oauthAPI performMethod:@"/v1/checkins" withTarget:inTarget andAction:inAction];
-	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/checkins"] withUser:self.userName andPassword:self.passWord andParams:nil withTarget:inTarget andAction:inAction usingMethod:@"GET"];
+	NSMutableDictionary * requestParams = [[[NSMutableDictionary alloc] initWithCapacity:2] autorelease];
+	[requestParams setObject:[NSString stringWithFormat:@"%f", [[LocationManager locationManager] latitude]]  forKey:@"geolat"];	
+	[requestParams setObject:[NSString stringWithFormat:@"%f", [[LocationManager locationManager] longitude]]  forKey:@"geolong"];	
+	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/checkins"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"GET"];
 }
 
 - (void) getCheckinHistoryWithTarget:(id)inTarget andAction:(SEL)inAction{

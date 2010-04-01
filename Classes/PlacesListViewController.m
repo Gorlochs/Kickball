@@ -14,6 +14,7 @@
 #import "AddPlaceFormViewController.h"
 #import "LocationManager.h"
 #import "FriendsListViewController.h"
+#import "KBInstacheckinTableCell.h"
 
 @interface PlacesListViewController (Private)
 
@@ -189,9 +190,9 @@
     
     static NSString *CellIdentifier = @"Cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    KBInstacheckinTableCell *cell = (KBInstacheckinTableCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[KBInstacheckinTableCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
         cell.textLabel.font = [UIFont boldSystemFontOfSize:15.0];
         cell.detailTextLabel.font = [UIFont systemFontOfSize:12.0];
         UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 43, 320, 1)];
@@ -214,6 +215,7 @@
             FSVenue *venue = [self extractVenueFromDictionaryForRow:indexPath];
             cell.textLabel.text = venue.name;
             cell.detailTextLabel.text = venue.addressWithCrossstreet;
+            cell.venueId = venue.venueid;
             
             // need to set the imageView to reserve the spot for the ttImage
             cell.imageView.image = [UIImage imageNamed:@"blank.png"];

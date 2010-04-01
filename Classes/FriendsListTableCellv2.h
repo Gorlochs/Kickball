@@ -8,15 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "Three20/Three20.h"
+#import "KBInstacheckinTableCell.h"
 
-@interface FriendsListTableCellv2 : UITableViewCell {
+@interface FriendsListTableCellv2 : KBInstacheckinTableCell {
     TTImageView *userIcon;
-    NSString *venueId;
-    BOOL _cancelTouches;
 }
 
-@property (nonatomic) BOOL _cancelTouches;
 @property (nonatomic, retain) TTImageView *userIcon;
-@property (nonatomic, retain) NSString *venueId;
 
 @end
