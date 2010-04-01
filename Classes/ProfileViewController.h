@@ -48,6 +48,7 @@
     bool isTwitterOn;
     
     bool isPingAndUpdatesOn;
+    bool hasPhotos;
 }
 
 @property (nonatomic, retain) UITableViewCell *badgeCell;

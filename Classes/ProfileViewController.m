@@ -47,7 +47,6 @@
     
     if ([userId isEqualToString:[self getAuthenticatedUser].userId]) {
         signedInUserIcon.enabled = NO;
-        yourPhotosButton.hidden = NO;
     }
     
     [self addHeaderAndFooter:theTableView];
@@ -55,6 +54,34 @@
     [self startProgressBar:@"Retrieving profile..."];
     [[FoursquareAPI sharedInstance] getUser:self.userId withTarget:self andAction:@selector(userResponseReceived:withResponseString:)];
     [[Beacon shared] startSubBeaconWithName:@"Profile"];
+    
+    NSString *gorlochUrlString = [NSString stringWithFormat:@"%@/gifts/owner_count/%@.txt", kickballDomain, userId];
+    ASIHTTPRequest *gorlochRequest = [[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:gorlochUrlString]] autorelease];
+    
+    [gorlochRequest setDidFailSelector:@selector(photoCountRequestWentWrong:)];
+    [gorlochRequest setDidFinishSelector:@selector(photoCountRequestDidFinish:)];
+    [gorlochRequest setTimeOutSeconds:500];
+    [gorlochRequest setDelegate:self];
+    [gorlochRequest startAsynchronous];
+}
+
+- (void) photoCountRequestWentWrong:(ASIHTTPRequest *) request {
+    NSLog(@"BOOOOOOOOOOOO!");
+    hasPhotos = NO;
+}
+
+- (void) photoCountRequestDidFinish:(ASIHTTPRequest *) request {
+    if ([request responseString]) {
+        int photoCount = [[request responseString] intValue];
+        if (photoCount > 0) {
+            yourPhotosButton.hidden = NO;
+            hasPhotos = YES;
+        } else {
+            hasPhotos = NO;
+        }
+    } else {
+        hasPhotos = NO;
+    }
 }
 
 - (void)userResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {

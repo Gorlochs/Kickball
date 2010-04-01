@@ -76,7 +76,6 @@ static KickballAPI* _kickballApi = nil;
         [goodies addObject:goody];
         [goody release];
     }
-    [goodyDateFormatter release];
     
     return goodies;
 }
