@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Three20/Three20.h"
 #import "PopupMessageView.h"
 #import "KBBaseViewController.h"
+#import "KBGenericPhotoViewController.h"
 
-@interface KBPhotoViewController : TTPhotoViewController <UIActionSheetDelegate> {
+@interface KBPhotoViewController : KBGenericPhotoViewController <UIActionSheetDelegate> {
     NSInteger startIndex;
     
     UIBarButtonItem* _flagButton;

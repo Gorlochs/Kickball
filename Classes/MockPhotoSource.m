@@ -43,8 +43,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
-- (id)initWithType:(MockPhotoSourceType)type title:(NSString*)title photos:(NSArray*)photos
-      photos2:(NSArray*)photos2 {
+- (id)initWithType:(MockPhotoSourceType)type title:(NSString*)title photos:(NSArray*)photos photos2:(NSArray*)photos2 {
   if (self = [super init]) {
     _type = type;
     _title = [title copy];

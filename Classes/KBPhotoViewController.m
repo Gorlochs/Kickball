@@ -13,7 +13,6 @@
 #import "KBMessage.h"
 
 
-
 @implementation KBPhotoViewController
 
 @synthesize startIndex;

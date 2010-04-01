@@ -7,6 +7,7 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
+#import "KBGenericPhotoViewController.h"
 #import "ProfileViewController.h"
 #import "FoursquareAPI.h"
 #import "FSVenue.h"
@@ -16,6 +17,8 @@
 #import "ProfileTwitterViewController.h"
 #import "ProfileFriendsViewController.h"
 #import "HistoryViewController.h"
+#import "ASIHTTPRequest.h"
+#import "KickballAPI.h"
 
 
 #define BADGES_PER_ROW 5
@@ -44,6 +47,7 @@
     
     if ([userId isEqualToString:[self getAuthenticatedUser].userId]) {
         signedInUserIcon.enabled = NO;
+        yourPhotosButton.hidden = NO;
     }
     
     [self addHeaderAndFooter:theTableView];
@@ -450,6 +454,31 @@
     HistoryViewController *historyController = [[HistoryViewController alloc] initWithNibName:@"HistoryViewController" bundle:nil];
     [self.navigationController pushViewController:historyController animated:YES];
     [historyController release];
+}
+
+- (void) viewYourPhotos {
+    [self startProgressBar:@"Retriving your photos..."];
+    NSString *gorlochUrlString = [NSString stringWithFormat:@"%@/gifts/owner/%@.xml", kickballDomain, userId];
+    NSLog(@"photo url string: %@", gorlochUrlString);
+    ASIHTTPRequest *gorlochRequest = [[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:gorlochUrlString]] autorelease];
+    
+    [gorlochRequest setDidFailSelector:@selector(photoRequestWentWrong:)];
+    [gorlochRequest setDidFinishSelector:@selector(photoRequestDidFinish:)];
+    [gorlochRequest setTimeOutSeconds:500];
+    [gorlochRequest setDelegate:self];
+    [gorlochRequest startAsynchronous];
+}
+
+- (void) photoRequestWentWrong:(ASIHTTPRequest *) request {
+    NSLog(@"BOOOOOOOOOOOO!");
+}
+
+- (void) photoRequestDidFinish:(ASIHTTPRequest *) request {
+    MockPhotoSource *photoSource = [[KickballAPI kickballApi] convertGoodiesIntoPhotoSource:[[KickballAPI kickballApi] parsePhotosFromXML:[request responseString]] withTitle:@"Your Photos"];
+    KBGenericPhotoViewController *photoController = [[KBGenericPhotoViewController alloc] initWithPhotoSource:photoSource];
+    [self stopProgressBar];
+    [self.navigationController pushViewController:photoController animated:YES];
+    [photoController release];
 }
 
 #pragma mark

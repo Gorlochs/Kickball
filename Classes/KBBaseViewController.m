@@ -21,8 +21,8 @@
 
 #define PROGRESS_BAR_TIMER_LENGTH 30.0
 
-//const NSString *kickballDomain = @"http://gorlochs.literalshore.com:3000/kickball";
-const NSString *kickballDomain = @"http://kickball.gorlochs.com/kickball";
+const NSString *kickballDomain = @"http://gorlochs.literalshore.com:3000/kickball";
+//const NSString *kickballDomain = @"http://kickball.gorlochs.com/kickball";
 
 @implementation KBBaseViewController
 
@@ -45,6 +45,12 @@ const NSString *kickballDomain = @"http://kickball.gorlochs.com/kickball";
     
     KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
     [appDelegate.pushNotificationUserId addObserver:self forKeyPath:@"pushUserId" options:0 context:nil];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    // this is to clean up some stuff that gets set by the photo viewer
+    self.navigationController.navigationBar.hidden = YES;
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
 }
 
 - (void) viewDidUnload {

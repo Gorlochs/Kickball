@@ -41,6 +41,8 @@
     IBOutlet UIButton *twitterButton;
     IBOutlet UIButton *facebookButton;
     
+    IBOutlet UIButton *yourPhotosButton;
+    
     // not sure what these are doing here
     bool isPingOn;
     bool isTwitterOn;
@@ -64,5 +66,6 @@
 - (IBAction) facebookProfile;
 - (IBAction) viewHistory;
 - (IBAction) viewProfilesFriends;
+- (IBAction) viewYourPhotos;
 
 @end
