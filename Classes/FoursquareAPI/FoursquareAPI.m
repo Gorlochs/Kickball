@@ -259,38 +259,81 @@ static FoursquareAPI *sharedInstance = nil;
     [self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/checkin"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"POST"];
 }
 
-- (void) doCheckinAtVenueWithId:(NSString *)venueId andShout:(NSString *)shout offGrid:(BOOL)offGrid toTwitter:(BOOL)toTwitter withTarget:(id)inTarget andAction:(SEL)inAction {
-//	NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
+- (void) doCheckinAtVenueWithId:(NSString *)venueId andShout:(NSString *)shout offGrid:(BOOL)offGrid toTwitter:(BOOL)toTwitter toFacebook:(BOOL)toFacebook withTarget:(id)inTarget andAction:(SEL)inAction {
+    //	NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
 	NSMutableDictionary * requestParams = [[[NSMutableDictionary alloc] initWithCapacity:3] autorelease];
-
-//	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"vid" andValue:venueId]];
-
+    
+    //	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"vid" andValue:venueId]];
+    
     if (venueId) {
         [requestParams setObject:venueId forKey:@"vid"];	
     }
 	if(shout){
 		[requestParams setObject:shout forKey:@"shout"];	
-//		[params addObject:[[MPURLRequestParameter alloc] initWithName:@"shout" andValue:shout]];
+        //		[params addObject:[[MPURLRequestParameter alloc] initWithName:@"shout" andValue:shout]];
 	}
 	if(offGrid == YES){
 		[requestParams setObject:@"1" forKey:@"private"];	
-//		[params addObject:[[MPURLRequestParameter alloc] initWithName:@"private" andValue:@"1"]];
+        //		[params addObject:[[MPURLRequestParameter alloc] initWithName:@"private" andValue:@"1"]];
 	} else {
 		[requestParams setObject:@"0" forKey:@"private"];	
-//		[params addObject:[[MPURLRequestParameter alloc] initWithName:@"private" andValue:@"0"]];
+        //		[params addObject:[[MPURLRequestParameter alloc] initWithName:@"private" andValue:@"0"]];
 	}
 	if(toTwitter == YES){
 		[requestParams setObject:@"1" forKey:@"twitter"];	
-//		[params addObject:[[MPURLRequestParameter alloc] initWithName:@"twitter" andValue:@"1"]];
+        //		[params addObject:[[MPURLRequestParameter alloc] initWithName:@"twitter" andValue:@"1"]];
 	} else {
 		[requestParams setObject:@"0" forKey:@"twitter"];	
-//		[params addObject:[[MPURLRequestParameter alloc] initWithName:@"twitter" andValue:@"0"]];
+        //		[params addObject:[[MPURLRequestParameter alloc] initWithName:@"twitter" andValue:@"0"]];
+	}
+	if(toFacebook == YES){
+		[requestParams setObject:@"1" forKey:@"facebook"];	
+        //		[params addObject:[[MPURLRequestParameter alloc] initWithName:@"facebook" andValue:@"1"]];
+	} else {
+		[requestParams setObject:@"0" forKey:@"facebook"];	
+        //		[params addObject:[[MPURLRequestParameter alloc] initWithName:@"facebook" andValue:@"0"]];
 	}
 	[requestParams setObject:[NSString stringWithFormat:@"%f", [[LocationManager locationManager] latitude]]  forKey:@"geolat"];	
 	[requestParams setObject:[NSString stringWithFormat:@"%f", [[LocationManager locationManager] longitude]]  forKey:@"geolong"];	
 	NSLog(@"checkin params: %@", requestParams);
 	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/checkin"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"POST"];
-//    [self.oauthAPI performMethod:@"/v1/checkin" withTarget:inTarget withParameters:params andAction:inAction doPost:YES];
+    //    [self.oauthAPI performMethod:@"/v1/checkin" withTarget:inTarget withParameters:params andAction:inAction doPost:YES];
+}
+
+// this method uses the user's default setting for sendToFacebook. 
+// this method is used when the view/method doesn't know (or care) what the user's setting is
+- (void) doCheckinAtVenueWithId:(NSString *)venueId andShout:(NSString *)shout offGrid:(BOOL)offGrid toTwitter:(BOOL)toTwitter withTarget:(id)inTarget andAction:(SEL)inAction {
+    //	NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
+	NSMutableDictionary * requestParams = [[[NSMutableDictionary alloc] initWithCapacity:3] autorelease];
+    
+    //	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"vid" andValue:venueId]];
+    
+    if (venueId) {
+        [requestParams setObject:venueId forKey:@"vid"];	
+    }
+	if(shout){
+		[requestParams setObject:shout forKey:@"shout"];	
+        //		[params addObject:[[MPURLRequestParameter alloc] initWithName:@"shout" andValue:shout]];
+	}
+	if(offGrid == YES){
+		[requestParams setObject:@"1" forKey:@"private"];	
+        //		[params addObject:[[MPURLRequestParameter alloc] initWithName:@"private" andValue:@"1"]];
+	} else {
+		[requestParams setObject:@"0" forKey:@"private"];	
+        //		[params addObject:[[MPURLRequestParameter alloc] initWithName:@"private" andValue:@"0"]];
+	}
+	if(toTwitter == YES){
+		[requestParams setObject:@"1" forKey:@"twitter"];	
+        //		[params addObject:[[MPURLRequestParameter alloc] initWithName:@"twitter" andValue:@"1"]];
+	} else {
+		[requestParams setObject:@"0" forKey:@"twitter"];	
+        //		[params addObject:[[MPURLRequestParameter alloc] initWithName:@"twitter" andValue:@"0"]];
+	}
+	[requestParams setObject:[NSString stringWithFormat:@"%f", [[LocationManager locationManager] latitude]]  forKey:@"geolat"];	
+	[requestParams setObject:[NSString stringWithFormat:@"%f", [[LocationManager locationManager] longitude]]  forKey:@"geolong"];	
+	NSLog(@"checkin params: %@", requestParams);
+	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/checkin"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"POST"];
+    //    [self.oauthAPI performMethod:@"/v1/checkin" withTarget:inTarget withParameters:params andAction:inAction doPost:YES];
 }
 
 - (void) doSendFriendRequest:(NSString*)userId withTarget:(id)inTarget andAction:(SEL)inAction {

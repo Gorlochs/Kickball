@@ -91,6 +91,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     signedInUserIcon.hidden = NO;
     isPingOn = tmpUser.isPingOn;
     isTwitterOn = tmpUser.sendToTwitter && [self getAuthenticatedUser].twitter;
+    isFacebookOn = tmpUser.sendToFacebook;
     [self setProperButtonStates];
     
     mayorCrown.hidden = YES;
@@ -700,6 +701,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
                                                   andShout:[[inNotification userInfo] objectForKey:@"shout"] 
                                                    offGrid:!isPingOn
                                                  toTwitter:[[[inNotification userInfo] objectForKey:@"isTweet"] boolValue]
+                                                toFacebook:isPingOn ? isFacebookOn : NO
                                                 withTarget:self 
                                                  andAction:@selector(checkinResponseReceived:withResponseString:)];
     [[Beacon shared] startSubBeaconWithName:@"Check in and shout to Venue"];
@@ -711,6 +713,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
                                                   andShout:nil 
                                                    offGrid:doCheckin ? NO : !isPingOn
                                                  toTwitter:isTwitterOn
+                                                toFacebook:isPingOn ? isFacebookOn : NO
                                                 withTarget:self 
                                                  andAction:@selector(checkinResponseReceived:withResponseString:)];
     [[Beacon shared] startSubBeaconWithName:@"Check in to Venue"];
@@ -746,7 +749,9 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         [message release];
         
         self.venueToPush = ci.venue;
-        [self sendPushNotification];
+        if (isPingOn) {
+            [self sendPushNotification];
+        }
     }
 }
 

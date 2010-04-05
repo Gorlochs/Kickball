@@ -61,6 +61,7 @@
     bool isUserCheckedIn;
     bool isPingOn;
     bool isTwitterOn;  
+    bool isFacebookOn;  
     
     // set to YES if the user should be checked in with the initialization of this view
     BOOL doCheckin;

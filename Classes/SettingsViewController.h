@@ -18,6 +18,7 @@
     bool isPingAndUpdatesOn;
     IBOutlet UIButton *pingsAndUpdates;
     IBOutlet UIToolbar *toolbar;
+    IBOutlet UISegmentedControl *cityRadiusControl;
 }
 
 - (IBAction) viewFriendRequests;
@@ -27,5 +28,6 @@
 - (void) setPingAndUpdatesButton;
 - (IBAction) cancelEdit;
 - (void) animateToolbar:(CGRect)toolbarFrame;
+- (IBAction) chooseCityRadius;
 
 @end

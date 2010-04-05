@@ -12,6 +12,7 @@
 #import "FoursquareAPI.h"
 #import "SFHFKeychainUtils.h"
 #import "LoginViewModalController.h"
+#import "Utilities.h"
 
 
 @implementation SettingsViewController
@@ -176,12 +177,24 @@
 	return YES;
 }
 
+- (void) chooseCityRadius {
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if (cityRadiusControl.selectedSegmentIndex == 0) {
+        [userDefaults setInteger:50000 forKey:kCityRadiusKey];
+    } else if (cityRadiusControl.selectedSegmentIndex == 1) {
+        [userDefaults setInteger:100000 forKey:kCityRadiusKey];
+    } else if (cityRadiusControl.selectedSegmentIndex == 2) {
+        [userDefaults setInteger:250000 forKey:kCityRadiusKey];
+    }
+}
+
 - (void)dealloc {
     [username release];
     [password release];
     [friendRequestCount release];
     [pendingFriendRequests release];
     [toolbar release];
+    [cityRadiusControl release];
     [super dealloc];
 }
 

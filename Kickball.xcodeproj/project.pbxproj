@@ -3151,6 +3151,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Shawn Bernard (6MN36SS56H)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -3171,6 +3172,7 @@
 					"\"$(SRCROOT)/../../../Desktop/iphone-exif-0-9.1 Folder/Release-iphoneos\"",
 				);
 				PRODUCT_NAME = kickball;
+				"PROVISIONING_PROFILE[sdk=*]" = "80CEF5BD-5322-4AFC-8D6D-7ECB0CFA60A0";
 			};
 			name = Debug;
 		};
@@ -3178,6 +3180,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Shawn Bernard (6MN36SS56H)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Kickball_Prefix.pch;
@@ -3196,6 +3199,7 @@
 					"\"$(SRCROOT)/../../../Desktop/iphone-exif-0-9.1 Folder/Release-iphoneos\"",
 				);
 				PRODUCT_NAME = kickball;
+				"PROVISIONING_PROFILE[sdk=*]" = "80CEF5BD-5322-4AFC-8D6D-7ECB0CFA60A0";
 			};
 			name = Release;
 		};
@@ -3203,7 +3207,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphonesimulator*]" = "<Multiple values>";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Shawn Bernard (6MN36SS56H)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -3217,7 +3221,7 @@
 					"-ObjC",
 				);
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphonesimulator*]" = "<Multiple values>";
+				"PROVISIONING_PROFILE[sdk=*]" = "80CEF5BD-5322-4AFC-8D6D-7ECB0CFA60A0";
 				SDKROOT = iphoneos3.1;
 			};
 			name = Debug;
@@ -3226,7 +3230,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphonesimulator*]" = "<Multiple values>";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Shawn Bernard (6MN36SS56H)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -3240,7 +3244,7 @@
 					"-ObjC",
 				);
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphonesimulator*]" = "<Multiple values>";
+				"PROVISIONING_PROFILE[sdk=*]" = "80CEF5BD-5322-4AFC-8D6D-7ECB0CFA60A0";
 				SDKROOT = iphoneos3.1;
 			};
 			name = Release;

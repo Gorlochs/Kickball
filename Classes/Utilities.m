@@ -245,4 +245,19 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
     return localDate;
 }
 
+- (NSNumber*) getCityRadius {
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSNumber *radius = [NSNumber numberWithInt:50000];
+    if (userDefaults) {
+        NSNumber *cityRadius = [NSNumber numberWithInteger:[userDefaults integerForKey:kCityRadiusKey]];
+        if (cityRadius) {
+            return cityRadius;
+        } else {
+            [userDefaults setValue:radius forKey:kCityRadiusKey];
+            return radius;
+        }
+    }
+	return radius;
+}
+
 @end

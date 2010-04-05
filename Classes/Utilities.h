@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#define kCityRadiusKey @"cityRadius"
+
 // Salt for hash function. Can be any arbitrary value, but must be shared with server
 extern const NSString *kKBHashSalt;
 
@@ -29,5 +31,6 @@ extern const NSString *kKBHashSalt;
 - (void) retrieveAllFriendsWithPingOn;
 + (UIImage *)makeRoundCornerImage:(UIImage*)img cornerwidth:(int) cornerWidth cornerheight:(int) cornerHeight;
 + (NSDate*) convertUTCCheckinDateToLocal:(NSDate*)utcDate;
+- (NSNumber*) getCityRadius;
 
 @end
