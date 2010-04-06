@@ -34,7 +34,7 @@
 
 @implementation FriendsListViewController
 
-@synthesize checkins, recentCheckins, todayCheckins, yesterdayCheckins;
+@synthesize checkins, recentCheckins, todayCheckins, yesterdayCheckins, nonCityCheckins;
 
 - (void) viewDidLoad {
     [super viewDidLoad];
@@ -204,6 +204,7 @@
     [recentCheckins release];
     [todayCheckins release];
     [yesterdayCheckins release];
+    [nonCityCheckins release];
     [theTableView release];
     [checkins release];
     [mapButton release];
@@ -470,12 +471,18 @@
         
         for (FSCheckin *checkin in checkins) {
             NSDate *date = [[[Utilities sharedInstance] foursquareCheckinDateFormatter] dateFromString:checkin.created];
-            if ([date compare:oneHourFromNow] == NSOrderedDescending) {
-                [self.recentCheckins addObject:checkin];
-            } else if ([date compare:oneHourFromNow] == NSOrderedAscending && [date compare:twentyfourHoursFromNow] == NSOrderedDescending) {
-                [self.todayCheckins addObject:checkin];
+            NSLog(@"checkin distance: %d", checkin.distanceFromLoggedInUser);
+            NSLog(@"city radius: %d", [[[Utilities sharedInstance] getCityRadius] integerValue]);
+            if (checkin.distanceFromLoggedInUser < [[[Utilities sharedInstance] getCityRadius] integerValue]) {
+                if ([date compare:oneHourFromNow] == NSOrderedDescending) {
+                    [self.recentCheckins addObject:checkin];
+                } else if ([date compare:oneHourFromNow] == NSOrderedAscending && [date compare:twentyfourHoursFromNow] == NSOrderedDescending) {
+                    [self.todayCheckins addObject:checkin];
+                } else {
+                    [self.yesterdayCheckins addObject:checkin];
+                }
             } else {
-                [self.yesterdayCheckins addObject:checkin];
+                [self.nonCityCheckins addObject:checkin];
             }
             
             NSDateComponents *components = [gregorian components:unitFlags fromDate:[self convertToUTC:[NSDate date]] toDate:date options:0];

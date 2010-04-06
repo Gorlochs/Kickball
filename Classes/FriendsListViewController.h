@@ -19,6 +19,7 @@
 	NSMutableArray * recentCheckins;
 	NSMutableArray * todayCheckins;
 	NSMutableArray * yesterdayCheckins;
+	NSMutableArray * nonCityCheckins;
     
     IBOutlet UIView *noNetworkView;
     IBOutlet InstructionView *instructionView;
@@ -44,6 +45,7 @@
 @property (nonatomic, retain) NSMutableArray * recentCheckins;
 @property (nonatomic, retain) NSMutableArray * todayCheckins;
 @property (nonatomic, retain) NSMutableArray * yesterdayCheckins;
+@property (nonatomic, retain) NSMutableArray * nonCityCheckins;
 
 - (IBAction) flipToMap;
 - (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString;

@@ -190,6 +190,8 @@ static FoursquareAPI *sharedInstance = nil;
 - (void) getCheckinsWithTarget:(id)inTarget andAction:(SEL)inAction {
 	//	[self.oauthAPI performMethod:@"/v1/checkins" withTarget:inTarget andAction:inAction];
 	NSMutableDictionary * requestParams = [[[NSMutableDictionary alloc] initWithCapacity:2] autorelease];
+    NSLog(@"checkins lat: %f", [[LocationManager locationManager] latitude]);
+    NSLog(@"checkins long: %f", [[LocationManager locationManager] longitude]);
 	[requestParams setObject:[NSString stringWithFormat:@"%f", [[LocationManager locationManager] latitude]]  forKey:@"geolat"];	
 	[requestParams setObject:[NSString stringWithFormat:@"%f", [[LocationManager locationManager] longitude]]  forKey:@"geolong"];	
 	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/checkins"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"GET"];
@@ -785,6 +787,8 @@ static FoursquareAPI *sharedInstance = nil;
                 oneCheckin.display = value;
             } else if([key isEqualToString:@"ismayor"]){
                 oneCheckin.isMayor = [value isEqualToString:@"true"];
+            } else if([key isEqualToString:@"distance"]){
+                oneCheckin.distanceFromLoggedInUser = [value integerValue];
             }
         
             if([key compare:@"user"] == 0){

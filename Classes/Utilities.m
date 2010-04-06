@@ -156,6 +156,7 @@ static Utilities *sharedInstance = nil;
 
 - (void)friendsResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     if (friendsWithPingOn == nil) {
+        NSLog(@"all friends: %@", inString);
         NSArray *allFriends = [[FoursquareAPI friendUsersFromRequestResponseXML:inString] retain];
         totalNumberOfUsersForPush = [allFriends count];
         NSLog(@"total number of friends: %d", totalNumberOfUsersForPush);
@@ -250,7 +251,7 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
     NSNumber *radius = [NSNumber numberWithInt:50000];
     if (userDefaults) {
         NSNumber *cityRadius = [NSNumber numberWithInteger:[userDefaults integerForKey:kCityRadiusKey]];
-        if (cityRadius) {
+        if (cityRadius && cityRadius != [NSNumber numberWithInt:0]) {
             return cityRadius;
         } else {
             [userDefaults setValue:radius forKey:kCityRadiusKey];
