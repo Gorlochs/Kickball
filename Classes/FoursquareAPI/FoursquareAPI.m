@@ -192,8 +192,14 @@ static FoursquareAPI *sharedInstance = nil;
 	NSMutableDictionary * requestParams = [[[NSMutableDictionary alloc] initWithCapacity:2] autorelease];
     NSLog(@"checkins lat: %f", [[LocationManager locationManager] latitude]);
     NSLog(@"checkins long: %f", [[LocationManager locationManager] longitude]);
-	[requestParams setObject:[NSString stringWithFormat:@"%f", [[LocationManager locationManager] latitude]]  forKey:@"geolat"];	
-	[requestParams setObject:[NSString stringWithFormat:@"%f", [[LocationManager locationManager] longitude]]  forKey:@"geolong"];	
+    if ([[LocationManager locationManager] latitude] == 0.0f) {
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [requestParams setObject:[NSString stringWithFormat:@"%f", [userDefaults floatForKey:kLastLatitudeKey]]  forKey:@"geolat"];	
+        [requestParams setObject:[NSString stringWithFormat:@"%f", [userDefaults floatForKey:kLastLongitudeKey]]  forKey:@"geolong"];
+    } else {
+        [requestParams setObject:[NSString stringWithFormat:@"%f", [[LocationManager locationManager] latitude]]  forKey:@"geolat"];	
+        [requestParams setObject:[NSString stringWithFormat:@"%f", [[LocationManager locationManager] longitude]]  forKey:@"geolong"];   
+    }
 	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/checkins"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"GET"];
 }
 

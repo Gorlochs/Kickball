@@ -7,6 +7,8 @@
 //
 
 #import "LocationManager.h"
+#import "Utilities.h"
+
 
 static LocationManager *globalLocationManager = nil;
 static BOOL initialized = NO;
@@ -154,6 +156,10 @@ static BOOL initialized = NO;
         NSLog(@"latitude: %f", latitude);
         NSLog(@"longitude: %f", longitude);
         NSLog(@"bestEffortAtLocation: %@", bestEffortAtLocation);
+    
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setFloat:latitude forKey:kLastLatitudeKey];
+    [userDefaults setFloat:longitude forKey:kLastLongitudeKey];
         
 		locationDefined = YES;
 		[[NSNotificationCenter defaultCenter] postNotificationName: @"UpdateLocationNotification" object: nil];

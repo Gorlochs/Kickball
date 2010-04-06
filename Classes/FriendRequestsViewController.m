@@ -9,6 +9,7 @@
 #import "FriendRequestsViewController.h"
 #import "FoursquareAPI.h"
 #import "FriendSearchResultsViewController.h"
+#import "KBFacebookSearchViewController.h"
 
 
 @implementation FriendRequestsViewController
@@ -248,6 +249,13 @@
     [phones release];
     [people release];
     //[addressBook release];
+}
+
+- (void) searchFacebook {
+    KBFacebookSearchViewController *vc = [[KBFacebookSearchViewController alloc] initWithNibName:@"KBFacebookSearchViewController" bundle:nil];
+    [self stopProgressBar];
+    [self.navigationController pushViewController:vc animated:YES];
+    [vc release];
 }
 
 - (void) resignAllResponders {

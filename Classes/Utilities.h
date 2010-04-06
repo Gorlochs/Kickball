@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 #define kCityRadiusKey @"cityRadius"
+#define kLastLatitudeKey @"lastLatitude"
+#define kLastLongitudeKey @"lastLongitude"
 
 // Salt for hash function. Can be any arbitrary value, but must be shared with server
 extern const NSString *kKBHashSalt;

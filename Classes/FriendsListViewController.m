@@ -223,7 +223,7 @@
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 5;
+    return 6;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -238,8 +238,10 @@
             return 0;
         }
     } else if (section == 3) {
-        return !isDisplayingMore;
+        return [self.nonCityCheckins count];
     } else if (section == 4) {
+        return !isDisplayingMore;
+    } else if (section == 5) {
         return 1;
     }
 	return 0;
@@ -277,8 +279,10 @@
             return nil;
         }
     } else if (indexPath.section == 3) {
-        return moreCell;
+        checkin = [self.nonCityCheckins objectAtIndex:indexPath.row];
     } else if (indexPath.section == 4) {
+        return moreCell;
+    } else if (indexPath.section == 5) {
         return footerViewCell;
     }
     
@@ -339,6 +343,9 @@
         case 2: //yesterday
             user = ((FSCheckin*)[self.yesterdayCheckins objectAtIndex:indexPath.row]).user;
             break;
+        case 3: //non-city
+            user = ((FSCheckin*)[self.nonCityCheckins objectAtIndex:indexPath.row]).user;
+            break;
         default:
             break;
     }
@@ -362,9 +369,9 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 4) {
+    if (indexPath.section == 5) {
         return 50;
-    } else if (indexPath.section == 3) {
+    } else if (indexPath.section == 4) {
         return 44;
     }
     return 52;
@@ -415,8 +422,16 @@
                 return nil;
             }
             break;
-        case 3:  // more cell
-        case 4:  // footer cell
+        case 3:
+            if ([nonCityCheckins count] > 0) {
+                headerLabel.text = @"Other Cities";
+            } else {
+                [headerLabel release];
+                return nil;
+            }
+            break;
+        case 4:  // more cell
+        case 5:  // footer cell
             [headerLabel release];
             return nil;
         default:
@@ -461,6 +476,7 @@
         recentCheckins = [[NSMutableArray alloc] init];
         todayCheckins = [[NSMutableArray alloc] init];
         yesterdayCheckins = [[NSMutableArray alloc] init];
+        nonCityCheckins = [[NSMutableArray alloc] init];
         
         NSDate *oneHourFromNow = [[NSDate alloc] initWithTimeIntervalSinceNow:-60*60*1];
         NSDate *twentyfourHoursFromNow = [[NSDate alloc] initWithTimeIntervalSinceNow:-60*60*24];

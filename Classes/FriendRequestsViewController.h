@@ -34,6 +34,7 @@
 - (IBAction) searchByName;
 - (IBAction) searchByTwitter;
 - (IBAction) searchByPhone;
+- (IBAction) searchFacebook;
 - (void) didTapFriendizeButton: (UIControl *) button withEvent: (UIEvent *) event;
 - (void) resignAllResponders;
 - (void) animateToolbar:(CGRect)toolbarFrame;

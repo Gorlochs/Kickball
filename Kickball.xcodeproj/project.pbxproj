@@ -374,6 +374,8 @@
 		6A86F69F116AE008000BF6C6 /* FBPermissionDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A86F694116AE008000BF6C6 /* FBPermissionDialog.m */; };
 		6A86F6A0116AE008000BF6C6 /* FBStreamDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A86F696116AE008000BF6C6 /* FBStreamDialog.m */; };
 		6A86F6A1116AE008000BF6C6 /* FBConnect.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6A86F697116AE008000BF6C6 /* FBConnect.bundle */; };
+		6A86F6AA116AF376000BF6C6 /* KBFacebookSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A86F6A8116AF376000BF6C6 /* KBFacebookSearchViewController.m */; };
+		6A86F6AB116AF376000BF6C6 /* KBFacebookSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A86F6A9116AF376000BF6C6 /* KBFacebookSearchViewController.xib */; };
 		6A8AC21711612EE5009082F2 /* PhotoMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A8AC21511612EE5009082F2 /* PhotoMessageViewController.m */; };
 		6A8AC21811612EE5009082F2 /* PhotoMessageViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A8AC21611612EE5009082F2 /* PhotoMessageViewController.xib */; };
 		6A8AC8F1109AB31400C4FE1B /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A8AC8EF109AB31400C4FE1B /* ProfileViewController.m */; };
@@ -1117,6 +1119,9 @@
 		6A86F695116AE008000BF6C6 /* FBStreamDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBStreamDialog.h; path = Classes/FBStreamDialog.h; sourceTree = SOURCE_ROOT; };
 		6A86F696116AE008000BF6C6 /* FBStreamDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FBStreamDialog.m; path = Classes/FBStreamDialog.m; sourceTree = SOURCE_ROOT; };
 		6A86F697116AE008000BF6C6 /* FBConnect.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FBConnect.bundle; path = Classes/FBConnect.bundle; sourceTree = SOURCE_ROOT; };
+		6A86F6A7116AF376000BF6C6 /* KBFacebookSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBFacebookSearchViewController.h; sourceTree = "<group>"; };
+		6A86F6A8116AF376000BF6C6 /* KBFacebookSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBFacebookSearchViewController.m; sourceTree = "<group>"; };
+		6A86F6A9116AF376000BF6C6 /* KBFacebookSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KBFacebookSearchViewController.xib; sourceTree = "<group>"; };
 		6A8AC21411612EE5009082F2 /* PhotoMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoMessageViewController.h; sourceTree = "<group>"; };
 		6A8AC21511612EE5009082F2 /* PhotoMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoMessageViewController.m; sourceTree = "<group>"; };
 		6A8AC21611612EE5009082F2 /* PhotoMessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoMessageViewController.xib; sourceTree = "<group>"; };
@@ -2540,6 +2545,9 @@
 				6A06BA63113D8F6300BAB8CF /* FriendSearchResultsViewController.h */,
 				6A06BA64113D8F6300BAB8CF /* FriendSearchResultsViewController.m */,
 				6A06BA65113D8F6300BAB8CF /* FriendSearchResultsViewController.xib */,
+				6A86F6A7116AF376000BF6C6 /* KBFacebookSearchViewController.h */,
+				6A86F6A8116AF376000BF6C6 /* KBFacebookSearchViewController.m */,
+				6A86F6A9116AF376000BF6C6 /* KBFacebookSearchViewController.xib */,
 			);
 			name = Requests;
 			sourceTree = "<group>";
@@ -2640,6 +2648,7 @@
 				6A5F8F3C10B7707100914709 /* GeoAPIView.xib in Resources */,
 				6A10E61710BE0541006538DB /* LoginViewModalController.xib in Resources */,
 				6A402B3010B769A900D9BCEB /* GeoApiTableViewController.xib in Resources */,
+				6A86F6AB116AF376000BF6C6 /* KBFacebookSearchViewController.xib in Resources */,
 				6AC7E93210994FD000776993 /* PlaceDetailView.xib in Resources */,
 				6AF2F0AE10C2EBB300A29C96 /* TipView.xib in Resources */,
 				6AFF241210A24A0900CD30E5 /* PlaceTwitterViewController.xib in Resources */,
@@ -3202,6 +3211,7 @@
 				6A86F69E116AE008000BF6C6 /* FBLoginDialog.m in Sources */,
 				6A86F69F116AE008000BF6C6 /* FBPermissionDialog.m in Sources */,
 				6A86F6A0116AE008000BF6C6 /* FBStreamDialog.m in Sources */,
+				6A86F6AA116AF376000BF6C6 /* KBFacebookSearchViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
