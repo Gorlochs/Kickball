@@ -353,6 +353,7 @@
 		6A70FEF3114F60C1008D2ECD /* places03.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A70FEF1114F60C1008D2ECD /* places03.png */; };
 		6A70FF02114F6304008D2ECD /* friends03.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A70FF01114F6304008D2ECD /* friends03.png */; };
 		6A72CF34114C8A0000800692 /* FSCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A72CF33114C8A0000800692 /* FSCategory.m */; };
+		6A7610AE116BE92800BF2993 /* AbstractFacebookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A7610AD116BE92800BF2993 /* AbstractFacebookViewController.m */; };
 		6A79D0D710E5E682009082E5 /* PopupMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A79D0D610E5E682009082E5 /* PopupMessageView.m */; };
 		6A79D0D910E5E692009082E5 /* PopupMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A79D0D810E5E692009082E5 /* PopupMessageView.xib */; };
 		6A79D0FE10E68D1A009082E5 /* KBMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A79D0FD10E68D1A009082E5 /* KBMessage.m */; };
@@ -1084,6 +1085,8 @@
 		6A70FF01114F6304008D2ECD /* friends03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = friends03.png; sourceTree = "<group>"; };
 		6A72CF32114C8A0000800692 /* FSCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCategory.h; sourceTree = "<group>"; };
 		6A72CF33114C8A0000800692 /* FSCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCategory.m; sourceTree = "<group>"; };
+		6A7610AC116BE92800BF2993 /* AbstractFacebookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractFacebookViewController.h; sourceTree = "<group>"; };
+		6A7610AD116BE92800BF2993 /* AbstractFacebookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractFacebookViewController.m; sourceTree = "<group>"; };
 		6A79D0D510E5E682009082E5 /* PopupMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopupMessageView.h; sourceTree = "<group>"; };
 		6A79D0D610E5E682009082E5 /* PopupMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopupMessageView.m; sourceTree = "<group>"; };
 		6A79D0D810E5E692009082E5 /* PopupMessageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupMessageView.xib; sourceTree = "<group>"; };
@@ -2202,10 +2205,9 @@
 		6A55B4CC10B36E9A0005E934 /* General */ = {
 			isa = PBXGroup;
 			children = (
+				6A7610AF116BE92D00BF2993 /* Abstract Classes */,
 				6A10E61310BE0541006538DB /* LoginViewModalController.h */,
 				6A10E61410BE0541006538DB /* LoginViewModalController.m */,
-				6A55B4CE10B36EC60005E934 /* KBBaseViewController.h */,
-				6A55B4CF10B36EC60005E934 /* KBBaseViewController.m */,
 				6AFC1D9810BA4320006B7E5F /* ProgressViewController.h */,
 				6AFC1D9910BA4320006B7E5F /* ProgressViewController.m */,
 				6A16ABD910CF251800CD5302 /* InstructionView.h */,
@@ -2233,8 +2235,6 @@
 				035C1FD31112A2E10075E553 /* NSString+hmac.m */,
 				6AD0C133113E3F2B00A971E3 /* KBTwitterCell.h */,
 				6AD0C134113E3F2B00A971E3 /* KBTwitterCell.m */,
-				6AE7FD3D115DA11B0073979E /* AbstractPushNotificationViewController.h */,
-				6AE7FD3E115DA11B0073979E /* AbstractPushNotificationViewController.m */,
 				6ABD31D41164FBEF008F6A5D /* KBInstacheckinTableCell.h */,
 				6ABD31D51164FBEF008F6A5D /* KBInstacheckinTableCell.m */,
 			);
@@ -2260,6 +2260,19 @@
 				6A63DDA31108EDBA00E2F9BB /* RKLMatchEnumerator.m */,
 			);
 			path = RegexKitLite;
+			sourceTree = "<group>";
+		};
+		6A7610AF116BE92D00BF2993 /* Abstract Classes */ = {
+			isa = PBXGroup;
+			children = (
+				6A55B4CE10B36EC60005E934 /* KBBaseViewController.h */,
+				6A55B4CF10B36EC60005E934 /* KBBaseViewController.m */,
+				6AE7FD3D115DA11B0073979E /* AbstractPushNotificationViewController.h */,
+				6AE7FD3E115DA11B0073979E /* AbstractPushNotificationViewController.m */,
+				6A7610AC116BE92800BF2993 /* AbstractFacebookViewController.h */,
+				6A7610AD116BE92800BF2993 /* AbstractFacebookViewController.m */,
+			);
+			name = "Abstract Classes";
 			sourceTree = "<group>";
 		};
 		6A86F683116AE008000BF6C6 /* FBConnect */ = {
@@ -3212,6 +3225,7 @@
 				6A86F69F116AE008000BF6C6 /* FBPermissionDialog.m in Sources */,
 				6A86F6A0116AE008000BF6C6 /* FBStreamDialog.m in Sources */,
 				6A86F6AA116AF376000BF6C6 /* KBFacebookSearchViewController.m in Sources */,
+				6A7610AE116BE92800BF2993 /* AbstractFacebookViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

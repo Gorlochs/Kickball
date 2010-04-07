@@ -255,7 +255,7 @@
     KBFacebookSearchViewController *vc = [[KBFacebookSearchViewController alloc] initWithNibName:@"KBFacebookSearchViewController" bundle:nil];
     [self stopProgressBar];
     [self.navigationController pushViewController:vc animated:YES];
-    [vc release];
+    //[vc release];
 }
 
 - (void) resignAllResponders {

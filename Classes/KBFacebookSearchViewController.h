@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "KBBaseViewController.h"
-#import "FBConnect/FBConnect.h"
+#import "AbstractFacebookViewController.h"
 
 
-@interface KBFacebookSearchViewController : KBBaseViewController <FBDialogDelegate, FBSessionDelegate, FBRequestDelegate, UITableViewDelegate, UITableViewDataSource> {
-    
-    FBSession* _session;
+@interface KBFacebookSearchViewController : AbstractFacebookViewController <UITableViewDelegate, UITableViewDataSource> {
+
 }
+
+- (IBAction) askPermissionPublishStream;
 
 @end

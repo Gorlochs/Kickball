@@ -63,6 +63,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         // Custom initialization
+        
     }
     return self;
 }
@@ -1180,8 +1181,27 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         [networkQueue addOperation:request];
         //queueCount++;
     }
-    [networkQueue go];	
+    [networkQueue go];
+    
+    [self uploadFacebookPhoto:imageData withCaption:message];
     return YES;
+}
+
+- (void) uploadFacebookPhoto:(NSData*)img withCaption:(NSString*)caption {
+    NSDictionary *params = nil;
+    if (caption) {
+        params = [NSDictionary dictionaryWithObjectsAndKeys:caption, @"caption", nil];
+    }
+    [[FBRequest requestWithDelegate:self] call:@"facebook.photos.upload" params:params dataParam:(NSData*)img];
+}
+
+- (void)request:(FBRequest*)request didLoad:(id)result {
+    if ([request.method isEqualToString:@"facebook.photos.upload"]) {
+        NSDictionary* photoInfo = result;
+        NSString* pid = [photoInfo objectForKey:@"pid"];
+        NSLog(@"facebook photo uploaded: %@", photoInfo);
+        NSLog(@"facebook photo uploaded. pid: %@", pid);
+    }
 }
 
 @end

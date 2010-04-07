@@ -268,13 +268,12 @@
 								<string>080E96DDFE201D6D7F000001</string>
 								<string>553C50FD10A1BD5000A74641</string>
 								<string>6AE7FB64115D1F160073979E</string>
-								<string>6A8EEEC110A14ED200DC630C</string>
 								<string>6AF9670D109AA2FE00EF665D</string>
 								<string>6AC7E92D10994FB500776993</string>
-								<string>6A8AC21111612EAC009082F2</string>
 								<string>6AF794AA10CCAD9A00E77D49</string>
 								<string>6A044CB8109545580063FC33</string>
 								<string>6A55B4CC10B36E9A0005E934</string>
+								<string>6A7610AF116BE92D00BF2993</string>
 								<string>29B97317FDCFA39411CA2CEA</string>
 								<string>19C28FACFE9D520D11CA2CBB</string>
 								<string>1C37FBAC04509CD000000102</string>
@@ -283,14 +282,14 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>112</integer>
-									<integer>108</integer>
+									<integer>65</integer>
+									<integer>58</integer>
 									<integer>2</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 1288}, {288, 910}}</string>
+							<string>{{0, 517}, {288, 910}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -309,7 +308,7 @@
 							<real>288</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>0 59 1680 969 0 0 1680 1028 </string>
+						<string>-1 58 1680 969 0 0 1680 1028 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -327,7 +326,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>FriendsListViewController.m</string>
+								<string>PlaceDetailViewController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -335,11 +334,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>FriendsListViewController.m</string>
+										<string>PlaceDetailViewController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>6A760FFE116BB49B00BF2993</string>
+										<string>6A761183116C06AC00BF2993</string>
 										<key>history</key>
 										<array>
 											<string>6A7BE8BA115989280081BF91</string>
@@ -355,20 +354,21 @@
 											<string>6ABD314811643982008F6A5D</string>
 											<string>6ABD314911643982008F6A5D</string>
 											<string>6ABD314E11644845008F6A5D</string>
-											<string>6ABD316811644FDA008F6A5D</string>
-											<string>6A86F54B116A5333000BF6C6</string>
-											<string>6A86F5A4116A6B73000BF6C6</string>
 											<string>6A86F5A5116A6B73000BF6C6</string>
 											<string>6A86F5D4116A6D34000BF6C6</string>
 											<string>6A86F5D5116A6D34000BF6C6</string>
-											<string>6A86F61B116ADBB4000BF6C6</string>
-											<string>6A86F6CA116AF726000BF6C6</string>
 											<string>6A07E325116AFB23006DB7CC</string>
 											<string>6A760FA4116BA46900BF2993</string>
-											<string>6A760FC2116BA70D00BF2993</string>
-											<string>6A760FE0116BAC1700BF2993</string>
 											<string>6A760FE1116BAC1700BF2993</string>
-											<string>6A760FF4116BB2EA00BF2993</string>
+											<string>6A76102A116BD97900BF2993</string>
+											<string>6A7610CF116BF0B600BF2993</string>
+											<string>6A7610F4116BF30E00BF2993</string>
+											<string>6A76116E116C02F800BF2993</string>
+											<string>6A76117B116C04A000BF2993</string>
+											<string>6A76117C116C04A000BF2993</string>
+											<string>6A76117F116C064600BF2993</string>
+											<string>6A761181116C06AC00BF2993</string>
+											<string>6A761182116C06AC00BF2993</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -382,7 +382,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {1370, 923}}</string>
 								<key>RubberWindowFrame</key>
-								<string>0 59 1680 969 0 0 1680 1028 </string>
+								<string>-1 58 1680 969 0 0 1680 1028 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -402,7 +402,7 @@
 								<key>Frame</key>
 								<string>{{0, 928}, {1370, 0}}</string>
 								<key>RubberWindowFrame</key>
-								<string>0 59 1680 969 0 0 1680 1028 </string>
+								<string>-1 58 1680 969 0 0 1680 1028 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -566,17 +566,17 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>6A760FFF116BB49B00BF2993</string>
+		<string>6A76117A116C035800BF2993</string>
 		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>6A760F53116AFDE000BF2993</string>
 		<string>6A760F54116AFDE000BF2993</string>
-		<string>1CD10A99069EF8BA00B06720</string>
 		<string>6A044CB9109545940063FC33</string>
+		<string>1CD10A99069EF8BA00B06720</string>
 		<string>1C78EAAD065D492600B07095</string>
 		<string>/Users/shawnbernard/Documents/projects/Kickball/Kickball.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>0 59 1680 969 0 0 1680 1028 </string>
+	<string>-1 58 1680 969 0 0 1680 1028 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
@@ -592,14 +592,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>LocationManager.m</string>
+								<string>FriendsListViewController.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -616,6 +614,8 @@
 							<string>488pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -792,7 +792,7 @@
 			<key>WindowToolGUID</key>
 			<string>1CD10A99069EF8BA00B06720</string>
 			<key>WindowToolIsVisible</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>
@@ -815,7 +815,7 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>&lt;No Editor&gt;</string>
+										<string>AbstractFacebookViewController.m</string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>
@@ -836,6 +836,8 @@
 							<string>516pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>

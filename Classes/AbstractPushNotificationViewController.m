@@ -21,6 +21,14 @@
 @synthesize hasPhoto;
 @synthesize photoMessageToPush;
 
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
+        // Custom initialization
+    }
+    return self;
+}
+
 - (void) sendPushNotification {
     if ([[Utilities sharedInstance] friendsWithPingOn]) {
         NSLog(@"friends with ping on pulled from cache: %@", [[[Utilities sharedInstance] friendsWithPingOn] componentsJoinedByString:@","]);

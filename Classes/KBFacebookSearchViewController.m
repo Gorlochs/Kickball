@@ -8,33 +8,22 @@
 
 #import "KBFacebookSearchViewController.h"
 
-static NSString* kApiKey = @"4585c2e42804bca19e21eb30d402905e";
-
-// Enter either your API secret or a callback URL (as described in documentation):
-static NSString* kApiSecret = @"5cd7d10f85a36d5aeb4f2f7f99e1c85b"; // @"<YOUR SECRET KEY>";
-static NSString* kGetSessionProxy = nil; // @"<YOUR SESSION CALLBACK)>";
 
 @implementation KBFacebookSearchViewController
-
 
 #pragma mark -
 #pragma mark View lifecycle
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if (self = [super initWithNibName:@"KBFacebookSearchViewController" bundle:nibBundleOrNil]) {
-        if (kGetSessionProxy) {
-            _session = [[FBSession sessionForApplication:kApiKey getSessionProxy:kGetSessionProxy delegate:self] retain];
-        } else {
-            _session = [[FBSession sessionForApplication:kApiKey secret:kApiSecret delegate:self] retain];
-        }
+    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+
     }
     return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [_session resume];
-
+    
     // Uncomment the following line to preserve selection between presentations.
     //self.clearsSelectionOnViewWillAppear = NO;
  
@@ -45,8 +34,9 @@ static NSString* kGetSessionProxy = nil; // @"<YOUR SESSION CALLBACK)>";
     button.frame = CGRectMake(10, 60, 100, 40);
     [self.view addSubview:button];
 }
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// FBSessionDelegate
+
+#pragma mark -
+#pragma mark FBSessionDelegate
 
 - (void)session:(FBSession*)session didLogin:(FBUID)uid {
 //    _label.text = @"";
@@ -55,11 +45,15 @@ static NSString* kGetSessionProxy = nil; // @"<YOUR SESSION CALLBACK)>";
 //    _statusButton.hidden     = NO;
 //    _photoButton.hidden      = NO;
     
-    NSString* fql = [NSString stringWithFormat:
-                     @"select uid,name from user where uid == %lld", session.uid];
+//    NSString* fql = [NSString stringWithFormat:@"select uid, name from user where uid == %lld", session.uid];
+//    
+//    //NSString *fql = [NSString stringWithFormat:@"SELECT flid,name FROM friendlist WHERE owner = %lld", session.uid];
+//    
+//    NSDictionary* params = [NSDictionary dictionaryWithObject:fql forKey:@"query"];
+//    [[FBRequest requestWithDelegate:self] call:@"facebook.fql.query" params:params];
     
-    NSDictionary* params = [NSDictionary dictionaryWithObject:fql forKey:@"query"];
-    [[FBRequest requestWithDelegate:self] call:@"facebook.fql.query" params:params];
+    
+    //[[FBRequest requestWithDelegate:self] call:@"facebook.Friends.get" params:nil];
 }
 
 - (void)sessionDidNotLogin:(FBSession*)session {
@@ -74,27 +68,38 @@ static NSString* kGetSessionProxy = nil; // @"<YOUR SESSION CALLBACK)>";
 //    _photoButton.hidden      = YES;
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// FBRequestDelegate
+#pragma mark -
+#pragma mark FBRequestDelegate
 
 - (void)request:(FBRequest*)request didLoad:(id)result {
-    if ([request.method isEqualToString:@"facebook.fql.query"]) {
-        NSArray* users = result;
-        NSDictionary* user = [users objectAtIndex:0];
-        NSString* name = [user objectForKey:@"name"];
-//        _label.text = [NSString stringWithFormat:@"Logged in as %@", name];
-    } else if ([request.method isEqualToString:@"facebook.users.setStatus"]) {
-        NSString* success = result;
-//        if ([success isEqualToString:@"1"]) {
-//            _label.text = [NSString stringWithFormat:@"Status successfully set"]; 
-//        } else {
-//            _label.text = [NSString stringWithFormat:@"Problem setting status"]; 
-//        }
-    } else if ([request.method isEqualToString:@"facebook.photos.upload"]) {
-        NSDictionary* photoInfo = result;
-        NSString* pid = [photoInfo objectForKey:@"pid"];
-//        _label.text = [NSString stringWithFormat:@"Uploaded with pid %@", pid];
-    }
+//    if ([request.method isEqualToString:@"facebook.fql.query"]) {
+//        NSArray* users = result;
+//        NSDictionary* user = [users objectAtIndex:0];
+//        NSString* name = [user objectForKey:@"name"];
+//        NSLog(@"FB user name: %@", name);
+////        _label.text = [NSString stringWithFormat:@"Logged in as %@", name];
+//    } else if ([request.method isEqualToString:@"facebook.users.setStatus"]) {
+//        NSString* success = result;
+////        if ([success isEqualToString:@"1"]) {
+////            _label.text = [NSString stringWithFormat:@"Status successfully set"]; 
+////        } else {
+////            _label.text = [NSString stringWithFormat:@"Problem setting status"]; 
+////        }
+//    } else if ([request.method isEqualToString:@"facebook.photos.upload"]) {
+//        NSDictionary* photoInfo = result;
+//        NSString* pid = [photoInfo objectForKey:@"pid"];
+////        _label.text = [NSString stringWithFormat:@"Uploaded with pid %@", pid];
+//    } else if ([request.method isEqualToString:@"facebook.Friends.get"]) {
+//        NSString* ids = result;
+//        NSLog(@"facebook friends: %@", ids);
+//    }
+}
+
+- (void)askPermissionPublishStream {
+    FBPermissionDialog* dialog = [[[FBPermissionDialog alloc] init] autorelease];
+    dialog.delegate = self;
+    dialog.permission = @"publish_stream";
+    [dialog show];
 }
 
 - (void)request:(FBRequest*)request didFailWithError:(NSError*)error {
@@ -187,7 +192,6 @@ static NSString* kGetSessionProxy = nil; // @"<YOUR SESSION CALLBACK)>";
 
 
 - (void)dealloc {
-    [_session release];
     [super dealloc];
 }
 

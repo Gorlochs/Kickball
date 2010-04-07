@@ -110,5 +110,6 @@
 - (UIImage*)imageByScalingToSize:(UIImage*)image toSize:(CGSize)targetSize;
 - (IBAction) displayAllImages;
 - (void) returnFromMessageView:(NSNotification *)inNotification;
+- (void) uploadFacebookPhoto:(NSData*)img withCaption:(NSString*)caption;
 
 @end

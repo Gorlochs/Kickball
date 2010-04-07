@@ -11,7 +11,6 @@
 #import "KickballAppDelegate.h"
 #import "ProfileViewController.h"
 #import "FoursquareAPI.h"
-#import "Utilities.h"
 #import "SettingsViewController.h"
 #import "PlaceDetailViewController.h"
 #import "PlacesListViewController.h"
