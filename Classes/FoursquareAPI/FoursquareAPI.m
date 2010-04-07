@@ -11,7 +11,7 @@
 #import "FSMayor.h"
 #import "FSSpecial.h"
 #import "SFHFKeychainUtils.h"
-#import "LocationManager.h"
+#import "KBLocationManager.h"
 #import "FSCategory.h"
 
 #define USER_AGENT @"Kickball:1.0.0"
@@ -190,15 +190,15 @@ static FoursquareAPI *sharedInstance = nil;
 - (void) getCheckinsWithTarget:(id)inTarget andAction:(SEL)inAction {
 	//	[self.oauthAPI performMethod:@"/v1/checkins" withTarget:inTarget andAction:inAction];
 	NSMutableDictionary * requestParams = [[[NSMutableDictionary alloc] initWithCapacity:2] autorelease];
-    NSLog(@"checkins lat: %f", [[LocationManager locationManager] latitude]);
-    NSLog(@"checkins long: %f", [[LocationManager locationManager] longitude]);
-    if ([[LocationManager locationManager] latitude] == 0.0f) {
+    NSLog(@"checkins lat: %f", [[KBLocationManager locationManager] latitude]);
+    NSLog(@"checkins long: %f", [[KBLocationManager locationManager] longitude]);
+    if ([[KBLocationManager locationManager] latitude] == 0.0f) {
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         [requestParams setObject:[NSString stringWithFormat:@"%f", [userDefaults floatForKey:kLastLatitudeKey]]  forKey:@"geolat"];	
         [requestParams setObject:[NSString stringWithFormat:@"%f", [userDefaults floatForKey:kLastLongitudeKey]]  forKey:@"geolong"];
     } else {
-        [requestParams setObject:[NSString stringWithFormat:@"%f", [[LocationManager locationManager] latitude]]  forKey:@"geolat"];	
-        [requestParams setObject:[NSString stringWithFormat:@"%f", [[LocationManager locationManager] longitude]]  forKey:@"geolong"];   
+        [requestParams setObject:[NSString stringWithFormat:@"%f", [[KBLocationManager locationManager] latitude]]  forKey:@"geolat"];	
+        [requestParams setObject:[NSString stringWithFormat:@"%f", [[KBLocationManager locationManager] longitude]]  forKey:@"geolong"];   
     }
 	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/checkins"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"GET"];
 }
@@ -301,8 +301,8 @@ static FoursquareAPI *sharedInstance = nil;
 		[requestParams setObject:@"0" forKey:@"facebook"];	
         //		[params addObject:[[MPURLRequestParameter alloc] initWithName:@"facebook" andValue:@"0"]];
 	}
-	[requestParams setObject:[NSString stringWithFormat:@"%f", [[LocationManager locationManager] latitude]]  forKey:@"geolat"];	
-	[requestParams setObject:[NSString stringWithFormat:@"%f", [[LocationManager locationManager] longitude]]  forKey:@"geolong"];	
+	[requestParams setObject:[NSString stringWithFormat:@"%f", [[KBLocationManager locationManager] latitude]]  forKey:@"geolat"];	
+	[requestParams setObject:[NSString stringWithFormat:@"%f", [[KBLocationManager locationManager] longitude]]  forKey:@"geolong"];	
 	NSLog(@"checkin params: %@", requestParams);
 	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/checkin"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"POST"];
     //    [self.oauthAPI performMethod:@"/v1/checkin" withTarget:inTarget withParameters:params andAction:inAction doPost:YES];
@@ -337,8 +337,8 @@ static FoursquareAPI *sharedInstance = nil;
 		[requestParams setObject:@"0" forKey:@"twitter"];	
         //		[params addObject:[[MPURLRequestParameter alloc] initWithName:@"twitter" andValue:@"0"]];
 	}
-	[requestParams setObject:[NSString stringWithFormat:@"%f", [[LocationManager locationManager] latitude]]  forKey:@"geolat"];	
-	[requestParams setObject:[NSString stringWithFormat:@"%f", [[LocationManager locationManager] longitude]]  forKey:@"geolong"];	
+	[requestParams setObject:[NSString stringWithFormat:@"%f", [[KBLocationManager locationManager] latitude]]  forKey:@"geolat"];	
+	[requestParams setObject:[NSString stringWithFormat:@"%f", [[KBLocationManager locationManager] longitude]]  forKey:@"geolong"];	
 	NSLog(@"checkin params: %@", requestParams);
 	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/checkin"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"POST"];
     //    [self.oauthAPI performMethod:@"/v1/checkin" withTarget:inTarget withParameters:params andAction:inAction doPost:YES];

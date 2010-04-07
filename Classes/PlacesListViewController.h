@@ -15,21 +15,17 @@ typedef enum {
 	KBSearchVenues = 1
 } KBListType;
 
-@interface PlacesListViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, CLLocationManagerDelegate> {
+@interface PlacesListViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
     IBOutlet UITableView *theTableView;
     IBOutlet UITableViewCell *searchCell;
     IBOutlet UITextField *searchbox;
     IBOutlet UITableViewCell *footerCell;
-    CLLocationManager *locationManager;
-    CLLocation *bestEffortAtLocation;
     NSDictionary *venues;
     KBListType venuesTypeToDisplay;
     bool isSearchEmpty;
 }
 
 @property (nonatomic, retain) UITableViewCell *searchCell;
-@property (nonatomic, retain) CLLocationManager *locationManager;
-@property (nonatomic, retain) CLLocation *bestEffortAtLocation;
 @property (nonatomic, retain) NSDictionary *venues;
 
 - (IBAction) searchOnKeywordsandLatLong;

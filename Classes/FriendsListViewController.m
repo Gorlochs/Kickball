@@ -20,7 +20,6 @@
 #import "FoursquareAPI.h"
 #import "LoginViewModalController.h"
 #import "Utilities.h"
-#import "LocationManager.h"
 #import "FriendRequestsViewController.h"
 #import "KickballAppDelegate.h"
 

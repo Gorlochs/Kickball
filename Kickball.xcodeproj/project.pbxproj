@@ -354,6 +354,35 @@
 		6A70FF02114F6304008D2ECD /* friends03.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A70FF01114F6304008D2ECD /* friends03.png */; };
 		6A72CF34114C8A0000800692 /* FSCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A72CF33114C8A0000800692 /* FSCategory.m */; };
 		6A7610AE116BE92800BF2993 /* AbstractFacebookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A7610AD116BE92800BF2993 /* AbstractFacebookViewController.m */; };
+		6A76123C116D1A7100BF2993 /* FollowersController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A761204116D1A7100BF2993 /* FollowersController.m */; };
+		6A76123D116D1A7100BF2993 /* TweetQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A761206116D1A7100BF2993 /* TweetQueue.m */; };
+		6A76123E116D1A7100BF2993 /* TweetQueueController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A761208116D1A7100BF2993 /* TweetQueueController.m */; };
+		6A76123F116D1A7100BF2993 /* NavigationRotateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A76120A116D1A7100BF2993 /* NavigationRotateController.m */; };
+		6A761240116D1A7100BF2993 /* DirectMessagesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A76120C116D1A7100BF2993 /* DirectMessagesController.m */; };
+		6A761241116D1A7100BF2993 /* RepliesListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A76120E116D1A7100BF2993 /* RepliesListController.m */; };
+		6A761242116D1A7100BF2993 /* MessageListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A761210116D1A7100BF2993 /* MessageListController.m */; };
+		6A761243116D1A7100BF2993 /* TapScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A761212116D1A7100BF2993 /* TapScrollView.m */; };
+		6A761244116D1A7100BF2993 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A761214116D1A7100BF2993 /* WebViewController.m */; };
+		6A761245116D1A7100BF2993 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A761216116D1A7100BF2993 /* UserInfo.m */; };
+		6A761246116D1A7100BF2993 /* ImageLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A761218116D1A7100BF2993 /* ImageLoader.m */; };
+		6A761247116D1A7100BF2993 /* TwitEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A76121A116D1A7100BF2993 /* TwitEditorController.m */; };
+		6A761248116D1A7100BF2993 /* ImagePreview.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A76121C116D1A7100BF2993 /* ImagePreview.m */; };
+		6A761249116D1A7100BF2993 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A76121E116D1A7100BF2993 /* HomeViewController.m */; };
+		6A76124A116D1A7100BF2993 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A761220116D1A7100BF2993 /* MessageViewController.m */; };
+		6A76124B116D1A7100BF2993 /* NewMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A761222116D1A7100BF2993 /* NewMessageController.m */; };
+		6A76124C116D1A7100BF2993 /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A761224116D1A7100BF2993 /* LoginController.m */; };
+		6A76124D116D1A7100BF2993 /* TweetterAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A761226116D1A7100BF2993 /* TweetterAppDelegate.m */; };
+		6A76124E116D1A7100BF2993 /* yFrogImageDownoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A761228116D1A7100BF2993 /* yFrogImageDownoader.m */; };
+		6A76124F116D1A7100BF2993 /* yFrogImageUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A76122A116D1A7100BF2993 /* yFrogImageUploader.m */; };
+		6A761250116D1A7100BF2993 /* MGConnectionWrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A76122C116D1A7100BF2993 /* MGConnectionWrap.m */; };
+		6A761251116D1A7100BF2993 /* MessageUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A76122E116D1A7100BF2993 /* MessageUploader.m */; };
+		6A761252116D1A7100BF2993 /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A761230116D1A7100BF2993 /* ImageViewController.m */; };
+		6A761253116D1A7100BF2993 /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A761232116D1A7100BF2993 /* SettingsController.m */; };
+		6A761254116D1A7100BF2993 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A761234116D1A7100BF2993 /* LocationManager.m */; };
+		6A761255116D1A7100BF2993 /* UserMessageListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A761236116D1A7100BF2993 /* UserMessageListController.m */; };
+		6A761256116D1A7100BF2993 /* AboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A761239116D1A7100BF2993 /* AboutController.m */; };
+		6A761257116D1A7100BF2993 /* TweetPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A76123B116D1A7100BF2993 /* TweetPlayer.m */; };
+		6A7612CB116D1BF900BF2993 /* defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6A7612CA116D1BF900BF2993 /* defaults.plist */; };
 		6A79D0D710E5E682009082E5 /* PopupMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A79D0D610E5E682009082E5 /* PopupMessageView.m */; };
 		6A79D0D910E5E692009082E5 /* PopupMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A79D0D810E5E692009082E5 /* PopupMessageView.xib */; };
 		6A79D0FE10E68D1A009082E5 /* KBMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A79D0FD10E68D1A009082E5 /* KBMessage.m */; };
@@ -419,7 +448,7 @@
 		6AA8B86C10DDCECC005634D4 /* FSSpecial.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA8B86B10DDCECC005634D4 /* FSSpecial.m */; };
 		6AABEBD810FBB29500A5AF8B /* ProfileTwitterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AABEBD610FBB29500A5AF8B /* ProfileTwitterViewController.m */; };
 		6AABEBD910FBB29500A5AF8B /* ProfileTwitterViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6AABEBD710FBB29500A5AF8B /* ProfileTwitterViewController.xib */; };
-		6AACC53210D48F240059E604 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AACC53110D48F240059E604 /* LocationManager.m */; };
+		6AACC53210D48F240059E604 /* KBLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AACC53110D48F240059E604 /* KBLocationManager.m */; };
 		6AACC63B10D4B1430059E604 /* AddPlaceTipsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AACC63910D4B1430059E604 /* AddPlaceTipsViewController.m */; };
 		6AACC63C10D4B1430059E604 /* AddPlaceTipsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AACC63A10D4B1430059E604 /* AddPlaceTipsViewController.xib */; };
 		6AB0D335111D468300B97FD1 /* loginLogin01a.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AB0D333111D468200B97FD1 /* loginLogin01a.png */; };
@@ -469,6 +498,8 @@
 		6AD0C1FE113F04F500A971E3 /* Three20.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6AD0C1FD113F04F500A971E3 /* Three20.bundle */; };
 		6AD0C284113F0BFA00A971E3 /* KBPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD0C283113F0BFA00A971E3 /* KBPhotoViewController.m */; };
 		6AD0C28F113F0CBA00A971E3 /* MockPhotoSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD0C28E113F0CBA00A971E3 /* MockPhotoSource.m */; };
+		6AD5B0FC116D1FA3008671FD /* util.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD5B0FB116D1FA3008671FD /* util.m */; };
+		6AD5B11B116D209B008671FD /* SelectImageSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD5B11A116D209B008671FD /* SelectImageSource.m */; };
 		6AD9D8C8114594580060E486 /* homeSearchClose01.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AD9D8C7114594580060E486 /* homeSearchClose01.png */; };
 		6AD9D8CA1145945F0060E486 /* homeSearchClose02.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AD9D8C91145945F0060E486 /* homeSearchClose02.png */; };
 		6AD9D8CC114594A40060E486 /* homeSearch.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AD9D8CB114594A40060E486 /* homeSearch.png */; };
@@ -1087,6 +1118,77 @@
 		6A72CF33114C8A0000800692 /* FSCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCategory.m; sourceTree = "<group>"; };
 		6A7610AC116BE92800BF2993 /* AbstractFacebookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractFacebookViewController.h; sourceTree = "<group>"; };
 		6A7610AD116BE92800BF2993 /* AbstractFacebookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractFacebookViewController.m; sourceTree = "<group>"; };
+		6A761203116D1A7100BF2993 /* FollowersController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowersController.h; sourceTree = "<group>"; };
+		6A761204116D1A7100BF2993 /* FollowersController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowersController.m; sourceTree = "<group>"; };
+		6A761205116D1A7100BF2993 /* TweetQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetQueue.h; sourceTree = "<group>"; };
+		6A761206116D1A7100BF2993 /* TweetQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetQueue.m; sourceTree = "<group>"; };
+		6A761207116D1A7100BF2993 /* TweetQueueController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetQueueController.h; sourceTree = "<group>"; };
+		6A761208116D1A7100BF2993 /* TweetQueueController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetQueueController.m; sourceTree = "<group>"; };
+		6A761209116D1A7100BF2993 /* NavigationRotateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationRotateController.h; sourceTree = "<group>"; };
+		6A76120A116D1A7100BF2993 /* NavigationRotateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationRotateController.m; sourceTree = "<group>"; };
+		6A76120B116D1A7100BF2993 /* DirectMessagesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectMessagesController.h; sourceTree = "<group>"; };
+		6A76120C116D1A7100BF2993 /* DirectMessagesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectMessagesController.m; sourceTree = "<group>"; };
+		6A76120D116D1A7100BF2993 /* RepliesListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepliesListController.h; sourceTree = "<group>"; };
+		6A76120E116D1A7100BF2993 /* RepliesListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepliesListController.m; sourceTree = "<group>"; };
+		6A76120F116D1A7100BF2993 /* MessageListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageListController.h; sourceTree = "<group>"; };
+		6A761210116D1A7100BF2993 /* MessageListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageListController.m; sourceTree = "<group>"; };
+		6A761211116D1A7100BF2993 /* TapScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapScrollView.h; sourceTree = "<group>"; };
+		6A761212116D1A7100BF2993 /* TapScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TapScrollView.m; sourceTree = "<group>"; };
+		6A761213116D1A7100BF2993 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		6A761214116D1A7100BF2993 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		6A761215116D1A7100BF2993 /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
+		6A761216116D1A7100BF2993 /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
+		6A761217116D1A7100BF2993 /* ImageLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageLoader.h; sourceTree = "<group>"; };
+		6A761218116D1A7100BF2993 /* ImageLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageLoader.m; sourceTree = "<group>"; };
+		6A761219116D1A7100BF2993 /* TwitEditorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitEditorController.h; sourceTree = "<group>"; };
+		6A76121A116D1A7100BF2993 /* TwitEditorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitEditorController.m; sourceTree = "<group>"; };
+		6A76121B116D1A7100BF2993 /* ImagePreview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePreview.h; sourceTree = "<group>"; };
+		6A76121C116D1A7100BF2993 /* ImagePreview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePreview.m; sourceTree = "<group>"; };
+		6A76121D116D1A7100BF2993 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		6A76121E116D1A7100BF2993 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		6A76121F116D1A7100BF2993 /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
+		6A761220116D1A7100BF2993 /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
+		6A761221116D1A7100BF2993 /* NewMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewMessageController.h; sourceTree = "<group>"; };
+		6A761222116D1A7100BF2993 /* NewMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewMessageController.m; sourceTree = "<group>"; };
+		6A761223116D1A7100BF2993 /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginController.h; sourceTree = "<group>"; };
+		6A761224116D1A7100BF2993 /* LoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginController.m; sourceTree = "<group>"; };
+		6A761225116D1A7100BF2993 /* TweetterAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetterAppDelegate.h; sourceTree = "<group>"; };
+		6A761226116D1A7100BF2993 /* TweetterAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetterAppDelegate.m; sourceTree = "<group>"; };
+		6A761227116D1A7100BF2993 /* yFrogImageDownoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yFrogImageDownoader.h; sourceTree = "<group>"; };
+		6A761228116D1A7100BF2993 /* yFrogImageDownoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = yFrogImageDownoader.m; sourceTree = "<group>"; };
+		6A761229116D1A7100BF2993 /* yFrogImageUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yFrogImageUploader.h; sourceTree = "<group>"; };
+		6A76122A116D1A7100BF2993 /* yFrogImageUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = yFrogImageUploader.m; sourceTree = "<group>"; };
+		6A76122B116D1A7100BF2993 /* MGConnectionWrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGConnectionWrap.h; sourceTree = "<group>"; };
+		6A76122C116D1A7100BF2993 /* MGConnectionWrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGConnectionWrap.m; sourceTree = "<group>"; };
+		6A76122D116D1A7100BF2993 /* MessageUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageUploader.h; sourceTree = "<group>"; };
+		6A76122E116D1A7100BF2993 /* MessageUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageUploader.m; sourceTree = "<group>"; };
+		6A76122F116D1A7100BF2993 /* ImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewController.h; sourceTree = "<group>"; };
+		6A761230116D1A7100BF2993 /* ImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewController.m; sourceTree = "<group>"; };
+		6A761231116D1A7100BF2993 /* SettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsController.h; sourceTree = "<group>"; };
+		6A761232116D1A7100BF2993 /* SettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsController.m; sourceTree = "<group>"; };
+		6A761233116D1A7100BF2993 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
+		6A761234116D1A7100BF2993 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
+		6A761235116D1A7100BF2993 /* UserMessageListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMessageListController.h; sourceTree = "<group>"; };
+		6A761236116D1A7100BF2993 /* UserMessageListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMessageListController.m; sourceTree = "<group>"; };
+		6A761237116D1A7100BF2993 /* TwitterConnectionProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterConnectionProtocol.h; sourceTree = "<group>"; };
+		6A761238116D1A7100BF2993 /* AboutController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutController.h; sourceTree = "<group>"; };
+		6A761239116D1A7100BF2993 /* AboutController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutController.m; sourceTree = "<group>"; };
+		6A76123A116D1A7100BF2993 /* TweetPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetPlayer.h; sourceTree = "<group>"; };
+		6A76123B116D1A7100BF2993 /* TweetPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetPlayer.m; sourceTree = "<group>"; };
+		6A7612CA116D1BF900BF2993 /* defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = defaults.plist; sourceTree = "<group>"; };
+		6A7612CF116D1CAD00BF2993 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = English; path = English.lproj/About.xib; sourceTree = "<group>"; };
+		6A7612D1116D1CC000BF2993 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = English; path = English.lproj/ImageView.xib; sourceTree = "<group>"; };
+		6A7612D5116D1CC000BF2993 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = English; path = English.lproj/Login.xib; sourceTree = "<group>"; };
+		6A7612D7116D1CC000BF2993 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = English; path = English.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		6A7612D9116D1CC000BF2993 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = English; path = English.lproj/MessageView.xib; sourceTree = "<group>"; };
+		6A7612DB116D1CC000BF2993 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = English; path = English.lproj/NewMessage.xib; sourceTree = "<group>"; };
+		6A7612DD116D1CC000BF2993 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = English; path = English.lproj/PostImage.xib; sourceTree = "<group>"; };
+		6A7612DF116D1CC000BF2993 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = English; path = English.lproj/SelectImageSource.xib; sourceTree = "<group>"; };
+		6A7612E1116D1CC000BF2993 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = English; path = English.lproj/SettingsView.xib; sourceTree = "<group>"; };
+		6A7612E3116D1CC000BF2993 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = English; path = English.lproj/TweetQueue.xib; sourceTree = "<group>"; };
+		6A7612E5116D1CC000BF2993 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = English; path = English.lproj/UserInfo.xib; sourceTree = "<group>"; };
+		6A7612E7116D1CC000BF2993 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = English; path = English.lproj/UserMessageList.xib; sourceTree = "<group>"; };
+		6A7612E9116D1CC000BF2993 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = English; path = English.lproj/WebView.xib; sourceTree = "<group>"; };
 		6A79D0D510E5E682009082E5 /* PopupMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopupMessageView.h; sourceTree = "<group>"; };
 		6A79D0D610E5E682009082E5 /* PopupMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopupMessageView.m; sourceTree = "<group>"; };
 		6A79D0D810E5E692009082E5 /* PopupMessageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupMessageView.xib; sourceTree = "<group>"; };
@@ -1190,8 +1292,8 @@
 		6AABEBD510FBB29500A5AF8B /* ProfileTwitterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileTwitterViewController.h; sourceTree = "<group>"; };
 		6AABEBD610FBB29500A5AF8B /* ProfileTwitterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileTwitterViewController.m; sourceTree = "<group>"; };
 		6AABEBD710FBB29500A5AF8B /* ProfileTwitterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileTwitterViewController.xib; sourceTree = "<group>"; };
-		6AACC53010D48F240059E604 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
-		6AACC53110D48F240059E604 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
+		6AACC53010D48F240059E604 /* KBLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBLocationManager.h; sourceTree = "<group>"; };
+		6AACC53110D48F240059E604 /* KBLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBLocationManager.m; sourceTree = "<group>"; };
 		6AACC63810D4B1430059E604 /* AddPlaceTipsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPlaceTipsViewController.h; sourceTree = "<group>"; };
 		6AACC63910D4B1430059E604 /* AddPlaceTipsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPlaceTipsViewController.m; sourceTree = "<group>"; };
 		6AACC63A10D4B1430059E604 /* AddPlaceTipsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddPlaceTipsViewController.xib; sourceTree = "<group>"; };
@@ -1253,6 +1355,10 @@
 		6AD0C283113F0BFA00A971E3 /* KBPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBPhotoViewController.m; sourceTree = "<group>"; };
 		6AD0C28D113F0CBA00A971E3 /* MockPhotoSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockPhotoSource.h; sourceTree = "<group>"; };
 		6AD0C28E113F0CBA00A971E3 /* MockPhotoSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockPhotoSource.m; sourceTree = "<group>"; };
+		6AD5B0FA116D1FA3008671FD /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = util.h; sourceTree = "<group>"; };
+		6AD5B0FB116D1FA3008671FD /* util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = util.m; sourceTree = "<group>"; };
+		6AD5B119116D209B008671FD /* SelectImageSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectImageSource.h; sourceTree = "<group>"; };
+		6AD5B11A116D209B008671FD /* SelectImageSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectImageSource.m; sourceTree = "<group>"; };
 		6AD9D8C7114594580060E486 /* homeSearchClose01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeSearchClose01.png; sourceTree = "<group>"; };
 		6AD9D8C91145945F0060E486 /* homeSearchClose02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeSearchClose02.png; sourceTree = "<group>"; };
 		6AD9D8CB114594A40060E486 /* homeSearch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeSearch.png; sourceTree = "<group>"; };
@@ -1432,6 +1538,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				6A761186116D189D00BF2993 /* Tweetero */,
 				6A86F683116AE008000BF6C6 /* FBConnect */,
 				6A1F166F1135F73B004C1F7F /* ASI */,
 				6A63DD9A1108EDAA00E2F9BB /* FancyLabels */,
@@ -1480,6 +1587,8 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				6AD5B0FA116D1FA3008671FD /* util.h */,
+				6AD5B0FB116D1FA3008671FD /* util.m */,
 				32CA4F630368D1EE00C91783 /* Kickball_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
@@ -1489,6 +1598,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6A761258116D1A7A00BF2993 /* Tweetero xibs */,
 				6AD0C1FD113F04F500A971E3 /* Three20.bundle */,
 				6A39EC4B109662D3006F76C3 /* images */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
@@ -2214,8 +2324,8 @@
 				6A16ABDA10CF251800CD5302 /* InstructionView.m */,
 				6ADC9C1810D1EE5100CFDCA7 /* Utilities.h */,
 				6ADC9C1910D1EE5100CFDCA7 /* Utilities.m */,
-				6AACC53010D48F240059E604 /* LocationManager.h */,
-				6AACC53110D48F240059E604 /* LocationManager.m */,
+				6AACC53010D48F240059E604 /* KBLocationManager.h */,
+				6AACC53110D48F240059E604 /* KBLocationManager.m */,
 				6A47C00310DCA8DE00DCF011 /* KBWebViewController.h */,
 				6A47C00410DCA8DE00DCF011 /* KBWebViewController.m */,
 				6A47C00510DCA8DE00DCF011 /* KBWebViewController.xib */,
@@ -2273,6 +2383,93 @@
 				6A7610AD116BE92800BF2993 /* AbstractFacebookViewController.m */,
 			);
 			name = "Abstract Classes";
+			sourceTree = "<group>";
+		};
+		6A761186116D189D00BF2993 /* Tweetero */ = {
+			isa = PBXGroup;
+			children = (
+				6AD5B119116D209B008671FD /* SelectImageSource.h */,
+				6AD5B11A116D209B008671FD /* SelectImageSource.m */,
+				6A761203116D1A7100BF2993 /* FollowersController.h */,
+				6A761204116D1A7100BF2993 /* FollowersController.m */,
+				6A761205116D1A7100BF2993 /* TweetQueue.h */,
+				6A761206116D1A7100BF2993 /* TweetQueue.m */,
+				6A761207116D1A7100BF2993 /* TweetQueueController.h */,
+				6A761208116D1A7100BF2993 /* TweetQueueController.m */,
+				6A761209116D1A7100BF2993 /* NavigationRotateController.h */,
+				6A76120A116D1A7100BF2993 /* NavigationRotateController.m */,
+				6A76120B116D1A7100BF2993 /* DirectMessagesController.h */,
+				6A76120C116D1A7100BF2993 /* DirectMessagesController.m */,
+				6A76120D116D1A7100BF2993 /* RepliesListController.h */,
+				6A76120E116D1A7100BF2993 /* RepliesListController.m */,
+				6A76120F116D1A7100BF2993 /* MessageListController.h */,
+				6A761210116D1A7100BF2993 /* MessageListController.m */,
+				6A761211116D1A7100BF2993 /* TapScrollView.h */,
+				6A761212116D1A7100BF2993 /* TapScrollView.m */,
+				6A761213116D1A7100BF2993 /* WebViewController.h */,
+				6A761214116D1A7100BF2993 /* WebViewController.m */,
+				6A761215116D1A7100BF2993 /* UserInfo.h */,
+				6A761216116D1A7100BF2993 /* UserInfo.m */,
+				6A761217116D1A7100BF2993 /* ImageLoader.h */,
+				6A761218116D1A7100BF2993 /* ImageLoader.m */,
+				6A761219116D1A7100BF2993 /* TwitEditorController.h */,
+				6A76121A116D1A7100BF2993 /* TwitEditorController.m */,
+				6A76121B116D1A7100BF2993 /* ImagePreview.h */,
+				6A76121C116D1A7100BF2993 /* ImagePreview.m */,
+				6A76121D116D1A7100BF2993 /* HomeViewController.h */,
+				6A76121E116D1A7100BF2993 /* HomeViewController.m */,
+				6A76121F116D1A7100BF2993 /* MessageViewController.h */,
+				6A761220116D1A7100BF2993 /* MessageViewController.m */,
+				6A761221116D1A7100BF2993 /* NewMessageController.h */,
+				6A761222116D1A7100BF2993 /* NewMessageController.m */,
+				6A761223116D1A7100BF2993 /* LoginController.h */,
+				6A761224116D1A7100BF2993 /* LoginController.m */,
+				6A761225116D1A7100BF2993 /* TweetterAppDelegate.h */,
+				6A761226116D1A7100BF2993 /* TweetterAppDelegate.m */,
+				6A761227116D1A7100BF2993 /* yFrogImageDownoader.h */,
+				6A761228116D1A7100BF2993 /* yFrogImageDownoader.m */,
+				6A761229116D1A7100BF2993 /* yFrogImageUploader.h */,
+				6A76122A116D1A7100BF2993 /* yFrogImageUploader.m */,
+				6A76122B116D1A7100BF2993 /* MGConnectionWrap.h */,
+				6A76122C116D1A7100BF2993 /* MGConnectionWrap.m */,
+				6A76122D116D1A7100BF2993 /* MessageUploader.h */,
+				6A76122E116D1A7100BF2993 /* MessageUploader.m */,
+				6A76122F116D1A7100BF2993 /* ImageViewController.h */,
+				6A761230116D1A7100BF2993 /* ImageViewController.m */,
+				6A761231116D1A7100BF2993 /* SettingsController.h */,
+				6A761232116D1A7100BF2993 /* SettingsController.m */,
+				6A761233116D1A7100BF2993 /* LocationManager.h */,
+				6A761234116D1A7100BF2993 /* LocationManager.m */,
+				6A761235116D1A7100BF2993 /* UserMessageListController.h */,
+				6A761236116D1A7100BF2993 /* UserMessageListController.m */,
+				6A761237116D1A7100BF2993 /* TwitterConnectionProtocol.h */,
+				6A761238116D1A7100BF2993 /* AboutController.h */,
+				6A761239116D1A7100BF2993 /* AboutController.m */,
+				6A76123A116D1A7100BF2993 /* TweetPlayer.h */,
+				6A76123B116D1A7100BF2993 /* TweetPlayer.m */,
+			);
+			name = Tweetero;
+			sourceTree = "<group>";
+		};
+		6A761258116D1A7A00BF2993 /* Tweetero xibs */ = {
+			isa = PBXGroup;
+			children = (
+				6A7612D0116D1CC000BF2993 /* ImageView.xib */,
+				6A7612D4116D1CC000BF2993 /* Login.xib */,
+				6A7612D6116D1CC000BF2993 /* MainWindow.xib */,
+				6A7612D8116D1CC000BF2993 /* MessageView.xib */,
+				6A7612DA116D1CC000BF2993 /* NewMessage.xib */,
+				6A7612DC116D1CC000BF2993 /* PostImage.xib */,
+				6A7612DE116D1CC000BF2993 /* SelectImageSource.xib */,
+				6A7612E0116D1CC000BF2993 /* SettingsView.xib */,
+				6A7612E2116D1CC000BF2993 /* TweetQueue.xib */,
+				6A7612E4116D1CC000BF2993 /* UserInfo.xib */,
+				6A7612E6116D1CC000BF2993 /* UserMessageList.xib */,
+				6A7612E8116D1CC000BF2993 /* WebView.xib */,
+				6A7612CE116D1CAD00BF2993 /* About.xib */,
+				6A7612CA116D1BF900BF2993 /* defaults.plist */,
+			);
+			name = "Tweetero xibs";
 			sourceTree = "<group>";
 		};
 		6A86F683116AE008000BF6C6 /* FBConnect */ = {
@@ -3037,6 +3234,7 @@
 				6AB58F141156D81C0023C7C3 /* settingsFriendRequests02.png in Resources */,
 				6ADD23B7115AE24E005D14BE /* changelog in Resources */,
 				6A86F6A1116AE008000BF6C6 /* FBConnect.bundle in Resources */,
+				6A7612CB116D1BF900BF2993 /* defaults.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3159,7 +3357,7 @@
 				6A16ABDB10CF251800CD5302 /* InstructionView.m in Sources */,
 				6ADC9C1A10D1EE5100CFDCA7 /* Utilities.m in Sources */,
 				6ADC9EC610D3F08600CFDCA7 /* AddPlaceViewController.m in Sources */,
-				6AACC53210D48F240059E604 /* LocationManager.m in Sources */,
+				6AACC53210D48F240059E604 /* KBLocationManager.m in Sources */,
 				6AACC63B10D4B1430059E604 /* AddPlaceTipsViewController.m in Sources */,
 				6A3900B110D6F1A0001D133C /* AddPlaceFormViewController.m in Sources */,
 				6A3900B210D6F1A0001D133C /* AddPlaceFormViewController.xib in Sources */,
@@ -3226,6 +3424,36 @@
 				6A86F6A0116AE008000BF6C6 /* FBStreamDialog.m in Sources */,
 				6A86F6AA116AF376000BF6C6 /* KBFacebookSearchViewController.m in Sources */,
 				6A7610AE116BE92800BF2993 /* AbstractFacebookViewController.m in Sources */,
+				6A76123C116D1A7100BF2993 /* FollowersController.m in Sources */,
+				6A76123D116D1A7100BF2993 /* TweetQueue.m in Sources */,
+				6A76123E116D1A7100BF2993 /* TweetQueueController.m in Sources */,
+				6A76123F116D1A7100BF2993 /* NavigationRotateController.m in Sources */,
+				6A761240116D1A7100BF2993 /* DirectMessagesController.m in Sources */,
+				6A761241116D1A7100BF2993 /* RepliesListController.m in Sources */,
+				6A761242116D1A7100BF2993 /* MessageListController.m in Sources */,
+				6A761243116D1A7100BF2993 /* TapScrollView.m in Sources */,
+				6A761244116D1A7100BF2993 /* WebViewController.m in Sources */,
+				6A761245116D1A7100BF2993 /* UserInfo.m in Sources */,
+				6A761246116D1A7100BF2993 /* ImageLoader.m in Sources */,
+				6A761247116D1A7100BF2993 /* TwitEditorController.m in Sources */,
+				6A761248116D1A7100BF2993 /* ImagePreview.m in Sources */,
+				6A761249116D1A7100BF2993 /* HomeViewController.m in Sources */,
+				6A76124A116D1A7100BF2993 /* MessageViewController.m in Sources */,
+				6A76124B116D1A7100BF2993 /* NewMessageController.m in Sources */,
+				6A76124C116D1A7100BF2993 /* LoginController.m in Sources */,
+				6A76124D116D1A7100BF2993 /* TweetterAppDelegate.m in Sources */,
+				6A76124E116D1A7100BF2993 /* yFrogImageDownoader.m in Sources */,
+				6A76124F116D1A7100BF2993 /* yFrogImageUploader.m in Sources */,
+				6A761250116D1A7100BF2993 /* MGConnectionWrap.m in Sources */,
+				6A761251116D1A7100BF2993 /* MessageUploader.m in Sources */,
+				6A761252116D1A7100BF2993 /* ImageViewController.m in Sources */,
+				6A761253116D1A7100BF2993 /* SettingsController.m in Sources */,
+				6A761254116D1A7100BF2993 /* LocationManager.m in Sources */,
+				6A761255116D1A7100BF2993 /* UserMessageListController.m in Sources */,
+				6A761256116D1A7100BF2993 /* AboutController.m in Sources */,
+				6A761257116D1A7100BF2993 /* TweetPlayer.m in Sources */,
+				6AD5B0FC116D1FA3008671FD /* util.m in Sources */,
+				6AD5B11B116D209B008671FD /* SelectImageSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3238,6 +3466,113 @@
 			targetProxy = 6AD0C1FA113F04C200A971E3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		6A7612CE116D1CAD00BF2993 /* About.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6A7612CF116D1CAD00BF2993 /* English */,
+			);
+			name = About.xib;
+			sourceTree = "<group>";
+		};
+		6A7612D0116D1CC000BF2993 /* ImageView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6A7612D1116D1CC000BF2993 /* English */,
+			);
+			name = ImageView.xib;
+			sourceTree = "<group>";
+		};
+		6A7612D4116D1CC000BF2993 /* Login.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6A7612D5116D1CC000BF2993 /* English */,
+			);
+			name = Login.xib;
+			sourceTree = "<group>";
+		};
+		6A7612D6116D1CC000BF2993 /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6A7612D7116D1CC000BF2993 /* English */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		6A7612D8116D1CC000BF2993 /* MessageView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6A7612D9116D1CC000BF2993 /* English */,
+			);
+			name = MessageView.xib;
+			sourceTree = "<group>";
+		};
+		6A7612DA116D1CC000BF2993 /* NewMessage.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6A7612DB116D1CC000BF2993 /* English */,
+			);
+			name = NewMessage.xib;
+			sourceTree = "<group>";
+		};
+		6A7612DC116D1CC000BF2993 /* PostImage.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6A7612DD116D1CC000BF2993 /* English */,
+			);
+			name = PostImage.xib;
+			sourceTree = "<group>";
+		};
+		6A7612DE116D1CC000BF2993 /* SelectImageSource.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6A7612DF116D1CC000BF2993 /* English */,
+			);
+			name = SelectImageSource.xib;
+			sourceTree = "<group>";
+		};
+		6A7612E0116D1CC000BF2993 /* SettingsView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6A7612E1116D1CC000BF2993 /* English */,
+			);
+			name = SettingsView.xib;
+			sourceTree = "<group>";
+		};
+		6A7612E2116D1CC000BF2993 /* TweetQueue.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6A7612E3116D1CC000BF2993 /* English */,
+			);
+			name = TweetQueue.xib;
+			sourceTree = "<group>";
+		};
+		6A7612E4116D1CC000BF2993 /* UserInfo.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6A7612E5116D1CC000BF2993 /* English */,
+			);
+			name = UserInfo.xib;
+			sourceTree = "<group>";
+		};
+		6A7612E6116D1CC000BF2993 /* UserMessageList.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6A7612E7116D1CC000BF2993 /* English */,
+			);
+			name = UserMessageList.xib;
+			sourceTree = "<group>";
+		};
+		6A7612E8116D1CC000BF2993 /* WebView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6A7612E9116D1CC000BF2993 /* English */,
+			);
+			name = WebView.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {

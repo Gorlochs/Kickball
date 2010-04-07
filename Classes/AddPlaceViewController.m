@@ -8,7 +8,7 @@
 
 #import "AddPlaceViewController.h"
 #import "FoursquareAPI.h"
-#import "LocationManager.h"
+#import "KBLocationManager.h"
 #import "AddPlaceTipsViewController.h"
 #import "AddPlaceFormViewController.h"
 #import "Utilities.h"
@@ -40,22 +40,6 @@
 	// e.g. self.myOutlet = nil;
 }
 
-//-(void)searchOnKeywordsandLatLong {
-//    [newPlaceName resignFirstResponder];
-//    if (![newPlaceName.text isEqualToString:@""]) {
-//        [self startProgressBar:@"Searching..."];
-//        // TODO: I am just replacing a space with a +, but other characters might give this method a headache.
-//        NSLog(@"searching on latitude: %f", [[LocationManager locationManager] latitude]);
-//        NSLog(@"searching on longitude: %f", [[LocationManager locationManager] longitude]);
-//        [[FoursquareAPI sharedInstance] getVenuesByKeyword:[NSString stringWithFormat:@"%f", [[LocationManager locationManager] latitude]] 
-//                                              andLongitude:[NSString stringWithFormat:@"%f",[[LocationManager locationManager] longitude]] 
-//                                               andKeywords:[newPlaceName.text stringByReplacingOccurrencesOfString:@" " withString:@"+"]
-//                                                withTarget:self 
-//                                                 andAction:@selector(venuesResponseReceived:withResponseString:)
-//         ];
-//    }
-//}
-
 - (void)venuesResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     NSLog(@"venues: %@", inString);
 	NSDictionary *allVenues = [FoursquareAPI venuesFromResponseXML:inString];
@@ -71,10 +55,10 @@
     if (![newPlaceName.text isEqualToString:@""]) {
         [self startProgressBar:@"Searching..."];
         // TODO: I am just replacing a space with a +, but other characters might give this method a headache.
-        NSLog(@"searching on latitude: %f", [[LocationManager locationManager] latitude]);
-        NSLog(@"searching on longitude: %f", [[LocationManager locationManager] longitude]);
-        [[FoursquareAPI sharedInstance] getVenuesByKeyword:[NSString stringWithFormat:@"%f", [[LocationManager locationManager] latitude]] 
-                                              andLongitude:[NSString stringWithFormat:@"%f",[[LocationManager locationManager] longitude]] 
+        NSLog(@"searching on latitude: %f", [[KBLocationManager locationManager] latitude]);
+        NSLog(@"searching on longitude: %f", [[KBLocationManager locationManager] longitude]);
+        [[FoursquareAPI sharedInstance] getVenuesByKeyword:[NSString stringWithFormat:@"%f", [[KBLocationManager locationManager] latitude]] 
+                                              andLongitude:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] longitude]] 
                                                andKeywords:[newPlaceName.text stringByReplacingOccurrencesOfString:@" " withString:@"+"]
                                                 withTarget:self 
                                                  andAction:@selector(venuesResponseReceived:withResponseString:)

@@ -12,7 +12,7 @@
 #import "FoursquareAPI.h"
 #import "FSCheckin.h"
 #import "AddPlaceFormViewController.h"
-#import "LocationManager.h"
+#import "KBLocationManager.h"
 #import "FriendsListViewController.h"
 #import "KBInstacheckinTableCell.h"
 
@@ -27,21 +27,19 @@
 @implementation PlacesListViewController
 
 @synthesize searchCell;
-@synthesize locationManager;
-@synthesize bestEffortAtLocation;
 @synthesize venues;
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSLog(@"PlacesListViewController get venue - geolat: %f", [[LocationManager locationManager] latitude]);
-    NSLog(@"PlacesListViewController get venue - geolong: %f", [[LocationManager locationManager] longitude]);
+    NSLog(@"PlacesListViewController get venue - geolat: %f", [[KBLocationManager locationManager] latitude]);
+    NSLog(@"PlacesListViewController get venue - geolong: %f", [[KBLocationManager locationManager] longitude]);
     [self addHeaderAndFooter:theTableView];
     [self startProgressBar:@"Retrieving nearby venues..."];
     if ([FoursquareAPI sharedInstance].cachedVenues == nil) {
-        [[FoursquareAPI sharedInstance] getVenuesNearLatitude:[NSString stringWithFormat:@"%f",[[LocationManager locationManager] latitude]]
-                                                 andLongitude:[NSString stringWithFormat:@"%f",[[LocationManager locationManager] longitude]]
+        [[FoursquareAPI sharedInstance] getVenuesNearLatitude:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] latitude]]
+                                                 andLongitude:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] longitude]]
                                                    withTarget:self 
                                                     andAction:@selector(venuesResponseReceived:withResponseString:)
          
@@ -104,8 +102,8 @@
         venuesTypeToDisplay = KBSearchVenues;
         [self startProgressBar:@"Searching..."];
         // TODO: I am just replacing a space with a +, but other characters might give this method a headache.
-        [[FoursquareAPI sharedInstance] getVenuesByKeyword:[NSString stringWithFormat:@"%f",[[LocationManager locationManager] latitude]] 
-                                              andLongitude:[NSString stringWithFormat:@"%f",[[LocationManager locationManager] longitude]] 
+        [[FoursquareAPI sharedInstance] getVenuesByKeyword:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] latitude]] 
+                                              andLongitude:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] longitude]] 
                                                andKeywords:[searchbox.text stringByReplacingOccurrencesOfString:@" " withString:@"+"]
                                                 withTarget:self 
                                                  andAction:@selector(venuesResponseReceived:withResponseString:)
@@ -132,8 +130,8 @@
 - (void) refresh: (UIControl *) button {
     isSearchEmpty = NO;
     [self startProgressBar:@"Retrieving nearby venues..."];
-    [[FoursquareAPI sharedInstance] getVenuesNearLatitude:[NSString stringWithFormat:@"%f",[[LocationManager locationManager] latitude]] 
-                                             andLongitude:[NSString stringWithFormat:@"%f",[[LocationManager locationManager] longitude]]
+    [[FoursquareAPI sharedInstance] getVenuesNearLatitude:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] latitude]] 
+                                             andLongitude:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] longitude]]
                                                withTarget:self 
                                                 andAction:@selector(venuesResponseReceived:withResponseString:)
      ];
@@ -330,8 +328,6 @@
     [searchCell release];
     [footerCell release];
     [searchbox release];
-    [locationManager release];
-    [bestEffortAtLocation release];
     [venues release];
     [super dealloc];
 }

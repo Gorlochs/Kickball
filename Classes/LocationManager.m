@@ -1,34 +1,51 @@
-//
-//  LocationManager.m
-//  Kickball
-//
-//  Created by Shawn Bernard on 12/12/09.
-//  Copyright 2009 Gorloch Interactive, LLC. All rights reserved.
-//
+// Copyright (c) 2009 Imageshack Corp.
+// All rights reserved.
+// 
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
+// are met:
+// 1. Redistributions of source code must retain the above copyright
+//    notice, this list of conditions and the following disclaimer.
+// 2. Redistributions in binary form must reproduce the above copyright
+//    notice, this list of conditions and the following disclaimer in the
+//    documentation and/or other materials provided with the distribution.
+// 3. The name of the author may not be used to endorse or promote products
+//    derived from this software without specific prior written permission.
+// 
+// THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
+// IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+// OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+// IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
+// INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+// NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+// THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+// 
 
 #import "LocationManager.h"
-#import "Utilities.h"
-
+#import "TweetterAppDelegate.h"
 
 static LocationManager *globalLocationManager = nil;
 static BOOL initialized = NO;
 
 @implementation LocationManager
 
-@synthesize locationMeasurements;
-@synthesize bestEffortAtLocation;
+@synthesize tinyURL;
 
-+ (LocationManager*)locationManager {
-	if(!globalLocationManager)  {
-        globalLocationManager = [[LocationManager allocWithZone:nil] init];
-        //kCLLocationAccuracyBest
-    }
-		
+
++ (LocationManager*)locationManager
+{
+	if(!globalLocationManager) 
+		globalLocationManager = [[LocationManager allocWithZone:nil] init];
 	return globalLocationManager;
 }
 
-+ (id)allocWithZone:(NSZone *)zone {
-    @synchronized(self) {
++ (id)allocWithZone:(NSZone *)zone
+{
+    @synchronized(self)
+	{
 		if (globalLocationManager == nil) 
 			globalLocationManager = [super allocWithZone:zone];
     }
@@ -36,33 +53,44 @@ static BOOL initialized = NO;
     return globalLocationManager;
 }
 
-- (id)copyWithZone:(NSZone *)zone {
+- (id)copyWithZone:(NSZone *)zone
+{
     return self;
 }
 
-- (id)retain {
+
+- (id)retain
+{
     return self;
 }
 
-- (unsigned)retainCount {
+
+- (unsigned)retainCount
+{
     return UINT_MAX;  //denotes an object that cannot be released
 }
 
-- (void)release {
+
+- (void)release
+{
     //do nothing
 }
 
-- (id)autorelease {
+
+- (id)autorelease
+{
     return self;
 }
 
--(void)reset {
+-(void)reset
+{
 	locationDefined = NO;
 	latitude = 0.f;
 	longitude = 0.f;
 }
 
-- (id)init {
+- (id)init
+{
 	if(initialized)
 		return globalLocationManager;
 	
@@ -73,133 +101,123 @@ static BOOL initialized = NO;
 			[globalLocationManager release];
 		return nil;
 	}
-    
+
 	
 	locationManager = nil;
 	initialized = YES;
 	locationDenied = NO;
 	[self reset];
-    [self performSelector:@selector(stopAllUpdates:) withObject:@"Timed Out" afterDelay:[[NSNumber numberWithDouble:60] doubleValue]];
     return self;
 }
 
--(void)dealloc {
+-(void)dealloc
+{
 	if(locationManager)
 		[locationManager release];
 	[super dealloc];
 }
 
-- (void) stopAllUpdates:(NSString *)state {
-	[self stopUpdates];
-}
-
-- (void) stopUpdates {
-	if (locationManager) {
-        NSLog(@"stopping updates!");
+- (void) stopUpdates
+{
+	if (locationManager)
+	{
 		[locationManager stopUpdatingLocation];
-        NSLog(@"***** STOPPING LOCATION MANAGER UPDATES ******");
 	}
-	//[self reset];
+	[self reset];
 }
 
-- (void) startUpdates {
-    NSLog(@"starting updates");
-//	if(![[NSUserDefaults standardUserDefaults] boolForKey:@"UseLocations"]) {
-//        NSLog(@"stopping updates - user doesn't want to detect location");
-//		[self stopUpdates];
-//		return;
-//	}
-    
-	if (locationManager) {
-        NSLog(@"stopping updates - location manager already started");
+- (void) startUpdates
+{
+	if(![[NSUserDefaults standardUserDefaults] boolForKey:@"UseLocations"])
+	{
+		[self stopUpdates];
+		return;
+	}
+		
+	if (locationManager)
+	{
 		[locationManager stopUpdatingLocation];
-	} else {
+	}
+	else
+	{
 		locationManager = [[CLLocationManager alloc] init];
 		locationManager.delegate = self;
 		locationManager.distanceFilter = 100;
-//		locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
-		locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-        NSLog(@"starting updateslocationmanager: %@", locationManager);
+		locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
 	}
 	
 	locationDefined = NO;
 	[locationManager startUpdatingLocation];
 }
 
-
-// FIXME: stop location updates at a certain point
-- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation  fromLocation:(CLLocation *)oldLocation {
-	locationDenied = NO;
-//	if(![[NSUserDefaults standardUserDefaults] boolForKey:@"UseLocations"]) {
-//		[self stopUpdates];
-//		return;
-//	}
-    
-//	if(![self longURL] || ![[self longURL] isEqualToString:[self longURLWithLatitude:newLocation.coordinate.latitude longitude:newLocation.coordinate.longitude]])
-//	{
-    
-    // store all of the measurements, just so we can see what kind of data we might receive
-    [locationMeasurements addObject:newLocation];
-    // test the age of the location measurement to determine if the measurement is cached
-    // in most cases you will not want to rely on cached measurements
-//    NSTimeInterval locationAge = -[newLocation.timestamp timeIntervalSinceNow];
-//    if (locationAge > 5.0) return;
-//    // test that the horizontal accuracy does not indicate an invalid measurement
-//    if (newLocation.horizontalAccuracy < 0) return;
-//    // test the measurement to see if it is more accurate than the previous measurement
-//    if (bestEffortAtLocation == nil || bestEffortAtLocation.horizontalAccuracy < newLocation.horizontalAccuracy) {
-//        // store the location as the "best effort"
-//        self.bestEffortAtLocation = newLocation;
-        
-        latitude = newLocation.coordinate.latitude;
-        longitude = newLocation.coordinate.longitude;
-        NSLog(@"latitude: %f", latitude);
-        NSLog(@"longitude: %f", longitude);
-        NSLog(@"bestEffortAtLocation: %@", bestEffortAtLocation);
-    
-	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setFloat:latitude forKey:kLastLatitudeKey];
-    [userDefaults setFloat:longitude forKey:kLastLongitudeKey];
-        
-		locationDefined = YES;
-		[[NSNotificationCenter defaultCenter] postNotificationName: @"UpdateLocationNotification" object: nil];
-        
-//        // test the measurement to see if it meets the desired accuracy
-//        //
-//        // IMPORTANT!!! kCLLocationAccuracyBest should not be used for comparison with location coordinate or altitidue 
-//        // accuracy because it is a negative value. Instead, compare against some predetermined "real" measure of 
-//        // acceptable accuracy, or depend on the timeout to stop updating. This sample depends on the timeout.
-//        //
-////        if (newLocation.horizontalAccuracy <= locationManager.desiredAccuracy) {
-////            // we have a measurement that meets our requirements, so we can stop updating the location
-////            // 
-////            // IMPORTANT!!! Minimize power usage by stopping the location manager as soon as possible.
-////            //
-////            // we can also cancel our previous performSelector:withObject:afterDelay: - it's no longer necessary
-////            NSLog(@"***** STOPPING LOCATION MANAGER UPDATES ******");
-////            [self stopUpdates];
-////            [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(stopUpdates) object:nil];
-////        }
-//    }
-//	}
+- (NSString*) urlFormat
+{
+	return @"http://maps.google.com/maps?q=%+.6f,%+.6f";
 }
 
-- (BOOL) locationDenied {
+
+- (NSString*) longURLWithLatitude:(float)lat  longitude:(float)lon
+{
+	return [NSString stringWithFormat:[self urlFormat], lat, lon];
+}
+
+- (NSString*) longURL
+{
+	return locationDefined ? [self longURLWithLatitude:latitude  longitude:longitude] : nil;
+}
+
+- (NSString*) mapURL
+{
+	if(!locationDefined) 
+		return nil;
+
+	return tinyURL ? tinyURL : [self longURL];
+}
+
+
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation  fromLocation:(CLLocation *)oldLocation
+{
+	locationDenied = NO;
+	if(![[NSUserDefaults standardUserDefaults] boolForKey:@"UseLocations"])
+	{
+		[self stopUpdates];
+		return;
+	}
+
+	if(!tinyURL || ![self longURL] || ![[self longURL] isEqualToString:[self longURLWithLatitude:newLocation.coordinate.latitude longitude:newLocation.coordinate.longitude]])
+	{
+		latitude = newLocation.coordinate.latitude;
+		longitude = newLocation.coordinate.longitude;
+		locationDefined = YES;
+		tinyURL = nil;
+		[TweetterAppDelegate increaseNetworkActivityIndicator];
+		[NSThread  detachNewThreadSelector:@selector(getTinyURLFromServer:) toTarget:self withObject:[self longURL]];
+		[[NSNotificationCenter defaultCenter] postNotificationName: @"UpdateLocationNotification" object: nil];
+	}
+}
+
+- (BOOL) locationDenied
+{
 	return locationDenied;
 }
 
-- (BOOL) locationServicesEnabled {
+- (BOOL) locationServicesEnabled
+{
 	CLLocationManager* lm = locationManager;
 	if(!lm)
 		lm = [[[CLLocationManager alloc] init] autorelease];
 	return lm.locationServicesEnabled;
 }
 
-- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
 	[self reset];
-    
-    if ([error domain] == kCLErrorDomain) {
-        switch ([error code]) {
+
+    if ([error domain] == kCLErrorDomain) 
+	{
+        switch ([error code]) 
+		{
             case kCLErrorDenied:
 				locationDenied = YES;
 				[self stopUpdates];
@@ -214,16 +232,43 @@ static BOOL initialized = NO;
 	[[NSNotificationCenter defaultCenter] postNotificationName: @"UpdateLocationNotification" object: nil];
 }
 
-- (BOOL) locationDefined {
+- (BOOL) locationDefined
+{
 	return locationDefined;
 }
 
-- (float) latitude {
+- (float) latitude
+{
 	return latitude;
 }
 
-- (float) longitude {
+- (float) longitude
+{
 	return longitude;
+}
+
+- (void) setTinyURLOnMainThread:(NSArray*)urls
+{
+	[TweetterAppDelegate decreaseNetworkActivityIndicator];
+	NSString* tiny = [urls objectAtIndex:0] == [NSNull null] ? nil : [urls objectAtIndex:0];
+	NSString* full =[urls objectAtIndex:1];
+	if([full isEqualToString:[self longURL]] || !self.tinyURL)
+		self.tinyURL = tiny;
+}
+
+- (void)getTinyURLFromServer:(NSString*)longURL
+{
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	NSString *alias = [NSString stringWithFormat:@"y%08x", ((int)time(NULL))];
+	
+	NSData *page = [NSData dataWithContentsOfURL:
+		[NSURL URLWithString:[NSString stringWithFormat:@"http://tinyurl.com/create.php?url=%@&alias=%@", longURL, alias]]];
+
+	id tiny = page ? [NSString stringWithFormat:@"http://tinyurl.com/%@", alias] : [NSNull null];
+	NSArray* urls =  [[[NSArray alloc] initWithObjects: tiny, [[longURL copy] autorelease], nil] autorelease];
+	[self performSelectorOnMainThread:@selector(setTinyURLOnMainThread:) withObject:urls waitUntilDone:NO];
+
+	[pool release];
 }
 
 

@@ -30,7 +30,7 @@
 #import "ASINetworkQueue.h"
 #import "KBGoody.h"
 #import "KBPhotoViewController.h"
-#import "LocationManager.h"
+#import "KBLocationManager.h"
 #import "KBStats.h"
 #import "KickballAPI.h"
 
@@ -1168,8 +1168,8 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         [request setPostValue:@"0" forKey:@"gift[is_banned]"];
         [request setPostValue:@"0" forKey:@"gift[is_flagged]"];
         [request setPostValue:venue.name forKey:@"gift[venue_name]"];
-        [request setPostValue:[NSString stringWithFormat:@"%f", [[LocationManager locationManager] latitude]] forKey:@"gift[latitude]"];
-        [request setPostValue:[NSString stringWithFormat:@"%f", [[LocationManager locationManager] longitude]] forKey:@"gift[longitude]"];
+        [request setPostValue:[NSString stringWithFormat:@"%f", [[KBLocationManager locationManager] latitude]] forKey:@"gift[latitude]"];
+        [request setPostValue:[NSString stringWithFormat:@"%f", [[KBLocationManager locationManager] longitude]] forKey:@"gift[longitude]"];
         [request setPostValue:[NSString stringWithFormat:@"%d", (int)height]  forKey:@"gift[photo_height]"];
         [request setPostValue:[NSString stringWithFormat:@"%d", (int)width] forKey:@"gift[photo_width]"];
         [request setPostValue:[self getAuthenticatedUser].firstnameLastInitial forKey:@"gift[owner_name]"];

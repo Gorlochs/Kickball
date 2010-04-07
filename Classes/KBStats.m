@@ -8,7 +8,7 @@
 
 #import "KBStats.h"
 #import "ASIFormDataRequest.h"
-#import "LocationManager.h"
+#import "KBLocationManager.h"
 #import "FoursquareAPI.h"
 
 #define CHECKIN_URL @"http://kickball.gorlochs.com/kickball/checkin_stats.xml"
@@ -28,8 +28,8 @@ static KBStats* _stats = nil;
     [statRequest setPostValue:checkin.venue.venueid forKey:@"checkin_stat[venueId]"];
     [statRequest setPostValue:checkin.venue.city forKey:@"checkin_stat[city]"];
     [statRequest setPostValue:checkin.venue.venueState forKey:@"checkin_stat[state]"];
-    [statRequest setPostValue:[NSString stringWithFormat:@"%f", [[LocationManager locationManager] latitude]] forKey:@"checkin_stat[latitude]"];
-    [statRequest setPostValue:[NSString stringWithFormat:@"%f", [[LocationManager locationManager] longitude]] forKey:@"checkin_stat[longitude]"];
+    [statRequest setPostValue:[NSString stringWithFormat:@"%f", [[KBLocationManager locationManager] latitude]] forKey:@"checkin_stat[latitude]"];
+    [statRequest setPostValue:[NSString stringWithFormat:@"%f", [[KBLocationManager locationManager] longitude]] forKey:@"checkin_stat[longitude]"];
     [statRequest setDidFailSelector:@selector(statWentWrong:)];
     [statRequest setDidFinishSelector:@selector(statDidFinish:)];
     [statRequest setTimeOutSeconds:100];

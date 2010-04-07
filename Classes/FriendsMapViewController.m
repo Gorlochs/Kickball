@@ -10,7 +10,7 @@
 
 #import "FriendsMapViewController.h"
 #import "QuartzCore/QuartzCore.h"
-#import "LocationManager.h"
+#import "KBLocationManager.h"
 #import "ProfileViewController.h"
 #import "PlacesListViewController.h"
 #import "PlacesMapViewController.h"
@@ -75,8 +75,8 @@
         span.longitudeDelta = 0.05;
 		
 		CLLocationCoordinate2D center;
-        center.latitude = [[LocationManager locationManager] latitude];
-        center.longitude = [[LocationManager locationManager] longitude];
+        center.latitude = [[KBLocationManager locationManager] latitude];
+        center.longitude = [[KBLocationManager locationManager] longitude];
 		
 		NSLog(@"Lat delta: %f.  Long delta: %f.  Lat: %f.  Long: %f", span.latitudeDelta, span.longitudeDelta, center.latitude, center.longitude);
 		

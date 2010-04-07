@@ -9,7 +9,7 @@
 #import "PlacesMapViewController.h"
 #import "VenueAnnotation.h"
 #import "KBPin.h"
-#import "LocationManager.h"
+#import "KBLocationManager.h"
 #import "PlaceDetailViewController.h"
 #import "PlacesListViewController.h"
 #import "FriendsListViewController.h"
@@ -28,8 +28,8 @@
     // this hack is here to help make the toggle 'global'
     if (self.venues == nil || [self.venues count] == 0) {
         [self startProgressBar:@"Retrieving venues..."];
-        [[FoursquareAPI sharedInstance] getVenuesNearLatitude:[NSString stringWithFormat:@"%f",[[LocationManager locationManager] latitude]]
-                                                 andLongitude:[NSString stringWithFormat:@"%f",[[LocationManager locationManager] longitude]]
+        [[FoursquareAPI sharedInstance] getVenuesNearLatitude:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] latitude]]
+                                                 andLongitude:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] longitude]]
                                                    withTarget:self 
                                                     andAction:@selector(venuesResponseReceived:withResponseString:)
          
@@ -283,8 +283,8 @@
     [searchbox resignFirstResponder];
     if (![searchbox.text isEqualToString:@""]) {
         // TODO: I am just replacing a space with a +, but other characters might give this method a headache.
-        [[FoursquareAPI sharedInstance] getVenuesByKeyword:[NSString stringWithFormat:@"%f",[[LocationManager locationManager] latitude]] 
-                                              andLongitude:[NSString stringWithFormat:@"%f",[[LocationManager locationManager] longitude]] 
+        [[FoursquareAPI sharedInstance] getVenuesByKeyword:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] latitude]] 
+                                              andLongitude:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] longitude]] 
                                                andKeywords:[searchbox.text stringByReplacingOccurrencesOfString:@" " withString:@"+"]
                                                 withTarget:self 
                                                  andAction:@selector(allVenuesResponseReceived:withResponseString:)
@@ -317,8 +317,8 @@
 
 - (void) refresh: (UIControl *) button {
     [self startProgressBar:@"Retrieving venues..."];
-    [[FoursquareAPI sharedInstance] getVenuesNearLatitude:[NSString stringWithFormat:@"%f",[[LocationManager locationManager] latitude]]
-                                             andLongitude:[NSString stringWithFormat:@"%f",[[LocationManager locationManager] longitude]]
+    [[FoursquareAPI sharedInstance] getVenuesNearLatitude:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] latitude]]
+                                             andLongitude:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] longitude]]
                                                withTarget:self 
                                                 andAction:@selector(venuesResponseReceived:withResponseString:)
      

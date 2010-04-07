@@ -10,7 +10,7 @@
 #import "FriendsListViewController.h"
 #import "Beacon.h"
 #import <CoreLocation/CoreLocation.h>
-#import "LocationManager.h"
+#import "KBLocationManager.h"
 #import "ASIHTTPRequest.h"
 #import "FoursquareAPI.h"
 #import "ProfileViewController.h"
@@ -79,7 +79,7 @@
          registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
                                              UIRemoteNotificationTypeSound |
                                              UIRemoteNotificationTypeAlert)];
-        [[LocationManager locationManager] startUpdates];
+        [[KBLocationManager locationManager] startUpdates];
     }
     
     [manager release];
@@ -114,7 +114,7 @@
 //}
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-    [[LocationManager locationManager] stopUpdates];
+    [[KBLocationManager locationManager] stopUpdates];
     [Beacon endBeacon];
 }
 
