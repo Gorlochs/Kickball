@@ -6,6 +6,8 @@
 //  Copyright 2008 Instinctive Code.
 //
 
+#define kMGTwitterDateFormatString @"EEE MMM dd HH:mm:ss ZZZ yyyy"
+
 #import "MGTwitterEngineGlobalHeader.h"
 
 #import "MGTwitterParserDelegate.h"
@@ -20,7 +22,13 @@
     NSXMLParser *parser;
     __weak NSMutableDictionary *currentNode;
     NSString *lastOpenedElement;
+	
+	// To remove the warning on the depracated method
+	// As per http://mattgemmell.com/2008/02/22/mgtwitterengine-twitter-from-cocoa/comment-page-3#comment-42022
+	NSDateFormatter *dateFormatter;
 }
+
+@property (nonatomic, retain) NSDateFormatter *dateFormatter;
 
 + (id)parserWithXML:(NSData *)theXML delegate:(NSObject *)theDelegate 
 connectionIdentifier:(NSString *)identifier requestType:(MGTwitterRequestType)reqType 

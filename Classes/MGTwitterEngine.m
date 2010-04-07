@@ -9,7 +9,7 @@
 #import "MGTwitterEngine.h"
 #import "MGTwitterHTTPURLConnection.h"
 
-#import "NSData+Base64.h"
+#import "NSData+MGTwitterBase64.h"
 
 #define USE_LIBXML 1
 
@@ -1441,7 +1441,7 @@
 #pragma mark -
 
 
-- (NSString *)markUpdate:(unsigned long long)updateID asFavorite:(BOOL)flag
+- (NSString *)markUpdate:(unsigned long)updateID asFavorite:(BOOL)flag
 {
 	NSString *path = nil;
 	MGTwitterRequestType requestType;
