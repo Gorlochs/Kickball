@@ -22,6 +22,7 @@
 #import "Utilities.h"
 #import "FriendRequestsViewController.h"
 #import "KickballAppDelegate.h"
+#import "XAuthTwitterEngineViewController.h"
 
 @interface FriendsListViewController (Private)
 
@@ -552,6 +553,12 @@
     FriendRequestsViewController *friendsController = [[FriendRequestsViewController alloc] initWithNibName:@"FriendRequestsViewController" bundle:nil];
     [self.navigationController pushViewController:friendsController animated:YES];
     [friendsController release];
+}
+
+- (void) displayTwitterXAuthLogin {
+    XAuthTwitterEngineViewController *twitterController = [[XAuthTwitterEngineViewController alloc] initWithNibName:@"XAuthTwitterEngineDemoViewController" bundle:nil];
+    [self presentModalViewController:twitterController animated:YES];
+    [twitterController release];
 }
 
 - (void) setUserIconViewCustom:(FSUser*)user {

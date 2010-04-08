@@ -502,6 +502,8 @@
 		6AD5B350116D2FD8008671FD /* MGTwitterStatusesLibXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD5B34A116D2FD8008671FD /* MGTwitterStatusesLibXMLParser.m */; };
 		6AD5B351116D2FD8008671FD /* MGTwitterUsersLibXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD5B34C116D2FD8008671FD /* MGTwitterUsersLibXMLParser.m */; };
 		6AD5B399116D36EF008671FD /* libOAuth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AD5B398116D36EF008671FD /* libOAuth.a */; };
+		6AD5B3DC116D3D4A008671FD /* XAuthTwitterEngineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD5B3DB116D3D4A008671FD /* XAuthTwitterEngineViewController.m */; };
+		6AD5B3DE116D3D56008671FD /* XAuthTwitterEngineDemoViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6AD5B3DD116D3D56008671FD /* XAuthTwitterEngineDemoViewController.xib */; };
 		6AD9D8C8114594580060E486 /* homeSearchClose01.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AD9D8C7114594580060E486 /* homeSearchClose01.png */; };
 		6AD9D8CA1145945F0060E486 /* homeSearchClose02.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AD9D8C91145945F0060E486 /* homeSearchClose02.png */; };
 		6AD9D8CC114594A40060E486 /* homeSearch.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AD9D8CB114594A40060E486 /* homeSearch.png */; };
@@ -1384,6 +1386,9 @@
 		6AD5B34B116D2FD8008671FD /* MGTwitterUsersLibXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTwitterUsersLibXMLParser.h; sourceTree = "<group>"; };
 		6AD5B34C116D2FD8008671FD /* MGTwitterUsersLibXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTwitterUsersLibXMLParser.m; sourceTree = "<group>"; };
 		6AD5B398116D36EF008671FD /* libOAuth.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOAuth.a; path = "/Users/shawnbernard/Documents/projects/XAuthTwitterEngine/XAuthTwitterEngineDemo/Libraries & Headers/OAuthConsumer/libOAuth.a"; sourceTree = "<absolute>"; };
+		6AD5B3DA116D3D4A008671FD /* XAuthTwitterEngineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XAuthTwitterEngineViewController.h; sourceTree = "<group>"; };
+		6AD5B3DB116D3D4A008671FD /* XAuthTwitterEngineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XAuthTwitterEngineViewController.m; sourceTree = "<group>"; };
+		6AD5B3DD116D3D56008671FD /* XAuthTwitterEngineDemoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.xib; path = XAuthTwitterEngineDemoViewController.xib; sourceTree = "<group>"; };
 		6AD9D8C7114594580060E486 /* homeSearchClose01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeSearchClose01.png; sourceTree = "<group>"; };
 		6AD9D8C91145945F0060E486 /* homeSearchClose02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeSearchClose02.png; sourceTree = "<group>"; };
 		6AD9D8CB114594A40060E486 /* homeSearch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeSearch.png; sourceTree = "<group>"; };
@@ -1579,6 +1584,7 @@
 				553C516510A1BD5100A74641 /* TouchXML */,
 				6A39EB3E10965666006F76C3 /* Pinch */,
 				6A8EEEC110A14ED200DC630C /* MGTwitterEngine */,
+				6AD5B3D8116D3D37008671FD /* KBTwitter */,
 				6AF9670D109AA2FE00EF665D /* Profile */,
 				6AC7E92D10994FB500776993 /* Place */,
 				6AF794AA10CCAD9A00E77D49 /* Requests */,
@@ -1643,6 +1649,7 @@
 				6ABA7857109BDCAF001E7293 /* PlacesListViewController.xib */,
 				6A12EC6210B772FA0013BA52 /* GeoApiDetailsView.xib */,
 				6AFC1D9510BA42A9006B7E5F /* ProgressView.xib */,
+				6AD5B3DD116D3D56008671FD /* XAuthTwitterEngineDemoViewController.xib */,
 				6AF2F0AD10C2EBB300A29C96 /* TipView.xib */,
 				6A79D0D810E5E692009082E5 /* PopupMessageView.xib */,
 				6AEB63D3110BA9BE0066DD05 /* PushNotificationView.xib */,
@@ -2340,41 +2347,65 @@
 			path = GeoAPI;
 			sourceTree = "<group>";
 		};
-		6A55B4CC10B36E9A0005E934 /* General */ = {
+		6A50B44A116D509D002FC1FF /* Singletons */ = {
 			isa = PBXGroup;
 			children = (
-				6A7610AF116BE92D00BF2993 /* Abstract Classes */,
-				6A10E61310BE0541006538DB /* LoginViewModalController.h */,
-				6A10E61410BE0541006538DB /* LoginViewModalController.m */,
-				6AFC1D9810BA4320006B7E5F /* ProgressViewController.h */,
-				6AFC1D9910BA4320006B7E5F /* ProgressViewController.m */,
-				6A16ABD910CF251800CD5302 /* InstructionView.h */,
-				6A16ABDA10CF251800CD5302 /* InstructionView.m */,
 				6ADC9C1810D1EE5100CFDCA7 /* Utilities.h */,
 				6ADC9C1910D1EE5100CFDCA7 /* Utilities.m */,
 				6AACC53010D48F240059E604 /* KBLocationManager.h */,
 				6AACC53110D48F240059E604 /* KBLocationManager.m */,
+			);
+			name = Singletons;
+			sourceTree = "<group>";
+		};
+		6A50B44B116D50B6002FC1FF /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6A79D0D510E5E682009082E5 /* PopupMessageView.h */,
+				6A79D0D610E5E682009082E5 /* PopupMessageView.m */,
+				6A10E61310BE0541006538DB /* LoginViewModalController.h */,
+				6A10E61410BE0541006538DB /* LoginViewModalController.m */,
+				6AFC1D9810BA4320006B7E5F /* ProgressViewController.h */,
+				6AFC1D9910BA4320006B7E5F /* ProgressViewController.m */,
 				6A47C00310DCA8DE00DCF011 /* KBWebViewController.h */,
 				6A47C00410DCA8DE00DCF011 /* KBWebViewController.m */,
 				6A47C00510DCA8DE00DCF011 /* KBWebViewController.xib */,
 				6A4C30C210DED6E300C89F55 /* SettingsViewController.h */,
 				6A4C30C310DED6E300C89F55 /* SettingsViewController.m */,
 				6A4C30C410DED6E300C89F55 /* SettingsViewController.xib */,
-				6A79D0D510E5E682009082E5 /* PopupMessageView.h */,
-				6A79D0D610E5E682009082E5 /* PopupMessageView.m */,
-				6A79D0FC10E68D1A009082E5 /* KBMessage.h */,
-				6A79D0FD10E68D1A009082E5 /* KBMessage.m */,
 				6A3DF72D10F6E0ED008BD8AA /* KBTextViewController.h */,
 				6A3DF72E10F6E0ED008BD8AA /* KBTextViewController.m */,
 				6A3DF72F10F6E0ED008BD8AA /* KBTextViewController.xib */,
 				6AEB63D5110BAA8C0066DD05 /* KBPushNotificationView.h */,
 				6AEB63D6110BAA8C0066DD05 /* KBPushNotificationView.m */,
-				035C1FD21112A2E10075E553 /* NSString+hmac.h */,
-				035C1FD31112A2E10075E553 /* NSString+hmac.m */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		6A50B44C116D50EA002FC1FF /* Table Cells */ = {
+			isa = PBXGroup;
+			children = (
 				6AD0C133113E3F2B00A971E3 /* KBTwitterCell.h */,
 				6AD0C134113E3F2B00A971E3 /* KBTwitterCell.m */,
 				6ABD31D41164FBEF008F6A5D /* KBInstacheckinTableCell.h */,
 				6ABD31D51164FBEF008F6A5D /* KBInstacheckinTableCell.m */,
+			);
+			name = "Table Cells";
+			sourceTree = "<group>";
+		};
+		6A55B4CC10B36E9A0005E934 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				6A50B44C116D50EA002FC1FF /* Table Cells */,
+				6A50B44B116D50B6002FC1FF /* View Controllers */,
+				6A50B44A116D509D002FC1FF /* Singletons */,
+				6A7610AF116BE92D00BF2993 /* Abstract Classes */,
+				6A16ABD910CF251800CD5302 /* InstructionView.h */,
+				6A16ABDA10CF251800CD5302 /* InstructionView.m */,
+				6A79D0FC10E68D1A009082E5 /* KBMessage.h */,
+				6A79D0FD10E68D1A009082E5 /* KBMessage.m */,
+				035C1FD21112A2E10075E553 /* NSString+hmac.h */,
+				035C1FD31112A2E10075E553 /* NSString+hmac.m */,
 			);
 			name = General;
 			sourceTree = "<group>";
@@ -2681,9 +2712,9 @@
 		6AD5B146116D27A0008671FD /* Libraries & Headers */ = {
 			isa = PBXGroup;
 			children = (
+				6AD5B14D116D27A0008671FD /* OAuthConsumer */,
 				6AD5B149116D27A0008671FD /* XAuthTwitterEngine */,
 				6AD5B147116D27A0008671FD /* jQueryInject.txt */,
-				6AD5B14D116D27A0008671FD /* OAuthConsumer */,
 				6AD5B148116D27A0008671FD /* jQueryInjectLandscape.txt */,
 			);
 			path = "Libraries & Headers";
@@ -2719,6 +2750,15 @@
 				6AD5B15D116D27A0008671FD /* OAuthConsumer.h */,
 			);
 			path = OAuthConsumer;
+			sourceTree = "<group>";
+		};
+		6AD5B3D8116D3D37008671FD /* KBTwitter */ = {
+			isa = PBXGroup;
+			children = (
+				6AD5B3DA116D3D4A008671FD /* XAuthTwitterEngineViewController.h */,
+				6AD5B3DB116D3D4A008671FD /* XAuthTwitterEngineViewController.m */,
+			);
+			name = KBTwitter;
 			sourceTree = "<group>";
 		};
 		6ADC9EBE10D3EF4900CFDCA7 /* Add Venue */ = {
@@ -3528,6 +3568,8 @@
 				6AD5B34F116D2FD8008671FD /* MGTwitterMiscLibXMLParser.m in Sources */,
 				6AD5B350116D2FD8008671FD /* MGTwitterStatusesLibXMLParser.m in Sources */,
 				6AD5B351116D2FD8008671FD /* MGTwitterUsersLibXMLParser.m in Sources */,
+				6AD5B3DC116D3D4A008671FD /* XAuthTwitterEngineViewController.m in Sources */,
+				6AD5B3DE116D3D56008671FD /* XAuthTwitterEngineDemoViewController.xib in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
