@@ -10,8 +10,6 @@
 #import "KBBaseViewController.h"
 
 @interface GeoApiTableViewController : KBBaseViewController {
-    IBOutlet UITableView *theTableView;
-    
     NSArray *geoAPIResults;
 }
 

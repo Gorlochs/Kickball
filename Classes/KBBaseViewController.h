@@ -14,6 +14,7 @@
 #import "Beacon.h"
 #import "FSVenue.h"
 #import "Utilities.h"
+#import "EGORefreshTableHeaderView.h"
 
 static const CGFloat KEYBOARD_ANIMATION_DURATION = 0.3;
 static const CGFloat MINIMUM_SCROLL_FRACTION = 0.2;
@@ -22,9 +23,12 @@ static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
 static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 extern const NSString *kickballDomain;
 
-@class LoginViewModalController;
+@class LoginViewModalController, EGORefreshTableHeaderView;;
 
 @interface KBBaseViewController : UIViewController {
+    
+    IBOutlet UITableView *theTableView;
+    
     IBOutlet UIButton *signedInUserIcon;
     ProgressViewController *progressViewController;
     LoginViewModalController *loginViewModal;
@@ -35,12 +39,24 @@ extern const NSString *kickballDomain;
     
     BOOL hideHeader;
     BOOL hideFooter;
+    
+    //EGO class stuff
+    EGORefreshTableHeaderView *refreshHeaderView;
+	
+	//  Reloading should really be your tableviews model class
+	//  Putting it here for demo purposes 
+	BOOL _reloading;
 }
 
+@property (nonatomic, retain) UITableView *theTableView;
 @property (nonatomic, retain) LoginViewModalController *loginViewModal;
 @property (nonatomic, retain) NSString *textViewReturnValue;
 @property (nonatomic) BOOL hideHeader;
 
+@property(assign,getter=isReloading) BOOL reloading;
+
+- (void)reloadTableViewDataSource;
+- (void)doneLoadingTableViewData;
 
 - (IBAction) backOneView;
 - (IBAction) backOneViewNotAnimated;
@@ -63,10 +79,11 @@ extern const NSString *kickballDomain;
 - (IBAction) displayTextView;
 - (IBAction) displayTextViewForCheckin;
 - (void) displayPushedVenueId;
-- (IBAction) checkin;
 - (void) openWebView:(NSString*)url;
 - (IBAction) dismiss;
 - (void) displayFoursquareErrorMessage:(NSString*)errorMessage;
 - (void) stopProgressBarAndDisplayErrorMessage:(NSTimer*)theTimer;
+- (void) refreshTable;
+- (void) dataSourceDidFinishLoadingNewData;
 
 @end

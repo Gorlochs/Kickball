@@ -11,7 +11,6 @@
 
 
 @interface ViewFriendRequestsViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource> {
-    IBOutlet UITableView *theTableView;
     NSMutableArray *pendingFriendRequests;
 }
 

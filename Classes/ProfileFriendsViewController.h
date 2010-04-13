@@ -11,7 +11,6 @@
 
 
 @interface ProfileFriendsViewController : KBBaseViewController {
-    IBOutlet UITableView *theTableView;
     NSString *userId;
     NSArray *friends;
     NSMutableDictionary *userIcons;

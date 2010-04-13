@@ -11,7 +11,6 @@
 #import "FSVenue.h"
 
 @interface AddPlaceViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
-    IBOutlet UITableView *theTableView;
     IBOutlet UITextField *newPlaceName;
     
     IBOutlet UITableViewCell *noneOfTheseCell;

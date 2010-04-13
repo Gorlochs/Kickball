@@ -16,7 +16,6 @@ typedef enum {
 } KBListType;
 
 @interface PlacesListViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
-    IBOutlet UITableView *theTableView;
     IBOutlet UITableViewCell *searchCell;
     IBOutlet UITextField *searchbox;
     IBOutlet UITableViewCell *footerCell;

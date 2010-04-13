@@ -11,7 +11,6 @@
 
 
 @interface FriendSearchResultsViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource> {
-    IBOutlet UITableView *theTableView;
     NSArray *searchResults;
 }
 

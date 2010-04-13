@@ -16,7 +16,6 @@
     NSArray *twitterStatuses;
     NSString *venueName;
     IBOutlet UILabel *venueLabel;
-    IBOutlet UITableView *theTableView;
     NSMutableDictionary *orderedTweets;
     NSArray *sortedKeys;
 }

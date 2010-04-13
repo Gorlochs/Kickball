@@ -13,7 +13,6 @@
 #import "FSCheckin.h"
 
 @interface ProfileViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, MGTwitterEngineDelegate> {
-    IBOutlet UITableView *theTableView;
     IBOutlet UITableViewCell *badgeCell;
     IBOutlet UITableViewCell *addFriendCell;
     IBOutlet UITableViewCell *friendActionCell;

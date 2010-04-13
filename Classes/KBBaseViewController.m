@@ -26,11 +26,19 @@
 const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 //const NSString *kickballDomain = @"http://kickball.gorlochs.com/kickball";
 
+//@interface KBBaseViewController (Protected)
+//
+//- (void)dataSourceDidFinishLoadingNewData;
+//
+//@end
+
 @implementation KBBaseViewController
 
+@synthesize theTableView;
 @synthesize loginViewModal;
 @synthesize textViewReturnValue;
 @synthesize hideHeader;
+@synthesize reloading=_reloading;
 
 - (void) viewDidLoad {
     [super viewDidLoad];
@@ -63,6 +71,14 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
         tabView.frame = CGRectMake(0, self.view.frame.size.height - 40, self.view.frame.size.width, 40);
         [self.view addSubview:tabView];
     }
+    
+	if (refreshHeaderView == nil) {
+		refreshHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.theTableView.bounds.size.height, 320.0f, self.theTableView.bounds.size.height)];
+		refreshHeaderView.backgroundColor = [UIColor colorWithRed:176.0/255.0 green:36.0/255.0 blue:44.0/255.0 alpha:1.0];
+		[self.theTableView addSubview:refreshHeaderView];
+		self.theTableView.showsVerticalScrollIndicator = YES;
+		[refreshHeaderView release];
+	}
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -75,6 +91,7 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
     [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:@"shoutSent"];
     KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
     [appDelegate.pushNotificationUserId removeObserver:self forKeyPath:@"pushUserId"];
+	refreshHeaderView=nil;
     [super viewDidUnload];
 }
 
@@ -305,6 +322,62 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
     KBMessage *message = [[KBMessage alloc] initWithMember:@"Foursquare Error" andMessage:errorMessage];
     [self displayPopupMessage:message];
     [message release];
+}
+
+// EGO class
+
+- (void)reloadTableViewDataSource{
+	//  should be calling your tableviews model to reload
+	//  put here just for demo
+	[self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:3.0];
+}
+
+- (void) refreshTable {
+    
+    NSLog(@"^^^^^ you should not be in here! ^^^^^^^^");
+	[self dataSourceDidFinishLoadingNewData];
+}
+
+
+- (void) doneLoadingTableViewData {
+	//  model should call this when its done loading
+    [self refreshTable];
+}
+
+- (void) scrollViewDidScroll:(UIScrollView *)scrollView {	
+	
+	if (scrollView.isDragging) {
+		if (refreshHeaderView.state == EGOOPullRefreshPulling && scrollView.contentOffset.y > -65.0f && scrollView.contentOffset.y < 0.0f && !_reloading) {
+			[refreshHeaderView setState:EGOOPullRefreshNormal];
+		} else if (refreshHeaderView.state == EGOOPullRefreshNormal && scrollView.contentOffset.y < -65.0f && !_reloading) {
+			[refreshHeaderView setState:EGOOPullRefreshPulling];
+		}
+	}
+}
+
+- (void) scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+	
+	if (scrollView.contentOffset.y <= - 65.0f && !_reloading) {
+        _reloading = YES;
+        [self reloadTableViewDataSource];
+        [refreshHeaderView setState:EGOOPullRefreshLoading];
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.2];
+        self.theTableView.contentInset = UIEdgeInsetsMake(60.0f, 0.0f, 0.0f, 0.0f);
+        [UIView commitAnimations];
+	}
+}
+
+- (void) dataSourceDidFinishLoadingNewData {
+	_reloading = NO;
+	
+	[UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDuration:.3];
+	[self.theTableView setContentInset:UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f)];
+	[UIView commitAnimations];
+	
+	[refreshHeaderView setState:EGOOPullRefreshNormal];
+	//[refreshHeaderView setCurrentDate];  //  should check if data reload was successful 
 }
 
 @end

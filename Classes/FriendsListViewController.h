@@ -14,7 +14,6 @@
 
 
 @interface FriendsListViewController : KBFoursquareViewController <UITableViewDelegate, UITableViewDataSource> {
-    IBOutlet UITableView *theTableView;
     IBOutlet UIButton *mapButton;
 	NSArray * checkins;
 	NSMutableArray * recentCheckins;
@@ -49,8 +48,6 @@
 @property (nonatomic, retain) NSMutableArray * nonCityCheckins;
 
 - (IBAction) flipToMap;
-- (IBAction) refresh;
-
 - (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString;
 - (void) doInitialDisplay;
 - (IBAction) addFriend;

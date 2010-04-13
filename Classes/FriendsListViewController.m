@@ -398,10 +398,10 @@
 
 #pragma mark IBAction methods
 
-- (void) refresh {
-	[self startProgressBar:@"Retrieving friends' whereabouts..."];
-	[[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
-}
+//- (void) refresh {
+//	[self startProgressBar:@"Retrieving friends' whereabouts..."];
+//	[[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
+//}
 
 - (void) flipToMap {
     FriendsMapViewController *mapViewController = [[FriendsMapViewController alloc] initWithNibName:@"FriendsMapView" bundle:nil];
@@ -434,8 +434,6 @@
         
         for (FSCheckin *checkin in checkins) {
             NSDate *date = [[[Utilities sharedInstance] foursquareCheckinDateFormatter] dateFromString:checkin.created];
-            NSLog(@"checkin distance: %d", checkin.distanceFromLoggedInUser);
-            NSLog(@"city radius: %d", [[[Utilities sharedInstance] getCityRadius] integerValue]);
             if (checkin.distanceFromLoggedInUser < [[[Utilities sharedInstance] getCityRadius] integerValue]) {
                 if ([date compare:oneHourFromNow] == NSOrderedDescending) {
                     [self.recentCheckins addObject:checkin];
@@ -570,6 +568,23 @@
     [images release];
     splashView.animationDuration = 1.33;
     splashView.animationRepeatCount = 1;
+}
+
+#pragma mark 
+#pragma mark table refresh methods
+
+- (void) refreshTable {
+	//[self startProgressBar:@"Retrieving friends' whereabouts..."];
+    NSLog(@"checkin response 0");
+	[[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceivedWithRefresh:withResponseString:)];
+}
+
+- (void)checkinResponseReceivedWithRefresh:(NSURL *)inURL withResponseString:(NSString *)inString {
+    NSLog(@"checkin response 1");
+    [self checkinResponseReceived:inURL withResponseString:inString];
+    NSLog(@"checkin response 2");
+	[self dataSourceDidFinishLoadingNewData];
+    NSLog(@"checkin response 3");
 }
 
 @end

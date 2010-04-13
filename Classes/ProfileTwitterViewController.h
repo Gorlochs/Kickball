@@ -11,10 +11,7 @@
 
 
 @interface ProfileTwitterViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource> {
-    IBOutlet UITableView *theTableView;
-    
     NSArray *tweets;
-    
     NSMutableDictionary *orderedTweets;
     NSArray *sortedKeys;
 }

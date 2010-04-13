@@ -16,7 +16,6 @@
 #import "PhotoMessageViewController.h"
 
 @interface PlaceDetailViewController : AbstractPushNotificationViewController <UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate, GAConnectionDelegate, UIActionSheetDelegate> {
-    IBOutlet UITableView *theTableView;
     IBOutlet UITableViewCell *checkinCell;
     IBOutlet KBPhotoThumbnailCell *giftCell;
     IBOutlet UITableViewCell *mayorMapCell;

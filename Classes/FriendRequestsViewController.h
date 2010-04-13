@@ -11,8 +11,6 @@
 #import "KBBaseViewController.h"
 
 @interface FriendRequestsViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
-    IBOutlet UITableView *theTableView;
-    
     IBOutlet UIButton *addressBookSearchButton;
     IBOutlet UIButton *twitterSearchButton;
     IBOutlet UIButton *nameSearchButton;
