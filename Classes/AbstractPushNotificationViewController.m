@@ -45,6 +45,7 @@
         [friendIds addObject:friend.userId];
     }
     NSString *friendIdsString = [friendIds componentsJoinedByString:@","];
+    NSLog(@"friend ids: %@", friendIdsString);
     [friendIds release];
     
     FSUser *user = [self getAuthenticatedUser];

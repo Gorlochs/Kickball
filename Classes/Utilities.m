@@ -171,10 +171,13 @@ static Utilities *sharedInstance = nil;
 }
 
 - (void)aFriendResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    //NSLog(@"friend: %@", inString);
+    NSLog(@"********** friend: %@", inString);
     FSUser *friend = [FoursquareAPI userFromResponseXML:inString];
     if (friend.sendsPingsToSignedInUser) {
+        NSLog(@"this friend sends pings to signed in user: %@", friend);
         [friendsWithPingOn addObject:friend];
+    } else {
+        NSLog(@"this friend does NOT send pings: %@", friend);
     }
     runningTotalNumberOfUsersBeingPushed++;
     if (runningTotalNumberOfUsersBeingPushed == totalNumberOfUsersForPush) {

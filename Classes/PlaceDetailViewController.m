@@ -33,6 +33,7 @@
 #import "KBLocationManager.h"
 #import "KBStats.h"
 #import "KickballAPI.h"
+#import "TableSectionHeaderView.h"
 
 static inline double radians (double degrees) {return degrees * M_PI/180;}
 
@@ -398,11 +399,6 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-        
-        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 43, 320, 1)];
-        line.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.13];
-        [cell addSubview:line];
-        [line release];
     }
     
     
@@ -478,7 +474,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    [cell setBackgroundColor:[UIColor whiteColor]];  
+    [cell setBackgroundColor:[UIColor colorWithWhite:0.9 alpha:1.0]];  
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -516,23 +512,13 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     if (section == 6) { // photos
         return 38;
     }
-	return 24.0;
+	return 30.0;
 }
 
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-	UIView* customView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 24.0)] autorelease];
-    customView.backgroundColor = [UIColor whiteColor];
-    customView.alpha = 0.85;
-	
-	// create the button object
-	UILabel * headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-	headerLabel.backgroundColor = [UIColor clearColor];
-	headerLabel.opaque = NO;
-	headerLabel.textColor = [UIColor grayColor];
-	headerLabel.highlightedTextColor = [UIColor whiteColor];
-	headerLabel.font = [UIFont boldSystemFontOfSize:12];
-	headerLabel.frame = CGRectMake(10.0, 0.0, 320.0, 24.0);
+
+    TableSectionHeaderView *headerView = [[TableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)];
     
     switch (section) {
         case 0:
@@ -541,12 +527,12 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         case 3:
         case 4:
         case 5:
-            [headerLabel release];
+            [headerView release];
             return nil;
             break;
         case 6:
             if ([goodies count] == 0) {
-                [headerLabel release];
+                [headerView release];
                 return nil;
             } else {
                 photoHeaderLabel.text = [NSString stringWithFormat:@"%d %@", [goodies count], [goodies count] == 1 ? @"Photo" : @"Photos"];
@@ -555,31 +541,29 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
             break;
         case 7:
             if (venue.hereNow == 0 ) {
-                [headerLabel release];
+                [headerView release];
                 return nil;
             } else {
-                headerLabel.text = [NSString stringWithFormat:@"%d %@ Here", venue.hereNow, venue.hereNow == 1 ? @"Person" : @"People"];
+                headerView.leftHeaderLabel.text = [NSString stringWithFormat:@"%d %@ Here", venue.hereNow, venue.hereNow == 1 ? @"Person" : @"People"];
             }
             break;
         case 8:
             if ([venue.tips count] == 0) {
-                [headerLabel release];
+                [headerView release];
                 return nil;
             } else {
-                headerLabel.text = [NSString stringWithFormat:@"%d %@", [venue.tips count], [venue.tips count] == 1 ? @"Tip" : @"Tips"];
+                headerView.leftHeaderLabel.text = [NSString stringWithFormat:@"%d %@", [venue.tips count], [venue.tips count] == 1 ? @"Tip" : @"Tips"];
             }
             break;
         case 9:  
-            [headerLabel release];
+            [headerView release];
             return nil;
             break;
         default:
-            headerLabel.text = @"You shouldn't see this";
+            headerView.leftHeaderLabel.text = @"You shouldn't see this";
             break;
     }
-    [customView addSubview:headerLabel];
-    [headerLabel release];
-    return customView;
+    return headerView;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -602,7 +586,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 }
 
 - (void) pushProfileDetailController:(NSString*)profileUserId {
-    ProfileViewController *profileDetailController = [[ProfileViewController alloc] initWithNibName:@"ProfileView" bundle:nil];
+    ProfileViewController *profileDetailController = [[ProfileViewController alloc] initWithNibName:@"ProfileView_v2" bundle:nil];
     profileDetailController.userId = profileUserId;
     [self.navigationController pushViewController:profileDetailController animated:YES];
     [profileDetailController release];
@@ -1000,7 +984,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     
     photoMessageViewController = [[PhotoMessageViewController alloc] initWithNibName:@"PhotoMessageViewController" bundle:nil];
     [self.navigationController presentModalViewController:photoMessageViewController animated:YES];
-    [photoMessageViewController release];
+    //[photoMessageViewController release];
 }
 
 - (void) returnFromMessageView:(NSNotification *)inNotification {

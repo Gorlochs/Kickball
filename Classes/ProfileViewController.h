@@ -49,6 +49,8 @@
     
     bool isPingAndUpdatesOn;
     bool hasPhotos;
+    
+    NSMutableArray *userPhotos;
 }
 
 @property (nonatomic, retain) UITableViewCell *badgeCell;
@@ -68,5 +70,6 @@
 - (IBAction) viewHistory;
 - (IBAction) viewProfilesFriends;
 - (IBAction) viewYourPhotos;
+- (void) retrieveUserPhotos;
 
 @end

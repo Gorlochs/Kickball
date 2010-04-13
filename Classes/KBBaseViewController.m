@@ -18,15 +18,19 @@
 #import "KBTextViewController.h"
 #import "ASIFormDataRequest.h"
 
+#import "FoursquareHeaderView.h"
+#import "FooterTabView.h"
+
 #define PROGRESS_BAR_TIMER_LENGTH 30.0
 
-const NSString *kickballDomain = @"http://gorlochs.literalshore.com:3000/kickball";
+const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 //const NSString *kickballDomain = @"http://kickball.gorlochs.com/kickball";
 
 @implementation KBBaseViewController
 
 @synthesize loginViewModal;
 @synthesize textViewReturnValue;
+@synthesize hideHeader;
 
 - (void) viewDidLoad {
     [super viewDidLoad];
@@ -34,16 +38,31 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com:3000/kickbal
     
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
     BOOL hasViewedInstructions = [standardUserDefaults boolForKey:@"viewedInstructions"];
-    
-    if (hasViewedInstructions) {
-        FSUser *tmpUser = [self getAuthenticatedUser];
-        [self setUserIconView:tmpUser];
-    }
+
+//    v1.1
+//    if (hasViewedInstructions) {
+//        FSUser *tmpUser = [self getAuthenticatedUser];
+//        [self setUserIconView:tmpUser];
+//    }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(displayShoutMessage:) name:@"shoutSent" object:nil];
     
     KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
     [appDelegate.pushNotificationUserId addObserver:self forKeyPath:@"pushUserId" options:0 context:nil];
+    
+    
+    // v1.1
+    if (!self.hideHeader) {
+        NSArray* nibViews =  [[NSBundle mainBundle] loadNibNamed:@"FoursquareHeaderView" owner:self options:nil];
+        FoursquareHeaderView *headerView = [nibViews objectAtIndex:0];
+        [self.view addSubview:headerView];
+    }
+    if (!hideFooter) {
+        NSArray* nibViews =  [[NSBundle mainBundle] loadNibNamed:@"FooterTabView" owner:self options:nil];
+        FooterTabView *tabView = [nibViews objectAtIndex:0];
+        tabView.frame = CGRectMake(0, self.view.frame.size.height - 40, self.view.frame.size.width, 40);
+        [self.view addSubview:tabView];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -118,7 +137,7 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com:3000/kickbal
 - (void) viewUserProfile {
     // take user to their profile
     [[Beacon shared] startSubBeaconWithName:@"View User Profile from Top Nav Icon"];
-    ProfileViewController *pvc = [[ProfileViewController alloc] initWithNibName:@"ProfileView" bundle:nil];
+    ProfileViewController *pvc = [[ProfileViewController alloc] initWithNibName:@"ProfileView_v2" bundle:nil];
     pvc.userId = [self getAuthenticatedUser].userId;
     [self.navigationController pushViewController:pvc animated:YES];
     [pvc release];
@@ -254,12 +273,6 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com:3000/kickbal
     //[tableView setTableHeaderView:v];
     [tableView setTableFooterView:v];
     [v release];
-}
-
-- (void) checkin {
-    PlacesListViewController *placesListController = [[PlacesListViewController alloc] initWithNibName:@"PlacesListViewController" bundle:nil];
-    [self.navigationController pushViewController:placesListController animated:YES];
-    [placesListController release];
 }
 
 - (void) openWebView:(NSString*)url {

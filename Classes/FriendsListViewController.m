@@ -23,6 +23,7 @@
 #import "FriendRequestsViewController.h"
 #import "KickballAppDelegate.h"
 #import "XAuthTwitterEngineViewController.h"
+#import "TableSectionHeaderView.h"
 
 @interface FriendsListViewController (Private)
 
@@ -39,44 +40,6 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
     
-//    [self setupSplashAnimation];
-////    [self showSplash];
-////}
-////
-////- (void) showSplash {
-//    UIViewController *modalSplashViewController = [[UIViewController alloc] init];
-//    modalSplashViewController.view = splashView;
-//    splashView.image = [UIImage imageNamed:@"kickballLoading40.png"];
-//    [self presentModalViewController:modalSplashViewController animated:NO];
-//    fadeOutImage.hidden = NO;
-//    //[self.view addSubview:splashView];
-//    [self performSelector:@selector(hideSplash) withObject:nil afterDelay:1.33];
-//    [splashView startAnimating];
-//}
-//
-////- (void)hideSplash:(NSString*)animationID finished:(BOOL)finished context:(void *)context {
-//- (void) hideSplash {
-//    
-//    [self.view bringSubviewToFront:fadeOutImage];
-//    [splashView stopAnimating];
-//    [self.modalViewController dismissModalViewControllerAnimated:NO];
-//    //splashView = nil;
-//    //[self.modalViewController dismissModalViewControllerAnimated:NO];
-//    [UIView setAnimationsEnabled:YES];
-//    
-//    [UIView beginAnimations:nil context:NULL];
-//    [UIView setAnimationBeginsFromCurrentState:YES];
-//    [UIView setAnimationDuration:1.5];
-////    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-//    fadeOutImage.alpha = 0;
-//    [UIView setAnimationDelegate:self];
-//    [UIView setAnimationDidStopSelector:@selector(continueLoadingView)];
-//    [UIView commitAnimations];
-//    //[splashView removeFromSuperview];
-//    
-//}
-//
-//- (void) continueLoadingView {
     welcomePageNum = 1;
     isDisplayingMore = NO;
     
@@ -249,22 +212,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    //NSLog(@"starting cell for row: %d", indexPath.row);
-    
-    //NSLog(@"section: %d, row: %d", indexPath.section, indexPath.row);
     static NSString *CellIdentifier = @"MyCell";
     
     FriendsListTableCellv2 *cell = (FriendsListTableCellv2*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[FriendsListTableCellv2 alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
-        cell.textLabel.font = [UIFont boldSystemFontOfSize:14.0];
-        cell.detailTextLabel.font = [UIFont systemFontOfSize:12.0];
         cell.imageView.image = [UIImage imageNamed:@"blank_boy.png"];
-        
-        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 51, 320, 1)];
-        line.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.13];
-        [cell addSubview:line];
-        [line release];
     }
     
     FSCheckin *checkin = nil;
@@ -291,28 +244,33 @@
     }
     
     cell.userIcon.urlPath = checkin.user.photo;
-    cell.textLabel.text = checkin.display;
+    cell.userName.text = checkin.user.firstnameLastInitial;
+    cell.venueName.text = checkin.venue.name;
     
     if ([checkin.display rangeOfString:@"[off the grid]"].location != NSNotFound) {
-        cell.detailTextLabel.text = @"...location unknown...";
+        cell.venueAddress.text = @"...location unknown...";
     } else if (checkin.shout != nil) {
-        cell.detailTextLabel.text = checkin.shout;
+        cell.venueAddress.text = checkin.shout;
     } else {
-        cell.detailTextLabel.text = checkin.venue.addressWithCrossstreet;
+        cell.venueAddress.text = checkin.venue.addressWithCrossstreet;
     }
     
     UILabel *numberOfTimeUnits = [[UILabel alloc] initWithFrame:CGRectMake(290, 5, 37, 20)];
     numberOfTimeUnits.text = checkin.truncatedTimeNumeral;
-    numberOfTimeUnits.font = [UIFont systemFontOfSize:20.0];
-    numberOfTimeUnits.textColor = [UIColor colorWithWhite:0.0 alpha:0.3];
+    numberOfTimeUnits.font = [UIFont systemFontOfSize:26.0];
+    numberOfTimeUnits.shadowColor = [UIColor whiteColor];
+    numberOfTimeUnits.shadowOffset = CGSizeMake(1.0, 1.0);
+    numberOfTimeUnits.textColor = [UIColor colorWithWhite:0.8 alpha:1.0];
+    numberOfTimeUnits.backgroundColor = [UIColor clearColor];
     cell.accessoryView = numberOfTimeUnits;
     [numberOfTimeUnits release];
-    
-    if (checkin.isMayor) {
-        cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"crown_bg.png"]];
-    } else {
-        cell.backgroundView = nil;
-    }
+
+    // v1.1 - TODO: need transparent png for the crown image
+//    if (checkin.isMayor) {
+//        cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"crown_bg.png"]];
+//    } else {
+//        cell.backgroundView = nil;
+//    }
     
     //NSLog(@"returning cell for row: %d", indexPath.row);
 	return cell;
@@ -353,7 +311,7 @@
 	//handle off the grid checkins.
 	if (user.userId != nil) {
         [theTableView deselectRowAtIndexPath:indexPath animated:YES];
-        ProfileViewController *profileController = [[ProfileViewController alloc] initWithNibName:@"ProfileView" bundle:nil];
+        ProfileViewController *profileController = [[ProfileViewController alloc] initWithNibName:@"ProfileView_v2" bundle:nil];
         profileController.userId = user.userId;
         [self.navigationController pushViewController:profileController animated:YES];
         [profileController release];
@@ -361,11 +319,11 @@
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    [cell setBackgroundColor:[UIColor whiteColor]];  
+    [cell setBackgroundColor:[UIColor colorWithWhite:0.9 alpha:1.0]];  
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-	return 24.0;
+	return 30.0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -374,24 +332,13 @@
     } else if (indexPath.section == 4) {
         return 44;
     }
-    return 52;
+    return 72;
 }
 
 // TODO: most of the below header label stuff should be pulled up into a method in KBBBaseViewController
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-	// create the parent view that will hold header Label
-	UIView* customView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 24.0)] autorelease];
-    customView.backgroundColor = [UIColor whiteColor];
-    customView.alpha = 0.85;
-	
-	// create the button object
-	UILabel * headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-	headerLabel.backgroundColor = [UIColor clearColor];
-	headerLabel.opaque = NO;
-	headerLabel.textColor = [UIColor grayColor];
-	headerLabel.highlightedTextColor = [UIColor whiteColor];
-	headerLabel.font = [UIFont boldSystemFontOfSize:12];
-	headerLabel.frame = CGRectMake(10.0, 0.0, 320.0, 24.0);
+    
+    TableSectionHeaderView *headerView = [[TableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)];
     
     // damn, this is ugly.  nil should be returned before all the above code is executed.  
     // probably should extract the headerLabel construction and just have a single switch in here
@@ -400,56 +347,56 @@
     switch (section) {
         case 0:
             if ([recentCheckins count] > 0) {
-                headerLabel.text = @"Recent Check-ins                                                 Mins ago";
+                headerView.leftHeaderLabel.text = @"Recent Check-ins";
+                headerView.rightHeaderLabel.text = @"Mins Ago";
+                //headerLabel.text = @"Recent Check-ins                                                 Mins ago";
             } else {
-                [headerLabel release];
+                [headerView release];
                 return nil;
             }
             break;
         case 1:
             if ([todayCheckins count] > 0) {
-                headerLabel.text = @"Today                                                                     Hours ago";
+                headerView.leftHeaderLabel.text = @"Today";
+                headerView.rightHeaderLabel.text = @"Hours Ago";
+//                headerLabel.text = @"Today                                                                     Hours ago";
             } else {
-                [headerLabel release];
+                [headerView release];
                 return nil;
             }
             break;
         case 2:
             if ([yesterdayCheckins count] > 0 && isDisplayingMore) {
-                headerLabel.text = @"Older                                                                        Days ago";
+                headerView.leftHeaderLabel.text = @"Older";
+                headerView.rightHeaderLabel.text = @"Days Ago";
+//                headerLabel.text = @"Older                                                                        Days ago";
             } else {
-                [headerLabel release];
+                [headerView release];
                 return nil;
             }
             break;
         case 3:
             if ([nonCityCheckins count] > 0) {
-                headerLabel.text = @"Other Cities";
+                headerView.leftHeaderLabel.text = @"Other Cities";
+                headerView.rightHeaderLabel.text = @"*TODO*";
+//                headerLabel.text = @"Other Cities";
             } else {
-                [headerLabel release];
+                [headerView release];
                 return nil;
             }
             break;
         case 4:  // more cell
         case 5:  // footer cell
-            [headerLabel release];
+            [headerView release];
             return nil;
         default:
-            headerLabel.text = @"You shouldn't see this";
+            headerView.leftHeaderLabel.text = @"You shouldn't see this";
             break;
     }
-	[customView addSubview:headerLabel];
-    [headerLabel release];
-	return customView;
+	return headerView;
 }
 
 #pragma mark IBAction methods
-
-- (void) checkin {
-    PlacesListViewController *placesListController = [[PlacesListViewController alloc] initWithNibName:@"PlacesListViewController" bundle:nil];
-    [self.navigationController pushViewController:placesListController animated:NO];
-    [placesListController release];
-}
 
 - (void) refresh {
 	[self startProgressBar:@"Retrieving friends' whereabouts..."];

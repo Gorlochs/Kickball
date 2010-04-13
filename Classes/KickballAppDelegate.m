@@ -253,7 +253,7 @@
 }
 
 - (void) displayPushNotificationView:(NSNotification *)inNotification {
-    ProfileViewController *profileController = [[ProfileViewController alloc] initWithNibName:@"ProfileView" bundle:nil];
+    ProfileViewController *profileController = [[ProfileViewController alloc] initWithNibName:@"ProfileView_v2" bundle:nil];
     profileController.userId = self.pushNotificationUserId;
     self.pushNotificationUserId = nil;
     [self.navigationController pushViewController:profileController animated:YES];
@@ -276,7 +276,7 @@
 
 - (void) viewUserProfile:(id)sender {
     NSLog(@"user pressed the view user profile push notification button");
-    ProfileViewController *profileController = [[ProfileViewController alloc] initWithNibName:@"ProfileView" bundle:nil];
+    ProfileViewController *profileController = [[ProfileViewController alloc] initWithNibName:@"ProfileView_v2" bundle:nil];
     profileController.userId = self.pushNotificationUserId;
     self.pushNotificationUserId = nil;
     [self.navigationController pushViewController:profileController animated:YES];

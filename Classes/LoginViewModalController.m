@@ -55,6 +55,9 @@
 	}
 	[usernameField becomeFirstResponder];
     [[Beacon shared] startSubBeaconWithName:@"Login View"];
+    
+    self.hideHeader = YES;
+    
 	[super viewDidLoad];
 }
 

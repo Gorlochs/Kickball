@@ -19,9 +19,11 @@
 #import "HistoryViewController.h"
 #import "ASIHTTPRequest.h"
 #import "KickballAPI.h"
+#import "KBGoody.h"
+#import "BlackTableCellHeader.h"
 
 
-#define BADGES_PER_ROW 5
+#define BADGES_PER_ROW 4
 
 @interface ProfileViewController (Private)
 
@@ -39,6 +41,8 @@
 
  // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
+    hideFooter = YES;
+    
     [super viewDidLoad];
     
     name.text = @"";
@@ -54,15 +58,17 @@
     [self startProgressBar:@"Retrieving profile..."];
     [[FoursquareAPI sharedInstance] getUser:self.userId withTarget:self andAction:@selector(userResponseReceived:withResponseString:)];
     [[Beacon shared] startSubBeaconWithName:@"Profile"];
+
+    [self retrieveUserPhotos];
     
-    NSString *gorlochUrlString = [NSString stringWithFormat:@"%@/gifts/owner_count/%@.txt", kickballDomain, userId];
-    ASIHTTPRequest *gorlochRequest = [[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:gorlochUrlString]] autorelease];
-    
-    [gorlochRequest setDidFailSelector:@selector(photoCountRequestWentWrong:)];
-    [gorlochRequest setDidFinishSelector:@selector(photoCountRequestDidFinish:)];
-    [gorlochRequest setTimeOutSeconds:500];
-    [gorlochRequest setDelegate:self];
-    [gorlochRequest startAsynchronous];
+//    NSString *gorlochUrlString = [NSString stringWithFormat:@"%@/gifts/owner_count/%@.txt", kickballDomain, userId];
+//    ASIHTTPRequest *gorlochRequest = [[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:gorlochUrlString]] autorelease];
+//    
+//    [gorlochRequest setDidFailSelector:@selector(photoCountRequestWentWrong:)];
+//    [gorlochRequest setDidFinishSelector:@selector(photoCountRequestDidFinish:)];
+//    [gorlochRequest setTimeOutSeconds:500];
+//    [gorlochRequest setDelegate:self];
+//    [gorlochRequest startAsynchronous];
 }
 
 - (void) photoCountRequestWentWrong:(ASIHTTPRequest *) request {
@@ -132,7 +138,7 @@
         int y = 0;
         int i = 0;
         for (FSBadge *badge in user.badges) {
-            CGRect frame= CGRectMake(x*60 + 15, y*60 + 10, 50, 50);
+            CGRect frame= CGRectMake(x*70 + 20, y*70 + 20, 50, 50);
             UIButton *btn = [[UIButton alloc] initWithFrame:frame];
             [btn setImage:[[Utilities sharedInstance] getCachedImage:badge.icon] forState:UIControlStateNormal];
             btn.tag = i++;
@@ -221,7 +227,7 @@
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return 4;
 }
 
 
@@ -233,9 +239,11 @@
         } else {
             return 1;
         }
-    } else if (section == 1) { // badges
+    } else if (section == 1) { // photos
+        return 1;
+    } else if (section == 2) { // badges
         return 2;
-    } else if (section == 2) {
+    } else if (section == 3) { // mayor
         return [user.mayorOf count];
     }
     return 1;
@@ -245,9 +253,11 @@
     if (indexPath.section == 0) {
         return 43;
     } else if (indexPath.section == 1) {
+        return 72;
+    } else if (indexPath.section == 2) {
         if (indexPath.row == 0) {
             if ([user.badges count] > 0) {
-                return 60 * (([user.badges count]+BADGES_PER_ROW-1)/BADGES_PER_ROW) + 10;
+                return 70 * (([user.badges count]+BADGES_PER_ROW-1)/BADGES_PER_ROW) + 10;
             } else {
                 return 0;
             }
@@ -268,6 +278,8 @@
         if (indexPath.section == 0) {
             return [self determineWhichFriendCellToDisplay:user.friendStatus];
         } else if (indexPath.section == 1) {
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        } else if (indexPath.section == 2) {
             if (indexPath.row == 0) {
                 return badgeCell;
             } else {
@@ -288,7 +300,29 @@
         case 0:  // add friend/follow on twitter
             return [self determineWhichFriendCellToDisplay:user.friendStatus];
             break;
-        case 1:  // badges
+        case 1:  // photos
+            if (userPhotos != nil && [userPhotos count] > 0) {
+                int x = 0;
+                for (KBGoody *photo in userPhotos) {
+                    CGRect frame = CGRectMake(x*72, 0, 72, 72);
+                    TTImageView *ttImage = [[TTImageView alloc] initWithFrame:frame];
+                    ttImage.urlPath = photo.thumbnailImagePath;
+                    ttImage.clipsToBounds = YES;
+                    ttImage.contentMode = UIViewContentModeScaleToFill;
+                    [cell addSubview:ttImage];
+                    
+                    UIButton *button = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+                    button.frame = frame;
+                    button.tag = x++;
+                    button.showsTouchWhenHighlighted = YES;
+                    [button addTarget:self action:@selector(displayImages:) forControlEvents:UIControlEventTouchUpInside]; 
+                    [cell addSubview:button];
+                    [button release];
+                    [ttImage release];
+                }
+            }
+            break;
+        case 2:  // badges
             if (indexPath.row == 0) {
                 return badgeCell;
             }
@@ -300,7 +334,7 @@
                 }
             }
             break;
-        case 2:  // mayors
+        case 3:  // mayors
             cell.textLabel.text = ((FSVenue*)[user.mayorOf objectAtIndex:indexPath.row]).name;
             break;
         default:
@@ -321,57 +355,45 @@
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-	return 24.0;
+	return 36.0;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    [cell setBackgroundColor:[UIColor whiteColor]];  
+    [cell setBackgroundColor:[UIColor colorWithWhite:0.9 alpha:1.0]];  
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (section == 0) {
         return NULL;
     } else {
-        // create the parent view that will hold header Label
-        UIView* customView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 24.0)] autorelease];
-        customView.backgroundColor = [UIColor whiteColor];
-        customView.alpha = 0.85;
+        BlackTableCellHeader *headerView = [[BlackTableCellHeader alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 36)];
         
-        // create the button object
-        UILabel * headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        headerLabel.backgroundColor = [UIColor clearColor];
-        headerLabel.opaque = NO;
-        headerLabel.textColor = [UIColor grayColor];
-        headerLabel.highlightedTextColor = [UIColor whiteColor];
-        headerLabel.font = [UIFont boldSystemFontOfSize:12];
-        headerLabel.frame = CGRectMake(10.0, 0.0, 320.0, 24.0);
-        
-        // If you want to align the header text as centered
-        // headerLabel.frame = CGRectMake(150.0, 0.0, 300.0, 44.0);
         switch (section) {
             case 0:
+                headerView.leftHeaderLabel.text = @"";
                 break;
             case 1:
-                if ([user.badges count] < 1) {
-                    [headerLabel release];
-                    return nil;
-                }
-                headerLabel.text = @"Badges";
+                headerView.leftHeaderLabel.text = [NSString stringWithFormat:@"%d %@", [userPhotos count], [userPhotos count] == 1 ? @"Photo" : @"Photos"];
                 break;
             case 2:
-                if ([user.mayorOf count] < 1) {
-                    [headerLabel release];
+                if ([user.badges count] < 1) {
+                    [headerView release];
                     return nil;
                 }
-                headerLabel.text = @"Mayor";
+                headerView.leftHeaderLabel.text = @"Badges";
+                break;
+            case 3:
+                if ([user.mayorOf count] < 1) {
+                    [headerView.leftHeaderLabel release];
+                    return nil;
+                }
+                headerView.leftHeaderLabel.text = @"Mayor";
                 break;
             default:
-                headerLabel.text = @"You shouldn't see this";
+                headerView.leftHeaderLabel.text = @"You shouldn't see this";
                 break;
         }
-        [customView addSubview:headerLabel];
-        [headerLabel release];
-        return customView;
+        return headerView;
     }
 }
 
@@ -483,9 +505,9 @@
     [historyController release];
 }
 
-- (void) viewYourPhotos {
-    [self startProgressBar:@"Retriving your photos..."];
-    NSString *gorlochUrlString = [NSString stringWithFormat:@"%@/gifts/owner/%@.xml", kickballDomain, userId];
+- (void) retrieveUserPhotos {
+    
+    NSString *gorlochUrlString = [NSString stringWithFormat:@"%@/gifts/owner/%@.xml?limit=4", kickballDomain, userId];
     NSLog(@"photo url string: %@", gorlochUrlString);
     ASIHTTPRequest *gorlochRequest = [[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:gorlochUrlString]] autorelease];
     
@@ -496,16 +518,22 @@
     [gorlochRequest startAsynchronous];
 }
 
+- (void) viewYourPhotos {
+//    MockPhotoSource *photoSource = [[KickballAPI kickballApi] convertGoodiesIntoPhotoSource:[[KickballAPI kickballApi] parsePhotosFromXML:[request responseString]] withTitle:@"Your Photos"];
+//    KBGenericPhotoViewController *photoController = [[KBGenericPhotoViewController alloc] initWithPhotoSource:photoSource];
+//    [self stopProgressBar];
+//    [self.navigationController pushViewController:photoController animated:YES];
+//    [photoController release];
+}
+
 - (void) photoRequestWentWrong:(ASIHTTPRequest *) request {
     NSLog(@"BOOOOOOOOOOOO!");
 }
 
 - (void) photoRequestDidFinish:(ASIHTTPRequest *) request {
-    MockPhotoSource *photoSource = [[KickballAPI kickballApi] convertGoodiesIntoPhotoSource:[[KickballAPI kickballApi] parsePhotosFromXML:[request responseString]] withTitle:@"Your Photos"];
-    KBGenericPhotoViewController *photoController = [[KBGenericPhotoViewController alloc] initWithPhotoSource:photoSource];
-    [self stopProgressBar];
-    [self.navigationController pushViewController:photoController animated:YES];
-    [photoController release];
+    userPhotos = [[KickballAPI kickballApi] parsePhotosFromXML:[request responseString]];
+    
+    [theTableView reloadData];
 }
 
 #pragma mark

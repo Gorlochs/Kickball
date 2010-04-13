@@ -10,9 +10,10 @@
 #import "FriendsMapViewController.h"
 #import "LoginViewModalController.h"
 #import "InstructionView.h"
+#import "KBFoursquareViewController.h"
 
 
-@interface FriendsListViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource> {
+@interface FriendsListViewController : KBFoursquareViewController <UITableViewDelegate, UITableViewDataSource> {
     IBOutlet UITableView *theTableView;
     IBOutlet UIButton *mapButton;
 	NSArray * checkins;
@@ -48,10 +49,11 @@
 @property (nonatomic, retain) NSMutableArray * nonCityCheckins;
 
 - (IBAction) flipToMap;
+- (IBAction) refresh;
+
 - (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString;
 - (void) doInitialDisplay;
 - (IBAction) addFriend;
-- (IBAction) refresh;
 - (IBAction) viewNextWelcomeImage;
 - (IBAction) viewPreviousWelcomeImage;
 - (IBAction) displayOlderCheckins;

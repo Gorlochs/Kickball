@@ -326,12 +326,6 @@
 //    [self refreshVenuePoints];
 }
 
-- (void) viewPlacesList {
-    PlacesListViewController *placesListController = [[PlacesListViewController alloc] initWithNibName:@"PlacesListViewController" bundle:nil];
-    [self.navigationController pushViewController:placesListController animated:NO];
-    [placesListController release];
-}
-
 #pragma mark UITextFieldDelegate methods
 
 - (void) cancelEdit {

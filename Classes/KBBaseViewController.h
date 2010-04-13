@@ -32,17 +32,23 @@ extern const NSString *kickballDomain;
     UIImageView *iconImageView;
     NSString *textViewReturnValue;
     NSTimer *progressBarTimer;
+    
+    BOOL hideHeader;
+    BOOL hideFooter;
 }
 
 @property (nonatomic, retain) LoginViewModalController *loginViewModal;
 @property (nonatomic, retain) NSString *textViewReturnValue;
+@property (nonatomic) BOOL hideHeader;
 
-- (void) setUserIconView:(FSUser*)user;
+
 - (IBAction) backOneView;
 - (IBAction) backOneViewNotAnimated;
 - (IBAction) viewUserProfile;
 - (IBAction) goToHomeView;
 - (IBAction) goToHomeViewNotAnimated;
+
+- (void) setUserIconView:(FSUser*)user;
 - (void) setAuthenticatedUser:(FSUser*)user;
 - (FSUser*) getAuthenticatedUser;
 - (void) doLoginUsername: (NSString *)fsUser andPass:(NSString *) fsPass;

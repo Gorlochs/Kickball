@@ -127,12 +127,6 @@
     [placesMapController release];
 }
 
-- (void) checkin {
-    PlacesListViewController *placesListController = [[PlacesListViewController alloc] initWithNibName:@"PlacesListViewController" bundle:nil];
-    [self.navigationController pushViewController:placesListController animated:NO];
-    [placesListController release];
-}
-
 #pragma mark MapViewer functions
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
 	
@@ -176,7 +170,7 @@
     int nrButtonPressed = ((UIButton *)sender).tag;
     NSLog(@"annotation for profile pressed: %d", nrButtonPressed);
     
-    ProfileViewController *profileDetailController = [[ProfileViewController alloc] initWithNibName:@"ProfileView" bundle:nil];;
+    ProfileViewController *profileDetailController = [[ProfileViewController alloc] initWithNibName:@"ProfileView_v2" bundle:nil];;
     profileDetailController.userId = [NSString stringWithFormat:@"%d", nrButtonPressed];
     [self.navigationController pushViewController:profileDetailController animated:YES];
     [profileDetailController release];

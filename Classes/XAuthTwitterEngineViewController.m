@@ -113,7 +113,7 @@
 
 - (IBAction)sendTestTweetButtonTouchUpInside
 {
-	NSString *tweetText = @"Testing xAuth from the XAuthTwitterEngineDemo!";
+	NSString *tweetText = @"Testing xAuth from Kickball! ";
 	NSLog(@"About to send test tweet: \"%@\"", tweetText);
 	[self.twitterEngine sendUpdate:tweetText];
 }

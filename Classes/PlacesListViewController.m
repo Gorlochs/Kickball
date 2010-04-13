@@ -14,7 +14,8 @@
 #import "AddPlaceFormViewController.h"
 #import "KBLocationManager.h"
 #import "FriendsListViewController.h"
-#import "KBInstacheckinTableCell.h"
+#import "PlacesListTableViewCellv2.h"
+#import "TableSectionHeaderView.h"
 
 @interface PlacesListViewController (Private)
 
@@ -188,47 +189,26 @@
     
     static NSString *CellIdentifier = @"Cell";
     
-    KBInstacheckinTableCell *cell = (KBInstacheckinTableCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    PlacesListTableViewCellv2 *cell = (PlacesListTableViewCellv2*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[KBInstacheckinTableCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
-        cell.textLabel.font = [UIFont boldSystemFontOfSize:15.0];
-        cell.detailTextLabel.font = [UIFont systemFontOfSize:12.0];
-        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 43, 320, 1)];
-        line.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.13];
-        [cell addSubview:line];
-        [line release];
-        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+        cell = [[[PlacesListTableViewCellv2 alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
     
     cell.imageView.image = nil;
     if (isSearchEmpty) {
         if (indexPath.row == 0) {
-            cell.textLabel.text = @"No search results found.";
-            cell.detailTextLabel.text = @"";
+            cell.venueName.text = @"No search results found.";
+            cell.venueAddress.text = @"";
         } else {
             return footerCell;
         }
     } else {
         if ([venues count] > indexPath.section) {
             FSVenue *venue = [self extractVenueFromDictionaryForRow:indexPath];
-            cell.textLabel.text = venue.name;
-            cell.detailTextLabel.text = venue.addressWithCrossstreet;
+            cell.venueName.text = venue.name;
+            cell.venueAddress.text = venue.addressWithCrossstreet;
             cell.venueId = venue.venueid;
-            
-            // need to set the imageView to reserve the spot for the ttImage
-            cell.imageView.image = [UIImage imageNamed:@"blank.png"];
-            
-            CGRect frame = CGRectMake(0,0,32,32);
-            TTImageView *ttImage = [[[TTImageView alloc] initWithFrame:frame] autorelease];
-            if (venue.primaryCategory.iconUrl) {
-                ttImage.urlPath = venue.primaryCategory.iconUrl;
-            }
-            ttImage.backgroundColor = [UIColor clearColor];
-            ttImage.defaultImage = [UIImage imageNamed:@"blank.png"];
-            ttImage.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
-            [cell.imageView addSubview:ttImage];
-
-            NSLog(@"category: %@", venue.primaryCategory.iconUrl);
+            cell.categoryIcon.urlPath = venue.primaryCategory.iconUrl;
         } else {
             return footerCell;
         }
@@ -272,41 +252,28 @@
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-	return 24.0;
+	return 30.0;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    [cell setBackgroundColor:[UIColor whiteColor]];  
+    [cell setBackgroundColor:[UIColor colorWithWhite:0.9 alpha:1.0]];  
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (isSearchEmpty) {
         return nil;
     } else {
-        // create the parent view that will hold header Label
-        UIView* customView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 24.0)] autorelease];
-        customView.backgroundColor = [UIColor whiteColor];
-        customView.alpha = 0.85;
         
-        // create the button object
-        UILabel * headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        headerLabel.backgroundColor = [UIColor clearColor];
-        headerLabel.opaque = NO;
-        headerLabel.textColor = [UIColor grayColor];
-        headerLabel.highlightedTextColor = [UIColor grayColor];
-        headerLabel.font = [UIFont boldSystemFontOfSize:12];
-        headerLabel.frame = CGRectMake(10.0, 0.0, 320.0, 24.0);
+        TableSectionHeaderView *headerView = [[TableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)];
         
         if (section < [venues count]) {
-            headerLabel.text = [[venues allKeys] objectAtIndex:section];
+            headerView.leftHeaderLabel.text = [[venues allKeys] objectAtIndex:section];
         } else {
-            [headerLabel release];
+            [headerView release];
             return nil;
         }
-        
-        [customView addSubview:headerLabel];
-        [headerLabel release];
-        return customView;
+
+        return headerView;
     }
 }
 

@@ -1223,7 +1223,7 @@ static FoursquareAPI *sharedInstance = nil;
             }
 		} else if([key isEqualToString:@"settings"]){
 			NSArray * settingsXML = [usrAttr nodesForXPath:@"//settings" error:nil];
-            NSLog(@"settings xml: %@", settingsXML);
+            NSLog(@"settings xml (for user: %@): %@", loggedInUser.userId, settingsXML);
 			for (CXMLElement *settingsNode in settingsXML) {
                 for (int counter = 0; counter < [settingsNode childCount]; counter++) {
 					NSString * key = [[settingsNode childAtIndex:counter] name];
