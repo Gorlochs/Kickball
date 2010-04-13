@@ -11,33 +11,39 @@
 
 @implementation KBFoursquareViewController
 
-/*
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
         // Custom initialization
     }
     return self;
 }
-*/
 
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView {
-}
-*/
-
-/*
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    if (pageType == KBPageTypePlaces) {
+        [friendButton setImage:[UIImage imageNamed:@"friendsTab03.png"] forState:UIControlStateNormal];
+        [placesButton setImage:[UIImage imageNamed:@"placesTab01.png"] forState:UIControlStateNormal];
+        placesButton.enabled = NO;
+    } else if (pageType == KBPageTypeFriends) {
+        [friendButton setImage:[UIImage imageNamed:@"friendsTab01.png"] forState:UIControlStateNormal];
+        [placesButton setImage:[UIImage imageNamed:@"placesTab03.png"] forState:UIControlStateNormal];
+        friendButton.enabled = NO;
+    }
+    
+    if (pageViewType == KBPageViewTypeList) {
+        [centerHeaderButton setImage:[UIImage imageNamed:@"kbMap01.png"] forState:UIControlStateNormal];
+        [centerHeaderButton setImage:[UIImage imageNamed:@"kbMap02.png"] forState:UIControlStateHighlighted];
+    } else if (pageType == KBPageViewTypeMap) {
+        [centerHeaderButton setImage:[UIImage imageNamed:@"kbList01.png"] forState:UIControlStateNormal];
+        [centerHeaderButton setImage:[UIImage imageNamed:@"kbList03.png"] forState:UIControlStateHighlighted];
+    }
 }
-*/
 
 
 - (void) viewPlacesList {
     PlacesListViewController *placesListController = [[PlacesListViewController alloc] initWithNibName:@"PlacesListView_v2" bundle:nil];
-    [self.navigationController pushViewController:placesListController animated:YES];
+    [self.navigationController pushViewController:placesListController animated:NO];
     [placesListController release];
 }
 
@@ -55,6 +61,10 @@
 
 - (void) goToHomeViewNotAnimated {
     [self.navigationController popToRootViewControllerAnimated:NO];
+}
+
+- (void) flipToMap {
+    NSLog(@"!!!!!!!! THIS SHOULDN'T APPEAR!!!!!!!!!!");
 }
 
 - (void)didReceiveMemoryWarning {

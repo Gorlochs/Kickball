@@ -38,6 +38,8 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 @synthesize loginViewModal;
 @synthesize textViewReturnValue;
 @synthesize hideHeader;
+@synthesize hideFooter;
+@synthesize hideRefresh;
 @synthesize reloading=_reloading;
 
 - (void) viewDidLoad {
@@ -65,14 +67,14 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
         FoursquareHeaderView *headerView = [nibViews objectAtIndex:0];
         [self.view addSubview:headerView];
     }
-    if (!hideFooter) {
+    if (!self.hideFooter) {
         NSArray* nibViews =  [[NSBundle mainBundle] loadNibNamed:@"FooterTabView" owner:self options:nil];
         FooterTabView *tabView = [nibViews objectAtIndex:0];
         tabView.frame = CGRectMake(0, self.view.frame.size.height - 40, self.view.frame.size.width, 40);
         [self.view addSubview:tabView];
     }
     
-	if (refreshHeaderView == nil) {
+	if (refreshHeaderView == nil && !self.hideRefresh) {
 		refreshHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.theTableView.bounds.size.height, 320.0f, self.theTableView.bounds.size.height)];
 		refreshHeaderView.backgroundColor = [UIColor colorWithRed:176.0/255.0 green:36.0/255.0 blue:44.0/255.0 alpha:1.0];
 		[self.theTableView addSubview:refreshHeaderView];

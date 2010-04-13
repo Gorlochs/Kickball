@@ -50,6 +50,8 @@
     bool hasPhotos;
     
     NSMutableArray *userPhotos;
+    IBOutlet UIView *profileOptionsView;
+    IBOutlet UIView *profileInfoView;
 }
 
 @property (nonatomic, retain) UITableViewCell *badgeCell;
@@ -70,5 +72,9 @@
 - (IBAction) viewProfilesFriends;
 - (IBAction) viewYourPhotos;
 - (void) retrieveUserPhotos;
+- (IBAction) showProfileOptions;
+- (IBAction) removeProfileOptions;
+- (IBAction) showInfoOptions;
+- (IBAction) removeInfoOptions;
 
 @end

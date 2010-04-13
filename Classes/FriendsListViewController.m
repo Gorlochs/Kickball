@@ -38,6 +38,10 @@
 @synthesize checkins, recentCheckins, todayCheckins, yesterdayCheckins, nonCityCheckins;
 
 - (void) viewDidLoad {
+    
+    pageType = KBPageTypeFriends;
+    pageViewType = KBPageViewTypeList;
+    
     [super viewDidLoad];
     
     welcomePageNum = 1;

@@ -8,14 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
-#import "KBBaseViewController.h"
+#import "KBFoursquareViewController.h"
 
 typedef enum {
 	KBNearbyVenues = 0,
 	KBSearchVenues = 1
 } KBListType;
 
-@interface PlacesListViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
+@interface PlacesListViewController : KBFoursquareViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
     IBOutlet UITableViewCell *searchCell;
     IBOutlet UITextField *searchbox;
     IBOutlet UITableViewCell *footerCell;

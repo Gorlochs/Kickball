@@ -39,6 +39,7 @@ extern const NSString *kickballDomain;
     
     BOOL hideHeader;
     BOOL hideFooter;
+    BOOL hideRefresh;
     
     //EGO class stuff
     EGORefreshTableHeaderView *refreshHeaderView;
@@ -51,7 +52,9 @@ extern const NSString *kickballDomain;
 @property (nonatomic, retain) UITableView *theTableView;
 @property (nonatomic, retain) LoginViewModalController *loginViewModal;
 @property (nonatomic, retain) NSString *textViewReturnValue;
+@property (nonatomic) BOOL hideFooter;
 @property (nonatomic) BOOL hideHeader;
+@property (nonatomic) BOOL hideRefresh;
 
 @property(assign,getter=isReloading) BOOL reloading;
 

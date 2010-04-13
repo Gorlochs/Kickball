@@ -32,6 +32,10 @@
 
 
 - (void)viewDidLoad {
+    
+    pageType = KBPageTypePlaces;
+    pageViewType = KBPageViewTypeList;
+    
     [super viewDidLoad];
     
     NSLog(@"PlacesListViewController get venue - geolat: %f", [[KBLocationManager locationManager] latitude]);

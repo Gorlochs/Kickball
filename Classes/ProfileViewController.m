@@ -536,6 +536,24 @@
     [theTableView reloadData];
 }
 
+- (void) showProfileOptions {
+    profileOptionsView.frame = CGRectMake(0, 46, profileOptionsView.frame.size.width, profileOptionsView.frame.size.height);
+    [self.view addSubview:profileOptionsView];
+}
+
+- (void) removeProfileOptions {
+    [profileOptionsView removeFromSuperview];
+}
+
+- (void) showInfoOptions {
+    profileInfoView.frame = CGRectMake(0, 46, profileInfoView.frame.size.width, profileInfoView.frame.size.height);
+    [self.view addSubview:profileInfoView];
+}
+
+- (void) removeInfoOptions {
+    [profileInfoView removeFromSuperview];
+}
+
 #pragma mark
 #pragma mark private methods
 

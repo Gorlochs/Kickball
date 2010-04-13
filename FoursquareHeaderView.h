@@ -14,6 +14,5 @@
     IBOutlet UIButton *placesButton;
 }
 
-- (void) setButtonsStates;
 
 @end
