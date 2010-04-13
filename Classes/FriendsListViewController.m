@@ -509,17 +509,17 @@
 }
 
 - (void) setUserIconViewCustom:(FSUser*)user {
-    if (user) {
-        NSLog(@"user is not null");
-        UIImage *image = [[Utilities sharedInstance] getCachedImage:user.photo];
-        iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(278, 2, 42, 42)];
-        iconImageView.image = image;
-        [image release];
-        [self.view insertSubview:iconImageView belowSubview:instructionView];
-        iconImageView.layer.masksToBounds = YES;
-        iconImageView.layer.cornerRadius = 4.0;
-        [self.view bringSubviewToFront:signedInUserIcon];
-    }
+//    if (user) {
+//        NSLog(@"user is not null");
+//        UIImage *image = [[Utilities sharedInstance] getCachedImage:user.photo];
+//        iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(278, 2, 42, 42)];
+//        iconImageView.image = image;
+//        [image release];
+//        [self.view insertSubview:iconImageView belowSubview:instructionView];
+//        iconImageView.layer.masksToBounds = YES;
+//        iconImageView.layer.cornerRadius = 4.0;
+//        [self.view bringSubviewToFront:signedInUserIcon];
+//    }
 }
 
 - (void) viewNextWelcomeImage {
