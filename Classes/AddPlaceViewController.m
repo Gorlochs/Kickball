@@ -131,7 +131,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.row != [(NSArray*)[venues objectForKey:@"Matching Places"] count]) {
-        PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];
+        PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView_v2" bundle:nil];
         FSVenue *venue = [self extractVenueFromDictionaryForRow:indexPath];
         [theTableView deselectRowAtIndexPath:indexPath animated:YES];
         

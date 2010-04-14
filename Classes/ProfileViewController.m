@@ -141,7 +141,7 @@
         int y = 0;
         int i = 0;
         for (FSBadge *badge in user.badges) {
-            CGRect frame= CGRectMake(x*72 + 15, y*72 + 20, 48, 48);
+            CGRect frame= CGRectMake(x*66 + 10, y*66 + 4, 74, 74);
             UIButton *btn = [[UIButton alloc] initWithFrame:frame];
             [btn setImage:[[Utilities sharedInstance] getCachedImage:badge.icon] forState:UIControlStateNormal];
             btn.tag = i++;
@@ -257,6 +257,8 @@
         return 43;
     } else if (indexPath.section == 1) {
         return 72;
+    } else if (indexPath.section == 2) {
+        return 53;
     } else if (indexPath.section == 3) {
         if (indexPath.row == 0) {
             if ([user.badges count] > 0) {
@@ -283,7 +285,7 @@
         } else if (indexPath.section == 1) {
             //cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         } else if (indexPath.section == 2) {
-            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
             cell.selectionStyle = UITableViewCellSelectionStyleBlue;
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         } else {
@@ -328,9 +330,11 @@
             break;
         case 2:  // mayors
             cell.textLabel.text = ((FSVenue*)[user.mayorOf objectAtIndex:indexPath.row]).name;
+            cell.detailTextLabel.text = ((FSVenue*)[user.mayorOf objectAtIndex:indexPath.row]).addressWithCrossstreet;
             break;
         case 3:  // badges
             if (indexPath.row == 0) {
+                //badgeCell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"wood_bg.png"]];
                 return badgeCell;
             }
             if (user) {
@@ -419,8 +423,8 @@
 //        [self.navigationController pushViewController:profileFriendsController animated:YES];
 //        [profileFriendsController release];
 //    } else 
-    if (indexPath.section == 3) { // mayor section
-        PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];
+    if (indexPath.section == 2) { // mayor section
+        PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView_v2" bundle:nil];
         placeDetailController.venueId = ((FSVenue*)[user.mayorOf objectAtIndex:indexPath.row]).venueid;
         [theTableView deselectRowAtIndexPath:indexPath animated:YES];
         [self.navigationController pushViewController:placeDetailController animated:YES];
@@ -477,7 +481,7 @@
 }
 
 - (void) viewVenue {
-    PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];
+    PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView_v2" bundle:nil];
     FSVenue *venue = user.checkin.venue;
     placeDetailController.venueId = venue.venueid;
     [self.navigationController pushViewController:placeDetailController animated:YES];
@@ -487,7 +491,7 @@
 - (void) checkinToProfilesVenue {
     //[self startProgressBar:@"Checking in to this venue..."];
 	
-	PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];    
+	PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView_v2" bundle:nil];    
     placeDetailController.venueId = user.checkin.venue.venueid;
     placeDetailController.doCheckin = YES;
     [self.navigationController pushViewController:placeDetailController animated:YES];

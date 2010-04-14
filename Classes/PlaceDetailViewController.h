@@ -74,6 +74,7 @@
     IBOutlet UIButton *addPhotoButton;
     UIImage *photoImage;
     PhotoMessageViewController *photoMessageViewController;
+    IBOutlet UILabel *distanceAndNumCheckinsLabel;
 }
 
 @property (nonatomic, retain) UITableViewCell *mayorMapCell;

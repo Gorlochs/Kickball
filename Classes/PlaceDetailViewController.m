@@ -33,7 +33,7 @@
 #import "KBLocationManager.h"
 #import "KBStats.h"
 #import "KickballAPI.h"
-#import "TableSectionHeaderView.h"
+#import "BlackTableCellHeader.h"
 
 static inline double radians (double degrees) {return degrees * M_PI/180;}
 
@@ -70,6 +70,10 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 }
 
 - (void)viewDidLoad {
+    hideFooter = YES;
+    pageType = KBPageTypeOther;
+    pageViewType = KBPageViewTypeOther;
+    
     [super viewDidLoad];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(displayTodoTipMessage:) name:@"todoTipSent" object:nil];
@@ -85,6 +89,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     // this is to clear out the placeholder text, which is useful in IB
     venueName.text = @"";
     venueAddress.text = @"";
+    distanceAndNumCheckinsLabel.text = @"";
     
     // pull this up into a method (or property)
     FSUser *tmpUser = [self getAuthenticatedUser];
@@ -277,6 +282,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     
     venueName.text = venueToDisplay.name;
     venueAddress.text = venueToDisplay.addressWithCrossstreet;
+    distanceAndNumCheckinsLabel.text = [NSString stringWithFormat:@"%dm Away, %d Check-ins Here", venueToDisplay.distanceFromUser, venueToDisplay.userCheckinCount];
     
     venueDetailButton.hidden = NO;
     
@@ -518,7 +524,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
 
-    TableSectionHeaderView *headerView = [[TableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)];
+    BlackTableCellHeader *headerView = [[BlackTableCellHeader alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)];
     
     switch (section) {
         case 0:
@@ -586,10 +592,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 }
 
 - (void) pushProfileDetailController:(NSString*)profileUserId {
-    ProfileViewController *profileDetailController = [[ProfileViewController alloc] initWithNibName:@"ProfileView_v2" bundle:nil];
-    profileDetailController.userId = profileUserId;
-    [self.navigationController pushViewController:profileDetailController animated:YES];
-    [profileDetailController release];
+    [self displayProperProfileView:profileUserId];
 }
 
 - (void)dealloc {

@@ -92,5 +92,6 @@ extern const NSString *kickballDomain;
 - (void) stopProgressBarAndDisplayErrorMessage:(NSTimer*)theTimer;
 - (void) refreshTable;
 - (void) dataSourceDidFinishLoadingNewData;
+- (void) displayProperProfileView:(NSString*)userId;
 
 @end

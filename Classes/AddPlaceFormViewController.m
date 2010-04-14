@@ -174,7 +174,7 @@
         FSVenue *venue = [FoursquareAPI venueFromResponseXML:inString];
         
         // TODO: we should think about removing the Add Venue pages from the stack so users can't use the BACK button to return to them
-        PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];    
+        PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView_v2" bundle:nil];    
         placeDetailController.venueId = venue.venueid;
         placeDetailController.doCheckin = YES;
         [self.navigationController pushViewController:placeDetailController animated:YES];

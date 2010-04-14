@@ -19,6 +19,7 @@
     
     UIImageView *topLineImage;
     UIImageView *bottomLineImage;
+    UIImageView *iconBgImage;
 }
 
 @property (nonatomic, retain) TTImageView *userIcon;

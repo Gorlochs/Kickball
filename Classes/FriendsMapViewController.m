@@ -175,10 +175,7 @@
     int nrButtonPressed = ((UIButton *)sender).tag;
     NSLog(@"annotation for profile pressed: %d", nrButtonPressed);
     
-    ProfileViewController *profileDetailController = [[ProfileViewController alloc] initWithNibName:@"ProfileView_v2" bundle:nil];;
-    profileDetailController.userId = [NSString stringWithFormat:@"%d", nrButtonPressed];
-    [self.navigationController pushViewController:profileDetailController animated:YES];
-    [profileDetailController release];
+    [self displayProperProfileView:[NSString stringWithFormat:@"%d", nrButtonPressed]];
 }
 
 - (void)dealloc {

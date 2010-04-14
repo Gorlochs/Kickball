@@ -103,11 +103,8 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	ProfileViewController *profileController = [[ProfileViewController alloc] initWithNibName:@"ProfileView_v2" bundle:nil];
     [theTableView deselectRowAtIndexPath:indexPath animated:YES];
-    profileController.userId = ((FSUser*)[friends objectAtIndex:indexPath.row]).userId;
-    [self.navigationController pushViewController:profileController animated:YES];
-    [profileController release];
+    [self displayProperProfileView:((FSUser*)[friends objectAtIndex:indexPath.row]).userId];
 }
 
 

@@ -113,7 +113,7 @@
 
 - (void) instaCheckin:(NSNotification *)inNotification {
     NSString *venueId = [[inNotification userInfo] objectForKey:@"venueIdOfCell"];
-    PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];    
+    PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView_v2" bundle:nil];    
     placeDetailController.venueId = venueId;
     placeDetailController.doCheckin = YES;
     [self.navigationController pushViewController:placeDetailController animated:YES];
@@ -315,10 +315,7 @@
 	//handle off the grid checkins.
 	if (user.userId != nil) {
         [theTableView deselectRowAtIndexPath:indexPath animated:YES];
-        ProfileViewController *profileController = [[ProfileViewController alloc] initWithNibName:@"ProfileView_v2" bundle:nil];
-        profileController.userId = user.userId;
-        [self.navigationController pushViewController:profileController animated:YES];
-        [profileController release];
+        [self displayProperProfileView:user.userId];
 	}
 }
 

@@ -81,10 +81,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [theTableView deselectRowAtIndexPath:indexPath animated:YES];
-    ProfileViewController *profileController = [[ProfileViewController alloc] initWithNibName:@"ProfileView_v2" bundle:nil];
-    profileController.userId = ((FSUser*)[pendingFriendRequests objectAtIndex:indexPath.row]).userId;
-    [self.navigationController pushViewController:profileController animated:YES];
-    [profileController release];
+    [self displayProperProfileView:((FSUser*)[pendingFriendRequests objectAtIndex:indexPath.row]).userId];
 }
 
 - (void)friendRequestResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {

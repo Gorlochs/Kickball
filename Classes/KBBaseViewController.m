@@ -10,6 +10,7 @@
 #import "KBBaseViewController.h"
 #import "KickballAppDelegate.h"
 #import "ProfileViewController.h"
+#import "UserProfileViewController.h"
 #import "FoursquareAPI.h"
 #import "SettingsViewController.h"
 #import "PlaceDetailViewController.h"
@@ -110,7 +111,7 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 
 - (void) displayPushedVenueId {
     KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
-    PlaceDetailViewController *placeController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];
+    PlaceDetailViewController *placeController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView_v2" bundle:nil];
     placeController.venueId = appDelegate.pushNotificationUserId;
     appDelegate.pushNotificationUserId = nil;
     [self.navigationController pushViewController:placeController animated:YES];
@@ -406,6 +407,20 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 	
 	[refreshHeaderView setState:EGOOPullRefreshNormal];
 	//[refreshHeaderView setCurrentDate];  //  should check if data reload was successful 
+}
+
+- (void) displayProperProfileView:(NSString*)userId {
+    if ([userId isEqualToString:[self getAuthenticatedUser].userId]) {
+        UserProfileViewController *profileController = [[UserProfileViewController alloc] initWithNibName:@"UserProfileView_v2" bundle:nil];
+        profileController.userId = userId;
+        [self.navigationController pushViewController:profileController animated:YES];
+        [profileController release];
+    } else {
+        ProfileViewController *profileController = [[ProfileViewController alloc] initWithNibName:@"ProfileView_v2" bundle:nil];
+        profileController.userId = userId;
+        [self.navigationController pushViewController:profileController animated:YES];
+        [profileController release];        
+    }
 }
 
 @end

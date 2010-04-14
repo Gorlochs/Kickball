@@ -7,14 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Three20/Three20.h"
 #import "KBMessage.h"
 
-@interface PopupMessageView : UIViewController {
+@interface PopupMessageView : TTViewController {
     KBMessage *message;
-    IBOutlet UILabel *messageTitle;
-    //IBOutlet UILabel *subtitle;
-    IBOutlet UILabel *messageText;
+    TTStyledTextLabel *mainLabel;
     IBOutlet UIButton *closeButton;
+    IBOutlet UIView *shadowBG;
 }
 
 @property (nonatomic, retain) KBMessage *message;

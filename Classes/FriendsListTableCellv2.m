@@ -19,12 +19,16 @@
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         // Initialization code
-        CGRect frame = CGRectMake(8, 10, 50, 50);
+        CGRect frame = CGRectMake(8, 10, 49, 49);
         userIcon = [[TTImageView alloc] initWithFrame:frame];
         userIcon.backgroundColor = [UIColor clearColor];
         userIcon.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
         userIcon.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
         [self addSubview:userIcon];
+        
+        iconBgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellIconBorder.png"]];
+        iconBgImage.frame = CGRectMake(6, 8, 54, 54);
+        [self addSubview:iconBgImage];
         
         userName = [[UILabel alloc] initWithFrame:CGRectMake(66, 6, 200, 20)];
         userName.textColor = [UIColor colorWithWhite:0.5 alpha:1.0];

@@ -278,7 +278,7 @@
     int nrButtonPressed = ((UIButton *)sender).tag;
     NSLog(@"annotation for venue pressed: %d", nrButtonPressed);
     
-    PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];
+    PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView_v2" bundle:nil];
     placeDetailController.venueId = [NSString stringWithFormat:@"%d", nrButtonPressed];
     [self.navigationController pushViewController:placeDetailController animated:YES];
     [placeDetailController release];
