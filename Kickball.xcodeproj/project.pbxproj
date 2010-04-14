@@ -295,9 +295,6 @@
 		6AFE173111744FA700130CBB /* kbTab03.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AFE172D11744FA700130CBB /* kbTab03.png */; };
 		6AFE173211744FA700130CBB /* kbTab04.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AFE172E11744FA700130CBB /* kbTab04.png */; };
 		6AFE17491174C76A00130CBB /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AFE17481174C76A00130CBB /* EGORefreshTableHeaderView.m */; };
-		6AFE18131174EFEE00130CBB /* blackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AFE18101174EFEE00130CBB /* blackArrow.png */; };
-		6AFE18141174EFEE00130CBB /* blueArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AFE18111174EFEE00130CBB /* blueArrow.png */; };
-		6AFE18151174EFEE00130CBB /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AFE18121174EFEE00130CBB /* whiteArrow.png */; };
 		6AFE185C1174F2E100130CBB /* pullBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AFE18541174F2E100130CBB /* pullBG.png */; };
 		6AFE185D1174F2E100130CBB /* pullRefreshArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AFE18551174F2E100130CBB /* pullRefreshArrow.png */; };
 		6AFE185E1174F2E100130CBB /* pullRefreshTitle.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AFE18561174F2E100130CBB /* pullRefreshTitle.png */; };
@@ -883,9 +880,6 @@
 		6AFE172E11744FA700130CBB /* kbTab04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kbTab04.png; sourceTree = "<group>"; };
 		6AFE17471174C76A00130CBB /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		6AFE17481174C76A00130CBB /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
-		6AFE18101174EFEE00130CBB /* blackArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackArrow.png; sourceTree = "<group>"; };
-		6AFE18111174EFEE00130CBB /* blueArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueArrow.png; sourceTree = "<group>"; };
-		6AFE18121174EFEE00130CBB /* whiteArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteArrow.png; sourceTree = "<group>"; };
 		6AFE18211174F16F00130CBB /* backTab01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backTab01.png; sourceTree = "<group>"; };
 		6AFE18221174F16F00130CBB /* backTab02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backTab02.png; sourceTree = "<group>"; };
 		6AFE18231174F16F00130CBB /* cellArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cellArrow.png; sourceTree = "<group>"; };
@@ -1745,7 +1739,6 @@
 			isa = PBXGroup;
 			children = (
 				6AFE181F1174F14E00130CBB /* PullRefreshHomeBack */,
-				6AFE180E1174EFE400130CBB /* temp */,
 				6AFE172B11744FA700130CBB /* kbTab01.png */,
 				6AFE172C11744FA700130CBB /* kbTab02.png */,
 				6AFE172D11744FA700130CBB /* kbTab03.png */,
@@ -1962,16 +1955,6 @@
 			name = "Pull to Refresh Table View";
 			sourceTree = "<group>";
 		};
-		6AFE180E1174EFE400130CBB /* temp */ = {
-			isa = PBXGroup;
-			children = (
-				6AFE18101174EFEE00130CBB /* blackArrow.png */,
-				6AFE18111174EFEE00130CBB /* blueArrow.png */,
-				6AFE18121174EFEE00130CBB /* whiteArrow.png */,
-			);
-			name = temp;
-			sourceTree = "<group>";
-		};
 		6AFE181F1174F14E00130CBB /* PullRefreshHomeBack */ = {
 			isa = PBXGroup;
 			children = (
@@ -2146,9 +2129,6 @@
 				6AFE173011744FA700130CBB /* kbTab02.png in Resources */,
 				6AFE173111744FA700130CBB /* kbTab03.png in Resources */,
 				6AFE173211744FA700130CBB /* kbTab04.png in Resources */,
-				6AFE18131174EFEE00130CBB /* blackArrow.png in Resources */,
-				6AFE18141174EFEE00130CBB /* blueArrow.png in Resources */,
-				6AFE18151174EFEE00130CBB /* whiteArrow.png in Resources */,
 				6AFE185C1174F2E100130CBB /* pullBG.png in Resources */,
 				6AFE185D1174F2E100130CBB /* pullRefreshArrow.png in Resources */,
 				6AFE185E1174F2E100130CBB /* pullRefreshTitle.png in Resources */,
