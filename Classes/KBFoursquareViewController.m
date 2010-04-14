@@ -29,6 +29,9 @@
         [friendButton setImage:[UIImage imageNamed:@"friendsTab01.png"] forState:UIControlStateNormal];
         [placesButton setImage:[UIImage imageNamed:@"placesTab03.png"] forState:UIControlStateNormal];
         friendButton.enabled = NO;
+    } else if (pageType == KBPageTypeOther) {
+        [friendButton setImage:[UIImage imageNamed:@"friendsTab01.png"] forState:UIControlStateNormal];
+        [placesButton setImage:[UIImage imageNamed:@"placesTab01.png"] forState:UIControlStateNormal];
     }
     
     if (pageViewType == KBPageViewTypeList) {
@@ -36,7 +39,11 @@
         [centerHeaderButton setImage:[UIImage imageNamed:@"kbMap02.png"] forState:UIControlStateHighlighted];
     } else if (pageViewType == KBPageViewTypeMap) {
         [centerHeaderButton setImage:[UIImage imageNamed:@"kbList01.png"] forState:UIControlStateNormal];
-        [centerHeaderButton setImage:[UIImage imageNamed:@"kbList03.png"] forState:UIControlStateHighlighted];
+        [centerHeaderButton setImage:[UIImage imageNamed:@"kbList02.png"] forState:UIControlStateHighlighted];
+    } else if (pageViewType == KBPageViewTypeOther) {
+        [centerHeaderButton setImage:[UIImage imageNamed:@"kbMap01.png"] forState:UIControlStateNormal];
+        [centerHeaderButton setImage:[UIImage imageNamed:@"kbMap02.png"] forState:UIControlStateHighlighted];
+        centerHeaderButton.enabled = NO;
     }
 }
 

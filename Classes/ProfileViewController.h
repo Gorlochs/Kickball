@@ -52,6 +52,7 @@
     NSMutableArray *userPhotos;
     IBOutlet UIView *profileOptionsView;
     IBOutlet UIView *profileInfoView;
+    IBOutlet UITableViewCell *photoCell;
 }
 
 @property (nonatomic, retain) UITableViewCell *badgeCell;

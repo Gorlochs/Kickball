@@ -43,6 +43,7 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 
 - (void) viewDidLoad {
     [super viewDidLoad];
+    
     [UIView setAnimationsEnabled:YES];
     
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];

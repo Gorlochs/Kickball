@@ -21,6 +21,7 @@
 #import "KickballAPI.h"
 #import "KBGoody.h"
 #import "BlackTableCellHeader.h"
+#import "KBPhotoViewController.h"
 
 
 #define BADGES_PER_ROW 4
@@ -42,6 +43,8 @@
  // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     hideFooter = YES;
+    pageType = KBPageTypeOther;
+    pageViewType = KBPageViewTypeOther;
     
     [super viewDidLoad];
     
@@ -138,7 +141,7 @@
         int y = 0;
         int i = 0;
         for (FSBadge *badge in user.badges) {
-            CGRect frame= CGRectMake(x*72 + 20, y*72 + 20, 50, 50);
+            CGRect frame= CGRectMake(x*72 + 15, y*72 + 20, 48, 48);
             UIButton *btn = [[UIButton alloc] initWithFrame:frame];
             [btn setImage:[[Utilities sharedInstance] getCachedImage:badge.icon] forState:UIControlStateNormal];
             btn.tag = i++;
@@ -241,10 +244,10 @@
         }
     } else if (section == 1) { // photos
         return 1;
-    } else if (section == 2) { // badges
-        return 2;
-    } else if (section == 3) { // mayor
+    } else if (section == 2) { // mayor
         return [user.mayorOf count];
+    } else if (section == 3) { // badges
+        return 2;
     }
     return 1;
 }
@@ -254,7 +257,7 @@
         return 43;
     } else if (indexPath.section == 1) {
         return 72;
-    } else if (indexPath.section == 2) {
+    } else if (indexPath.section == 3) {
         if (indexPath.row == 0) {
             if ([user.badges count] > 0) {
                 return 72 * (([user.badges count]+BADGES_PER_ROW-1)/BADGES_PER_ROW) + 10;
@@ -278,8 +281,12 @@
         if (indexPath.section == 0) {
             return [self determineWhichFriendCellToDisplay:user.friendStatus];
         } else if (indexPath.section == 1) {
-            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+            //cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         } else if (indexPath.section == 2) {
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+            cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        } else {
             if (indexPath.row == 0) {
                 return badgeCell;
             } else {
@@ -288,10 +295,6 @@
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 cell.textLabel.adjustsFontSizeToFitWidth = YES;
             }
-        } else {
-            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-            cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
     }
     
@@ -309,20 +312,24 @@
                     ttImage.urlPath = photo.thumbnailImagePath;
                     ttImage.clipsToBounds = YES;
                     ttImage.contentMode = UIViewContentModeScaleToFill;
-                    [cell addSubview:ttImage];
+                    [photoCell addSubview:ttImage];
                     
                     UIButton *button = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
                     button.frame = frame;
                     button.tag = x++;
                     button.showsTouchWhenHighlighted = YES;
                     [button addTarget:self action:@selector(displayImages:) forControlEvents:UIControlEventTouchUpInside]; 
-                    [cell addSubview:button];
+                    [photoCell addSubview:button];
                     [button release];
                     [ttImage release];
                 }
             }
+            return photoCell;
             break;
-        case 2:  // badges
+        case 2:  // mayors
+            cell.textLabel.text = ((FSVenue*)[user.mayorOf objectAtIndex:indexPath.row]).name;
+            break;
+        case 3:  // badges
             if (indexPath.row == 0) {
                 return badgeCell;
             }
@@ -334,13 +341,20 @@
                 }
             }
             break;
-        case 3:  // mayors
-            cell.textLabel.text = ((FSVenue*)[user.mayorOf objectAtIndex:indexPath.row]).name;
-            break;
         default:
             break;
     }
     return cell;
+}
+
+- (void) displayImages:(id)sender {
+    int buttonPressedIndex = ((UIButton *)sender).tag;
+    MockPhotoSource *photoSource = [[KickballAPI kickballApi] convertGoodiesIntoPhotoSource:userPhotos withTitle:user.firstnameLastInitial];
+    KBPhotoViewController *photoController = [[KBPhotoViewController alloc] initWithPhotoSource:photoSource];
+    photoController.centerPhoto = [photoSource photoAtIndex:buttonPressedIndex];  // sets the photo displayer to the correct image
+    photoController.goodies = userPhotos;
+    [self.navigationController pushViewController:photoController animated:YES];
+    [photoController release];
 }
 
 - (UITableViewCell*) determineWhichFriendCellToDisplay:(FSFriendStatus)status {
@@ -376,18 +390,18 @@
                 headerView.leftHeaderLabel.text = [NSString stringWithFormat:@"%d %@", [userPhotos count], [userPhotos count] == 1 ? @"Photo" : @"Photos"];
                 break;
             case 2:
-                if ([user.badges count] < 1) {
-                    [headerView release];
-                    return nil;
-                }
-                headerView.leftHeaderLabel.text = @"Badges";
-                break;
-            case 3:
                 if ([user.mayorOf count] < 1) {
                     [headerView.leftHeaderLabel release];
                     return nil;
                 }
                 headerView.leftHeaderLabel.text = @"Mayor";
+                break;
+            case 3:
+                if ([user.badges count] < 1) {
+                    [headerView release];
+                    return nil;
+                }
+                headerView.leftHeaderLabel.text = @"Badges";
                 break;
             default:
                 headerView.leftHeaderLabel.text = @"You shouldn't see this";
@@ -405,7 +419,7 @@
 //        [self.navigationController pushViewController:profileFriendsController animated:YES];
 //        [profileFriendsController release];
 //    } else 
-    if (indexPath.section == 2) { // mayor section
+    if (indexPath.section == 3) { // mayor section
         PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];
         placeDetailController.venueId = ((FSVenue*)[user.mayorOf objectAtIndex:indexPath.row]).venueid;
         [theTableView deselectRowAtIndexPath:indexPath animated:YES];
