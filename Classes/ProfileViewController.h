@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "FSUser.h"
-#import "KBBaseViewController.h"
+#import "KBFoursquareViewController.h"
 #import "MGTwitterEngineDelegate.h"
 #import "FSCheckin.h"
 
-@interface ProfileViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, MGTwitterEngineDelegate> {
+@interface ProfileViewController : KBFoursquareViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, MGTwitterEngineDelegate> {
     IBOutlet UITableViewCell *badgeCell;
     IBOutlet UITableViewCell *addFriendCell;
     IBOutlet UITableViewCell *friendActionCell;
