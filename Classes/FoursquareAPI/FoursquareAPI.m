@@ -135,7 +135,7 @@ static FoursquareAPI *sharedInstance = nil;
     // TODO: maybe make the num returned (l) a parameter?
 	[requestParams setObject:geolat forKey:@"geolat"];
 	[requestParams setObject:geolong forKey:@"geolong"];
-	[requestParams setObject:@"20" forKey:@"l"]; 
+	[requestParams setObject:@"30" forKey:@"l"]; 
 	
 	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/venues"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"GET"];
 

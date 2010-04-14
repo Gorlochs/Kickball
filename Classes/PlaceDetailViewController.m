@@ -72,7 +72,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 - (void)viewDidLoad {
     hideFooter = YES;
     pageType = KBPageTypeOther;
-    pageViewType = KBPageViewTypeOther;
+    pageViewType = KBPageViewTypeList;
     
     [super viewDidLoad];
     
@@ -387,7 +387,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     } else if (section == 6) { // gift
         return 1;
     } else if (section == 7) { // people here
-        return [venue.currentCheckins count] + 1;
+        return [venue.currentCheckins count];
     } else if (section == 8) { // tips
         return [venue.tips count];
     } else if (section == 9) { // bottom button row
@@ -462,8 +462,6 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
             ttImage.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
             ttImage.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
             [cell.imageView addSubview:ttImage];
-        } else {
-            return detailButtonCell;
         }
     } else if (indexPath.section == 8) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -480,7 +478,9 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    [cell setBackgroundColor:[UIColor colorWithWhite:0.9 alpha:1.0]];  
+    if (indexPath.section != 5) {
+        [cell setBackgroundColor:[UIColor colorWithWhite:0.9 alpha:1.0]];  
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
