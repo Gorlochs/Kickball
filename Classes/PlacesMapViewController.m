@@ -23,6 +23,9 @@
 
  // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
+    pageType = KBPageTypePlaces;
+    pageViewType = KBPageViewTypeMap;
+    
     [super viewDidLoad];
     
     // this hack is here to help make the toggle 'global'
@@ -53,13 +56,19 @@
 }
 
 - (void) viewFriendsMap {
-    FriendsMapViewController *friendsMapController = [[FriendsMapViewController alloc] initWithNibName:@"FriendsMapView" bundle:nil];
+    FriendsMapViewController *friendsMapController = [[FriendsMapViewController alloc] initWithNibName:@"FriendsMapView_v2" bundle:nil];
     [self.navigationController pushViewController:friendsMapController animated:NO];
     [friendsMapController release];
 }
 
--(void) viewDidAppear:(BOOL)animated{
+- (void) viewDidAppear:(BOOL)animated{
 	[super viewDidAppear:animated];
+}
+
+- (void) flipBetweenMapAndList {
+    PlacesListViewController *placesListController = [[PlacesListViewController alloc] initWithNibName:@"PlacesListView_v2" bundle:nil];
+    [self.navigationController pushViewController:placesListController animated:NO];
+    [placesListController release];
 }
 
 - (void)didReceiveMemoryWarning {

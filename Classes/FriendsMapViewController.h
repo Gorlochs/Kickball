@@ -11,9 +11,9 @@
 #import "FoursquareAPI.h"
 #import "FriendPlacemark.h"
 #import "FriendIconAnnotationView.h"
-#import "KBBaseViewController.h"
+#import "KBFoursquareViewController.h"
 
-@interface FriendsMapViewController : KBBaseViewController {
+@interface FriendsMapViewController : KBFoursquareViewController {
 	IBOutlet MKMapView * mapViewer;
 	NSArray * checkins;
 	MKCoordinateRegion mapRegion;
@@ -28,7 +28,6 @@
 - (NSArray *) checkins;
 - (void) showProfile:(id)sender;
 - (IBAction) retrieveNewFriendLocationsAndRefresh;
-- (IBAction) viewPlacesMap;
 - (void) refreshEverything;
 
 @end

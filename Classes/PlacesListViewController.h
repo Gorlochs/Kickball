@@ -28,7 +28,6 @@ typedef enum {
 @property (nonatomic, retain) NSDictionary *venues;
 
 - (IBAction) searchOnKeywordsandLatLong;
-- (IBAction) flipToMap;
 - (IBAction) refresh: (UIControl *) button;
 - (IBAction) addNewVenue;
 - (IBAction) cancelKeyboard: (UIControl *) button;

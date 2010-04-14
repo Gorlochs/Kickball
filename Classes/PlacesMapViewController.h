@@ -11,10 +11,10 @@
 #import "FoursquareAPI.h"
 #import "FriendPlacemark.h"
 #import "FriendIconAnnotationView.h"
-#import "KBBaseViewController.h"
+#import "KBFoursquareViewController.h"
 
 
-@interface PlacesMapViewController : KBBaseViewController <UITextFieldDelegate> {
+@interface PlacesMapViewController : KBFoursquareViewController <UITextFieldDelegate> {
 	IBOutlet MKMapView * mapViewer;
 	NSMutableArray * venues;
     CLLocation *bestEffortAtLocation;
@@ -34,7 +34,6 @@
 - (void) cancelKeyboard: (UIControl *) button;
 - (IBAction) cancelTheKeyboard;
 - (IBAction) viewFriendsMap;
-- (IBAction) viewPlacesList;
 - (IBAction) cancelEdit;
 
 @end

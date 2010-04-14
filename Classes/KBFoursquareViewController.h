@@ -30,7 +30,7 @@ typedef enum{
     IBOutlet UIButton *centerHeaderButton;
 }
 
-- (IBAction) flipToMap;
+- (IBAction) flipBetweenMapAndList;
 - (IBAction) viewPlacesList;
 - (IBAction) viewFriendsList;
 - (IBAction) backOneView;

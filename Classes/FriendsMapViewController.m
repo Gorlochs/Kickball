@@ -24,6 +24,8 @@
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
+    pageType = KBPageTypeFriends;
+    pageViewType = KBPageViewTypeMap;
     [super viewDidLoad];
     [[Beacon shared] startSubBeaconWithName:@"Friends Map View"];
 }
@@ -38,6 +40,9 @@
     }
 }
 
+- (void) flipBetweenMapAndList {
+    [self goToHomeViewNotAnimated];
+}
 
 - (void) refreshEverything {
     [self refreshFriendPoints];
@@ -122,7 +127,7 @@
 }
 
 - (void) viewPlacesMap {
-    PlacesMapViewController *placesMapController = [[PlacesMapViewController alloc] initWithNibName:@"PlacesMapView" bundle:nil];
+    PlacesMapViewController *placesMapController = [[PlacesMapViewController alloc] initWithNibName:@"PlacesMapView_v2" bundle:nil];
     [self.navigationController pushViewController:placesMapController animated:NO];
     [placesMapController release];
 }

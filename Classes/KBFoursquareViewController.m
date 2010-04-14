@@ -34,7 +34,7 @@
     if (pageViewType == KBPageViewTypeList) {
         [centerHeaderButton setImage:[UIImage imageNamed:@"kbMap01.png"] forState:UIControlStateNormal];
         [centerHeaderButton setImage:[UIImage imageNamed:@"kbMap02.png"] forState:UIControlStateHighlighted];
-    } else if (pageType == KBPageViewTypeMap) {
+    } else if (pageViewType == KBPageViewTypeMap) {
         [centerHeaderButton setImage:[UIImage imageNamed:@"kbList01.png"] forState:UIControlStateNormal];
         [centerHeaderButton setImage:[UIImage imageNamed:@"kbList03.png"] forState:UIControlStateHighlighted];
     }
@@ -63,7 +63,7 @@
     [self.navigationController popToRootViewControllerAnimated:NO];
 }
 
-- (void) flipToMap {
+- (void) flipBetweenMapAndList {
     NSLog(@"!!!!!!!! THIS SHOULDN'T APPEAR!!!!!!!!!!");
 }
 

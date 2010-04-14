@@ -19,7 +19,6 @@
 #import "ASIFormDataRequest.h"
 
 #import "FoursquareHeaderView.h"
-#import "FooterTabView.h"
 
 #define PROGRESS_BAR_TIMER_LENGTH 30.0
 
@@ -51,8 +50,8 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 
 //    v1.1
 //    if (hasViewedInstructions) {
-//        FSUser *tmpUser = [self getAuthenticatedUser];
-//        [self setUserIconView:tmpUser];
+        FSUser *tmpUser = [self getAuthenticatedUser];
+        [self setUserIconView:tmpUser];
 //    }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(displayShoutMessage:) name:@"shoutSent" object:nil];
@@ -69,9 +68,9 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
     }
     if (!self.hideFooter) {
         NSArray* nibViews =  [[NSBundle mainBundle] loadNibNamed:@"FooterTabView" owner:self options:nil];
-        FooterTabView *tabView = [nibViews objectAtIndex:0];
-        tabView.frame = CGRectMake(0, self.view.frame.size.height - 40, self.view.frame.size.width, 40);
-        [self.view addSubview:tabView];
+        footerTabView = [nibViews objectAtIndex:0];
+        footerTabView.frame = CGRectMake(0, self.view.frame.size.height - 40, self.view.frame.size.width, 40);
+        [self.view addSubview:footerTabView];
     }
     
 	if (refreshHeaderView == nil && !self.hideRefresh) {
@@ -120,15 +119,41 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 - (void) setUserIconView:(FSUser*)user {
     if (user) {
         NSLog(@"user is not null");
-        UIImage *image = [[Utilities sharedInstance] getCachedImage:user.photo];
-        iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(278, 2, 42, 42)];
-        iconImageView.image = image;
-        [image release];
-        [self.view addSubview:iconImageView];
-        iconImageView.layer.masksToBounds = YES;
-        iconImageView.layer.cornerRadius = 4.0;
-        [self.view bringSubviewToFront:signedInUserIcon];
+
+        CGRect frame = CGRectMake(136, 0, 46, 41);
+        TTImageView *ttImage = [[TTImageView alloc] initWithFrame:frame];
+        ttImage.urlPath = user.photo;
+        ttImage.clipsToBounds = YES;
+        ttImage.contentMode = UIViewContentModeScaleToFill;
+        [footerTabView addSubview:ttImage];
+        
+        UIButton *button = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+        button.frame = frame;
+        button.showsTouchWhenHighlighted = YES;
+        [button addTarget:self action:@selector(displayProfile:) forControlEvents:UIControlEventTouchUpInside]; 
+        [footerTabView addSubview:button];
+        [button release];
+        [ttImage release];
+        
+//        TTButton *imageButton = [TTButton buttonWithStyle:@"blockPhoto:"]; 
+//        imageButton.frame = CGRectMake(136, 0, 46, 41);
+//        imageButton.backgroundColor = [UIColor greenColor];
+//        [imageButton setImage:user.photo forState:UIControlStateNormal];
+//        [footerTabView addSubview:imageButton];
+        
+//        UIImage *image = [[Utilities sharedInstance] getCachedImage:user.photo];
+//        iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(278, 2, 42, 42)];
+//        iconImageView.image = image;
+//        [image release];
+//        [self.view addSubview:iconImageView];
+//        iconImageView.layer.masksToBounds = YES;
+//        iconImageView.layer.cornerRadius = 4.0;
+//        [self.view bringSubviewToFront:signedInUserIcon];
     }
+}
+
+- (void) displayProfile:(id)sender {
+    
 }
 
 - (void) displayShoutMessage:(NSNotification *)inNotification {

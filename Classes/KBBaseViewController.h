@@ -15,6 +15,7 @@
 #import "FSVenue.h"
 #import "Utilities.h"
 #import "EGORefreshTableHeaderView.h"
+#import "FooterTabView.h"
 
 static const CGFloat KEYBOARD_ANIMATION_DURATION = 0.3;
 static const CGFloat MINIMUM_SCROLL_FRACTION = 0.2;
@@ -29,7 +30,6 @@ extern const NSString *kickballDomain;
     
     IBOutlet UITableView *theTableView;
     
-    IBOutlet UIButton *signedInUserIcon;
     ProgressViewController *progressViewController;
     LoginViewModalController *loginViewModal;
     PopupMessageView *popupView;
@@ -47,6 +47,10 @@ extern const NSString *kickballDomain;
 	//  Reloading should really be your tableviews model class
 	//  Putting it here for demo purposes 
 	BOOL _reloading;
+    
+    // bottom tab bar members
+    FooterTabView *footerTabView;
+    IBOutlet UIButton *signedInUserIcon;
 }
 
 @property (nonatomic, retain) UITableView *theTableView;

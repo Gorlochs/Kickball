@@ -407,9 +407,13 @@
 //	[[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
 //}
 
-- (void) flipToMap {
-    FriendsMapViewController *mapViewController = [[FriendsMapViewController alloc] initWithNibName:@"FriendsMapView" bundle:nil];
-    mapViewController.checkins = [[NSArray arrayWithArray:self.recentCheckins] arrayByAddingObjectsFromArray:self.todayCheckins];
+- (void) flipBetweenMapAndList {
+    FriendsMapViewController *mapViewController = [[FriendsMapViewController alloc] initWithNibName:@"FriendsMapView_v2" bundle:nil];
+    if ([self.recentCheckins count] > 0 && [self.todayCheckins count] > 0) {
+        mapViewController.checkins = [[NSArray arrayWithArray:self.recentCheckins] arrayByAddingObjectsFromArray:self.todayCheckins];
+    } else if ([self.nonCityCheckins count] > 0) {
+        mapViewController.checkins = [NSArray arrayWithArray:self.nonCityCheckins];
+    }
     [self.navigationController pushViewController:mapViewController animated:NO];
     [mapViewController release];
 }
@@ -511,6 +515,9 @@
 }
 
 - (void) setUserIconViewCustom:(FSUser*)user {
+//    TTButton *imageButton = [TTButton buttonWithStyle:@"blockPhoto:"]; 
+//    [imageButton setImage:user.photo forState:UIControlStateNormal]; 
+
 //    if (user) {
 //        NSLog(@"user is not null");
 //        UIImage *image = [[Utilities sharedInstance] getCachedImage:user.photo];

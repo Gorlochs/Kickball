@@ -47,7 +47,6 @@
 @property (nonatomic, retain) NSMutableArray * yesterdayCheckins;
 @property (nonatomic, retain) NSMutableArray * nonCityCheckins;
 
-- (IBAction) flipToMap;
 - (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString;
 - (void) doInitialDisplay;
 - (IBAction) addFriend;

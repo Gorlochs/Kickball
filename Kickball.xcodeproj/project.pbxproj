@@ -672,6 +672,9 @@
 		6AFE190A117519A600130CBB /* profileSettings01.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AFE1905117519A600130CBB /* profileSettings01.png */; };
 		6AFE190B117519A600130CBB /* profileSettings02.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AFE1906117519A600130CBB /* profileSettings02.png */; };
 		6AFE190C117519A600130CBB /* profileSettingsBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AFE1907117519A600130CBB /* profileSettingsBG.png */; };
+		6AFE19801175387800130CBB /* FriendsMapView_v2.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6AFE197F1175387800130CBB /* FriendsMapView_v2.xib */; };
+		6AFE19A21175388C00130CBB /* PlacesMapView_v2.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6AFE19A11175388C00130CBB /* PlacesMapView_v2.xib */; };
+		6AFE19E211755E4C00130CBB /* fbTab02.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AFE19E111755E4C00130CBB /* fbTab02.png */; };
 		6AFF0E9910FFD6CD00AD6E55 /* shout.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AFF0E9810FFD6CD00AD6E55 /* shout.png */; };
 		6AFF0E9B10FFD6D400AD6E55 /* shout02.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AFF0E9A10FFD6D400AD6E55 /* shout02.png */; };
 		6AFF0FFF1101796600AD6E55 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AFF0FFE1101796600AD6E55 /* CFNetwork.framework */; };
@@ -1602,7 +1605,6 @@
 		6AFE16E4117448EA00130CBB /* placesTab02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placesTab02.png; sourceTree = "<group>"; };
 		6AFE16E5117448EA00130CBB /* placesTab03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placesTab03.png; sourceTree = "<group>"; };
 		6AFE16F0117448F100130CBB /* fbTab01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fbTab01.png; sourceTree = "<group>"; };
-		6AFE16F1117448F100130CBB /* fbTab02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fbTab02.png; sourceTree = "<group>"; };
 		6AFE17111174490D00130CBB /* shout01v11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shout01v11.png; sourceTree = "<group>"; };
 		6AFE17121174490D00130CBB /* shout02v11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shout02v11.png; sourceTree = "<group>"; };
 		6AFE17131174490D00130CBB /* twitTab01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitTab01.png; sourceTree = "<group>"; };
@@ -1670,6 +1672,9 @@
 		6AFE1905117519A600130CBB /* profileSettings01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profileSettings01.png; sourceTree = "<group>"; };
 		6AFE1906117519A600130CBB /* profileSettings02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profileSettings02.png; sourceTree = "<group>"; };
 		6AFE1907117519A600130CBB /* profileSettingsBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profileSettingsBG.png; sourceTree = "<group>"; };
+		6AFE197F1175387800130CBB /* FriendsMapView_v2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendsMapView_v2.xib; sourceTree = "<group>"; };
+		6AFE19A11175388C00130CBB /* PlacesMapView_v2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlacesMapView_v2.xib; sourceTree = "<group>"; };
+		6AFE19E111755E4C00130CBB /* fbTab02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fbTab02.png; sourceTree = "<group>"; };
 		6AFF0E9810FFD6CD00AD6E55 /* shout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shout.png; sourceTree = "<group>"; };
 		6AFF0E9A10FFD6D400AD6E55 /* shout02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shout02.png; sourceTree = "<group>"; };
 		6AFF0FFE1101796600AD6E55 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -1808,7 +1813,9 @@
 				6AEB63D3110BA9BE0066DD05 /* PushNotificationView.xib */,
 				6ADD23B6115AE24E005D14BE /* changelog */,
 				6AD4739611738DFD003CAA34 /* FriendsListView_v2.xib */,
+				6AFE197F1175387800130CBB /* FriendsMapView_v2.xib */,
 				6AC28D541173BC6500518E37 /* PlacesListView_v2.xib */,
+				6AFE19A11175388C00130CBB /* PlacesMapView_v2.xib */,
 				6ADBFAA111738FE6003EB73D /* FoursquareHeaderView.xib */,
 				6ADBFAA311738FF1003EB73D /* TwitterHeaderView.xib */,
 				6ADBFAA511738FFD003EB73D /* FooterTabView.xib */,
@@ -2849,7 +2856,7 @@
 				6AFE17131174490D00130CBB /* twitTab01.png */,
 				6AFE171F11744CB600130CBB /* fbTab04.png */,
 				6AFE172211744CDD00130CBB /* fbTab03.png */,
-				6AFE16F1117448F100130CBB /* fbTab02.png */,
+				6AFE19E111755E4C00130CBB /* fbTab02.png */,
 				6AFE16F0117448F100130CBB /* fbTab01.png */,
 				6AFE17111174490D00130CBB /* shout01v11.png */,
 				6AFE17121174490D00130CBB /* shout02v11.png */,
@@ -3684,6 +3691,7 @@
 				6AFE190A117519A600130CBB /* profileSettings01.png in Resources */,
 				6AFE190B117519A600130CBB /* profileSettings02.png in Resources */,
 				6AFE190C117519A600130CBB /* profileSettingsBG.png in Resources */,
+				6AFE19E211755E4C00130CBB /* fbTab02.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3917,6 +3925,8 @@
 				6A2AEFC711742ECC00F1EA88 /* ProfileView_v2.xib in Sources */,
 				6AFE168811743EC200130CBB /* BlackTableCellHeader.m in Sources */,
 				6AFE17491174C76A00130CBB /* EGORefreshTableHeaderView.m in Sources */,
+				6AFE19801175387800130CBB /* FriendsMapView_v2.xib in Sources */,
+				6AFE19A21175388C00130CBB /* PlacesMapView_v2.xib in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -138,7 +138,7 @@
         int y = 0;
         int i = 0;
         for (FSBadge *badge in user.badges) {
-            CGRect frame= CGRectMake(x*70 + 20, y*70 + 20, 50, 50);
+            CGRect frame= CGRectMake(x*72 + 20, y*72 + 20, 50, 50);
             UIButton *btn = [[UIButton alloc] initWithFrame:frame];
             [btn setImage:[[Utilities sharedInstance] getCachedImage:badge.icon] forState:UIControlStateNormal];
             btn.tag = i++;
@@ -257,7 +257,7 @@
     } else if (indexPath.section == 2) {
         if (indexPath.row == 0) {
             if ([user.badges count] > 0) {
-                return 70 * (([user.badges count]+BADGES_PER_ROW-1)/BADGES_PER_ROW) + 10;
+                return 72 * (([user.badges count]+BADGES_PER_ROW-1)/BADGES_PER_ROW) + 10;
             } else {
                 return 0;
             }

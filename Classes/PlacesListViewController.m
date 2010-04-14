@@ -117,8 +117,8 @@
     }
 }
 
-- (void) flipToMap {
-    PlacesMapViewController *mapViewController = [[PlacesMapViewController alloc] initWithNibName:@"PlacesMapView" bundle:nil];
+- (void) flipBetweenMapAndList {
+    PlacesMapViewController *mapViewController = [[PlacesMapViewController alloc] initWithNibName:@"PlacesMapView_v2" bundle:nil];
     // TODO: do we need to combine both items in the venues array?
     NSMutableArray *allvenues = [[NSMutableArray alloc] initWithCapacity:1];
     for (NSString *key in [venues allKeys]) {
