@@ -21,6 +21,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    homeBackView.origin = CGPointMake(0, 0);
+    [self.view addSubview:homeBackView];
+    homeBackView.hidden = YES;
+    
     if (pageType == KBPageTypePlaces) {
         [friendButton setImage:[UIImage imageNamed:@"friendsTab03.png"] forState:UIControlStateNormal];
         [placesButton setImage:[UIImage imageNamed:@"placesTab01.png"] forState:UIControlStateNormal];
@@ -30,7 +34,10 @@
         [placesButton setImage:[UIImage imageNamed:@"placesTab03.png"] forState:UIControlStateNormal];
         friendButton.enabled = NO;
     } else if (pageType == KBPageTypeOther) {
-        [friendButton setImage:[UIImage imageNamed:@"friendsTab01.png"] forState:UIControlStateNormal];
+        //[friendButton setImage:[UIImage imageNamed:@"friendsTab01.png"] forState:UIControlStateNormal];
+        homeBackView.hidden = NO;
+        friendButton.enabled = NO;
+        //[self.view bringSubviewToFront:homeBackView];
         [placesButton setImage:[UIImage imageNamed:@"placesTab01.png"] forState:UIControlStateNormal];
     }
     

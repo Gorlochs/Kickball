@@ -65,11 +65,7 @@ extern const NSString *kickballDomain;
 - (void)reloadTableViewDataSource;
 - (void)doneLoadingTableViewData;
 
-- (IBAction) backOneView;
-- (IBAction) backOneViewNotAnimated;
 - (IBAction) viewUserProfile;
-- (IBAction) goToHomeView;
-- (IBAction) goToHomeViewNotAnimated;
 
 - (void) setUserIconView:(FSUser*)user;
 - (void) setAuthenticatedUser:(FSUser*)user;

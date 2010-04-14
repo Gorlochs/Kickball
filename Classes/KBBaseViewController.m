@@ -164,22 +164,6 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
     [msg release];
 }
 
-- (void) backOneView {
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (void) backOneViewNotAnimated {
-    [self.navigationController popViewControllerAnimated:NO];
-}
-
-- (void) goToHomeView {
-    [self.navigationController popToRootViewControllerAnimated:YES];
-}
-
-- (void) goToHomeViewNotAnimated {
-    [self.navigationController popToRootViewControllerAnimated:NO];
-}
-
 - (void) viewUserProfile {
     // take user to their profile
     [[Beacon shared] startSubBeaconWithName:@"View User Profile from Top Nav Icon"];

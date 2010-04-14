@@ -44,7 +44,7 @@
 - (void)viewDidLoad {
     hideFooter = YES;
     pageType = KBPageTypeOther;
-    pageViewType = KBPageViewTypeOther;
+    pageViewType = KBPageViewTypeList;
     
     [super viewDidLoad];
     
