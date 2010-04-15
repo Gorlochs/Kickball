@@ -48,4 +48,4 @@
  target.
 */
 
-#define YAJL_AVAILABLE 0
+#define YAJL_AVAILABLE 1

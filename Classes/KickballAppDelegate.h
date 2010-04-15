@@ -13,6 +13,8 @@
 #import "KBPushNotificationView.h"
 #import "KBMessage.h"
 #import "PopupMessageView.h"
+#import "util.h"
+#import "Logger.h"
 
 #define kApplicationKey @"yRIla6gWSyWVmizCFl13Nw"
 #define kApplicationSecret @"-BnhB82eSrWrGG0aXm2PLQ"
