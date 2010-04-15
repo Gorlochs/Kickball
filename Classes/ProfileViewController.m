@@ -20,7 +20,6 @@
 #import "ASIHTTPRequest.h"
 #import "KickballAPI.h"
 #import "KBGoody.h"
-#import "BlackTableCellHeader.h"
 #import "KBPhotoViewController.h"
 
 

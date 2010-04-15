@@ -8,6 +8,7 @@
 
 #import "UserProfileCheckinHistoryViewController.h"
 #import "PlaceDetailViewController.h"
+#import "PlacesListTableViewCellv2.h"
 
 @implementation UserProfileCheckinHistoryViewController
 
@@ -42,7 +43,6 @@
     
     NSDateFormatter *dayOfWeekFormatter = [[NSDateFormatter alloc] init];
     [dayOfWeekFormatter setDateFormat: @"EEEE, MMMM d "];
-    //[dayOfWeekFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
     checkinDaysOfWeek = [[NSMutableArray alloc] initWithCapacity:1];
     checkinsByDate = [[NSMutableArray alloc] initWithCapacity:1];
     
@@ -69,6 +69,9 @@
     return [checkinDaysOfWeek count];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 44;
+}
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -85,21 +88,22 @@
     
     static NSString *CellIdentifier = @"Cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    PlacesListTableViewCellv2 *cell = (PlacesListTableViewCellv2*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
-        cell.textLabel.font = [UIFont boldSystemFontOfSize:14.0];
-        cell.detailTextLabel.font = [UIFont systemFontOfSize:10.0];
+        cell = [[[PlacesListTableViewCellv2 alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        cell.venueName.size = CGSizeMake(210, cell.venueName.size.height);
     }
     
     FSCheckin *theCheckin = [[checkinsByDate objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     if (theCheckin.shout) {
-        cell.textLabel.text = [NSString stringWithFormat:@"shout: \"%@\"", theCheckin.shout];
+        cell.venueName.text = [NSString stringWithFormat:@"shout: \"%@\"", theCheckin.shout];
         cell.accessoryType = UITableViewCellAccessoryNone;
     } else {
-        cell.textLabel.text = theCheckin.venue.name;
+        cell.venueName.text = theCheckin.venue.name;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
+    
+    cell.categoryIcon.urlPath = theCheckin.venue.primaryCategory.iconUrl;
     
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     
@@ -107,9 +111,9 @@
     NSDateComponents *comps = [gregorian components:unitFlags fromDate:[theCheckin convertUTCCheckinDateToLocal]];
     NSLog(@"date components: %@", comps);
     if ([comps hour] > 12) {
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%02d:%02dpm", [comps hour] - 12, [comps minute]];
+        cell.venueAddress.text = [NSString stringWithFormat:@"%02d:%02dpm", [comps hour] - 12, [comps minute]];
     } else {
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%02d:%02dam", [comps hour], [comps minute]];
+        cell.venueAddress.text = [NSString stringWithFormat:@"%02d:%02dam", [comps hour], [comps minute]];
     }
     [gregorian release];
 	return cell;
@@ -120,7 +124,7 @@
     FSCheckin *theCheckin = [[checkinsByDate objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     if (theCheckin.venue) {
         [theTableView deselectRowAtIndexPath:indexPath animated:YES];
-        PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView" bundle:nil];
+        PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView_v2" bundle:nil];
         placeDetailController.venueId = theCheckin.venue.venueid;
         [self.navigationController pushViewController:placeDetailController animated:YES];
         [placeDetailController release];        
@@ -128,7 +132,10 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    return nil;
+    
+    BlackTableCellHeader *headerView = [[BlackTableCellHeader alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 36)];
+    headerView.leftHeaderLabel.text = [checkinDaysOfWeek objectAtIndex:section];
+    return headerView;
 }
 
 #pragma mark 

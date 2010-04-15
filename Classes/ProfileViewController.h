@@ -11,6 +11,7 @@
 #import "KBFoursquareViewController.h"
 #import "MGTwitterEngineDelegate.h"
 #import "FSCheckin.h"
+#import "BlackTableCellHeader.h"
 
 @interface ProfileViewController : KBFoursquareViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, MGTwitterEngineDelegate> {
     IBOutlet UITableViewCell *badgeCell;
