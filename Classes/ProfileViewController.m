@@ -56,6 +56,10 @@
     
     [self addHeaderAndFooter:theTableView];
     
+    [self executeFoursquareCalls];
+}
+
+- (void) executeFoursquareCalls {
     [self startProgressBar:@"Retrieving profile..."];
     [[FoursquareAPI sharedInstance] getUser:self.userId withTarget:self andAction:@selector(userResponseReceived:withResponseString:)];
     [[Beacon shared] startSubBeaconWithName:@"Profile"];

@@ -7,19 +7,11 @@
 //
 
 #import "UserProfileViewController.h"
-
+#import "UserProfileFriendsViewController.h"
+#import "UserProfileCheckinHistoryViewController.h"
 
 @implementation UserProfileViewController
 
-/*
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
 
 /*
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -28,13 +20,26 @@
 }
 */
 
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+- (void) displayStuff {
+    UserProfileViewController *profileController = [[UserProfileViewController alloc] initWithNibName:@"UserProfileView_v2" bundle:nil];
+    profileController.userId = userId;
+    [self.navigationController pushViewController:profileController animated:NO];
+    [profileController release];
 }
-*/
+
+- (void) displayFriends {
+    UserProfileFriendsViewController *profileController = [[UserProfileFriendsViewController alloc] initWithNibName:@"UserProfileView_v2" bundle:nil];
+    profileController.userId = userId;
+    [self.navigationController pushViewController:profileController animated:NO];
+    [profileController release];
+}
+
+- (void) displayCheckinHistory {
+    UserProfileCheckinHistoryViewController *profileController = [[UserProfileCheckinHistoryViewController alloc] initWithNibName:@"UserProfileView_v2" bundle:nil];
+    profileController.userId = userId;
+    [self.navigationController pushViewController:profileController animated:NO];
+    [profileController release];
+}
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
@@ -51,6 +56,9 @@
 
 
 - (void)dealloc {
+    [yourStuffButton release];
+    [yourFriendsButton release];
+    [checkinHistoryButton release];
     [super dealloc];
 }
 

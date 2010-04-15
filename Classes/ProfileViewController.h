@@ -76,5 +76,6 @@
 - (IBAction) removeProfileOptions;
 - (IBAction) showInfoOptions;
 - (IBAction) removeInfoOptions;
+- (void) executeFoursquareCalls;
 
 @end

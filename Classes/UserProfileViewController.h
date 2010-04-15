@@ -8,12 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "ProfileViewController.h"
-
+#import "FoursquareAPI.h"
 
 @interface UserProfileViewController : ProfileViewController {
     IBOutlet UIButton *yourStuffButton;
     IBOutlet UIButton *yourFriendsButton;
     IBOutlet UIButton *checkinHistoryButton;
 }
+
+- (IBAction) displayStuff;
+- (IBAction) displayFriends;
+- (IBAction) displayCheckinHistory;
 
 @end
