@@ -381,7 +381,6 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     }
     
-    
     // Set up the cell...
     if (indexPath.section == 0) {
         //return nil;
@@ -390,23 +389,21 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         mayorMapCell.backgroundColor = [UIColor whiteColor];
         return mayorMapCell;
     } else if (indexPath.section == 2) {
-        if (indexPath.row < [venue.currentCheckins count]) {
-            cell.detailTextLabel.numberOfLines = 1;
-            cell.detailTextLabel.text = nil;
-            cell.textLabel.font = [UIFont boldSystemFontOfSize:16];
-            FSCheckin *currentCheckin = ((FSCheckin*)[venue.currentCheckins objectAtIndex:indexPath.row]);
-            cell.textLabel.text = currentCheckin.user.firstnameLastInitial;
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            cell.imageView.image = [UIImage imageNamed:@"blank_boy.png"];
-            
-            CGRect frame = CGRectMake(0,0,36,36);
-            TTImageView *ttImage = [[[TTImageView alloc] initWithFrame:frame] autorelease];
-            ttImage.urlPath = currentCheckin.user.photo;
-            ttImage.backgroundColor = [UIColor clearColor];
-            ttImage.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
-            ttImage.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
-            [cell.imageView addSubview:ttImage];
-        }
+        cell.detailTextLabel.numberOfLines = 1;
+        cell.detailTextLabel.text = nil;
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:16];
+        FSCheckin *currentCheckin = ((FSCheckin*)[venue.currentCheckins objectAtIndex:indexPath.row]);
+        cell.textLabel.text = currentCheckin.user.firstnameLastInitial;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.imageView.image = [UIImage imageNamed:@"blank_boy.png"];
+        
+        CGRect frame = CGRectMake(0,0,36,36);
+        TTImageView *ttImage = [[[TTImageView alloc] initWithFrame:frame] autorelease];
+        ttImage.urlPath = currentCheckin.user.photo;
+        ttImage.backgroundColor = [UIColor clearColor];
+        ttImage.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
+        ttImage.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
+        [cell.imageView addSubview:ttImage];
     } else if (indexPath.section == 3) {
         return giftCell;
     } else if (indexPath.section == 4) {
@@ -433,15 +430,20 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     switch (indexPath.section) {
         case 0:
             return 37;
+            break;
         case 1: // mayor-map cell
             return 69;
+            break;
+        case 2:
+            return 44;
+            break;
         case 3: // photos
             if ([goodies count] == 0) {
                 return 102;
             } else {
                 return THUMBNAIL_IMAGE_SIZE;
             }
-        case 2:
+            break;
         case 4:
         case 5:
         default:
@@ -473,6 +475,17 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
                 return nil;
             } else {
                 headerView.leftHeaderLabel.text = [NSString stringWithFormat:@"%d %@ Here", venue.hereNow, venue.hereNow == 1 ? @"Person" : @"People"];
+                
+                if (venue.hereNow > 4) {
+                    UIButton *myDetailButton = [UIButton buttonWithType:UIButtonTypeCustom];
+                    myDetailButton.frame = CGRectMake(210, 0, 92, 39);
+                    myDetailButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+                    myDetailButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+                    [myDetailButton setImage:[UIImage imageNamed:@"placePeopleHere01.png"] forState:UIControlStateNormal];
+                    [myDetailButton setImage:[UIImage imageNamed:@"placePeopleHere02.png"] forState:UIControlStateHighlighted];
+                    [myDetailButton addTarget:self action:@selector(displayAllPeopleHere:) forControlEvents:UIControlEventTouchUpInside]; 
+                    [headerView addSubview:myDetailButton];
+                }
             }
             break;
         case 3: 
@@ -494,6 +507,17 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
                 return nil;
             } else {
                 headerView.leftHeaderLabel.text = [NSString stringWithFormat:@"%d %@", [venue.tips count], [venue.tips count] == 1 ? @"Tip" : @"Tips"];
+                
+                if ([venue.tips count] > 4) {
+                    UIButton *myDetailButton = [UIButton buttonWithType:UIButtonTypeCustom];
+                    myDetailButton.frame = CGRectMake(210, 0, 92, 39);
+                    myDetailButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+                    myDetailButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+                    [myDetailButton setImage:[UIImage imageNamed:@"profileSeeAllTips01.png"] forState:UIControlStateNormal];
+                    [myDetailButton setImage:[UIImage imageNamed:@"profileSeeAllTips02.png"] forState:UIControlStateHighlighted];
+                    [myDetailButton addTarget:self action:@selector(displayAllTips:) forControlEvents:UIControlEventTouchUpInside]; 
+                    [headerView addSubview:myDetailButton];
+                }
             }
             break;
         default:
@@ -501,6 +525,14 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
             break;
     }
     return headerView;
+}
+
+- (void) displayAllPeopleHere:(id)sender {
+    
+}
+
+- (void) displayAllTips:(id)sender {
+    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

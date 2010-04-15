@@ -12,8 +12,8 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="1"/>
 			<integer value="19"/>
+			<integer value="1"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -161,9 +161,9 @@
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="454773114"/>
-						<object class="NSCustomResource" key="IBUIHighlightedImage" id="875454186">
+						<object class="NSCustomResource" key="IBUIHighlightedImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">backTab02.png</string>
+							<string key="NSResourceName">homeTab02.png</string>
 						</object>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
@@ -186,7 +186,10 @@
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="454773114"/>
-						<reference key="IBUIHighlightedImage" ref="875454186"/>
+						<object class="NSCustomResource" key="IBUIHighlightedImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">backTab02.png</string>
+						</object>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">backTab01.png</string>
@@ -796,6 +799,7 @@
 				<string>friendsTab01.png</string>
 				<string>friendsTab02.png</string>
 				<string>homeTab01.png</string>
+				<string>homeTab02.png</string>
 				<string>kbMap01.png</string>
 				<string>kbMap02.png</string>
 				<string>placesTab02.png</string>
@@ -807,6 +811,7 @@
 				<string>{53, 47}</string>
 				<string>{160, 47}</string>
 				<string>{160, 47}</string>
+				<string>{57, 47}</string>
 				<string>{57, 47}</string>
 				<string>{99, 47}</string>
 				<string>{99, 47}</string>

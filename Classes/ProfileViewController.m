@@ -72,7 +72,6 @@
     if ([request responseString]) {
         int photoCount = [[request responseString] intValue];
         if (photoCount > 0) {
-            yourPhotosButton.hidden = NO;
             hasPhotos = YES;
         } else {
             hasPhotos = NO;
@@ -170,7 +169,6 @@
     
     name = nil;
     lastCheckinAddress = nil;
-    nightsOut = nil;
     totalCheckins = nil;
     userIcon = nil;
 }
@@ -180,7 +178,6 @@
 	// e.g. self.myOutlet = nil;
     name = nil;
     lastCheckinAddress = nil;
-    nightsOut = nil;
     totalCheckins = nil;
     userIcon = nil;
 }
@@ -201,7 +198,6 @@
     [name release];
     [location release];
     [lastCheckinAddress release];
-    [nightsOut release];
     [totalCheckins release];
     [userIcon release];
     [pingsAndUpdates release];
@@ -257,7 +253,7 @@
             return 0;
         }
     } else if (indexPath.section == 4) {
-        return 44;
+        return 36;
     } 
     return 44;
 }

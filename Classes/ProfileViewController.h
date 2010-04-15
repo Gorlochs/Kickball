@@ -27,7 +27,6 @@
     IBOutlet UILabel *name;
     IBOutlet UILabel *location;
     IBOutlet UILabel *lastCheckinAddress;
-    IBOutlet UILabel *nightsOut;
     IBOutlet UILabel *totalCheckins;
     IBOutlet UIImageView *userIcon;
     IBOutlet UIButton *pingsAndUpdates;
@@ -40,8 +39,6 @@
     IBOutlet UIButton *twitterButton;
     IBOutlet UIButton *facebookButton;
     
-    IBOutlet UIButton *yourPhotosButton;
-    
     // not sure what these are doing here
     bool isPingOn;
     bool isTwitterOn;
@@ -53,6 +50,8 @@
     IBOutlet UIView *profileOptionsView;
     IBOutlet UIView *profileInfoView;
     IBOutlet UITableViewCell *photoCell;
+    IBOutlet UISwitch *checkinNotificationSwitch;
+    IBOutlet UISwitch *photoNotificationSwitch;
 }
 
 @property (nonatomic, retain) UITableViewCell *badgeCell;
