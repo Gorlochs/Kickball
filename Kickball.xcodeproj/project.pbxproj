@@ -210,34 +210,6 @@
 		6A6F915D11767F700097CFD5 /* crown.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A6F915C11767F700097CFD5 /* crown.png */; };
 		6A72CF34114C8A0000800692 /* FSCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A72CF33114C8A0000800692 /* FSCategory.m */; };
 		6A7610AE116BE92800BF2993 /* AbstractFacebookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A7610AD116BE92800BF2993 /* AbstractFacebookViewController.m */; };
-		6A76123C116D1A7100BF2993 /* FollowersController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A761204116D1A7100BF2993 /* FollowersController.m */; };
-		6A76123D116D1A7100BF2993 /* TweetQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A761206116D1A7100BF2993 /* TweetQueue.m */; };
-		6A76123E116D1A7100BF2993 /* TweetQueueController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A761208116D1A7100BF2993 /* TweetQueueController.m */; };
-		6A76123F116D1A7100BF2993 /* NavigationRotateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A76120A116D1A7100BF2993 /* NavigationRotateController.m */; };
-		6A761240116D1A7100BF2993 /* DirectMessagesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A76120C116D1A7100BF2993 /* DirectMessagesController.m */; };
-		6A761241116D1A7100BF2993 /* RepliesListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A76120E116D1A7100BF2993 /* RepliesListController.m */; };
-		6A761242116D1A7100BF2993 /* MessageListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A761210116D1A7100BF2993 /* MessageListController.m */; };
-		6A761243116D1A7100BF2993 /* TapScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A761212116D1A7100BF2993 /* TapScrollView.m */; };
-		6A761244116D1A7100BF2993 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A761214116D1A7100BF2993 /* WebViewController.m */; };
-		6A761245116D1A7100BF2993 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A761216116D1A7100BF2993 /* UserInfo.m */; };
-		6A761246116D1A7100BF2993 /* ImageLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A761218116D1A7100BF2993 /* ImageLoader.m */; };
-		6A761247116D1A7100BF2993 /* TwitEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A76121A116D1A7100BF2993 /* TwitEditorController.m */; };
-		6A761248116D1A7100BF2993 /* ImagePreview.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A76121C116D1A7100BF2993 /* ImagePreview.m */; };
-		6A761249116D1A7100BF2993 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A76121E116D1A7100BF2993 /* HomeViewController.m */; };
-		6A76124A116D1A7100BF2993 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A761220116D1A7100BF2993 /* MessageViewController.m */; };
-		6A76124B116D1A7100BF2993 /* NewMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A761222116D1A7100BF2993 /* NewMessageController.m */; };
-		6A76124C116D1A7100BF2993 /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A761224116D1A7100BF2993 /* LoginController.m */; };
-		6A76124D116D1A7100BF2993 /* TweetterAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A761226116D1A7100BF2993 /* TweetterAppDelegate.m */; };
-		6A76124E116D1A7100BF2993 /* yFrogImageDownoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A761228116D1A7100BF2993 /* yFrogImageDownoader.m */; };
-		6A76124F116D1A7100BF2993 /* yFrogImageUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A76122A116D1A7100BF2993 /* yFrogImageUploader.m */; };
-		6A761250116D1A7100BF2993 /* MGConnectionWrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A76122C116D1A7100BF2993 /* MGConnectionWrap.m */; };
-		6A761251116D1A7100BF2993 /* MessageUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A76122E116D1A7100BF2993 /* MessageUploader.m */; };
-		6A761252116D1A7100BF2993 /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A761230116D1A7100BF2993 /* ImageViewController.m */; };
-		6A761253116D1A7100BF2993 /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A761232116D1A7100BF2993 /* SettingsController.m */; };
-		6A761254116D1A7100BF2993 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A761234116D1A7100BF2993 /* LocationManager.m */; };
-		6A761255116D1A7100BF2993 /* UserMessageListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A761236116D1A7100BF2993 /* UserMessageListController.m */; };
-		6A761256116D1A7100BF2993 /* AboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A761239116D1A7100BF2993 /* AboutController.m */; };
-		6A761257116D1A7100BF2993 /* TweetPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A76123B116D1A7100BF2993 /* TweetPlayer.m */; };
 		6A7612CB116D1BF900BF2993 /* defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6A7612CA116D1BF900BF2993 /* defaults.plist */; };
 		6A79D0D710E5E682009082E5 /* PopupMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A79D0D610E5E682009082E5 /* PopupMessageView.m */; };
 		6A79D0D910E5E692009082E5 /* PopupMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A79D0D810E5E692009082E5 /* PopupMessageView.xib */; };
@@ -298,7 +270,6 @@
 		6AD0C28F113F0CBA00A971E3 /* MockPhotoSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD0C28E113F0CBA00A971E3 /* MockPhotoSource.m */; };
 		6AD4739711738DFD003CAA34 /* FriendsListView_v2.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6AD4739611738DFD003CAA34 /* FriendsListView_v2.xib */; };
 		6AD5B0FC116D1FA3008671FD /* util.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD5B0FB116D1FA3008671FD /* util.m */; };
-		6AD5B11B116D209B008671FD /* SelectImageSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD5B11A116D209B008671FD /* SelectImageSource.m */; };
 		6AD5B18B116D27A0008671FD /* UIAlertView+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD5B144116D27A0008671FD /* UIAlertView+Helper.m */; };
 		6AD5B18C116D27A0008671FD /* jQueryInject.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6AD5B147116D27A0008671FD /* jQueryInject.txt */; };
 		6AD5B18D116D27A0008671FD /* jQueryInjectLandscape.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6AD5B148116D27A0008671FD /* jQueryInjectLandscape.txt */; };
@@ -787,63 +758,6 @@
 		6A72CF33114C8A0000800692 /* FSCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCategory.m; sourceTree = "<group>"; };
 		6A7610AC116BE92800BF2993 /* AbstractFacebookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractFacebookViewController.h; sourceTree = "<group>"; };
 		6A7610AD116BE92800BF2993 /* AbstractFacebookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractFacebookViewController.m; sourceTree = "<group>"; };
-		6A761203116D1A7100BF2993 /* FollowersController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowersController.h; sourceTree = "<group>"; };
-		6A761204116D1A7100BF2993 /* FollowersController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowersController.m; sourceTree = "<group>"; };
-		6A761205116D1A7100BF2993 /* TweetQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetQueue.h; sourceTree = "<group>"; };
-		6A761206116D1A7100BF2993 /* TweetQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetQueue.m; sourceTree = "<group>"; };
-		6A761207116D1A7100BF2993 /* TweetQueueController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetQueueController.h; sourceTree = "<group>"; };
-		6A761208116D1A7100BF2993 /* TweetQueueController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetQueueController.m; sourceTree = "<group>"; };
-		6A761209116D1A7100BF2993 /* NavigationRotateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationRotateController.h; sourceTree = "<group>"; };
-		6A76120A116D1A7100BF2993 /* NavigationRotateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationRotateController.m; sourceTree = "<group>"; };
-		6A76120B116D1A7100BF2993 /* DirectMessagesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectMessagesController.h; sourceTree = "<group>"; };
-		6A76120C116D1A7100BF2993 /* DirectMessagesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectMessagesController.m; sourceTree = "<group>"; };
-		6A76120D116D1A7100BF2993 /* RepliesListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepliesListController.h; sourceTree = "<group>"; };
-		6A76120E116D1A7100BF2993 /* RepliesListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepliesListController.m; sourceTree = "<group>"; };
-		6A76120F116D1A7100BF2993 /* MessageListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageListController.h; sourceTree = "<group>"; };
-		6A761210116D1A7100BF2993 /* MessageListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageListController.m; sourceTree = "<group>"; };
-		6A761211116D1A7100BF2993 /* TapScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapScrollView.h; sourceTree = "<group>"; };
-		6A761212116D1A7100BF2993 /* TapScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TapScrollView.m; sourceTree = "<group>"; };
-		6A761213116D1A7100BF2993 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
-		6A761214116D1A7100BF2993 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
-		6A761215116D1A7100BF2993 /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
-		6A761216116D1A7100BF2993 /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
-		6A761217116D1A7100BF2993 /* ImageLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageLoader.h; sourceTree = "<group>"; };
-		6A761218116D1A7100BF2993 /* ImageLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageLoader.m; sourceTree = "<group>"; };
-		6A761219116D1A7100BF2993 /* TwitEditorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitEditorController.h; sourceTree = "<group>"; };
-		6A76121A116D1A7100BF2993 /* TwitEditorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitEditorController.m; sourceTree = "<group>"; };
-		6A76121B116D1A7100BF2993 /* ImagePreview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePreview.h; sourceTree = "<group>"; };
-		6A76121C116D1A7100BF2993 /* ImagePreview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePreview.m; sourceTree = "<group>"; };
-		6A76121D116D1A7100BF2993 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
-		6A76121E116D1A7100BF2993 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
-		6A76121F116D1A7100BF2993 /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
-		6A761220116D1A7100BF2993 /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
-		6A761221116D1A7100BF2993 /* NewMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewMessageController.h; sourceTree = "<group>"; };
-		6A761222116D1A7100BF2993 /* NewMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewMessageController.m; sourceTree = "<group>"; };
-		6A761223116D1A7100BF2993 /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginController.h; sourceTree = "<group>"; };
-		6A761224116D1A7100BF2993 /* LoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginController.m; sourceTree = "<group>"; };
-		6A761225116D1A7100BF2993 /* TweetterAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetterAppDelegate.h; sourceTree = "<group>"; };
-		6A761226116D1A7100BF2993 /* TweetterAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetterAppDelegate.m; sourceTree = "<group>"; };
-		6A761227116D1A7100BF2993 /* yFrogImageDownoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yFrogImageDownoader.h; sourceTree = "<group>"; };
-		6A761228116D1A7100BF2993 /* yFrogImageDownoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = yFrogImageDownoader.m; sourceTree = "<group>"; };
-		6A761229116D1A7100BF2993 /* yFrogImageUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yFrogImageUploader.h; sourceTree = "<group>"; };
-		6A76122A116D1A7100BF2993 /* yFrogImageUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = yFrogImageUploader.m; sourceTree = "<group>"; };
-		6A76122B116D1A7100BF2993 /* MGConnectionWrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGConnectionWrap.h; sourceTree = "<group>"; };
-		6A76122C116D1A7100BF2993 /* MGConnectionWrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGConnectionWrap.m; sourceTree = "<group>"; };
-		6A76122D116D1A7100BF2993 /* MessageUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageUploader.h; sourceTree = "<group>"; };
-		6A76122E116D1A7100BF2993 /* MessageUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageUploader.m; sourceTree = "<group>"; };
-		6A76122F116D1A7100BF2993 /* ImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewController.h; sourceTree = "<group>"; };
-		6A761230116D1A7100BF2993 /* ImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewController.m; sourceTree = "<group>"; };
-		6A761231116D1A7100BF2993 /* SettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsController.h; sourceTree = "<group>"; };
-		6A761232116D1A7100BF2993 /* SettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsController.m; sourceTree = "<group>"; };
-		6A761233116D1A7100BF2993 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
-		6A761234116D1A7100BF2993 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
-		6A761235116D1A7100BF2993 /* UserMessageListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMessageListController.h; sourceTree = "<group>"; };
-		6A761236116D1A7100BF2993 /* UserMessageListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMessageListController.m; sourceTree = "<group>"; };
-		6A761237116D1A7100BF2993 /* TwitterConnectionProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterConnectionProtocol.h; sourceTree = "<group>"; };
-		6A761238116D1A7100BF2993 /* AboutController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutController.h; sourceTree = "<group>"; };
-		6A761239116D1A7100BF2993 /* AboutController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutController.m; sourceTree = "<group>"; };
-		6A76123A116D1A7100BF2993 /* TweetPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetPlayer.h; sourceTree = "<group>"; };
-		6A76123B116D1A7100BF2993 /* TweetPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetPlayer.m; sourceTree = "<group>"; };
 		6A7612CA116D1BF900BF2993 /* defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = defaults.plist; sourceTree = "<group>"; };
 		6A7612CF116D1CAD00BF2993 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = English; path = English.lproj/About.xib; sourceTree = "<group>"; };
 		6A7612D1116D1CC000BF2993 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = English; path = English.lproj/ImageView.xib; sourceTree = "<group>"; };
@@ -955,8 +869,6 @@
 		6AD4739611738DFD003CAA34 /* FriendsListView_v2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendsListView_v2.xib; sourceTree = "<group>"; };
 		6AD5B0FA116D1FA3008671FD /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = util.h; sourceTree = "<group>"; };
 		6AD5B0FB116D1FA3008671FD /* util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = util.m; sourceTree = "<group>"; };
-		6AD5B119116D209B008671FD /* SelectImageSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectImageSource.h; sourceTree = "<group>"; };
-		6AD5B11A116D209B008671FD /* SelectImageSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectImageSource.m; sourceTree = "<group>"; };
 		6AD5B143116D27A0008671FD /* UIAlertView+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Helper.h"; sourceTree = "<group>"; };
 		6AD5B144116D27A0008671FD /* UIAlertView+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Helper.m"; sourceTree = "<group>"; };
 		6AD5B147116D27A0008671FD /* jQueryInject.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = jQueryInject.txt; sourceTree = "<group>"; };
@@ -1826,65 +1738,6 @@
 		6A761186116D189D00BF2993 /* Tweetero */ = {
 			isa = PBXGroup;
 			children = (
-				6AD5B119116D209B008671FD /* SelectImageSource.h */,
-				6AD5B11A116D209B008671FD /* SelectImageSource.m */,
-				6A761203116D1A7100BF2993 /* FollowersController.h */,
-				6A761204116D1A7100BF2993 /* FollowersController.m */,
-				6A761205116D1A7100BF2993 /* TweetQueue.h */,
-				6A761206116D1A7100BF2993 /* TweetQueue.m */,
-				6A761207116D1A7100BF2993 /* TweetQueueController.h */,
-				6A761208116D1A7100BF2993 /* TweetQueueController.m */,
-				6A761209116D1A7100BF2993 /* NavigationRotateController.h */,
-				6A76120A116D1A7100BF2993 /* NavigationRotateController.m */,
-				6A76120B116D1A7100BF2993 /* DirectMessagesController.h */,
-				6A76120C116D1A7100BF2993 /* DirectMessagesController.m */,
-				6A76120D116D1A7100BF2993 /* RepliesListController.h */,
-				6A76120E116D1A7100BF2993 /* RepliesListController.m */,
-				6A76120F116D1A7100BF2993 /* MessageListController.h */,
-				6A761210116D1A7100BF2993 /* MessageListController.m */,
-				6A761211116D1A7100BF2993 /* TapScrollView.h */,
-				6A761212116D1A7100BF2993 /* TapScrollView.m */,
-				6A761213116D1A7100BF2993 /* WebViewController.h */,
-				6A761214116D1A7100BF2993 /* WebViewController.m */,
-				6A761215116D1A7100BF2993 /* UserInfo.h */,
-				6A761216116D1A7100BF2993 /* UserInfo.m */,
-				6A761217116D1A7100BF2993 /* ImageLoader.h */,
-				6A761218116D1A7100BF2993 /* ImageLoader.m */,
-				6A761219116D1A7100BF2993 /* TwitEditorController.h */,
-				6A76121A116D1A7100BF2993 /* TwitEditorController.m */,
-				6A76121B116D1A7100BF2993 /* ImagePreview.h */,
-				6A76121C116D1A7100BF2993 /* ImagePreview.m */,
-				6A76121D116D1A7100BF2993 /* HomeViewController.h */,
-				6A76121E116D1A7100BF2993 /* HomeViewController.m */,
-				6A76121F116D1A7100BF2993 /* MessageViewController.h */,
-				6A761220116D1A7100BF2993 /* MessageViewController.m */,
-				6A761221116D1A7100BF2993 /* NewMessageController.h */,
-				6A761222116D1A7100BF2993 /* NewMessageController.m */,
-				6A761223116D1A7100BF2993 /* LoginController.h */,
-				6A761224116D1A7100BF2993 /* LoginController.m */,
-				6A761225116D1A7100BF2993 /* TweetterAppDelegate.h */,
-				6A761226116D1A7100BF2993 /* TweetterAppDelegate.m */,
-				6A761227116D1A7100BF2993 /* yFrogImageDownoader.h */,
-				6A761228116D1A7100BF2993 /* yFrogImageDownoader.m */,
-				6A761229116D1A7100BF2993 /* yFrogImageUploader.h */,
-				6A76122A116D1A7100BF2993 /* yFrogImageUploader.m */,
-				6A76122B116D1A7100BF2993 /* MGConnectionWrap.h */,
-				6A76122C116D1A7100BF2993 /* MGConnectionWrap.m */,
-				6A76122D116D1A7100BF2993 /* MessageUploader.h */,
-				6A76122E116D1A7100BF2993 /* MessageUploader.m */,
-				6A76122F116D1A7100BF2993 /* ImageViewController.h */,
-				6A761230116D1A7100BF2993 /* ImageViewController.m */,
-				6A761231116D1A7100BF2993 /* SettingsController.h */,
-				6A761232116D1A7100BF2993 /* SettingsController.m */,
-				6A761233116D1A7100BF2993 /* LocationManager.h */,
-				6A761234116D1A7100BF2993 /* LocationManager.m */,
-				6A761235116D1A7100BF2993 /* UserMessageListController.h */,
-				6A761236116D1A7100BF2993 /* UserMessageListController.m */,
-				6A761237116D1A7100BF2993 /* TwitterConnectionProtocol.h */,
-				6A761238116D1A7100BF2993 /* AboutController.h */,
-				6A761239116D1A7100BF2993 /* AboutController.m */,
-				6A76123A116D1A7100BF2993 /* TweetPlayer.h */,
-				6A76123B116D1A7100BF2993 /* TweetPlayer.m */,
 			);
 			name = Tweetero;
 			sourceTree = "<group>";
@@ -2716,36 +2569,7 @@
 				6A86F6A0116AE008000BF6C6 /* FBStreamDialog.m in Sources */,
 				6A86F6AA116AF376000BF6C6 /* KBFacebookSearchViewController.m in Sources */,
 				6A7610AE116BE92800BF2993 /* AbstractFacebookViewController.m in Sources */,
-				6A76123C116D1A7100BF2993 /* FollowersController.m in Sources */,
-				6A76123D116D1A7100BF2993 /* TweetQueue.m in Sources */,
-				6A76123E116D1A7100BF2993 /* TweetQueueController.m in Sources */,
-				6A76123F116D1A7100BF2993 /* NavigationRotateController.m in Sources */,
-				6A761240116D1A7100BF2993 /* DirectMessagesController.m in Sources */,
-				6A761241116D1A7100BF2993 /* RepliesListController.m in Sources */,
-				6A761242116D1A7100BF2993 /* MessageListController.m in Sources */,
-				6A761243116D1A7100BF2993 /* TapScrollView.m in Sources */,
-				6A761244116D1A7100BF2993 /* WebViewController.m in Sources */,
-				6A761245116D1A7100BF2993 /* UserInfo.m in Sources */,
-				6A761246116D1A7100BF2993 /* ImageLoader.m in Sources */,
-				6A761247116D1A7100BF2993 /* TwitEditorController.m in Sources */,
-				6A761248116D1A7100BF2993 /* ImagePreview.m in Sources */,
-				6A761249116D1A7100BF2993 /* HomeViewController.m in Sources */,
-				6A76124A116D1A7100BF2993 /* MessageViewController.m in Sources */,
-				6A76124B116D1A7100BF2993 /* NewMessageController.m in Sources */,
-				6A76124C116D1A7100BF2993 /* LoginController.m in Sources */,
-				6A76124D116D1A7100BF2993 /* TweetterAppDelegate.m in Sources */,
-				6A76124E116D1A7100BF2993 /* yFrogImageDownoader.m in Sources */,
-				6A76124F116D1A7100BF2993 /* yFrogImageUploader.m in Sources */,
-				6A761250116D1A7100BF2993 /* MGConnectionWrap.m in Sources */,
-				6A761251116D1A7100BF2993 /* MessageUploader.m in Sources */,
-				6A761252116D1A7100BF2993 /* ImageViewController.m in Sources */,
-				6A761253116D1A7100BF2993 /* SettingsController.m in Sources */,
-				6A761254116D1A7100BF2993 /* LocationManager.m in Sources */,
-				6A761255116D1A7100BF2993 /* UserMessageListController.m in Sources */,
-				6A761256116D1A7100BF2993 /* AboutController.m in Sources */,
-				6A761257116D1A7100BF2993 /* TweetPlayer.m in Sources */,
 				6AD5B0FC116D1FA3008671FD /* util.m in Sources */,
-				6AD5B11B116D209B008671FD /* SelectImageSource.m in Sources */,
 				6AD5B18B116D27A0008671FD /* UIAlertView+Helper.m in Sources */,
 				6AD5B18E116D27A0008671FD /* XAuthTwitterEngine.m in Sources */,
 				6AD5B332116D2F26008671FD /* MGTwitterEngine.m in Sources */,
