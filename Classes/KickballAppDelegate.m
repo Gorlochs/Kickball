@@ -27,35 +27,9 @@
 @synthesize deviceAlias;
 @synthesize pushNotificationUserId;
 
-- (void) moviePlayBackDidFinish:(NSNotification*)notification {
-    [mMoviePlayer release];
-    [[UIApplication sharedApplication] setStatusBarHidden:NO];
-}
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {    
-//    NSURL* mMovieURL;
-//    NSBundle *bundle = [NSBundle mainBundle];
-//    if (bundle) 
-//    {
-//        NSString *moviePath = [bundle pathForResource:@"landscape_intro" ofType:@"m4v"];
-//        if (moviePath)
-//        {
-//            mMovieURL = [NSURL fileURLWithPath:moviePath];
-//            [mMovieURL retain];
-//        }
-//    }
-//	mMoviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:mMovieURL];
-//    mMoviePlayer.movieControlMode = MPMovieControlModeHidden;
-//    [mMovieURL release];
-//    [[UIApplication sharedApplication] setStatusBarHidden:YES];
-//    
-//    [[NSNotificationCenter defaultCenter] addObserver:self 
-//											 selector:@selector(moviePlayBackDidFinish:) 
-//												 name:MPMoviePlayerPlaybackDidFinishNotification 
-//											   object:mMoviePlayer];
-//	[mMoviePlayer play];
-    
-    // Override point for customization after app launch    
+
     //[window addSubview:viewController.view];
     [window addSubview:navigationController.view];
     [window makeKeyAndVisible];
@@ -84,34 +58,12 @@
     
     [manager release];
     
-    //[[FoursquareAPI sharedInstance] doFoursquareApiTest:self andAction:@selector(apiTestResponseReceived:withResponseString:)];
-//    NSError *error = nil;
-//    NSString *apiTestResponse = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/test"] encoding:NSASCIIStringEncoding error:&error];
-//    NSLog(@"api test error: %@", error);
-//    NSLog(@"api test response: %@", apiTestResponse);
-//    if (error || [apiTestResponse rangeOfString:@"ok"].length == NSNotFound) {
-//        UIAlertView *apiAlert = [[UIAlertView alloc] initWithTitle:@"Foursquare is Down" message:@"We're sorry. It looks like FourSquare servers are down temporarily. Please try again in a few minutes." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//        [apiAlert show];
-//        [apiAlert release];
-//    }
-    
     [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(reachabilityChanged:) name: kReachabilityChangedNotification object: nil];
 	hostReach = [[Reachability reachabilityWithHostName: @"apple.com"] retain];
-//	hostReach = [[Reachability reachabilityWithHostName: @"api.foursquare.com/v1/test"] retain];
 	[hostReach startNotifer];
     
     [self checkForEmergencyMessage];
 }
-
-//- (void)apiTestResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-//    NSLog(@"api test response: %@", inString);
-//    BOOL isTestSuccessful = [FoursquareAPI simpleBooleanFromResponseXML:inString];
-//    if (!isTestSuccessful) {
-//        UIAlertView *apiAlert = [[UIAlertView alloc] initWithTitle:@"Foursquare is Down" message:@"We're sorry. It looks like FourSquare servers are down temporarily. Please try again in a few minutes." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//        [apiAlert show];
-//        [apiAlert release];
-//    }
-//}
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     [[KBLocationManager locationManager] stopUpdates];
@@ -367,6 +319,10 @@
         [self displayPopupMessage:message];
         [message release];
 	}
+}
+
+- (void) switchToTwitter {
+    [window addSubview:twitterNavigationController.view];
 }
 
 - (void)dealloc {

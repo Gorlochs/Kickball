@@ -407,4 +407,9 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
     }
 }
 
+- (void) switchToTwitter {
+    KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
+    [appDelegate switchToTwitter];
+}
+
 @end

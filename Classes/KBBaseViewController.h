@@ -89,5 +89,6 @@ extern const NSString *kickballDomain;
 - (void) refreshTable;
 - (void) dataSourceDidFinishLoadingNewData;
 - (void) displayProperProfileView:(NSString*)userId;
+- (IBAction) switchToTwitter;
 
 @end

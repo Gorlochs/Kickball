@@ -21,7 +21,6 @@
 #import "LoginViewModalController.h"
 #import "Utilities.h"
 #import "FriendRequestsViewController.h"
-#import "KickballAppDelegate.h"
 #import "XAuthTwitterEngineViewController.h"
 #import "TableSectionHeaderView.h"
 

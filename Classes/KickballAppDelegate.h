@@ -23,6 +23,7 @@
     UIWindow *window;
     FriendsListViewController *viewController;
     UINavigationController *navigationController;
+    UINavigationController *twitterNavigationController;
     FSUser *user;
 	NSString *deviceToken;
 	NSString *deviceAlias;
@@ -35,13 +36,12 @@
     KBPushNotificationView *pushView;
     NSDictionary *pushUserInfo;
     PopupMessageView *popupView;
-    
-    MPMoviePlayerController * mMoviePlayer;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet FriendsListViewController *viewController;
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
+@property (nonatomic, retain) IBOutlet UINavigationController *twitterNavigationController;
 @property (nonatomic, retain) IBOutlet FSUser *user;
 @property (nonatomic, retain) NSString *deviceToken;
 @property (nonatomic, retain) NSString *deviceAlias;
@@ -51,5 +51,6 @@
 - (void) displayPushNotificationView:(NSNotification *)inNotification;
 - (void) displayPopupMessage:(KBMessage*)message;
 - (void) checkForEmergencyMessage;
+- (void) switchToTwitter;
 
 @end
