@@ -19,13 +19,8 @@
     IBOutlet UITableViewCell *checkinCell;
     IBOutlet KBPhotoThumbnailCell *giftCell;
     IBOutlet UITableViewCell *mayorMapCell;
-    IBOutlet UITableViewCell *pointsCell;
-    IBOutlet UITableViewCell *badgeCell;
-    IBOutlet UITableViewCell *newMayorCell;
-    IBOutlet UITableViewCell *stillTheMayorCell;
     IBOutlet UITableViewCell *bottomButtonCell;
     IBOutlet UITableViewCell *detailButtonCell;
-    IBOutlet UITableViewCell *shoutCell;
     IBOutlet MKMapView *smallMapView;
     IBOutlet MKMapView *fullMapView;
     
@@ -33,10 +28,6 @@
     IBOutlet UILabel *venueAddress;
     IBOutlet UILabel *mayorNameLabel;
     IBOutlet UILabel *mayorCheckinCountLabel;
-    IBOutlet UILabel *badgeLabel;
-    IBOutlet UILabel *badgeTitleLabel;
-    IBOutlet UILabel *newMayorshipLabel;
-    IBOutlet UILabel *stillTheMayorLabel;
     
     IBOutlet UIImageView *badgeImage;
     
@@ -49,7 +40,6 @@
     IBOutlet UIButton *phoneButton;
     IBOutlet UIButton *choosePhotoButton;
     IBOutlet UIImageView *noMayorImage;
-    IBOutlet UIImageView *mayorOverlay;
     IBOutlet UIImageView *mayorArrow;
     IBOutlet UIImageView *mayorCrown;
     

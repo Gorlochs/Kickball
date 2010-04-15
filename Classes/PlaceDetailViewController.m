@@ -90,6 +90,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     venueName.text = @"";
     venueAddress.text = @"";
     distanceAndNumCheckinsLabel.text = @"";
+    smallMapView.layer.cornerRadius = 4;
     
     // pull this up into a method (or property)
     FSUser *tmpUser = [self getAuthenticatedUser];
@@ -301,12 +302,10 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         mayorNameLabel.text = venueToDisplay.mayor.firstnameLastInitial;
         mayorCheckinCountLabel.text = [NSString stringWithFormat:@"Mayor, %d check-ins", venueToDisplay.mayorCount];
         noMayorImage.hidden = YES;
-        mayorOverlay.hidden = NO;
         mayorArrow.hidden = NO;
         mayorCrown.hidden = NO;
     } else {
         noMayorImage.hidden = NO;
-        mayorOverlay.hidden = YES;
         mayorArrow.hidden = YES;
         mayorCrown.hidden = YES;
     }
@@ -325,10 +324,6 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 	
 	// Release any cached data, images, etc that aren't in use.
     fullMapView = nil;
-    badgeCell = nil;
-    newMayorCell = nil;
-    pointsCell = nil;
-    stillTheMayorCell = nil;
     badgeImage = nil;
     //smallMapView = nil;
 }
@@ -336,10 +331,6 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 - (void)viewDidUnload {
 	// Release any retained subviews of the main view.
     fullMapView = nil;
-    badgeCell = nil;
-    newMayorCell = nil;
-    pointsCell = nil;
-    stillTheMayorCell = nil;
     badgeImage = nil;
     smallMapView = nil;
     
@@ -347,51 +338,34 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     checkinCell = nil;
     giftCell = nil;
     mayorMapCell = nil;
-    pointsCell = nil;
-    badgeCell = nil;
-    newMayorCell = nil;
-    stillTheMayorCell = nil;
     bottomButtonCell = nil;
     detailButtonCell = nil;
-    shoutCell = nil;
     
     mayorNameLabel = nil;
     mayorCheckinCountLabel = nil;
-    badgeLabel = nil;
-    badgeTitleLabel = nil;
-    newMayorshipLabel = nil;
-    stillTheMayorLabel = nil;
 }
 
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 10;
+    return 6;
 }
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 0) { // shout
-        return isUserCheckedIn;
-    } else if (section == 1) { // points
-        return isUserCheckedIn;
-    } else if (section == 2) { // badge
-        return isUserCheckedIn && [[self getSingleCheckin].badges count] > 0;
-    } else if (section == 3) { // checkin mayor
-        return [self hasMayorCell];
-    } else if (section == 4) { // checkin
-        return 0; // checkin buttons pulled out of table
+    if (section == 0) { // checkin
+        return 1; // checkin buttons pulled out of table
         //return !isUserCheckedIn;
-    } else if (section == 5) { // mayor & map cell
+    } else if (section == 1) { // mayor & map cell
         return ![self isNewMayor];
-    } else if (section == 6) { // gift
-        return 1;
-    } else if (section == 7) { // people here
+    } else if (section == 2) { // people here
         return [venue.currentCheckins count];
-    } else if (section == 8) { // tips
-        return [venue.tips count];
-    } else if (section == 9) { // bottom button row
+    } else if (section == 3) { // gift/photos
         return 1;
+    } else if (section == 4) { // venue buttons
+        return 1;
+    } else if (section == 5) { // tips
+        return [venue.tips count];
     } else {
         return 0;
     }
@@ -410,42 +384,12 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     
     // Set up the cell...
     if (indexPath.section == 0) {
-        return shoutCell;
+        //return nil;
+        return checkinCell;
     } else if (indexPath.section == 1) {
-        return pointsCell;
-    } else if (indexPath.section == 2) {
-        FSBadge *badge = (FSBadge*)[[self getSingleCheckin].badges objectAtIndex:0];
-        badgeImage.image = [[Utilities sharedInstance] getCachedImage:badge.icon];
-        badgeLabel.text = badge.badgeDescription;
-        badgeLabel.numberOfLines = 2;
-        badgeTitleLabel.text = badge.badgeName;
-        return badgeCell;
-    } else if (indexPath.section == 3) {
-        if ([self getSingleCheckin].mayor.user == nil
-                && [[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"nochange"]) {
-            
-            newMayorshipLabel.text = [NSString stringWithFormat:@"You're still the mayor of %@!", venue.name];
-            return newMayorCell;
-        } else if ([[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"stolen"] || [[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"new"]) {
-            if ([[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"stolen"]) {
-                newMayorshipLabel.text = [NSString stringWithFormat:@"Congrats! %@ is yours with %d check-ins and %@ lost their crown.", 
-                                          [self getSingleCheckin].venue.name, 
-                                          [self getSingleCheckin].mayor.numCheckins, 
-                                          [self getSingleCheckin].mayor.user.firstnameLastInitial];
-            } else {
-                newMayorshipLabel.text = [self getSingleCheckin].mayor.mayorCheckinMessage;
-            }
-            return newMayorCell;
-        }
-    } else if (indexPath.section == 4) {
-        return nil;
-        //return checkinCell;
-    } else if (indexPath.section == 5) {
         mayorMapCell.backgroundColor = [UIColor whiteColor];
         return mayorMapCell;
-    } else if (indexPath.section == 6) {
-        return giftCell;
-    } else if (indexPath.section == 7) {
+    } else if (indexPath.section == 2) {
         if (indexPath.row < [venue.currentCheckins count]) {
             cell.detailTextLabel.numberOfLines = 1;
             cell.detailTextLabel.text = nil;
@@ -463,7 +407,11 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
             ttImage.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
             [cell.imageView addSubview:ttImage];
         }
-    } else if (indexPath.section == 8) {
+    } else if (indexPath.section == 3) {
+        return giftCell;
+    } else if (indexPath.section == 4) {
+        return bottomButtonCell;
+    } else if (indexPath.section == 5) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         FSTip *tip = (FSTip*) [venue.tips objectAtIndex:indexPath.row];
         cell.textLabel.font = [UIFont boldSystemFontOfSize:12];
@@ -471,14 +419,12 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         //cell.detailTextLabel.numberOfLines = 2;
         cell.detailTextLabel.text = tip.text;
         cell.imageView.image = nil;
-    } else if (indexPath.section == 9) {
-        return bottomButtonCell;
     }
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section != 5) {
+    if (indexPath.section != 1) {
         [cell setBackgroundColor:[UIColor colorWithWhite:0.9 alpha:1.0]];  
     }
 }
@@ -486,37 +432,26 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.section) {
         case 0:
-            return 44;
-        case 1:
-            return 36;
-        case 2:
-            return 66;
-        case 3:
-            return 221;
-        case 4:
             return 37;
-        case 5: // mayor-map cell
+        case 1: // mayor-map cell
             return 69;
-        case 6: // photos
+        case 3: // photos
             if ([goodies count] == 0) {
                 return 102;
             } else {
                 return THUMBNAIL_IMAGE_SIZE;
             }
-        case 7:
-            return 44;
-        case 8:
-            return 44;
-        case 9:
-            return 44;
+        case 2:
+        case 4:
+        case 5:
         default:
             return 44;
     }
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (section == 6) { // photos
-        return 38;
+    if (section == 3) { // photos
+        return 40;
     }
 	return 30.0;
 }
@@ -529,14 +464,18 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     switch (section) {
         case 0:
         case 1:
-        case 2:
-        case 3:
-        case 4:
-        case 5:
             [headerView release];
             return nil;
             break;
-        case 6:
+        case 2:
+            if (venue.hereNow == 0 ) {
+                [headerView release];
+                return nil;
+            } else {
+                headerView.leftHeaderLabel.text = [NSString stringWithFormat:@"%d %@ Here", venue.hereNow, venue.hereNow == 1 ? @"Person" : @"People"];
+            }
+            break;
+        case 3: 
             if ([goodies count] == 0) {
                 [headerView release];
                 return nil;
@@ -545,25 +484,17 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
                 return photoHeaderView;   
             }
             break;
-        case 7:
-            if (venue.hereNow == 0 ) {
-                [headerView release];
-                return nil;
-            } else {
-                headerView.leftHeaderLabel.text = [NSString stringWithFormat:@"%d %@ Here", venue.hereNow, venue.hereNow == 1 ? @"Person" : @"People"];
-            }
+        case 4:
+            [headerView release];
+            return nil;
             break;
-        case 8:
+        case 5:  
             if ([venue.tips count] == 0) {
                 [headerView release];
                 return nil;
             } else {
                 headerView.leftHeaderLabel.text = [NSString stringWithFormat:@"%d %@", [venue.tips count], [venue.tips count] == 1 ? @"Tip" : @"Tips"];
             }
-            break;
-        case 9:  
-            [headerView release];
-            return nil;
             break;
         default:
             headerView.leftHeaderLabel.text = @"You shouldn't see this";
@@ -573,14 +504,14 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 5) {
+    if (indexPath.section == 1) {
         [self pushProfileDetailController:venue.mayor.userId];
-    } else if (indexPath.section == 7) {
+    } else if (indexPath.section == 2) {
         if (indexPath.row < [venue.currentCheckins count]) {
             FSCheckin *tmpCheckin = ((FSCheckin*)[venue.currentCheckins objectAtIndex:indexPath.row]);
             [self pushProfileDetailController:tmpCheckin.user.userId];
         }
-    } else if (indexPath.section == 8) {
+    } else if (indexPath.section == 5) {
         FSTip *tip = ((FSTip*)[venue.tips objectAtIndex:indexPath.row]);
         TipDetailViewController *tipController = [[TipDetailViewController alloc] initWithNibName:@"TipView" bundle:nil];
         tipController.tip = tip;
@@ -604,13 +535,8 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     [mayorMapCell release];
     [checkinCell release];
     [giftCell release];
-    [pointsCell release];
-    [badgeCell release];
-    [newMayorCell release];
-    [stillTheMayorCell release];
     [bottomButtonCell release];
     [detailButtonCell release];
-    [shoutCell release];
     [smallMapView release];
     [fullMapView release];
     
@@ -618,10 +544,6 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     [venueAddress release];
     [mayorNameLabel release];
     [mayorCheckinCountLabel release];
-    [badgeLabel release];
-    [badgeTitleLabel release];
-    [newMayorshipLabel release];
-    [stillTheMayorLabel release];
     
     [badgeImage release];
     
@@ -639,7 +561,6 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     [goodies release];
     [photoSource release];
     
-    [mayorOverlay release];
     [mayorCrown release];
     [mayorArrow release];
     [photoHeaderLabel release];
