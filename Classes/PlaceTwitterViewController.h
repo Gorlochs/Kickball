@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "MGTwitterEngineDelegate.h"
-#import "KBBaseViewController.h"
+#import "KBFoursquareViewController.h"
 
 
-@interface PlaceTwitterViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource, MGTwitterEngineDelegate> {
+@interface PlaceTwitterViewController : KBFoursquareViewController <UITableViewDelegate, UITableViewDataSource, MGTwitterEngineDelegate> {
     NSString *twitterName;
     NSArray *twitterStatuses;
     NSString *venueName;

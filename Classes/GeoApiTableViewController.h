@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "KBBaseViewController.h"
+#import "KBFoursquareViewController.h"
 
-@interface GeoApiTableViewController : KBBaseViewController {
+@interface GeoApiTableViewController : KBFoursquareViewController {
     NSArray *geoAPIResults;
 }
 

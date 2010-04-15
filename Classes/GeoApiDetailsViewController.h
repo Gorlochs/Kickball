@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "KBBaseViewController.h"
+#import "KBFoursquareViewController.h"
 #import "GAConnectionDelegate.h"
 #import "GAPlace.h"
 
 
-@interface GeoApiDetailsViewController : KBBaseViewController <GAConnectionDelegate, UITextFieldDelegate> {
+@interface GeoApiDetailsViewController : KBFoursquareViewController <GAConnectionDelegate, UITextFieldDelegate> {
     GAPlace *place;
     
     IBOutlet UILabel *venueName;

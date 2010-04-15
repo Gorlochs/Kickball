@@ -39,8 +39,6 @@
 
 @synthesize userId, badgeCell;
 
-
- // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     hideFooter = YES;
     pageType = KBPageTypeOther;
@@ -63,15 +61,6 @@
     [[Beacon shared] startSubBeaconWithName:@"Profile"];
 
     [self retrieveUserPhotos];
-    
-//    NSString *gorlochUrlString = [NSString stringWithFormat:@"%@/gifts/owner_count/%@.txt", kickballDomain, userId];
-//    ASIHTTPRequest *gorlochRequest = [[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:gorlochUrlString]] autorelease];
-//    
-//    [gorlochRequest setDidFailSelector:@selector(photoCountRequestWentWrong:)];
-//    [gorlochRequest setDidFinishSelector:@selector(photoCountRequestDidFinish:)];
-//    [gorlochRequest setTimeOutSeconds:500];
-//    [gorlochRequest setDelegate:self];
-//    [gorlochRequest startAsynchronous];
 }
 
 - (void) photoCountRequestWentWrong:(ASIHTTPRequest *) request {
@@ -230,7 +219,7 @@
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 4;
+    return 5;
 }
 
 
@@ -247,29 +236,29 @@
     } else if (section == 2) { // mayor
         return [user.mayorOf count];
     } else if (section == 3) { // badges
-        return 2;
+        return 1;
+    } else if (section == 4) { // badges
+        return 1;
     }
     return 1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        return 43;
+        return 55;
     } else if (indexPath.section == 1) {
         return 72;
     } else if (indexPath.section == 2) {
         return 53;
     } else if (indexPath.section == 3) {
-        if (indexPath.row == 0) {
-            if ([user.badges count] > 0) {
-                return 72 * (([user.badges count]+BADGES_PER_ROW-1)/BADGES_PER_ROW) + 10;
-            } else {
-                return 0;
-            }
-        } else if (indexPath.row == 1) {
-            return 42;
+        if ([user.badges count] > 0) {
+            return 72 * (([user.badges count]+BADGES_PER_ROW-1)/BADGES_PER_ROW) + 10;
+        } else {
+            return 0;
         }
-    }
+    } else if (indexPath.section == 4) {
+        return 44;
+    } 
     return 44;
 }
 
@@ -280,27 +269,12 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        if (indexPath.section == 0) {
-            return [self determineWhichFriendCellToDisplay:user.friendStatus];
-        } else if (indexPath.section == 1) {
-            //cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-        } else if (indexPath.section == 2) {
-            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
-            cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        } else {
-            if (indexPath.row == 0) {
-                return badgeCell;
-            } else {
-                cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-                cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-                cell.textLabel.adjustsFontSizeToFitWidth = YES;
-            }
-        }
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.textLabel.adjustsFontSizeToFitWidth = YES;
     }
     
-    // Set up the cell...
     switch (indexPath.section) {
         case 0:  // add friend/follow on twitter
             return [self determineWhichFriendCellToDisplay:user.friendStatus];
@@ -333,16 +307,12 @@
             cell.detailTextLabel.text = ((FSVenue*)[user.mayorOf objectAtIndex:indexPath.row]).addressWithCrossstreet;
             break;
         case 3:  // badges
-            if (indexPath.row == 0) {
-                //badgeCell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"wood_bg.png"]];
-                return badgeCell;
-            }
+            //badgeCell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"wood_bg.png"]];
+            return badgeCell;
+            break;
+        case 4:  // see friends
             if (user) {
-                if ([user.userId isEqualToString:[self getAuthenticatedUser].userId]) {
-                    return friendHistorySplitCell;
-                } else {
-                    return friendHistoryCell;
-                }
+                return friendHistoryCell;
             }
             break;
         default:
@@ -392,6 +362,15 @@
                 break;
             case 1:
                 headerView.leftHeaderLabel.text = [NSString stringWithFormat:@"%d %@", [userPhotos count], [userPhotos count] == 1 ? @"Photo" : @"Photos"];
+                
+                UIButton *myDetailButton = [UIButton buttonWithType:UIButtonTypeCustom];
+                myDetailButton.frame = CGRectMake(210, 0, 92, 39);
+                myDetailButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+                myDetailButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+                [myDetailButton setImage:[UIImage imageNamed:@"profileSeeAllPhotos01.png"] forState:UIControlStateNormal];
+                [myDetailButton setImage:[UIImage imageNamed:@"profileSeeAllPhotos02.png"] forState:UIControlStateHighlighted];
+                [myDetailButton addTarget:self action:@selector(displayImages:) forControlEvents:UIControlEventTouchUpInside]; 
+                [headerView addSubview:myDetailButton];
                 break;
             case 2:
                 if ([user.mayorOf count] < 1) {
@@ -406,6 +385,9 @@
                     return nil;
                 }
                 headerView.leftHeaderLabel.text = @"Badges";
+                break;
+            case 4:
+                headerView.leftHeaderLabel.text = @"";
                 break;
             default:
                 headerView.leftHeaderLabel.text = @"You shouldn't see this";

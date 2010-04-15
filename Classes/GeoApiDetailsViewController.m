@@ -16,6 +16,10 @@
 
 
 - (void)viewDidLoad {
+    hideFooter = YES;
+    pageType = KBPageTypeOther;
+    pageViewType = KBPageViewTypeList;
+    
     [super viewDidLoad];
     
     features.font = [UIFont systemFontOfSize:12.0];
