@@ -281,8 +281,6 @@
 		6A6F2E7B1177C7FE00B2869B /* yajl_gen.c in Sources */ = {isa = PBXBuildFile; fileRef = 6A6F2E711177C7FE00B2869B /* yajl_gen.c */; };
 		6A6F2E7C1177C7FE00B2869B /* yajl_lex.c in Sources */ = {isa = PBXBuildFile; fileRef = 6A6F2E721177C7FE00B2869B /* yajl_lex.c */; };
 		6A6F2E7D1177C7FE00B2869B /* yajl_parser.c in Sources */ = {isa = PBXBuildFile; fileRef = 6A6F2E741177C7FE00B2869B /* yajl_parser.c */; };
-		6A6F2EC11177D43100B2869B /* defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6A6F2EA11177D43100B2869B /* defaults.plist */; };
-		6A6F2EC21177D43100B2869B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6A6F2EA51177D43100B2869B /* Localizable.strings */; };
 		6A6F915D11767F700097CFD5 /* crown.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A6F915C11767F700097CFD5 /* crown.png */; };
 		6A72CF34114C8A0000800692 /* FSCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A72CF33114C8A0000800692 /* FSCategory.m */; };
 		6A7610AE116BE92800BF2993 /* AbstractFacebookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A7610AD116BE92800BF2993 /* AbstractFacebookViewController.m */; };
@@ -988,24 +986,6 @@
 		6A6F2E731177C7FE00B2869B /* yajl_lex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yajl_lex.h; sourceTree = "<group>"; };
 		6A6F2E741177C7FE00B2869B /* yajl_parser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = yajl_parser.c; sourceTree = "<group>"; };
 		6A6F2E751177C7FE00B2869B /* yajl_parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yajl_parser.h; sourceTree = "<group>"; };
-		6A6F2E9E1177D43100B2869B /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = English; path = English.lproj/About.xib; sourceTree = "<group>"; };
-		6A6F2EA01177D43100B2869B /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = English; path = English.lproj/AccountController.xib; sourceTree = "<group>"; };
-		6A6F2EA21177D43100B2869B /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = English; path = English.lproj/defaults.plist; sourceTree = "<group>"; };
-		6A6F2EA41177D43100B2869B /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = English; path = English.lproj/ImageView.xib; sourceTree = "<group>"; };
-		6A6F2EA61177D43100B2869B /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
-		6A6F2EA81177D43100B2869B /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = English; path = English.lproj/Login.xib; sourceTree = "<group>"; };
-		6A6F2EAA1177D43100B2869B /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = English; path = English.lproj/MainWindow.xib; sourceTree = "<group>"; };
-		6A6F2EAC1177D43100B2869B /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = English; path = English.lproj/MessageView.xib; sourceTree = "<group>"; };
-		6A6F2EAE1177D43100B2869B /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = English; path = English.lproj/NewMessage.xib; sourceTree = "<group>"; };
-		6A6F2EB01177D43100B2869B /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = English; path = English.lproj/PostImage.xib; sourceTree = "<group>"; };
-		6A6F2EB21177D43100B2869B /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = English; path = English.lproj/SearchController.xib; sourceTree = "<group>"; };
-		6A6F2EB41177D43100B2869B /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = English; path = English.lproj/SelectImageSource.xib; sourceTree = "<group>"; };
-		6A6F2EB61177D43100B2869B /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = English; path = English.lproj/SettingsView.xib; sourceTree = "<group>"; };
-		6A6F2EB81177D43100B2869B /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = English; path = English.lproj/TweetQueue.xib; sourceTree = "<group>"; };
-		6A6F2EBA1177D43100B2869B /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = English; path = English.lproj/TweetView.xib; sourceTree = "<group>"; };
-		6A6F2EBC1177D43100B2869B /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = English; path = English.lproj/UserInfo.xib; sourceTree = "<group>"; };
-		6A6F2EBE1177D43100B2869B /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = English; path = English.lproj/UserMessageList.xib; sourceTree = "<group>"; };
-		6A6F2EC01177D43100B2869B /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = English; path = English.lproj/WebView.xib; sourceTree = "<group>"; };
 		6A6F915C11767F700097CFD5 /* crown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crown.png; sourceTree = "<group>"; };
 		6A72CF32114C8A0000800692 /* FSCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCategory.h; sourceTree = "<group>"; };
 		6A72CF33114C8A0000800692 /* FSCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCategory.m; sourceTree = "<group>"; };
@@ -2173,13 +2153,6 @@
 			path = api;
 			sourceTree = "<group>";
 		};
-		6A6F2E9C1177D43100B2869B /* English.lproj */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = English.lproj;
-			sourceTree = "<group>";
-		};
 		6A7610AF116BE92D00BF2993 /* Abstract Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -2248,25 +2221,6 @@
 		6A761258116D1A7A00BF2993 /* Tweetero xibs */ = {
 			isa = PBXGroup;
 			children = (
-				6A6F2E9D1177D43100B2869B /* About.xib */,
-				6A6F2E9F1177D43100B2869B /* AccountController.xib */,
-				6A6F2EA11177D43100B2869B /* defaults.plist */,
-				6A6F2EA31177D43100B2869B /* ImageView.xib */,
-				6A6F2EA51177D43100B2869B /* Localizable.strings */,
-				6A6F2EA71177D43100B2869B /* Login.xib */,
-				6A6F2EA91177D43100B2869B /* MainWindow.xib */,
-				6A6F2EAB1177D43100B2869B /* MessageView.xib */,
-				6A6F2EAD1177D43100B2869B /* NewMessage.xib */,
-				6A6F2EAF1177D43100B2869B /* PostImage.xib */,
-				6A6F2EB11177D43100B2869B /* SearchController.xib */,
-				6A6F2EB31177D43100B2869B /* SelectImageSource.xib */,
-				6A6F2EB51177D43100B2869B /* SettingsView.xib */,
-				6A6F2EB71177D43100B2869B /* TweetQueue.xib */,
-				6A6F2EB91177D43100B2869B /* TweetView.xib */,
-				6A6F2EBB1177D43100B2869B /* UserInfo.xib */,
-				6A6F2EBD1177D43100B2869B /* UserMessageList.xib */,
-				6A6F2EBF1177D43100B2869B /* WebView.xib */,
-				6A6F2E9C1177D43100B2869B /* English.lproj */,
 			);
 			name = "Tweetero xibs";
 			sourceTree = "<group>";
@@ -2847,8 +2801,6 @@
 				6A6F2CEC1177B90E00B2869B /* jQueryInjectLandscape.txt in Resources */,
 				6A6F2CF11177B90E00B2869B /* twitter_load.png in Resources */,
 				6A6F2E761177C7FE00B2869B /* CMakeLists.txt in Resources */,
-				6A6F2EC11177D43100B2869B /* defaults.plist in Resources */,
-				6A6F2EC21177D43100B2869B /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3142,171 +3094,6 @@
 			targetProxy = 6AD0C1FA113F04C200A971E3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		6A6F2E9D1177D43100B2869B /* About.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6A6F2E9E1177D43100B2869B /* English */,
-			);
-			name = About.xib;
-			path = English.lproj;
-			sourceTree = "<group>";
-		};
-		6A6F2E9F1177D43100B2869B /* AccountController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6A6F2EA01177D43100B2869B /* English */,
-			);
-			name = AccountController.xib;
-			path = English.lproj;
-			sourceTree = "<group>";
-		};
-		6A6F2EA11177D43100B2869B /* defaults.plist */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6A6F2EA21177D43100B2869B /* English */,
-			);
-			name = defaults.plist;
-			path = English.lproj;
-			sourceTree = "<group>";
-		};
-		6A6F2EA31177D43100B2869B /* ImageView.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6A6F2EA41177D43100B2869B /* English */,
-			);
-			name = ImageView.xib;
-			path = English.lproj;
-			sourceTree = "<group>";
-		};
-		6A6F2EA51177D43100B2869B /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6A6F2EA61177D43100B2869B /* English */,
-			);
-			name = Localizable.strings;
-			path = English.lproj;
-			sourceTree = "<group>";
-		};
-		6A6F2EA71177D43100B2869B /* Login.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6A6F2EA81177D43100B2869B /* English */,
-			);
-			name = Login.xib;
-			path = English.lproj;
-			sourceTree = "<group>";
-		};
-		6A6F2EA91177D43100B2869B /* MainWindow.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6A6F2EAA1177D43100B2869B /* English */,
-			);
-			name = MainWindow.xib;
-			path = English.lproj;
-			sourceTree = "<group>";
-		};
-		6A6F2EAB1177D43100B2869B /* MessageView.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6A6F2EAC1177D43100B2869B /* English */,
-			);
-			name = MessageView.xib;
-			path = English.lproj;
-			sourceTree = "<group>";
-		};
-		6A6F2EAD1177D43100B2869B /* NewMessage.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6A6F2EAE1177D43100B2869B /* English */,
-			);
-			name = NewMessage.xib;
-			path = English.lproj;
-			sourceTree = "<group>";
-		};
-		6A6F2EAF1177D43100B2869B /* PostImage.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6A6F2EB01177D43100B2869B /* English */,
-			);
-			name = PostImage.xib;
-			path = English.lproj;
-			sourceTree = "<group>";
-		};
-		6A6F2EB11177D43100B2869B /* SearchController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6A6F2EB21177D43100B2869B /* English */,
-			);
-			name = SearchController.xib;
-			path = English.lproj;
-			sourceTree = "<group>";
-		};
-		6A6F2EB31177D43100B2869B /* SelectImageSource.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6A6F2EB41177D43100B2869B /* English */,
-			);
-			name = SelectImageSource.xib;
-			path = English.lproj;
-			sourceTree = "<group>";
-		};
-		6A6F2EB51177D43100B2869B /* SettingsView.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6A6F2EB61177D43100B2869B /* English */,
-			);
-			name = SettingsView.xib;
-			path = English.lproj;
-			sourceTree = "<group>";
-		};
-		6A6F2EB71177D43100B2869B /* TweetQueue.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6A6F2EB81177D43100B2869B /* English */,
-			);
-			name = TweetQueue.xib;
-			path = English.lproj;
-			sourceTree = "<group>";
-		};
-		6A6F2EB91177D43100B2869B /* TweetView.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6A6F2EBA1177D43100B2869B /* English */,
-			);
-			name = TweetView.xib;
-			path = English.lproj;
-			sourceTree = "<group>";
-		};
-		6A6F2EBB1177D43100B2869B /* UserInfo.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6A6F2EBC1177D43100B2869B /* English */,
-			);
-			name = UserInfo.xib;
-			path = English.lproj;
-			sourceTree = "<group>";
-		};
-		6A6F2EBD1177D43100B2869B /* UserMessageList.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6A6F2EBE1177D43100B2869B /* English */,
-			);
-			name = UserMessageList.xib;
-			path = English.lproj;
-			sourceTree = "<group>";
-		};
-		6A6F2EBF1177D43100B2869B /* WebView.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6A6F2EC01177D43100B2869B /* English */,
-			);
-			name = WebView.xib;
-			path = English.lproj;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
