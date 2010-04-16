@@ -335,6 +335,8 @@
 		6AC7E93110994FD000776993 /* PlaceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC7E92F10994FD000776993 /* PlaceDetailViewController.m */; };
 		6AC7E93210994FD000776993 /* PlaceDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AC7E93010994FD000776993 /* PlaceDetailView.xib */; };
 		6AC85B891177E518002FB92C /* KBTwitterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC85B881177E518002FB92C /* KBTwitterViewController.m */; };
+		6AC85C2B1177E9CE002FB92C /* defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6AC85C0B1177E9CE002FB92C /* defaults.plist */; };
+		6AC85C2C1177E9CE002FB92C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6AC85C0F1177E9CE002FB92C /* Localizable.strings */; };
 		6ACBCCC9111FD2B900CF400C /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ACBCCC7111FD2B900CF400C /* HistoryViewController.m */; };
 		6ACBCCCA111FD2B900CF400C /* HistoryViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6ACBCCC8111FD2B900CF400C /* HistoryViewController.xib */; };
 		6AD0C135113E3F2B00A971E3 /* KBTwitterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD0C134113E3F2B00A971E3 /* KBTwitterCell.m */; };
@@ -1076,6 +1078,24 @@
 		6AC7E93010994FD000776993 /* PlaceDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = PlaceDetailView.xib; path = Classes/PlaceDetailView.xib; sourceTree = "<group>"; };
 		6AC85B871177E518002FB92C /* KBTwitterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBTwitterViewController.h; sourceTree = "<group>"; };
 		6AC85B881177E518002FB92C /* KBTwitterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTwitterViewController.m; sourceTree = "<group>"; };
+		6AC85C081177E9CE002FB92C /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.xib; name = English; path = English.lproj/About.xib; sourceTree = "<group>"; };
+		6AC85C0A1177E9CE002FB92C /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.xib; name = English; path = English.lproj/AccountController.xib; sourceTree = "<group>"; };
+		6AC85C0C1177E9CE002FB92C /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = English; path = English.lproj/defaults.plist; sourceTree = "<group>"; };
+		6AC85C0E1177E9CE002FB92C /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.xib; name = English; path = English.lproj/ImageView.xib; sourceTree = "<group>"; };
+		6AC85C101177E9CE002FB92C /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
+		6AC85C121177E9CE002FB92C /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.xib; name = English; path = English.lproj/Login.xib; sourceTree = "<group>"; };
+		6AC85C141177E9CE002FB92C /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.xib; name = English; path = English.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		6AC85C161177E9CE002FB92C /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.xib; name = English; path = English.lproj/MessageView.xib; sourceTree = "<group>"; };
+		6AC85C181177E9CE002FB92C /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.xib; name = English; path = English.lproj/NewMessage.xib; sourceTree = "<group>"; };
+		6AC85C1A1177E9CE002FB92C /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.xib; name = English; path = English.lproj/PostImage.xib; sourceTree = "<group>"; };
+		6AC85C1C1177E9CE002FB92C /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.xib; name = English; path = English.lproj/SearchController.xib; sourceTree = "<group>"; };
+		6AC85C1E1177E9CE002FB92C /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.xib; name = English; path = English.lproj/SelectImageSource.xib; sourceTree = "<group>"; };
+		6AC85C201177E9CE002FB92C /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.xib; name = English; path = English.lproj/SettingsView.xib; sourceTree = "<group>"; };
+		6AC85C221177E9CE002FB92C /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.xib; name = English; path = English.lproj/TweetQueue.xib; sourceTree = "<group>"; };
+		6AC85C241177E9CE002FB92C /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.xib; name = English; path = English.lproj/TweetView.xib; sourceTree = "<group>"; };
+		6AC85C261177E9CE002FB92C /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.xib; name = English; path = English.lproj/UserInfo.xib; sourceTree = "<group>"; };
+		6AC85C281177E9CE002FB92C /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.xib; name = English; path = English.lproj/UserMessageList.xib; sourceTree = "<group>"; };
+		6AC85C2A1177E9CE002FB92C /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.xib; name = English; path = English.lproj/WebView.xib; sourceTree = "<group>"; };
 		6ACBCCC6111FD2B900CF400C /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
 		6ACBCCC7111FD2B900CF400C /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
 		6ACBCCC8111FD2B900CF400C /* HistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistoryViewController.xib; sourceTree = "<group>"; };
@@ -2221,6 +2241,24 @@
 		6A761258116D1A7A00BF2993 /* Tweetero xibs */ = {
 			isa = PBXGroup;
 			children = (
+				6AC85C071177E9CE002FB92C /* About.xib */,
+				6AC85C091177E9CE002FB92C /* AccountController.xib */,
+				6AC85C0B1177E9CE002FB92C /* defaults.plist */,
+				6AC85C0D1177E9CE002FB92C /* ImageView.xib */,
+				6AC85C0F1177E9CE002FB92C /* Localizable.strings */,
+				6AC85C111177E9CE002FB92C /* Login.xib */,
+				6AC85C131177E9CE002FB92C /* MainWindow.xib */,
+				6AC85C151177E9CE002FB92C /* MessageView.xib */,
+				6AC85C171177E9CE002FB92C /* NewMessage.xib */,
+				6AC85C191177E9CE002FB92C /* PostImage.xib */,
+				6AC85C1B1177E9CE002FB92C /* SearchController.xib */,
+				6AC85C1D1177E9CE002FB92C /* SelectImageSource.xib */,
+				6AC85C1F1177E9CE002FB92C /* SettingsView.xib */,
+				6AC85C211177E9CE002FB92C /* TweetQueue.xib */,
+				6AC85C231177E9CE002FB92C /* TweetView.xib */,
+				6AC85C251177E9CE002FB92C /* UserInfo.xib */,
+				6AC85C271177E9CE002FB92C /* UserMessageList.xib */,
+				6AC85C291177E9CE002FB92C /* WebView.xib */,
 			);
 			name = "Tweetero xibs";
 			sourceTree = "<group>";
@@ -2801,6 +2839,8 @@
 				6A6F2CEC1177B90E00B2869B /* jQueryInjectLandscape.txt in Resources */,
 				6A6F2CF11177B90E00B2869B /* twitter_load.png in Resources */,
 				6A6F2E761177C7FE00B2869B /* CMakeLists.txt in Resources */,
+				6AC85C2B1177E9CE002FB92C /* defaults.plist in Resources */,
+				6AC85C2C1177E9CE002FB92C /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3094,6 +3134,153 @@
 			targetProxy = 6AD0C1FA113F04C200A971E3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		6AC85C071177E9CE002FB92C /* About.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6AC85C081177E9CE002FB92C /* English */,
+			);
+			name = About.xib;
+			sourceTree = "<group>";
+		};
+		6AC85C091177E9CE002FB92C /* AccountController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6AC85C0A1177E9CE002FB92C /* English */,
+			);
+			name = AccountController.xib;
+			sourceTree = "<group>";
+		};
+		6AC85C0B1177E9CE002FB92C /* defaults.plist */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6AC85C0C1177E9CE002FB92C /* English */,
+			);
+			name = defaults.plist;
+			sourceTree = "<group>";
+		};
+		6AC85C0D1177E9CE002FB92C /* ImageView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6AC85C0E1177E9CE002FB92C /* English */,
+			);
+			name = ImageView.xib;
+			sourceTree = "<group>";
+		};
+		6AC85C0F1177E9CE002FB92C /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6AC85C101177E9CE002FB92C /* English */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		6AC85C111177E9CE002FB92C /* Login.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6AC85C121177E9CE002FB92C /* English */,
+			);
+			name = Login.xib;
+			sourceTree = "<group>";
+		};
+		6AC85C131177E9CE002FB92C /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6AC85C141177E9CE002FB92C /* English */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		6AC85C151177E9CE002FB92C /* MessageView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6AC85C161177E9CE002FB92C /* English */,
+			);
+			name = MessageView.xib;
+			sourceTree = "<group>";
+		};
+		6AC85C171177E9CE002FB92C /* NewMessage.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6AC85C181177E9CE002FB92C /* English */,
+			);
+			name = NewMessage.xib;
+			sourceTree = "<group>";
+		};
+		6AC85C191177E9CE002FB92C /* PostImage.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6AC85C1A1177E9CE002FB92C /* English */,
+			);
+			name = PostImage.xib;
+			sourceTree = "<group>";
+		};
+		6AC85C1B1177E9CE002FB92C /* SearchController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6AC85C1C1177E9CE002FB92C /* English */,
+			);
+			name = SearchController.xib;
+			sourceTree = "<group>";
+		};
+		6AC85C1D1177E9CE002FB92C /* SelectImageSource.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6AC85C1E1177E9CE002FB92C /* English */,
+			);
+			name = SelectImageSource.xib;
+			sourceTree = "<group>";
+		};
+		6AC85C1F1177E9CE002FB92C /* SettingsView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6AC85C201177E9CE002FB92C /* English */,
+			);
+			name = SettingsView.xib;
+			sourceTree = "<group>";
+		};
+		6AC85C211177E9CE002FB92C /* TweetQueue.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6AC85C221177E9CE002FB92C /* English */,
+			);
+			name = TweetQueue.xib;
+			sourceTree = "<group>";
+		};
+		6AC85C231177E9CE002FB92C /* TweetView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6AC85C241177E9CE002FB92C /* English */,
+			);
+			name = TweetView.xib;
+			sourceTree = "<group>";
+		};
+		6AC85C251177E9CE002FB92C /* UserInfo.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6AC85C261177E9CE002FB92C /* English */,
+			);
+			name = UserInfo.xib;
+			sourceTree = "<group>";
+		};
+		6AC85C271177E9CE002FB92C /* UserMessageList.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6AC85C281177E9CE002FB92C /* English */,
+			);
+			name = UserMessageList.xib;
+			sourceTree = "<group>";
+		};
+		6AC85C291177E9CE002FB92C /* WebView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6AC85C2A1177E9CE002FB92C /* English */,
+			);
+			name = WebView.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
