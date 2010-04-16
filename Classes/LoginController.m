@@ -30,6 +30,7 @@
 #import "MGTwitterEngine.h"
 #include "config.h"
 #include "util.h"
+#import "UIAlertView+Helper.h"
 
 //#define AccountSegmentIndex     0
 //#define OAuthSegmentIndex       1
@@ -224,6 +225,12 @@ const NSString *LoginControllerAccountDidChange = @"LoginControllerAccountDidCha
 {
     [super viewDidAppear:animated];
     
+    if ([self.twitterEngine isAuthorized]) {
+        UIAlertViewQuick(@"xauth", @"You're already logged in. Please continue on.", @"Dismiss");
+    } else {
+        UIAlertViewQuick(@"xauth", @"Not logged in yet.", @"Dismiss");
+    }
+    
     if (oAuthAuthorization)
         [self.navigationController popToRootViewControllerAnimated:YES];
 }
@@ -321,7 +328,7 @@ const NSString *LoginControllerAccountDidChange = @"LoginControllerAccountDidCha
 
 - (IBAction)sendTestTweetButtonTouchUpInside
 {
-	NSString *tweetText = @"Sorry for the testing spam...";
+	NSString *tweetText = @"I'm just tweeting. @gorlochs #kickball";
 	NSLog(@"About to send test tweet: \"%@\"", tweetText);
 	[self.twitterEngine sendUpdate:tweetText];
 }

@@ -84,7 +84,7 @@
 	if (_accessToken.key && _accessToken.secret) return YES;
 	
 	//first, check for cached creds
-	NSString *accessTokenString = [_delegate respondsToSelector: @selector(cachedTwitterXAuthAccessTokenStringForUsername:)] ? [(id) _delegate cachedTwitterXAuthAccessTokenStringForUsername: [[self class] username]] : @"";
+	NSString *accessTokenString = [_delegate respondsToSelector: @selector(cachedTwitterXAuthAccessTokenStringForUsername:)] ? [(id) _delegate cachedTwitterXAuthAccessTokenStringForUsername: [self username]] : @"";
 	
 	if (accessTokenString.length) {				
 		[_accessToken release];
@@ -108,7 +108,7 @@
 
 
 - (void) clearAccessToken {
-	if ([_delegate respondsToSelector: @selector(storeCachedTwitterXAuthAccessTokenString:forUsername:)]) [(id) _delegate storeCachedTwitterXAuthAccessTokenString: @"" forUsername: [[self class] username]];
+	if ([_delegate respondsToSelector: @selector(storeCachedTwitterXAuthAccessTokenString:forUsername:)]) [(id) _delegate storeCachedTwitterXAuthAccessTokenString: @"" forUsername: [self username]];
 	[_accessToken release];
 	_accessToken = nil;
 	[_consumer release];

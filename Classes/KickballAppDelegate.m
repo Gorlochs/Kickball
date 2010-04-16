@@ -22,6 +22,7 @@
 @synthesize window;
 @synthesize viewController;
 @synthesize navigationController;
+@synthesize twitterNavigationController;
 @synthesize user;
 @synthesize deviceToken;
 @synthesize deviceAlias;

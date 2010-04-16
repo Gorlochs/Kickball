@@ -84,12 +84,12 @@
 	
 	//first, check for cached creds
 	//NSString					*accessTokenString = [_delegate respondsToSelector: @selector(cachedTwitterOAuthDataForUsername:)] ? [(id) _delegate cachedTwitterOAuthDataForUsername: self.username] : @"";
-    NSString *accessTokenString = [_delegate respondsToSelector: @selector(cachedTwitterOAuthDataForUsername:)] ? [(id) _delegate cachedTwitterOAuthDataForUsername: [[self class] username]] : @"";
+    NSString *accessTokenString = [_delegate respondsToSelector: @selector(cachedTwitterOAuthDataForUsername:)] ? [(id) _delegate cachedTwitterOAuthDataForUsername: [self username]] : @"";
 
 	if (accessTokenString.length) {				
 		[_accessToken release];
 		_accessToken = [[OAToken alloc] initWithHTTPResponseBody: accessTokenString];
-		[[self class] setUsername: [self extractUsernameFromHTTPBody: accessTokenString] password: nil];
+		[self setUsername: [self extractUsernameFromHTTPBody: accessTokenString] password: nil];
 		if (_accessToken.key && _accessToken.secret) return YES;
 	}
 	
