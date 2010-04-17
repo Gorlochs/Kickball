@@ -171,6 +171,8 @@
 		6A2A079A10CCE0100012F527 /* FSFunctionRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A8DD2E10CCD07300D3538A /* FSFunctionRequest.m */; };
 		6A2AEF571174161900F1EA88 /* PlacesListTableViewCellv2.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2AEF561174161900F1EA88 /* PlacesListTableViewCellv2.m */; };
 		6A2AEFC711742ECC00F1EA88 /* ProfileView_v2.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A2AEFC611742ECC00F1EA88 /* ProfileView_v2.xib */; };
+		6A30075611797649001CB933 /* KBTweetListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A30075411797649001CB933 /* KBTweetListViewController.m */; };
+		6A30075711797649001CB933 /* KBTweetListViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A30075511797649001CB933 /* KBTweetListViewController.xib */; };
 		6A3900B110D6F1A0001D133C /* AddPlaceFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A3900AF10D6F1A0001D133C /* AddPlaceFormViewController.m */; };
 		6A3900B210D6F1A0001D133C /* AddPlaceFormViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A3900B010D6F1A0001D133C /* AddPlaceFormViewController.xib */; };
 		6A39EB5C1096584A006F76C3 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A39EB5B1096584A006F76C3 /* libsqlite3.dylib */; };
@@ -764,6 +766,9 @@
 		6A2AEF551174161900F1EA88 /* PlacesListTableViewCellv2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlacesListTableViewCellv2.h; sourceTree = "<group>"; };
 		6A2AEF561174161900F1EA88 /* PlacesListTableViewCellv2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlacesListTableViewCellv2.m; sourceTree = "<group>"; };
 		6A2AEFC611742ECC00F1EA88 /* ProfileView_v2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileView_v2.xib; sourceTree = "<group>"; };
+		6A30075311797649001CB933 /* KBTweetListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBTweetListViewController.h; sourceTree = "<group>"; };
+		6A30075411797649001CB933 /* KBTweetListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTweetListViewController.m; sourceTree = "<group>"; };
+		6A30075511797649001CB933 /* KBTweetListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KBTweetListViewController.xib; path = Classes/KBTweetListViewController.xib; sourceTree = "<group>"; };
 		6A3900AE10D6F1A0001D133C /* AddPlaceFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPlaceFormViewController.h; sourceTree = "<group>"; };
 		6A3900AF10D6F1A0001D133C /* AddPlaceFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPlaceFormViewController.m; sourceTree = "<group>"; };
 		6A3900B010D6F1A0001D133C /* AddPlaceFormViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddPlaceFormViewController.xib; sourceTree = "<group>"; };
@@ -774,7 +779,7 @@
 		6A39EB6210965868006F76C3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = /System/Library/Frameworks/SystemConfiguration.framework; sourceTree = "<absolute>"; };
 		6A3DF72D10F6E0ED008BD8AA /* KBTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBTextViewController.h; sourceTree = "<group>"; };
 		6A3DF72E10F6E0ED008BD8AA /* KBTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTextViewController.m; sourceTree = "<group>"; };
-		6A3DF72F10F6E0ED008BD8AA /* KBTextViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.xib; name = KBTextViewController.xib; path = Classes/KBTextViewController.xib; sourceTree = "<group>"; };
+		6A3DF72F10F6E0ED008BD8AA /* KBTextViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KBTextViewController.xib; path = Classes/KBTextViewController.xib; sourceTree = "<group>"; };
 		6A402A8A10B755B200D9BCEB /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
 		6A402A8B10B755B200D9BCEB /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
 		6A402A8C10B755B200D9BCEB /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
@@ -800,10 +805,10 @@
 		6A402B2E10B769A800D9BCEB /* GeoApiTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GeoApiTableViewController.xib; path = Classes/GeoApiTableViewController.xib; sourceTree = "<group>"; };
 		6A47C00310DCA8DE00DCF011 /* KBWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBWebViewController.h; sourceTree = "<group>"; };
 		6A47C00410DCA8DE00DCF011 /* KBWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBWebViewController.m; sourceTree = "<group>"; };
-		6A47C00510DCA8DE00DCF011 /* KBWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.xib; name = KBWebViewController.xib; path = Classes/KBWebViewController.xib; sourceTree = "<group>"; };
+		6A47C00510DCA8DE00DCF011 /* KBWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KBWebViewController.xib; path = Classes/KBWebViewController.xib; sourceTree = "<group>"; };
 		6A4C30C210DED6E300C89F55 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		6A4C30C310DED6E300C89F55 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
-		6A4C30C410DED6E300C89F55 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.xib; name = SettingsViewController.xib; path = Classes/SettingsViewController.xib; sourceTree = "<group>"; };
+		6A4C30C410DED6E300C89F55 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingsViewController.xib; path = Classes/SettingsViewController.xib; sourceTree = "<group>"; };
 		6A4C30C710DF24FD00C89F55 /* PlaceMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceMapViewController.h; sourceTree = "<group>"; };
 		6A4C30C810DF24FD00C89F55 /* PlaceMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceMapViewController.m; sourceTree = "<group>"; };
 		6A4C30C910DF24FD00C89F55 /* PlaceMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaceMapViewController.xib; sourceTree = "<group>"; };
@@ -1408,6 +1413,7 @@
 				6A4C30C410DED6E300C89F55 /* SettingsViewController.xib */,
 				6A3DF72F10F6E0ED008BD8AA /* KBTextViewController.xib */,
 				6ADD23B6115AE24E005D14BE /* changelog */,
+				6A30075511797649001CB933 /* KBTweetListViewController.xib */,
 				6ADBFAA111738FE6003EB73D /* FoursquareHeaderView.xib */,
 				6ADBFAA311738FF1003EB73D /* TwitterHeaderView.xib */,
 				6ADBFAA511738FFD003EB73D /* FooterTabView.xib */,
@@ -2521,6 +2527,8 @@
 			children = (
 				6AD5B3DA116D3D4A008671FD /* XAuthTwitterEngineViewController.h */,
 				6AD5B3DB116D3D4A008671FD /* XAuthTwitterEngineViewController.m */,
+				6A30075311797649001CB933 /* KBTweetListViewController.h */,
+				6A30075411797649001CB933 /* KBTweetListViewController.m */,
 			);
 			name = KBTwitter;
 			sourceTree = "<group>";
@@ -3128,6 +3136,8 @@
 				6A6F2E7D1177C7FE00B2869B /* yajl_parser.c in Sources */,
 				6AC85B891177E518002FB92C /* KBTwitterViewController.m in Sources */,
 				6A8CD5071178E26900D81F4B /* OptionsViewController.m in Sources */,
+				6A30075611797649001CB933 /* KBTweetListViewController.m in Sources */,
+				6A30075711797649001CB933 /* KBTweetListViewController.xib in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

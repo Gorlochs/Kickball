@@ -54,5 +54,6 @@
 - (void) displayPopupMessage:(KBMessage*)message;
 - (void) checkForEmergencyMessage;
 - (void) switchToTwitter;
+- (void) switchToFoursquare;
 
 @end

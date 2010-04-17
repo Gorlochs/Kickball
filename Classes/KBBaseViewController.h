@@ -17,6 +17,9 @@
 #import "EGORefreshTableHeaderView.h"
 #import "FooterTabView.h"
 
+#define HEADER_NIB_TWITTER      @"TwitterHeaderView"
+#define HEADER_NIB_FOURSQUARE   @"FoursquareHeaderView"
+
 static const CGFloat KEYBOARD_ANIMATION_DURATION = 0.3;
 static const CGFloat MINIMUM_SCROLL_FRACTION = 0.2;
 static const CGFloat MAXIMUM_SCROLL_FRACTION = 0.8;
@@ -51,6 +54,7 @@ extern const NSString *kickballDomain;
     // bottom tab bar members
     FooterTabView *footerTabView;
     IBOutlet UIButton *signedInUserIcon;
+    NSString *headerNibName;
 }
 
 @property (nonatomic, retain) UITableView *theTableView;
@@ -90,5 +94,6 @@ extern const NSString *kickballDomain;
 - (void) dataSourceDidFinishLoadingNewData;
 - (void) displayProperProfileView:(NSString*)userId;
 - (IBAction) switchToTwitter;
+- (IBAction) switchToFoursquare;
 
 @end

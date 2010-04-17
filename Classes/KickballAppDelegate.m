@@ -326,6 +326,10 @@
     [window addSubview:twitterNavigationController.view];
 }
 
+- (void) switchToFoursquare {
+    [window addSubview:navigationController.view];
+}
+
 - (void)dealloc {
     [viewController release];
     [window release];

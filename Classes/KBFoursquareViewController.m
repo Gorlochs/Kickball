@@ -19,6 +19,9 @@
 }
 
 - (void)viewDidLoad {
+    
+    headerNibName = HEADER_NIB_FOURSQUARE;
+    
     [super viewDidLoad];
     
     homeBackView.origin = CGPointMake(0, 0);

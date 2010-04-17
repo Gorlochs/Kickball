@@ -63,8 +63,8 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
     
     
     // v1.1
-    if (!self.hideHeader) {
-        NSArray* nibViews =  [[NSBundle mainBundle] loadNibNamed:@"FoursquareHeaderView" owner:self options:nil];
+    if (!self.hideHeader && headerNibName) {
+        NSArray* nibViews =  [[NSBundle mainBundle] loadNibNamed:headerNibName owner:self options:nil];
         FoursquareHeaderView *headerView = [nibViews objectAtIndex:0];
         [self.view addSubview:headerView];
     }
@@ -410,6 +410,11 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 - (void) switchToTwitter {
     KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
     [appDelegate switchToTwitter];
+}
+
+- (void) switchToFoursquare {
+    KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
+    [appDelegate switchToFoursquare];
 }
 
 @end

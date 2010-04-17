@@ -57,7 +57,7 @@
 - (void) setupSplashAnimation;
 - (void) instaCheckin:(NSNotification *)inNotification;
 - (void) setUserIconViewCustom:(FSUser*)user;
-- (IBAction) displayTwitterXAuthLogin;
+//- (IBAction) displayTwitterXAuthLogin;
 //- (void) showSplash;
 
 @end

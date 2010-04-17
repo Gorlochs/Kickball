@@ -518,11 +518,11 @@
     [friendsController release];
 }
 
-- (void) displayTwitterXAuthLogin {
-    XAuthTwitterEngineViewController *twitterController = [[XAuthTwitterEngineViewController alloc] initWithNibName:@"XAuthTwitterEngineDemoViewController" bundle:nil];
-    [self presentModalViewController:twitterController animated:YES];
-    [twitterController release];
-}
+//- (void) displayTwitterXAuthLogin {
+//    XAuthTwitterEngineViewController *twitterController = [[XAuthTwitterEngineViewController alloc] initWithNibName:@"XAuthTwitterEngineDemoViewController" bundle:nil];
+//    [self presentModalViewController:twitterController animated:YES];
+//    [twitterController release];
+//}
 
 - (void) setUserIconViewCustom:(FSUser*)user {
 //    TTButton *imageButton = [TTButton buttonWithStyle:@"blockPhoto:"]; 
