@@ -12,7 +12,7 @@
 #import "ProfileViewController.h"
 #import "UserProfileViewController.h"
 #import "FoursquareAPI.h"
-#import "SettingsViewController.h"
+#import "OptionsViewController.h"
 #import "PlaceDetailViewController.h"
 #import "PlacesListViewController.h"
 #import "KBWebViewController.h"
@@ -292,9 +292,9 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 }
 
 - (void) viewSettings {
-    SettingsViewController *settingsController = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:nil];
-    [self.navigationController pushViewController:settingsController animated:YES];
-    [settingsController release];
+    OptionsViewController *optionsController = [[OptionsViewController alloc] initWithNibName:@"OptionsView_v2" bundle:nil];
+    [self.navigationController pushViewController:optionsController animated:YES];
+    [optionsController release];
 }
 
 - (void) addHeaderAndFooter:(UITableView*)tableView {

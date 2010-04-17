@@ -21,7 +21,7 @@
     return [[[MGTwitterEngineFactory alloc] init] autorelease];
 }
 
-+ (MGTwitterEngine*)createTwitterEngineForCurrentUser:(id)del
++ (XAuthTwitterEngine*)createTwitterEngineForCurrentUser:(id)del
 {
     MGTwitterEngineFactory *factory = [[[MGTwitterEngineFactory alloc] init] autorelease];
     
@@ -33,16 +33,16 @@
     return nil;
 }
 
-- (MGTwitterEngine*)createTwitterEngineForUserAccount:(UserAccount*)account delegate:(id)del
+- (XAuthTwitterEngine*)createTwitterEngineForUserAccount:(UserAccount*)account delegate:(id)del
 {
-    MGTwitterEngine *engine = nil;
+    XAuthTwitterEngine *engine = nil;
     
     int authType = [account authType];
     if (authType == TwitterAuthCommon)
     {
-        engine = [[MGTwitterEngine alloc] initWithDelegate:del];
+        engine = (XAuthTwitterEngine*)[[XAuthTwitterEngine alloc] initWithDelegate:del];
         if (engine)
-            [MGTwitterEngine setUsername:account.username password:account.secretData];
+            [XAuthTwitterEngine setUsername:account.username password:account.secretData];
     }
     else if (authType == TwitterAuthOAuth)
     {

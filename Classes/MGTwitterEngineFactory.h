@@ -8,15 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-@class UserAccount, MGTwitterEngine;
+@class UserAccount, XAuthTwitterEngine;
 @interface MGTwitterEngineFactory : NSObject {
 }
 
 + (MGTwitterEngineFactory*)factory;
 
-+ (MGTwitterEngine*)createTwitterEngineForCurrentUser:(id)del;
++ (XAuthTwitterEngine*)createTwitterEngineForCurrentUser:(id)del;
 
-- (MGTwitterEngine*)createTwitterEngineForUserAccount:(UserAccount*)account delegate:(id)del;
+- (XAuthTwitterEngine*)createTwitterEngineForUserAccount:(UserAccount*)account delegate:(id)del;
 
 - (NSDictionary*)createTwitterAuthorizationFields:(UserAccount*)account;
 

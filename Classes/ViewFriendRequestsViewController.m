@@ -18,6 +18,8 @@
 @synthesize pendingFriendRequests;
 
 - (void)viewDidLoad {
+    self.hideHeader = YES;
+    self.hideFooter = YES;
     [[Beacon shared] startSubBeaconWithName:@"View Pending Friend Requests"];
     [super viewDidLoad];
 }

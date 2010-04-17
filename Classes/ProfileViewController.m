@@ -299,6 +299,8 @@
                     [ttImage release];
                 }
             }
+            [photoCell addSubview:photoCorners];
+            [photoCell bringSubviewToFront:photoCorners];
             return photoCell;
             break;
         case 2:  // mayors

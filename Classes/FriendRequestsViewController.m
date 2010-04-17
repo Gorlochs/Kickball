@@ -16,6 +16,8 @@
 
 
 - (void)viewDidLoad {
+    self.hideHeader = YES;
+    self.hideFooter = YES;
     [super viewDidLoad];
     [[Beacon shared] startSubBeaconWithName:@"Search for Friends View"];
     toolbar.frame = CGRectMake(0, 436, 320, 44);

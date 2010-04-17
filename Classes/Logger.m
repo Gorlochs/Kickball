@@ -42,7 +42,7 @@
     self = [super init];
     
     _data = [[NSMutableData alloc] init];
-    _path = @"/Users/shkrabak/Desktop/yfrog.log";
+    _path = @"/Users/shawnbernard/Desktop/yfrog.log";
 #ifndef DEBUG
     _path = @"/tmp/isuploader.log";
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);

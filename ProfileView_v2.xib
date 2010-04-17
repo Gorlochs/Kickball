@@ -12,6 +12,8 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="28"/>
+			<integer value="76"/>
 			<integer value="5"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
@@ -55,7 +57,7 @@
 									<object class="IBUIImageView" id="599790462">
 										<reference key="NSNextResponder" ref="1061616113"/>
 										<int key="NSvFlags">256</int>
-										<string key="NSFrameSize">{290, 12}</string>
+										<string key="NSFrameSize">{291, 12}</string>
 										<reference key="NSSuperview" ref="1061616113"/>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
@@ -68,7 +70,7 @@
 										</object>
 									</object>
 								</object>
-								<string key="NSFrame">{{15, 0}, {290, 342}}</string>
+								<string key="NSFrame">{{14, 0}, {291, 342}}</string>
 								<reference key="NSSuperview" ref="58815388"/>
 								<object class="NSColor" key="IBUIBackgroundColor" id="293949228">
 									<int key="NSColorSpace">1</int>
@@ -296,7 +298,7 @@
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 			<object class="IBUITableViewCell" id="502534510">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -310,7 +312,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{159, 0}, {162, 42}}</string>
 								<reference key="NSSuperview" ref="528286681"/>
-								<reference key="NSWindow"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -341,7 +342,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrameSize">{161, 42}</string>
 								<reference key="NSSuperview" ref="528286681"/>
-								<reference key="NSWindow"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -366,7 +366,6 @@
 						</object>
 						<string key="NSFrameSize">{290, 43}</string>
 						<reference key="NSSuperview" ref="502534510"/>
-						<reference key="NSWindow"/>
 						<object class="NSColor" key="IBUIBackgroundColor" id="455357173">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MCAwAA</bytes>
@@ -378,9 +377,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</object>
-				<string key="NSFrameSize">{290, 43}</string>
-				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
+				<string key="NSFrameSize">{291, 43}</string>
 				<object class="NSColor" key="IBUIBackgroundColor" id="856015577">
 					<int key="NSColorSpace">1</int>
 					<bytes key="NSRGB">MSAxIDEAA</bytes>
@@ -442,7 +439,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</object>
-				<string key="NSFrameSize">{290, 43}</string>
+				<string key="NSFrameSize">{291, 43}</string>
 				<reference key="IBUIBackgroundColor" ref="856015577"/>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -504,8 +501,11 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</object>
-				<string key="NSFrameSize">{290, 55}</string>
-				<reference key="IBUIBackgroundColor" ref="856015577"/>
+				<string key="NSFrameSize">{291, 55}</string>
+				<object class="NSColor" key="IBUIBackgroundColor">
+					<int key="NSColorSpace">1</int>
+					<bytes key="NSRGB">MSAxIDEgMAA</bytes>
+				</object>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<int key="IBUISeparatorStyle">1</int>
@@ -513,14 +513,32 @@
 				<reference key="IBUIContentView" ref="498112114"/>
 			</object>
 			<object class="IBUITableViewCell" id="671744354">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<object class="IBUIView" id="748521349">
 						<reference key="NSNextResponder" ref="671744354"/>
 						<int key="NSvFlags">256</int>
-						<string key="NSFrameSize">{290, 226}</string>
+						<object class="NSMutableArray" key="NSSubviews">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBUIImageView" id="526066468">
+								<reference key="NSNextResponder" ref="748521349"/>
+								<int key="NSvFlags">256</int>
+								<string key="NSFrameSize">{291, 349}</string>
+								<reference key="NSSuperview" ref="748521349"/>
+								<bool key="IBUIOpaque">NO</bool>
+								<bool key="IBUIClipsSubviews">YES</bool>
+								<int key="IBUIContentMode">5</int>
+								<bool key="IBUIMultipleTouchEnabled">YES</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<object class="NSCustomResource" key="IBUIImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">wood_bg.png</string>
+								</object>
+							</object>
+						</object>
+						<string key="NSFrameSize">{291, 74}</string>
 						<reference key="NSSuperview" ref="671744354"/>
 						<reference key="IBUIBackgroundColor" ref="455357173"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -530,7 +548,8 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</object>
-				<string key="NSFrameSize">{290, 226}</string>
+				<string key="NSFrameSize">{291, 74}</string>
+				<reference key="NSSuperview"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">6</int>
 					<string key="NSCatalogName">System</string>
@@ -540,7 +559,6 @@
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<int key="IBUIContentMode">1</int>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-				<int key="IBUISeparatorStyle">1</int>
 				<int key="IBUISelectionStyle">0</int>
 				<reference key="IBUIContentView" ref="748521349"/>
 			</object>
@@ -585,7 +603,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</object>
-				<string key="NSFrameSize">{290, 43}</string>
+				<string key="NSFrameSize">{291, 43}</string>
 				<reference key="IBUIBackgroundColor" ref="856015577"/>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -593,7 +611,7 @@
 				<reference key="IBUIContentView" ref="401930764"/>
 			</object>
 			<object class="IBUITableViewCell" id="510707023">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -605,8 +623,9 @@
 							<object class="IBUIButton" id="604484450">
 								<reference key="NSNextResponder" ref="159806607"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrameSize">{290, 35}</string>
+								<string key="NSFrame">{{0, -4}, {290, 44}}</string>
 								<reference key="NSSuperview" ref="159806607"/>
+								<reference key="NSWindow"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -630,8 +649,9 @@
 								</object>
 							</object>
 						</object>
-						<string key="NSFrameSize">{290, 35}</string>
+						<string key="NSFrameSize">{291, 35}</string>
 						<reference key="NSSuperview" ref="510707023"/>
+						<reference key="NSWindow"/>
 						<reference key="IBUIBackgroundColor" ref="455357173"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -640,8 +660,13 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</object>
-				<string key="NSFrameSize">{290, 35}</string>
-				<reference key="IBUIBackgroundColor" ref="856015577"/>
+				<string key="NSFrameSize">{291, 35}</string>
+				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
+				<object class="NSColor" key="IBUIBackgroundColor">
+					<int key="NSColorSpace">1</int>
+					<bytes key="NSRGB">MSAxIDEgMAA</bytes>
+				</object>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<int key="IBUISeparatorStyle">1</int>
@@ -717,7 +742,7 @@
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 			<object class="IBUIView" id="970019688">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -726,7 +751,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{65, 0}, {64, 71}}</string>
 						<reference key="NSSuperview" ref="970019688"/>
-						<reference key="NSWindow"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -757,7 +781,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrameSize">{65, 71}</string>
 						<reference key="NSSuperview" ref="970019688"/>
-						<reference key="NSWindow"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -788,7 +811,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{129, 0}, {64, 71}}</string>
 						<reference key="NSSuperview" ref="970019688"/>
-						<reference key="NSWindow"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -820,7 +842,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{193, 0}, {64, 71}}</string>
 						<reference key="NSSuperview" ref="970019688"/>
-						<reference key="NSWindow"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -852,7 +873,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{256, 0}, {64, 71}}</string>
 						<reference key="NSSuperview" ref="970019688"/>
-						<reference key="NSWindow"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -868,8 +888,6 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 71}</string>
-				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
@@ -878,14 +896,32 @@
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 			<object class="IBUITableViewCell" id="907479325">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<object class="IBUIView" id="207006944">
 						<reference key="NSNextResponder" ref="907479325"/>
 						<int key="NSvFlags">256</int>
-						<string key="NSFrameSize">{290, 72}</string>
+						<object class="NSMutableArray" key="NSSubviews">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBUIImageView" id="875805788">
+								<reference key="NSNextResponder" ref="207006944"/>
+								<int key="NSvFlags">256</int>
+								<string key="NSFrameSize">{291, 73}</string>
+								<reference key="NSSuperview" ref="207006944"/>
+								<bool key="IBUIOpaque">NO</bool>
+								<bool key="IBUIClipsSubviews">YES</bool>
+								<int key="IBUIContentMode">4</int>
+								<bool key="IBUIMultipleTouchEnabled">YES</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<object class="NSCustomResource" key="IBUIImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">profilePhotosCornerOverlay.png</string>
+								</object>
+							</object>
+						</object>
+						<string key="NSFrameSize">{291, 73}</string>
 						<reference key="NSSuperview" ref="907479325"/>
 						<reference key="IBUIBackgroundColor" ref="455357173"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -895,7 +931,8 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</object>
-				<string key="NSFrameSize">{290, 72}</string>
+				<string key="NSFrameSize">{291, 73}</string>
+				<reference key="NSSuperview"/>
 				<reference key="IBUIBackgroundColor" ref="856015577"/>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -1140,6 +1177,14 @@
 					</object>
 					<int key="connectionID">90</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">photoCorners</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="875805788"/>
+					</object>
+					<int key="connectionID">99</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -1267,6 +1312,7 @@
 						<reference key="object" ref="671744354"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="526066468"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Badge Cell</string>
@@ -1403,6 +1449,7 @@
 						<reference key="object" ref="907479325"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="875805788"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Photo Cell</string>
@@ -1420,6 +1467,16 @@
 						<int key="objectID">46</int>
 						<reference key="object" ref="599790462"/>
 						<reference key="parent" ref="1061616113"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">91</int>
+						<reference key="object" ref="526066468"/>
+						<reference key="parent" ref="671744354"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">98</int>
+						<reference key="object" ref="875805788"/>
+						<reference key="parent" ref="907479325"/>
 					</object>
 				</object>
 			</object>
@@ -1478,23 +1535,23 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>ProfileViewController</string>
 					<string>UIResponder</string>
-					<string>{{615, 540}, {320, 460}}</string>
+					<string>{{217, 472}, {320, 460}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{51, 721}, {320, 43}}</string>
+					<string>{{51, 721}, {290, 43}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{44, 945}, {290, 43}}</string>
+					<string>{{617, 366}, {290, 43}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{420, 928}, {290, 55}}</string>
+					<string>{{603, 366}, {290, 55}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{153, 676}, {290, 226}}</string>
+					<string>{{403, 339}, {291, 74}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{263, 844}, {320, 43}}</string>
+					<string>{{263, 844}, {290, 43}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{55, 835}, {290, 35}}</string>
+					<string>{{675, 417}, {290, 35}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1518,7 +1575,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>KBPhotoThumbnailCell</string>
-					<string>{{575, 727}, {320, 72}}</string>
+					<string>{{575, 442}, {291, 73}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1540,7 +1597,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">90</int>
+			<int key="maxID">99</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1555,11 +1612,13 @@
 							<string>dismiss</string>
 							<string>displayTextView</string>
 							<string>displayTextViewForCheckin</string>
+							<string>switchToTwitter</string>
 							<string>viewSettings</string>
 							<string>viewUserProfile</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -1738,6 +1797,7 @@
 							<string>locationOverlayButton</string>
 							<string>name</string>
 							<string>photoCell</string>
+							<string>photoCorners</string>
 							<string>photoNotificationSwitch</string>
 							<string>pingsAndUpdates</string>
 							<string>profileInfoView</string>
@@ -1765,6 +1825,7 @@
 							<string>UIButton</string>
 							<string>UILabel</string>
 							<string>UITableViewCell</string>
+							<string>UIImageView</string>
 							<string>UISwitch</string>
 							<string>UIButton</string>
 							<string>UIView</string>
@@ -2079,6 +2140,7 @@
 				<string>profileHereToo01.png</string>
 				<string>profileHereToo02.png</string>
 				<string>profileInfo01.png</string>
+				<string>profilePhotosCornerOverlay.png</string>
 				<string>profilePings01.png</string>
 				<string>profileSeeFriends01.png</string>
 				<string>profileSeeFriends02.png</string>
@@ -2089,6 +2151,7 @@
 				<string>text01.png</string>
 				<string>text02.png</string>
 				<string>textOFF.png</string>
+				<string>wood_bg.png</string>
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2114,6 +2177,7 @@
 				<string>{291, 55}</string>
 				<string>{291, 55}</string>
 				<string>{44, 34}</string>
+				<string>{291, 73}</string>
 				<string>{16, 16}</string>
 				<string>{291, 35}</string>
 				<string>{291, 35}</string>
@@ -2124,6 +2188,7 @@
 				<string>{16, 16}</string>
 				<string>{16, 16}</string>
 				<string>{16, 16}</string>
+				<string>{291, 349}</string>
 			</object>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">87</string>

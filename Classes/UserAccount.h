@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MGTwitterEngine.h"
+#import "XAuthTwitterEngine.h"
 
 @class OAToken;
 
@@ -23,7 +23,7 @@ typedef enum {
     NSString        *_secretData;
     TwitterAuthType  _authType;
 	
-	MGTwitterEngine *_twitter;
+	XAuthTwitterEngine *_twitter;
 	NSString *_userInfoConnectionID;
 	NSDictionary *_userData;
 }

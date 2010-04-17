@@ -24,6 +24,14 @@
 #import "XAuthTwitterEngineViewController.h"
 #import "TableSectionHeaderView.h"
 
+#define SECTION_RECENT_CHECKINS 1
+#define SECTION_TODAY_CHECKINS 2
+#define SECTION_YESTERDAY_CHECKINS 3
+#define SECTION_NONCITY_CHECKINS 4
+#define SECTION_MORE_BUTTON 5
+#define SECTION_FOOTER 6
+#define SECTION_SHOUT 0
+
 @interface FriendsListViewController (Private)
 
 - (NSDate*) convertToUTC:(NSDate*)sourceDate;
@@ -193,21 +201,23 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	if (section == 0) {
+	if (section == SECTION_RECENT_CHECKINS) {
 		return [self.recentCheckins count];
-	} else if (section == 1) {
+	} else if (section == SECTION_TODAY_CHECKINS) {
         return [self.todayCheckins count];
-    } else if (section == 2) {
+    } else if (section == SECTION_YESTERDAY_CHECKINS) {
         if (isDisplayingMore) {
             return [self.yesterdayCheckins count];
         } else {
             return 0;
         }
-    } else if (section == 3) {
+    } else if (section == SECTION_NONCITY_CHECKINS) {
         return [self.nonCityCheckins count];
-    } else if (section == 4) {
+    } else if (section == SECTION_MORE_BUTTON) {
         return !isDisplayingMore;
-    } else if (section == 5) {
+    } else if (section == SECTION_FOOTER) {
+        return 1;
+    } else if (section == SECTION_SHOUT) {
         return 1;
     }
 	return 0;
@@ -224,22 +234,24 @@
     }
     
     FSCheckin *checkin = nil;
-    if (indexPath.section == 0) {
+    if (indexPath.section == SECTION_RECENT_CHECKINS) {
         checkin = [self.recentCheckins objectAtIndex:indexPath.row];
-    } else if (indexPath.section == 1) {
+    } else if (indexPath.section == SECTION_TODAY_CHECKINS) {
         checkin = [self.todayCheckins objectAtIndex:indexPath.row];
-    } else if (indexPath.section == 2) {
+    } else if (indexPath.section == SECTION_YESTERDAY_CHECKINS) {
         if (isDisplayingMore) {
             checkin = [self.yesterdayCheckins objectAtIndex:indexPath.row];
         } else {
             return nil;
         }
-    } else if (indexPath.section == 3) {
+    } else if (indexPath.section == SECTION_NONCITY_CHECKINS) {
         checkin = [self.nonCityCheckins objectAtIndex:indexPath.row];
-    } else if (indexPath.section == 4) {
+    } else if (indexPath.section == SECTION_MORE_BUTTON) {
         return moreCell;
-    } else if (indexPath.section == 5) {
+    } else if (indexPath.section == SECTION_FOOTER) {
         return footerViewCell;
+    } else if (indexPath.section == SECTION_SHOUT) {
+        return shoutCell;
     }
     
     if (checkin.venue) {
@@ -295,16 +307,16 @@
     NSLog(@"row selected");
     FSUser *user = nil;
     switch (indexPath.section) {
-        case 0: // last 3 hours
+        case SECTION_RECENT_CHECKINS: // last 3 hours
             user = ((FSCheckin*)[self.recentCheckins objectAtIndex:indexPath.row]).user;
             break;
-        case 1: //today
+        case SECTION_TODAY_CHECKINS: //today
             user = ((FSCheckin*)[self.todayCheckins objectAtIndex:indexPath.row]).user;
             break;
-        case 2: //yesterday
+        case SECTION_YESTERDAY_CHECKINS: //yesterday
             user = ((FSCheckin*)[self.yesterdayCheckins objectAtIndex:indexPath.row]).user;
             break;
-        case 3: //non-city
+        case SECTION_NONCITY_CHECKINS: //non-city
             user = ((FSCheckin*)[self.nonCityCheckins objectAtIndex:indexPath.row]).user;
             break;
         default:
@@ -327,9 +339,9 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 5) {
+    if (indexPath.section == SECTION_FOOTER) {
         return 50;
-    } else if (indexPath.section == 4) {
+    } else if (indexPath.section == SECTION_MORE_BUTTON || indexPath.section == SECTION_SHOUT) {
         return 44;
     }
     return 72;
@@ -345,48 +357,47 @@
     // and pass the text into the method
     // TODO: clean this crap up
     switch (section) {
-        case 0:
+        case SECTION_SHOUT:
+            return nil;
+            break;
+        case SECTION_RECENT_CHECKINS:
             if ([recentCheckins count] > 0) {
                 headerView.leftHeaderLabel.text = @"Recent Check-ins";
                 headerView.rightHeaderLabel.text = @"Mins Ago";
-                //headerLabel.text = @"Recent Check-ins                                                 Mins ago";
             } else {
                 [headerView release];
                 return nil;
             }
             break;
-        case 1:
+        case SECTION_TODAY_CHECKINS:
             if ([todayCheckins count] > 0) {
                 headerView.leftHeaderLabel.text = @"Today";
                 headerView.rightHeaderLabel.text = @"Hours Ago";
-//                headerLabel.text = @"Today                                                                     Hours ago";
             } else {
                 [headerView release];
                 return nil;
             }
             break;
-        case 2:
+        case SECTION_YESTERDAY_CHECKINS:
             if ([yesterdayCheckins count] > 0 && isDisplayingMore) {
                 headerView.leftHeaderLabel.text = @"Older";
                 headerView.rightHeaderLabel.text = @"Days Ago";
-//                headerLabel.text = @"Older                                                                        Days ago";
             } else {
                 [headerView release];
                 return nil;
             }
             break;
-        case 3:
+        case SECTION_NONCITY_CHECKINS:
             if ([nonCityCheckins count] > 0) {
                 headerView.leftHeaderLabel.text = @"Other Cities";
                 headerView.rightHeaderLabel.text = @"*TODO*";
-//                headerLabel.text = @"Other Cities";
             } else {
                 [headerView release];
                 return nil;
             }
             break;
-        case 4:  // more cell
-        case 5:  // footer cell
+        case SECTION_MORE_BUTTON:  // more cell
+        case SECTION_FOOTER:  // footer cell
             [headerView release];
             return nil;
         default:
@@ -474,6 +485,9 @@
         NSLog(@"yesterday checkins: %d", [self.yesterdayCheckins count]);
         
         [theTableView reloadData];
+        int sectionToScrollTo = [self.recentCheckins count] > 0 ? 1 : ([self.todayCheckins count] > 0 ? 2 : ([self.nonCityCheckins count] > 0 ? 4 : 0));
+        [theTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:sectionToScrollTo] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+
         footerViewCell.hidden = NO;
         mapButton.hidden = NO;
         if (hasViewedInstructions) {

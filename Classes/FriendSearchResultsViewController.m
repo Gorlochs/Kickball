@@ -15,6 +15,8 @@
 @synthesize searchResults;
 
 - (void)viewDidLoad {
+    self.hideHeader = YES;
+    self.hideFooter = YES;
     [self addHeaderAndFooter:theTableView];
     [super viewDidLoad];
 
