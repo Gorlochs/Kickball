@@ -7,6 +7,8 @@
 //
 
 #import "KBTweetListViewController.h"
+#import "UIAlertView+Helper.h"
+#import "XAuthTwitterEngineViewController.h"
 
 
 @implementation KBTweetListViewController
@@ -15,8 +17,51 @@
 #pragma mark -
 #pragma mark View lifecycle
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        // Custom initialization
+    }
+    return self;
+}
+ 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSuccessful) name:kTwitterLoginNotificationKey object:nil];
+    
+    if ([self.twitterEngine isAuthorized])
+	{
+		//UIAlertViewQuick(@"Cached xAuth token found!", @"This app was previously authorized for a Twitter account.", @"OK");
+		[self loginSuccessful];
+	} else {
+        //UIAlertViewQuick(@"Not logged in yet!", @"You'll need to log in.", @"OK");
+        XAuthTwitterEngineViewController *loginController = [[XAuthTwitterEngineViewController alloc] initWithNibName:@"XAuthTwitterEngineDemoViewController" bundle:nil];
+        [self presentModalViewController:loginController animated:YES];
+        [loginController release];
+    }
+}
+
+- (void) loginSuccessful {
+    NSLog(@"************ LOGGED IN *************");
+    
+    [twitterEngine getFollowedTimelineSinceID:0 startingAtPage:0 count:25];
+//    [twitterEngine getUserTimelineFor:nil sinceID:0 startingAtPage:0 count:25];
+}
+
+
+#pragma mark -
+#pragma mark MGTwitterEngineDelegate methods
+
+- (void)requestSucceeded:(NSString *)connectionIdentifier
+{
+	NSLog(@"Twitter request succeeded: %@", connectionIdentifier);
+	
+	UIAlertViewQuick(@"Tweet sent!", @"The tweet was successfully sent. Everything works!", @"OK");
+}
+
+- (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error
+{
+	NSLog(@"Twitter request failed: %@ with error:%@", connectionIdentifier, error);
+    
 }
 
 /*

@@ -10,9 +10,9 @@
 #import "XAuthTwitterEngineDelegate.h"
 #import "OAToken.h"
 
+
 #define kOAuthConsumerKey		@"qyx7QFTRxkJ0BbYN6ZKqbg"		// Replace these with your consumer key 
 #define	kOAuthConsumerSecret	@"5Naqknb57AxYWVdonjl0H9Iod7Kq76MWcvnYqAEpo"		// and consumer secret from http://twitter.com/oauth_clients/details/<your app id>
-
 #define kCachedXAuthAccessTokenStringKey	@"cachedXAuthAccessTokenKey"
 
 @class XAuthTwitterEngine;
@@ -21,8 +21,7 @@
 	IBOutlet UITextField *usernameTextField;
 	IBOutlet UITextField *passwordTextField;
 	IBOutlet UIButton *sendTweetButton;
-	
-	XAuthTwitterEngine *twitterEngine;
+    XAuthTwitterEngine *twitterEngine;
 }
 
 @property (nonatomic, retain) UITextField *usernameTextField, *passwordTextField;

@@ -134,6 +134,11 @@
 	
 	// Enable the send tweet button.
 	self.sendTweetButton.enabled = YES;
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"loginNotification"
+                                                        object:nil
+                                                      userInfo:nil];
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 - (NSString *) cachedTwitterXAuthAccessTokenStringForUsername: (NSString *)username;

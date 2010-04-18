@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "KBBaseViewController.h"
+#import "XAuthTwitterEngine.h"
+#import "KBTwitterManager.h"
 
 
 @interface KBTwitterViewController : KBBaseViewController {
@@ -15,6 +17,10 @@
     IBOutlet UIButton *mentionsButton;
     IBOutlet UIButton *directMessageButton;
     IBOutlet UIButton *searchButton;
+    
+    XAuthTwitterEngine *twitterEngine;
 }
+
+@property (nonatomic, retain) XAuthTwitterEngine *twitterEngine;
 
 @end
