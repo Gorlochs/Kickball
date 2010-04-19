@@ -12,9 +12,11 @@
 @interface KickballAPI : NSObject {
     NSDateFormatter *goodyDateFormatter;
     NSDateFormatter *photoDateFormatter;
+    NSDateFormatter *twitterDateFormatter;
 }
 
 @property (nonatomic, retain) NSDateFormatter *photoDateFormatter;
+@property (nonatomic, retain) NSDateFormatter *twitterDateFormatter;
 
 + (KickballAPI*) kickballApi;
 

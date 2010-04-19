@@ -7,11 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Three20/Three20.h"
 #import "KBTwitterViewController.h"
+#import "TableItemTestController.h"
 
 
 @interface KBTweetListViewController : KBTwitterViewController {
-
+    NSArray *statuses;
+    NSMutableArray *statusObjects;
+    TableItemTestController *tableController;
+    NSMutableArray *tweets;
 }
 
 - (void) loginSuccessful;

@@ -7,9 +7,10 @@
 //
 
 #import "KBTweetListViewController.h"
+#import "Three20/Three20.h"
 #import "UIAlertView+Helper.h"
 #import "XAuthTwitterEngineViewController.h"
-
+#import "KBTweet.h"
 
 @implementation KBTweetListViewController
 
@@ -27,6 +28,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSuccessful) name:kTwitterLoginNotificationKey object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusRetrieved:) name:kTwitterStatusRetrievedNotificationKey object:nil];
+    
     
     if ([self.twitterEngine isAuthorized])
 	{
@@ -47,6 +50,22 @@
 //    [twitterEngine getUserTimelineFor:nil sinceID:0 startingAtPage:0 count:25];
 }
 
+- (void) statusRetrieved:(NSNotification *)inNotification {
+    if (inNotification) {
+        if ([inNotification userInfo]) {
+            NSDictionary *userInfo = [inNotification userInfo];
+            if ([userInfo objectForKey:@"statuses"]) {
+                statuses = [[userInfo objectForKey:@"statuses"] retain];
+                NSLog(@"status retrieved: %@", statuses);
+                tweets = [[NSMutableArray alloc] initWithCapacity:[statuses count]];
+                for (NSDictionary *dict in statuses) {
+                    [tweets addObject:[[KBTweet alloc] initWithDictionary:dict]];
+                }
+                [theTableView reloadData];
+            }
+        }
+    }
+}
 
 #pragma mark -
 #pragma mark MGTwitterEngineDelegate methods
@@ -64,35 +83,6 @@
     
 }
 
-/*
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-}
-*/
-/*
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-*/
-/*
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-}
-*/
-/*
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-}
-*/
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
-
-
 #pragma mark -
 #pragma mark Table view data source
 
@@ -104,7 +94,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 1;
+    return [statuses count];
 }
 
 
@@ -119,49 +109,12 @@
     }
     
     // Configure the cell...
+    //cell.textLabel.text = [[statuses objectAtIndex:indexPath.row] objectForKey:@"text"];
+    KBTweet *tweet = [tweets objectAtIndex:indexPath.row];
+    cell.textLabel.text = tweet.tweetText;
     
     return cell;
 }
-
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 
 #pragma mark -
@@ -196,6 +149,7 @@
 
 
 - (void)dealloc {
+    [statuses release];
     [super dealloc];
 }
 

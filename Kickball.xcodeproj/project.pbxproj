@@ -166,6 +166,8 @@
 		6A1F16841135F746004C1F7F /* ASINSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A1F167E1135F746004C1F7F /* ASINSStringAdditions.m */; };
 		6A1F16911135F7EE004C1F7F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A1F168F1135F7EE004C1F7F /* Reachability.m */; };
 		6A1F16F411362449004C1F7F /* KBGoody.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A1F16F311362449004C1F7F /* KBGoody.m */; };
+		6A211744117C2D1C00BE897E /* KBTweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A211743117C2D1C00BE897E /* KBTweet.m */; };
+		6A211747117C2D2900BE897E /* KBTweetTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A211746117C2D2900BE897E /* KBTweetTableCell.m */; };
 		6A223A4F10E46CE1003550F2 /* CreateTipTodoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A223A4D10E46CE1003550F2 /* CreateTipTodoViewController.m */; };
 		6A223A5010E46CE1003550F2 /* CreateTipTodoViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A223A4E10E46CE1003550F2 /* CreateTipTodoViewController.xib */; };
 		6A2A079A10CCE0100012F527 /* FSFunctionRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A8DD2E10CCD07300D3538A /* FSFunctionRequest.m */; };
@@ -813,6 +815,10 @@
 		6A1F168F1135F7EE004C1F7F /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		6A1F16F211362449004C1F7F /* KBGoody.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBGoody.h; sourceTree = "<group>"; };
 		6A1F16F311362449004C1F7F /* KBGoody.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBGoody.m; sourceTree = "<group>"; };
+		6A211742117C2D1C00BE897E /* KBTweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBTweet.h; sourceTree = "<group>"; };
+		6A211743117C2D1C00BE897E /* KBTweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTweet.m; sourceTree = "<group>"; };
+		6A211745117C2D2900BE897E /* KBTweetTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBTweetTableCell.h; sourceTree = "<group>"; };
+		6A211746117C2D2900BE897E /* KBTweetTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTweetTableCell.m; sourceTree = "<group>"; };
 		6A223A4C10E46CE1003550F2 /* CreateTipTodoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTipTodoViewController.h; sourceTree = "<group>"; };
 		6A223A4D10E46CE1003550F2 /* CreateTipTodoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTipTodoViewController.m; sourceTree = "<group>"; };
 		6A223A4E10E46CE1003550F2 /* CreateTipTodoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTipTodoViewController.xib; sourceTree = "<group>"; };
@@ -2645,6 +2651,10 @@
 				6A30075411797649001CB933 /* KBTweetListViewController.m */,
 				6AE77E08117984B600997215 /* KBTwitterManager.h */,
 				6AE77E09117984B600997215 /* KBTwitterManager.m */,
+				6A211742117C2D1C00BE897E /* KBTweet.h */,
+				6A211743117C2D1C00BE897E /* KBTweet.m */,
+				6A211745117C2D2900BE897E /* KBTweetTableCell.h */,
+				6A211746117C2D2900BE897E /* KBTweetTableCell.m */,
 			);
 			name = KBTwitter;
 			sourceTree = "<group>";
@@ -3410,6 +3420,8 @@
 				6A30075611797649001CB933 /* KBTweetListViewController.m in Sources */,
 				6A30075711797649001CB933 /* KBTweetListViewController.xib in Sources */,
 				6AE77E0A117984B600997215 /* KBTwitterManager.m in Sources */,
+				6A211744117C2D1C00BE897E /* KBTweet.m in Sources */,
+				6A211747117C2D2900BE897E /* KBTweetTableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,6 +15,7 @@
 #import "FoursquareAPI.h"
 #import "ProfileViewController.h"
 #import "PopupMessageView.h"
+#import "TableItemTestController.h"
 
 
 @implementation KickballAppDelegate
@@ -34,6 +35,7 @@
     //[window addSubview:viewController.view];
     [window addSubview:navigationController.view];
     [window makeKeyAndVisible];
+    
     application.applicationIconBadgeNumber = 0;
     
     // Pinch Analytics

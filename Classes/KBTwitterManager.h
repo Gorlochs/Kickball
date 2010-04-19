@@ -14,6 +14,7 @@
 #define kCachedXAuthAccessTokenStringKey	@"cachedXAuthAccessTokenKey"
 
 #define kTwitterLoginNotificationKey @"loginNotification"
+#define kTwitterStatusRetrievedNotificationKey @"statusRetrievedNotification"
 
 @interface KBTwitterManager : NSObject {
     XAuthTwitterEngine *twitterEngine;

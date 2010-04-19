@@ -27,13 +27,15 @@
 #import <UIKit/UIKit.h>
 #import "TweetViewController.h"
 #import "TwActivityIndicator.h"
+#import "XAuthTwitterEngine.h"
 
 #define MESSAGES_PER_PAGE 20
 
 @interface MessageListController : UITableViewController <TweetViewDelegate>
 {
 @protected
-	MGTwitterEngine     *_twitter;
+	//MGTwitterEngine     *_twitter;
+    XAuthTwitterEngine *_twitter;
     
 @private
     NSArray             *_messages;

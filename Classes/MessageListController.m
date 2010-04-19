@@ -36,6 +36,7 @@
 #import "AccountManager.h"
 #import "TwitterMessageObject.h"
 #import "TwMessageCell.h"
+#import "KBTwitterManager.h"
 
 #define ROW_HEIGHT          70
 NSString *const kTwitterErrorPrefix = @"Twitter: ";
@@ -100,11 +101,46 @@ const NSInteger kRetriesNumber = 3;
 	_loading = [[AccountManager manager] isValidLoggedUser];
 	_indicatorCount = 0;
 	
-    _twitter = [[MGTwitterEngineFactory createTwitterEngineForCurrentUser:self] retain];
+    _twitter = [[KBTwitterManager twitterManager] twitterEngine];
+//    _twitter = [[MGTwitterEngineFactory createTwitterEngineForCurrentUser:self] retain];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(accountChanged:) name:@"AccountChanged" object:nil];
 
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSuccessful) name:kTwitterLoginNotificationKey object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusRetrieved:) name:kTwitterStatusRetrievedNotificationKey object:nil];
+//    
+//    if ([self.twitterEngine isAuthorized])
+//	{
+//		//UIAlertViewQuick(@"Cached xAuth token found!", @"This app was previously authorized for a Twitter account.", @"OK");
+//		[self loginSuccessful];
+//	} else {
+//        //UIAlertViewQuick(@"Not logged in yet!", @"You'll need to log in.", @"OK");
+//        XAuthTwitterEngineViewController *loginController = [[XAuthTwitterEngineViewController alloc] initWithNibName:@"XAuthTwitterEngineDemoViewController" bundle:nil];
+//        [self presentModalViewController:loginController animated:YES];
+//        [loginController release];
+//    }
+    
 	[self performSelector:@selector(reloadAll) withObject:nil afterDelay:0.5f];
 }
+
+//- (void) loginSuccessful {
+//    NSLog(@"************ LOGGED IN *************");
+//    
+//    [twitterEngine getFollowedTimelineSinceID:0 startingAtPage:0 count:25];
+//    //    [twitterEngine getUserTimelineFor:nil sinceID:0 startingAtPage:0 count:25];
+//}
+//
+//- (void) statusRetrieved:(NSNotification *)inNotification {
+//    if (inNotification) {
+//        if ([inNotification userInfo]) {
+//            NSDictionary *userInfo = [inNotification userInfo];
+//            if ([userInfo objectForKey:@"statuses"]) {
+//                _messages = [[userInfo objectForKey:@"statuses"] retain];
+//                NSLog(@"status retrieved: %@", statuses);
+//                [theTableView reloadData];
+//            }
+//        }
+//    }
+//}
 
 - (void)viewWillAppear:(BOOL)animated 
 {

@@ -124,7 +124,12 @@ static KBTwitterManager *sharedInstance = nil;
 - (void)statusesReceived:(NSArray *)statuses forRequest:(NSString *)connectionIdentifier
 {
     NSLog(@"Receive status");
-    NSLog(@"%@", statuses);
+    //NSLog(@"%@", statuses);
+    
+    NSDictionary *userInfo = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:statuses, nil] forKeys:[NSArray arrayWithObjects:@"statuses", nil]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kTwitterStatusRetrievedNotificationKey
+                                                        object:nil
+                                                      userInfo:userInfo];
 }
 
 @end

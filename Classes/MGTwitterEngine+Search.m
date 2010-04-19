@@ -22,9 +22,10 @@
         [params setObject:[NSString stringWithFormat:@"%d", count] forKey:@"rpp"];
     }
 	
-    return [self _sendRequestWithMethod:nil path:path queryParameters:params body:nil 
-                            requestType:MGTwitterSearchManage
-                           responseType:MGTwitterSearchResults];
+//    return [self _sendRequestWithMethod:nil path:path queryParameters:params body:nil 
+//                            requestType:MGTwitterSearchManage
+//                           responseType:MGTwitterSearchResults];
+    return nil;
 }
 /*
 - (NSString *)getSearchSavedResultById:(int)queryID
@@ -50,18 +51,20 @@
 		[params setObject:queryID forKey:@"id"];
 	}
     
-    return [self _sendRequestWithMethod:HTTP_POST_METHOD path:path queryParameters:params body:nil
-                            requestType:MGTwitterSearchManage 
-                           responseType:MGTwitterSearchResults];    
+//    return [self _sendRequestWithMethod:HTTP_POST_METHOD path:path queryParameters:params body:nil
+//                            requestType:MGTwitterSearchManage 
+//                           responseType:MGTwitterSearchResults];    
+    return nil;
 }
 
 - (NSString *)searchSaveQuery:(NSString *)query
 {
     NSString *path = [NSString stringWithFormat:@"saved_searches/create.%@", API_FORMAT];
 	NSString *theBody = [NSString stringWithFormat:@"query=%@", query];
-    return [self _sendRequestWithMethod:HTTP_POST_METHOD path:path queryParameters:nil body:theBody 
-                            requestType:MGTwitterSearchSave 
-                           responseType:MGTwitterSearchResults];
+//    return [self _sendRequestWithMethod:HTTP_POST_METHOD path:path queryParameters:nil body:theBody 
+//                            requestType:MGTwitterSearchSave 
+//                           responseType:MGTwitterSearchResults];
+    return nil;
 }
 /*
 - (NSString *)searchDestroyQuery:(int)queryID
@@ -81,9 +84,10 @@
 - (NSString *)searchDestroyQuery:(NSString*)queryID
 {
     NSString *path = [NSString stringWithFormat:@"saved_searches/destroy/%@.%@", queryID, API_FORMAT];
-    return [self _sendRequestWithMethod:HTTP_POST_METHOD path:path queryParameters:nil body:nil
-                            requestType:MGTwitterSearchDestroy 
-                           responseType:MGTwitterSearchResults];
+//    return [self _sendRequestWithMethod:HTTP_POST_METHOD path:path queryParameters:nil body:nil
+//                            requestType:MGTwitterSearchDestroy 
+//                           responseType:MGTwitterSearchResults];
+    return nil;
 }
 
 @end

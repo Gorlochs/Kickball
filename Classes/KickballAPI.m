@@ -11,12 +11,15 @@
 #import "Utilities.h"
 #import "KBGoody.h"
 #import "TouchXML.h"
+#import "MGTwitterXMLParser.h"
+
 
 static KickballAPI* _kickballApi = nil;
 
 @implementation KickballAPI
 
 @synthesize photoDateFormatter;
+@synthesize twitterDateFormatter;
 
 - (NSMutableArray*) parsePhotosFromXML:(NSString*)responseString {
     
@@ -167,10 +170,15 @@ static KickballAPI* _kickballApi = nil;
         [goodyDateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
         [goodyDateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
         
-        // prepare other data formatter
+        // prepare other date formatter
         photoDateFormatter = [[NSDateFormatter alloc] init];
         [photoDateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
         [photoDateFormatter setDateFormat:@"LLLL dd, hh:mm a"];
+        
+        // prepare twitter date formatter
+        twitterDateFormatter = [[NSDateFormatter alloc] init];
+        [twitterDateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+        [twitterDateFormatter setDateFormat:kMGTwitterDateFormatString];
 	}
     
 	return self;
