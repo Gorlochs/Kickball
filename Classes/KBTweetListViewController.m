@@ -29,9 +29,8 @@
  
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTweetNotification:) name:IFTweetLabelURLNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showStatuses) name:kTwitterLoginNotificationKey object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusRetrieved:) name:kTwitterStatusRetrievedNotificationKey object:nil];
+    
+    [self createNotificationObservers];
     
     if ([self.twitterEngine isAuthorized]) {
 		[self showStatuses];
@@ -40,6 +39,13 @@
         [self presentModalViewController:loginController animated:YES];
         [loginController release];
     }
+}
+
+- (void) createNotificationObservers {
+    NSLog(@"########## this should only show up for the KBTweetListViewController view ########");
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusRetrieved:) name:kTwitterStatusRetrievedNotificationKey object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTweetNotification:) name:IFTweetLabelURLNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showStatuses) name:kTwitterLoginNotificationKey object:nil];
 }
 
 - (void) showStatuses {
@@ -62,6 +68,7 @@
             }
         }
     }
+	[self dataSourceDidFinishLoadingNewData];
 }
 
 - (void)handleTweetNotification:(NSNotification *)notification {
@@ -159,6 +166,12 @@
 	[detailViewController release];
 }
 
+#pragma mark -
+#pragma mark table refresh methods
+
+- (void) refreshTable {
+    [self showStatuses];
+}
 
 #pragma mark -
 #pragma mark Memory management

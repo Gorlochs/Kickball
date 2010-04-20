@@ -28,10 +28,7 @@
         profileImageUrl = [[statusDictionary objectForKey:@"user"] objectForKey:@"profile_image_url"];
         tweetText = [statusDictionary objectForKey:@"text"];
         createDate = [statusDictionary objectForKey:@"created_at"];
-        NSLog(@"tweet id: %@", [statusDictionary objectForKey:@"id"]);
         tweetId = [statusDictionary objectForKey:@"id"];
-        NSLog(@"tweet id: %@", tweetId);
-        NSLog(@"tweet id: %qu", [tweetId longLongValue]);
     }
     return self;
 }

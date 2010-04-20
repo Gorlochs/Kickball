@@ -20,5 +20,6 @@
 }
 
 - (void) showStatuses;
+- (void) createNotificationObservers;
 
 @end

@@ -50,6 +50,11 @@
     [self.view addSubview:userProfileImage];
 }
 
+- (void) createNotificationObservers {
+    NSLog(@"########## this should only show up for the DETAIL view ########");
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusRetrieved:) name:kTwitterStatusRetrievedNotificationKey object:nil];
+}
+
 - (void) retweet {
     [twitterEngine sendRetweet:[tweet.tweetId longLongValue]];
 }
@@ -57,7 +62,6 @@
 - (void) reply {
 
 }
-
 
 - (void) statusRetrieved:(NSNotification *)inNotification {
     NSLog(@"********** RETWEET SUCCESSFUL!!!! **********");

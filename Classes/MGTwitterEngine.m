@@ -38,7 +38,7 @@
 	#endif
 #endif
 
-#define TWITTER_DOMAIN          @"twitter.com"
+#define TWITTER_DOMAIN          @"api.twitter.com"
 #define TWITTER_API_VERSION     1
 //#if YAJL_AVAILABLE
 	#define TWITTER_SEARCH_DOMAIN	@"search.twitter.com"
@@ -1066,10 +1066,9 @@
     if (updateID == 0){
         return nil;
     }
-    NSString *path = [NSString stringWithFormat:@"statuses/retweet/%qu.%@", updateID, API_FORMAT];
+    NSString *path = [NSString stringWithFormat:@"1/statuses/retweet/%qu.%@", updateID, API_FORMAT];
     
     return [self _sendRequestWithMethod:HTTP_POST_METHOD path:path 
-            
                         queryParameters:nil body:nil 
                             requestType:MGTwitterUpdateSendRequest
                            responseType:MGTwitterStatus];
