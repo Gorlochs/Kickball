@@ -10,7 +10,7 @@
 #import "Three20/Three20.h"
 #import "UIAlertView+Helper.h"
 #import "XAuthTwitterEngineViewController.h"
-#import "KBTweet.h"
+#import "KBTweetTableCell.h"
 
 @implementation KBTweetListViewController
 
@@ -27,36 +27,31 @@
  
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSuccessful) name:kTwitterLoginNotificationKey object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTweetNotification:) name:IFTweetLabelURLNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showStatuses) name:kTwitterLoginNotificationKey object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusRetrieved:) name:kTwitterStatusRetrievedNotificationKey object:nil];
     
-    
-    if ([self.twitterEngine isAuthorized])
-	{
-		//UIAlertViewQuick(@"Cached xAuth token found!", @"This app was previously authorized for a Twitter account.", @"OK");
-		[self loginSuccessful];
+    if ([self.twitterEngine isAuthorized]) {
+		[self showStatuses];
 	} else {
-        //UIAlertViewQuick(@"Not logged in yet!", @"You'll need to log in.", @"OK");
         XAuthTwitterEngineViewController *loginController = [[XAuthTwitterEngineViewController alloc] initWithNibName:@"XAuthTwitterEngineDemoViewController" bundle:nil];
         [self presentModalViewController:loginController animated:YES];
         [loginController release];
     }
 }
 
-- (void) loginSuccessful {
-    NSLog(@"************ LOGGED IN *************");
-    
+- (void) showStatuses {
     [twitterEngine getFollowedTimelineSinceID:0 startingAtPage:0 count:25];
-//    [twitterEngine getUserTimelineFor:nil sinceID:0 startingAtPage:0 count:25];
 }
 
 - (void) statusRetrieved:(NSNotification *)inNotification {
+    NSLog(@"notification: %@", inNotification);
     if (inNotification) {
         if ([inNotification userInfo]) {
             NSDictionary *userInfo = [inNotification userInfo];
             if ([userInfo objectForKey:@"statuses"]) {
                 statuses = [[userInfo objectForKey:@"statuses"] retain];
-                NSLog(@"status retrieved: %@", statuses);
+                //NSLog(@"status retrieved: %@", statuses);
                 tweets = [[NSMutableArray alloc] initWithCapacity:[statuses count]];
                 for (NSDictionary *dict in statuses) {
                     [tweets addObject:[[KBTweet alloc] initWithDictionary:dict]];
@@ -64,6 +59,18 @@
                 [theTableView reloadData];
             }
         }
+    }
+}
+
+- (void)handleTweetNotification:(NSNotification *)notification {
+	NSLog(@"handleTweetNotification: notification = %@", notification);
+    if ([[notification object] rangeOfString:@"@"].location == 0) {
+        // TODO: push user view
+    } else if ([[notification object] rangeOfString:@"#"].location == 0) {
+        // TODO: push hashtag search view (http://search.twitter.com/search.atom?q=%23haiku)
+    } else {
+        // TODO: push properly styled web view
+        [self openWebView:[notification object]];
     }
 }
 
@@ -103,19 +110,37 @@
     
     static NSString *CellIdentifier = @"Cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    KBTweetTableCell *cell = (KBTweetTableCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[KBTweetTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     
     // Configure the cell...
     //cell.textLabel.text = [[statuses objectAtIndex:indexPath.row] objectForKey:@"text"];
     KBTweet *tweet = [tweets objectAtIndex:indexPath.row];
-    cell.textLabel.text = tweet.tweetText;
+    
+    cell.userIcon.urlPath = tweet.profileImageUrl;
+    cell.userName.text = tweet.screenName;
+   // cell.tweetText.text = [TTStyledText textFromXHTML:tweet.tweetText lineBreaks:YES URLs:YES];
+    cell.tweetText.text = tweet.tweetText;
+    
+    CGSize maximumLabelSize = CGSizeMake(250,60);
+    CGSize expectedLabelSize = [cell.tweetText.text sizeWithFont:cell.tweetText.font 
+                                           constrainedToSize:maximumLabelSize 
+                                               lineBreakMode:UILineBreakModeTailTruncation]; 
+
+    //adjust the label the the new height.
+    CGRect newFrame = cell.tweetText.frame;
+    newFrame.size.height = expectedLabelSize.height;
+    cell.tweetText.frame = newFrame;
     
     return cell;
 }
 
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 90;
+}
 
 #pragma mark -
 #pragma mark Table view delegate

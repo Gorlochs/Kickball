@@ -38,6 +38,7 @@
 #endif
 
 #define TWITTER_DOMAIN          @"twitter.com"
+#define TWITTER_API_VERSION     1
 #if YAJL_AVAILABLE
 	#define TWITTER_SEARCH_DOMAIN	@"search.twitter.com"
 #endif
@@ -496,14 +497,19 @@
 #endif
 	
 #if SET_AUTHORIZATION_IN_HEADER
-    NSString *urlString = [NSString stringWithFormat:@"%@://%@/%@", 
+    NSString *urlString = [NSString stringWithFormat:@"%@://%@/%@/%@", 
                            connectionType,
-                           domain, fullPath];
+                           domain, 
+                           TWITTER_API_VERSION,
+                           fullPath];
 #else    
-    NSString *urlString = [NSString stringWithFormat:@"%@://%@:%@@%@/%@", 
+    NSString *urlString = [NSString stringWithFormat:@"%@://%@:%@@%@/%@/%@", 
                            connectionType, 
-                           [self _encodeString:_username], [self _encodeString:_password], 
-                           domain, fullPath];
+                           [self _encodeString:_username], 
+                           [self _encodeString:_password], 
+                           domain, 
+                           TWITTER_API_VERSION,
+                           fullPath];
 #endif
     
     NSURL *finalURL = [NSURL URLWithString:urlString];

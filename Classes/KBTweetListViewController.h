@@ -9,16 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "Three20/Three20.h"
 #import "KBTwitterViewController.h"
-#import "TableItemTestController.h"
+#import "KBTweet.h"
 
 
-@interface KBTweetListViewController : KBTwitterViewController {
+@interface KBTweetListViewController : KBTwitterViewController <MGTwitterEngineDelegate> {
     NSArray *statuses;
     NSMutableArray *statusObjects;
-    TableItemTestController *tableController;
     NSMutableArray *tweets;
 }
 
-- (void) loginSuccessful;
+- (void) showStatuses;
 
 @end

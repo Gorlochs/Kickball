@@ -104,8 +104,14 @@
 }
 
 - (void)handleTweetNotification:(NSNotification *)notification {
-    [self openWebView:[notification object]];
 	NSLog(@"handleTweetNotification: notification = %@", notification);
+    if ([[notification object] rangeOfString:@"@"].location == 0) {
+        NSLog(@"********* twitter user name ************** %@", [notification object]);
+    } else if ([[notification object] rangeOfString:@"#"].location == 0) {
+        NSLog(@"********* twitter hashtag ************** %@", [notification object]);
+    } else {
+        [self openWebView:[notification object]];
+    }
 }
 
 #pragma mark UITableView methods

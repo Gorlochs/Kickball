@@ -23,4 +23,9 @@
 
 @property (nonatomic, retain) XAuthTwitterEngine *twitterEngine;
 
+- (IBAction) showMentions;
+- (IBAction) showDirectMessages;
+- (IBAction) showUserTimeline;
+- (IBAction) showSearch;
+
 @end

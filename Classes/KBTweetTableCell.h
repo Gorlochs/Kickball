@@ -7,10 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Three20/Three20.h"
+#import "IFTweetLabel.h"
 
 
 @interface KBTweetTableCell : UITableViewCell {
-
+    TTImageView *userIcon;
+    
+    UILabel *userName;
+    //TTStyledTextLabel *tweetText;
+    IFTweetLabel *tweetText;
+    
+    UIImageView *topLineImage;
+    UIImageView *bottomLineImage;
+    UIImageView *iconBgImage;
 }
+
+@property (nonatomic, retain) TTImageView *userIcon;
+@property (nonatomic, retain) UILabel *userName;
+@property (nonatomic, retain) IFTweetLabel *tweetText;
 
 @end

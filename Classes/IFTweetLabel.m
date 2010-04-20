@@ -36,8 +36,8 @@ static NSArray *expressions = nil;
 {
 	// setup regular expressions that define where buttons will be created
 	expressions = [[NSArray alloc] initWithObjects:
-			//@"(@[a-zA-Z0-9_]+)", // screen names
-			//@"(#[a-zA-Z0-9_-]+)", // hash tags
+			@"(@[a-zA-Z0-9_]+)", // screen names
+			@"(#[a-zA-Z0-9_-]+)", // hash tags
 			@"([hH][tT][tT][pP][sS]?:\\/\\/[^ ,'\">\\]\\)]*[^\\. ,'\">\\]\\)])", // hyperlinks
 			nil];
 }
@@ -311,7 +311,7 @@ static NSArray *expressions = nil;
 	{
 		self.clipsToBounds = YES;
 		
-		self.normalColor = [UIColor blueColor];
+		self.normalColor = [UIColor colorWithRed:25.0/255.0 green:144.0/255.0 blue:219.0/255.0 alpha:1.0];
 		self.highlightColor = [UIColor redColor];
 		
 		self.normalImage = nil;

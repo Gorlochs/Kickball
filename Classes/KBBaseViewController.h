@@ -27,6 +27,13 @@ static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
 static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 extern const NSString *kickballDomain;
 
+typedef enum {
+	KBFooterTypeFoursquare = 0,
+	KBFooterTypeProfile,
+	KBFooterTypeFacebook,
+	KBFooterTypeTwitter
+} KBFooterType;
+
 @class LoginViewModalController, EGORefreshTableHeaderView;;
 
 @interface KBBaseViewController : UIViewController {
@@ -53,7 +60,12 @@ extern const NSString *kickballDomain;
     
     // bottom tab bar members
     FooterTabView *footerTabView;
+    IBOutlet UIButton *optionsTab;
+    IBOutlet UIButton *facebookTab;
+    IBOutlet UIButton *twitterTab;
+    IBOutlet UIButton *foursquareTab;
     IBOutlet UIButton *signedInUserIcon;
+    KBFooterType footerType;
     NSString *headerNibName;
 }
 

@@ -21,6 +21,7 @@
 - (void)viewDidLoad {
     
     headerNibName = HEADER_NIB_FOURSQUARE;
+    footerType = KBFooterTypeFoursquare;
     
     [super viewDidLoad];
     

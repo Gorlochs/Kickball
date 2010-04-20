@@ -8,6 +8,9 @@
 
 #import "KBTwitterViewController.h"
 #import "KBTwitterManager.h"
+#import "KBTweetListViewController.h"
+#import "KBMentionsViewController.h"
+#import "KBDirectMentionsViewController.h"
 
 
 @implementation KBTwitterViewController
@@ -21,27 +24,35 @@
     return self;
 }
 
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView {
+
+- (void) showUserTimeline {
+    KBTweetListViewController *controller = [[KBTweetListViewController alloc] initWithNibName:@"KBTweetListViewController" bundle:nil];
+    [self.view addSubview:controller.view];
 }
-*/
+
+- (void) showMentions {
+    KBMentionsViewController *controller = [[KBMentionsViewController alloc] initWithNibName:@"KBTweetListViewController" bundle:nil];
+    [self.view addSubview:controller.view];
+}
+
+- (void) showDirectMessages {
+    KBDirectMentionsViewController *controller = [[KBDirectMentionsViewController alloc] initWithNibName:@"KBTweetListViewController" bundle:nil];
+    [self.view addSubview:controller.view];
+}
+
+- (void) showSearch {
+    
+}
 
 - (void)viewDidLoad {
     twitterEngine = [[KBTwitterManager twitterManager] twitterEngine];
     NSLog(@"twitterengine: %@", twitterEngine);
     
     headerNibName = HEADER_NIB_TWITTER;
+    footerType = KBFooterTypeTwitter;
+    
     [super viewDidLoad];
 }
-
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.

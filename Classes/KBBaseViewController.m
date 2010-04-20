@@ -18,7 +18,6 @@
 #import "KBWebViewController.h"
 #import "KBTextViewController.h"
 #import "ASIFormDataRequest.h"
-
 #import "FoursquareHeaderView.h"
 
 #define PROGRESS_BAR_TIMER_LENGTH 30.0
@@ -26,11 +25,12 @@
 const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 //const NSString *kickballDomain = @"http://kickball.gorlochs.com/kickball";
 
-//@interface KBBaseViewController (Protected)
-//
-//- (void)dataSourceDidFinishLoadingNewData;
-//
-//@end
+@interface KBBaseViewController (Private)
+
+- (void) setTabImages;
+
+@end
+
 
 @implementation KBBaseViewController
 
@@ -47,8 +47,8 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
     
     [UIView setAnimationsEnabled:YES];
     
-    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-    BOOL hasViewedInstructions = [standardUserDefaults boolForKey:@"viewedInstructions"];
+//    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+//    BOOL hasViewedInstructions = [standardUserDefaults boolForKey:@"viewedInstructions"];
 
 //    v1.1
 //    if (hasViewedInstructions) {
@@ -72,6 +72,9 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
         NSArray* nibViews =  [[NSBundle mainBundle] loadNibNamed:@"FooterTabView" owner:self options:nil];
         footerTabView = [nibViews objectAtIndex:0];
         footerTabView.frame = CGRectMake(0, self.view.frame.size.height - 40, self.view.frame.size.width, 40);
+        
+        [self setTabImages];
+        
         [self.view addSubview:footerTabView];
     }
     
@@ -82,6 +85,32 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 		self.theTableView.showsVerticalScrollIndicator = YES;
 		[refreshHeaderView release];
 	}
+}
+
+- (void) setTabImages {
+    switch (footerType) {
+        case KBFooterTypeProfile:
+            break;
+        case KBFooterTypeFacebook:
+            [foursquareTab setImage:[UIImage imageNamed:@"kbTab04.png"] forState:UIControlStateNormal];
+            [twitterTab setImage:[UIImage imageNamed:@"twitTab03.png"] forState:UIControlStateNormal];
+            [facebookTab setImage:[UIImage imageNamed:@"fbTab01.png"] forState:UIControlStateNormal];
+            break;
+        case KBFooterTypeTwitter:
+            [foursquareTab setImage:[UIImage imageNamed:@"kbTab03.png"] forState:UIControlStateNormal];
+            [twitterTab setImage:[UIImage imageNamed:@"twitTab01.png"] forState:UIControlStateNormal];
+            [facebookTab setImage:[UIImage imageNamed:@"fbTab04.png"] forState:UIControlStateNormal];
+            break;
+        case KBFooterTypeFoursquare:
+            [foursquareTab setImage:[UIImage imageNamed:@"kbTab01.png"] forState:UIControlStateNormal];
+            [twitterTab setImage:[UIImage imageNamed:@"twitTab04.png"] forState:UIControlStateNormal];
+            [facebookTab setImage:[UIImage imageNamed:@"fbTab03.png"] forState:UIControlStateNormal];
+            break;
+        default:
+            [foursquareTab setImage:[UIImage imageNamed:@"kbTab01.png"] forState:UIControlStateNormal];
+            [twitterTab setImage:[UIImage imageNamed:@"twitTab04.png"] forState:UIControlStateNormal];
+            [facebookTab setImage:[UIImage imageNamed:@"fbTab03.png"] forState:UIControlStateNormal];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {

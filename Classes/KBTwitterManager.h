@@ -15,6 +15,9 @@
 
 #define kTwitterLoginNotificationKey @"loginNotification"
 #define kTwitterStatusRetrievedNotificationKey @"statusRetrievedNotification"
+#define kTwitterDMRetrievedNotificationKey @"directMessagesRetrievedNotification"
+#define kTwitterUserInfoRetrievedNotificationKey @"userInfoRetrievedNotification"
+#define kTwitterMiscRetrievedNotificationKey @"miscellaneousRetrievedNotification"
 
 @interface KBTwitterManager : NSObject {
     XAuthTwitterEngine *twitterEngine;
