@@ -16,6 +16,8 @@
 
 
 - (void)viewDidLoad {
+    
+    self.hideFooter = YES;
     [super viewDidLoad];
     
     //Create a URL object.
