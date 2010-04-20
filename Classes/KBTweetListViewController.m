@@ -10,7 +10,8 @@
 #import "Three20/Three20.h"
 #import "UIAlertView+Helper.h"
 #import "XAuthTwitterEngineViewController.h"
-#import "KBTweetTableCell.h"
+#import "KBTwitterSearchViewController.h"
+#import "KBUserTweetsViewController.h"
 
 @implementation KBTweetListViewController
 
@@ -65,9 +66,14 @@
 - (void)handleTweetNotification:(NSNotification *)notification {
 	NSLog(@"handleTweetNotification: notification = %@", notification);
     if ([[notification object] rangeOfString:@"@"].location == 0) {
-        // TODO: push user view
+        KBUserTweetsViewController *controller = [[KBUserTweetsViewController alloc] initWithNibName:@"KBTweetListViewController" bundle:nil];
+        controller.username = [notification object];
+        [self.navigationController pushViewController:controller animated:YES];
     } else if ([[notification object] rangeOfString:@"#"].location == 0) {
         // TODO: push hashtag search view (http://search.twitter.com/search.atom?q=%23haiku)
+        KBTwitterSearchViewController *controller = [[KBTwitterSearchViewController alloc] initWithNibName:@"KBTweetListViewController" bundle:nil];
+        controller.searchTerms = [notification object];
+        [self.navigationController pushViewController:controller animated:YES];
     } else {
         // TODO: push properly styled web view
         [self openWebView:[notification object]];

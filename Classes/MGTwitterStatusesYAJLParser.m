@@ -14,20 +14,18 @@
 
 - (void)addValue:(id)value forKey:(NSString *)key
 {
-	if (_user)
+	//if for some reason there are no dictionaries, exit here
+	if (!_dictionaries || [_dictionaries count] == 0)
 	{
-		[_user setObject:value forKey:key];
-#if DEBUG_PARSING
-		NSLog(@"status:   user: %@ = %@ (%@)", key, value, NSStringFromClass([value class]));
-#endif
+		return;
 	}
-	else if (_status)
-	{
-		[_status setObject:value forKey:key];
+	
+	NSMutableDictionary *lastDictionary = [_dictionaries lastObject];
+	[lastDictionary setObject:value forKey:key];
+	
 #if DEBUG_PARSING
-		NSLog(@"status:   status: %@ = %@ (%@)", key, value, NSStringFromClass([value class]));
+	NSLog(@"parsed item: %@ = %@ (%@)", key, value, NSStringFromClass([value class]));
 #endif
-	}
 }
 
 - (void)startDictionaryWithKey:(NSString *)key
@@ -35,39 +33,56 @@
 #if DEBUG_PARSING
 	NSLog(@"status: dictionary start = %@", key);
 #endif
-
-	if (! _status)
+	
+	if (!_dictionaries) 
 	{
-		_status = [[NSMutableDictionary alloc] initWithCapacity:0];
+		_dictionaries = [[NSMutableArray alloc] init];
 	}
-	else
+	
+	if (!_dictionaryKeys) 
 	{
-		if (! _user)
-		{
-			_user = [[NSMutableDictionary alloc] initWithCapacity:0];
-		}
+		_dictionaryKeys = [[NSMutableArray alloc] init];
 	}
+	
+	//add a new dictionary to the array
+	NSMutableDictionary *newDictionary = [[NSMutableDictionary alloc] initWithCapacity:0];
+	[_dictionaries addObject:newDictionary];
+	[newDictionary release];
+	
+	//add a key for the above dictionary to the array
+	[_dictionaryKeys addObject:(key) ? key : @""];
 }
 
 - (void)endDictionary
 {
-	if (_user)
+	if (_dictionaries && _dictionaryKeys && [_dictionaries count] > 0 && [_dictionaryKeys count] > 0)
 	{
-		[_status setObject:_user forKey:@"user"];
-		[_user release];
-		_user = nil;
-	}
-	else
-	{
-		[_status setObject:[NSNumber numberWithInt:requestType] forKey:TWITTER_SOURCE_REQUEST_TYPE];
+		//is this the root dictionary?
+		if ([_dictionaries count] == 1)
+		{
+			//one dictionary left, so it must be the root
+			NSMutableDictionary *rootDictionary = [_dictionaries lastObject];
+			
+			//set the request type in the root dictionary
+			[rootDictionary setObject:[NSNumber numberWithInt:requestType] forKey:TWITTER_SOURCE_REQUEST_TYPE];
+			
+			//send the root dictionary to the super class
+			[self _parsedObject:rootDictionary];			
+			[parsedObjects addObject:rootDictionary];
+		}
+		else 
+		{
+			//child dictionary found
+			//add the child dictionary to its parent dictionary
+			NSMutableDictionary *parentDictionary = [_dictionaries objectAtIndex:[_dictionaries count] - 2];
+			[parentDictionary setObject:[_dictionaries lastObject] forKey:[_dictionaryKeys lastObject]];
+		}
 		
-		[self _parsedObject:_status];
-		
-		[parsedObjects addObject:_status];
-		[_status release];
-		_status = nil;
+		//remove the last dictionary since it has been joined with its parent (or was the root dictionary)
+		//also remove the corresponding key
+		[_dictionaries removeLastObject];
+		[_dictionaryKeys removeLastObject];
 	}
-	
 #if DEBUG_PARSING
 	NSLog(@"status: dictionary end");
 #endif
@@ -89,9 +104,8 @@
 
 - (void)dealloc
 {
-	[_status release];
-	[_user release];
-
+	[_dictionaries release];
+	[_dictionaryKeys release];
 	[super dealloc];
 }
 

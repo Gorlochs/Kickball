@@ -11,6 +11,7 @@
 #import "KBTweetListViewController.h"
 #import "KBMentionsViewController.h"
 #import "KBDirectMentionsViewController.h"
+#import "KBTwitterSearchViewController.h"
 
 
 @implementation KBTwitterViewController
@@ -41,7 +42,8 @@
 }
 
 - (void) showSearch {
-    
+    KBTwitterSearchViewController *controller = [[KBTwitterSearchViewController alloc] initWithNibName:@"KBTweetListViewController" bundle:nil];
+    [self.view addSubview:controller.view];
 }
 
 - (void)viewDidLoad {

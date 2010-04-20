@@ -294,16 +294,34 @@
 	// modificaiton from the base clase
 	// the base class appends parameters here
 	// --------------------------------------------------------------------------------
-	//    if (params) {
-	//        fullPath = [self _queryStringWithBase:fullPath parameters:params prefixed:YES];
-	//    }
+	    if (params) {
+	        fullPath = [self _queryStringWithBase:fullPath parameters:params prefixed:YES];
+	    }
 	// --------------------------------------------------------------------------------
 	
-    //_secureConnection = NO;
+	NSString *domain = nil;
+	NSString *connectionType = nil;
+    if (requestType == MGTwitterSearchRequest || requestType == MGTwitterSearchCurrentTrendsRequest) {
+		domain = _searchDomain;
+		connectionType = @"http";
+	} else {
+		domain = _APIDomain;
+		if (_secureConnection)
+		{
+			connectionType = @"https";
+		}
+		else
+		{
+			connectionType = @"http";
+		}
+	}
     NSString *urlString = [NSString stringWithFormat:@"%@://%@/%@", 
-                           (_secureConnection) ? @"https" : @"http",
-                           _APIDomain, fullPath];
+                           //(_secureConnection) ? @"https" : @"http",
+                           connectionType,
+                           domain, 
+                           fullPath];
     NSURL *finalURL = [NSURL URLWithString:urlString];
+    NSLog(@"XAuthTwitterEngine: finalURL = %@", finalURL);
     if (!finalURL) {
         return nil;
     }

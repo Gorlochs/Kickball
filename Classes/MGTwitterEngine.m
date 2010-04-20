@@ -13,6 +13,7 @@
 
 #define USE_LIBXML 1
 
+#import "MGTwitterSearchYAJLParser.h"
 #if YAJL_AVAILABLE
 	#define API_FORMAT @"json"
 
@@ -39,9 +40,9 @@
 
 #define TWITTER_DOMAIN          @"twitter.com"
 #define TWITTER_API_VERSION     1
-#if YAJL_AVAILABLE
+//#if YAJL_AVAILABLE
 	#define TWITTER_SEARCH_DOMAIN	@"search.twitter.com"
-#endif
+//#endif
 #define HTTP_POST_METHOD        @"POST"
 #define MAX_MESSAGE_LENGTH      140 // Twitter recommends tweets of max 140 chars
 #define MAX_NAME_LENGTH			20
@@ -50,10 +51,10 @@
 #define MAX_LOCATION_LENGTH		30
 #define MAX_DESCRIPTION_LENGTH	160
 
-#define DEFAULT_CLIENT_NAME     @"MGTwitterEngine"
+#define DEFAULT_CLIENT_NAME     @"Kickball"
 #define DEFAULT_CLIENT_VERSION  @"1.0"
-#define DEFAULT_CLIENT_URL      @"http://mattgemmell.com/source"
-#define DEFAULT_CLIENT_TOKEN	@"mgtwitterengine"
+#define DEFAULT_CLIENT_URL      @"http://www.gorlochs.com/kickball"
+#define DEFAULT_CLIENT_TOKEN	@"kickball"
 
 #define URL_REQUEST_TIMEOUT     25.0 // Twitter usually fails quickly if it's going to fail at all.
 
@@ -106,9 +107,9 @@
         _clientURL = [DEFAULT_CLIENT_URL retain];
 		_clientSourceToken = [DEFAULT_CLIENT_TOKEN retain];
 		_APIDomain = [TWITTER_DOMAIN retain];
-#if YAJL_AVAILABLE
+//#if YAJL_AVAILABLE
 		_searchDomain = [TWITTER_SEARCH_DOMAIN retain];
-#endif
+//#endif
 
         _secureConnection = YES;
 		_clearsCookies = NO;
@@ -463,9 +464,10 @@
         fullPath = [self _queryStringWithBase:fullPath parameters:params prefixed:YES];
     }
 
-#if YAJL_AVAILABLE
+//#if YAJL_AVAILABLE
 	NSString *domain = nil;
 	NSString *connectionType = nil;
+    NSLog(@"request type: %d", requestType);
 	if (requestType == MGTwitterSearchRequest || requestType == MGTwitterSearchCurrentTrendsRequest)
 	{
 		domain = _searchDomain;
@@ -483,18 +485,19 @@
 			connectionType = @"http";
 		}
 	}
-#else
-	NSString *domain = _APIDomain;
-	NSString *connectionType = nil;
-	if (_secureConnection)
-	{
-		connectionType = @"https";
-	}
-	else
-	{
-		connectionType = @"http";
-	}
-#endif
+    
+//#else
+//	NSString *domain = _APIDomain;
+//	NSString *connectionType = nil;
+//	if (_secureConnection)
+//	{
+//		connectionType = @"https";
+//	}
+//	else
+//	{
+//		connectionType = @"http";
+//	}
+//#endif
 	
 #if SET_AUTHORIZATION_IN_HEADER
     NSString *urlString = [NSString stringWithFormat:@"%@://%@/%@/%@", 
@@ -517,11 +520,11 @@
         return nil;
     }
 
-#if DEBUG
+//#if DEBUG
     if (YES) {
 		NSLog(@"MGTwitterEngine: finalURL = %@", finalURL);
 	}
-#endif
+//#endif
 
     // Construct an NSMutableURLRequest for the URL and set appropriate request method.
     NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:finalURL 
@@ -677,6 +680,11 @@
 						  connectionIdentifier:identifier requestType:requestType 
 								  responseType:responseType URL:URL];
 			break;
+        case MGTwitterSearchResults:
+ 			[MGTwitterSearchYAJLParser parserWithJSON:xmlData delegate:self 
+                                 connectionIdentifier:identifier requestType:requestType 
+                                         responseType:responseType URL:URL deliveryOptions:_deliveryOptions];
+			break;
         default:
             break;
     }
@@ -705,6 +713,11 @@
 			[MGTwitterMiscParser parserWithXML:xmlData delegate:self 
 						  connectionIdentifier:identifier requestType:requestType 
 								  responseType:responseType];
+			break;
+        case MGTwitterSearchResults:
+ 			[MGTwitterSearchYAJLParser parserWithJSON:jsonData delegate:self 
+                                 connectionIdentifier:identifier requestType:requestType 
+                                         responseType:responseType URL:URL deliveryOptions:_deliveryOptions];
 			break;
         default:
             break;
@@ -1550,7 +1563,7 @@
 }
 
 
-#if YAJL_AVAILABLE
+//#if YAJL_AVAILABLE
 
 #pragma mark -
 #pragma mark Search API methods
@@ -1572,7 +1585,7 @@
 
 - (NSString *)getSearchResultsForQuery:(NSString *)query sinceID:(unsigned long)sinceID startingAtPage:(int)page count:(int)count geocode:(NSString *)geocode
 {
-    NSString *path = [NSString stringWithFormat:@"search.%@", API_FORMAT];
+    NSString *path = [NSString stringWithFormat:@"search.%@", @"json"];
     
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:0];
 	if (query) {
@@ -1625,6 +1638,6 @@
 }
 
 
-#endif
+//#endif
 
 @end

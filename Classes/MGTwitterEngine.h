@@ -21,14 +21,14 @@
     NSString *_clientURL;
     NSString *_clientSourceToken;
 	NSString *_APIDomain;
-#if YAJL_AVAILABLE
+//#if YAJL_AVAILABLE
 	NSString *_searchDomain;
-#endif
+//#endif
     BOOL _secureConnection;
 	BOOL _clearsCookies;
-#if YAJL_AVAILABLE
+//#if YAJL_AVAILABLE
 	MGTwitterEngineDeliveryOptions _deliveryOptions;
-#endif
+//#endif
 }
 
 #pragma mark Class management
@@ -189,7 +189,7 @@
 // All methods below return a unique connection identifier.
 // ======================================================================================================
 
-#if YAJL_AVAILABLE
+//#if YAJL_AVAILABLE
 
 // Search method
 
@@ -201,6 +201,6 @@
 
 - (NSString *)getCurrentTrends; // current trends
 
-#endif
+//#endif
 
 @end

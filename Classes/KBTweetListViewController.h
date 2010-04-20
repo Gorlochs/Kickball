@@ -10,6 +10,7 @@
 #import "Three20/Three20.h"
 #import "KBTwitterViewController.h"
 #import "KBTweet.h"
+#import "KBTweetTableCell.h"
 
 
 @interface KBTweetListViewController : KBTwitterViewController <MGTwitterEngineDelegate> {
@@ -19,5 +20,6 @@
 }
 
 - (void) showStatuses;
+- (void) searchRetrieved:(NSNotification *)inNotification;
 
 @end
