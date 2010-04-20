@@ -342,6 +342,8 @@
 		6AC5817C10B517FB0043B90C /* PlacesMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AC5817A10B517FB0043B90C /* PlacesMapView.xib */; };
 		6AC7E93110994FD000776993 /* PlaceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC7E92F10994FD000776993 /* PlaceDetailViewController.m */; };
 		6AC7E93210994FD000776993 /* PlaceDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AC7E93010994FD000776993 /* PlaceDetailView.xib */; };
+		6AC85202117E2BA5007B5220 /* KBTwitterDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC85201117E2BA5007B5220 /* KBTwitterDetailViewController.m */; };
+		6AC85204117E2BB4007B5220 /* KBTwitterDetailViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6AC85203117E2BB4007B5220 /* KBTwitterDetailViewController.xib */; };
 		6AC85B891177E518002FB92C /* KBTwitterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC85B881177E518002FB92C /* KBTwitterViewController.m */; };
 		6AC85C2B1177E9CE002FB92C /* defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6AC85C0B1177E9CE002FB92C /* defaults.plist */; };
 		6AC85C2C1177E9CE002FB92C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6AC85C0F1177E9CE002FB92C /* Localizable.strings */; };
@@ -828,13 +830,13 @@
 		6A211816117CE28500BE897E /* KBDirectMentionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBDirectMentionsViewController.m; sourceTree = "<group>"; };
 		6A211931117D577800BE897E /* KBTwitterProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBTwitterProfileViewController.h; sourceTree = "<group>"; };
 		6A211932117D577800BE897E /* KBTwitterProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTwitterProfileViewController.m; sourceTree = "<group>"; };
-		6A211933117D577800BE897E /* KBTwitterProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.xib; name = KBTwitterProfileViewController.xib; path = Classes/KBTwitterProfileViewController.xib; sourceTree = "<group>"; };
+		6A211933117D577800BE897E /* KBTwitterProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KBTwitterProfileViewController.xib; path = Classes/KBTwitterProfileViewController.xib; sourceTree = "<group>"; };
 		6A211936117D579600BE897E /* KBCreateTweetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBCreateTweetViewController.h; sourceTree = "<group>"; };
 		6A211937117D579600BE897E /* KBCreateTweetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBCreateTweetViewController.m; sourceTree = "<group>"; };
-		6A211938117D579600BE897E /* KBCreateTweetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.xib; name = KBCreateTweetViewController.xib; path = Classes/KBCreateTweetViewController.xib; sourceTree = "<group>"; };
+		6A211938117D579600BE897E /* KBCreateTweetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KBCreateTweetViewController.xib; path = Classes/KBCreateTweetViewController.xib; sourceTree = "<group>"; };
 		6A211966117D68EE00BE897E /* KBTwitterSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBTwitterSearchViewController.h; sourceTree = "<group>"; };
 		6A211967117D68EE00BE897E /* KBTwitterSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTwitterSearchViewController.m; sourceTree = "<group>"; };
-		6A211968117D68EE00BE897E /* KBTwitterSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.xib; name = KBTwitterSearchViewController.xib; path = Classes/KBTwitterSearchViewController.xib; sourceTree = "<group>"; };
+		6A211968117D68EE00BE897E /* KBTwitterSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KBTwitterSearchViewController.xib; path = Classes/KBTwitterSearchViewController.xib; sourceTree = "<group>"; };
 		6A211A68117D846700BE897E /* libYAJLIPhone.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libYAJLIPhone.a; path = "/Users/shawnbernard/Downloads/libYAJLIPhone-0.2.2/libYAJLIPhone.a"; sourceTree = "<absolute>"; };
 		6A211AE1117E113000BE897E /* MGTwitterYAJLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTwitterYAJLParser.h; sourceTree = "<group>"; };
 		6A211AE2117E113000BE897E /* MGTwitterYAJLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTwitterYAJLParser.m; sourceTree = "<group>"; };
@@ -1147,6 +1149,9 @@
 		6AC7E92E10994FD000776993 /* PlaceDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceDetailViewController.h; sourceTree = "<group>"; };
 		6AC7E92F10994FD000776993 /* PlaceDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceDetailViewController.m; sourceTree = "<group>"; };
 		6AC7E93010994FD000776993 /* PlaceDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = PlaceDetailView.xib; path = Classes/PlaceDetailView.xib; sourceTree = "<group>"; };
+		6AC85200117E2BA5007B5220 /* KBTwitterDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBTwitterDetailViewController.h; sourceTree = "<group>"; };
+		6AC85201117E2BA5007B5220 /* KBTwitterDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTwitterDetailViewController.m; sourceTree = "<group>"; };
+		6AC85203117E2BB4007B5220 /* KBTwitterDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KBTwitterDetailViewController.xib; sourceTree = "<group>"; };
 		6AC85B871177E518002FB92C /* KBTwitterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBTwitterViewController.h; sourceTree = "<group>"; };
 		6AC85B881177E518002FB92C /* KBTwitterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTwitterViewController.m; sourceTree = "<group>"; };
 		6AC85C081177E9CE002FB92C /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = English; path = English.lproj/About.xib; sourceTree = "<group>"; };
@@ -1540,6 +1545,7 @@
 				6A211938117D579600BE897E /* KBCreateTweetViewController.xib */,
 				6A211968117D68EE00BE897E /* KBTwitterSearchViewController.xib */,
 				6A30075511797649001CB933 /* KBTweetListViewController.xib */,
+				6AC85203117E2BB4007B5220 /* KBTwitterDetailViewController.xib */,
 				6ADBFAA111738FE6003EB73D /* FoursquareHeaderView.xib */,
 				6ADBFAA311738FF1003EB73D /* TwitterHeaderView.xib */,
 				6ADBFAA511738FFD003EB73D /* FooterTabView.xib */,
@@ -2660,6 +2666,8 @@
 				6A211932117D577800BE897E /* KBTwitterProfileViewController.m */,
 				6A211936117D579600BE897E /* KBCreateTweetViewController.h */,
 				6A211937117D579600BE897E /* KBCreateTweetViewController.m */,
+				6AC85200117E2BA5007B5220 /* KBTwitterDetailViewController.h */,
+				6AC85201117E2BA5007B5220 /* KBTwitterDetailViewController.m */,
 			);
 			name = KBTwitter;
 			sourceTree = "<group>";
@@ -3429,6 +3437,8 @@
 				6A211AF2117E113000BE897E /* MGTwitterSearchYAJLParser.m in Sources */,
 				6A211B1D117E181600BE897E /* KBSearchResult.m in Sources */,
 				6A211B4D117E1E1100BE897E /* KBUserTweetsViewController.m in Sources */,
+				6AC85202117E2BA5007B5220 /* KBTwitterDetailViewController.m in Sources */,
+				6AC85204117E2BB4007B5220 /* KBTwitterDetailViewController.xib in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3658,7 +3668,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Shawn Bernard (6MN36SS56H)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Shawn Bernard (98RGEUR3TS)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -3674,7 +3684,6 @@
 					"-ObjC",
 				);
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=*]" = "80CEF5BD-5322-4AFC-8D6D-7ECB0CFA60A0";
 				SDKROOT = iphoneos3.1;
 			};
 			name = Debug;
@@ -3683,7 +3692,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Shawn Bernard (6MN36SS56H)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Shawn Bernard (98RGEUR3TS)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -3699,7 +3708,6 @@
 					"-ObjC",
 				);
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=*]" = "80CEF5BD-5322-4AFC-8D6D-7ECB0CFA60A0";
 				SDKROOT = iphoneos3.1;
 			};
 			name = Release;

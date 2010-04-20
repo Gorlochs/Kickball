@@ -13,18 +13,25 @@
 @implementation KBTweet
 
 @synthesize screenName;
+@synthesize fullName;
 @synthesize createDate;
 @synthesize profileImageUrl;
 @synthesize tweetText;
+@synthesize tweetId;
 
 
 // init with dictionary
 - (id) initWithDictionary:(NSDictionary*)statusDictionary {		
     if (self = [super init]) {
         screenName = [[statusDictionary objectForKey:@"user"] objectForKey:@"screen_name"];
+        fullName = [[statusDictionary objectForKey:@"user"] objectForKey:@"name"];
         profileImageUrl = [[statusDictionary objectForKey:@"user"] objectForKey:@"profile_image_url"];
         tweetText = [statusDictionary objectForKey:@"text"];
         createDate = [statusDictionary objectForKey:@"created_at"];
+        NSLog(@"tweet id: %@", [statusDictionary objectForKey:@"id"]);
+        tweetId = [statusDictionary objectForKey:@"id"];
+        NSLog(@"tweet id: %@", tweetId);
+        NSLog(@"tweet id: %qu", [tweetId longLongValue]);
     }
     return self;
 }

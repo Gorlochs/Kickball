@@ -11,15 +11,19 @@
 
 @interface KBTweet : NSObject {
     NSString *screenName;
+    NSString *fullName;
     NSDate *createDate;
     NSString *profileImageUrl;
     NSString *tweetText;
+    NSNumber *tweetId;
 }
 
 @property (nonatomic, retain) NSString *screenName;
+@property (nonatomic, retain) NSString *fullName;
 @property (nonatomic, retain) NSDate *createDate;
 @property (nonatomic, retain) NSString *profileImageUrl;
 @property (nonatomic, retain) NSString *tweetText;
+@property (nonatomic, retain) NSNumber *tweetId;
 
 - (id) initWithDictionary:(NSDictionary*)statusDictionary;
 

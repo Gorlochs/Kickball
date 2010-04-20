@@ -12,6 +12,7 @@
 #import "XAuthTwitterEngineViewController.h"
 #import "KBTwitterSearchViewController.h"
 #import "KBUserTweetsViewController.h"
+#import "KBTwitterDetailViewController.h"
 
 @implementation KBTweetListViewController
 
@@ -152,14 +153,10 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-	/*
-	 <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-	 [self.navigationController pushViewController:detailViewController animated:YES];
-	 [detailViewController release];
-	 */
+	KBTwitterDetailViewController *detailViewController = [[KBTwitterDetailViewController alloc] initWithNibName:@"KBTwitterDetailViewController" bundle:nil];
+    detailViewController.tweet = [tweets objectAtIndex:indexPath.row];
+	[self.navigationController pushViewController:detailViewController animated:YES];
+	[detailViewController release];
 }
 
 

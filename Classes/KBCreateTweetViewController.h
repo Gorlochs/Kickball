@@ -7,10 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KBTwitterViewController.h"
 
 
-@interface KBCreateTweetViewController : UIViewController {
-
+@interface KBCreateTweetViewController : KBTwitterViewController {
+    IBOutlet UITextView *tweetTextView;
+    IBOutlet UILabel *characterCountLabel;
+    IBOutlet UIButton *sendTweet;
+    IBOutlet UIButton *cancel;
+    IBOutlet UIButton *geoTag;
+    IBOutlet UIButton *attachPhoto;
 }
 
 @end

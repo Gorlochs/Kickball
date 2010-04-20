@@ -17,6 +17,7 @@
         profileImageUrl = [statusDictionary objectForKey:@"profile_image_url"];
         tweetText = [statusDictionary objectForKey:@"text"];
         createDate = [statusDictionary objectForKey:@"created_at"];
+        tweetId = [[statusDictionary objectForKey:@"id"] longLongValue];
     }
     return self;
 }

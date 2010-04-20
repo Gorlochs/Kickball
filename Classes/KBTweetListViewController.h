@@ -20,6 +20,5 @@
 }
 
 - (void) showStatuses;
-- (void) searchRetrieved:(NSNotification *)inNotification;
 
 @end
