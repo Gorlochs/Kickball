@@ -11,30 +11,16 @@
 
 @implementation KBCreateTweetViewController
 
-/*
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
+@synthesize replyToStatusId;
+@synthesize replyToScreenName;
 
-/*
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if (self.replyToScreenName) {
+        tweetTextView.text = [NSString stringWithFormat:@"@%@ ", self.replyToScreenName];
+    }
+    [tweetTextView becomeFirstResponder];
 }
-*/
-
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
@@ -42,6 +28,19 @@
     
     // Release any cached data, images, etc that aren't in use.
 }
+
+#pragma mark 
+#pragma mark UITextViewDelegate methods
+
+- (void)textViewDidChange:(UITextView *)textView {
+    if ([textView.text length] > 140) {
+        textView.text = [textView.text substringToIndex:139];
+    }
+    characterCountLabel.text = [NSString stringWithFormat:@"%d/140", [textView.text length]];
+}
+
+#pragma mark 
+#pragma mark memory management methods
 
 - (void)viewDidUnload {
     [super viewDidUnload];
@@ -51,6 +50,15 @@
 
 
 - (void)dealloc {
+    [tweetTextView release];
+    [characterCountLabel release];
+    [sendTweet release];
+    [cancel release];
+    [geoTag release];
+    [attachPhoto release];
+    
+    [replyToStatusId release];
+    [replyToScreenName release];
     [super dealloc];
 }
 

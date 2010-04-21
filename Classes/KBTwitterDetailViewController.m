@@ -7,6 +7,7 @@
 //
 
 #import "KBTwitterDetailViewController.h"
+#import "KBCreateTweetViewController.h"
 
 
 @implementation KBTwitterDetailViewController
@@ -60,7 +61,11 @@
 }
 
 - (void) reply {
-
+	KBCreateTweetViewController *createViewController = [[KBCreateTweetViewController alloc] initWithNibName:@"KBCreateTweetViewController" bundle:nil];
+    createViewController.replyToStatusId = tweet.tweetId;
+    createViewController.replyToScreenName = tweet.screenName;
+	[self.navigationController pushViewController:createViewController animated:YES];
+	[createViewController release];
 }
 
 - (void) statusRetrieved:(NSNotification *)inNotification {
