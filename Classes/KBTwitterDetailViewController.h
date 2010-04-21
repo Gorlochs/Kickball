@@ -31,5 +31,6 @@
 
 - (IBAction) retweet;
 - (IBAction) reply;
+- (IBAction) viewUserProfile;
 
 @end

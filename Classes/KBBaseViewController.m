@@ -247,7 +247,7 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
     progressViewController = [[ProgressViewController alloc] initWithNibName:@"ProgressView" bundle:nil];
     [self.view addSubview:progressViewController.view];
     progressViewController.activityLabel.text = textToDisplay;
-    [progressViewController.activityLabel setShadowColor:[UIColor blackColor]];
+    [progressViewController.activityLabel setShadowColor:[UIColor whiteColor]];
     [progressViewController.activityLabel setShadowOffset:CGSizeMake(1, 1)];
     
     if (shouldSetTimer) {
@@ -260,11 +260,11 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 }
 
 -(void) stopProgressBarAndDisplayErrorMessage:(NSTimer*)theTimer {
-        [self stopProgressBar];
-        
-        KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"Foursquare is not currently responding. Please try again shortly."];
-        [self displayPopupMessage:message];
-        [message release];
+    [self stopProgressBar];
+    
+    KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"Foursquare is not currently responding. Please try again shortly."];
+    [self displayPopupMessage:message];
+    [message release];
 }
 
 - (void) stopProgressBar {

@@ -8,6 +8,7 @@
 
 #import "KBTwitterDetailViewController.h"
 #import "KBCreateTweetViewController.h"
+#import "KBTwitterProfileViewController.h"
 
 
 @implementation KBTwitterDetailViewController
@@ -66,6 +67,13 @@
     createViewController.replyToScreenName = tweet.screenName;
 	[self.navigationController pushViewController:createViewController animated:YES];
 	[createViewController release];
+}
+
+- (void) viewUserProfile {
+	KBTwitterProfileViewController *profileController = [[KBTwitterProfileViewController alloc] initWithNibName:@"KBTwitterProfileViewController" bundle:nil];
+    profileController.screenname = tweet.screenName;
+	[self.navigationController pushViewController:profileController animated:YES];
+	[profileController release];
 }
 
 - (void) statusRetrieved:(NSNotification *)inNotification {
