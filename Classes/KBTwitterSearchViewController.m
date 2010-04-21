@@ -26,7 +26,11 @@
 }
 
 - (void) showStatuses {
-    [twitterEngine getSearchResultsForQuery:searchTerms sinceID:0 startingAtPage:0 count:25];
+    if (searchTerms) {
+        [self startProgressBar:@"Retrieving your tweets..."];
+        theSearchBar.text = searchTerms;
+        [twitterEngine getSearchResultsForQuery:searchTerms sinceID:0 startingAtPage:0 count:25];
+    }
 }
 
 - (void)searchRetrieved:(NSNotification *)inNotification {
@@ -50,6 +54,12 @@
     }
     [self stopProgressBar];
     [self dataSourceDidFinishLoadingNewData];
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    searchTerms = searchBar.text;
+    [searchBar resignFirstResponder];
+    [self showStatuses];
 }
 
 // Customize the appearance of table view cells.

@@ -10,11 +10,11 @@
 #import "KBTweetListViewController.h"
 
 
-@interface KBTwitterSearchViewController : KBTweetListViewController {
+@interface KBTwitterSearchViewController : KBTweetListViewController <UISearchBarDelegate> {
     NSString *searchTerms;
+    IBOutlet UISearchBar *theSearchBar;
 }
 
 @property (nonatomic, retain) NSString *searchTerms;
-
 
 @end

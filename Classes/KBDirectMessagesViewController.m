@@ -6,10 +6,10 @@
 //  Copyright 2010 Gorloch Interactive, LLC. All rights reserved.
 //
 
-#import "KBDirectMentionsViewController.h"
+#import "KBDirectMessagesViewController.h"
+#import"KBDirectMessage.h"
 
-
-@implementation KBDirectMentionsViewController
+@implementation KBDirectMessagesViewController
 
 - (void)viewDidLoad {
     
@@ -23,10 +23,12 @@
 }
 
 - (void) showStatuses {
+    [self startProgressBar:@"Retrieving your tweets..."];
     [twitterEngine getDirectMessagesSinceID:0 startingAtPage:0];
 }
 
 - (void)messagesRetrieved:(NSNotification *)inNotification {
+    NSLog(@"DMs: %@", inNotification);
     if (inNotification) {
         if ([inNotification userInfo]) {
             NSDictionary *userInfo = [inNotification userInfo];
@@ -34,13 +36,14 @@
                 statuses = [[userInfo objectForKey:@"statuses"] retain];
                 tweets = [[NSMutableArray alloc] initWithCapacity:[statuses count]];
                 for (NSDictionary *dict in statuses) {
-                    [tweets addObject:[[KBTweet alloc] initWithDictionary:dict]];
+                    [tweets addObject:[[KBDirectMessage alloc] initWithDictionary:dict]];
                 }
                 [theTableView reloadData];
             }
         }
     }
     [self stopProgressBar];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self dataSourceDidFinishLoadingNewData];
 }
 
@@ -55,13 +58,10 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:kTwitterDMRetrievedNotificationKey];
 }
-
 
 - (void)dealloc {
     [super dealloc];
 }
-
 
 @end

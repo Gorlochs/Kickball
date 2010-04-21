@@ -19,7 +19,9 @@
     NSMutableArray *tweets;
 }
 
+- (void) statusRetrieved:(NSNotification *)inNotification;
 - (void) showStatuses;
 - (void) createNotificationObservers;
+- (void) removeNotificationObservers;
 
 @end

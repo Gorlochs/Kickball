@@ -11,10 +11,17 @@
 
 @implementation KBUserTweetsViewController
 
+@synthesize userDictionary;
 @synthesize username;
 
 - (void) showStatuses {
-    [twitterEngine getUserTimelineFor:self.username sinceID:0 startingAtPage:0 count:25];
+    [self startProgressBar:@"Retrieving your tweets..."];
+    if (self.userDictionary) {
+        [twitterEngine getUserTimelineFor:[self.userDictionary objectForKey:@"screen_name"] sinceID:0 startingAtPage:0 count:25];
+    } else {
+        [twitterEngine getUserTimelineFor:self.username sinceID:0 startingAtPage:0 count:25];
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -32,7 +39,11 @@
 
 
 - (void)dealloc {
+    [userDictionary release];
     [username release];
+    [screenNameLabel release];
+    [fullName release];
+    [location release];
     [super dealloc];
 }
 

@@ -169,7 +169,7 @@
 		6A211744117C2D1C00BE897E /* KBTweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A211743117C2D1C00BE897E /* KBTweet.m */; };
 		6A211747117C2D2900BE897E /* KBTweetTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A211746117C2D2900BE897E /* KBTweetTableCell.m */; };
 		6A2117DE117CDB2C00BE897E /* KBMentionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2117DD117CDB2C00BE897E /* KBMentionsViewController.m */; };
-		6A211817117CE28500BE897E /* KBDirectMentionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A211816117CE28500BE897E /* KBDirectMentionsViewController.m */; };
+		6A211817117CE28500BE897E /* KBDirectMessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A211816117CE28500BE897E /* KBDirectMessagesViewController.m */; };
 		6A211934117D577800BE897E /* KBTwitterProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A211932117D577800BE897E /* KBTwitterProfileViewController.m */; };
 		6A211935117D577800BE897E /* KBTwitterProfileViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A211933117D577800BE897E /* KBTwitterProfileViewController.xib */; };
 		6A211939117D579600BE897E /* KBCreateTweetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A211937117D579600BE897E /* KBCreateTweetViewController.m */; };
@@ -190,6 +190,7 @@
 		6A2A079A10CCE0100012F527 /* FSFunctionRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A8DD2E10CCD07300D3538A /* FSFunctionRequest.m */; };
 		6A2AEF571174161900F1EA88 /* PlacesListTableViewCellv2.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2AEF561174161900F1EA88 /* PlacesListTableViewCellv2.m */; };
 		6A2AEFC711742ECC00F1EA88 /* ProfileView_v2.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A2AEFC611742ECC00F1EA88 /* ProfileView_v2.xib */; };
+		6A2EFAF2117F832F007F2D3D /* KBUserTweetsViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A2EFAF1117F832F007F2D3D /* KBUserTweetsViewController.xib */; };
 		6A30075611797649001CB933 /* KBTweetListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A30075411797649001CB933 /* KBTweetListViewController.m */; };
 		6A30075711797649001CB933 /* KBTweetListViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A30075511797649001CB933 /* KBTweetListViewController.xib */; };
 		6A3900B110D6F1A0001D133C /* AddPlaceFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A3900AF10D6F1A0001D133C /* AddPlaceFormViewController.m */; };
@@ -210,6 +211,7 @@
 		6A402AA710B755B200D9BCEB /* GAPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A402A9E10B755B200D9BCEB /* GAPlace.m */; };
 		6A402B2F10B769A800D9BCEB /* GeoApiTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A402B2D10B769A800D9BCEB /* GeoApiTableViewController.m */; };
 		6A402B3010B769A900D9BCEB /* GeoApiTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A402B2E10B769A800D9BCEB /* GeoApiTableViewController.xib */; };
+		6A4204C4117FAD9E001A6982 /* KBDirectMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4204C3117FAD9E001A6982 /* KBDirectMessage.m */; };
 		6A47C00610DCA8DE00DCF011 /* KBWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A47C00410DCA8DE00DCF011 /* KBWebViewController.m */; };
 		6A47C00710DCA8DE00DCF011 /* KBWebViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A47C00510DCA8DE00DCF011 /* KBWebViewController.xib */; };
 		6A4C30C510DED6E300C89F55 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4C30C310DED6E300C89F55 /* SettingsViewController.m */; };
@@ -826,8 +828,8 @@
 		6A211746117C2D2900BE897E /* KBTweetTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTweetTableCell.m; sourceTree = "<group>"; };
 		6A2117DC117CDB2C00BE897E /* KBMentionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBMentionsViewController.h; sourceTree = "<group>"; };
 		6A2117DD117CDB2C00BE897E /* KBMentionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBMentionsViewController.m; sourceTree = "<group>"; };
-		6A211815117CE28500BE897E /* KBDirectMentionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBDirectMentionsViewController.h; sourceTree = "<group>"; };
-		6A211816117CE28500BE897E /* KBDirectMentionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBDirectMentionsViewController.m; sourceTree = "<group>"; };
+		6A211815117CE28500BE897E /* KBDirectMessagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBDirectMessagesViewController.h; sourceTree = "<group>"; };
+		6A211816117CE28500BE897E /* KBDirectMessagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBDirectMessagesViewController.m; sourceTree = "<group>"; };
 		6A211931117D577800BE897E /* KBTwitterProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBTwitterProfileViewController.h; sourceTree = "<group>"; };
 		6A211932117D577800BE897E /* KBTwitterProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTwitterProfileViewController.m; sourceTree = "<group>"; };
 		6A211933117D577800BE897E /* KBTwitterProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KBTwitterProfileViewController.xib; path = Classes/KBTwitterProfileViewController.xib; sourceTree = "<group>"; };
@@ -860,6 +862,7 @@
 		6A2AEF551174161900F1EA88 /* PlacesListTableViewCellv2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlacesListTableViewCellv2.h; sourceTree = "<group>"; };
 		6A2AEF561174161900F1EA88 /* PlacesListTableViewCellv2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlacesListTableViewCellv2.m; sourceTree = "<group>"; };
 		6A2AEFC611742ECC00F1EA88 /* ProfileView_v2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileView_v2.xib; sourceTree = "<group>"; };
+		6A2EFAF1117F832F007F2D3D /* KBUserTweetsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KBUserTweetsViewController.xib; sourceTree = "<group>"; };
 		6A30075311797649001CB933 /* KBTweetListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBTweetListViewController.h; sourceTree = "<group>"; };
 		6A30075411797649001CB933 /* KBTweetListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTweetListViewController.m; sourceTree = "<group>"; };
 		6A30075511797649001CB933 /* KBTweetListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KBTweetListViewController.xib; path = Classes/KBTweetListViewController.xib; sourceTree = "<group>"; };
@@ -897,6 +900,8 @@
 		6A402B2C10B769A800D9BCEB /* GeoApiTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeoApiTableViewController.h; sourceTree = "<group>"; };
 		6A402B2D10B769A800D9BCEB /* GeoApiTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeoApiTableViewController.m; sourceTree = "<group>"; };
 		6A402B2E10B769A800D9BCEB /* GeoApiTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GeoApiTableViewController.xib; path = Classes/GeoApiTableViewController.xib; sourceTree = "<group>"; };
+		6A4204C2117FAD9E001A6982 /* KBDirectMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBDirectMessage.h; sourceTree = "<group>"; };
+		6A4204C3117FAD9E001A6982 /* KBDirectMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBDirectMessage.m; sourceTree = "<group>"; };
 		6A47C00310DCA8DE00DCF011 /* KBWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBWebViewController.h; sourceTree = "<group>"; };
 		6A47C00410DCA8DE00DCF011 /* KBWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBWebViewController.m; sourceTree = "<group>"; };
 		6A47C00510DCA8DE00DCF011 /* KBWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KBWebViewController.xib; path = Classes/KBWebViewController.xib; sourceTree = "<group>"; };
@@ -1546,6 +1551,7 @@
 				6A211968117D68EE00BE897E /* KBTwitterSearchViewController.xib */,
 				6A30075511797649001CB933 /* KBTweetListViewController.xib */,
 				6AC85203117E2BB4007B5220 /* KBTwitterDetailViewController.xib */,
+				6A2EFAF1117F832F007F2D3D /* KBUserTweetsViewController.xib */,
 				6ADBFAA111738FE6003EB73D /* FoursquareHeaderView.xib */,
 				6ADBFAA311738FF1003EB73D /* TwitterHeaderView.xib */,
 				6ADBFAA511738FFD003EB73D /* FooterTabView.xib */,
@@ -1926,6 +1932,8 @@
 				6A211743117C2D1C00BE897E /* KBTweet.m */,
 				6A211B1B117E181600BE897E /* KBSearchResult.h */,
 				6A211B1C117E181600BE897E /* KBSearchResult.m */,
+				6A4204C2117FAD9E001A6982 /* KBDirectMessage.h */,
+				6A4204C3117FAD9E001A6982 /* KBDirectMessage.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -1937,8 +1945,8 @@
 				6A30075411797649001CB933 /* KBTweetListViewController.m */,
 				6A2117DC117CDB2C00BE897E /* KBMentionsViewController.h */,
 				6A2117DD117CDB2C00BE897E /* KBMentionsViewController.m */,
-				6A211815117CE28500BE897E /* KBDirectMentionsViewController.h */,
-				6A211816117CE28500BE897E /* KBDirectMentionsViewController.m */,
+				6A211815117CE28500BE897E /* KBDirectMessagesViewController.h */,
+				6A211816117CE28500BE897E /* KBDirectMessagesViewController.m */,
 				6A211966117D68EE00BE897E /* KBTwitterSearchViewController.h */,
 				6A211967117D68EE00BE897E /* KBTwitterSearchViewController.m */,
 				6A211B4B117E1E1100BE897E /* KBUserTweetsViewController.h */,
@@ -3422,7 +3430,7 @@
 				6A211744117C2D1C00BE897E /* KBTweet.m in Sources */,
 				6A211747117C2D2900BE897E /* KBTweetTableCell.m in Sources */,
 				6A2117DE117CDB2C00BE897E /* KBMentionsViewController.m in Sources */,
-				6A211817117CE28500BE897E /* KBDirectMentionsViewController.m in Sources */,
+				6A211817117CE28500BE897E /* KBDirectMessagesViewController.m in Sources */,
 				6A211934117D577800BE897E /* KBTwitterProfileViewController.m in Sources */,
 				6A211935117D577800BE897E /* KBTwitterProfileViewController.xib in Sources */,
 				6A211939117D579600BE897E /* KBCreateTweetViewController.m in Sources */,
@@ -3439,6 +3447,8 @@
 				6A211B4D117E1E1100BE897E /* KBUserTweetsViewController.m in Sources */,
 				6AC85202117E2BA5007B5220 /* KBTwitterDetailViewController.m in Sources */,
 				6AC85204117E2BB4007B5220 /* KBTwitterDetailViewController.xib in Sources */,
+				6A2EFAF2117F832F007F2D3D /* KBUserTweetsViewController.xib in Sources */,
+				6A4204C4117FAD9E001A6982 /* KBDirectMessage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

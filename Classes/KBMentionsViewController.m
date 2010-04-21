@@ -21,7 +21,16 @@
 }
 
 - (void) showStatuses {
+    [self startProgressBar:@"Retrieving your tweets..."];
     [twitterEngine getRepliesSinceID:0 startingAtPage:0 count:25];
+}
+
+- (void) createNotificationObservers {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusRetrieved:) name:kTwitterStatusRetrievedNotificationKey object:nil];
+}
+
+- (void) statusRetrieved:(NSNotification *)inNotification {
+    [super statusRetrieved:inNotification];
 }
 
 - (void)didReceiveMemoryWarning {

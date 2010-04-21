@@ -33,7 +33,6 @@
     [self createNotificationObservers];
     
     if ([self.twitterEngine isAuthorized]) {
-        [self startProgressBar:@"Retrieving your tweets..."];
 		[self showStatuses];
 	} else {
         XAuthTwitterEngineViewController *loginController = [[XAuthTwitterEngineViewController alloc] initWithNibName:@"XAuthTwitterEngineDemoViewController" bundle:nil];
@@ -50,6 +49,7 @@
 }
 
 - (void) showStatuses {
+    [self startProgressBar:@"Retrieving your tweets..."];
     [twitterEngine getFollowedTimelineSinceID:0 startingAtPage:0 count:25];
 }
 
@@ -70,13 +70,19 @@
         }
     }
     [self stopProgressBar];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 	[self dataSourceDidFinishLoadingNewData];
 }
 
 - (void)handleTweetNotification:(NSNotification *)notification {
 	NSLog(@"handleTweetNotification: notification = %@", notification);
     if ([[notification object] rangeOfString:@"@"].location == 0) {
-        KBUserTweetsViewController *controller = [[KBUserTweetsViewController alloc] initWithNibName:@"KBTweetListViewController" bundle:nil];
+        KBUserTweetsViewController *controller = [[KBUserTweetsViewController alloc] initWithNibName:@"KBUserTweetsViewController" bundle:nil];
+//        // FIXME: this is a total ugly hack
+//        NSMutableDictionary *userDictionary = [NSMutableDictionary 
+//                                               dictionaryWithObjects:[NSArray arrayWithObjects:miscInfo, nil] 
+//                                               forKeys:[NSArray arrayWithObjects:@"screen_name", @"name", @"profile_image_url", @"id", nil]
+//                                               ];
         controller.username = [notification object];
         [self.navigationController pushViewController:controller animated:YES];
     } else if ([[notification object] rangeOfString:@"#"].location == 0) {
@@ -137,7 +143,6 @@
     
     cell.userIcon.urlPath = tweet.profileImageUrl;
     cell.userName.text = tweet.screenName;
-   // cell.tweetText.text = [TTStyledText textFromXHTML:tweet.tweetText lineBreaks:YES URLs:YES];
     cell.tweetText.text = tweet.tweetText;
     
     CGSize maximumLabelSize = CGSizeMake(250,60);
@@ -193,6 +198,7 @@
 
 
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [statuses release];
     [statusObjects release];
     [tweets release];

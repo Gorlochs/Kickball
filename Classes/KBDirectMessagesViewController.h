@@ -10,7 +10,7 @@
 #import "KBTweetListViewController.h"
 
 
-@interface KBDirectMentionsViewController : KBTweetListViewController {
+@interface KBDirectMessagesViewController : KBTweetListViewController {
 
 }
 

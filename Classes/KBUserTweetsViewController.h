@@ -11,9 +11,14 @@
 
 
 @interface KBUserTweetsViewController : KBTweetListViewController {
+    NSDictionary *userDictionary;
     NSString *username;
+    IBOutlet UILabel *screenNameLabel;
+    IBOutlet UILabel *fullName;
+    IBOutlet UILabel *location;
 }
 
+@property (nonatomic, retain) NSDictionary *userDictionary;
 @property (nonatomic, retain) NSString *username;
 
 @end

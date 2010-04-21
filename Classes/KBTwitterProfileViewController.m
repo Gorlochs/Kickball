@@ -7,7 +7,7 @@
 //
 
 #import "KBTwitterProfileViewController.h"
-
+#import "KBUserTweetsViewController.h"
 
 @implementation KBTwitterProfileViewController
 
@@ -28,7 +28,7 @@
 }
 
 - (void) userRetrieved:(NSNotification*)inNotification {
-    NSDictionary *userDictionary = [[inNotification userInfo] objectForKey:@"userInfo"];
+    userDictionary = [[[inNotification userInfo] objectForKey:@"userInfo"] retain];
     NSLog(@"user: %@", userDictionary);
     screenNameLabel.text = [userDictionary objectForKey:@"screen_name"];
     fullName.text = [userDictionary objectForKey:@"name"];
@@ -57,7 +57,43 @@
     newFrame.size.height = expectedLabelSize.height;
     description.frame = newFrame;
     
+    CGRect frame = CGRectMake(8, 90, 49, 49);
+    userIcon = [[TTImageView alloc] initWithFrame:frame];
+    userIcon.backgroundColor = [UIColor clearColor];
+    userIcon.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
+    userIcon.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
+    [self.view addSubview:userIcon];
+    
+    iconBgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellIconBorder.png"]];
+    iconBgImage.frame = CGRectMake(6, 88, 54, 54);
+    [self.view addSubview:iconBgImage];
+    
     [self stopProgressBar];
+}
+
+#pragma mark -
+#pragma mark IBAction methods
+
+
+- (void) viewRecentTweets {
+	KBUserTweetsViewController *tweetController = [[KBUserTweetsViewController alloc] initWithNibName:@"KBUserTweetsViewController" bundle:nil];
+    tweetController.userDictionary = userDictionary;
+	[self.navigationController pushViewController:tweetController animated:YES];
+	[tweetController release];
+}
+
+- (void) viewFollowers {
+//	KBTweetListViewController *tweetController = [[KBTweetListViewController alloc] initWithNibName:@"KBTweetListViewController" bundle:nil];
+//    tweetController.screenname = self.screenname;
+//	[self.navigationController pushViewController:tweetController animated:YES];
+//	[tweetController release];
+}
+
+- (void) viewFriends {
+//	KBTweetListViewController *tweetController = [[KBTweetListViewController alloc] initWithNibName:@"KBTweetListViewController" bundle:nil];
+//    tweetController.screenname = self.screenname;
+//	[self.navigationController pushViewController:tweetController animated:YES];
+//	[tweetController release];
 }
 
 - (void)didReceiveMemoryWarning {

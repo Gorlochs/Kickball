@@ -18,10 +18,17 @@
     IBOutlet UILabel *numberOfFollowers;
     IBOutlet UILabel *numberOfFriends;
     IFTweetLabel *description;
+    TTImageView *userIcon;
+    UIImageView *iconBgImage;
     
     NSString *screenname;
+    NSDictionary *userDictionary;
 }
 
 @property (nonatomic, retain) NSString *screenname;
+
+- (IBAction) viewRecentTweets;
+- (IBAction) viewFollowers;
+- (IBAction) viewFriends;
 
 @end

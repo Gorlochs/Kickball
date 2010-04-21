@@ -10,7 +10,8 @@
 #import "KBTwitterManager.h"
 #import "KBTweetListViewController.h"
 #import "KBMentionsViewController.h"
-#import "KBDirectMentionsViewController.h"
+#import "KBDirectMessagesViewController.h"
+#import "KBTwitterSearchViewController.h"
 #import "KBTwitterSearchViewController.h"
 
 
@@ -37,12 +38,12 @@
 }
 
 - (void) showDirectMessages {
-    KBDirectMentionsViewController *controller = [[KBDirectMentionsViewController alloc] initWithNibName:@"KBTweetListViewController" bundle:nil];
+    KBDirectMessagesViewController *controller = [[KBDirectMessagesViewController alloc] initWithNibName:@"KBTweetListViewController" bundle:nil];
     [self.view addSubview:controller.view];
 }
 
 - (void) showSearch {
-    KBTwitterSearchViewController *controller = [[KBTwitterSearchViewController alloc] initWithNibName:@"KBTweetListViewController" bundle:nil];
+    KBTwitterSearchViewController *controller = [[KBTwitterSearchViewController alloc] initWithNibName:@"KBTwitterSearchViewController" bundle:nil];
     [self.view addSubview:controller.view];
 }
 
