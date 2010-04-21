@@ -354,6 +354,7 @@
     // Set the request body if this is a POST request.
     BOOL isPOST = (method && [method isEqualToString:@"POST"]);
     if (isPOST) {
+        NSLog(@"http method:  POST!");
         // Set request body, if specified (hopefully so), with 'source' parameter if appropriate.
         NSString *finalBody = @"";
 		if (body) {

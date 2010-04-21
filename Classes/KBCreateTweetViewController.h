@@ -10,7 +10,7 @@
 #import "KBTwitterViewController.h"
 
 
-@interface KBCreateTweetViewController : KBTwitterViewController <UITextViewDelegate> {
+@interface KBCreateTweetViewController : KBTwitterViewController <UITextViewDelegate, MGTwitterEngineDelegate> {
     IBOutlet UITextView *tweetTextView;
     IBOutlet UILabel *characterCountLabel;
     IBOutlet UIButton *sendTweet;
@@ -24,5 +24,8 @@
 
 @property (nonatomic, retain) NSNumber *replyToStatusId;
 @property (nonatomic, retain) NSString *replyToScreenName;
+
+- (IBAction) submitTweet;
+- (IBAction) cancelCreate;
 
 @end

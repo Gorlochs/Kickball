@@ -33,6 +33,7 @@
     [self createNotificationObservers];
     
     if ([self.twitterEngine isAuthorized]) {
+        [self startProgressBar:@"Retrieving your tweets..."];
 		[self showStatuses];
 	} else {
         XAuthTwitterEngineViewController *loginController = [[XAuthTwitterEngineViewController alloc] initWithNibName:@"XAuthTwitterEngineDemoViewController" bundle:nil];
@@ -68,6 +69,7 @@
             }
         }
     }
+    [self stopProgressBar];
 	[self dataSourceDidFinishLoadingNewData];
 }
 
@@ -160,6 +162,7 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"$$$$$$$$$$$$$$$$$$$$$$ did select row $$$$$$$$$$$$$$$$$$$$$$");
 	KBTwitterDetailViewController *detailViewController = [[KBTwitterDetailViewController alloc] initWithNibName:@"KBTwitterDetailViewController" bundle:nil];
     detailViewController.tweet = [tweets objectAtIndex:indexPath.row];
 	[self.navigationController pushViewController:detailViewController animated:YES];
@@ -191,6 +194,8 @@
 
 - (void)dealloc {
     [statuses release];
+    [statusObjects release];
+    [tweets release];
     [super dealloc];
 }
 

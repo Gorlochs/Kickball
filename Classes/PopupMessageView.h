@@ -10,7 +10,7 @@
 #import "Three20/Three20.h"
 #import "KBMessage.h"
 
-@interface PopupMessageView : TTViewController {
+@interface PopupMessageView : UIViewController {
     KBMessage *message;
     TTStyledTextLabel *mainLabel;
     IBOutlet UIButton *closeButton;

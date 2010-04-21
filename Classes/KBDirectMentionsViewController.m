@@ -40,6 +40,8 @@
             }
         }
     }
+    [self stopProgressBar];
+    [self dataSourceDidFinishLoadingNewData];
 }
 
 - (void)didReceiveMemoryWarning {

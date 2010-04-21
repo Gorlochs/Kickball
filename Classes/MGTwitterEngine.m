@@ -38,7 +38,7 @@
 	#endif
 #endif
 
-#define TWITTER_DOMAIN          @"api.twitter.com"
+#define TWITTER_DOMAIN          @"api.twitter.com/1"
 #define TWITTER_API_VERSION     1
 //#if YAJL_AVAILABLE
 	#define TWITTER_SEARCH_DOMAIN	@"search.twitter.com"
@@ -1033,7 +1033,7 @@
 }
 
 
-- (NSString *)sendUpdate:(NSString *)status inReplyTo:(unsigned long)updateID
+- (NSString *)sendUpdate:(NSString *)status inReplyTo:(unsigned long long)updateID
 {
     if (!status) {
         return nil;
@@ -1049,12 +1049,13 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:0];
     [params setObject:trimmedText forKey:@"status"];
     if (updateID > 0) {
-        [params setObject:[NSString stringWithFormat:@"%u", updateID] forKey:@"in_reply_to_status_id"];
+        [params setObject:[NSString stringWithFormat:@"%qu", updateID] forKey:@"in_reply_to_status_id"];
     }
     NSString *body = [self _queryStringWithBase:nil parameters:params prefixed:NO];
     
     return [self _sendRequestWithMethod:HTTP_POST_METHOD path:path 
-                        queryParameters:params body:body 
+                        queryParameters:params 
+                                   body:body 
                             requestType:MGTwitterUpdateSendRequest
                            responseType:MGTwitterStatus];
 }
@@ -1066,10 +1067,11 @@
     if (updateID == 0){
         return nil;
     }
-    NSString *path = [NSString stringWithFormat:@"1/statuses/retweet/%qu.%@", updateID, API_FORMAT];
+    NSString *path = [NSString stringWithFormat:@"statuses/retweet/%qu.%@", updateID, API_FORMAT];
     
     return [self _sendRequestWithMethod:HTTP_POST_METHOD path:path 
-                        queryParameters:nil body:nil 
+                        queryParameters:nil 
+                                   body:nil 
                             requestType:MGTwitterUpdateSendRequest
                            responseType:MGTwitterStatus];
 }

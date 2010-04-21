@@ -48,6 +48,8 @@
             }
         }
     }
+    [self stopProgressBar];
+    [self dataSourceDidFinishLoadingNewData];
 }
 
 // Customize the appearance of table view cells.
