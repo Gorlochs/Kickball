@@ -34,6 +34,18 @@ typedef enum {
 	KBFooterTypeTwitter
 } KBFooterType;
 
+typedef enum{
+	KBPageTypeFriends = 0,
+	KBPageTypePlaces,
+	KBPageTypeOther,	
+} KBPageType;
+
+typedef enum{
+	KBPageViewTypeList = 0,
+	KBPageViewTypeMap,
+	KBPageViewTypeOther,	
+} KBPageViewType;
+
 @class LoginViewModalController, EGORefreshTableHeaderView;;
 
 @interface KBBaseViewController : UIViewController {
@@ -46,6 +58,9 @@ typedef enum {
     UIImageView *iconImageView;
     NSString *textViewReturnValue;
     NSTimer *progressBarTimer;
+    
+    KBPageType pageType;
+    KBPageViewType pageViewType;
     
     BOOL hideHeader;
     BOOL hideFooter;
@@ -107,5 +122,6 @@ typedef enum {
 - (void) displayProperProfileView:(NSString*)userId;
 - (IBAction) switchToTwitter;
 - (IBAction) switchToFoursquare;
+- (IBAction) switchToFacebook;
 
 @end

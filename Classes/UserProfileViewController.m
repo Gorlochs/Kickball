@@ -13,12 +13,15 @@
 @implementation UserProfileViewController
 
 
-/*
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
+    yourStuffButton.enabled = NO;
+    yourFriendsButton.enabled = YES;
+    checkinHistoryButton.enabled = YES;
+    [yourStuffButton setImage:[UIImage imageNamed:@"myProfileStuffTab01.png"] forState:UIControlStateDisabled];
+    [yourFriendsButton setImage:[UIImage imageNamed:@"myProfileFriendsTab02.png"] forState:UIControlStateNormal];
+    [checkinHistoryButton setImage:[UIImage imageNamed:@"myProfileHistoryTab03.png"] forState:UIControlStateNormal];
     [super viewDidLoad];
 }
-*/
 
 - (void) displayStuff {
     UserProfileViewController *profileController = [[UserProfileViewController alloc] initWithNibName:@"UserProfileView_v2" bundle:nil];

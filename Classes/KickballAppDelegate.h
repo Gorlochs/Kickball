@@ -26,6 +26,7 @@
     FriendsListViewController *viewController;
     UINavigationController *navigationController;
     UINavigationController *twitterNavigationController;
+    UINavigationController *facebookNavigationController;
     FSUser *user;
 	NSString *deviceToken;
 	NSString *deviceAlias;
@@ -44,6 +45,7 @@
 @property (nonatomic, retain) IBOutlet FriendsListViewController *viewController;
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
 @property (nonatomic, retain) IBOutlet UINavigationController *twitterNavigationController;
+@property (nonatomic, retain) IBOutlet UINavigationController *facebookNavigationController;
 @property (nonatomic, retain) IBOutlet FSUser *user;
 @property (nonatomic, retain) NSString *deviceToken;
 @property (nonatomic, retain) NSString *deviceAlias;
@@ -55,5 +57,6 @@
 - (void) checkForEmergencyMessage;
 - (void) switchToTwitter;
 - (void) switchToFoursquare;
+- (void) switchToFacebook;
 
 @end

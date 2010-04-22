@@ -13,6 +13,22 @@
 @interface OptionsViewController : KBBaseViewController {
     IBOutlet UILabel *friendRequestCount;
     NSArray *pendingFriendRequests;
+    
+    IBOutlet UITableViewCell *defaultCheckinCell;
+    IBOutlet UITableViewCell *friendsListPriorityCell;
+    IBOutlet UITableViewCell *pushNotificationCell;
+    IBOutlet UITableViewCell *accountInformationCell;
+    IBOutlet UITableViewCell *feedbackCell;
+    IBOutlet UITableViewCell *versionInformationsCell;
+    
+    IBOutlet UIButton *defaultCheckinButton;
+    IBOutlet UIButton *friendsListPriorityButton;
+    IBOutlet UISwitch *pushNotificationButton;
+    IBOutlet UIButton *accountInformationButton;
+    IBOutlet UIButton *feedbackButton;
+    IBOutlet UIButton *versionInformationsButton;
+    
+    NSArray *cellArray;
 }
 
 - (IBAction) viewFriendRequests;

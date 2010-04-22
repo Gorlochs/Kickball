@@ -21,6 +21,9 @@
 - (void)viewDidLoad {
     self.hideHeader = YES;
     self.hideFooter = YES;
+    self.hideRefresh = YES;
+    
+    cellArray = [[NSArray alloc] initWithObjects:defaultCheckinCell, friendsListPriorityCell, pushNotificationCell, accountInformationCell, feedbackCell, versionInformationsCell, nil];
     
     [super viewDidLoad];
  
@@ -61,38 +64,25 @@
     return 6;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 54;
+}
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *CellIdentifier = @"Cell";
+//    static NSString *CellIdentifier = @"Cell";
+//    
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    if (cell == nil) {
+//        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+//    }
+//    
+//
+//    
+//    return cell;
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-    }
-    
-    if (indexPath.row == 0) {
-        UIButton *myDetailButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        myDetailButton.frame = CGRectMake(0, 0, 320, 44);
-        myDetailButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-        myDetailButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-        [myDetailButton setImage:[UIImage imageNamed:@"profileSeeAllTips01.png"] forState:UIControlStateNormal];
-        [myDetailButton setImage:[UIImage imageNamed:@"profileSeeAllTips02.png"] forState:UIControlStateHighlighted];
-        [myDetailButton addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside]; 
-        [cell addSubview:myDetailButton];
-    } else if (indexPath.row == 1) {
-        UIButton *myDetailButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        myDetailButton.frame = CGRectMake(0, 0, 320, 44);
-        myDetailButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-        myDetailButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-        [myDetailButton setImage:[UIImage imageNamed:@"profileHereToo01.png"] forState:UIControlStateNormal];
-        [myDetailButton setImage:[UIImage imageNamed:@"profileHereToo02.png"] forState:UIControlStateHighlighted];
-        [myDetailButton addTarget:self action:@selector(accountInfo) forControlEvents:UIControlEventTouchUpInside]; 
-        [cell addSubview:myDetailButton];
-    }
-    
-    return cell;
+    return [cellArray objectAtIndex:indexPath.row];
 }
 
 #pragma mark -

@@ -23,6 +23,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    yourFriendsButton.enabled = NO;
+    yourStuffButton.enabled = YES;
+    checkinHistoryButton.enabled = YES;
+    [yourStuffButton setImage:[UIImage imageNamed:@"myProfileStuffTab02.png"] forState:UIControlStateNormal];
+    [yourFriendsButton setImage:[UIImage imageNamed:@"myProfileFriendsTab01.png"] forState:UIControlStateDisabled];
+    [checkinHistoryButton setImage:[UIImage imageNamed:@"myProfileHistoryTab03.png"] forState:UIControlStateNormal];
 }
 
 - (void) executeFoursquareCalls {

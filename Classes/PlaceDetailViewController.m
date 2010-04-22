@@ -428,8 +428,8 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.section) {
-        case 0:
-            return 37;
+        case 0: // i'm here button
+            return 54;
             break;
         case 1: // mayor-map cell
             return 69;
@@ -679,11 +679,11 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         
         NSMutableString *checkinText = [[NSMutableString alloc] initWithCapacity:1];
         for (FSScore *score in ci.scoring.scores) {
-            [checkinText appendFormat:[NSString stringWithFormat:@"+%d %@ \n", score.points, score.message]];
+            [checkinText appendFormat:[NSString stringWithFormat:@"%@ \n\n+%d %@ \n", ci.message, score.points, score.message]];
         }
-        if (checkinText == nil || [checkinText isEqualToString:@""]) {
-            [checkinText appendString:ci.message];
-        }
+//        if (checkinText == nil || [checkinText isEqualToString:@""]) {
+//            [checkinText appendString:ci.message];
+//        }
         KBMessage *message = [[KBMessage alloc] initWithMember:@"Check-in successful" andMessage:checkinText];
         [self displayPopupMessage:message];
         [checkinText release];

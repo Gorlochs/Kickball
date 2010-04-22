@@ -522,6 +522,8 @@
 		6AEC8FC8117588A600BEB591 /* PlaceDetailView_v2.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6AEC8FC7117588A600BEB591 /* PlaceDetailView_v2.xib */; };
 		6AF2F0AA10C2EA0B00A29C96 /* TipDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF2F0A910C2EA0B00A29C96 /* TipDetailViewController.m */; };
 		6AF2F0AE10C2EBB300A29C96 /* TipView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AF2F0AD10C2EBB300A29C96 /* TipView.xib */; };
+		6AF6ABA81180BB2900704B24 /* KBFacebookLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF6ABA61180BB2900704B24 /* KBFacebookLoginViewController.m */; };
+		6AF6ABA91180BB2900704B24 /* KBFacebookLoginViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6AF6ABA71180BB2900704B24 /* KBFacebookLoginViewController.xib */; };
 		6AF794AE10CCADFF00E77D49 /* FriendRequestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF794AC10CCADFF00E77D49 /* FriendRequestsViewController.m */; };
 		6AF794AF10CCADFF00E77D49 /* FriendRequestsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AF794AD10CCADFF00E77D49 /* FriendRequestsViewController.xib */; };
 		6AF794C010CCAF4B00E77D49 /* ViewFriendRequestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF794BE10CCAF4B00E77D49 /* ViewFriendRequestsViewController.m */; };
@@ -1385,6 +1387,9 @@
 		6AF2F0A810C2EA0B00A29C96 /* TipDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipDetailViewController.h; sourceTree = "<group>"; };
 		6AF2F0A910C2EA0B00A29C96 /* TipDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipDetailViewController.m; sourceTree = "<group>"; };
 		6AF2F0AD10C2EBB300A29C96 /* TipView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TipView.xib; sourceTree = "<group>"; };
+		6AF6ABA51180BB2900704B24 /* KBFacebookLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBFacebookLoginViewController.h; sourceTree = "<group>"; };
+		6AF6ABA61180BB2900704B24 /* KBFacebookLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBFacebookLoginViewController.m; sourceTree = "<group>"; };
+		6AF6ABA71180BB2900704B24 /* KBFacebookLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KBFacebookLoginViewController.xib; path = Classes/KBFacebookLoginViewController.xib; sourceTree = "<group>"; };
 		6AF794AB10CCADFF00E77D49 /* FriendRequestsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendRequestsViewController.h; sourceTree = "<group>"; };
 		6AF794AC10CCADFF00E77D49 /* FriendRequestsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendRequestsViewController.m; sourceTree = "<group>"; };
 		6AF794AD10CCADFF00E77D49 /* FriendRequestsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendRequestsViewController.xib; sourceTree = "<group>"; };
@@ -1472,6 +1477,7 @@
 				553C516510A1BD5100A74641 /* TouchXML */,
 				6A39EB3E10965666006F76C3 /* Pinch */,
 				6A8EEEC110A14ED200DC630C /* MGTwitterEngine */,
+				6AF6ABA41180BB0D00704B24 /* Facebook */,
 				6AD5B3D8116D3D37008671FD /* KBTwitter */,
 				6AF9670D109AA2FE00EF665D /* Profile */,
 				6AC7E92D10994FB500776993 /* Place */,
@@ -1563,6 +1569,7 @@
 				6A086FE5117652A500BD6094 /* OptionsView_v2.xib */,
 				6A086FE7117652B500BD6094 /* AccountOptionsView_v2.xib */,
 				6A086FE9117652D400BD6094 /* TwitterLoginView_v2.xib */,
+				6AF6ABA71180BB2900704B24 /* KBFacebookLoginViewController.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -2807,6 +2814,15 @@
 			name = "Kickball Stats API";
 			sourceTree = "<group>";
 		};
+		6AF6ABA41180BB0D00704B24 /* Facebook */ = {
+			isa = PBXGroup;
+			children = (
+				6AF6ABA51180BB2900704B24 /* KBFacebookLoginViewController.h */,
+				6AF6ABA61180BB2900704B24 /* KBFacebookLoginViewController.m */,
+			);
+			name = Facebook;
+			sourceTree = "<group>";
+		};
 		6AF794AA10CCAD9A00E77D49 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
@@ -3447,6 +3463,8 @@
 				6AC85204117E2BB4007B5220 /* KBTwitterDetailViewController.xib in Sources */,
 				6A2EFAF2117F832F007F2D3D /* KBUserTweetsViewController.xib in Sources */,
 				6A4204C4117FAD9E001A6982 /* KBDirectMessage.m in Sources */,
+				6AF6ABA81180BB2900704B24 /* KBFacebookLoginViewController.m in Sources */,
+				6AF6ABA91180BB2900704B24 /* KBFacebookLoginViewController.xib in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

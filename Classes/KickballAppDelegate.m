@@ -23,6 +23,7 @@
 @synthesize viewController;
 @synthesize navigationController;
 @synthesize twitterNavigationController;
+@synthesize facebookNavigationController;
 @synthesize user;
 @synthesize deviceToken;
 @synthesize deviceAlias;
@@ -329,6 +330,10 @@
 
 - (void) switchToFoursquare {
     [window addSubview:navigationController.view];
+}
+
+- (void) switchToFacebook {
+    [window addSubview:facebookNavigationController.view];
 }
 
 - (void)dealloc {

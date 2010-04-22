@@ -9,21 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "KBBaseViewController.h"
 
-typedef enum{
-	KBPageTypeFriends = 0,
-	KBPageTypePlaces,
-	KBPageTypeOther,	
-} KBPageType;
-
-typedef enum{
-	KBPageViewTypeList = 0,
-	KBPageViewTypeMap,
-	KBPageViewTypeOther,	
-} KBPageViewType;
 
 @interface KBFoursquareViewController : KBBaseViewController {
-    KBPageType pageType;
-    KBPageViewType pageViewType;
     
     IBOutlet UIButton *friendButton;
     IBOutlet UIButton *placesButton;

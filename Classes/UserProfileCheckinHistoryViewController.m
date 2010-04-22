@@ -12,20 +12,15 @@
 
 @implementation UserProfileCheckinHistoryViewController
 
-/*
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
 
-
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+    checkinHistoryButton.enabled = NO;
+    yourStuffButton.enabled = YES;
+    yourFriendsButton.enabled = YES;
+    [yourStuffButton setImage:[UIImage imageNamed:@"myProfileStuffTab03.png"] forState:UIControlStateNormal];
+    [yourFriendsButton setImage:[UIImage imageNamed:@"myProfileFriendsTab02.png"] forState:UIControlStateNormal];
+    [checkinHistoryButton setImage:[UIImage imageNamed:@"myProfileHistoryTab01.png"] forState:UIControlStateDisabled];
 }
 
 - (void) executeFoursquareCalls {

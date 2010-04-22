@@ -56,13 +56,10 @@ static NSString* kGetSessionProxy = nil; // @"<YOUR SESSION CALLBACK)>";
 
 }
 
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView {
-}
-*/
 
 - (void)viewDidLoad {
+    headerNibName = HEADER_NIB_FOURSQUARE;
+    footerType = KBFooterTypeFacebook;
     [super viewDidLoad];
     [_session resume];
 }

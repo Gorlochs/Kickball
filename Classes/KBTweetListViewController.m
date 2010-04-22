@@ -132,8 +132,6 @@
     CGSize expectedLabelSize = [tweet.tweetText sizeWithFont:[UIFont fontWithName:@"Georgia" size:12.0]
                                                constrainedToSize:maximumLabelSize 
                                                    lineBreakMode:UILineBreakModeTailTruncation];
-    
-    NSLog(@"expected label size (inside heightForRow): %f", expectedLabelSize.height);
 
     return expectedLabelSize.height + 30 > 70 ? expectedLabelSize.height + 30 : 70;
 }
@@ -161,9 +159,7 @@
     CGSize expectedLabelSize = [cell.tweetText.text sizeWithFont:cell.tweetText.font 
                                            constrainedToSize:maximumLabelSize 
                                                lineBreakMode:UILineBreakModeTailTruncation]; 
-    
-    NSLog(@"expected label size (inside cellForRow) %f", expectedLabelSize.height);
-    
+        
     //adjust the label the the new height.
     CGRect newFrame = cell.tweetText.frame;
     newFrame.size.height = expectedLabelSize.height;
@@ -171,11 +167,6 @@
     
     return cell;
 }
-
-
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    return 90;
-//}
 
 #pragma mark -
 #pragma mark Table view delegate
