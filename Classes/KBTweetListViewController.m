@@ -9,7 +9,6 @@
 #import "KBTweetListViewController.h"
 #import "Three20/Three20.h"
 #import "UIAlertView+Helper.h"
-#import "XAuthTwitterEngineViewController.h"
 #import "KBTwitterSearchViewController.h"
 #import "KBUserTweetsViewController.h"
 #import "KBTwitterDetailViewController.h"
@@ -30,12 +29,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self createNotificationObservers];
-    
     if ([self.twitterEngine isAuthorized]) {
+        [self createNotificationObservers];
 		[self showStatuses];
 	} else {
-        XAuthTwitterEngineViewController *loginController = [[XAuthTwitterEngineViewController alloc] initWithNibName:@"XAuthTwitterEngineDemoViewController" bundle:nil];
+        loginController = [[XAuthTwitterEngineViewController alloc] initWithNibName:@"XAuthTwitterEngineDemoViewController" bundle:nil];
         [self presentModalViewController:loginController animated:YES];
         [loginController release];
     }
@@ -49,6 +47,7 @@
 }
 
 - (void) showStatuses {
+    [loginController removeFromSupercontroller];
     [self startProgressBar:@"Retrieving your tweets..."];
     [twitterEngine getFollowedTimelineSinceID:0 startingAtPage:0 count:25];
 }

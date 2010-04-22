@@ -11,12 +11,14 @@
 #import "KBTwitterViewController.h"
 #import "KBTweet.h"
 #import "KBTweetTableCell.h"
+#import "XAuthTwitterEngineViewController.h"
 
 
 @interface KBTweetListViewController : KBTwitterViewController <MGTwitterEngineDelegate> {
     NSArray *statuses;
     NSMutableArray *statusObjects;
     NSMutableArray *tweets;
+    XAuthTwitterEngineViewController *loginController;
 }
 
 - (void) statusRetrieved:(NSNotification *)inNotification;
