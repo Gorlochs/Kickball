@@ -9,13 +9,14 @@
 #import <Foundation/Foundation.h>
 
 
-@interface KBTweet : NSObject {
+@interface KBTweet : NSObject <NSCopying> {
     NSString *screenName;
     NSString *fullName;
     NSDate *createDate;
     NSString *profileImageUrl;
     NSString *tweetText;
     NSNumber *tweetId;
+    NSDictionary *dict;
 }
 
 @property (nonatomic, retain) NSString *screenName;

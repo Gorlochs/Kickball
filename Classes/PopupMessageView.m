@@ -93,7 +93,7 @@
 //    mainLabel.backgroundColor = [UIColor clearColor];
 //    self.view.backgroundColor = [UIColor clearColor];
     
-    messageLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(10.0f, 135.0f, 300.0f, 220.0f)];
+    messageLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(20.0f, 135.0f, 300.0f, 220.0f)];
     [messageLabel setFont:[UIFont systemFontOfSize:14.0f]];
     [messageLabel setTextColor:[UIColor whiteColor]];
     [messageLabel setBackgroundColor:[UIColor clearColor]];
@@ -104,19 +104,19 @@
 //    [self.view addSubview:shadowBG];
 //    [self.view addSubview:closeButton];
 //    [self.view addSubview:mainLabel];
-    [self.view bringSubviewToFront:closeButton];
+//    [self.view bringSubviewToFront:closeButton];
     
     titleLabel.text = message.mainTitle;
     
-//    CGSize maximumLabelSize = CGSizeMake(237,63);
-//    CGSize expectedLabelSize = [message.message sizeWithFont:messageText.font 
-//                                           constrainedToSize:maximumLabelSize 
-//                                               lineBreakMode:messageText.lineBreakMode]; 
+    CGSize maximumLabelSize = CGSizeMake(300, 220);
+    CGSize expectedLabelSize = [message.message sizeWithFont:messageLabel.font 
+                                           constrainedToSize:maximumLabelSize 
+                                               lineBreakMode:UILineBreakModeClip]; 
     
     //adjust the label the the new height.
-//    CGRect newFrame = messageText.frame;
-//    newFrame.size.height = expectedLabelSize.height;
-//    messageText.frame = newFrame;
+    CGRect newFrame = messageLabel.frame;
+    newFrame.size.height = expectedLabelSize.height;
+    messageLabel.frame = newFrame;
 //    
 //    messageText.text = message.message; // yikes, this is one scary line of code. I couldn't have done this on purpose.
 }

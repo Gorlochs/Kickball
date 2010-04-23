@@ -13,12 +13,17 @@
 #define	kOAuthConsumerSecret	@"5Naqknb57AxYWVdonjl0H9Iod7Kq76MWcvnYqAEpo"		// and consumer secret from http://twitter.com/oauth_clients/details/<your app id>
 #define kCachedXAuthAccessTokenStringKey	@"cachedXAuthAccessTokenKey"
 
-#define kTwitterLoginNotificationKey @"loginNotification"
-#define kTwitterStatusRetrievedNotificationKey @"statusRetrievedNotification"
-#define kTwitterDMRetrievedNotificationKey @"directMessagesRetrievedNotification"
-#define kTwitterUserInfoRetrievedNotificationKey @"userInfoRetrievedNotification"
-#define kTwitterMiscRetrievedNotificationKey @"miscellaneousRetrievedNotification"
-#define kTwitterSearchRetrievedNotificationKey @"searchRetrievedNotification"
+#define kTwitterLoginNotificationKey                @"loginNotification"
+#define kTwitterStatusRetrievedNotificationKey      @"statusRetrievedNotification"
+#define kTwitterDMRetrievedNotificationKey          @"directMessagesRetrievedNotification"
+#define kTwitterUserInfoRetrievedNotificationKey    @"userInfoRetrievedNotification"
+#define kTwitterMiscRetrievedNotificationKey        @"miscellaneousRetrievedNotification"
+#define kTwitterSearchRetrievedNotificationKey      @"searchRetrievedNotification"
+
+#define kKBTwitterTimelineKey   @"timeline"
+#define kKBTwitterMentionsKey   @"mentions"
+#define kKBTwitterDirectMessagesKey   @"directMessage"
+
 
 @interface KBTwitterManager : NSObject {
     XAuthTwitterEngine *twitterEngine;
@@ -27,5 +32,8 @@
 @property (nonatomic, retain) XAuthTwitterEngine *twitterEngine;
 
 + (KBTwitterManager*) twitterManager;
+
+- (void) cacheStatusArray:(NSArray*)statuses withKey:(NSString*)key;
+- (NSArray*) retrieveCachedStatusArrayWithKey:(NSString*)key;
 
 @end

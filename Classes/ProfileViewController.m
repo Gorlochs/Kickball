@@ -231,7 +231,7 @@
             return 1;
         }
     } else if (section == 1) { // photos
-        return 1;
+        return (userPhotos != nil && [userPhotos count] > 0);
     } else if (section == 2) { // mayor
         return [user.mayorOf count];
     } else if (section == 3) { // badges
@@ -362,30 +362,34 @@
                 headerView.leftHeaderLabel.text = @"";
                 break;
             case 1:
-                headerView.leftHeaderLabel.text = [NSString stringWithFormat:@"%d %@", [userPhotos count], [userPhotos count] == 1 ? @"Photo" : @"Photos"];
-                
-                UIButton *myDetailButton = [UIButton buttonWithType:UIButtonTypeCustom];
-                myDetailButton.frame = CGRectMake(210, 0, 92, 39);
-                myDetailButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-                myDetailButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-                [myDetailButton setImage:[UIImage imageNamed:@"profileSeeAllPhotos01.png"] forState:UIControlStateNormal];
-                [myDetailButton setImage:[UIImage imageNamed:@"profileSeeAllPhotos02.png"] forState:UIControlStateHighlighted];
-                [myDetailButton addTarget:self action:@selector(displayImages:) forControlEvents:UIControlEventTouchUpInside]; 
-                [headerView addSubview:myDetailButton];
+                if (userPhotos != nil && [userPhotos count] > 0) {
+                    headerView.leftHeaderLabel.text = [NSString stringWithFormat:@"%d %@", [userPhotos count], [userPhotos count] == 1 ? @"Photo" : @"Photos"];
+                    
+                    UIButton *myDetailButton = [UIButton buttonWithType:UIButtonTypeCustom];
+                    myDetailButton.frame = CGRectMake(210, 0, 92, 39);
+                    myDetailButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+                    myDetailButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+                    [myDetailButton setImage:[UIImage imageNamed:@"profileSeeAllPhotos01.png"] forState:UIControlStateNormal];
+                    [myDetailButton setImage:[UIImage imageNamed:@"profileSeeAllPhotos02.png"] forState:UIControlStateHighlighted];
+                    [myDetailButton addTarget:self action:@selector(displayImages:) forControlEvents:UIControlEventTouchUpInside]; 
+                    [headerView addSubview:myDetailButton];
+                } else {
+                    return nil;
+                }
                 break;
             case 2:
                 if ([user.mayorOf count] < 1) {
                     [headerView.leftHeaderLabel release];
                     return nil;
                 }
-                headerView.leftHeaderLabel.text = @"Mayor";
+                headerView.leftHeaderLabel.text = [NSString stringWithFormat:@"%d Mayorship%@", [user.mayorOf count], [user.mayorOf count] > 1 ? @"s" : @""];
                 break;
             case 3:
                 if ([user.badges count] < 1) {
                     [headerView release];
                     return nil;
                 }
-                headerView.leftHeaderLabel.text = @"Badges";
+                headerView.leftHeaderLabel.text = [NSString stringWithFormat:@"%d Badge%@", [user.badges count], [user.badges count] > 1 ? @"s" : @""];
                 break;
             case 4:
                 headerView.leftHeaderLabel.text = @"";

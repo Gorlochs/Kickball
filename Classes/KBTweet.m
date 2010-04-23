@@ -23,6 +23,7 @@
 // init with dictionary
 - (id) initWithDictionary:(NSDictionary*)statusDictionary {		
     if (self = [super init]) {
+        dict = [[NSDictionary alloc] initWithDictionary:statusDictionary];
         screenName = [[statusDictionary objectForKey:@"user"] objectForKey:@"screen_name"];
         fullName = [[statusDictionary objectForKey:@"user"] objectForKey:@"name"];
         profileImageUrl = [[statusDictionary objectForKey:@"user"] objectForKey:@"profile_image_url"];
@@ -31,6 +32,31 @@
         tweetId = [statusDictionary objectForKey:@"id"];
     }
     return self;
+}
+
+- (void) encodeWithCoder: (NSCoder *)coder { 
+    [coder encodeObject: screenName forKey:@"screenName"]; 
+    [coder encodeObject: fullName forKey:@"fullName"]; 
+    [coder encodeObject: createDate forKey:@"createDate"]; 
+    [coder encodeObject: profileImageUrl forKey:@"profileImageUrl"]; 
+    [coder encodeObject: tweetText forKey:@"tweetText"]; 
+    [coder encodeObject: tweetId forKey:@"tweetId"]; 
+} 
+
+- (id) initWithCoder: (NSCoder *)coder { 
+    if (self = [super init]) { 
+        [self setScreenName: [coder decodeObjectForKey:@"screenName"]]; 
+        [self setFullName: [coder decodeObjectForKey:@"fullName"]];  
+        [self setCreateDate: [coder decodeObjectForKey:@"createDate"]];  
+        [self setProfileImageUrl: [coder decodeObjectForKey:@"profileImageUrl"]]; 
+        [self setTweetText: [coder decodeObjectForKey:@"tweetText"]]; 
+        [self setTweetId: [coder decodeObjectForKey:@"tweetId"]]; 
+    } 
+    return self; 
+} 
+
+- (id)copyWithZone:(NSZone *)zone {
+    return [[KBTweet allocWithZone: zone] initWithDictionary:dict];
 }
 
 @end

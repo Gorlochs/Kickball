@@ -321,6 +321,8 @@
 		6A8EEF0B10A14F3F00DC630C /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A8EEF0A10A14F3F00DC630C /* libxml2.dylib */; };
 		6A8F68EA10E9B9FC00E0275E /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A8F68E910E9B9FC00E0275E /* AddressBook.framework */; };
 		6A978A611099FBC000FCE8F1 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A978A601099FBC000FCE8F1 /* StoreKit.framework */; };
+		6A98EA911181154200E2F508 /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A98EA901181154200E2F508 /* pin.png */; };
+		6A98EA931181159A00E2F508 /* button_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A98EA921181159A00E2F508 /* button_right.png */; };
 		6AA8B86C10DDCECC005634D4 /* FSSpecial.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA8B86B10DDCECC005634D4 /* FSSpecial.m */; };
 		6AABEBD810FBB29500A5AF8B /* ProfileTwitterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AABEBD610FBB29500A5AF8B /* ProfileTwitterViewController.m */; };
 		6AABEBD910FBB29500A5AF8B /* ProfileTwitterViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6AABEBD710FBB29500A5AF8B /* ProfileTwitterViewController.xib */; };
@@ -1117,6 +1119,8 @@
 		6A8EEF0A10A14F3F00DC630C /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		6A8F68E910E9B9FC00E0275E /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		6A978A601099FBC000FCE8F1 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		6A98EA901181154200E2F508 /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin.png; sourceTree = "<group>"; };
+		6A98EA921181159A00E2F508 /* button_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_right.png; sourceTree = "<group>"; };
 		6AA8B86A10DDCECC005634D4 /* FSSpecial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSpecial.h; sourceTree = "<group>"; };
 		6AA8B86B10DDCECC005634D4 /* FSSpecial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSSpecial.m; sourceTree = "<group>"; };
 		6AABEBD510FBB29500A5AF8B /* ProfileTwitterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileTwitterViewController.h; sourceTree = "<group>"; };
@@ -1984,6 +1988,8 @@
 		6A39EC4B109662D3006F76C3 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				6A98EA921181159A00E2F508 /* button_right.png */,
+				6A98EA901181154200E2F508 /* pin.png */,
 				6A6F2B8A1176E76500B2869B /* blank_boy.png */,
 				6A6F2B2A1176D48900B2869B /* icon57x5701.png */,
 				6A6F2B2C1176D4C200B2869B /* Default.png */,
@@ -3169,6 +3175,8 @@
 				6AE7809B117AA49100997215 /* upFields02.png in Resources */,
 				6AE7809C117AA49100997215 /* whatIsThis.png in Resources */,
 				6AE7809D117AA49100997215 /* whatIsThisExplained.png in Resources */,
+				6A98EA911181154200E2F508 /* pin.png in Resources */,
+				6A98EA931181159A00E2F508 /* button_right.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

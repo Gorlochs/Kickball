@@ -48,8 +48,16 @@
 
 - (void) showStatuses {
     [loginController removeFromSupercontroller];
+    NSNumber *startAtId = [NSNumber numberWithInt:0];;
+    tweets = [[NSMutableArray alloc] initWithArray:[[KBTwitterManager twitterManager] retrieveCachedStatusArrayWithKey:kKBTwitterTimelineKey]];
+    if (tweets != nil && [tweets count] > 0) {
+        startAtId = ((KBTweet*)[tweets objectAtIndex:0]).tweetId;
+        NSLog(@"cached tweets: %@", tweets);
+        NSLog(@"max id: %qu", [startAtId longLongValue]);
+        [theTableView reloadData];
+    }
     [self startProgressBar:@"Retrieving your tweets..."];
-    [twitterEngine getFollowedTimelineSinceID:0 startingAtPage:0 count:25];
+    [twitterEngine getFollowedTimelineSinceID:[startAtId longLongValue] startingAtPage:0 count:25];
 }
 
 - (void) statusRetrieved:(NSNotification *)inNotification {
@@ -60,10 +68,19 @@
             if ([userInfo objectForKey:@"statuses"]) {
                 statuses = [[userInfo objectForKey:@"statuses"] retain];
                 //NSLog(@"status retrieved: %@", statuses);
-                tweets = [[NSMutableArray alloc] initWithCapacity:[statuses count]];
+                NSMutableArray *tempTweetArray = [[NSMutableArray alloc] initWithCapacity:[statuses count]];
                 for (NSDictionary *dict in statuses) {
-                    [tweets addObject:[[KBTweet alloc] initWithDictionary:dict]];
+                    [tempTweetArray addObject:[[KBTweet alloc] initWithDictionary:dict]];
                 }
+                if (!tweets) {
+                    tweets = [[NSMutableArray alloc] initWithArray:tempTweetArray];
+                } else {
+                    [tempTweetArray addObjectsFromArray:tweets];
+                    tweets = nil;
+                    [tweets release];
+                    tweets = [[NSMutableArray alloc] initWithArray:tempTweetArray];
+                }
+                [tempTweetArray release];
                 [theTableView reloadData];
             }
         }
@@ -71,6 +88,7 @@
     [self stopProgressBar];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 	[self dataSourceDidFinishLoadingNewData];
+    [[KBTwitterManager twitterManager] cacheStatusArray:tweets withKey:kKBTwitterTimelineKey];
 }
 
 - (void)handleTweetNotification:(NSNotification *)notification {
@@ -122,7 +140,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return [statuses count];
+    return [tweets count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

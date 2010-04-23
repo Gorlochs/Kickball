@@ -264,8 +264,10 @@
     
     if ([checkin.display rangeOfString:@"[off the grid]"].location != NSNotFound) {
         cell.venueAddress.text = @"...location unknown...";
-    } else if (checkin.shout != nil) {
+    } else if (checkin.shout != nil && checkin.venue) {
         cell.venueAddress.text = checkin.shout;
+    } else if (checkin.shout != nil && !checkin.venue) {
+        cell.venueName.text = checkin.shout;
     } else {
         cell.venueAddress.text = checkin.venue.addressWithCrossstreet;
     }
