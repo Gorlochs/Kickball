@@ -361,7 +361,7 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 }
 
 - (void) displayFoursquareErrorMessage:(NSString*)errorMessage {
-    KBMessage *message = [[KBMessage alloc] initWithMember:@"Foursquare Error" andMessage:errorMessage];
+    KBMessage *message = [[KBMessage alloc] initWithMember:@"Foursquare Error" andMessage:errorMessage isError:YES];
     [self displayPopupMessage:message];
     [message release];
 }

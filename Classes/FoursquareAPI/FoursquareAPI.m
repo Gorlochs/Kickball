@@ -1279,7 +1279,7 @@ static FoursquareAPI *sharedInstance = nil;
             FSCheckin *checkin = [[FSCheckin alloc] init];
             NSLog(@"childcount: %d", [checkinElement childCount]);
             for (int i = 0; i < [checkinElement childCount]; i++) {
-                NSLog(@"counter: %d", i);
+                //NSLog(@"counter: %d", i);
                 NSString * key = [[checkinElement childAtIndex:i] name];
                 NSString * value = [[checkinElement childAtIndex:i] stringValue];
                 if ([key isEqualToString:@"id"]) {
@@ -1291,7 +1291,7 @@ static FoursquareAPI *sharedInstance = nil;
                 } else if ([key isEqualToString:@"venue"]) {
                     NSArray * checkinVenueXML = [usrAttr nodesForXPath:@"//checkin/venue" error:nil];
                     CXMLElement *checkinVenueElement = [checkinVenueXML objectAtIndex:0];
-                    NSLog(@"checkin venue element: %@", checkinVenueElement);
+                    //NSLog(@"checkin venue element: %@", checkinVenueElement);
                     FSVenue *checkinVenue = [[FSVenue alloc] init];
                     for (int j = 0; j < [checkinVenueElement childCount]; j++) {
                         NSString * key2 = [[checkinVenueElement childAtIndex:j] name];

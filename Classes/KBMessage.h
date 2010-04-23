@@ -13,13 +13,16 @@
     NSString *mainTitle;
     NSString *subtitle;
     NSString *message;
+    BOOL isError;
 }
 
 @property (nonatomic, retain) NSString *mainTitle;
 @property (nonatomic, retain) NSString *subtitle;
 @property (nonatomic, retain) NSString *message;
+@property (nonatomic) BOOL isError;
 
 - (id) initWithMember: (NSString*)maintitle andMessage:(NSString*)msg;
+- (id) initWithMember: (NSString*)maintitle andMessage:(NSString*)msg isError:(BOOL)isError;
 - (id) initWithMember: (NSString*)maintitle andSubtitle:(NSString*)subTitle andMessage:(NSString*)msg;
 
 @end

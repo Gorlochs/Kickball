@@ -11,7 +11,7 @@
 
 @implementation KBMessage
 
-@synthesize mainTitle, subtitle, message;
+@synthesize mainTitle, subtitle, message, isError;
 
 
 - (id) initWithMember: (NSString*)maintitle andMessage:(NSString*)msg
@@ -19,6 +19,16 @@
     self = [super init];
     self.mainTitle = maintitle;
     self.message = msg;
+    self.isError = NO;
+    return self;
+}
+
+- (id) initWithMember: (NSString*)maintitle andMessage:(NSString*)msg isError:(BOOL)isError {
+    
+    self = [super init];
+    self.mainTitle = maintitle;
+    self.message = msg;
+    self.isError = isError;
     return self;
 }
 

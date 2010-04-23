@@ -75,24 +75,6 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
     
-    //mainLabel = [[[TTStyledTextLabel alloc] initWithFrame:CGRectMake(10, 100, 300, 300)] autorelease];
-    
-//    NSString* labelText = @"\
-//        <span class=\"whiteText\">This is a test of styled labels.  Styled labels support \
-//        <b>bold text</b>, <i>italic text</i>, <span class=\"blueText\">colored text</span>, \
-//        <span class=\"largeText\">font sizes</span>, \
-//        <span class=\"blueBox\">spans with backgrounds</span>, inline images \
-//        <img src=\"bundle://smiley.png\"/>, and <a href=\"http://www.google.com\">hyperlinks</a> you can \
-//        actually touch. URLs are automatically converted into links, like this: http://www.foo.com\
-//        <div>You can enclose blocks within an HTML div.</div>\
-//        Both line break characters\n\nand HTML line breaks<br/>are respected.</span>";
-    
-    
-    //NSString* labelText = @"This is a <b>test</b> of the emergency broadcast <i>system</i></div>";
-//    mainLabel.text = [TTStyledText textFromXHTML:labelText lineBreaks:YES URLs:NO];
-//    mainLabel.backgroundColor = [UIColor clearColor];
-//    self.view.backgroundColor = [UIColor clearColor];
-    
     messageLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(20.0f, 135.0f, 300.0f, 220.0f)];
     [messageLabel setFont:[UIFont systemFontOfSize:14.0f]];
     [messageLabel setTextColor:[UIColor whiteColor]];
@@ -101,13 +83,9 @@
     messageLabel.text = message.message;
     [self.view addSubview:messageLabel];
     
-//    [self.view addSubview:shadowBG];
-//    [self.view addSubview:closeButton];
-//    [self.view addSubview:mainLabel];
-//    [self.view bringSubviewToFront:closeButton];
-    
     titleLabel.text = message.mainTitle;
     
+    NSLog(@"message: %@", message.message);
     CGSize maximumLabelSize = CGSizeMake(300, 220);
     CGSize expectedLabelSize = [message.message sizeWithFont:messageLabel.font 
                                            constrainedToSize:maximumLabelSize 
@@ -116,9 +94,18 @@
     //adjust the label the the new height.
     CGRect newFrame = messageLabel.frame;
     newFrame.size.height = expectedLabelSize.height;
+    NSLog(@"frame height: %f", self.view.frame.size.height);
+    NSLog(@"label height: %f", expectedLabelSize.height);
+    newFrame.origin.y = self.view.frame.size.height - expectedLabelSize.height - 20;
     messageLabel.frame = newFrame;
-//    
-//    messageText.text = message.message; // yikes, this is one scary line of code. I couldn't have done this on purpose.
+    
+    CGRect newTitleFrame = titleLabel.frame;
+    newTitleFrame.origin.y = newFrame.origin.y - 50;
+    titleLabel.frame = newTitleFrame;
+    
+    if (message.isError) {
+        titleLabel.textColor = [UIColor redColor];
+    }
 }
 
 - (void)dealloc {

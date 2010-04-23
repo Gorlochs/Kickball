@@ -702,6 +702,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 //        if (checkinText == nil || [checkinText isEqualToString:@""]) {
 //            [checkinText appendString:ci.message];
 //        }
+        NSLog(@"checkin text: %@", checkinText);
         KBMessage *message = [[KBMessage alloc] initWithMember:@"Check-in successful" andMessage:checkinText];
         [self displayPopupMessage:message];
         [checkinText release];
