@@ -15,12 +15,25 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     checkinHistoryButton.enabled = NO;
     yourStuffButton.enabled = YES;
     yourFriendsButton.enabled = YES;
+    
     [yourStuffButton setImage:[UIImage imageNamed:@"myProfileStuffTab03.png"] forState:UIControlStateNormal];
     [yourFriendsButton setImage:[UIImage imageNamed:@"myProfileFriendsTab02.png"] forState:UIControlStateNormal];
     [checkinHistoryButton setImage:[UIImage imageNamed:@"myProfileHistoryTab01.png"] forState:UIControlStateDisabled];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(instaCheckin:) name:@"touchAndHoldCheckin" object:nil];
+}
+
+- (void) instaCheckin:(NSNotification *)inNotification {
+    NSString *venueId = [[inNotification userInfo] objectForKey:@"venueIdOfCell"];
+    PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView_v2" bundle:nil];    
+    placeDetailController.venueId = venueId;
+    placeDetailController.doCheckin = YES;
+    [self.navigationController pushViewController:placeDetailController animated:YES];
+    [placeDetailController release]; 
 }
 
 - (void) executeFoursquareCalls {
@@ -98,6 +111,9 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
+    if (theCheckin.venue) {
+        cell.venueId = theCheckin.venue.venueid;
+    }
     cell.categoryIcon.urlPath = theCheckin.venue.primaryCategory.iconUrl;
     
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
