@@ -1151,6 +1151,8 @@ static FoursquareAPI *sharedInstance = nil;
 			loggedInUser.lastname = value;
 		} else if([key isEqualToString:@"gender"]){
 			loggedInUser.gender = value;
+		} else if([key isEqualToString:@"photo"]){
+			loggedInUser.photo = value;
 		} else if([key isEqualToString:@"twitter"]){
 			loggedInUser.twitter = value;
 		}

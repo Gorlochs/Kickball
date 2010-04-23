@@ -324,6 +324,8 @@
 		6A98EA911181154200E2F508 /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A98EA901181154200E2F508 /* pin.png */; };
 		6A98EA931181159A00E2F508 /* button_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A98EA921181159A00E2F508 /* button_right.png */; };
 		6A98EB731182091500E2F508 /* KBBaseTweetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A98EB721182091500E2F508 /* KBBaseTweetViewController.m */; };
+		6A98EC1F1182351200E2F508 /* TipListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A98EC1D1182351200E2F508 /* TipListViewController.m */; };
+		6A98EC201182351200E2F508 /* TipListViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A98EC1E1182351200E2F508 /* TipListViewController.xib */; };
 		6AA8B86C10DDCECC005634D4 /* FSSpecial.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA8B86B10DDCECC005634D4 /* FSSpecial.m */; };
 		6AABEBD810FBB29500A5AF8B /* ProfileTwitterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AABEBD610FBB29500A5AF8B /* ProfileTwitterViewController.m */; };
 		6AABEBD910FBB29500A5AF8B /* ProfileTwitterViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6AABEBD710FBB29500A5AF8B /* ProfileTwitterViewController.xib */; };
@@ -1124,6 +1126,9 @@
 		6A98EA921181159A00E2F508 /* button_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_right.png; sourceTree = "<group>"; };
 		6A98EB711182091500E2F508 /* KBBaseTweetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBBaseTweetViewController.h; sourceTree = "<group>"; };
 		6A98EB721182091500E2F508 /* KBBaseTweetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBBaseTweetViewController.m; sourceTree = "<group>"; };
+		6A98EC1C1182351200E2F508 /* TipListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipListViewController.h; sourceTree = "<group>"; };
+		6A98EC1D1182351200E2F508 /* TipListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipListViewController.m; sourceTree = "<group>"; };
+		6A98EC1E1182351200E2F508 /* TipListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TipListViewController.xib; path = Classes/TipListViewController.xib; sourceTree = "<group>"; };
 		6AA8B86A10DDCECC005634D4 /* FSSpecial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSpecial.h; sourceTree = "<group>"; };
 		6AA8B86B10DDCECC005634D4 /* FSSpecial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSSpecial.m; sourceTree = "<group>"; };
 		6AABEBD510FBB29500A5AF8B /* ProfileTwitterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileTwitterViewController.h; sourceTree = "<group>"; };
@@ -1577,6 +1582,7 @@
 				6A086FE7117652B500BD6094 /* AccountOptionsView_v2.xib */,
 				6A086FE9117652D400BD6094 /* TwitterLoginView_v2.xib */,
 				6AF6ABA71180BB2900704B24 /* KBFacebookLoginViewController.xib */,
+				6A98EC1E1182351200E2F508 /* TipListViewController.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1977,6 +1983,8 @@
 				6A223A4E10E46CE1003550F2 /* CreateTipTodoViewController.xib */,
 				6AF2F0A810C2EA0B00A29C96 /* TipDetailViewController.h */,
 				6AF2F0A910C2EA0B00A29C96 /* TipDetailViewController.m */,
+				6A98EC1C1182351200E2F508 /* TipListViewController.h */,
+				6A98EC1D1182351200E2F508 /* TipListViewController.m */,
 			);
 			name = "Tip Todo";
 			sourceTree = "<group>";
@@ -3479,6 +3487,8 @@
 				6AF6ABA81180BB2900704B24 /* KBFacebookLoginViewController.m in Sources */,
 				6AF6ABA91180BB2900704B24 /* KBFacebookLoginViewController.xib in Sources */,
 				6A98EB731182091500E2F508 /* KBBaseTweetViewController.m in Sources */,
+				6A98EC1F1182351200E2F508 /* TipListViewController.m in Sources */,
+				6A98EC201182351200E2F508 /* TipListViewController.xib in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

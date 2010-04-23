@@ -34,11 +34,13 @@
 #import "KBStats.h"
 #import "KickballAPI.h"
 #import "BlackTableCellHeader.h"
+#import "TipListViewController.h"
 
 static inline double radians (double degrees) {return degrees * M_PI/180;}
 
 #define PHOTOS_PER_ROW 5
 #define THUMBNAIL_IMAGE_SIZE 64
+#define MAX_NUM_TIPS_SHOWN 4
 
 @interface PlaceDetailViewController (Private)
 
@@ -365,7 +367,8 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     } else if (section == 4) { // venue buttons
         return 1;
     } else if (section == 5) { // tips
-        return [venue.tips count];
+        //return [venue.tips count];
+        return [venue.tips count] < MAX_NUM_TIPS_SHOWN ? [venue.tips count] : MAX_NUM_TIPS_SHOWN;
     } else {
         return 0;
     }
@@ -408,14 +411,25 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         return giftCell;
     } else if (indexPath.section == 4) {
         return bottomButtonCell;
-    } else if (indexPath.section == 5) {
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    } else if (indexPath.section == 5) {        
         FSTip *tip = (FSTip*) [venue.tips objectAtIndex:indexPath.row];
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:12.0];
+        
+        cell.detailTextLabel.numberOfLines = 2;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.imageView.image = [UIImage imageNamed:@"blank_boy.png"];   
         cell.textLabel.font = [UIFont boldSystemFontOfSize:12];
-        cell.textLabel.text = [NSString stringWithFormat:@"%@ says,", tip.submittedBy.firstnameLastInitial];
-        //cell.detailTextLabel.numberOfLines = 2;
+        cell.detailTextLabel.font = [UIFont systemFontOfSize:12.0];
+        cell.textLabel.text = tip.submittedBy.firstnameLastInitial;
         cell.detailTextLabel.text = tip.text;
-        cell.imageView.image = nil;
+        
+        CGRect frame = CGRectMake(0,0,36,36);
+        TTImageView *ttImage = [[[TTImageView alloc] initWithFrame:frame] autorelease];
+        ttImage.urlPath = tip.submittedBy.photo;
+        ttImage.backgroundColor = [UIColor clearColor];
+        ttImage.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
+        ttImage.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
+        [cell.imageView addSubview:ttImage];
     }
     return cell;
 }
@@ -446,6 +460,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
             break;
         case 4:
         case 5:
+            return 55;
         default:
             return 44;
     }
@@ -532,7 +547,10 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 }
 
 - (void) displayAllTips:(id)sender {
-    
+    TipListViewController *tipListController = [[TipListViewController alloc] initWithNibName:@"TipListViewController" bundle:nil];
+    tipListController.venue = venue;
+    [self.navigationController pushViewController:tipListController animated:YES];
+    [tipListController release];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
