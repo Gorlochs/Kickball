@@ -58,7 +58,9 @@
 
 @property (nonatomic, retain) UITableViewCell *badgeCell;
 @property (nonatomic, retain) NSString *userId;
+@property (nonatomic, retain) FSUser *user;
 
+- (void) setAllUserFields:(FSUser*)user;
 - (void) displayActionSheet:(NSString*)title withTag:(NSInteger)tag;
 - (IBAction) viewVenue;
 - (IBAction) checkinToProfilesVenue;

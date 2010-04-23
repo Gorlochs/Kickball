@@ -37,6 +37,7 @@
 @implementation ProfileViewController
 
 @synthesize userId, badgeCell;
+@synthesize user;
 
 - (void)viewDidLoad {
     hideFooter = YES;
@@ -84,46 +85,51 @@
     }
 }
 
-- (void)userResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+- (void) setAllUserFields:(FSUser*)theUser {
+    name.text = theUser.firstnameLastInitial;
+    
+    if ([theUser.checkin.display rangeOfString:@"[off the grid]"].location != NSNotFound) {
+        location.text = @"[off the grid]";
+        lastCheckinAddress.text = @"...location unknown...";
+        hereIAmButton.enabled = NO;
+        locationOverlayButton.enabled = NO;
+    } else {
+        if (theUser.checkin.venue) {
+            location.text = theUser.checkin.venue.name;
+            hereIAmButton.enabled = YES;
+            if (theUser.checkin.shout) {
+                lastCheckinAddress.text = theUser.checkin.shout;
+            } else {
+                lastCheckinAddress.text = theUser.checkin.venue.venueAddress;
+            }
+        } else {
+            location.text = theUser.checkin.shout;
+            hereIAmButton.enabled = NO;
+        }
+    }
+    
+    isPingAndUpdatesOn = theUser.sendsPingsToSignedInUser;
+    if (isPingAndUpdatesOn) {
+        [pingsAndUpdates setImage:[UIImage imageNamed:@"profilePings01x.png"] forState:UIControlStateNormal];
+    } else {
+        [pingsAndUpdates setImage:[UIImage imageNamed:@"profilePings03x.png"] forState:UIControlStateNormal];
+    }
+    //pingsAndUpdates.selected = user.sendsPingsToSignedInUser;
+    
+    // user icon
+    userIcon.image = [[Utilities sharedInstance] getCachedImage:theUser.photo];
+    userIcon.layer.masksToBounds = YES;
+    userIcon.layer.cornerRadius = 5.0;
+}
+
+- (void) userResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     NSString *errorMessage = [FoursquareAPI errorFromResponseXML:inString];
     if (errorMessage) {
         [self displayFoursquareErrorMessage:errorMessage];
     } else {
         user = [[FoursquareAPI userFromResponseXML:inString] retain];
-        name.text = user.firstnameLastInitial;
-        
-        if ([user.checkin.display rangeOfString:@"[off the grid]"].location != NSNotFound) {
-            location.text = @"[off the grid]";
-            lastCheckinAddress.text = @"...location unknown...";
-            hereIAmButton.enabled = NO;
-            locationOverlayButton.enabled = NO;
-        } else {
-            if (user.checkin.venue) {
-                location.text = user.checkin.venue.name;
-                hereIAmButton.enabled = YES;
-                if (user.checkin.shout) {
-                    lastCheckinAddress.text = user.checkin.shout;
-                } else {
-                    lastCheckinAddress.text = user.checkin.venue.venueAddress;
-                }
-            } else {
-                lastCheckinAddress.text = user.checkin.shout;
-                hereIAmButton.enabled = NO;
-            }
-        }
-        
-        isPingAndUpdatesOn = user.sendsPingsToSignedInUser;
-        if (isPingAndUpdatesOn) {
-            [pingsAndUpdates setImage:[UIImage imageNamed:@"profilePings01x.png"] forState:UIControlStateNormal];
-        } else {
-            [pingsAndUpdates setImage:[UIImage imageNamed:@"profilePings03x.png"] forState:UIControlStateNormal];
-        }
-        //pingsAndUpdates.selected = user.sendsPingsToSignedInUser;
-        
-        // user icon
-        userIcon.image = [[Utilities sharedInstance] getCachedImage:user.photo];
-        userIcon.layer.masksToBounds = YES;
-        userIcon.layer.cornerRadius = 5.0;
+
+        [self setAllUserFields:user];
         
         // badges
         // I was hoping for something elegant, and it seemed like I was going to get there, but, as you can see, I didn't quite make it

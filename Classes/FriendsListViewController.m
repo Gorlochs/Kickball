@@ -263,6 +263,7 @@
     cell.venueName.text = checkin.venue.name;
     
     if ([checkin.display rangeOfString:@"[off the grid]"].location != NSNotFound) {
+        cell.venueName.text = @"[off the grid]";
         cell.venueAddress.text = @"...location unknown...";
     } else if (checkin.shout != nil && checkin.venue) {
         cell.venueAddress.text = checkin.shout;
