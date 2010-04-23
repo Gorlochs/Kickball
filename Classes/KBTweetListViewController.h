@@ -8,22 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "Three20/Three20.h"
-#import "KBTwitterViewController.h"
+#import "KBBaseTweetViewController.h"
 #import "KBTweet.h"
 #import "KBTweetTableCell.h"
 #import "XAuthTwitterEngineViewController.h"
 
 
-@interface KBTweetListViewController : KBTwitterViewController <MGTwitterEngineDelegate> {
-    NSArray *statuses;
-    NSMutableArray *statusObjects;
-    NSMutableArray *tweets;
+@interface KBTweetListViewController : KBBaseTweetViewController {
     XAuthTwitterEngineViewController *loginController;
 }
 
 - (void) statusRetrieved:(NSNotification *)inNotification;
-- (void) showStatuses;
 - (void) createNotificationObservers;
-- (void) removeNotificationObservers;
 
 @end

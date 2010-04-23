@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "KBTweetListViewController.h"
+#import "KBBaseTweetViewController.h"
 
 
-@interface KBTwitterSearchViewController : KBTweetListViewController <UISearchBarDelegate> {
+@interface KBTwitterSearchViewController : KBBaseTweetViewController <UISearchBarDelegate> {
     NSString *searchTerms;
     IBOutlet UISearchBar *theSearchBar;
 }

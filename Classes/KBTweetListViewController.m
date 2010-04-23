@@ -28,6 +28,7 @@
  
 - (void)viewDidLoad {
     [super viewDidLoad];
+    cachingKey = kKBTwitterTimelineKey;
     
     if ([self.twitterEngine isAuthorized]) {
         [self createNotificationObservers];
@@ -40,7 +41,6 @@
 }
 
 - (void) createNotificationObservers {
-    NSLog(@"########## this should only show up for the KBTweetListViewController view ########");
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusRetrieved:) name:kTwitterStatusRetrievedNotificationKey object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTweetNotification:) name:IFTweetLabelURLNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showStatuses) name:kTwitterLoginNotificationKey object:nil];
@@ -48,16 +48,16 @@
 
 - (void) showStatuses {
     [loginController removeFromSupercontroller];
-    NSNumber *startAtId = [NSNumber numberWithInt:0];;
-    tweets = [[NSMutableArray alloc] initWithArray:[[KBTwitterManager twitterManager] retrieveCachedStatusArrayWithKey:kKBTwitterTimelineKey]];
+    NSNumber *startAtId = [NSNumber numberWithInt:0];
+    tweets = [[NSMutableArray alloc] initWithArray:[[KBTwitterManager twitterManager] retrieveCachedStatusArrayWithKey:cachingKey]];
     if (tweets != nil && [tweets count] > 0) {
         startAtId = ((KBTweet*)[tweets objectAtIndex:0]).tweetId;
-        NSLog(@"cached tweets: %@", tweets);
-        NSLog(@"max id: %qu", [startAtId longLongValue]);
+//        NSLog(@"cached tweets: %@", tweets);
+//        NSLog(@"max id: %qu", [startAtId longLongValue]);
         [theTableView reloadData];
     }
     [self startProgressBar:@"Retrieving your tweets..."];
-    [twitterEngine getFollowedTimelineSinceID:[startAtId longLongValue] startingAtPage:0 count:25];
+    [self.twitterEngine getFollowedTimelineSinceID:[startAtId longLongValue] startingAtPage:0 count:25];
 }
 
 - (void) statusRetrieved:(NSNotification *)inNotification {
@@ -72,9 +72,12 @@
                 for (NSDictionary *dict in statuses) {
                     [tempTweetArray addObject:[[KBTweet alloc] initWithDictionary:dict]];
                 }
+                // not very pretty, but it gets the job done. if there is a cached array, combine them.
+                // the other way to do it would be to just add all the objects (above) by index
                 if (!tweets) {
                     tweets = [[NSMutableArray alloc] initWithArray:tempTweetArray];
                 } else {
+                    // need to keep all the tweets in the right order
                     [tempTweetArray addObjectsFromArray:tweets];
                     tweets = nil;
                     [tweets release];
@@ -88,29 +91,7 @@
     [self stopProgressBar];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 	[self dataSourceDidFinishLoadingNewData];
-    [[KBTwitterManager twitterManager] cacheStatusArray:tweets withKey:kKBTwitterTimelineKey];
-}
-
-- (void)handleTweetNotification:(NSNotification *)notification {
-	NSLog(@"handleTweetNotification: notification = %@", notification);
-    if ([[notification object] rangeOfString:@"@"].location == 0) {
-        KBUserTweetsViewController *controller = [[KBUserTweetsViewController alloc] initWithNibName:@"KBUserTweetsViewController" bundle:nil];
-//        // FIXME: this is a total ugly hack
-//        NSMutableDictionary *userDictionary = [NSMutableDictionary 
-//                                               dictionaryWithObjects:[NSArray arrayWithObjects:miscInfo, nil] 
-//                                               forKeys:[NSArray arrayWithObjects:@"screen_name", @"name", @"profile_image_url", @"id", nil]
-//                                               ];
-        controller.username = [notification object];
-        [self.navigationController pushViewController:controller animated:YES];
-    } else if ([[notification object] rangeOfString:@"#"].location == 0) {
-        // TODO: push hashtag search view (http://search.twitter.com/search.atom?q=%23haiku)
-        KBTwitterSearchViewController *controller = [[KBTwitterSearchViewController alloc] initWithNibName:@"KBTweetListViewController" bundle:nil];
-        controller.searchTerms = [notification object];
-        [self.navigationController pushViewController:controller animated:YES];
-    } else {
-        // TODO: push properly styled web view
-        [self openWebView:[notification object]];
-    }
+    [[KBTwitterManager twitterManager] cacheStatusArray:tweets withKey:cachingKey];
 }
 
 #pragma mark -
@@ -127,81 +108,6 @@
 {
 	NSLog(@"Twitter request failed: %@ with error:%@", connectionIdentifier, error);
     
-}
-
-#pragma mark -
-#pragma mark Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
-    return 1;
-}
-
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
-    return [tweets count];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    KBTweet *tweet = [tweets objectAtIndex:indexPath.row];
-    
-    CGSize maximumLabelSize = CGSizeMake(250,60);
-    CGSize expectedLabelSize = [tweet.tweetText sizeWithFont:[UIFont fontWithName:@"Georgia" size:12.0]
-                                               constrainedToSize:maximumLabelSize 
-                                                   lineBreakMode:UILineBreakModeTailTruncation];
-
-    return expectedLabelSize.height + 30 > 70 ? expectedLabelSize.height + 30 : 70;
-}
-
-// Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    static NSString *CellIdentifier = @"Cell";
-    
-    KBTweetTableCell *cell = (KBTweetTableCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[KBTweetTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-    }
-    
-    // Configure the cell...
-    //cell.textLabel.text = [[statuses objectAtIndex:indexPath.row] objectForKey:@"text"];
-    KBTweet *tweet = [tweets objectAtIndex:indexPath.row];
-    
-    cell.userIcon.urlPath = tweet.profileImageUrl;
-    cell.userName.text = tweet.screenName;
-    cell.tweetText.numberOfLines = 4;
-    cell.tweetText.text = tweet.tweetText;
-    
-    CGSize maximumLabelSize = CGSizeMake(250,60);
-    CGSize expectedLabelSize = [cell.tweetText.text sizeWithFont:cell.tweetText.font 
-                                           constrainedToSize:maximumLabelSize 
-                                               lineBreakMode:UILineBreakModeTailTruncation]; 
-        
-    //adjust the label the the new height.
-    CGRect newFrame = cell.tweetText.frame;
-    newFrame.size.height = expectedLabelSize.height;
-    cell.tweetText.frame = newFrame;
-    
-    return cell;
-}
-
-#pragma mark -
-#pragma mark Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"$$$$$$$$$$$$$$$$$$$$$$ did select row $$$$$$$$$$$$$$$$$$$$$$");
-	KBTwitterDetailViewController *detailViewController = [[KBTwitterDetailViewController alloc] initWithNibName:@"KBTwitterDetailViewController" bundle:nil];
-    detailViewController.tweet = [tweets objectAtIndex:indexPath.row];
-	[self.navigationController pushViewController:detailViewController animated:YES];
-	[detailViewController release];
-}
-
-#pragma mark -
-#pragma mark table refresh methods
-
-- (void) refreshTable {
-    [self showStatuses];
 }
 
 #pragma mark -

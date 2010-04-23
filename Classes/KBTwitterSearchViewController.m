@@ -8,7 +8,7 @@
 
 #import "KBTwitterSearchViewController.h"
 #import "KBSearchResult.h"
-
+#import "KBTweetTableCell.h"
 
 @implementation KBTwitterSearchViewController
 
@@ -18,6 +18,8 @@
     [super viewDidLoad];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(searchRetrieved:) name:kTwitterSearchRetrievedNotificationKey object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTweetNotification:) name:IFTweetLabelURLNotification object:nil];
+    [self showStatuses];
     
     [timelineButton setImage:[UIImage imageNamed:@"tabTweets03.png"] forState:UIControlStateNormal];
     [mentionsButton setImage:[UIImage imageNamed:@"tabMentions03.png"] forState:UIControlStateNormal];

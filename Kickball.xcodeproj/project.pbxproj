@@ -323,6 +323,7 @@
 		6A978A611099FBC000FCE8F1 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A978A601099FBC000FCE8F1 /* StoreKit.framework */; };
 		6A98EA911181154200E2F508 /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A98EA901181154200E2F508 /* pin.png */; };
 		6A98EA931181159A00E2F508 /* button_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A98EA921181159A00E2F508 /* button_right.png */; };
+		6A98EB731182091500E2F508 /* KBBaseTweetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A98EB721182091500E2F508 /* KBBaseTweetViewController.m */; };
 		6AA8B86C10DDCECC005634D4 /* FSSpecial.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA8B86B10DDCECC005634D4 /* FSSpecial.m */; };
 		6AABEBD810FBB29500A5AF8B /* ProfileTwitterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AABEBD610FBB29500A5AF8B /* ProfileTwitterViewController.m */; };
 		6AABEBD910FBB29500A5AF8B /* ProfileTwitterViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6AABEBD710FBB29500A5AF8B /* ProfileTwitterViewController.xib */; };
@@ -1121,6 +1122,8 @@
 		6A978A601099FBC000FCE8F1 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		6A98EA901181154200E2F508 /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin.png; sourceTree = "<group>"; };
 		6A98EA921181159A00E2F508 /* button_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_right.png; sourceTree = "<group>"; };
+		6A98EB711182091500E2F508 /* KBBaseTweetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBBaseTweetViewController.h; sourceTree = "<group>"; };
+		6A98EB721182091500E2F508 /* KBBaseTweetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBBaseTweetViewController.m; sourceTree = "<group>"; };
 		6AA8B86A10DDCECC005634D4 /* FSSpecial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSpecial.h; sourceTree = "<group>"; };
 		6AA8B86B10DDCECC005634D4 /* FSSpecial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSSpecial.m; sourceTree = "<group>"; };
 		6AABEBD510FBB29500A5AF8B /* ProfileTwitterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileTwitterViewController.h; sourceTree = "<group>"; };
@@ -1950,6 +1953,8 @@
 		6A211B1F117E183000BE897E /* tab controllers */ = {
 			isa = PBXGroup;
 			children = (
+				6A98EB711182091500E2F508 /* KBBaseTweetViewController.h */,
+				6A98EB721182091500E2F508 /* KBBaseTweetViewController.m */,
 				6A30075311797649001CB933 /* KBTweetListViewController.h */,
 				6A30075411797649001CB933 /* KBTweetListViewController.m */,
 				6A2117DC117CDB2C00BE897E /* KBMentionsViewController.h */,
@@ -3473,6 +3478,7 @@
 				6A4204C4117FAD9E001A6982 /* KBDirectMessage.m in Sources */,
 				6AF6ABA81180BB2900704B24 /* KBFacebookLoginViewController.m in Sources */,
 				6AF6ABA91180BB2900704B24 /* KBFacebookLoginViewController.xib in Sources */,
+				6A98EB731182091500E2F508 /* KBBaseTweetViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

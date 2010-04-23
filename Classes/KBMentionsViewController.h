@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "KBTweetListViewController.h"
+#import "KBBaseTweetViewController.h"
 
 
-@interface KBMentionsViewController : KBTweetListViewController {
+@interface KBMentionsViewController : KBBaseTweetViewController {
 
 }
 
