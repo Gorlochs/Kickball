@@ -253,7 +253,7 @@
     if (indexPath.section == 0) {
         return 55;
     } else if (indexPath.section == 1) {
-        return 72;
+        return 73;
     } else if (indexPath.section == 2) {
         return 44;
     } else if (indexPath.section == 3) {
@@ -288,7 +288,7 @@
             if (userPhotos != nil && [userPhotos count] > 0) {
                 int x = 0;
                 for (KBGoody *photo in userPhotos) {
-                    CGRect frame = CGRectMake(x*72, 0, 72, 72);
+                    CGRect frame = CGRectMake(x*73, 0, 73, 73);
                     TTImageView *ttImage = [[TTImageView alloc] initWithFrame:frame];
                     ttImage.urlPath = photo.thumbnailImagePath;
                     ttImage.clipsToBounds = YES;
@@ -305,8 +305,6 @@
                     [ttImage release];
                 }
             }
-            [photoCell addSubview:photoCorners];
-            [photoCell bringSubviewToFront:photoCorners];
             return photoCell;
             break;
         case 2:  // mayors

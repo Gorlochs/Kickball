@@ -38,8 +38,8 @@
 
 static inline double radians (double degrees) {return degrees * M_PI/180;}
 
-#define PHOTOS_PER_ROW 5
-#define THUMBNAIL_IMAGE_SIZE 64
+#define PHOTOS_PER_ROW 4
+#define THUMBNAIL_IMAGE_SIZE 73
 #define MAX_NUM_TIPS_SHOWN 4
 
 @interface PlaceDetailViewController (Private)
@@ -164,7 +164,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
             TTImageView *ttImage = [[TTImageView alloc] initWithFrame:frame];
             ttImage.urlPath = goody.thumbnailImagePath;
             ttImage.clipsToBounds = YES;
-            ttImage.contentMode = UIViewContentModeCenter;
+            ttImage.contentMode = UIViewContentModeScaleToFill;
             [giftCell addSubview:ttImage];
             
             UIButton *button = [[UIButton buttonWithType:UIButtonTypeCustom] retain];

@@ -53,7 +53,6 @@
     IBOutlet UITableViewCell *photoCell;
     IBOutlet UISwitch *checkinNotificationSwitch;
     IBOutlet UISwitch *photoNotificationSwitch;
-    IBOutlet UIImageView *photoCorners;
 }
 
 @property (nonatomic, retain) UITableViewCell *badgeCell;
