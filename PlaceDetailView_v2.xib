@@ -14,6 +14,7 @@
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="1"/>
 			<integer value="13"/>
+			<integer value="17"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -353,7 +354,7 @@
 				<reference key="IBUIContentView" ref="600391645"/>
 			</object>
 			<object class="IBUITableViewCell" id="733853659">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -411,8 +412,8 @@
 							</object>
 							<object class="IBUIImageView" id="40992106">
 								<reference key="NSNextResponder" ref="661548319"/>
-								<int key="NSvFlags">-2147483392</int>
-								<string key="NSFrame">{{171, 29}, {7, 11}}</string>
+								<int key="NSvFlags">256</int>
+								<string key="NSFrame">{{173, 28}, {7, 11}}</string>
 								<reference key="NSSuperview" ref="661548319"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -470,6 +471,7 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{290, 69}</string>
+				<reference key="NSSuperview"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MCAwAA</bytes>
@@ -1160,8 +1162,8 @@
 							<reference ref="910466846"/>
 							<reference ref="975278556"/>
 							<reference ref="266793759"/>
-							<reference ref="40992106"/>
 							<reference ref="424899493"/>
+							<reference ref="40992106"/>
 							<reference ref="226127715"/>
 						</object>
 						<reference key="parent" ref="0"/>
@@ -1381,13 +1383,13 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>PlaceDetailViewController</string>
 					<string>UIResponder</string>
-					<string>{{626, 22}, {320, 480}}</string>
+					<string>{{626, -80}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{0, 951}, {320, 44}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{82, 955}, {291, 54}}</string>
+					<string>{{82, 853}, {291, 54}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>KBPhotoThumbnailCell</string>
 					<string>{{120, 456}, {320, 102}}</string>

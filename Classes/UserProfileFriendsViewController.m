@@ -52,12 +52,14 @@
     return 1;
 }
 
-
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [friends count];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 44;
+}
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -69,6 +71,18 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.imageView.image = [UIImage imageNamed:@"blank_boy.png"];   
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:14.0];
+        
+        UIImageView *topLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderTop.png"]];
+        topLineImage.frame = CGRectMake(0, 0, cell.frame.size.width, 1);
+        [cell addSubview:topLineImage];
+        [topLineImage release];
+        
+        // TODO: the origin.y should probably not be hard coded
+        UIImageView *bottomLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderBottom.png"]];
+        bottomLineImage.frame = CGRectMake(0, cell.frame.size.height - 1, cell.frame.size.width, 1);
+        [cell addSubview:bottomLineImage];
+        [bottomLineImage release];
     }
     
     // Set up the cell...
@@ -99,7 +113,11 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    return nil;
+    
+    BlackTableCellHeader *headerView = [[[BlackTableCellHeader alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 36)] autorelease];
+    headerView.leftHeaderLabel.text = [NSString stringWithFormat:@"%d Friends", [friends count]];
+    headerView.leftHeaderLabel.textColor = [UIColor whiteColor];
+    return headerView;
 }
 
 #pragma mark 
