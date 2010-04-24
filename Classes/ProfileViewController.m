@@ -21,6 +21,7 @@
 #import "KickballAPI.h"
 #import "KBGoody.h"
 #import "KBPhotoViewController.h"
+#import "PlacesListTableViewCellv2.h"
 
 
 #define BADGES_PER_ROW 4
@@ -254,7 +255,7 @@
     } else if (indexPath.section == 1) {
         return 72;
     } else if (indexPath.section == 2) {
-        return 53;
+        return 44;
     } else if (indexPath.section == 3) {
         if ([user.badges count] > 0) {
             return 72 * (([user.badges count]+BADGES_PER_ROW-1)/BADGES_PER_ROW) + 10;
@@ -272,12 +273,11 @@
     
     static NSString *CellIdentifier = @"Cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    PlacesListTableViewCellv2 *cell = (PlacesListTableViewCellv2*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+        cell = [[[PlacesListTableViewCellv2 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.textLabel.adjustsFontSizeToFitWidth = YES;
+        [cell adjustLabelWidth:220.0];
     }
     
     switch (indexPath.section) {
@@ -310,8 +310,9 @@
             return photoCell;
             break;
         case 2:  // mayors
-            cell.textLabel.text = ((FSVenue*)[user.mayorOf objectAtIndex:indexPath.row]).name;
-            cell.detailTextLabel.text = ((FSVenue*)[user.mayorOf objectAtIndex:indexPath.row]).addressWithCrossstreet;
+            cell.venueName.text = ((FSVenue*)[user.mayorOf objectAtIndex:indexPath.row]).name;
+            cell.venueAddress.text = ((FSVenue*)[user.mayorOf objectAtIndex:indexPath.row]).addressWithCrossstreet;
+            cell.categoryIcon.urlPath = ((FSVenue*)[user.mayorOf objectAtIndex:indexPath.row]).primaryCategory.iconUrl;
             break;
         case 3:  // badges
             //badgeCell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"wood_bg.png"]];

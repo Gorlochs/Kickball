@@ -47,10 +47,22 @@
         
         // TODO: the origin.y should probably not be hard coded
         bottomLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderBottom.png"]];
-        bottomLineImage.frame = CGRectMake(0, 43, self.frame.size.width, 1);
+        bottomLineImage.frame = CGRectMake(0, self.frame.size.height - 1, self.frame.size.width, 1);
         [self addSubview:bottomLineImage];
     }
     return self;
+}
+
+- (void) adjustLabelWidth:(float)newWidth {
+    CGSize newSize = CGSizeMake(newWidth, 20);
+    
+    CGRect frame = venueName.frame;
+    frame.size = newSize;
+    venueName.frame = frame;
+    
+    CGRect frame2 = venueAddress.frame;
+    frame2.size = newSize;
+    venueAddress.frame = frame2;
 }
 
 

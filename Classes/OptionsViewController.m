@@ -31,14 +31,13 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-
 - (void) viewWillAppear:(BOOL)animated {
     [self startProgressBar:@"Retrieving settings..."];
     [[FoursquareAPI sharedInstance] getPendingFriendRequests:self andAction:@selector(friendRequestResponseReceived:withResponseString:)];
     [super viewWillAppear:animated];
 }
-- (void
-   )friendRequestResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+
+- (void)friendRequestResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     NSString *errorMessage = [FoursquareAPI errorFromResponseXML:inString];
     if (errorMessage) {
         [self displayFoursquareErrorMessage:errorMessage];

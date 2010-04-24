@@ -25,4 +25,6 @@
 @property (nonatomic, retain) UILabel *venueName;
 @property (nonatomic, retain) UILabel *venueAddress;
 
+- (void) adjustLabelWidth:(float)newWidth;
+
 @end
