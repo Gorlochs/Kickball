@@ -193,6 +193,7 @@
 		6A2EFAF2117F832F007F2D3D /* KBUserTweetsViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A2EFAF1117F832F007F2D3D /* KBUserTweetsViewController.xib */; };
 		6A30075611797649001CB933 /* KBTweetListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A30075411797649001CB933 /* KBTweetListViewController.m */; };
 		6A30075711797649001CB933 /* KBTweetListViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A30075511797649001CB933 /* KBTweetListViewController.xib */; };
+		6A32B3B7118610A2001E78C9 /* AccountOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A32B3B6118610A2001E78C9 /* AccountOptionsViewController.m */; };
 		6A3900B110D6F1A0001D133C /* AddPlaceFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A3900AF10D6F1A0001D133C /* AddPlaceFormViewController.m */; };
 		6A3900B210D6F1A0001D133C /* AddPlaceFormViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A3900B010D6F1A0001D133C /* AddPlaceFormViewController.xib */; };
 		6A39EB5C1096584A006F76C3 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A39EB5B1096584A006F76C3 /* libsqlite3.dylib */; };
@@ -873,6 +874,8 @@
 		6A30075311797649001CB933 /* KBTweetListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBTweetListViewController.h; sourceTree = "<group>"; };
 		6A30075411797649001CB933 /* KBTweetListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTweetListViewController.m; sourceTree = "<group>"; };
 		6A30075511797649001CB933 /* KBTweetListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KBTweetListViewController.xib; path = Classes/KBTweetListViewController.xib; sourceTree = "<group>"; };
+		6A32B3B5118610A2001E78C9 /* AccountOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountOptionsViewController.h; sourceTree = "<group>"; };
+		6A32B3B6118610A2001E78C9 /* AccountOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountOptionsViewController.m; sourceTree = "<group>"; };
 		6A3900AE10D6F1A0001D133C /* AddPlaceFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPlaceFormViewController.h; sourceTree = "<group>"; };
 		6A3900AF10D6F1A0001D133C /* AddPlaceFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPlaceFormViewController.m; sourceTree = "<group>"; };
 		6A3900B010D6F1A0001D133C /* AddPlaceFormViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddPlaceFormViewController.xib; sourceTree = "<group>"; };
@@ -1991,6 +1994,17 @@
 			name = "Tip Todo";
 			sourceTree = "<group>";
 		};
+		6A32B3B411861089001E78C9 /* Options */ = {
+			isa = PBXGroup;
+			children = (
+				6A8CD5051178E26900D81F4B /* OptionsViewController.h */,
+				6A8CD5061178E26900D81F4B /* OptionsViewController.m */,
+				6A32B3B5118610A2001E78C9 /* AccountOptionsViewController.h */,
+				6A32B3B6118610A2001E78C9 /* AccountOptionsViewController.m */,
+			);
+			name = Options;
+			sourceTree = "<group>";
+		};
 		6A39EB3E10965666006F76C3 /* Pinch */ = {
 			isa = PBXGroup;
 			children = (
@@ -2063,6 +2077,7 @@
 		6A50B44B116D50B6002FC1FF /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				6A32B3B411861089001E78C9 /* Options */,
 				6A79D0D510E5E682009082E5 /* PopupMessageView.h */,
 				6A79D0D610E5E682009082E5 /* PopupMessageView.m */,
 				6A10E61310BE0541006538DB /* LoginViewModalController.h */,
@@ -2077,8 +2092,6 @@
 				6A3DF72E10F6E0ED008BD8AA /* KBTextViewController.m */,
 				6AEB63D5110BAA8C0066DD05 /* KBPushNotificationView.h */,
 				6AEB63D6110BAA8C0066DD05 /* KBPushNotificationView.m */,
-				6A8CD5051178E26900D81F4B /* OptionsViewController.h */,
-				6A8CD5061178E26900D81F4B /* OptionsViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -3493,6 +3506,7 @@
 				6A98EB731182091500E2F508 /* KBBaseTweetViewController.m in Sources */,
 				6A98EC1F1182351200E2F508 /* TipListViewController.m in Sources */,
 				6A98EC201182351200E2F508 /* TipListViewController.xib in Sources */,
+				6A32B3B7118610A2001E78C9 /* AccountOptionsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

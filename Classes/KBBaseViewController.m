@@ -47,20 +47,10 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
     
     [UIView setAnimationsEnabled:YES];
     
-//    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-//    BOOL hasViewedInstructions = [standardUserDefaults boolForKey:@"viewedInstructions"];
-
-//    v1.1
-//    if (hasViewedInstructions) {
-        FSUser *tmpUser = [self getAuthenticatedUser];
-        [self setUserIconView:tmpUser];
-//    }
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(displayShoutMessage:) name:@"shoutSent" object:nil];
     
     KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
     [appDelegate.pushNotificationUserId addObserver:self forKeyPath:@"pushUserId" options:0 context:nil];
-    
     
     // v1.1
     if (!self.hideHeader && headerNibName) {
@@ -77,7 +67,6 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
         
         [self.view addSubview:footerTabView];
     }
-    
 	if (refreshHeaderView == nil && !self.hideRefresh) {
 		refreshHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.theTableView.bounds.size.height, 320.0f, self.theTableView.bounds.size.height)];
 		refreshHeaderView.backgroundColor = [UIColor colorWithRed:176.0/255.0 green:36.0/255.0 blue:44.0/255.0 alpha:1.0];
@@ -88,6 +77,7 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 }
 
 - (void) setTabImages {
+    [signedInUserIcon setImage:[[Utilities sharedInstance] getCachedImage:[self getAuthenticatedUser].photo] forState:UIControlStateNormal];
     switch (footerType) {
         case KBFooterTypeProfile:
             break;

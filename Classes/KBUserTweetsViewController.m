@@ -16,12 +16,7 @@
 
 - (void) showStatuses {
     [self startProgressBar:@"Retrieving your tweets..."];
-    if (self.userDictionary) {
-        [twitterEngine getUserTimelineFor:[self.userDictionary objectForKey:@"screen_name"] sinceID:0 startingAtPage:0 count:25];
-    } else {
-        [twitterEngine getUserTimelineFor:self.username sinceID:0 startingAtPage:0 count:25];
-    }
-    
+    [self executeQuery:0];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,6 +32,13 @@
     // e.g. self.myOutlet = nil;
 }
 
+- (void) executeQuery:(int)pageNumber {
+    if (self.userDictionary) {
+        [twitterEngine getUserTimelineFor:[self.userDictionary objectForKey:@"screen_name"] sinceID:0 startingAtPage:pageNumber count:25];
+    } else {
+        [twitterEngine getUserTimelineFor:self.username sinceID:0 startingAtPage:pageNumber count:25];
+    }
+}
 
 - (void)dealloc {
     [userDictionary release];

@@ -146,6 +146,7 @@
         [self setUserIconViewCustom:user];
     }
     [self setAuthenticatedUser:user];
+    [signedInUserIcon setImage:[[Utilities sharedInstance] getCachedImage:user.photo] forState:UIControlStateNormal];
     NSLog(@"auth'd user: %@", user);
     [user release];
 }

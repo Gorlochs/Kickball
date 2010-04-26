@@ -10,6 +10,7 @@
 #import "FoursquareAPI.h"
 #import "ViewFriendRequestsViewController.h"
 #import "FriendRequestsViewController.h"
+#import "AccountOptionsViewController.h"
 
 
 @implementation OptionsViewController
@@ -106,8 +107,9 @@
 }
 
 - (void) accountInfo {
-    NSLog(@"*************** accountInfo ****************");
-    
+    AccountOptionsViewController *accountController = [[AccountOptionsViewController alloc] initWithNibName:@"AccountOptionsView_v2" bundle:nil];
+    [self.navigationController pushViewController:accountController animated:YES];
+    [accountController release];
 }
 
 - (void) viewFriendRequests {

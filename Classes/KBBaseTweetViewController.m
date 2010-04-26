@@ -116,22 +116,9 @@
         [self.navigationController pushViewController:detailViewController animated:YES];
         [detailViewController release];
     } else {
-        pageNum++;
-        [self getNextPage];
+        [self executeQuery:++pageNum];
     }
 }
-
-- (void) getNextPage {
-    
-}
-
-//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-//    return footerView;
-//}
-//
-//- (CGFloat) tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-//    return 44;
-//}
 
 #pragma mark -
 #pragma mark table refresh methods

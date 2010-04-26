@@ -170,7 +170,7 @@ static KBTwitterManager *sharedInstance = nil;
 
 // only cache a certain number of tweets. if you don't, you'll get an ever-increasing number of tweets cached
 - (void) cacheStatusArray:(NSArray*)statuses withKey:(NSString*)key {
-    NSData *theData = [NSKeyedArchiver archivedDataWithRootObject:[statuses subarrayWithRange:((NSRange){0, 25})]];
+    NSData *theData = [NSKeyedArchiver archivedDataWithRootObject:[statuses subarrayWithRange:((NSRange){0, [statuses count] < 25 ? [statuses count] : 25})]];
     [[NSUserDefaults standardUserDefaults] setObject:theData forKey:key];
     NSLog(@"statuses stored!");
 }

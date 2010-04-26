@@ -29,6 +29,16 @@ static NSString* kGetSessionProxy = nil; // @"<YOUR SESSION CALLBACK)>";
     return self;
 }
 
+- (void)viewDidLoad {
+    headerNibName = HEADER_NIB_FOURSQUARE;
+    [super viewDidLoad];
+    [_session resume];
+    
+    // this is a hack. the abstract facebook vc has to inherit from the 4sq vc, which f's everything up
+    // this is being called again after all the [super viewDidLoad] calls to straighten the tabs out
+    footerType = KBFooterTypeFacebook;
+    [self setTabImages];
+}
 
 #pragma mark -
 #pragma mark FBSessionDelegate
@@ -56,13 +66,6 @@ static NSString* kGetSessionProxy = nil; // @"<YOUR SESSION CALLBACK)>";
 
 }
 
-
-- (void)viewDidLoad {
-    headerNibName = HEADER_NIB_FOURSQUARE;
-    footerType = KBFooterTypeFacebook;
-    [super viewDidLoad];
-    [_session resume];
-}
 
 
 - (void)didReceiveMemoryWarning {

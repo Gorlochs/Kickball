@@ -28,6 +28,7 @@
  
 - (void)viewDidLoad {
     [super viewDidLoad];
+    pageNum = 1;
     cachingKey = kKBTwitterTimelineKey;
     
     if ([self.twitterEngine isAuthorized]) {
@@ -57,7 +58,7 @@
         [theTableView reloadData];
     }
     [self startProgressBar:@"Retrieving your tweets..."];
-    [self.twitterEngine getFollowedTimelineSinceID:[startAtId longLongValue] startingAtPage:pageNum count:25];
+    [self.twitterEngine getFollowedTimelineSinceID:[startAtId longLongValue] startingAtPage:0 count:25];
 }
 
 - (void) statusRetrieved:(NSNotification *)inNotification {
@@ -74,7 +75,7 @@
             }
             // not very pretty, but it gets the job done. if there is a cached array, combine them.
             // the other way to do it would be to just add all the objects (above) by index
-            if (pageNum > 0) {
+            if (pageNum > 1) {
                 [tweets addObjectsFromArray:tempTweetArray];
             } else if (!tweets) {
                 tweets = [[NSMutableArray alloc] initWithArray:tempTweetArray];
@@ -104,13 +105,12 @@
         [self.navigationController pushViewController:detailViewController animated:YES];
         [detailViewController release];
     } else {
-        [self getNextPage];
+        [self executeQuery:++pageNum];
     }
 }
 
-- (void) getNextPage {
-//    [self.twitterEngine getFollowedTimelineSinceID:0 withMaximumID:[((KBTweet*)[tweets lastObject]).tweetId longLongValue] startingAtPage:0 count:25];
-    [self.twitterEngine getFollowedTimelineSinceID:0 startingAtPage:++pageNum count:25];
+- (void) executeQuery:(int)pageNumber {
+    [self.twitterEngine getFollowedTimelineSinceID:0 startingAtPage:pageNumber count:25];
 }
 
 #pragma mark -

@@ -50,7 +50,9 @@
                 }
                 // not very pretty, but it gets the job done. if there is a cached array, combine them.
                 // the other way to do it would be to just add all the objects (above) by index
-                if (!tweets) {
+                if (pageNum > 1) {
+                    [tweets addObjectsFromArray:tempTweetArray];
+                } else if (!tweets) {
                     tweets = [[NSMutableArray alloc] initWithArray:tempTweetArray];
                 } else {
                     // need to keep all the tweets in the right order
@@ -70,8 +72,8 @@
     [[KBTwitterManager twitterManager] cacheStatusArray:tweets withKey:cachingKey];
 }
 
-- (void) createNotificationObservers {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusRetrieved:) name:kTwitterStatusRetrievedNotificationKey object:nil];
+- (void) executeQuery:(int)pageNumber {
+    [twitterEngine getRepliesSinceID:0 startingAtPage:pageNumber count:25];
 }
 
 - (void)didReceiveMemoryWarning {

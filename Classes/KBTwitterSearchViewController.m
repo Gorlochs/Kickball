@@ -31,7 +31,7 @@
     if (searchTerms) {
         [self startProgressBar:@"Retrieving your tweets..."];
         theSearchBar.text = searchTerms;
-        [twitterEngine getSearchResultsForQuery:searchTerms sinceID:0 startingAtPage:0 count:25];
+        [self executeQuery:0];
     }
 }
 
@@ -94,6 +94,10 @@
     cell.tweetText.frame = newFrame;
     
     return cell;
+}
+
+- (void) executeQuery:(int)pageNumber {
+    [twitterEngine getSearchResultsForQuery:searchTerms sinceID:0 startingAtPage:pageNumber count:25];
 }
 
 - (void)didReceiveMemoryWarning {
