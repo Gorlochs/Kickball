@@ -14,6 +14,11 @@
 @implementation KBBaseTweetViewController
 
 
+- (void)viewDidLoad {
+    pageNum = 0;
+    [super viewDidLoad];    
+}
+
 - (void)handleTweetNotification:(NSNotification *)notification {
 	NSLog(@"handleTweetNotification: notification = %@", notification);
     if ([[notification object] rangeOfString:@"@"].location == 0) {
@@ -40,24 +45,29 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 1;
+    return 2;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return [tweets count];
+    return section == 0 ? [tweets count] : 1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    KBTweet *tweet = [tweets objectAtIndex:indexPath.row];
     
-    CGSize maximumLabelSize = CGSizeMake(250,60);
-    CGSize expectedLabelSize = [tweet.tweetText sizeWithFont:[UIFont fontWithName:@"Georgia" size:12.0]
-                                           constrainedToSize:maximumLabelSize 
-                                               lineBreakMode:UILineBreakModeTailTruncation];
-    
-    return expectedLabelSize.height + 30 > 70 ? expectedLabelSize.height + 30 : 70;
+    if (indexPath.section == 1) {
+        return 44;
+    } else {
+        KBTweet *tweet = [tweets objectAtIndex:indexPath.row];
+        
+        CGSize maximumLabelSize = CGSizeMake(250,60);
+        CGSize expectedLabelSize = [tweet.tweetText sizeWithFont:[UIFont fontWithName:@"Georgia" size:12.0]
+                                               constrainedToSize:maximumLabelSize 
+                                                   lineBreakMode:UILineBreakModeTailTruncation];
+        
+        return expectedLabelSize.height + 30 > 70 ? expectedLabelSize.height + 30 : 70;
+    }
 }
 
 // Customize the appearance of table view cells.
@@ -70,38 +80,58 @@
         cell = [[[KBTweetTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    // Configure the cell...
-    //cell.textLabel.text = [[statuses objectAtIndex:indexPath.row] objectForKey:@"text"];
-    KBTweet *tweet = [tweets objectAtIndex:indexPath.row];
-    
-    cell.userIcon.urlPath = tweet.profileImageUrl;
-    cell.userName.text = tweet.screenName;
-    cell.tweetText.numberOfLines = 4;
-    cell.tweetText.text = tweet.tweetText;
-    
-    CGSize maximumLabelSize = CGSizeMake(250,60);
-    CGSize expectedLabelSize = [cell.tweetText.text sizeWithFont:cell.tweetText.font 
-                                               constrainedToSize:maximumLabelSize 
-                                                   lineBreakMode:UILineBreakModeTailTruncation]; 
-    
-    //adjust the label the the new height.
-    CGRect newFrame = cell.tweetText.frame;
-    newFrame.size.height = expectedLabelSize.height;
-    cell.tweetText.frame = newFrame;
-    
-    return cell;
+    if (indexPath.section == 0) {
+        // Configure the cell...
+        //cell.textLabel.text = [[statuses objectAtIndex:indexPath.row] objectForKey:@"text"];
+        KBTweet *tweet = [tweets objectAtIndex:indexPath.row];
+        
+        cell.userIcon.urlPath = tweet.profileImageUrl;
+        cell.userName.text = tweet.screenName;
+        cell.tweetText.numberOfLines = 4;
+        cell.tweetText.text = tweet.tweetText;
+        
+        CGSize maximumLabelSize = CGSizeMake(250,60);
+        CGSize expectedLabelSize = [cell.tweetText.text sizeWithFont:cell.tweetText.font 
+                                                   constrainedToSize:maximumLabelSize 
+                                                       lineBreakMode:UILineBreakModeTailTruncation]; 
+        
+        //adjust the label the the new height.
+        CGRect newFrame = cell.tweetText.frame;
+        newFrame.size.height = expectedLabelSize.height;
+        cell.tweetText.frame = newFrame;
+        
+        return cell;
+    } else {
+        return moreCell;
+    }
 }
 
 #pragma mark -
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"$$$$$$$$$$$$$$$$$$$$$$ did select row $$$$$$$$$$$$$$$$$$$$$$");
-	KBTwitterDetailViewController *detailViewController = [[KBTwitterDetailViewController alloc] initWithNibName:@"KBTwitterDetailViewController" bundle:nil];
-    detailViewController.tweet = [tweets objectAtIndex:indexPath.row];
-	[self.navigationController pushViewController:detailViewController animated:YES];
-	[detailViewController release];
+    if (indexPath.section == 0) {
+        KBTwitterDetailViewController *detailViewController = [[KBTwitterDetailViewController alloc] initWithNibName:@"KBTwitterDetailViewController" bundle:nil];
+        detailViewController.tweet = [tweets objectAtIndex:indexPath.row];
+        [self.navigationController pushViewController:detailViewController animated:YES];
+        [detailViewController release];
+    } else {
+        pageNum++;
+        [self getNextPage];
+    }
 }
+
+- (void) getNextPage {
+    
+}
+
+//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+//    return footerView;
+//}
+//
+//- (CGFloat) tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+//    return 44;
+//}
 
 #pragma mark -
 #pragma mark table refresh methods

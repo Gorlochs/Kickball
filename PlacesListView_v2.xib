@@ -45,7 +45,7 @@
 					<object class="IBUITableView" id="759276648">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{0, 92}, {320, 328}}</string>
+						<string key="NSFrame">{{0, 94}, {320, 326}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -69,7 +69,7 @@
 					<object class="IBUIImageView" id="758617410">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">256</int>
-						<string key="NSFrame">{{5, 52}, {277, 37}}</string>
+						<string key="NSFrame">{{0, 48}, {277, 46}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -77,13 +77,13 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">homeSearch.png</string>
+							<string key="NSResourceName">searchBGcleared.png</string>
 						</object>
 					</object>
 					<object class="IBUITextField" id="985660589">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{41, 56}, {230, 30}}</string>
+						<string key="NSFrame">{{37, 56}, {230, 30}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -112,7 +112,7 @@
 					<object class="IBUIButton" id="971944687">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{282, 52}, {38, 37}}</string>
+						<string key="NSFrame">{{277, 52}, {43, 42}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -138,11 +138,11 @@
 						</object>
 						<object class="NSCustomResource" key="IBUIHighlightedImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">homeSearchClose01.png</string>
+							<string key="NSResourceName">profileReply02.png</string>
 						</object>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">homeSearchClose02.png</string>
+							<string key="NSResourceName">profileReply01.png</string>
 						</object>
 					</object>
 				</object>
@@ -306,15 +306,6 @@
 					<int key="connectionID">11</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">cancelEdit</string>
-						<reference key="source" ref="971944687"/>
-						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">12</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">footerCell</string>
 						<reference key="source" ref="372490531"/>
@@ -329,6 +320,15 @@
 						<reference key="destination" ref="652216256"/>
 					</object>
 					<int key="connectionID">18</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">searchOnKeywordsandLatLong</string>
+						<reference key="source" ref="971944687"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">19</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -345,10 +345,10 @@
 						<reference key="object" ref="191373211"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="758617410"/>
 							<reference ref="985660589"/>
 							<reference ref="971944687"/>
 							<reference ref="759276648"/>
+							<reference ref="758617410"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -471,7 +471,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">18</int>
+			<int key="maxID">20</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -483,14 +483,12 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>backOneView</string>
-							<string>backOneViewNotAnimated</string>
-							<string>checkin</string>
 							<string>dismiss</string>
 							<string>displayTextView</string>
 							<string>displayTextViewForCheckin</string>
-							<string>goToHomeView</string>
-							<string>goToHomeViewNotAnimated</string>
+							<string>switchToFacebook</string>
+							<string>switchToFoursquare</string>
+							<string>switchToTwitter</string>
 							<string>viewSettings</string>
 							<string>viewUserProfile</string>
 						</object>
@@ -504,17 +502,84 @@
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
+						</object>
+					</object>
+					<object class="NSMutableDictionary" key="outlets">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>facebookTab</string>
+							<string>foursquareTab</string>
+							<string>optionsTab</string>
+							<string>signedInUserIcon</string>
+							<string>theTableView</string>
+							<string>twitterTab</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>UIButton</string>
+							<string>UIButton</string>
+							<string>UIButton</string>
+							<string>UIButton</string>
+							<string>UITableView</string>
+							<string>UIButton</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Classes/KBBaseViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">KBFoursquareViewController</string>
+					<string key="superclassName">KBBaseViewController</string>
+					<object class="NSMutableDictionary" key="actions">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>backOneView</string>
+							<string>backOneViewNotAnimated</string>
+							<string>flipBetweenMapAndList</string>
+							<string>goToHomeView</string>
+							<string>goToHomeViewNotAnimated</string>
+							<string>viewFriendsList</string>
+							<string>viewPlacesList</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="outlets">
-						<string key="NS.key.0">signedInUserIcon</string>
-						<string key="NS.object.0">UIButton</string>
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>backButton</string>
+							<string>centerHeaderButton</string>
+							<string>friendButton</string>
+							<string>homeBackView</string>
+							<string>homeButton</string>
+							<string>placesButton</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>UIButton</string>
+							<string>UIButton</string>
+							<string>UIButton</string>
+							<string>UIView</string>
+							<string>UIButton</string>
+							<string>UIButton</string>
+						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Classes/KBBaseViewController.h</string>
+						<string key="minorKey">Classes/KBFoursquareViewController.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -533,7 +598,7 @@
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">PlacesListViewController</string>
-					<string key="superclassName">KBBaseViewController</string>
+					<string key="superclassName">KBFoursquareViewController</string>
 					<object class="NSMutableDictionary" key="actions">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
@@ -542,7 +607,6 @@
 							<string>cancelEdit</string>
 							<string>cancelKeyboard:</string>
 							<string>cancelTheKeyboard</string>
-							<string>flipToMap</string>
 							<string>refresh:</string>
 							<string>searchOnKeywordsandLatLong</string>
 						</object>
@@ -551,7 +615,6 @@
 							<string>id</string>
 							<string>id</string>
 							<string>UIControl</string>
-							<string>id</string>
 							<string>id</string>
 							<string>UIControl</string>
 							<string>id</string>
@@ -564,14 +627,12 @@
 							<string>footerCell</string>
 							<string>searchCell</string>
 							<string>searchbox</string>
-							<string>theTableView</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UITableViewCell</string>
 							<string>UITableViewCell</string>
 							<string>UITextField</string>
-							<string>UITableView</string>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
@@ -848,18 +909,18 @@
 				<string>addFriend02.png</string>
 				<string>addPlace01b.png</string>
 				<string>addPlace02b.png</string>
-				<string>homeSearch.png</string>
-				<string>homeSearchClose01.png</string>
-				<string>homeSearchClose02.png</string>
+				<string>profileReply01.png</string>
+				<string>profileReply02.png</string>
+				<string>searchBGcleared.png</string>
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>{122, 37}</string>
-				<string>{122, 42}</string>
-				<string>{122, 42}</string>
-				<string>{277, 37}</string>
-				<string>{37, 37}</string>
-				<string>{37, 37}</string>
+				<string>{108, 37}</string>
+				<string>{16, 16}</string>
+				<string>{16, 16}</string>
+				<string>{42, 36}</string>
+				<string>{42, 36}</string>
+				<string>{320, 46}</string>
 			</object>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">87</string>

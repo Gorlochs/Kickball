@@ -206,7 +206,9 @@ static FoursquareAPI *sharedInstance = nil;
 }
 
 - (void) getCheckinHistoryWithTarget:(id)inTarget andAction:(SEL)inAction{
-	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/history"] withUser:self.userName andPassword:self.passWord andParams:nil withTarget:inTarget andAction:inAction usingMethod:@"GET"];
+	NSMutableDictionary * requestParams = [[[NSMutableDictionary alloc] initWithCapacity:1] autorelease];
+	[requestParams setObject:@"50" forKey:@"l"];	
+	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/history"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"GET"];
 }
 
 - (void) getFriendsWithTarget:(id)inTarget andAction:(SEL)inAction{

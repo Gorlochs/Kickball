@@ -598,17 +598,12 @@
 #pragma mark table refresh methods
 
 - (void) refreshTable {
-	//[self startProgressBar:@"Retrieving friends' whereabouts..."];
-    NSLog(@"checkin response 0");
 	[[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceivedWithRefresh:withResponseString:)];
 }
 
 - (void)checkinResponseReceivedWithRefresh:(NSURL *)inURL withResponseString:(NSString *)inString {
-    NSLog(@"checkin response 1");
     [self checkinResponseReceived:inURL withResponseString:inString];
-    NSLog(@"checkin response 2");
 	[self dataSourceDidFinishLoadingNewData];
-    NSLog(@"checkin response 3");
 }
 
 @end

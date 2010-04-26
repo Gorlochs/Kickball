@@ -16,8 +16,10 @@
     int pageNum;
     NSArray *statuses;
     NSMutableArray *statusObjects;
+    IBOutlet UITableViewCell *moreCell;
 }
 
 - (void) showStatuses;
-
+- (void) getNextPage;
+ 
 @end

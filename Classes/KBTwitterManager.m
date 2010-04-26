@@ -9,6 +9,7 @@
 #import "KBTwitterManager.h"
 #import "UIAlertView+Helper.h"
 
+#define NUM_TWEETS_TO_CACHE 25
 
 static KBTwitterManager *sharedInstance = nil;
 
@@ -167,9 +168,9 @@ static KBTwitterManager *sharedInstance = nil;
                                                       userInfo:userInfo];
 }
 
-
+// only cache a certain number of tweets. if you don't, you'll get an ever-increasing number of tweets cached
 - (void) cacheStatusArray:(NSArray*)statuses withKey:(NSString*)key {
-    NSData *theData = [NSKeyedArchiver archivedDataWithRootObject:statuses];
+    NSData *theData = [NSKeyedArchiver archivedDataWithRootObject:[statuses subarrayWithRange:((NSRange){0, 25})]];
     [[NSUserDefaults standardUserDefaults] setObject:theData forKey:key];
     NSLog(@"statuses stored!");
 }

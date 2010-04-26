@@ -281,6 +281,23 @@
     }
 }
 
+#pragma mark 
+#pragma mark table refresh methods
+
+- (void) refreshTable {        
+    [[FoursquareAPI sharedInstance] getVenuesNearLatitude:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] latitude]]
+                                             andLongitude:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] longitude]]
+                                               withTarget:self 
+                                                andAction:@selector(venuesRefreshResponseReceived:withResponseString:)
+     ];
+}
+
+- (void)venuesRefreshResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+    [self venuesResponseReceived:inURL withResponseString:inString];
+	[self dataSourceDidFinishLoadingNewData];
+}
+
+#pragma mark 
 #pragma mark UITextFieldDelegate methods
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {

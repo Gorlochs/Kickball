@@ -363,7 +363,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     } else if (section == 2) { // people here
         return [venue.currentCheckins count];
     } else if (section == 3) { // gift/photos
-        return 1;
+        return [goodies count] > 0 ? 1 : 0;
     } else if (section == 4) { // venue buttons
         return 1;
     } else if (section == 5) { // tips
@@ -459,6 +459,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
             }
             break;
         case 4:
+            return 44;
         case 5:
             return 55;
         default:
@@ -774,9 +775,9 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 - (void) viewVenueMap {
 
     closeMapButton.alpha = 0;
-    closeMapButton.frame = CGRectMake(276, 146, 45, 45);
+    closeMapButton.frame = CGRectMake(276, 123, 45, 45);
     fullMapView.alpha = 0;
-    fullMapView.frame = CGRectMake(0, 141, 320, 320);
+    fullMapView.frame = CGRectMake(0, 118, 320, 343);
     [self.view addSubview:fullMapView];
     [self.view addSubview:closeMapButton];
     
