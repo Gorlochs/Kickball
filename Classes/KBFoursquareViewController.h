@@ -22,7 +22,6 @@
 
 - (IBAction) flipBetweenMapAndList;
 - (IBAction) viewPlacesList;
-- (IBAction) viewFriendsList;
 - (IBAction) backOneView;
 - (IBAction) backOneViewNotAnimated;
 - (IBAction) goToHomeView;

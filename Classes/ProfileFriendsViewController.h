@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "KBBaseViewController.h"
+#import "KBFoursquareViewController.h"
 
 
-@interface ProfileFriendsViewController : KBBaseViewController {
+@interface ProfileFriendsViewController : KBFoursquareViewController {
     NSString *userId;
     NSArray *friends;
     NSMutableDictionary *userIcons;

@@ -18,6 +18,8 @@
 @synthesize userId;
 
 - (void)viewDidLoad {
+    self.hideRefresh = YES;
+    pageType = KBPageTypeOther;
     [super viewDidLoad];
     
     [self startProgressBar:@"Retrieving friends..."];
