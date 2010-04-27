@@ -16,7 +16,7 @@
         screenName = [statusDictionary objectForKey:@"from_user"];
         profileImageUrl = [statusDictionary objectForKey:@"profile_image_url"];
         tweetText = [statusDictionary objectForKey:@"text"];
-        createDate = [statusDictionary objectForKey:@"created_at"];
+        createDate = [[NSDate dateWithTimeIntervalSince1970:[[statusDictionary objectForKey:@"created_at"] doubleValue]] retain];
         tweetId = [statusDictionary objectForKey:@"id"];
     }
     return self;

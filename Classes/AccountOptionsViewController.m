@@ -31,6 +31,15 @@
 	self.twitterEngine = [[XAuthTwitterEngine alloc] initXAuthWithDelegate:self];
 	self.twitterEngine.consumerKey = kOAuthConsumerKey;
 	self.twitterEngine.consumerSecret = kOAuthConsumerSecret;
+    
+//    FBLoginButton* button = [[[FBLoginButton alloc] init] autorelease];
+//    button.style = FBLoginButtonStyleWide;
+//    
+//    button.frame = CGRectMake([self view].frame.size.width/2 - button.frame.size.width/2, 
+//                              [self view].frame.size.height/2 - button.frame.size.height/2,
+//                              button.frame.size.width, 
+//                              button.frame.size.height);
+//    [self.view addSubview:button];
 }
 
 #pragma mark -

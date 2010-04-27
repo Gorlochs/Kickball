@@ -40,9 +40,9 @@
         userName.shadowOffset = CGSizeMake(1.0, 1.0);
         [self addSubview:userName];
         
-        dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(266, 5, 50, 20)];
+        dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(216, 5, 100, 20)];
         dateLabel.textColor = [UIColor colorWithWhite:0.5 alpha:1.0];
-        dateLabel.font = [UIFont systemFontOfSize:16.0];
+        dateLabel.font = [UIFont systemFontOfSize:12.0];
         dateLabel.backgroundColor = [UIColor clearColor];
         dateLabel.shadowColor = [UIColor colorWithWhite:1.0 alpha:0.5];
         dateLabel.shadowOffset = CGSizeMake(1.0, 1.0);
@@ -71,7 +71,7 @@
 }
 
 - (void) setDateLabelWithDate:(NSDate*)theDate {
-    NSLog(@"label date: %@", theDate);
+    //NSLog(@"label date: %@", theDate);
 	NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
 	[dateFormatter setDateFormat:TWITTER_DISPLAY_DATE_FORMAT];
     dateLabel.text = [dateFormatter stringFromDate:theDate];

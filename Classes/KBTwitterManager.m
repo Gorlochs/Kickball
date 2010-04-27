@@ -116,11 +116,11 @@ static KBTwitterManager *sharedInstance = nil;
 	//UIAlertViewQuick(@"twitter call worked!", @"Everything works!", @"OK");
 }
 
-- (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error
-{
-	NSLog(@"Twitter request failed: %@ with error:%@", connectionIdentifier, error);
-    
-}
+//- (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error
+//{
+//	NSLog(@"Twitter request failed: %@ with error:%@", connectionIdentifier, error);
+//    
+//}
 
 // These delegate methods shoot off a Notification because the TwitterManager owns the twitterEngine.
 // There needs to be a better way to do this.
@@ -166,6 +166,72 @@ static KBTwitterManager *sharedInstance = nil;
     [[NSNotificationCenter defaultCenter] postNotificationName:kTwitterSearchRetrievedNotificationKey
                                                         object:nil
                                                       userInfo:userInfo];
+}
+
+- (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error
+{
+	NSLog(@"Twitter request failed: %@ with error:%@", connectionIdentifier, error);
+    
+	if ([[error domain] isEqualToString: @"HTTP"])
+	{
+		switch ([error code]) {
+				
+			case 401:
+			{
+				// Unauthorized. The user's credentials failed to verify.
+				UIAlertViewQuick(@"Oops!", @"Your username and password could not be verified. Double check that you entered them correctly and try again.", @"OK");	
+				break;				
+			}
+				
+			case 502:
+			{
+				// Bad gateway: twitter is down or being upgraded.
+				UIAlertViewQuick(@"Fail whale!", @"Looks like Twitter is down or being updated. Please wait a few seconds and try again.", @"OK");	
+				break;				
+			}
+				
+			case 503:
+			{
+				// Service unavailable
+				UIAlertViewQuick(@"Hold your taps!", @"Looks like Twitter is overloaded. Please wait a few seconds and try again.", @"OK");	
+				break;								
+			}
+				
+			default:
+			{
+				NSString *errorMessage = [[NSString alloc] initWithFormat: @"%d %@", [error	code], [error localizedDescription]];
+				UIAlertViewQuick(@"Twitter error!", errorMessage, @"OK");	
+				[errorMessage release];
+				break;				
+			}
+		}
+		
+	}
+	else 
+	{
+		switch ([error code]) {
+				
+			case -1009:
+			{
+				UIAlertViewQuick(@"You're offline!", @"Sorry, it looks like you lost your Internet connection. Please reconnect and try again.", @"OK");					
+				break;				
+			}
+				
+			case -1200:
+			{
+				UIAlertViewQuick(@"Secure connection failed", @"I couldn't connect to Twitter. This is most likely a temporary issue, please try again.", @"OK");					
+				break;								
+			}
+				
+			default:
+			{				
+				NSString *errorMessage = [[NSString alloc] initWithFormat:@"%@ xx %d: %@", [error domain], [error code], [error localizedDescription]];
+				UIAlertViewQuick(@"Network Error!", errorMessage , @"OK");
+				[errorMessage release];
+			}
+		}
+	}
+	
 }
 
 // only cache a certain number of tweets. if you don't, you'll get an ever-increasing number of tweets cached

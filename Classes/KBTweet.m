@@ -28,8 +28,10 @@
         fullName = [[statusDictionary objectForKey:@"user"] objectForKey:@"name"];
         profileImageUrl = [[statusDictionary objectForKey:@"user"] objectForKey:@"profile_image_url"];
         tweetText = [statusDictionary objectForKey:@"text"];
-        createDate = [statusDictionary objectForKey:@"created_at"];
         tweetId = [statusDictionary objectForKey:@"id"];
+        createDate = [[NSDate dateWithTimeIntervalSince1970:[[statusDictionary objectForKey:@"created_at"] doubleValue]] retain];
+        
+        NSLog(@"tweet created at: %@", createDate);
     }
     return self;
 }
