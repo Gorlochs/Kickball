@@ -1,5 +1,5 @@
 //
-//  KBTextViewController.h
+//  KBShoutViewController.h
 //  Kickball
 //
 //  Created by Shawn Bernard on 1/7/10.
@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "AbstractPushNotificationViewController.h"
 
-@interface KBTextViewController : AbstractPushNotificationViewController <UITextViewDelegate> {
+@interface KBShoutViewController : AbstractPushNotificationViewController <UITextViewDelegate> {
     IBOutlet UITextView *theTextView;
     NSString *venueId;
     IBOutlet UIView *checkinView;
     IBOutlet UIView *nonCheckinView;
+    IBOutlet UILabel *characterCountLabel;
     BOOL isCheckin;
 }
 

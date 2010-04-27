@@ -16,7 +16,7 @@
 #import "PlaceDetailViewController.h"
 #import "PlacesListViewController.h"
 #import "KBWebViewController.h"
-#import "KBTextViewController.h"
+#import "KBShoutViewController.h"
 #import "ASIFormDataRequest.h"
 #import "FoursquareHeaderView.h"
 
@@ -334,13 +334,13 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 }
 
 - (void) displayTextView {
-    KBTextViewController *textViewController = [[KBTextViewController alloc] initWithNibName:@"KBTextViewController" bundle:nil];
+    KBShoutViewController *textViewController = [[KBShoutViewController alloc] initWithNibName:@"ShoutViewController" bundle:nil];
     [self presentModalViewController:textViewController animated:YES];
     [textViewController release];
 }
 
 - (void) displayTextViewForCheckin {
-    KBTextViewController *textViewController = [[KBTextViewController alloc] initWithNibName:@"KBTextViewController" bundle:nil];
+    KBShoutViewController *textViewController = [[KBShoutViewController alloc] initWithNibName:@"ShoutViewController" bundle:nil];
     textViewController.isCheckin = YES;
     [self presentModalViewController:textViewController animated:YES];
     [textViewController release];

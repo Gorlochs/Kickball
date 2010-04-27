@@ -1,12 +1,12 @@
 //
-//  KBTextViewController.m
+//  KBShoutViewController.m
 //  Kickball
 //
 //  Created by Shawn Bernard on 1/7/10.
 //  Copyright 2010 Gorloch Interactive, LLC. All rights reserved.
 //
 
-#import "KBTextViewController.h"
+#import "KBShoutViewController.h"
 #import "FoursquareAPI.h"
 #import "KBMessage.h"
 #import "Beacon.h"
@@ -15,15 +15,17 @@
 #import "FriendsListViewController.h"
 
 
-@implementation KBTextViewController
+@implementation KBShoutViewController
 
 @synthesize venueId;
 @synthesize isCheckin;
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
+    pageType = KBPageTypeOther;
     [super viewDidLoad];
     [theTextView becomeFirstResponder];
+    theTextView.font = [UIFont fontWithName:@"Georgia" size:12.0];
     
     if (isCheckin) {
         nonCheckinView.hidden = YES;
@@ -108,6 +110,19 @@
     [self stopProgressBar];
     [self cancelView];
 }
+
+#pragma mark 
+#pragma mark UITextViewDelegate methods
+
+- (void) textViewDidChange:(UITextView *)textView {
+    if ([textView.text length] > 140) {
+        textView.text = [textView.text substringToIndex:139];
+    }
+    characterCountLabel.text = [NSString stringWithFormat:@"%d/140", [textView.text length]];
+}
+
+#pragma mark 
+#pragma mark memory management methods
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.

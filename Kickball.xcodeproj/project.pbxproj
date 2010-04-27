@@ -199,7 +199,7 @@
 		6A39EB5C1096584A006F76C3 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A39EB5B1096584A006F76C3 /* libsqlite3.dylib */; };
 		6A39EB6110965868006F76C3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A39EB6010965868006F76C3 /* CoreLocation.framework */; };
 		6A39EB6310965868006F76C3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A39EB6210965868006F76C3 /* SystemConfiguration.framework */; };
-		6A3DF73010F6E0ED008BD8AA /* KBTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A3DF72E10F6E0ED008BD8AA /* KBTextViewController.m */; };
+		6A3DF73010F6E0ED008BD8AA /* KBShoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A3DF72E10F6E0ED008BD8AA /* KBShoutViewController.m */; };
 		6A3DF73110F6E0ED008BD8AA /* KBTextViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A3DF72F10F6E0ED008BD8AA /* KBTextViewController.xib */; };
 		6A402A9F10B755B200D9BCEB /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A402A8C10B755B200D9BCEB /* NSObject+SBJSON.m */; };
 		6A402AA010B755B200D9BCEB /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A402A8E10B755B200D9BCEB /* NSString+SBJSON.m */; };
@@ -324,6 +324,7 @@
 		6A8EEE1A10A1227000DC630C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A8EEE1910A1227000DC630C /* MapKit.framework */; };
 		6A8EEF0B10A14F3F00DC630C /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A8EEF0A10A14F3F00DC630C /* libxml2.dylib */; };
 		6A8F68EA10E9B9FC00E0275E /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A8F68E910E9B9FC00E0275E /* AddressBook.framework */; };
+		6A921D8A1187A4F700866C59 /* ShoutViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A921D891187A4F700866C59 /* ShoutViewController.xib */; };
 		6A978A611099FBC000FCE8F1 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A978A601099FBC000FCE8F1 /* StoreKit.framework */; };
 		6A98EA911181154200E2F508 /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A98EA901181154200E2F508 /* pin.png */; };
 		6A98EA931181159A00E2F508 /* button_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A98EA921181159A00E2F508 /* button_right.png */; };
@@ -886,8 +887,8 @@
 		6A39EB5B1096584A006F76C3 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = /usr/lib/libsqlite3.dylib; sourceTree = "<absolute>"; };
 		6A39EB6010965868006F76C3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = /System/Library/Frameworks/CoreLocation.framework; sourceTree = "<absolute>"; };
 		6A39EB6210965868006F76C3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = /System/Library/Frameworks/SystemConfiguration.framework; sourceTree = "<absolute>"; };
-		6A3DF72D10F6E0ED008BD8AA /* KBTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBTextViewController.h; sourceTree = "<group>"; };
-		6A3DF72E10F6E0ED008BD8AA /* KBTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTextViewController.m; sourceTree = "<group>"; };
+		6A3DF72D10F6E0ED008BD8AA /* KBShoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBShoutViewController.h; sourceTree = "<group>"; };
+		6A3DF72E10F6E0ED008BD8AA /* KBShoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBShoutViewController.m; sourceTree = "<group>"; };
 		6A3DF72F10F6E0ED008BD8AA /* KBTextViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KBTextViewController.xib; path = Classes/KBTextViewController.xib; sourceTree = "<group>"; };
 		6A402A8A10B755B200D9BCEB /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
 		6A402A8B10B755B200D9BCEB /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
@@ -1131,6 +1132,7 @@
 		6A8EEE1910A1227000DC630C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		6A8EEF0A10A14F3F00DC630C /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		6A8F68E910E9B9FC00E0275E /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		6A921D891187A4F700866C59 /* ShoutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoutViewController.xib; sourceTree = "<group>"; };
 		6A978A601099FBC000FCE8F1 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		6A98EA901181154200E2F508 /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin.png; sourceTree = "<group>"; };
 		6A98EA921181159A00E2F508 /* button_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_right.png; sourceTree = "<group>"; };
@@ -1594,6 +1596,7 @@
 				6A086FE9117652D400BD6094 /* TwitterLoginView_v2.xib */,
 				6AF6ABA71180BB2900704B24 /* KBFacebookLoginViewController.xib */,
 				6A98EC1E1182351200E2F508 /* TipListViewController.xib */,
+				6A921D891187A4F700866C59 /* ShoutViewController.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -2094,8 +2097,8 @@
 				6A47C00410DCA8DE00DCF011 /* KBWebViewController.m */,
 				6A4C30C210DED6E300C89F55 /* SettingsViewController.h */,
 				6A4C30C310DED6E300C89F55 /* SettingsViewController.m */,
-				6A3DF72D10F6E0ED008BD8AA /* KBTextViewController.h */,
-				6A3DF72E10F6E0ED008BD8AA /* KBTextViewController.m */,
+				6A3DF72D10F6E0ED008BD8AA /* KBShoutViewController.h */,
+				6A3DF72E10F6E0ED008BD8AA /* KBShoutViewController.m */,
 				6AEB63D5110BAA8C0066DD05 /* KBPushNotificationView.h */,
 				6AEB63D6110BAA8C0066DD05 /* KBPushNotificationView.m */,
 			);
@@ -3345,7 +3348,7 @@
 				6A223A5010E46CE1003550F2 /* CreateTipTodoViewController.xib in Sources */,
 				6A79D0D710E5E682009082E5 /* PopupMessageView.m in Sources */,
 				6A79D0FE10E68D1A009082E5 /* KBMessage.m in Sources */,
-				6A3DF73010F6E0ED008BD8AA /* KBTextViewController.m in Sources */,
+				6A3DF73010F6E0ED008BD8AA /* KBShoutViewController.m in Sources */,
 				6A3DF73110F6E0ED008BD8AA /* KBTextViewController.xib in Sources */,
 				6AABEBD810FBB29500A5AF8B /* ProfileTwitterViewController.m in Sources */,
 				6AABEBD910FBB29500A5AF8B /* ProfileTwitterViewController.xib in Sources */,
@@ -3525,6 +3528,7 @@
 				6A32B3B7118610A2001E78C9 /* AccountOptionsViewController.m in Sources */,
 				6A8ADA621187597E00D9328D /* KBGeoTweetMapViewController.m in Sources */,
 				6A8ADA631187597E00D9328D /* KBGeoTweetMapViewController.xib in Sources */,
+				6A921D8A1187A4F700866C59 /* ShoutViewController.xib in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
