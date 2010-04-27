@@ -147,7 +147,7 @@
 						<int key="NSvFlags">256</int>
 						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBUIButton" id="1065152902">
+							<object class="IBUIButton" id="404546277">
 								<reference key="NSNextResponder" ref="736806520"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{13, 62}, {266, 81}}</string>
@@ -163,11 +163,11 @@
 									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="893653300"/>
-								<object class="NSCustomResource" key="IBUIHighlightedImage" id="567536300">
+								<object class="NSCustomResource" key="IBUIHighlightedImage" id="685487519">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">upFields02.png</string>
 								</object>
-								<object class="NSCustomResource" key="IBUINormalImage" id="829277167">
+								<object class="NSCustomResource" key="IBUINormalImage" id="984833311">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">upFields01.png</string>
 								</object>
@@ -252,7 +252,7 @@
 							<object class="IBUIButton" id="559402100">
 								<reference key="NSNextResponder" ref="736806520"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{201, 203}, {80, 22}}</string>
+								<string key="NSFrame">{{196, 204}, {90, 22}}</string>
 								<reference key="NSSuperview" ref="736806520"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -305,7 +305,7 @@
 						<int key="NSvFlags">256</int>
 						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBUIButton" id="347489063">
+							<object class="IBUIButton" id="864110756">
 								<reference key="NSNextResponder" ref="233339225"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{13, 57}, {266, 81}}</string>
@@ -321,8 +321,8 @@
 									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="893653300"/>
-								<reference key="IBUIHighlightedImage" ref="567536300"/>
-								<reference key="IBUINormalImage" ref="829277167"/>
+								<reference key="IBUIHighlightedImage" ref="685487519"/>
+								<reference key="IBUINormalImage" ref="984833311"/>
 							</object>
 							<object class="IBUIImageView" id="123191306">
 								<reference key="NSNextResponder" ref="233339225"/>
@@ -414,7 +414,21 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<bool key="IBUIOn">YES</bool>
+							</object>
+							<object class="IBUIImageView" id="1047322010">
+								<reference key="NSNextResponder" ref="233339225"/>
+								<int key="NSvFlags">256</int>
+								<string key="NSFrameSize">{292, 1}</string>
+								<reference key="NSSuperview" ref="233339225"/>
+								<bool key="IBUIOpaque">NO</bool>
+								<bool key="IBUIClipsSubviews">YES</bool>
+								<int key="IBUIContentMode">4</int>
+								<bool key="IBUIMultipleTouchEnabled">YES</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<object class="NSCustomResource" key="IBUIImage" id="986642751">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">dividerLine.png</string>
+								</object>
 							</object>
 						</object>
 						<string key="NSFrameSize">{292, 211}</string>
@@ -485,6 +499,18 @@
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
 								<bool key="IBUIOn">YES</bool>
+							</object>
+							<object class="IBUIImageView" id="902745526">
+								<reference key="NSNextResponder" ref="768465001"/>
+								<int key="NSvFlags">256</int>
+								<string key="NSFrameSize">{292, 1}</string>
+								<reference key="NSSuperview" ref="768465001"/>
+								<bool key="IBUIOpaque">NO</bool>
+								<bool key="IBUIClipsSubviews">YES</bool>
+								<int key="IBUIContentMode">4</int>
+								<bool key="IBUIMultipleTouchEnabled">YES</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<reference key="IBUIImage" ref="986642751"/>
 							</object>
 						</object>
 						<string key="NSFrameSize">{292, 159}</string>
@@ -621,20 +647,11 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">authenticateFoursquare</string>
-						<reference key="source" ref="1065152902"/>
+						<reference key="source" ref="404546277"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
 					<int key="connectionID">50</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">authenticateTwitter</string>
-						<reference key="source" ref="347489063"/>
-						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">51</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -720,6 +737,15 @@
 					</object>
 					<int key="connectionID">62</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">xAuthAccessTokenRequestButtonTouchUpInside</string>
+						<reference key="source" ref="864110756"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">63</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -777,8 +803,8 @@
 							<reference ref="815339970"/>
 							<reference ref="841239569"/>
 							<reference ref="777209864"/>
+							<reference ref="404546277"/>
 							<reference ref="559402100"/>
-							<reference ref="1065152902"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">4sq Cell</string>
@@ -792,8 +818,9 @@
 							<reference ref="798728812"/>
 							<reference ref="32276046"/>
 							<reference ref="984309471"/>
-							<reference ref="347489063"/>
+							<reference ref="864110756"/>
 							<reference ref="859996827"/>
+							<reference ref="1047322010"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Twitter Cell</string>
@@ -806,6 +833,7 @@
 							<reference ref="1014323483"/>
 							<reference ref="679906304"/>
 							<reference ref="508507601"/>
+							<reference ref="902745526"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">FB Cell</string>
@@ -887,13 +915,23 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">48</int>
-						<reference key="object" ref="1065152902"/>
+						<reference key="object" ref="404546277"/>
 						<reference key="parent" ref="1031231068"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">49</int>
-						<reference key="object" ref="347489063"/>
+						<reference key="object" ref="864110756"/>
 						<reference key="parent" ref="418226496"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">64</int>
+						<reference key="object" ref="1047322010"/>
+						<reference key="parent" ref="418226496"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">65</int>
+						<reference key="object" ref="902745526"/>
+						<reference key="parent" ref="159029298"/>
 					</object>
 				</object>
 			</object>
@@ -970,7 +1008,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">62</int>
+			<int key="maxID">65</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -983,11 +1021,11 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>authenticateFoursquare</string>
-							<string>authenticateTwitter</string>
 							<string>displayWhatsThis</string>
 							<string>enableTwitterGeotagging</string>
 							<string>linkKickballAccount</string>
 							<string>postPhotosToFacebook</string>
+							<string>xAuthAccessTokenRequestButtonTouchUpInside</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1380,6 +1418,7 @@
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>cellRoundedBottom.png</string>
+				<string>dividerLine.png</string>
 				<string>facebookHdr.png</string>
 				<string>facebookPostPhotos.png</string>
 				<string>kbAccountLinking.png</string>
@@ -1396,6 +1435,7 @@
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>{291, 4}</string>
+				<string>{292, 1}</string>
 				<string>{201, 18}</string>
 				<string>{266, 41}</string>
 				<string>{266, 41}</string>

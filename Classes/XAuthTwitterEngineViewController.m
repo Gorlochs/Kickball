@@ -13,18 +13,18 @@
 
 @implementation XAuthTwitterEngineViewController
 
-@synthesize usernameTextField, passwordTextField, twitterEngine, sendTweetButton;
+@synthesize twitterUsername, twitterPassword, twitterEngine;
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	// Sanity check
-	if ([kOAuthConsumerKey isEqualToString:@""] || [kOAuthConsumerSecret isEqualToString:@""])
-	{
-		NSString *message = @"Please add your Consumer Key and Consumer Secret from http://twitter.com/oauth_clients/details/<your app id> to the XAuthTwitterEngineDemoViewController.h before running the app. Thank you!";
-		UIAlertViewQuick(@"Missing oAuth details", message, @"OK");
-	}
+//	// Sanity check
+//	if ([kOAuthConsumerKey isEqualToString:@""] || [kOAuthConsumerSecret isEqualToString:@""])
+//	{
+//		NSString *message = @"Please add your Consumer Key and Consumer Secret from http://twitter.com/oauth_clients/details/<your app id> to the XAuthTwitterEngineDemoViewController.h before running the app. Thank you!";
+//		UIAlertViewQuick(@"Missing oAuth details", message, @"OK");
+//	}
 	
 	//
 	// Initialize the XAuthTwitterEngine.
@@ -33,14 +33,13 @@
 	self.twitterEngine.consumerKey = kOAuthConsumerKey;
 	self.twitterEngine.consumerSecret = kOAuthConsumerSecret;
 
-	if ([self.twitterEngine isAuthorized])
-	{
-		UIAlertViewQuick(@"Cached xAuth token found!", @"This app was previously authorized for a Twitter account so you can press the second button to send a tweet now.", @"OK");
-		self.sendTweetButton.enabled = YES;
-	}
+//	if ([self.twitterEngine isAuthorized])
+//	{
+//		UIAlertViewQuick(@"Cached xAuth token found!", @"This app was previously authorized for a Twitter account so you can press the second button to send a tweet now.", @"OK");
+//	}
 	
 	// Focus
-	[self.usernameTextField becomeFirstResponder];
+	[self.twitterUsername becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -53,17 +52,15 @@
 - (void)viewDidUnload {
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
-	self.usernameTextField = nil;
-	self.passwordTextField = nil;
-	self.sendTweetButton = nil;
+	self.twitterUsername = nil;
+	self.twitterPassword = nil;
 }
 
 
 - (void)dealloc {
 	
-	[self.usernameTextField release];
-	[self.passwordTextField release];
-	[self.sendTweetButton release];
+	[self.twitterUsername release];
+	[self.twitterPassword release];
 	[self.twitterEngine release];
 	
     [super dealloc];
@@ -74,20 +71,13 @@
 
 - (IBAction)xAuthAccessTokenRequestButtonTouchUpInside
 {
-	NSString *username = self.usernameTextField.text;
-	NSString *password = self.passwordTextField.text;
+	NSString *username = self.twitterUsername.text;
+	NSString *password = self.twitterPassword.text;
 	
 	NSLog(@"About to request an xAuth token exchange for username: ]%@[ password: ]%@[.",
 		  username, password);
 	
 	[self.twitterEngine exchangeAccessTokenForUsername:username password:password];
-}
-
-- (IBAction)sendTestTweetButtonTouchUpInside
-{
-	NSString *tweetText = @"Testing Kickball!";
-	NSLog(@"About to send test tweet: \"%@\"", tweetText);
-	[self.twitterEngine sendUpdate:tweetText];
 }
 
 #pragma mark -
@@ -103,9 +93,6 @@
 	NSLog(@"Access token string returned: %@", tokenString);
 	
 	[[NSUserDefaults standardUserDefaults] setObject:tokenString forKey:kCachedXAuthAccessTokenStringKey];
-	
-	// Enable the send tweet button.
-	self.sendTweetButton.enabled = YES;
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"loginNotification"
                                                         object:nil

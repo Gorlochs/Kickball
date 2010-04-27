@@ -9,9 +9,11 @@
 #import "AccountOptionsViewController.h"
 #import "FoursquareAPI.h"
 #import "SFHFKeychainUtils.h"
+#import "XAuthTwitterEngine.h"
 
 @implementation AccountOptionsViewController
 
+@synthesize twitterEngine;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -19,15 +21,22 @@
 - (void)viewDidLoad {
     self.hideFooter = YES;
     self.hideRefresh = YES;
+    isWhatsThisDisplayed = NO;
     
     [super viewDidLoad];
+    
+    //
+	// Initialize the XAuthTwitterEngine.
+	//
+	self.twitterEngine = [[XAuthTwitterEngine alloc] initXAuthWithDelegate:self];
+	self.twitterEngine.consumerKey = kOAuthConsumerKey;
+	self.twitterEngine.consumerSecret = kOAuthConsumerSecret;
 }
 
 #pragma mark -
 #pragma mark IBAction
 
 - (void) authenticateFoursquare {
-    NSLog(@"auth 4sq click");
     if ([foursquareUsername.text length] > 0 && [foursquarePassword.text length] > 0) {
         [self startProgressBar:@"Authenticating new username and password..."];
         [foursquareUsername resignFirstResponder];
@@ -37,10 +46,6 @@
     } else {
         // TODO: popup error message
     }
-}
-
-- (void) authenticateTwitter {
-    
 }
 
 - (void) linkKickballAccount {
@@ -56,10 +61,53 @@
 }
 
 - (void) displayWhatsThis {
-    
+    isWhatsThisDisplayed = YES;
+    [theTableView reloadData];
 }
 
 #pragma mark -
+#pragma mark twitter auth methods
+
+- (IBAction)xAuthAccessTokenRequestButtonTouchUpInside
+{
+    [twitterUsername resignFirstResponder];
+    [twitterPassword resignFirstResponder];
+    
+    [self startProgressBar:@"Authenticating Twitter username and password..."];
+    
+	NSString *username = twitterUsername.text;
+	NSString *password = twitterPassword.text;
+	
+	NSLog(@"About to request an xAuth token exchange for username: ]%@[ password: ]%@[.", username, password);
+	
+	[self.twitterEngine exchangeAccessTokenForUsername:username password:password];
+}
+
+#pragma mark XAuthTwitterEngineDelegate methods
+
+- (void) storeCachedTwitterXAuthAccessTokenString: (NSString *)tokenString forUsername:(NSString *)username
+{
+	// FIXME
+	// Note: do not use NSUserDefaults to store this in a production environment. 
+	// ===== Use the keychain instead. Check out SFHFKeychainUtils if you want 
+	//       an easy to use library. (http://github.com/ldandersen/scifihifi-iphone) 
+	//
+	NSLog(@"Access token string returned: %@", tokenString);
+	
+	[[NSUserDefaults standardUserDefaults] setObject:tokenString forKey:kCachedXAuthAccessTokenStringKey];
+    
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"loginNotification"
+//                                                        object:nil
+//                                                      userInfo:nil];
+    
+    [self stopProgressBar];
+    KBMessage *message = [[KBMessage alloc] initWithMember:@"Success!" andMessage:@"Authentication succeeded!  Your new username and password have been authenticated."];
+    [self displayPopupMessage:message];
+    [message release];
+    
+    //[self dismissModalViewControllerAnimated:YES];
+}
+
 #pragma mark delgate callbacks
 
 - (void)userResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
@@ -95,6 +143,15 @@
     }
 }
 
+- (void) twitterXAuthConnectionDidFailWithError: (NSError *)error;
+{
+	NSLog(@"Error: %@", error);
+	
+    KBMessage *message = [[KBMessage alloc] initWithMember:@"Error!" andMessage:@"Authentication error! Please check your username and password and try again."];
+    [self displayPopupMessage:message];
+    [message release];
+}
+
 #pragma mark -
 #pragma mark Table view data source
 
@@ -112,7 +169,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
-        return 229;
+        return !isWhatsThisDisplayed ? 229 : 355;
     } else if (indexPath.row == 1) {
         return 211;
     } else {
@@ -120,17 +177,16 @@
     }
 }
 
-// Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-//    static NSString *CellIdentifier = @"Cell";
-//    
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//    if (cell == nil) {
-//        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-//    }
-
     if (indexPath.row == 0) {
+        if (isWhatsThisDisplayed) {
+            CGRect frame = whyThisImage.frame;
+            frame.origin = CGPointMake(17, 220);
+            whyThisImage.frame = frame;
+            [foursquareCell addSubview:whyThisImage];
+            
+            [whatIsThisButton removeFromSuperview];
+        }
         return foursquareCell;
     } else if (indexPath.row == 1) {
         return twitterCell;
@@ -138,22 +194,6 @@
         return facebookCell;
     }
 }
-
-
-#pragma mark -
-#pragma mark Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-	/*
-	 <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-	 [self.navigationController pushViewController:detailViewController animated:YES];
-	 [detailViewController release];
-	 */
-}
-
 
 #pragma mark -
 #pragma mark Memory management
