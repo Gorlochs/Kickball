@@ -17,6 +17,7 @@
     UILabel *userName;
     //TTStyledTextLabel *tweetText;
     IFTweetLabel *tweetText;
+    UILabel *dateLabel;
     
     UIImageView *topLineImage;
     UIImageView *bottomLineImage;
@@ -25,6 +26,9 @@
 
 @property (nonatomic, retain) TTImageView *userIcon;
 @property (nonatomic, retain) UILabel *userName;
+@property (nonatomic, retain) UILabel *dateLabel;
 @property (nonatomic, retain) IFTweetLabel *tweetText;
+
+- (void) setDateLabelWithDate:(NSDate*)theDate;
 
 @end

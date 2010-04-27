@@ -53,10 +53,6 @@
         [self setTweetId: [coder decodeObjectForKey:@"tweetId"]]; 
     } 
     return self; 
-} 
-
-- (id)copyWithZone:(NSZone *)zone {
-    return [[KBTweet allocWithZone: zone] initWithDictionary:dict];
 }
 
 @end

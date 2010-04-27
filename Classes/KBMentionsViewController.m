@@ -12,6 +12,7 @@
 @implementation KBMentionsViewController
 
 - (void)viewDidLoad {
+    pageViewType = KBPageViewTypeList;
     [super viewDidLoad];
     
     cachingKey = kKBTwitterMentionsKey;

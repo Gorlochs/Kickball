@@ -12,6 +12,7 @@
 @implementation KBDirectMessagesViewController
 
 - (void)viewDidLoad {
+    pageViewType = KBPageViewTypeList;
     [super viewDidLoad];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(messagesRetrieved:) name:kTwitterDMRetrievedNotificationKey object:nil];

@@ -15,6 +15,7 @@
 @synthesize searchTerms;
 
 - (void)viewDidLoad {
+    pageViewType = KBPageViewTypeList;
     [super viewDidLoad];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(searchRetrieved:) name:kTwitterSearchRetrievedNotificationKey object:nil];
@@ -82,6 +83,7 @@
     cell.userName.text = tweet.screenName;
     // cell.tweetText.text = [TTStyledText textFromXHTML:tweet.tweetText lineBreaks:YES URLs:YES];
     cell.tweetText.text = tweet.tweetText;
+    [cell setDateLabelWithDate:tweet.createDate];
     
     CGSize maximumLabelSize = CGSizeMake(250,60);
     CGSize expectedLabelSize = [cell.tweetText.text sizeWithFont:cell.tweetText.font 

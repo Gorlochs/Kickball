@@ -75,7 +75,7 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
     
-    messageLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(20.0f, 135.0f, 300.0f, 220.0f)];
+    messageLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(20.0f, 135.0f, 280.0f, 220.0f)];
     [messageLabel setFont:[UIFont systemFontOfSize:14.0f]];
     [messageLabel setTextColor:[UIColor whiteColor]];
     [messageLabel setBackgroundColor:[UIColor clearColor]];
@@ -86,7 +86,7 @@
     titleLabel.text = message.mainTitle;
     
     NSLog(@"message: %@", message.message);
-    CGSize maximumLabelSize = CGSizeMake(300, 220);
+    CGSize maximumLabelSize = CGSizeMake(280, 220);
     CGSize expectedLabelSize = [message.message sizeWithFont:messageLabel.font 
                                            constrainedToSize:maximumLabelSize 
                                                lineBreakMode:UILineBreakModeClip]; 

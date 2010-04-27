@@ -10,7 +10,7 @@
 #import "KBBaseViewController.h"
 
 
-@interface AccountOptionsViewController : KBBaseViewController  {
+@interface AccountOptionsViewController : KBBaseViewController <UITextFieldDelegate> {
     IBOutlet UITableViewCell *foursquareCell;
     IBOutlet UITableViewCell *twitterCell;
     IBOutlet UITableViewCell *facebookCell;
@@ -27,5 +27,12 @@
     
     IBOutlet UIButton *whatIsThisButton;
 }
+
+- (IBAction) authenticateFoursquare;
+- (IBAction) authenticateTwitter;
+- (IBAction) linkKickballAccount;
+- (IBAction) enableTwitterGeotagging;
+- (IBAction) postPhotosToFacebook;
+- (IBAction) displayWhatsThis;
 
 @end

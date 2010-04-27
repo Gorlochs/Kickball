@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface KBTweet : NSObject <NSCopying> {
+@interface KBTweet : NSObject {
     NSString *screenName;
     NSString *fullName;
     NSDate *createDate;

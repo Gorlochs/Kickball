@@ -19,6 +19,7 @@
 
 #define HEADER_NIB_TWITTER      @"TwitterHeaderView"
 #define HEADER_NIB_FOURSQUARE   @"FoursquareHeaderView"
+#define kUsernameDefaultsKey    @"FSUsername"
 
 static const CGFloat KEYBOARD_ANIMATION_DURATION = 0.3;
 static const CGFloat MINIMUM_SCROLL_FRACTION = 0.2;

@@ -89,6 +89,7 @@
         cell.userName.text = tweet.screenName;
         cell.tweetText.numberOfLines = 4;
         cell.tweetText.text = tweet.tweetText;
+        [cell setDateLabelWithDate:tweet.createDate];
         
         CGSize maximumLabelSize = CGSizeMake(250,60);
         CGSize expectedLabelSize = [cell.tweetText.text sizeWithFont:cell.tweetText.font 
@@ -123,8 +124,8 @@
 #pragma mark -
 #pragma mark table refresh methods
 
-- (void) refreshTable {
-    [self showStatuses];
+- (void) executeQuery:(int)pageNumber {
+    
 }
 
 #pragma mark -
@@ -145,6 +146,7 @@
 
 
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super dealloc];
 }
 

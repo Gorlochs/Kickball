@@ -235,11 +235,18 @@ static FoursquareAPI *sharedInstance = nil;
 //	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"badges" andValue:@"1"]];
 //	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"mayor" andValue:@"1"]];
 //	[self.oauthAPI performMethod:@"/v1/user" withTarget:inTarget withParameters:params andAction:inAction];
-	NSMutableDictionary * requestParams = [[[NSMutableDictionary alloc] initWithCapacity:3] autorelease];
+	NSMutableDictionary * requestParams = [[[NSMutableDictionary alloc] initWithCapacity:2] autorelease];
 	[requestParams setObject:@"1" forKey:@"badges"];	
 	[requestParams setObject:@"1" forKey:@"mayor"];	
 	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/user"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"GET"];
 
+}
+
+- (void) getUserWithUsername:(NSString*)username andPassword:(NSString*)password withTarget:(id)inTarget andAction:(SEL)inAction {
+	NSMutableDictionary * requestParams = [[[NSMutableDictionary alloc] initWithCapacity:2] autorelease];
+	[requestParams setObject:@"1" forKey:@"badges"];
+	[requestParams setObject:@"1" forKey:@"mayor"];
+	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/user"] withUser:username andPassword:password andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"GET"];
 }
 
 - (void)getCityNearestToLatitude:(NSString *) geolat andLongitude:(NSString *)geolong withTarget:(id)inTarget andAction:(SEL)inAction{

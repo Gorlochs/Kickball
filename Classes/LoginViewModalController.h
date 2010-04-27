@@ -12,7 +12,6 @@
 #import "SFHFKeychainUtils.h"
 #import "KBBaseViewController.h"
 
-#define kUsernameDefaultsKey @"FSUsername"
 
 @interface LoginViewModalController : KBBaseViewController {
 	IBOutlet UITextField *usernameField;

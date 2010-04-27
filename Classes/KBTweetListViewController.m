@@ -30,6 +30,7 @@
     [super viewDidLoad];
     pageNum = 1;
     cachingKey = kKBTwitterTimelineKey;
+    pageViewType = KBPageViewTypeList;
     
     if ([self.twitterEngine isAuthorized]) {
         [self createNotificationObservers];
@@ -116,17 +117,12 @@
 #pragma mark -
 #pragma mark MGTwitterEngineDelegate methods
 
-- (void)requestSucceeded:(NSString *)connectionIdentifier
-{
+- (void)requestSucceeded:(NSString *)connectionIdentifier {
 	NSLog(@"Twitter request succeeded: %@", connectionIdentifier);
-	
-	UIAlertViewQuick(@"Tweet sent!", @"The tweet was successfully sent. Everything works!", @"OK");
 }
 
-- (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error
-{
+- (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error {
 	NSLog(@"Twitter request failed: %@ with error:%@", connectionIdentifier, error);
-    
 }
 
 #pragma mark -
@@ -146,7 +142,6 @@
 
 
 - (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [statuses release];
     [statusObjects release];
     [tweets release];

@@ -17,12 +17,14 @@
     IBOutlet UIButton *mentionsButton;
     IBOutlet UIButton *directMessageButton;
     IBOutlet UIButton *searchButton;
+    IBOutlet UIButton *centerHeaderButton;
     
     XAuthTwitterEngine *twitterEngine;
 }
 
 @property (nonatomic, retain) XAuthTwitterEngine *twitterEngine;
 
+- (IBAction) flipBetweenMapAndList;
 - (IBAction) showMentions;
 - (IBAction) showDirectMessages;
 - (IBAction) showUserTimeline;

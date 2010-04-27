@@ -317,6 +317,8 @@
 		6A8AC21711612EE5009082F2 /* PhotoMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A8AC21511612EE5009082F2 /* PhotoMessageViewController.m */; };
 		6A8AC21811612EE5009082F2 /* PhotoMessageViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A8AC21611612EE5009082F2 /* PhotoMessageViewController.xib */; };
 		6A8AC8F1109AB31400C4FE1B /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A8AC8EF109AB31400C4FE1B /* ProfileViewController.m */; };
+		6A8ADA621187597E00D9328D /* KBGeoTweetMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A8ADA601187597E00D9328D /* KBGeoTweetMapViewController.m */; };
+		6A8ADA631187597E00D9328D /* KBGeoTweetMapViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A8ADA611187597E00D9328D /* KBGeoTweetMapViewController.xib */; };
 		6A8CD5071178E26900D81F4B /* OptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A8CD5061178E26900D81F4B /* OptionsViewController.m */; };
 		6A8CE6BE10B52AC000BE05F9 /* KBPin.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A8CE6BD10B52AC000BE05F9 /* KBPin.m */; };
 		6A8EEE1A10A1227000DC630C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A8EEE1910A1227000DC630C /* MapKit.framework */; };
@@ -1119,6 +1121,9 @@
 		6A8AC21611612EE5009082F2 /* PhotoMessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoMessageViewController.xib; sourceTree = "<group>"; };
 		6A8AC8EE109AB31400C4FE1B /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		6A8AC8EF109AB31400C4FE1B /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		6A8ADA5F1187597E00D9328D /* KBGeoTweetMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBGeoTweetMapViewController.h; sourceTree = "<group>"; };
+		6A8ADA601187597E00D9328D /* KBGeoTweetMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBGeoTweetMapViewController.m; sourceTree = "<group>"; };
+		6A8ADA611187597E00D9328D /* KBGeoTweetMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KBGeoTweetMapViewController.xib; path = Classes/KBGeoTweetMapViewController.xib; sourceTree = "<group>"; };
 		6A8CD5051178E26900D81F4B /* OptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionsViewController.h; sourceTree = "<group>"; };
 		6A8CD5061178E26900D81F4B /* OptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionsViewController.m; sourceTree = "<group>"; };
 		6A8CE6BC10B52AC000BE05F9 /* KBPin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBPin.h; sourceTree = "<group>"; };
@@ -1572,6 +1577,7 @@
 				6A211968117D68EE00BE897E /* KBTwitterSearchViewController.xib */,
 				6A30075511797649001CB933 /* KBTweetListViewController.xib */,
 				6AC85203117E2BB4007B5220 /* KBTwitterDetailViewController.xib */,
+				6A8ADA611187597E00D9328D /* KBGeoTweetMapViewController.xib */,
 				6A2EFAF1117F832F007F2D3D /* KBUserTweetsViewController.xib */,
 				6ADBFAA111738FE6003EB73D /* FoursquareHeaderView.xib */,
 				6ADBFAA311738FF1003EB73D /* TwitterHeaderView.xib */,
@@ -2511,6 +2517,15 @@
 			name = Maps;
 			sourceTree = "<group>";
 		};
+		6A8ADA5D1187592800D9328D /* maps */ = {
+			isa = PBXGroup;
+			children = (
+				6A8ADA5F1187597E00D9328D /* KBGeoTweetMapViewController.h */,
+				6A8ADA601187597E00D9328D /* KBGeoTweetMapViewController.m */,
+			);
+			name = maps;
+			sourceTree = "<group>";
+		};
 		6A8EEEC110A14ED200DC630C /* MGTwitterEngine */ = {
 			isa = PBXGroup;
 			children = (
@@ -2702,6 +2717,7 @@
 		6AD5B3D8116D3D37008671FD /* KBTwitter */ = {
 			isa = PBXGroup;
 			children = (
+				6A8ADA5D1187592800D9328D /* maps */,
 				6A211B1F117E183000BE897E /* tab controllers */,
 				6A211B1E117E181B00BE897E /* model */,
 				6AD5B3DA116D3D4A008671FD /* XAuthTwitterEngineViewController.h */,
@@ -3507,6 +3523,8 @@
 				6A98EC1F1182351200E2F508 /* TipListViewController.m in Sources */,
 				6A98EC201182351200E2F508 /* TipListViewController.xib in Sources */,
 				6A32B3B7118610A2001E78C9 /* AccountOptionsViewController.m in Sources */,
+				6A8ADA621187597E00D9328D /* KBGeoTweetMapViewController.m in Sources */,
+				6A8ADA631187597E00D9328D /* KBGeoTweetMapViewController.xib in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
