@@ -196,6 +196,81 @@
 }
 
 #pragma mark -
+#pragma mark Text field delegate
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    //NSLog(@"text field did begin editing: %@", textField);
+    CGRect textFieldRect = [self.view.window convertRect:textField.bounds fromView:textField];
+    CGRect viewRect = [self.view.window convertRect:self.view.bounds fromView:self.view];
+    CGFloat midline = textFieldRect.origin.y + 0.5 * textFieldRect.size.height;
+    CGFloat numerator = midline - viewRect.origin.y - MINIMUM_SCROLL_FRACTION * viewRect.size.height;
+    CGFloat denominator = (MAXIMUM_SCROLL_FRACTION - MINIMUM_SCROLL_FRACTION) * viewRect.size.height;
+    CGFloat heightFraction = numerator / denominator;
+    if (heightFraction < 0.0) {
+        heightFraction = 0.0;
+    } else if (heightFraction > 1.0) {
+        heightFraction = 1.0;
+    }
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown) {
+        animatedDistance = floor(PORTRAIT_KEYBOARD_HEIGHT * heightFraction);
+    } else {
+        animatedDistance = floor(LANDSCAPE_KEYBOARD_HEIGHT * heightFraction);
+    }
+    CGRect viewFrame = self.view.frame;
+    viewFrame.origin.y -= animatedDistance;
+    NSLog(@"animated distance: %f", animatedDistance);
+    NSLog(@"viewframe origin y: %f", viewFrame.origin.y);
+    
+//    // toolbar stuff
+//    toolbar.hidden = NO;
+//    CGRect toolbarFrame = toolbar.frame;
+//    
+//    // SUPER HACK!!!
+//    if (textField == placeName) {
+//        toolbarFrame.origin.y = 200;
+//    } else if (textField == address) {
+//        toolbarFrame.origin.y = 241;
+//    } else if (textField == crossstreet) {
+//        toolbarFrame.origin.y = 288;
+//        //    } else if (textField == city) {
+//        //        toolbarFrame.origin.y = 300;
+//        //    } else if (textField == state || textField == zip) {
+//        //        toolbarFrame.origin.y = 337;
+//    } else if (textField == twitter || textField == phone) {
+//        toolbarFrame.origin.y = 330;
+//    }
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
+    
+//    [toolbar setFrame:toolbarFrame];
+    [self.view setFrame:viewFrame];
+    
+    [UIView commitAnimations];
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    //NSLog(@"text field did end editing: %@", textField);
+    CGRect viewFrame = self.view.frame;
+    viewFrame.origin.y += animatedDistance;
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
+    
+    [self.view setFrame:viewFrame];
+    
+    [UIView commitAnimations];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    //[self cancelEditing];
+    return YES;
+}
+
+#pragma mark -
 #pragma mark Memory management
 
 - (void)didReceiveMemoryWarning {
@@ -208,10 +283,43 @@
 - (void)viewDidUnload {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
     // For example: self.myOutlet = nil;
+    foursquareCell = nil;
+    twitterCell = nil;
+    facebookCell = nil;
+    whyThisImage = nil;
+    
+    foursquareUsername = nil;
+    foursquarePassword = nil;
+    twitterUsername = nil;
+    twitterPassword = nil;
+    
+    kickballAccountLinkingSwitch = nil;
+    twitterGeotaggingSwitch = nil;
+    postPhotosToFacebookSwitch = nil;
+    
+    whatIsThisButton = nil;
+    twitterEngine = nil;
 }
 
 
 - (void)dealloc {
+    [foursquareCell release];
+    [twitterCell release];
+    [facebookCell release];
+    [whyThisImage release];
+    
+    [foursquareUsername release];
+    [foursquarePassword release];
+    [twitterUsername release];
+    [twitterPassword release];
+    
+    [kickballAccountLinkingSwitch release];
+    [twitterGeotaggingSwitch release];
+    [postPhotosToFacebookSwitch release];
+    
+    [whatIsThisButton release];
+    [twitterEngine release];
+    
     [super dealloc];
 }
 

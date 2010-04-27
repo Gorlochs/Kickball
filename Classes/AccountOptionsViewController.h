@@ -35,6 +35,8 @@
     IBOutlet UIButton *whatIsThisButton;
     XAuthTwitterEngine *twitterEngine;
     BOOL isWhatsThisDisplayed;
+    
+    CGFloat animatedDistance;
 }
 
 @property (nonatomic, retain) XAuthTwitterEngine *twitterEngine;
