@@ -131,7 +131,6 @@
 
 - (void)dealloc {
     [statuses release];
-    [statusObjects release];
     [tweets release];
     [super dealloc];
 }

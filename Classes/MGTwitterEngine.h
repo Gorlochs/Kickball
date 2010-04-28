@@ -96,6 +96,8 @@
 - (NSString *)getUpdate:(unsigned long)updateID; // statuses/show
 - (NSString *)sendUpdate:(NSString *)status; // statuses/update
 - (NSString *)sendUpdate:(NSString *)status inReplyTo:(unsigned long long)updateID; // statuses/update
+- (NSString *)sendUpdate:(NSString *)status withLatitude:(float)latitude withLongitude:(float)longitude; // statuses/update
+- (NSString *)sendUpdate:(NSString *)status withLatitude:(float)latitude withLongitude:(float)longitude inReplyTo:(unsigned long long)updateID; // statuses/update
 
 - (NSString *)sendRetweet:(unsigned long long)updateID; // statuses/retweet
 

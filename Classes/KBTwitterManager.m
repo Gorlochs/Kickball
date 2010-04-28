@@ -247,5 +247,13 @@ static KBTwitterManager *sharedInstance = nil;
     return [NSKeyedUnarchiver unarchiveObjectWithData:statusArrayData];
 }
 
+- (BOOL) hasGeoTweetTurnedOn {
+    return [[[NSUserDefaults standardUserDefaults] objectForKey:kKBTwitterGeoTweetKey] boolValue];
+}
+
+- (void) setHasGeoTweetTurnedOn:(BOOL)hasGeoTweet {
+    [[NSUserDefaults standardUserDefaults] setObject:hasGeoTweet forKey:kKBTwitterGeoTweetKey];
+}
+
 
 @end

@@ -145,7 +145,6 @@
     tweets = nil;
     cachingKey = nil;
     statuses = nil;
-    statusObjects = nil;
     moreCell = nil;
     noResultsView = nil;
 }
@@ -156,7 +155,6 @@
     [tweets release];
     [cachingKey release];
     [statuses release];
-    [statusObjects release];
     [moreCell release];
     [noResultsView release];
     [super dealloc];

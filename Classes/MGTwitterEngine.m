@@ -1027,14 +1027,21 @@
 }
 
 
-- (NSString *)sendUpdate:(NSString *)status
-{
-    return [self sendUpdate:status inReplyTo:0];
+- (NSString *)sendUpdate:(NSString *)status {
+    return [self sendUpdate:status withLatitude:0.0 withLongitude:0.0 inReplyTo:0];
 }
 
 
-- (NSString *)sendUpdate:(NSString *)status inReplyTo:(unsigned long long)updateID
-{
+- (NSString *)sendUpdate:(NSString *)status inReplyTo:(unsigned long long)updateID {
+    return [self sendUpdate:status withLatitude:0.0 withLongitude:0.0 inReplyTo:updateID];
+}
+
+
+- (NSString *)sendUpdate:(NSString *)status withLatitude:(float)latitude withLongitude:(float)longitude {
+    return [self sendUpdate:status withLatitude:latitude withLongitude:longitude inReplyTo:0];
+}
+
+- (NSString *)sendUpdate:(NSString *)status withLatitude:(float)latitude withLongitude:(float)longitude inReplyTo:(unsigned long long)updateID {
     if (!status) {
         return nil;
     }
@@ -1050,6 +1057,10 @@
     [params setObject:trimmedText forKey:@"status"];
     if (updateID > 0) {
         [params setObject:[NSString stringWithFormat:@"%qu", updateID] forKey:@"in_reply_to_status_id"];
+    }
+    if (latitude != 0.0) {
+        [params setObject:[NSString stringWithFormat:@"%f", latitude] forKey:@"lat"];
+        [params setObject:[NSString stringWithFormat:@"%f", longitude] forKey:@"long"];
     }
     NSString *body = [self _queryStringWithBase:nil parameters:params prefixed:NO];
     

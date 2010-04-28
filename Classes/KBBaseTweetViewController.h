@@ -9,13 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "KBTwitterViewController.h"
 #import "KBTweet.h"
+#import "KBTweetTableCell.h"
 
 @interface KBBaseTweetViewController : KBTwitterViewController <MGTwitterEngineDelegate> {
     NSMutableArray *tweets;
     NSString *cachingKey;
     int pageNum;
     NSArray *statuses;
-    NSMutableArray *statusObjects;
     IBOutlet UITableViewCell *moreCell;
     IBOutlet UIView *noResultsView;
 }

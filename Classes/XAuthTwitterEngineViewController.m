@@ -74,8 +74,7 @@
 	NSString *username = self.twitterUsername.text;
 	NSString *password = self.twitterPassword.text;
 	
-	NSLog(@"About to request an xAuth token exchange for username: ]%@[ password: ]%@[.",
-		  username, password);
+	NSLog(@"About to request an xAuth token exchange for username: ]%@[ password: ]%@[.", username, password);
 	
 	[self.twitterEngine exchangeAccessTokenForUsername:username password:password];
 }

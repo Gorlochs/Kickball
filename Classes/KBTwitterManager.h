@@ -20,16 +20,19 @@
 #define kTwitterMiscRetrievedNotificationKey        @"miscellaneousRetrievedNotification"
 #define kTwitterSearchRetrievedNotificationKey      @"searchRetrievedNotification"
 
-#define kKBTwitterTimelineKey   @"timeline"
-#define kKBTwitterMentionsKey   @"mentions"
-#define kKBTwitterDirectMessagesKey   @"directMessage"
+#define kKBTwitterTimelineKey           @"timeline"
+#define kKBTwitterMentionsKey           @"mentions"
+#define kKBTwitterDirectMessagesKey     @"directMessage"
+#define kKBTwitterGeoTweetKey           @"geoTweet"
 
 
 @interface KBTwitterManager : NSObject {
     XAuthTwitterEngine *twitterEngine;
+    BOOL hasGeoTweetTurnedOn;
 }
 
 @property (nonatomic, retain) XAuthTwitterEngine *twitterEngine;
+@property (nonatomic) BOOL hasGeoTweetTurnedOn;
 
 + (KBTwitterManager*) twitterManager;
 

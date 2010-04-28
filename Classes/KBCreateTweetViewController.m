@@ -7,7 +7,7 @@
 //
 
 #import "KBCreateTweetViewController.h"
-
+#import "KBLocationManager.h"
 
 @implementation KBCreateTweetViewController
 
@@ -28,10 +28,14 @@
 #pragma mark IBAction methods
 
 - (void) submitTweet {
+    
+    // TODO: determine if the user has geotweets turns on
+    [twitterEngine sendUpdate:tweetTextView.text withLatitude:[[KBLocationManager locationManager] latitude] withLongitude:[[KBLocationManager locationManager] longitude]];
+    
 //    if (replyToStatusId && replyToStatusId > 0) {
 //        [twitterEngine sendUpdate:tweetTextView.text inReplyTo:[replyToStatusId longLongValue]];
 //    } else {
-        [twitterEngine sendUpdate:tweetTextView.text];
+//        [twitterEngine sendUpdate:tweetTextView.text];
 //    }
 }
 

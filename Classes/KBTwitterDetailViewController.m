@@ -53,7 +53,6 @@
 }
 
 - (void) createNotificationObservers {
-    NSLog(@"########## this should only show up for the DETAIL view ########");
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusRetrieved:) name:kTwitterStatusRetrievedNotificationKey object:nil];
 }
 

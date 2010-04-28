@@ -9,7 +9,6 @@
 #import "KBTweet.h"
 #import "KickballAPI.h"
 
-
 @implementation KBTweet
 
 @synthesize screenName;
@@ -29,6 +28,7 @@
         profileImageUrl = [[statusDictionary objectForKey:@"user"] objectForKey:@"profile_image_url"];
         tweetText = [statusDictionary objectForKey:@"text"];
         tweetId = [statusDictionary objectForKey:@"id"];
+//        createDate = [[Utilities convertUTCCheckinDateToLocal:[NSDate dateWithTimeIntervalSince1970:[[statusDictionary objectForKey:@"created_at"] doubleValue]]] retain];
         createDate = [[NSDate dateWithTimeIntervalSince1970:[[statusDictionary objectForKey:@"created_at"] doubleValue]] retain];
         
         NSLog(@"tweet created at: %@", createDate);

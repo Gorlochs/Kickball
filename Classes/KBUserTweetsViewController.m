@@ -14,6 +14,22 @@
 @synthesize userDictionary;
 @synthesize username;
 
+- (void) viewDidLoad {
+    [super viewDidLoad];
+    if (self.userDictionary) {
+        screenNameLabel.text = [self.userDictionary objectForKey:@"screen_name"];
+        fullName.text = [self.userDictionary objectForKey:@"name"];
+        
+        CGRect frame = CGRectMake(11, 53, 49, 49);
+        userProfileImage = [[TTImageView alloc] initWithFrame:frame];
+        userProfileImage.backgroundColor = [UIColor clearColor];
+        userProfileImage.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
+        userProfileImage.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
+        userProfileImage.urlPath = [self.userDictionary objectForKey:@"profile_image_url"];
+        [self.view addSubview:userProfileImage];
+    }
+}
+
 - (void) showStatuses {
     [self startProgressBar:@"Retrieving your tweets..."];
     [self executeQuery:0];
