@@ -17,19 +17,22 @@ static NSString* kGetSessionProxy = nil; // @"<YOUR SESSION CALLBACK)>";
 
 @implementation AbstractFacebookViewController
 
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
         // Custom initialization
-        if (kGetSessionProxy) {
-            _session = [[FBSession sessionForApplication:kApiKey getSessionProxy:kGetSessionProxy delegate:self] retain];
-        } else {
-            _session = [[FBSession sessionForApplication:kApiKey secret:kApiSecret delegate:self] retain];
-        }
+
     }
     return self;
 }
 
 - (void)viewDidLoad {
+    if (kGetSessionProxy) {
+        _session = [[FBSession sessionForApplication:kApiKey getSessionProxy:kGetSessionProxy delegate:self] retain];
+    } else {
+        _session = [[FBSession sessionForApplication:kApiKey secret:kApiSecret delegate:self] retain];
+    }
+    NSLog(@"FB session: %@", _session);
     headerNibName = HEADER_NIB_FOURSQUARE;
     [super viewDidLoad];
     [_session resume];
@@ -44,7 +47,7 @@ static NSString* kGetSessionProxy = nil; // @"<YOUR SESSION CALLBACK)>";
 #pragma mark FBSessionDelegate
 
 - (void)session:(FBSession*)session didLogin:(FBUID)uid {
-
+    NSLog(@"User with id %lld logged in.", uid);
 }
 
 - (void)sessionDidNotLogin:(FBSession*)session {

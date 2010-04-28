@@ -10,7 +10,7 @@
 #import "AbstractFacebookViewController.h"
 
 
-@interface KBFacebookSearchViewController : AbstractFacebookViewController <UITableViewDelegate, UITableViewDataSource> {
+@interface KBFacebookSearchViewController : AbstractFacebookViewController {
 
 }
 

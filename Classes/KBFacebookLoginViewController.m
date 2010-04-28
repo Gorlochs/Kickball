@@ -11,6 +11,13 @@
 
 @implementation KBFacebookLoginViewController
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
+        // Custom initialization
+
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     
@@ -21,10 +28,17 @@
     FBLoginButton* button = [[[FBLoginButton alloc] init] autorelease];
     button.style = FBLoginButtonStyleWide;
     
-    button.frame = CGRectMake([self view].frame.size.width/2 - button.frame.size.width/2, 
-                              [self view].frame.size.height/2 - button.frame.size.height/2,
-                              button.frame.size.width, 
-                              button.frame.size.height);
+    CGRect frame = button.frame;
+    frame.origin = CGPointMake([self view].frame.size.width/2 - button.frame.size.width/2, 
+                               [self view].frame.size.height/2 - button.frame.size.height/2 - 20);
+    
+    button.frame = frame;
+    
+//    CGRectMake([self view].frame.size.width/2 - button.frame.size.width/2, 
+//                              [self view].frame.size.height/2 - button.frame.size.height/2 - 20,
+//                              button.frame.size.width, 
+//                              button.frame.size.height);
+    button.enabled = YES;
     [self.view addSubview:button];
 }
 
