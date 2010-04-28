@@ -17,6 +17,7 @@
 - (void)viewDidLoad {
     pageViewType = KBPageViewTypeList;
     [super viewDidLoad];
+    noResultsView.hidden = NO;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(searchRetrieved:) name:kTwitterSearchRetrievedNotificationKey object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTweetNotification:) name:IFTweetLabelURLNotification object:nil];
@@ -45,13 +46,17 @@
                 statuses = [[userInfo objectForKey:@"searchResults"] retain];
                 tweets = [[NSMutableArray alloc] initWithCapacity:[statuses count]];
                 //int i = 0;
-                for (NSDictionary *dict in statuses) {
-                    //if (i++ < [statuses count]) {
+                if ([statuses count] > 1) {
+                    
+                    for (NSDictionary *dict in statuses) {
                         [tweets addObject:[[KBSearchResult alloc] initWithDictionary:dict]];
-                    //}
+                    }
+                    // FIXME: remove last dictionary object
+                    [theTableView reloadData];
+                    noResultsView.hidden = YES;
+                } else {
+                    noResultsView.hidden = NO;
                 }
-                // FIXME: remove last dictionary object
-                [theTableView reloadData];
             }
         }
     }

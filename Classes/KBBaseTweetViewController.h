@@ -17,6 +17,7 @@
     NSArray *statuses;
     NSMutableArray *statusObjects;
     IBOutlet UITableViewCell *moreCell;
+    IBOutlet UIView *noResultsView;
 }
 
 - (void) showStatuses;
