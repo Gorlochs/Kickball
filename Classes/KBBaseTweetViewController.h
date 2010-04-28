@@ -21,7 +21,6 @@
 }
 
 - (void) showStatuses;
-- (void) getNextPage;
 - (void) executeQuery:(int)pageNumber;
  
 @end

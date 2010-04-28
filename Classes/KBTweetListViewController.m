@@ -98,18 +98,6 @@
     [[KBTwitterManager twitterManager] cacheStatusArray:tweets withKey:cachingKey];
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0) {
-        NSLog(@"******* did select row ********");
-        KBTwitterDetailViewController *detailViewController = [[KBTwitterDetailViewController alloc] initWithNibName:@"KBTwitterDetailViewController" bundle:nil];
-        detailViewController.tweet = [tweets objectAtIndex:indexPath.row];
-        [self.navigationController pushViewController:detailViewController animated:YES];
-        [detailViewController release];
-    } else {
-        [self executeQuery:++pageNum];
-    }
-}
-
 - (void) executeQuery:(int)pageNumber {
     [self.twitterEngine getFollowedTimelineSinceID:0 startingAtPage:pageNumber count:25];
 }

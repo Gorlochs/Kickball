@@ -142,11 +142,23 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    tweets = nil;
+    cachingKey = nil;
+    statuses = nil;
+    statusObjects = nil;
+    moreCell = nil;
+    noResultsView = nil;
 }
 
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [tweets release];
+    [cachingKey release];
+    [statuses release];
+    [statusObjects release];
+    [moreCell release];
+    [noResultsView release];
     [super dealloc];
 }
 

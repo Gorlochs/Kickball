@@ -55,27 +55,32 @@
 // FIXME: all these need to be fixed. we should be using navcontroller
 - (void) flipBetweenMapAndList {
     KBGeoTweetMapViewController *controller = [[KBGeoTweetMapViewController alloc] initWithNibName:@"KBGeoTweetMapViewController" bundle:nil];
-    [self.view addSubview:controller.view];
+    [self.navigationController pushViewController:controller animated:NO];
+    [controller release];
 }
 
 - (void) showUserTimeline {
     KBTweetListViewController *controller = [[KBTweetListViewController alloc] initWithNibName:@"KBTweetListViewController" bundle:nil];
-    [self.view addSubview:controller.view];
+    [self.navigationController pushViewController:controller animated:NO];
+    [controller release];
 }
 
 - (void) showMentions {
     KBMentionsViewController *controller = [[KBMentionsViewController alloc] initWithNibName:@"KBTweetListViewController" bundle:nil];
-    [self.view addSubview:controller.view];
+    [self.navigationController pushViewController:controller animated:NO];
+    [controller release];
 }
 
 - (void) showDirectMessages {
     KBDirectMessagesViewController *controller = [[KBDirectMessagesViewController alloc] initWithNibName:@"KBTweetListViewController" bundle:nil];
-    [self.view addSubview:controller.view];
+    [self.navigationController pushViewController:controller animated:NO];
+    [controller release];
 }
 
 - (void) showSearch {
     KBTwitterSearchViewController *controller = [[KBTwitterSearchViewController alloc] initWithNibName:@"KBTwitterSearchViewController" bundle:nil];
-    [self.view addSubview:controller.view];
+    [self.navigationController pushViewController:controller animated:NO];
+    [controller release];
 }
 
 - (void)didReceiveMemoryWarning {
