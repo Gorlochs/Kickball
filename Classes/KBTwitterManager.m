@@ -144,8 +144,8 @@ static KBTwitterManager *sharedInstance = nil;
 }
 
 - (void)userInfoReceived:(NSArray *)userInfo forRequest:(NSString *)connectionIdentifier {
-    
-    NSDictionary *ui = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[userInfo objectAtIndex:0], nil] forKeys:[NSArray arrayWithObjects:@"userInfo", nil]];
+    NSLog(@"************* userinfo: %@", userInfo);
+    NSDictionary *ui = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:userInfo, nil] forKeys:[NSArray arrayWithObjects:@"userInfo", nil]];
     [[NSNotificationCenter defaultCenter] postNotificationName:kTwitterUserInfoRetrievedNotificationKey
                                                         object:nil
                                                       userInfo:ui];

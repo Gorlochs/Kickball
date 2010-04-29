@@ -8,6 +8,7 @@
 
 #import "KBTwitterProfileViewController.h"
 #import "KBUserTweetsViewController.h"
+#import "KBTwitterUserListViewController.h"
 
 @implementation KBTwitterProfileViewController
 
@@ -28,7 +29,7 @@
 }
 
 - (void) userRetrieved:(NSNotification*)inNotification {
-    userDictionary = [[[inNotification userInfo] objectForKey:@"userInfo"] retain];
+    userDictionary = [[[[inNotification userInfo] objectForKey:@"userInfo"] objectAtIndex:0] retain];
     NSLog(@"user: %@", userDictionary);
     screenNameLabel.text = [userDictionary objectForKey:@"screen_name"];
     fullName.text = [userDictionary objectForKey:@"name"];
@@ -83,17 +84,19 @@
 }
 
 - (void) viewFollowers {
-//	KBTweetListViewController *tweetController = [[KBTweetListViewController alloc] initWithNibName:@"KBTweetListViewController" bundle:nil];
-//    tweetController.screenname = self.screenname;
-//	[self.navigationController pushViewController:tweetController animated:YES];
-//	[tweetController release];
+	KBTwitterUserListViewController *tweetController = [[KBTwitterUserListViewController alloc] initWithNibName:@"KBTwitterUserListViewController" bundle:nil];
+    tweetController.userDictionary = userDictionary;
+    tweetController.userType = KBTwitterUserFollower;
+	[self.navigationController pushViewController:tweetController animated:YES];
+	[tweetController release];
 }
 
 - (void) viewFriends {
-//	KBTweetListViewController *tweetController = [[KBTweetListViewController alloc] initWithNibName:@"KBTweetListViewController" bundle:nil];
-//    tweetController.screenname = self.screenname;
-//	[self.navigationController pushViewController:tweetController animated:YES];
-//	[tweetController release];
+	KBTwitterUserListViewController *tweetController = [[KBTwitterUserListViewController alloc] initWithNibName:@"KBTwitterUserListViewController" bundle:nil];
+    tweetController.userDictionary = userDictionary;
+    tweetController.userType = KBTwitterUserFriend;
+	[self.navigationController pushViewController:tweetController animated:YES];
+	[tweetController release];
 }
 
 - (void)didReceiveMemoryWarning {

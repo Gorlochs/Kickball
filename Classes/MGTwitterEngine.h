@@ -109,6 +109,8 @@
 
 - (NSString *)getFeaturedUsers; // statuses/features (undocumented, returns invalid JSON data)
 
+- (NSString *)getFriendsForUser:(NSString *)username;   // statuses/friends
+- (NSString *)getFollowersForUser:(NSString *)username; // statuses/followers
 
 // User methods
 

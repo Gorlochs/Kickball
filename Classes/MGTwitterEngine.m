@@ -1224,6 +1224,31 @@
                            responseType:MGTwitterUser];
 }
 
+- (NSString *)getFollowersForUser:(NSString *)username {
+    NSString *path = [NSString stringWithFormat:@"statuses/followers.%@", API_FORMAT];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
+    [params setObject:username forKey:@"screen_name"];
+    
+    return [self _sendRequestWithMethod:nil path:path 
+                        queryParameters:params 
+                                   body:nil 
+                            requestType:MGTwitterUser 
+                           responseType:MGTwitterUsers];
+}
+
+- (NSString *)getFriendsForUser:(NSString *)username {
+    NSString *path = [NSString stringWithFormat:@"statuses/friends.%@", API_FORMAT];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
+    [params setObject:username forKey:@"screen_name"];
+    
+    return [self _sendRequestWithMethod:nil path:path 
+                        queryParameters:params 
+                                   body:nil 
+                            requestType:MGTwitterUser 
+                           responseType:MGTwitterUsers];
+}
 
 #pragma mark Direct Message methods
 
