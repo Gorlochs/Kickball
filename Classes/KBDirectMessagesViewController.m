@@ -78,6 +78,10 @@
     [twitterEngine getDirectMessagesSinceID:0 startingAtPage:pageNumber];
 }
 
+- (void) refreshTable {
+    [self showStatuses];
+}
+
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];

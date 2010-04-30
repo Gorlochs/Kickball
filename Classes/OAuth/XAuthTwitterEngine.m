@@ -281,6 +281,119 @@
 
 #define SET_AUTHORIZATION_IN_HEADER 1
 
+//- (NSString *)_sendRequestWithMethod:(NSString *)method 
+//                                path:(NSString *)path 
+//                     queryParameters:(NSDictionary *)params 
+//                                body:(NSString *)body 
+//                         requestType:(MGTwitterRequestType)requestType 
+//                        responseType:(MGTwitterResponseType)responseType
+//{
+//    NSString *fullPath = path;
+//	
+//	// --------------------------------------------------------------------------------
+//	// modificaiton from the base clase
+//	// the base class appends parameters here
+//	// --------------------------------------------------------------------------------
+//	    if (params) {
+//	        fullPath = [self _queryStringWithBase:fullPath parameters:params prefixed:YES];
+//	    }
+//	// --------------------------------------------------------------------------------
+//	
+//	NSString *domain = nil;
+//	NSString *connectionType = nil;
+//    if (requestType == MGTwitterSearchRequest || requestType == MGTwitterSearchCurrentTrendsRequest) {
+//		domain = _searchDomain;
+//		connectionType = @"http";
+//	} else {
+//		domain = _APIDomain;
+//		if (_secureConnection)
+//		{
+//			connectionType = @"https";
+//		}
+//		else
+//		{
+//			connectionType = @"http";
+//		}
+//	}
+//    NSString *urlString = [NSString stringWithFormat:@"%@://%@/%@", 
+//                           //(_secureConnection) ? @"https" : @"http",
+//                           connectionType,
+//                           domain, 
+//                           fullPath];
+//    NSURL *finalURL = [NSURL URLWithString:urlString];
+//    NSLog(@"XAuthTwitterEngine: finalURL = %@", finalURL);
+//    if (!finalURL) {
+//        return nil;
+//    }
+//	
+//	// --------------------------------------------------------------------------------
+//	// modificaiton from the base clase
+//	// the base class creates a regular url request
+//	// we're going to create an oauth url request
+//	// --------------------------------------------------------------------------------
+//	//    NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:finalURL 
+//	//                                                              cachePolicy:NSURLRequestReloadIgnoringCacheData 
+//	//                                                          timeoutInterval:URL_REQUEST_TIMEOUT];
+//	// --------------------------------------------------------------------------------
+//	NSLog(@"here %@", _accessToken);
+//	OAMutableURLRequest *theRequest = [[[OAMutableURLRequest alloc] initWithURL:finalURL
+//																	   consumer:self.consumer 
+//																		  token:_accessToken 
+//																		  realm: nil
+//															  signatureProvider:nil] autorelease];
+//    if (method) {
+//        [theRequest setHTTPMethod:method];
+//    }
+//    [theRequest setHTTPShouldHandleCookies:NO];
+//    
+//    // Set headers for client information, for tracking purposes at Twitter.
+//    [theRequest setValue:_clientName    forHTTPHeaderField:@"X-Twitter-Client"];
+//    [theRequest setValue:_clientVersion forHTTPHeaderField:@"X-Twitter-Client-Version"];
+//    [theRequest setValue:_clientURL     forHTTPHeaderField:@"X-Twitter-Client-URL"];
+//    
+//    // Set the request body if this is a POST request.
+//    BOOL isPOST = (method && [method isEqualToString:@"POST"]);
+//    if (isPOST) {
+//        NSLog(@"http method:  POST!");
+//        // Set request body, if specified (hopefully so), with 'source' parameter if appropriate.
+//        NSString *finalBody = @"";
+//		if (body) {
+//			finalBody = [finalBody stringByAppendingString:body];
+//		}
+//        if (_clientSourceToken) {
+//            finalBody = [finalBody stringByAppendingString:[NSString stringWithFormat:@"%@source=%@", 
+//                                                            (body) ? @"&" : @"?" , 
+//                                                            _clientSourceToken]];
+//        }
+//        
+//        if (finalBody) {
+//            [theRequest setHTTPBody:[finalBody dataUsingEncoding:NSUTF8StringEncoding]];
+//        }
+//    }
+//	
+//	// --------------------------------------------------------------------------------
+//	// modificaiton from the base clase
+//	// our version "prepares" the oauth url request
+//	// --------------------------------------------------------------------------------
+//	[theRequest prepare];
+//    // Create a connection using this request, with the default timeout and caching policy, 
+//    // and appropriate Twitter request and response types for parsing and error reporting.
+//    MGTwitterHTTPURLConnection *connection;
+//    connection = [[MGTwitterHTTPURLConnection alloc] initWithRequest:theRequest 
+//                                                            delegate:self 
+//                                                         requestType:requestType 
+//                                                        responseType:responseType];
+//    
+//    if (!connection) {
+//        return nil;
+//    } else {
+//        [_connections setObject:connection forKey:[connection identifier]];
+//        [connection release];
+//    }
+//    
+//    return [connection identifier];
+//}
+
 - (NSString *)_sendRequestWithMethod:(NSString *)method 
                                 path:(NSString *)path 
                      queryParameters:(NSDictionary *)params 
@@ -291,15 +404,17 @@
     NSString *fullPath = path;
 	
 	// --------------------------------------------------------------------------------
-	// modificaiton from the base clase
+	// modification from the base clase
 	// the base class appends parameters here
 	// --------------------------------------------------------------------------------
-	    if (params) {
-	        fullPath = [self _queryStringWithBase:fullPath parameters:params prefixed:YES];
-	    }
+    
+    // I had to uncomment this out for stuff to work properly. Not sure why it was commented out. -shawn-
+    if (params) {
+        fullPath = [self _queryStringWithBase:fullPath parameters:params prefixed:YES];
+    }
 	// --------------------------------------------------------------------------------
 	
-	NSString *domain = nil;
+    NSString *domain = nil;
 	NSString *connectionType = nil;
     if (requestType == MGTwitterSearchRequest || requestType == MGTwitterSearchCurrentTrendsRequest) {
 		domain = _searchDomain;
@@ -316,15 +431,24 @@
 		}
 	}
     NSString *urlString = [NSString stringWithFormat:@"%@://%@/%@", 
-                           //(_secureConnection) ? @"https" : @"http",
                            connectionType,
                            domain, 
                            fullPath];
     NSURL *finalURL = [NSURL URLWithString:urlString];
-    NSLog(@"XAuthTwitterEngine: finalURL = %@", finalURL);
     if (!finalURL) {
         return nil;
     }
+    NSLog(@"XAuthTwitterEngine: finalURL = %@", finalURL);
+	
+	//
+	// Check if we're authorized. If not don't carry out the request.
+	// Note: This will result in the delegate callback for the cached request token
+	// ===== to be called if it doesn't already exist.
+	//
+	if (![self isAuthorized])
+	{
+		return nil;
+	}
 	
 	// --------------------------------------------------------------------------------
 	// modificaiton from the base clase
@@ -335,7 +459,7 @@
 	//                                                              cachePolicy:NSURLRequestReloadIgnoringCacheData 
 	//                                                          timeoutInterval:URL_REQUEST_TIMEOUT];
 	// --------------------------------------------------------------------------------
-	NSLog(@"here %@", _accessToken);
+	NSLog(@"About to carry out request with access token: %@", _accessToken);
 	OAMutableURLRequest *theRequest = [[[OAMutableURLRequest alloc] initWithURL:finalURL
 																	   consumer:self.consumer 
 																		  token:_accessToken 
@@ -354,7 +478,6 @@
     // Set the request body if this is a POST request.
     BOOL isPOST = (method && [method isEqualToString:@"POST"]);
     if (isPOST) {
-        NSLog(@"http method:  POST!");
         // Set request body, if specified (hopefully so), with 'source' parameter if appropriate.
         NSString *finalBody = @"";
 		if (body) {
@@ -393,7 +516,6 @@
     
     return [connection identifier];
 }
-
 
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
 {

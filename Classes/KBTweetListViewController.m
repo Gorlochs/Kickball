@@ -102,6 +102,10 @@
     [self.twitterEngine getFollowedTimelineSinceID:0 startingAtPage:pageNumber count:25];
 }
 
+- (void) refreshTable {
+    [self showStatuses];
+}
+
 #pragma mark -
 #pragma mark MGTwitterEngineDelegate methods
 

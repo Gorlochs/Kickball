@@ -1672,7 +1672,7 @@
 
 			Ex: http://search.twitter.com/search.atom?geocode=40.757929%2C-73.985506%2C25km
 	*/
-
+    NSLog(@"params: %@", params);
 	
     return [self _sendRequestWithMethod:nil path:path queryParameters:params body:nil 
                             requestType:MGTwitterSearchRequest 

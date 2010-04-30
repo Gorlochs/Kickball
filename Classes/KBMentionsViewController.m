@@ -77,6 +77,10 @@
     [twitterEngine getRepliesSinceID:0 startingAtPage:pageNumber count:25];
 }
 
+- (void) refreshTable {
+    [self showStatuses];
+}
+
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];

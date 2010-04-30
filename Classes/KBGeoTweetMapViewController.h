@@ -11,7 +11,7 @@
 #import "KBBaseTweetViewController.h"
 
 
-@interface KBGeoTweetMapViewController : KBBaseTweetViewController {
+@interface KBGeoTweetMapViewController : KBBaseTweetViewController <MKMapViewDelegate> {
 	IBOutlet MKMapView * mapViewer;
 	MKCoordinateRegion mapRegion;
 }

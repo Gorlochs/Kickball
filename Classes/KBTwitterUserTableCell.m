@@ -28,7 +28,7 @@
         iconBgImage.frame = CGRectMake(6, 10, 54, 54);
         [self addSubview:iconBgImage];
         
-        userName = [[UILabel alloc] initWithFrame:CGRectMake(66, 20, 150, 20)];
+        userName = [[UILabel alloc] initWithFrame:CGRectMake(66, 24, 150, 20)];
         userName.textColor = [UIColor colorWithRed:25.0/255.0 green:144.0/255.0 blue:219.0/255.0 alpha:1.0];
         userName.font = [UIFont boldSystemFontOfSize:16.0];
         userName.backgroundColor = [UIColor clearColor];

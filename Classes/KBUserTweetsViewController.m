@@ -56,6 +56,10 @@
     }
 }
 
+- (void) refreshTable {
+    [self showStatuses];
+}
+
 - (void)dealloc {
     [userDictionary release];
     [username release];

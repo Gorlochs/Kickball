@@ -9,6 +9,8 @@
 #import "KBTwitterUserListViewController.h"
 #import "KBTwitterUser.h"
 #import "KBTwitterUserTableCell.h"
+#import "KBTwitterProfileViewController.h"
+
 
 @implementation KBTwitterUserListViewController
 
@@ -34,12 +36,13 @@
 }
 
 - (void) showStatuses {
+    // it was either this, or extending this class and overriding one method. 
+    [self startProgressBar:@"Retrieving users..."];
     if (userType == KBTwitterUserFollower) {
         [twitterEngine getFollowersForUser:[userDictionary objectForKey:@"screen_name"]];
     } else {
         [twitterEngine getFriendsForUser:[userDictionary objectForKey:@"screen_name"]];
     }
-    
 }
 
 - (void) usersRetrieved:(NSNotification *)inNotification {
@@ -87,11 +90,13 @@
     KBTwitterUserTableCell *cell = (KBTwitterUserTableCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[KBTwitterUserTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
     // Configure the cell...
     KBTwitterUser *user = [users objectAtIndex:indexPath.row];
-    cell.userName.text = user.fullName;    
+    cell.userName.text = user.fullName;
+    cell.userIcon.urlPath = user.profileImageUrl;
     return cell;
 }
 
@@ -100,14 +105,10 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-	/*
-	 <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-	 [self.navigationController pushViewController:detailViewController animated:YES];
-	 [detailViewController release];
-	 */
+	KBTwitterProfileViewController *profileController = [[KBTwitterProfileViewController alloc] initWithNibName:@"KBTwitterProfileViewController" bundle:nil];
+    profileController.screenname = ((KBTwitterUser*)[users objectAtIndex:indexPath.row]).screenName;
+	[self.navigationController pushViewController:profileController animated:YES];
+	[profileController release];
 }
 
 
