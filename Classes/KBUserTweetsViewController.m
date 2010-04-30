@@ -35,6 +35,21 @@
     [self executeQuery:0];
 }
 
+- (void) executeQuery:(int)pageNumber {
+    if (self.userDictionary) {
+        [twitterEngine getUserTimelineFor:[self.userDictionary objectForKey:@"screen_name"] sinceID:0 startingAtPage:pageNumber count:25];
+    } else {
+        [twitterEngine getUserTimelineFor:self.username sinceID:0 startingAtPage:pageNumber count:25];
+    }
+}
+
+- (void) refreshTable {
+    [self showStatuses];
+}
+
+#pragma mark -
+#pragma mark memory management
+
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
@@ -46,18 +61,6 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-}
-
-- (void) executeQuery:(int)pageNumber {
-    if (self.userDictionary) {
-        [twitterEngine getUserTimelineFor:[self.userDictionary objectForKey:@"screen_name"] sinceID:0 startingAtPage:pageNumber count:25];
-    } else {
-        [twitterEngine getUserTimelineFor:self.username sinceID:0 startingAtPage:pageNumber count:25];
-    }
-}
-
-- (void) refreshTable {
-    [self showStatuses];
 }
 
 - (void)dealloc {

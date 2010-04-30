@@ -54,7 +54,9 @@
             //NSLog(@"users retrieved: %@", users);
             users = [[NSMutableArray alloc] initWithCapacity:[statuses count]];
             for (NSDictionary *dict in statuses) {
-                [users addObject:[[KBTwitterUser alloc] initWithDictionary:dict]];
+                KBTwitterUser *user = [[KBTwitterUser alloc] initWithDictionary:dict];
+                [users addObject:user];
+                [user release];
             }
             [theTableView reloadData];
         }

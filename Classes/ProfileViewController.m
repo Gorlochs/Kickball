@@ -146,6 +146,7 @@
             [btn addTarget:self action:@selector(didTapBadge:) forControlEvents:UIControlEventTouchUpInside];
             [badgeCell addSubview:btn];
             [badgeCell bringSubviewToFront:btn];
+            [btn release];
 
             x++;
             if (x%BADGES_PER_ROW == 0) {
@@ -360,7 +361,7 @@
     if (section == 0) {
         return NULL;
     } else {
-        BlackTableCellHeader *headerView = [[BlackTableCellHeader alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 36)];
+        BlackTableCellHeader *headerView = [[[BlackTableCellHeader alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 36)] autorelease];
         
         switch (section) {
             case 0:
@@ -384,14 +385,12 @@
                 break;
             case 2:
                 if ([user.mayorOf count] < 1) {
-                    [headerView.leftHeaderLabel release];
                     return nil;
                 }
                 headerView.leftHeaderLabel.text = [NSString stringWithFormat:@"%d Mayorship%@", [user.mayorOf count], [user.mayorOf count] > 1 ? @"s" : @""];
                 break;
             case 3:
                 if ([user.badges count] < 1) {
-                    [headerView release];
                     return nil;
                 }
                 headerView.leftHeaderLabel.text = [NSString stringWithFormat:@"%d Badge%@", [user.badges count], [user.badges count] > 1 ? @"s" : @""];

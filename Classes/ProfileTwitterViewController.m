@@ -70,7 +70,9 @@
     }
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+    NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    [dateFormatter setLocale:locale];
+    [locale release];
     [dateFormatter setDateFormat:TWITTER_DATE_FORMAT];
     //[dateFormatter setDateFormat:@"yyyy-MM-dd"];
     

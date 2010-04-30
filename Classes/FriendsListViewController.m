@@ -354,7 +354,7 @@
 // TODO: most of the below header label stuff should be pulled up into a method in KBBBaseViewController
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
-    TableSectionHeaderView *headerView = [[TableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)];
+    TableSectionHeaderView *headerView = [[[TableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)] autorelease];
     
     // damn, this is ugly.  nil should be returned before all the above code is executed.  
     // probably should extract the headerLabel construction and just have a single switch in here
@@ -369,7 +369,6 @@
                 headerView.leftHeaderLabel.text = @"Recent Check-ins";
                 headerView.rightHeaderLabel.text = @"Mins Ago";
             } else {
-                [headerView release];
                 return nil;
             }
             break;
@@ -378,7 +377,6 @@
                 headerView.leftHeaderLabel.text = @"Today";
                 headerView.rightHeaderLabel.text = @"Hours Ago";
             } else {
-                [headerView release];
                 return nil;
             }
             break;
@@ -387,7 +385,6 @@
                 headerView.leftHeaderLabel.text = @"Older";
                 headerView.rightHeaderLabel.text = @"Days Ago";
             } else {
-                [headerView release];
                 return nil;
             }
             break;
@@ -396,13 +393,11 @@
                 headerView.leftHeaderLabel.text = @"Other Cities";
                 headerView.rightHeaderLabel.text = @"*TODO*";
             } else {
-                [headerView release];
                 return nil;
             }
             break;
         case SECTION_MORE_BUTTON:  // more cell
         case SECTION_FOOTER:  // footer cell
-            [headerView release];
             return nil;
         default:
             headerView.leftHeaderLabel.text = @"You shouldn't see this";

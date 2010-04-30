@@ -115,6 +115,17 @@
 
 
 - (void)dealloc {
+    [screenNameLabel release];
+    [fullName release];
+    [location release];
+    [numberOfFollowers release];
+    [numberOfFriends release];
+    [description release];
+    [userIcon release];
+    [iconBgImage release];
+    
+    [screenname release];
+    [userDictionary release];
     [super dealloc];
 }
 

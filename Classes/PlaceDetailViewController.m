@@ -477,17 +477,15 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
 
-    BlackTableCellHeader *headerView = [[BlackTableCellHeader alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)];
+    BlackTableCellHeader *headerView = [[[BlackTableCellHeader alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)] autorelease];
     
     switch (section) {
         case 0:
         case 1:
-            [headerView release];
             return nil;
             break;
         case 2:
             if (venue.hereNow == 0 ) {
-                [headerView release];
                 return nil;
             } else {
                 headerView.leftHeaderLabel.text = [NSString stringWithFormat:@"%d %@ Here", venue.hereNow, venue.hereNow == 1 ? @"Person" : @"People"];
@@ -506,7 +504,6 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
             break;
         case 3: 
             if ([goodies count] == 0) {
-                [headerView release];
                 return nil;
             } else {
                 photoHeaderLabel.text = [NSString stringWithFormat:@"%d %@", [goodies count], [goodies count] == 1 ? @"Photo" : @"Photos"];
@@ -514,12 +511,10 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
             }
             break;
         case 4:
-            [headerView release];
             return nil;
             break;
         case 5:  
             if ([venue.tips count] == 0) {
-                [headerView release];
                 return nil;
             } else {
                 headerView.leftHeaderLabel.text = [NSString stringWithFormat:@"%d %@", [venue.tips count], [venue.tips count] == 1 ? @"Tip" : @"Tips"];

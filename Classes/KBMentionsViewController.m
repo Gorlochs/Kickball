@@ -47,7 +47,9 @@
                 //NSLog(@"status retrieved: %@", statuses);
                 NSMutableArray *tempTweetArray = [[NSMutableArray alloc] initWithCapacity:[statuses count]];
                 for (NSDictionary *dict in statuses) {
-                    [tempTweetArray addObject:[[KBTweet alloc] initWithDictionary:dict]];
+                    KBTweet *tweet = [[KBTweet alloc] initWithDictionary:dict];
+                    [tempTweetArray addObject:tweet];
+                    [tweet release];
                 }
                 // not very pretty, but it gets the job done. if there is a cached array, combine them.
                 // the other way to do it would be to just add all the objects (above) by index

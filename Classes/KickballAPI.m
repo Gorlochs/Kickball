@@ -98,7 +98,7 @@ static KickballAPI* _kickballApi = nil;
 }
 
 - (MockPhotoSource*) convertGoodiesIntoPhotoSource:(NSArray*)goodies withTitle:(NSString*)photoSourceTitle {
-    NSMutableArray *tempTTPhotoArray = [[NSMutableArray alloc] initWithCapacity:[goodies count]];
+    NSMutableArray *tempTTPhotoArray = [[[NSMutableArray alloc] initWithCapacity:[goodies count]] autorelease];
     for (KBGoody *goody in goodies) {
         NSString *caption = nil;
         if (goody.messageText != nil && ![goody.messageText isEqualToString:@"testing"]) {
@@ -164,21 +164,24 @@ static KickballAPI* _kickballApi = nil;
 	self = [super init];
 	if (self != nil) {
 		// initialize stuff here
+        NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
         
         // prepare date formatter
         goodyDateFormatter = [[NSDateFormatter alloc] init];
-        [goodyDateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+        [goodyDateFormatter setLocale:locale];
         [goodyDateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
         
         // prepare other date formatter
         photoDateFormatter = [[NSDateFormatter alloc] init];
-        [photoDateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+        [photoDateFormatter setLocale:locale];
         [photoDateFormatter setDateFormat:@"LLLL dd, hh:mm a"];
         
         // prepare twitter date formatter
         twitterDateFormatter = [[NSDateFormatter alloc] init];
-        [twitterDateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+        [twitterDateFormatter setLocale:locale];
         [twitterDateFormatter setDateFormat:kMGTwitterDateFormatString];
+        
+        [locale release];
 	}
     
 	return self;

@@ -49,7 +49,9 @@
                 if ([statuses count] > 1) {
                     
                     for (NSDictionary *dict in statuses) {
-                        [tweets addObject:[[KBSearchResult alloc] initWithDictionary:dict]];
+                        KBSearchResult *result = [[KBSearchResult alloc] initWithDictionary:dict];
+                        [tweets addObject:result];
+                        [result release];
                     }
                     // FIXME: remove last dictionary object
                     [theTableView reloadData];
@@ -122,6 +124,8 @@
 
 
 - (void)dealloc {
+    [searchTerms release];
+    [theSearchBar release];
     [super dealloc];
 }
 

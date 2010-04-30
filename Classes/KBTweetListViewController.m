@@ -72,7 +72,9 @@
             
             NSMutableArray *tempTweetArray = [[NSMutableArray alloc] initWithCapacity:[statuses count]];
             for (NSDictionary *dict in statuses) {
-                [tempTweetArray addObject:[[KBTweet alloc] initWithDictionary:dict]];
+                KBTweet *tweet = [[KBTweet alloc] initWithDictionary:dict];
+                [tempTweetArray addObject:tweet];
+                [tweet release];
             }
             // not very pretty, but it gets the job done. if there is a cached array, combine them.
             // the other way to do it would be to just add all the objects (above) by index
@@ -125,17 +127,18 @@
     [super didReceiveMemoryWarning];
     
     // Relinquish ownership any cached data, images, etc that aren't in use.
+    loginController = nil;
 }
 
 - (void)viewDidUnload {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
     // For example: self.myOutlet = nil;
+    loginController = nil;
 }
 
 
 - (void)dealloc {
-    [statuses release];
-    [tweets release];
+    [loginController release];
     [super dealloc];
 }
 

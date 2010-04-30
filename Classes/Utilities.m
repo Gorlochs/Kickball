@@ -66,7 +66,9 @@ static Utilities *sharedInstance = nil;
     if (!foursquareCheckinDateFormatter) {
         foursquareCheckinDateFormatter = [[NSDateFormatter alloc] init];
         [foursquareCheckinDateFormatter setDateFormat:@"EEE, dd MMM yy HH:mm:ss"];
-        [foursquareCheckinDateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];  
+        NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+        [foursquareCheckinDateFormatter setLocale:locale];
+        [locale release];
     }
     return foursquareCheckinDateFormatter;
 }

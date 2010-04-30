@@ -45,7 +45,9 @@
             tweets = [[NSMutableArray alloc] initWithCapacity:[statuses count]];
             //int i = 0;
             for (NSDictionary *dict in statuses) {
-                [tweets addObject:[[KBSearchResult alloc] initWithDictionary:dict]];
+                KBSearchResult *result = [[KBSearchResult alloc] initWithDictionary:dict];
+                [tweets addObject:result];
+                [result release];
             }
             //[self refreshMap];
         }

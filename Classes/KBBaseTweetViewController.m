@@ -25,11 +25,13 @@
         KBUserTweetsViewController *controller = [[KBUserTweetsViewController alloc] initWithNibName:@"KBUserTweetsViewController" bundle:nil];
         controller.username = [notification object];
         [self.navigationController pushViewController:controller animated:YES];
+        [controller release];
     } else if ([[notification object] rangeOfString:@"#"].location == 0) {
         // TODO: push hashtag search view (http://search.twitter.com/search.atom?q=%23haiku)
         KBTwitterSearchViewController *controller = [[KBTwitterSearchViewController alloc] initWithNibName:@"KBTweetListViewController" bundle:nil];
         controller.searchTerms = [notification object];
         [self.navigationController pushViewController:controller animated:YES];
+        [controller release];
     } else {
         // TODO: push properly styled web view
         [self openWebView:[notification object]];

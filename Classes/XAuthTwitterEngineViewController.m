@@ -54,6 +54,7 @@
 	// e.g. self.myOutlet = nil;
 	self.twitterUsername = nil;
 	self.twitterPassword = nil;
+    self.twitterEngine = nil;
 }
 
 
