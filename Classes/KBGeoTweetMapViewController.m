@@ -59,7 +59,7 @@
     [twitterEngine getSearchResultsForQuery:nil
                                     sinceID:0 
                              startingAtPage:pageNumber
-                                      count:25 
+                                      count:100
                                     geocode:[NSString stringWithFormat:@"%@,%@,%dmi", 
                                              [NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] latitude]],
                                              [NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] longitude]],
@@ -125,23 +125,23 @@
 //    }
 //}
 //
-//- (void) refreshVenuePoints {
+//- (void) refreshMap {
 //    
-//    NSMutableArray *tmpArray = [[NSMutableArray alloc] initWithCapacity:1];
-//    for (id<MKAnnotation> annotation in mapViewer.annotations) {
-//        if( ![[annotation title] isEqualToString:@"Current Location"] ) {
-//            [tmpArray addObject:annotation];
-//        }
-//    }
-//    [mapViewer removeAnnotations:tmpArray];
-//    [tmpArray release];
+////    NSMutableArray *tmpArray = [[NSMutableArray alloc] initWithCapacity:1];
+////    for (id<MKAnnotation> annotation in mapViewer.annotations) {
+////        if( ![[annotation title] isEqualToString:@"Current Location"] ) {
+////            [tmpArray addObject:annotation];
+////        }
+////    }
+////    [mapViewer removeAnnotations:tmpArray];
+////    [tmpArray release];
 //    
 //    double minLat = 1000;
 //    double maxLat = -1000;
 //    double minLong = 1000;
 //    double maxLong = -1000;
 //    
-//    for (FSVenue *venue in self.venues)
+//    for (KBTweet *tweet in nearbyTweets)
 //    {
 //        double lat = venue.geolat.doubleValue;
 //        double lng = venue.geolong.doubleValue;

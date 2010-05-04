@@ -14,7 +14,7 @@
 #import "KBLocationManager.h"
 #import "FSCategory.h"
 
-#define USER_AGENT @"Kickball:1.0.0"
+#define USER_AGENT @"Kickball:1.1.0"
 
 static FoursquareAPI *sharedInstance = nil;
 

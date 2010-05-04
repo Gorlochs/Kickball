@@ -8,16 +8,27 @@
 
 #import <UIKit/UIKit.h>
 #import "AbstractPushNotificationViewController.h"
+#import "XAuthTwitterEngine.h"
+#import "MGTwitterEngineDelegate.h"
 
-@interface KBShoutViewController : AbstractPushNotificationViewController <UITextViewDelegate> {
+
+@interface KBShoutViewController : AbstractPushNotificationViewController <UITextViewDelegate, MGTwitterEngineDelegate> {
     IBOutlet UITextView *theTextView;
     NSString *venueId;
     IBOutlet UIView *checkinView;
     IBOutlet UIView *nonCheckinView;
     IBOutlet UILabel *characterCountLabel;
     BOOL isCheckin;
+    
+    BOOL isTwitterOn;
+    BOOL isFacebookOn;
+    IBOutlet UIButton *twitterButton;
+    IBOutlet UIButton *facebookButton;
+    XAuthTwitterEngine *twitterEngine;
+    BOOL isReadyToClose;
 }
 
+@property (nonatomic, retain) XAuthTwitterEngine *twitterEngine;
 @property (nonatomic, retain) NSString *venueId;
 @property (nonatomic) BOOL isCheckin;
 
@@ -26,6 +37,9 @@
 - (IBAction) shoutAndCheckin;
 - (IBAction) shoutAndTweetAndCheckin;
 - (IBAction) cancelView;
+- (IBAction) toggleTwitter;
+- (IBAction) toggleFacebook;
 - (void) closeUpShop;
+- (void) statusRetrieved:(NSNotification *)inNotification;
 
 @end

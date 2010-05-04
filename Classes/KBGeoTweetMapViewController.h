@@ -14,6 +14,7 @@
 @interface KBGeoTweetMapViewController : KBBaseTweetViewController <MKMapViewDelegate> {
 	IBOutlet MKMapView * mapViewer;
 	MKCoordinateRegion mapRegion;
+    NSArray *nearbyTweets;
 }
 
 @end

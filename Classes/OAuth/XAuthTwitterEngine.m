@@ -409,7 +409,9 @@
 	// --------------------------------------------------------------------------------
     
     // I had to uncomment this out for stuff to work properly. Not sure why it was commented out. -shawn-
-    if (params) {
+    // TOTAL HACK ALERT: sending a tweet/update craps out unless this code is not executed, but 
+    //                   everything else needs it. Go figure.
+    if (params && requestType != MGTwitterUpdateSendRequest) {
         fullPath = [self _queryStringWithBase:fullPath parameters:params prefixed:YES];
     }
 	// --------------------------------------------------------------------------------
@@ -421,7 +423,7 @@
 		connectionType = @"http";
 	} else {
 		domain = _APIDomain;
-		if (_secureConnection)
+		if (_secureConnection && requestType != MGTwitterUpdateSendRequest)
 		{
 			connectionType = @"https";
 		}

@@ -36,7 +36,7 @@
         [self createNotificationObservers];
 		[self showStatuses];
 	} else {
-        loginController = [[XAuthTwitterEngineViewController alloc] initWithNibName:@"XAuthTwitterEngineDemoViewController" bundle:nil];
+        loginController = [[XAuthTwitterEngineViewController alloc] initWithNibName:@"TwitterLoginView_v2" bundle:nil];
         [self presentModalViewController:loginController animated:YES];
         [loginController release];
     }

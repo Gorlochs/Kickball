@@ -13,19 +13,33 @@
 #import "NSString+hmac.h"
 #import "MPOAuthSignatureParameter.h"
 #import "FriendsListViewController.h"
+#import "FSUser.h"
+#import "KBTwitterManager.h"
+#import "KBLocationManager.h"
 
 
 @implementation KBShoutViewController
 
 @synthesize venueId;
 @synthesize isCheckin;
+@synthesize twitterEngine;
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
+    self.twitterEngine = [[KBTwitterManager twitterManager] twitterEngine];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusRetrieved:) name:kTwitterStatusRetrievedNotificationKey object:nil];
+    
     pageType = KBPageTypeOther;
     [super viewDidLoad];
     [theTextView becomeFirstResponder];
     theTextView.font = [UIFont fontWithName:@"Georgia" size:12.0];
+    
+    FSUser* user = [self getAuthenticatedUser];
+    facebookButton.enabled = user.facebook != nil;
+    twitterButton.enabled = user.twitter != nil;
+    isFacebookOn = facebookButton.enabled;
+    isTwitterOn = twitterButton.enabled;
+    isReadyToClose = YES;
     
     if (isCheckin) {
         nonCheckinView.hidden = YES;
@@ -39,6 +53,34 @@
 - (void) cancelView {
     [self dismissModalViewControllerAnimated:YES];
 }
+
+#pragma mark -
+#pragma mark IBActions
+
+- (void) toggleTwitter {
+    if (isTwitterOn) {
+        [twitterButton setImage:[UIImage imageNamed:@"tw02.png"] forState:UIControlStateNormal];
+        [twitterButton setImage:[UIImage imageNamed:@"tw03.png"] forState:UIControlStateHighlighted];
+    } else {
+        [twitterButton setImage:[UIImage imageNamed:@"tw01.png"] forState:UIControlStateNormal];
+        [twitterButton setImage:[UIImage imageNamed:@"tw04.png"] forState:UIControlStateHighlighted];
+    }
+    isTwitterOn = !isTwitterOn;
+}
+
+- (void) toggleFacebook {
+    if (isFacebookOn) {
+        [facebookButton setImage:[UIImage imageNamed:@"fb02.png"] forState:UIControlStateNormal];
+        [facebookButton setImage:[UIImage imageNamed:@"fb03.png"] forState:UIControlStateHighlighted];
+    } else {
+        [facebookButton setImage:[UIImage imageNamed:@"fb01.png"] forState:UIControlStateNormal];
+        [facebookButton setImage:[UIImage imageNamed:@"fb04.png"] forState:UIControlStateHighlighted];
+    }
+    isFacebookOn = !isFacebookOn;
+}
+
+#pragma mark -
+#pragma mark shout related methods
 
 - (void) shoutAndCheckin {
     
@@ -57,32 +99,40 @@
     if ([theTextView.text length] > 0) {
         [theTextView resignFirstResponder];
         [self startProgressBar:@"Shouting..."];
+        
         [[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:nil 
                                                       andShout:theTextView.text 
                                                        offGrid:NO
                                                      toTwitter:NO
+                                                    toFacebook:NO 
                                                     withTarget:self 
                                                      andAction:@selector(shoutResponseReceived:withResponseString:)];
+        
+        // we send twitter/facebook api calls ourself so that the tweets and posts are stamped with the Kickball brand
+        if (isTwitterOn) {
+            // TODO: check for twitter login
+            isReadyToClose = NO;
+            [self.twitterEngine sendUpdate:theTextView.text
+                         withLatitude:[[KBLocationManager locationManager] latitude] 
+                        withLongitude:[[KBLocationManager locationManager] longitude]];
+        }
+        
+        if (isFacebookOn) {
+            // TODO: check for facebook login
+            isReadyToClose = NO;
+        }
+        
         [[Beacon shared] startSubBeaconWithName:@"Shout"];
     } else {
         NSLog(@"no text in shout field");
     }
 }
 
-- (void) shoutAndTweet {
-    if ([theTextView.text length] > 0) {
-        [theTextView resignFirstResponder];
-        [self startProgressBar:@"Shouting and tweeting..."];
-        [[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:nil 
-                                                      andShout:theTextView.text 
-                                                       offGrid:NO
-                                                     toTwitter:YES
-                                                    withTarget:self 
-                                                     andAction:@selector(shoutResponseReceived:withResponseString:)];
-        [[Beacon shared] startSubBeaconWithName:@"Shout"];
-    } else {
-        NSLog(@"no text in shout field");
+- (void) statusRetrieved:(NSNotification *)inNotification {
+    if (isReadyToClose) {
+        [self closeUpShop];
     }
+    isReadyToClose = YES;
 }
 
 - (void) shoutAndTweetAndCheckin {
@@ -103,7 +153,10 @@
     
     self.shoutToPush = [NSString stringWithString:theTextView.text];
     [self sendPushNotification];
-    [self closeUpShop];
+    if (isReadyToClose) {
+        [self closeUpShop];
+    }
+    isReadyToClose = YES;
 }
 
 - (void) closeUpShop {
