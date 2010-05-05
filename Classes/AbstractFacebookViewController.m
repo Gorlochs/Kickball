@@ -33,8 +33,15 @@ static NSString* kGetSessionProxy = nil; // @"<YOUR SESSION CALLBACK)>";
         _session = [[FBSession sessionForApplication:kApiKey secret:kApiSecret delegate:self] retain];
     }
     NSLog(@"FB session: %@", _session);
-    headerNibName = HEADER_NIB_FOURSQUARE;
+    //headerNibName = HEADER_NIB_FOURSQUARE;
     [super viewDidLoad];
+    
+    if (!self.hideHeader) {
+        NSArray* nibViews =  [[NSBundle mainBundle] loadNibNamed:HEADER_NIB_FOURSQUARE owner:self options:nil];
+        FoursquareHeaderView *headerView = [nibViews objectAtIndex:0];
+        [self.view addSubview:headerView];
+    }
+    
     [_session resume];
     
     // this is a hack. the abstract facebook vc has to inherit from the 4sq vc, which f's everything up

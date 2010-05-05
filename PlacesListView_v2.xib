@@ -45,7 +45,7 @@
 					<object class="IBUITableView" id="759276648">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{0, 94}, {320, 326}}</string>
+						<string key="NSFrame">{{0, 93}, {320, 326}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -69,7 +69,7 @@
 					<object class="IBUIImageView" id="758617410">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">256</int>
-						<string key="NSFrame">{{0, 48}, {277, 46}}</string>
+						<string key="NSFrame">{{0, 47}, {270, 46}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -108,11 +108,12 @@
 							<int key="IBUIReturnKeyType">6</int>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						</object>
+						<int key="IBUIClearButtonMode">1</int>
 					</object>
 					<object class="IBUIButton" id="971944687">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{277, 52}, {43, 42}}</string>
+						<string key="NSFrame">{{273, 49}, {43, 42}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -153,6 +154,7 @@
 					<bytes key="NSWhite">MQA</bytes>
 					<reference key="NSCustomColorSpace" ref="842102045"/>
 				</object>
+				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 			<object class="IBUITableViewCell" id="334128351">
@@ -346,9 +348,9 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="985660589"/>
-							<reference ref="971944687"/>
 							<reference ref="759276648"/>
 							<reference ref="758617410"/>
+							<reference ref="971944687"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -440,7 +442,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>PlacesListViewController</string>
 					<string>UIResponder</string>
-					<string>{{785, 445}, {320, 460}}</string>
+					<string>{{949, 507}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{638, 655}, {320, 50}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

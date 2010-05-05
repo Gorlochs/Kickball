@@ -25,11 +25,9 @@
     IBOutlet UIButton *checkinButton;
     IBOutlet UITextField *checkinTextField;
     
-    XAuthTwitterEngine *twitterEngine;
     BOOL isReadyToClose;
 }
 
-@property (nonatomic, retain) XAuthTwitterEngine *twitterEngine;
 @property (nonatomic, retain) NSString *venueId;
 
 - (IBAction) shout;

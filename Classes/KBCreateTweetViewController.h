@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "KBTwitterViewController.h"
+#import "AbstractFacebookViewController.h"
 
 
-@interface KBCreateTweetViewController : KBTwitterViewController <UITextViewDelegate, MGTwitterEngineDelegate> {
+@interface KBCreateTweetViewController : AbstractFacebookViewController <UITextViewDelegate, MGTwitterEngineDelegate> {
     IBOutlet UITextView *tweetTextView;
     IBOutlet UILabel *characterCountLabel;
     IBOutlet UIButton *sendTweet;

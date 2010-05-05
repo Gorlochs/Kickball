@@ -8,6 +8,8 @@
 
 #import "KBCreateTweetViewController.h"
 #import "KBLocationManager.h"
+#import "FoursquareAPI.h"
+
 
 @implementation KBCreateTweetViewController
 
@@ -51,6 +53,34 @@
         } else {
             [twitterEngine sendUpdate:tweetTextView.text];
         }
+    }
+    
+    if (isFacebookOn) {
+        NSLog(@"facebook  is on and the status will be updated (hopefully)");
+        NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:tweetTextView.text, @"status", nil];
+        [[FBRequest requestWithDelegate:self] call:@"facebook.status.set" params:params dataParam:nil];
+    }
+    
+    if (isFoursquareOn) {
+        [[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:nil 
+                                                      andShout:tweetTextView.text 
+                                                       offGrid:NO
+                                                     toTwitter:NO
+                                                    toFacebook:NO 
+                                                    withTarget:self 
+                                                     andAction:@selector(shoutResponseReceived:withResponseString:)];
+    }
+    
+}
+
+- (void)shoutResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+    
+}
+
+- (void)request:(FBRequest*)request didLoad:(id)result {
+    if ([request.method isEqualToString:@"facebook.status.set"]) {
+        NSDictionary* info = result;
+        NSLog(@"facebook status updated: %@", info);
     }
 }
 

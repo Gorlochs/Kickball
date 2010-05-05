@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "FBConnect/FBConnect.h"
-#import "KBFoursquareViewController.h"
+#import "KBTwitterViewController.h"
 
 
-@interface AbstractFacebookViewController : KBFoursquareViewController <FBDialogDelegate, FBSessionDelegate, FBRequestDelegate>  {
+@interface AbstractFacebookViewController : KBTwitterViewController <FBDialogDelegate, FBSessionDelegate, FBRequestDelegate>  {
     FBSession* _session;
 }
 

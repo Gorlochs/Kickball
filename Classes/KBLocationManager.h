@@ -38,4 +38,6 @@
 - (BOOL) locationServicesEnabled;
 + (void) stopAllUpdates:(NSString *)state;
 
+- (CLLocationDistance) distanceFromCoordinate:(CLLocation*)coordinate;
+
 @end

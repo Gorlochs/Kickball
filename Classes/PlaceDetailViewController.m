@@ -285,7 +285,8 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     
     venueName.text = venueToDisplay.name;
     venueAddress.text = venueToDisplay.addressWithCrossstreet;
-    distanceAndNumCheckinsLabel.text = [NSString stringWithFormat:@"%dm Away, %d Check-ins Here", venueToDisplay.distanceFromUser, venueToDisplay.userCheckinCount];
+    int distance = (int)[[KBLocationManager locationManager] distanceFromCoordinate:venueToDisplay.fullLocation];
+    distanceAndNumCheckinsLabel.text = [NSString stringWithFormat:@"%d%@ Away, %d Check-ins Here", distance < 1000 ? distance : distance/1000, distance < 1000 ? @"m" : @"km", venueToDisplay.userCheckinCount];
     
     venueDetailButton.hidden = NO;
     
@@ -435,7 +436,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section != 1) {
+    if (indexPath.section > 1) {
         [cell setBackgroundColor:[UIColor colorWithRed:235.0/255.0 green:235.0/255.0 blue:235.0/255.0 alpha:1.0]];  
     }
 }

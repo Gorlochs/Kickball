@@ -16,6 +16,7 @@
 #import "Utilities.h"
 #import "EGORefreshTableHeaderView.h"
 #import "FooterTabView.h"
+#import "FoursquareHeaderView.h"
 
 #define HEADER_NIB_TWITTER      @"TwitterHeaderView"
 #define HEADER_NIB_FOURSQUARE   @"FoursquareHeaderView"

@@ -47,6 +47,15 @@
 	return loc;	
 }
 
+- (CLLocation*) fullLocation {
+    CLLocation *loc = nil;
+	if (geolat && geolong)
+	{
+		loc = [[[CLLocation alloc] initWithLatitude:[geolat doubleValue] longitude:[geolong doubleValue]] autorelease];
+	}
+	return loc;	
+}
+
 - (void) encodeWithCoder: (NSCoder *)coder { 
     [coder encodeObject: name forKey:@"name"]; 
     [coder encodeObject: geolat forKey:@"geolat"]; 

@@ -32,24 +32,32 @@
     twitterEngine = [[KBTwitterManager twitterManager] twitterEngine];
     NSLog(@"twitterengine: %@", twitterEngine);
     
-    headerNibName = HEADER_NIB_TWITTER;
+    //headerNibName = HEADER_NIB_TWITTER;
     footerType = KBFooterTypeTwitter;
     
     [super viewDidLoad];
     
-    if (pageViewType == KBPageViewTypeList) {
-        [centerHeaderButton setImage:[UIImage imageNamed:@"twitMap01.png"] forState:UIControlStateNormal];
-        [centerHeaderButton setImage:[UIImage imageNamed:@"twitMap02.png"] forState:UIControlStateHighlighted];
-        centerHeaderButton.enabled = YES;
-    } else if (pageViewType == KBPageViewTypeMap) {
-        [centerHeaderButton setImage:[UIImage imageNamed:@"twitList01.png"] forState:UIControlStateNormal];
-        [centerHeaderButton setImage:[UIImage imageNamed:@"twitList02.png"] forState:UIControlStateHighlighted];
-        centerHeaderButton.enabled = YES;
-    } else if (pageViewType == KBPageViewTypeOther) {
-        [centerHeaderButton setImage:[UIImage imageNamed:@"twitMap01.png"] forState:UIControlStateNormal];
-        [centerHeaderButton setImage:[UIImage imageNamed:@"twitMap02.png"] forState:UIControlStateHighlighted];
-        centerHeaderButton.enabled = NO;
+    if (!self.hideHeader) {
+        NSArray* nibViews =  [[NSBundle mainBundle] loadNibNamed:HEADER_NIB_TWITTER owner:self options:nil];
+        FoursquareHeaderView *headerView = [nibViews objectAtIndex:0];
+        [self.view addSubview:headerView];
     }
+    
+    if (pageViewType == KBPageViewTypeList) {
+        [twitterCenterHeaderButton setImage:[UIImage imageNamed:@"twitMap01.png"] forState:UIControlStateNormal];
+        [twitterCenterHeaderButton setImage:[UIImage imageNamed:@"twitMap02.png"] forState:UIControlStateHighlighted];
+        twitterCenterHeaderButton.enabled = YES;
+    } else if (pageViewType == KBPageViewTypeMap) {
+        [twitterCenterHeaderButton setImage:[UIImage imageNamed:@"twitList01.png"] forState:UIControlStateNormal];
+        [twitterCenterHeaderButton setImage:[UIImage imageNamed:@"twitList02.png"] forState:UIControlStateHighlighted];
+        twitterCenterHeaderButton.enabled = YES;
+    } else if (pageViewType == KBPageViewTypeOther) {
+        [twitterCenterHeaderButton setImage:[UIImage imageNamed:@"twitMap01.png"] forState:UIControlStateNormal];
+        [twitterCenterHeaderButton setImage:[UIImage imageNamed:@"twitMap02.png"] forState:UIControlStateHighlighted];
+        twitterCenterHeaderButton.enabled = NO;
+    }
+    footerType = KBFooterTypeTwitter;
+    [self setTabImages];
 }
 
 // FIXME: all these need to be fixed. we should be using navcontroller

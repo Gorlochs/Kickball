@@ -35,6 +35,9 @@
     NSString * addressWithCrossstreet;
     FSCategory *primaryCategory;
     NSInteger distanceFromUser;
+    
+    CLLocationCoordinate2D location;
+    CLLocation *fullLocation;
 } 
 
 @property (nonatomic, retain) NSString * name;
@@ -61,5 +64,6 @@
 @property (nonatomic, retain) NSString * addressWithCrossstreet;
 @property (nonatomic, retain) FSCategory *primaryCategory;
 @property (nonatomic, readonly) CLLocationCoordinate2D location;
+@property (nonatomic, readonly) CLLocation *fullLocation;
 
 @end

@@ -22,7 +22,6 @@
 
 @synthesize venueId;
 @synthesize isCheckin;
-@synthesize twitterEngine;
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {

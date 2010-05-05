@@ -20,10 +20,16 @@
 
 - (void)viewDidLoad {
     
-    headerNibName = HEADER_NIB_FOURSQUARE;
+    ///headerNibName = HEADER_NIB_FOURSQUARE;
     footerType = KBFooterTypeFoursquare;
     
     [super viewDidLoad];
+    
+    if (!self.hideHeader) {
+        NSArray* nibViews =  [[NSBundle mainBundle] loadNibNamed:HEADER_NIB_FOURSQUARE owner:self options:nil];
+        FoursquareHeaderView *headerView = [nibViews objectAtIndex:0];
+        [self.view addSubview:headerView];
+    }
     
     CGRect frame = homeBackView.frame;
     frame.origin = CGPointMake(0, 0);

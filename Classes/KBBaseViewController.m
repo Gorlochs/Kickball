@@ -18,7 +18,6 @@
 #import "KBWebViewController.h"
 #import "KBShoutViewController.h"
 #import "ASIFormDataRequest.h"
-#import "FoursquareHeaderView.h"
 
 #define PROGRESS_BAR_TIMER_LENGTH 30.0
 
@@ -53,11 +52,11 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
     [appDelegate.pushNotificationUserId addObserver:self forKeyPath:@"pushUserId" options:0 context:nil];
     
     // v1.1
-    if (!self.hideHeader && headerNibName) {
-        NSArray* nibViews =  [[NSBundle mainBundle] loadNibNamed:headerNibName owner:self options:nil];
-        FoursquareHeaderView *headerView = [nibViews objectAtIndex:0];
-        [self.view addSubview:headerView];
-    }
+//    if (!self.hideHeader && headerNibName) {
+//        NSArray* nibViews =  [[NSBundle mainBundle] loadNibNamed:headerNibName owner:self options:nil];
+//        FoursquareHeaderView *headerView = [nibViews objectAtIndex:0];
+//        [self.view addSubview:headerView];
+//    }
     if (!self.hideFooter) {
         NSArray* nibViews =  [[NSBundle mainBundle] loadNibNamed:@"FooterTabView" owner:self options:nil];
         footerTabView = [nibViews objectAtIndex:0];

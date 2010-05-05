@@ -7,17 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "KBBaseViewController.h"
+#import "KBFoursquareViewController.h"
 #import "XAuthTwitterEngine.h"
 #import "KBTwitterManager.h"
 
 
-@interface KBTwitterViewController : KBBaseViewController {
+@interface KBTwitterViewController : KBFoursquareViewController {
     IBOutlet UIButton *timelineButton;
     IBOutlet UIButton *mentionsButton;
     IBOutlet UIButton *directMessageButton;
     IBOutlet UIButton *searchButton;
-    IBOutlet UIButton *centerHeaderButton;
+    IBOutlet UIButton *twitterCenterHeaderButton;
     
     XAuthTwitterEngine *twitterEngine;
 }
