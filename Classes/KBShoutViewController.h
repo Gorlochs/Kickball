@@ -28,7 +28,7 @@
     IBOutlet UIButton *foursquareButton;
     IBOutlet UIButton *checkinButton;
     IBOutlet UITextField *shoutTextField;
-    BOOL isReadyToClose;
+    int actionCount;
 }
 
 @property (nonatomic, retain) NSString *venueId;
@@ -44,5 +44,6 @@
 - (IBAction) toggleFoursquare;
 - (void) closeUpShop;
 - (void) statusRetrieved:(NSNotification *)inNotification;
+- (void) decrementActionCount;
 
 @end

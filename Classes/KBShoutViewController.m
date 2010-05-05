@@ -38,7 +38,6 @@
     twitterButton.enabled = user.twitter != nil;
     isFacebookOn = facebookButton.enabled;
     isTwitterOn = twitterButton.enabled;
-    isReadyToClose = YES;
     
     if (isCheckin) {
         nonCheckinView.hidden = YES;
@@ -109,6 +108,7 @@
     if ([theTextView.text length] > 0) {
         [theTextView resignFirstResponder];
         [self startProgressBar:@"Shouting..."];
+        actionCount = 1 + isTwitterOn + isFacebookOn;
         
         [[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:nil 
                                                       andShout:theTextView.text 
@@ -119,17 +119,19 @@
                                                      andAction:@selector(shoutResponseReceived:withResponseString:)];
         
         // we send twitter/facebook api calls ourself so that the tweets and posts are stamped with the Kickball brand
+        
         if (isTwitterOn) {
             // TODO: check for twitter login
-            isReadyToClose = NO;
             [self.twitterEngine sendUpdate:theTextView.text
-                         withLatitude:[[KBLocationManager locationManager] latitude] 
-                        withLongitude:[[KBLocationManager locationManager] longitude]];
+                              withLatitude:[[KBLocationManager locationManager] latitude] 
+                             withLongitude:[[KBLocationManager locationManager] longitude]];
         }
         
         if (isFacebookOn) {
             // TODO: check for facebook login
-            isReadyToClose = NO;
+            
+            NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:theTextView.text, @"status", nil];
+            [[FBRequest requestWithDelegate:self] call:@"facebook.status.set" params:params dataParam:nil];
         }
         
         [[Beacon shared] startSubBeaconWithName:@"Shout"];
@@ -138,11 +140,36 @@
     }
 }
 
+// Twitter response
 - (void) statusRetrieved:(NSNotification *)inNotification {
-    if (isReadyToClose) {
+    [self decrementActionCount];
+}
+
+// Facebook response
+- (void)request:(FBRequest*)request didLoad:(id)result {
+    if ([request.method isEqualToString:@"facebook.status.set"]) {
+        NSDictionary* info = result;
+        NSLog(@"facebook status updated: %@", info);
+    }
+    [self decrementActionCount];
+}
+
+// 4sq response
+- (void)shoutResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+    NSLog(@"instring: %@", inString);
+	NSArray *shoutCheckins = [FoursquareAPI checkinsFromResponseXML:inString];
+    
+    self.shoutToPush = [NSString stringWithString:theTextView.text];
+    [self sendPushNotification];
+    
+    [self decrementActionCount];
+}
+
+- (void) decrementActionCount {
+    actionCount--;
+    if (actionCount == 0) {
         [self closeUpShop];
     }
-    isReadyToClose = YES;
 }
 
 - (void) shoutAndTweetAndCheckin {
@@ -155,18 +182,6 @@
     } else {
         
     }
-}
-
-- (void)shoutResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    NSLog(@"instring: %@", inString);
-	NSArray *shoutCheckins = [FoursquareAPI checkinsFromResponseXML:inString];
-    
-    self.shoutToPush = [NSString stringWithString:theTextView.text];
-    [self sendPushNotification];
-    if (isReadyToClose) {
-        [self closeUpShop];
-    }
-    isReadyToClose = YES;
 }
 
 - (void) closeUpShop {
