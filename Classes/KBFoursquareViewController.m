@@ -25,7 +25,9 @@
     
     [super viewDidLoad];
     
-    homeBackView.origin = CGPointMake(0, 0);
+    CGRect frame = homeBackView.frame;
+    frame.origin = CGPointMake(0, 0);
+    homeBackView.frame = frame;
     [self.view addSubview:homeBackView];
     homeBackView.hidden = YES;
     
@@ -100,6 +102,12 @@
 
 
 - (void)dealloc {
+    [friendButton release];
+    [placesButton release];
+    [centerHeaderButton release];
+    [homeButton release];
+    [backButton release];
+    [homeBackView release];
     [super dealloc];
 }
 

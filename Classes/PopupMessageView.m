@@ -8,69 +8,9 @@
 
 #import "PopupMessageView.h"
 
-@interface TextStyleSheet : TTDefaultStyleSheet
-@end
-
-@implementation TextStyleSheet
-
-- (TTStyle*)blueText {
-    return [TTTextStyle styleWithColor:[UIColor blueColor] next:nil];
-}
-
-- (TTStyle*)largeText {
-    return [TTTextStyle styleWithFont:[UIFont systemFontOfSize:32] next:[TTTextStyle styleWithColor:[UIColor whiteColor] next:nil]];
-}
-
-- (TTStyle*)smallText {
-    return [TTTextStyle styleWithFont:[UIFont systemFontOfSize:12] next:[TTTextStyle styleWithColor:[UIColor whiteColor] next:nil]];
-}
-
-- (TTStyle*)whiteText {
-    return [TTTextStyle styleWithColor:[UIColor whiteColor] next:nil];
-}
-
-- (TTStyle*)floated {
-    return [TTBoxStyle styleWithMargin:UIEdgeInsetsMake(0, 0, 5, 5)
-                               padding:UIEdgeInsetsMake(0, 0, 0, 0)
-                               minSize:CGSizeZero position:TTPositionFloatLeft next:nil];
-}
-
-- (TTStyle*)blueBox {
-    return 
-    [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:6] next:
-     [TTInsetStyle styleWithInset:UIEdgeInsetsMake(0, -5, -4, -6) next:
-      [TTShadowStyle styleWithColor:[UIColor whiteColor] blur:2 offset:CGSizeMake(1,1) next:
-       [TTSolidFillStyle styleWithColor:[UIColor cyanColor] next:
-        [TTSolidBorderStyle styleWithColor:[UIColor grayColor] width:1 next:nil]]]]];
-}
-
-- (TTStyle*)inlineBox {
-    return 
-    [TTSolidFillStyle styleWithColor:[UIColor blueColor] next:
-     [TTBoxStyle styleWithPadding:UIEdgeInsetsMake(5,13,5,13) next:
-      [TTSolidBorderStyle styleWithColor:[UIColor blackColor] width:1 next:nil]]];
-}
-
-- (TTStyle*)inlineBox2 {
-    return 
-    [TTSolidFillStyle styleWithColor:[UIColor cyanColor] next:
-     [TTBoxStyle styleWithMargin:UIEdgeInsetsMake(5,50,0,50)
-                         padding:UIEdgeInsetsMake(0,13,0,13) next:nil]];
-}
-
-@end
-
-
 @implementation PopupMessageView
 
 @synthesize message;
-
-- (id)init {
-    if (self = [super init]) {
-        [TTStyleSheet setGlobalStyleSheet:[[[TextStyleSheet alloc] init] autorelease]];
-    }
-    return self;
-}
 
 - (void) viewDidLoad {
     [super viewDidLoad];
@@ -100,25 +40,25 @@
     messageLabel.frame = newFrame;
     
     CGRect newTitleFrame = titleLabel.frame;
-    newTitleFrame.origin.y = newFrame.origin.y - 50;
+    newTitleFrame.origin.y = newFrame.origin.y - 55;
     titleLabel.frame = newTitleFrame;
+    [self.view bringSubviewToFront:titleLabel];
     
     if (message.isError) {
         titleLabel.textColor = [UIColor redColor];
     }
 }
 
+- (void) dismissPopupMessage {
+    [self.view removeFromSuperview];
+}
+
 - (void)dealloc {
-    [TTStyleSheet setGlobalStyleSheet:nil];
     [titleLabel release];
     [messageLabel release];
     [message release];
     [closeButton release];
     [super dealloc];
-}
-
-- (void) dismissPopupMessage {
-    [self.view removeFromSuperview];
 }
 
 @end

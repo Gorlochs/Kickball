@@ -15,11 +15,17 @@
     IBOutlet UILabel *characterCountLabel;
     IBOutlet UIButton *sendTweet;
     IBOutlet UIButton *cancel;
-    IBOutlet UIButton *geoTag;
-    IBOutlet UIButton *attachPhoto;
     
     NSNumber *replyToStatusId;
     NSString *replyToScreenName;
+    
+    BOOL isFoursquareOn;
+    BOOL isFacebookOn;
+    BOOL isGeotagOn;
+    IBOutlet UIButton *foursquareButton;
+    IBOutlet UIButton *facebookButton;
+    IBOutlet UIButton *geotagButton;
+    IBOutlet UIButton *addPhotoButton;
 }
 
 @property (nonatomic, retain) NSNumber *replyToStatusId;
@@ -27,5 +33,9 @@
 
 - (IBAction) submitTweet;
 - (IBAction) cancelCreate;
+- (IBAction) toggleFacebook;
+- (IBAction) toggleFoursquare;
+- (IBAction) toggleGeotag;
+- (IBAction) addPhoto;
 
 @end

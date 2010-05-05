@@ -1138,6 +1138,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     }
     [networkQueue go];
     
+    // TODO: check for FB session
     [self uploadFacebookPhoto:imageData withCaption:message];
     return YES;
 }

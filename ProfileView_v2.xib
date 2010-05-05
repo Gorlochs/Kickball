@@ -12,8 +12,10 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="56"/>
 			<integer value="31"/>
-			<integer value="1"/>
+			<integer value="76"/>
+			<integer value="6"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -427,7 +429,7 @@
 				<reference key="IBUIContentView" ref="498112114"/>
 			</object>
 			<object class="IBUITableViewCell" id="671744354">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -436,7 +438,6 @@
 						<int key="NSvFlags">256</int>
 						<string key="NSFrameSize">{291, 74}</string>
 						<reference key="NSSuperview" ref="671744354"/>
-						<reference key="NSWindow"/>
 						<reference key="IBUIBackgroundColor" ref="455357173"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -446,8 +447,6 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{291, 74}</string>
-				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">6</int>
 					<string key="NSCatalogName">System</string>
@@ -640,10 +639,25 @@
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 			<object class="IBUIView" id="970019688">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
+					<object class="IBUIImageView" id="253892347">
+						<reference key="NSNextResponder" ref="970019688"/>
+						<int key="NSvFlags">256</int>
+						<string key="NSFrameSize">{320, 72}</string>
+						<reference key="NSSuperview" ref="970019688"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<bool key="IBUIClipsSubviews">YES</bool>
+						<int key="IBUIContentMode">4</int>
+						<bool key="IBUIMultipleTouchEnabled">YES</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<object class="NSCustomResource" key="IBUIImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">profileInfoTEMP.png</string>
+						</object>
+					</object>
 					<object class="IBUIButton" id="1523595">
 						<reference key="NSNextResponder" ref="970019688"/>
 						<int key="NSvFlags">292</int>
@@ -769,7 +783,7 @@
 					<object class="IBUIButton" id="1008313002">
 						<reference key="NSNextResponder" ref="970019688"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{256, 0}, {64, 71}}</string>
+						<string key="NSFrame">{{265, 0}, {64, 71}}</string>
 						<reference key="NSSuperview" ref="970019688"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -786,6 +800,7 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 71}</string>
+				<reference key="NSSuperview"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
@@ -794,13 +809,31 @@
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 			<object class="IBUITableViewCell" id="907479325">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<object class="IBUIView" id="207006944">
 						<reference key="NSNextResponder" ref="907479325"/>
 						<int key="NSvFlags">256</int>
+						<object class="NSMutableArray" key="NSSubviews">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBUIImageView" id="518213577">
+								<reference key="NSNextResponder" ref="207006944"/>
+								<int key="NSvFlags">256</int>
+								<string key="NSFrameSize">{291, 73}</string>
+								<reference key="NSSuperview" ref="207006944"/>
+								<bool key="IBUIOpaque">NO</bool>
+								<bool key="IBUIClipsSubviews">YES</bool>
+								<int key="IBUIContentMode">4</int>
+								<bool key="IBUIMultipleTouchEnabled">YES</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<object class="NSCustomResource" key="IBUIImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">placePhotoBG.png</string>
+								</object>
+							</object>
+						</object>
 						<string key="NSFrameSize">{291, 73}</string>
 						<reference key="NSSuperview" ref="907479325"/>
 						<reference key="IBUIBackgroundColor" ref="455357173"/>
@@ -812,7 +845,11 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{291, 73}</string>
-				<reference key="IBUIBackgroundColor" ref="856015577"/>
+				<reference key="NSSuperview"/>
+				<object class="NSColor" key="IBUIBackgroundColor">
+					<int key="NSColorSpace">1</int>
+					<bytes key="NSRGB">MSAxIDEgMAA</bytes>
+				</object>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<int key="IBUISeparatorStyle">1</int>
@@ -1254,6 +1291,7 @@
 							<reference ref="1523595"/>
 							<reference ref="166015027"/>
 							<reference ref="533688203"/>
+							<reference ref="253892347"/>
 							<reference ref="1008313002"/>
 						</object>
 						<reference key="parent" ref="0"/>
@@ -1294,6 +1332,7 @@
 						<reference key="object" ref="907479325"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="518213577"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Photo Cell</string>
@@ -1316,6 +1355,16 @@
 						<int key="objectID">31</int>
 						<reference key="object" ref="604484450"/>
 						<reference key="parent" ref="510707023"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">103</int>
+						<reference key="object" ref="253892347"/>
+						<reference key="parent" ref="970019688"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">104</int>
+						<reference key="object" ref="518213577"/>
+						<reference key="parent" ref="907479325"/>
 					</object>
 				</object>
 			</object>
@@ -1397,7 +1446,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{646, 393}, {320, 71}}</string>
+					<string>{{528, 542}, {320, 71}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1406,7 +1455,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>KBPhotoThumbnailCell</string>
-					<string>{{609, 448}, {291, 73}}</string>
+					<string>{{604, 426}, {291, 73}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1428,7 +1477,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">102</int>
+			<int key="maxID">104</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1968,6 +2017,7 @@
 				<string>facebook01.png</string>
 				<string>facebook02.png</string>
 				<string>facebookOFF.png</string>
+				<string>placePhotoBG.png</string>
 				<string>profileAddFriend01.png</string>
 				<string>profileAddFriend02.png</string>
 				<string>profileAddFriend03.png</string>
@@ -1977,6 +2027,7 @@
 				<string>profileHereToo01.png</string>
 				<string>profileHereToo02.png</string>
 				<string>profileInfo01.png</string>
+				<string>profileInfoTEMP.png</string>
 				<string>profilePings01.png</string>
 				<string>profileSeeFriends01.png</string>
 				<string>profileSeeFriends02.png</string>
@@ -1999,6 +2050,7 @@
 				<string>{16, 16}</string>
 				<string>{16, 16}</string>
 				<string>{16, 16}</string>
+				<string>{291, 73}</string>
 				<string>{16, 16}</string>
 				<string>{16, 16}</string>
 				<string>{16, 16}</string>
@@ -2008,6 +2060,7 @@
 				<string>{291, 55}</string>
 				<string>{291, 55}</string>
 				<string>{44, 34}</string>
+				<string>{320, 72}</string>
 				<string>{16, 16}</string>
 				<string>{291, 35}</string>
 				<string>{291, 35}</string>

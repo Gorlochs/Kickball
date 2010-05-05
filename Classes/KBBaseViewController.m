@@ -186,7 +186,7 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 - (void) viewUserProfile {
     // take user to their profile
     [[Beacon shared] startSubBeaconWithName:@"View User Profile from Top Nav Icon"];
-    ProfileViewController *pvc = [[ProfileViewController alloc] initWithNibName:@"ProfileView_v2" bundle:nil];
+    UserProfileViewController *pvc = [[UserProfileViewController alloc] initWithNibName:@"UserProfileView_v2" bundle:nil];
     pvc.userId = [self getAuthenticatedUser].userId;
     [self.navigationController pushViewController:pvc animated:YES];
     [pvc release];
@@ -422,7 +422,7 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
         ProfileViewController *profileController = [[ProfileViewController alloc] initWithNibName:@"ProfileView_v2" bundle:nil];
         profileController.userId = userId;
         [self.navigationController pushViewController:profileController animated:YES];
-        [profileController release];        
+        [profileController release];
     }
 }
 

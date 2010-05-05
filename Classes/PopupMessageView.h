@@ -7,13 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Three20/Three20.h"
 #import "KBMessage.h"
 #import "IFTweetLabel.h"
 
 @interface PopupMessageView : UIViewController {
     KBMessage *message;
-    TTStyledTextLabel *mainLabel;
     IFTweetLabel *messageLabel;
     IBOutlet UIButton *closeButton;
     IBOutlet UIView *shadowBG;
