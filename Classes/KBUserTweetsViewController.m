@@ -43,6 +43,25 @@
     }
 }
 
+- (void) statusRetrieved:(NSNotification *)inNotification {
+    [super statusRetrieved:inNotification];
+    
+    // this is used when there is no userDictionary, which occurs when a user clicks a @screenname inside the body of a tweet
+    NSArray *userStatuses = [[inNotification userInfo] objectForKey:@"statuses"];
+    if (userDictionary == nil && [userStatuses count] > 0) {
+        screenNameLabel.text = [[[userStatuses objectAtIndex:0] objectForKey:@"user"] objectForKey:@"screen_name"];
+        fullName.text = [[[userStatuses objectAtIndex:0] objectForKey:@"user"] objectForKey:@"name"];
+        
+        CGRect frame = CGRectMake(11, 53, 49, 49);
+        userProfileImage = [[TTImageView alloc] initWithFrame:frame];
+        userProfileImage.backgroundColor = [UIColor clearColor];
+        userProfileImage.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
+        userProfileImage.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
+        userProfileImage.urlPath = [[[userStatuses objectAtIndex:0] objectForKey:@"user"] objectForKey:@"profile_image_url"];
+        [self.view addSubview:userProfileImage];
+    }
+}
+
 - (void) refreshTable {
     [self showStatuses];
 }

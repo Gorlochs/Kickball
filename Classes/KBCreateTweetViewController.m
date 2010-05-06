@@ -160,6 +160,7 @@
 
 
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [tweetTextView release];
     [characterCountLabel release];
     [sendTweet release];

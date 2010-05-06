@@ -33,7 +33,7 @@
     pageViewType = KBPageViewTypeList;
     
     if ([self.twitterEngine isAuthorized]) {
-        [self createNotificationObservers];
+        //[self createNotificationObservers];
 		[self showStatuses];
 	} else {
         loginController = [[XAuthTwitterEngineViewController alloc] initWithNibName:@"TwitterLoginView_v2" bundle:nil];
@@ -41,7 +41,6 @@
         [loginController release];
     }
 }
-
 - (void) createNotificationObservers {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusRetrieved:) name:kTwitterStatusRetrievedNotificationKey object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTweetNotification:) name:IFTweetLabelURLNotification object:nil];

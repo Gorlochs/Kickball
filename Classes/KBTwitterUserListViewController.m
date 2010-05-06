@@ -131,6 +131,7 @@
 
 
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [userDictionary release];
     [users release];
     [super dealloc];

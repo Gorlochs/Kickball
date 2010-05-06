@@ -119,6 +119,7 @@
 
 
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [screenNameLabel release];
     [fullName release];
     [location release];

@@ -83,6 +83,7 @@
 }
 
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [tweet release];
     [screenName release];
     [fullName release];
