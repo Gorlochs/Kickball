@@ -29,9 +29,11 @@
         tweetText = [statusDictionary objectForKey:@"text"];
         tweetId = [statusDictionary objectForKey:@"id"];
 //        createDate = [[Utilities convertUTCCheckinDateToLocal:[NSDate dateWithTimeIntervalSince1970:[[statusDictionary objectForKey:@"created_at"] doubleValue]]] retain];
-        createDate = [[NSDate dateWithTimeIntervalSince1970:[[statusDictionary objectForKey:@"created_at"] doubleValue]] retain];
+        NSLog(@"tweet date from created_at: %@", [statusDictionary objectForKey:@"created_at"]);
+        //createDate = [[NSDate dateWithTimeIntervalSince1970:[[statusDictionary objectForKey:@"created_at"] doubleValue]] retain];
+        createDate = [[[[KickballAPI kickballApi] twitterDateFormatter] dateFromString:[statusDictionary objectForKey:@"created_at"]] retain];
         
-        NSLog(@"tweet created at: %@", createDate);
+        //NSLog(@"tweet created at: %@", createDate);
     }
     return self;
 }
