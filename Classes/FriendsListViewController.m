@@ -23,6 +23,7 @@
 #import "FriendRequestsViewController.h"
 #import "XAuthTwitterEngineViewController.h"
 #import "TableSectionHeaderView.h"
+#import "KickballAPI.h"
 
 #define SECTION_RECENT_CHECKINS 1
 #define SECTION_TODAY_CHECKINS 2
@@ -34,7 +35,6 @@
 
 @interface FriendsListViewController (Private)
 
-- (NSDate*) convertToUTC:(NSDate*)sourceDate;
 - (void) addAuthToWebRequest:(NSMutableURLRequest*)requestObj email:(NSString*)email password:(NSString*)password;
 
 @end
@@ -295,18 +295,6 @@
 	return cell;
 }
 
-- (NSDate*) convertToUTC:(NSDate*)sourceDate {
-    NSTimeZone* currentTimeZone = [NSTimeZone localTimeZone];
-    NSTimeZone* utcTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
-    
-    NSInteger currentGMTOffset = [currentTimeZone secondsFromGMTForDate:sourceDate];
-    NSInteger gmtOffset = [utcTimeZone secondsFromGMTForDate:sourceDate];
-    NSTimeInterval gmtInterval = gmtOffset - currentGMTOffset;
-    
-    NSDate* destinationDate = [[[NSDate alloc] initWithTimeInterval:gmtInterval sinceDate:sourceDate] autorelease];     
-    return destinationDate;
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"row selected");
     FSUser *user = nil;
@@ -441,8 +429,8 @@
         
         NSDate *oneHourFromNow = [[NSDate alloc] initWithTimeIntervalSinceNow:-60*60*1];
         NSDate *twentyfourHoursFromNow = [[NSDate alloc] initWithTimeIntervalSinceNow:-60*60*24];
-        oneHourFromNow = [self convertToUTC:oneHourFromNow];
-        twentyfourHoursFromNow = [self convertToUTC:twentyfourHoursFromNow];
+        oneHourFromNow = [[KickballAPI kickballApi] convertToUTC:oneHourFromNow];
+        twentyfourHoursFromNow = [[KickballAPI kickballApi] convertToUTC:twentyfourHoursFromNow];
         
         NSUInteger unitFlags = NSMinuteCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit;
         
@@ -460,7 +448,7 @@
                 [self.nonCityCheckins addObject:checkin];
             }
             
-            NSDateComponents *components = [gregorian components:unitFlags fromDate:[self convertToUTC:[NSDate date]] toDate:date options:0];
+            NSDateComponents *components = [gregorian components:unitFlags fromDate:[[KickballAPI kickballApi] convertToUTC:[NSDate date]] toDate:date options:0];
             NSInteger minutes = [components minute] * -1;
             NSInteger hours = [components hour] * -1;
             NSInteger days = [components day] * -1;

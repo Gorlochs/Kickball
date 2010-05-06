@@ -22,5 +22,7 @@
 
 - (NSMutableArray*) parsePhotosFromXML:(NSString*)responseString;
 - (MockPhotoSource*) convertGoodiesIntoPhotoSource:(NSArray*)goodies withTitle:(NSString*)photoSourceTitle;
+- (NSString*) convertDateToTimeUnitString:(NSDate*)dateToConvert;
+- (NSDate*) convertToUTC:(NSDate*)sourceDate;
 
 @end
