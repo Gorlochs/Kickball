@@ -12,6 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="8"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -37,14 +38,14 @@
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 			<object class="IBUIView" id="286422906">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<object class="IBUITableView" id="873029372">
 						<reference key="NSNextResponder" ref="286422906"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{0, 46}, {320, 378}}</string>
+						<string key="NSFrame">{{0, 47}, {320, 378}}</string>
 						<reference key="NSSuperview" ref="286422906"/>
 						<object class="NSColor" key="IBUIBackgroundColor" id="206962023">
 							<int key="NSColorSpace">3</int>
@@ -67,6 +68,7 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 460}</string>
+				<reference key="NSSuperview"/>
 				<reference key="IBUIBackgroundColor" ref="206962023"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
@@ -341,6 +343,56 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
+					<string key="className">KBFoursquareViewController</string>
+					<string key="superclassName">KBBaseViewController</string>
+					<object class="NSMutableDictionary" key="actions">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>backOneView</string>
+							<string>backOneViewNotAnimated</string>
+							<string>flipBetweenMapAndList</string>
+							<string>goToHomeView</string>
+							<string>goToHomeViewNotAnimated</string>
+							<string>viewPlacesList</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+						</object>
+					</object>
+					<object class="NSMutableDictionary" key="outlets">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>backButton</string>
+							<string>centerHeaderButton</string>
+							<string>friendButton</string>
+							<string>homeBackView</string>
+							<string>homeButton</string>
+							<string>placesButton</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>UIButton</string>
+							<string>UIButton</string>
+							<string>UIButton</string>
+							<string>UIView</string>
+							<string>UIButton</string>
+							<string>UIButton</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Classes/KBFoursquareViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
 					<string key="className">KBTweetListViewController</string>
 					<string key="superclassName">KBBaseTweetViewController</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
@@ -350,7 +402,7 @@
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">KBTwitterViewController</string>
-					<string key="superclassName">KBBaseViewController</string>
+					<string key="superclassName">KBFoursquareViewController</string>
 					<object class="NSMutableDictionary" key="actions">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">

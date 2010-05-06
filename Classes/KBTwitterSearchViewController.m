@@ -38,14 +38,13 @@
 }
 
 - (void)searchRetrieved:(NSNotification *)inNotification {
-    NSLog(@"inside searchRetrieved");
+    NSLog(@"inside searchRetrieved: %@", inNotification);
     if (inNotification) {
         if ([inNotification userInfo]) {
             NSDictionary *userInfo = [inNotification userInfo];
             if ([userInfo objectForKey:@"searchResults"]) {
-                statuses = [[userInfo objectForKey:@"searchResults"] retain];
+                statuses = [[[[userInfo objectForKey:@"searchResults"] objectAtIndex:0] objectForKey:@"results"] retain];
                 tweets = [[NSMutableArray alloc] initWithCapacity:[statuses count]];
-                //int i = 0;
                 if ([statuses count] > 1) {
                     
                     for (NSDictionary *dict in statuses) {
@@ -53,7 +52,6 @@
                         [tweets addObject:result];
                         [result release];
                     }
-                    // FIXME: remove last dictionary object
                     [theTableView reloadData];
                     noResultsView.hidden = YES;
                 } else {
@@ -82,13 +80,10 @@
         cell = [[[KBTweetTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    // Configure the cell...
-    //cell.textLabel.text = [[statuses objectAtIndex:indexPath.row] objectForKey:@"text"];
     KBSearchResult *tweet = [tweets objectAtIndex:indexPath.row];
     
     cell.userIcon.urlPath = tweet.profileImageUrl;
     cell.userName.text = tweet.screenName;
-    // cell.tweetText.text = [TTStyledText textFromXHTML:tweet.tweetText lineBreaks:YES URLs:YES];
     cell.tweetText.text = tweet.tweetText;
     [cell setDateLabelWithDate:tweet.createDate];
     

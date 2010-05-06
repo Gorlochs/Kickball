@@ -12,6 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="1"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -37,7 +38,7 @@
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 			<object class="IBUIView" id="191373211">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -65,7 +66,7 @@
 					<object class="IBUISearchBar" id="245370668">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">290</int>
-						<string key="NSFrame">{{0, 48}, {320, 44}}</string>
+						<string key="NSFrame">{{0, 47}, {320, 44}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<int key="IBUIContentMode">3</int>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -123,7 +124,7 @@
 								<float key="IBUIMinimumFontSize">10</float>
 							</object>
 						</object>
-						<string key="NSFrame">{{0, 92}, {320, 328}}</string>
+						<string key="NSFrame">{{0, 91}, {320, 329}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">2</int>
@@ -133,6 +134,7 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 460}</string>
+				<reference key="NSSuperview"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
@@ -282,7 +284,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>KBTwitterSearchViewController</string>
 					<string>UIResponder</string>
-					<string>{{975, 458}, {320, 480}}</string>
+					<string>{{672, 240}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{115, 479}, {320, 378}}</string>
@@ -389,6 +391,56 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
+					<string key="className">KBFoursquareViewController</string>
+					<string key="superclassName">KBBaseViewController</string>
+					<object class="NSMutableDictionary" key="actions">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>backOneView</string>
+							<string>backOneViewNotAnimated</string>
+							<string>flipBetweenMapAndList</string>
+							<string>goToHomeView</string>
+							<string>goToHomeViewNotAnimated</string>
+							<string>viewPlacesList</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+						</object>
+					</object>
+					<object class="NSMutableDictionary" key="outlets">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>backButton</string>
+							<string>centerHeaderButton</string>
+							<string>friendButton</string>
+							<string>homeBackView</string>
+							<string>homeButton</string>
+							<string>placesButton</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>UIButton</string>
+							<string>UIButton</string>
+							<string>UIButton</string>
+							<string>UIView</string>
+							<string>UIButton</string>
+							<string>UIButton</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Classes/KBFoursquareViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
 					<string key="className">KBTwitterSearchViewController</string>
 					<string key="superclassName">KBBaseTweetViewController</string>
 					<object class="NSMutableDictionary" key="outlets">
@@ -402,7 +454,7 @@
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">KBTwitterViewController</string>
-					<string key="superclassName">KBBaseViewController</string>
+					<string key="superclassName">KBFoursquareViewController</string>
 					<object class="NSMutableDictionary" key="actions">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">

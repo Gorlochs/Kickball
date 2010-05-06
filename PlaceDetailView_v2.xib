@@ -12,11 +12,10 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="21"/>
 			<integer value="13"/>
-			<integer value="16"/>
 			<integer value="99"/>
-			<integer value="72"/>
+			<integer value="16"/>
+			<integer value="21"/>
 			<integer value="1"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
@@ -659,8 +658,9 @@
 			<object class="IBUIButton" id="791076772">
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
-				<string key="NSFrameSize">{45, 45}</string>
+				<string key="NSFrameSize">{96, 45}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<bool key="IBUIOpaque">NO</bool>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<float key="IBUIAlpha">0.0</float>
@@ -1325,20 +1325,20 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>PlaceDetailViewController</string>
 					<string>UIResponder</string>
-					<string>{{817, 262}, {320, 480}}</string>
+					<string>{{817, 160}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{0, 951}, {320, 44}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{771, 922}, {291, 54}}</string>
+					<string>{{772, 820}, {291, 54}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>KBPhotoThumbnailCell</string>
-					<string>{{485, 462}, {291, 73}}</string>
+					<string>{{485, 360}, {291, 73}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{674, 491}, {290, 69}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{445, 328}, {290, 45}}</string>
+					<string>{{445, 226}, {290, 45}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1355,7 +1355,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{42, 893}, {45, 45}}</string>
+					<string>{{42, 893}, {96, 45}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1363,7 +1363,7 @@
 					<string>{{151, 263}, {320, 370}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{831, 796}, {320, 44}}</string>
+					<string>{{831, 694}, {320, 44}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>
@@ -1390,7 +1390,7 @@
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<object class="IBPartialClassDescription">
 					<string key="className">AbstractFacebookViewController</string>
-					<string key="superclassName">KBFoursquareViewController</string>
+					<string key="superclassName">KBTwitterViewController</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">Classes/AbstractFacebookViewController.h</string>
@@ -1527,6 +1527,52 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">Classes/KBPhotoThumbnailCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">KBTwitterViewController</string>
+					<string key="superclassName">KBFoursquareViewController</string>
+					<object class="NSMutableDictionary" key="actions">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>flipBetweenMapAndList</string>
+							<string>showDirectMessages</string>
+							<string>showMentions</string>
+							<string>showSearch</string>
+							<string>showUserTimeline</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+						</object>
+					</object>
+					<object class="NSMutableDictionary" key="outlets">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>directMessageButton</string>
+							<string>mentionsButton</string>
+							<string>searchButton</string>
+							<string>timelineButton</string>
+							<string>twitterCenterHeaderButton</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>UIButton</string>
+							<string>UIButton</string>
+							<string>UIButton</string>
+							<string>UIButton</string>
+							<string>UIButton</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Classes/KBTwitterViewController.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
