@@ -63,9 +63,11 @@
 		
 		[self _parsedObject:_user];
 		
-		[parsedObjects addObject:_user];
-		[_user release];
-		_user = nil;
+        //if (_user != nil) {
+            [parsedObjects addObject:_user];
+        //}
+        [_user release];
+        _user = nil;
 	}
 	
 #if DEBUG_PARSING

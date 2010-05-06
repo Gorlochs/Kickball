@@ -29,6 +29,10 @@
 }
 
 - (void) userRetrieved:(NSNotification*)inNotification {
+    NSLog(@"user inNotification: %@", inNotification);
+    NSLog(@"userInfo: %@", [inNotification userInfo]);
+    NSLog(@"userinfo userinfo: %@", [[inNotification userInfo] objectForKey:@"userInfo"]);
+    NSLog(@"userinfo userinfo object at index 0: %@", [[[inNotification userInfo] objectForKey:@"userInfo"] objectAtIndex:0]);
     userDictionary = [[[[inNotification userInfo] objectForKey:@"userInfo"] objectAtIndex:0] retain];
     NSLog(@"user: %@", userDictionary);
     screenNameLabel.text = [userDictionary objectForKey:@"screen_name"];

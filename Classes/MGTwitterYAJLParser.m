@@ -196,6 +196,7 @@ static yajl_callbacks callbacks = {
 {
 	if (self = [super init])
 	{
+        NSLog(@"json: %.*s", [theJSON length], [theJSON bytes]);
 		json = [theJSON retain];
 		identifier = [theIdentifier retain];
 		requestType = reqType;
