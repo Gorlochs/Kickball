@@ -10,7 +10,7 @@
 #import "MGTwitterEngine.h"
 
 #ifndef API_FORMAT
-    #if YAJL_AVAILABLE
+    #if YAJL_AVAILABLE || TOUCHJSON_AVAILABLE
         #define API_FORMAT @"json"
     #else
         #define API_FORMAT @"xml"

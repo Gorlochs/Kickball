@@ -18,7 +18,7 @@
 #endif
 
 /*
- Set YAJL_AVAILABLE to 1 if the YAJL JSON parser is available and you'd like MGTwitterEngine to use it.
+ Set YAJL_AVAILABLE || TOUCHJSON_AVAILABLE to 1 if the YAJL JSON parser is available and you'd like MGTwitterEngine to use it.
  
  More information about this parser here:
 
@@ -48,4 +48,5 @@
  target.
 */
 
-#define YAJL_AVAILABLE 1
+#define YAJL_AVAILABLE 0
+#define TOUCHJSON_AVAILABLE 1

@@ -20,7 +20,7 @@
                  ofResponseType:(MGTwitterResponseType)responseType 
                       withError:(NSError *)error;
 
-#if YAJL_AVAILABLE
+#if YAJL_AVAILABLE || TOUCHJSON_AVAILABLE || TOUCHJSON_AVAILABLE
 - (void)parsedObject:(NSDictionary *)parsedObject forRequest:(NSString *)identifier 
                     ofResponseType:(MGTwitterResponseType)responseType;
 #endif
