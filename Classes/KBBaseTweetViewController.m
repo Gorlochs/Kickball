@@ -12,8 +12,10 @@
 #import "KBTwitterDetailViewController.h"
 #import "UIAlertView+Helper.h"
 
-@implementation KBBaseTweetViewController
+#define MAX_LABEL_HEIGHT 68.0
 
+
+@implementation KBBaseTweetViewController
 
 - (void)viewDidLoad {
     pageNum = 0;
@@ -31,7 +33,7 @@
 }
 
 - (void)handleTweetNotification:(NSNotification *)notification {
-	NSLog(@"handleTweetNotification: notification = %@", notification);
+	//NSLog(@"handleTweetNotification: notification = %@", notification);
     if ([[notification object] rangeOfString:@"@"].location == 0) {
         KBUserTweetsViewController *controller = [[KBUserTweetsViewController alloc] initWithNibName:@"KBUserTweetsViewController" bundle:nil];
         controller.username = [notification object];
@@ -144,12 +146,12 @@
     } else {
         KBTweet *tweet = [tweets objectAtIndex:indexPath.row];
         
-        CGSize maximumLabelSize = CGSizeMake(250,60);
+        CGSize maximumLabelSize = CGSizeMake(250, MAX_LABEL_HEIGHT);
         CGSize expectedLabelSize = [tweet.tweetText sizeWithFont:[UIFont fontWithName:@"Georgia" size:12.0]
                                                constrainedToSize:maximumLabelSize 
-                                                   lineBreakMode:UILineBreakModeTailTruncation];
+                                                   lineBreakMode:UILineBreakModeWordWrap];
         
-        return expectedLabelSize.height + 30 > 70 ? expectedLabelSize.height + 30 : 70;
+        return expectedLabelSize.height + 30.0 > MAX_LABEL_HEIGHT ? expectedLabelSize.height + 30.0 : MAX_LABEL_HEIGHT;
     }
 }
 
@@ -170,14 +172,14 @@
         
         cell.userIcon.urlPath = tweet.profileImageUrl;
         cell.userName.text = tweet.screenName;
-        cell.tweetText.numberOfLines = 4;
+        cell.tweetText.numberOfLines = 0;
         cell.tweetText.text = tweet.tweetText;
         [cell setDateLabelWithDate:tweet.createDate];
         
-        CGSize maximumLabelSize = CGSizeMake(250,60);
+        CGSize maximumLabelSize = CGSizeMake(250, MAX_LABEL_HEIGHT);
         CGSize expectedLabelSize = [cell.tweetText.text sizeWithFont:cell.tweetText.font 
                                                    constrainedToSize:maximumLabelSize 
-                                                       lineBreakMode:UILineBreakModeTailTruncation]; 
+                                                       lineBreakMode:UILineBreakModeWordWrap]; 
         
         //adjust the label the the new height.
         CGRect newFrame = cell.tweetText.frame;

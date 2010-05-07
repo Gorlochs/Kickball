@@ -42,6 +42,7 @@
 - (void) showStatuses {
     // it was either this, or extending this class and overriding one method. 
     [self startProgressBar:@"Retrieving users..."];
+    NSLog(@"user dictionary for followers/friends: %@", userDictionary);
     if (userType == KBTwitterUserFollower) {
         [twitterEngine getFollowersForUser:[userDictionary objectForKey:@"screen_name"] withCursor:currentCursor];
     } else {
@@ -54,8 +55,7 @@
     if (inNotification && [inNotification userInfo]) {
         NSDictionary *userInfo = [inNotification userInfo];
         if ([userInfo objectForKey:@"userInfo"]) {
-            statuses = [[userInfo objectForKey:@"userInfo"] retain];
-            //NSLog(@"users retrieved: %@", users);
+            statuses = [[[userInfo objectForKey:@"userInfo"] objectForKey:@"users"] retain];
             users = [[NSMutableArray alloc] initWithCapacity:[statuses count]];
             for (NSDictionary *dict in statuses) {
                 KBTwitterUser *user = [[KBTwitterUser alloc] initWithDictionary:dict];

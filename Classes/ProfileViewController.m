@@ -452,7 +452,7 @@
 
     // FIXME: use the official twitterEngine
     //MGTwitterEngine *twitterEngine = [[[MGTwitterEngine alloc] initWithDelegate:self] autorelease];
-    twitterEngine = [[KBTwitterManager twitterManager] twitterEngine];
+    MGTwitterEngine *twitterEngine = [[KBTwitterManager twitterManager] twitterEngine];
     NSLog(@"twitter username: %@", user.twitter);
     NSString *twitters = [twitterEngine getUserTimelineFor:user.twitter sinceID:0 startingAtPage:0 count:20];
     NSLog(@"twitter: %@", twitters);

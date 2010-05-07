@@ -34,9 +34,9 @@
 - (BOOL) locationDenied;
 - (float) latitude;
 - (float) longitude;
-
+- (void) stopUpdates;
 - (BOOL) locationServicesEnabled;
-+ (void) stopAllUpdates:(NSString *)state;
+//+ (void) stopAllUpdates:(NSString *)state;
 
 - (CLLocationDistance) distanceFromCoordinate:(CLLocation*)coordinate;
 

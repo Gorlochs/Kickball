@@ -385,8 +385,7 @@
                 [str appendString:@"&"];
             }
             NSString *name = [names objectAtIndex:i];
-            [str appendString:[NSString stringWithFormat:@"%@=%@", 
-             name, [self _encodeString:[params objectForKey:name]]]];
+            [str appendString:[NSString stringWithFormat:@"%@=%@", name, [self _encodeString:[params objectForKey:name]]]];
         }
     }
     
@@ -1241,17 +1240,20 @@
                            responseType:MGTwitterUser];
 }
 
+// the next two methods convert the cursor to a string because for some reason
+// I could not get it to work properly while keeping all the other code working.
+// TODO: look into this.
 - (NSString *)getFollowersForUser:(NSString *)username withCursor:(NSNumber*)cursor {
     NSString *path = [NSString stringWithFormat:@"statuses/followers.%@", API_FORMAT];
     
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
     [params setObject:username forKey:@"screen_name"];
-    [params setObject:cursor forKey:@"cursor"];
+    [params setObject:[NSString stringWithFormat:@"%qu", [cursor longLongValue]] forKey:@"cursor"];
     
     return [self _sendRequestWithMethod:nil path:path 
                         queryParameters:params 
                                    body:nil 
-                            requestType:MGTwitterUser 
+                            requestType:MGTwitterUserInformationRequest 
                            responseType:MGTwitterUsers];
 }
 
@@ -1260,12 +1262,12 @@
     
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
     [params setObject:username forKey:@"screen_name"];
-    [params setObject:cursor forKey:@"cursor"];
+    [params setObject:[NSString stringWithFormat:@"%qu", [cursor longLongValue]] forKey:@"cursor"];
     
     return [self _sendRequestWithMethod:nil path:path 
                         queryParameters:params 
                                    body:nil 
-                            requestType:MGTwitterUser 
+                            requestType:MGTwitterUserInformationRequest 
                            responseType:MGTwitterUsers];
 }
 

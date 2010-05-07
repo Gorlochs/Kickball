@@ -79,7 +79,7 @@ static BOOL initialized = NO;
 	initialized = YES;
 	locationDenied = NO;
 	[self reset];
-    [self performSelector:@selector(stopAllUpdates:) withObject:@"Timed Out" afterDelay:[[NSNumber numberWithDouble:60] doubleValue]];
+    [self performSelector:@selector(stopUpdates) withObject:@"Timed Out" afterDelay:[[NSNumber numberWithDouble:60] doubleValue]];
     return self;
 }
 
@@ -94,9 +94,9 @@ static BOOL initialized = NO;
     return [currentLocation getDistanceFrom:coordinate];
 }
 
-- (void) stopAllUpdates:(NSString *)state {
-	[self stopUpdates];
-}
+//+ (void) - (void) stopUpdates:(NSString *)state {
+//	[locationManager stopUpdatingLocation];
+//}
 
 - (void) stopUpdates {
 	if (locationManager) {
@@ -229,15 +229,6 @@ static BOOL initialized = NO;
 
 - (float) longitude {
 	return longitude;
-}
-
-- (void) stopAllUpdates:(NSString *)state {
-    // TODO: IMPLEMENT THIS METHOD
-	if (locationManager) {
-        NSLog(@"stopping updates!");
-		[locationManager stopUpdatingLocation];
-        NSLog(@"***** STOPPING LOCATION MANAGER UPDATES ******");
-	}
 }
 
 
