@@ -1241,11 +1241,12 @@
                            responseType:MGTwitterUser];
 }
 
-- (NSString *)getFollowersForUser:(NSString *)username {
+- (NSString *)getFollowersForUser:(NSString *)username withCursor:(NSNumber*)cursor {
     NSString *path = [NSString stringWithFormat:@"statuses/followers.%@", API_FORMAT];
     
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
     [params setObject:username forKey:@"screen_name"];
+    [params setObject:cursor forKey:@"cursor"];
     
     return [self _sendRequestWithMethod:nil path:path 
                         queryParameters:params 
@@ -1254,11 +1255,12 @@
                            responseType:MGTwitterUsers];
 }
 
-- (NSString *)getFriendsForUser:(NSString *)username {
+- (NSString *)getFriendsForUser:(NSString *)username withCursor:(NSNumber*)cursor {
     NSString *path = [NSString stringWithFormat:@"statuses/friends.%@", API_FORMAT];
     
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
     [params setObject:username forKey:@"screen_name"];
+    [params setObject:cursor forKey:@"cursor"];
     
     return [self _sendRequestWithMethod:nil path:path 
                         queryParameters:params 

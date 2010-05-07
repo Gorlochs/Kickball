@@ -35,7 +35,7 @@
 @property (nonatomic) BOOL isCheckin;
 
 - (IBAction) shout;
-- (IBAction) shoutAndTweet;
+//- (IBAction) shoutAndTweet;
 - (IBAction) shoutAndCheckin;
 - (IBAction) shoutAndTweetAndCheckin;
 - (IBAction) cancelView;

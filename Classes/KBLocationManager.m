@@ -231,5 +231,14 @@ static BOOL initialized = NO;
 	return longitude;
 }
 
+- (void) stopAllUpdates:(NSString *)state {
+    // TODO: IMPLEMENT THIS METHOD
+	if (locationManager) {
+        NSLog(@"stopping updates!");
+		[locationManager stopUpdatingLocation];
+        NSLog(@"***** STOPPING LOCATION MANAGER UPDATES ******");
+	}
+}
+
 
 @end

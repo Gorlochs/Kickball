@@ -19,6 +19,7 @@ typedef enum {
     NSDictionary *userDictionary;
     NSMutableArray *users;
     KBTwitterUserType userType;
+    NSNumber *currentCursor;
 }
 
 @property (nonatomic, retain) NSDictionary *userDictionary;

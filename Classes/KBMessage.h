@@ -22,7 +22,7 @@
 @property (nonatomic) BOOL isError;
 
 - (id) initWithMember: (NSString*)maintitle andMessage:(NSString*)msg;
-- (id) initWithMember: (NSString*)maintitle andMessage:(NSString*)msg isError:(BOOL)isError;
+- (id) initWithMember: (NSString*)maintitle andMessage:(NSString*)msg isError:(BOOL)isAnError;
 - (id) initWithMember: (NSString*)maintitle andSubtitle:(NSString*)subTitle andMessage:(NSString*)msg;
 
 @end

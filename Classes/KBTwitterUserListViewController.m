@@ -25,6 +25,10 @@
     hideRefresh = YES;
     [super viewDidLoad];
     
+    if (!currentCursor) {
+        currentCursor = [NSNumber numberWithInt:-1];
+    }
+    
     [self showStatuses];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(usersRetrieved:) name:kTwitterUserInfoRetrievedNotificationKey object:nil];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTweetNotification:) name:IFTweetLabelURLNotification object:nil];
@@ -39,9 +43,9 @@
     // it was either this, or extending this class and overriding one method. 
     [self startProgressBar:@"Retrieving users..."];
     if (userType == KBTwitterUserFollower) {
-        [twitterEngine getFollowersForUser:[userDictionary objectForKey:@"screen_name"]];
+        [twitterEngine getFollowersForUser:[userDictionary objectForKey:@"screen_name"] withCursor:currentCursor];
     } else {
-        [twitterEngine getFriendsForUser:[userDictionary objectForKey:@"screen_name"]];
+        [twitterEngine getFriendsForUser:[userDictionary objectForKey:@"screen_name"] withCursor:currentCursor];
     }
 }
 

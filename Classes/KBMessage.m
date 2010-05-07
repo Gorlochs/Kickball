@@ -23,12 +23,12 @@
     return self;
 }
 
-- (id) initWithMember: (NSString*)maintitle andMessage:(NSString*)msg isError:(BOOL)isError {
+- (id) initWithMember: (NSString*)maintitle andMessage:(NSString*)msg isError:(BOOL)isAnError {
     
     self = [super init];
     self.mainTitle = maintitle;
     self.message = msg;
-    self.isError = isError;
+    self.isError = isAnError;
     return self;
 }
 
