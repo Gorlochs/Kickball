@@ -354,7 +354,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    [cell setBackgroundColor:[UIColor colorWithWhite:0.9 alpha:1.0]];  
+    if (indexPath.section > 0 && indexPath.section < 4) {
+        [cell setBackgroundColor:[UIColor colorWithWhite:0.9 alpha:1.0]];  
+    }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -448,6 +450,7 @@
 - (void) viewProfilesTwitterFeed {
     [self startProgressBar:@"Retrieving tweets..."];
 
+    // FIXME: use the official twitterEngine
     MGTwitterEngine *twitterEngine = [[[MGTwitterEngine alloc] initWithDelegate:self] autorelease];
     NSLog(@"twitter username: %@", user.twitter);
     NSString *twitters = [twitterEngine getUserTimelineFor:user.twitter sinceID:0 startingAtPage:0 count:20];

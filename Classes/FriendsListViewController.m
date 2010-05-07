@@ -270,6 +270,7 @@
         cell.venueAddress.text = checkin.shout;
     } else if (checkin.shout != nil && !checkin.venue) {
         cell.venueName.text = checkin.shout;
+        cell.venueAddress.text = @"";
     } else {
         cell.venueAddress.text = checkin.venue.addressWithCrossstreet;
     }

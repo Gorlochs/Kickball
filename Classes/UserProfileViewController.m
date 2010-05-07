@@ -66,6 +66,9 @@
     // e.g. self.myOutlet = nil;
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 4;
+}
 
 - (void)dealloc {
     [yourStuffButton release];

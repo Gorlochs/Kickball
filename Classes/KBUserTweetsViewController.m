@@ -16,6 +16,9 @@
 
 - (void) viewDidLoad {
     [super viewDidLoad];
+    
+    cachingKey = [NSString stringWithString:username];
+    
     if (self.userDictionary) {
         screenNameLabel.text = [self.userDictionary objectForKey:@"screen_name"];
         fullName.text = [self.userDictionary objectForKey:@"name"];

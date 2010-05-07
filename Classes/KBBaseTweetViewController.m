@@ -30,7 +30,6 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-
 - (void)handleTweetNotification:(NSNotification *)notification {
 	NSLog(@"handleTweetNotification: notification = %@", notification);
     if ([[notification object] rangeOfString:@"@"].location == 0) {
@@ -39,7 +38,6 @@
         [self.navigationController pushViewController:controller animated:YES];
         [controller release];
     } else if ([[notification object] rangeOfString:@"#"].location == 0) {
-        // TODO: push hashtag search view (http://search.twitter.com/search.atom?q=%23haiku)
         KBTwitterSearchViewController *controller = [[KBTwitterSearchViewController alloc] initWithNibName:@"KBTweetListViewController" bundle:nil];
         controller.searchTerms = [notification object];
         [self.navigationController pushViewController:controller animated:YES];
