@@ -1285,7 +1285,7 @@
     
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:0];
     if (sinceID > 0) {
-        [params setObject:[NSString stringWithFormat:@"%u", sinceID] forKey:@"since_id"];
+        [params setObject:[NSString stringWithFormat:@"%qu", sinceID] forKey:@"since_id"];
     }
     if (maxID > 0) {
         [params setObject:[NSString stringWithFormat:@"%u", maxID] forKey:@"max_id"];
@@ -1305,18 +1305,18 @@
 
 #pragma mark -
 
-- (NSString *)getSentDirectMessagesSinceID:(unsigned long)sinceID startingAtPage:(int)page
+- (NSString *)getSentDirectMessagesSinceID:(unsigned long long)sinceID startingAtPage:(int)page
 {
     return [self getSentDirectMessagesSinceID:sinceID withMaximumID:0 startingAtPage:page count:0];
 }
 
-- (NSString *)getSentDirectMessagesSinceID:(unsigned long)sinceID withMaximumID:(unsigned long)maxID startingAtPage:(int)page count:(int)count
+- (NSString *)getSentDirectMessagesSinceID:(unsigned long long)sinceID withMaximumID:(unsigned long)maxID startingAtPage:(int)page count:(int)count
 {
     NSString *path = [NSString stringWithFormat:@"direct_messages/sent.%@", API_FORMAT];
     
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:0];
     if (sinceID > 0) {
-        [params setObject:[NSString stringWithFormat:@"%u", sinceID] forKey:@"since_id"];
+        [params setObject:[NSString stringWithFormat:@"%qu", sinceID] forKey:@"since_id"];
     }
     if (maxID > 0) {
         [params setObject:[NSString stringWithFormat:@"%u", maxID] forKey:@"max_id"];

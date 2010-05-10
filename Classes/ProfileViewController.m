@@ -567,6 +567,18 @@
     [profileInfoView removeFromSuperview];
 }
 
+#pragma mark 
+#pragma mark table refresh methods
+
+- (void) refreshTable {
+	[[FoursquareAPI sharedInstance] getUser:self.userId withTarget:self andAction:@selector(userResponseReceivedWithRefresh:withResponseString:)];
+}
+
+- (void)userResponseReceivedWithRefresh:(NSURL *)inURL withResponseString:(NSString *)inString {
+    [self userResponseReceived:inURL withResponseString:inString];
+	[self dataSourceDidFinishLoadingNewData];
+}
+
 #pragma mark
 #pragma mark private methods
 

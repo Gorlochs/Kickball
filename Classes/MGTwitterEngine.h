@@ -127,8 +127,8 @@
 - (NSString *)getDirectMessagesSinceID:(unsigned long long)sinceID startingAtPage:(int)pageNum; // direct_messages
 - (NSString *)getDirectMessagesSinceID:(unsigned long long)sinceID withMaximumID:(unsigned long)maxID startingAtPage:(int)pageNum count:(int)count; // direct_messages
 
-- (NSString *)getSentDirectMessagesSinceID:(unsigned long)sinceID startingAtPage:(int)pageNum; // direct_messages/sent
-- (NSString *)getSentDirectMessagesSinceID:(unsigned long)sinceID withMaximumID:(unsigned long)maxID startingAtPage:(int)pageNum count:(int)count; // direct_messages/sent
+- (NSString *)getSentDirectMessagesSinceID:(unsigned long long)sinceID startingAtPage:(int)pageNum; // direct_messages/sent
+- (NSString *)getSentDirectMessagesSinceID:(unsigned long long)sinceID withMaximumID:(unsigned long)maxID startingAtPage:(int)pageNum count:(int)count; // direct_messages/sent
 
 - (NSString *)sendDirectMessage:(NSString *)message to:(NSString *)username; // direct_messages/new
 - (NSString *)deleteDirectMessage:(unsigned long)updateID;// direct_messages/destroy

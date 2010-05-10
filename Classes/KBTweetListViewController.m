@@ -53,8 +53,6 @@
     tweets = [[NSMutableArray alloc] initWithArray:[[KBTwitterManager twitterManager] retrieveCachedStatusArrayWithKey:cachingKey]];
     if (tweets != nil && [tweets count] > 0) {
         startAtId = ((KBTweet*)[tweets objectAtIndex:0]).tweetId;
-//        NSLog(@"cached tweets: %@", tweets);
-//        NSLog(@"max id: %qu", [startAtId longLongValue]);
         [theTableView reloadData];
     }
     [self startProgressBar:@"Retrieving your tweets..."];
