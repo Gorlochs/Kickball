@@ -18,12 +18,14 @@
 
 
 - (void)viewDidLoad {
+    hideHeader = YES;
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(createTweetStatusRetrieved:) name:kTwitterStatusRetrievedNotificationKey object:nil];
     if (self.replyToScreenName) {
         tweetTextView.text = [NSString stringWithFormat:@"@%@ ", self.replyToScreenName];
     }
     [tweetTextView becomeFirstResponder];
+    tweetTextView.font = [UIFont fontWithName:@"Georgia" size:12.0];
     
     isFacebookOn = YES;
     isFoursquareOn = YES;
@@ -39,7 +41,9 @@
 
 - (void) submitTweet {
     
-    // TODO: determine if the user has geotweets turns on
+    [self startProgressBar:@"Submitting..."];
+    [self dismissModalViewControllerAnimated:YES];
+    actionCount = 1 + isFoursquareOn + isFacebookOn;
     
     if (replyToStatusId && replyToStatusId > 0) {
         if (isGeotagOn) {
@@ -74,7 +78,7 @@
 }
 
 - (void)shoutResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    
+    [self decrementActionCount];
 }
 
 - (void)request:(FBRequest*)request didLoad:(id)result {
@@ -82,6 +86,7 @@
         NSDictionary* info = result;
         NSLog(@"facebook status updated: %@", info);
     }
+    [self decrementActionCount];
 }
 
 - (void) cancelCreate {
@@ -90,7 +95,18 @@
 }
 
 - (void) createTweetStatusRetrieved:(NSNotification*)inNotification {
-    NSLog(@"########################################################");
+    [self decrementActionCount];
+}
+
+- (void) decrementActionCount {
+    actionCount--;
+    if (actionCount == 0) {
+        [self closeUpShop];
+    }
+}
+
+- (void) closeUpShop {
+    [self stopProgressBar];
 }
 
 - (void) toggleFoursquare {
@@ -168,6 +184,11 @@
     
     [replyToStatusId release];
     [replyToScreenName release];
+    
+    [foursquareButton release];
+    [facebookButton release];
+    [geotagButton release];
+    [addPhotoButton release];
     [super dealloc];
 }
 

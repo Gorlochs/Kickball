@@ -22,5 +22,6 @@
 
 - (void) showStatuses;
 - (void) executeQuery:(int)pageNumber;
+- (IBAction) openTweetModalView;
  
 @end

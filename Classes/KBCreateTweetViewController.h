@@ -26,6 +26,8 @@
     IBOutlet UIButton *facebookButton;
     IBOutlet UIButton *geotagButton;
     IBOutlet UIButton *addPhotoButton;
+    
+    int actionCount;
 }
 
 @property (nonatomic, retain) NSNumber *replyToStatusId;
@@ -37,5 +39,7 @@
 - (IBAction) toggleFoursquare;
 - (IBAction) toggleGeotag;
 - (IBAction) addPhoto;
+- (void) decrementActionCount;
+- (void) closeUpShop;
 
 @end

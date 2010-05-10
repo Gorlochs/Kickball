@@ -550,7 +550,7 @@
 }
 
 - (void) showProfileOptions {
-    profileOptionsView.frame = CGRectMake(0, 46, profileOptionsView.frame.size.width, profileOptionsView.frame.size.height);
+    profileOptionsView.frame = CGRectMake(0, 48, profileOptionsView.frame.size.width, profileOptionsView.frame.size.height);
     [self.view addSubview:profileOptionsView];
 }
 
@@ -559,7 +559,7 @@
 }
 
 - (void) showInfoOptions {
-    profileInfoView.frame = CGRectMake(0, 46, profileInfoView.frame.size.width, profileInfoView.frame.size.height);
+    profileInfoView.frame = CGRectMake(0, 48, profileInfoView.frame.size.width, profileInfoView.frame.size.height);
     [self.view addSubview:profileInfoView];
 }
 

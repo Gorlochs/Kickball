@@ -69,7 +69,7 @@
 					<object class="IBUIImageView" id="758617410">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">256</int>
-						<string key="NSFrame">{{0, 47}, {270, 46}}</string>
+						<string key="NSFrame">{{0, 47}, {320, 46}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -77,13 +77,13 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">searchBGcleared.png</string>
+							<string key="NSResourceName">searchBG01.png</string>
 						</object>
 					</object>
 					<object class="IBUITextField" id="985660589">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{37, 56}, {230, 30}}</string>
+						<string key="NSFrame">{{37, 55}, {230, 30}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -113,7 +113,7 @@
 					<object class="IBUIButton" id="971944687">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{273, 49}, {43, 42}}</string>
+						<string key="NSFrame">{{275, 50}, {43, 42}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -442,7 +442,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>PlacesListViewController</string>
 					<string>UIResponder</string>
-					<string>{{949, 507}, {320, 480}}</string>
+					<string>{{733, 507}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{638, 655}, {320, 50}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -473,7 +473,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">20</int>
+			<int key="maxID">21</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -909,7 +909,7 @@
 				<string>addFriend02.png</string>
 				<string>addPlace01b.png</string>
 				<string>addPlace02b.png</string>
-				<string>searchBGcleared.png</string>
+				<string>searchBG01.png</string>
 				<string>searchRefresh01.png</string>
 				<string>searchRefresh02.png</string>
 			</object>

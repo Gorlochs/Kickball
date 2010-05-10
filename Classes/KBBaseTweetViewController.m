@@ -10,6 +10,7 @@
 #import "KBUserTweetsViewController.h"
 #import "KBTwitterSearchViewController.h"
 #import "KBTwitterDetailViewController.h"
+#import "KBCreateTweetViewController.h"
 #import "UIAlertView+Helper.h"
 
 #define MAX_LABEL_HEIGHT 68.0
@@ -52,6 +53,12 @@
 
 - (void) showStatuses {
     NSLog(@"implement this!!");
+}
+
+- (void) openTweetModalView {
+    KBCreateTweetViewController *tweetController = [[KBCreateTweetViewController alloc] initWithNibName:@"KBCreateTweetViewController" bundle:nil];
+    [self presentModalViewController:tweetController animated:YES];
+    [tweetController release];
 }
 
 - (void)requestSucceeded:(NSString *)connectionIdentifier

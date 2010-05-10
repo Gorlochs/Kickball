@@ -31,11 +31,11 @@
         [self.view addSubview:headerView];
     }
     
-    CGRect frame = homeBackView.frame;
-    frame.origin = CGPointMake(0, 0);
-    homeBackView.frame = frame;
-    [self.view addSubview:homeBackView];
-    homeBackView.hidden = YES;
+//    CGRect frame = homeBackView.frame;
+//    frame.origin = CGPointMake(0, 0);
+//    homeBackView.frame = CGRectMake(0, 0, homeBackView.frame.size.width, homeBackView.frame.size.height);
+//    [self.view addSubview:homeBackView];
+//    homeBackView.hidden = YES;
     
     if (pageType == KBPageTypePlaces) {
         [friendButton setImage:[UIImage imageNamed:@"friendsTab03.png"] forState:UIControlStateNormal];
@@ -47,9 +47,11 @@
         friendButton.enabled = NO;
     } else if (pageType == KBPageTypeOther) {
         //[friendButton setImage:[UIImage imageNamed:@"friendsTab01.png"] forState:UIControlStateNormal];
-        homeBackView.hidden = NO;
+ //       homeBackView.hidden = NO;
         friendButton.enabled = NO;
-        //[self.view bringSubviewToFront:homeBackView];
+        homeBackView.frame = CGRectMake(0, 0, homeBackView.frame.size.width, homeBackView.frame.size.height);
+        [self.view addSubview:homeBackView];
+        [self.view bringSubviewToFront:homeBackView];
         [placesButton setImage:[UIImage imageNamed:@"placesTab01.png"] forState:UIControlStateNormal];
     }
     
