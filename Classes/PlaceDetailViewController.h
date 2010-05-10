@@ -76,7 +76,6 @@
 @property (nonatomic, retain) UIImage *photoImage;
 @property (nonatomic) BOOL doCheckin;
 
-- (void) retrievePhotos;
 - (IBAction) callVenue;
 - (IBAction) uploadImageToServer;
 - (IBAction) showTwitterFeed;
@@ -89,17 +88,20 @@
 - (IBAction) markVenueWrongAddress;
 - (IBAction) markVenueClosed;
 - (IBAction) closeMap;
+- (IBAction) choosePhotoSelectMethod;
+- (IBAction) viewPhotos;
+- (IBAction) displayAllImages;
+- (IBAction) openCheckinView;
+
 - (FSCheckin*) getSingleCheckin;
 - (BOOL) hasMayorCell;
 - (BOOL) isNewMayor;
+- (void) retrievePhotos;
 - (void) setProperButtonStates;
-- (IBAction) choosePhotoSelectMethod;
 - (void) getPhoto:(UIImagePickerControllerSourceType)sourceType;
-- (IBAction) viewPhotos;
-- (BOOL)uploadImage:(NSData *)imageData filename:(NSString *)filename withWidth:(float)width andHeight:(float)height andMessage:(NSString*)message andOrientation:(UIImageOrientation)orientation;
-- (UIImage*)imageByScalingToSize:(UIImage*)image toSize:(CGSize)targetSize;
-- (IBAction) displayAllImages;
 - (void) returnFromMessageView:(NSNotification *)inNotification;
 - (void) uploadFacebookPhoto:(NSData*)img withCaption:(NSString*)caption;
+- (BOOL)uploadImage:(NSData *)imageData filename:(NSString *)filename withWidth:(float)width andHeight:(float)height andMessage:(NSString*)message andOrientation:(UIImageOrientation)orientation;
+- (UIImage*)imageByScalingToSize:(UIImage*)image toSize:(CGSize)targetSize;
 
 @end

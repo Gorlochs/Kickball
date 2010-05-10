@@ -13,6 +13,7 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="1"/>
+			<integer value="15"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -158,7 +159,7 @@
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 			<object class="IBUITableViewCell" id="334128351">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -183,7 +184,7 @@
 										<int key="IBUIContentHorizontalAlignment">0</int>
 										<int key="IBUIContentVerticalAlignment">0</int>
 										<reference key="IBUIFont" ref="565684615"/>
-										<string key="IBUINormalTitle">Add a Friend</string>
+										<string key="IBUINormalTitle">Add a Venue</string>
 										<reference key="IBUIHighlightedTitleColor" ref="34720128"/>
 										<object class="NSColor" key="IBUINormalTitleColor">
 											<int key="NSColorSpace">1</int>
@@ -197,10 +198,6 @@
 										<object class="NSCustomResource" key="IBUISelectedImage">
 											<string key="NSClassName">NSImage</string>
 											<string key="NSResourceName">addFriend02.png</string>
-										</object>
-										<object class="NSCustomResource" key="IBUINormalImage">
-											<string key="NSClassName">NSImage</string>
-											<string key="NSResourceName">addPlace01b.png</string>
 										</object>
 									</object>
 								</object>
@@ -228,6 +225,7 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 50}</string>
+				<reference key="NSSuperview"/>
 				<reference key="IBUIBackgroundColor" ref="1031469541"/>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -331,6 +329,15 @@
 						<int key="IBEventType">7</int>
 					</object>
 					<int key="connectionID">19</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">addNewVenue</string>
+						<reference key="source" ref="649483423"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">22</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -442,9 +449,9 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>PlacesListViewController</string>
 					<string>UIResponder</string>
-					<string>{{733, 507}, {320, 480}}</string>
+					<string>{{570, 549}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{638, 655}, {320, 50}}</string>
+					<string>{{925, 688}, {320, 50}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{21, 928}, {320, 44}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -473,7 +480,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">21</int>
+			<int key="maxID">22</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -907,7 +914,6 @@
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>addFriend02.png</string>
-				<string>addPlace01b.png</string>
 				<string>addPlace02b.png</string>
 				<string>searchBG01.png</string>
 				<string>searchRefresh01.png</string>
@@ -916,7 +922,6 @@
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>{108, 37}</string>
-				<string>{16, 16}</string>
 				<string>{16, 16}</string>
 				<string>{320, 46}</string>
 				<string>{37, 33}</string>

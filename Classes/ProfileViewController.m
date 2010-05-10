@@ -354,7 +354,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section > 0 && indexPath.section < 4) {
+    if (indexPath.section > 1 && indexPath.section < 4) {
         [cell setBackgroundColor:[UIColor colorWithWhite:0.9 alpha:1.0]];  
     }
 }

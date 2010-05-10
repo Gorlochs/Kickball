@@ -149,6 +149,10 @@
     return headerView;
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    [cell setBackgroundColor:[UIColor colorWithWhite:0.9 alpha:1.0]];
+}
+
 #pragma mark 
 #pragma mark Memory Management
 

@@ -30,7 +30,7 @@
 
 @property (nonatomic, retain) NSString *venueId;
 
-- (IBAction) shout;
+- (IBAction) checkin;
 - (IBAction) cancelView;
 - (IBAction) toggleTwitter;
 - (IBAction) toggleFacebook;

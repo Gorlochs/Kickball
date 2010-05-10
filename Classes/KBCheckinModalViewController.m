@@ -24,17 +24,32 @@
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
+    
+    hideHeader = YES;
+    hideFooter = YES;
+    [checkinTextField becomeFirstResponder];
+    
     self.twitterEngine = [[KBTwitterManager twitterManager] twitterEngine];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusRetrieved:) name:kTwitterStatusRetrievedNotificationKey object:nil];
     
     pageType = KBPageTypeOther;
     [super viewDidLoad];
     
     FSUser* user = [self getAuthenticatedUser];
-    facebookButton.enabled = user.sendToFacebook;
-    twitterButton.enabled = user.sendToTwitter;
-    isFacebookOn = facebookButton.enabled;
-    isTwitterOn = twitterButton.enabled;
+    NSLog(@"user: %@", user);
+    facebookButton.enabled = user.facebook != nil;
+    twitterButton.enabled = user.twitter != nil;
+    isFacebookOn = YES;
+    isTwitterOn = YES;
+    isFoursquareOn = YES;
+    // hack
+    if (!user.sendToFacebook) {
+        [self toggleFacebook];
+    }
+    if (!user.sendToTwitter) {
+        [self toggleTwitter];
+    }
     actionCount = 0;
 }
 
@@ -70,8 +85,8 @@
 - (void) toggleFoursquare {
     if (isFoursquareOn) {
         // turn 4sq off
-        [foursquareButton setImage:[UIImage imageNamed:@"checkinOTG01.png"] forState:UIControlStateNormal];
-        [foursquareButton setImage:[UIImage imageNamed:@"checkinOTG02.png"] forState:UIControlStateHighlighted];
+        [foursquareButton setImage:[UIImage imageNamed:@"checkin4SQ02.png"] forState:UIControlStateNormal];
+        [foursquareButton setImage:[UIImage imageNamed:@"checkin4SQ01.png"] forState:UIControlStateHighlighted];
     } else {
         // turn 4sq on
         [foursquareButton setImage:[UIImage imageNamed:@"checkin4SQ01.png"] forState:UIControlStateNormal];

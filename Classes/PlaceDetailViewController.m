@@ -35,6 +35,7 @@
 #import "KickballAPI.h"
 #import "BlackTableCellHeader.h"
 #import "TipListViewController.h"
+#import "KBCheckinModalViewController.h"
 
 static inline double radians (double degrees) {return degrees * M_PI/180;}
 
@@ -661,6 +662,13 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
                                                 withTarget:self 
                                                  andAction:@selector(checkinResponseReceived:withResponseString:)];
     [[Beacon shared] startSubBeaconWithName:@"Check in and shout to Venue"];
+}
+
+- (void) openCheckinView {
+    KBCheckinModalViewController *vc = [[KBCheckinModalViewController alloc] initWithNibName:@"CheckinModalView" bundle:nil];
+    vc.venueId = venue.venueid;
+    [self presentModalViewController:vc animated:YES];
+    [vc release];
 }
 
 - (void) checkinToVenue {

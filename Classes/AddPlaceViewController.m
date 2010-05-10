@@ -19,6 +19,10 @@
 @synthesize checkin;
 
 - (void)viewDidLoad {
+    hideFooter = YES;
+    pageType = KBPageTypeOther;
+    pageViewType = KBPageViewTypeOther;
+    
     [super viewDidLoad];
     
     // pull this up into a method (or property)
