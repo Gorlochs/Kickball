@@ -1124,7 +1124,7 @@
     
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:0];
     if (sinceID > 0) {
-        [params setObject:[NSString stringWithFormat:@"%u", sinceID] forKey:@"since_id"];
+        [params setObject:[NSString stringWithFormat:@"%qu", sinceID] forKey:@"since_id"];
     }
     if (maxID > 0) {
         [params setObject:[NSString stringWithFormat:@"%u", maxID] forKey:@"max_id"];
