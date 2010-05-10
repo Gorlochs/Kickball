@@ -19,6 +19,13 @@
     [super viewDidLoad];
     noResultsView.hidden = NO;
     
+    if ([[KBTwitterManager twitterManager] searchResults]) {
+        tweets = [[NSMutableArray alloc] initWithArray:[[KBTwitterManager twitterManager] searchResults]];
+        searchTerms = [KBTwitterManager twitterManager].searchTerm;
+        [theTableView reloadData];
+        noResultsView.hidden = YES;
+    }
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(searchRetrieved:) name:kTwitterSearchRetrievedNotificationKey object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTweetNotification:) name:IFTweetLabelURLNotification object:nil];
     [self showStatuses];
@@ -28,6 +35,10 @@
     [directMessageButton setImage:[UIImage imageNamed:@"tabDM03.png"] forState:UIControlStateNormal];
     [searchButton setImage:[UIImage imageNamed:@"tabSearch01.png"] forState:UIControlStateNormal];
 }
+
+//- (void) viewDidAppear:(BOOL)animated {
+//    [super viewDidAppear:animated];
+//}
 
 - (void) showStatuses {
     if (searchTerms) {
@@ -46,13 +57,16 @@
                 statuses = [[[[userInfo objectForKey:@"searchResults"] objectAtIndex:0] objectForKey:@"results"] retain];
                 tweets = [[NSMutableArray alloc] initWithCapacity:[statuses count]];
                 if ([statuses count] > 1) {
-                    
                     for (NSDictionary *dict in statuses) {
                         KBSearchResult *result = [[KBSearchResult alloc] initWithDictionary:dict];
                         [tweets addObject:result];
                         [result release];
                     }
                     [theTableView reloadData];
+                    
+                    [KBTwitterManager twitterManager].searchResults = nil;
+                    [KBTwitterManager twitterManager].searchResults = [[NSArray alloc] initWithArray:tweets];
+                    
                     noResultsView.hidden = YES;
                 } else {
                     noResultsView.hidden = NO;
@@ -68,6 +82,7 @@
     searchTerms = searchBar.text;
     [searchBar resignFirstResponder];
     [self showStatuses];
+    [KBTwitterManager twitterManager].searchTerm = searchBar.text;
 }
 
 // Customize the appearance of table view cells.

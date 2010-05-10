@@ -15,7 +15,8 @@
 
 @synthesize replyToStatusId;
 @synthesize replyToScreenName;
-
+@synthesize retweetStatusId;
+@synthesize retweetToScreenName;
 
 - (void)viewDidLoad {
     hideHeader = YES;

@@ -29,9 +29,13 @@
 @interface KBTwitterManager : NSObject {
     XAuthTwitterEngine *twitterEngine;
     BOOL hasGeoTweetTurnedOn;
+    NSArray *searchResults;
+    NSString *searchTerm;
 }
 
 @property (nonatomic, retain) XAuthTwitterEngine *twitterEngine;
+@property (nonatomic, retain) NSArray *searchResults;
+@property (nonatomic, retain) NSString *searchTerm;
 @property (nonatomic) BOOL hasGeoTweetTurnedOn;
 
 + (KBTwitterManager*) twitterManager;

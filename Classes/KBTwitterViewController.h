@@ -29,5 +29,6 @@
 - (IBAction) showDirectMessages;
 - (IBAction) showUserTimeline;
 - (IBAction) showSearch;
+- (IBAction) openTweetModalView;
 
 @end

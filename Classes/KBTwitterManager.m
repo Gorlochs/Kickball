@@ -16,6 +16,7 @@ static KBTwitterManager *sharedInstance = nil;
 @implementation KBTwitterManager
 
 @synthesize twitterEngine;
+@synthesize searchResults, searchTerm;
 
 + (KBTwitterManager*) twitterManager
 {
@@ -71,7 +72,6 @@ static KBTwitterManager *sharedInstance = nil;
     }
     return twitterEngine;
 }
-
 
 #pragma mark -
 #pragma mark XAuthTwitterEngineDelegate methods

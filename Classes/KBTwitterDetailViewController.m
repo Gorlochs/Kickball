@@ -67,9 +67,17 @@
 	KBCreateTweetViewController *createViewController = [[KBCreateTweetViewController alloc] initWithNibName:@"KBCreateTweetViewController" bundle:nil];
     createViewController.replyToStatusId = tweet.tweetId;
     createViewController.replyToScreenName = tweet.screenName;
-	[self.navigationController pushViewController:createViewController animated:YES];
+	[self presentModalViewController:createViewController animated:YES];
 	[createViewController release];
 }
+
+//- (void) retweet {
+//	KBCreateTweetViewController *createViewController = [[KBCreateTweetViewController alloc] initWithNibName:@"KBCreateTweetViewController" bundle:nil];
+//    createViewController.retweetStatusId = tweet.tweetId;
+//    createViewController.retweetToScreenName = tweet.screenName;
+//	[self presentModalViewController:createViewController animated:YES];
+//	[createViewController release];
+//}
 
 - (void) viewUserProfile {
 	KBTwitterProfileViewController *profileController = [[KBTwitterProfileViewController alloc] initWithNibName:@"KBTwitterProfileViewController" bundle:nil];

@@ -55,12 +55,6 @@
     NSLog(@"implement this!!");
 }
 
-- (void) openTweetModalView {
-    KBCreateTweetViewController *tweetController = [[KBCreateTweetViewController alloc] initWithNibName:@"KBCreateTweetViewController" bundle:nil];
-    [self presentModalViewController:tweetController animated:YES];
-    [tweetController release];
-}
-
 - (void)requestSucceeded:(NSString *)connectionIdentifier
 {
 	NSLog(@"Twitter request succeeded: %@", connectionIdentifier);

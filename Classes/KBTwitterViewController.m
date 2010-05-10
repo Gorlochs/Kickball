@@ -14,6 +14,7 @@
 #import "KBTwitterSearchViewController.h"
 #import "KBTwitterSearchViewController.h"
 #import "KBGeoTweetMapViewController.h"
+#import "KBCreateTweetViewController.h"
 
 
 @implementation KBTwitterViewController
@@ -58,6 +59,12 @@
     }
     footerType = KBFooterTypeTwitter;
     [self setTabImages];
+}
+
+- (void) openTweetModalView {
+    KBCreateTweetViewController *tweetController = [[KBCreateTweetViewController alloc] initWithNibName:@"KBCreateTweetViewController" bundle:nil];
+    [self presentModalViewController:tweetController animated:YES];
+    [tweetController release];
 }
 
 // FIXME: all these need to be fixed. we should be using navcontroller

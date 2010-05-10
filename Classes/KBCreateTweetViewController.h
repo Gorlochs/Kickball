@@ -18,6 +18,8 @@
     
     NSNumber *replyToStatusId;
     NSString *replyToScreenName;
+    NSNumber *retweetStatusId;
+    NSString *retweetToScreenName;
     
     BOOL isFoursquareOn;
     BOOL isFacebookOn;
@@ -32,6 +34,8 @@
 
 @property (nonatomic, retain) NSNumber *replyToStatusId;
 @property (nonatomic, retain) NSString *replyToScreenName;
+@property (nonatomic, retain) NSNumber *retweetStatusId;
+@property (nonatomic, retain) NSString *retweetToScreenName;
 
 - (IBAction) submitTweet;
 - (IBAction) cancelCreate;
