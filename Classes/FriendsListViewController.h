@@ -19,7 +19,9 @@
 	NSMutableArray * recentCheckins;
 	NSMutableArray * todayCheckins;
 	NSMutableArray * yesterdayCheckins;
-	NSMutableArray * nonCityCheckins;
+	NSMutableArray * nonCityRecentCheckins;
+	NSMutableArray * nonCityTodayCheckins;
+	NSMutableArray * nonCityYesterdayCheckins;
     
     IBOutlet UIView *noNetworkView;
     IBOutlet InstructionView *instructionView;
@@ -46,7 +48,9 @@
 @property (nonatomic, retain) NSMutableArray * recentCheckins;
 @property (nonatomic, retain) NSMutableArray * todayCheckins;
 @property (nonatomic, retain) NSMutableArray * yesterdayCheckins;
-@property (nonatomic, retain) NSMutableArray * nonCityCheckins;
+@property (nonatomic, retain) NSMutableArray * nonCityRecentCheckins;
+@property (nonatomic, retain) NSMutableArray * nonCityTodayCheckins;
+@property (nonatomic, retain) NSMutableArray * nonCityYesterdayCheckins;
 
 - (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString;
 - (void) doInitialDisplay;

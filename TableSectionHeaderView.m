@@ -19,7 +19,7 @@
         // Initialization code	
         self.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1.0];
         
-        leftHeaderLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, 4.0, 150.0, 24.0)];
+        leftHeaderLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, 4.0, 200.0, 24.0)];
         leftHeaderLabel.backgroundColor = [UIColor clearColor];
         leftHeaderLabel.opaque = NO;
         leftHeaderLabel.textColor = [UIColor grayColor];
@@ -29,7 +29,7 @@
         leftHeaderLabel.shadowOffset = CGSizeMake(1.0, 1.0);
         [self addSubview:leftHeaderLabel];
         
-        rightHeaderLabel = [[UILabel alloc] initWithFrame:CGRectMake(160.0, 4.0, 150.0, 24.0)];
+        rightHeaderLabel = [[UILabel alloc] initWithFrame:CGRectMake(210.0, 4.0, 100.0, 24.0)];
         rightHeaderLabel.backgroundColor = [UIColor clearColor];
         rightHeaderLabel.opaque = NO;
         rightHeaderLabel.textColor = [UIColor grayColor];

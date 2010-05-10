@@ -28,9 +28,11 @@
 #define SECTION_RECENT_CHECKINS 1
 #define SECTION_TODAY_CHECKINS 2
 #define SECTION_YESTERDAY_CHECKINS 3
-#define SECTION_NONCITY_CHECKINS 4
-#define SECTION_MORE_BUTTON 5
-#define SECTION_FOOTER 6
+#define SECTION_NONCITY_RECENT_CHECKINS 4
+#define SECTION_NONCITY_TODAY_CHECKINS 5
+#define SECTION_NONCITY_YESTERDAY_CHECKINS 6
+#define SECTION_MORE_BUTTON 7
+#define SECTION_FOOTER 8
 #define SECTION_SHOUT 0
 
 @interface FriendsListViewController (Private)
@@ -42,7 +44,7 @@
 
 @implementation FriendsListViewController
 
-@synthesize checkins, recentCheckins, todayCheckins, yesterdayCheckins, nonCityCheckins;
+@synthesize checkins, recentCheckins, todayCheckins, yesterdayCheckins, nonCityRecentCheckins, nonCityTodayCheckins, nonCityYesterdayCheckins;
 
 - (void) viewDidLoad {
     
@@ -179,7 +181,9 @@
     [recentCheckins release];
     [todayCheckins release];
     [yesterdayCheckins release];
-    [nonCityCheckins release];
+    [nonCityRecentCheckins release];
+    [nonCityTodayCheckins release];
+    [nonCityYesterdayCheckins release];
     [theTableView release];
     [checkins release];
     [mapButton release];
@@ -198,7 +202,7 @@
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 6;
+    return 9;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -212,8 +216,17 @@
         } else {
             return 0;
         }
-    } else if (section == SECTION_NONCITY_CHECKINS) {
-        return [self.nonCityCheckins count];
+    } else if (section == SECTION_NONCITY_RECENT_CHECKINS) {
+        return [self.nonCityRecentCheckins count];
+    } else if (section == SECTION_NONCITY_TODAY_CHECKINS) {
+        return [self.nonCityTodayCheckins count];
+    } else if (section == SECTION_NONCITY_YESTERDAY_CHECKINS) {
+        if (isDisplayingMore) {
+            return [self.yesterdayCheckins count];
+        } else {
+            return 0;
+        }
+        //return [self.nonCityYesterdayCheckins count];
     } else if (section == SECTION_MORE_BUTTON) {
         return !isDisplayingMore;
     } else if (section == SECTION_FOOTER) {
@@ -245,8 +258,16 @@
         } else {
             return nil;
         }
-    } else if (indexPath.section == SECTION_NONCITY_CHECKINS) {
-        checkin = [self.nonCityCheckins objectAtIndex:indexPath.row];
+    } else if (indexPath.section == SECTION_NONCITY_RECENT_CHECKINS) {
+        checkin = [self.nonCityRecentCheckins objectAtIndex:indexPath.row];
+    } else if (indexPath.section == SECTION_NONCITY_TODAY_CHECKINS) {
+        checkin = [self.nonCityTodayCheckins objectAtIndex:indexPath.row];
+    } else if (indexPath.section == SECTION_NONCITY_YESTERDAY_CHECKINS) {
+        if (isDisplayingMore) {
+            checkin = [self.nonCityYesterdayCheckins objectAtIndex:indexPath.row];
+        } else {
+            return nil;
+        }
     } else if (indexPath.section == SECTION_MORE_BUTTON) {
         return moreCell;
     } else if (indexPath.section == SECTION_FOOTER) {
@@ -309,8 +330,14 @@
         case SECTION_YESTERDAY_CHECKINS: //yesterday
             user = ((FSCheckin*)[self.yesterdayCheckins objectAtIndex:indexPath.row]).user;
             break;
-        case SECTION_NONCITY_CHECKINS: //non-city
-            user = ((FSCheckin*)[self.nonCityCheckins objectAtIndex:indexPath.row]).user;
+        case SECTION_NONCITY_RECENT_CHECKINS: //non-city
+            user = ((FSCheckin*)[self.nonCityRecentCheckins objectAtIndex:indexPath.row]).user;
+            break;
+        case SECTION_NONCITY_TODAY_CHECKINS: //non-city
+            user = ((FSCheckin*)[self.nonCityTodayCheckins objectAtIndex:indexPath.row]).user;
+            break;
+        case SECTION_NONCITY_YESTERDAY_CHECKINS: //non-city
+            user = ((FSCheckin*)[self.nonCityYesterdayCheckins objectAtIndex:indexPath.row]).user;
             break;
         default:
             break;
@@ -324,7 +351,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    [cell setBackgroundColor:[UIColor colorWithRed:235.0/255.0 green:235.0/255.0 blue:235.0/255.0 alpha:1.0]];  
+    if (indexPath.section != SECTION_FOOTER) {
+        [cell setBackgroundColor:[UIColor colorWithRed:235.0/255.0 green:235.0/255.0 blue:235.0/255.0 alpha:1.0]];  
+    }
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -377,10 +406,26 @@
                 return nil;
             }
             break;
-        case SECTION_NONCITY_CHECKINS:
-            if ([nonCityCheckins count] > 0) {
-                headerView.leftHeaderLabel.text = @"Other Cities";
-                headerView.rightHeaderLabel.text = @"*TODO*";
+        case SECTION_NONCITY_RECENT_CHECKINS:
+            if ([nonCityRecentCheckins count] > 0) {
+                headerView.leftHeaderLabel.text = @"Recent Check-ins in Other Cities";
+                headerView.rightHeaderLabel.text = @"Mins Ago";
+            } else {
+                return nil;
+            }
+            break;
+        case SECTION_NONCITY_TODAY_CHECKINS:
+            if ([nonCityTodayCheckins count] > 0) {
+                headerView.leftHeaderLabel.text = @"Today's Check-ins in Other Cities";
+                headerView.rightHeaderLabel.text = @"Hours Ago";
+            } else {
+                return nil;
+            }
+            break;
+        case SECTION_NONCITY_YESTERDAY_CHECKINS:
+            if ([nonCityYesterdayCheckins count] > 0 && isDisplayingMore) {
+                headerView.leftHeaderLabel.text = @"Older Check-ins in Other Cities";
+                headerView.rightHeaderLabel.text = @"Days Ago";
             } else {
                 return nil;
             }
@@ -406,8 +451,8 @@
     FriendsMapViewController *mapViewController = [[FriendsMapViewController alloc] initWithNibName:@"FriendsMapView_v2" bundle:nil];
     if ([self.recentCheckins count] > 0 && [self.todayCheckins count] > 0) {
         mapViewController.checkins = [[NSArray arrayWithArray:self.recentCheckins] arrayByAddingObjectsFromArray:self.todayCheckins];
-    } else if ([self.nonCityCheckins count] > 0) {
-        mapViewController.checkins = [NSArray arrayWithArray:self.nonCityCheckins];
+    } else if ([self.nonCityRecentCheckins count] > 0 || [self.nonCityTodayCheckins count] > 0 || [self.nonCityYesterdayCheckins count] > 0) {
+        mapViewController.checkins = [[[NSArray arrayWithArray:self.nonCityRecentCheckins] arrayByAddingObjectsFromArray:self.nonCityTodayCheckins] arrayByAddingObjectsFromArray:self.nonCityYesterdayCheckins];
     }
     [self.navigationController pushViewController:mapViewController animated:NO];
     [mapViewController release];
@@ -426,7 +471,9 @@
         recentCheckins = [[NSMutableArray alloc] init];
         todayCheckins = [[NSMutableArray alloc] init];
         yesterdayCheckins = [[NSMutableArray alloc] init];
-        nonCityCheckins = [[NSMutableArray alloc] init];
+        nonCityRecentCheckins = [[NSMutableArray alloc] init];
+        nonCityTodayCheckins = [[NSMutableArray alloc] init];
+        nonCityYesterdayCheckins = [[NSMutableArray alloc] init];
         
         NSDate *oneHourFromNow = [[NSDate alloc] initWithTimeIntervalSinceNow:-60*60*1];
         NSDate *twentyfourHoursFromNow = [[NSDate alloc] initWithTimeIntervalSinceNow:-60*60*24];
@@ -435,6 +482,7 @@
         
         NSUInteger unitFlags = NSMinuteCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit;
         
+        // FIXME: this is nasty ugly. It should be done the same way that Places List is done. This is crap. -shawn-
         for (FSCheckin *checkin in checkins) {
             NSDate *date = [[[Utilities sharedInstance] foursquareCheckinDateFormatter] dateFromString:checkin.created];
             if (checkin.distanceFromLoggedInUser < [[[Utilities sharedInstance] getCityRadius] integerValue]) {
@@ -445,8 +493,14 @@
                 } else {
                     [self.yesterdayCheckins addObject:checkin];
                 }
-            } else {
-                [self.nonCityCheckins addObject:checkin];
+            } else {                
+                if ([date compare:oneHourFromNow] == NSOrderedDescending) {
+                    [self.nonCityRecentCheckins addObject:checkin];
+                } else if ([date compare:oneHourFromNow] == NSOrderedAscending && [date compare:twentyfourHoursFromNow] == NSOrderedDescending) {
+                    [self.nonCityTodayCheckins addObject:checkin];
+                } else {
+                    [self.nonCityYesterdayCheckins addObject:checkin];
+                }
             }
             
             NSDateComponents *components = [gregorian components:unitFlags fromDate:[[KickballAPI kickballApi] convertToUTC:[NSDate date]] toDate:date options:0];
@@ -455,16 +509,12 @@
             NSInteger days = [components day] * -1;
             
             if (days == 0 && hours == 0) {
-                //checkin.truncatedTimeUnits = @"min.";
                 checkin.truncatedTimeNumeral = [NSString stringWithFormat:@"%02d", minutes];
             } else if (days == 0) {
-                //checkin.truncatedTimeUnits = @"hours";
                 checkin.truncatedTimeNumeral = [NSString stringWithFormat:@"%02d", hours];
             } else {
-                //checkin.truncatedTimeUnits = @"days";
                 checkin.truncatedTimeNumeral = [NSString stringWithFormat:@"%02d", days];
             }
-    //        NSLog(@"checkin: %@", checkin);
         }
         
         NSLog(@"all checkins: %d", [self.checkins count]);
@@ -473,7 +523,7 @@
         NSLog(@"yesterday checkins: %d", [self.yesterdayCheckins count]);
         
         [theTableView reloadData];
-        int sectionToScrollTo = [self.recentCheckins count] > 0 ? 1 : ([self.todayCheckins count] > 0 ? 2 : ([self.nonCityCheckins count] > 0 ? 4 : 0));
+        int sectionToScrollTo = [self.recentCheckins count] > 0 ? SECTION_RECENT_CHECKINS : ([self.todayCheckins count] > 0 ? SECTION_TODAY_CHECKINS: ([self.nonCityRecentCheckins count] > 0 ? SECTION_NONCITY_RECENT_CHECKINS : 0));
         [theTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:sectionToScrollTo] atScrollPosition:UITableViewScrollPositionTop animated:NO];
 
         footerViewCell.hidden = NO;
