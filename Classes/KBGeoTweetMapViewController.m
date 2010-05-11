@@ -229,26 +229,23 @@
 //    int postag = 0;
     
     KBPin *annView=[[[KBPin alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomId"] autorelease];
-    //annView.pinColor = MKPinAnnotationColorGreen;
     annView.image = [UIImage imageNamed:@"pin.png"];
-//    annView.enabled = YES;
-//    annView.userInteractionEnabled = YES;
     
     // add an accessory button so user can click through to the venue page
-//    UIButton *myDetailButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    myDetailButton.frame = CGRectMake(0, 0, 23, 23);
-//    myDetailButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-//    myDetailButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-//    
-//    // Set the image for the button
-//    [myDetailButton setImage:[UIImage imageNamed:@"button_right.png"] forState:UIControlStateNormal];
-//    [myDetailButton addTarget:self action:@selector(showVenue:) forControlEvents:UIControlEventTouchUpInside]; 
-//    
-//    postag = [((VenueAnnotation*)annotation).venueId intValue];
-//    myDetailButton.tag  = postag;
-//    
-//    // Set the button as the callout view
-//    annView.rightCalloutAccessoryView = myDetailButton;
+    UIButton *myDetailButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    myDetailButton.frame = CGRectMake(0, 0, 23, 23);
+    myDetailButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    myDetailButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+    
+    // Set the image for the button
+    [myDetailButton setImage:[UIImage imageNamed:@"button_right.png"] forState:UIControlStateNormal];
+    //[myDetailButton addTarget:self action:@selector(showVenue:) forControlEvents:UIControlEventTouchUpInside]; 
+    
+    //postag = [((VenueAnnotation*)annotation).venueId intValue];
+    //myDetailButton.tag = postag;
+    
+    // Set the button as the callout view
+    annView.rightCalloutAccessoryView = myDetailButton;
     
     //annView.animatesDrop=TRUE;
     annView.canShowCallout = YES;

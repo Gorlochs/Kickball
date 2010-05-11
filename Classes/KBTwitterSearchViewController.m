@@ -18,6 +18,7 @@
     pageType = KBPageTypeFriends;
     pageViewType = KBPageViewTypeList;
     [super viewDidLoad];
+    pageNum = 1;
     noResultsView.hidden = NO;
     
     if ([[KBTwitterManager twitterManager] theSearchResults]) {
@@ -41,7 +42,7 @@
     if (searchTerms) {
         [self startProgressBar:@"Retrieving your tweets..."];
         theSearchBar.text = searchTerms;
-        [self executeQuery:0];
+        [self executeQuery:1];
     }
 }
 
@@ -52,13 +53,37 @@
             NSDictionary *userInfo = [inNotification userInfo];
             if ([userInfo objectForKey:@"searchResults"]) {
                 statuses = [[[[userInfo objectForKey:@"searchResults"] objectAtIndex:0] objectForKey:@"results"] retain];
-                tweets = [[NSMutableArray alloc] initWithCapacity:[statuses count]];
+                //tweets = [[NSMutableArray alloc] initWithCapacity:[statuses count]];
                 if ([statuses count] > 1) {
+                    
+                    NSMutableArray *tempTweetArray = [[NSMutableArray alloc] initWithCapacity:[statuses count]];
                     for (NSDictionary *dict in statuses) {
-                        KBSearchResult *result = [[KBSearchResult alloc] initWithDictionary:dict];
-                        [tweets addObject:result];
-                        [result release];
+                        KBSearchResult *tweet = [[KBSearchResult alloc] initWithDictionary:dict];
+                        [tempTweetArray addObject:tweet];
+                        [tweet release];
                     }
+                    
+                    if (pageNum > 1) {
+                        [tweets addObjectsFromArray:tempTweetArray];
+                    } else if (!tweets) {
+                        tweets = [[NSMutableArray alloc] initWithArray:tempTweetArray];
+                    } else {
+                        // need to keep all the tweets in the right order
+                        [tempTweetArray addObjectsFromArray:tweets];
+                        tweets = nil;
+                        [tweets release];
+                        tweets = [[NSMutableArray alloc] initWithArray:tempTweetArray];
+                    }
+                    
+                    
+                    
+                    
+                    
+//                    for (NSDictionary *dict in statuses) {
+//                        KBSearchResult *result = [[KBSearchResult alloc] initWithDictionary:dict];
+//                        [tweets addObject:result];
+//                        [result release];
+//                    }
                     [theTableView reloadData];
                     
                     [KBTwitterManager twitterManager].theSearchResults = nil;
@@ -81,17 +106,6 @@
     [self showStatuses];
     [KBTwitterManager twitterManager].searchTerm = searchBar.text;
 }
-
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//    // Return the number of sections.
-//    return 2;
-//}
-//
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    // Return the number of rows in the section.
-//    return section == 0 ? [tweets count] : 1;
-//}
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -128,7 +142,7 @@
 }
 
 - (void) executeQuery:(int)pageNumber {
-    [twitterEngine getSearchResultsForQuery:searchTerms sinceID:0 startingAtPage:pageNumber count:25];
+    [twitterEngine getSearchResultsForQuery:theSearchBar.text sinceID:0 startingAtPage:pageNumber count:25];
 }
 
 - (void)didReceiveMemoryWarning {
