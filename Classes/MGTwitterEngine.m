@@ -13,7 +13,6 @@
 
 #define USE_LIBXML 1
 
-#import "MGTwitterSearchYAJLParser.h"
 #if YAJL_AVAILABLE
     #define API_FORMAT @"json"
 

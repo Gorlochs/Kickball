@@ -68,9 +68,13 @@
 }
 
 - (void) flipBetweenMapAndList {
-    KBGeoTweetMapViewController *controller = [[KBGeoTweetMapViewController alloc] initWithNibName:@"KBGeoTweetMapViewController" bundle:nil];
-    [self.navigationController pushViewController:controller animated:NO];
-    [controller release];
+    if (pageViewType == KBPageViewTypeList) {
+        KBGeoTweetMapViewController *controller = [[KBGeoTweetMapViewController alloc] initWithNibName:@"KBGeoTweetMapViewController" bundle:nil];
+        [self.navigationController pushViewController:controller animated:NO];
+        [controller release];
+    } else {
+        [self backOneViewNotAnimated];
+    }
 }
 
 - (void) showUserTimeline {
