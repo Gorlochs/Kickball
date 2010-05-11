@@ -475,8 +475,8 @@
         nonCityTodayCheckins = [[NSMutableArray alloc] init];
         nonCityYesterdayCheckins = [[NSMutableArray alloc] init];
         
-        NSDate *oneHourFromNow = [[NSDate alloc] initWithTimeIntervalSinceNow:-60*60*1];
-        NSDate *twentyfourHoursFromNow = [[NSDate alloc] initWithTimeIntervalSinceNow:-60*60*24];
+        NSDate *oneHourFromNow = [[[NSDate alloc] initWithTimeIntervalSinceNow:-60*60*1] autorelease];
+        NSDate *twentyfourHoursFromNow = [[[NSDate alloc] initWithTimeIntervalSinceNow:-60*60*24] autorelease];
         oneHourFromNow = [[KickballAPI kickballApi] convertToUTC:oneHourFromNow];
         twentyfourHoursFromNow = [[KickballAPI kickballApi] convertToUTC:twentyfourHoursFromNow];
         
@@ -502,8 +502,6 @@
                     [self.nonCityYesterdayCheckins addObject:checkin];
                 }
             }
-            [twentyfourHoursFromNow release];
-            [oneHourFromNow release]
             
             NSDateComponents *components = [gregorian components:unitFlags fromDate:[[KickballAPI kickballApi] convertToUTC:[NSDate date]] toDate:date options:0];
             NSInteger minutes = [components minute] * -1;
