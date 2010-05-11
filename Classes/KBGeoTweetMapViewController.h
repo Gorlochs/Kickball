@@ -11,11 +11,13 @@
 #import "KBBaseTweetViewController.h"
 
 
-@interface KBGeoTweetMapViewController : KBBaseTweetViewController <MKMapViewDelegate> {
+@interface KBGeoTweetMapViewController : KBBaseTweetViewController {
 	IBOutlet MKMapView * mapViewer;
 	MKCoordinateRegion mapRegion;
     NSMutableArray *nearbyTweets;
 }
+
+@property (nonatomic, retain) MKMapView *mapViewer;
 
 - (void) refreshMap;
 

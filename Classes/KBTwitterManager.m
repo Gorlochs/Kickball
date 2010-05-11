@@ -161,8 +161,6 @@ static KBTwitterManager *sharedInstance = nil;
 
 - (void)searchResultsReceived:(NSArray *)searchResults forRequest:(NSString *)connectionIdentifier; {
     
-    NSLog(@"search results: %@", searchResults);
-    NSLog(@"searchresults class: %@", [searchResults class]);
     NSDictionary *userInfo = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:searchResults, nil] forKeys:[NSArray arrayWithObjects:@"searchResults", nil]];
     [[NSNotificationCenter defaultCenter] postNotificationName:kTwitterSearchRetrievedNotificationKey
                                                         object:nil

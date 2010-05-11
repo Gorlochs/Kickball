@@ -33,4 +33,8 @@
     return self;
 }
 
+- (NSString*) description {
+    return [NSString stringWithFormat:@"screenname: %@ ; profile image url: %@ ; tweet text: %@", self.screenName, self.profileImageUrl, self.tweetText];
+}
+
 @end

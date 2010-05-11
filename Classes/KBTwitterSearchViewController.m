@@ -46,7 +46,7 @@
 }
 
 - (void)searchRetrieved:(NSNotification *)inNotification {
-    NSLog(@"inside searchRetrieved: %@", inNotification);
+    //NSLog(@"inside searchRetrieved: %@", inNotification);
     if (inNotification) {
         if ([inNotification userInfo]) {
             NSDictionary *userInfo = [inNotification userInfo];

@@ -12,10 +12,12 @@
 #import "VenueAnnotation.h"
 #import "KBPin.h"
 
-#define GEO_TWITTER_RADIUS 10
+#define GEO_TWITTER_RADIUS 5
 
 
 @implementation KBGeoTweetMapViewController
+
+@synthesize mapViewer;
 
 - (void)viewDidLoad {
     pageViewType = KBPageViewTypeMap;
@@ -36,13 +38,13 @@
 }
 
 - (void)searchRetrieved:(NSNotification *)inNotification {
-    NSLog(@"inside searchRetrieved: %@", inNotification);
     if (inNotification && [inNotification userInfo]) {
         NSDictionary *userInfo = [inNotification userInfo];
         if ([userInfo objectForKey:@"searchResults"]) {
             statuses = [[[[userInfo objectForKey:@"searchResults"] objectAtIndex:0] objectForKey:@"results"] retain];
-            nearbyTweets = [[NSMutableArray alloc] initWithCapacity:1];
-            //int i = 0;
+            if (!nearbyTweets) {
+                nearbyTweets = [[NSMutableArray alloc] initWithCapacity:1];
+            }
             for (NSDictionary *dict in statuses) {
                 KBSearchResult *result = [[KBSearchResult alloc] initWithDictionary:dict];
                 if (result.latitude > 0.0) {
@@ -51,6 +53,10 @@
                 [result release];
             }
             [self refreshMap];
+            NSLog(@"number of nearby tweets: %d", [nearbyTweets count]);
+            if (pageNum < 3) {
+                [self executeQuery:++pageNum];
+            }
         }
     }
     [self stopProgressBar];
@@ -192,7 +198,6 @@
     region.center = center;
     
 	for(KBSearchResult *tweet in nearbyTweets){
-		//FSVenue * checkVenue = checkin.venue; 
 		if(tweet.latitude && tweet.longitude){
             
             CLLocationCoordinate2D location = {
@@ -204,9 +209,9 @@
             
             VenueAnnotation *anote = [[VenueAnnotation alloc] init];
             anote.coordinate = location;
-            anote.title = tweet.fullName;
-            //anote.venueId = tweet.tweetId;
-            //anote.subtitle = tweet.tweetText;
+            anote.title = tweet.screenName;
+            anote.subtitle = tweet.tweetText;
+            NSLog(@"annotation title: %@", anote.title);
             [mapViewer addAnnotation:anote];
             [anote release];
 		}
@@ -221,12 +226,13 @@
     if( [[annotation title] isEqualToString:@"Current Location"] ) {
 		return nil;
 	}
-    
 //    int postag = 0;
     
     KBPin *annView=[[[KBPin alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomId"] autorelease];
     //annView.pinColor = MKPinAnnotationColorGreen;
     annView.image = [UIImage imageNamed:@"pin.png"];
+//    annView.enabled = YES;
+//    annView.userInteractionEnabled = YES;
     
     // add an accessory button so user can click through to the venue page
 //    UIButton *myDetailButton = [UIButton buttonWithType:UIButtonTypeCustom];

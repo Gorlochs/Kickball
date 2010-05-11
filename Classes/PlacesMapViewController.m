@@ -158,7 +158,6 @@
     region.center = center;
 
 	for(FSVenue * venue in self.venues){
-		//FSVenue * checkVenue = checkin.venue; 
 		if(venue.geolat && venue.geolong){
             
             CLLocationCoordinate2D location = venue.location;
@@ -172,9 +171,6 @@
             anote.subtitle = venue.addressWithCrossstreet;
             [mapViewer addAnnotation:anote];
             [anote release];
-            
-//            MKAnnotationView *av = [[MKAnnotationView alloc] initWithAnnotation:anote reuseIdentifier:@"testing"];
-//            av.rightCalloutAccessoryView
 		}
 	}
     
