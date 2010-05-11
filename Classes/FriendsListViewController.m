@@ -502,6 +502,8 @@
                     [self.nonCityYesterdayCheckins addObject:checkin];
                 }
             }
+            [twentyfourHoursFromNow release];
+            [oneHourFromNow release]
             
             NSDateComponents *components = [gregorian components:unitFlags fromDate:[[KickballAPI kickballApi] convertToUTC:[NSDate date]] toDate:date options:0];
             NSInteger minutes = [components minute] * -1;

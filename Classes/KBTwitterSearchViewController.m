@@ -53,7 +53,6 @@
             NSDictionary *userInfo = [inNotification userInfo];
             if ([userInfo objectForKey:@"searchResults"]) {
                 statuses = [[[[userInfo objectForKey:@"searchResults"] objectAtIndex:0] objectForKey:@"results"] retain];
-                //tweets = [[NSMutableArray alloc] initWithCapacity:[statuses count]];
                 if ([statuses count] > 1) {
                     
                     NSMutableArray *tempTweetArray = [[NSMutableArray alloc] initWithCapacity:[statuses count]];
@@ -74,16 +73,7 @@
                         [tweets release];
                         tweets = [[NSMutableArray alloc] initWithArray:tempTweetArray];
                     }
-                    
-                    
-                    
-                    
-                    
-//                    for (NSDictionary *dict in statuses) {
-//                        KBSearchResult *result = [[KBSearchResult alloc] initWithDictionary:dict];
-//                        [tweets addObject:result];
-//                        [result release];
-//                    }
+                    [tempTweetArray release];
                     [theTableView reloadData];
                     
                     [KBTwitterManager twitterManager].theSearchResults = nil;
