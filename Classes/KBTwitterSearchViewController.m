@@ -15,6 +15,7 @@
 @synthesize searchTerms;
 
 - (void)viewDidLoad {
+    pageType = KBPageTypeFriends;
     pageViewType = KBPageViewTypeList;
     [super viewDidLoad];
     noResultsView.hidden = NO;
@@ -35,10 +36,6 @@
     [directMessageButton setImage:[UIImage imageNamed:@"tabDM03.png"] forState:UIControlStateNormal];
     [searchButton setImage:[UIImage imageNamed:@"tabSearch01.png"] forState:UIControlStateNormal];
 }
-
-//- (void) viewDidAppear:(BOOL)animated {
-//    [super viewDidAppear:animated];
-//}
 
 - (void) showStatuses {
     if (searchTerms) {
