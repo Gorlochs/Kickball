@@ -91,6 +91,7 @@
     [screenNameLabel release];
     [fullName release];
     [location release];
+    [userProfileImage release];
     [super dealloc];
 }
 

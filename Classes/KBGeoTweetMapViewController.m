@@ -277,6 +277,7 @@
     mapViewer = nil;
     [mapViewer performSelector:@selector(release) withObject:nil afterDelay:4.0f];
     
+    [nearbyTweets release];
     [super dealloc];
 }
 

@@ -185,6 +185,8 @@
     
     [replyToStatusId release];
     [replyToScreenName release];
+    [retweetStatusId release];
+    [retweetToScreenName release];
     
     [foursquareButton release];
     [facebookButton release];

@@ -138,6 +138,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [userDictionary release];
     [users release];
+    [currentCursor release];
     [super dealloc];
 }
 
