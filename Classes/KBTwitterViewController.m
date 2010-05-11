@@ -67,7 +67,6 @@
     [tweetController release];
 }
 
-// FIXME: all these need to be fixed. we should be using navcontroller
 - (void) flipBetweenMapAndList {
     KBGeoTweetMapViewController *controller = [[KBGeoTweetMapViewController alloc] initWithNibName:@"KBGeoTweetMapViewController" bundle:nil];
     [self.navigationController pushViewController:controller animated:NO];

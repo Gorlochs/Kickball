@@ -193,13 +193,6 @@
 		6A21193A117D579600BE897E /* KBCreateTweetViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A211938117D579600BE897E /* KBCreateTweetViewController.xib */; };
 		6A211969117D68EE00BE897E /* KBTwitterSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A211967117D68EE00BE897E /* KBTwitterSearchViewController.m */; };
 		6A21196A117D68EE00BE897E /* KBTwitterSearchViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A211968117D68EE00BE897E /* KBTwitterSearchViewController.xib */; };
-		6A211A69117D846700BE897E /* libYAJLIPhone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A211A68117D846700BE897E /* libYAJLIPhone.a */; };
-		6A211AED117E113000BE897E /* MGTwitterYAJLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A211AE2117E113000BE897E /* MGTwitterYAJLParser.m */; };
-		6A211AEE117E113000BE897E /* MGTwitterStatusesYAJLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A211AE4117E113000BE897E /* MGTwitterStatusesYAJLParser.m */; };
-		6A211AEF117E113000BE897E /* MGTwitterUsersYAJLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A211AE6117E113000BE897E /* MGTwitterUsersYAJLParser.m */; };
-		6A211AF0117E113000BE897E /* MGTwitterMessagesYAJLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A211AE8117E113000BE897E /* MGTwitterMessagesYAJLParser.m */; };
-		6A211AF1117E113000BE897E /* MGTwitterMiscYAJLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A211AEA117E113000BE897E /* MGTwitterMiscYAJLParser.m */; };
-		6A211AF2117E113000BE897E /* MGTwitterSearchYAJLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A211AEC117E113000BE897E /* MGTwitterSearchYAJLParser.m */; };
 		6A211B1D117E181600BE897E /* KBSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A211B1C117E181600BE897E /* KBSearchResult.m */; };
 		6A211B4D117E1E1100BE897E /* KBUserTweetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A211B4C117E1E1100BE897E /* KBUserTweetsViewController.m */; };
 		6A223A4F10E46CE1003550F2 /* CreateTipTodoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A223A4D10E46CE1003550F2 /* CreateTipTodoViewController.m */; };
@@ -871,19 +864,6 @@
 		6A211966117D68EE00BE897E /* KBTwitterSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBTwitterSearchViewController.h; sourceTree = "<group>"; };
 		6A211967117D68EE00BE897E /* KBTwitterSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTwitterSearchViewController.m; sourceTree = "<group>"; };
 		6A211968117D68EE00BE897E /* KBTwitterSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KBTwitterSearchViewController.xib; path = Classes/KBTwitterSearchViewController.xib; sourceTree = "<group>"; };
-		6A211A68117D846700BE897E /* libYAJLIPhone.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libYAJLIPhone.a; path = "/Users/shawnbernard/Downloads/libYAJLIPhone-0.2.2/libYAJLIPhone.a"; sourceTree = "<absolute>"; };
-		6A211AE1117E113000BE897E /* MGTwitterYAJLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTwitterYAJLParser.h; sourceTree = "<group>"; };
-		6A211AE2117E113000BE897E /* MGTwitterYAJLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTwitterYAJLParser.m; sourceTree = "<group>"; };
-		6A211AE3117E113000BE897E /* MGTwitterStatusesYAJLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTwitterStatusesYAJLParser.h; sourceTree = "<group>"; };
-		6A211AE4117E113000BE897E /* MGTwitterStatusesYAJLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTwitterStatusesYAJLParser.m; sourceTree = "<group>"; };
-		6A211AE5117E113000BE897E /* MGTwitterUsersYAJLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTwitterUsersYAJLParser.h; sourceTree = "<group>"; };
-		6A211AE6117E113000BE897E /* MGTwitterUsersYAJLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTwitterUsersYAJLParser.m; sourceTree = "<group>"; };
-		6A211AE7117E113000BE897E /* MGTwitterMessagesYAJLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTwitterMessagesYAJLParser.h; sourceTree = "<group>"; };
-		6A211AE8117E113000BE897E /* MGTwitterMessagesYAJLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTwitterMessagesYAJLParser.m; sourceTree = "<group>"; };
-		6A211AE9117E113000BE897E /* MGTwitterMiscYAJLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTwitterMiscYAJLParser.h; sourceTree = "<group>"; };
-		6A211AEA117E113000BE897E /* MGTwitterMiscYAJLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTwitterMiscYAJLParser.m; sourceTree = "<group>"; };
-		6A211AEB117E113000BE897E /* MGTwitterSearchYAJLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTwitterSearchYAJLParser.h; sourceTree = "<group>"; };
-		6A211AEC117E113000BE897E /* MGTwitterSearchYAJLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTwitterSearchYAJLParser.m; sourceTree = "<group>"; };
 		6A211B1B117E181600BE897E /* KBSearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBSearchResult.h; sourceTree = "<group>"; };
 		6A211B1C117E181600BE897E /* KBSearchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBSearchResult.m; sourceTree = "<group>"; };
 		6A211B4B117E1E1100BE897E /* KBUserTweetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBUserTweetsViewController.h; sourceTree = "<group>"; };
@@ -1417,7 +1397,6 @@
 				6AD0C1E4113F049E00A971E3 /* libThree20.a in Frameworks */,
 				6A6F2CED1177B90E00B2869B /* libOAuth.a in Frameworks */,
 				6A6F2E141177C1CA00B2869B /* MessageUI.framework in Frameworks */,
-				6A211A69117D846700BE897E /* libYAJLIPhone.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1482,7 +1461,6 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				6A211A68117D846700BE897E /* libYAJLIPhone.a */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -2241,25 +2219,6 @@
 			name = XAuthTwitterEngine;
 			sourceTree = "<group>";
 		};
-		6A6F2D7D1177B9FA00B2869B /* yajl */ = {
-			isa = PBXGroup;
-			children = (
-				6A211AE1117E113000BE897E /* MGTwitterYAJLParser.h */,
-				6A211AE2117E113000BE897E /* MGTwitterYAJLParser.m */,
-				6A211AE3117E113000BE897E /* MGTwitterStatusesYAJLParser.h */,
-				6A211AE4117E113000BE897E /* MGTwitterStatusesYAJLParser.m */,
-				6A211AE5117E113000BE897E /* MGTwitterUsersYAJLParser.h */,
-				6A211AE6117E113000BE897E /* MGTwitterUsersYAJLParser.m */,
-				6A211AE7117E113000BE897E /* MGTwitterMessagesYAJLParser.h */,
-				6A211AE8117E113000BE897E /* MGTwitterMessagesYAJLParser.m */,
-				6A211AE9117E113000BE897E /* MGTwitterMiscYAJLParser.h */,
-				6A211AEA117E113000BE897E /* MGTwitterMiscYAJLParser.m */,
-				6A211AEB117E113000BE897E /* MGTwitterSearchYAJLParser.h */,
-				6A211AEC117E113000BE897E /* MGTwitterSearchYAJLParser.m */,
-			);
-			name = yajl;
-			sourceTree = "<group>";
-		};
 		6A7610AF116BE92D00BF2993 /* Abstract Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -2361,7 +2320,6 @@
 			children = (
 				6A533E88119286D8007C283C /* MGTwitterTouchJSONParser.m */,
 				6A533E89119286D8007C283C /* MGTwitterTouchJSONParser.h */,
-				6A6F2D7D1177B9FA00B2869B /* yajl */,
 				6AD5B31C116D2F26008671FD /* MGTwitterEngine.h */,
 				6AD5B31D116D2F26008671FD /* MGTwitterEngine.m */,
 				6AD5B31E116D2F26008671FD /* MGTwitterEngineDelegate.h */,
@@ -3367,12 +3325,6 @@
 				6A21193A117D579600BE897E /* KBCreateTweetViewController.xib in Sources */,
 				6A211969117D68EE00BE897E /* KBTwitterSearchViewController.m in Sources */,
 				6A21196A117D68EE00BE897E /* KBTwitterSearchViewController.xib in Sources */,
-				6A211AED117E113000BE897E /* MGTwitterYAJLParser.m in Sources */,
-				6A211AEE117E113000BE897E /* MGTwitterStatusesYAJLParser.m in Sources */,
-				6A211AEF117E113000BE897E /* MGTwitterUsersYAJLParser.m in Sources */,
-				6A211AF0117E113000BE897E /* MGTwitterMessagesYAJLParser.m in Sources */,
-				6A211AF1117E113000BE897E /* MGTwitterMiscYAJLParser.m in Sources */,
-				6A211AF2117E113000BE897E /* MGTwitterSearchYAJLParser.m in Sources */,
 				6A211B1D117E181600BE897E /* KBSearchResult.m in Sources */,
 				6A211B4D117E1E1100BE897E /* KBUserTweetsViewController.m in Sources */,
 				6AC85202117E2BA5007B5220 /* KBTwitterDetailViewController.m in Sources */,
@@ -3460,6 +3412,12 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Kickball_Prefix.pch;
+				HEADER_SEARCH_PATHS = (
+					libs/include,
+					"../facebook-iphone-sdk/src",
+					../three20/src,
+					$SDKROOT/usr/include/libxml2,
+				);
 				INFOPLIST_FILE = "Kickball-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3494,7 +3452,6 @@
 				HEADER_SEARCH_PATHS = (
 					libs/include,
 					"../facebook-iphone-sdk/src",
-					/usr/local/include/yajl,
 					$SDKROOT/usr/include/libxml2,
 					../three20/src,
 				);
