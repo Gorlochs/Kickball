@@ -25,9 +25,9 @@
     hideRefresh = YES;
     [super viewDidLoad];
     
-    if (!currentCursor) {
+    //if (!currentCursor) {
         currentCursor = [NSNumber numberWithInt:-1];
-    }
+    //}
     
     [self showStatuses];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(usersRetrieved:) name:kTwitterUserInfoRetrievedNotificationKey object:nil];
@@ -40,14 +40,7 @@
 }
 
 - (void) showStatuses {
-    // it was either this, or extending this class and overriding one method. 
-    [self startProgressBar:@"Retrieving users..."];
-    NSLog(@"user dictionary for followers/friends: %@", userDictionary);
-    if (userType == KBTwitterUserFollower) {
-        [twitterEngine getFollowersForUser:[userDictionary objectForKey:@"screen_name"] withCursor:currentCursor];
-    } else {
-        [twitterEngine getFriendsForUser:[userDictionary objectForKey:@"screen_name"] withCursor:currentCursor];
-    }
+    [self executeQuery:0];
 }
 
 - (void) usersRetrieved:(NSNotification *)inNotification {
@@ -55,22 +48,45 @@
     if (inNotification && [inNotification userInfo]) {
         NSDictionary *userInfo = [inNotification userInfo];
         if ([userInfo objectForKey:@"userInfo"]) {
-            statuses = [[[userInfo objectForKey:@"userInfo"] objectForKey:@"users"] retain];
-            users = [[NSMutableArray alloc] initWithCapacity:[statuses count]];
+            statuses = [[[[userInfo objectForKey:@"userInfo"] objectAtIndex:0] objectForKey:@"users"] retain];
+            
+            NSMutableArray *tempTweetArray = [[NSMutableArray alloc] initWithCapacity:[statuses count]];
             for (NSDictionary *dict in statuses) {
                 KBTwitterUser *user = [[KBTwitterUser alloc] initWithDictionary:dict];
-                [users addObject:user];
+                [tempTweetArray addObject:user];
                 [user release];
             }
+            
+            if (currentCursor != [NSNumber numberWithInt:-1]) {
+                [users addObjectsFromArray:tempTweetArray];
+            } else if (!users) {
+                users = [[NSMutableArray alloc] initWithArray:tempTweetArray];
+            } else {
+                // need to keep all the tweets in the right order
+                [tempTweetArray addObjectsFromArray:users];
+                users = nil;
+                [users release];
+                users = [[NSMutableArray alloc] initWithArray:tempTweetArray];
+            }
+            [tempTweetArray release];
+
             [theTableView reloadData];
+            NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
+            [f setNumberStyle:NSNumberFormatterDecimalStyle];
+            currentCursor = [[f numberFromString:[[[userInfo objectForKey:@"userInfo"] objectAtIndex:0] objectForKey:@"next_cursor_str"]] retain];
+            [f release];
         }
     }
     [self stopProgressBar];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void) executeQuery:(int)pageNumber {
-    [twitterEngine getRepliesSinceID:0 startingAtPage:pageNumber count:25];
+    [self startProgressBar:@"Retrieving users..."];
+    if (userType == KBTwitterUserFollower) {
+        [twitterEngine getFollowersForUser:[userDictionary objectForKey:@"screen_name"] withCursor:currentCursor];
+    } else {
+        [twitterEngine getFriendsForUser:[userDictionary objectForKey:@"screen_name"] withCursor:currentCursor];
+    }
 }
 
 #pragma mark -
@@ -78,15 +94,14 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 1;
+    return 2;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return [users count];
+    return section == 0 ? [users count] : 1;
 }
-
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -99,11 +114,15 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
-    // Configure the cell...
-    KBTwitterUser *user = [users objectAtIndex:indexPath.row];
-    cell.userName.text = user.fullName;
-    cell.userIcon.urlPath = user.profileImageUrl;
-    return cell;
+    if (indexPath.section == 0) {
+        // Configure the cell...
+        KBTwitterUser *user = [users objectAtIndex:indexPath.row];
+        cell.userName.text = user.fullName;
+        cell.userIcon.urlPath = user.profileImageUrl;
+        return cell;
+    } else {
+        return moreCell;
+    }
 }
 
 
@@ -111,10 +130,14 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	KBTwitterProfileViewController *profileController = [[KBTwitterProfileViewController alloc] initWithNibName:@"KBTwitterProfileViewController" bundle:nil];
-    profileController.screenname = ((KBTwitterUser*)[users objectAtIndex:indexPath.row]).screenName;
-	[self.navigationController pushViewController:profileController animated:YES];
-	[profileController release];
+    if (indexPath.section == 0) {
+        KBTwitterProfileViewController *profileController = [[KBTwitterProfileViewController alloc] initWithNibName:@"KBTwitterProfileViewController" bundle:nil];
+        profileController.screenname = ((KBTwitterUser*)[users objectAtIndex:indexPath.row]).screenName;
+        [self.navigationController pushViewController:profileController animated:YES];
+        [profileController release];
+    } else {
+        [self executeQuery:++pageNum];
+    }
 }
 
 
