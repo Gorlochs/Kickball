@@ -250,6 +250,7 @@
 							<reference ref="827651651"/>
 						</object>
 						<reference key="parent" ref="0"/>
+						<string key="objectName">More Cell</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">19</int>
@@ -316,10 +317,6 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">KBBaseTweetViewController</string>
 					<string key="superclassName">KBTwitterViewController</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">openTweetModalView</string>
-						<string key="NS.object.0">id</string>
-					</object>
 					<object class="NSMutableDictionary" key="outlets">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
@@ -458,6 +455,7 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>flipBetweenMapAndList</string>
+							<string>openTweetModalView</string>
 							<string>showDirectMessages</string>
 							<string>showMentions</string>
 							<string>showSearch</string>
@@ -465,6 +463,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>

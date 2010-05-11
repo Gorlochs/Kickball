@@ -20,8 +20,8 @@
     [super viewDidLoad];
     noResultsView.hidden = NO;
     
-    if ([[KBTwitterManager twitterManager] searchResults]) {
-        tweets = [[NSMutableArray alloc] initWithArray:[[KBTwitterManager twitterManager] searchResults]];
+    if ([[KBTwitterManager twitterManager] theSearchResults]) {
+        tweets = [[NSMutableArray alloc] initWithArray:[[KBTwitterManager twitterManager] theSearchResults]];
         searchTerms = [KBTwitterManager twitterManager].searchTerm;
         [theTableView reloadData];
         noResultsView.hidden = YES;
@@ -61,8 +61,8 @@
                     }
                     [theTableView reloadData];
                     
-                    [KBTwitterManager twitterManager].searchResults = nil;
-                    [KBTwitterManager twitterManager].searchResults = [[NSArray alloc] initWithArray:tweets];
+                    [KBTwitterManager twitterManager].theSearchResults = nil;
+                    [KBTwitterManager twitterManager].theSearchResults = [[NSArray alloc] initWithArray:tweets];
                     
                     noResultsView.hidden = YES;
                 } else {
@@ -82,6 +82,17 @@
     [KBTwitterManager twitterManager].searchTerm = searchBar.text;
 }
 
+//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+//    // Return the number of sections.
+//    return 2;
+//}
+//
+//
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+//    // Return the number of rows in the section.
+//    return section == 0 ? [tweets count] : 1;
+//}
+
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -92,24 +103,28 @@
         cell = [[[KBTweetTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    KBSearchResult *tweet = [tweets objectAtIndex:indexPath.row];
-    
-    cell.userIcon.urlPath = tweet.profileImageUrl;
-    cell.userName.text = tweet.screenName;
-    cell.tweetText.text = tweet.tweetText;
-    [cell setDateLabelWithDate:tweet.createDate];
-    
-    CGSize maximumLabelSize = CGSizeMake(250,60);
-    CGSize expectedLabelSize = [cell.tweetText.text sizeWithFont:cell.tweetText.font 
-                                               constrainedToSize:maximumLabelSize 
-                                                   lineBreakMode:UILineBreakModeTailTruncation]; 
-    
-    //adjust the label the the new height.
-    CGRect newFrame = cell.tweetText.frame;
-    newFrame.size.height = expectedLabelSize.height;
-    cell.tweetText.frame = newFrame;
-    
-    return cell;
+    if (indexPath.section == 0) {
+        KBSearchResult *tweet = [tweets objectAtIndex:indexPath.row];
+        
+        cell.userIcon.urlPath = tweet.profileImageUrl;
+        cell.userName.text = tweet.screenName;
+        cell.tweetText.text = tweet.tweetText;
+        [cell setDateLabelWithDate:tweet.createDate];
+        
+        CGSize maximumLabelSize = CGSizeMake(250,60);
+        CGSize expectedLabelSize = [cell.tweetText.text sizeWithFont:cell.tweetText.font 
+                                                   constrainedToSize:maximumLabelSize 
+                                                       lineBreakMode:UILineBreakModeTailTruncation]; 
+        
+        //adjust the label the the new height.
+        CGRect newFrame = cell.tweetText.frame;
+        newFrame.size.height = expectedLabelSize.height;
+        cell.tweetText.frame = newFrame;
+        
+        return cell;
+    } else {
+        return moreCell;
+    }
 }
 
 - (void) executeQuery:(int)pageNumber {

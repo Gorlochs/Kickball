@@ -11,7 +11,11 @@
 
 
 @interface KBSearchResult : KBTweet {
-
+    float latitude;
+    float longitude;
 }
+
+@property (nonatomic) float latitude;
+@property (nonatomic) float longitude;
 
 @end

@@ -9,7 +9,8 @@
 #import "KBGeoTweetMapViewController.h"
 #import "KBLocationManager.h"
 #import "KBSearchResult.h"
-
+#import "VenueAnnotation.h"
+#import "KBPin.h"
 
 #define GEO_TWITTER_RADIUS 10
 
@@ -27,8 +28,6 @@
     [mentionsButton setImage:[UIImage imageNamed:@"tabMentions03.png"] forState:UIControlStateNormal];
     [directMessageButton setImage:[UIImage imageNamed:@"tabDM03.png"] forState:UIControlStateNormal];
     [searchButton setImage:[UIImage imageNamed:@"tabSearch03.png"] forState:UIControlStateNormal];
-    
-    
 }
 
 - (void) showStatuses {
@@ -41,15 +40,17 @@
     if (inNotification && [inNotification userInfo]) {
         NSDictionary *userInfo = [inNotification userInfo];
         if ([userInfo objectForKey:@"searchResults"]) {
-            statuses = [[userInfo objectForKey:@"searchResults"] retain];
-            tweets = [[NSMutableArray alloc] initWithCapacity:[statuses count]];
+            statuses = [[[[userInfo objectForKey:@"searchResults"] objectAtIndex:0] objectForKey:@"results"] retain];
+            nearbyTweets = [[NSMutableArray alloc] initWithCapacity:1];
             //int i = 0;
             for (NSDictionary *dict in statuses) {
                 KBSearchResult *result = [[KBSearchResult alloc] initWithDictionary:dict];
-                [tweets addObject:result];
+                if (result.latitude > 0.0) {
+                    [nearbyTweets addObject:result];
+                }
                 [result release];
             }
-            //[self refreshMap];
+            [self refreshMap];
         }
     }
     [self stopProgressBar];
@@ -73,7 +74,7 @@
 
 
 //- (void) zoomToProperDepth {
-//    if (self.venues && self.venues.count > 0)
+//    if (nearbyTweets && nearbyTweets.count > 0)
 //	{
 //        //		NSLog(@"checkins count: %d", checkins.count);
 //		
@@ -82,7 +83,7 @@
 //        double minLong = 1000;
 //        double maxLong = -1000;
 //        
-//        for (FSVenue *venue in self.venues)
+//        for (KBSearchResult *tweets in nearbyTweets)
 //        {
 //        	double lat = venue.geolat.doubleValue;
 //        	double lng = venue.geolong.doubleValue;
@@ -124,92 +125,130 @@
 //        center.longitude = (minLong + maxLong) / 2;
 //    }
 //}
-//
-//- (void) refreshMap {
-//    
-////    NSMutableArray *tmpArray = [[NSMutableArray alloc] initWithCapacity:1];
-////    for (id<MKAnnotation> annotation in mapViewer.annotations) {
-////        if( ![[annotation title] isEqualToString:@"Current Location"] ) {
-////            [tmpArray addObject:annotation];
-////        }
-////    }
-////    [mapViewer removeAnnotations:tmpArray];
-////    [tmpArray release];
-//    
-//    double minLat = 1000;
-//    double maxLat = -1000;
-//    double minLong = 1000;
-//    double maxLong = -1000;
-//    
-//    for (KBTweet *tweet in nearbyTweets)
-//    {
-//        double lat = venue.geolat.doubleValue;
-//        double lng = venue.geolong.doubleValue;
-//        
-//        if (lat < minLat)
-//        {
-//            minLat = lat;
-//        }
-//        if (lat > maxLat)
-//        {
-//            maxLat = lat;
-//        }
-//        
-//        if (lng < minLong)
-//        {
-//            minLong = lng;
-//        }
-//        if (lng > maxLong)
-//        {
-//            maxLong = lng;
-//        }
-//    }
-//    
-//    MKCoordinateRegion region;
-//    MKCoordinateSpan span;
-//    span.latitudeDelta=(maxLat - minLat);
-//    if (span.latitudeDelta == 0)
-//    {
-//        span.latitudeDelta = 0.05;
-//    }
-//    span.longitudeDelta=(maxLong - minLong);
-//    if (span.longitudeDelta == 0)
-//    {
-//        span.longitudeDelta = 0.05;
-//    }
-//    
-//    CLLocationCoordinate2D center;
-//    center.latitude = (minLat + maxLat) / 2;
-//    center.longitude = (minLong + maxLong) / 2;
-//    
-//    region.span = span;
-//    region.center = center;
-//    
-//	for(KBTweet *tweet in tweets){
-//		//FSVenue * checkVenue = checkin.venue; 
-//		if(tweet.geolat && venue.geolong){
-//            
-//            CLLocationCoordinate2D location = venue.location;
-//            [mapViewer setRegion:region animated:NO];
-//            [mapViewer regionThatFits:region];
-//            
-//            VenueAnnotation *anote = [[VenueAnnotation alloc] init];
-//            anote.coordinate = location;
-//            anote.title = venue.name;
-//            anote.venueId = venue.venueid;
-//            anote.subtitle = venue.addressWithCrossstreet;
-//            [mapViewer addAnnotation:anote];
-//            [anote release];
-//            
-//            //            MKAnnotationView *av = [[MKAnnotationView alloc] initWithAnnotation:anote reuseIdentifier:@"testing"];
-//            //            av.rightCalloutAccessoryView
-//		}
-//	}
-//    
-//    // does this go here?
-//    [self stopProgressBar];
-//}
 
+- (void) refreshMapRegion {
+	[mapViewer setRegion:mapRegion animated:TRUE];
+	[mapViewer regionThatFits:mapRegion];
+}
+
+- (void) refreshMap {
+    
+//    NSMutableArray *tmpArray = [[NSMutableArray alloc] initWithCapacity:1];
+//    for (id<MKAnnotation> annotation in mapViewer.annotations) {
+//        if( ![[annotation title] isEqualToString:@"Current Location"] ) {
+//            [tmpArray addObject:annotation];
+//        }
+//    }
+//    [mapViewer removeAnnotations:tmpArray];
+//    [tmpArray release];
+    
+    double minLat = 1000;
+    double maxLat = -1000;
+    double minLong = 1000;
+    double maxLong = -1000;
+    
+    for (KBSearchResult *tweet in nearbyTweets)
+    {
+        double lat = tweet.latitude;
+        double lng = tweet.longitude;
+        
+        if (lat < minLat)
+        {
+            minLat = lat;
+        }
+        if (lat > maxLat)
+        {
+            maxLat = lat;
+        }
+        
+        if (lng < minLong)
+        {
+            minLong = lng;
+        }
+        if (lng > maxLong)
+        {
+            maxLong = lng;
+        }
+    }
+    
+    MKCoordinateRegion region;
+    MKCoordinateSpan span;
+    span.latitudeDelta=(maxLat - minLat);
+    if (span.latitudeDelta == 0)
+    {
+        span.latitudeDelta = 0.05;
+    }
+    span.longitudeDelta=(maxLong - minLong);
+    if (span.longitudeDelta == 0)
+    {
+        span.longitudeDelta = 0.05;
+    }
+    
+    CLLocationCoordinate2D center;
+    center.latitude = (minLat + maxLat) / 2;
+    center.longitude = (minLong + maxLong) / 2;
+    
+    region.span = span;
+    region.center = center;
+    
+	for(KBSearchResult *tweet in nearbyTweets){
+		//FSVenue * checkVenue = checkin.venue; 
+		if(tweet.latitude && tweet.longitude){
+            
+            CLLocationCoordinate2D location = {
+                latitude: tweet.latitude,
+                longitude: tweet.longitude
+            };
+            [mapViewer setRegion:region animated:NO];
+            [mapViewer regionThatFits:region];
+            
+            VenueAnnotation *anote = [[VenueAnnotation alloc] init];
+            anote.coordinate = location;
+            anote.title = tweet.fullName;
+            //anote.venueId = tweet.tweetId;
+            //anote.subtitle = tweet.tweetText;
+            [mapViewer addAnnotation:anote];
+            [anote release];
+		}
+	}
+    
+    // does this go here?
+    [self stopProgressBar];
+}
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
+	
+    if( [[annotation title] isEqualToString:@"Current Location"] ) {
+		return nil;
+	}
+    
+//    int postag = 0;
+    
+    KBPin *annView=[[[KBPin alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomId"] autorelease];
+    //annView.pinColor = MKPinAnnotationColorGreen;
+    annView.image = [UIImage imageNamed:@"pin.png"];
+    
+    // add an accessory button so user can click through to the venue page
+//    UIButton *myDetailButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    myDetailButton.frame = CGRectMake(0, 0, 23, 23);
+//    myDetailButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+//    myDetailButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+//    
+//    // Set the image for the button
+//    [myDetailButton setImage:[UIImage imageNamed:@"button_right.png"] forState:UIControlStateNormal];
+//    [myDetailButton addTarget:self action:@selector(showVenue:) forControlEvents:UIControlEventTouchUpInside]; 
+//    
+//    postag = [((VenueAnnotation*)annotation).venueId intValue];
+//    myDetailButton.tag  = postag;
+//    
+//    // Set the button as the callout view
+//    annView.rightCalloutAccessoryView = myDetailButton;
+    
+    //annView.animatesDrop=TRUE;
+    annView.canShowCallout = YES;
+    //annView.calloutOffset = CGPointMake(-5, 5);
+    return annView;
+}
 
 #pragma mark -
 #pragma mark memory management
@@ -229,6 +268,12 @@
 
 
 - (void)dealloc {
+    [mapViewer removeAnnotations:mapViewer.annotations];
+    mapViewer.delegate = nil;
+    mapViewer.showsUserLocation = NO;
+    mapViewer = nil;
+    [mapViewer performSelector:@selector(release) withObject:nil afterDelay:4.0f];
+    
     [super dealloc];
 }
 
