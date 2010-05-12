@@ -44,6 +44,14 @@
         [self.view addSubview:headerView];
     }
     
+    if (pageType == KBPageTypeOther) {
+        //friendButton.enabled = NO;
+        homeBackView.frame = CGRectMake(0, 0, homeBackView.frame.size.width, homeBackView.frame.size.height);
+        [self.view addSubview:homeBackView];
+        [self.view bringSubviewToFront:homeBackView];
+        //[placesButton setImage:[UIImage imageNamed:@"placesTab01.png"] forState:UIControlStateNormal];
+    }
+    
     if (pageViewType == KBPageViewTypeList) {
         [twitterCenterHeaderButton setImage:[UIImage imageNamed:@"twitMap01.png"] forState:UIControlStateNormal];
         [twitterCenterHeaderButton setImage:[UIImage imageNamed:@"twitMap02.png"] forState:UIControlStateHighlighted];

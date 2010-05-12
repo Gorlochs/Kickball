@@ -21,6 +21,7 @@
     numberOfFriends.text = @"";
     numberOfFollowers.text = @"";
     
+    pageType = KBPageTypeOther;
     [super viewDidLoad];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userRetrieved:) name:kTwitterUserInfoRetrievedNotificationKey object:nil];

@@ -10,8 +10,8 @@
 
 
 @interface FoursquareHeaderView : UIView {
-    IBOutlet UIButton *friendButton;
-    IBOutlet UIButton *placesButton;
+//    IBOutlet UIButton *friendButton;
+//    IBOutlet UIButton *placesButton;
 }
 
 

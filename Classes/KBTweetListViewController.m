@@ -80,15 +80,17 @@
             } else if (!tweets) {
                 tweets = [[NSMutableArray alloc] initWithArray:tempTweetArray];
             } else {
+                if ([tempTweetArray count] > 0) {
+                    KBMessage *message = [[KBMessage alloc] initWithMember:@"Alert" andMessage:[NSString stringWithFormat:@"%d New Messages!", [tempTweetArray count]]];
+                    [self displayPopupMessageWithFadeout:message];
+                    [message release];
+                }
                 // need to keep all the tweets in the right order
                 [tempTweetArray addObjectsFromArray:tweets];
                 tweets = nil;
                 [tweets release];
                 tweets = [[NSMutableArray alloc] initWithArray:tempTweetArray];
                 
-                KBMessage *message = [[KBMessage alloc] initWithMember:@"Alert" andMessage:[NSString stringWithFormat:@"%d New Messages!", [tempTweetArray count]]];
-                [self displayPopupMessageWithFadeout:message];
-                [message release];
             }
             [theTableView reloadData];
              

@@ -21,6 +21,7 @@
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(messagesRetrieved:) name:kTwitterDMRetrievedNotificationKey object:nil];
     
     self.hideFooter = YES;
+    pageType = KBPageTypeOther;
     
     [super viewDidLoad];
     

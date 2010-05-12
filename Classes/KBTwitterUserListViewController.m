@@ -21,6 +21,7 @@
 #pragma mark View lifecycle
 
 - (void)viewDidLoad {
+    pageType = KBPageTypeOther;
     pageViewType = KBPageViewTypeList;
     hideRefresh = YES;
     [super viewDidLoad];
