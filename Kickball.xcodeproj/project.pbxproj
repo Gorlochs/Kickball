@@ -205,6 +205,7 @@
 		6A30075711797649001CB933 /* KBTweetListViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A30075511797649001CB933 /* KBTweetListViewController.xib */; };
 		6A31CB15119A1C01009D8967 /* KBMapPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A31CB14119A1C01009D8967 /* KBMapPopupView.m */; };
 		6A31CB8E119A2633009D8967 /* TouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A31CB8D119A2633009D8967 /* TouchView.m */; };
+		6A31CC12119A4E80009D8967 /* libOAuth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A31CC11119A4E80009D8967 /* libOAuth.a */; };
 		6A32B3B7118610A2001E78C9 /* AccountOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A32B3B6118610A2001E78C9 /* AccountOptionsViewController.m */; };
 		6A3900B110D6F1A0001D133C /* AddPlaceFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A3900AF10D6F1A0001D133C /* AddPlaceFormViewController.m */; };
 		6A3900B210D6F1A0001D133C /* AddPlaceFormViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A3900B010D6F1A0001D133C /* AddPlaceFormViewController.xib */; };
@@ -269,7 +270,6 @@
 		6A6F2BA611778CEB00B2869B /* UserProfileCheckinHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A6F2BA511778CEB00B2869B /* UserProfileCheckinHistoryViewController.m */; };
 		6A6F2CEB1177B90E00B2869B /* jQueryInject.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6A6F2C891177B90D00B2869B /* jQueryInject.txt */; };
 		6A6F2CEC1177B90E00B2869B /* jQueryInjectLandscape.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6A6F2C8A1177B90D00B2869B /* jQueryInjectLandscape.txt */; };
-		6A6F2CED1177B90E00B2869B /* libOAuth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A6F2C8B1177B90D00B2869B /* libOAuth.a */; };
 		6A6F2CEE1177B90E00B2869B /* XAuthTwitterEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A6F2C9E1177B90E00B2869B /* XAuthTwitterEngine.m */; };
 		6A6F2E141177C1CA00B2869B /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A6F2E131177C1CA00B2869B /* MessageUI.framework */; };
 		6A6F915D11767F700097CFD5 /* crown.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A6F915C11767F700097CFD5 /* crown.png */; };
@@ -884,6 +884,7 @@
 		6A31CB14119A1C01009D8967 /* KBMapPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBMapPopupView.m; sourceTree = "<group>"; };
 		6A31CB8C119A2633009D8967 /* TouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchView.h; sourceTree = "<group>"; };
 		6A31CB8D119A2633009D8967 /* TouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchView.m; sourceTree = "<group>"; };
+		6A31CC11119A4E80009D8967 /* libOAuth.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOAuth.a; path = /Users/shawnbernard/Documents/projects/libOAuth.a; sourceTree = "<absolute>"; };
 		6A32B3B5118610A2001E78C9 /* AccountOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountOptionsViewController.h; sourceTree = "<group>"; };
 		6A32B3B6118610A2001E78C9 /* AccountOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountOptionsViewController.m; sourceTree = "<group>"; };
 		6A3900AE10D6F1A0001D133C /* AddPlaceFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPlaceFormViewController.h; sourceTree = "<group>"; };
@@ -988,7 +989,6 @@
 		6A6F2BA511778CEB00B2869B /* UserProfileCheckinHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileCheckinHistoryViewController.m; sourceTree = "<group>"; };
 		6A6F2C891177B90D00B2869B /* jQueryInject.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = jQueryInject.txt; sourceTree = "<group>"; };
 		6A6F2C8A1177B90D00B2869B /* jQueryInjectLandscape.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = jQueryInjectLandscape.txt; sourceTree = "<group>"; };
-		6A6F2C8B1177B90D00B2869B /* libOAuth.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOAuth.a; sourceTree = "<group>"; };
 		6A6F2C8D1177B90E00B2869B /* NSMutableURLRequest+Parameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableURLRequest+Parameters.h"; sourceTree = "<group>"; };
 		6A6F2C8E1177B90E00B2869B /* NSString+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEncoding.h"; sourceTree = "<group>"; };
 		6A6F2C8F1177B90E00B2869B /* NSURL+Base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+Base.h"; sourceTree = "<group>"; };
@@ -1400,8 +1400,8 @@
 				6A7EA25F110AAD3500453C0C /* libPMAnalytics-r91.a in Frameworks */,
 				6ADB706C1117005A00A26D35 /* MediaPlayer.framework in Frameworks */,
 				6AD0C1E4113F049E00A971E3 /* libThree20.a in Frameworks */,
-				6A6F2CED1177B90E00B2869B /* libOAuth.a in Frameworks */,
 				6A6F2E141177C1CA00B2869B /* MessageUI.framework in Frameworks */,
+				6A31CC12119A4E80009D8967 /* libOAuth.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1558,6 +1558,7 @@
 				6A8F68E910E9B9FC00E0275E /* AddressBook.framework */,
 				6AFF0FFE1101796600AD6E55 /* CFNetwork.framework */,
 				6A6F2E131177C1CA00B2869B /* MessageUI.framework */,
+				6A31CC11119A4E80009D8967 /* libOAuth.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2185,7 +2186,6 @@
 			children = (
 				6A6F2C891177B90D00B2869B /* jQueryInject.txt */,
 				6A6F2C8A1177B90D00B2869B /* jQueryInjectLandscape.txt */,
-				6A6F2C8B1177B90D00B2869B /* libOAuth.a */,
 				6A6F2C8C1177B90D00B2869B /* OAuthConsumer */,
 			);
 			path = OAuthConsumerLib;
@@ -3408,6 +3408,7 @@
 					"\"$(SRCROOT)/../XAuthTwitterEngine/XAuthTwitterEngineDemo/Libraries & Headers/OAuthConsumer\"",
 					"\"$(SRCROOT)/Classes/OAuth/OAuthConsumerLib\"",
 					"\"$(SRCROOT)/../../../Downloads/libYAJLIPhone-0.2.2\"",
+					"\"$(SRCROOT)/..\"",
 				);
 				PRODUCT_NAME = kickball;
 				"PROVISIONING_PROFILE[sdk=*]" = "3ED9B689-43AE-49B4-94A2-39992A5F95D2";
@@ -3445,6 +3446,7 @@
 					"\"$(SRCROOT)/../XAuthTwitterEngine/XAuthTwitterEngineDemo/Libraries & Headers/OAuthConsumer\"",
 					"\"$(SRCROOT)/Classes/OAuth/OAuthConsumerLib\"",
 					"\"$(SRCROOT)/../../../Downloads/libYAJLIPhone-0.2.2\"",
+					"\"$(SRCROOT)/..\"",
 				);
 				PRODUCT_NAME = kickball;
 				"PROVISIONING_PROFILE[sdk=*]" = "3ED9B689-43AE-49B4-94A2-39992A5F95D2";
