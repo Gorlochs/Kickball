@@ -9,8 +9,7 @@
 #import "KBGeoTweetMapViewController.h"
 #import "KBLocationManager.h"
 #import "KBSearchResult.h"
-#import "VenueAnnotation.h"
-#import "KBPin.h"
+#import "IFTweetLabel.h"
 
 #define GEO_TWITTER_RADIUS 5
 
@@ -18,10 +17,24 @@
 @implementation KBGeoTweetMapViewController
 
 @synthesize mapViewer;
+@synthesize popupBubbleView;
+@synthesize touchView;
+
+NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 
 - (void)viewDidLoad {
     pageViewType = KBPageViewTypeMap;
     [super viewDidLoad];
+    
+    touchView = [[TouchView alloc] initWithFrame:CGRectMake(0, 50, 320, 410)];
+	touchView.delegate = self;
+	touchView.callAtHitTest = @selector(stopFollowLocation);
+	
+    mapViewer = [[MKMapView alloc] initWithFrame:CGRectMake(0, 47, 320, 373)];
+	mapViewer.delegate = self;
+    [touchView addSubview:mapViewer];
+    
+    [self.view addSubview:touchView];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(searchRetrieved:) name:kTwitterSearchRetrievedNotificationKey object:nil];
     [self showStatuses];
@@ -30,6 +43,17 @@
     [mentionsButton setImage:[UIImage imageNamed:@"tabMentions03.png"] forState:UIControlStateNormal];
     [directMessageButton setImage:[UIImage imageNamed:@"tabDM03.png"] forState:UIControlStateNormal];
     [searchButton setImage:[UIImage imageNamed:@"tabSearch03.png"] forState:UIControlStateNormal];
+    
+    self.popupBubbleView.frame = CGRectMake(20.0, 250.0 + 300 , self.popupBubbleView.frame.size.width, self.popupBubbleView.frame.size.height);
+    self.popupBubbleView.tweetText = [[IFTweetLabel alloc] initWithFrame:CGRectMake(8, 29, 250, 50)];
+    self.popupBubbleView.tweetText.textColor = [UIColor colorWithWhite:0.3 alpha:1.0];
+    self.popupBubbleView.tweetText.font = [UIFont fontWithName:@"Georgia" size:12.0];
+    self.popupBubbleView.tweetText.backgroundColor = [UIColor clearColor];
+    self.popupBubbleView.tweetText.linksEnabled = YES;
+    self.popupBubbleView.tweetText.numberOfLines = 0;
+    [self.popupBubbleView addSubview:self.popupBubbleView.tweetText];
+    
+    [self.touchView addSubview:self.popupBubbleView];
 }
 
 - (void) showStatuses {
@@ -231,26 +255,96 @@
     KBPin *annView=[[[KBPin alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomId"] autorelease];
     annView.image = [UIImage imageNamed:@"pin.png"];
     
-    // add an accessory button so user can click through to the venue page
-    UIButton *myDetailButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    myDetailButton.frame = CGRectMake(0, 0, 23, 23);
-    myDetailButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    myDetailButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+//    // add an accessory button so user can click through to the venue page
+//    UIButton *myDetailButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    myDetailButton.frame = CGRectMake(0, 0, 23, 23);
+//    myDetailButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+//    myDetailButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+//    
+//    // Set the image for the button
+//    [myDetailButton setImage:[UIImage imageNamed:@"button_right.png"] forState:UIControlStateNormal];
+//    //[myDetailButton addTarget:self action:@selector(showVenue:) forControlEvents:UIControlEventTouchUpInside]; 
+//    
+//    //postag = [((VenueAnnotation*)annotation).venueId intValue];
+//    //myDetailButton.tag = postag;
+//    
+//    // Set the button as the callout view
+//    annView.rightCalloutAccessoryView = myDetailButton;
+//    
+////    CGPoint notNear = CGPointMake(10000.0,10000.0);
+////	annView.calloutOffset = notNear;
+//	//annotationView = annView;
     
-    // Set the image for the button
-    [myDetailButton setImage:[UIImage imageNamed:@"button_right.png"] forState:UIControlStateNormal];
-    //[myDetailButton addTarget:self action:@selector(showVenue:) forControlEvents:UIControlEventTouchUpInside]; 
-    
-    //postag = [((VenueAnnotation*)annotation).venueId intValue];
-    //myDetailButton.tag = postag;
-    
-    // Set the button as the callout view
-    annView.rightCalloutAccessoryView = myDetailButton;
+    [annView addObserver:self
+              forKeyPath:@"selected"
+                 options:NSKeyValueObservingOptionNew
+                 context:GMAP_ANNOTATION_SELECTED];
     
     //annView.animatesDrop=TRUE;
-    annView.canShowCallout = YES;
+    annView.canShowCallout = NO;
     //annView.calloutOffset = CGPointMake(-5, 5);
     return annView;
+}
+
+- (void) annotationClicked: (id <MKAnnotation>) annotation {
+	KBPin* ann = (KBPin*) annotation;
+	NSLog(@"Annotation clicked: %@", ann.title);
+	
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"CustomCalloutMapView" message:[NSString stringWithFormat:@"You clicked at annotation: %@",ann.title] delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+	[alert show];
+	[alert release];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+	
+    NSString *action = (NSString*)context;
+	
+    if([action isEqualToString:GMAP_ANNOTATION_SELECTED]){
+		BOOL annotationAppeared = [[change valueForKey:@"new"] boolValue];
+		if (annotationAppeared) {
+			NSLog(@"annotation selected %@", ((KBPin*) object).annotation.title);
+			[self showAnnotation:((KBPin*) object).annotation];
+			((KBPin*) object).image = [UIImage imageNamed:@"pin.png"];
+		} else {
+			NSLog(@"annotation deselected %@", ((KBPin*) object).annotation.title);
+			[self hideAnnotation];
+			((KBPin*) object).image = [UIImage imageNamed:@"pin.png"];
+		}
+	}
+}
+
+- (void) stopFollowLocation {
+	NSLog(@"stopFollowLocation called. Good place to put stop follow location annotation code.");
+	
+	VenueAnnotation* annotation;
+	for (annotation in mapViewer.selectedAnnotations) {
+		[mapViewer deselectAnnotation:annotation animated:NO];
+	}
+	
+	[self hideAnnotation];
+	
+}
+
+- (void)showAnnotation:(VenueAnnotation*)annotation {
+	self.popupBubbleView.screenname.text = annotation.title;
+    self.popupBubbleView.tweetText.text = annotation.subtitle;
+	[UIView beginAnimations: @"moveCNGCallout" context: nil];
+	[UIView setAnimationDelegate: self];
+	[UIView setAnimationDuration: 0.5];
+	[UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
+	self.popupBubbleView.frame = CGRectMake(10.0, 250.0, self.popupBubbleView.frame.size.width, self.popupBubbleView.frame.size.height);
+	[UIView commitAnimations];
+}
+
+- (void)hideAnnotation {
+	[UIView beginAnimations: @"moveCNGCalloutOff" context: nil];
+	[UIView setAnimationDelegate: self];
+	[UIView setAnimationDuration: 0.5];
+	[UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
+	self.popupBubbleView.frame = CGRectMake(10.0, 250.0 + 300, self.popupBubbleView.frame.size.width, self.popupBubbleView.frame.size.height);
+    [UIView commitAnimations];
+	self.popupBubbleView.screenname.text = nil;
+	self.popupBubbleView.tweetText.text = nil;
 }
 
 #pragma mark -

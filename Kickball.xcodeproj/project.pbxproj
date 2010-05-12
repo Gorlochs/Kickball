@@ -203,6 +203,8 @@
 		6A2EFAF2117F832F007F2D3D /* KBUserTweetsViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A2EFAF1117F832F007F2D3D /* KBUserTweetsViewController.xib */; };
 		6A30075611797649001CB933 /* KBTweetListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A30075411797649001CB933 /* KBTweetListViewController.m */; };
 		6A30075711797649001CB933 /* KBTweetListViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A30075511797649001CB933 /* KBTweetListViewController.xib */; };
+		6A31CB15119A1C01009D8967 /* KBMapPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A31CB14119A1C01009D8967 /* KBMapPopupView.m */; };
+		6A31CB8E119A2633009D8967 /* TouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A31CB8D119A2633009D8967 /* TouchView.m */; };
 		6A32B3B7118610A2001E78C9 /* AccountOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A32B3B6118610A2001E78C9 /* AccountOptionsViewController.m */; };
 		6A3900B110D6F1A0001D133C /* AddPlaceFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A3900AF10D6F1A0001D133C /* AddPlaceFormViewController.m */; };
 		6A3900B210D6F1A0001D133C /* AddPlaceFormViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A3900B010D6F1A0001D133C /* AddPlaceFormViewController.xib */; };
@@ -878,6 +880,10 @@
 		6A30075311797649001CB933 /* KBTweetListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBTweetListViewController.h; sourceTree = "<group>"; };
 		6A30075411797649001CB933 /* KBTweetListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTweetListViewController.m; sourceTree = "<group>"; };
 		6A30075511797649001CB933 /* KBTweetListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KBTweetListViewController.xib; path = Classes/KBTweetListViewController.xib; sourceTree = "<group>"; };
+		6A31CB13119A1C01009D8967 /* KBMapPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBMapPopupView.h; sourceTree = "<group>"; };
+		6A31CB14119A1C01009D8967 /* KBMapPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBMapPopupView.m; sourceTree = "<group>"; };
+		6A31CB8C119A2633009D8967 /* TouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchView.h; sourceTree = "<group>"; };
+		6A31CB8D119A2633009D8967 /* TouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchView.m; sourceTree = "<group>"; };
 		6A32B3B5118610A2001E78C9 /* AccountOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountOptionsViewController.h; sourceTree = "<group>"; };
 		6A32B3B6118610A2001E78C9 /* AccountOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountOptionsViewController.m; sourceTree = "<group>"; };
 		6A3900AE10D6F1A0001D133C /* AddPlaceFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPlaceFormViewController.h; sourceTree = "<group>"; };
@@ -2311,6 +2317,10 @@
 			children = (
 				6A8ADA5F1187597E00D9328D /* KBGeoTweetMapViewController.h */,
 				6A8ADA601187597E00D9328D /* KBGeoTweetMapViewController.m */,
+				6A31CB13119A1C01009D8967 /* KBMapPopupView.h */,
+				6A31CB14119A1C01009D8967 /* KBMapPopupView.m */,
+				6A31CB8C119A2633009D8967 /* TouchView.h */,
+				6A31CB8D119A2633009D8967 /* TouchView.m */,
 			);
 			name = maps;
 			sourceTree = "<group>";
@@ -3357,6 +3367,8 @@
 				6A533ED81192887F007C283C /* NSCharacterSet_Extensions.m in Sources */,
 				6A533ED91192887F007C283C /* CDataScanner_Extensions.m in Sources */,
 				6A533EDA1192887F007C283C /* CDataScanner.m in Sources */,
+				6A31CB15119A1C01009D8967 /* KBMapPopupView.m in Sources */,
+				6A31CB8E119A2633009D8967 /* TouchView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
