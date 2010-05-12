@@ -120,7 +120,7 @@
         
         [[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:venueId 
                                                       andShout:checkinTextField.text 
-                                                       offGrid:isFoursquareOn
+                                                       offGrid:!isFoursquareOn
                                                      toTwitter:NO
                                                     toFacebook:NO 
                                                     withTarget:self 
