@@ -31,5 +31,7 @@ extern NSString *const GMAP_ANNOTATION_SELECTED;
 - (void) refreshMap;
 - (void)showAnnotation:(VenueAnnotation*)annotation;
 - (void)hideAnnotation;
+- (IBAction) replyToTweet;
+- (IBAction) retweet;
 
 @end

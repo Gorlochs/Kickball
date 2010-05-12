@@ -26,11 +26,11 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     pageViewType = KBPageViewTypeMap;
     [super viewDidLoad];
     
-    touchView = [[TouchView alloc] initWithFrame:CGRectMake(0, 50, 320, 410)];
+    touchView = [[TouchView alloc] initWithFrame:CGRectMake(0, 47, 320, 373)];
 	touchView.delegate = self;
 	touchView.callAtHitTest = @selector(stopFollowLocation);
 	
-    mapViewer = [[MKMapView alloc] initWithFrame:CGRectMake(0, 47, 320, 373)];
+    mapViewer = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, 320, 373)];
 	mapViewer.delegate = self;
     [touchView addSubview:mapViewer];
     
@@ -80,7 +80,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
             }
             [self refreshMap];
             NSLog(@"number of nearby tweets: %d", [nearbyTweets count]);
-            if (pageNum < 5 || [nearbyTweets count] > 25) {
+            if (pageNum < 4 || [nearbyTweets count] > 25) {
                 [self executeQuery:++pageNum];
             }
         }
@@ -103,60 +103,6 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 
 #pragma mark -
 #pragma mark Map stuff
-
-
-//- (void) zoomToProperDepth {
-//    if (nearbyTweets && nearbyTweets.count > 0)
-//	{
-//        //		NSLog(@"checkins count: %d", checkins.count);
-//		
-//        double minLat = 1000;
-//        double maxLat = -1000;
-//        double minLong = 1000;
-//        double maxLong = -1000;
-//        
-//        for (KBSearchResult *tweets in nearbyTweets)
-//        {
-//        	double lat = venue.geolat.doubleValue;
-//        	double lng = venue.geolong.doubleValue;
-//        	
-//        	if (lat < minLat)
-//        	{
-//        		minLat = lat;
-//        	}
-//        	if (lat > maxLat)
-//        	{
-//        		maxLat = lat;
-//        	}
-//        	
-//        	if (lng < minLong)
-//        	{
-//        		minLong = lng;
-//        	}
-//        	if (lng > maxLong)
-//        	{
-//        		maxLong = lng;
-//        	}
-//        }
-//		
-//		//MKCoordinateRegion region;
-//		MKCoordinateSpan span;
-//        span.latitudeDelta=(maxLat - minLat);
-//        if (span.latitudeDelta == 0)
-//        {
-//            span.latitudeDelta = 0.05;
-//        }
-//        span.longitudeDelta=(maxLong - minLong);
-//        if (span.longitudeDelta == 0)
-//        {
-//            span.longitudeDelta = 0.05;
-//        }
-//		
-//		CLLocationCoordinate2D center;
-//        center.latitude = (minLat + maxLat) / 2;
-//        center.longitude = (minLong + maxLong) / 2;
-//    }
-//}
 
 - (void) refreshMapRegion {
 	[mapViewer setRegion:mapRegion animated:TRUE];
@@ -347,6 +293,17 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     [UIView commitAnimations];
 	self.popupBubbleView.screenname.text = nil;
 	self.popupBubbleView.tweetText.text = nil;
+}
+
+#pragma mark -
+#pragma mark IBOutlets
+
+- (void) replyToTweet {
+    NSLog(@"**********reply**************");
+}
+
+- (void) retweet {
+    NSLog(@"**********retweet**************");
 }
 
 #pragma mark -
