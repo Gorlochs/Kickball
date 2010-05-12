@@ -60,7 +60,13 @@
 }
 
 - (void) retweet {
-    [twitterEngine sendRetweet:[tweet.tweetId longLongValue]];
+    //[twitterEngine sendRetweet:[tweet.tweetId longLongValue]];
+	KBCreateTweetViewController *createViewController = [[KBCreateTweetViewController alloc] initWithNibName:@"KBCreateTweetViewController" bundle:nil];
+    createViewController.replyToStatusId = tweet.tweetId;
+    createViewController.replyToScreenName = tweet.screenName;
+    createViewController.retweetTweetText = tweet.tweetText;
+	[self presentModalViewController:createViewController animated:YES];
+	[createViewController release];
 }
 
 - (void) reply {

@@ -85,10 +85,14 @@
                 tweets = nil;
                 [tweets release];
                 tweets = [[NSMutableArray alloc] initWithArray:tempTweetArray];
+                
+                KBMessage *message = [[KBMessage alloc] initWithMember:@"Alert" andMessage:[NSString stringWithFormat:@"%d New Messages!", [tempTweetArray count]]];
+                [self displayPopupMessageWithFadeout:message];
+                [message release];
             }
-            [tempTweetArray release];
-            
             [theTableView reloadData];
+             
+            [tempTweetArray release];
         }
     }
     [self stopProgressBar];

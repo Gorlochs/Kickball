@@ -17,12 +17,15 @@
 @synthesize replyToScreenName;
 @synthesize retweetStatusId;
 @synthesize retweetToScreenName;
+@synthesize retweetTweetText;
 
 - (void)viewDidLoad {
     hideHeader = YES;
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(createTweetStatusRetrieved:) name:kTwitterStatusRetrievedNotificationKey object:nil];
-    if (self.replyToScreenName) {
+    if (self.retweetTweetText) {
+        tweetTextView.text = [NSString stringWithFormat:@"RT @%@ %@", self.replyToScreenName, self.retweetTweetText];
+    } else if (self.replyToScreenName) {
         tweetTextView.text = [NSString stringWithFormat:@"@%@ ", self.replyToScreenName];
     }
     [tweetTextView becomeFirstResponder];

@@ -302,7 +302,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 #pragma mark IBOutlets
 
 - (void) replyToTweet {
-    NSLog(@"**********reply************** tweet id: %qu", [currentlyDisplayedSearchResult.tweetId longLongValue]);
+    NSLog(@"reply to tweet id: %qu", [currentlyDisplayedSearchResult.tweetId longLongValue]);
 	KBCreateTweetViewController *createViewController = [[KBCreateTweetViewController alloc] initWithNibName:@"KBCreateTweetViewController" bundle:nil];
     createViewController.replyToStatusId = currentlyDisplayedSearchResult.tweetId;
     createViewController.replyToScreenName = currentlyDisplayedSearchResult.screenName;
@@ -312,6 +312,12 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 
 - (void) retweet {
     NSLog(@"**********retweet**************");
+	KBCreateTweetViewController *createViewController = [[KBCreateTweetViewController alloc] initWithNibName:@"KBCreateTweetViewController" bundle:nil];
+    createViewController.replyToStatusId = currentlyDisplayedSearchResult.tweetId;
+    createViewController.replyToScreenName = currentlyDisplayedSearchResult.screenName;
+    createViewController.retweetTweetText = currentlyDisplayedSearchResult.tweetText;
+	[self presentModalViewController:createViewController animated:YES];
+	[createViewController release];
 }
 
 #pragma mark -
@@ -328,6 +334,8 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    popupBubbleView = nil;
+    currentlyDisplayedSearchResult = nil;
 }
 
 
@@ -339,6 +347,9 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     [mapViewer performSelector:@selector(release) withObject:nil afterDelay:4.0f];
     
     [nearbyTweets release];
+    [currentlyDisplayedSearchResult release];
+    [touchView release];
+    [popupBubbleView release];
     [super dealloc];
 }
 

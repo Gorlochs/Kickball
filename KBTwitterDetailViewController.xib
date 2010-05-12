@@ -157,7 +157,7 @@
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<reference key="IBUIFont" ref="327012863"/>
 						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">?</string>
+						<string key="IBUINormalTitle">RT</string>
 						<reference key="IBUIHighlightedTitleColor" ref="959525541"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
@@ -359,6 +359,15 @@
 					</object>
 					<int key="connectionID">31</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">retweet</string>
+						<reference key="source" ref="511843758"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">32</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -464,7 +473,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>KBTwitterDetailViewController</string>
 					<string>UIResponder</string>
-					<string>{{692, 484}, {320, 480}}</string>
+					<string>{{507, 505}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -491,7 +500,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">31</int>
+			<int key="maxID">32</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -652,6 +661,7 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>flipBetweenMapAndList</string>
+							<string>openTweetModalView</string>
 							<string>showDirectMessages</string>
 							<string>showMentions</string>
 							<string>showSearch</string>
@@ -659,6 +669,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>

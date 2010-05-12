@@ -110,6 +110,7 @@ typedef enum{
 - (void) doInitialDisplay;
 - (void) displayPopupMessage:(KBMessage*)message;
 - (void) displayPopupMessageForLogin:(KBMessage*)message;
+- (void) displayPopupMessageWithFadeout:(KBMessage*)message;
 - (IBAction) viewSettings;
 - (void) addHeaderAndFooter:(UITableView*)tableView;
 - (IBAction) displayTextView;

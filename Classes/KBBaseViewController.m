@@ -283,6 +283,11 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
     //[self performSelector:@selector(fadePopupMessage) withObject:nil afterDelay:3];
 }
 
+- (void) displayPopupMessageWithFadeout:(KBMessage*)message {
+    [self displayPopupMessage:message];
+    [self performSelector:@selector(fadePopupMessage) withObject:nil afterDelay:3];
+}
+
 - (void) displayPopupMessageForLogin:(KBMessage*)message {
     
     [self stopProgressBar];
