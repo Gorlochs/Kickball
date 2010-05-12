@@ -44,6 +44,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     [directMessageButton setImage:[UIImage imageNamed:@"tabDM03.png"] forState:UIControlStateNormal];
     [searchButton setImage:[UIImage imageNamed:@"tabSearch03.png"] forState:UIControlStateNormal];
     
+    // this should TOTALLY be inside the KBMapPopupView, but I couldn't find an init method that is actually being called.
     self.popupBubbleView.frame = CGRectMake(20.0, 250.0 + 300 , self.popupBubbleView.frame.size.width, self.popupBubbleView.frame.size.height);
     self.popupBubbleView.tweetText = [[IFTweetLabel alloc] initWithFrame:CGRectMake(8, 29, 250, 50)];
     self.popupBubbleView.tweetText.textColor = [UIColor colorWithWhite:0.3 alpha:1.0];
@@ -62,6 +63,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 }
 
 - (void)searchRetrieved:(NSNotification *)inNotification {
+    NSLog(@"search results: %@", inNotification);
     if (inNotification && [inNotification userInfo]) {
         NSDictionary *userInfo = [inNotification userInfo];
         if ([userInfo objectForKey:@"searchResults"]) {
@@ -78,7 +80,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
             }
             [self refreshMap];
             NSLog(@"number of nearby tweets: %d", [nearbyTweets count]);
-            if (pageNum < 3) {
+            if (pageNum < 5 || [nearbyTweets count] > 25) {
                 [self executeQuery:++pageNum];
             }
         }
