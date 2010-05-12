@@ -33,6 +33,13 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (NSMutableArray*) addAndTrimArray:(NSMutableArray*)arrayToAdd {
+    NSRange theRange;
+    theRange.location = 0;
+    theRange.length = 25;
+    return [[NSMutableArray alloc] initWithArray:[arrayToAdd subarrayWithRange:theRange]];
+}
+
 - (void)handleTweetNotification:(NSNotification *)notification {
 	//NSLog(@"handleTweetNotification: notification = %@", notification);
     if ([[notification object] rangeOfString:@"@"].location == 0) {

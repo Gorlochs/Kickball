@@ -71,7 +71,7 @@
                         [tempTweetArray addObjectsFromArray:tweets];
                         tweets = nil;
                         [tweets release];
-                        tweets = [[NSMutableArray alloc] initWithArray:tempTweetArray];
+                        tweets = [self addAndTrimArray:tempTweetArray];
                     }
                     [tempTweetArray release];
                     [theTableView reloadData];
@@ -132,6 +132,7 @@
 }
 
 - (void) executeQuery:(int)pageNumber {
+    [self startProgressBar:@"Retrieving more tweets..."];
     [twitterEngine getSearchResultsForQuery:theSearchBar.text sinceID:0 startingAtPage:pageNumber count:25];
 }
 
