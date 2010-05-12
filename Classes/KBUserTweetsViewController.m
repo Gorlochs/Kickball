@@ -15,6 +15,7 @@
 @synthesize username;
 
 - (void) viewDidLoad {
+    pageType = KBPageTypeOther;
     [super viewDidLoad];
     
     cachingKey = [NSString stringWithString:username];

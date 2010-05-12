@@ -81,7 +81,7 @@
                 tweets = [[NSMutableArray alloc] initWithArray:tempTweetArray];
             } else {
                 if ([tempTweetArray count] > 0) {
-                    KBMessage *message = [[KBMessage alloc] initWithMember:@"Alert" andMessage:[NSString stringWithFormat:@"%d New Messages!", [tempTweetArray count]]];
+                    KBMessage *message = [[KBMessage alloc] initWithMember:[NSString stringWithFormat:@"%d New Messages!", [tempTweetArray count]] andMessage:@""];
                     [self displayPopupMessageWithFadeout:message];
                     [message release];
                 }
