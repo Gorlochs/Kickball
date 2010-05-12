@@ -8,8 +8,8 @@
 
 #import "KBGeoTweetMapViewController.h"
 #import "KBLocationManager.h"
-#import "KBSearchResult.h"
 #import "IFTweetLabel.h"
+#import "KBCreateTweetViewController.h"
 
 #define GEO_TWITTER_RADIUS 5
 
@@ -80,7 +80,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
             }
             [self refreshMap];
             NSLog(@"number of nearby tweets: %d", [nearbyTweets count]);
-            if (pageNum < 4 || [nearbyTweets count] > 25) {
+            if (pageNum < 4 && [nearbyTweets count] < 25) {
                 [self executeQuery:++pageNum];
             }
         }
@@ -179,10 +179,11 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
             [mapViewer setRegion:region animated:NO];
             [mapViewer regionThatFits:region];
             
-            VenueAnnotation *anote = [[VenueAnnotation alloc] init];
+            GeoTweetAnnotation *anote = [[GeoTweetAnnotation alloc] init];
             anote.coordinate = location;
             anote.title = tweet.screenName;
             anote.subtitle = tweet.tweetText;
+            anote.searchResult = tweet;
             NSLog(@"annotation title: %@", anote.title);
             [mapViewer addAnnotation:anote];
             [anote release];
@@ -213,7 +214,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 //    [myDetailButton setImage:[UIImage imageNamed:@"button_right.png"] forState:UIControlStateNormal];
 //    //[myDetailButton addTarget:self action:@selector(showVenue:) forControlEvents:UIControlEventTouchUpInside]; 
 //    
-//    //postag = [((VenueAnnotation*)annotation).venueId intValue];
+//    //postag = [((GeoTweetAnnotation*)annotation).venueId intValue];
 //    //myDetailButton.tag = postag;
 //    
 //    // Set the button as the callout view
@@ -264,7 +265,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 - (void) stopFollowLocation {
 	NSLog(@"stopFollowLocation called. Good place to put stop follow location annotation code.");
 	
-	VenueAnnotation* annotation;
+	GeoTweetAnnotation* annotation;
 	for (annotation in mapViewer.selectedAnnotations) {
 		[mapViewer deselectAnnotation:annotation animated:NO];
 	}
@@ -273,9 +274,10 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 	
 }
 
-- (void)showAnnotation:(VenueAnnotation*)annotation {
+- (void)showAnnotation:(GeoTweetAnnotation*)annotation {
 	self.popupBubbleView.screenname.text = annotation.title;
     self.popupBubbleView.tweetText.text = annotation.subtitle;
+    currentlyDisplayedSearchResult = annotation.searchResult;
 	[UIView beginAnimations: @"moveCNGCallout" context: nil];
 	[UIView setAnimationDelegate: self];
 	[UIView setAnimationDuration: 0.5];
@@ -293,13 +295,19 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     [UIView commitAnimations];
 	self.popupBubbleView.screenname.text = nil;
 	self.popupBubbleView.tweetText.text = nil;
+    currentlyDisplayedSearchResult = nil;
 }
 
 #pragma mark -
 #pragma mark IBOutlets
 
 - (void) replyToTweet {
-    NSLog(@"**********reply**************");
+    NSLog(@"**********reply************** tweet id: %qu", [currentlyDisplayedSearchResult.tweetId longLongValue]);
+	KBCreateTweetViewController *createViewController = [[KBCreateTweetViewController alloc] initWithNibName:@"KBCreateTweetViewController" bundle:nil];
+    createViewController.replyToStatusId = currentlyDisplayedSearchResult.tweetId;
+    createViewController.replyToScreenName = currentlyDisplayedSearchResult.screenName;
+	[self presentModalViewController:createViewController animated:YES];
+	[createViewController release];
 }
 
 - (void) retweet {

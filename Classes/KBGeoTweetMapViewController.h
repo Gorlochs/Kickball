@@ -11,8 +11,9 @@
 #import "KBBaseTweetViewController.h"
 #import "KBMapPopupView.h"
 #import "KBPin.h"
-#import "VenueAnnotation.h"
+#import "GeoTweetAnnotation.h"
 #import "TouchView.h"
+#import "KBSearchResult.h"
 
 
 @interface KBGeoTweetMapViewController : KBBaseTweetViewController <MKMapViewDelegate> {
@@ -21,6 +22,7 @@
     NSMutableArray *nearbyTweets;
     IBOutlet KBMapPopupView *popupBubbleView;
 	TouchView* touchView;
+    KBSearchResult *currentlyDisplayedSearchResult;
 }
 
 @property (nonatomic, retain) MKMapView *mapViewer;
@@ -29,7 +31,7 @@
 extern NSString *const GMAP_ANNOTATION_SELECTED;
 
 - (void) refreshMap;
-- (void)showAnnotation:(VenueAnnotation*)annotation;
+- (void)showAnnotation:(GeoTweetAnnotation*)annotation;
 - (void)hideAnnotation;
 - (IBAction) replyToTweet;
 - (IBAction) retweet;

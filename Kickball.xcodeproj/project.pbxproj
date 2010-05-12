@@ -206,6 +206,7 @@
 		6A31CB15119A1C01009D8967 /* KBMapPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A31CB14119A1C01009D8967 /* KBMapPopupView.m */; };
 		6A31CB8E119A2633009D8967 /* TouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A31CB8D119A2633009D8967 /* TouchView.m */; };
 		6A31CC12119A4E80009D8967 /* libOAuth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A31CC11119A4E80009D8967 /* libOAuth.a */; };
+		6A31CC41119A568E009D8967 /* GeoTweetAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A31CC40119A568E009D8967 /* GeoTweetAnnotation.m */; };
 		6A32B3B7118610A2001E78C9 /* AccountOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A32B3B6118610A2001E78C9 /* AccountOptionsViewController.m */; };
 		6A3900B110D6F1A0001D133C /* AddPlaceFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A3900AF10D6F1A0001D133C /* AddPlaceFormViewController.m */; };
 		6A3900B210D6F1A0001D133C /* AddPlaceFormViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A3900B010D6F1A0001D133C /* AddPlaceFormViewController.xib */; };
@@ -885,6 +886,8 @@
 		6A31CB8C119A2633009D8967 /* TouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchView.h; sourceTree = "<group>"; };
 		6A31CB8D119A2633009D8967 /* TouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchView.m; sourceTree = "<group>"; };
 		6A31CC11119A4E80009D8967 /* libOAuth.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOAuth.a; path = /Users/shawnbernard/Documents/projects/libOAuth.a; sourceTree = "<absolute>"; };
+		6A31CC3F119A568E009D8967 /* GeoTweetAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeoTweetAnnotation.h; sourceTree = "<group>"; };
+		6A31CC40119A568E009D8967 /* GeoTweetAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeoTweetAnnotation.m; sourceTree = "<group>"; };
 		6A32B3B5118610A2001E78C9 /* AccountOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountOptionsViewController.h; sourceTree = "<group>"; };
 		6A32B3B6118610A2001E78C9 /* AccountOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountOptionsViewController.m; sourceTree = "<group>"; };
 		6A3900AE10D6F1A0001D133C /* AddPlaceFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPlaceFormViewController.h; sourceTree = "<group>"; };
@@ -2311,6 +2314,8 @@
 				6A31CB14119A1C01009D8967 /* KBMapPopupView.m */,
 				6A31CB8C119A2633009D8967 /* TouchView.h */,
 				6A31CB8D119A2633009D8967 /* TouchView.m */,
+				6A31CC3F119A568E009D8967 /* GeoTweetAnnotation.h */,
+				6A31CC40119A568E009D8967 /* GeoTweetAnnotation.m */,
 			);
 			name = maps;
 			sourceTree = "<group>";
@@ -3359,6 +3364,7 @@
 				6A533EDA1192887F007C283C /* CDataScanner.m in Sources */,
 				6A31CB15119A1C01009D8967 /* KBMapPopupView.m in Sources */,
 				6A31CB8E119A2633009D8967 /* TouchView.m in Sources */,
+				6A31CC41119A568E009D8967 /* GeoTweetAnnotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

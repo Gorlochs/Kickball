@@ -92,7 +92,8 @@
 
 - (void) cancelCreate {
     [tweetTextView resignFirstResponder];
-    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissModalViewControllerAnimated:YES];
+    //[self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void) createTweetStatusRetrieved:(NSNotification*)inNotification {
