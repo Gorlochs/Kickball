@@ -222,7 +222,7 @@
         return [self.nonCityTodayCheckins count];
     } else if (section == SECTION_NONCITY_YESTERDAY_CHECKINS) {
         if (isDisplayingMore) {
-            return [self.yesterdayCheckins count];
+            return [self.nonCityYesterdayCheckins count];
         } else {
             return 0;
         }
@@ -521,6 +521,9 @@
         NSLog(@"recent checkins: %d", [self.recentCheckins count]);
         NSLog(@"today checkins: %d", [self.todayCheckins count]);
         NSLog(@"yesterday checkins: %d", [self.yesterdayCheckins count]);
+        NSLog(@"non city recent checkins: %d", [self.nonCityRecentCheckins count]);
+        NSLog(@"non city today checkins: %d", [self.nonCityTodayCheckins count]);
+        NSLog(@"non city yesterday checkins: %d", [self.nonCityYesterdayCheckins count]);
         
         [theTableView reloadData];
         int sectionToScrollTo = [self.recentCheckins count] > 0 ? SECTION_RECENT_CHECKINS : ([self.todayCheckins count] > 0 ? SECTION_TODAY_CHECKINS: ([self.nonCityRecentCheckins count] > 0 ? SECTION_NONCITY_RECENT_CHECKINS : 0));
