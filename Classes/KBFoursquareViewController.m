@@ -8,6 +8,9 @@
 
 #import "KBFoursquareViewController.h"
 #import "PlacesListViewController.h"
+#import "PlacesMapViewController.h"
+#import "FriendsListViewController.h"
+#import "FriendsMapViewController.h"
 
 @implementation KBFoursquareViewController
 
@@ -69,10 +72,28 @@
 }
 
 
-- (void) viewPlacesList {
-    PlacesListViewController *placesListController = [[PlacesListViewController alloc] initWithNibName:@"PlacesListView_v2" bundle:nil];
-    [self.navigationController pushViewController:placesListController animated:NO];
-    [placesListController release];
+- (void) viewPlaces {
+    if (pageViewType == KBPageViewTypeList) {
+        PlacesListViewController *placesController = [[PlacesListViewController alloc] initWithNibName:@"PlacesListView_v2" bundle:nil];
+        [self.navigationController pushViewController:placesController animated:NO];
+        [placesController release];
+    } else if (pageViewType == KBPageViewTypeMap) {
+        PlacesMapViewController *placesController = [[PlacesMapViewController alloc] initWithNibName:@"PlacesMapView_v2" bundle:nil];
+        [self.navigationController pushViewController:placesController animated:NO];
+        [placesController release];
+    }
+}
+
+- (void) viewFriends {
+    if (pageViewType == KBPageViewTypeList) {
+        FriendsListViewController *friendsController = [[FriendsListViewController alloc] initWithNibName:@"FriendsListView_v2" bundle:nil];
+        [self.navigationController pushViewController:friendsController animated:NO];
+        [friendsController release];
+    } else if (pageViewType == KBPageViewTypeMap) {
+        FriendsMapViewController *friendsController = [[FriendsMapViewController alloc] initWithNibName:@"FriendsMapView_v2" bundle:nil];
+        [self.navigationController pushViewController:friendsController animated:NO];
+        [friendsController release];
+    }
 }
 
 - (void) backOneView {

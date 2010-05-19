@@ -135,58 +135,21 @@ static BOOL initialized = NO;
 // FIXME: stop location updates at a certain point
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation  fromLocation:(CLLocation *)oldLocation {
 	locationDenied = NO;
-//	if(![[NSUserDefaults standardUserDefaults] boolForKey:@"UseLocations"]) {
-//		[self stopUpdates];
-//		return;
-//	}
-    
-//	if(![self longURL] || ![[self longURL] isEqualToString:[self longURLWithLatitude:newLocation.coordinate.latitude longitude:newLocation.coordinate.longitude]])
-//	{
-    
-    // store all of the measurements, just so we can see what kind of data we might receive
+
     [locationMeasurements addObject:newLocation];
-    // test the age of the location measurement to determine if the measurement is cached
-    // in most cases you will not want to rely on cached measurements
-//    NSTimeInterval locationAge = -[newLocation.timestamp timeIntervalSinceNow];
-//    if (locationAge > 5.0) return;
-//    // test that the horizontal accuracy does not indicate an invalid measurement
-//    if (newLocation.horizontalAccuracy < 0) return;
-//    // test the measurement to see if it is more accurate than the previous measurement
-//    if (bestEffortAtLocation == nil || bestEffortAtLocation.horizontalAccuracy < newLocation.horizontalAccuracy) {
-//        // store the location as the "best effort"
-//        self.bestEffortAtLocation = newLocation;
-        
-        latitude = newLocation.coordinate.latitude;
-        longitude = newLocation.coordinate.longitude;
-        NSLog(@"latitude: %f", latitude);
-        NSLog(@"longitude: %f", longitude);
-        NSLog(@"bestEffortAtLocation: %@", bestEffortAtLocation);
+
+    latitude = newLocation.coordinate.latitude;
+    longitude = newLocation.coordinate.longitude;
+    NSLog(@"latitude: %f", latitude);
+    NSLog(@"longitude: %f", longitude);
+    NSLog(@"bestEffortAtLocation: %@", bestEffortAtLocation);
     
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setFloat:latitude forKey:kLastLatitudeKey];
     [userDefaults setFloat:longitude forKey:kLastLongitudeKey];
         
-		locationDefined = YES;
-		[[NSNotificationCenter defaultCenter] postNotificationName: @"UpdateLocationNotification" object: nil];
-        
-//        // test the measurement to see if it meets the desired accuracy
-//        //
-//        // IMPORTANT!!! kCLLocationAccuracyBest should not be used for comparison with location coordinate or altitidue 
-//        // accuracy because it is a negative value. Instead, compare against some predetermined "real" measure of 
-//        // acceptable accuracy, or depend on the timeout to stop updating. This sample depends on the timeout.
-//        //
-////        if (newLocation.horizontalAccuracy <= locationManager.desiredAccuracy) {
-////            // we have a measurement that meets our requirements, so we can stop updating the location
-////            // 
-////            // IMPORTANT!!! Minimize power usage by stopping the location manager as soon as possible.
-////            //
-////            // we can also cancel our previous performSelector:withObject:afterDelay: - it's no longer necessary
-////            NSLog(@"***** STOPPING LOCATION MANAGER UPDATES ******");
-////            [self stopUpdates];
-////            [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(stopUpdates) object:nil];
-////        }
-//    }
-//	}
+    locationDefined = YES;
+    [[NSNotificationCenter defaultCenter] postNotificationName: @"UpdateLocationNotification" object: nil];
 }
 
 - (BOOL) locationDenied {
