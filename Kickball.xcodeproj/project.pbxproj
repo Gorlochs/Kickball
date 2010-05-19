@@ -317,6 +317,8 @@
 		6AA19FB31188E62D001EB415 /* KBTwitterUserListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA19FB11188E62D001EB415 /* KBTwitterUserListViewController.m */; };
 		6AA19FB41188E62E001EB415 /* KBTwitterUserListViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6AA19FB21188E62D001EB415 /* KBTwitterUserListViewController.xib */; };
 		6AA8B86C10DDCECC005634D4 /* FSSpecial.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA8B86B10DDCECC005634D4 /* FSSpecial.m */; };
+		6AA8BE9911A46EF700F60550 /* PlacePeopleHereViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA8BE9711A46EF700F60550 /* PlacePeopleHereViewController.m */; };
+		6AA8BE9A11A46EF700F60550 /* PlacePeopleHereViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AA8BE9811A46EF700F60550 /* PlacePeopleHereViewController.xib */; };
 		6AABEBD810FBB29500A5AF8B /* ProfileTwitterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AABEBD610FBB29500A5AF8B /* ProfileTwitterViewController.m */; };
 		6AABEBD910FBB29500A5AF8B /* ProfileTwitterViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6AABEBD710FBB29500A5AF8B /* ProfileTwitterViewController.xib */; };
 		6AACC53210D48F240059E604 /* KBLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AACC53110D48F240059E604 /* KBLocationManager.m */; };
@@ -1081,6 +1083,9 @@
 		6AA19FB21188E62D001EB415 /* KBTwitterUserListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KBTwitterUserListViewController.xib; path = Classes/KBTwitterUserListViewController.xib; sourceTree = "<group>"; };
 		6AA8B86A10DDCECC005634D4 /* FSSpecial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSpecial.h; sourceTree = "<group>"; };
 		6AA8B86B10DDCECC005634D4 /* FSSpecial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSSpecial.m; sourceTree = "<group>"; };
+		6AA8BE9611A46EF700F60550 /* PlacePeopleHereViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlacePeopleHereViewController.h; sourceTree = "<group>"; };
+		6AA8BE9711A46EF700F60550 /* PlacePeopleHereViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlacePeopleHereViewController.m; sourceTree = "<group>"; };
+		6AA8BE9811A46EF700F60550 /* PlacePeopleHereViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = PlacePeopleHereViewController.xib; path = Classes/PlacePeopleHereViewController.xib; sourceTree = "<group>"; };
 		6AABEBD510FBB29500A5AF8B /* ProfileTwitterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileTwitterViewController.h; sourceTree = "<group>"; };
 		6AABEBD610FBB29500A5AF8B /* ProfileTwitterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileTwitterViewController.m; sourceTree = "<group>"; };
 		6AABEBD710FBB29500A5AF8B /* ProfileTwitterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileTwitterViewController.xib; sourceTree = "<group>"; };
@@ -1524,6 +1529,7 @@
 				6AC28D541173BC6500518E37 /* PlacesListView_v2.xib */,
 				6AFE19A11175388C00130CBB /* PlacesMapView_v2.xib */,
 				6AEC8FC7117588A600BEB591 /* PlaceDetailView_v2.xib */,
+				6AA8BE9811A46EF700F60550 /* PlacePeopleHereViewController.xib */,
 				6A2AEFC611742ECC00F1EA88 /* ProfileView_v2.xib */,
 				6A086FBD1176501700BD6094 /* UserProfileView_v2.xib */,
 				6A086FE5117652A500BD6094 /* OptionsView_v2.xib */,
@@ -2507,6 +2513,8 @@
 				6AFF23EF10A247B100CD30E5 /* PlaceTwitterViewController.m */,
 				6A2AEF551174161900F1EA88 /* PlacesListTableViewCellv2.h */,
 				6A2AEF561174161900F1EA88 /* PlacesListTableViewCellv2.m */,
+				6AA8BE9611A46EF700F60550 /* PlacePeopleHereViewController.h */,
+				6AA8BE9711A46EF700F60550 /* PlacePeopleHereViewController.m */,
 			);
 			name = Place;
 			sourceTree = "<group>";
@@ -3102,6 +3110,7 @@
 				6A533B701191ED3D007C283C /* sendBG.png in Resources */,
 				6A7E282D1197B86200B76CB3 /* searchBG02.png in Resources */,
 				6A7E282E1197B86200B76CB3 /* searchBG01.png in Resources */,
+				6AA8BE9A11A46EF700F60550 /* PlacePeopleHereViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3365,6 +3374,7 @@
 				6A31CB15119A1C01009D8967 /* KBMapPopupView.m in Sources */,
 				6A31CB8E119A2633009D8967 /* TouchView.m in Sources */,
 				6A31CC41119A568E009D8967 /* GeoTweetAnnotation.m in Sources */,
+				6AA8BE9911A46EF700F60550 /* PlacePeopleHereViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

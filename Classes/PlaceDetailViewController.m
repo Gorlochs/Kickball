@@ -36,12 +36,14 @@
 #import "BlackTableCellHeader.h"
 #import "TipListViewController.h"
 #import "KBCheckinModalViewController.h"
+#import "PlacePeopleHereViewController.h"
 
 static inline double radians (double degrees) {return degrees * M_PI/180;}
 
 #define PHOTOS_PER_ROW 4
 #define THUMBNAIL_IMAGE_SIZE 73
 #define MAX_NUM_TIPS_SHOWN 4
+#define MAX_PEOPLE_HERE_SHOWN 2
 
 @interface PlaceDetailViewController (Private)
 
@@ -363,7 +365,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     } else if (section == 1) { // mayor & map cell
         return ![self isNewMayor];
     } else if (section == 2) { // people here
-        return [venue.currentCheckins count];
+        return [venue.currentCheckins count] <= MAX_PEOPLE_HERE_SHOWN ? [venue.currentCheckins count] : MAX_PEOPLE_HERE_SHOWN;
     } else if (section == 3) { // gift/photos
         return [goodies count] > 0 ? 1 : 0;
     } else if (section == 4) { // venue buttons
@@ -393,22 +395,24 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     } else if (indexPath.section == 1) {
         mayorMapCell.backgroundColor = [UIColor whiteColor];
         return mayorMapCell;
-    } else if (indexPath.section == 2) {
-        cell.detailTextLabel.numberOfLines = 1;
-        cell.detailTextLabel.text = nil;
-        cell.textLabel.font = [UIFont boldSystemFontOfSize:16];
-        FSCheckin *currentCheckin = ((FSCheckin*)[venue.currentCheckins objectAtIndex:indexPath.row]);
-        cell.textLabel.text = currentCheckin.user.firstnameLastInitial;
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.imageView.image = [UIImage imageNamed:@"blank_boy.png"];
-        
-        CGRect frame = CGRectMake(0,0,36,36);
-        TTImageView *ttImage = [[[TTImageView alloc] initWithFrame:frame] autorelease];
-        ttImage.urlPath = currentCheckin.user.photo;
-        ttImage.backgroundColor = [UIColor clearColor];
-        ttImage.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
-        ttImage.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
-        [cell.imageView addSubview:ttImage];
+    } else if (indexPath.section == 2) { // people here
+        if (indexPath.row <= MAX_PEOPLE_HERE_SHOWN) {
+            cell.detailTextLabel.numberOfLines = 1;
+            cell.detailTextLabel.text = nil;
+            cell.textLabel.font = [UIFont boldSystemFontOfSize:16];
+            FSCheckin *currentCheckin = ((FSCheckin*)[venue.currentCheckins objectAtIndex:indexPath.row]);
+            cell.textLabel.text = currentCheckin.user.firstnameLastInitial;
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cell.imageView.image = [UIImage imageNamed:@"blank_boy.png"];
+            
+            CGRect frame = CGRectMake(0,0,36,36);
+            TTImageView *ttImage = [[[TTImageView alloc] initWithFrame:frame] autorelease];
+            ttImage.urlPath = currentCheckin.user.photo;
+            ttImage.backgroundColor = [UIColor clearColor];
+            ttImage.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
+            ttImage.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
+            [cell.imageView addSubview:ttImage];
+        }
     } else if (indexPath.section == 3) {
         return giftCell;
     } else if (indexPath.section == 4) {
@@ -492,7 +496,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
             } else {
                 headerView.leftHeaderLabel.text = [NSString stringWithFormat:@"%d %@ Here", venue.hereNow, venue.hereNow == 1 ? @"Person" : @"People"];
                 
-                if (venue.hereNow > 4) {
+                if (venue.hereNow > MAX_PEOPLE_HERE_SHOWN) {
                     UIButton *myDetailButton = [UIButton buttonWithType:UIButtonTypeCustom];
                     myDetailButton.frame = CGRectMake(210, 0, 92, 39);
                     myDetailButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
@@ -541,7 +545,10 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 }
 
 - (void) displayAllPeopleHere:(id)sender {
-    
+    PlacePeopleHereViewController *controller = [[PlacePeopleHereViewController alloc] initWithNibName:@"PlacePeopleHereViewController" bundle:nil];
+    controller.checkedInUsers = venue.currentCheckins;
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
 }
 
 - (void) displayAllTips:(id)sender {
@@ -555,10 +562,8 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     if (indexPath.section == 1) {
         [self pushProfileDetailController:venue.mayor.userId];
     } else if (indexPath.section == 2) {
-        if (indexPath.row < [venue.currentCheckins count]) {
-            FSCheckin *tmpCheckin = ((FSCheckin*)[venue.currentCheckins objectAtIndex:indexPath.row]);
-            [self pushProfileDetailController:tmpCheckin.user.userId];
-        }
+        FSCheckin *tmpCheckin = ((FSCheckin*)[venue.currentCheckins objectAtIndex:indexPath.row]);
+        [self pushProfileDetailController:tmpCheckin.user.userId];
     } else if (indexPath.section == 5) {
         FSTip *tip = ((FSTip*)[venue.tips objectAtIndex:indexPath.row]);
         TipDetailViewController *tipController = [[TipDetailViewController alloc] initWithNibName:@"TipView" bundle:nil];
