@@ -17,7 +17,6 @@
     IBOutlet UIButton *centerHeaderButton;
     IBOutlet UIButton *homeButton;
     IBOutlet UIButton *backButton;
-    IBOutlet UIView *homeBackView;
 }
 
 - (IBAction) flipBetweenMapAndList;

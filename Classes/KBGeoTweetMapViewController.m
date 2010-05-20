@@ -26,6 +26,10 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     pageViewType = KBPageViewTypeMap;
     [super viewDidLoad];
     
+    pageNum = 0;
+    mapCenterCoordinate.latitude = [[KBLocationManager locationManager] latitude];
+    mapCenterCoordinate.longitude = [[KBLocationManager locationManager] longitude];
+    
     touchView = [[TouchView alloc] initWithFrame:CGRectMake(0, 47, 320, 373)];
 	touchView.delegate = self;
 	touchView.callAtHitTest = @selector(stopFollowLocation);
@@ -59,7 +63,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 
 - (void) showStatuses {
     [self startProgressBar:@"Retrieving your tweets..."];
-    [self executeQuery:0];
+    [self executeQueryWithPageNumber:pageNum andCoordinates:mapCenterCoordinate];
 }
 
 - (void)searchRetrieved:(NSNotification *)inNotification {
@@ -80,8 +84,8 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
             }
             [self refreshMap];
             NSLog(@"number of nearby tweets: %d", [nearbyTweets count]);
-            if (pageNum < 4 && [nearbyTweets count] < 25) {
-                [self executeQuery:++pageNum];
+            if (pageNum < 4 && [nearbyTweets count] < 25 + 25 * numTouches) {
+                [self executeQueryWithPageNumber:++pageNum andCoordinates:mapViewer.centerCoordinate];
             }
         }
     }
@@ -89,13 +93,20 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 }
 
 - (void) executeQuery:(int)pageNumber {
+    CLLocationCoordinate2D coordinate;
+    coordinate.latitude = [[KBLocationManager locationManager] latitude];
+    coordinate.longitude = [[KBLocationManager locationManager] longitude];
+    [self executeQueryWithPageNumber:pageNumber andCoordinates:coordinate];
+}
+
+- (void)executeQueryWithPageNumber:(int)pageNumber andCoordinates:(CLLocationCoordinate2D)coordinate {
     [twitterEngine getSearchResultsForQuery:nil
                                     sinceID:0 
                              startingAtPage:pageNumber
                                       count:100
                                     geocode:[NSString stringWithFormat:@"%@,%@,%dmi", 
-                                             [NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] latitude]],
-                                             [NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] longitude]],
+                                             [NSString stringWithFormat:@"%f",coordinate.latitude],
+                                             [NSString stringWithFormat:@"%f",coordinate.longitude],
                                              GEO_TWITTER_RADIUS
                                              ]
      ];
@@ -104,22 +115,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 #pragma mark -
 #pragma mark Map stuff
 
-- (void) refreshMapRegion {
-	[mapViewer setRegion:mapRegion animated:TRUE];
-	[mapViewer regionThatFits:mapRegion];
-}
-
-- (void) refreshMap {
-    
-//    NSMutableArray *tmpArray = [[NSMutableArray alloc] initWithCapacity:1];
-//    for (id<MKAnnotation> annotation in mapViewer.annotations) {
-//        if( ![[annotation title] isEqualToString:@"Current Location"] ) {
-//            [tmpArray addObject:annotation];
-//        }
-//    }
-//    [mapViewer removeAnnotations:tmpArray];
-//    [tmpArray release];
-    
+- (void) calculateMapCenterAndRegion {
     double minLat = 1000;
     double maxLat = -1000;
     double minLong = 1000;
@@ -169,6 +165,16 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     region.span = span;
     region.center = center;
     
+    [mapViewer setRegion:region animated:NO];
+    [mapViewer regionThatFits:region];
+}
+
+- (void) refreshMap {
+    
+    if (numTouches == 0) {
+        [self calculateMapCenterAndRegion];
+    }
+    
 	for(KBSearchResult *tweet in nearbyTweets){
 		if(tweet.latitude && tweet.longitude){
             
@@ -176,8 +182,6 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
                 latitude: tweet.latitude,
                 longitude: tweet.longitude
             };
-            [mapViewer setRegion:region animated:NO];
-            [mapViewer regionThatFits:region];
             
             GeoTweetAnnotation *anote = [[GeoTweetAnnotation alloc] init];
             anote.coordinate = location;
@@ -199,39 +203,15 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     if( [[annotation title] isEqualToString:@"Current Location"] ) {
 		return nil;
 	}
-//    int postag = 0;
     
     KBPin *annView=[[[KBPin alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomId"] autorelease];
     annView.image = [UIImage imageNamed:@"pin.png"];
-    
-//    // add an accessory button so user can click through to the venue page
-//    UIButton *myDetailButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    myDetailButton.frame = CGRectMake(0, 0, 23, 23);
-//    myDetailButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-//    myDetailButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-//    
-//    // Set the image for the button
-//    [myDetailButton setImage:[UIImage imageNamed:@"button_right.png"] forState:UIControlStateNormal];
-//    //[myDetailButton addTarget:self action:@selector(showVenue:) forControlEvents:UIControlEventTouchUpInside]; 
-//    
-//    //postag = [((GeoTweetAnnotation*)annotation).venueId intValue];
-//    //myDetailButton.tag = postag;
-//    
-//    // Set the button as the callout view
-//    annView.rightCalloutAccessoryView = myDetailButton;
-//    
-////    CGPoint notNear = CGPointMake(10000.0,10000.0);
-////	annView.calloutOffset = notNear;
-//	//annotationView = annView;
     
     [annView addObserver:self
               forKeyPath:@"selected"
                  options:NSKeyValueObservingOptionNew
                  context:GMAP_ANNOTATION_SELECTED];
-    
-    //annView.animatesDrop=TRUE;
     annView.canShowCallout = NO;
-    //annView.calloutOffset = CGPointMake(-5, 5);
     return annView;
 }
 
@@ -296,6 +276,21 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 	self.popupBubbleView.screenname.text = nil;
 	self.popupBubbleView.tweetText.text = nil;
     currentlyDisplayedSearchResult = nil;
+}
+
+#pragma mark MKMapViewDelegate functions
+
+- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
+    if (isMapFinishedLoading) {
+        numTouches++;
+        isMapFinishedLoading = NO;
+        CLLocationCoordinate2D newCenterCoordinate = mapView.centerCoordinate;
+        [self executeQueryWithPageNumber:pageNum andCoordinates:newCenterCoordinate];
+    }
+}
+
+- (void)mapViewDidFinishLoadingMap:(MKMapView *)mapView {
+    isMapFinishedLoading = YES;
 }
 
 #pragma mark -

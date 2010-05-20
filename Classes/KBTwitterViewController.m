@@ -45,10 +45,8 @@
     }
     
     if (pageType == KBPageTypeOther) {
-        //friendButton.enabled = NO;
-        homeBackView.frame = CGRectMake(0, 0, homeBackView.frame.size.width, homeBackView.frame.size.height);
-        [self.view insertSubview:homeBackView belowSubview:centerHeaderButton];
-        //[placesButton setImage:[UIImage imageNamed:@"placesTab01.png"] forState:UIControlStateNormal];
+        homeButton.hidden = NO;
+        backButton.hidden = NO;
     }
     
     if (pageViewType == KBPageViewTypeList) {

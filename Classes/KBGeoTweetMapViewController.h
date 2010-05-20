@@ -19,10 +19,14 @@
 @interface KBGeoTweetMapViewController : KBBaseTweetViewController <MKMapViewDelegate> {
 	IBOutlet MKMapView * mapViewer;
 	MKCoordinateRegion mapRegion;
+    CLLocationCoordinate2D mapCenterCoordinate;
     NSMutableArray *nearbyTweets;
     IBOutlet KBMapPopupView *popupBubbleView;
 	TouchView* touchView;
     KBSearchResult *currentlyDisplayedSearchResult;
+    BOOL isMapFinishedLoading;
+    
+    int numTouches;
 }
 
 @property (nonatomic, retain) MKMapView *mapViewer;
@@ -35,5 +39,6 @@ extern NSString *const GMAP_ANNOTATION_SELECTED;
 - (void)hideAnnotation;
 - (IBAction) replyToTweet;
 - (IBAction) retweet;
+- (void)executeQueryWithPageNumber:(int)pageNumber andCoordinates:(CLLocationCoordinate2D)coordinate;
 
 @end
