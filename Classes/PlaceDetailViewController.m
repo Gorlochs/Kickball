@@ -710,27 +710,25 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     NSDictionary *dictionary = [inNotification userInfo];
     FSCheckin *ci = [dictionary objectForKey:@"checkin"];
     NSMutableString *checkinText = [[NSMutableString alloc] initWithCapacity:1];
-    if (ci.mayor.user == nil && [[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"nochange"]) {
-        [checkinText appendFormat:[NSString stringWithFormat:@"You're still the mayor of %@! \n", venue.name]];
+    if (ci.mayor.user == nil && [ci.mayor.mayorTransitionType isEqualToString:@"nochange"]) {
+        [checkinText appendFormat:[NSString stringWithFormat:@"You're still the mayor of %@! \n\n", venue.name]];
     } else if ([ci.mayor.mayorTransitionType isEqualToString:@"stolen"] || [ci.mayor.mayorTransitionType isEqualToString:@"new"]) {
         if ([[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"stolen"]) {
-            [checkinText appendFormat:[NSString stringWithFormat:@"Congrats! %@ is yours with %d check-ins and %@ lost their crown. \n", 
+            [checkinText appendFormat:[NSString stringWithFormat:@"Congrats! %@ is yours with %d check-ins and %@ lost their crown. \n\n", 
                                       ci.venue.name, 
                                       ci.mayor.numCheckins, 
                                       ci.mayor.user.firstnameLastInitial]];
         } else {
-            [checkinText appendFormat:[NSString stringWithFormat:@"%@ \n", ci.mayor.mayorCheckinMessage]];
+            [checkinText appendFormat:[NSString stringWithFormat:@"%@ \n\n", ci.mayor.mayorCheckinMessage]];
         }
     }
     for (FSBadge *badge in ci.badges) {
-        [checkinText appendFormat:[NSString stringWithFormat:@"%@: %@ \n", badge.badgeName, badge.badgeDescription]];
+        [checkinText appendFormat:[NSString stringWithFormat:@"%@: %@ \n\n", badge.badgeName, badge.badgeDescription]];
     }
+    [checkinText appendFormat:@"%@ \n\n", ci.message];
     for (FSScore *score in ci.scoring.scores) {
-        [checkinText appendFormat:[NSString stringWithFormat:@"%@ \n\n+%d %@ \n", ci.message, score.points, score.message]];
+        [checkinText appendFormat:[NSString stringWithFormat:@"+%d %@ \n", score.points, score.message]];
     }
-//        if (checkinText == nil || [checkinText isEqualToString:@""]) {
-//            [checkinText appendString:ci.message];
-//        }
     NSLog(@"checkin text: %@", checkinText);
     KBMessage *message = [[KBMessage alloc] initWithMember:@"Check-in successful" andMessage:checkinText];
     [self displayPopupMessage:message];
