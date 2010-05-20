@@ -13,6 +13,7 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="1"/>
+			<integer value="19"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -140,7 +141,7 @@
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 			<object class="IBUIView" id="1023748548">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -172,7 +173,7 @@
 					<object class="IBUIButton" id="878610660">
 						<reference key="NSNextResponder" ref="1023748548"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{57, 0}, {53, 47}}</string>
+						<string key="NSFrame">{{57, 0}, {100, 47}}</string>
 						<reference key="NSSuperview" ref="1023748548"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -195,7 +196,8 @@
 						</object>
 					</object>
 				</object>
-				<string key="NSFrameSize">{110, 47}</string>
+				<string key="NSFrameSize">{157, 47}</string>
+				<reference key="NSSuperview"/>
 				<reference key="IBUIBackgroundColor" ref="993376012"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
@@ -390,7 +392,7 @@
 					<string>FoursquareHeaderView</string>
 					<string>{{652, 897}, {320, 47}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{460, 519}, {110, 47}}</string>
+					<string>{{701, 546}, {157, 47}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -806,8 +808,8 @@
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>{53, 47}</string>
-				<string>{53, 47}</string>
+				<string>{100, 47}</string>
+				<string>{100, 47}</string>
 				<string>{160, 47}</string>
 				<string>{160, 47}</string>
 				<string>{57, 47}</string>

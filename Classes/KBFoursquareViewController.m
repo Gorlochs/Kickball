@@ -53,8 +53,11 @@
  //       homeBackView.hidden = NO;
         friendButton.enabled = NO;
         homeBackView.frame = CGRectMake(0, 0, homeBackView.frame.size.width, homeBackView.frame.size.height);
-        [self.view addSubview:homeBackView];
-        [self.view bringSubviewToFront:homeBackView];
+        [self.view insertSubview:homeBackView belowSubview:centerHeaderButton];
+//        [self.view addSubview:homeBackView];
+        //[self.view bringSubviewToFront:homeBackView];
+//        [self.view bringSubviewToFront:centerHeaderButton];
+        
         [placesButton setImage:[UIImage imageNamed:@"placesTab01.png"] forState:UIControlStateNormal];
     }
     
@@ -131,8 +134,9 @@
 
 - (void) showBackHomeButtons {
     homeBackView.frame = CGRectMake(0, 0, homeBackView.frame.size.width, homeBackView.frame.size.height);
-    [self.view addSubview:homeBackView];
-    [self.view bringSubviewToFront:homeBackView];
+    [self.view insertSubview:homeBackView belowSubview:centerHeaderButton];
+    //[self.view addSubview:homeBackView];
+    //[self.view bringSubviewToFront:homeBackView];
 }
 
 - (void)dealloc {

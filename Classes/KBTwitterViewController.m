@@ -47,8 +47,7 @@
     if (pageType == KBPageTypeOther) {
         //friendButton.enabled = NO;
         homeBackView.frame = CGRectMake(0, 0, homeBackView.frame.size.width, homeBackView.frame.size.height);
-        [self.view addSubview:homeBackView];
-        [self.view bringSubviewToFront:homeBackView];
+        [self.view insertSubview:homeBackView belowSubview:centerHeaderButton];
         //[placesButton setImage:[UIImage imageNamed:@"placesTab01.png"] forState:UIControlStateNormal];
     }
     

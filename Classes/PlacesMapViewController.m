@@ -35,8 +35,7 @@
                                                  andLongitude:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] longitude]]
                                                    withTarget:self 
                                                     andAction:@selector(venuesResponseReceived:withResponseString:)
-         
-         ];   
+        ];   
     } else {
         [self refreshVenuePoints];
     }
@@ -97,8 +96,7 @@
 	return venues;
 }
 
-- (void) refreshVenuePoints {
-
+- (void) releaseAllAnnotationExceptCurrentLocation {
     NSMutableArray *tmpArray = [[NSMutableArray alloc] initWithCapacity:1];
     for (id<MKAnnotation> annotation in mapViewer.annotations) {
         if( ![[annotation title] isEqualToString:@"Current Location"] ) {
@@ -107,62 +105,22 @@
     }
     [mapViewer removeAnnotations:tmpArray];
     [tmpArray release];
-    
-    double minLat = 1000;
-    double maxLat = -1000;
-    double minLong = 1000;
-    double maxLong = -1000;
-    
-    for (FSVenue *venue in self.venues)
-    {
-        double lat = venue.geolat.doubleValue;
-        double lng = venue.geolong.doubleValue;
-        
-        if (lat < minLat)
-        {
-            minLat = lat;
-        }
-        if (lat > maxLat)
-        {
-            maxLat = lat;
-        }
-        
-        if (lng < minLong)
-        {
-            minLong = lng;
-        }
-        if (lng > maxLong)
-        {
-            maxLong = lng;
-        }
-    }
-    
-    MKCoordinateRegion region;
-    MKCoordinateSpan span;
-    span.latitudeDelta=(maxLat - minLat);
-    if (span.latitudeDelta == 0)
-    {
-        span.latitudeDelta = 0.05;
-    }
-    span.longitudeDelta=(maxLong - minLong);
-    if (span.longitudeDelta == 0)
-    {
-        span.longitudeDelta = 0.05;
-    }
-    
-    CLLocationCoordinate2D center;
-    center.latitude = (minLat + maxLat) / 2;
-    center.longitude = (minLong + maxLong) / 2;
-    
-    region.span = span;
-    region.center = center;
+}
 
-	for(FSVenue * venue in self.venues){
+- (void) refreshVenuePoints {
+
+    [self addAnnotationsToMap:self.venues];
+    [self zoomToProperDepth];
+    
+    // does this go here?
+    [self stopProgressBar];
+}
+
+- (void) addAnnotationsToMap:(NSArray*)venueArray {
+    for(FSVenue * venue in venueArray){
 		if(venue.geolat && venue.geolong){
             
             CLLocationCoordinate2D location = venue.location;
-            [mapViewer setRegion:region animated:NO];
-            [mapViewer regionThatFits:region];
             
             VenueAnnotation *anote = [[VenueAnnotation alloc] init];
             anote.coordinate = location;
@@ -173,9 +131,6 @@
             [anote release];
 		}
 	}
-    
-    // does this go here?
-    [self stopProgressBar];
 }
 
 
@@ -213,7 +168,7 @@
         	}
         }
 		
-		//MKCoordinateRegion region;
+		MKCoordinateRegion region;
 		MKCoordinateSpan span;
         span.latitudeDelta=(maxLat - minLat);
         if (span.latitudeDelta == 0)
@@ -229,9 +184,28 @@
 		CLLocationCoordinate2D center;
         center.latitude = (minLat + maxLat) / 2;
         center.longitude = (minLong + maxLong) / 2;
+        
+        region.span = span;
+        region.center = center;
+        
+        [mapViewer setRegion:region animated:NO];
+        [mapViewer regionThatFits:region];
     }
 }
 
+#pragma mark MKMapViewDelegate functions
+
+- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
+    if (isMapFinishedLoading) {
+        isMapFinishedLoading = NO;
+        CLLocationCoordinate2D newCenterCoordinate = mapView.centerCoordinate;
+        [self searchOnMapScrollLatLongWithCoordinate:newCenterCoordinate];
+    }
+}
+
+- (void)mapViewDidFinishLoadingMap:(MKMapView *)mapView {
+    isMapFinishedLoading = YES;
+}
 
 #pragma mark MapViewer functions
 
@@ -288,13 +262,37 @@
     [searchbox resignFirstResponder];
     if (![searchbox.text isEqualToString:@""]) {
         // TODO: I am just replacing a space with a +, but other characters might give this method a headache.
-        [[FoursquareAPI sharedInstance] getVenuesByKeyword:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] latitude]] 
-                                              andLongitude:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] longitude]] 
-                                               andKeywords:[searchbox.text stringByReplacingOccurrencesOfString:@" " withString:@"+"]
-                                                withTarget:self 
-                                                 andAction:@selector(allVenuesResponseReceived:withResponseString:)
-         ];
+        [self releaseAllAnnotationExceptCurrentLocation];
+        [[FoursquareAPI sharedInstance] getVenuesNearLatitude:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] latitude]]
+                                                 andLongitude:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] longitude]]
+                                                   withTarget:self 
+                                                    andAction:@selector(venuesResponseReceived:withResponseString:)
+         ];  
     }
+}
+
+// no search criteria (yet), no rezoom
+- (void) searchOnMapScrollLatLongWithCoordinate:(CLLocationCoordinate2D)coordinate {
+    [[FoursquareAPI sharedInstance] getVenuesNearLatitude:[NSString stringWithFormat:@"%f", coordinate.latitude]
+                                             andLongitude:[NSString stringWithFormat:@"%f", coordinate.longitude]
+                                               withTarget:self 
+                                                andAction:@selector(allVenuesOnScrollResponseReceived:withResponseString:)
+     ];
+}
+
+- (void)allVenuesOnScrollResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+    NSLog(@"venues from search - instring: %@", inString);
+	NSDictionary *allVenues = [FoursquareAPI venuesFromResponseXML:inString];
+    NSMutableArray *venueArray = [[NSMutableArray alloc] initWithCapacity:1];
+    NSArray *keys = [allVenues allKeys];
+    for (NSString *key in keys) {
+        [venueArray addObjectsFromArray:[allVenues objectForKey:key]];
+    }
+	self.venues = [NSArray arrayWithArray:venueArray];
+    NSLog(@"searched on venues: %@", self.venues);
+    [venueArray release];
+    [self stopProgressBar];
+    [self addAnnotationsToMap:self.venues];
 }
 
 - (void)allVenuesResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {

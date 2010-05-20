@@ -14,12 +14,14 @@
 #import "KBFoursquareViewController.h"
 
 
-@interface PlacesMapViewController : KBFoursquareViewController <UITextFieldDelegate> {
+@interface PlacesMapViewController : KBFoursquareViewController <UITextFieldDelegate, MKMapViewDelegate> {
 	IBOutlet MKMapView * mapViewer;
 	NSMutableArray * venues;
     CLLocation *bestEffortAtLocation;
     IBOutlet UITextField *searchbox;
     IBOutlet UIButton *switchingButton;
+    
+    BOOL isMapFinishedLoading;
 }
 
 @property (nonatomic, retain) NSMutableArray * venues;
@@ -35,6 +37,10 @@
 - (IBAction) cancelTheKeyboard;
 - (IBAction) viewFriendsMap;
 - (IBAction) cancelEdit;
+- (void) searchOnMapScrollLatLongWithCoordinate:(CLLocationCoordinate2D)coordinate;
+- (void) releaseAllAnnotationExceptCurrentLocation;
+- (void) addAnnotationsToMap:(NSArray*)venueArray;
+- (void) zoomToProperDepth;
 
 @end
 

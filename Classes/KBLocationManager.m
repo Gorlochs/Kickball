@@ -21,7 +21,6 @@ static BOOL initialized = NO;
 + (KBLocationManager*)locationManager {
 	if(!globalLocationManager)  {
         globalLocationManager = [[KBLocationManager allocWithZone:nil] init];
-        //kCLLocationAccuracyBest
     }
 		
 	return globalLocationManager;

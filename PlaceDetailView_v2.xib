@@ -12,8 +12,9 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="1"/>
+			<integer value="67"/>
 			<integer value="13"/>
+			<integer value="1"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -115,7 +116,7 @@
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">call02.png</string>
 								</object>
-								<object class="NSCustomResource" key="IBUINormalImage" id="1072926705">
+								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">placeCall01.png</string>
 								</object>
@@ -564,7 +565,7 @@
 				<reference key="IBUIContentView" ref="671582536"/>
 			</object>
 			<object class="IBUIView" id="101177011">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -597,14 +598,19 @@
 					<object class="IBUIButton" id="68870838">
 						<reference key="NSNextResponder" ref="101177011"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{130, 0}, {74, 38}}</string>
+						<string key="NSFrame">{{142, 5}, {61, 24}}</string>
 						<reference key="NSSuperview" ref="101177011"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<reference key="IBUIFont" ref="807108466"/>
+						<object class="NSFont" key="IBUIFont">
+							<string key="NSName">Helvetica-Bold</string>
+							<double key="NSSize">36</double>
+							<int key="NSfFlags">16</int>
+						</object>
+						<string key="IBUINormalTitle">+</string>
 						<reference key="IBUIHighlightedTitleColor" ref="630599624"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
@@ -615,7 +621,6 @@
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">addPhotoHeader02.png</string>
 						</object>
-						<reference key="IBUINormalImage" ref="1072926705"/>
 					</object>
 					<object class="IBUILabel" id="447124117">
 						<reference key="NSNextResponder" ref="101177011"/>
@@ -641,7 +646,8 @@
 						<float key="IBUIMinimumFontSize">10</float>
 					</object>
 				</object>
-				<string key="NSFrameSize">{290, 38}</string>
+				<string key="NSFrameSize">{290, 39}</string>
+				<reference key="NSSuperview"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MAA</bytes>
@@ -1162,8 +1168,8 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="447124117"/>
-							<reference ref="68870838"/>
 							<reference ref="367864326"/>
+							<reference ref="68870838"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Photo Section Header</string>
@@ -1342,7 +1348,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{206, 419}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{617, 590}, {290, 38}}</string>
+					<string>{{640, 592}, {290, 39}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1462,10 +1468,12 @@
 							<string>flipBetweenMapAndList</string>
 							<string>goToHomeView</string>
 							<string>goToHomeViewNotAnimated</string>
-							<string>viewPlacesList</string>
+							<string>viewFriends</string>
+							<string>viewPlaces</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -1529,6 +1537,7 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>flipBetweenMapAndList</string>
+							<string>openTweetModalView</string>
 							<string>showDirectMessages</string>
 							<string>showMentions</string>
 							<string>showSearch</string>
@@ -1536,6 +1545,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -1590,7 +1600,6 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>addTipTodo</string>
 							<string>callVenue</string>
-							<string>checkinToVenue</string>
 							<string>choosePhotoSelectMethod</string>
 							<string>closeMap</string>
 							<string>displayAllImages</string>
@@ -1607,7 +1616,6 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>

@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="24"/>
+			<integer value="25"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -224,7 +224,7 @@
 					<object class="IBUIButton" id="702669260">
 						<reference key="NSNextResponder" ref="126095765"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{57, 0}, {53, 47}}</string>
+						<string key="NSFrame">{{57, 0}, {100, 47}}</string>
 						<reference key="NSSuperview" ref="126095765"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -247,7 +247,7 @@
 						</object>
 					</object>
 				</object>
-				<string key="NSFrameSize">{110, 47}</string>
+				<string key="NSFrameSize">{157, 47}</string>
 				<reference key="NSSuperview"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -468,7 +468,7 @@
 					<string>UIResponder</string>
 					<string>{{480, 730}, {320, 47}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{948, 844}, {110, 47}}</string>
+					<string>{{948, 844}, {157, 47}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -566,10 +566,12 @@
 							<string>flipBetweenMapAndList</string>
 							<string>goToHomeView</string>
 							<string>goToHomeViewNotAnimated</string>
-							<string>viewPlacesList</string>
+							<string>viewFriends</string>
+							<string>viewPlaces</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -928,8 +930,8 @@
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>{53, 47}</string>
-				<string>{53, 47}</string>
+				<string>{100, 47}</string>
+				<string>{100, 47}</string>
 				<string>{57, 47}</string>
 				<string>{57, 47}</string>
 				<string>{107, 47}</string>

@@ -27,7 +27,6 @@
     
     hideHeader = YES;
     hideFooter = YES;
-    [checkinTextField becomeFirstResponder];
     
     self.twitterEngine = [[KBTwitterManager twitterManager] twitterEngine];
     
