@@ -82,7 +82,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     [super viewDidLoad];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(displayTodoTipMessage:) name:@"todoTipSent" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkinAndShoutToVenue:) name:@"shoutAndCheckinSent" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentCheckinOverlay:) name:@"checkedIn" object:nil];
     
     isUserCheckedIn = NO;
     
@@ -116,6 +116,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     [[Beacon shared] startSubBeaconWithName:@"Venue Detail"];
     
     [self retrievePhotos];
+    [self showBackHomeButtons];
 }
 
 - (void) retrievePhotos {
@@ -656,18 +657,18 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     [vc release];
 }
 
-- (void) checkinAndShoutToVenue:(NSNotification *)inNotification {
-    NSLog(@"notification from shout %@", inNotification);
-    [self startProgressBar:@"Checking in and shouting to this venue..."];
-    [[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:venue.venueid 
-                                                  andShout:[[inNotification userInfo] objectForKey:@"shout"] 
-                                                   offGrid:!isPingOn
-                                                 toTwitter:[[[inNotification userInfo] objectForKey:@"isTweet"] boolValue]
-                                                toFacebook:isPingOn ? isFacebookOn : NO
-                                                withTarget:self 
-                                                 andAction:@selector(checkinResponseReceived:withResponseString:)];
-    [[Beacon shared] startSubBeaconWithName:@"Check in and shout to Venue"];
-}
+//- (void) checkinAndShoutToVenue:(NSNotification *)inNotification {
+//    NSLog(@"notification from shout %@", inNotification);
+//    [self startProgressBar:@"Checking in and shouting to this venue..."];
+//    [[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:venue.venueid 
+//                                                  andShout:[[inNotification userInfo] objectForKey:@"shout"] 
+//                                                   offGrid:!isPingOn
+//                                                 toTwitter:[[[inNotification userInfo] objectForKey:@"isTweet"] boolValue]
+//                                                toFacebook:isPingOn ? isFacebookOn : NO
+//                                                withTarget:self 
+//                                                 andAction:@selector(checkinResponseReceived:withResponseString:)];
+//    [[Beacon shared] startSubBeaconWithName:@"Check in and shout to Venue"];
+//}
 
 - (void) openCheckinView {
     KBCheckinModalViewController *vc = [[KBCheckinModalViewController alloc] initWithNibName:@"CheckinModalView" bundle:nil];
@@ -676,52 +677,69 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     [vc release];
 }
 
-- (void) checkinToVenue {
-    [self startProgressBar:@"Checking in to this venue..."];
-    [[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:venue.venueid 
-                                                  andShout:nil 
-                                                   offGrid:doCheckin ? NO : !isPingOn
-                                                 toTwitter:isTwitterOn
-                                                toFacebook:isPingOn ? isFacebookOn : NO
-                                                withTarget:self 
-                                                 andAction:@selector(checkinResponseReceived:withResponseString:)];
-    [[Beacon shared] startSubBeaconWithName:@"Check in to Venue"];
-}
+//- (void) checkinToVenue {
+//    [self startProgressBar:@"Checking in to this venue..."];
+//    [[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:venue.venueid 
+//                                                  andShout:nil 
+//                                                   offGrid:doCheckin ? NO : !isPingOn
+//                                                 toTwitter:isTwitterOn
+//                                                toFacebook:isPingOn ? isFacebookOn : NO
+//                                                withTarget:self 
+//                                                 andAction:@selector(checkinResponseReceived:withResponseString:)];
+//    [[Beacon shared] startSubBeaconWithName:@"Check in to Venue"];
+//}
 
-- (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    NSString *errorMessage = [FoursquareAPI errorFromResponseXML:inString];
-    [self stopProgressBar];
-    if (errorMessage) {
-        [self displayFoursquareErrorMessage:errorMessage];
-    } else {
-        NSLog(@"instring: %@", inString);
-        self.checkin = [FoursquareAPI checkinFromResponseXML:inString];
-        NSLog(@"checkin: %@", checkin);
-        isUserCheckedIn = YES;
-        [theTableView reloadData];
-        FSCheckin *ci = [self getSingleCheckin];
-        [[KBStats stats] checkinStat:ci];
-        if (ci.specials != nil) {
-            specialsButton.hidden = NO;
-        }
+//- (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+//    NSString *errorMessage = [FoursquareAPI errorFromResponseXML:inString];
+//    [self stopProgressBar];
+//    if (errorMessage) {
+//        [self displayFoursquareErrorMessage:errorMessage];
+//    } else {
+//        NSLog(@"instring: %@", inString);
+//        self.checkin = [FoursquareAPI checkinFromResponseXML:inString];
+//        NSLog(@"checkin: %@", checkin);
+//        isUserCheckedIn = YES;
+//        [theTableView reloadData];
+//        FSCheckin *ci = [self getSingleCheckin];
+//        [[KBStats stats] checkinStat:ci];
+//        if (ci.specials != nil) {
+//            specialsButton.hidden = NO;
+//        }
         
-        NSMutableString *checkinText = [[NSMutableString alloc] initWithCapacity:1];
-        for (FSScore *score in ci.scoring.scores) {
-            [checkinText appendFormat:[NSString stringWithFormat:@"%@ \n\n+%d %@ \n", ci.message, score.points, score.message]];
+- (void) presentCheckinOverlay:(NSNotification*)inNotification {
+    NSDictionary *dictionary = [inNotification userInfo];
+    FSCheckin *ci = [dictionary objectForKey:@"checkin"];
+    NSMutableString *checkinText = [[NSMutableString alloc] initWithCapacity:1];
+    if (ci.mayor.user == nil && [[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"nochange"]) {
+        [checkinText appendFormat:[NSString stringWithFormat:@"You're still the mayor of %@! \n", venue.name]];
+    } else if ([ci.mayor.mayorTransitionType isEqualToString:@"stolen"] || [ci.mayor.mayorTransitionType isEqualToString:@"new"]) {
+        if ([[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"stolen"]) {
+            [checkinText appendFormat:[NSString stringWithFormat:@"Congrats! %@ is yours with %d check-ins and %@ lost their crown. \n", 
+                                      ci.venue.name, 
+                                      ci.mayor.numCheckins, 
+                                      ci.mayor.user.firstnameLastInitial]];
+        } else {
+            [checkinText appendFormat:[NSString stringWithFormat:@"%@ \n", ci.mayor.mayorCheckinMessage]];
         }
+    }
+    for (FSBadge *badge in ci.badges) {
+        [checkinText appendFormat:[NSString stringWithFormat:@"%@: %@ \n", badge.badgeName, badge.badgeDescription]];
+    }
+    for (FSScore *score in ci.scoring.scores) {
+        [checkinText appendFormat:[NSString stringWithFormat:@"%@ \n\n+%d %@ \n", ci.message, score.points, score.message]];
+    }
 //        if (checkinText == nil || [checkinText isEqualToString:@""]) {
 //            [checkinText appendString:ci.message];
 //        }
-        NSLog(@"checkin text: %@", checkinText);
-        KBMessage *message = [[KBMessage alloc] initWithMember:@"Check-in successful" andMessage:checkinText];
-        [self displayPopupMessage:message];
-        [checkinText release];
-        [message release];
-        
-        self.venueToPush = ci.venue;
-        if (isPingOn) {
-            [self sendPushNotification];
-        }
+    NSLog(@"checkin text: %@", checkinText);
+    KBMessage *message = [[KBMessage alloc] initWithMember:@"Check-in successful" andMessage:checkinText];
+    [self displayPopupMessage:message];
+    [checkinText release];
+    [message release];
+    
+    self.venueToPush = ci.venue;
+    if (isPingOn) {
+        [self sendPushNotification];
     }
 }
 
@@ -1172,6 +1190,18 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         NSLog(@"facebook photo uploaded: %@", photoInfo);
         NSLog(@"facebook photo uploaded. pid: %@", pid);
     }
+}
+
+#pragma mark 
+#pragma mark table refresh methods
+
+- (void) refreshTable {
+    [[FoursquareAPI sharedInstance] getVenue:venueId withTarget:self andAction:@selector(venueResponseReceivedWithRefresh:withResponseString:)];
+}
+
+- (void)venueResponseReceivedWithRefresh:(NSURL *)inURL withResponseString:(NSString *)inString {
+    [self venueResponseReceived:inURL withResponseString:inString];
+	[self dataSourceDidFinishLoadingNewData];
 }
 
 @end

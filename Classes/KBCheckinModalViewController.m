@@ -124,7 +124,7 @@
                                                      toTwitter:NO
                                                     toFacebook:NO 
                                                     withTarget:self 
-                                                     andAction:@selector(shoutResponseReceived:withResponseString:)];
+                                                     andAction:@selector(checkinResponseReceived:withResponseString:)];
         
         // we send twitter/facebook api calls ourself so that the tweets and posts are stamped with the Kickball brand
         if (isTwitterOn) {
@@ -141,7 +141,7 @@
             [[FBRequest requestWithDelegate:self] call:@"facebook.status.set" params:params dataParam:nil];
         }
         
-        [[Beacon shared] startSubBeaconWithName:@"Shout"];
+        [[Beacon shared] startSubBeaconWithName:@"checked in"];
     } else {
         NSLog(@"no text in shout field");
     }
@@ -162,9 +162,12 @@
 }
 
 // 4sq response
-- (void)shoutResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+- (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     NSLog(@"instring: %@", inString);
-	NSArray *shoutCheckins = [FoursquareAPI checkinsFromResponseXML:inString];
+	NSArray *checkins = [FoursquareAPI checkinsFromResponseXML:inString];
+    if ([checkins count] > 0) {
+        checkin = [checkins objectAtIndex:0];
+    }
     
     self.shoutToPush = [NSString stringWithString:checkinTextField.text];
     [self sendPushNotification];
@@ -179,19 +182,22 @@
     }
 }
 
-- (void) shoutAndTweetAndCheckin {
-    if ([checkinTextField.text length] > 0) {
-        NSDictionary *userInfo = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:checkinTextField.text, @"YES", nil] forKeys:[NSArray arrayWithObjects:@"shout", @"isTweet", nil]];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"shoutAndCheckinSent"
-                                                            object:nil
-                                                          userInfo:userInfo];	
-        [self cancelView];
-    } else {
-        
-    }
-}
+//- (void) shoutAndTweetAndCheckin {
+//    if ([checkinTextField.text length] > 0) {
+//        NSDictionary *userInfo = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:checkinTextField.text, @"YES", nil] forKeys:[NSArray arrayWithObjects:@"shout", @"isTweet", nil]];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"shoutAndCheckinSent"
+//                                                            object:nil
+//                                                          userInfo:userInfo];	
+//        [self cancelView];
+//    } else {
+//        
+//    }
+//}
 
 - (void) closeUpShop {
+    NSDictionary *userInfo = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:checkin, nil] 
+                                                         forKeys:[NSArray arrayWithObjects:@"checkin", nil]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"checkedIn" object:self userInfo:userInfo];
     [self stopProgressBar];
     [self cancelView];
 }

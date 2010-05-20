@@ -27,5 +27,6 @@
 - (IBAction) backOneViewNotAnimated;
 - (IBAction) goToHomeView;
 - (IBAction) goToHomeViewNotAnimated;
+- (void) showBackHomeButtons;
 
 @end

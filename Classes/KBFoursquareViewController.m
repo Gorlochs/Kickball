@@ -129,6 +129,11 @@
     // e.g. self.myOutlet = nil;
 }
 
+- (void) showBackHomeButtons {
+    homeBackView.frame = CGRectMake(0, 0, homeBackView.frame.size.width, homeBackView.frame.size.height);
+    [self.view addSubview:homeBackView];
+    [self.view bringSubviewToFront:homeBackView];
+}
 
 - (void)dealloc {
     [friendButton release];

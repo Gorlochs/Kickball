@@ -10,6 +10,7 @@
 #import "AbstractPushNotificationViewController.h"
 #import "XAuthTwitterEngine.h"
 #import "MGTwitterEngineDelegate.h"
+#import "FSCheckin.h"
 
 
 @interface KBCheckinModalViewController : AbstractPushNotificationViewController <UITextFieldDelegate, MGTwitterEngineDelegate> {
@@ -24,6 +25,7 @@
     IBOutlet UIButton *foursquareButton;
     IBOutlet UIButton *checkinButton;
     IBOutlet UITextField *checkinTextField;
+    FSCheckin *checkin;
     
     int actionCount;
 }
