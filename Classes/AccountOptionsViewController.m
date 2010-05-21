@@ -10,6 +10,8 @@
 #import "FoursquareAPI.h"
 #import "SFHFKeychainUtils.h"
 #import "XAuthTwitterEngine.h"
+#import "KBAccountManager.h"
+
 
 @implementation AccountOptionsViewController
 
@@ -104,6 +106,7 @@
 	NSLog(@"Access token string returned: %@", tokenString);
 	
 	[[NSUserDefaults standardUserDefaults] setObject:tokenString forKey:kCachedXAuthAccessTokenStringKey];
+    [[KBAccountManager sharedInstance] setUsesTwitter:YES];
     
 //    [[NSNotificationCenter defaultCenter] postNotificationName:@"loginNotification"
 //                                                        object:nil
@@ -130,7 +133,7 @@
         [self displayPopupMessage:message];
         [message release];
     } else {
-        [[FoursquareAPI sharedInstance] doLoginUsername: foursquareUsername.text andPass:foursquarePassword.text];	
+        [[FoursquareAPI sharedInstance] doLoginUsername: foursquareUsername.text andPass:foursquarePassword.text];
         
         NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
         [prefs setObject:foursquareUsername.text forKey:kUsernameDefaultsKey];
