@@ -7,6 +7,7 @@
 //
 
 #import "KBFacebookLoginViewController.h"
+#import "KBAccountManager.h"
 
 
 @implementation KBFacebookLoginViewController
@@ -25,28 +26,34 @@
     self.hideRefresh = YES;
     
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideAppropriateTabs) name:@"hideAppropriateTabs" object:nil];
+    
     FBLoginButton* button = [[[FBLoginButton alloc] init] autorelease];
     button.style = FBLoginButtonStyleWide;
     
     CGRect frame = button.frame;
     frame.origin = CGPointMake([self view].frame.size.width/2 - button.frame.size.width/2, 
                                [self view].frame.size.height/2 - button.frame.size.height/2 - 20);
-    
     button.frame = frame;
-    
-//    CGRectMake([self view].frame.size.width/2 - button.frame.size.width/2, 
-//                              [self view].frame.size.height/2 - button.frame.size.height/2 - 20,
-//                              button.frame.size.width, 
-//                              button.frame.size.height);
     button.enabled = YES;
     [self.view addSubview:button];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+}
+
+- (void) noThankYou {
+	[[KBAccountManager sharedInstance] setUsesFacebook:NO];
+    [self switchToFoursquare];
 }
 
 #pragma mark -
 #pragma mark FBSessionDelegate
 
 - (void)session:(FBSession*)session didLogin:(FBUID)uid {
-    
+    [[KBAccountManager sharedInstance] setUsesFacebook:YES];
 }
 
 - (void)sessionDidNotLogin:(FBSession*)session {

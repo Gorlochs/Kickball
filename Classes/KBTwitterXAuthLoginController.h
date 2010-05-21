@@ -17,7 +17,7 @@
 
 @class XAuthTwitterEngine;
 
-@interface XAuthTwitterEngineViewController : UIViewController <XAuthTwitterEngineDelegate> {
+@interface KBTwitterXAuthLoginController : UIViewController <XAuthTwitterEngineDelegate, UITextFieldDelegate> {
 	IBOutlet UITextField *twitterUsername;
 	IBOutlet UITextField *twitterPassword;
     XAuthTwitterEngine *twitterEngine;
@@ -27,6 +27,7 @@
 @property (nonatomic, retain) XAuthTwitterEngine *twitterEngine;
 
 - (IBAction)xAuthAccessTokenRequestButtonTouchUpInside;
+- (IBAction) noThankYou;
 
 @end
 

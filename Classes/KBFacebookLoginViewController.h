@@ -14,4 +14,6 @@
 
 }
 
+- (IBAction) noThankYou;
+
 @end

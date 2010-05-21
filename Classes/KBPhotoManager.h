@@ -23,6 +23,6 @@
 + (KBPhotoManager*) sharedInstance;
 - (BOOL)uploadImage:(NSData *)imageData filename:(NSString *)filename withWidth:(float)width andHeight:(float)height 
          andMessage:(NSString*)message andOrientation:(UIImageOrientation)orientation andVenue:(FSVenue*)venue;
--(UIImage*)imageByScalingToSize:(UIImage*)image toSize:(CGSize)targetSize;
+- (UIImage*)imageByScalingToSize:(UIImage*)image toSize:(CGSize)targetSize;
 
 @end

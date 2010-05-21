@@ -7,11 +7,13 @@
 //
 
 
-#import "XAuthTwitterEngineViewController.h"
+#import "KBTwitterXAuthLoginController.h"
 #import "XAuthTwitterEngine.h"
 #import "UIAlertView+Helper.h"
+#import "KBAccountManager.h"
 
-@implementation XAuthTwitterEngineViewController
+
+@implementation KBTwitterXAuthLoginController
 
 @synthesize twitterUsername, twitterPassword, twitterEngine;
 
@@ -68,9 +70,23 @@
 }
 
 #pragma mark -
+#pragma mark textfield delegate methods
+
+- (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
+	// When the user presses return, take focus away from the text field so that the keyboard is dismissed.
+	if (theTextField == twitterPassword) {
+		[twitterPassword resignFirstResponder];
+		[self xAuthAccessTokenRequestButtonTouchUpInside];
+	} else if (theTextField == twitterUsername) {
+		[twitterPassword becomeFirstResponder];
+	}
+	return YES;
+}
+
+#pragma mark -
 #pragma mark Actions
 
-- (IBAction)xAuthAccessTokenRequestButtonTouchUpInside
+- (void)xAuthAccessTokenRequestButtonTouchUpInside
 {
 	NSString *username = self.twitterUsername.text;
 	NSString *password = self.twitterPassword.text;
@@ -78,6 +94,14 @@
 	NSLog(@"About to request an xAuth token exchange for username: ]%@[ password: ]%@[.", username, password);
 	
 	[self.twitterEngine exchangeAccessTokenForUsername:username password:password];
+}
+
+- (void) noThankYou {
+	[[KBAccountManager sharedInstance] setUsesTwitter:NO];
+    [twitterUsername resignFirstResponder];
+    [twitterPassword resignFirstResponder];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"loginCanceled" object:nil userInfo:nil];
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 #pragma mark -
@@ -97,6 +121,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"loginNotification"
                                                         object:nil
                                                       userInfo:nil];
+    [[KBAccountManager sharedInstance] setUsesTwitter:YES];
     [self dismissModalViewControllerAnimated:YES];
 }
 
