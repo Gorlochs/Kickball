@@ -38,7 +38,6 @@
 #import "KBCheckinModalViewController.h"
 #import "PlacePeopleHereViewController.h"
 
-static inline double radians (double degrees) {return degrees * M_PI/180;}
 
 #define PHOTOS_PER_ROW 4
 #define THUMBNAIL_IMAGE_SIZE 73
@@ -80,6 +79,8 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     pageViewType = KBPageViewTypeList;
     
     [super viewDidLoad];
+    photoManager = [KBPhotoManager sharedInstance];
+    photoManager.delegate = self;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(displayTodoTipMessage:) name:@"todoTipSent" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentCheckinOverlay:) name:@"checkedIn" object:nil];
@@ -973,7 +974,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     NSString *roundedFloatString = [NSString stringWithFormat:@"%.1f", ratio];
     float roundedFloat = [roundedFloatString floatValue];
     
-    self.photoImage = [self imageByScalingToSize:initialImage toSize:CGSizeMake(480.0, round(480.0/roundedFloat))];
+    self.photoImage = [photoManager imageByScalingToSize:initialImage toSize:CGSizeMake(480.0, round(480.0/roundedFloat))];
     
     NSLog(@"image picker info: %@", info);
     
@@ -995,12 +996,13 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     [self startProgressBar:@"Uploading photo..." withTimer:NO];
     // TODO: we'd have to confirm success to the user.
     //       we also need to send a notification to the gift recipient
-    [self uploadImage:UIImageJPEGRepresentation(self.photoImage, 1.0) 
+    [photoManager uploadImage:UIImageJPEGRepresentation(self.photoImage, 1.0) 
              filename:@"gift.jpg" 
             withWidth:self.photoImage.size.width 
             andHeight:self.photoImage.size.height
            andMessage:message ? message : @""
-       andOrientation:self.photoImage.imageOrientation];
+       andOrientation:self.photoImage.imageOrientation
+             andVenue:venue];
     
     //[[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:@"attachMessageToPhoto"];
 }
@@ -1020,6 +1022,14 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 
 #pragma mark -
 
+- (void) getPhoto:(UIImagePickerControllerSourceType)sourceType {
+	UIImagePickerController * picker = [[UIImagePickerController alloc] init];
+	picker.delegate = self;
+    picker.sourceType = sourceType;
+    [self presentModalViewController:picker animated:YES];
+    [picker release];
+}
+
 - (void) choosePhotoSelectMethod {
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"How would you like to select a photo?"
                                                              delegate:self
@@ -1033,15 +1043,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     [actionSheet release];
 }
 
-- (void) getPhoto:(UIImagePickerControllerSourceType)sourceType {
-	UIImagePickerController * picker = [[UIImagePickerController alloc] init];
-	picker.delegate = self;
-    picker.sourceType = sourceType;
-    [self presentModalViewController:picker animated:YES];
-    [picker release];
-}
-
-- (void) imageRequestDidFinish:(ASIHTTPRequest *) request {
+- (void) photoUploadFinished:(ASIHTTPRequest *) request {
     [self stopProgressBar];
     NSLog(@"YAY! Image uploaded!");
     KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"Image upload has been completed!"];
@@ -1051,11 +1053,11 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     // NOTE: the self.photoMessageToPush is being set above in the returnFromMessageView: method
     self.venueToPush = self.venue;
     self.hasPhoto = YES;
-    [self sendPushNotification];
+    //[self sendPushNotification];
     [[Beacon shared] startSubBeaconWithName:@"Image Upload Completed"];
 }
 
-- (void) imageQueueDidFinish:(ASIHTTPRequest *) request {
+- (void) photoQueueFinished:(ASIHTTPRequest *) request {
     [self stopProgressBar];
     NSLog(@"YAY! Image queue is complete!");
     
@@ -1064,130 +1066,9 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     [self retrievePhotos];
 }
 
-- (void) imageRequestDidFail:(ASIHTTPRequest *) request {
+- (void) photoUploadFailed:(ASIHTTPRequest *) request {
     [self stopProgressBar];
     NSLog(@"Uhoh, it did fail!");
-}
-
-- (void) imageRequestWentWrong:(ASIHTTPRequest *) request {
-    [self stopProgressBar];
-    NSLog(@"Uhoh, request went wrong!");
-}
-
--(UIImage*)imageByScalingToSize:(UIImage*)image toSize:(CGSize)targetSize {
-	UIImage* sourceImage = image; 
-	CGFloat targetWidth = targetSize.width;
-	CGFloat targetHeight = targetSize.height;
-    
-	CGImageRef imageRef = [sourceImage CGImage];
-	CGBitmapInfo bitmapInfo = CGImageGetBitmapInfo(imageRef);
-	CGColorSpaceRef colorSpaceInfo = CGImageGetColorSpace(imageRef);
-	
-	if (bitmapInfo == kCGImageAlphaNone) {
-		bitmapInfo = kCGImageAlphaNoneSkipLast;
-	}
-	
-	CGContextRef bitmap;
-	
-	if (sourceImage.imageOrientation == UIImageOrientationUp || sourceImage.imageOrientation == UIImageOrientationDown) {
-		bitmap = CGBitmapContextCreate(NULL, targetWidth, targetHeight, CGImageGetBitsPerComponent(imageRef), CGImageGetBytesPerRow(imageRef), colorSpaceInfo, bitmapInfo);
-	} else {
-		bitmap = CGBitmapContextCreate(NULL, targetHeight, targetWidth, CGImageGetBitsPerComponent(imageRef), CGImageGetBytesPerRow(imageRef), colorSpaceInfo, bitmapInfo);
-	}	
-	
-	
-	// In the right or left cases, we need to switch scaledWidth and scaledHeight,
-	// and also the thumbnail point
-	if (sourceImage.imageOrientation == UIImageOrientationLeft) {
-		CGContextRotateCTM (bitmap, radians(90));
-		CGContextTranslateCTM (bitmap, 0, -targetHeight);
-		
-	} else if (sourceImage.imageOrientation == UIImageOrientationRight) {
-		CGContextRotateCTM (bitmap, radians(-90));
-		CGContextTranslateCTM (bitmap, -targetWidth, 0);
-		
-	} else if (sourceImage.imageOrientation == UIImageOrientationUp) {
-		// NOTHING
-	} else if (sourceImage.imageOrientation == UIImageOrientationDown) {
-		CGContextTranslateCTM (bitmap, targetWidth, targetHeight);
-		CGContextRotateCTM (bitmap, radians(-180.));
-	}
-	
-	CGContextDrawImage(bitmap, CGRectMake(0, 0, targetWidth, targetHeight), imageRef);
-	CGImageRef ref = CGBitmapContextCreateImage(bitmap);
-	UIImage* newImage = [UIImage imageWithCGImage:ref];
-	
-	CGContextRelease(bitmap);
-	CGImageRelease(ref);
-	
-	return newImage; 
-}
-
-// TODO: set max file size    
-- (BOOL)uploadImage:(NSData *)imageData filename:(NSString *)filename withWidth:(float)width andHeight:(float)height 
-         andMessage:(NSString*)message andOrientation:(UIImageOrientation)orientation {
-    
-    NSNumber *tagKey = [NSNumber numberWithInteger:1];
-
-    // Initilize Queue
-    ASINetworkQueue *networkQueue = [[ASINetworkQueue alloc] init];
-    //[networkQueue setUploadProgressDelegate:statusProgressView];
-    [networkQueue setRequestDidFinishSelector:@selector(imageRequestDidFinish:)];
-    [networkQueue setQueueDidFinishSelector:@selector(imageQueueDidFinish:)];
-    [networkQueue setRequestDidFailSelector:@selector(imageRequestDidFail:)];
-    [networkQueue setShowAccurateProgress:true];
-    [networkQueue setDelegate:self];
-    
-    // Initilize Variables
-    NSURL *url = nil;
-    ASIFormDataRequest *request = nil;
-    
-    // Return if there is no image
-    if(imageData != nil){
-        url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/gifts.xml", kickballDomain]];
-        request = [[[ASIFormDataRequest alloc] initWithURL:url] autorelease];
-        [request setPostValue:venueId forKey:@"gift[venue_id]"];
-        [request setPostValue:[self getAuthenticatedUser].userId forKey:@"gift[owner_id]"];
-        //        [request setPostValue:@"" forKey:@"gift[recipient_id]"];
-        [request setPostValue:@"1" forKey:@"gift[is_public]"];
-        [request setPostValue:@"0" forKey:@"gift[is_banned]"];
-        [request setPostValue:@"0" forKey:@"gift[is_flagged]"];
-        [request setPostValue:venue.name forKey:@"gift[venue_name]"];
-        [request setPostValue:[NSString stringWithFormat:@"%f", [[KBLocationManager locationManager] latitude]] forKey:@"gift[latitude]"];
-        [request setPostValue:[NSString stringWithFormat:@"%f", [[KBLocationManager locationManager] longitude]] forKey:@"gift[longitude]"];
-        [request setPostValue:[NSString stringWithFormat:@"%d", (int)height]  forKey:@"gift[photo_height]"];
-        [request setPostValue:[NSString stringWithFormat:@"%d", (int)width] forKey:@"gift[photo_width]"];
-        [request setPostValue:[self getAuthenticatedUser].firstnameLastInitial forKey:@"gift[owner_name]"];
-        [request setPostValue:message ? message : @"" forKey:@"gift[message_text]"];
-        [request setPostValue:[tagKey stringValue] forKey:@"gift[iphone_orientation]"];
-        [request setData:imageData withFileName:filename andContentType:@"image/jpeg" forKey:@"gift[photo]"];
-        [request setDidFailSelector:@selector(imageRequestWentWrong:)];
-        [request setTimeOutSeconds:500];
-        [networkQueue addOperation:request];
-        //queueCount++;
-    }
-    [networkQueue go];
-    
-    // TODO: check for FB session
-    [self uploadFacebookPhoto:imageData withCaption:message];
-    return YES;
-}
-
-- (void) uploadFacebookPhoto:(NSData*)img withCaption:(NSString*)caption {
-    NSDictionary *params = nil;
-    if (caption) {
-        params = [NSDictionary dictionaryWithObjectsAndKeys:caption, @"caption", nil];
-    }
-    [[FBRequest requestWithDelegate:self] call:@"facebook.photos.upload" params:params dataParam:(NSData*)img];
-}
-
-- (void)request:(FBRequest*)request didLoad:(id)result {
-    if ([request.method isEqualToString:@"facebook.photos.upload"]) {
-        NSDictionary* photoInfo = result;
-        NSString* pid = [photoInfo objectForKey:@"pid"];
-        NSLog(@"facebook photo uploaded: %@", photoInfo);
-        NSLog(@"facebook photo uploaded. pid: %@", pid);
-    }
 }
 
 #pragma mark 

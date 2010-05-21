@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ASIHTTPRequest.h"
 
 @protocol PhotoManagerDelegate
 
-- (void) photoUploadSuccessful;
+- (void) photoUploadFinished:(ASIHTTPRequest*) request;
+- (void) photoUploadFailed:(ASIHTTPRequest*) request;
+- (void) photoQueueFinished:(ASIHTTPRequest*) request;
 
 @end

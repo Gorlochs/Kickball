@@ -14,8 +14,10 @@
 #import "MockPhotoSource.h"
 #import "KBPhotoThumbnailCell.h"
 #import "PhotoMessageViewController.h"
+#import "KBPhotoManager.h"
 
-@interface PlaceDetailViewController : AbstractPushNotificationViewController <UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate, GAConnectionDelegate, UIActionSheetDelegate> {
+
+@interface PlaceDetailViewController : AbstractPushNotificationViewController <PhotoManagerDelegate, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate, GAConnectionDelegate, UIActionSheetDelegate> {
     IBOutlet UITableViewCell *checkinCell;
     IBOutlet KBPhotoThumbnailCell *giftCell;
     IBOutlet UITableViewCell *mayorMapCell;
@@ -65,6 +67,7 @@
     UIImage *photoImage;
     PhotoMessageViewController *photoMessageViewController;
     IBOutlet UILabel *distanceAndNumCheckinsLabel;
+    KBPhotoManager *photoManager;
 }
 
 @property (nonatomic, retain) UITableViewCell *mayorMapCell;
@@ -100,8 +103,8 @@
 - (void) setProperButtonStates;
 - (void) getPhoto:(UIImagePickerControllerSourceType)sourceType;
 - (void) returnFromMessageView:(NSNotification *)inNotification;
-- (void) uploadFacebookPhoto:(NSData*)img withCaption:(NSString*)caption;
-- (BOOL)uploadImage:(NSData *)imageData filename:(NSString *)filename withWidth:(float)width andHeight:(float)height andMessage:(NSString*)message andOrientation:(UIImageOrientation)orientation;
-- (UIImage*)imageByScalingToSize:(UIImage*)image toSize:(CGSize)targetSize;
+//- (void) uploadFacebookPhoto:(NSData*)img withCaption:(NSString*)caption;
+//- (BOOL)uploadImage:(NSData *)imageData filename:(NSString *)filename withWidth:(float)width andHeight:(float)height andMessage:(NSString*)message andOrientation:(UIImageOrientation)orientation;
+//- (UIImage*)imageByScalingToSize:(UIImage*)image toSize:(CGSize)targetSize;
 
 @end

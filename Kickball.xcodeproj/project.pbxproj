@@ -155,7 +155,7 @@
 		6A12EC6310B772FA0013BA52 /* GeoApiDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A12EC6210B772FA0013BA52 /* GeoApiDetailsView.xib */; };
 		6A145FB610FE74E7002CE938 /* ProfileFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A145FB410FE74E7002CE938 /* ProfileFriendsViewController.m */; };
 		6A145FB710FE74E7002CE938 /* ProfileFriendsViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A145FB510FE74E7002CE938 /* ProfileFriendsViewController.xib */; };
-		6A1572BE11A5C0C80025D024 /* PhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A1572BD11A5C0C80025D024 /* PhotoManager.m */; };
+		6A1572BE11A5C0C80025D024 /* KBPhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A1572BD11A5C0C80025D024 /* KBPhotoManager.m */; };
 		6A1572D711A5D65B0025D024 /* backTab01.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A1572D511A5D65B0025D024 /* backTab01.png */; };
 		6A1572D811A5D65B0025D024 /* backTab02.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A1572D611A5D65B0025D024 /* backTab02.png */; };
 		6A15731511A5DCB20025D024 /* 4sq_logo_tmp.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A15731411A5DCB20025D024 /* 4sq_logo_tmp.png */; };
@@ -809,8 +809,8 @@
 		6A145FB310FE74E7002CE938 /* ProfileFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileFriendsViewController.h; sourceTree = "<group>"; };
 		6A145FB410FE74E7002CE938 /* ProfileFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileFriendsViewController.m; sourceTree = "<group>"; };
 		6A145FB510FE74E7002CE938 /* ProfileFriendsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileFriendsViewController.xib; sourceTree = "<group>"; };
-		6A1572BC11A5C0C80025D024 /* PhotoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoManager.h; sourceTree = "<group>"; };
-		6A1572BD11A5C0C80025D024 /* PhotoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoManager.m; sourceTree = "<group>"; };
+		6A1572BC11A5C0C80025D024 /* KBPhotoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBPhotoManager.h; sourceTree = "<group>"; };
+		6A1572BD11A5C0C80025D024 /* KBPhotoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBPhotoManager.m; sourceTree = "<group>"; };
 		6A1572C511A5C2620025D024 /* PhotoManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoManagerDelegate.h; sourceTree = "<group>"; };
 		6A1572D511A5D65B0025D024 /* backTab01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backTab01.png; sourceTree = "<group>"; };
 		6A1572D611A5D65B0025D024 /* backTab02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backTab02.png; sourceTree = "<group>"; };
@@ -2044,8 +2044,8 @@
 				6ADC9C1910D1EE5100CFDCA7 /* Utilities.m */,
 				6AACC53010D48F240059E604 /* KBLocationManager.h */,
 				6AACC53110D48F240059E604 /* KBLocationManager.m */,
-				6A1572BC11A5C0C80025D024 /* PhotoManager.h */,
-				6A1572BD11A5C0C80025D024 /* PhotoManager.m */,
+				6A1572BC11A5C0C80025D024 /* KBPhotoManager.h */,
+				6A1572BD11A5C0C80025D024 /* KBPhotoManager.m */,
 				6A1572C511A5C2620025D024 /* PhotoManagerDelegate.h */,
 			);
 			name = Singletons;
@@ -3374,7 +3374,7 @@
 				6A31CB8E119A2633009D8967 /* TouchView.m in Sources */,
 				6A31CC41119A568E009D8967 /* GeoTweetAnnotation.m in Sources */,
 				6AA8BE9911A46EF700F60550 /* PlacePeopleHereViewController.m in Sources */,
-				6A1572BE11A5C0C80025D024 /* PhotoManager.m in Sources */,
+				6A1572BE11A5C0C80025D024 /* KBPhotoManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
