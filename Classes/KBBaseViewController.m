@@ -302,6 +302,11 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
     [UIView setAnimationDuration:0.7];
     popupView.view.alpha = 1.0;
     popupView.view.frame = CGRectMake(0, -212, popupView.view.frame.size.width, popupView.view.frame.size.height);
+    
+    CGRect frame = popupView.closeButton.frame;
+    frame.origin = CGPointMake(frame.origin.x, 220);
+    popupView.closeButton.frame = frame;
+    
     [UIView commitAnimations];
     //[self performSelector:@selector(fadePopupMessage) withObject:nil afterDelay:3];
 }

@@ -19,6 +19,7 @@
 }
 
 @property (nonatomic, retain) KBMessage *message;
+@property (nonatomic, retain) UIButton *closeButton;
 
 - (IBAction) dismissPopupMessage;
 

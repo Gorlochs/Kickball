@@ -11,6 +11,7 @@
 @implementation PopupMessageView
 
 @synthesize message;
+@synthesize closeButton;
 
 - (void) viewDidLoad {
     [super viewDidLoad];

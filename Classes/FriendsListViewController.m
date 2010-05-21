@@ -53,7 +53,7 @@
     
     [super viewDidLoad];
     
-    welcomePageNum = 1;
+    //welcomePageNum = 1;
     isDisplayingMore = NO;
     
     gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
@@ -94,8 +94,8 @@
 		self.loginViewModal.rootController = self;
 		[self.navigationController presentModalViewController:self.loginViewModal animated:YES];
         
-		[self.loginViewModal setRootController:self];
-		[self.navigationController presentModalViewController:self.loginViewModal animated:YES];
+//		[self.loginViewModal setRootController:self];
+//		[self.navigationController presentModalViewController:self.loginViewModal animated:YES];
         
 	} else {
 		[self doInitialDisplay];
@@ -107,11 +107,11 @@
     [self startProgressBar:@"Retrieving friends' whereabouts..." withTimer:NO];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(instaCheckin:) name:@"touchAndHoldCheckin" object:nil];
     
-    if (!hasViewedInstructions) {
-        [iconImageView setHidden:YES];
-        [self.view addSubview:instructionView];
-        [self.view bringSubviewToFront:instructionView];
-    }
+//    if (!hasViewedInstructions) {
+//        [iconImageView setHidden:YES];
+//        [self.view addSubview:instructionView];
+//        [self.view bringSubviewToFront:instructionView];
+//    }
     
     [[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
     
@@ -120,6 +120,7 @@
     }
 }
 
+// FIXME: this needs to be pulled up
 - (void) instaCheckin:(NSNotification *)inNotification {
     NSString *venueId = [[inNotification userInfo] objectForKey:@"venueIdOfCell"];
     PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView_v2" bundle:nil];    
@@ -531,9 +532,9 @@
 
         footerViewCell.hidden = NO;
         mapButton.hidden = NO;
-        if (hasViewedInstructions) {
+        //if (hasViewedInstructions) {
             [self stopProgressBar];
-        }
+        //}
         NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
         NSData *theData=[NSKeyedArchiver archivedDataWithRootObject:checkins];
         [standardUserDefaults setObject:theData forKey:@"checkinsData"];
@@ -583,10 +584,12 @@
 }
 
 - (void) viewNextWelcomeImage {
-    [self stopProgressBar];
-    [instructionView removeFromSuperview];
-    [self setUserIconViewCustom:[self getAuthenticatedUser]];
-    [iconImageView setHidden:NO];
+//    [self stopProgressBar];
+//    [instructionView removeFromSuperview];
+//    [self setUserIconViewCustom:[self getAuthenticatedUser]];
+//    [iconImageView setHidden:NO];
+    
+    
 //    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
 //    [standardUserDefaults setBool:YES forKey:@"viewedInstructions"];
 //    hasViewedInstructions = YES;
