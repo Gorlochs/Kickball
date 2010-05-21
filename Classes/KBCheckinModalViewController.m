@@ -112,38 +112,34 @@
 //}
 
 - (void) checkin {
-    if ([checkinTextField.text length] > 0) {
-        [checkinTextField resignFirstResponder];
-        [self startProgressBar:@"Checking in..."];
-        actionCount = 1 + isTwitterOn + isFacebookOn;
-        
-        [[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:venueId 
-                                                      andShout:checkinTextField.text 
-                                                       offGrid:!isFoursquareOn
-                                                     toTwitter:NO
-                                                    toFacebook:NO 
-                                                    withTarget:self 
-                                                     andAction:@selector(checkinResponseReceived:withResponseString:)];
-        
-        // we send twitter/facebook api calls ourself so that the tweets and posts are stamped with the Kickball brand
-        if (isTwitterOn) {
-            // TODO: check for twitter login
-            [self.twitterEngine sendUpdate:checkinTextField.text
-                              withLatitude:[[KBLocationManager locationManager] latitude] 
-                             withLongitude:[[KBLocationManager locationManager] longitude]];
-        }
-        
-        if (isFacebookOn) {
-            // TODO: check for facebook login
-            
-            NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:checkinTextField.text, @"status", nil];
-            [[FBRequest requestWithDelegate:self] call:@"facebook.status.set" params:params dataParam:nil];
-        }
-        
-        [[Beacon shared] startSubBeaconWithName:@"checked in"];
-    } else {
-        NSLog(@"no text in shout field");
+    [checkinTextField resignFirstResponder];
+    [self startProgressBar:@"Checking in..."];
+    actionCount = 1 + isTwitterOn + isFacebookOn;
+    
+    [[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:venueId 
+                                                  andShout:checkinTextField.text 
+                                                   offGrid:!isFoursquareOn
+                                                 toTwitter:NO
+                                                toFacebook:NO 
+                                                withTarget:self 
+                                                 andAction:@selector(checkinResponseReceived:withResponseString:)];
+    
+    // we send twitter/facebook api calls ourself so that the tweets and posts are stamped with the Kickball brand
+    if (isTwitterOn) {
+        // TODO: check for twitter login
+        [self.twitterEngine sendUpdate:checkinTextField.text
+                          withLatitude:[[KBLocationManager locationManager] latitude] 
+                         withLongitude:[[KBLocationManager locationManager] longitude]];
     }
+    
+    if (isFacebookOn) {
+        // TODO: check for facebook login
+        
+        NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:checkinTextField.text, @"status", nil];
+        [[FBRequest requestWithDelegate:self] call:@"facebook.status.set" params:params dataParam:nil];
+    }
+    
+    [[Beacon shared] startSubBeaconWithName:@"checked in"];
 }
 
 // Twitter response
