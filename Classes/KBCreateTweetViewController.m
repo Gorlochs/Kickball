@@ -9,7 +9,8 @@
 #import "KBCreateTweetViewController.h"
 #import "KBLocationManager.h"
 #import "FoursquareAPI.h"
-
+#import "PhotoMessageViewController.h"
+#import "KBAccountManager.h"
 
 @implementation KBCreateTweetViewController
 
@@ -37,6 +38,9 @@
     // FIXME: this is wrong. we need to pull the user's twitter geo settings
     isGeotagOn = YES;
     
+    photoManager = [KBPhotoManager sharedInstance];
+    photoManager.delegate = self;
+    
     // TODO: need to enable/disable buttons depending on whether or not the user signed in
 }
 
@@ -47,7 +51,7 @@
     
     [self startProgressBar:@"Submitting..."];
     [self dismissModalViewControllerAnimated:YES];
-    actionCount = 1 + isFoursquareOn + isFacebookOn;
+    actionCount = 1 + isFoursquareOn + isFacebookOn + photoImage != nil;
     
     if (replyToStatusId && replyToStatusId > 0) {
         if (isGeotagOn) {
@@ -63,7 +67,7 @@
         }
     }
     
-    if (isFacebookOn) {
+    if (isFacebookOn && [[KBAccountManager sharedInstance] usesFacebook]) {
         NSLog(@"facebook  is on and the status will be updated (hopefully)");
         NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:tweetTextView.text, @"status", nil];
         [[FBRequest requestWithDelegate:self] call:@"facebook.status.set" params:params dataParam:nil];
@@ -77,6 +81,16 @@
                                                     toFacebook:NO 
                                                     withTarget:self 
                                                      andAction:@selector(shoutResponseReceived:withResponseString:)];
+    }
+    
+    if (photoImage) {
+        [photoManager uploadImage:UIImageJPEGRepresentation(photoImage, 1.0) 
+                         filename:@"tweet.jpg" 
+                        withWidth:photoImage.size.width 
+                        andHeight:photoImage.size.height
+                       andMessage:tweetTextView.text
+                   andOrientation:photoImage.imageOrientation
+                         andVenue:nil];
     }
     
 }
@@ -149,10 +163,6 @@
     isGeotagOn = !isGeotagOn;
 }
 
-- (void) addPhoto {
-    
-}
-
 #pragma mark -
 #pragma mark UITextViewDelegate methods
 
@@ -161,6 +171,101 @@
         textView.text = [textView.text substringToIndex:139];
     }
     characterCountLabel.text = [NSString stringWithFormat:@"%d/140", [textView.text length]];
+}
+
+#pragma mark
+#pragma mark UIActionSheetDelegate methods
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        [[Beacon shared] startSubBeaconWithName:@"Choose Photo: Library"];
+        [self getPhoto:UIImagePickerControllerSourceTypePhotoLibrary];
+    } else if (buttonIndex == 1) {
+        [[Beacon shared] startSubBeaconWithName:@"Choose Photo: New"];
+        [self getPhoto:UIImagePickerControllerSourceTypeCamera];
+    }
+}
+
+#pragma mark -
+
+#pragma mark Image Picker Delegate methods
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    [picker dismissModalViewControllerAnimated:NO];
+    
+    UIImage *initialImage = (UIImage*)[info objectForKey:UIImagePickerControllerOriginalImage];
+    float initialHeight = initialImage.size.height;
+    float initialWidth = initialImage.size.width;
+    
+    float ratio = 1.0f;
+    if (initialHeight > initialWidth) {
+        ratio = initialHeight/initialWidth;
+    } else {
+        ratio = initialWidth/initialHeight;
+    }
+    NSString *roundedFloatString = [NSString stringWithFormat:@"%.1f", ratio];
+    float roundedFloat = [roundedFloatString floatValue];
+    
+    photoImage = [[photoManager imageByScalingToSize:initialImage toSize:CGSizeMake(480.0, round(480.0/roundedFloat))] retain];
+    
+    NSLog(@"image picker info: %@", info);
+    
+    //    NSLog(@"image height: %f", photoImage.size.height);
+    //    NSLog(@"image width: %f", photoImage.size.width);
+    //    NSLog(@"image orientation: %d", photoImage.imageOrientation);
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(returnFromMessageView:) name:@"attachMessageToPhoto" object:nil];
+    
+    photoMessageViewController = [[PhotoMessageViewController alloc] initWithNibName:@"PhotoMessageViewController" bundle:nil];
+    [self.navigationController presentModalViewController:photoMessageViewController animated:YES];
+    //[photoMessageViewController release];
+}
+
+- (void) getPhoto:(UIImagePickerControllerSourceType)sourceType {
+	UIImagePickerController * picker = [[UIImagePickerController alloc] init];
+	picker.delegate = self;
+    picker.sourceType = sourceType;
+    [self presentModalViewController:picker animated:YES];
+    [picker release];
+}
+
+- (void) choosePhotoSelectMethod {
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"How would you like to select a photo?"
+                                                             delegate:self
+                                                    cancelButtonTitle:@"Cancel"
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:@"Photo Album", @"Take New Photo", nil];
+    
+    actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+    actionSheet.tag = 0;
+    [actionSheet showInView:self.view];
+    [actionSheet release];
+}
+
+- (void) photoUploadFinished:(ASIHTTPRequest *) request {
+    [self stopProgressBar];
+    NSLog(@"YAY! Image uploaded!");
+    KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"Image upload has been completed!"];
+    [self displayPopupMessage:message];
+    [message release];
+    
+    // NOTE: the self.photoMessageToPush is being set above in the returnFromMessageView: method
+    [[Beacon shared] startSubBeaconWithName:@"Image Upload Completed"];
+}
+
+- (void) photoQueueFinished:(ASIHTTPRequest *) request {
+    [self decrementActionCount];
+    
+    NSLog(@"YAY! Image queue is complete!");
+    
+    // TODO: this should probably capture the response, parse it into a KBGoody, then add it to the goodies object - it would save an API hit
+    
+    //[self retrievePhotos];
+}
+
+- (void) photoUploadFailed:(ASIHTTPRequest *) request {
+    [self stopProgressBar];
+    NSLog(@"Uhoh, it did fail!");
 }
 
 #pragma mark -

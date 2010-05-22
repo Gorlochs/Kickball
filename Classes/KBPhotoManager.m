@@ -191,13 +191,18 @@ static BOOL initialized = NO;
     if(imageData != nil){
         url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/gifts.xml", @"http://gorlochs.literalshore.com/kickball"]];
         request = [[[ASIFormDataRequest alloc] initWithURL:url] autorelease];
-        [request setPostValue:venue.venueid forKey:@"gift[venue_id]"];
+        if (venue) {
+            [request setPostValue:venue.venueid forKey:@"gift[venue_id]"];
+            [request setPostValue:venue.name forKey:@"gift[venue_name]"];   
+        } else {
+            [request setPostValue:venue.venueid forKey:@"-1"];
+            [request setPostValue:venue.name forKey:@"twitter"];
+        }
         [request setPostValue:[[FoursquareAPI sharedInstance] currentUser].userId forKey:@"gift[owner_id]"];
         //        [request setPostValue:@"" forKey:@"gift[recipient_id]"];
         [request setPostValue:@"1" forKey:@"gift[is_public]"];
         [request setPostValue:@"0" forKey:@"gift[is_banned]"];
         [request setPostValue:@"0" forKey:@"gift[is_flagged]"];
-        [request setPostValue:venue.name forKey:@"gift[venue_name]"];
         [request setPostValue:[NSString stringWithFormat:@"%f", [[KBLocationManager locationManager] latitude]] forKey:@"gift[latitude]"];
         [request setPostValue:[NSString stringWithFormat:@"%f", [[KBLocationManager locationManager] longitude]] forKey:@"gift[longitude]"];
         [request setPostValue:[NSString stringWithFormat:@"%d", (int)height]  forKey:@"gift[photo_height]"];

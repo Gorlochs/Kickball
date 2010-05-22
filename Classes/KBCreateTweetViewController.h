@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "AbstractFacebookViewController.h"
+#import "KBPhotoManager.h"
+#import "PhotoMessageViewController.h"
 
 
-@interface KBCreateTweetViewController : AbstractFacebookViewController <UITextViewDelegate, MGTwitterEngineDelegate> {
+@interface KBCreateTweetViewController : AbstractFacebookViewController <UITextViewDelegate, MGTwitterEngineDelegate, PhotoManagerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
     IBOutlet UITextView *tweetTextView;
     IBOutlet UILabel *characterCountLabel;
     IBOutlet UIButton *sendTweet;
@@ -29,6 +31,9 @@
     IBOutlet UIButton *facebookButton;
     IBOutlet UIButton *geotagButton;
     IBOutlet UIButton *addPhotoButton;
+    UIImage *photoImage;
+    PhotoMessageViewController *photoMessageViewController;
+    KBPhotoManager *photoManager;
     
     int actionCount;
 }
@@ -44,8 +49,9 @@
 - (IBAction) toggleFacebook;
 - (IBAction) toggleFoursquare;
 - (IBAction) toggleGeotag;
-- (IBAction) addPhoto;
 - (void) decrementActionCount;
 - (void) closeUpShop;
+- (void) getPhoto:(UIImagePickerControllerSourceType)sourceType;
+- (IBAction) choosePhotoSelectMethod;
 
 @end
