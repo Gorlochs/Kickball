@@ -249,6 +249,8 @@
         
         if (self.venue.specials != nil &&[self.venue.specials count] > 0) {
             specialsButton.hidden = NO;
+        } else {
+            specialsButton.hidden = YES;
         }
     }
 }
@@ -780,10 +782,41 @@
 
 - (void) showSpecial {
     FSSpecial *special = ((FSSpecial*)[[self venue].specials objectAtIndex:0]);
-    NSString *concat = special.venue.crossStreet ? [NSString stringWithFormat:@"%@\n%@", special.venue.addressWithCrossstreet, special.message] : special.message;
-    KBMessage *msg = [[KBMessage alloc] initWithMember:special.venue.name andMessage:concat];
-    [self displayPopupMessage:msg];
-    [msg release];
+    NSLog(@"specials: %@", [self venue].specials);
+    NSLog(@"special: %@", special);
+    specialPlaceName.text = venue.name;
+    specialAddress.text = venue.addressWithCrossstreet;
+    specialText.text = special.message;
+    
+    CGSize maximumLabelSize = CGSizeMake(246, 157);
+    CGSize expectedLabelSize = [special.message sizeWithFont:specialText.font 
+                                           constrainedToSize:maximumLabelSize 
+                                               lineBreakMode:UILineBreakModeClip]; 
+    
+    //adjust the label the the new height.
+    CGRect newFrame = specialText.frame;
+    newFrame.size.height = expectedLabelSize.height;
+    specialText.frame = newFrame;
+
+    CGRect specialFrame = specialView.frame;
+    specialFrame.origin = CGPointMake(0, 119);
+    specialView.frame = specialFrame;
+    specialView.alpha = 0;
+    [self.view addSubview:specialView];
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:0.7];
+    specialView.alpha = 1.0;
+    [UIView commitAnimations];
+}
+
+- (void) closeSpecialView {
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:0.7];
+    specialView.alpha = 0.0;
+    [UIView commitAnimations];
 }
 
 - (FSCheckin*) getSingleCheckin {

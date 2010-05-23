@@ -68,6 +68,13 @@
     PhotoMessageViewController *photoMessageViewController;
     IBOutlet UILabel *distanceAndNumCheckinsLabel;
     KBPhotoManager *photoManager;
+    
+    // specials
+    IBOutlet UIView *specialView;
+    IBOutlet UILabel *specialPlaceName;
+    IBOutlet UILabel *specialAddress;
+    IBOutlet UILabel *specialText;
+    IBOutlet UIButton *specialClose;
 }
 
 @property (nonatomic, retain) UITableViewCell *mayorMapCell;
@@ -95,6 +102,7 @@
 - (IBAction) viewPhotos;
 - (IBAction) displayAllImages;
 - (IBAction) openCheckinView;
+- (IBAction) closeSpecialView;
 
 - (FSCheckin*) getSingleCheckin;
 - (BOOL) hasMayorCell;

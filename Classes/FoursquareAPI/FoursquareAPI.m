@@ -742,7 +742,7 @@ static FoursquareAPI *sharedInstance = nil;
 
 + (NSString*) errorFromResponseXML:(NSString*) inString {
     //NSLog(@"instring for error check: %@", inString);
-    BOOL hasError = [inString rangeOfString:@"<error>"].location || [inString rangeOfString:@"<ratelimited>"].location != NSNotFound;
+    BOOL hasError = [inString rangeOfString:@"<error>"].location != NSNotFound || [inString rangeOfString:@"<ratelimited>"].location != NSNotFound;
     if (hasError) {
         NSError * err;
         CXMLDocument *errorParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
@@ -864,10 +864,10 @@ static FoursquareAPI *sharedInstance = nil;
                             special.type = value;
                         } else if ([key isEqualToString:@"venue"]) {
                             // FIXME: this was done for expediency's sake
-//                            NSArray *venueArray = [FoursquareAPI _venuesFromNode:[checkinAttr nodesForXPath:@"//special/venue" error:nil]];
-//                            if ([venueArray count] > 0) {
-//                                special.venue = [venueArray objectAtIndex:0];
-//                            }
+                            NSArray *venueArray = [FoursquareAPI _venuesFromNode:[checkinAttr nodesForXPath:@"//special/venue" error:nil]];
+                            if ([venueArray count] > 0) {
+                                special.venue = [venueArray objectAtIndex:0];
+                            }
                         }
                     }
                     [specialArray addObject:special];
@@ -1020,7 +1020,7 @@ static FoursquareAPI *sharedInstance = nil;
                             special.type = value;
                         } else if ([key isEqualToString:@"venue"]) {
                             // FIXME: this was done for expediency's sake
-                            NSArray *venueArray = [FoursquareAPI _venuesFromNode:[[venueResult nodesForXPath:@"//special" error:nil] objectAtIndex:0]];
+                            NSArray *venueArray = [FoursquareAPI _venuesFromNode:[[venueResult nodesForXPath:@"//special/venue" error:nil] objectAtIndex:0]];
                             if ([venueArray count] > 0) {
                                 special.venue = [venueArray objectAtIndex:0];
                             }

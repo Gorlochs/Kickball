@@ -14,6 +14,7 @@
 @synthesize categoryIcon;
 @synthesize venueName;
 @synthesize venueAddress;
+@synthesize specialImage;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
@@ -49,6 +50,10 @@
         bottomLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderBottom.png"]];
         bottomLineImage.frame = CGRectMake(0, self.frame.size.height - 1, self.frame.size.width, 1);
         [self addSubview:bottomLineImage];
+        
+        specialImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"button_right.png"]];
+        specialImage.frame = CGRectMake(300, 0, 20, 20);
+        [self addSubview:specialImage];
     }
     return self;
 }

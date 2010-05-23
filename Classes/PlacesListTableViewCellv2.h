@@ -19,11 +19,13 @@
     
     UIImageView *topLineImage;
     UIImageView *bottomLineImage;
+    UIImageView *specialImage;
 }
 
 @property (nonatomic, retain) TTImageView *categoryIcon;
 @property (nonatomic, retain) UILabel *venueName;
 @property (nonatomic, retain) UILabel *venueAddress;
+@property (nonatomic, retain) UIImageView *specialImage;
 
 - (void) adjustLabelWidth:(float)newWidth;
 

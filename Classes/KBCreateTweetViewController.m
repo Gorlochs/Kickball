@@ -53,6 +53,8 @@
     [self dismissModalViewControllerAnimated:YES];
     actionCount = 1 + isFoursquareOn + isFacebookOn + photoImage != nil;
     
+    // TODO: add shortened url to tweet, if there is a photo, which means all this will have to be reordered
+    // http://api.bit.ly/v3/shorten?login=sabernar&apiKey=R_fc7cbaa3eccbd1597f18412c9774a351&format=json&longUrl=http%3A%2F%2Fbetaworks.com%2F
     if (replyToStatusId && replyToStatusId > 0) {
         if (isGeotagOn) {
             [twitterEngine sendUpdate:tweetTextView.text withLatitude:[[KBLocationManager locationManager] latitude] withLongitude:[[KBLocationManager locationManager] longitude] inReplyTo:[replyToStatusId longLongValue]];

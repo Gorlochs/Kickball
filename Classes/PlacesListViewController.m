@@ -61,8 +61,10 @@
 
 
 - (void)venuesResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+    NSLog(@"venue list: %@", inString);
     NSString *errorMessage = [FoursquareAPI errorFromResponseXML:inString];
     if (errorMessage) {
+        NSLog(@"error found in Places List");
         [self displayFoursquareErrorMessage:errorMessage];
     } else {
         NSLog(@"venues: %@", inString);
@@ -213,6 +215,12 @@
             cell.venueAddress.text = venue.addressWithCrossstreet;
             cell.venueId = venue.venueid;
             cell.categoryIcon.urlPath = venue.primaryCategory.iconUrl;
+            if (venue.specials && [venue.specials count] > 0) {
+                cell.specialImage.hidden = NO;
+            } else {
+                cell.specialImage.hidden = YES;
+            }
+
         } else {
             return footerCell;
         }
