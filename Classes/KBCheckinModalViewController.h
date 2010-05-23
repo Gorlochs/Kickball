@@ -9,12 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "AbstractPushNotificationViewController.h"
 #import "XAuthTwitterEngine.h"
-#import "MGTwitterEngineDelegate.h"
 #import "FSCheckin.h"
+#import "FSVenue.h"
+#import "KBPhotoManager.h"
 
 
-@interface KBCheckinModalViewController : AbstractPushNotificationViewController <UITextFieldDelegate, MGTwitterEngineDelegate> {
-    NSString *venueId;
+@interface KBCheckinModalViewController : AbstractPushNotificationViewController <UITextFieldDelegate, MGTwitterEngineDelegate, PhotoManagerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
+    FSVenue *venue;
     IBOutlet UILabel *characterCountLabel;
     
     BOOL isTwitterOn;
@@ -26,11 +27,14 @@
     IBOutlet UIButton *checkinButton;
     IBOutlet UITextField *checkinTextField;
     FSCheckin *checkin;
+    UIImage *photoImage;
+    KBPhotoManager *photoManager;
+    IBOutlet UIImageView *thumbnailPreview;
     
     int actionCount;
 }
 
-@property (nonatomic, retain) NSString *venueId;
+@property (nonatomic, retain) FSVenue *venue;
 
 - (IBAction) checkin;
 - (IBAction) cancelView;
@@ -40,5 +44,7 @@
 - (void) closeUpShop;
 - (void) statusRetrieved:(NSNotification *)inNotification;
 - (void) decrementActionCount;
+- (void) getPhoto:(UIImagePickerControllerSourceType)sourceType;
+- (IBAction) choosePhotoSelectMethod;
 
 @end

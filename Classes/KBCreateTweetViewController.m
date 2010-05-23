@@ -190,7 +190,6 @@
 }
 
 #pragma mark -
-
 #pragma mark Image Picker Delegate methods
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {

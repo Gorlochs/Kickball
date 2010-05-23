@@ -20,7 +20,7 @@
 
 @implementation KBCheckinModalViewController
 
-@synthesize venueId;
+@synthesize venue;
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
@@ -34,6 +34,9 @@
     
     pageType = KBPageTypeOther;
     [super viewDidLoad];
+    
+    photoManager = [KBPhotoManager sharedInstance];
+    photoManager.delegate = self;
     
     FSUser* user = [self getAuthenticatedUser];
     NSLog(@"user: %@", user);
@@ -97,26 +100,12 @@
 #pragma mark -
 #pragma mark shout related methods
 
-//- (void) shoutAndCheckin {
-//    
-//    if ([checkinTextField.text length] > 0) {
-//        NSDictionary *userInfo = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:checkinTextField.text, @"NO", nil] 
-//                                                             forKeys:[NSArray arrayWithObjects:@"shout", @"isTweet", nil]];
-//        [[NSNotificationCenter defaultCenter] postNotificationName:@"shoutAndCheckinSent"
-//                                                            object:nil
-//                                                          userInfo:userInfo];	
-//        [self cancelView];
-//    } else {
-//        
-//    }
-//}
-
 - (void) checkin {
     [checkinTextField resignFirstResponder];
     [self startProgressBar:@"Checking in..."];
     actionCount = 1 + isTwitterOn + isFacebookOn;
     
-    [[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:venueId 
+    [[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:venue.venueid 
                                                   andShout:checkinTextField.text 
                                                    offGrid:!isFoursquareOn
                                                  toTwitter:NO
@@ -137,6 +126,17 @@
         
         NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:checkinTextField.text, @"status", nil];
         [[FBRequest requestWithDelegate:self] call:@"facebook.status.set" params:params dataParam:nil];
+    }
+    
+    // FIXME: ******** ADD VENUE TO THE METHOD CALL ********
+    if (photoImage) {
+        [photoManager uploadImage:UIImageJPEGRepresentation(photoImage, 1.0) 
+                         filename:@"tweet.jpg" 
+                        withWidth:photoImage.size.width 
+                        andHeight:photoImage.size.height
+                       andMessage:checkinTextField.text
+                   andOrientation:photoImage.imageOrientation
+                         andVenue:venue];
     }
     
     [[Beacon shared] startSubBeaconWithName:@"checked in"];
@@ -177,18 +177,6 @@
     }
 }
 
-//- (void) shoutAndTweetAndCheckin {
-//    if ([checkinTextField.text length] > 0) {
-//        NSDictionary *userInfo = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:checkinTextField.text, @"YES", nil] forKeys:[NSArray arrayWithObjects:@"shout", @"isTweet", nil]];
-//        [[NSNotificationCenter defaultCenter] postNotificationName:@"shoutAndCheckinSent"
-//                                                            object:nil
-//                                                          userInfo:userInfo];	
-//        [self cancelView];
-//    } else {
-//        
-//    }
-//}
-
 - (void) closeUpShop {
     NSDictionary *userInfo = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:checkin, nil] 
                                                          forKeys:[NSArray arrayWithObjects:@"checkin", nil]];
@@ -207,6 +195,101 @@
     characterCountLabel.text = [NSString stringWithFormat:@"%d/140", [textView.text length]];
 }
 
+#pragma mark
+#pragma mark UIActionSheetDelegate methods
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        [[Beacon shared] startSubBeaconWithName:@"Choose Photo: Library"];
+        [self getPhoto:UIImagePickerControllerSourceTypePhotoLibrary];
+    } else if (buttonIndex == 1) {
+        [[Beacon shared] startSubBeaconWithName:@"Choose Photo: New"];
+        [self getPhoto:UIImagePickerControllerSourceTypeCamera];
+    }
+}
+
+#pragma mark -
+#pragma mark photo related methods
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    [picker dismissModalViewControllerAnimated:NO];
+    
+    UIImage *initialImage = (UIImage*)[info objectForKey:UIImagePickerControllerOriginalImage];
+    float initialHeight = initialImage.size.height;
+    float initialWidth = initialImage.size.width;
+    
+    float ratio = 1.0f;
+    if (initialHeight > initialWidth) {
+        ratio = initialHeight/initialWidth;
+    } else {
+        ratio = initialWidth/initialHeight;
+    }
+    NSString *roundedFloatString = [NSString stringWithFormat:@"%.1f", ratio];
+    float roundedFloat = [roundedFloatString floatValue];
+    
+    photoImage = [[photoManager imageByScalingToSize:initialImage toSize:CGSizeMake(480.0, round(480.0/roundedFloat))] retain];
+    
+    thumbnailPreview.clipsToBounds = YES;
+    thumbnailPreview.image = [photoImage retain];
+    
+    NSLog(@"image picker info: %@", info);
+}
+
+- (void) getPhoto:(UIImagePickerControllerSourceType)sourceType {
+	UIImagePickerController * picker = [[UIImagePickerController alloc] init];
+	picker.delegate = self;
+    picker.sourceType = sourceType;
+    [self presentModalViewController:picker animated:YES];
+    [picker release];
+}
+
+- (void) choosePhotoSelectMethod {
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"How would you like to select a photo?"
+                                                             delegate:self
+                                                    cancelButtonTitle:@"Cancel"
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:@"Photo Album", @"Take New Photo", nil];
+    
+    actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+    actionSheet.tag = 0;
+    [actionSheet showInView:self.view];
+    [actionSheet release];
+}
+
+- (void) photoUploadFinished:(ASIHTTPRequest *) request {
+    [self stopProgressBar];
+    NSLog(@"YAY! Image uploaded!");
+    KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"Image upload has been completed!"];
+    [self displayPopupMessage:message];
+    [message release];
+    
+    //    CGRect frame = CGRectMake(300, 50, 25, 25);
+    //    TTImageView *thumbnail = [[[TTImageView alloc] initWithFrame:frame] autorelease];
+    //    thumbnail.backgroundColor = [UIColor clearColor];
+    //    NSString *uuid = [[((NSDictionary*)[request responseString]) objectForKey:@"gift"] objectForKey:@"uuid"];
+    //    thumbnail.urlPath = [NSString stringWithFormat:@"http://s3.amazonaws.com/kickball/photos/%@/thumb/%@.jpg", uuid, uuid];
+    //    //thumbnail.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
+    //    [self.view addSubview:thumbnail];
+    
+    // NOTE: the self.photoMessageToPush is being set above in the returnFromMessageView: method
+    [[Beacon shared] startSubBeaconWithName:@"Image Upload Completed"];
+}
+
+- (void) photoQueueFinished:(ASIHTTPRequest *) request {
+    [self decrementActionCount];
+    
+    NSLog(@"YAY! Image queue is complete!");
+    
+    // TODO: this should probably capture the response, parse it into a KBGoody, then add it to the goodies object - it would save an API hit
+    
+    //[self retrievePhotos];
+}
+
+- (void) photoUploadFailed:(ASIHTTPRequest *) request {
+    [self stopProgressBar];
+    NSLog(@"Uhoh, it did fail!");
+}
+
 #pragma mark 
 #pragma mark memory management methods
 
@@ -223,7 +306,7 @@
 }
 
 - (void)dealloc {
-    [venueId release];
+    [venue release];
     [characterCountLabel release];
     [twitterButton release];
     [facebookButton release];
@@ -231,6 +314,8 @@
     [checkinButton release];
     [checkinTextField release];
     [twitterEngine release];
+    [photoManager release];
+    [thumbnailPreview release];
     [super dealloc];
 }
 

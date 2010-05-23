@@ -666,54 +666,12 @@
     [vc release];
 }
 
-//- (void) checkinAndShoutToVenue:(NSNotification *)inNotification {
-//    NSLog(@"notification from shout %@", inNotification);
-//    [self startProgressBar:@"Checking in and shouting to this venue..."];
-//    [[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:venue.venueid 
-//                                                  andShout:[[inNotification userInfo] objectForKey:@"shout"] 
-//                                                   offGrid:!isPingOn
-//                                                 toTwitter:[[[inNotification userInfo] objectForKey:@"isTweet"] boolValue]
-//                                                toFacebook:isPingOn ? isFacebookOn : NO
-//                                                withTarget:self 
-//                                                 andAction:@selector(checkinResponseReceived:withResponseString:)];
-//    [[Beacon shared] startSubBeaconWithName:@"Check in and shout to Venue"];
-//}
-
 - (void) openCheckinView {
     KBCheckinModalViewController *vc = [[KBCheckinModalViewController alloc] initWithNibName:@"CheckinModalView" bundle:nil];
-    vc.venueId = venue.venueid;
+    vc.venue = venue;
     [self presentModalViewController:vc animated:YES];
     [vc release];
 }
-
-//- (void) checkinToVenue {
-//    [self startProgressBar:@"Checking in to this venue..."];
-//    [[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:venue.venueid 
-//                                                  andShout:nil 
-//                                                   offGrid:doCheckin ? NO : !isPingOn
-//                                                 toTwitter:isTwitterOn
-//                                                toFacebook:isPingOn ? isFacebookOn : NO
-//                                                withTarget:self 
-//                                                 andAction:@selector(checkinResponseReceived:withResponseString:)];
-//    [[Beacon shared] startSubBeaconWithName:@"Check in to Venue"];
-//}
-
-//- (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-//    NSString *errorMessage = [FoursquareAPI errorFromResponseXML:inString];
-//    [self stopProgressBar];
-//    if (errorMessage) {
-//        [self displayFoursquareErrorMessage:errorMessage];
-//    } else {
-//        NSLog(@"instring: %@", inString);
-//        self.checkin = [FoursquareAPI checkinFromResponseXML:inString];
-//        NSLog(@"checkin: %@", checkin);
-//        isUserCheckedIn = YES;
-//        [theTableView reloadData];
-//        FSCheckin *ci = [self getSingleCheckin];
-//        [[KBStats stats] checkinStat:ci];
-//        if (ci.specials != nil) {
-//            specialsButton.hidden = NO;
-//        }
         
 - (void) presentCheckinOverlay:(NSNotification*)inNotification {
     NSDictionary *dictionary = [inNotification userInfo];

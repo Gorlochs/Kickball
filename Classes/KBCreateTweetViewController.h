@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "AbstractFacebookViewController.h"
 #import "KBPhotoManager.h"
-#import "PhotoMessageViewController.h"
 
 
 @interface KBCreateTweetViewController : AbstractFacebookViewController <UITextViewDelegate, MGTwitterEngineDelegate, PhotoManagerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
