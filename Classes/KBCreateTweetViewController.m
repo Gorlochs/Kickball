@@ -7,6 +7,7 @@
 //
 
 #import "KBCreateTweetViewController.h"
+#import "Three20/Three20.h"
 #import "KBLocationManager.h"
 #import "FoursquareAPI.h"
 #import "PhotoMessageViewController.h"
@@ -210,17 +211,10 @@
     
     photoImage = [[photoManager imageByScalingToSize:initialImage toSize:CGSizeMake(480.0, round(480.0/roundedFloat))] retain];
     
+    thumbnailPreview.clipsToBounds = YES;
+    thumbnailPreview.image = [photoImage retain];
+    
     NSLog(@"image picker info: %@", info);
-    
-    //    NSLog(@"image height: %f", photoImage.size.height);
-    //    NSLog(@"image width: %f", photoImage.size.width);
-    //    NSLog(@"image orientation: %d", photoImage.imageOrientation);
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(returnFromMessageView:) name:@"attachMessageToPhoto" object:nil];
-    
-    photoMessageViewController = [[PhotoMessageViewController alloc] initWithNibName:@"PhotoMessageViewController" bundle:nil];
-    [self.navigationController presentModalViewController:photoMessageViewController animated:YES];
-    //[photoMessageViewController release];
 }
 
 - (void) getPhoto:(UIImagePickerControllerSourceType)sourceType {
@@ -250,6 +244,14 @@
     KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"Image upload has been completed!"];
     [self displayPopupMessage:message];
     [message release];
+    
+//    CGRect frame = CGRectMake(300, 50, 25, 25);
+//    TTImageView *thumbnail = [[[TTImageView alloc] initWithFrame:frame] autorelease];
+//    thumbnail.backgroundColor = [UIColor clearColor];
+//    NSString *uuid = [[((NSDictionary*)[request responseString]) objectForKey:@"gift"] objectForKey:@"uuid"];
+//    thumbnail.urlPath = [NSString stringWithFormat:@"http://s3.amazonaws.com/kickball/photos/%@/thumb/%@.jpg", uuid, uuid];
+//    //thumbnail.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
+//    [self.view addSubview:thumbnail];
     
     // NOTE: the self.photoMessageToPush is being set above in the returnFromMessageView: method
     [[Beacon shared] startSubBeaconWithName:@"Image Upload Completed"];
@@ -303,6 +305,7 @@
     [facebookButton release];
     [geotagButton release];
     [addPhotoButton release];
+    [thumbnailPreview release];
     [super dealloc];
 }
 

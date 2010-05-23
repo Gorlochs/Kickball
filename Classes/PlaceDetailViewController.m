@@ -626,6 +626,12 @@
     [photoHeaderView release];
     [photoImage release];
     
+    [specialView release];
+    [specialText release];
+    [specialPlaceName release];
+    [specialAddress release];
+    [specialClose release];
+    
     [super dealloc];
 }
 

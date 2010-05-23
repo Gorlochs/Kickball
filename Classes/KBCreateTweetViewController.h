@@ -32,8 +32,8 @@
     IBOutlet UIButton *geotagButton;
     IBOutlet UIButton *addPhotoButton;
     UIImage *photoImage;
-    PhotoMessageViewController *photoMessageViewController;
     KBPhotoManager *photoManager;
+    IBOutlet UIImageView *thumbnailPreview;
     
     int actionCount;
 }
