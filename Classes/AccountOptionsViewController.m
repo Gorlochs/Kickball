@@ -23,6 +23,7 @@
 - (void)viewDidLoad {
     self.hideFooter = YES;
     self.hideRefresh = YES;
+    self.hideHeader = YES;
     isWhatsThisDisplayed = NO;
     
     [super viewDidLoad];

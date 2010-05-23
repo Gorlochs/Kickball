@@ -34,5 +34,6 @@
 - (IBAction) viewFriendRequests;
 - (IBAction) addFriends;
 - (IBAction) accountInfo;
+- (IBAction) viewVersion;
 
 @end

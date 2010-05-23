@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "KBBaseViewController.h"
+#import "KBFoursquareViewController.h"
 #import "XAuthTwitterEngineDelegate.h"
 #import "OAToken.h"
 
@@ -17,7 +17,7 @@
 
 @class XAuthTwitterEngine;
 
-@interface AccountOptionsViewController : KBBaseViewController <UITextFieldDelegate, XAuthTwitterEngineDelegate> {
+@interface AccountOptionsViewController : KBFoursquareViewController <UITextFieldDelegate, XAuthTwitterEngineDelegate> {
     IBOutlet UITableViewCell *foursquareCell;
     IBOutlet UITableViewCell *twitterCell;
     IBOutlet UITableViewCell *facebookCell;

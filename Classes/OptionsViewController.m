@@ -11,6 +11,7 @@
 #import "ViewFriendRequestsViewController.h"
 #import "FriendRequestsViewController.h"
 #import "AccountOptionsViewController.h"
+#import "VersionInfoViewController.h"
 
 
 @implementation OptionsViewController
@@ -110,6 +111,12 @@
     AccountOptionsViewController *accountController = [[AccountOptionsViewController alloc] initWithNibName:@"AccountOptionsView_v2" bundle:nil];
     [self.navigationController pushViewController:accountController animated:YES];
     [accountController release];
+}
+
+- (void) viewVersion {
+    VersionInfoViewController *controller = [[VersionInfoViewController alloc] initWithNibName:@"VersionInfoViewController" bundle:nil];
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
 }
 
 - (void) viewFriendRequests {

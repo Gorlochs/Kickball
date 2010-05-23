@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KBFoursquareViewController.h"
 
 
-@interface VersionInfoViewController : UIViewController {
+@interface VersionInfoViewController : KBFoursquareViewController {
 
 }
 

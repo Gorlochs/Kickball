@@ -233,6 +233,7 @@
 		6A4C17FD11A90BA9006BBC61 /* VersionInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A4C17FB11A90BA9006BBC61 /* VersionInfoViewController.xib */; };
 		6A4C180111A90BBE006BBC61 /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4C17FF11A90BBE006BBC61 /* FeedbackViewController.m */; };
 		6A4C180211A90BBE006BBC61 /* FeedbackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A4C180011A90BBE006BBC61 /* FeedbackViewController.xib */; };
+		6A4C181B11A99707006BBC61 /* version.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4C181A11A99707006BBC61 /* version.png */; };
 		6A4C30C510DED6E300C89F55 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4C30C310DED6E300C89F55 /* SettingsViewController.m */; };
 		6A4C30C610DED6E300C89F55 /* SettingsViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A4C30C410DED6E300C89F55 /* SettingsViewController.xib */; };
 		6A4C30CA10DF24FD00C89F55 /* PlaceMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4C30C810DF24FD00C89F55 /* PlaceMapViewController.m */; };
@@ -946,6 +947,7 @@
 		6A4C17FE11A90BBE006BBC61 /* FeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackViewController.h; sourceTree = "<group>"; };
 		6A4C17FF11A90BBE006BBC61 /* FeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackViewController.m; sourceTree = "<group>"; };
 		6A4C180011A90BBE006BBC61 /* FeedbackViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FeedbackViewController.xib; path = Classes/FeedbackViewController.xib; sourceTree = "<group>"; };
+		6A4C181A11A99707006BBC61 /* version.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = version.png; sourceTree = "<group>"; };
 		6A4C30C210DED6E300C89F55 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		6A4C30C310DED6E300C89F55 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		6A4C30C410DED6E300C89F55 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingsViewController.xib; path = Classes/SettingsViewController.xib; sourceTree = "<group>"; };
@@ -2443,6 +2445,7 @@
 		6AC28E9C1173D91B00518E37 /* v1.1 */ = {
 			isa = PBXGroup;
 			children = (
+				6A4C181A11A99707006BBC61 /* version.png */,
 				6A15731711A5DCF60025D024 /* login */,
 				6A1572D111A5D64D0025D024 /* misc */,
 				6A7E282B1197B86200B76CB3 /* searchBG02.png */,
@@ -3159,6 +3162,7 @@
 				6A4C17F811A90B96006BBC61 /* FriendPriorityOptionViewController.xib in Resources */,
 				6A4C17FD11A90BA9006BBC61 /* VersionInfoViewController.xib in Resources */,
 				6A4C180211A90BBE006BBC61 /* FeedbackViewController.xib in Resources */,
+				6A4C181B11A99707006BBC61 /* version.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
