@@ -225,6 +225,14 @@
 		6A4204C4117FAD9E001A6982 /* KBDirectMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4204C3117FAD9E001A6982 /* KBDirectMessage.m */; };
 		6A47C00610DCA8DE00DCF011 /* KBWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A47C00410DCA8DE00DCF011 /* KBWebViewController.m */; };
 		6A47C00710DCA8DE00DCF011 /* KBWebViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A47C00510DCA8DE00DCF011 /* KBWebViewController.xib */; };
+		6A4C17F211A90B86006BBC61 /* CheckinOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4C17F011A90B86006BBC61 /* CheckinOptionsViewController.m */; };
+		6A4C17F311A90B86006BBC61 /* CheckinOptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A4C17F111A90B86006BBC61 /* CheckinOptionsViewController.xib */; };
+		6A4C17F711A90B96006BBC61 /* FriendPriorityOptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4C17F511A90B96006BBC61 /* FriendPriorityOptionViewController.m */; };
+		6A4C17F811A90B96006BBC61 /* FriendPriorityOptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A4C17F611A90B96006BBC61 /* FriendPriorityOptionViewController.xib */; };
+		6A4C17FC11A90BA9006BBC61 /* VersionInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4C17FA11A90BA9006BBC61 /* VersionInfoViewController.m */; };
+		6A4C17FD11A90BA9006BBC61 /* VersionInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A4C17FB11A90BA9006BBC61 /* VersionInfoViewController.xib */; };
+		6A4C180111A90BBE006BBC61 /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4C17FF11A90BBE006BBC61 /* FeedbackViewController.m */; };
+		6A4C180211A90BBE006BBC61 /* FeedbackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A4C180011A90BBE006BBC61 /* FeedbackViewController.xib */; };
 		6A4C30C510DED6E300C89F55 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4C30C310DED6E300C89F55 /* SettingsViewController.m */; };
 		6A4C30C610DED6E300C89F55 /* SettingsViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A4C30C410DED6E300C89F55 /* SettingsViewController.xib */; };
 		6A4C30CA10DF24FD00C89F55 /* PlaceMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4C30C810DF24FD00C89F55 /* PlaceMapViewController.m */; };
@@ -926,6 +934,18 @@
 		6A47C00310DCA8DE00DCF011 /* KBWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBWebViewController.h; sourceTree = "<group>"; };
 		6A47C00410DCA8DE00DCF011 /* KBWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBWebViewController.m; sourceTree = "<group>"; };
 		6A47C00510DCA8DE00DCF011 /* KBWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KBWebViewController.xib; path = Classes/KBWebViewController.xib; sourceTree = "<group>"; };
+		6A4C17EF11A90B86006BBC61 /* CheckinOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckinOptionsViewController.h; sourceTree = "<group>"; };
+		6A4C17F011A90B86006BBC61 /* CheckinOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckinOptionsViewController.m; sourceTree = "<group>"; };
+		6A4C17F111A90B86006BBC61 /* CheckinOptionsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CheckinOptionsViewController.xib; path = Classes/CheckinOptionsViewController.xib; sourceTree = "<group>"; };
+		6A4C17F411A90B96006BBC61 /* FriendPriorityOptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendPriorityOptionViewController.h; sourceTree = "<group>"; };
+		6A4C17F511A90B96006BBC61 /* FriendPriorityOptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendPriorityOptionViewController.m; sourceTree = "<group>"; };
+		6A4C17F611A90B96006BBC61 /* FriendPriorityOptionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FriendPriorityOptionViewController.xib; path = Classes/FriendPriorityOptionViewController.xib; sourceTree = "<group>"; };
+		6A4C17F911A90BA9006BBC61 /* VersionInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VersionInfoViewController.h; sourceTree = "<group>"; };
+		6A4C17FA11A90BA9006BBC61 /* VersionInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VersionInfoViewController.m; sourceTree = "<group>"; };
+		6A4C17FB11A90BA9006BBC61 /* VersionInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = VersionInfoViewController.xib; path = Classes/VersionInfoViewController.xib; sourceTree = "<group>"; };
+		6A4C17FE11A90BBE006BBC61 /* FeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackViewController.h; sourceTree = "<group>"; };
+		6A4C17FF11A90BBE006BBC61 /* FeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackViewController.m; sourceTree = "<group>"; };
+		6A4C180011A90BBE006BBC61 /* FeedbackViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FeedbackViewController.xib; path = Classes/FeedbackViewController.xib; sourceTree = "<group>"; };
 		6A4C30C210DED6E300C89F55 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		6A4C30C310DED6E300C89F55 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		6A4C30C410DED6E300C89F55 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingsViewController.xib; path = Classes/SettingsViewController.xib; sourceTree = "<group>"; };
@@ -1528,10 +1548,9 @@
 				6AA8BE9811A46EF700F60550 /* PlacePeopleHereViewController.xib */,
 				6A2AEFC611742ECC00F1EA88 /* ProfileView_v2.xib */,
 				6A086FBD1176501700BD6094 /* UserProfileView_v2.xib */,
-				6A086FE5117652A500BD6094 /* OptionsView_v2.xib */,
+				6A4C180D11A90BE1006BBC61 /* option nibs */,
 				6A79D0D810E5E692009082E5 /* PopupMessageView.xib */,
 				6AFC1D9510BA42A9006B7E5F /* ProgressView.xib */,
-				6A086FE7117652B500BD6094 /* AccountOptionsView_v2.xib */,
 				6AF6ABA71180BB2900704B24 /* KBFacebookLoginViewController.xib */,
 				6A98EC1E1182351200E2F508 /* TipListViewController.xib */,
 				6A921D891187A4F700866C59 /* ShoutViewController.xib */,
@@ -1978,6 +1997,14 @@
 				6A8CD5061178E26900D81F4B /* OptionsViewController.m */,
 				6A32B3B5118610A2001E78C9 /* AccountOptionsViewController.h */,
 				6A32B3B6118610A2001E78C9 /* AccountOptionsViewController.m */,
+				6A4C17EF11A90B86006BBC61 /* CheckinOptionsViewController.h */,
+				6A4C17F011A90B86006BBC61 /* CheckinOptionsViewController.m */,
+				6A4C17F411A90B96006BBC61 /* FriendPriorityOptionViewController.h */,
+				6A4C17F511A90B96006BBC61 /* FriendPriorityOptionViewController.m */,
+				6A4C17F911A90BA9006BBC61 /* VersionInfoViewController.h */,
+				6A4C17FA11A90BA9006BBC61 /* VersionInfoViewController.m */,
+				6A4C17FE11A90BBE006BBC61 /* FeedbackViewController.h */,
+				6A4C17FF11A90BBE006BBC61 /* FeedbackViewController.m */,
 			);
 			name = Options;
 			sourceTree = "<group>";
@@ -2038,6 +2065,19 @@
 				6A402A9E10B755B200D9BCEB /* GAPlace.m */,
 			);
 			path = GeoAPI;
+			sourceTree = "<group>";
+		};
+		6A4C180D11A90BE1006BBC61 /* option nibs */ = {
+			isa = PBXGroup;
+			children = (
+				6A086FE5117652A500BD6094 /* OptionsView_v2.xib */,
+				6A4C17F111A90B86006BBC61 /* CheckinOptionsViewController.xib */,
+				6A4C17F611A90B96006BBC61 /* FriendPriorityOptionViewController.xib */,
+				6A4C17FB11A90BA9006BBC61 /* VersionInfoViewController.xib */,
+				6A4C180011A90BBE006BBC61 /* FeedbackViewController.xib */,
+				6A086FE7117652B500BD6094 /* AccountOptionsView_v2.xib */,
+			);
+			name = "option nibs";
 			sourceTree = "<group>";
 		};
 		6A50B44A116D509D002FC1FF /* Singletons */ = {
@@ -3115,6 +3155,10 @@
 				6A15732811A5DCFF0025D024 /* twUP.png in Resources */,
 				6A15732B11A5DEDD0025D024 /* fb_logo_tmp.png in Resources */,
 				6A15732C11A5DEDD0025D024 /* tw_logo_tmp.png in Resources */,
+				6A4C17F311A90B86006BBC61 /* CheckinOptionsViewController.xib in Resources */,
+				6A4C17F811A90B96006BBC61 /* FriendPriorityOptionViewController.xib in Resources */,
+				6A4C17FD11A90BA9006BBC61 /* VersionInfoViewController.xib in Resources */,
+				6A4C180211A90BBE006BBC61 /* FeedbackViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3381,6 +3425,10 @@
 				6AA8BE9911A46EF700F60550 /* PlacePeopleHereViewController.m in Sources */,
 				6A1572BE11A5C0C80025D024 /* KBPhotoManager.m in Sources */,
 				6A1574FE11A70F0D0025D024 /* KBAccountManager.m in Sources */,
+				6A4C17F211A90B86006BBC61 /* CheckinOptionsViewController.m in Sources */,
+				6A4C17F711A90B96006BBC61 /* FriendPriorityOptionViewController.m in Sources */,
+				6A4C17FC11A90BA9006BBC61 /* VersionInfoViewController.m in Sources */,
+				6A4C180111A90BBE006BBC61 /* FeedbackViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
