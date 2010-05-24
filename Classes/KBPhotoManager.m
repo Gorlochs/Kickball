@@ -8,7 +8,7 @@
 
 #import "KBPhotoManager.h"
 #import "ASIFormDataRequest.h"
-#import "FBRequest.h"
+#import "FBConnect/FBRequest.h"
 #import "KBLocationManager.h"
 #import "KBMessage.h"
 #import "Beacon.h"
