@@ -12,10 +12,12 @@
 #import "FriendRequestsViewController.h"
 #import "AccountOptionsViewController.h"
 #import "VersionInfoViewController.h"
+#import "FriendPriorityOptionViewController.h"
+#import "FeedbackViewController.h"
+#import "CheckinOptionsViewController.h"
 
 
 @implementation OptionsViewController
-
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -107,7 +109,7 @@
     NSLog(@"*************** logout ****************");
 }
 
-- (void) accountInfo {
+- (void) viewAccountOptions {
     AccountOptionsViewController *accountController = [[AccountOptionsViewController alloc] initWithNibName:@"AccountOptionsView_v2" bundle:nil];
     [self.navigationController pushViewController:accountController animated:YES];
     [accountController release];
@@ -119,11 +121,29 @@
     [controller release];
 }
 
+- (void) viewFriendPriority {
+    FriendPriorityOptionViewController *controller = [[FriendPriorityOptionViewController alloc] initWithNibName:@"FriendPriorityOptionViewController" bundle:nil];
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
+}
+
+- (void) viewFeedback {
+    FeedbackViewController *controller = [[FeedbackViewController alloc] initWithNibName:@"FeedbackViewController" bundle:nil];
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
+}
+
 - (void) viewFriendRequests {
-    ViewFriendRequestsViewController *friendRequestsController = [[ViewFriendRequestsViewController alloc] initWithNibName:@"ViewFriendRequestsViewController" bundle:nil];
-    friendRequestsController.pendingFriendRequests = [[NSMutableArray alloc] initWithArray:pendingFriendRequests];
-    [self.navigationController pushViewController:friendRequestsController animated:YES];
-    [friendRequestsController release];
+    ViewFriendRequestsViewController *controller = [[ViewFriendRequestsViewController alloc] initWithNibName:@"ViewFriendRequestsViewController" bundle:nil];
+    controller.pendingFriendRequests = [[NSMutableArray alloc] initWithArray:pendingFriendRequests];
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
+}
+
+- (void) viewDefaultCheckinOptions {
+    CheckinOptionsViewController *controller = [[CheckinOptionsViewController alloc] initWithNibName:@"CheckinOptionsViewController" bundle:nil];
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
 }
 
 - (void) addFriends {

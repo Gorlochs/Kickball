@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KBFoursquareViewController.h"
 
 
-@interface FeedbackViewController : UIViewController {
+@interface FeedbackViewController : KBFoursquareViewController {
 
 }
 

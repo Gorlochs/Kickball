@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KBFoursquareViewController.h"
 
 
-@interface FriendPriorityOptionViewController : UIViewController {
-
+@interface FriendPriorityOptionViewController : KBFoursquareViewController {
+    IBOutlet UISlider *slider;
 }
 
 @end

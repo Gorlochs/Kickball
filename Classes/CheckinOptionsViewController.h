@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KBFoursquareViewController.h"
 
 
-@interface CheckinOptionsViewController : UIViewController {
-
+@interface CheckinOptionsViewController : KBFoursquareViewController {
+    IBOutlet UISwitch *foursquareSwitch;
+    IBOutlet UISwitch *twitterSwitch;
+    IBOutlet UISwitch *facebookSwitch;
 }
 
 @end

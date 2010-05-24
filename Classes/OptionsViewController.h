@@ -33,7 +33,10 @@
 
 - (IBAction) viewFriendRequests;
 - (IBAction) addFriends;
-- (IBAction) accountInfo;
+- (IBAction) viewAccountOptions;
 - (IBAction) viewVersion;
+- (IBAction) viewFriendPriority;
+- (IBAction) viewFeedback;
+- (IBAction) viewDefaultCheckinOptions;
 
 @end

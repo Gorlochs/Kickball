@@ -17,6 +17,10 @@
     self.hideHeader = YES;
     
     [super viewDidLoad];
+    
+    [slider setMinimumTrackImage:nil forState:UIControlStateNormal];
+    [slider setMaximumTrackImage:nil forState:UIControlStateNormal];
+    [slider setThumbImage:[UIImage imageNamed:@"slideBar.png"] forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning {
