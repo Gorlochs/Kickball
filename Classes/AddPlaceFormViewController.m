@@ -244,7 +244,7 @@
     [UIView setAnimationBeginsFromCurrentState:YES];
     [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
     
-    [toolbar setFrame:toolbarFrame];
+    //[toolbar setFrame:toolbarFrame];
     [self.view setFrame:viewFrame];
     
     [UIView commitAnimations];
