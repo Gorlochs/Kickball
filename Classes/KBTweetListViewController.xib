@@ -45,7 +45,7 @@
 					<object class="IBUITableView" id="873029372">
 						<reference key="NSNextResponder" ref="286422906"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{0, 91}, {320, 329}}</string>
+						<string key="NSFrame">{{0, 93}, {320, 327}}</string>
 						<reference key="NSSuperview" ref="286422906"/>
 						<object class="NSColor" key="IBUIBackgroundColor" id="206962023">
 							<int key="NSColorSpace">3</int>
@@ -69,7 +69,7 @@
 					<object class="IBUIButton" id="288560010">
 						<reference key="NSNextResponder" ref="286422906"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{0, 47}, {320, 44}}</string>
+						<string key="NSFrame">{{0, 47}, {320, 46}}</string>
 						<reference key="NSSuperview" ref="286422906"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -80,8 +80,6 @@
 							<double key="NSSize">15</double>
 							<int key="NSfFlags">16</int>
 						</object>
-						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">TWEET</string>
 						<object class="NSColor" key="IBUIHighlightedTitleColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
@@ -93,6 +91,14 @@
 						<object class="NSColor" key="IBUINormalTitleShadowColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC41AA</bytes>
+						</object>
+						<object class="NSCustomResource" key="IBUIHighlightedImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">tweetField02.png</string>
+						</object>
+						<object class="NSCustomResource" key="IBUINormalImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">tweetField01.png</string>
 						</object>
 					</object>
 				</object>
@@ -401,10 +407,12 @@
 							<string>flipBetweenMapAndList</string>
 							<string>goToHomeView</string>
 							<string>goToHomeViewNotAnimated</string>
-							<string>viewPlacesList</string>
+							<string>viewFriends</string>
+							<string>viewPlaces</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -420,7 +428,6 @@
 							<string>backButton</string>
 							<string>centerHeaderButton</string>
 							<string>friendButton</string>
-							<string>homeBackView</string>
 							<string>homeButton</string>
 							<string>placesButton</string>
 						</object>
@@ -429,7 +436,6 @@
 							<string>UIButton</string>
 							<string>UIButton</string>
 							<string>UIButton</string>
-							<string>UIView</string>
 							<string>UIButton</string>
 							<string>UIButton</string>
 						</object>
@@ -766,6 +772,19 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<string key="IBDocument.LastKnownRelativeProjectPath">../Kickball.xcodeproj</string>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
+		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<bool key="EncodedWithXMLCoder">YES</bool>
+			<object class="NSArray" key="dict.sortedKeys">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<string>tweetField01.png</string>
+				<string>tweetField02.png</string>
+			</object>
+			<object class="NSMutableArray" key="dict.values">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<string>{320, 46}</string>
+				<string>{320, 46}</string>
+			</object>
+		</object>
 		<string key="IBCocoaTouchPluginVersion">87</string>
 	</data>
 </archive>

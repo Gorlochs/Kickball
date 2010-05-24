@@ -149,21 +149,27 @@
 					<object class="IBUIButton" id="511843758">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{271, 59}, {44, 37}}</string>
+						<string key="NSFrame">{{271, 59}, {44, 39}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<reference key="IBUIFont" ref="327012863"/>
-						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">RT</string>
 						<reference key="IBUIHighlightedTitleColor" ref="959525541"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="287806066"/>
+						<object class="NSCustomResource" key="IBUIHighlightedImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">profileDM02.png</string>
+						</object>
+						<object class="NSCustomResource" key="IBUINormalImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">profileDM01.png</string>
+						</object>
 					</object>
 					<object class="IBUIButton" id="25731375">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -473,7 +479,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>KBTwitterDetailViewController</string>
 					<string>UIResponder</string>
-					<string>{{507, 505}, {320, 480}}</string>
+					<string>{{608, 415}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -571,10 +577,12 @@
 							<string>flipBetweenMapAndList</string>
 							<string>goToHomeView</string>
 							<string>goToHomeViewNotAnimated</string>
-							<string>viewPlacesList</string>
+							<string>viewFriends</string>
+							<string>viewPlaces</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -590,7 +598,6 @@
 							<string>backButton</string>
 							<string>centerHeaderButton</string>
 							<string>friendButton</string>
-							<string>homeBackView</string>
 							<string>homeButton</string>
 							<string>placesButton</string>
 						</object>
@@ -599,7 +606,6 @@
 							<string>UIButton</string>
 							<string>UIButton</string>
 							<string>UIButton</string>
-							<string>UIView</string>
 							<string>UIButton</string>
 							<string>UIButton</string>
 						</object>
@@ -978,6 +984,8 @@
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>cellBorderBottom.png</string>
 				<string>cellBorderTop.png</string>
+				<string>profileDM01.png</string>
+				<string>profileDM02.png</string>
 				<string>profileReply01.png</string>
 				<string>profileReply02.png</string>
 				<string>retweet01.png</string>
@@ -987,6 +995,8 @@
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>{320, 1}</string>
 				<string>{320, 1}</string>
+				<string>{42, 36}</string>
+				<string>{42, 36}</string>
 				<string>{42, 36}</string>
 				<string>{42, 36}</string>
 				<string>{80, 80}</string>

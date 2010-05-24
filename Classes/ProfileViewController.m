@@ -244,7 +244,7 @@
         return [user.mayorOf count];
     } else if (section == 3) { // badges
         return 1;
-    } else if (section == 4) { // badges
+    } else if (section == 4) { // see friends
         return 1;
     }
     return 1;
@@ -252,7 +252,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        return 55;
+        return 54;
     } else if (indexPath.section == 1) {
         return 73;
     } else if (indexPath.section == 2) {
@@ -264,7 +264,7 @@
             return 0;
         }
     } else if (indexPath.section == 4) {
-        return 36;
+        return 43;
     } 
     return 44;
 }

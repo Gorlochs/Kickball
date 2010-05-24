@@ -12,7 +12,6 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="46"/>
 			<integer value="1"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
@@ -389,7 +388,7 @@
 				<reference key="IBUIContentView" ref="962256298"/>
 			</object>
 			<object class="IBUITableViewCell" id="505244089">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -425,7 +424,6 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{291, 72}</string>
-				<reference key="NSSuperview"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
 					<bytes key="NSRGB">MSAxIDEgMAA</bytes>
@@ -631,7 +629,7 @@
 				<reference key="IBUIContentView" ref="947061092"/>
 			</object>
 			<object class="IBUITableViewCell" id="728711567">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -643,8 +641,9 @@
 							<object class="IBUIButton" id="629438268">
 								<reference key="NSNextResponder" ref="277187242"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrameSize">{290, 55}</string>
+								<string key="NSFrameSize">{291, 54}</string>
 								<reference key="NSSuperview" ref="277187242"/>
+								<reference key="NSWindow"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -671,12 +670,13 @@
 								</object>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">profileHereToo01.png</string>
+									<string key="NSResourceName">pr_hereToo01.png</string>
 								</object>
 							</object>
 						</object>
-						<string key="NSFrameSize">{291, 55}</string>
+						<string key="NSFrameSize">{291, 54}</string>
 						<reference key="NSSuperview" ref="728711567"/>
+						<reference key="NSWindow"/>
 						<reference key="IBUIBackgroundColor" ref="158311137"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -685,7 +685,9 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</object>
-				<string key="NSFrameSize">{291, 55}</string>
+				<string key="NSFrameSize">{291, 54}</string>
+				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="IBUIBackgroundColor" ref="610165035"/>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -1194,7 +1196,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>UserProfileViewController</string>
 					<string>UIResponder</string>
-					<string>{{484, 150}, {320, 480}}</string>
+					<string>{{518, 33}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1217,7 +1219,7 @@
 					<string>{{263, 844}, {291, 43}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{420, 928}, {291, 55}}</string>
+					<string>{{747, 703}, {291, 54}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1318,10 +1320,12 @@
 							<string>flipBetweenMapAndList</string>
 							<string>goToHomeView</string>
 							<string>goToHomeViewNotAnimated</string>
-							<string>viewPlacesList</string>
+							<string>viewFriends</string>
+							<string>viewPlaces</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -1337,7 +1341,6 @@
 							<string>backButton</string>
 							<string>centerHeaderButton</string>
 							<string>friendButton</string>
-							<string>homeBackView</string>
 							<string>homeButton</string>
 							<string>placesButton</string>
 						</object>
@@ -1346,7 +1349,6 @@
 							<string>UIButton</string>
 							<string>UIButton</string>
 							<string>UIButton</string>
-							<string>UIView</string>
 							<string>UIButton</string>
 							<string>UIButton</string>
 						</object>
@@ -1826,12 +1828,12 @@
 				<string>myProfileStuffTab01.png</string>
 				<string>myProfileStuffTab02.png</string>
 				<string>placePhotoBG.png</string>
+				<string>pr_hereToo01.png</string>
 				<string>profileAddFriend01.png</string>
 				<string>profileAddFriend02.png</string>
 				<string>profileAddFriend03.png</string>
 				<string>profileCheckin03.png</string>
 				<string>profileGradient.png</string>
-				<string>profileHereToo01.png</string>
 				<string>profileHereToo02.png</string>
 				<string>profilePings01.png</string>
 				<string>profileSeeFriends01.png</string>
@@ -1853,12 +1855,12 @@
 				<string>{95, 35}</string>
 				<string>{95, 35}</string>
 				<string>{291, 73}</string>
+				<string>{291, 53}</string>
 				<string>{16, 16}</string>
 				<string>{16, 16}</string>
 				<string>{16, 16}</string>
 				<string>{16, 16}</string>
 				<string>{320, 12}</string>
-				<string>{291, 55}</string>
 				<string>{291, 55}</string>
 				<string>{16, 16}</string>
 				<string>{291, 35}</string>

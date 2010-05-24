@@ -36,7 +36,7 @@
 }
 
 - (void) viewWillAppear:(BOOL)animated {
-    [self startProgressBar:@"Retrieving settings..."];
+    //[self startProgressBar:@"Retrieving settings..."];
     [[FoursquareAPI sharedInstance] getPendingFriendRequests:self andAction:@selector(friendRequestResponseReceived:withResponseString:)];
     [super viewWillAppear:animated];
 }
