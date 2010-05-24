@@ -7,6 +7,7 @@
 //
 
 #import "AddPlaceCategoryViewController.h"
+#import "FoursquareAPI.h"
 
 
 @implementation AddPlaceCategoryViewController
@@ -18,6 +19,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [[FoursquareAPI sharedInstance] getCategoriesWithTarget:self andAction:@selector(categoryResponseReceived:withResponseString:)];
+}
+
+- (void)categoryResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+    [FoursquareAPI categoriesFromResponseJSON:inString];
 }
 
 - (void) backToAddAVenue {

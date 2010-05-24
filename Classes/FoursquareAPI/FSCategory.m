@@ -15,12 +15,14 @@
 @synthesize fullPathName;
 @synthesize nodeName;
 @synthesize iconUrl;
+@synthesize subcategories;
 
 - (void) encodeWithCoder: (NSCoder *)coder { 
     [coder encodeObject: categoryId forKey:@"categoryId"]; 
     [coder encodeObject: fullPathName forKey:@"fullPathName"]; 
     [coder encodeObject: nodeName forKey:@"nodeName"]; 
-    [coder encodeObject: iconUrl forKey:@"iconUrl"]; 
+    [coder encodeObject: iconUrl forKey:@"iconUrl"];  
+    [coder encodeObject: subcategories forKey:@"subcategories"]; 
 } 
 
 - (id) initWithCoder: (NSCoder *)coder { 
@@ -28,7 +30,8 @@
         [self setCategoryId: [coder decodeObjectForKey:@"categoryId"]]; 
         [self setFullPathName: [coder decodeObjectForKey:@"fullPathName"]];  
         [self setNodeName: [coder decodeObjectForKey:@"nodeName"]];  
-        [self setIconUrl: [coder decodeObjectForKey:@"iconUrl"]]; 
+        [self setIconUrl: [coder decodeObjectForKey:@"iconUrl"]];   
+        [self setSubcategories:[coder decodeObjectForKey:@"subcategories"]]; 
     } 
     return self; 
 } 

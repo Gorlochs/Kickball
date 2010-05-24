@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KBBaseViewController.h"
 
 
-@interface AddPlaceCategoryViewController : UITableViewController {
-
+@interface AddPlaceCategoryViewController : KBBaseViewController {
+    NSArray *categories;
 }
 
 - (IBAction) backToAddAVenue;

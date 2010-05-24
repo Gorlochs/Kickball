@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "KBBaseViewController.h"
+#import "KBFoursquareViewController.h"
 
 
-@interface OptionsViewController : KBBaseViewController {
+@interface OptionsViewController : KBFoursquareViewController {
     IBOutlet UILabel *friendRequestCount;
     NSArray *pendingFriendRequests;
     

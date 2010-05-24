@@ -13,6 +13,7 @@
 #import "SFHFKeychainUtils.h"
 #import "KBLocationManager.h"
 #import "FSCategory.h"
+#import "CJSONDeserializer.h"
 
 #define USER_AGENT @"Kickball:1.1.0"
 
@@ -214,6 +215,10 @@ static FoursquareAPI *sharedInstance = nil;
 - (void) getFriendsWithTarget:(id)inTarget andAction:(SEL)inAction{
 	//[self.oauthAPI performMethod:@"/v1/friends" withTarget:inTarget andAction:inAction];
 	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/friends"] withUser:self.userName andPassword:self.passWord andParams:nil withTarget:inTarget andAction:inAction usingMethod:@"GET"];
+}
+
+- (void) getCategoriesWithTarget:(id)inTarget andAction:(SEL)inAction {
+    [self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/categories.json"] withUser:self.userName andPassword:self.passWord andParams:nil withTarget:inTarget andAction:inAction usingMethod:@"GET"];
 }
 
 - (void) getFriendsWithUserIdAndTarget:(NSString*)userId andTarget:(id)inTarget andAction:(SEL)inAction {
@@ -668,6 +673,23 @@ static FoursquareAPI *sharedInstance = nil;
 	return user;
 }
 
++ (NSArray *) categoriesFromResponseJSON:(NSString *) inString {
+
+    NSError *error = nil;
+    NSDictionary *responseDictionary = [[CJSONDeserializer deserializer] deserializeAsDictionary:[inString dataUsingEncoding:NSUTF32BigEndianStringEncoding] error:&error];
+    if (error) {
+        NSLog(@"category json error: %@", error);
+    }
+	NSMutableArray *categories = [[NSMutableArray alloc] initWithCapacity:1];
+    for (NSDictionary *dict in [responseDictionary objectForKey:@"categories"]) {
+        for (NSDictionary *cat in [dict objectForKey:@"categories"]) {
+            NSLog(@"inside cat: %@", cat);
+        }
+    }
+    
+    return (NSArray*)[responseDictionary objectForKey:@"categories"];
+}
+
 // TODO: this might have a memory leak in it, but it's not currently being used
 + (FSUser *) loggedInUserFromResponseXML:(NSString *) inString{
 	NSError * err;
@@ -1069,6 +1091,34 @@ static FoursquareAPI *sharedInstance = nil;
 	return allTips;
 }
 
+//+ (NSArray *) _catFromNode:(CXMLNode *) inputNode{
+//	NSMutableArray *allCat = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
+//	
+//	NSArray * cats = [inputNode nodesForXPath:@"//tip" error:nil];
+//	for (CXMLElement *tipResult in tips) {
+//		FSTip * newTip = [[FSTip alloc] init];
+//		int counter;
+//		for(counter = 0; counter < [tipResult childCount]; counter++) {
+//			NSString * key = [[tipResult childAtIndex:counter] name];
+//			NSString * value = [[tipResult childAtIndex:counter] stringValue];
+//			
+//			if([key isEqualToString:@"id"]){
+//				newTip.tipId = value;
+//			} else if([key isEqualToString:@"text"]){
+//				newTip.text = value;
+//			} else if([key isEqualToString:@"url"]){
+//				newTip.url = value;
+//			}  else if([key isEqualToString:@"user"]){
+//				newTip.submittedBy = [[FoursquareAPI _shortUserFromNode:[[tipResult nodesForXPath:@"user" error:nil] objectAtIndex:0]] retain];
+//			}
+//		}
+//		[allTips addObject:newTip];
+//        [newTip release];
+//	}
+//	
+//	return allTips;
+//}
+
 + (NSArray *) _badgesFromNode:(CXMLNode *) inputNode {
     NSMutableArray * loggedUserBadges = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
     
@@ -1121,26 +1171,6 @@ static FoursquareAPI *sharedInstance = nil;
 	return allFriends;
 }
 
-//+ (FSCheckin *) _checkinFromNode:(CXMLNode *) inputNode{
-//    FSCheckin *checkin = [[FSCheckin alloc] init];
-//    
-////	NSArray * checkins = [inputNode nodesForXPath:@"//checkin" error:nil];
-////	for (CXMLElement *checkinResult in checkins) {
-////	//for(counter = 0; counter < [usrAttr childCount]; counter++) {
-////    CXMLElement *checkinResult = [inputNode 
-////		NSString * key = [[inputNode childAtIndex:counter] name];
-////		NSString * value = [[inputNode childAtIndex:counter] stringValue];
-////        
-////        if ([key isEqualToString:@"id"]) {
-////            checkin.checkinId = value;
-////        } else if ([key isEqualToString:@"display"]) {
-////            checkin.display = value;
-////        }
-////    }
-//    
-//    return checkin;
-//}
-
 // very short version of user for certain uses (e.g., tips)
 + (FSUser *) _shortUserFromNode:(CXMLElement *) usrAttr {
     
@@ -1187,7 +1217,14 @@ static FoursquareAPI *sharedInstance = nil;
 			category.nodeName = value;
 		} else if([key isEqualToString:@"iconurl"]){
 			category.iconUrl = value;
-		}
+		} //else if([key isEqualToString:@"iconurl"]){
+//            NSArray *categoryAttrs = [venueResult nodesForXPath:@"primarycategory" error:nil];
+//            NSMutableArray *
+//            for (CXMLElement *categoryAttr in categoryAttrs) {
+//                category.subcategories = [FoursquareAPI _categoryFromNode:categoryAttr];
+//                break;
+//            }
+//		}
     }
     
     return category;

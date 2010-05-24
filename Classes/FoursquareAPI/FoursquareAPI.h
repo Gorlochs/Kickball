@@ -50,6 +50,7 @@
 - (void) getUserWithUsername:(NSString*)username andPassword:(NSString*)password withTarget:(id)inTarget andAction:(SEL)inAction;
 - (void) getCityNearestToLatitude:(NSString *) geolat andLongitude:(NSString *)geolong withTarget:(id)inTarget andAction:(SEL)inAction;
 - (void) getFriendsWithTarget:(id)inTarget andAction:(SEL)inAction;
+- (void) getCategoriesWithTarget:(id)inTarget andAction:(SEL)inAction;
 - (void) getFriendsWithUserIdAndTarget:(NSString*)userId andTarget:(id)inTarget andAction:(SEL)inAction;
 - (void) getFriendsWithTarget:(NSString*)username andPassword:(NSString*)password andTarget:(id)inTarget andAction:(SEL)inAction;
 - (void) getVenue:(NSString *)venueId withTarget:(id)inTarget andAction:(SEL)inAction;
@@ -88,6 +89,7 @@
 + (NSString *) _errorsFromNode:(CXMLNode *) inputNode;
 + (FSCategory*) _categoryFromNode:(CXMLElement*)categoryAttr;
 
++ (NSArray *) categoriesFromResponseJSON:(NSString *) inString;
 + (NSArray *) usersFromResponseXML:(NSString *) inString;
 + (NSArray *) usersFromRequestResponseXML:(NSString *) inString;
 //+ (NSArray *) friendsFromResponseXML:(NSString *) inString;
