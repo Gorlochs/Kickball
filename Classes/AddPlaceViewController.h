@@ -7,25 +7,31 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 #import "KBBaseViewController.h"
 #import "FSVenue.h"
 
-@interface AddPlaceViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
-    IBOutlet UITextField *newPlaceName;
-    
-    IBOutlet UITableViewCell *noneOfTheseCell;
+@interface AddPlaceViewController : KBBaseViewController <MKMapViewDelegate> {
+    IBOutlet UILabel *newPlaceName;
+    IBOutlet MKMapView *mapView;
+    IBOutlet UIButton *addCategoryButton;
+    IBOutlet UIButton *addAddressButton;
+    NSString *newVenueName;
+    NSString *categoryId;
     
     NSArray *checkin;
-    NSDictionary *venues;
 }
 
 @property (nonatomic, retain) NSArray *checkin;
+@property (nonatomic, retain) NSString *newVenueName;
+@property (nonatomic, retain) NSString *categoryId;
 
 - (FSVenue*) extractVenueFromDictionaryForRow:(NSIndexPath*)indexPath;
 - (IBAction) checkinToNewVenue;
-- (IBAction) viewTipsForAddingNewPlace;
 - (IBAction) switchToTextFields;
-- (IBAction) checkListings;
 - (IBAction) doVenuelessCheckin;
+- (IBAction) addAddress;
+- (IBAction) addCategory;
+- (IBAction) backOneView;
 
 @end

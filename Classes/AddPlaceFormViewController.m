@@ -10,7 +10,6 @@
 #import "FoursquareAPI.h"
 #import "PlaceDetailViewController.h"
 #import "FSCheckin.h"
-#import "AddPlaceTipsViewController.h"
 
 
 @implementation AddPlaceFormViewController
@@ -21,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //venueName.text = newVenueName;
-    placeName.text = newVenueName;
+    //placeName.text = newVenueName;
     [[Beacon shared] startSubBeaconWithName:@"Add Venue Form View"];
     
     toolbar.frame = CGRectMake(0, 436, 320, 44);
@@ -52,7 +51,7 @@
     [zip release];
     [phone release];
     [twitter release];
-    [placeName release];
+    [country release];
     
     [super dealloc];
 }
@@ -67,7 +66,7 @@
     twitter.text = @"";
     zip.text = @"";
     state.text = @"";
-    placeName.text = @"";
+    country.text = @"";
 }
 
 - (void) cancelEditing {
@@ -78,7 +77,7 @@
     [twitter resignFirstResponder];
     [zip resignFirstResponder];
     [state resignFirstResponder];
-    [placeName resignFirstResponder];
+    [country resignFirstResponder];
     
     // slide toolbar downward with keyboard
     CGRect toolbarFrame = toolbar.frame;
@@ -93,21 +92,25 @@
     [UIView commitAnimations];
 }
 
+- (void) backToAddAVenue {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 // this is hacky, too. There should be an array of textfields and then just advance to the next one or something
 // but I'm tired of all this shit, so I'm doing it the 'easy' way
 - (void) editNextField {
-    if ([placeName isFirstResponder]) {
-        [address becomeFirstResponder];
-    } else if ([address isFirstResponder]) {
+    if ([address isFirstResponder]) {
         [crossstreet becomeFirstResponder];
     } else if ([crossstreet isFirstResponder]) {
         [phone becomeFirstResponder];
-//    } else if ([city isFirstResponder]) {
-//        [state becomeFirstResponder];
-//    } else if ([state isFirstResponder]) {
-//        [zip becomeFirstResponder];
-//    } else if ([zip isFirstResponder]) {
-//        [twitter becomeFirstResponder];
+    } else if ([city isFirstResponder]) {
+        [state becomeFirstResponder];
+    } else if ([state isFirstResponder]) {
+        [zip becomeFirstResponder];
+    } else if ([zip isFirstResponder]) {
+        [country becomeFirstResponder];
+    } else if ([country isFirstResponder]) {
+        [twitter becomeFirstResponder];
     } else if ([phone isFirstResponder]) {
         [twitter becomeFirstResponder];
     } else {
@@ -116,29 +119,23 @@
 }
 
 - (void) editPreviousField {
-    if ([placeName isFirstResponder]) {
+    if ([address isFirstResponder]) {
         [self cancelEditing];
-    } else if ([address isFirstResponder]) {
-        [placeName becomeFirstResponder];
     } else if ([crossstreet isFirstResponder]) {
         [address becomeFirstResponder];
-//    } else if ([city isFirstResponder]) {
-//        [crossstreet becomeFirstResponder];
-//    } else if ([state isFirstResponder]) {
-//        [city becomeFirstResponder];
-//    } else if ([zip isFirstResponder]) {
-//        [state becomeFirstResponder];
-    } else if ([phone isFirstResponder]) {
+    } else if ([city isFirstResponder]) {
         [crossstreet becomeFirstResponder];
+    } else if ([state isFirstResponder]) {
+        [city becomeFirstResponder];
+    } else if ([zip isFirstResponder]) {
+        [state becomeFirstResponder];
+    } else if ([country isFirstResponder]) {
+        [zip becomeFirstResponder];
+    } else if ([phone isFirstResponder]) {
+        [country becomeFirstResponder];
     } else if ([twitter isFirstResponder]) {
         [phone becomeFirstResponder];
     }
-}
-
-- (void) viewTipsForAddingNewPlace {
-    AddPlaceTipsViewController *tipController = [[AddPlaceTipsViewController alloc] initWithNibName:@"AddPlaceTipsViewController" bundle:nil];
-    [self.navigationController pushViewController:tipController animated:YES];
-    [tipController release];
 }
 
 - (void) saveVenueAndCheckin {
@@ -146,7 +143,7 @@
         FSUser *user = [self getAuthenticatedUser];
         
         [self startProgressBar:@"Adding new venue and checking you in..."];
-        [[FoursquareAPI sharedInstance] addNewVenue:placeName.text 
+        [[FoursquareAPI sharedInstance] addNewVenue:newVenueName
                                           atAddress:address.text 
                                      andCrossstreet:crossstreet.text 
                                             andCity:user.checkin.venue != nil && user.checkin.venue.city != nil ? user.checkin.venue.city : @""
@@ -220,24 +217,28 @@
     NSLog(@"animated distance: %f", animatedDistance);
     NSLog(@"viewframe origin y: %f", viewFrame.origin.y);
     
-    // toolbar stuff
-    toolbar.hidden = NO;
-    CGRect toolbarFrame = toolbar.frame;
-    
-    // SUPER HACK!!!
-    if (textField == placeName) {
-        toolbarFrame.origin.y = 200;
-    } else if (textField == address) {
-        toolbarFrame.origin.y = 241;
-    } else if (textField == crossstreet) {
-        toolbarFrame.origin.y = 288;
+//    // toolbar stuff
+//    toolbar.hidden = NO;
+//    CGRect toolbarFrame = toolbar.frame;
+//    
+//    // SUPER HACK!!!
+//    if (textField == address) {
+//        toolbarFrame.origin.y = 241;
+//    } else if (textField == crossstreet) {
+//        toolbarFrame.origin.y = 288;
 //    } else if (textField == city) {
 //        toolbarFrame.origin.y = 300;
-//    } else if (textField == state || textField == zip) {
+//    } else if (textField == state) {
 //        toolbarFrame.origin.y = 337;
-    } else if (textField == twitter || textField == phone) {
-        toolbarFrame.origin.y = 330;
-    }
+//    } else if (textField == country) {
+//        toolbarFrame.origin.y = 337;
+//    } else if (textField == zip) {
+//        toolbarFrame.origin.y = 337;
+//    } else if (textField == phone) {
+//        toolbarFrame.origin.y = 337;
+//    } else if (textField == twitter) {
+//        toolbarFrame.origin.y = 330;
+//    }
     
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];

@@ -51,8 +51,8 @@
         bottomLineImage.frame = CGRectMake(0, self.frame.size.height - 1, self.frame.size.width, 1);
         [self addSubview:bottomLineImage];
         
-        specialImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"button_right.png"]];
-        specialImage.frame = CGRectMake(300, 0, 20, 20);
+        specialImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"specialCorner.png"]];
+        specialImage.frame = CGRectMake(298, 0, 22, 22);
         [self addSubview:specialImage];
     }
     return self;

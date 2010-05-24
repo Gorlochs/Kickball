@@ -24,6 +24,8 @@
 #import "KBTwitterXAuthLoginController.h"
 #import "TableSectionHeaderView.h"
 #import "KickballAPI.h"
+#import "KBLocationManager.h"
+
 
 #define SECTION_RECENT_CHECKINS 1
 #define SECTION_TODAY_CHECKINS 2
@@ -38,6 +40,8 @@
 @interface FriendsListViewController (Private)
 
 - (void) addAuthToWebRequest:(NSMutableURLRequest*)requestObj email:(NSString*)email password:(NSString*)password;
+- (void) decrementActionCount;
+- (void) closeUpShop;
 
 @end
 
@@ -151,6 +155,21 @@
     }
     [self setAuthenticatedUser:user];
     [signedInUserIcon setImage:[[Utilities sharedInstance] getCachedImage:user.photo] forState:UIControlStateNormal];
+    
+    // shout view stuff
+    facebookButton.enabled = user.facebook != nil;
+    twitterButton.enabled = user.twitter != nil;
+    isFacebookOn = YES;
+    isTwitterOn = YES;
+    isFoursquareOn = YES;
+    // hack
+    if (!user.sendToFacebook) {
+        [self toggleFacebook];
+    }
+    if (!user.sendToTwitter) {
+        [self toggleTwitter];
+    }
+    
     NSLog(@"auth'd user: %@", user);
     [user release];
 }
@@ -442,12 +461,111 @@
 	return headerView;
 }
 
+#pragma mark -
+#pragma mark shout related methods
+
+- (void) shout {
+    [shoutText resignFirstResponder];
+    [self startProgressBar:@"Shouting..."];
+    actionCount = 1 + isTwitterOn + isFacebookOn;
+    
+    [[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:nil
+                                                  andShout:shoutText.text 
+                                                   offGrid:!isFoursquareOn
+                                                 toTwitter:NO
+                                                toFacebook:NO 
+                                                withTarget:self 
+                                                 andAction:@selector(shoutResponseReceived:withResponseString:)];
+    
+    // we send twitter/facebook api calls ourself so that the tweets and posts are stamped with the Kickball brand
+    if (isTwitterOn) {
+        // TODO: check for twitter login
+        [self.twitterEngine sendUpdate:shoutText.text
+                          withLatitude:[[KBLocationManager locationManager] latitude] 
+                         withLongitude:[[KBLocationManager locationManager] longitude]];
+    }
+    
+    if (isFacebookOn) {
+        // TODO: check for facebook login
+        
+        NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:shoutText.text, @"status", nil];
+        [[FBRequest requestWithDelegate:self] call:@"facebook.status.set" params:params dataParam:nil];
+    }
+    
+    [[Beacon shared] startSubBeaconWithName:@"checked in"];
+}
+
+// Twitter response
+- (void) statusRetrieved:(NSNotification *)inNotification {
+    [self decrementActionCount];
+}
+
+// Facebook response
+- (void)request:(FBRequest*)request didLoad:(id)result {
+    if ([request.method isEqualToString:@"facebook.status.set"]) {
+        NSDictionary* info = result;
+        NSLog(@"facebook status updated: %@", info);
+    }
+    [self decrementActionCount];
+}
+
+// 4sq response
+- (void)shoutResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+    //NSLog(@"instring: %@", inString);
+	NSArray *checkins = [FoursquareAPI checkinsFromResponseXML:inString];
+//    if ([checkins count] > 0) {
+//        checkin = [checkins objectAtIndex:0];
+//    }
+    
+    self.shoutToPush = [NSString stringWithString:shoutText.text];
+    [self sendPushNotification];
+    [self decrementActionCount];
+}
+
+- (void) decrementActionCount {
+    actionCount--;
+    if (actionCount == 0) {
+        [self stopProgressBar];
+        [self closeUpShop];
+    }
+}
+
+- (void) closeUpShop {
+    [self stopProgressBar];
+    [self removeShoutView];
+    
+    KBMessage *msg = [[KBMessage alloc] initWithMember:@"Kickball Notification" andMessage:@"Your shout has been sent."];
+    [self displayPopupMessage:msg];
+    [msg release];
+}
+
+#pragma mark -
+#pragma mark textfield delegate methods
+
+- (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
+    [self shout];
+    return YES;
+}
+
 #pragma mark IBAction methods
 
 //- (void) refresh {
 //	[self startProgressBar:@"Retrieving friends' whereabouts..."];
 //	[[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
 //}
+
+- (void) displayShoutView {
+    CGRect frame = shoutView.frame;
+    frame.origin = CGPointMake(0, 47);
+    shoutView.frame = frame;
+    [self.view addSubview:shoutView];
+    [shoutText becomeFirstResponder];
+}
+
+- (void) removeShoutView {
+    [shoutText resignFirstResponder];
+    [shoutView removeFromSuperview];
+}
 
 - (void) flipBetweenMapAndList {
     FriendsMapViewController *mapViewController = [[FriendsMapViewController alloc] initWithNibName:@"FriendsMapView_v2" bundle:nil];
@@ -634,6 +752,42 @@
     [images release];
     splashView.animationDuration = 1.33;
     splashView.animationRepeatCount = 1;
+}
+
+
+- (void) toggleTwitter {
+    if (isTwitterOn) {
+        [twitterButton setImage:[UIImage imageNamed:@"checkinTWT02.png"] forState:UIControlStateNormal];
+        [twitterButton setImage:[UIImage imageNamed:@"checkinTWT01.png"] forState:UIControlStateHighlighted];
+    } else {
+        [twitterButton setImage:[UIImage imageNamed:@"checkinTWT01.png"] forState:UIControlStateNormal];
+        [twitterButton setImage:[UIImage imageNamed:@"checkinTWT02.png"] forState:UIControlStateHighlighted];
+    }
+    isTwitterOn = !isTwitterOn;
+}
+
+- (void) toggleFacebook {
+    if (isFacebookOn) {
+        [facebookButton setImage:[UIImage imageNamed:@"checkinFB02.png"] forState:UIControlStateNormal];
+        [facebookButton setImage:[UIImage imageNamed:@"checkinFB01.png"] forState:UIControlStateHighlighted];
+    } else {
+        [facebookButton setImage:[UIImage imageNamed:@"checkinFB01.png"] forState:UIControlStateNormal];
+        [facebookButton setImage:[UIImage imageNamed:@"checkinFB02.png"] forState:UIControlStateHighlighted];
+    }
+    isFacebookOn = !isFacebookOn;
+}
+
+- (void) toggleFoursquare {
+    if (isFoursquareOn) {
+        // turn 4sq off
+        [foursquareButton setImage:[UIImage imageNamed:@"checkin4SQ02.png"] forState:UIControlStateNormal];
+        [foursquareButton setImage:[UIImage imageNamed:@"checkin4SQ01.png"] forState:UIControlStateHighlighted];
+    } else {
+        // turn 4sq on
+        [foursquareButton setImage:[UIImage imageNamed:@"checkin4SQ01.png"] forState:UIControlStateNormal];
+        [foursquareButton setImage:[UIImage imageNamed:@"checkin4SQ02.png"] forState:UIControlStateHighlighted];
+    }
+    isFoursquareOn = !isFoursquareOn;
 }
 
 #pragma mark 

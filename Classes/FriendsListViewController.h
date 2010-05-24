@@ -10,10 +10,10 @@
 #import "FriendsMapViewController.h"
 #import "LoginViewModalController.h"
 #import "InstructionView.h"
-#import "KBFoursquareViewController.h"
+#import "AbstractPushNotificationViewController.h"
 
 
-@interface FriendsListViewController : KBFoursquareViewController <UITableViewDelegate, UITableViewDataSource> {
+@interface FriendsListViewController : AbstractPushNotificationViewController <UITableViewDelegate, UITableViewDataSource> {
     IBOutlet UIButton *mapButton;
 	NSArray * checkins;
 	NSMutableArray * recentCheckins;
@@ -42,6 +42,17 @@
     
     NSCalendar *gregorian;
 //    UIImageView *mayorImageView;
+    
+    // shout related stuff
+    IBOutlet UIView *shoutView;
+    BOOL isTwitterOn;
+    BOOL isFacebookOn;
+    BOOL isFoursquareOn;
+    IBOutlet UIButton *twitterButton;
+    IBOutlet UIButton *facebookButton;
+    IBOutlet UIButton *foursquareButton;
+    IBOutlet UITextField *shoutText;
+    int actionCount;
 }
 
 @property (nonatomic, retain) NSArray * checkins;
@@ -63,5 +74,11 @@
 - (void) setUserIconViewCustom:(FSUser*)user;
 //- (IBAction) displayTwitterXAuthLogin;
 //- (void) showSplash;
+
+- (IBAction) displayShoutView;
+- (IBAction) removeShoutView;
+- (IBAction) toggleTwitter;
+- (IBAction) toggleFacebook;
+- (IBAction) toggleFoursquare;
 
 @end

@@ -21,7 +21,7 @@
     IBOutlet UITextField *zip;
     IBOutlet UITextField *phone;
     IBOutlet UITextField *twitter;
-    IBOutlet UITextField *placeName;
+    IBOutlet UITextField *country;
     
     IBOutlet UILabel *venueName;
     
@@ -40,6 +40,7 @@
 - (IBAction) cancelEditing;
 - (IBAction) editNextField;
 - (IBAction) editPreviousField;
+- (IBAction) backToAddAVenue;
 - (void) newVenueResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString;
 
 @end

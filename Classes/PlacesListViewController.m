@@ -11,7 +11,7 @@
 #import "PlacesMapViewController.h"
 #import "FoursquareAPI.h"
 #import "FSCheckin.h"
-#import "AddPlaceFormViewController.h"
+#import "AddPlaceViewController.h"
 #import "KBLocationManager.h"
 #import "FriendsListViewController.h"
 #import "PlacesListTableViewCellv2.h"
@@ -148,11 +148,11 @@
 }
 
 - (void) addNewVenue {
-    AddPlaceFormViewController *addPlaceController = [[AddPlaceFormViewController alloc] initWithNibName:@"AddPlaceFormViewController" bundle:nil];
+    AddPlaceViewController *addPlaceController = [[AddPlaceViewController alloc] initWithNibName:@"AddVenueViewController_v2" bundle:nil];
     addPlaceController.newVenueName = searchbox.text;
     [self.navigationController pushViewController:addPlaceController animated:YES];
     [addPlaceController release];
-//    AddPlaceViewController *addPlaceController = [[AddPlaceViewController alloc] initWithNibName:@"AddPlaceViewController" bundle:nil];
+//    AddPlaceViewController *addPlaceController = [[AddPlaceViewController alloc] initWithNibName:@"AddPlaceViewControllerv2" bundle:nil];
 //    [self.navigationController pushViewController:addPlaceController animated:YES];
 //    [addPlaceController release];
 }
@@ -252,11 +252,11 @@
         if (indexPath.section == 0) {
             return 44;
         } else {
-            return 50;
+            return 38;
         }
     } else {
         if (indexPath.section == [venues count]) {
-            return 50;
+            return 38;
         } else {
             return 44;
         }
