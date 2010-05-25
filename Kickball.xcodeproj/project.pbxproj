@@ -98,6 +98,13 @@
 		6A044CAD109545200063FC33 /* FriendsListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A044CAB109545200063FC33 /* FriendsListView.xib */; };
 		6A044CB6109545450063FC33 /* FriendsMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A044CB4109545450063FC33 /* FriendsMapViewController.m */; };
 		6A044CB7109545450063FC33 /* FriendsMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A044CB5109545450063FC33 /* FriendsMapView.xib */; };
+		6A05616B11AB79B9007D461A /* addFriendShell.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A05616411AB79B9007D461A /* addFriendShell.png */; };
+		6A05616C11AB79B9007D461A /* addressBook.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A05616511AB79B9007D461A /* addressBook.png */; };
+		6A05616D11AB79B9007D461A /* fullName.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A05616611AB79B9007D461A /* fullName.png */; };
+		6A05616E11AB79B9007D461A /* iconHolder.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A05616711AB79B9007D461A /* iconHolder.png */; };
+		6A05616F11AB79B9007D461A /* phoneNumber.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A05616811AB79B9007D461A /* phoneNumber.png */; };
+		6A05617011AB79B9007D461A /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A05616911AB79B9007D461A /* plus.png */; };
+		6A05617111AB79B9007D461A /* twitterFriends.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A05616A11AB79B9007D461A /* twitterFriends.png */; };
 		6A06BA66113D8F6300BAB8CF /* FriendSearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A06BA64113D8F6300BAB8CF /* FriendSearchResultsViewController.m */; };
 		6A06BA67113D8F6300BAB8CF /* FriendSearchResultsViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A06BA65113D8F6300BAB8CF /* FriendSearchResultsViewController.xib */; };
 		6A086EA111760DBA00BD6094 /* wood_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A086EA011760DBA00BD6094 /* wood_bg.png */; };
@@ -201,6 +208,8 @@
 		6A1574FE11A70F0D0025D024 /* KBAccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A1574FD11A70F0D0025D024 /* KBAccountManager.m */; };
 		6A16ABDB10CF251800CD5302 /* InstructionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A16ABDA10CF251800CD5302 /* InstructionView.m */; };
 		6A16AC5710CF5A9500CD5302 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A16AC5610CF5A9500CD5302 /* QuartzCore.framework */; };
+		6A1B0DC611AC3A350083BD64 /* AddFriendTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A1B0DC511AC3A350083BD64 /* AddFriendTableCell.m */; };
+		6A1B0E0711AC43650083BD64 /* FriendSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A1B0E0611AC43650083BD64 /* FriendSearchViewController.xib */; };
 		6A1F167F1135F746004C1F7F /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A1F16731135F746004C1F7F /* ASIAuthenticationDialog.m */; };
 		6A1F16801135F746004C1F7F /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A1F16751135F746004C1F7F /* ASIFormDataRequest.m */; };
 		6A1F16811135F746004C1F7F /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A1F16771135F746004C1F7F /* ASIHTTPRequest.m */; };
@@ -815,9 +824,16 @@
 		6A044CB3109545450063FC33 /* FriendsMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsMapViewController.h; sourceTree = "<group>"; };
 		6A044CB4109545450063FC33 /* FriendsMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsMapViewController.m; sourceTree = "<group>"; };
 		6A044CB5109545450063FC33 /* FriendsMapView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FriendsMapView.xib; path = Classes/FriendsMapView.xib; sourceTree = "<group>"; };
+		6A05616411AB79B9007D461A /* addFriendShell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addFriendShell.png; sourceTree = "<group>"; };
+		6A05616511AB79B9007D461A /* addressBook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addressBook.png; sourceTree = "<group>"; };
+		6A05616611AB79B9007D461A /* fullName.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fullName.png; sourceTree = "<group>"; };
+		6A05616711AB79B9007D461A /* iconHolder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconHolder.png; sourceTree = "<group>"; };
+		6A05616811AB79B9007D461A /* phoneNumber.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = phoneNumber.png; sourceTree = "<group>"; };
+		6A05616911AB79B9007D461A /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plus.png; sourceTree = "<group>"; };
+		6A05616A11AB79B9007D461A /* twitterFriends.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitterFriends.png; sourceTree = "<group>"; };
 		6A06BA63113D8F6300BAB8CF /* FriendSearchResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendSearchResultsViewController.h; sourceTree = "<group>"; };
 		6A06BA64113D8F6300BAB8CF /* FriendSearchResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendSearchResultsViewController.m; sourceTree = "<group>"; };
-		6A06BA65113D8F6300BAB8CF /* FriendSearchResultsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendSearchResultsViewController.xib; sourceTree = "<group>"; };
+		6A06BA65113D8F6300BAB8CF /* FriendSearchResultsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FriendSearchResultsViewController.xib; path = Classes/FriendSearchResultsViewController.xib; sourceTree = "<group>"; };
 		6A086EA011760DBA00BD6094 /* wood_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wood_bg.png; sourceTree = "<group>"; };
 		6A086EE811762D9E00BD6094 /* btnIMHERE01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnIMHERE01.png; sourceTree = "<group>"; };
 		6A086EE911762D9E00BD6094 /* btnIMHERE02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnIMHERE02.png; sourceTree = "<group>"; };
@@ -929,6 +945,9 @@
 		6A16ABD910CF251800CD5302 /* InstructionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstructionView.h; sourceTree = "<group>"; };
 		6A16ABDA10CF251800CD5302 /* InstructionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstructionView.m; sourceTree = "<group>"; };
 		6A16AC5610CF5A9500CD5302 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		6A1B0DC411AC3A350083BD64 /* AddFriendTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendTableCell.h; sourceTree = "<group>"; };
+		6A1B0DC511AC3A350083BD64 /* AddFriendTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendTableCell.m; sourceTree = "<group>"; };
+		6A1B0E0611AC43650083BD64 /* FriendSearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FriendSearchViewController.xib; path = Classes/FriendSearchViewController.xib; sourceTree = "<group>"; };
 		6A1F16721135F746004C1F7F /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
 		6A1F16731135F746004C1F7F /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIAuthenticationDialog.m; sourceTree = "<group>"; };
 		6A1F16741135F746004C1F7F /* ASIFormDataRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIFormDataRequest.h; sourceTree = "<group>"; };
@@ -1167,7 +1186,7 @@
 		6A7ED9F610A91DC9002FB1DC /* VenueAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueAnnotation.m; sourceTree = "<group>"; };
 		6A812ED210FF465600BB51A0 /* ViewFriendRequestsTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewFriendRequestsTableCell.h; sourceTree = "<group>"; };
 		6A812ED310FF465600BB51A0 /* ViewFriendRequestsTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewFriendRequestsTableCell.m; sourceTree = "<group>"; };
-		6A812ED510FF467100BB51A0 /* ViewFriendRequestsTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewFriendRequestsTableCell.xib; sourceTree = "<group>"; };
+		6A812ED510FF467100BB51A0 /* ViewFriendRequestsTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ViewFriendRequestsTableCell.xib; path = Classes/ViewFriendRequestsTableCell.xib; sourceTree = "<group>"; };
 		6A86F684116AE008000BF6C6 /* FBConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBConnect.h; path = Classes/FBConnect.h; sourceTree = SOURCE_ROOT; };
 		6A86F685116AE008000BF6C6 /* FBConnectGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBConnectGlobal.h; path = Classes/FBConnectGlobal.h; sourceTree = SOURCE_ROOT; };
 		6A86F686116AE008000BF6C6 /* FBConnectGlobal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FBConnectGlobal.m; path = Classes/FBConnectGlobal.m; sourceTree = SOURCE_ROOT; };
@@ -1190,7 +1209,7 @@
 		6A86F697116AE008000BF6C6 /* FBConnect.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FBConnect.bundle; path = Classes/FBConnect.bundle; sourceTree = SOURCE_ROOT; };
 		6A86F6A7116AF376000BF6C6 /* KBFacebookSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBFacebookSearchViewController.h; sourceTree = "<group>"; };
 		6A86F6A8116AF376000BF6C6 /* KBFacebookSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBFacebookSearchViewController.m; sourceTree = "<group>"; };
-		6A86F6A9116AF376000BF6C6 /* KBFacebookSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KBFacebookSearchViewController.xib; sourceTree = "<group>"; };
+		6A86F6A9116AF376000BF6C6 /* KBFacebookSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KBFacebookSearchViewController.xib; path = Classes/KBFacebookSearchViewController.xib; sourceTree = "<group>"; };
 		6A8AC21411612EE5009082F2 /* PhotoMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoMessageViewController.h; sourceTree = "<group>"; };
 		6A8AC21511612EE5009082F2 /* PhotoMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoMessageViewController.m; sourceTree = "<group>"; };
 		6A8AC21611612EE5009082F2 /* PhotoMessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoMessageViewController.xib; sourceTree = "<group>"; };
@@ -1489,10 +1508,10 @@
 		6AF6ABA71180BB2900704B24 /* KBFacebookLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KBFacebookLoginViewController.xib; path = Classes/KBFacebookLoginViewController.xib; sourceTree = "<group>"; };
 		6AF794AB10CCADFF00E77D49 /* FriendRequestsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendRequestsViewController.h; sourceTree = "<group>"; };
 		6AF794AC10CCADFF00E77D49 /* FriendRequestsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendRequestsViewController.m; sourceTree = "<group>"; };
-		6AF794AD10CCADFF00E77D49 /* FriendRequestsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendRequestsViewController.xib; sourceTree = "<group>"; };
+		6AF794AD10CCADFF00E77D49 /* FriendRequestsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FriendRequestsViewController.xib; path = Classes/FriendRequestsViewController.xib; sourceTree = "<group>"; };
 		6AF794BD10CCAF4B00E77D49 /* ViewFriendRequestsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewFriendRequestsViewController.h; sourceTree = "<group>"; };
 		6AF794BE10CCAF4B00E77D49 /* ViewFriendRequestsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewFriendRequestsViewController.m; sourceTree = "<group>"; };
-		6AF794BF10CCAF4B00E77D49 /* ViewFriendRequestsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewFriendRequestsViewController.xib; sourceTree = "<group>"; };
+		6AF794BF10CCAF4B00E77D49 /* ViewFriendRequestsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ViewFriendRequestsViewController.xib; path = Classes/ViewFriendRequestsViewController.xib; sourceTree = "<group>"; };
 		6AF96710109AA32700EF665D /* ProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfileView.xib; path = Classes/ProfileView.xib; sourceTree = "<group>"; };
 		6AFC1D9510BA42A9006B7E5F /* ProgressView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProgressView.xib; sourceTree = "<group>"; };
 		6AFC1D9810BA4320006B7E5F /* ProgressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressViewController.h; sourceTree = "<group>"; };
@@ -1673,6 +1692,7 @@
 				6A0B41E011AAF09A00FB9A6D /* AddVenueViewController_v2.xib */,
 				6A921D891187A4F700866C59 /* ShoutViewController.xib */,
 				6A03D9091191E33C00FF036C /* CheckinModalView.xib */,
+				6A05617211AB7A22007D461A /* add a friend */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1943,6 +1963,33 @@
 				6AFC882B1141D82B00B171C9 /* FriendsListTableCellv2.m */,
 			);
 			name = Friends;
+			sourceTree = "<group>";
+		};
+		6A05616211AB7998007D461A /* add a friend */ = {
+			isa = PBXGroup;
+			children = (
+				6A05616411AB79B9007D461A /* addFriendShell.png */,
+				6A05616511AB79B9007D461A /* addressBook.png */,
+				6A05616611AB79B9007D461A /* fullName.png */,
+				6A05616711AB79B9007D461A /* iconHolder.png */,
+				6A05616811AB79B9007D461A /* phoneNumber.png */,
+				6A05616911AB79B9007D461A /* plus.png */,
+				6A05616A11AB79B9007D461A /* twitterFriends.png */,
+			);
+			name = "add a friend";
+			sourceTree = "<group>";
+		};
+		6A05617211AB7A22007D461A /* add a friend */ = {
+			isa = PBXGroup;
+			children = (
+				6AF794AD10CCADFF00E77D49 /* FriendRequestsViewController.xib */,
+				6AF794BF10CCAF4B00E77D49 /* ViewFriendRequestsViewController.xib */,
+				6A812ED510FF467100BB51A0 /* ViewFriendRequestsTableCell.xib */,
+				6A06BA65113D8F6300BAB8CF /* FriendSearchResultsViewController.xib */,
+				6A86F6A9116AF376000BF6C6 /* KBFacebookSearchViewController.xib */,
+				6A1B0E0611AC43650083BD64 /* FriendSearchViewController.xib */,
+			);
+			name = "add a friend";
 			sourceTree = "<group>";
 		};
 		6A086EEE11762DAA00BD6094 /* twitter */ = {
@@ -2649,6 +2696,7 @@
 		6AC28E9C1173D91B00518E37 /* v1.1 */ = {
 			isa = PBXGroup;
 			children = (
+				6A05616211AB7998007D461A /* add a friend */,
 				6A0B430D11AB45BB00FB9A6D /* retweet_small.png */,
 				6A0B41E911AB027E00FB9A6D /* place list */,
 				6A0B41BF11AAEEDF00FB9A6D /* add a place */,
@@ -2986,19 +3034,16 @@
 			children = (
 				6AF794AB10CCADFF00E77D49 /* FriendRequestsViewController.h */,
 				6AF794AC10CCADFF00E77D49 /* FriendRequestsViewController.m */,
-				6AF794AD10CCADFF00E77D49 /* FriendRequestsViewController.xib */,
 				6AF794BD10CCAF4B00E77D49 /* ViewFriendRequestsViewController.h */,
 				6AF794BE10CCAF4B00E77D49 /* ViewFriendRequestsViewController.m */,
-				6AF794BF10CCAF4B00E77D49 /* ViewFriendRequestsViewController.xib */,
 				6A812ED210FF465600BB51A0 /* ViewFriendRequestsTableCell.h */,
 				6A812ED310FF465600BB51A0 /* ViewFriendRequestsTableCell.m */,
-				6A812ED510FF467100BB51A0 /* ViewFriendRequestsTableCell.xib */,
 				6A06BA63113D8F6300BAB8CF /* FriendSearchResultsViewController.h */,
 				6A06BA64113D8F6300BAB8CF /* FriendSearchResultsViewController.m */,
-				6A06BA65113D8F6300BAB8CF /* FriendSearchResultsViewController.xib */,
 				6A86F6A7116AF376000BF6C6 /* KBFacebookSearchViewController.h */,
 				6A86F6A8116AF376000BF6C6 /* KBFacebookSearchViewController.m */,
-				6A86F6A9116AF376000BF6C6 /* KBFacebookSearchViewController.xib */,
+				6A1B0DC411AC3A350083BD64 /* AddFriendTableCell.h */,
+				6A1B0DC511AC3A350083BD64 /* AddFriendTableCell.m */,
 			);
 			name = Requests;
 			sourceTree = "<group>";
@@ -3428,6 +3473,14 @@
 				6A0B41F711AB029000FB9A6D /* specialCorner.png in Resources */,
 				6A0B422A11AB1E4D00FB9A6D /* AddPlaceCategoryViewController.xib in Resources */,
 				6A0B430E11AB45BB00FB9A6D /* retweet_small.png in Resources */,
+				6A05616B11AB79B9007D461A /* addFriendShell.png in Resources */,
+				6A05616C11AB79B9007D461A /* addressBook.png in Resources */,
+				6A05616D11AB79B9007D461A /* fullName.png in Resources */,
+				6A05616E11AB79B9007D461A /* iconHolder.png in Resources */,
+				6A05616F11AB79B9007D461A /* phoneNumber.png in Resources */,
+				6A05617011AB79B9007D461A /* plus.png in Resources */,
+				6A05617111AB79B9007D461A /* twitterFriends.png in Resources */,
+				6A1B0E0711AC43650083BD64 /* FriendSearchViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3699,6 +3752,7 @@
 				6A4C180111A90BBE006BBC61 /* FeedbackViewController.m in Sources */,
 				6A0B422911AB1E4D00FB9A6D /* AddPlaceCategoryViewController.m in Sources */,
 				6A0B42F211AB431300FB9A6D /* KBTwitterRecentTweetsTableCell.m in Sources */,
+				6A1B0DC611AC3A350083BD64 /* AddFriendTableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

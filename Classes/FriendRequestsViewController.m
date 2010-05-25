@@ -20,12 +20,6 @@
     self.hideFooter = YES;
     [super viewDidLoad];
     [[Beacon shared] startSubBeaconWithName:@"Search for Friends View"];
-    toolbar.frame = CGRectMake(0, 436, 320, 44);
-    [self.view addSubview:toolbar];
-    toolbar.hidden = YES;
-    
-    space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:
-                         UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -40,61 +34,13 @@
 	// e.g. self.myOutlet = nil;
 }
 
-
-#pragma mark Table view methods
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-
-// Customize the number of rows in the table view.
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
-}
-
-
-// Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
-    
-    // Set up the cell...
-    switch (indexPath.section) {
-        case 0:
-            cell.textLabel.text = ((FSUser*)[friendRequests objectAtIndex:indexPath.row]).firstnameLastInitial;
-            
-            UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
-            [btn setImage:[UIImage imageNamed:@"add01.png"] forState:UIControlStateNormal];
-            [btn setImage:[UIImage imageNamed:@"add02.png"] forState:UIControlStateHighlighted];
-            [btn setImage:[UIImage imageNamed:@"checkButton.png"] forState:UIControlStateDisabled];
-            btn.frame = CGRectMake(-2, 3, 50, 47);
-            btn.userInteractionEnabled = YES;
-            btn.tag = indexPath.row;
-            [btn addTarget:self action:@selector(didTapFriendizeButton:withEvent:) forControlEvents:UIControlEventTouchUpInside];
-            cell.accessoryView = btn;
-            
-            break;
-        default:
-            break;
-    }
-	
-    return cell;
-}
-
 - (void) didTapFriendizeButton: (UIControl *) button withEvent: (UIEvent *) event {
     NSLog(@"friendize button tapped: %d", button.tag);
-    [self startProgressBar:@"Sending friend request..."];
-    [[FoursquareAPI sharedInstance] doSendFriendRequest:((FSUser*)[friendRequests objectAtIndex:button.tag]).userId withTarget:self andAction:@selector(friendRequestResponseReceived:withResponseString:)];
-    [[Beacon shared] startSubBeaconWithName:@"Friend Someone"];
-    button.enabled = NO;
-    button.alpha = 0.5;
+//    [self startProgressBar:@"Sending friend request..."];
+//    [[FoursquareAPI sharedInstance] doSendFriendRequest:((FSUser*)[friendRequests objectAtIndex:button.tag]).userId withTarget:self andAction:@selector(friendRequestResponseReceived:withResponseString:)];
+//    [[Beacon shared] startSubBeaconWithName:@"Friend Someone"];
+//    button.enabled = NO;
+//    button.alpha = 0.5;
 }
 
 
@@ -108,79 +54,11 @@
     [message release];
 }
 
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
-	// [self.navigationController pushViewController:anotherViewController];
-	// [anotherViewController release];
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-	// create the parent view that will hold header Label
-	UIView* customView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 24.0)] autorelease];
-    customView.backgroundColor = [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:1.0];
-	
-	// create the button object
-	UILabel * headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-	headerLabel.backgroundColor = [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:1.0];
-	headerLabel.opaque = NO;
-	headerLabel.textColor = [UIColor grayColor];
-	headerLabel.highlightedTextColor = [UIColor grayColor];
-	headerLabel.font = [UIFont boldSystemFontOfSize:12];
-	headerLabel.frame = CGRectMake(10.0, 0.0, 320.0, 24.0);
-    
-    switch (section) {
-        case 0:
-            if ([friendRequests count] > 0) {
-                headerLabel.text = [NSString stringWithFormat:@"%d friend(s) found. Don't add any baddies.", [friendRequests count]];
-            } else {
-                [headerLabel release];
-                return nil;
-            }
-            break;
-        case 1:
-            headerLabel.text = @"From Your Address Book";
-            break;
-        case 2:
-            headerLabel.text = @"From Twitter";
-            break;
-        case 3:
-            headerLabel.text = @"By Name";
-            break;
-        case 4:
-            headerLabel.text = @"By Phone Number";
-            break;
-        default:
-            headerLabel.text = @"You shouldn't see this";
-            break;
-    }
-	[customView addSubview:headerLabel];
-    [headerLabel release];
-	return customView;
-}
-
-- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-	return 24.0;
-}
-
 - (void)dealloc {
-    [theTableView release];
-    
     [addressBookSearchButton release];
     [twitterSearchButton release];
     [nameSearchButton release];
     [phoneSearchButton release];
-    
-    [twitterText release];
-    [nameText release];
-    [phoneText release];
-    
-    [friendRequests release];
-    [toolbar release];
-    [doneButton release];
-    [cancelEditButton release];
-    [space release];
     
     [super dealloc];
 }
@@ -190,66 +68,49 @@
 
 
 - (void) searchByName {
-    if (![nameText.text isEqualToString:@""]) {
-        [self startProgressBar:@"Searching..."];
-        [[FoursquareAPI sharedInstance] findFriendsByName:nameText.text withTarget:self andAction:@selector(searchResponseReceived:withResponseString:)];
-        [[Beacon shared] startSubBeaconWithName:@"Searching For Friend By Name"];
-    } else {
-        KBMessage *message = [[KBMessage alloc] initWithMember:@"Search Error" andMessage:@"Missing value. Please fill in the name field"];
-        [self displayPopupMessage:message];
-        [message release];
-    }
+    FriendSearchResultsViewController *vc = [[FriendSearchResultsViewController alloc] initWithNibName:@"FriendSearchViewController" bundle:nil];
+    vc.searchType = KBFriendSearchByName;
+    [self.navigationController pushViewController:vc animated:YES];
+    [vc release];
 }
 
 - (void) searchByTwitter {
-    [self resignAllResponders];
-    if (![twitterText.text isEqualToString:@""]) {
-        [self startProgressBar:@"Searching..."];
-        [[FoursquareAPI sharedInstance] findFriendsByTwitterName:twitterText.text withTarget:self andAction:@selector(searchResponseReceived:withResponseString:)];
-        [[Beacon shared] startSubBeaconWithName:@"Searching For Friend By Twitter"];
-    } else {
-        KBMessage *message = [[KBMessage alloc] initWithMember:@"Search Error" andMessage:@"Please fill in the twitter field"];
-        [self displayPopupMessage:message];
-        [message release];
-    }
-    
+    FriendSearchResultsViewController *vc = [[FriendSearchResultsViewController alloc] initWithNibName:@"FriendSearchViewController" bundle:nil];
+    vc.searchType = KBFriendSearchByTwitter;
+    [self.navigationController pushViewController:vc animated:YES];
+    [vc release];
 }
 
 - (void) searchByPhone {
-    [self resignAllResponders];
-    if (![phoneText.text isEqualToString:@""]) {
-        [self startProgressBar:@"Searching..."];
-        [[FoursquareAPI sharedInstance] findFriendsByPhone:phoneText.text withTarget:self andAction:@selector(searchResponseReceived:withResponseString:)];
-        [[Beacon shared] startSubBeaconWithName:@"Searching For Friend By Phone"];
-    } else {
-        KBMessage *message = [[KBMessage alloc] initWithMember:@"Search Error" andMessage:@"Please fill in the phone field"];
-        [self displayPopupMessage:message];
-        [message release];
-    }
-    
+    FriendSearchResultsViewController *vc = [[FriendSearchResultsViewController alloc] initWithNibName:@"FriendSearchViewController" bundle:nil];
+    vc.searchType = KBFriendSearchByPhone;
+    [self.navigationController pushViewController:vc animated:YES];
+    [vc release];
 }
 
 - (void) searchAddressBook {
-    [self startProgressBar:@"Searching address book..."];
-    [self resignAllResponders];
-    ABAddressBookRef addressBook = ABAddressBookCreate();
-    NSArray *people = (NSArray*)ABAddressBookCopyArrayOfAllPeople(addressBook);
-    NSMutableArray *phones = [[NSMutableArray alloc] initWithCapacity:1];
-    for (int i = 0; i<[people count]; i++) {
-        ABRecordRef person = [people objectAtIndex:i];
-        if (ABMultiValueGetCount(ABRecordCopyValue(person,kABPersonPhoneProperty)) > 0) {
-            NSString *phone = (NSString *)ABMultiValueCopyValueAtIndex(ABRecordCopyValue(person,kABPersonPhoneProperty) ,0);
-            if (phone != nil && ![phone isEqualToString:@""]) {
-                [phones addObject:phone];
-            }
-            [phone release];
-        }
-    }
-    NSLog(@"phones: %@", phones);
-    [[FoursquareAPI sharedInstance] findFriendsByPhone:[phones componentsJoinedByString:@","] withTarget:self andAction:@selector(searchResponseReceived:withResponseString:)];
-    [[Beacon shared] startSubBeaconWithName:@"Scanning Address Book"];
-    [phones release];
-    [people release];
+    FriendSearchResultsViewController *vc = [[FriendSearchResultsViewController alloc] initWithNibName:@"FriendSearchResultsViewController" bundle:nil];
+    vc.searchType = KBFriendSearchByAddressBook;
+    [self.navigationController pushViewController:vc animated:YES];
+    [vc release];
+//    ABAddressBookRef addressBook = ABAddressBookCreate();
+//    NSArray *people = (NSArray*)ABAddressBookCopyArrayOfAllPeople(addressBook);
+//    NSMutableArray *phones = [[NSMutableArray alloc] initWithCapacity:1];
+//    for (int i = 0; i<[people count]; i++) {
+//        ABRecordRef person = [people objectAtIndex:i];
+//        if (ABMultiValueGetCount(ABRecordCopyValue(person,kABPersonPhoneProperty)) > 0) {
+//            NSString *phone = (NSString *)ABMultiValueCopyValueAtIndex(ABRecordCopyValue(person,kABPersonPhoneProperty) ,0);
+//            if (phone != nil && ![phone isEqualToString:@""]) {
+//                [phones addObject:phone];
+//            }
+//            [phone release];
+//        }
+//    }
+//    NSLog(@"phones: %@", phones);
+//    [[FoursquareAPI sharedInstance] findFriendsByPhone:[phones componentsJoinedByString:@","] withTarget:self andAction:@selector(searchResponseReceived:withResponseString:)];
+//    [[Beacon shared] startSubBeaconWithName:@"Scanning Address Book"];
+//    [phones release];
+//    [people release];
     //[addressBook release];
 }
 
@@ -258,126 +119,6 @@
     [self stopProgressBar];
     [self.navigationController pushViewController:vc animated:YES];
     //[vc release];
-}
-
-- (void) resignAllResponders {
-    [twitterText resignFirstResponder];
-    [phoneText resignFirstResponder];
-    [nameText resignFirstResponder];
-    
-    [self.view addSubview:toolbar];
-    [self animateToolbar:CGRectMake(0, 480, 320, 44)];
-}
-
-- (void)searchResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    NSLog(@"search response: %@", inString);
-    
-    FriendSearchResultsViewController *vc = [[FriendSearchResultsViewController alloc] initWithNibName:@"FriendSearchResultsViewController" bundle:nil];
-    vc.searchResults = [[FoursquareAPI usersFromResponseXML:inString] retain];
-    [self stopProgressBar];
-    [self.navigationController pushViewController:vc animated:YES];
-    [vc release];
-}
-
-#pragma mark
-#pragma mark UITextFieldDelegate methods
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-    CGRect textFieldRect = [self.view.window convertRect:textField.bounds fromView:textField];
-    CGRect viewRect = [self.view.window convertRect:self.view.bounds fromView:self.view];
-    CGFloat midline = textFieldRect.origin.y + 0.5 * textFieldRect.size.height;
-    CGFloat numerator = midline - viewRect.origin.y - MINIMUM_SCROLL_FRACTION * viewRect.size.height;
-    CGFloat denominator = (MAXIMUM_SCROLL_FRACTION - MINIMUM_SCROLL_FRACTION) * viewRect.size.height;
-    CGFloat heightFraction = numerator / denominator;
-    if (heightFraction < 0.0) {
-        heightFraction = 0.0;
-    } else if (heightFraction > 1.0) {
-        heightFraction = 1.0;
-    }
-    UIInterfaceOrientation orientation =
-    [[UIApplication sharedApplication] statusBarOrientation];
-    if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown) {
-        animatedDistance = floor(PORTRAIT_KEYBOARD_HEIGHT * heightFraction);
-    } else {
-        animatedDistance = floor(LANDSCAPE_KEYBOARD_HEIGHT * heightFraction);
-    }
-    CGRect viewFrame = self.view.frame;
-    viewFrame.origin.y -= animatedDistance;
-    
-    toolbar.hidden = NO;
-    CGRect toolbarFrame = toolbar.frame;
-    
-    if (textField == twitterText) {
-        toolbar.items = [NSArray arrayWithObjects:space, cancelEditButton, nil];
-        toolbarFrame.origin.y = 244;
-    } else if (textField == phoneText) {
-        toolbar.items = [NSArray arrayWithObjects:space, cancelEditButton, doneButton, nil];
-        toolbarFrame.origin.y = 289;
-    } else if (textField == nameText) {
-        toolbar.items = [NSArray arrayWithObjects:space, cancelEditButton, nil];
-        toolbarFrame.origin.y = 335;
-    }
-    
-    [self.view addSubview:toolbar];
-    
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
-    
-    [self.view setFrame:viewFrame];
-    [toolbar setFrame:toolbarFrame];
-    
-    [UIView commitAnimations];
-}
-
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-    CGRect viewFrame = self.view.frame;
-    viewFrame.origin.y += animatedDistance;
-    
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
-    
-    [self.view setFrame:viewFrame];
-    
-    [UIView commitAnimations];
-}
-
-- (void) cancelEdit {
-    [self resignAllResponders];
-}
-
-- (void) animateToolbar:(CGRect)toolbarFrame {
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
-    
-    [toolbar setFrame:toolbarFrame];
-    
-    [UIView commitAnimations];
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [textField resignFirstResponder];
-    if (textField == twitterText) {
-        [self searchByTwitter];
-    } else if (textField == phoneText) {
-        [self searchByPhone];
-    } else if (textField == nameText) {
-        [self searchByName];
-    }
-    return YES;
-}
-
-- (void) doneEditing {
-    if ([twitterText isFirstResponder]) {
-        [self searchByTwitter];
-    } else if ([phoneText isFirstResponder]) {
-        [self searchByPhone];
-    } else if ([nameText isFirstResponder]) {
-        [self searchByName];
-    }
-    [self resignAllResponders];
 }
 
 @end

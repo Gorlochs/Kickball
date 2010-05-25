@@ -7,25 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <AddressBook/AddressBook.h>
 #import "KBBaseViewController.h"
 
-@interface FriendRequestsViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
+@interface FriendRequestsViewController : KBBaseViewController {
     IBOutlet UIButton *addressBookSearchButton;
     IBOutlet UIButton *twitterSearchButton;
     IBOutlet UIButton *nameSearchButton;
     IBOutlet UIButton *phoneSearchButton;
-    
-    IBOutlet UITextField *twitterText;
-    IBOutlet UITextField *nameText;
-    IBOutlet UITextField *phoneText;
-    
-    NSArray *friendRequests;
-    CGFloat animatedDistance;
-    IBOutlet UIToolbar *toolbar;
-    IBOutlet UIBarButtonItem *doneButton;
-    IBOutlet UIBarButtonItem *cancelEditButton;
-    UIBarItem *space;
 }
 
 - (IBAction) searchAddressBook;
@@ -34,9 +22,5 @@
 - (IBAction) searchByPhone;
 - (IBAction) searchFacebook;
 - (void) didTapFriendizeButton: (UIControl *) button withEvent: (UIEvent *) event;
-- (void) resignAllResponders;
-- (void) animateToolbar:(CGRect)toolbarFrame;
-- (IBAction) cancelEdit;
-- (IBAction) doneEditing;
 
 @end

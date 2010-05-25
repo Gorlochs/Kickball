@@ -7,13 +7,27 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AddressBook/AddressBook.h>
 #import "KBBaseViewController.h"
 
+typedef enum {
+	KBFriendSearchByName = 0,
+	KBFriendSearchByPhone = 1,
+	KBFriendSearchByTwitter = 2,
+	KBFriendSearchByAddressBook = 3
+} KBFriendSearchType;
 
-@interface FriendSearchResultsViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource> {
+@interface FriendSearchResultsViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
+    KBFriendSearchType searchType;
+    IBOutlet UITextField *searchBar;
+    IBOutlet UIImageView *titleImage;
+    
     NSArray *searchResults;
 }
 
-@property (nonatomic, retain) NSArray *searchResults;
+@property (nonatomic) KBFriendSearchType searchType;;
+
+- (IBAction) back;
+
 
 @end
