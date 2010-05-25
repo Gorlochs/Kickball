@@ -24,6 +24,7 @@
 - (void)viewDidLoad {
     self.hideHeader = YES;
     self.hideFooter = YES;
+    self.hideRefresh = YES;
     [super viewDidLoad];
     
     FBLoginButton* button = [[[FBLoginButton alloc] init] autorelease];

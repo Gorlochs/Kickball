@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "KBBaseViewController.h"
+#import "AbstractFacebookViewController.h"
 
-@interface FriendRequestsViewController : KBBaseViewController {
+@interface FriendRequestsViewController : AbstractFacebookViewController {
     IBOutlet UIButton *addressBookSearchButton;
     IBOutlet UIButton *twitterSearchButton;
     IBOutlet UIButton *nameSearchButton;
     IBOutlet UIButton *phoneSearchButton;
+    IBOutlet UIButton *facebookSearchButton;
 }
 
 - (IBAction) searchAddressBook;

@@ -10,6 +10,7 @@
 #import "FoursquareAPI.h"
 #import "FriendSearchResultsViewController.h"
 #import "KBFacebookSearchViewController.h"
+#import "KBAccountManager.h"
 
 
 @implementation FriendRequestsViewController
@@ -20,6 +21,10 @@
     self.hideFooter = YES;
     [super viewDidLoad];
     [[Beacon shared] startSubBeaconWithName:@"Search for Friends View"];
+    
+    if (![[KBAccountManager sharedInstance] usesFacebook]) {
+        facebookSearchButton.enabled = NO;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -59,6 +64,7 @@
     [twitterSearchButton release];
     [nameSearchButton release];
     [phoneSearchButton release];
+    [facebookSearchButton release];
     
     [super dealloc];
 }
