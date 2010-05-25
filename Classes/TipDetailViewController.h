@@ -26,5 +26,6 @@
 
 - (IBAction) markTipAsTodoForUser;
 - (IBAction) markTipAsDoneForUser;
+- (IBAction) removeView;
 
 @end

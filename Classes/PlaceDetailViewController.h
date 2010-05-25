@@ -15,6 +15,7 @@
 #import "KBPhotoThumbnailCell.h"
 #import "PhotoMessageViewController.h"
 #import "KBPhotoManager.h"
+#import "TipDetailViewController.h"
 
 
 @interface PlaceDetailViewController : AbstractPushNotificationViewController <PhotoManagerDelegate, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate, GAConnectionDelegate, UIActionSheetDelegate> {
@@ -75,6 +76,8 @@
     IBOutlet UILabel *specialAddress;
     IBOutlet UILabel *specialText;
     IBOutlet UIButton *specialClose;
+    
+    TipDetailViewController *tipController;
 }
 
 @property (nonatomic, retain) UITableViewCell *mayorMapCell;
@@ -89,7 +92,7 @@
 - (IBAction) callVenue;
 - (IBAction) uploadImageToServer;
 - (IBAction) showTwitterFeed;
-//- (IBAction) checkinToVenue;
+- (IBAction) checkinToVenue;
 - (IBAction) togglePingsAndTwitter;
 - (IBAction) doGeoAPICall;
 - (IBAction) showSpecial;

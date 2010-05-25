@@ -10,10 +10,12 @@
 #import "Three20/Three20.h"
 #import "KBFoursquareViewController.h"
 #import "FSVenue.h"
+#import "TipDetailViewController.h"
 
 
 @interface TipListViewController : KBFoursquareViewController {
     FSVenue *venue;
+    TipDetailViewController *tipController;
 }
 
 @property (nonatomic, retain) FSVenue *venue;

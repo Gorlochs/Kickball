@@ -17,8 +17,8 @@
     [super viewDidLoad];
     tipTodoText.font = [UIFont systemFontOfSize:12.0];
     [tipTodoText becomeFirstResponder];
-    venueName.text = venue.name;
-    venueAddress.text = venue.addressWithCrossstreet;
+//    venueName.text = venue.name;
+//    venueAddress.text = venue.addressWithCrossstreet;
     [[Beacon shared] startSubBeaconWithName:@"Create Tip or Todo"];
 }
 
@@ -39,8 +39,8 @@
     [tipTodoSwitch release];
     [tipId release];
     [venue release];
-    [venueName release];
-    [venueAddress release];
+//    [venueName release];
+//    [venueAddress release];
     [super dealloc];
 }
 
@@ -48,9 +48,19 @@
 #pragma mark UITextViewDelegate methods
 
 - (void)textViewDidChange:(UITextView *)textView {
-    if ([textView.text length] > 140) {
-        textView.text = [textView.text substringToIndex:139];
+    if ([textView.text length] > 100) {
+        textView.text = [textView.text substringToIndex:99];
     }
+    characterCount.text = [NSString stringWithFormat:@"%d/100", [textView.text length]];
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        [self submitTipOrTodoToFoursquare];
+        return NO;
+    }
+    return YES;
 }
 
 - (void)tipTodoResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {

@@ -34,12 +34,6 @@
         [self.view addSubview:headerView];
     }
     
-//    CGRect frame = homeBackView.frame;
-//    frame.origin = CGPointMake(0, 0);
-//    homeBackView.frame = CGRectMake(0, 0, homeBackView.frame.size.width, homeBackView.frame.size.height);
-//    [self.view addSubview:homeBackView];
-//    homeBackView.hidden = YES;
-    
     if (pageType == KBPageTypePlaces) {
         [friendButton setImage:[UIImage imageNamed:@"friendsTab03.png"] forState:UIControlStateNormal];
         [placesButton setImage:[UIImage imageNamed:@"placesTab01.png"] forState:UIControlStateNormal];

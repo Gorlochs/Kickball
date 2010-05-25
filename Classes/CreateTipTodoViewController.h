@@ -16,8 +16,9 @@
     IBOutlet UITextView *tipTodoText;
     NSString *tipId;
     FSVenue *venue;
-    IBOutlet UILabel *venueName;
-    IBOutlet UILabel *venueAddress;
+    IBOutlet UILabel *characterCount;
+//    IBOutlet UILabel *venueName;
+//    IBOutlet UILabel *venueAddress;
 }
 
 @property (nonatomic, retain) FSVenue *venue;

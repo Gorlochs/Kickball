@@ -7,7 +7,6 @@
 //
 
 #import "TipListViewController.h"
-#import "TipDetailViewController.h"
 #import "FSTip.h"
 
 @implementation TipListViewController
@@ -20,6 +19,8 @@
 
 - (void)viewDidLoad {
     self.hideFooter = YES;
+    self.hideRefresh = YES;
+    pageType = KBPageTypeOther;
     [super viewDidLoad];
 }
 
@@ -80,11 +81,18 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     FSTip *tip = ((FSTip*)[venue.tips objectAtIndex:indexPath.row]);
-    TipDetailViewController *tipController = [[TipDetailViewController alloc] initWithNibName:@"TipView" bundle:nil];
+    tipController = [[TipDetailViewController alloc] initWithNibName:@"TipView" bundle:nil];
     tipController.tip = tip;
     tipController.venue = venue;
-    [self.navigationController pushViewController:tipController animated:YES];
-    [tipController release];
+    
+    tipController.view.alpha = 0;
+    
+    [self.view addSubview:tipController.view];
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:0.7];
+    tipController.view.alpha = 1.0;        
+    [UIView commitAnimations];
 }
 
 
@@ -106,6 +114,7 @@
 
 - (void)dealloc {
     [venue release];
+    [tipController release];
     [super dealloc];
 }
 

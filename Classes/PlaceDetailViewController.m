@@ -17,7 +17,6 @@
 #import "GeoApiTableViewController.h"
 #import "GeoApiDetailsViewController.h"
 #import "GAPlace.h"
-#import "TipDetailViewController.h"
 #import "FSTip.h"
 #import "Utilities.h"
 #import "FSBadge.h"
@@ -223,7 +222,6 @@
     [photoController release];
 }
 
-
 - (void) displayTodoTipMessage:(NSNotification *)inNotification {
     KBMessage *msg = [[KBMessage alloc] initWithMember:@"Kickball Notification" andMessage:@"Your todo/tip was sent"];
     [self displayPopupMessage:msg];
@@ -255,6 +253,52 @@
     }
 }
 
+// TODO: this is repetetive code. It needs to be centralized
+- (void) checkinToVenue {
+    [self startProgressBar:@"Checking in to this venue..."];
+    [[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:venue.venueid 
+                                                  andShout:nil 
+                                                   offGrid:doCheckin ? NO : !isPingOn
+                                                 toTwitter:isTwitterOn
+                                                toFacebook:isPingOn ? isFacebookOn : NO
+                                                withTarget:self 
+                                                 andAction:@selector(checkinResponseReceived:withResponseString:)];
+    [[Beacon shared] startSubBeaconWithName:@"Check in to Venue"];
+}
+
+- (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+    NSString *errorMessage = [FoursquareAPI errorFromResponseXML:inString];
+    [self stopProgressBar];
+    if (errorMessage) {
+        [self displayFoursquareErrorMessage:errorMessage];
+    } else {
+        NSLog(@"instring: %@", inString);
+        self.checkin = [FoursquareAPI checkinFromResponseXML:inString];
+        NSLog(@"checkin: %@", checkin);
+        isUserCheckedIn = YES;
+        [theTableView reloadData];
+        FSCheckin *ci = [self getSingleCheckin];
+        [[KBStats stats] checkinStat:ci];
+        if (ci.specials != nil) {
+            specialsButton.hidden = NO;
+        }
+        
+        NSMutableString *checkinText = [[NSMutableString alloc] initWithCapacity:1];
+        for (FSScore *score in ci.scoring.scores) {
+            [checkinText appendFormat:[NSString stringWithFormat:@"%@ \n\n+%d %@ \n", ci.message, score.points, score.message]];
+        }
+        NSLog(@"checkin text: %@", checkinText);
+        KBMessage *message = [[KBMessage alloc] initWithMember:@"Check-in successful" andMessage:checkinText];
+        [self displayPopupMessage:message];
+        [checkinText release];
+        [message release];
+        
+        self.venueToPush = ci.venue;
+        if (isPingOn) {
+            [self sendPushNotification];
+        }
+    }
+}
 
 - (void) prepViewWithVenueInfo:(FSVenue*)venueToDisplay {
     MKCoordinateRegion region;
@@ -523,22 +567,28 @@
         case 4:
             return nil;
             break;
-        case 5:  
-            if ([venue.tips count] == 0) {
-                return nil;
-            } else {
-                headerView.leftHeaderLabel.text = [NSString stringWithFormat:@"%d %@", [venue.tips count], [venue.tips count] == 1 ? @"Tip" : @"Tips"];
-                
-                if ([venue.tips count] > 4) {
-                    UIButton *myDetailButton = [UIButton buttonWithType:UIButtonTypeCustom];
-                    myDetailButton.frame = CGRectMake(210, 0, 92, 39);
-                    myDetailButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-                    myDetailButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-                    [myDetailButton setImage:[UIImage imageNamed:@"profileSeeAllTips01.png"] forState:UIControlStateNormal];
-                    [myDetailButton setImage:[UIImage imageNamed:@"profileSeeAllTips02.png"] forState:UIControlStateHighlighted];
-                    [myDetailButton addTarget:self action:@selector(displayAllTips:) forControlEvents:UIControlEventTouchUpInside]; 
-                    [headerView addSubview:myDetailButton];
-                }
+        case 5:
+            if (YES) { // odd bug. you can't instantiate a new object as the first line in a case statement
+                UIButton *addTipButton = [UIButton buttonWithType:UIButtonTypeCustom];
+                addTipButton.frame = CGRectMake(130, 0, 92, 39);
+                addTipButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+                addTipButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+                [addTipButton setImage:[UIImage imageNamed:@"profileSeeAllTips01.png"] forState:UIControlStateNormal];
+                [addTipButton setImage:[UIImage imageNamed:@"profileSeeAllTips02.png"] forState:UIControlStateHighlighted];
+                [addTipButton addTarget:self action:@selector(addTipTodo) forControlEvents:UIControlEventTouchUpInside]; 
+                [headerView addSubview:addTipButton];
+            }
+            headerView.leftHeaderLabel.text = [NSString stringWithFormat:@"%d %@", [venue.tips count], [venue.tips count] == 1 ? @"Tip" : @"Tips"];
+            
+            if ([venue.tips count] > 4) {
+                UIButton *myDetailButton = [UIButton buttonWithType:UIButtonTypeCustom];
+                myDetailButton.frame = CGRectMake(210, 0, 92, 39);
+                myDetailButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+                myDetailButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+                [myDetailButton setImage:[UIImage imageNamed:@"profileSeeAllTips01.png"] forState:UIControlStateNormal];
+                [myDetailButton setImage:[UIImage imageNamed:@"profileSeeAllTips02.png"] forState:UIControlStateHighlighted];
+                [myDetailButton addTarget:self action:@selector(displayAllTips:) forControlEvents:UIControlEventTouchUpInside]; 
+                [headerView addSubview:myDetailButton];
             }
             break;
         default:
@@ -570,11 +620,18 @@
         [self pushProfileDetailController:tmpCheckin.user.userId];
     } else if (indexPath.section == 5) {
         FSTip *tip = ((FSTip*)[venue.tips objectAtIndex:indexPath.row]);
-        TipDetailViewController *tipController = [[TipDetailViewController alloc] initWithNibName:@"TipView" bundle:nil];
+        tipController = [[TipDetailViewController alloc] initWithNibName:@"TipView" bundle:nil];
         tipController.tip = tip;
         tipController.venue = venue;
-        [self.navigationController pushViewController:tipController animated:YES];
-        [tipController release];
+        
+        tipController.view.alpha = 0;
+        
+        [self.view addSubview:tipController.view];
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationBeginsFromCurrentState:YES];
+        [UIView setAnimationDuration:0.7];
+        tipController.view.alpha = 1.0;        
+        [UIView commitAnimations];
     }
     [theTableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -631,6 +688,8 @@
     [specialPlaceName release];
     [specialAddress release];
     [specialClose release];
+    
+    [tipController release];
     
     [super dealloc];
 }

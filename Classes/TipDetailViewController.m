@@ -43,6 +43,14 @@
     }
 }
 
+- (void) removeView {
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:0.7];
+    self.view.alpha = 0;
+    [UIView commitAnimations];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     

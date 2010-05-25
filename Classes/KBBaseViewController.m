@@ -423,7 +423,7 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 
 - (void) scrollViewDidScroll:(UIScrollView *)scrollView {	
 	
-	if (scrollView.isDragging) {
+	if (scrollView.isDragging && !self.hideRefresh) {
 		if (refreshHeaderView.state == EGOOPullRefreshPulling && scrollView.contentOffset.y > -65.0f && scrollView.contentOffset.y < 0.0f && !_reloading) {
 			[refreshHeaderView setState:EGOOPullRefreshNormal];
 		} else if (refreshHeaderView.state == EGOOPullRefreshNormal && scrollView.contentOffset.y < -65.0f && !_reloading) {
@@ -434,7 +434,7 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 
 - (void) scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
 	
-	if (scrollView.contentOffset.y <= - 65.0f && !_reloading) {
+	if (scrollView.contentOffset.y <= - 65.0f && !_reloading && !self.hideRefresh) {
         _reloading = YES;
         [self reloadTableViewDataSource];
         [refreshHeaderView setState:EGOOPullRefreshLoading];
