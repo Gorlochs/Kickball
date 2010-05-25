@@ -8,7 +8,7 @@
 
 #import "KBUserTweetsViewController.h"
 #import "KBTwitterRecentTweetsTableCell.h"
-
+#import "KickballAPI.h"
 
 @implementation KBUserTweetsViewController
 
@@ -90,7 +90,7 @@
         
         cell.tweetText.numberOfLines = 0;
         cell.tweetText.text = tweet.tweetText;
-        [cell setDateLabelWithDate:tweet.createDate];
+        cell.dateLabel.text = [[KickballAPI kickballApi] convertDateToTimeUnitString:tweet.createDate];
         
         CGSize maximumLabelSize = CGSizeMake(250, MAX_LABEL_HEIGHT);
         CGSize expectedLabelSize = [cell.tweetText.text sizeWithFont:cell.tweetText.font 
@@ -101,6 +101,10 @@
         CGRect newFrame = cell.tweetText.frame;
         newFrame.size.height = expectedLabelSize.height;
         cell.tweetText.frame = newFrame;
+        
+        CGRect dateFrame = cell.dateLabel.frame;
+        dateFrame.origin = CGPointMake(20, expectedLabelSize.height + 10);
+        cell.dateLabel.frame = dateFrame;
         
         return cell;
     } else {

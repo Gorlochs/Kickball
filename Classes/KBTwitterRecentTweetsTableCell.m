@@ -26,7 +26,7 @@
         dateLabel.shadowOffset = CGSizeMake(1.0, 1.0);
         [self addSubview:dateLabel];
         
-        tweetText = [[IFTweetLabel alloc] initWithFrame:CGRectMake(20, 20, 260, 80)];
+        tweetText = [[IFTweetLabel alloc] initWithFrame:CGRectMake(20, 15, 270, 80)];
         tweetText.textColor = [UIColor colorWithWhite:0.3 alpha:1.0];
         tweetText.font = [UIFont fontWithName:@"Georgia" size:12.0];
         tweetText.backgroundColor = [UIColor clearColor];
