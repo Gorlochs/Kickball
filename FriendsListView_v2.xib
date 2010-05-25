@@ -12,9 +12,8 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="3"/>
-			<integer value="31"/>
-			<integer value="24"/>
+			<integer value="8"/>
+			<integer value="9"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -49,9 +48,10 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{0, 47}, {320, 373}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<object class="NSColor" key="IBUIBackgroundColor" id="1055638072">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MCAwIDAAA</bytes>
+						<reference key="NSWindow"/>
+						<object class="NSColor" key="IBUIBackgroundColor">
+							<int key="NSColorSpace">2</int>
+							<bytes key="NSRGB">MC45MzcyNTQ5NjUzIDAuOTM3MjU0OTY1MyAwLjkzNzI1NDk2NTMAA</bytes>
 						</object>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -68,6 +68,7 @@
 				</object>
 				<string key="NSFrameSize">{320, 460}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
@@ -79,7 +80,7 @@
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 			<object class="IBUITableViewCell" id="715433752">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -141,7 +142,11 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 44}</string>
-				<reference key="IBUIBackgroundColor" ref="1055638072"/>
+				<reference key="NSSuperview"/>
+				<object class="NSColor" key="IBUIBackgroundColor">
+					<int key="NSColorSpace">1</int>
+					<bytes key="NSRGB">MCAwIDAgMAA</bytes>
+				</object>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<int key="IBUISeparatorStyle">1</int>
@@ -149,7 +154,7 @@
 				<reference key="IBUIContentView" ref="528957908"/>
 			</object>
 			<object class="IBUITableViewCell" id="93784494">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -166,7 +171,7 @@
 									<object class="IBUIButton" id="392551013">
 										<reference key="NSNextResponder" ref="922539391"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{1, 3}, {128, 44}}</string>
+										<string key="NSFrameSize">{320, 40}</string>
 										<reference key="NSSuperview" ref="922539391"/>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -174,8 +179,6 @@
 										<int key="IBUIContentHorizontalAlignment">0</int>
 										<int key="IBUIContentVerticalAlignment">0</int>
 										<reference key="IBUIFont" ref="492056339"/>
-										<int key="IBUIButtonType">1</int>
-										<string key="IBUINormalTitle">Add a Friend!</string>
 										<reference key="IBUIHighlightedTitleColor" ref="344407747"/>
 										<object class="NSColor" key="IBUINormalTitleColor">
 											<int key="NSColorSpace">1</int>
@@ -184,19 +187,26 @@
 										<reference key="IBUINormalTitleShadowColor" ref="778498797"/>
 										<object class="NSCustomResource" key="IBUIHighlightedImage">
 											<string key="NSClassName">NSImage</string>
-											<string key="NSResourceName">addFriend02b.png</string>
+											<string key="NSResourceName">fl_addFriend02.png</string>
 										</object>
 										<reference key="IBUISelectedImage" ref="952232012"/>
+										<object class="NSCustomResource" key="IBUINormalImage">
+											<string key="NSClassName">NSImage</string>
+											<string key="NSResourceName">fl_addFriend01.png</string>
+										</object>
 									</object>
 								</object>
 								<string key="NSFrameSize">{320, 50}</string>
 								<reference key="NSSuperview" ref="852487751"/>
-								<reference key="IBUIBackgroundColor" ref="1055638072"/>
+								<object class="NSColor" key="IBUIBackgroundColor">
+									<int key="NSColorSpace">2</int>
+									<bytes key="NSRGB">MC45NDExNzY1MzM3IDAuOTQxMTc2NTMzNyAwLjk0MTE3NjUzMzcAA</bytes>
+								</object>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
 						</object>
-						<string key="NSFrameSize">{320, 50}</string>
+						<string key="NSFrameSize">{320, 40}</string>
 						<reference key="NSSuperview" ref="93784494"/>
 						<reference key="IBUIBackgroundColor" ref="727535096"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -206,8 +216,12 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</object>
-				<string key="NSFrameSize">{320, 50}</string>
-				<reference key="IBUIBackgroundColor" ref="1055638072"/>
+				<string key="NSFrameSize">{320, 40}</string>
+				<reference key="NSSuperview"/>
+				<object class="NSColor" key="IBUIBackgroundColor">
+					<int key="NSColorSpace">1</int>
+					<bytes key="NSRGB">MCAwIDAAA</bytes>
+				</object>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<int key="IBUISeparatorStyle">1</int>
@@ -278,6 +292,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrameSize">{320, 44}</string>
 								<reference key="NSSuperview" ref="217297275"/>
+								<reference key="NSWindow"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -302,6 +317,7 @@
 						</object>
 						<string key="NSFrameSize">{320, 44}</string>
 						<reference key="NSSuperview" ref="952900378"/>
+						<reference key="NSWindow"/>
 						<reference key="IBUIBackgroundColor" ref="727535096"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -312,6 +328,7 @@
 				</object>
 				<string key="NSFrameSize">{320, 44}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
 					<bytes key="NSRGB">MSAxIDEAA</bytes>
@@ -321,7 +338,7 @@
 				<reference key="IBUIContentView" ref="217297275"/>
 			</object>
 			<object class="IBUIView" id="998255390">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -480,7 +497,6 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 109}</string>
-				<reference key="NSSuperview"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
@@ -882,7 +898,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>FriendsListViewController</string>
 					<string>UIResponder</string>
-					<string>{{944, 549}, {320, 480}}</string>
+					<string>{{938, 585}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{125, 278}, {320, 66}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -909,7 +925,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{696, 687}, {320, 44}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{656, 775}, {320, 50}}</string>
+					<string>{{786, 365}, {320, 40}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>
@@ -935,8 +951,24 @@
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<object class="IBPartialClassDescription">
+					<string key="className">AbstractFacebookViewController</string>
+					<string key="superclassName">KBTwitterViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Classes/AbstractFacebookViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">AbstractPushNotificationViewController</string>
+					<string key="superclassName">AbstractFacebookViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Classes/AbstractPushNotificationViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
 					<string key="className">FriendsListViewController</string>
-					<string key="superclassName">KBFoursquareViewController</string>
+					<string key="superclassName">AbstractPushNotificationViewController</string>
 					<object class="NSMutableDictionary" key="actions">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
@@ -1128,6 +1160,54 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">Classes/KBFoursquareViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">KBTwitterViewController</string>
+					<string key="superclassName">KBFoursquareViewController</string>
+					<object class="NSMutableDictionary" key="actions">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>flipBetweenMapAndList</string>
+							<string>openTweetModalView</string>
+							<string>showDirectMessages</string>
+							<string>showMentions</string>
+							<string>showSearch</string>
+							<string>showUserTimeline</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+						</object>
+					</object>
+					<object class="NSMutableDictionary" key="outlets">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>directMessageButton</string>
+							<string>mentionsButton</string>
+							<string>searchButton</string>
+							<string>timelineButton</string>
+							<string>twitterCenterHeaderButton</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>UIButton</string>
+							<string>UIButton</string>
+							<string>UIButton</string>
+							<string>UIButton</string>
+							<string>UIButton</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Classes/KBTwitterViewController.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -1419,13 +1499,14 @@
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>addFriend02.png</string>
-				<string>addFriend02b.png</string>
 				<string>checkin4SQ01.png</string>
 				<string>checkin4SQ02.png</string>
 				<string>checkinFB01.png</string>
 				<string>checkinFB02.png</string>
 				<string>checkinTWT01.png</string>
 				<string>checkinTWT02.png</string>
+				<string>fl_addFriend01.png</string>
+				<string>fl_addFriend02.png</string>
 				<string>fl_shout.png</string>
 				<string>fl_shoutToggle.png</string>
 				<string>shout02v11.png</string>
@@ -1435,13 +1516,14 @@
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>{108, 37}</string>
-				<string>{16, 16}</string>
 				<string>{94, 38}</string>
 				<string>{94, 38}</string>
 				<string>{95, 38}</string>
 				<string>{95, 38}</string>
 				<string>{93, 38}</string>
 				<string>{93, 38}</string>
+				<string>{320, 39}</string>
+				<string>{320, 39}</string>
 				<string>{320, 46}</string>
 				<string>{320, 74}</string>
 				<string>{320, 45}</string>

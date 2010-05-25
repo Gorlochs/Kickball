@@ -383,7 +383,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == SECTION_FOOTER) {
-        return 50;
+        return 40;
     } else if (indexPath.section == SECTION_MORE_BUTTON || indexPath.section == SECTION_SHOUT) {
         return 44;
     }

@@ -11,6 +11,7 @@
 #define kCityRadiusKey @"cityRadius"
 #define kLastLatitudeKey @"lastLatitude"
 #define kLastLongitudeKey @"lastLongitude"
+#define TWITTER_DISPLAY_DATE_FORMAT @"LLL dd, hh:mm a"
 
 // Salt for hash function. Can be any arbitrary value, but must be shared with server
 extern const NSString *kKBHashSalt;

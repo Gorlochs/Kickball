@@ -7,6 +7,7 @@
 //
 
 #import "KBUserTweetsViewController.h"
+#import "KBTwitterRecentTweetsTableCell.h"
 
 
 @implementation KBUserTweetsViewController
@@ -68,6 +69,43 @@
 
 - (void) refreshTable {
     [self showStatuses];
+}
+
+#pragma mark -
+#pragma mark table stuff
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    static NSString *CellIdentifier = @"Cell";
+    
+    KBTwitterRecentTweetsTableCell *cell = (KBTwitterRecentTweetsTableCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[[KBTwitterRecentTweetsTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    }
+    
+    if (indexPath.section == 0) {
+        // Configure the cell...
+        //cell.textLabel.text = [[statuses objectAtIndex:indexPath.row] objectForKey:@"text"];
+        KBTweet *tweet = [tweets objectAtIndex:indexPath.row];
+        
+        cell.tweetText.numberOfLines = 0;
+        cell.tweetText.text = tweet.tweetText;
+        [cell setDateLabelWithDate:tweet.createDate];
+        
+        CGSize maximumLabelSize = CGSizeMake(250, MAX_LABEL_HEIGHT);
+        CGSize expectedLabelSize = [cell.tweetText.text sizeWithFont:cell.tweetText.font 
+                                                   constrainedToSize:maximumLabelSize 
+                                                       lineBreakMode:UILineBreakModeWordWrap]; 
+        
+        //adjust the label the the new height.
+        CGRect newFrame = cell.tweetText.frame;
+        newFrame.size.height = expectedLabelSize.height;
+        cell.tweetText.frame = newFrame;
+        
+        return cell;
+    } else {
+        return moreCell;
+    }
 }
 
 #pragma mark -

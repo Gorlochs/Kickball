@@ -13,8 +13,6 @@
 #import "KBCreateTweetViewController.h"
 #import "UIAlertView+Helper.h"
 
-#define MAX_LABEL_HEIGHT 68.0
-
 
 @implementation KBBaseTweetViewController
 
@@ -164,7 +162,6 @@
     }
 }
 
-// Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier = @"Cell";

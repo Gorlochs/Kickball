@@ -85,6 +85,7 @@
 - (void) viewRecentTweets {
 	KBUserTweetsViewController *tweetController = [[KBUserTweetsViewController alloc] initWithNibName:@"KBUserTweetsViewController" bundle:nil];
     tweetController.userDictionary = userDictionary;
+    tweetController.username = [userDictionary objectForKey:@"screen_name"];
 	[self.navigationController pushViewController:tweetController animated:YES];
 	[tweetController release];
 }

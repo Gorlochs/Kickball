@@ -177,6 +177,8 @@
 		6A0B41F711AB029000FB9A6D /* specialCorner.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A0B41F211AB029000FB9A6D /* specialCorner.png */; };
 		6A0B422911AB1E4D00FB9A6D /* AddPlaceCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A0B422711AB1E4D00FB9A6D /* AddPlaceCategoryViewController.m */; };
 		6A0B422A11AB1E4D00FB9A6D /* AddPlaceCategoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A0B422811AB1E4D00FB9A6D /* AddPlaceCategoryViewController.xib */; };
+		6A0B42F211AB431300FB9A6D /* KBTwitterRecentTweetsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A0B42F111AB431300FB9A6D /* KBTwitterRecentTweetsTableCell.m */; };
+		6A0B430E11AB45BB00FB9A6D /* retweet_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A0B430D11AB45BB00FB9A6D /* retweet_small.png */; };
 		6A10E61610BE0541006538DB /* LoginViewModalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A10E61410BE0541006538DB /* LoginViewModalController.m */; };
 		6A10E61710BE0541006538DB /* LoginViewModalController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A10E61510BE0541006538DB /* LoginViewModalController.xib */; };
 		6A12EC6110B772D60013BA52 /* GeoApiDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A12EC6010B772D60013BA52 /* GeoApiDetailsViewController.m */; };
@@ -895,6 +897,9 @@
 		6A0B422611AB1E4D00FB9A6D /* AddPlaceCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPlaceCategoryViewController.h; sourceTree = "<group>"; };
 		6A0B422711AB1E4D00FB9A6D /* AddPlaceCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPlaceCategoryViewController.m; sourceTree = "<group>"; };
 		6A0B422811AB1E4D00FB9A6D /* AddPlaceCategoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AddPlaceCategoryViewController.xib; path = Classes/AddPlaceCategoryViewController.xib; sourceTree = "<group>"; };
+		6A0B42F011AB431300FB9A6D /* KBTwitterRecentTweetsTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBTwitterRecentTweetsTableCell.h; sourceTree = "<group>"; };
+		6A0B42F111AB431300FB9A6D /* KBTwitterRecentTweetsTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTwitterRecentTweetsTableCell.m; sourceTree = "<group>"; };
+		6A0B430D11AB45BB00FB9A6D /* retweet_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = retweet_small.png; sourceTree = "<group>"; };
 		6A10E61310BE0541006538DB /* LoginViewModalController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewModalController.h; sourceTree = "<group>"; };
 		6A10E61410BE0541006538DB /* LoginViewModalController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewModalController.m; sourceTree = "<group>"; };
 		6A10E61510BE0541006538DB /* LoginViewModalController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginViewModalController.xib; path = Classes/LoginViewModalController.xib; sourceTree = "<group>"; };
@@ -2621,6 +2626,8 @@
 				6A211746117C2D2900BE897E /* KBTweetTableCell.m */,
 				6AAEE73E1188EC6E00188EC0 /* KBTwitterUserTableCell.h */,
 				6AAEE73F1188EC6E00188EC0 /* KBTwitterUserTableCell.m */,
+				6A0B42F011AB431300FB9A6D /* KBTwitterRecentTweetsTableCell.h */,
+				6A0B42F111AB431300FB9A6D /* KBTwitterRecentTweetsTableCell.m */,
 			);
 			name = "table cells";
 			sourceTree = "<group>";
@@ -2642,6 +2649,7 @@
 		6AC28E9C1173D91B00518E37 /* v1.1 */ = {
 			isa = PBXGroup;
 			children = (
+				6A0B430D11AB45BB00FB9A6D /* retweet_small.png */,
 				6A0B41E911AB027E00FB9A6D /* place list */,
 				6A0B41BF11AAEEDF00FB9A6D /* add a place */,
 				6A0B413A11AAD5E800FB9A6D /* friend list */,
@@ -3419,6 +3427,7 @@
 				6A0B41F611AB029000FB9A6D /* pl_addPlace02.png in Resources */,
 				6A0B41F711AB029000FB9A6D /* specialCorner.png in Resources */,
 				6A0B422A11AB1E4D00FB9A6D /* AddPlaceCategoryViewController.xib in Resources */,
+				6A0B430E11AB45BB00FB9A6D /* retweet_small.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3689,6 +3698,7 @@
 				6A4C17FC11A90BA9006BBC61 /* VersionInfoViewController.m in Sources */,
 				6A4C180111A90BBE006BBC61 /* FeedbackViewController.m in Sources */,
 				6A0B422911AB1E4D00FB9A6D /* AddPlaceCategoryViewController.m in Sources */,
+				6A0B42F211AB431300FB9A6D /* KBTwitterRecentTweetsTableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
