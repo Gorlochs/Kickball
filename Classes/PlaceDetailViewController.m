@@ -898,7 +898,7 @@
             [place release];
             isMatched = YES;
             [self.navigationController pushViewController:vc animated:YES];
-            [vc release];
+            //[vc release];
             break;
         } else { 
             // meh. not pretty.
@@ -913,7 +913,7 @@
         [[Beacon shared] startSubBeaconWithName:@"GeoAPI could not find proper venue - going to list view"];
         vc.geoAPIResults = objArray;
         [self.navigationController pushViewController:vc animated:YES];
-        [vc release];
+        //[vc release];
         NSLog(@"dictionary?: %@", [(NSDictionary*)dict objectForKey:@"entity"]);   
     }
     [objArray release];

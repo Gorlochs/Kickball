@@ -25,6 +25,7 @@
 #import "TableSectionHeaderView.h"
 #import "KickballAPI.h"
 #import "KBLocationManager.h"
+#import "KBAccountManager.h"
 
 
 #define SECTION_RECENT_CHECKINS 1
@@ -163,12 +164,20 @@
     isTwitterOn = YES;
     isFoursquareOn = YES;
     // hack
-    if (!user.sendToFacebook) {
-        [self toggleFacebook];
-    }
-    if (!user.sendToTwitter) {
-        [self toggleTwitter];
-    }
+    if (![[KBAccountManager sharedInstance] usesFacebook]) {
+        facebookButton.enabled = NO;
+    } else {
+        if (!user.sendToFacebook) {
+            [self toggleFacebook];
+        }
+    }   
+    if (![[KBAccountManager sharedInstance] usesTwitter]) {
+        twitterButton.enabled = NO;
+    } else {
+        if (!user.sendToTwitter) {
+            [self toggleTwitter];
+        }
+    }  
     
     NSLog(@"auth'd user: %@", user);
     [user release];

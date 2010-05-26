@@ -57,6 +57,8 @@
     
     [self addHeaderAndFooter:theTableView];
     
+    refreshHeaderView.backgroundColor = [UIColor blackColor];
+    
     [self executeFoursquareCalls];
 }
 
@@ -404,6 +406,12 @@
                 headerView.leftHeaderLabel.text = [NSString stringWithFormat:@"%d Badge%@", [user.badges count], [user.badges count] > 1 ? @"s" : @""];
                 break;
             case 4:
+                // hack
+//                if (YES) {
+//                    CGRect frame = headerView.frame;
+//                    frame.size = CGSizeMake(frame.size.width, 18);
+//                    headerView.frame = frame;
+//                }
                 headerView.leftHeaderLabel.text = @"";
                 break;
             default:
