@@ -77,7 +77,6 @@
 
 
 - (void)dealloc {
-    [theTableView release];
     [geoAPIResults release];
     [super dealloc];
 }

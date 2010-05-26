@@ -92,7 +92,6 @@
 - (IBAction) callVenue;
 - (IBAction) uploadImageToServer;
 - (IBAction) showTwitterFeed;
-- (IBAction) checkinToVenue;
 - (IBAction) togglePingsAndTwitter;
 - (IBAction) doGeoAPICall;
 - (IBAction) showSpecial;

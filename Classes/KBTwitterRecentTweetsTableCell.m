@@ -74,6 +74,7 @@
     [dateLabel release];
     [topLineImage release];
     [bottomLineImage release];
+    [retweetButton release];
     [super dealloc];
 }
 

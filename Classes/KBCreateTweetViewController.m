@@ -299,11 +299,14 @@
     [replyToScreenName release];
     [retweetStatusId release];
     [retweetToScreenName release];
+    [retweetTweetText release];
     
     [foursquareButton release];
     [facebookButton release];
     [geotagButton release];
     [addPhotoButton release];
+    [photoImage release];
+    [photoManager release];
     [thumbnailPreview release];
     [super dealloc];
 }

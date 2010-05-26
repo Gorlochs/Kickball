@@ -351,7 +351,6 @@
     [mapViewer performSelector:@selector(release) withObject:nil afterDelay:4.0f];
     
     [venues release];
-    //[mapViewer release];
     [bestEffortAtLocation release];
     [searchbox release];
     [switchingButton release];

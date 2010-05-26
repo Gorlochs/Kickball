@@ -42,6 +42,7 @@
 
 
 - (void)dealloc {
+    [tableCell release];
     [newVenueName release];
     
     [address release];
@@ -52,6 +53,9 @@
     [phone release];
     [twitter release];
     [country release];
+    
+    [venueName release];
+    [toolbar release];
     
     [super dealloc];
 }

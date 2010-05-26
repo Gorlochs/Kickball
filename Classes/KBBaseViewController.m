@@ -243,12 +243,25 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 }
 
 - (void)dealloc {
-    [signedInUserIcon release];
+    [theTableView release];
     [progressViewController release];
     [loginViewModal release];
     [popupView release];
     [textViewReturnValue release];
+    [progressBarTimer release];
+    
+    [refreshHeaderView release];
+    [footerTabView release];
+    [optionsTab release];
+    [facebookTab release];
+    [twitterTab release];
+    [foursquareTab release];
+    [signedInUserIcon release];
+    
+    [headerNibName release];
+    
 //    [iconImageView release];  // uncommenting this crashes shit. not sure why.
+    
     [super dealloc];
 }
 

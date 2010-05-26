@@ -99,7 +99,6 @@
     [twitterName release];
     [venueName release];
     [venueLabel release];
-    [theTableView release];
     [orderedTweets release];
     [sortedKeys release];
     [super dealloc];

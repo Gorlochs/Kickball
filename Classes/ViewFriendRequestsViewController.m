@@ -157,7 +157,6 @@
 
 - (void)dealloc {
     [pendingFriendRequests release];
-    [theTableView release];
     [super dealloc];
 }
 

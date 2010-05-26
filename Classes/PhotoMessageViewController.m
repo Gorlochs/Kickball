@@ -52,6 +52,7 @@
 
 - (void)dealloc {
     [photoMessage release];
+    [numCharacters release];
     [super dealloc];
 }
 

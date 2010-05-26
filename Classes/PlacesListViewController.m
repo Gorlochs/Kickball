@@ -319,7 +319,6 @@
 }
 
 - (void)dealloc {
-    [theTableView release];
     [searchCell release];
     [footerCell release];
     [searchbox release];

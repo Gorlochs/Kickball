@@ -111,7 +111,6 @@
 
 
 - (void)dealloc {
-    [theTableView release];
     [userId release];
     [friends release];
     [userIcons release];

@@ -113,4 +113,11 @@
     [UIView commitAnimations];
 }
 
+- (void) dealloc {
+    [_flagButton release];
+    [goodies release];
+    [popupView release];
+    [super dealloc];
+}
+
 @end

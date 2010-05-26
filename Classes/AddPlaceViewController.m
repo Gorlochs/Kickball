@@ -119,8 +119,12 @@
 
 
 - (void)dealloc {
-    [theTableView release];
     [newPlaceName release];
+    [mapView release];
+    [addCategoryButton release];
+    [addAddressButton release];
+    [newVenueName release];
+    [categoryId release];
     
     [checkin release];
     

@@ -132,9 +132,11 @@
 
 
 - (void)dealloc {
-    [theTableView release];
     [checkins release];
     [dateFormatterD2S release];
+    [dateFormatterS2D release];
+    [checkinDaysOfWeek release];
+    [checkinsByDate release];
     [super dealloc];
 }
 

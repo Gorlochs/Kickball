@@ -106,6 +106,7 @@
 - (void) dealloc {
     [shoutToPush release];
     [venueToPush release];
+    [photoMessageToPush release];
     [super dealloc];
 }
 

@@ -207,7 +207,7 @@
 }
 
 - (void)dealloc {
-    [theTableView release];
+    [searchBar release];
     [searchResults release];
     [titleImage release];
     [super dealloc];

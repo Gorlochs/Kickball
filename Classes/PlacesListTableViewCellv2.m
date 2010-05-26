@@ -80,6 +80,14 @@
 
 
 - (void)dealloc {
+    [categoryIcon release];
+    
+    [venueName release];
+    [venueAddress release];
+    
+    [topLineImage release];
+    [bottomLineImage release];
+    [specialImage release];
     [super dealloc];
 }
 

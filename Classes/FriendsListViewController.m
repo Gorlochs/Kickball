@@ -205,7 +205,6 @@
     [nonCityRecentCheckins release];
     [nonCityTodayCheckins release];
     [nonCityYesterdayCheckins release];
-    [theTableView release];
     [checkins release];
     [mapButton release];
     [instructionView release];

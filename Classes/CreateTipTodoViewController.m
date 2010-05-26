@@ -39,8 +39,7 @@
     [tipTodoSwitch release];
     [tipId release];
     [venue release];
-//    [venueName release];
-//    [venueAddress release];
+    [characterCount release];
     [super dealloc];
 }
 

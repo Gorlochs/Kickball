@@ -17,8 +17,6 @@
     NSString *tipId;
     FSVenue *venue;
     IBOutlet UILabel *characterCount;
-//    IBOutlet UILabel *venueName;
-//    IBOutlet UILabel *venueAddress;
 }
 
 @property (nonatomic, retain) FSVenue *venue;

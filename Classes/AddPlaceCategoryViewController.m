@@ -134,6 +134,7 @@
 
 
 - (void)dealloc {
+    [categories release];
     [super dealloc];
 }
 

@@ -15,7 +15,6 @@
     TTImageView *userIcon;
     
     UILabel *userName;
-    //TTStyledTextLabel *tweetText;
     IFTweetLabel *tweetText;
     UILabel *dateLabel;
     

@@ -194,7 +194,6 @@
 }
 
 - (void)dealloc {
-    [theTableView release];
     [badgeCell release];
     [addFriendCell release];
     [friendActionCell release];
@@ -217,6 +216,13 @@
     [emailButton release];
     [twitterButton release];
     [facebookButton release];
+    
+    [userPhotos release];
+    [profileOptionsView release];
+    [profileInfoView release];
+    [photoCell release];
+    [checkinNotificationSwitch release];
+    [photoNotificationSwitch release];
     
     [super dealloc];
 }

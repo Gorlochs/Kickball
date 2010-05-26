@@ -251,53 +251,6 @@
     }
 }
 
-// TODO: this is repetetive code. It needs to be centralized
-- (void) checkinToVenue {
-    [self startProgressBar:@"Checking in to this venue..."];
-    [[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:venue.venueid 
-                                                  andShout:nil 
-                                                   offGrid:doCheckin ? NO : !isPingOn
-                                                 toTwitter:isTwitterOn
-                                                toFacebook:isPingOn ? isFacebookOn : NO
-                                                withTarget:self 
-                                                 andAction:@selector(checkinResponseReceived:withResponseString:)];
-    [[Beacon shared] startSubBeaconWithName:@"Check in to Venue"];
-}
-
-- (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    NSString *errorMessage = [FoursquareAPI errorFromResponseXML:inString];
-    [self stopProgressBar];
-    if (errorMessage) {
-        [self displayFoursquareErrorMessage:errorMessage];
-    } else {
-        NSLog(@"instring: %@", inString);
-        self.checkin = [FoursquareAPI checkinFromResponseXML:inString];
-        NSLog(@"checkin: %@", checkin);
-        isUserCheckedIn = YES;
-        [theTableView reloadData];
-        FSCheckin *ci = [self getSingleCheckin];
-        [[KBStats stats] checkinStat:ci];
-        if (ci.specials != nil) {
-            specialsButton.hidden = NO;
-        }
-        
-        NSMutableString *checkinText = [[NSMutableString alloc] initWithCapacity:1];
-        for (FSScore *score in ci.scoring.scores) {
-            [checkinText appendFormat:[NSString stringWithFormat:@"%@ \n\n+%d %@ \n", ci.message, score.points, score.message]];
-        }
-        NSLog(@"checkin text: %@", checkinText);
-        KBMessage *message = [[KBMessage alloc] initWithMember:@"Check-in successful" andMessage:checkinText];
-        [self displayPopupMessage:message];
-        [checkinText release];
-        [message release];
-        
-        self.venueToPush = ci.venue;
-        if (isPingOn) {
-            [self sendPushNotification];
-        }
-    }
-}
-
 - (void) prepViewWithVenueInfo:(FSVenue*)venueToDisplay {
     MKCoordinateRegion region;
     MKCoordinateRegion fullRegion;
@@ -643,7 +596,6 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:@"todoTipSent"];
     [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:@"shoutAndCheckinSent"];
     
-    [theTableView release];
     [mayorMapCell release];
     [checkinCell release];
     [giftCell release];
