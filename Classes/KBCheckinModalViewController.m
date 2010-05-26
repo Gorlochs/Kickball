@@ -16,6 +16,7 @@
 #import "FSUser.h"
 #import "KBTwitterManager.h"
 #import "KBLocationManager.h"
+#import "KBAccountManager.h"
 
 
 @implementation KBCheckinModalViewController
@@ -46,12 +47,20 @@
     isTwitterOn = YES;
     isFoursquareOn = YES;
     // hack
-    if (!user.sendToFacebook) {
-        [self toggleFacebook];
-    }
-    if (!user.sendToTwitter) {
-        [self toggleTwitter];
-    }
+    if (![[KBAccountManager sharedInstance] usesFacebook]) {
+        facebookButton.enabled = NO;
+    } else {
+        if (!user.sendToFacebook) {
+            [self toggleFacebook];
+        }
+    }   
+    if (![[KBAccountManager sharedInstance] usesTwitter]) {
+        twitterButton.enabled = NO;
+    } else {
+        if (!user.sendToTwitter) {
+            [self toggleTwitter];
+        }
+    }   
     actionCount = 0;
 }
 
@@ -115,15 +124,19 @@
     
     // we send twitter/facebook api calls ourself so that the tweets and posts are stamped with the Kickball brand
     if (isTwitterOn) {
-        // TODO: check for twitter login
-        [self.twitterEngine sendUpdate:checkinTextField.text
+        NSString *tweetString = nil;
+        if (![checkinTextField.text isEqualToString:@""]) {
+            tweetString = [NSString stringWithFormat:@"%@ (just checked into %@) #kb", checkinTextField.text, venue.name];
+        } else {
+            tweetString = [NSString stringWithFormat:@"I just checked into %@. #kb", venue.name];
+        }
+
+        [self.twitterEngine sendUpdate:tweetString
                           withLatitude:[[KBLocationManager locationManager] latitude] 
                          withLongitude:[[KBLocationManager locationManager] longitude]];
     }
     
     if (isFacebookOn) {
-        // TODO: check for facebook login
-        
         NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:checkinTextField.text, @"status", nil];
         [[FBRequest requestWithDelegate:self] call:@"facebook.status.set" params:params dataParam:nil];
     }

@@ -886,7 +886,7 @@ static FoursquareAPI *sharedInstance = nil;
                             special.type = value;
                         } else if ([key isEqualToString:@"venue"]) {
                             // FIXME: this was done for expediency's sake
-                            NSArray *venueArray = [FoursquareAPI _venuesFromNode:[checkinAttr nodesForXPath:@"//special/venue" error:nil]];
+                            NSArray *venueArray = [FoursquareAPI _venuesFromNode:[[checkinAttr nodesForXPath:@"//special/venue" error:nil] objectAtIndex:0]];
                             if ([venueArray count] > 0) {
                                 special.venue = [venueArray objectAtIndex:0];
                             }
@@ -1041,11 +1041,8 @@ static FoursquareAPI *sharedInstance = nil;
                         } else if ([key isEqualToString:@"type"]) {
                             special.type = value;
                         } else if ([key isEqualToString:@"venue"]) {
-                            // FIXME: this was done for expediency's sake
-                            NSArray *venueArray = [FoursquareAPI _venuesFromNode:[[venueResult nodesForXPath:@"//special/venue" error:nil] objectAtIndex:0]];
-                            if ([venueArray count] > 0) {
-                                special.venue = [venueArray objectAtIndex:0];
-                            }
+                            NSArray *arr = [venueResult nodesForXPath:@"//special" error:nil];
+                            special.venue = [[FoursquareAPI _venuesFromNode:[arr objectAtIndex:0]] objectAtIndex:0];
                         }
                     }
                     [specialArray addObject:special];

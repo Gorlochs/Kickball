@@ -807,8 +807,8 @@
     FSSpecial *special = ((FSSpecial*)[[self venue].specials objectAtIndex:0]);
     NSLog(@"specials: %@", [self venue].specials);
     NSLog(@"special: %@", special);
-    specialPlaceName.text = venue.name;
-    specialAddress.text = venue.addressWithCrossstreet;
+    specialPlaceName.text = special.venue.name;
+    specialAddress.text = special.venue.addressWithCrossstreet;
     specialText.text = special.message;
     
     CGSize maximumLabelSize = CGSizeMake(246, 157);
@@ -876,7 +876,7 @@
 }
 
 - (void) addTipTodo {
-    CreateTipTodoViewController *tipController = [[CreateTipTodoViewController alloc] initWithNibName:@"CreateTipTodoViewController" bundle:nil];
+    tipController = [[CreateTipTodoViewController alloc] initWithNibName:@"CreateTipTodoViewController" bundle:nil];
     tipController.venue = venue;
     [self presentModalViewController:tipController animated:YES];
     [tipController release];
