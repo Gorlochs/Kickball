@@ -100,8 +100,6 @@
     // pull this up into a method (or property)
     FSUser *tmpUser = [self getAuthenticatedUser];
     NSLog(@"auth'd user: %@", tmpUser);
-//    signedInUserIcon.imageView.image = [[Utilities sharedInstance] getCachedImage:tmpUser.photo];
-//    signedInUserIcon.hidden = NO;
     isPingOn = tmpUser.isPingOn;
     isTwitterOn = tmpUser.sendToTwitter && [self getAuthenticatedUser].twitter;
     isFacebookOn = tmpUser.sendToFacebook;
@@ -242,7 +240,7 @@
         [theTableView reloadData];
         
         if (doCheckin) {
-            [self checkinToVenue];
+            [self openCheckinView];
         }
         
         if (self.venue.specials != nil &&[self.venue.specials count] > 0) {
