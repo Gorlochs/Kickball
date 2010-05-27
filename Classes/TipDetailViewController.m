@@ -52,6 +52,8 @@
 }
 
 - (void)viewDidLoad {
+    self.hideFooter = YES;
+    self.hideHeader = YES;
     [super viewDidLoad];
     
     authorNameLabel.text = [NSString stringWithFormat:@"%@ says,", tip.submittedBy.firstnameLastInitial];

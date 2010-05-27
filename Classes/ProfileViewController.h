@@ -39,6 +39,7 @@
     IBOutlet UIButton *emailButton;
     IBOutlet UIButton *twitterButton;
     IBOutlet UIButton *facebookButton;
+    IBOutlet UIButton *viewVenueButton;
     
     // not sure what these are doing here
     bool isPingOn;

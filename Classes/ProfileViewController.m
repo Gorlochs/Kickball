@@ -218,6 +218,8 @@
     [emailButton release];
     [twitterButton release];
     [facebookButton release];
+    [locationOverlayButton release];
+    [hereIAmButton release];
     
     [userPhotos release];
     [profileOptionsView release];

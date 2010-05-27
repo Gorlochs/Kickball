@@ -108,6 +108,7 @@
     mayorCrown.hidden = YES;
     
     [self addHeaderAndFooter:theTableView];
+    refreshHeaderView.backgroundColor = [UIColor blackColor];
     
     [self startProgressBar:@"Retrieving venue details..."];
     [[FoursquareAPI sharedInstance] getVenue:venueId withTarget:self andAction:@selector(venueResponseReceived:withResponseString:)];
@@ -829,7 +830,7 @@
     tipController = [[CreateTipTodoViewController alloc] initWithNibName:@"CreateTipTodoViewController" bundle:nil];
     tipController.venue = venue;
     [self presentModalViewController:tipController animated:YES];
-    [tipController release];
+    //[tipController release];
 }
 
 - (void) markVenueWrongAddress {
