@@ -28,9 +28,6 @@
         profileImageUrl = [[statusDictionary objectForKey:@"user"] objectForKey:@"profile_image_url"];
         tweetText = [statusDictionary objectForKey:@"text"];
         tweetId = [statusDictionary objectForKey:@"id"];
-//        createDate = [[Utilities convertUTCCheckinDateToLocal:[NSDate dateWithTimeIntervalSince1970:[[statusDictionary objectForKey:@"created_at"] doubleValue]]] retain];
-        NSLog(@"tweet date from created_at: %@", [statusDictionary objectForKey:@"created_at"]);
-        //createDate = [[NSDate dateWithTimeIntervalSince1970:[[statusDictionary objectForKey:@"created_at"] doubleValue]] retain];
         createDate = [[[[KickballAPI kickballApi] twitterDateFormatter] dateFromString:[statusDictionary objectForKey:@"created_at"]] retain];
         
         //NSLog(@"tweet created at: %@", createDate);
@@ -48,7 +45,7 @@
 } 
 
 - (id) initWithCoder: (NSCoder *)coder { 
-    if (self = [super init]) { 
+    if (self = [super init]) {
         [self setScreenName: [coder decodeObjectForKey:@"screenName"]]; 
         [self setFullName: [coder decodeObjectForKey:@"fullName"]];  
         [self setCreateDate: [coder decodeObjectForKey:@"createDate"]];  
@@ -57,6 +54,17 @@
         [self setTweetId: [coder decodeObjectForKey:@"tweetId"]]; 
     } 
     return self; 
+}
+
+- (void) dealloc {
+    [dict release];
+    [screenName release];
+    [fullName release];
+    [createDate release];
+    [profileImageUrl release];
+    [tweetText release];
+    [tweetId release];
+    [super dealloc];
 }
 
 @end

@@ -127,7 +127,7 @@
     [searchButton release];
     [twitterCenterHeaderButton release];
     
-    [twitterEngine release];
+    //[twitterEngine release];
     [super dealloc];
 }
 

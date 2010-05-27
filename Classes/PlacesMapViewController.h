@@ -20,6 +20,7 @@
     CLLocation *bestEffortAtLocation;
     IBOutlet UITextField *searchbox;
     IBOutlet UIButton *switchingButton;
+    NSString *searchKeywords;
     
     BOOL isMapFinishedLoading;
 }
@@ -27,6 +28,7 @@
 @property (nonatomic, retain) NSMutableArray * venues;
 @property (nonatomic, retain) MKMapView * mapViewer;
 @property (nonatomic, retain) CLLocation *bestEffortAtLocation;
+@property (nonatomic, retain) NSString *searchKeywords;
 
 - (void) refreshVenuePoints;
 - (void) setVenues:(NSMutableArray *) venue;

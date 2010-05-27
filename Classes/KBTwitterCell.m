@@ -21,7 +21,9 @@
         [tweetLabel setTextColor:[UIColor blackColor]];
         [tweetLabel setBackgroundColor:[UIColor clearColor]];
         [tweetLabel setNumberOfLines:0];
+        [tweetLabel setLabelHighlightedTextColor:[UIColor whiteColor]];
         [self addSubview:tweetLabel];
+        
     }
     return self;
 }

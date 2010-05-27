@@ -32,6 +32,7 @@
         venueName.backgroundColor = [UIColor clearColor];
         venueName.shadowColor = [UIColor colorWithWhite:1.0 alpha:0.5];
         venueName.shadowOffset = CGSizeMake(1.0, 1.0);
+        venueName.highlightedTextColor = [UIColor whiteColor];
         [self addSubview:venueName];
         
         venueAddress = [[UILabel alloc] initWithFrame:CGRectMake(46, 20, 250, 20)];
@@ -40,6 +41,7 @@
         venueAddress.backgroundColor = [UIColor clearColor];
         venueAddress.shadowColor = [UIColor colorWithWhite:1.0 alpha:0.5];
         venueAddress.shadowOffset = CGSizeMake(1.0, 1.0);
+        venueAddress.highlightedTextColor = [UIColor whiteColor];
         [self addSubview:venueAddress];
         
         topLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderTop.png"]];

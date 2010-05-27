@@ -40,7 +40,7 @@
 }
 
 - (void)handleTweetNotification:(NSNotification *)notification {
-	//NSLog(@"handleTweetNotification: notification = %@", notification);
+	NSLog(@"handleTweetNotification: notification = %@", notification);
     if ([[notification object] rangeOfString:@"@"].location == 0) {
         KBUserTweetsViewController *controller = [[KBUserTweetsViewController alloc] initWithNibName:@"KBUserTweetsViewController" bundle:nil];
         controller.username = [notification object];

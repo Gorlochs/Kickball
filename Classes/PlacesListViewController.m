@@ -128,6 +128,7 @@
     }
     
 	mapViewController.venues = allvenues;
+    mapViewController.searchKeywords = searchbox.text;
     [allvenues release];
     [self.navigationController pushViewController:mapViewController animated:NO];
     [mapViewController release];

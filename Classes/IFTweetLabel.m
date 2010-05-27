@@ -18,6 +18,7 @@
 
 @synthesize normalColor;
 @synthesize highlightColor;
+@synthesize labelHighlightedTextColor;
 
 @synthesize normalImage;
 @synthesize highlightImage;
@@ -384,6 +385,11 @@ static NSArray *expressions = nil;
 	[self.label setText:text];
 
 	[self setNeedsLayout];
+}
+
+- (void)setLabelHighlightedTextColor:(UIColor *)color
+{
+    self.label.highlightedTextColor = color;
 }
 
 - (void)setLinksEnabled:(BOOL)state

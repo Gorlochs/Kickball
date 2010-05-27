@@ -385,7 +385,8 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
     NSLog(@"website url: %@", url);
     webController.urlString = url;
     [self presentModalViewController:webController animated:YES];
-    [webController release];
+    // FIXME: commenting out below probably fixes the crash, but it's masking the REAL problem, which I need to find
+    //[webController release];
 }
 
 - (void) displayTextView {

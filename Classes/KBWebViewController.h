@@ -1,5 +1,5 @@
 //
-//  ForgotPasswordWebViewController.h
+//  KBWebViewController.h
 //  Kickball
 //
 //  Created by Shawn Bernard on 12/18/09.

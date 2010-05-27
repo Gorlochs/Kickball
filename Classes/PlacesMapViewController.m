@@ -18,7 +18,7 @@
 
 @implementation PlacesMapViewController
 
-@synthesize mapViewer, bestEffortAtLocation;
+@synthesize mapViewer, bestEffortAtLocation, searchKeywords;
 
 
  // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -37,6 +37,7 @@
                                                     andAction:@selector(venuesResponseReceived:withResponseString:)
         ];   
     } else {
+        searchbox.text = searchKeywords;
         [self refreshVenuePoints];
     }
 	

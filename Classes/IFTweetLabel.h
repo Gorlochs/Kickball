@@ -22,6 +22,7 @@ extern NSString *IFTweetLabelURLNotification;
 {
 	UIColor *normalColor;
 	UIColor *highlightColor;
+    UIColor *labelHighlightedTextColor;
 
 	UIImage *normalImage;
 	UIImage *highlightImage;
@@ -33,6 +34,7 @@ extern NSString *IFTweetLabelURLNotification;
 
 @property (nonatomic, retain) UIColor *normalColor;
 @property (nonatomic, retain) UIColor *highlightColor;
+@property (nonatomic, retain) UIColor *labelHighlightedTextColor;
 
 @property (nonatomic, retain) UIImage *normalImage;
 @property (nonatomic, retain) UIImage *highlightImage;
