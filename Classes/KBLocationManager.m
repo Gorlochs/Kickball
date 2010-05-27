@@ -90,7 +90,9 @@ static BOOL initialized = NO;
 
 - (CLLocationDistance) distanceFromCoordinate:(CLLocation*)coordinate {
     CLLocation *currentLocation = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
-    return [currentLocation getDistanceFrom:coordinate];
+    CLLocationDistance distance = [currentLocation getDistanceFrom:coordinate];
+    [currentLocation release];
+    return distance;
 }
 
 //+ (void) - (void) stopUpdates:(NSString *)state {

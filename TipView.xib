@@ -73,10 +73,6 @@
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">wantTo02.png</string>
 						</object>
-						<object class="NSCustomResource" key="IBUISelectedImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">addMyTip02.png</string>
-						</object>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">wantTo01.png</string>
@@ -113,6 +109,10 @@
 						<int key="NSvFlags">256</int>
 						<string key="NSFrame">{{13, 103}, {292, 69}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<object class="NSColor" key="IBUIBackgroundColor" id="786599142">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MCAwAA</bytes>
+						</object>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">4</int>
@@ -154,7 +154,7 @@
 							<object class="IBUILabel" id="91051430">
 								<reference key="NSNextResponder" ref="725272807"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{20, 55}, {259, 75}}</string>
+								<string key="NSFrame">{{20, 51}, {259, 91}}</string>
 								<reference key="NSSuperview" ref="725272807"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -171,14 +171,14 @@
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">1</int>
 								<float key="IBUIMinimumFontSize">10</float>
-								<int key="IBUINumberOfLines">3</int>
+								<int key="IBUINumberOfLines">5</int>
 							</object>
 						</object>
 						<string key="NSFrame">{{13, 172}, {292, 150}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">2</int>
-							<bytes key="NSRGB">MCAwLjY0MzEzNzI3NjIgMC45Mjk0MTE4Mjg1AA</bytes>
+							<bytes key="NSRGB">MC4yMTU2ODYyOTE1IDAuNjI3NDUxMDAyNiAwLjg5NDExNzcxMwA</bytes>
 						</object>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
@@ -187,10 +187,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{253, 113}, {49, 48}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<object class="NSColor" key="IBUIBackgroundColor">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MCAwAA</bytes>
-						</object>
+						<reference key="IBUIBackgroundColor" ref="786599142"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -775,7 +772,6 @@
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>aap_x01.png</string>
 				<string>aap_x02.png</string>
-				<string>addMyTip02.png</string>
 				<string>doneThis01.png</string>
 				<string>doneThis02.png</string>
 				<string>tipHeader.png</string>
@@ -786,7 +782,6 @@
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>{23, 22}</string>
 				<string>{23, 22}</string>
-				<string>{16, 16}</string>
 				<string>{146, 47}</string>
 				<string>{146, 47}</string>
 				<string>{292, 69}</string>

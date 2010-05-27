@@ -12,10 +12,8 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="13"/>
-			<integer value="67"/>
-			<integer value="116"/>
 			<integer value="1"/>
+			<integer value="116"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -245,7 +243,7 @@
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 			<object class="IBUITableViewCell" id="173432003">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -296,7 +294,6 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{291, 54}</string>
-				<reference key="NSSuperview"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
 					<bytes key="NSRGB">MSAxIDEgMAA</bytes>
@@ -591,7 +588,7 @@
 				<reference key="IBUIContentView" ref="671582536"/>
 			</object>
 			<object class="IBUIView" id="101177011">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -673,7 +670,6 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{290, 39}</string>
-				<reference key="NSSuperview"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MAA</bytes>
@@ -869,6 +865,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{35, 93}, {246, 29}}</string>
 						<reference key="NSSuperview" ref="235903953"/>
+						<reference key="IBUIBackgroundColor" ref="514849696"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -915,7 +912,7 @@
 					</object>
 					<object class="IBUILabel" id="636103693">
 						<reference key="NSNextResponder" ref="235903953"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{35, 144}, {246, 157}}</string>
 						<reference key="NSSuperview" ref="235903953"/>
 						<reference key="IBUIBackgroundColor" ref="514849696"/>
@@ -937,8 +934,9 @@
 						</object>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">1</int>
+						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 						<float key="IBUIMinimumFontSize">10</float>
-						<int key="IBUINumberOfLines">0</int>
+						<int key="IBUINumberOfLines">10</int>
 						<int key="IBUILineBreakMode">0</int>
 					</object>
 				</object>
@@ -1508,11 +1506,11 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="979068616"/>
-							<reference ref="636103693"/>
 							<reference ref="598453231"/>
 							<reference ref="65510975"/>
 							<reference ref="323414760"/>
 							<reference ref="436659741"/>
+							<reference ref="636103693"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Special View</string>
@@ -1619,7 +1617,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{392, 496}, {320, 339}}</string>
+					<string>{{220, 646}, {320, 339}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1677,7 +1675,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">135</int>
+			<int key="maxID">136</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

@@ -38,7 +38,6 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 
 @synthesize theTableView;
 @synthesize loginViewModal;
-@synthesize textViewReturnValue;
 @synthesize hideHeader;
 @synthesize hideFooter;
 @synthesize hideRefresh;
@@ -74,7 +73,6 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 		refreshHeaderView.backgroundColor = [UIColor colorWithRed:176.0/255.0 green:36.0/255.0 blue:44.0/255.0 alpha:1.0];
 		[self.theTableView addSubview:refreshHeaderView];
 		self.theTableView.showsVerticalScrollIndicator = YES;
-		[refreshHeaderView release];
 	}
 }
 
@@ -247,7 +245,6 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
     [progressViewController release];
     [loginViewModal release];
     [popupView release];
-    [textViewReturnValue release];
     [progressBarTimer release];
     
     [refreshHeaderView release];

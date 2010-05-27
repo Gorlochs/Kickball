@@ -36,7 +36,7 @@
     NSRange theRange;
     theRange.location = 0;
     theRange.length = 25;
-    return [[NSMutableArray alloc] initWithArray:[arrayToAdd subarrayWithRange:theRange]];
+    return[ [[NSMutableArray alloc] initWithArray:[arrayToAdd subarrayWithRange:theRange]] autorelease];
 }
 
 - (void)handleTweetNotification:(NSNotification *)notification {

@@ -558,7 +558,7 @@
 }
 
 - (void) photoRequestDidFinish:(ASIHTTPRequest *) request {
-    userPhotos = [[KickballAPI kickballApi] parsePhotosFromXML:[request responseString]];
+    userPhotos = [[[KickballAPI kickballApi] parsePhotosFromXML:[request responseString]] retain];
     
     [theTableView reloadData];
 }

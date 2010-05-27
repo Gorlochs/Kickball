@@ -55,9 +55,9 @@
         // TODO: I am just replacing a space with a +, but other characters might give this method a headache.
         NSLog(@"searching on latitude: %f", [[KBLocationManager locationManager] latitude]);
         NSLog(@"searching on longitude: %f", [[KBLocationManager locationManager] longitude]);
-        [[FoursquareAPI sharedInstance] getVenuesByKeyword:[NSString stringWithFormat:@"%f", [[KBLocationManager locationManager] latitude]] 
+        [[FoursquareAPI sharedInstance] getVenuesByKeyword:[newPlaceName.text stringByReplacingOccurrencesOfString:@" " withString:@"+"]
+                                               andLatitude:[NSString stringWithFormat:@"%f", [[KBLocationManager locationManager] latitude]] 
                                               andLongitude:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] longitude]] 
-                                               andKeywords:[newPlaceName.text stringByReplacingOccurrencesOfString:@" " withString:@"+"]
                                                 withTarget:self 
                                                  andAction:@selector(venuesResponseReceived:withResponseString:)
          ];
@@ -116,8 +116,6 @@
     [msg release];
 }
 
-
-
 - (void)dealloc {
     [newPlaceName release];
     [mapView release];
@@ -125,12 +123,9 @@
     [addAddressButton release];
     [newVenueName release];
     [categoryId release];
-    
     [checkin release];
     
     [super dealloc];
 }
 
-
 @end
-

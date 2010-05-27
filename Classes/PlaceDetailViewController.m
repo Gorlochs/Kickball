@@ -138,7 +138,7 @@
 
 - (void) venueRequestDidFinish:(ASIHTTPRequest *) request {
     
-    goodies = [[KickballAPI kickballApi] parsePhotosFromXML:[request responseString]];
+    goodies = [[[KickballAPI kickballApi] parsePhotosFromXML:[request responseString]] retain];
     
 
     if ([goodies count] > 0) {
@@ -765,7 +765,7 @@
     CGSize maximumLabelSize = CGSizeMake(246, 157);
     CGSize expectedLabelSize = [special.message sizeWithFont:specialText.font 
                                            constrainedToSize:maximumLabelSize 
-                                               lineBreakMode:UILineBreakModeClip]; 
+                                               lineBreakMode:UILineBreakModeWordWrap]; 
     
     //adjust the label the the new height.
     CGRect newFrame = specialText.frame;
@@ -899,7 +899,7 @@
             [place release];
             isMatched = YES;
             [self.navigationController pushViewController:vc animated:YES];
-            //[vc release];
+            [vc release];
             break;
         } else { 
             // meh. not pretty.
@@ -914,7 +914,7 @@
         [[Beacon shared] startSubBeaconWithName:@"GeoAPI could not find proper venue - going to list view"];
         vc.geoAPIResults = objArray;
         [self.navigationController pushViewController:vc animated:YES];
-        //[vc release];
+        [vc release];
         NSLog(@"dictionary?: %@", [(NSDictionary*)dict objectForKey:@"entity"]);   
     }
     [objArray release];

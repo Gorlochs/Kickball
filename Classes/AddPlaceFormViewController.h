@@ -36,7 +36,6 @@
 
 - (IBAction) clearFields;
 - (IBAction) saveVenueAndCheckin;
-- (IBAction) viewTipsForAddingNewPlace;
 - (IBAction) cancelEditing;
 - (IBAction) editNextField;
 - (IBAction) editPreviousField;

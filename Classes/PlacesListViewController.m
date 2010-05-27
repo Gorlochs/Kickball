@@ -109,9 +109,9 @@
         venuesTypeToDisplay = KBSearchVenues;
         [self startProgressBar:@"Searching..."];
         // TODO: I am just replacing a space with a +, but other characters might give this method a headache.
-        [[FoursquareAPI sharedInstance] getVenuesByKeyword:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] latitude]] 
+        [[FoursquareAPI sharedInstance] getVenuesByKeyword:[searchbox.text stringByReplacingOccurrencesOfString:@" " withString:@"+"]
+                                               andLatitude:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] latitude]] 
                                               andLongitude:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] longitude]] 
-                                               andKeywords:[searchbox.text stringByReplacingOccurrencesOfString:@" " withString:@"+"]
                                                 withTarget:self 
                                                  andAction:@selector(venuesResponseReceived:withResponseString:)
          ];
@@ -152,6 +152,7 @@
     addPlaceController.newVenueName = searchbox.text;
     [self.navigationController pushViewController:addPlaceController animated:YES];
     [addPlaceController release];
+    
 //    AddPlaceViewController *addPlaceController = [[AddPlaceViewController alloc] initWithNibName:@"AddPlaceViewControllerv2" bundle:nil];
 //    [self.navigationController pushViewController:addPlaceController animated:YES];
 //    [addPlaceController release];

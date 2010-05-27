@@ -63,7 +63,7 @@
                     [tempTweetArray addObjectsFromArray:tweets];
                     tweets = nil;
                     [tweets release];
-                    tweets = [self addAndTrimArray:tempTweetArray];
+                    tweets = [[self addAndTrimArray:tempTweetArray] retain];
                 }
                 [tempTweetArray release];
                 [theTableView reloadData];

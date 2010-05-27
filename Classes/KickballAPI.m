@@ -23,7 +23,7 @@ static KickballAPI* _kickballApi = nil;
 
 - (NSMutableArray*) parsePhotosFromXML:(NSString*)responseString {
     
-    NSMutableArray *goodies = [[NSMutableArray alloc] initWithCapacity:1];
+    NSMutableArray *goodies = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
 
     CXMLDocument *rssParser = [[[CXMLDocument alloc] initWithXMLString:responseString options:0 error:nil] autorelease];
 
@@ -119,14 +119,13 @@ static KickballAPI* _kickballApi = nil;
     NSString *convertedDateString = @"";
     NSDate *oneHourFromNow = [[NSDate alloc] initWithTimeIntervalSinceNow:-60*60*1];
     NSDate *twentyfourHoursFromNow = [[NSDate alloc] initWithTimeIntervalSinceNow:-60*60*24];
-    oneHourFromNow = [self convertToUTC:oneHourFromNow];
-    twentyfourHoursFromNow = [self convertToUTC:twentyfourHoursFromNow];
     
     NSUInteger unitFlags = NSMinuteCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit;
     
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     [gregorian setLocale:[NSLocale currentLocale]];
     NSDateComponents *components = [gregorian components:unitFlags fromDate:[NSDate date] toDate:dateToConvert options:0];
+    [gregorian release];
     NSInteger minutes = [components minute] * -1;
     NSInteger hours = [components hour] * -1;
     NSInteger days = [components day] * -1;

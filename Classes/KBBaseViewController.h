@@ -58,7 +58,6 @@ typedef enum{
     LoginViewModalController *loginViewModal;
     PopupMessageView *popupView;
     UIImageView *iconImageView;
-    NSString *textViewReturnValue;
     NSTimer *progressBarTimer;
     
     KBPageType pageType;
@@ -88,7 +87,6 @@ typedef enum{
 
 @property (nonatomic, retain) UITableView *theTableView;
 @property (nonatomic, retain) LoginViewModalController *loginViewModal;
-@property (nonatomic, retain) NSString *textViewReturnValue;
 @property (nonatomic) BOOL hideFooter;
 @property (nonatomic) BOOL hideHeader;
 @property (nonatomic) BOOL hideRefresh;

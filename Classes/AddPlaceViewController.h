@@ -26,9 +26,9 @@
 @property (nonatomic, retain) NSString *newVenueName;
 @property (nonatomic, retain) NSString *categoryId;
 
-- (FSVenue*) extractVenueFromDictionaryForRow:(NSIndexPath*)indexPath;
+//- (FSVenue*) extractVenueFromDictionaryForRow:(NSIndexPath*)indexPath;
 - (IBAction) checkinToNewVenue;
-- (IBAction) switchToTextFields;
+//- (IBAction) switchToTextFields;
 - (IBAction) doVenuelessCheckin;
 - (IBAction) addAddress;
 - (IBAction) addCategory;

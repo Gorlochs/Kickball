@@ -52,8 +52,8 @@ typedef enum{
 @property(nonatomic,assign) CGFloat bottomBorderThickness;
 
 - (id)initWithFrameRelativeToFrame:(CGRect)originalFrame;
-- (void)setLastRefreshDate:(NSDate*)date;
-- (void)setCurrentDate;
+//- (void)setLastRefreshDate:(NSDate*)date;
+//- (void)setCurrentDate;
 - (void)setState:(EGOPullRefreshState)aState;
 
 @end

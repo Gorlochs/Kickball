@@ -60,7 +60,7 @@
     venueName.text = venue.name;
     venueAddress.text = venue.venueAddress;
     
-    CGSize maximumLabelSize = CGSizeMake(310,80);
+    CGSize maximumLabelSize = CGSizeMake(259,91);
     CGSize expectedLabelSize = [tip.text sizeWithFont:tipText.font 
                                     constrainedToSize:maximumLabelSize 
                                         lineBreakMode:tipText.lineBreakMode]; 
