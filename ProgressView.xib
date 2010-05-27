@@ -42,21 +42,6 @@
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<object class="IBUIImageView" id="1017974337">
-						<reference key="NSNextResponder" ref="767594400"/>
-						<int key="NSvFlags">256</int>
-						<string key="NSFrame">{{0, 45}, {320, 416}}</string>
-						<reference key="NSSuperview" ref="767594400"/>
-						<bool key="IBUIOpaque">NO</bool>
-						<bool key="IBUIClipsSubviews">YES</bool>
-						<int key="IBUIContentMode">4</int>
-						<bool key="IBUIMultipleTouchEnabled">YES</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<object class="NSCustomResource" key="IBUIImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">checkinBlackout.png</string>
-						</object>
-					</object>
 					<object class="IBUIImageView" id="1028415762">
 						<reference key="NSNextResponder" ref="767594400"/>
 						<int key="NSvFlags">256</int>
@@ -169,7 +154,6 @@
 						<reference key="object" ref="767594400"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="1017974337"/>
 							<reference ref="1050821550"/>
 							<reference ref="1028415762"/>
 						</object>
@@ -178,11 +162,6 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">12</int>
 						<reference key="object" ref="1050821550"/>
-						<reference key="parent" ref="767594400"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">21</int>
-						<reference key="object" ref="1017974337"/>
 						<reference key="parent" ref="767594400"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -493,17 +472,8 @@
 		<string key="IBDocument.LastKnownRelativeProjectPath">Kickball.xcodeproj</string>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<bool key="EncodedWithXMLCoder">YES</bool>
-			<object class="NSArray" key="dict.sortedKeys">
-				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>checkinBlackout.png</string>
-				<string>loading01.png</string>
-			</object>
-			<object class="NSMutableArray" key="dict.values">
-				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>{320, 480}</string>
-				<string>{320, 42}</string>
-			</object>
+			<string key="NS.key.0">loading01.png</string>
+			<string key="NS.object.0">{320, 42}</string>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">87</string>
 	</data>

@@ -143,7 +143,7 @@ static FoursquareAPI *sharedInstance = nil;
 }
 
 // this might could be combined with the above method
-- (void)getVenuesByKeyword: (NSString *)geolat andLongitude:(NSString *) geolong andKeywords:(NSString *) keywords withTarget:(id)inTarget andAction:(SEL)inAction{
+- (void)getVenuesByKeyword:(NSString*)keywords andLatitude:(NSString *)geolat andLongitude:(NSString *)geolong  withTarget:(id)inTarget andAction:(SEL)inAction {
 //	NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
 //	
 //	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"geolat" andValue:geolat]];

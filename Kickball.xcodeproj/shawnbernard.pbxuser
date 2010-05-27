@@ -72,7 +72,7 @@
 			6A533E4111926618007C283C /* MGTwitterUsersYAJLParser.m:62 */,
 			6A533E4E11926737007C283C /* MGTwitterYAJLParser.m:257 */,
 			6A7E2896119880C000B76CB3 /* KBMentionsViewController.m:33 */,
-			6A1572AF11A5BA540025D024 /* PlacesMapViewController.m:284 */,
+			6A1572AF11A5BA540025D024 /* PlacesMapViewController.m:294 */,
 			6A15757411A71CEB0025D024 /* KBAccountManager.m:36 */,
 			6A15757611A71D090025D024 /* KBAccountManager.m:27 */,
 			6A15758611A71DAD0025D024 /* KBBaseViewController.m:117 */,
@@ -139,7 +139,7 @@
 				PBXFileTableDataSourceColumnWidthsKey = (
 					22,
 					300,
-					961,
+					955,
 				);
 				PBXFileTableDataSourceColumnsKey = (
 					PBXExecutablesDataSource_ActiveFlagID,
@@ -174,7 +174,7 @@
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
-					1033,
+					1027,
 					60,
 					20,
 					48,
@@ -287,6 +287,24 @@
 			6A23EC6511ADE00200EC643F /* PBXTextBookmark */ = 6A23EC6511ADE00200EC643F /* PBXTextBookmark */;
 			6A23EC6A11ADE03A00EC643F /* PBXTextBookmark */ = 6A23EC6A11ADE03A00EC643F /* PBXTextBookmark */;
 			6A23EC6F11ADE15900EC643F /* PBXTextBookmark */ = 6A23EC6F11ADE15900EC643F /* PBXTextBookmark */;
+			6A23EC7311ADE1A800EC643F /* PBXTextBookmark */ = 6A23EC7311ADE1A800EC643F /* PBXTextBookmark */;
+			6A23EC7511ADE32A00EC643F /* PBXTextBookmark */ = 6A23EC7511ADE32A00EC643F /* PBXTextBookmark */;
+			6A23EC9F11ADE38800EC643F /* PBXTextBookmark */ = 6A23EC9F11ADE38800EC643F /* PBXTextBookmark */;
+			6A23ECA611ADE7AE00EC643F /* PBXTextBookmark */ = 6A23ECA611ADE7AE00EC643F /* PBXTextBookmark */;
+			6A23ECAA11ADE88000EC643F /* PBXTextBookmark */ = 6A23ECAA11ADE88000EC643F /* PBXTextBookmark */;
+			6A23ECAB11ADE88000EC643F /* PBXTextBookmark */ = 6A23ECAB11ADE88000EC643F /* PBXTextBookmark */;
+			6A23ECAC11ADE88000EC643F /* PBXTextBookmark */ = 6A23ECAC11ADE88000EC643F /* PBXTextBookmark */;
+			6A23ECAE11ADE88200EC643F /* PBXTextBookmark */ = 6A23ECAE11ADE88200EC643F /* PBXTextBookmark */;
+			6A23ECB411ADE9C600EC643F /* PBXTextBookmark */ = 6A23ECB411ADE9C600EC643F /* PBXTextBookmark */;
+			6A23ECB511ADE9C600EC643F /* PBXTextBookmark */ = 6A23ECB511ADE9C600EC643F /* PBXTextBookmark */;
+			6A23ECB611ADE9C600EC643F /* PBXTextBookmark */ = 6A23ECB611ADE9C600EC643F /* PBXTextBookmark */;
+			6A23ECB711ADE9C600EC643F /* PBXTextBookmark */ = 6A23ECB711ADE9C600EC643F /* PBXTextBookmark */;
+			6A23ECBC11ADE9EE00EC643F /* PBXTextBookmark */ = 6A23ECBC11ADE9EE00EC643F /* PBXTextBookmark */;
+			6A23ECBD11ADE9EE00EC643F /* PBXTextBookmark */ = 6A23ECBD11ADE9EE00EC643F /* PBXTextBookmark */;
+			6A23ECC111ADEB1E00EC643F /* PBXTextBookmark */ = 6A23ECC111ADEB1E00EC643F /* PBXTextBookmark */;
+			6A23ECC411ADEB6700EC643F /* PBXTextBookmark */ = 6A23ECC411ADEB6700EC643F /* PBXTextBookmark */;
+			6A23ECC711ADEBCA00EC643F /* PBXTextBookmark */ = 6A23ECC711ADEBCA00EC643F /* PBXTextBookmark */;
+			6A23ECCB11ADEBF300EC643F /* PBXTextBookmark */ = 6A23ECCB11ADEBF300EC643F /* PBXTextBookmark */;
 		};
 		sourceControlManager = 6A044CA7109544D50063FC33 /* Source Control */;
 		userBookmarkGroup = 6AE7FB0C115C37840073979E /* PBXBookmarkGroup */;
@@ -351,16 +369,16 @@
 	};
 	553C50FE10A1BD5000A74641 /* FoursquareAPI.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {2133, 1635}}";
-			sepNavSelRange = "{6041, 20}";
-			sepNavVisRange = "{1776, 4606}";
+			sepNavIntBoundsRect = "{{0, 0}, {2133, 1620}}";
+			sepNavSelRange = "{1432, 0}";
+			sepNavVisRange = "{777, 4740}";
 		};
 	};
 	553C50FF10A1BD5000A74641 /* FoursquareAPI.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1245, 23055}}";
-			sepNavSelRange = "{52393, 0}";
-			sepNavVisRange = "{51038, 2732}";
+			sepNavIntBoundsRect = "{{0, 0}, {1552, 23205}}";
+			sepNavSelRange = "{4457, 0}";
+			sepNavVisRange = "{3108, 3144}";
 			sepNavWindowFrame = "{{15, 94}, {1362, 929}}";
 		};
 	};
@@ -688,27 +706,27 @@
 		enableDebugStr = 1;
 		environmentEntries = (
 			{
-				active = YES;
+				active = NO;
 				name = MallocStackLoggingNoCompact;
 				value = YES;
 			},
 			{
-				active = YES;
+				active = NO;
 				name = MallocStackLogging;
 				value = YES;
 			},
 			{
-				active = YES;
+				active = NO;
 				name = NSZombieEnabled;
 				value = YES;
 			},
 			{
-				active = YES;
+				active = NO;
 				name = NSDebugEnabled;
 				value = YES;
 			},
 			{
-				active = YES;
+				active = NO;
 				name = NSObjCMessageLoggingEnabled;
 				value = YES;
 			},
@@ -944,7 +962,7 @@
 		ignoreCount = 0;
 		lineNumber = 941;
 		location = kickball;
-		modificationTime = 296607806.502229;
+		modificationTime = 296610765.198047;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -962,7 +980,7 @@
 			sepNavVisRange = "{1890, 2084}";
 		};
 	};
-	6A1572AF11A5BA540025D024 /* PlacesMapViewController.m:284 */ = {
+	6A1572AF11A5BA540025D024 /* PlacesMapViewController.m:294 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -974,9 +992,9 @@
 		functionName = "-allVenuesOnScrollResponseReceived:withResponseString:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 284;
+		lineNumber = 294;
 		location = kickball;
-		modificationTime = 296607806.502982;
+		modificationTime = 296610765.198614;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -1029,7 +1047,7 @@
 		ignoreCount = 0;
 		lineNumber = 36;
 		location = kickball;
-		modificationTime = 296607806.503035;
+		modificationTime = 296610765.198772;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -1047,7 +1065,7 @@
 		ignoreCount = 0;
 		lineNumber = 27;
 		location = kickball;
-		modificationTime = 296607806.503048;
+		modificationTime = 296610765.198818;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -1065,7 +1083,7 @@
 		ignoreCount = 0;
 		lineNumber = 117;
 		location = kickball;
-		modificationTime = 296607806.503124;
+		modificationTime = 296610765.198848;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -1083,7 +1101,7 @@
 		ignoreCount = 0;
 		lineNumber = 127;
 		location = kickball;
-		modificationTime = 296607806.503169;
+		modificationTime = 296610765.198915;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -1146,7 +1164,7 @@
 		ignoreCount = 0;
 		lineNumber = 1045;
 		location = kickball;
-		modificationTime = 296607806.503619;
+		modificationTime = 296610765.199202;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -2312,6 +2330,183 @@
 		vrLen = 3142;
 		vrLoc = 34774;
 	};
+	6A23EC7311ADE1A800EC643F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6AC7E92F10994FD000776993 /* PlaceDetailViewController.m */;
+		name = "PlaceDetailViewController.m: 901";
+		rLen = 0;
+		rLoc = 36892;
+		rType = 0;
+		vrLen = 3157;
+		vrLoc = 34774;
+	};
+	6A23EC7511ADE32A00EC643F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6AC7E92F10994FD000776993 /* PlaceDetailViewController.m */;
+		name = "PlaceDetailViewController.m: 901";
+		rLen = 0;
+		rLoc = 36892;
+		rType = 0;
+		vrLen = 1995;
+		vrLoc = 35771;
+	};
+	6A23EC9F11ADE38800EC643F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6AC7E92F10994FD000776993 /* PlaceDetailViewController.m */;
+		name = "PlaceDetailViewController.m: 915";
+		rLen = 0;
+		rLoc = 37577;
+		rType = 0;
+		vrLen = 3142;
+		vrLoc = 34774;
+	};
+	6A23ECA611ADE7AE00EC643F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6AC7E92F10994FD000776993 /* PlaceDetailViewController.m */;
+		name = "PlaceDetailViewController.m: 873";
+		rLen = 0;
+		rLoc = 34882;
+		rType = 0;
+		vrLen = 3271;
+		vrLoc = 34493;
+	};
+	6A23ECAA11ADE88000EC643F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6AC7E92F10994FD000776993 /* PlaceDetailViewController.m */;
+		name = "PlaceDetailViewController.m: 873";
+		rLen = 0;
+		rLoc = 34882;
+		rType = 0;
+		vrLen = 3271;
+		vrLoc = 34493;
+	};
+	6A23ECAB11ADE88000EC643F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6AC5817910B517FB0043B90C /* PlacesMapViewController.m */;
+		rLen = 1;
+		rLoc = 292;
+		rType = 1;
+	};
+	6A23ECAC11ADE88000EC643F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6AC5817910B517FB0043B90C /* PlacesMapViewController.m */;
+		name = "PlacesMapViewController.m: 90";
+		rLen = 0;
+		rLoc = 3024;
+		rType = 0;
+		vrLen = 1571;
+		vrLoc = 2290;
+	};
+	6A23ECAE11ADE88200EC643F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6AC5817910B517FB0043B90C /* PlacesMapViewController.m */;
+		name = "PlacesMapViewController.m: 90";
+		rLen = 0;
+		rLoc = 3024;
+		rType = 0;
+		vrLen = 1470;
+		vrLoc = 2290;
+	};
+	6A23ECB411ADE9C600EC643F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6AC5817910B517FB0043B90C /* PlacesMapViewController.m */;
+		name = "PlacesMapViewController.m: 277";
+		rLen = 0;
+		rLoc = 9659;
+		rType = 0;
+		vrLen = 2928;
+		vrLoc = 7233;
+	};
+	6A23ECB511ADE9C600EC643F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 553C50FF10A1BD5000A74641 /* FoursquareAPI.m */;
+		name = "FoursquareAPI.m: 146";
+		rLen = 0;
+		rLoc = 5101;
+		rType = 0;
+		vrLen = 3143;
+		vrLoc = 3108;
+	};
+	6A23ECB611ADE9C600EC643F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 553C50FE10A1BD5000A74641 /* FoursquareAPI.h */;
+		name = "FoursquareAPI.h: 46";
+		rLen = 0;
+		rLoc = 1432;
+		rType = 0;
+		vrLen = 4865;
+		vrLoc = 779;
+	};
+	6A23ECB711ADE9C600EC643F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 553C50FE10A1BD5000A74641 /* FoursquareAPI.h */;
+		name = "FoursquareAPI.h: 46";
+		rLen = 0;
+		rLoc = 1280;
+		rType = 0;
+		vrLen = 4802;
+		vrLoc = 777;
+	};
+	6A23ECBC11ADE9EE00EC643F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6AC5817910B517FB0043B90C /* PlacesMapViewController.m */;
+		name = "PlacesMapViewController.m: 277";
+		rLen = 0;
+		rLoc = 9659;
+		rType = 0;
+		vrLen = 2928;
+		vrLoc = 7233;
+	};
+	6A23ECBD11ADE9EE00EC643F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6AC5817910B517FB0043B90C /* PlacesMapViewController.m */;
+		name = "PlacesMapViewController.m: 268";
+		rLen = 0;
+		rLoc = 8760;
+		rType = 0;
+		vrLen = 3050;
+		vrLoc = 7515;
+	};
+	6A23ECC111ADEB1E00EC643F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6AC5817910B517FB0043B90C /* PlacesMapViewController.m */;
+		name = "PlacesMapViewController.m: 283";
+		rLen = 0;
+		rLoc = 9659;
+		rType = 0;
+		vrLen = 3265;
+		vrLoc = 7638;
+	};
+	6A23ECC411ADEB6700EC643F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6AC5817910B517FB0043B90C /* PlacesMapViewController.m */;
+		name = "PlacesMapViewController.m: 283";
+		rLen = 0;
+		rLoc = 9672;
+		rType = 0;
+		vrLen = 3348;
+		vrLoc = 7638;
+	};
+	6A23ECC711ADEBCA00EC643F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6AC5817910B517FB0043B90C /* PlacesMapViewController.m */;
+		name = "PlacesMapViewController.m: 286";
+		rLen = 0;
+		rLoc = 9976;
+		rType = 0;
+		vrLen = 3204;
+		vrLoc = 7638;
+	};
+	6A23ECCB11ADEBF300EC643F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6AC5817910B517FB0043B90C /* PlacesMapViewController.m */;
+		name = "PlacesMapViewController.m: 288";
+		rLen = 0;
+		rLoc = 10144;
+		rType = 0;
+		vrLen = 3215;
+		vrLoc = 7638;
+	};
 	6A2AEF551174161900F1EA88 /* PlacesListTableViewCellv2.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1245, 889}}";
@@ -2427,7 +2622,7 @@
 		ignoreCount = 0;
 		lineNumber = 43;
 		location = kickball;
-		modificationTime = 296607806.502789;
+		modificationTime = 296610765.198421;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -2716,7 +2911,7 @@
 		ignoreCount = 0;
 		lineNumber = 112;
 		location = kickball;
-		modificationTime = 296607806.503558;
+		modificationTime = 296610765.199185;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -2780,7 +2975,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		location = libicucore.A.dylib;
-		modificationTime = 296607806.504504;
+		modificationTime = 296610765.199883;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 		symbolName = "*0x0291a006";
@@ -2798,7 +2993,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 62;
-		modificationTime = 296607806.502881;
+		modificationTime = 296610765.198506;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -2815,7 +3010,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 257;
-		modificationTime = 296607806.502927;
+		modificationTime = 296610765.198519;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -2847,7 +3042,7 @@
 		ignoreCount = 0;
 		lineNumber = 122;
 		location = kickball;
-		modificationTime = 296607806.502857;
+		modificationTime = 296610765.198443;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -2929,7 +3124,7 @@
 		ignoreCount = 0;
 		lineNumber = 772;
 		location = kickball;
-		modificationTime = 296607806.503251;
+		modificationTime = 296610765.19903;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -2947,7 +3142,7 @@
 		ignoreCount = 0;
 		lineNumber = 242;
 		location = kickball;
-		modificationTime = 296607806.503503;
+		modificationTime = 296610765.19911;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -2965,7 +3160,7 @@
 		ignoreCount = 0;
 		lineNumber = 98;
 		location = kickball;
-		modificationTime = 296607806.503533;
+		modificationTime = 296610765.199159;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -3112,7 +3307,7 @@
 		ignoreCount = 0;
 		lineNumber = 33;
 		location = kickball;
-		modificationTime = 296607806.502949;
+		modificationTime = 296610765.198589;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -3145,7 +3340,7 @@
 		ignoreCount = 0;
 		lineNumber = 582;
 		location = kickball;
-		modificationTime = 296607806.502669;
+		modificationTime = 296610765.19832;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -3186,7 +3381,7 @@
 		ignoreCount = 0;
 		lineNumber = 255;
 		location = kickball;
-		modificationTime = 296607806.502629;
+		modificationTime = 296610765.198265;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -3364,7 +3559,7 @@
 		ignoreCount = 0;
 		lineNumber = 51;
 		location = kickball;
-		modificationTime = 296607806.502806;
+		modificationTime = 296610765.198434;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -3602,7 +3797,7 @@
 		ignoreCount = 0;
 		lineNumber = 358;
 		location = kickball;
-		modificationTime = 296607806.50273;
+		modificationTime = 296610765.198335;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -3679,9 +3874,9 @@
 	};
 	6AC5817910B517FB0043B90C /* PlacesMapViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1245, 4860}}";
-			sepNavSelRange = "{12396, 0}";
-			sepNavVisRange = "{10601, 1991}";
+			sepNavIntBoundsRect = "{{0, 0}, {1245, 5310}}";
+			sepNavSelRange = "{10144, 0}";
+			sepNavVisRange = "{7638, 3215}";
 			sepNavWindowFrame = "{{15, 94}, {1362, 929}}";
 		};
 	};
@@ -3703,9 +3898,9 @@
 	};
 	6AC7E92F10994FD000776993 /* PlaceDetailViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1762, 16320}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1762, 16155}}";
 			sepNavSelRange = "{36892, 0}";
-			sepNavVisRange = "{34774, 3142}";
+			sepNavVisRange = "{35771, 2037}";
 			sepNavWindowFrame = "{{15, 100}, {1055, 923}}";
 		};
 	};
@@ -3964,7 +4159,7 @@
 		ignoreCount = 0;
 		lineNumber = 89;
 		location = kickball;
-		modificationTime = 296607806.503184;
+		modificationTime = 296610765.198928;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -3982,7 +4177,7 @@
 		ignoreCount = 0;
 		lineNumber = 196;
 		location = kickball;
-		modificationTime = 296607806.503229;
+		modificationTime = 296610765.198941;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -4109,7 +4304,7 @@
 		ignoreCount = 0;
 		lineNumber = 16;
 		location = kickball;
-		modificationTime = 296607806.502536;
+		modificationTime = 296610765.198231;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -4141,7 +4336,7 @@
 		ignoreCount = 0;
 		lineNumber = 134;
 		location = kickball;
-		modificationTime = 296607806.502576;
+		modificationTime = 296610765.198249;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -4286,7 +4481,7 @@
 		ignoreCount = 0;
 		lineNumber = 546;
 		location = Kickball;
-		modificationTime = 296607806.502138;
+		modificationTime = 296610765.19799;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};

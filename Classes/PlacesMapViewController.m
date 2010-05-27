@@ -87,8 +87,8 @@
 	[venues release];
 	venues = venue;
 	[venues retain];
-    // TODO: center map on user's coordinate, which will be pulled from [FoursquareAPI user] or something
-	[self refreshVenuePoints];
+    
+	//[self refreshVenuePoints];
 }
 
 
@@ -263,21 +263,31 @@
     if (![searchbox.text isEqualToString:@""]) {
         // TODO: I am just replacing a space with a +, but other characters might give this method a headache.
         [self releaseAllAnnotationExceptCurrentLocation];
-        [[FoursquareAPI sharedInstance] getVenuesNearLatitude:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] latitude]]
-                                                 andLongitude:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] longitude]]
-                                                   withTarget:self 
-                                                    andAction:@selector(venuesResponseReceived:withResponseString:)
+        [[FoursquareAPI sharedInstance] getVenuesByKeyword:searchbox.text 
+                                               andLatitude:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] latitude]]
+                                              andLongitude:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] longitude]]
+                                                withTarget:self 
+                                                 andAction:@selector(venuesResponseReceived:withResponseString:)
          ];  
     }
 }
 
 // no search criteria (yet), no rezoom
 - (void) searchOnMapScrollLatLongWithCoordinate:(CLLocationCoordinate2D)coordinate {
-    [[FoursquareAPI sharedInstance] getVenuesNearLatitude:[NSString stringWithFormat:@"%f", coordinate.latitude]
-                                             andLongitude:[NSString stringWithFormat:@"%f", coordinate.longitude]
-                                               withTarget:self 
-                                                andAction:@selector(allVenuesOnScrollResponseReceived:withResponseString:)
-     ];
+    if ([searchbox.text isEqualToString:@""]) {
+        [[FoursquareAPI sharedInstance] getVenuesNearLatitude:[NSString stringWithFormat:@"%f", coordinate.latitude]
+                                                 andLongitude:[NSString stringWithFormat:@"%f", coordinate.longitude]
+                                                   withTarget:self 
+                                                    andAction:@selector(allVenuesOnScrollResponseReceived:withResponseString:)
+         ];
+    } else {
+        [[FoursquareAPI sharedInstance] getVenuesByKeyword:searchbox.text 
+                                               andLatitude:[NSString stringWithFormat:@"%f", coordinate.latitude]
+                                              andLongitude:[NSString stringWithFormat:@"%f", coordinate.longitude]
+                                                withTarget:self 
+                                                 andAction:@selector(allVenuesOnScrollResponseReceived:withResponseString:)
+         ];
+    }
 }
 
 - (void)allVenuesOnScrollResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
