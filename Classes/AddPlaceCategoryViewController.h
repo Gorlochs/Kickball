@@ -8,11 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "KBBaseViewController.h"
+#import "FSVenue.h"
 
 
 @interface AddPlaceCategoryViewController : KBBaseViewController {
     NSArray *categories;
+    FSVenue *newVenue;
 }
+
+@property (nonatomic, retain) NSArray *categories;
+@property (nonatomic, retain) FSVenue *newVenue;
 
 - (IBAction) backToAddAVenue;
 

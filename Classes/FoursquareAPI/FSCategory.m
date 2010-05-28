@@ -17,6 +17,10 @@
 @synthesize iconUrl;
 @synthesize subcategories;
 
+- (NSString*) description {
+    return [NSString stringWithFormat:@"(CATEGORY : categoryId=%@ ; nodeName=%@ ; iconUrl=%@ ; fullPathName=%@ ; subcategories=%@)", categoryId, nodeName, iconUrl, fullPathName, subcategories];
+}
+
 - (void) encodeWithCoder: (NSCoder *)coder { 
     [coder encodeObject: categoryId forKey:@"categoryId"]; 
     [coder encodeObject: fullPathName forKey:@"fullPathName"]; 

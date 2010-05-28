@@ -8,12 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "KBBaseViewController.h"
-
+#import "FSVenue.h"
 
 @interface AddPlaceFormViewController : KBBaseViewController <UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource> {
     IBOutlet UITableViewCell *tableCell;
-    NSString *newVenueName;
-    
+       
     IBOutlet UITextField *address;
     IBOutlet UITextField *crossstreet;
     IBOutlet UITextField *city;
@@ -27,10 +26,12 @@
     
     IBOutlet UIToolbar *toolbar;
     
+    FSVenue *newVenue;
+    
     CGFloat animatedDistance;
 }
 
-@property (nonatomic, retain) NSString *newVenueName;
+@property (nonatomic, retain) FSVenue *newVenue;
 //@property (nonatomic, retain) NSString *city;
 //@property (nonatomic, retain) NSString *state;
 

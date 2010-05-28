@@ -398,6 +398,22 @@
 					</object>
 					<int key="connectionID">28</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">addressNotation</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="562258146"/>
+					</object>
+					<int key="connectionID">31</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">categoryNotation</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="528411893"/>
+					</object>
+					<int key="connectionID">32</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -530,7 +546,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>AddPlaceViewController</string>
 					<string>UIResponder</string>
-					<string>{{950, 32}, {320, 480}}</string>
+					<string>{{971, 34}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -560,7 +576,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">28</int>
+			<int key="maxID">32</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -577,11 +593,9 @@
 							<string>backOneView</string>
 							<string>checkinToNewVenue</string>
 							<string>doVenuelessCheckin</string>
-							<string>switchToTextFields</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -595,6 +609,8 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>addAddressButton</string>
 							<string>addCategoryButton</string>
+							<string>addressNotation</string>
+							<string>categoryNotation</string>
 							<string>mapView</string>
 							<string>newPlaceName</string>
 						</object>
@@ -602,6 +618,8 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UIButton</string>
 							<string>UIButton</string>
+							<string>UILabel</string>
+							<string>UILabel</string>
 							<string>MKMapView</string>
 							<string>UILabel</string>
 						</object>

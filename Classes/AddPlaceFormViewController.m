@@ -14,18 +14,29 @@
 
 @implementation AddPlaceFormViewController
 
-@synthesize newVenueName;
+@synthesize newVenue;
 
 
 - (void)viewDidLoad {
+    self.hideFooter = YES;
+    self.hideHeader = YES;
+    self.hideRefresh = YES;
+    
     [super viewDidLoad];
-    //venueName.text = newVenueName;
-    //placeName.text = newVenueName;
+    
     [[Beacon shared] startSubBeaconWithName:@"Add Venue Form View"];
     
     toolbar.frame = CGRectMake(0, 436, 320, 44);
     [self.view addSubview:toolbar];
     toolbar.hidden = YES;
+    
+    address.text = newVenue.venueAddress;
+    crossstreet.text = newVenue.crossStreet;
+    city.text = newVenue.city;
+    phone.text = newVenue.phone;
+    twitter.text = newVenue.twitter;
+    zip.text = newVenue.zip;
+    state.text = newVenue.venueState;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -43,7 +54,7 @@
 
 - (void)dealloc {
     [tableCell release];
-    [newVenueName release];
+    [newVenue release];
     
     [address release];
     [crossstreet release];
@@ -98,7 +109,17 @@
 
 - (void) backToAddAVenue {
     // FIXME: send the address data back to the main page
+    newVenue.venueAddress = [NSString stringWithString:address.text];
+    newVenue.crossStreet = [NSString stringWithString:crossstreet.text];
+    newVenue.phone = [NSString stringWithString:phone.text];
+    newVenue.city = [NSString stringWithString:city.text];
+    newVenue.venueState = [NSString stringWithString:state.text];
+    newVenue.zip = [NSString stringWithString:zip.text];
+    newVenue.twitter = [NSString stringWithString:twitter.text];
     
+    NSDictionary *userInfo = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:newVenue, nil] 
+                                                         forKeys:[NSArray arrayWithObjects:@"updatedVenue", nil]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"venueAddressUpdate" object:nil userInfo:userInfo];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -116,7 +137,7 @@
     } else if ([zip isFirstResponder]) {
         [country becomeFirstResponder];
     } else if ([country isFirstResponder]) {
-        [twitter becomeFirstResponder];
+        [phone becomeFirstResponder];
     } else if ([phone isFirstResponder]) {
         [twitter becomeFirstResponder];
     } else {
@@ -149,7 +170,7 @@
         FSUser *user = [self getAuthenticatedUser];
         
         [self startProgressBar:@"Adding new venue and checking you in..."];
-        [[FoursquareAPI sharedInstance] addNewVenue:newVenueName
+        [[FoursquareAPI sharedInstance] addNewVenue:newVenue.name
                                           atAddress:address.text 
                                      andCrossstreet:crossstreet.text 
                                             andCity:user.checkin.venue != nil && user.checkin.venue.city != nil ? user.checkin.venue.city : @""
@@ -271,8 +292,25 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [self cancelEditing];
-    [self saveVenueAndCheckin];
+    
+    // TODO: go from textfield to textfield
+    if (textField == address) {
+        [crossstreet becomeFirstResponder];
+    } else if (textField == crossstreet) {
+        [city becomeFirstResponder];
+    } else if (textField == city) {
+        [state becomeFirstResponder];
+    } else if (textField == state) {
+        [zip becomeFirstResponder];
+    } else if (textField == zip) {
+        [country becomeFirstResponder];
+    } else if (textField == country) {
+        [phone becomeFirstResponder];
+    } else if (textField == phone) {
+        [twitter becomeFirstResponder];
+    } else {
+        [self cancelEditing];
+    }
     return YES;
 }
 

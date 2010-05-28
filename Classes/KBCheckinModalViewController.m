@@ -175,6 +175,7 @@
 	NSArray *checkins = [FoursquareAPI checkinsFromResponseXML:inString];
     if ([checkins count] > 0) {
         checkin = [checkins objectAtIndex:0];
+        NSLog(@"checkin: %@", checkin);
     }
     
     self.shoutToPush = [NSString stringWithString:checkinTextField.text];

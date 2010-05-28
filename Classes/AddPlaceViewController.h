@@ -16,8 +16,11 @@
     IBOutlet MKMapView *mapView;
     IBOutlet UIButton *addCategoryButton;
     IBOutlet UIButton *addAddressButton;
+    IBOutlet UILabel *addressNotation;
+    IBOutlet UILabel *categoryNotation;
     NSString *newVenueName;
     NSString *categoryId;
+    FSVenue *venue;
     
     NSArray *checkin;
 }
@@ -25,6 +28,7 @@
 @property (nonatomic, retain) NSArray *checkin;
 @property (nonatomic, retain) NSString *newVenueName;
 @property (nonatomic, retain) NSString *categoryId;
+@property (nonatomic, retain) FSVenue *venue;
 
 //- (FSVenue*) extractVenueFromDictionaryForRow:(NSIndexPath*)indexPath;
 - (IBAction) checkinToNewVenue;

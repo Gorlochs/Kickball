@@ -74,6 +74,7 @@
 - (void) markTipAsDone:(NSString*)tipId withTarget:(id)inTarget andAction:(SEL)inAction;
 - (void) doFoursquareApiTest:(id)inTarget andAction:(SEL)inAction;
 - (void) doLoginUsername: (NSString *)fsUser andPass:(NSString *) fsPass;
++ (FSCategory*) parseCategoryFromDictionary:(NSDictionary*)dictionary;
 
 + (FoursquareAPI *)sharedInstance;
 

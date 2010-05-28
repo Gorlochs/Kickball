@@ -680,14 +680,33 @@ static FoursquareAPI *sharedInstance = nil;
     if (error) {
         NSLog(@"category json error: %@", error);
     }
-	NSMutableArray *categories = [[NSMutableArray alloc] initWithCapacity:1];
+	NSMutableArray *categories = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
     for (NSDictionary *dict in [responseDictionary objectForKey:@"categories"]) {
-        for (NSDictionary *cat in [dict objectForKey:@"categories"]) {
-            NSLog(@"inside cat: %@", cat);
-        }
+        [categories addObject:[[self parseCategoryFromDictionary:dict] retain]];
+//        NSLog(@"*************************** categories: %@ ***************************", dict);
+//        for (NSDictionary *cat in [dict objectForKey:@"categories"]) {
+//            NSLog(@"inside cat: %@", cat);
+//        }
     }
-    
-    return (NSArray*)[responseDictionary objectForKey:@"categories"];
+    return categories;
+}
+
++ (FSCategory*) parseCategoryFromDictionary:(NSDictionary*)dictionary {
+    FSCategory *category = [[FSCategory alloc] init];
+    category.fullPathName = [dictionary objectForKey:@"fullpathname"];
+    category.iconUrl = [dictionary objectForKey:@"iconurl"];
+    category.categoryId = [dictionary objectForKey:@"id"];
+    category.nodeName = [dictionary objectForKey:@"nodename"];
+    if ([dictionary objectForKey:@"categories"]) {
+        NSArray *arrayOfDictionaries = [dictionary objectForKey:@"categories"];
+        NSMutableArray *subcategories = [[NSMutableArray alloc] initWithCapacity:[arrayOfDictionaries count]];
+        for (NSDictionary *subcatDict in [dictionary objectForKey:@"categories"]) {
+            [subcategories addObject:[[self parseCategoryFromDictionary:subcatDict] retain]];
+        }
+        category.subcategories = [NSArray arrayWithArray:subcategories];
+        [subcategories release];
+    }
+    return category;
 }
 
 // TODO: this might have a memory leak in it, but it's not currently being used
