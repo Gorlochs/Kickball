@@ -164,61 +164,61 @@
         [phone becomeFirstResponder];
     }
 }
-
-- (void) saveVenueAndCheckin {
-    if (![address.text isEqualToString:@""]) {
-        FSUser *user = [self getAuthenticatedUser];
-        
-        [self startProgressBar:@"Adding new venue and checking you in..."];
-        [[FoursquareAPI sharedInstance] addNewVenue:newVenue.name
-                                          atAddress:address.text 
-                                     andCrossstreet:crossstreet.text 
-                                            andCity:user.checkin.venue != nil && user.checkin.venue.city != nil ? user.checkin.venue.city : @""
-                                           andState:user.checkin.venue != nil && user.checkin.venue.venueState != nil ? user.checkin.venue.venueState : @""
-                                     andOptionalZip:zip.text 
-                                  andRequiredCityId:city.text 
-                                   andOptionalPhone:phone.text 
-                                         withTarget:self 
-                                          andAction:@selector(newVenueResponseReceived:withResponseString:)];
-    } else {
-        KBMessage *msg = [[KBMessage alloc] initWithMember:@"Form Error!" andMessage:@"All the required fields need to be filled in"];
-        [self displayPopupMessage:msg];
-        [msg release];
-    }
-}
-
-- (void)newVenueResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    BOOL hasError = [inString rangeOfString:@"<error>"].location != NSNotFound;
-    if (hasError) {
-        KBMessage *msg = [[KBMessage alloc] initWithMember:@"Foursquare Error" andMessage:@"The venue could not be created, possibly because it is a duplicate venue."];
-        [self displayPopupMessage:msg];
-        [msg release];
-    } else {
-        NSLog(@"new venue instring: %@", inString);
-        FSVenue *venue = [FoursquareAPI venueFromResponseXML:inString];
-        
-        // TODO: we should think about removing the Add Venue pages from the stack so users can't use the BACK button to return to them
-        PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView_v2" bundle:nil];    
-        placeDetailController.venueId = venue.venueid;
-        placeDetailController.doCheckin = YES;
-        [self.navigationController pushViewController:placeDetailController animated:YES];
-        [placeDetailController release]; 
-    }
-    [self stopProgressBar];
-}
-
-- (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    NSLog(@"new checkin instring: %@", inString);
-	NSArray *checkins = [FoursquareAPI checkinFromResponseXML:inString];
-    FSCheckin *checkin = [checkins objectAtIndex:0];
-    NSLog(@"venueless checkin: %@", checkins);
-    [self stopProgressBar];
-    
-    // TODO: we should probably take the user off this page.
-    KBMessage *msg = [[KBMessage alloc] initWithMember:@"Check-in Successful" andMessage:checkin.message];
-    [self displayPopupMessage:msg];
-    [msg release];
-}
+//
+//- (void) saveVenueAndCheckin {
+//    if (![address.text isEqualToString:@""]) {
+//        FSUser *user = [self getAuthenticatedUser];
+//        
+//        [self startProgressBar:@"Adding new venue and checking you in..."];
+//        [[FoursquareAPI sharedInstance] addNewVenue:newVenue.name
+//                                          atAddress:address.text 
+//                                     andCrossstreet:crossstreet.text 
+//                                            andCity:user.checkin.venue != nil && user.checkin.venue.city != nil ? user.checkin.venue.city : @""
+//                                           andState:user.checkin.venue != nil && user.checkin.venue.venueState != nil ? user.checkin.venue.venueState : @""
+//                                     andOptionalZip:zip.text 
+//                                  andRequiredCityId:city.text 
+//                                   andOptionalPhone:phone.text 
+//                                         withTarget:self 
+//                                          andAction:@selector(newVenueResponseReceived:withResponseString:)];
+//    } else {
+//        KBMessage *msg = [[KBMessage alloc] initWithMember:@"Form Error!" andMessage:@"All the required fields need to be filled in"];
+//        [self displayPopupMessage:msg];
+//        [msg release];
+//    }
+//}
+//
+//- (void)newVenueResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+//    BOOL hasError = [inString rangeOfString:@"<error>"].location != NSNotFound;
+//    if (hasError) {
+//        KBMessage *msg = [[KBMessage alloc] initWithMember:@"Foursquare Error" andMessage:@"The venue could not be created, possibly because it is a duplicate venue."];
+//        [self displayPopupMessage:msg];
+//        [msg release];
+//    } else {
+//        NSLog(@"new venue instring: %@", inString);
+//        FSVenue *venue = [FoursquareAPI venueFromResponseXML:inString];
+//        
+//        // TODO: we should think about removing the Add Venue pages from the stack so users can't use the BACK button to return to them
+//        PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView_v2" bundle:nil];    
+//        placeDetailController.venueId = venue.venueid;
+//        placeDetailController.doCheckin = YES;
+//        [self.navigationController pushViewController:placeDetailController animated:YES];
+//        [placeDetailController release]; 
+//    }
+//    [self stopProgressBar];
+//}
+//
+//- (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+//    NSLog(@"new checkin instring: %@", inString);
+//	NSArray *checkins = [FoursquareAPI checkinFromResponseXML:inString];
+//    FSCheckin *checkin = [checkins objectAtIndex:0];
+//    NSLog(@"venueless checkin: %@", checkins);
+//    [self stopProgressBar];
+//    
+//    // TODO: we should probably take the user off this page.
+//    KBMessage *msg = [[KBMessage alloc] initWithMember:@"Check-in Successful" andMessage:checkin.message];
+//    [self displayPopupMessage:msg];
+//    [msg release];
+//}
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     //NSLog(@"text field did begin editing: %@", textField);

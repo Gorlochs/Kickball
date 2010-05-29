@@ -152,6 +152,49 @@
     [msg release];
 }
 
+
+- (void) saveVenueAndCheckin {
+//    if (![address.text isEqualToString:@""]) {
+//        FSUser *user = [self getAuthenticatedUser];
+        
+        [self startProgressBar:@"Adding new venue and checking you in..."];
+        [[FoursquareAPI sharedInstance] addNewVenue:venue.name
+                                          atAddress:venue.venueAddress
+                                     andCrossstreet:venue.crossStreet 
+                                            andCity:venue.city
+                                           andState:venue.venueState
+                                     andOptionalZip:venue.zip
+                                  andRequiredCityId:venue.city 
+                                   andOptionalPhone:venue.phone 
+                                         withTarget:self 
+                                          andAction:@selector(newVenueResponseReceived:withResponseString:)];
+//    } else {
+//        KBMessage *msg = [[KBMessage alloc] initWithMember:@"Form Error!" andMessage:@"All the required fields need to be filled in"];
+//        [self displayPopupMessage:msg];
+//        [msg release];
+//    }
+}
+
+- (void)newVenueResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+    BOOL hasError = [inString rangeOfString:@"<error>"].location != NSNotFound;
+    if (hasError) {
+        KBMessage *msg = [[KBMessage alloc] initWithMember:@"Foursquare Error" andMessage:@"The venue could not be created, possibly because it is a duplicate venue."];
+        [self displayPopupMessage:msg];
+        [msg release];
+    } else {
+        NSLog(@"new venue instring: %@", inString);
+        FSVenue *venue = [FoursquareAPI venueFromResponseXML:inString];
+        
+        // TODO: we should think about removing the Add Venue pages from the stack so users can't use the BACK button to return to them
+        PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView_v2" bundle:nil];    
+        placeDetailController.venueId = venue.venueid;
+        placeDetailController.doCheckin = YES;
+        [self.navigationController pushViewController:placeDetailController animated:YES];
+        [placeDetailController release]; 
+    }
+    [self stopProgressBar];
+}
+
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"venueAddressUpdate" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"venueCategoryUpdate" object:nil];

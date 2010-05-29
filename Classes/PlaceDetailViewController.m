@@ -367,7 +367,8 @@
     } else if (section == 2) { // people here
         return [venue.currentCheckins count] <= MAX_PEOPLE_HERE_SHOWN ? [venue.currentCheckins count] : MAX_PEOPLE_HERE_SHOWN;
     } else if (section == 3) { // gift/photos
-        return [goodies count] > 0 ? 1 : 0;
+        //return [goodies count] > 0 ? 1 : 0;
+        return 1;
     } else if (section == 4) { // venue buttons
         return 1;
     } else if (section == 5) { // tips
@@ -458,11 +459,11 @@
             return 44;
             break;
         case 3: // photos
-            if ([goodies count] == 0) {
-                return 102;
-            } else {
+//            if ([goodies count] == 0) {
+//                return 102;
+//            } else {
                 return THUMBNAIL_IMAGE_SIZE;
-            }
+//            }
             break;
         case 4:
             return 44;
