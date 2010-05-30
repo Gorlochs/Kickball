@@ -25,7 +25,7 @@
 }
 
 - (NSString*) description {
-    return [NSString stringWithFormat:@"(VENUE : name=%@ ; venueid=%@ ; city=%@ ; state=%@ ; mayor=%@ ; mayorCount = %d ; phone = %@ ; lat = %@ ; long = %@; currentCheckins: %@)", name, venueid, city, venueState, mayor, mayorCount, phone, geolat, geolong, currentCheckins];
+    return [NSString stringWithFormat:@"(VENUE : name=%@ ; venueid=%@ ; city=%@ ; state=%@ ; mayor=%@ ; mayorCount = %d ; phone = %@ ; lat = %@ ; long = %@; currentCheckins: %@; primaryCategory: %@)", name, venueid, city, venueState, mayor, mayorCount, phone, geolat, geolong, currentCheckins, primaryCategory];
 }
 
 - (NSString*) addressWithCrossstreet {

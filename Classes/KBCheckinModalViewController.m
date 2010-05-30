@@ -172,11 +172,12 @@
 // 4sq response
 - (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     NSLog(@"instring: %@", inString);
-	NSArray *checkins = [FoursquareAPI checkinsFromResponseXML:inString];
-    if ([checkins count] > 0) {
-        checkin = [checkins objectAtIndex:0];
-        NSLog(@"checkin: %@", checkin);
-    }
+//	NSArray *checkins = [FoursquareAPI checkinsFromResponseXML:inString];
+//    if ([checkins count] > 0) {
+//        checkin = [checkins objectAtIndex:0];
+//        NSLog(@"checkin: %@", checkin);
+//    }
+    checkin = [FoursquareAPI checkinFromResponseXML:inString];
     
     self.shoutToPush = [NSString stringWithString:checkinTextField.text];
     [self sendPushNotification];

@@ -61,7 +61,7 @@
     NSLog(@"notification: %@", notification);
     venue = nil;
     [venue release];
-    venue = [[[notification userInfo] objectForKey:@"updatedCategory"] retain];
+    venue = [[[notification userInfo] objectForKey:@"updatedVenue"] retain];
     categoryNotation.text = @"Added!";
     categoryNotation.textColor = [UIColor colorWithRed:0.0 green:164.0/255.0 blue:237.0/255.0 alpha:1.0];
     NSLog(@"updated category venue: %@", venue);
@@ -82,21 +82,21 @@
 
 #pragma mark IBOutlet methods
 
-- (void) checkinToNewVenue {
-    //[newPlaceName resignFirstResponder];
-    if (![venue.name isEqualToString:@""]) {
-        [self startProgressBar:@"Searching..."];
-        // TODO: I am just replacing a space with a +, but other characters might give this method a headache.
-        NSLog(@"searching on latitude: %f", [[KBLocationManager locationManager] latitude]);
-        NSLog(@"searching on longitude: %f", [[KBLocationManager locationManager] longitude]);
-        [[FoursquareAPI sharedInstance] getVenuesByKeyword:[venue.name stringByReplacingOccurrencesOfString:@" " withString:@"+"]
-                                               andLatitude:[NSString stringWithFormat:@"%f", [[KBLocationManager locationManager] latitude]] 
-                                              andLongitude:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] longitude]] 
-                                                withTarget:self 
-                                                 andAction:@selector(venuesResponseReceived:withResponseString:)
-         ];
-    }
-}
+//- (void) checkinToNewVenue {
+//    //[newPlaceName resignFirstResponder];
+//    if (![venue.name isEqualToString:@""]) {
+//        [self startProgressBar:@"Searching..."];
+//        // TODO: I am just replacing a space with a +, but other characters might give this method a headache.
+//        NSLog(@"searching on latitude: %f", [[KBLocationManager locationManager] latitude]);
+//        NSLog(@"searching on longitude: %f", [[KBLocationManager locationManager] longitude]);
+//        [[FoursquareAPI sharedInstance] getVenuesByKeyword:[venue.name stringByReplacingOccurrencesOfString:@" " withString:@"+"]
+//                                               andLatitude:[NSString stringWithFormat:@"%f", [[KBLocationManager locationManager] latitude]] 
+//                                              andLongitude:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] longitude]] 
+//                                                withTarget:self 
+//                                                 andAction:@selector(venuesResponseReceived:withResponseString:)
+//         ];
+//    }
+//}
 
 - (void) addAddress {
     AddPlaceFormViewController *formController = [[AddPlaceFormViewController alloc] initWithNibName:@"AddPlaceFormViewController" bundle:nil];
@@ -142,9 +142,8 @@
 
 - (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     NSLog(@"new checkin instring: %@", inString);
-	NSArray *checkins = [FoursquareAPI checkinFromResponseXML:inString];
-    FSCheckin *ci = [checkins objectAtIndex:0];
-    NSLog(@"venueless checkin: %@", checkins);
+    FSCheckin *ci = [FoursquareAPI checkinFromResponseXML:inString];
+    NSLog(@"venueless checkin: %@", checkin);
     [self stopProgressBar];
 
     KBMessage *msg = [[KBMessage alloc] initWithMember:@"Check-in Successful" andMessage:ci.message];
@@ -183,11 +182,11 @@
         [msg release];
     } else {
         NSLog(@"new venue instring: %@", inString);
-        FSVenue *venue = [FoursquareAPI venueFromResponseXML:inString];
+        FSVenue *theVenue = [FoursquareAPI venueFromResponseXML:inString];
         
         // TODO: we should think about removing the Add Venue pages from the stack so users can't use the BACK button to return to them
         PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView_v2" bundle:nil];    
-        placeDetailController.venueId = venue.venueid;
+        placeDetailController.venueId = theVenue.venueid;
         placeDetailController.doCheckin = YES;
         [self.navigationController pushViewController:placeDetailController animated:YES];
         [placeDetailController release]; 

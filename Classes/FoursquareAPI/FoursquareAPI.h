@@ -98,7 +98,7 @@
 + (NSDictionary *) venuesFromResponseXML:(NSString *) inString;
 + (FSUser *) loggedInUserFromResponseXML:(NSString *) inString; 
 + (NSArray *) checkinsFromResponseXML:(NSString *) inString;
-+ (NSArray *) checkinFromResponseXML:(NSString *) inString;
++ (FSCheckin *) checkinFromResponseXML:(NSString *) inString;
 + (FSVenue *) venueFromResponseXML:(NSString *) inString;
 + (FSUser *) userFromResponseXML:(NSString *) inString;
 + (BOOL) pingSettingFromResponseXML:(NSString *) inString;

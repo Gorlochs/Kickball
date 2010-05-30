@@ -764,7 +764,7 @@ static FoursquareAPI *sharedInstance = nil;
     return checkins;
 }
 
-+ (NSArray *) checkinFromResponseXML:(NSString *) inString{
++ (FSCheckin *) checkinFromResponseXML:(NSString *) inString{
 	NSError * err;
 	CXMLDocument *checkinParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
 	NSLog(@"%@", [err localizedDescription]);
@@ -775,10 +775,11 @@ static FoursquareAPI *sharedInstance = nil;
     NSArray *checkins = nil;
 	for (CXMLElement *checkinAttr in allCheckinAttrs) {
         checkins = [FoursquareAPI _checkinsFromNode:checkinAttr];
+        break;
     }
     [checkinParser release];
     
-    return checkins;
+    return [checkins objectAtIndex:0];
 }
 
 + (NSString*) errorFromResponseXML:(NSString*) inString {

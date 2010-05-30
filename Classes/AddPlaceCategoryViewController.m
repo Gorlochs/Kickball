@@ -89,7 +89,7 @@
     if (category.subcategories) {
         AddPlaceCategoryViewController *formController = [[AddPlaceCategoryViewController alloc] initWithNibName:@"AddPlaceCategoryViewController" bundle:nil];
         formController.categories = category.subcategories;
-        formController.newVenue = newVenue;
+        formController.newVenue = [newVenue retain];
         [self.navigationController pushViewController:formController animated:YES];
         //[formController release];
     } else {

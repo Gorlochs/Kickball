@@ -37,5 +37,6 @@
 - (IBAction) addAddress;
 - (IBAction) addCategory;
 - (IBAction) backOneView;
+- (IBAction) saveVenueAndCheckin;
 
 @end

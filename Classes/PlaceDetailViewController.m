@@ -264,15 +264,16 @@
     
     CLLocationCoordinate2D location = venueToDisplay.location;
     
-    double tmp = [[NSNumber numberWithDouble:location.longitude] doubleValue];
-    // need to shift the pin location because the pin needs to be centered in the right box 
-    // but the map extends underneath the mayor section of the table cell
-    CLLocationCoordinate2D shiftedLocation = {latitude: venueToDisplay.location.latitude , longitude: (CLLocationDegrees)(tmp - 0.0045) };
+//    double tmp = [[NSNumber numberWithDouble:location.longitude] doubleValue];
+//    // need to shift the pin location because the pin needs to be centered in the right box 
+//    // but the map extends underneath the mayor section of the table cell
+//    CLLocationCoordinate2D shiftedLocation = {latitude: venueToDisplay.location.latitude , longitude: (CLLocationDegrees)(tmp - 0.0045) };
     
     fullRegion.span = fullSpan;
     fullRegion.center = location;
     region.span = span;
-    region.center = shiftedLocation;
+//    region.center = shiftedLocation;
+    region.center = location;
     
     [smallMapView setRegion:region animated:NO];
     [smallMapView regionThatFits:region];
@@ -442,7 +443,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section > 1) {
+    if (indexPath.section == 2 || indexPath.section > 3) {
         [cell setBackgroundColor:[UIColor colorWithRed:235.0/255.0 green:235.0/255.0 blue:235.0/255.0 alpha:1.0]];  
     }
 }
@@ -510,12 +511,12 @@
             }
             break;
         case 3: 
-            if ([goodies count] == 0) {
-                return nil;
-            } else {
+//            if ([goodies count] == 0) {
+//                photoHeaderLabel.text = @"";
+//            } else {
                 photoHeaderLabel.text = [NSString stringWithFormat:@"%d %@", [goodies count], [goodies count] == 1 ? @"Photo" : @"Photos"];
-                return photoHeaderView;   
-            }
+//            }
+            return photoHeaderView;
             break;
         case 4:
             return nil;

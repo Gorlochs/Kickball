@@ -241,8 +241,8 @@
     }
     CGRect viewFrame = self.view.frame;
     viewFrame.origin.y -= animatedDistance;
-    NSLog(@"animated distance: %f", animatedDistance);
-    NSLog(@"viewframe origin y: %f", viewFrame.origin.y);
+//    NSLog(@"animated distance: %f", animatedDistance);
+//    NSLog(@"viewframe origin y: %f", viewFrame.origin.y);
     
 //    // toolbar stuff
 //    toolbar.hidden = NO;
