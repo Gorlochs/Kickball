@@ -218,7 +218,7 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 
 - (void) viewUserProfile {
     // take user to their profile
-    [[Beacon shared] startSubBeaconWithName:@"View User Profile from Top Nav Icon"];
+    [FlurryAPI logEvent:@"View User Profile from Top Nav Icon"];
     UserProfileViewController *pvc = [[UserProfileViewController alloc] initWithNibName:@"UserProfileView_v2" bundle:nil];
     pvc.userId = [self getAuthenticatedUser].userId;
     [self.navigationController pushViewController:pvc animated:YES];
@@ -380,7 +380,7 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 }
 
 - (void) openWebView:(NSString*)url {
-    [[Beacon shared] startSubBeaconWithName:@"Opening link from Twitter feed"];
+    [FlurryAPI logEvent:@"Opening link from Twitter feed"];
     KBWebViewController *webController = [[KBWebViewController alloc] initWithNibName:@"KBWebViewController" bundle:nil];
     NSLog(@"website url: %@", url);
     webController.urlString = url;

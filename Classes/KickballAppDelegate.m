@@ -8,13 +8,13 @@
 
 #import "KickballAppDelegate.h"
 #import "FriendsListViewController.h"
-#import "Beacon.h"
 #import <CoreLocation/CoreLocation.h>
 #import "KBLocationManager.h"
 #import "ASIHTTPRequest.h"
 #import "FoursquareAPI.h"
 #import "ProfileViewController.h"
 #import "PopupMessageView.h"
+#import "FlurryAPI.h"
 
 
 @implementation KickballAppDelegate
@@ -38,14 +38,10 @@
     
     application.applicationIconBadgeNumber = 0;
     
-    // Pinch Analytics
-    NSString *applicationCode = @"00a9861658fbc22f2177620f22d9bb66";
-    [Beacon initAndStartBeaconWithApplicationCode:applicationCode
-                                  useCoreLocation:YES useOnlyWiFi:NO];
-
+    [FlurryAPI startSession:@"00a9861658fbc22f2177620f22d9bb66"];
+    NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
     
-    // this is just a sample. this should be removed eventually.
-    [[Beacon shared] startSubBeaconWithName:@"App launched!" timeSession:NO];
+    [FlurryAPI logEvent:@"App launched!"];
     CLLocationManager *manager = [[CLLocationManager alloc] init];
     if (manager.locationServicesEnabled == NO) {
         UIAlertView *servicesDisabledAlert = [[UIAlertView alloc] initWithTitle:@"Location Services Disabled" message:@"You currently have all location services for this device disabled. If you proceed, you will be asked to confirm whether location services should be reenabled." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -68,9 +64,12 @@
     [self checkForEmergencyMessage];
 }
 
+void uncaughtExceptionHandler(NSException *exception) {
+    [FlurryAPI logError:@"Uncaught" message:@"Crash!" exception:exception];
+}                                       
+  
 - (void)applicationWillTerminate:(UIApplication *)application {
     [[KBLocationManager locationManager] stopUpdates];
-    [Beacon endBeacon];
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)_deviceToken {

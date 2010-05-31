@@ -41,7 +41,7 @@
         [self refreshVenuePoints];
     }
 	
-    [[Beacon shared] startSubBeaconWithName:@"Venues Map"];
+    [FlurryAPI logEvent:@"Venues Map"];
 }
 
 - (void)venuesResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
@@ -245,7 +245,7 @@
 }
 
 - (void) showVenue:(id)sender {
-    [[Beacon shared] startSubBeaconWithName:@"Clicked on Show Venue from Map Annotation"];
+    [FlurryAPI logEvent:@"Clicked on Show Venue from Map Annotation"];
     int nrButtonPressed = ((UIButton *)sender).tag;
     NSLog(@"annotation for venue pressed: %d", nrButtonPressed);
     

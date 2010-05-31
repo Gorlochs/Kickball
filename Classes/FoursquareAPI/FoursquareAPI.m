@@ -1061,8 +1061,11 @@ static FoursquareAPI *sharedInstance = nil;
                         } else if ([key isEqualToString:@"type"]) {
                             special.type = value;
                         } else if ([key isEqualToString:@"venue"]) {
-                            NSArray *arr = [venueResult nodesForXPath:@"//special" error:nil];
-                            special.venue = [[FoursquareAPI _venuesFromNode:[arr objectAtIndex:0]] objectAtIndex:0];
+                            NSArray *arr = [venueResult nodesForXPath:@"//special" error:nil];  
+                            NSArray *specialVenue = [FoursquareAPI _venuesFromNode:[arr objectAtIndex:0]];
+                            if ([specialVenue count] > 0) {
+                                special.venue = [specialVenue objectAtIndex:0];
+                            }
                         }
                     }
                     [specialArray addObject:special];

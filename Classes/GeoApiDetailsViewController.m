@@ -9,6 +9,9 @@
 #import "GeoApiDetailsViewController.h"
 #import "GAConnectionManager.h"
 #import "SBJSON.h"
+#import "ASIHTTPRequest.h"
+#include <ifaddrs.h>
+#include <arpa/inet.h>
 
 @implementation GeoApiDetailsViewController
 
@@ -35,8 +38,81 @@
     venueAddress.text = @"";
 
     [self startProgressBar:@"Retrieving venue details..."];
-    GAConnectionManager *connectionManager_ = [[GAConnectionManager alloc] initWithAPIKey:@"K6afuuFTXK" delegate:self];
-    [connectionManager_ requestListingForPlace:place.guid];
+//    GAConnectionManager *connectionManager_ = [[GAConnectionManager alloc] initWithAPIKey:@"K6afuuFTXK" delegate:self];
+//    [connectionManager_ requestListingForPlace:place.guid];
+    
+    // http://api2.citysearch.com/profile/?listing_id=273&publisher=acme&client_ip=122.123.124.125&api_key=34vziofhdiofh8349hrt934h
+    NSString *cityGridUrl = [NSString stringWithFormat:@"http://api2.citysearch.com/profile/?client_ip=%@&listing_id=%@&format=json&&publisher=gorlochs&api_key=cpm3fbn4wf4ymf9hvjwuv47u",
+                             [self getIPAddress],
+                             place.guid];
+    NSLog(@"city grid search url: %@", cityGridUrl);    
+    ASIHTTPRequest *cityGridRequest = [[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:cityGridUrl]] autorelease];
+    
+    [cityGridRequest setDidFailSelector:@selector(cityGridRequestWentWrong:)];
+    [cityGridRequest setDidFinishSelector:@selector(cityGridRequestDidFinish:)];
+    [cityGridRequest setTimeOutSeconds:500];
+    [cityGridRequest setDelegate:self];
+    [cityGridRequest startAsynchronous];
+}
+
+#pragma mark CityGrid methods
+
+- (void) cityGridRequestWentWrong:(ASIHTTPRequest *) request {
+    NSLog(@"BOOOOOOOOOOOO!");
+}
+
+- (void) cityGridRequestDidFinish:(ASIHTTPRequest *) request {
+    SBJSON *parser = [[SBJSON new] autorelease];
+    id dict = [parser objectWithString:[request responseString] error:NULL];
+    NSArray *array = (NSArray*)[dict objectForKey:@"locations"];
+    NSLog(@"location: %@", [array objectAtIndex:0]);
+    NSDictionary *locationDictionary = [array objectAtIndex:0];
+
+    [self stopProgressBar];
+    
+    
+    
+    
+    
+    place.name = [locationDictionary objectForKey:@"name"];
+    place.address = [[locationDictionary objectForKey:@"address"] objectForKey:@"street"];
+    
+    if (![[[locationDictionary objectForKey:@"reviews"] objectForKey:@"overall_review_rating"] isKindOfClass:[NSNull class]]) {
+        int rating = [[[locationDictionary objectForKey:@"reviews"] objectForKey:@"overall_review_rating"] doubleValue] * 2;
+        webRating.image = [UIImage imageNamed:[NSString stringWithFormat:@"rating-%d.png", rating]];
+    } else {
+        webRating.image = [UIImage imageNamed:@"webrating-na.png"];
+    }
+    
+    venueName.text = place.name;
+    venueAddress.text = [[locationDictionary objectForKey:@"address"] componentsJoinedByString:@", "];
+    if (![[locationDictionary objectForKey:@"features"] isKindOfClass:[NSNull class]]) {
+        features.text = [[locationDictionary objectForKey:@"features"] componentsJoinedByString:@"\n\n"];
+    } else {
+        features.text = @"Features not available";
+    }
+//    if (![[results objectForKey:@"hours"] isKindOfClass:[NSNull class]]) {
+//        NSMutableString *finalHours = [NSMutableString stringWithCapacity:1];
+//        for (NSArray *array in [results objectForKey:@"hours"]) {
+//            [finalHours appendString:[array componentsJoinedByString:@"\n"]];
+//            [finalHours appendString:@"\n"];
+//            //            [finalHours appendString:[array componentsJoinedByString:@": "]];
+//            //            [finalHours deleteCharactersInRange:NSMakeRange([finalHours length] - 2, 2)];
+//            //            [finalHours appendString:@"\n\n"];
+//        }
+//        hours.text = finalHours;
+//    } else {
+        hours.text = @"Hours not available";
+//    }
+//    if (![[results objectForKey:@"sips"] isKindOfClass:[NSNull class]]) {
+//        tags.text = [[results objectForKey:@"sips"] componentsJoinedByString:@", "];
+//    } else {
+        tags.text = @"Tags not available";
+//    }
+    
+    if ([[[locationDictionary objectForKey:@"urls"] objectForKey:@"website_url"] isKindOfClass:[NSNull class]]) {
+        websiteButton.enabled = NO;
+    }
 }
 
 - (void)receivedResponseString:(NSString *)responseString {
@@ -102,6 +178,40 @@
 - (void) visitWebsite {
     NSLog(@"site to visit: %@", [place.listing objectForKey:@"listing-url"]);
     [self openWebView:[place.listing objectForKey:@"listing-url"]];
+}
+
+- (NSString *)getIPAddress {
+    NSString *address = @"123.123.123.123";
+    struct ifaddrs *interfaces = NULL;
+    struct ifaddrs *temp_addr = NULL;
+    int success = 0;
+    
+    // retrieve the current interfaces - returns 0 on success
+    success = getifaddrs(&interfaces);
+    if (success == 0)
+    {
+        // Loop through linked list of interfaces
+        temp_addr = interfaces;
+        while(temp_addr != NULL)
+        {
+            if(temp_addr->ifa_addr->sa_family == AF_INET)
+            {
+                // Check if interface is en0 which is the wifi connection on the iPhone
+                if([[NSString stringWithUTF8String:temp_addr->ifa_name] isEqualToString:@"en0"])
+                {
+                    // Get NSString from C String
+                    address = [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr->ifa_addr)->sin_addr)];
+                }
+            }
+            
+            temp_addr = temp_addr->ifa_next;
+        }
+    }
+    
+    // Free memory
+    freeifaddrs(interfaces);
+    
+    return address;
 }
 
 - (void)dealloc {

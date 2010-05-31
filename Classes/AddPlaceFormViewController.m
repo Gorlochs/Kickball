@@ -24,7 +24,7 @@
     
     [super viewDidLoad];
     
-    [[Beacon shared] startSubBeaconWithName:@"Add Venue Form View"];
+    [FlurryAPI logEvent:@"Add Venue Form View"];
     
     toolbar.frame = CGRectMake(0, 436, 320, 44);
     [self.view addSubview:toolbar];

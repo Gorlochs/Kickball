@@ -65,7 +65,7 @@
 - (void) executeFoursquareCalls {
     [self startProgressBar:@"Retrieving profile..."];
     [[FoursquareAPI sharedInstance] getUser:self.userId withTarget:self andAction:@selector(userResponseReceived:withResponseString:)];
-    [[Beacon shared] startSubBeaconWithName:@"Profile"];
+    [FlurryAPI logEvent:@"Profile"];
 
     [self retrieveUserPhotos];
 }
@@ -170,7 +170,7 @@
     KBMessage *message = [[KBMessage alloc] initWithMember:badge.badgeName andMessage:badge.badgeDescription];
     [self displayPopupMessage:message];
     [message release];
-    [[Beacon shared] startSubBeaconWithName:@"View Badge Details"];
+    [FlurryAPI logEvent:@"View Badge Details"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -514,7 +514,7 @@
 - (void) friendUser {
     [self startProgressBar:@"Sending Friend Request..."];
     [[FoursquareAPI sharedInstance] doSendFriendRequest:user.userId withTarget:self andAction:@selector(friendRequestResponseReceived:withResponseString:)];
-    [[Beacon shared] startSubBeaconWithName:@"Friend User from Profile View"];
+    [FlurryAPI logEvent:@"Friend User from Profile View"];
 }
 
 - (void) togglePingsAndUpdates {
@@ -623,19 +623,19 @@
     if (buttonIndex == 0) {
         switch (actionSheet.tag) {
             case 0:
-                [[Beacon shared] startSubBeaconWithName:@"SMS User"];
+                [FlurryAPI logEvent:@"SMS User"];
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"sms:%@", user.phone]]];
                 break;
             case 1:
-                [[Beacon shared] startSubBeaconWithName:@"Phone User"];
+                [FlurryAPI logEvent:@"Phone User"];
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", user.phone]]];
                 break;
             case 2:
-                [[Beacon shared] startSubBeaconWithName:@"Email User"];
+                [FlurryAPI logEvent:@"Email User"];
                 [[UIApplication sharedApplication] openURL: [NSURL URLWithString: [NSString stringWithFormat:@"mailto:%@", user.email]]];
                 break;
             case 4:
-                [[Beacon shared] startSubBeaconWithName:@"Facebook User"];
+                [FlurryAPI logEvent:@"Facebook User"];
                 [[UIApplication sharedApplication] openURL: [NSURL URLWithString: [NSString stringWithFormat:@"fb://%@", user.facebook]]];
                 break;
             default:

@@ -57,5 +57,6 @@
 - (void) switchToTwitter;
 - (void) switchToFoursquare;
 - (void) switchToFacebook;
+void uncaughtExceptionHandler(NSException *exception);
 
 @end

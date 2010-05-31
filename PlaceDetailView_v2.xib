@@ -12,7 +12,9 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="137"/>
+			<integer value="16"/>
+			<integer value="100"/>
+			<integer value="21"/>
 			<integer value="1"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
@@ -329,7 +331,7 @@
 									<string key="NSResourceName">placePhotoBG.png</string>
 								</object>
 							</object>
-							<object class="IBUIButton" id="857613586">
+							<object class="IBUIButton" id="783742151">
 								<reference key="NSNextResponder" ref="600391645"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrameSize">{291, 73}</string>
@@ -346,11 +348,11 @@
 									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="424839964"/>
-								<object class="NSCustomResource" key="IBUIHighlightedImage" id="706158509">
+								<object class="NSCustomResource" key="IBUIHighlightedImage" id="948101988">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">addFirst02a.png</string>
 								</object>
-								<object class="NSCustomResource" key="IBUINormalImage" id="393687332">
+								<object class="NSCustomResource" key="IBUINormalImage" id="109479128">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">addFirst01a.png</string>
 								</object>
@@ -511,7 +513,7 @@
 				<string key="IBUIReuseIdentifier">MayorCell</string>
 			</object>
 			<object class="IBUITableViewCell" id="196819206">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -607,6 +609,7 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{290, 45}</string>
+				<reference key="NSSuperview"/>
 				<reference key="IBUIBackgroundColor" ref="524843266"/>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -747,7 +750,7 @@
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 			<object class="IBUITableViewCell" id="566884312">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -828,6 +831,7 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 44}</string>
+				<reference key="NSSuperview"/>
 				<reference key="IBUIBackgroundColor" ref="821621969"/>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -980,7 +984,7 @@
 				</object>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
-			<object class="IBUIButton" id="249888095">
+			<object class="IBUIButton" id="589531775">
 				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">-2147483356</int>
 				<string key="NSFrameSize">{291, 73}</string>
@@ -996,8 +1000,8 @@
 					<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 				</object>
 				<reference key="IBUINormalTitleShadowColor" ref="424839964"/>
-				<reference key="IBUIHighlightedImage" ref="706158509"/>
-				<reference key="IBUINormalImage" ref="393687332"/>
+				<reference key="IBUIHighlightedImage" ref="948101988"/>
+				<reference key="IBUINormalImage" ref="109479128"/>
 			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -1209,15 +1213,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">doGeoAPICall</string>
-						<reference key="source" ref="758745292"/>
-						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">105</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">showTwitterFeed</string>
 						<reference key="source" ref="315733021"/>
 						<reference key="destination" ref="372490531"/>
@@ -1311,7 +1306,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">choosePhotoSelectMethod</string>
-						<reference key="source" ref="857613586"/>
+						<reference key="source" ref="783742151"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -1320,7 +1315,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">choosePhotoSelectMethod</string>
-						<reference key="source" ref="249888095"/>
+						<reference key="source" ref="589531775"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -1330,9 +1325,18 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">firstTimePhotoButton</string>
 						<reference key="source" ref="436814048"/>
-						<reference key="destination" ref="857613586"/>
+						<reference key="destination" ref="783742151"/>
 					</object>
 					<int key="connectionID">142</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">doCityGridCall</string>
+						<reference key="source" ref="758745292"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">143</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1402,7 +1406,7 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="360441247"/>
-							<reference ref="857613586"/>
+							<reference ref="783742151"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Gift Cell</string>
@@ -1629,12 +1633,12 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">137</int>
-						<reference key="object" ref="857613586"/>
+						<reference key="object" ref="783742151"/>
 						<reference key="parent" ref="436814048"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">140</int>
-						<reference key="object" ref="249888095"/>
+						<reference key="object" ref="589531775"/>
 						<reference key="parent" ref="0"/>
 					</object>
 				</object>
@@ -1721,7 +1725,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{674, 491}, {290, 69}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{522, 308}, {290, 45}}</string>
+					<string>{{563, 116}, {290, 45}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1746,7 +1750,7 @@
 					<string>{{151, 263}, {320, 370}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{831, 694}, {320, 44}}</string>
+					<string>{{649, 694}, {320, 44}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>
@@ -1766,7 +1770,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">142</int>
+			<int key="maxID">143</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1987,6 +1991,7 @@
 							<string>closeMap</string>
 							<string>closeSpecialView</string>
 							<string>displayAllImages</string>
+							<string>doCityGridCall</string>
 							<string>doGeoAPICall</string>
 							<string>markVenueClosed</string>
 							<string>markVenueWrongAddress</string>
@@ -2000,6 +2005,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>

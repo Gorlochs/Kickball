@@ -20,7 +20,7 @@
 - (void)viewDidLoad {
     self.hideHeader = YES;
     self.hideFooter = YES;
-    [[Beacon shared] startSubBeaconWithName:@"View Pending Friend Requests"];
+    [FlurryAPI logEvent:@"View Pending Friend Requests"];
     [super viewDidLoad];
 }
 
@@ -142,14 +142,14 @@
 }
 
 - (void) acceptFriend:(UIControl*) button {
-    [[Beacon shared] startSubBeaconWithName:@"Accept Friend"];
+    [FlurryAPI logEvent:@"Accept Friend"];
     NSLog(@"acceptfriend tag: %d", button.tag);
     [self startProgressBar:@"Accepting your new friend..."];
     [[FoursquareAPI sharedInstance] approveFriendRequest:((FSUser*)[pendingFriendRequests objectAtIndex:button.tag]).userId withTarget:self andAction:@selector(friendRequestResponseReceived:withResponseString:)];
 }
 
 - (void) denyFriend:(UIControl*) button {
-    [[Beacon shared] startSubBeaconWithName:@"Deny Friend"];
+    [FlurryAPI logEvent:@"Deny Friend"];
     NSLog(@"denyfriend tag: %d", button.tag);
     [self startProgressBar:@"Denying your new friend..."];
     [[FoursquareAPI sharedInstance] denyFriendRequest:((FSUser*)[pendingFriendRequests objectAtIndex:button.tag]).userId withTarget:self andAction:@selector(denyFriendRequestResponseReceived:withResponseString:)];

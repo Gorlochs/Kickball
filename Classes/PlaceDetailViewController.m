@@ -112,7 +112,7 @@
     
     [self startProgressBar:@"Retrieving venue details..."];
     [[FoursquareAPI sharedInstance] getVenue:venueId withTarget:self andAction:@selector(venueResponseReceived:withResponseString:)];
-    [[Beacon shared] startSubBeaconWithName:@"Venue Detail"];
+    [FlurryAPI logEvent:@"Venue Detail"];
     
     [self retrievePhotos];
     [self showBackHomeButtons];
@@ -214,7 +214,7 @@
 }
 
 - (void) displayAllImages {
-    [[Beacon shared] startSubBeaconWithName:@"View All Photos"];
+    [FlurryAPI logEvent:@"View All Photos"];
     KBPhotoViewController *photoController = [[KBPhotoViewController alloc] initWithPhotoSource:photoSource];
     photoController.goodies = goodies;
     [self.navigationController pushViewController:photoController animated:YES];
@@ -658,7 +658,7 @@
 
 - (void) callVenue {
     NSLog(@"phone number to call: %@", [NSString stringWithFormat:@"tel:%@", venue.phone]);
-    [[Beacon shared] startSubBeaconWithName:@"call Venue"];
+    [FlurryAPI logEvent:@"call Venue"];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", venue.phone]]];
 }
 
@@ -756,6 +756,22 @@
     [connectionManager_ requestBusinessesNearCoords:location withinRadius:50 maxResults:30];
 }
 
+// http://developer.citysearch.com/docs/search/
+- (void) doCityGridCall {
+    NSString *cityGridUrl = [NSString stringWithFormat:@"http://api2.citysearch.com/search/locations?format=json&what=%@&lat=%f&lon=%f&radius=1&publisher=gorlochs&api_key=cpm3fbn4wf4ymf9hvjwuv47u",
+                             [venue.name stringByReplacingOccurrencesOfString:@" " withString:@"+"],
+                             venue.location.latitude,
+                             venue.location.longitude];
+    NSLog(@"city grid search url: %@", cityGridUrl);
+    ASIHTTPRequest *cityGridRequest = [[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:cityGridUrl]] autorelease];
+    
+    [cityGridRequest setDidFailSelector:@selector(cityGridRequestWentWrong:)];
+    [cityGridRequest setDidFinishSelector:@selector(cityGridRequestDidFinish:)];
+    [cityGridRequest setTimeOutSeconds:500];
+    [cityGridRequest setDelegate:self];
+    [cityGridRequest startAsynchronous];
+}
+
 - (void) showSpecial {
     FSSpecial *special = ((FSSpecial*)[[self venue].specials objectAtIndex:0]);
     NSLog(@"specials: %@", [self venue].specials);
@@ -825,7 +841,7 @@
     closeMapButton.alpha = 1.0;
     
     [UIView commitAnimations];
-    [[Beacon shared] startSubBeaconWithName:@"View Venue Map"];
+    [FlurryAPI logEvent:@"View Venue Map"];
 }
 
 - (void) addTipTodo {
@@ -836,7 +852,7 @@
 }
 
 - (void) markVenueWrongAddress {
-    [[Beacon shared] startSubBeaconWithName:@"Wrong Address"];
+    [FlurryAPI logEvent:@"Wrong Address"];
     KBMessage *msg = [[KBMessage alloc] initWithMember:@"Sorry" andMessage:@"This functionality was not implemented in the Foursquare API. We will add it as soon as it is made available to us"];
     [self displayPopupMessage:msg];
     [msg release];
@@ -857,7 +873,7 @@
 - (void) markVenueClosed {
     [self startProgressBar:@"Sending closure notification..."];
     [[FoursquareAPI sharedInstance] flagVenueAsClosed:venue.venueid withTarget:self andAction:@selector(okResponseReceived:withResponseString:)];
-    [[Beacon shared] startSubBeaconWithName:@"Mark Venue Closed"];
+    [FlurryAPI logEvent:@"Mark Venue Closed"];
 }
 
 - (void)okResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
@@ -871,6 +887,61 @@
         [self displayPopupMessage:msg];
         [msg release];
     }
+}
+
+#pragma mark CityGrid methods
+
+- (void) cityGridRequestWentWrong:(ASIHTTPRequest *) request {
+    NSLog(@"BOOOOOOOOOOOO!");
+}
+
+- (void) cityGridRequestDidFinish:(ASIHTTPRequest *) request {
+    SBJSON *parser = [[SBJSON new] autorelease];
+    NSLog(@"city grid response: %@", [request responseString]);
+    id dict = [parser objectWithString:[request responseString] error:NULL];
+    NSArray *array = (NSArray*)[[dict objectForKey:@"jsonResponse"] objectForKey:@"results"];
+    NSLog(@"array of results: %@", array);
+    NSMutableArray *objArray = [[NSMutableArray alloc] initWithCapacity:[array count]];
+    bool isMatched = NO;
+    for (NSDictionary *dict in array) {
+        GAPlace *place = [[GAPlace alloc] init];
+        NSLog(@"location: %@", [dict objectForKey:@"location"]);
+        place.guid = [[dict objectForKey:@"location"] objectForKey:@"id"];
+        place.name = [[dict objectForKey:@"location"] objectForKey:@"name"];
+        NSDictionary *tmp = [[dict objectForKey:@"location"] objectForKey:@"address"];
+        place.address = [NSString stringWithFormat:@"%@, %@, %@", [tmp objectForKey:@"street"], [tmp objectForKey:@"city"], [tmp objectForKey:@"state"]];
+        [objArray addObject:place];
+        
+        // TODO: we can reverse the below comparison, too. compare each result to the 4sq venue name
+        // removing 'The' and all spaces from both words, then doing a string compare.  Should probably remove all non alphanumeric characters, too
+        if ([[[place.name stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"The"]] stringByReplacingOccurrencesOfString:@" " withString:@""] 
+             rangeOfString:[[venue.name stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"The"]] stringByReplacingOccurrencesOfString:@" " withString:@""] options:NSCaseInsensitiveSearch].location != NSNotFound) {
+            GeoApiDetailsViewController *vc = [[GeoApiDetailsViewController alloc] initWithNibName:@"GeoApiDetailsView" bundle:nil];
+            [FlurryAPI logEvent:@"GeoAPI call found proper venue"];
+            vc.place = place;
+            [place release];
+            isMatched = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+            [vc release];
+            break;
+        } else { 
+            // meh. not pretty.
+            isMatched = NO;
+            [place release];
+        }
+    }
+    // if you don't avoid the next block, it still gets executed even if the above code pushes another view onto the navController, 
+    // resulting in an extra view controller on the stack.
+    if (!isMatched) {
+        GeoApiTableViewController *vc = [[GeoApiTableViewController alloc] initWithNibName:@"GeoAPIView" bundle:nil];
+        [FlurryAPI logEvent:@"GeoAPI could not find proper venue - going to list view"];
+        vc.geoAPIResults = objArray;
+        [self.navigationController pushViewController:vc animated:YES];
+        [vc release];
+        NSLog(@"dictionary?: %@", [(NSDictionary*)dict objectForKey:@"entity"]);   
+    }
+    [objArray release];
+    [self stopProgressBar];
 }
 
 #pragma mark GeoAPI Delegate methods
@@ -896,7 +967,7 @@
         if ([[[place.name stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"The"]] stringByReplacingOccurrencesOfString:@" " withString:@""] 
                rangeOfString:[[venue.name stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"The"]] stringByReplacingOccurrencesOfString:@" " withString:@""] options:NSCaseInsensitiveSearch].location != NSNotFound) {
             GeoApiDetailsViewController *vc = [[GeoApiDetailsViewController alloc] initWithNibName:@"GeoApiDetailsView" bundle:nil];
-            [[Beacon shared] startSubBeaconWithName:@"GeoAPI call found proper venue"];
+            [FlurryAPI logEvent:@"GeoAPI call found proper venue"];
             vc.place = place;
             [place release];
             isMatched = YES;
@@ -913,7 +984,7 @@
     // resulting in an extra view controller on the stack.
     if (!isMatched) {
         GeoApiTableViewController *vc = [[GeoApiTableViewController alloc] initWithNibName:@"GeoAPIView" bundle:nil];
-        [[Beacon shared] startSubBeaconWithName:@"GeoAPI could not find proper venue - going to list view"];
+        [FlurryAPI logEvent:@"GeoAPI could not find proper venue - going to list view"];
         vc.geoAPIResults = objArray;
         [self.navigationController pushViewController:vc animated:YES];
         [vc release];
@@ -1021,10 +1092,10 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
-        [[Beacon shared] startSubBeaconWithName:@"Choose Photo: Library"];
+        [FlurryAPI logEvent:@"Choose Photo: Library"];
         [self getPhoto:UIImagePickerControllerSourceTypePhotoLibrary];
     } else if (buttonIndex == 1) {
-        [[Beacon shared] startSubBeaconWithName:@"Choose Photo: New"];
+        [FlurryAPI logEvent:@"Choose Photo: New"];
         [self getPhoto:UIImagePickerControllerSourceTypeCamera];
     }
 }
@@ -1063,7 +1134,7 @@
     self.venueToPush = self.venue;
     self.hasPhoto = YES;
     //[self sendPushNotification];
-    [[Beacon shared] startSubBeaconWithName:@"Image Upload Completed"];
+    [FlurryAPI logEvent:@"Image Upload Completed"];
 }
 
 - (void) photoQueueFinished:(ASIHTTPRequest *) request {

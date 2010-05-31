@@ -41,7 +41,7 @@
     venue.name = newVenueName;
     newPlaceName.text = venue.name;
     
-    [[Beacon shared] startSubBeaconWithName:@"Add Venue"];
+    [FlurryAPI logEvent:@"Add Venue"];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateVenue:) name:@"venueAddressUpdate" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateCategory:) name:@"venueCategoryUpdate" object:nil];

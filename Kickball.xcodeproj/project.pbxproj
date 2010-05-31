@@ -270,6 +270,7 @@
 		6A4204C4117FAD9E001A6982 /* KBDirectMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4204C3117FAD9E001A6982 /* KBDirectMessage.m */; };
 		6A4796D811B0EB6000C6EB89 /* addFirst01a.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4796D511B0EB6000C6EB89 /* addFirst01a.png */; };
 		6A4796DA11B0EB6000C6EB89 /* addFirst02a.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4796D711B0EB6000C6EB89 /* addFirst02a.png */; };
+		6A47993A11B3603D00C6EB89 /* libFlurryWithLocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A47993911B3603D00C6EB89 /* libFlurryWithLocation.a */; };
 		6A47C00610DCA8DE00DCF011 /* KBWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A47C00410DCA8DE00DCF011 /* KBWebViewController.m */; };
 		6A47C00710DCA8DE00DCF011 /* KBWebViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A47C00510DCA8DE00DCF011 /* KBWebViewController.xib */; };
 		6A4C17F211A90B86006BBC61 /* CheckinOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4C17F011A90B86006BBC61 /* CheckinOptionsViewController.m */; };
@@ -1022,8 +1023,6 @@
 		6A3900AE10D6F1A0001D133C /* AddPlaceFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPlaceFormViewController.h; sourceTree = "<group>"; };
 		6A3900AF10D6F1A0001D133C /* AddPlaceFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPlaceFormViewController.m; sourceTree = "<group>"; };
 		6A3900B010D6F1A0001D133C /* AddPlaceFormViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AddPlaceFormViewController.xib; path = Classes/AddPlaceFormViewController.xib; sourceTree = "<group>"; };
-		6A39EB4310965675006F76C3 /* Beacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Beacon.h; sourceTree = "<group>"; };
-		6A39EB4410965675006F76C3 /* Beacon+FBConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Beacon+FBConnect.h"; sourceTree = "<group>"; };
 		6A39EB5B1096584A006F76C3 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = /usr/lib/libsqlite3.dylib; sourceTree = "<absolute>"; };
 		6A39EB6010965868006F76C3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = /System/Library/Frameworks/CoreLocation.framework; sourceTree = "<absolute>"; };
 		6A39EB6210965868006F76C3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = /System/Library/Frameworks/SystemConfiguration.framework; sourceTree = "<absolute>"; };
@@ -1057,6 +1056,9 @@
 		6A4204C3117FAD9E001A6982 /* KBDirectMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBDirectMessage.m; sourceTree = "<group>"; };
 		6A4796D511B0EB6000C6EB89 /* addFirst01a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addFirst01a.png; sourceTree = "<group>"; };
 		6A4796D711B0EB6000C6EB89 /* addFirst02a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addFirst02a.png; sourceTree = "<group>"; };
+		6A47991C11B3601A00C6EB89 /* FlurryAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAPI.h; sourceTree = "<group>"; };
+		6A47991D11B3601A00C6EB89 /* FlurryAdDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAdDelegate.h; sourceTree = "<group>"; };
+		6A47993911B3603D00C6EB89 /* libFlurryWithLocation.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurryWithLocation.a; path = "/Users/shawnbernard/Downloads/Flurry iPhone SDK v2.2/FlurryLibWithLocation/libFlurryWithLocation.a"; sourceTree = "<absolute>"; };
 		6A47C00310DCA8DE00DCF011 /* KBWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBWebViewController.h; sourceTree = "<group>"; };
 		6A47C00410DCA8DE00DCF011 /* KBWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBWebViewController.m; sourceTree = "<group>"; };
 		6A47C00510DCA8DE00DCF011 /* KBWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KBWebViewController.xib; path = Classes/KBWebViewController.xib; sourceTree = "<group>"; };
@@ -1575,6 +1577,7 @@
 				6AD0C1E4113F049E00A971E3 /* libThree20.a in Frameworks */,
 				6A6F2E141177C1CA00B2869B /* MessageUI.framework in Frameworks */,
 				6A31CC12119A4E80009D8967 /* libOAuth.a in Frameworks */,
+				6A47993A11B3603D00C6EB89 /* libFlurryWithLocation.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1593,6 +1596,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				6A47991311B3600E00C6EB89 /* Flurry */,
 				6A533EA311928862007C283C /* Touch JSON */,
 				6AD5B142116D279F008671FD /* CocoaHelpers */,
 				6A86F683116AE008000BF6C6 /* FBConnect */,
@@ -1607,7 +1611,6 @@
 				6A6F2C871177B90D00B2869B /* OAuth */,
 				553C512E10A1BD5000A74641 /* tidy */,
 				553C516510A1BD5100A74641 /* TouchXML */,
-				6A39EB3E10965666006F76C3 /* Pinch */,
 				6A8EEEC110A14ED200DC630C /* MGTwitterEngine */,
 				6AF6ABA41180BB0D00704B24 /* Facebook */,
 				6AD5B3D8116D3D37008671FD /* KBTwitter */,
@@ -1737,6 +1740,7 @@
 				6AFF0FFE1101796600AD6E55 /* CFNetwork.framework */,
 				6A6F2E131177C1CA00B2869B /* MessageUI.framework */,
 				6A31CC11119A4E80009D8967 /* libOAuth.a */,
+				6A47993911B3603D00C6EB89 /* libFlurryWithLocation.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2249,15 +2253,6 @@
 			name = Options;
 			sourceTree = "<group>";
 		};
-		6A39EB3E10965666006F76C3 /* Pinch */ = {
-			isa = PBXGroup;
-			children = (
-				6A39EB4310965675006F76C3 /* Beacon.h */,
-				6A39EB4410965675006F76C3 /* Beacon+FBConnect.h */,
-			);
-			name = Pinch;
-			sourceTree = "<group>";
-		};
 		6A39EC4B109662D3006F76C3 /* images */ = {
 			isa = PBXGroup;
 			children = (
@@ -2307,6 +2302,15 @@
 				6A402A9E10B755B200D9BCEB /* GAPlace.m */,
 			);
 			path = GeoAPI;
+			sourceTree = "<group>";
+		};
+		6A47991311B3600E00C6EB89 /* Flurry */ = {
+			isa = PBXGroup;
+			children = (
+				6A47991C11B3601A00C6EB89 /* FlurryAPI.h */,
+				6A47991D11B3601A00C6EB89 /* FlurryAdDelegate.h */,
+			);
+			name = Flurry;
 			sourceTree = "<group>";
 		};
 		6A4C180D11A90BE1006BBC61 /* option nibs */ = {
@@ -3835,6 +3839,7 @@
 					"\"$(SRCROOT)/Classes/OAuth/OAuthConsumerLib\"",
 					"\"$(SRCROOT)/../../../Downloads/libYAJLIPhone-0.2.2\"",
 					"\"$(SRCROOT)/..\"",
+					"\"$(SRCROOT)/../../../Downloads/Flurry iPhone SDK v2.2/FlurryLibWithLocation\"",
 				);
 				PRODUCT_NAME = kickball;
 				"PROVISIONING_PROFILE[sdk=*]" = "80198AA9-F5C3-4CCE-A36D-CB1329F1AFBB";
@@ -3873,6 +3878,7 @@
 					"\"$(SRCROOT)/Classes/OAuth/OAuthConsumerLib\"",
 					"\"$(SRCROOT)/../../../Downloads/libYAJLIPhone-0.2.2\"",
 					"\"$(SRCROOT)/..\"",
+					"\"$(SRCROOT)/../../../Downloads/Flurry iPhone SDK v2.2/FlurryLibWithLocation\"",
 				);
 				PRODUCT_NAME = kickball;
 				"PROVISIONING_PROFILE[sdk=*]" = "80198AA9-F5C3-4CCE-A36D-CB1329F1AFBB";

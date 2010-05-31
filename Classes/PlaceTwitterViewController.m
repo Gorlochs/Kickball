@@ -8,7 +8,7 @@
 
 #import "PlaceTwitterViewController.h"
 #import "MGTwitterEngine.h"
-#import "Beacon.h"
+#import "FlurryAPI.h"
 #import "KBTwitterCell.h"
 
 @implementation PlaceTwitterViewController
@@ -27,7 +27,7 @@
     MGTwitterEngine *twitterEngine = [[[MGTwitterEngine alloc] initWithDelegate:self] autorelease];
     NSString *timeline = [twitterEngine getUserTimelineFor:twitterName sinceID:0 startingAtPage:0 count:20];
     NSLog(@"timeline: %@", timeline);
-    [[Beacon shared] startSubBeaconWithName:@"Venue Twitter Feed"];
+    [FlurryAPI logEvent:@"Venue Twitter Feed"];
 }
 
 - (void)didReceiveMemoryWarning {

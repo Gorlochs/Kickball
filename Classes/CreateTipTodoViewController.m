@@ -19,7 +19,7 @@
     [tipTodoText becomeFirstResponder];
 //    venueName.text = venue.name;
 //    venueAddress.text = venue.addressWithCrossstreet;
-    [[Beacon shared] startSubBeaconWithName:@"Create Tip or Todo"];
+    [FlurryAPI logEvent:@"Create Tip or Todo"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -93,11 +93,11 @@
         [self startProgressBar:@"Submitting Tip/Todo..."];
         NSString *tipOrTodo = nil;
         if (tipTodoSwitch.selectedSegmentIndex == 0) {
-            [[Beacon shared] startSubBeaconWithName:@"Creating Tip"];
+            [FlurryAPI logEvent:@"Creating Tip"];
             NSLog(@"submitting tip");
             tipOrTodo = @"tip";
         } else {
-            [[Beacon shared] startSubBeaconWithName:@"Creating Todo"];
+            [FlurryAPI logEvent:@"Creating Todo"];
             NSLog(@"submitting todo");
             tipOrTodo = @"todo";
         }

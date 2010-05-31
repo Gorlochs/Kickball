@@ -8,6 +8,7 @@
 
 #import "KBLocationManager.h"
 #import "Utilities.h"
+#import "FlurryAPI.h"
 
 
 static KBLocationManager *globalLocationManager = nil;
@@ -148,6 +149,8 @@ static BOOL initialized = NO;
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setFloat:latitude forKey:kLastLatitudeKey];
     [userDefaults setFloat:longitude forKey:kLastLongitudeKey];
+    
+    [FlurryAPI setLocation:newLocation];
         
     locationDefined = YES;
     [[NSNotificationCenter defaultCenter] postNotificationName: @"UpdateLocationNotification" object: nil];

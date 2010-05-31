@@ -56,7 +56,7 @@
     }
     
     isSearchEmpty = NO;
-    [[Beacon shared] startSubBeaconWithName:@"Venue List"];
+    [FlurryAPI logEvent:@"Venue List"];
 }
 
 
@@ -115,7 +115,7 @@
                                                 withTarget:self 
                                                  andAction:@selector(venuesResponseReceived:withResponseString:)
          ];
-        [[Beacon shared] startSubBeaconWithName:@"Venue Search from Venue List View"];
+        [FlurryAPI logEvent:@"Venue Search from Venue List View"];
     }
 }
 
@@ -143,7 +143,7 @@
                                                withTarget:self 
                                                 andAction:@selector(venuesResponseReceived:withResponseString:)
      ];
-    [[Beacon shared] startSubBeaconWithName:@"Refreshing Venue List"];
+    [FlurryAPI logEvent:@"Refreshing Venue List"];
     
     venuesTypeToDisplay = KBNearbyVenues;
 }

@@ -11,7 +11,7 @@
 #import "FBConnect/FBRequest.h"
 #import "KBLocationManager.h"
 #import "KBMessage.h"
-#import "Beacon.h"
+#import "FlurryAPI.h"
 #import "FoursquareAPI.h"
 
 
@@ -104,7 +104,7 @@ static BOOL initialized = NO;
 //    self.venueToPush = self.venue;
 //    self.hasPhoto = YES;
 //    //[self sendPushNotification];
-//    [[Beacon shared] startSubBeaconWithName:@"Image Upload Completed"];
+//    [FlurryAPI logEvent:@"Image Upload Completed"];
 }
 
 - (void) imageQueueDidFinish:(ASIHTTPRequest *) request {

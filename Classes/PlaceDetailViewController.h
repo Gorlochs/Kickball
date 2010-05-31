@@ -94,6 +94,7 @@
 - (IBAction) showTwitterFeed;
 - (IBAction) togglePingsAndTwitter;
 - (IBAction) doGeoAPICall;
+- (IBAction) doCityGridCall;
 - (IBAction) showSpecial;
 - (IBAction) viewVenueMap;
 - (IBAction) addTipTodo;

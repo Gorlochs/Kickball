@@ -20,7 +20,7 @@
     self.hideHeader = YES;
     self.hideFooter = YES;
     [super viewDidLoad];
-    [[Beacon shared] startSubBeaconWithName:@"Search for Friends View"];
+    [FlurryAPI logEvent:@"Search for Friends View"];
     
     if (![[KBAccountManager sharedInstance] usesFacebook]) {
         facebookSearchButton.enabled = NO;
@@ -43,7 +43,7 @@
     NSLog(@"friendize button tapped: %d", button.tag);
 //    [self startProgressBar:@"Sending friend request..."];
 //    [[FoursquareAPI sharedInstance] doSendFriendRequest:((FSUser*)[friendRequests objectAtIndex:button.tag]).userId withTarget:self andAction:@selector(friendRequestResponseReceived:withResponseString:)];
-//    [[Beacon shared] startSubBeaconWithName:@"Friend Someone"];
+//    [FlurryAPI logEvent:@"Friend Someone"];
 //    button.enabled = NO;
 //    button.alpha = 0.5;
 }
@@ -114,7 +114,7 @@
 //    }
 //    NSLog(@"phones: %@", phones);
 //    [[FoursquareAPI sharedInstance] findFriendsByPhone:[phones componentsJoinedByString:@","] withTarget:self andAction:@selector(searchResponseReceived:withResponseString:)];
-//    [[Beacon shared] startSubBeaconWithName:@"Scanning Address Book"];
+//    [FlurryAPI logEvent:@"Scanning Address Book"];
 //    [phones release];
 //    [people release];
     //[addressBook release];

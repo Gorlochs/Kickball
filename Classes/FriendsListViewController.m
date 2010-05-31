@@ -16,7 +16,7 @@
 #import "PlacesListViewController.h"
 #import "ProfileViewController.h"
 #import "FSCheckin.h"
-#import "Beacon.h"
+#import "FlurryAPI.h"
 #import "FoursquareAPI.h"
 #import "LoginViewModalController.h"
 #import "Utilities.h"
@@ -108,7 +108,7 @@
 }
 
 - (void) doInitialDisplay {
-    [[Beacon shared] startSubBeaconWithName:@"Initial Friends List Display"];
+    [FlurryAPI logEvent:@"Initial Friends List Display"];
     [self startProgressBar:@"Retrieving friends' whereabouts..." withTimer:NO];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(instaCheckin:) name:@"touchAndHoldCheckin" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideAppropriateTabs) name:@"hideAppropriateTabs" object:nil];
@@ -500,7 +500,7 @@
         [[FBRequest requestWithDelegate:self] call:@"facebook.status.set" params:params dataParam:nil];
     }
     
-    [[Beacon shared] startSubBeaconWithName:@"checked in"];
+    [FlurryAPI logEvent:@"checked in"];
 }
 
 // Twitter response

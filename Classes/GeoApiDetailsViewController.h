@@ -28,5 +28,6 @@
 
 - (IBAction) callVenue;
 - (IBAction) visitWebsite;
+- (NSString *)getIPAddress;
 
 @end

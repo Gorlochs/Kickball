@@ -18,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTweetNotification:) name:IFTweetLabelURLNotification object:nil];
-    [[Beacon shared] startSubBeaconWithName:@"Profile Twitter View"];
+    [FlurryAPI logEvent:@"Profile Twitter View"];
     
     NSMutableArray *arr = [[NSMutableArray alloc] initWithCapacity:1];
     orderedTweets = [[NSMutableDictionary alloc] initWithCapacity:1];

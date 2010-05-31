@@ -54,7 +54,7 @@
 		[self setPasswordFromKeychain];		
 	}
 	[usernameField becomeFirstResponder];
-    [[Beacon shared] startSubBeaconWithName:@"Login View"];
+    [FlurryAPI logEvent:@"Login View"];
     
     self.hideHeader = YES;
     
@@ -102,7 +102,7 @@
         [self displayPopupMessageForLogin:message];
         [message release];
     } else {
-        [[Beacon shared] startSubBeaconWithName:@"Logging in"];
+        [FlurryAPI logEvent:@"Logging in"];
         NSString *username = usernameField.text;
         NSString *password = passwordField.text;
         [[FoursquareAPI sharedInstance] doLoginUsername: username andPass:password];	
@@ -135,7 +135,7 @@
 }
 
 - (void) openFoursquareForgottenPasswordWebPage {
-    [[Beacon shared] startSubBeaconWithName:@"Exiting for Forgotten Password"];
+    [FlurryAPI logEvent:@"Exiting for Forgotten Password"];
     NSURL *url = [NSURL URLWithString:@"http://foursquare.com/change_password"];
     
     if (![[UIApplication sharedApplication] openURL:url])  {
@@ -144,7 +144,7 @@
 }
 
 - (void) openFoursquareNewAccountWebPage {
-    [[Beacon shared] startSubBeaconWithName:@"Exiting for Forgotten Password"];
+    [FlurryAPI logEvent:@"Exiting for Forgotten Password"];
     NSURL *url = [NSURL URLWithString:@"http://foursquare.com/mobile/signup"];
     
     if (![[UIApplication sharedApplication] openURL:url])  {

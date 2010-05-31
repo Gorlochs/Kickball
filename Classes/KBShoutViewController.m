@@ -9,7 +9,7 @@
 #import "KBShoutViewController.h"
 #import "FoursquareAPI.h"
 #import "KBMessage.h"
-#import "Beacon.h"
+#import "FlurryAPI.h"
 #import "NSString+hmac.h"
 #import "MPOAuthSignatureParameter.h"
 #import "FriendsListViewController.h"
@@ -134,7 +134,7 @@
             [[FBRequest requestWithDelegate:self] call:@"facebook.status.set" params:params dataParam:nil];
         }
         
-        [[Beacon shared] startSubBeaconWithName:@"Shout"];
+        [FlurryAPI logEvent:@"Shout"];
     } else {
         NSLog(@"no text in shout field");
     }

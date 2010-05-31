@@ -9,7 +9,7 @@
 #import "KBCheckinModalViewController.h"
 #import "FoursquareAPI.h"
 #import "KBMessage.h"
-#import "Beacon.h"
+#import "FlurryAPI.h"
 #import "NSString+hmac.h"
 #import "MPOAuthSignatureParameter.h"
 #import "FriendsListViewController.h"
@@ -152,7 +152,7 @@
                          andVenue:venue];
     }
     
-    [[Beacon shared] startSubBeaconWithName:@"checked in"];
+    [FlurryAPI logEvent:@"checked in"];
 }
 
 // Twitter response
@@ -215,10 +215,10 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
-        [[Beacon shared] startSubBeaconWithName:@"Choose Photo: Library"];
+        [FlurryAPI logEvent:@"Choose Photo: Library"];
         [self getPhoto:UIImagePickerControllerSourceTypePhotoLibrary];
     } else if (buttonIndex == 1) {
-        [[Beacon shared] startSubBeaconWithName:@"Choose Photo: New"];
+        [FlurryAPI logEvent:@"Choose Photo: New"];
         [self getPhoto:UIImagePickerControllerSourceTypeCamera];
     }
 }
@@ -287,7 +287,7 @@
     //    [self.view addSubview:thumbnail];
     
     // NOTE: the self.photoMessageToPush is being set above in the returnFromMessageView: method
-    [[Beacon shared] startSubBeaconWithName:@"Image Upload Completed"];
+    [FlurryAPI logEvent:@"Image Upload Completed"];
 }
 
 - (void) photoQueueFinished:(ASIHTTPRequest *) request {

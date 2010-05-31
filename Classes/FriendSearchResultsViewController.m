@@ -52,7 +52,7 @@
             }
             NSLog(@"phones: %@", phones);
             [[FoursquareAPI sharedInstance] findFriendsByPhone:[phones componentsJoinedByString:@","] withTarget:self andAction:@selector(searchResponseReceived:withResponseString:)];
-            [[Beacon shared] startSubBeaconWithName:@"Scanning Address Book"];
+            [FlurryAPI logEvent:@"Scanning Address Book"];
             [phones release];
             [people release];
             break;
@@ -93,15 +93,15 @@
         switch (searchType) {
             case KBFriendSearchByName:
                 [[FoursquareAPI sharedInstance] findFriendsByName:searchBar.text withTarget:self andAction:@selector(searchResponseReceived:withResponseString:)];
-                [[Beacon shared] startSubBeaconWithName:@"Searching For Friend By Name"];
+                [FlurryAPI logEvent:@"Searching For Friend By Name"];
                 break;
             case KBFriendSearchByPhone:
                 [[FoursquareAPI sharedInstance] findFriendsByPhone:searchBar.text withTarget:self andAction:@selector(searchResponseReceived:withResponseString:)];
-                [[Beacon shared] startSubBeaconWithName:@"Searching For Friend By Phone"];
+                [FlurryAPI logEvent:@"Searching For Friend By Phone"];
                 break;
             case KBFriendSearchByTwitter:
                 [[FoursquareAPI sharedInstance] findFriendsByTwitterName:searchBar.text withTarget:self andAction:@selector(searchResponseReceived:withResponseString:)];
-                [[Beacon shared] startSubBeaconWithName:@"Searching For Friend By Twitter"];
+                [FlurryAPI logEvent:@"Searching For Friend By Twitter"];
                 break;
             default:
                 break;

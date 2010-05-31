@@ -11,7 +11,7 @@
 #import "PopupMessageView.h"
 #import "FSUser.h"
 #import "KBMessage.h"
-#import "Beacon.h"
+#import "FlurryAPI.h"
 #import "FSVenue.h"
 #import "Utilities.h"
 #import "EGORefreshTableHeaderView.h"

@@ -21,7 +21,7 @@
     NSLog(@"auth'd user: %@", [self getAuthenticatedUser]);
     username.text = [[FoursquareAPI sharedInstance] userName];
     password.text = [[FoursquareAPI sharedInstance] passWord];
-    [[Beacon shared] startSubBeaconWithName:@"Settings View"];
+    [FlurryAPI logEvent:@"Settings View"];
     
     isPingAndUpdatesOn = [self getAuthenticatedUser].isPingOn;
     [self setPingAndUpdatesButton];

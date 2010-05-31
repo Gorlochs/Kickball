@@ -181,10 +181,10 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
-        [[Beacon shared] startSubBeaconWithName:@"Choose Photo: Library"];
+        [FlurryAPI logEvent:@"Choose Photo: Library"];
         [self getPhoto:UIImagePickerControllerSourceTypePhotoLibrary];
     } else if (buttonIndex == 1) {
-        [[Beacon shared] startSubBeaconWithName:@"Choose Photo: New"];
+        [FlurryAPI logEvent:@"Choose Photo: New"];
         [self getPhoto:UIImagePickerControllerSourceTypeCamera];
     }
 }
@@ -253,7 +253,7 @@
 //    [self.view addSubview:thumbnail];
     
     // NOTE: the self.photoMessageToPush is being set above in the returnFromMessageView: method
-    [[Beacon shared] startSubBeaconWithName:@"Image Upload Completed"];
+    [FlurryAPI logEvent:@"Image Upload Completed"];
 }
 
 - (void) photoQueueFinished:(ASIHTTPRequest *) request {
