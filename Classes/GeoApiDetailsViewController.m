@@ -85,25 +85,25 @@
     }
     
     venueName.text = place.name;
-    venueAddress.text = [[locationDictionary objectForKey:@"address"] componentsJoinedByString:@", "];
+    venueAddress.text = [[locationDictionary objectForKey:@"address"] objectForKey:@"street"];
     if (![[locationDictionary objectForKey:@"features"] isKindOfClass:[NSNull class]]) {
         features.text = [[locationDictionary objectForKey:@"features"] componentsJoinedByString:@"\n\n"];
     } else {
         features.text = @"Features not available";
     }
-//    if (![[results objectForKey:@"hours"] isKindOfClass:[NSNull class]]) {
-//        NSMutableString *finalHours = [NSMutableString stringWithCapacity:1];
-//        for (NSArray *array in [results objectForKey:@"hours"]) {
-//            [finalHours appendString:[array componentsJoinedByString:@"\n"]];
-//            [finalHours appendString:@"\n"];
-//            //            [finalHours appendString:[array componentsJoinedByString:@": "]];
-//            //            [finalHours deleteCharactersInRange:NSMakeRange([finalHours length] - 2, 2)];
-//            //            [finalHours appendString:@"\n\n"];
-//        }
-//        hours.text = finalHours;
-//    } else {
+    if (![[results objectForKey:@"business_hours"] isKindOfClass:[NSNull class]]) {
+        NSMutableString *finalHours = [NSMutableString stringWithCapacity:1];
+        for (NSArray *array in [results objectForKey:@"hours"]) {
+            [finalHours appendString:[array componentsJoinedByString:@"\n"]];
+            [finalHours appendString:@"\n"];
+            //            [finalHours appendString:[array componentsJoinedByString:@": "]];
+            //            [finalHours deleteCharactersInRange:NSMakeRange([finalHours length] - 2, 2)];
+            //            [finalHours appendString:@"\n\n"];
+        }
+        hours.text = finalHours;
+    } else {
         hours.text = @"Hours not available";
-//    }
+    }
 //    if (![[results objectForKey:@"sips"] isKindOfClass:[NSNull class]]) {
 //        tags.text = [[results objectForKey:@"sips"] componentsJoinedByString:@", "];
 //    } else {
