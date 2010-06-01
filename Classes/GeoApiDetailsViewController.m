@@ -70,10 +70,6 @@
 
     [self stopProgressBar];
     
-    
-    
-    
-    
     place.name = [locationDictionary objectForKey:@"name"];
     place.address = [[locationDictionary objectForKey:@"address"] objectForKey:@"street"];
     
@@ -91,9 +87,9 @@
     } else {
         features.text = @"Features not available";
     }
-    if (![[results objectForKey:@"business_hours"] isKindOfClass:[NSNull class]]) {
+    if (![[locationDictionary objectForKey:@"business_hours"] isKindOfClass:[NSNull class]]) {
         NSMutableString *finalHours = [NSMutableString stringWithCapacity:1];
-        for (NSArray *array in [results objectForKey:@"hours"]) {
+        for (NSArray *array in [locationDictionary objectForKey:@"business_hours"]) {
             [finalHours appendString:[array componentsJoinedByString:@"\n"]];
             [finalHours appendString:@"\n"];
             //            [finalHours appendString:[array componentsJoinedByString:@": "]];

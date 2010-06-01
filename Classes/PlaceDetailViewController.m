@@ -511,12 +511,12 @@
             }
             break;
         case 3: 
-//            if ([goodies count] == 0) {
-//                photoHeaderLabel.text = @"";
-//            } else {
+            if ([goodies count] == 0) {
+                headerView.leftHeaderLabel.text = @"";
+            } else {
                 photoHeaderLabel.text = [NSString stringWithFormat:@"%d %@", [goodies count], [goodies count] == 1 ? @"Photo" : @"Photos"];
-//            }
-            return photoHeaderView;
+                return photoHeaderView;
+            }
             break;
         case 4:
             return nil;
