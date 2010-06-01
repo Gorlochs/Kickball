@@ -15,6 +15,8 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
+		2BA5A8FB11B57FBF0090173D /* libOAuth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BA5A8F911B57FBF0090173D /* libOAuth.a */; };
+		2BA5A8FC11B57FBF0090173D /* libFlurryWithLocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BA5A8FA11B57FBF0090173D /* libFlurryWithLocation.a */; };
 		552AFD8210A270ED009300E2 /* FSTip.m in Sources */ = {isa = PBXBuildFile; fileRef = 552AFD8110A270ED009300E2 /* FSTip.m */; };
 		552AFDE410A27AED009300E2 /* FriendPlacemark.m in Sources */ = {isa = PBXBuildFile; fileRef = 552AFDE310A27AED009300E2 /* FriendPlacemark.m */; };
 		552AFE4110A285AC009300E2 /* FriendIconAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 552AFE4010A285AC009300E2 /* FriendIconAnnotationView.m */; };
@@ -246,7 +248,6 @@
 		6A30075711797649001CB933 /* KBTweetListViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A30075511797649001CB933 /* KBTweetListViewController.xib */; };
 		6A31CB15119A1C01009D8967 /* KBMapPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A31CB14119A1C01009D8967 /* KBMapPopupView.m */; };
 		6A31CB8E119A2633009D8967 /* TouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A31CB8D119A2633009D8967 /* TouchView.m */; };
-		6A31CC12119A4E80009D8967 /* libOAuth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A31CC11119A4E80009D8967 /* libOAuth.a */; };
 		6A31CC41119A568E009D8967 /* GeoTweetAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A31CC40119A568E009D8967 /* GeoTweetAnnotation.m */; };
 		6A32B3B7118610A2001E78C9 /* AccountOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A32B3B6118610A2001E78C9 /* AccountOptionsViewController.m */; };
 		6A3900B110D6F1A0001D133C /* AddPlaceFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A3900AF10D6F1A0001D133C /* AddPlaceFormViewController.m */; };
@@ -270,7 +271,6 @@
 		6A4204C4117FAD9E001A6982 /* KBDirectMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4204C3117FAD9E001A6982 /* KBDirectMessage.m */; };
 		6A4796D811B0EB6000C6EB89 /* addFirst01a.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4796D511B0EB6000C6EB89 /* addFirst01a.png */; };
 		6A4796DA11B0EB6000C6EB89 /* addFirst02a.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4796D711B0EB6000C6EB89 /* addFirst02a.png */; };
-		6A47993A11B3603D00C6EB89 /* libFlurryWithLocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A47993911B3603D00C6EB89 /* libFlurryWithLocation.a */; };
 		6A47C00610DCA8DE00DCF011 /* KBWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A47C00410DCA8DE00DCF011 /* KBWebViewController.m */; };
 		6A47C00710DCA8DE00DCF011 /* KBWebViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A47C00510DCA8DE00DCF011 /* KBWebViewController.xib */; };
 		6A4C17F211A90B86006BBC61 /* CheckinOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4C17F011A90B86006BBC61 /* CheckinOptionsViewController.m */; };
@@ -675,6 +675,8 @@
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2BA5A8F911B57FBF0090173D /* libOAuth.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOAuth.a; sourceTree = "<group>"; };
+		2BA5A8FA11B57FBF0090173D /* libFlurryWithLocation.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryWithLocation.a; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Kickball_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kickball_Prefix.pch; sourceTree = "<group>"; };
 		552AFD8010A270ED009300E2 /* FSTip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSTip.h; sourceTree = "<group>"; };
 		552AFD8110A270ED009300E2 /* FSTip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSTip.m; sourceTree = "<group>"; };
@@ -1015,7 +1017,6 @@
 		6A31CB14119A1C01009D8967 /* KBMapPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBMapPopupView.m; sourceTree = "<group>"; };
 		6A31CB8C119A2633009D8967 /* TouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchView.h; sourceTree = "<group>"; };
 		6A31CB8D119A2633009D8967 /* TouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchView.m; sourceTree = "<group>"; };
-		6A31CC11119A4E80009D8967 /* libOAuth.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOAuth.a; path = /Users/shawnbernard/Documents/projects/libOAuth.a; sourceTree = "<absolute>"; };
 		6A31CC3F119A568E009D8967 /* GeoTweetAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeoTweetAnnotation.h; sourceTree = "<group>"; };
 		6A31CC40119A568E009D8967 /* GeoTweetAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeoTweetAnnotation.m; sourceTree = "<group>"; };
 		6A32B3B5118610A2001E78C9 /* AccountOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountOptionsViewController.h; sourceTree = "<group>"; };
@@ -1058,7 +1059,6 @@
 		6A4796D711B0EB6000C6EB89 /* addFirst02a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addFirst02a.png; sourceTree = "<group>"; };
 		6A47991C11B3601A00C6EB89 /* FlurryAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAPI.h; sourceTree = "<group>"; };
 		6A47991D11B3601A00C6EB89 /* FlurryAdDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAdDelegate.h; sourceTree = "<group>"; };
-		6A47993911B3603D00C6EB89 /* libFlurryWithLocation.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurryWithLocation.a; path = "/Users/shawnbernard/Downloads/Flurry iPhone SDK v2.2/FlurryLibWithLocation/libFlurryWithLocation.a"; sourceTree = "<absolute>"; };
 		6A47C00310DCA8DE00DCF011 /* KBWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBWebViewController.h; sourceTree = "<group>"; };
 		6A47C00410DCA8DE00DCF011 /* KBWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBWebViewController.m; sourceTree = "<group>"; };
 		6A47C00510DCA8DE00DCF011 /* KBWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KBWebViewController.xib; path = Classes/KBWebViewController.xib; sourceTree = "<group>"; };
@@ -1576,8 +1576,8 @@
 				6ADB706C1117005A00A26D35 /* MediaPlayer.framework in Frameworks */,
 				6AD0C1E4113F049E00A971E3 /* libThree20.a in Frameworks */,
 				6A6F2E141177C1CA00B2869B /* MessageUI.framework in Frameworks */,
-				6A31CC12119A4E80009D8967 /* libOAuth.a in Frameworks */,
-				6A47993A11B3603D00C6EB89 /* libFlurryWithLocation.a in Frameworks */,
+				2BA5A8FB11B57FBF0090173D /* libOAuth.a in Frameworks */,
+				2BA5A8FC11B57FBF0090173D /* libFlurryWithLocation.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1739,8 +1739,8 @@
 				6A8F68E910E9B9FC00E0275E /* AddressBook.framework */,
 				6AFF0FFE1101796600AD6E55 /* CFNetwork.framework */,
 				6A6F2E131177C1CA00B2869B /* MessageUI.framework */,
-				6A31CC11119A4E80009D8967 /* libOAuth.a */,
-				6A47993911B3603D00C6EB89 /* libFlurryWithLocation.a */,
+				2BA5A8F911B57FBF0090173D /* libOAuth.a */,
+				2BA5A8FA11B57FBF0090173D /* libFlurryWithLocation.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -3889,7 +3889,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Shawn Bernard (6MN36SS56H)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -3904,7 +3904,7 @@
 					"-ObjC",
 				);
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=*]" = "80198AA9-F5C3-4CCE-A36D-CB1329F1AFBB";
+				"PROVISIONING_PROFILE[sdk=*]" = "";
 				SDKROOT = iphoneos3.1;
 			};
 			name = Debug;

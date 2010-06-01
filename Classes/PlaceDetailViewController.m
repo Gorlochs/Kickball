@@ -41,7 +41,7 @@
 #define PHOTOS_PER_ROW 4
 #define THUMBNAIL_IMAGE_SIZE 73
 #define MAX_NUM_TIPS_SHOWN 4
-#define MAX_PEOPLE_HERE_SHOWN 2
+#define MAX_PEOPLE_HERE_SHOWN 4
 
 @interface PlaceDetailViewController (Private)
 
@@ -476,9 +476,9 @@
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (section == 3) { // photos
-        return 40;
-    }
+//    if (section == 3) { // photos
+//        return 40;
+//    }
 	return 30.0;
 }
 

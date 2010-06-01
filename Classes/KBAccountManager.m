@@ -32,12 +32,15 @@ static KBAccountManager *accountManager = nil;
     }
 }
 
+- (BOOL) usesTwitterOrHasNotDecided {
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    // if the value doesn't exist, that means a user hasn't chosen yet, so display the tab
+    return [userDefaults boolForKey:USES_TWITTER_KEY] || (![userDefaults boolForKey:USES_TWITTER_KEY] && ![userDefaults boolForKey:TWITTER_NOTHANKS_CLICKED]);
+}
+
 - (BOOL) usesTwitter {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    //BOOL b = [userDefaults boolForKey:USES_TWITTER_KEY];
-    // if the value doesn't exist, that means a user hasn't chosen yet, so display the tab
-    //NSLog(@"usestwitter: %d",  b != NULL ? [userDefaults boolForKey:USES_TWITTER_KEY] : YES);
-    return [userDefaults boolForKey:USES_TWITTER_KEY] || (![userDefaults boolForKey:USES_TWITTER_KEY] && ![userDefaults boolForKey:TWITTER_NOTHANKS_CLICKED]);
+    return [userDefaults boolForKey:USES_TWITTER_KEY];
 }
 
 - (void) setUsesFacebook:(BOOL)b {
@@ -49,11 +52,18 @@ static KBAccountManager *accountManager = nil;
     }
 }
 
-- (BOOL) usesFacebook {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    //BOOL b = [userDefaults boolForKey:USES_FACEBOOK_KEY];
+- (BOOL) usesFacebookOrHasNotDecided {
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     // if the value doesn't exist, that means a user hasn't chosen yet, so display the tab
     return [userDefaults boolForKey:USES_FACEBOOK_KEY] || (![userDefaults boolForKey:USES_FACEBOOK_KEY] && ![userDefaults boolForKey:FACEBOOK_NOTHANKS_CLICKED]);
+}
+
+- (BOOL) usesFacebook {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	NSLog(@"![userDefaults boolForKey:USES_FACEBOOK_KEY]: %d", ![userDefaults boolForKey:USES_FACEBOOK_KEY]);
+	NSLog(@"![userDefaults boolForKey:FACEBOOK_NOTHANKS_CLICKED]: %d", ![userDefaults boolForKey:FACEBOOK_NOTHANKS_CLICKED]);
+	NSLog(@"[userDefaults boolForKey:USES_FACEBOOK_KEY]: %d", [userDefaults boolForKey:USES_FACEBOOK_KEY]);
+    return [userDefaults boolForKey:USES_FACEBOOK_KEY];
 }
 
 #pragma mark -

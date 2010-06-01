@@ -18,5 +18,7 @@
 @property (nonatomic) BOOL usesFacebook;
 
 + (KBAccountManager*)sharedInstance;
+- (BOOL) usesFacebookOrHasNotDecided;
+- (BOOL) usesTwitterOrHasNotDecided;
 
 @end

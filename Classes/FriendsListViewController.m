@@ -105,6 +105,10 @@
 	} else {
 		[self doInitialDisplay];
 	}
+	
+	// blech
+	footerType = KBFooterTypeFoursquare;
+    [self setTabImages];
 }
 
 - (void) doInitialDisplay {
@@ -117,8 +121,7 @@
 //        [iconImageView setHidden:YES];
 //        [self.view addSubview:instructionView];
 //        [self.view bringSubviewToFront:instructionView];
-//    }
-    
+//    }  
     [[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
     
     if (![self getAuthenticatedUser]) {
@@ -486,14 +489,14 @@
                                                  andAction:@selector(shoutResponseReceived:withResponseString:)];
     
     // we send twitter/facebook api calls ourself so that the tweets and posts are stamped with the Kickball brand
-    if (isTwitterOn) {
+    if (isTwitterOn && [[KBAccountManager sharedInstance] usesTwitter]) {
         // TODO: check for twitter login
         [self.twitterEngine sendUpdate:shoutText.text
                           withLatitude:[[KBLocationManager locationManager] latitude] 
                          withLongitude:[[KBLocationManager locationManager] longitude]];
     }
     
-    if (isFacebookOn) {
+    if (isFacebookOn && [[KBAccountManager sharedInstance] usesFacebook]) {
         // TODO: check for facebook login
         
         NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:shoutText.text, @"status", nil];

@@ -60,6 +60,7 @@
         [centerHeaderButton setImage:[UIImage imageNamed:@"kbMap02.png"] forState:UIControlStateHighlighted];
         centerHeaderButton.enabled = NO;
     }
+	
 }
 
 

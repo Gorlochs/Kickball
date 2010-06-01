@@ -19,6 +19,6 @@
 }
 
 - (void) statusRetrieved:(NSNotification *)inNotification;
-- (void) createNotificationObservers;
+//- (void) createNotificationObservers;
 
 @end
