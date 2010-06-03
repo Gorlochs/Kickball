@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "KBBaseViewController.h"
+#import "KBFoursquareViewController.h"
 
 
-@interface ViewFriendRequestsViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource> {
+@interface ViewFriendRequestsViewController : KBFoursquareViewController <UITableViewDelegate, UITableViewDataSource> {
     NSMutableArray *pendingFriendRequests;
 }
 

@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "KBBaseViewController.h"
+#import "KBFoursquareViewController.h"
 #import "FSVenue.h"
 
-@interface AddPlaceFormViewController : KBBaseViewController <UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource> {
+@interface AddPlaceFormViewController : KBFoursquareViewController <UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource> {
     IBOutlet UITableViewCell *tableCell;
        
     IBOutlet UITextField *address;

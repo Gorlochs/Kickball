@@ -149,14 +149,14 @@
 }
 
 - (void) addNewVenue {
-    AddPlaceViewController *addPlaceController = [[AddPlaceViewController alloc] initWithNibName:@"AddVenueViewController_v2" bundle:nil];
-    addPlaceController.newVenueName = searchbox.text;
-    [self.navigationController pushViewController:addPlaceController animated:YES];
-    [addPlaceController release];
-    
-//    AddPlaceViewController *addPlaceController = [[AddPlaceViewController alloc] initWithNibName:@"AddPlaceViewControllerv2" bundle:nil];
-//    [self.navigationController pushViewController:addPlaceController animated:YES];
-//    [addPlaceController release];
+	if ([searchbox.text isEqualToString:@""]) {
+		[searchbox becomeFirstResponder];
+	} else {
+		AddPlaceViewController *addPlaceController = [[AddPlaceViewController alloc] initWithNibName:@"AddVenueViewController_v2" bundle:nil];
+		addPlaceController.newVenueName = searchbox.text;
+		[self.navigationController pushViewController:addPlaceController animated:YES];
+		[addPlaceController release];
+    }
 }
 
 - (void) cancelKeyboard: (UIControl *) button {
