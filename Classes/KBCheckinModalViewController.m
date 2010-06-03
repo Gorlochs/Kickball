@@ -123,7 +123,7 @@
                                                  andAction:@selector(checkinResponseReceived:withResponseString:)];
     
     // we send twitter/facebook api calls ourself so that the tweets and posts are stamped with the Kickball brand
-    if (isTwitterOn) {
+    if (isTwitterOn && [[KBAccountManager sharedInstance] usesTwitter]) {
         NSString *tweetString = nil;
         if (![checkinTextField.text isEqualToString:@""]) {
             tweetString = [NSString stringWithFormat:@"%@ (just checked into %@) #kb", checkinTextField.text, venue.name];
@@ -136,12 +136,11 @@
                          withLongitude:[[KBLocationManager locationManager] longitude]];
     }
     
-    if (isFacebookOn) {
+    if (isFacebookOn && [[KBAccountManager sharedInstance] usesFacebook]) {
         NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:checkinTextField.text, @"status", nil];
         [[FBRequest requestWithDelegate:self] call:@"facebook.status.set" params:params dataParam:nil];
     }
     
-    // FIXME: ******** ADD VENUE TO THE METHOD CALL ********
     if (photoImage) {
 		self.hasPhoto = YES;
         [photoManager uploadImage:UIImageJPEGRepresentation(photoImage, 1.0) 
@@ -181,7 +180,7 @@
     checkin = [FoursquareAPI checkinFromResponseXML:inString];
     
     self.shoutToPush = [NSString stringWithString:checkinTextField.text];
-	self.venueToPush = self.venue;
+	self.venueToPush = checkin.venue;
     [self sendPushNotification];
     
     [self decrementActionCount];

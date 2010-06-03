@@ -53,7 +53,7 @@
     NSString *un = user.firstnameLastInitial;
     NSString *vn = venueToPush.name;
     NSString *hashInput = nil;
-    if (self.shoutToPush) {
+    if (self.shoutToPush && ![self.shoutToPush isEqualToString:@""]) {
         hashInput = [NSString stringWithFormat:@"%@%@%@", uid, un, self.shoutToPush];
     } else {
         hashInput = [NSString stringWithFormat:@"%@%@%@", uid, un, vn];
