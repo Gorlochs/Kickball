@@ -11,6 +11,8 @@
 
 @protocol KBTwitterManagerDelegate
 
+@optional
+
 - (void)statusesReceived:(NSArray *)statuses;
 - (void)directMessagesReceived:(NSArray *)messages;
 - (void)userInfoReceived:(NSArray *)userInfo;

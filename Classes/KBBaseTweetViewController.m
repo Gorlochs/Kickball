@@ -21,17 +21,14 @@
     [super viewDidLoad];
 	twitterManager = [KBTwitterManager twitterManager];
 	twitterManager.delegate = self;
+	
+	// TODO: find a better way to do this
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTweetNotification:) name:IFTweetLabelURLNotification object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusRetrieved:) name:kTwitterStatusRetrievedNotificationKey object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTweetNotification:) name:IFTweetLabelURLNotification object:nil];
 }
-
-//- (void)viewDidDisappear:(BOOL)animated {
-//    [[NSNotificationCenter defaultCenter] removeObserver:self];
-//}
 
 - (NSMutableArray*) addAndTrimArray:(NSMutableArray*)arrayToAdd {
     NSRange theRange;

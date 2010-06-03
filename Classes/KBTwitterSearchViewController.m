@@ -40,7 +40,6 @@
 
 - (void) showStatuses {
     if (searchTerms) {
-        [self startProgressBar:@"Retrieving your tweets..."];
         theSearchBar.text = searchTerms;
         [self executeQuery:1];
     }

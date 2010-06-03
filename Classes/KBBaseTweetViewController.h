@@ -11,11 +11,12 @@
 #import "KBTweet.h"
 #import "KBTweetTableCell.h"
 #import "KBTwitterManager.h"
+#import "KBTwitterManagerDelegate.h"
 
 
 #define MAX_LABEL_HEIGHT 68.0
 
-@interface KBBaseTweetViewController : KBTwitterViewController <MGTwitterEngineDelegate> {
+@interface KBBaseTweetViewController : KBTwitterViewController <MGTwitterEngineDelegate, KBTwitterManagerDelegate> {
     NSMutableArray *tweets;
     NSString *cachingKey;
     int pageNum;
