@@ -143,6 +143,7 @@
     
     // FIXME: ******** ADD VENUE TO THE METHOD CALL ********
     if (photoImage) {
+		self.hasPhoto = YES;
         [photoManager uploadImage:UIImageJPEGRepresentation(photoImage, 1.0) 
                          filename:@"tweet.jpg" 
                         withWidth:photoImage.size.width 
@@ -180,6 +181,7 @@
     checkin = [FoursquareAPI checkinFromResponseXML:inString];
     
     self.shoutToPush = [NSString stringWithString:checkinTextField.text];
+	self.venueToPush = self.venue;
     [self sendPushNotification];
     
     [self decrementActionCount];
