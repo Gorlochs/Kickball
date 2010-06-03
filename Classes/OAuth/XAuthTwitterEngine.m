@@ -245,7 +245,7 @@
 - (NSString *) extractUsernameFromHTTPBody: (NSString *) body {
 	if (!body) return nil;
 	
-	NSArray					*tuples = [body componentsSeparatedByString: @"&"];
+	NSArray *tuples = [body componentsSeparatedByString: @"&"];
 	if (tuples.count < 1) return nil;
 	
 	for (NSString *tuple in tuples) {

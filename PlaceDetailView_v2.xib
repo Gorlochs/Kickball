@@ -12,10 +12,11 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="16"/>
 			<integer value="100"/>
-			<integer value="21"/>
 			<integer value="1"/>
+			<integer value="16"/>
+			<integer value="116"/>
+			<integer value="21"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -337,6 +338,7 @@
 								<string key="NSFrameSize">{291, 73}</string>
 								<reference key="NSSuperview" ref="600391645"/>
 								<bool key="IBUIOpaque">NO</bool>
+								<bool key="IBUIClipsSubviews">YES</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
@@ -618,7 +620,7 @@
 				<reference key="IBUIContentView" ref="671582536"/>
 			</object>
 			<object class="IBUIView" id="101177011">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -627,7 +629,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{203, 0}, {87, 38}}</string>
 						<reference key="NSSuperview" ref="101177011"/>
-						<reference key="NSWindow"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -654,7 +655,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{142, 5}, {61, 24}}</string>
 						<reference key="NSSuperview" ref="101177011"/>
-						<reference key="NSWindow"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -682,7 +682,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{12, 8}, {122, 21}}</string>
 						<reference key="NSSuperview" ref="101177011"/>
-						<reference key="NSWindow"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -703,8 +702,6 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{290, 39}</string>
-				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MAA</bytes>
@@ -840,7 +837,7 @@
 				<reference key="IBUIContentView" ref="397112460"/>
 			</object>
 			<object class="IBUIView" id="235903953">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -976,7 +973,8 @@
 						<int key="IBUILineBreakMode">0</int>
 					</object>
 				</object>
-				<string key="NSFrameSize">{320, 339}</string>
+				<string key="NSFrameSize">{320, 343}</string>
+				<reference key="NSSuperview"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MAA</bytes>
@@ -1710,7 +1708,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{220, 646}, {320, 339}}</string>
+					<string>{{220, 642}, {320, 343}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1721,11 +1719,11 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>KBPhotoThumbnailCell</string>
-					<string>{{453, 196}, {291, 73}}</string>
+					<string>{{469, 346}, {291, 73}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{674, 491}, {290, 69}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{563, 116}, {290, 45}}</string>
+					<string>{{774, 122}, {290, 45}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

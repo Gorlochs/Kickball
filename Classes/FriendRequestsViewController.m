@@ -39,26 +39,6 @@
 	// e.g. self.myOutlet = nil;
 }
 
-- (void) didTapFriendizeButton: (UIControl *) button withEvent: (UIEvent *) event {
-    NSLog(@"friendize button tapped: %d", button.tag);
-//    [self startProgressBar:@"Sending friend request..."];
-//    [[FoursquareAPI sharedInstance] doSendFriendRequest:((FSUser*)[friendRequests objectAtIndex:button.tag]).userId withTarget:self andAction:@selector(friendRequestResponseReceived:withResponseString:)];
-//    [FlurryAPI logEvent:@"Friend Someone"];
-//    button.enabled = NO;
-//    button.alpha = 0.5;
-}
-
-
-- (void)friendRequestResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    FSUser *user = [FoursquareAPI userFromResponseXML:inString];
-    [self stopProgressBar];
-    NSLog(@"user sent a friend request: %@", user);
-    
-    KBMessage *message = [[KBMessage alloc] initWithMember:@"Friend Request" andMessage:@"Your future buddy has been sent a friend request."];
-    [self displayPopupMessage:message];
-    [message release];
-}
-
 - (void)dealloc {
     [addressBookSearchButton release];
     [twitterSearchButton release];

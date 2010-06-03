@@ -29,7 +29,6 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 @interface KBBaseViewController (Private)
 
 - (void) setTabImages;
-- (void) hideAppropriateTabs;
 
 @end
 
@@ -381,9 +380,9 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 
 - (void) openWebView:(NSString*)url {
     [FlurryAPI logEvent:@"Opening link from Twitter feed"];
-    KBWebViewController *webController = [[KBWebViewController alloc] initWithNibName:@"KBWebViewController" bundle:nil];
+    KBWebViewController *webController = [[KBWebViewController alloc] initWithNibName:@"KBWebViewController" bundle:nil andUrlString:url];
     NSLog(@"website url: %@", url);
-    webController.urlString = url;
+    //webController.urlString = url;
     [self presentModalViewController:webController animated:YES];
     // FIXME: commenting out below probably fixes the crash, but it's masking the REAL problem, which I need to find
     //[webController release];

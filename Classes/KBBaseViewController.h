@@ -125,5 +125,6 @@ typedef enum{
 - (IBAction) switchToFoursquare;
 - (IBAction) switchToFacebook;
 - (void) setTabImages;
+- (void) hideAppropriateTabs;
 
 @end

@@ -34,8 +34,8 @@
 - (NSMutableArray*) addAndTrimArray:(NSMutableArray*)arrayToAdd {
     NSRange theRange;
     theRange.location = 0;
-    theRange.length = 25;
-    return[ [[NSMutableArray alloc] initWithArray:[arrayToAdd subarrayWithRange:theRange]] autorelease];
+    theRange.length = [arrayToAdd count] < 25 ? [arrayToAdd count] : 25;
+    return [[[NSMutableArray alloc] initWithArray:[arrayToAdd subarrayWithRange:theRange]] autorelease];
 }
 
 - (void)handleTweetNotification:(NSNotification *)notification {

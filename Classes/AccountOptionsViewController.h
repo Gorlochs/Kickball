@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "KBFoursquareViewController.h"
+#import "AbstractFacebookViewController.h"
 #import "XAuthTwitterEngineDelegate.h"
 #import "OAToken.h"
 
@@ -17,7 +17,7 @@
 
 @class XAuthTwitterEngine;
 
-@interface AccountOptionsViewController : KBFoursquareViewController <UITextFieldDelegate, XAuthTwitterEngineDelegate> {
+@interface AccountOptionsViewController : AbstractFacebookViewController <UITextFieldDelegate, XAuthTwitterEngineDelegate> {
     IBOutlet UITableViewCell *foursquareCell;
     IBOutlet UITableViewCell *twitterCell;
     IBOutlet UITableViewCell *facebookCell;
@@ -33,7 +33,6 @@
     IBOutlet UISwitch *postPhotosToFacebookSwitch;
     
     IBOutlet UIButton *whatIsThisButton;
-    XAuthTwitterEngine *twitterEngine;
     BOOL isWhatsThisDisplayed;
     
     CGFloat animatedDistance;

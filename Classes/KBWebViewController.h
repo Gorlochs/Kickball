@@ -12,11 +12,13 @@
 @interface KBWebViewController : KBBaseViewController {
     UIWebView *webView;
     NSString *urlString;
+	NSString *twitterUrlString;
 }
 
 @property (nonatomic, retain) IBOutlet UIWebView *webView;
-@property (nonatomic, retain) NSString *urlString;
 
 - (IBAction) dismissView;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andUrlString:(NSString*)url;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andTwitterUrlString:(NSString*)url;
 
 @end

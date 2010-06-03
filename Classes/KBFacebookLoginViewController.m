@@ -27,7 +27,7 @@
     
     [super viewDidLoad];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideAppropriateTabs) name:@"hideAppropriateTabs" object:nil];
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideAppropriateTabs) name:@"hideAppropriateTabs" object:nil];
     
     FBLoginButton* button = [[[FBLoginButton alloc] init] autorelease];
     button.style = FBLoginButtonStyleWide;
@@ -54,6 +54,7 @@
 
 - (void)session:(FBSession*)session didLogin:(FBUID)uid {
     [[KBAccountManager sharedInstance] setUsesFacebook:YES];
+	[self hideAppropriateTabs];
 }
 
 - (void)sessionDidNotLogin:(FBSession*)session {
@@ -61,7 +62,8 @@
 }
 
 - (void)sessionDidLogout:(FBSession*)session {
-    
+    [[KBAccountManager sharedInstance] setUsesFacebook:NO];
+	[self hideAppropriateTabs];
 }
 
 #pragma mark -

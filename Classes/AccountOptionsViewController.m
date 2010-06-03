@@ -31,18 +31,29 @@
     //
 	// Initialize the XAuthTwitterEngine.
 	//
-	self.twitterEngine = [[XAuthTwitterEngine alloc] initXAuthWithDelegate:self];
-	self.twitterEngine.consumerKey = kOAuthConsumerKey;
-	self.twitterEngine.consumerSecret = kOAuthConsumerSecret;
+//	self.twitterEngine = [[XAuthTwitterEngine alloc] initXAuthWithDelegate:self];
+//	self.twitterEngine.consumerKey = kOAuthConsumerKey;
+//	self.twitterEngine.consumerSecret = kOAuthConsumerSecret;
     
-//    FBLoginButton* button = [[[FBLoginButton alloc] init] autorelease];
-//    button.style = FBLoginButtonStyleWide;
-//    
-//    button.frame = CGRectMake([self view].frame.size.width/2 - button.frame.size.width/2, 
-//                              [self view].frame.size.height/2 - button.frame.size.height/2,
-//                              button.frame.size.width, 
-//                              button.frame.size.height);
-//    [self.view addSubview:button];
+    FBLoginButton* button = [[[FBLoginButton alloc] init] autorelease];
+    button.style = FBLoginButtonStyleWide;
+    
+    button.frame = CGRectMake(facebookCell.frame.size.width/2 - button.frame.size.width/2, 
+                              50,
+                              button.frame.size.width, 
+                              button.frame.size.height);
+    [facebookCell addSubview:button];
+}
+
+#pragma mark -
+#pragma mark Facebook delegate methods
+
+- (void)session:(FBSession*)session didLogin:(FBUID)uid {
+    [[KBAccountManager sharedInstance] setUsesFacebook:YES];
+}
+
+- (void)sessionDidLogout:(FBSession*)session {
+    [[KBAccountManager sharedInstance] setUsesFacebook:NO];
 }
 
 #pragma mark -
@@ -65,7 +76,8 @@
 }
 
 - (void) enableTwitterGeotagging {
-    
+    // https://twitter.com/account/geo
+	[self openWebView: @"https://twitter.com/account/geo"];
 }
 
 - (void) postPhotosToFacebook {
@@ -77,49 +89,49 @@
     [theTableView reloadData];
 }
 
-#pragma mark -
-#pragma mark twitter auth methods
-
-- (IBAction)xAuthAccessTokenRequestButtonTouchUpInside
-{
-    [twitterUsername resignFirstResponder];
-    [twitterPassword resignFirstResponder];
-    
-    [self startProgressBar:@"Authenticating Twitter username and password..."];
-    
-	NSString *username = twitterUsername.text;
-	NSString *password = twitterPassword.text;
-	
-	NSLog(@"About to request an xAuth token exchange for username: ]%@[ password: ]%@[.", username, password);
-	
-	[self.twitterEngine exchangeAccessTokenForUsername:username password:password];
-}
-
-#pragma mark XAuthTwitterEngineDelegate methods
-
-- (void) storeCachedTwitterXAuthAccessTokenString: (NSString *)tokenString forUsername:(NSString *)username
-{
-	// FIXME
-	// Note: do not use NSUserDefaults to store this in a production environment. 
-	// ===== Use the keychain instead. Check out SFHFKeychainUtils if you want 
-	//       an easy to use library. (http://github.com/ldandersen/scifihifi-iphone) 
-	//
-	NSLog(@"Access token string returned: %@", tokenString);
-	
-	[[NSUserDefaults standardUserDefaults] setObject:tokenString forKey:kCachedXAuthAccessTokenStringKey];
-    [[KBAccountManager sharedInstance] setUsesTwitter:YES];
-    
-//    [[NSNotificationCenter defaultCenter] postNotificationName:@"loginNotification"
-//                                                        object:nil
-//                                                      userInfo:nil];
-    
-    [self stopProgressBar];
-    KBMessage *message = [[KBMessage alloc] initWithMember:@"Success!" andMessage:@"Authentication succeeded!  Your new username and password have been authenticated."];
-    [self displayPopupMessage:message];
-    [message release];
-    
-    //[self dismissModalViewControllerAnimated:YES];
-}
+//#pragma mark -
+//#pragma mark twitter auth methods
+//
+//- (IBAction)xAuthAccessTokenRequestButtonTouchUpInside
+//{
+//    [twitterUsername resignFirstResponder];
+//    [twitterPassword resignFirstResponder];
+//    
+//    [self startProgressBar:@"Authenticating Twitter username and password..."];
+//    
+//	NSString *username = twitterUsername.text;
+//	NSString *password = twitterPassword.text;
+//	
+//	NSLog(@"About to request an xAuth token exchange for username: ]%@[ password: ]%@[.", username, password);
+//	
+//	[self.twitterEngine exchangeAccessTokenForUsername:username password:password];
+//}
+//
+//#pragma mark XAuthTwitterEngineDelegate methods
+//
+//- (void) storeCachedTwitterXAuthAccessTokenString: (NSString *)tokenString forUsername:(NSString *)username
+//{
+//	// FIXME
+//	// Note: do not use NSUserDefaults to store this in a production environment. 
+//	// ===== Use the keychain instead. Check out SFHFKeychainUtils if you want 
+//	//       an easy to use library. (http://github.com/ldandersen/scifihifi-iphone) 
+//	//
+//	NSLog(@"Access token string returned: %@", tokenString);
+//	
+//	[[NSUserDefaults standardUserDefaults] setObject:tokenString forKey:kCachedXAuthAccessTokenStringKey];
+//    [[KBAccountManager sharedInstance] setUsesTwitter:YES];
+//    
+////    [[NSNotificationCenter defaultCenter] postNotificationName:@"loginNotification"
+////                                                        object:nil
+////                                                      userInfo:nil];
+//    
+//    [self stopProgressBar];
+//    KBMessage *message = [[KBMessage alloc] initWithMember:@"Success!" andMessage:@"Authentication succeeded!  Your new username and password have been authenticated."];
+//    [self displayPopupMessage:message];
+//    [message release];
+//    
+//    //[self dismissModalViewControllerAnimated:YES];
+//}
 
 #pragma mark delgate callbacks
 
@@ -311,7 +323,6 @@
     postPhotosToFacebookSwitch = nil;
     
     whatIsThisButton = nil;
-    twitterEngine = nil;
 }
 
 
@@ -331,7 +342,6 @@
     [postPhotosToFacebookSwitch release];
     
     [whatIsThisButton release];
-    [twitterEngine release];
     
     [super dealloc];
 }
