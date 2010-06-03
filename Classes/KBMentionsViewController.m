@@ -17,7 +17,7 @@
     
     cachingKey = kKBTwitterMentionsKey;
     [self showStatuses];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusRetrieved:) name:kTwitterStatusRetrievedNotificationKey object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusRetrieved:) name:kTwitterStatusRetrievedNotificationKey object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTweetNotification:) name:IFTweetLabelURLNotification object:nil];
     
     [timelineButton setImage:[UIImage imageNamed:@"tabTweets03.png"] forState:UIControlStateNormal];
@@ -37,38 +37,31 @@
     [twitterEngine getRepliesSinceID:[startAtId longLongValue] startingAtPage:0 count:25];
 }
 
-- (void) statusRetrieved:(NSNotification *)inNotification {
-    NSLog(@"notification: %@", inNotification);
-    if (inNotification) {
-        if ([inNotification userInfo]) {
-            NSDictionary *userInfo = [inNotification userInfo];
-            if ([userInfo objectForKey:@"statuses"]) {
-                statuses = [[userInfo objectForKey:@"statuses"] retain];
-                //NSLog(@"status retrieved: %@", statuses);
-                NSMutableArray *tempTweetArray = [[NSMutableArray alloc] initWithCapacity:[statuses count]];
-                for (NSDictionary *dict in statuses) {
-                    KBTweet *tweet = [[KBTweet alloc] initWithDictionary:dict];
-                    [tempTweetArray addObject:tweet];
-                    [tweet release];
-                }
-                // not very pretty, but it gets the job done. if there is a cached array, combine them.
-                // the other way to do it would be to just add all the objects (above) by index
-                if (pageNum > 1) {
-                    [tweets addObjectsFromArray:tempTweetArray];
-                } else if (!tweets) {
-                    tweets = [[NSMutableArray alloc] initWithArray:tempTweetArray];
-                } else {
-                    // need to keep all the tweets in the right order
-                    [tempTweetArray addObjectsFromArray:tweets];
-                    tweets = nil;
-                    [tweets release];
-                    tweets = [[self addAndTrimArray:tempTweetArray] retain];
-                }
-                [tempTweetArray release];
-                [theTableView reloadData];
-            }
-        }
-    }
+- (void)statusesReceived:(NSArray *)statuses {
+	if (statuses) {
+		twitterArray = [statuses retain];
+		NSMutableArray *tempTweetArray = [[NSMutableArray alloc] initWithCapacity:[twitterArray count]];
+		for (NSDictionary *dict in twitterArray) {
+			KBTweet *tweet = [[KBTweet alloc] initWithDictionary:dict];
+			[tempTweetArray addObject:tweet];
+			[tweet release];
+		}
+		// not very pretty, but it gets the job done. if there is a cached array, combine them.
+		// the other way to do it would be to just add all the objects (above) by index
+		if (pageNum > 1) {
+			[tweets addObjectsFromArray:tempTweetArray];
+		} else if (!tweets) {
+			tweets = [[NSMutableArray alloc] initWithArray:tempTweetArray];
+		} else {
+			// need to keep all the tweets in the right order
+			[tempTweetArray addObjectsFromArray:tweets];
+			tweets = nil;
+			[tweets release];
+			tweets = [[self addAndTrimArray:tempTweetArray] retain];
+		}
+		[tempTweetArray release];
+		[theTableView reloadData];
+	}
     [self stopProgressBar];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 	[self dataSourceDidFinishLoadingNewData];

@@ -28,7 +28,7 @@
         noResultsView.hidden = YES;
     }
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(searchRetrieved:) name:kTwitterSearchRetrievedNotificationKey object:nil];
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(searchRetrieved:) name:kTwitterSearchRetrievedNotificationKey object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTweetNotification:) name:IFTweetLabelURLNotification object:nil];
     [self showStatuses];
     
@@ -46,46 +46,40 @@
     }
 }
 
-- (void)searchRetrieved:(NSNotification *)inNotification {
-    //NSLog(@"inside searchRetrieved: %@", inNotification);
-    if (inNotification) {
-        if ([inNotification userInfo]) {
-            NSDictionary *userInfo = [inNotification userInfo];
-            if ([userInfo objectForKey:@"searchResults"]) {
-                statuses = [[[[userInfo objectForKey:@"searchResults"] objectAtIndex:0] objectForKey:@"results"] retain];
-                if ([statuses count] > 1) {
-                    
-                    NSMutableArray *tempTweetArray = [[NSMutableArray alloc] initWithCapacity:[statuses count]];
-                    for (NSDictionary *dict in statuses) {
-                        KBSearchResult *tweet = [[KBSearchResult alloc] initWithDictionary:dict];
-                        [tempTweetArray addObject:tweet];
-                        [tweet release];
-                    }
-                    
-                    if (pageNum > 1) {
-                        [tweets addObjectsFromArray:tempTweetArray];
-                    } else if (!tweets) {
-                        tweets = [[NSMutableArray alloc] initWithArray:tempTweetArray];
-                    } else {
-                        // need to keep all the tweets in the right order
-                        [tempTweetArray addObjectsFromArray:tweets];
-                        tweets = nil;
-                        [tweets release];
-                        tweets = [[self addAndTrimArray:tempTweetArray] retain];
-                    }
-                    [tempTweetArray release];
-                    [theTableView reloadData];
-                    
-                    [KBTwitterManager twitterManager].theSearchResults = nil;
-                    [KBTwitterManager twitterManager].theSearchResults = [[NSArray alloc] initWithArray:tweets];
-                    
-                    noResultsView.hidden = YES;
-                } else {
-                    noResultsView.hidden = NO;
-                }
-            }
-        }
-    }
+- (void)searchResultsReceived:(NSArray *)searchResults {
+	if (searchResults) {
+		twitterArray = [[[searchResults objectAtIndex:0] objectForKey:@"results"] retain];
+		if ([twitterArray count] > 1) {
+			
+			NSMutableArray *tempTweetArray = [[NSMutableArray alloc] initWithCapacity:[twitterArray count]];
+			for (NSDictionary *dict in twitterArray) {
+				KBSearchResult *tweet = [[KBSearchResult alloc] initWithDictionary:dict];
+				[tempTweetArray addObject:tweet];
+				[tweet release];
+			}
+			
+			if (pageNum > 1) {
+				[tweets addObjectsFromArray:tempTweetArray];
+			} else if (!tweets) {
+				tweets = [[NSMutableArray alloc] initWithArray:tempTweetArray];
+			} else {
+				// need to keep all the tweets in the right order
+				[tempTweetArray addObjectsFromArray:tweets];
+				tweets = nil;
+				[tweets release];
+				tweets = [[self addAndTrimArray:tempTweetArray] retain];
+			}
+			[tempTweetArray release];
+			[theTableView reloadData];
+			
+			[KBTwitterManager twitterManager].theSearchResults = nil;
+			[KBTwitterManager twitterManager].theSearchResults = [[NSArray alloc] initWithArray:tweets];
+			
+			noResultsView.hidden = YES;
+		} else {
+			noResultsView.hidden = NO;
+		}
+	}
     [self stopProgressBar];
     [self dataSourceDidFinishLoadingNewData];
 }

@@ -34,22 +34,18 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginCanceled) name:@"loginCanceled" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideAppropriateTabs) name:@"hideAppropriateTabs" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showStatuses) name:kTwitterLoginNotificationKey object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showStatuses) name:kTwitterLoginNotificationKey object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showStatuses) name:kTwitterStatusRetrievedNotificationKey object:nil];
     if ([self.twitterEngine isAuthorized]) {
         //[self createNotificationObservers];
 		[self showStatuses];
 	} else {
         loginController = [[KBTwitterXAuthLoginController alloc] initWithNibName:@"TwitterLoginView_v2" bundle:nil];
+		loginController.rootController = self;
         [self presentModalViewController:loginController animated:YES];
         [loginController release];
     }
 }
-
-//- (void) createNotificationObservers {
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusRetrieved:) name:kTwitterStatusRetrievedNotificationKey object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTweetNotification:) name:IFTweetLabelURLNotification object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showStatuses) name:kTwitterLoginNotificationKey object:nil];
-//}
 
 - (void)viewDidDisappear:(BOOL)animated {
     //overriding the removal of notifications
@@ -71,43 +67,37 @@
     [self.twitterEngine getFollowedTimelineSinceID:[startAtId longLongValue] startingAtPage:0 count:25];
 }
 
-- (void) statusRetrieved:(NSNotification *)inNotification {
-    NSLog(@"notification: %@", inNotification);
-    if (inNotification && [inNotification userInfo]) {
-        NSDictionary *userInfo = [inNotification userInfo];
-        if ([userInfo objectForKey:@"statuses"]) {
-            statuses = [[userInfo objectForKey:@"statuses"] retain];
-            //NSLog(@"status retrieved: %@", statuses);
-            
-            NSMutableArray *tempTweetArray = [[NSMutableArray alloc] initWithCapacity:[statuses count]];
-            for (NSDictionary *dict in statuses) {
-                KBTweet *tweet = [[KBTweet alloc] initWithDictionary:dict];
-                [tempTweetArray addObject:tweet];
-                [tweet release];
-            }
-            // not very pretty, but it gets the job done. if there is a cached array, combine them.
-            // the other way to do it would be to just add all the objects (above) by index
-            if (pageNum > 1) {
-                [tweets addObjectsFromArray:tempTweetArray];
-            } else if (!tweets) {
-                tweets = [[NSMutableArray alloc] initWithArray:tempTweetArray];
-            } else {
-                if ([tempTweetArray count] > 0) {
-                    KBMessage *message = [[KBMessage alloc] initWithMember:[NSString stringWithFormat:@"%d New Messages!", [tempTweetArray count]] andMessage:@""];
-                    [self displayPopupMessageWithFadeout:message];
-                    [message release];
-                }
-                // need to keep all the tweets in the right order
-                [tempTweetArray addObjectsFromArray:tweets];
-                tweets = nil;
-                [tweets release];
-                tweets = [[self addAndTrimArray:tempTweetArray] retain];
-            }
-            [theTableView reloadData];
-             
-            [tempTweetArray release];
-        }
-    }
+- (void)statusesReceived:(NSArray *)statuses {
+	if (statuses) {
+		twitterArray = [statuses retain];
+		NSMutableArray *tempTweetArray = [[NSMutableArray alloc] initWithCapacity:[twitterArray count]];
+		for (NSDictionary *dict in twitterArray) {
+			KBTweet *tweet = [[KBTweet alloc] initWithDictionary:dict];
+			[tempTweetArray addObject:tweet];
+			[tweet release];
+		}
+		// not very pretty, but it gets the job done. if there is a cached array, combine them.
+		// the other way to do it would be to just add all the objects (above) by index
+		if (pageNum > 1) {
+			[tweets addObjectsFromArray:tempTweetArray];
+		} else if (!tweets) {
+			tweets = [[NSMutableArray alloc] initWithArray:tempTweetArray];
+		} else {
+			if ([tempTweetArray count] > 0) {
+				KBMessage *message = [[KBMessage alloc] initWithMember:[NSString stringWithFormat:@"%d New Messages!", [tempTweetArray count]] andMessage:@""];
+				[self displayPopupMessageWithFadeout:message];
+				[message release];
+			}
+			// need to keep all the tweets in the right order
+			[tempTweetArray addObjectsFromArray:tweets];
+			tweets = nil;
+			[tweets release];
+			tweets = [[self addAndTrimArray:tempTweetArray] retain];
+		}
+		[theTableView reloadData];
+		 
+		[tempTweetArray release];
+	}
     [self stopProgressBar];
     //[[NSNotificationCenter defaultCenter] removeObserver:self];
 	[self dataSourceDidFinishLoadingNewData];

@@ -44,40 +44,36 @@
     [self executeQuery:0];
 }
 
-- (void) usersRetrieved:(NSNotification *)inNotification {
-    NSLog(@"notification: %@", inNotification);
-    if (inNotification && [inNotification userInfo]) {
-        NSDictionary *userInfo = [inNotification userInfo];
-        if ([userInfo objectForKey:@"userInfo"]) {
-            statuses = [[[[userInfo objectForKey:@"userInfo"] objectAtIndex:0] objectForKey:@"users"] retain];
-            
-            NSMutableArray *tempTweetArray = [[NSMutableArray alloc] initWithCapacity:[statuses count]];
-            for (NSDictionary *dict in statuses) {
-                KBTwitterUser *user = [[KBTwitterUser alloc] initWithDictionary:dict];
-                [tempTweetArray addObject:user];
-                [user release];
-            }
-            
-            if (currentCursor != [NSNumber numberWithInt:-1]) {
-                [users addObjectsFromArray:tempTweetArray];
-            } else if (!users) {
-                users = [[NSMutableArray alloc] initWithArray:tempTweetArray];
-            } else {
-                // need to keep all the tweets in the right order
-                [tempTweetArray addObjectsFromArray:users];
-                users = nil;
-                [users release];
-                users = [[NSMutableArray alloc] initWithArray:tempTweetArray];
-            }
-            [tempTweetArray release];
+- (void)userInfoReceived:(NSArray *)userInfo {
+	if (userInfo) {
+		twitterArray = [[[userInfo objectAtIndex:0] objectForKey:@"users"] retain];
+		
+		NSMutableArray *tempTweetArray = [[NSMutableArray alloc] initWithCapacity:[twitterArray count]];
+		for (NSDictionary *dict in twitterArray) {
+			KBTwitterUser *user = [[KBTwitterUser alloc] initWithDictionary:dict];
+			[tempTweetArray addObject:user];
+			[user release];
+		}
+		
+		if (currentCursor != [NSNumber numberWithInt:-1]) {
+			[users addObjectsFromArray:tempTweetArray];
+		} else if (!users) {
+			users = [[NSMutableArray alloc] initWithArray:tempTweetArray];
+		} else {
+			// need to keep all the tweets in the right order
+			[tempTweetArray addObjectsFromArray:users];
+			users = nil;
+			[users release];
+			users = [[NSMutableArray alloc] initWithArray:tempTweetArray];
+		}
+		[tempTweetArray release];
 
-            [theTableView reloadData];
-            NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
-            [f setNumberStyle:NSNumberFormatterDecimalStyle];
-            currentCursor = [[f numberFromString:[[[userInfo objectForKey:@"userInfo"] objectAtIndex:0] objectForKey:@"next_cursor_str"]] retain];
-            [f release];
-        }
-    }
+		[theTableView reloadData];
+		NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
+		[f setNumberStyle:NSNumberFormatterDecimalStyle];
+		currentCursor = [[f numberFromString:[[userInfo objectAtIndex:0] objectForKey:@"next_cursor_str"]] retain];
+		[f release];
+	}
     [self stopProgressBar];
 }
 

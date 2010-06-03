@@ -11,11 +11,13 @@
 #import "XAuthTwitterEngine.h"
 #import "UIAlertView+Helper.h"
 #import "KBAccountManager.h"
+#import "KBTwitterManager.h"
+#import "KBTweetListViewController.h"
 
 
 @implementation KBTwitterXAuthLoginController
 
-@synthesize twitterUsername, twitterPassword, twitterEngine;
+@synthesize twitterUsername, twitterPassword, twitterEngine, rootController;
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
@@ -122,6 +124,12 @@
                                                         object:nil
                                                       userInfo:nil];
     [[KBAccountManager sharedInstance] setUsesTwitter:YES];
+//	twitterEngine = nil;
+//	[twitterEngine release];
+//    twitterEngine = [[KBTwitterManager twitterManager] twitterEngine];
+	if([self.rootController respondsToSelector:@selector(showStatuses)]){
+		[(KBTweetListViewController *)self.rootController showStatuses];
+	}
     [self dismissModalViewControllerAnimated:YES];
 }
 

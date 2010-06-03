@@ -15,8 +15,10 @@ static KBTwitterManager *sharedInstance = nil;
 
 @implementation KBTwitterManager
 
+@synthesize delegate;
 @synthesize twitterEngine;
-@synthesize theSearchResults, searchTerm;
+@synthesize theSearchResults;
+@synthesize searchTerm;
 
 + (KBTwitterManager*) twitterManager
 {
@@ -124,47 +126,25 @@ static KBTwitterManager *sharedInstance = nil;
 
 // These delegate methods shoot off a Notification because the TwitterManager owns the twitterEngine.
 // There needs to be a better way to do this.
-- (void)statusesReceived:(NSArray *)statuses forRequest:(NSString *)connectionIdentifier
-{
+- (void)statusesReceived:(NSArray *)statuses forRequest:(NSString *)connectionIdentifier {
     NSLog(@"Receive status");
-    //NSLog(@"%@", statuses);
-    
-    NSDictionary *userInfo = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:statuses, nil] forKeys:[NSArray arrayWithObjects:@"statuses", nil]];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kTwitterStatusRetrievedNotificationKey
-                                                        object:nil
-                                                      userInfo:userInfo];
+	[delegate statusesReceived:statuses];
 }
 
 - (void)directMessagesReceived:(NSArray *)messages forRequest:(NSString *)connectionIdentifier {
-    
-    NSDictionary *userInfo = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:messages, nil] forKeys:[NSArray arrayWithObjects:@"statuses", nil]];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kTwitterDMRetrievedNotificationKey
-                                                        object:nil
-                                                      userInfo:userInfo];
+	[delegate directMessagesReceived:messages];
 }
 
 - (void)userInfoReceived:(NSArray *)userInfo forRequest:(NSString *)connectionIdentifier {
-    //NSLog(@"************* userinfo: %@", userInfo);
-    NSDictionary *ui = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:userInfo, nil] forKeys:[NSArray arrayWithObjects:@"userInfo", nil]];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kTwitterUserInfoRetrievedNotificationKey
-                                                        object:nil
-                                                      userInfo:ui];
+	[delegate userInfoReceived:userInfo];
 }
 
 - (void)miscInfoReceived:(NSArray *)miscInfo forRequest:(NSString *)connectionIdentifier {
-    
-    NSDictionary *userInfo = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:miscInfo, nil] forKeys:[NSArray arrayWithObjects:@"miscInfo", nil]];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kTwitterMiscRetrievedNotificationKey
-                                                        object:nil
-                                                      userInfo:userInfo];
+    [delegate miscInfoReceived:miscInfo];
 }
 
 - (void)searchResultsReceived:(NSArray *)searchResults forRequest:(NSString *)connectionIdentifier; {
-    
-    NSDictionary *userInfo = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:searchResults, nil] forKeys:[NSArray arrayWithObjects:@"searchResults", nil]];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kTwitterSearchRetrievedNotificationKey
-                                                        object:nil
-                                                      userInfo:userInfo];
+    [delegate searchResultsReceived:searchResults];
 }
 
 - (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error

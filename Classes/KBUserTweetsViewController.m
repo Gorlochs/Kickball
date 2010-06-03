@@ -48,11 +48,11 @@
     }
 }
 
-- (void) statusRetrieved:(NSNotification *)inNotification {
-    [super statusRetrieved:inNotification];
-    
+- (void)statusesReceived:(NSArray *)statuses {
+    [super statusesReceived:statuses];
+	
     // this is used when there is no userDictionary, which occurs when a user clicks a @screenname inside the body of a tweet
-    NSArray *userStatuses = [[inNotification userInfo] objectForKey:@"statuses"];
+    NSArray *userStatuses = [statuses retain];
     if (userDictionary == nil && [userStatuses count] > 0) {
         screenNameLabel.text = [[[userStatuses objectAtIndex:0] objectForKey:@"user"] objectForKey:@"screen_name"];
         fullName.text = [[[userStatuses objectAtIndex:0] objectForKey:@"user"] objectForKey:@"name"];
@@ -65,6 +65,7 @@
         userProfileImage.urlPath = [[[userStatuses objectAtIndex:0] objectForKey:@"user"] objectForKey:@"profile_image_url"];
         [self.view addSubview:userProfileImage];
     }
+	[userStatuses release];
 }
 
 - (void) refreshTable {

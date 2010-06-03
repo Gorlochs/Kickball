@@ -296,7 +296,8 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 -(void) stopProgressBarAndDisplayErrorMessage:(NSTimer*)theTimer {
     [self stopProgressBar];
     
-    KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"Foursquare is not currently responding. Please try again shortly."];
+	// FIXME: change the message so it reports either Foursquare or Twitter
+    KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"The server is not currently responding. Please try again shortly."];
     [self displayPopupMessage:message];
     [message release];
 }

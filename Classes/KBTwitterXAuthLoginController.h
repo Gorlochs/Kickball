@@ -21,10 +21,12 @@
 	IBOutlet UITextField *twitterUsername;
 	IBOutlet UITextField *twitterPassword;
     XAuthTwitterEngine *twitterEngine;
+	UIViewController * rootController;
 }
 
 @property (nonatomic, retain) UITextField *twitterUsername, *twitterPassword;
 @property (nonatomic, retain) XAuthTwitterEngine *twitterEngine;
+@property (nonatomic, retain) UIViewController *rootController;
 
 - (IBAction)xAuthAccessTokenRequestButtonTouchUpInside;
 - (IBAction) noThankYou;

@@ -10,6 +10,8 @@
 #import "KBTwitterViewController.h"
 #import "KBTweet.h"
 #import "KBTweetTableCell.h"
+#import "KBTwitterManager.h"
+
 
 #define MAX_LABEL_HEIGHT 68.0
 
@@ -17,9 +19,10 @@
     NSMutableArray *tweets;
     NSString *cachingKey;
     int pageNum;
-    NSArray *statuses;
+    NSArray *twitterArray;
     IBOutlet UITableViewCell *moreCell;
     IBOutlet UIView *noResultsView;
+	KBTwitterManager *twitterManager;
 }
 
 - (void) showStatuses;

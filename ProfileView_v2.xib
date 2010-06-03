@@ -13,9 +13,10 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="27"/>
+			<integer value="29"/>
+			<integer value="28"/>
 			<integer value="48"/>
 			<integer value="1"/>
-			<integer value="29"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -428,7 +429,7 @@
 				<reference key="IBUIContentView" ref="498112114"/>
 			</object>
 			<object class="IBUITableViewCell" id="671744354">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -446,11 +447,10 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{291, 74}</string>
+				<reference key="NSSuperview"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
-					<int key="NSColorSpace">6</int>
-					<string key="NSCatalogName">System</string>
-					<string key="NSColorName">alternateSelectedControlTextColor</string>
-					<reference key="NSColor" ref="713899928"/>
+					<int key="NSColorSpace">3</int>
+					<bytes key="NSWhite">MSAwAA</bytes>
 				</object>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<int key="IBUIContentMode">1</int>
@@ -844,6 +844,19 @@
 				<int key="IBUISeparatorStyle">1</int>
 				<int key="IBUISelectionStyle">0</int>
 				<reference key="IBUIContentView" ref="207006944"/>
+			</object>
+			<object class="IBUIImageView" id="774248837">
+				<nil key="NSNextResponder"/>
+				<int key="NSvFlags">292</int>
+				<string key="NSFrameSize">{240, 128}</string>
+				<bool key="IBUIClipsSubviews">YES</bool>
+				<int key="IBUIContentMode">5</int>
+				<bool key="IBUIUserInteractionEnabled">NO</bool>
+				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+				<object class="NSCustomResource" key="IBUIImage">
+					<string key="NSClassName">NSImage</string>
+					<string key="NSResourceName">wood_bg.png</string>
+				</object>
 			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -1375,6 +1388,11 @@
 						<reference key="object" ref="115238824"/>
 						<reference key="parent" ref="20100733"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">116</int>
+						<reference key="object" ref="774248837"/>
+						<reference key="parent" ref="0"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -1387,6 +1405,7 @@
 					<string>1.IBPluginDependency</string>
 					<string>10.IBPluginDependency</string>
 					<string>11.IBPluginDependency</string>
+					<string>116.IBPluginDependency</string>
 					<string>12.IBPluginDependency</string>
 					<string>26.IBEditorWindowLastContentRect</string>
 					<string>26.IBPluginDependency</string>
@@ -1427,7 +1446,8 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>ProfileViewController</string>
 					<string>UIResponder</string>
-					<string>{{215, 41}, {320, 460}}</string>
+					<string>{{75, 26}, {320, 460}}</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1436,7 +1456,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{184, 673}, {291, 54}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{403, 339}, {291, 74}}</string>
+					<string>{{702, 645}, {291, 74}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{263, 834}, {291, 53}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1484,7 +1504,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">115</int>
+			<int key="maxID">117</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2046,6 +2066,7 @@
 				<string>profileSettings02.png</string>
 				<string>profileSettingsBG.png</string>
 				<string>textOFF.png</string>
+				<string>wood_bg.png</string>
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2080,6 +2101,7 @@
 				<string>{44, 36}</string>
 				<string>{320, 71}</string>
 				<string>{16, 16}</string>
+				<string>{291, 349}</string>
 			</object>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">87</string>

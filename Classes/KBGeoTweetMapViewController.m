@@ -66,29 +66,27 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     [self executeQueryWithPageNumber:pageNum andCoordinates:mapCenterCoordinate];
 }
 
-- (void)searchRetrieved:(NSNotification *)inNotification {
-    NSLog(@"search results: %@", inNotification);
-    if (inNotification && [inNotification userInfo]) {
-        NSDictionary *userInfo = [inNotification userInfo];
-        if ([userInfo objectForKey:@"searchResults"]) {
-            statuses = [[[[userInfo objectForKey:@"searchResults"] objectAtIndex:0] objectForKey:@"results"] retain];
-            if (!nearbyTweets) {
-                nearbyTweets = [[NSMutableArray alloc] initWithCapacity:1];
-            }
-            for (NSDictionary *dict in statuses) {
-                KBSearchResult *result = [[KBSearchResult alloc] initWithDictionary:dict];
-                if (result.latitude > 0.0) {
-                    [nearbyTweets addObject:result];
-                }
-                [result release];
-            }
-            [self refreshMap];
-            NSLog(@"number of nearby tweets: %d", [nearbyTweets count]);
-            if (pageNum < 4 && [nearbyTweets count] < 25 + 25 * numTouches) {
-                [self executeQueryWithPageNumber:++pageNum andCoordinates:mapViewer.centerCoordinate];
-            }
-        }
-    }
+- (void)searchResultsReceived:(NSArray *)searchResults {
+	if (searchResults) {
+		NSLog(@"search results: %@", searchResults);
+
+		twitterArray = [[[searchResults objectAtIndex:0] objectForKey:@"results"] retain];
+		if (!nearbyTweets) {
+			nearbyTweets = [[NSMutableArray alloc] initWithCapacity:1];
+		}
+		for (NSDictionary *dict in twitterArray) {
+			KBSearchResult *result = [[KBSearchResult alloc] initWithDictionary:dict];
+			if (result.latitude > 0.0) {
+				[nearbyTweets addObject:result];
+			}
+			[result release];
+		}
+		[self refreshMap];
+		NSLog(@"number of nearby tweets: %d", [nearbyTweets count]);
+		if (pageNum < 4 && [nearbyTweets count] < 25 + 25 * numTouches) {
+			[self executeQueryWithPageNumber:++pageNum andCoordinates:mapViewer.centerCoordinate];
+		}
+	}
     [self stopProgressBar];
 }
 

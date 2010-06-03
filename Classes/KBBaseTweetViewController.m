@@ -18,18 +18,20 @@
 
 - (void)viewDidLoad {
     pageNum = 0;
-    [super viewDidLoad];    
+    [super viewDidLoad];
+	twitterManager = [KBTwitterManager twitterManager];
+	twitterManager.delegate = self;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusRetrieved:) name:kTwitterStatusRetrievedNotificationKey object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTweetNotification:) name:IFTweetLabelURLNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusRetrieved:) name:kTwitterStatusRetrievedNotificationKey object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTweetNotification:) name:IFTweetLabelURLNotification object:nil];
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
+//- (void)viewDidDisappear:(BOOL)animated {
+//    [[NSNotificationCenter defaultCenter] removeObserver:self];
+//}
 
 - (NSMutableArray*) addAndTrimArray:(NSMutableArray*)arrayToAdd {
     NSRange theRange;
@@ -235,7 +237,7 @@
     // e.g. self.myOutlet = nil;
     tweets = nil;
     cachingKey = nil;
-    statuses = nil;
+    twitterArray = nil;
     moreCell = nil;
     noResultsView = nil;
 }
@@ -245,7 +247,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [tweets release];
     [cachingKey release];
-    [statuses release];
+    [twitterArray release];
     [moreCell release];
     [noResultsView release];
     [super dealloc];
