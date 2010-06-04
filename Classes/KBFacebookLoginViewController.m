@@ -53,8 +53,10 @@
 #pragma mark FBSessionDelegate
 
 - (void)session:(FBSession*)session didLogin:(FBUID)uid {
-    [[KBAccountManager sharedInstance] setUsesFacebook:YES];
-	[self hideAppropriateTabs];
+	// this gets called when the FB login screen is called
+	
+//    [[KBAccountManager sharedInstance] setUsesFacebook:YES];
+//	[self hideAppropriateTabs];
 }
 
 - (void)sessionDidNotLogin:(FBSession*)session {

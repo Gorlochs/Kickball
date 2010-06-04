@@ -266,4 +266,16 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
 	return radius;
 }
 
++ (NSString*) getShortenedUrlFromFoursquareVenueId:(NSString*)venueId {
+	return [Utilities shortenUrl:[Utilities convertVenueToFoursquareUrl:venueId]];
+}
+
++ (NSString*) convertVenueToFoursquareUrl:(NSString*)venueId {
+	return [NSString stringWithFormat:@"http://www.foursquare.com/venue/%@", venueId];
+}
+
++ (NSString*) shortenUrl:(NSString*)longUrl {
+	return [NSString stringWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://is.gd/api.php?longurl=%@", longUrl]] encoding:NSASCIIStringEncoding error:nil];
+}
+
 @end

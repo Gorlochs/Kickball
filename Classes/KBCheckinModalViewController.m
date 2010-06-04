@@ -126,9 +126,9 @@
     if (isTwitterOn && [[KBAccountManager sharedInstance] usesTwitter]) {
         NSString *tweetString = nil;
         if (![checkinTextField.text isEqualToString:@""]) {
-            tweetString = [NSString stringWithFormat:@"%@ (just checked into %@) #kb", checkinTextField.text, venue.name];
+            tweetString = [NSString stringWithFormat:@"%@ (just checked into %@) %@", checkinTextField.text, venue.name, [Utilities getShortenedUrlFromFoursquareVenueId:venue.venueid]];
         } else {
-            tweetString = [NSString stringWithFormat:@"I just checked into %@. #kb", venue.name];
+            tweetString = [NSString stringWithFormat:@"I just checked into %@. %@", venue.name, [Utilities getShortenedUrlFromFoursquareVenueId:venue.venueid]];
         }
 
         [self.twitterEngine sendUpdate:tweetString
@@ -137,7 +137,7 @@
     }
     
     if (isFacebookOn && [[KBAccountManager sharedInstance] usesFacebook]) {
-        NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:checkinTextField.text, @"status", nil];
+        NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%@ - %@", checkinTextField.text, [Utilities getShortenedUrlFromFoursquareVenueId:venue.venueid]], @"status", nil];
         [[FBRequest requestWithDelegate:self] call:@"facebook.status.set" params:params dataParam:nil];
     }
     
@@ -177,7 +177,7 @@
 //        checkin = [checkins objectAtIndex:0];
 //        NSLog(@"checkin: %@", checkin);
 //    }
-    checkin = [FoursquareAPI checkinFromResponseXML:inString];
+    checkin = [[FoursquareAPI checkinFromResponseXML:inString] retain];
     
     self.shoutToPush = [NSString stringWithString:checkinTextField.text];
 	self.venueToPush = checkin.venue;

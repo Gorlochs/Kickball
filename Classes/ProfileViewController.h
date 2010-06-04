@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "FSUser.h"
-#import "KBFoursquareViewController.h"
+#import "KBTwitterViewController.h"
 #import "MGTwitterEngineDelegate.h"
 #import "FSCheckin.h"
 #import "BlackTableCellHeader.h"
 
-@interface ProfileViewController : KBFoursquareViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, MGTwitterEngineDelegate> {
+@interface ProfileViewController : KBTwitterViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, MGTwitterEngineDelegate> {
     IBOutlet UITableViewCell *badgeCell;
     IBOutlet UITableViewCell *addFriendCell;
     IBOutlet UITableViewCell *friendActionCell;
@@ -65,7 +65,6 @@
 - (IBAction) viewVenue;
 - (IBAction) checkinToProfilesVenue;
 - (IBAction) unfriend;
-- (IBAction) togglePingsAndUpdates;
 - (IBAction) friendUser;
 - (IBAction) textProfile;
 - (IBAction) callProfile;
@@ -74,12 +73,13 @@
 - (IBAction) facebookProfile;
 - (IBAction) viewHistory;
 - (IBAction) viewProfilesFriends;
-- (IBAction) viewYourPhotos;
+//- (IBAction) viewYourPhotos;
 - (void) retrieveUserPhotos;
 - (IBAction) showProfileOptions;
 - (IBAction) removeProfileOptions;
 - (IBAction) showInfoOptions;
 - (IBAction) removeInfoOptions;
 - (void) executeFoursquareCalls;
+- (IBAction) togglePushNotificationsForUser;
 
 @end

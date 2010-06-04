@@ -7,10 +7,9 @@
 //
 
 #import "AbstractFacebookViewController.h"
+#import "KBAccountManager.h"
 
 static NSString* kApiKey = @"4585c2e42804bca19e21eb30d402905e";
-
-// Enter either your API secret or a callback URL (as described in documentation):
 static NSString* kApiSecret = @"5cd7d10f85a36d5aeb4f2f7f99e1c85b"; // @"<YOUR SECRET KEY>";
 static NSString* kGetSessionProxy = nil; // @"<YOUR SESSION CALLBACK)>";
 
@@ -54,7 +53,11 @@ static NSString* kGetSessionProxy = nil; // @"<YOUR SESSION CALLBACK)>";
 #pragma mark FBSessionDelegate
 
 - (void)session:(FBSession*)session didLogin:(FBUID)uid {
+	// user just successfully logged in
+	// this also gets called when the app starts up
     NSLog(@"User with id %lld logged in.", uid);
+	[[KBAccountManager sharedInstance] setUsesFacebook:YES];
+	[self hideAppropriateTabs];
 }
 
 - (void)sessionDidNotLogin:(FBSession*)session {
@@ -62,7 +65,9 @@ static NSString* kGetSessionProxy = nil; // @"<YOUR SESSION CALLBACK)>";
 }
 
 - (void)sessionDidLogout:(FBSession*)session {
-
+	// user just logged out
+    [[KBAccountManager sharedInstance] setUsesFacebook:NO];
+	[self hideAppropriateTabs];
 }
 
 #pragma mark -

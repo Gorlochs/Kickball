@@ -35,5 +35,8 @@ extern const NSString *kKBHashSalt;
 + (UIImage *)makeRoundCornerImage:(UIImage*)img cornerwidth:(int) cornerWidth cornerheight:(int) cornerHeight;
 + (NSDate*) convertUTCCheckinDateToLocal:(NSDate*)utcDate;
 - (NSNumber*) getCityRadius;
++ (NSString*) shortenUrl:(NSString*)longUrl;
++ (NSString*) convertVenueToFoursquareUrl:(NSString*)venueId;
++ (NSString*) getShortenedUrlFromFoursquareVenueId:(NSString*)venueId;
 
 @end

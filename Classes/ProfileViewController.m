@@ -123,6 +123,9 @@
     userIcon.image = [[Utilities sharedInstance] getCachedImage:theUser.photo];
     userIcon.layer.masksToBounds = YES;
     userIcon.layer.cornerRadius = 5.0;
+	
+	// set push notification switch
+	checkinNotificationSwitch.on = [theUser sendsPingsToSignedInUser];
 }
 
 - (void) userResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
@@ -427,13 +430,6 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    if (indexPath.section == 1 && indexPath.row == 1) { // badge-friends section
-//        ProfileFriendsViewController *profileFriendsController = [[ProfileFriendsViewController alloc] initWithNibName:@"ProfileFriendsViewController" bundle:nil];
-//        profileFriendsController.userId = user.userId;
-//        [theTableView deselectRowAtIndexPath:indexPath animated:YES];
-//        [self.navigationController pushViewController:profileFriendsController animated:YES];
-//        [profileFriendsController release];
-//    } else 
     if (indexPath.section == 2) { // mayor section
         PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView_v2" bundle:nil];
         placeDetailController.venueId = ((FSVenue*)[user.mayorOf objectAtIndex:indexPath.row]).venueid;
@@ -468,9 +464,6 @@
 - (void) viewProfilesTwitterFeed {
     [self startProgressBar:@"Retrieving tweets..."];
 
-    // FIXME: use the official twitterEngine
-    //MGTwitterEngine *twitterEngine = [[[MGTwitterEngine alloc] initWithDelegate:self] autorelease];
-    MGTwitterEngine *twitterEngine = [[KBTwitterManager twitterManager] twitterEngine];
     NSLog(@"twitter username: %@", user.twitter);
     NSString *twitters = [twitterEngine getUserTimelineFor:user.twitter sinceID:0 startingAtPage:0 count:20];
     NSLog(@"twitter: %@", twitters);
@@ -519,15 +512,6 @@
     [FlurryAPI logEvent:@"Friend User from Profile View"];
 }
 
-- (void) togglePingsAndUpdates {
-    [self startProgressBar:@"Changing your ping update preferences..."];
-    NSString *ping = @"on";
-    if (isPingAndUpdatesOn) {
-        ping = @"off";
-    }
-    [[FoursquareAPI sharedInstance] setPings:ping forUser:user.userId withTarget:self andAction:@selector(pingUpdateResponseReceived:withResponseString:)];
-}
-
 - (void) viewHistory {
     HistoryViewController *historyController = [[HistoryViewController alloc] initWithNibName:@"HistoryViewController" bundle:nil];
     [self.navigationController pushViewController:historyController animated:YES];
@@ -547,13 +531,13 @@
     [gorlochRequest startAsynchronous];
 }
 
-- (void) viewYourPhotos {
-//    MockPhotoSource *photoSource = [[KickballAPI kickballApi] convertGoodiesIntoPhotoSource:[[KickballAPI kickballApi] parsePhotosFromXML:[request responseString]] withTitle:@"Your Photos"];
-//    KBGenericPhotoViewController *photoController = [[KBGenericPhotoViewController alloc] initWithPhotoSource:photoSource];
-//    [self stopProgressBar];
-//    [self.navigationController pushViewController:photoController animated:YES];
-//    [photoController release];
-}
+//- (void) viewYourPhotos {
+////    MockPhotoSource *photoSource = [[KickballAPI kickballApi] convertGoodiesIntoPhotoSource:[[KickballAPI kickballApi] parsePhotosFromXML:[request responseString]] withTitle:@"Your Photos"];
+////    KBGenericPhotoViewController *photoController = [[KBGenericPhotoViewController alloc] initWithPhotoSource:photoSource];
+////    [self stopProgressBar];
+////    [self.navigationController pushViewController:photoController animated:YES];
+////    [photoController release];
+//}
 
 - (void) photoRequestWentWrong:(ASIHTTPRequest *) request {
     NSLog(@"BOOOOOOOOOOOO!");
@@ -581,6 +565,19 @@
 
 - (void) removeInfoOptions {
     [profileInfoView removeFromSuperview];
+}
+
+- (void) togglePushNotificationsForUser {
+	NSString *ping = @"off";
+    if (checkinNotificationSwitch.on) {
+        ping = @"on";
+    }
+	[self startProgressBar:@"Toggling pings for this user..."];
+	[[FoursquareAPI sharedInstance] setPings:ping forUser:user.userId withTarget:self andAction:@selector(pingResponseReceived:withResponseString:)];
+}
+
+- (void)pingResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+	[self stopProgressBar];
 }
 
 #pragma mark 

@@ -378,7 +378,6 @@
 		6A79D0FE10E68D1A009082E5 /* KBMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A79D0FD10E68D1A009082E5 /* KBMessage.m */; };
 		6A7E282D1197B86200B76CB3 /* searchBG02.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A7E282B1197B86200B76CB3 /* searchBG02.png */; };
 		6A7E282E1197B86200B76CB3 /* searchBG01.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A7E282C1197B86200B76CB3 /* searchBG01.png */; };
-		6A7EA25F110AAD3500453C0C /* libPMAnalytics-r91.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A7EA25E110AAD3500453C0C /* libPMAnalytics-r91.a */; };
 		6A7ED9F710A91DC9002FB1DC /* VenueAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A7ED9F610A91DC9002FB1DC /* VenueAnnotation.m */; };
 		6A812ED410FF465600BB51A0 /* ViewFriendRequestsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A812ED310FF465600BB51A0 /* ViewFriendRequestsTableCell.m */; };
 		6A812ED610FF467100BB51A0 /* ViewFriendRequestsTableCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A812ED510FF467100BB51A0 /* ViewFriendRequestsTableCell.xib */; };
@@ -1229,7 +1228,6 @@
 		6A79D0FD10E68D1A009082E5 /* KBMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBMessage.m; sourceTree = "<group>"; };
 		6A7E282B1197B86200B76CB3 /* searchBG02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchBG02.png; sourceTree = "<group>"; };
 		6A7E282C1197B86200B76CB3 /* searchBG01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchBG01.png; sourceTree = "<group>"; };
-		6A7EA25E110AAD3500453C0C /* libPMAnalytics-r91.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPMAnalytics-r91.a"; sourceTree = "<group>"; };
 		6A7ED9F510A91DC9002FB1DC /* VenueAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VenueAnnotation.h; sourceTree = "<group>"; };
 		6A7ED9F610A91DC9002FB1DC /* VenueAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueAnnotation.m; sourceTree = "<group>"; };
 		6A812ED210FF465600BB51A0 /* ViewFriendRequestsTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewFriendRequestsTableCell.h; sourceTree = "<group>"; };
@@ -1603,7 +1601,6 @@
 				6AFF0FFF1101796600AD6E55 /* CFNetwork.framework in Frameworks */,
 				6AFF10051101798000AD6E55 /* libz.1.2.3.dylib in Frameworks */,
 				6A63DDCF1108EF4B00E2F9BB /* libicucore.dylib in Frameworks */,
-				6A7EA25F110AAD3500453C0C /* libPMAnalytics-r91.a in Frameworks */,
 				6ADB706C1117005A00A26D35 /* MediaPlayer.framework in Frameworks */,
 				6AD0C1E4113F049E00A971E3 /* libThree20.a in Frameworks */,
 				6A6F2E141177C1CA00B2869B /* MessageUI.framework in Frameworks */,
@@ -1751,27 +1748,26 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0331DFCE10D36737009C5089 /* libisimulate.a */,
-				6A978A601099FBC000FCE8F1 /* StoreKit.framework */,
-				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
-				1D30AB110D05D00D00671497 /* Foundation.framework */,
-				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
-				6A39EB6010965868006F76C3 /* CoreLocation.framework */,
-				6A39EB6210965868006F76C3 /* SystemConfiguration.framework */,
-				6A39EB5B1096584A006F76C3 /* libsqlite3.dylib */,
-				6A8EEE1910A1227000DC630C /* MapKit.framework */,
-				6A8EEF0A10A14F3F00DC630C /* libxml2.dylib */,
-				6ADB706B1117005A00A26D35 /* MediaPlayer.framework */,
-				6A16AC5610CF5A9500CD5302 /* QuartzCore.framework */,
-				553C51BE10A1BD8100A74641 /* Security.framework */,
-				6AFF10041101798000AD6E55 /* libz.1.2.3.dylib */,
-				6A7EA25E110AAD3500453C0C /* libPMAnalytics-r91.a */,
-				6A63DDCE1108EF4B00E2F9BB /* libicucore.dylib */,
 				6A8F68E910E9B9FC00E0275E /* AddressBook.framework */,
 				6AFF0FFE1101796600AD6E55 /* CFNetwork.framework */,
+				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
+				6A39EB6010965868006F76C3 /* CoreLocation.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+				6A8EEE1910A1227000DC630C /* MapKit.framework */,
+				6ADB706B1117005A00A26D35 /* MediaPlayer.framework */,
 				6A6F2E131177C1CA00B2869B /* MessageUI.framework */,
-				2BA5A8F911B57FBF0090173D /* libOAuth.a */,
+				6A16AC5610CF5A9500CD5302 /* QuartzCore.framework */,
+				553C51BE10A1BD8100A74641 /* Security.framework */,
+				6A978A601099FBC000FCE8F1 /* StoreKit.framework */,
+				6A39EB6210965868006F76C3 /* SystemConfiguration.framework */,
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				2BA5A8FA11B57FBF0090173D /* libFlurryWithLocation.a */,
+				6A63DDCE1108EF4B00E2F9BB /* libicucore.dylib */,
+				0331DFCE10D36737009C5089 /* libisimulate.a */,
+				2BA5A8F911B57FBF0090173D /* libOAuth.a */,
+				6A39EB5B1096584A006F76C3 /* libsqlite3.dylib */,
+				6A8EEF0A10A14F3F00DC630C /* libxml2.dylib */,
+				6AFF10041101798000AD6E55 /* libz.1.2.3.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
