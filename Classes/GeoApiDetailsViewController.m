@@ -38,21 +38,21 @@
     venueAddress.text = @"";
 
     [self startProgressBar:@"Retrieving venue details..."];
-//    GAConnectionManager *connectionManager_ = [[GAConnectionManager alloc] initWithAPIKey:@"K6afuuFTXK" delegate:self];
-//    [connectionManager_ requestListingForPlace:place.guid];
+    GAConnectionManager *connectionManager_ = [[GAConnectionManager alloc] initWithAPIKey:@"K6afuuFTXK" delegate:self];
+    [connectionManager_ requestListingForPlace:place.guid];
     
-    // http://api2.citysearch.com/profile/?listing_id=273&publisher=acme&client_ip=122.123.124.125&api_key=34vziofhdiofh8349hrt934h
-    NSString *cityGridUrl = [NSString stringWithFormat:@"http://api2.citysearch.com/profile/?client_ip=%@&listing_id=%@&format=json&&publisher=gorlochs&api_key=cpm3fbn4wf4ymf9hvjwuv47u",
-                             [self getIPAddress],
-                             place.guid];
-    NSLog(@"city grid search url: %@", cityGridUrl);    
-    ASIHTTPRequest *cityGridRequest = [[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:cityGridUrl]] autorelease];
-    
-    [cityGridRequest setDidFailSelector:@selector(cityGridRequestWentWrong:)];
-    [cityGridRequest setDidFinishSelector:@selector(cityGridRequestDidFinish:)];
-    [cityGridRequest setTimeOutSeconds:500];
-    [cityGridRequest setDelegate:self];
-    [cityGridRequest startAsynchronous];
+//    // http://api2.citysearch.com/profile/?listing_id=273&publisher=acme&client_ip=122.123.124.125&api_key=34vziofhdiofh8349hrt934h
+//    NSString *cityGridUrl = [NSString stringWithFormat:@"http://api2.citysearch.com/profile/?client_ip=%@&listing_id=%@&format=json&&publisher=gorlochs&api_key=cpm3fbn4wf4ymf9hvjwuv47u",
+//                             [self getIPAddress],
+//                             place.guid];
+//    NSLog(@"city grid search url: %@", cityGridUrl);    
+//    ASIHTTPRequest *cityGridRequest = [[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:cityGridUrl]] autorelease];
+//    
+//    [cityGridRequest setDidFailSelector:@selector(cityGridRequestWentWrong:)];
+//    [cityGridRequest setDidFinishSelector:@selector(cityGridRequestDidFinish:)];
+//    [cityGridRequest setTimeOutSeconds:500];
+//    [cityGridRequest setDelegate:self];
+//    [cityGridRequest startAsynchronous];
 }
 
 #pragma mark CityGrid methods
