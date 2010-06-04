@@ -429,6 +429,7 @@
 		6AC85B891177E518002FB92C /* KBTwitterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC85B881177E518002FB92C /* KBTwitterViewController.m */; };
 		6ACBCCC9111FD2B900CF400C /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ACBCCC7111FD2B900CF400C /* HistoryViewController.m */; };
 		6ACBCCCA111FD2B900CF400C /* HistoryViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6ACBCCC8111FD2B900CF400C /* HistoryViewController.xib */; };
+		6ACD449911B8C2AF00BDA7B7 /* acct_title.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ACD449811B8C2AF00BDA7B7 /* acct_title.png */; };
 		6AD0C135113E3F2B00A971E3 /* KBTwitterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD0C134113E3F2B00A971E3 /* KBTwitterCell.m */; };
 		6AD0C1E4113F049E00A971E3 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AD0C1CD113F044D00A971E3 /* libThree20.a */; };
 		6AD0C1FE113F04F500A971E3 /* Three20.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6AD0C1FD113F04F500A971E3 /* Three20.bundle */; };
@@ -1306,6 +1307,7 @@
 		6ACBCCC6111FD2B900CF400C /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
 		6ACBCCC7111FD2B900CF400C /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
 		6ACBCCC8111FD2B900CF400C /* HistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistoryViewController.xib; sourceTree = "<group>"; };
+		6ACD449811B8C2AF00BDA7B7 /* acct_title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = acct_title.png; sourceTree = "<group>"; };
 		6AD0C133113E3F2B00A971E3 /* KBTwitterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBTwitterCell.h; sourceTree = "<group>"; };
 		6AD0C134113E3F2B00A971E3 /* KBTwitterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTwitterCell.m; sourceTree = "<group>"; };
 		6AD0C1C4113F044D00A971E3 /* Three20.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20.xcodeproj; path = ../three20/src/Three20.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -2320,9 +2322,9 @@
 				6A086FE5117652A500BD6094 /* OptionsView_v2.xib */,
 				6A4C17F111A90B86006BBC61 /* CheckinOptionsViewController.xib */,
 				6A4C17F611A90B96006BBC61 /* FriendPriorityOptionViewController.xib */,
-				6A4C17FB11A90BA9006BBC61 /* VersionInfoViewController.xib */,
-				6A4C180011A90BBE006BBC61 /* FeedbackViewController.xib */,
 				6A086FE7117652B500BD6094 /* AccountOptionsView_v2.xib */,
+				6A4C180011A90BBE006BBC61 /* FeedbackViewController.xib */,
+				6A4C17FB11A90BA9006BBC61 /* VersionInfoViewController.xib */,
 			);
 			name = "option nibs";
 			sourceTree = "<group>";
@@ -2970,6 +2972,7 @@
 		6AE77FEF117AA1B700997215 /* options */ = {
 			isa = PBXGroup;
 			children = (
+				6ACD449811B8C2AF00BDA7B7 /* acct_title.png */,
 				6AE7805C117AA27800997215 /* version info */,
 				6AE78056117AA25900997215 /* friends list priority */,
 				6AE78055117AA24A00997215 /* default checkin */,
@@ -3527,6 +3530,7 @@
 				6A1B0F6011AC79250083BD64 /* wantTo02.png in Resources */,
 				6A4796D811B0EB6000C6EB89 /* addFirst01a.png in Resources */,
 				6A4796DA11B0EB6000C6EB89 /* addFirst02a.png in Resources */,
+				6ACD449911B8C2AF00BDA7B7 /* acct_title.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
