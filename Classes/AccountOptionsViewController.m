@@ -15,8 +15,6 @@
 
 @implementation AccountOptionsViewController
 
-@synthesize twitterEngine;
-
 #pragma mark -
 #pragma mark View lifecycle
 
