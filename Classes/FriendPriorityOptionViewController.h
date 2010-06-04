@@ -14,4 +14,6 @@
     IBOutlet UISlider *slider;
 }
 
+- (IBAction) nextOptionView;
+
 @end

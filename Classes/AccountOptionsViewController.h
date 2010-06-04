@@ -38,13 +38,12 @@
     CGFloat animatedDistance;
 }
 
-@property (nonatomic, retain) XAuthTwitterEngine *twitterEngine;
-
 - (IBAction) xAuthAccessTokenRequestButtonTouchUpInside;
 - (IBAction) authenticateFoursquare;
 - (IBAction) linkKickballAccount;
 - (IBAction) enableTwitterGeotagging;
 - (IBAction) postPhotosToFacebook;
 - (IBAction) displayWhatsThis;
+- (IBAction) nextOptionView;
 
 @end

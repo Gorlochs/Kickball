@@ -7,6 +7,7 @@
 //
 
 #import "FeedbackViewController.h"
+#import "VersionInfoViewController.h"
 
 
 @implementation FeedbackViewController
@@ -17,6 +18,12 @@
     self.hideHeader = YES;
     
     [super viewDidLoad];
+}
+
+- (void) nextOptionView {
+    VersionInfoViewController *controller = [[VersionInfoViewController alloc] initWithNibName:@"VersionInfoViewController" bundle:nil];
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
 }
 
 - (void)didReceiveMemoryWarning {

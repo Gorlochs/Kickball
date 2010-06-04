@@ -7,6 +7,7 @@
 //
 
 #import "FriendPriorityOptionViewController.h"
+#import "AccountOptionsViewController.h"
 
 
 @implementation FriendPriorityOptionViewController
@@ -21,6 +22,12 @@
     [slider setMinimumTrackImage:nil forState:UIControlStateNormal];
     [slider setMaximumTrackImage:nil forState:UIControlStateNormal];
     [slider setThumbImage:[UIImage imageNamed:@"slideBar.png"] forState:UIControlStateNormal];
+}
+
+- (void) nextOptionView {
+    AccountOptionsViewController *accountController = [[AccountOptionsViewController alloc] initWithNibName:@"AccountOptionsView_v2" bundle:nil];
+    [self.navigationController pushViewController:accountController animated:YES];
+    [accountController release];
 }
 
 - (void)didReceiveMemoryWarning {

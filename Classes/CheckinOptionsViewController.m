@@ -7,6 +7,7 @@
 //
 
 #import "CheckinOptionsViewController.h"
+#import "FriendPriorityOptionViewController.h"
 
 
 @implementation CheckinOptionsViewController
@@ -17,6 +18,12 @@
     self.hideHeader = YES;
     
     [super viewDidLoad];
+}
+
+- (void) nextOptionView {
+    FriendPriorityOptionViewController *controller = [[FriendPriorityOptionViewController alloc] initWithNibName:@"FriendPriorityOptionViewController" bundle:nil];
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -16,4 +16,6 @@
     IBOutlet UISwitch *facebookSwitch;
 }
 
+- (IBAction) nextOptionView;
+
 @end

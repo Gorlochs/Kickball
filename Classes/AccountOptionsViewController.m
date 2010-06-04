@@ -11,6 +11,7 @@
 #import "SFHFKeychainUtils.h"
 #import "XAuthTwitterEngine.h"
 #import "KBAccountManager.h"
+#import "FeedbackViewController.h"
 
 
 @implementation AccountOptionsViewController
@@ -85,6 +86,12 @@
 - (void) displayWhatsThis {
     isWhatsThisDisplayed = YES;
     [theTableView reloadData];
+}
+
+- (void) nextOptionView {
+    FeedbackViewController *controller = [[FeedbackViewController alloc] initWithNibName:@"FeedbackViewController" bundle:nil];
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
 }
 
 //#pragma mark -
