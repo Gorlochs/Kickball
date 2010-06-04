@@ -12,10 +12,12 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="16"/>
-			<integer value="116"/>
-			<integer value="1"/>
 			<integer value="21"/>
+			<integer value="1"/>
+			<integer value="100"/>
+			<integer value="67"/>
+			<integer value="116"/>
+			<integer value="16"/>
 			<integer value="100"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
@@ -620,14 +622,14 @@
 				<reference key="IBUIContentView" ref="671582536"/>
 			</object>
 			<object class="IBUIView" id="101177011">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<object class="IBUIButton" id="367864326">
 						<reference key="NSNextResponder" ref="101177011"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{203, 0}, {87, 38}}</string>
+						<string key="NSFrame">{{203, 5}, {87, 32}}</string>
 						<reference key="NSSuperview" ref="101177011"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -653,7 +655,7 @@
 					<object class="IBUIButton" id="68870838">
 						<reference key="NSNextResponder" ref="101177011"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{142, 5}, {61, 24}}</string>
+						<string key="NSFrame">{{142, 4}, {61, 30}}</string>
 						<reference key="NSSuperview" ref="101177011"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -665,7 +667,6 @@
 							<double key="NSSize">36</double>
 							<int key="NSfFlags">16</int>
 						</object>
-						<string key="IBUINormalTitle">+</string>
 						<reference key="IBUIHighlightedTitleColor" ref="630599624"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
@@ -674,7 +675,11 @@
 						<reference key="IBUINormalTitleShadowColor" ref="424839964"/>
 						<object class="NSCustomResource" key="IBUIHighlightedImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">addPhotoHeader02.png</string>
+							<string key="NSResourceName">addPhoto02_hdr.png</string>
+						</object>
+						<object class="NSCustomResource" key="IBUINormalImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">addPhoto01_hdr.png</string>
 						</object>
 					</object>
 					<object class="IBUILabel" id="447124117">
@@ -702,6 +707,7 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{290, 39}</string>
+				<reference key="NSSuperview"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MAA</bytes>
@@ -1663,6 +1669,7 @@
 					<string>13.IBPluginDependency</string>
 					<string>134.IBPluginDependency</string>
 					<string>137.IBPluginDependency</string>
+					<string>140.IBEditorWindowLastContentRect</string>
 					<string>140.IBPluginDependency</string>
 					<string>16.CustomClassName</string>
 					<string>16.IBEditorWindowLastContentRect</string>
@@ -1717,9 +1724,10 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>{{21, 979}, {291, 73}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>KBPhotoThumbnailCell</string>
-					<string>{{469, 346}, {291, 73}}</string>
+					<string>{{440, 299}, {291, 73}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{674, 491}, {290, 69}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1748,7 +1756,7 @@
 					<string>{{151, 263}, {320, 370}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{649, 694}, {320, 44}}</string>
+					<string>{{620, 908}, {320, 44}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>
@@ -2381,7 +2389,8 @@
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>addFirst01a.png</string>
 				<string>addFirst02a.png</string>
-				<string>addPhotoHeader02.png</string>
+				<string>addPhoto01_hdr.png</string>
+				<string>addPhoto02_hdr.png</string>
 				<string>addTip02.png</string>
 				<string>btnIMHERE01.png</string>
 				<string>btnIMHERE02.png</string>
@@ -2412,7 +2421,8 @@
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>{320, 102}</string>
 				<string>{320, 102}</string>
-				<string>{16, 16}</string>
+				<string>{44, 12}</string>
+				<string>{44, 12}</string>
 				<string>{16, 16}</string>
 				<string>{291, 54}</string>
 				<string>{291, 54}</string>

@@ -527,8 +527,8 @@
                 addTipButton.frame = CGRectMake(130, 0, 92, 39);
                 addTipButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
                 addTipButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-                [addTipButton setImage:[UIImage imageNamed:@"profileSeeAllTips01.png"] forState:UIControlStateNormal];
-                [addTipButton setImage:[UIImage imageNamed:@"profileSeeAllTips02.png"] forState:UIControlStateHighlighted];
+                [addTipButton setImage:[UIImage imageNamed:@"addTip01_hdr.png"] forState:UIControlStateNormal];
+                [addTipButton setImage:[UIImage imageNamed:@"addTip02_hdr.png"] forState:UIControlStateHighlighted];
                 [addTipButton addTarget:self action:@selector(addTipTodo) forControlEvents:UIControlEventTouchUpInside]; 
                 [headerView addSubview:addTipButton];
             }
