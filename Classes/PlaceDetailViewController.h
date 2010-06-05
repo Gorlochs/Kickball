@@ -76,8 +76,12 @@
     IBOutlet UILabel *specialAddress;
     IBOutlet UILabel *specialText;
     IBOutlet UIButton *specialClose;
+    IBOutlet UIButton *nextSpecialButton;
+    IBOutlet UIButton *previousSpecialButton;
     
     TipDetailViewController *tipController;
+    
+    int currentSpecial;
 }
 
 @property (nonatomic, retain) UITableViewCell *mayorMapCell;
@@ -106,6 +110,10 @@
 - (IBAction) displayAllImages;
 - (IBAction) openCheckinView;
 - (IBAction) closeSpecialView;
+- (IBAction) showNextSpecial;
+- (IBAction) showPreviousSpecial;
+
+- (void) showSpecial:(int)specialIndex;
 
 - (FSCheckin*) getSingleCheckin;
 - (BOOL) hasMayorCell;

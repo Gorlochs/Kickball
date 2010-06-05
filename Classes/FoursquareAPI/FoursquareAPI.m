@@ -899,13 +899,16 @@ static FoursquareAPI *sharedInstance = nil;
                         NSString * key = [[specialNode childAtIndex:counter] name];
                         NSString * value = [[specialNode childAtIndex:counter] stringValue];
                         if ([key isEqualToString:@"message"]) {
-                            special.message = value;
+                            special.messageText = value;
                         } else if ([key isEqualToString:@"id"]) {
                             special.specialId = value;
                         } else if ([key isEqualToString:@"type"]) {
                             special.type = value;
                         } else if ([key isEqualToString:@"venue"]) {
                             // FIXME: this was done for expediency's sake
+                            NSLog(@"[checkinAttr nodesForXPath:@//special/venue error:nil] : %@", [checkinAttr nodesForXPath:@"//special/venue" error:nil]);
+                            NSLog(@"[checkinAttr nodesForXPath:@//special error:nil] : %@", [checkinAttr nodesForXPath:@"//special" error:nil]);
+                            NSLog(@"[checkinAttr nodesForXPath:@//venue error:nil] : %@", [checkinAttr nodesForXPath:@"//venue" error:nil]);
                             NSArray *venueArray = [FoursquareAPI _venuesFromNode:[[checkinAttr nodesForXPath:@"//special/venue" error:nil] objectAtIndex:0]];
                             if ([venueArray count] > 0) {
                                 special.venue = [venueArray objectAtIndex:0];
@@ -1055,7 +1058,7 @@ static FoursquareAPI *sharedInstance = nil;
                         NSString * key = [[specialNode childAtIndex:counter] name];
                         NSString * value = [[specialNode childAtIndex:counter] stringValue];
                         if ([key isEqualToString:@"message"]) {
-                            special.message = value;
+                            special.messageText = value;
                         } else if ([key isEqualToString:@"id"]) {
                             special.specialId = value;
                         } else if ([key isEqualToString:@"type"]) {

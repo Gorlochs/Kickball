@@ -773,17 +773,25 @@
 }
 
 - (void) showSpecial {
-    FSSpecial *special = ((FSSpecial*)[[self venue].specials objectAtIndex:0]);
+    if ([self.venue.specials count] > 1) {
+        previousSpecialButton.hidden = NO;
+    }
+    [self showSpecial:0];
+}
+
+- (void) showSpecial:(int)specialIndex {
+    FSSpecial *special = ((FSSpecial*)[[self venue].specials objectAtIndex:specialIndex]);
     NSLog(@"specials: %@", [self venue].specials);
     NSLog(@"special: %@", special);
     specialPlaceName.text = special.venue.name;
     specialAddress.text = special.venue.addressWithCrossstreet;
-    specialText.text = special.message;
+    specialText.text = special.messageText;
     
     CGSize maximumLabelSize = CGSizeMake(246, 157);
-    CGSize expectedLabelSize = [special.message sizeWithFont:specialText.font 
+    CGSize expectedLabelSize = [special.messageText sizeWithFont:specialText.font 
                                            constrainedToSize:maximumLabelSize 
-                                               lineBreakMode:UILineBreakModeWordWrap]; 
+                                               lineBreakMode:UILineBreakModeWordWrap];
+    NSLog(@"expected label size: %f", expectedLabelSize.height);
     
     //adjust the label the the new height.
     CGRect newFrame = specialText.frame;
@@ -803,7 +811,25 @@
     [UIView commitAnimations];
 }
 
+- (void) showNextSpecial {
+    [self showSpecial:++currentSpecial];
+    if ([self.venue.specials count] > currentSpecial) {
+        previousSpecialButton.hidden = NO;
+    } else {
+        previousSpecialButton.hidden = YES;
+    }
+}
+
+- (void) showPreviousSpecial {
+    [self showSpecial:--currentSpecial];
+    previousSpecialButton.hidden = NO;
+    if (currentSpecial == 0) {
+        previousSpecialButton.hidden = YES;
+    }
+}
+
 - (void) closeSpecialView {
+    currentSpecial = 0;
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
     [UIView setAnimationDuration:0.7];

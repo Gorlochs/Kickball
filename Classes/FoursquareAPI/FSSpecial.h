@@ -22,13 +22,13 @@
 @interface FSSpecial : NSObject <NSCoding> {
     NSString *specialId;
     NSString *type;
-    NSString *message;
+    NSString *messageText;
     FSVenue  *venue;
 }
 
 @property (nonatomic, retain) NSString *specialId;
 @property (nonatomic, retain) NSString *type;
-@property (nonatomic, retain) NSString *message;
+@property (nonatomic, retain) NSString *messageText;
 @property (nonatomic, retain) FSVenue  *venue;
 
 @end

@@ -11,16 +11,16 @@
 
 @implementation FSSpecial
 
-@synthesize specialId, type, message, venue;
+@synthesize specialId, type, messageText, venue;
 
 - (NSString*) description {
-    return [NSString stringWithFormat:@"(SPECIAL : specialId=%@ ; type=%@ ; message=%@ ; venue=%@)", specialId, type, message, venue];
+    return [NSString stringWithFormat:@"(SPECIAL : specialId=%@ ; type=%@ ; messageText=%@ ; venue=%@)", specialId, type, messageText, venue];
 }
 
 - (void) encodeWithCoder: (NSCoder *)coder { 
     [coder encodeObject: specialId forKey:@"specialId"]; 
     [coder encodeObject: type forKey:@"type"]; 
-    [coder encodeObject: message forKey:@"message"]; 
+    [coder encodeObject: messageText forKey:@"messageText"]; 
     [coder encodeObject: venue forKey:@"venue"]; 
 } 
 
@@ -28,7 +28,7 @@
     if (self = [super init]) { 
         [self setSpecialId: [coder decodeObjectForKey:@"specialId"]]; 
         [self setType: [coder decodeObjectForKey:@"type"]];  
-        [self setMessage: [coder decodeObjectForKey:@"message"]];  
+        [self setMessageText: [coder decodeObjectForKey:@"messageText"]];  
         [self setVenue: [coder decodeObjectForKey:@"venue"]]; 
     } 
     return self; 
