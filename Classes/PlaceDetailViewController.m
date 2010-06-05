@@ -774,7 +774,7 @@
 
 - (void) showSpecial {
     if ([self.venue.specials count] > 1) {
-        previousSpecialButton.hidden = NO;
+        nextSpecialButton.hidden = NO;
     }
     [self showSpecial:0];
 }
@@ -783,8 +783,13 @@
     FSSpecial *special = ((FSSpecial*)[[self venue].specials objectAtIndex:specialIndex]);
     NSLog(@"specials: %@", [self venue].specials);
     NSLog(@"special: %@", special);
-    specialPlaceName.text = special.venue.name;
-    specialAddress.text = special.venue.addressWithCrossstreet;
+    if (special.venue) {
+        specialPlaceName.text = special.venue.name;
+        specialAddress.text = special.venue.addressWithCrossstreet;   
+    } else {
+        specialPlaceName.text = venue.name;
+        specialAddress.text = venue.addressWithCrossstreet;
+    }
     specialText.text = special.messageText;
     
     CGSize maximumLabelSize = CGSizeMake(246, 157);
@@ -813,16 +818,17 @@
 
 - (void) showNextSpecial {
     [self showSpecial:++currentSpecial];
-    if ([self.venue.specials count] > currentSpecial) {
-        previousSpecialButton.hidden = NO;
+    previousSpecialButton.hidden = NO;
+    if (currentSpecial < [self.venue.specials count] - 1) {
+        nextSpecialButton.hidden = NO;
     } else {
-        previousSpecialButton.hidden = YES;
+        nextSpecialButton.hidden = YES;
     }
 }
 
 - (void) showPreviousSpecial {
     [self showSpecial:--currentSpecial];
-    previousSpecialButton.hidden = NO;
+    nextSpecialButton.hidden = NO;
     if (currentSpecial == 0) {
         previousSpecialButton.hidden = YES;
     }
