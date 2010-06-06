@@ -67,16 +67,14 @@
 }
 
 - (void) openTweetModalView {
-    KBCreateTweetViewController *tweetController = [[KBCreateTweetViewController alloc] initWithNibName:@"KBCreateTweetViewController" bundle:nil];
+    tweetController = [[KBCreateTweetViewController alloc] initWithNibName:@"KBCreateTweetViewController" bundle:nil];
     [self presentModalViewController:tweetController animated:YES];
-    [tweetController release];
 }
 
 - (void) flipBetweenMapAndList {
     if (pageViewType == KBPageViewTypeList) {
-        KBGeoTweetMapViewController *controller = [[KBGeoTweetMapViewController alloc] initWithNibName:@"KBGeoTweetMapViewController" bundle:nil];
-        [self.navigationController pushViewController:controller animated:NO];
-        [controller release];
+        mapController = [[KBGeoTweetMapViewController alloc] initWithNibName:@"KBGeoTweetMapViewController" bundle:nil];
+        [self.navigationController pushViewController:mapController animated:NO];
     } else {
         [self backOneViewNotAnimated];
     }
@@ -126,6 +124,8 @@
     [directMessageButton release];
     [searchButton release];
     [twitterCenterHeaderButton release];
+    [tweetController release];
+    [mapController release];
     
     //[twitterEngine release];
     [super dealloc];

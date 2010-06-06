@@ -9,7 +9,6 @@
 #import "KBGeoTweetMapViewController.h"
 #import "KBLocationManager.h"
 #import "IFTweetLabel.h"
-#import "KBCreateTweetViewController.h"
 
 #define GEO_TWITTER_RADIUS 5
 
@@ -296,21 +295,19 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 
 - (void) replyToTweet {
     NSLog(@"reply to tweet id: %qu", [currentlyDisplayedSearchResult.tweetId longLongValue]);
-	KBCreateTweetViewController *createViewController = [[KBCreateTweetViewController alloc] initWithNibName:@"KBCreateTweetViewController" bundle:nil];
-    createViewController.replyToStatusId = currentlyDisplayedSearchResult.tweetId;
-    createViewController.replyToScreenName = currentlyDisplayedSearchResult.screenName;
-	[self presentModalViewController:createViewController animated:YES];
-	[createViewController release];
+	replyCreateViewController = [[KBCreateTweetViewController alloc] initWithNibName:@"KBCreateTweetViewController" bundle:nil];
+    replyCreateViewController.replyToStatusId = currentlyDisplayedSearchResult.tweetId;
+    replyCreateViewController.replyToScreenName = currentlyDisplayedSearchResult.screenName;
+	[self presentModalViewController:replyCreateViewController animated:YES];
 }
 
 - (void) retweet {
     NSLog(@"**********retweet**************");
-	KBCreateTweetViewController *createViewController = [[KBCreateTweetViewController alloc] initWithNibName:@"KBCreateTweetViewController" bundle:nil];
-    createViewController.replyToStatusId = currentlyDisplayedSearchResult.tweetId;
-    createViewController.replyToScreenName = currentlyDisplayedSearchResult.screenName;
-    createViewController.retweetTweetText = currentlyDisplayedSearchResult.tweetText;
-	[self presentModalViewController:createViewController animated:YES];
-	[createViewController release];
+	retweetCreateViewController = [[KBCreateTweetViewController alloc] initWithNibName:@"KBCreateTweetViewController" bundle:nil];
+    retweetCreateViewController.replyToStatusId = currentlyDisplayedSearchResult.tweetId;
+    retweetCreateViewController.replyToScreenName = currentlyDisplayedSearchResult.screenName;
+    retweetCreateViewController.retweetTweetText = currentlyDisplayedSearchResult.tweetText;
+	[self presentModalViewController:retweetCreateViewController animated:YES];
 }
 
 #pragma mark -
@@ -343,6 +340,9 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     [currentlyDisplayedSearchResult release];
     [touchView release];
     [popupBubbleView release];
+    
+	[replyCreateViewController release];
+	[retweetCreateViewController release];
     [super dealloc];
 }
 

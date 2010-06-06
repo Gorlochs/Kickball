@@ -14,6 +14,7 @@
 #import "GeoTweetAnnotation.h"
 #import "TouchView.h"
 #import "KBSearchResult.h"
+#import "KBCreateTweetViewController.h"
 
 
 @interface KBGeoTweetMapViewController : KBBaseTweetViewController <MKMapViewDelegate> {
@@ -25,6 +26,9 @@
 	TouchView* touchView;
     KBSearchResult *currentlyDisplayedSearchResult;
     BOOL isMapFinishedLoading;
+    
+    KBCreateTweetViewController *replyCreateViewController;
+    KBCreateTweetViewController *retweetCreateViewController;
     
     int numTouches;
 }

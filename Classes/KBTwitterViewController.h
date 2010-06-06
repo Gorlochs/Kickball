@@ -11,6 +11,7 @@
 #import "XAuthTwitterEngine.h"
 #import "KBTwitterManager.h"
 
+@class KBCreateTweetViewController, KBGeoTweetMapViewController;
 
 @interface KBTwitterViewController : KBFoursquareViewController {
     IBOutlet UIButton *timelineButton;
@@ -20,6 +21,8 @@
     IBOutlet UIButton *twitterCenterHeaderButton;
     
     XAuthTwitterEngine *twitterEngine;
+    KBCreateTweetViewController *tweetController;
+    KBGeoTweetMapViewController *mapController;
 }
 
 @property (nonatomic, retain) XAuthTwitterEngine *twitterEngine;
