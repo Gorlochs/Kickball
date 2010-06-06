@@ -15,7 +15,7 @@
     pageViewType = KBPageViewTypeList;
     [super viewDidLoad];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTweetNotification:) name:IFTweetLabelURLNotification object:nil];
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTweetNotification:) name:IFTweetLabelURLNotification object:nil];
     
     cachingKey = kKBTwitterDirectMessagesKey;
     [self showStatuses];

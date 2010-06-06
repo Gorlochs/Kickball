@@ -18,7 +18,4 @@
     KBTwitterXAuthLoginController *loginController;
 }
 
-- (void) statusRetrieved:(NSNotification *)inNotification;
-//- (void) createNotificationObservers;
-
 @end

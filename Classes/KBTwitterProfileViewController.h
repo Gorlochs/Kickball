@@ -10,9 +10,12 @@
 #import "Three20/Three20.h"
 #import "KBTwitterViewController.h"
 #import "IFTweetLabel.h"
+#import "KBTwitterManagerDelegate.h"
+#import "KBUserTweetsViewController.h"
+#import "KBTwitterUserListViewController.h"
 
 
-@interface KBTwitterProfileViewController : KBTwitterViewController {
+@interface KBTwitterProfileViewController : KBTwitterViewController <KBTwitterManagerDelegate> {
     IBOutlet UILabel *screenNameLabel;
     IBOutlet UILabel *fullName;
     IBOutlet UILabel *location;
@@ -24,6 +27,11 @@
     
     NSString *screenname;
     NSDictionary *userDictionary;
+	KBTwitterManager *twitterManager;
+    
+    KBTwitterUserListViewController *followersController;
+    KBTwitterUserListViewController *friendsController;
+    KBUserTweetsViewController *recentTweetsController;
 }
 
 @property (nonatomic, retain) NSString *screenname;

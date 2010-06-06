@@ -67,7 +67,7 @@
 - (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error
 {
 	NSLog(@"Twitter request failed: %@ with error:%@", connectionIdentifier, error);
-    
+    [self stopProgressBar];
 	if ([[error domain] isEqualToString: @"HTTP"])
 	{
 		switch ([error code]) {

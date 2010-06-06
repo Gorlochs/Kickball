@@ -44,7 +44,7 @@
         bottomLineImage.frame = CGRectMake(0, 1, self.frame.size.width, 1);
         [self addSubview:bottomLineImage];
         
-        retweetButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        retweetButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
         retweetButton.frame = CGRectMake(250, self.frame.size.height - 10, 92, 39);
         retweetButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         retweetButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;

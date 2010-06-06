@@ -7,8 +7,6 @@
 //
 
 #import "KBTwitterProfileViewController.h"
-#import "KBUserTweetsViewController.h"
-#import "KBTwitterUserListViewController.h"
 
 @implementation KBTwitterProfileViewController
 
@@ -24,17 +22,21 @@
     pageType = KBPageTypeOther;
     [super viewDidLoad];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userRetrieved:) name:kTwitterUserInfoRetrievedNotificationKey object:nil];
+    twitterManager = [KBTwitterManager twitterManager];
+	twitterManager.delegate = self;
+    
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userRetrieved:) name:kTwitterUserInfoRetrievedNotificationKey object:nil];
     [self startProgressBar:@"Retrieving user information..."];
     [twitterEngine getUserInformationFor:screenname];
 }
 
-- (void) userRetrieved:(NSNotification*)inNotification {
+- (void)userInfoReceived:(NSArray *)userInfo {
+    
 //    NSLog(@"user inNotification: %@", inNotification);
 //    NSLog(@"userInfo: %@", [inNotification userInfo]);
 //    NSLog(@"userinfo userinfo: %@", [[inNotification userInfo] objectForKey:@"userInfo"]);
 //    NSLog(@"userinfo userinfo object at index 0: %@", [[[inNotification userInfo] objectForKey:@"userInfo"] objectAtIndex:0]);
-    userDictionary = [[[[inNotification userInfo] objectForKey:@"userInfo"] objectAtIndex:0] retain];
+    userDictionary = [[userInfo objectAtIndex:0] retain];
     NSLog(@"user: %@", userDictionary);
     screenNameLabel.text = [userDictionary objectForKey:@"screen_name"];
     fullName.text = [userDictionary objectForKey:@"name"];
@@ -83,27 +85,24 @@
 
 
 - (void) viewRecentTweets {
-	KBUserTweetsViewController *tweetController = [[KBUserTweetsViewController alloc] initWithNibName:@"KBUserTweetsViewController" bundle:nil];
-    tweetController.userDictionary = userDictionary;
-    tweetController.username = [userDictionary objectForKey:@"screen_name"];
-	[self.navigationController pushViewController:tweetController animated:YES];
-	[tweetController release];
+	recentTweetsController = [[KBUserTweetsViewController alloc] initWithNibName:@"KBUserTweetsViewController" bundle:nil];
+    recentTweetsController.userDictionary = userDictionary;
+    recentTweetsController.username = [userDictionary objectForKey:@"screen_name"];
+	[self.navigationController pushViewController:recentTweetsController animated:YES];
 }
 
 - (void) viewFollowers {
-	KBTwitterUserListViewController *tweetController = [[KBTwitterUserListViewController alloc] initWithNibName:@"KBTwitterUserListViewController" bundle:nil];
-    tweetController.userDictionary = userDictionary;
-    tweetController.userType = KBTwitterUserFollower;
-	[self.navigationController pushViewController:tweetController animated:YES];
-	[tweetController release];
+	followersController = [[KBTwitterUserListViewController alloc] initWithNibName:@"KBTwitterUserListViewController" bundle:nil];
+    followersController.userDictionary = userDictionary;
+    followersController.userType = KBTwitterUserFollower;
+	[self.navigationController pushViewController:followersController animated:YES];
 }
 
 - (void) viewFriends {
-	KBTwitterUserListViewController *tweetController = [[KBTwitterUserListViewController alloc] initWithNibName:@"KBTwitterUserListViewController" bundle:nil];
-    tweetController.userDictionary = userDictionary;
-    tweetController.userType = KBTwitterUserFriend;
-	[self.navigationController pushViewController:tweetController animated:YES];
-	[tweetController release];
+	friendsController = [[KBTwitterUserListViewController alloc] initWithNibName:@"KBTwitterUserListViewController" bundle:nil];
+    friendsController.userDictionary = userDictionary;
+    friendsController.userType = KBTwitterUserFriend;
+	[self.navigationController pushViewController:friendsController animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -121,7 +120,7 @@
 
 
 - (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    //[[NSNotificationCenter defaultCenter] removeObserver:self];
     [screenNameLabel release];
     [fullName release];
     [location release];
@@ -133,6 +132,11 @@
     
     [screenname release];
     [userDictionary release];
+    [twitterManager release];
+    
+    [recentTweetsController release];
+    [friendsController release];
+    [followersController release];
     [super dealloc];
 }
 

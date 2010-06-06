@@ -37,6 +37,7 @@
 	NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
 	
 	if (twitterUrlString) {
+        // this is for the mobile geo twitter page. it really needs to be oauth'd
 		//MGTwitterHTTPURLConnection *conn = [[MGTwitterHTTPURLConnection alloc] initWithRequest:requestObj delegate:self requestType:nil responseType:nil];
 	} else {
 		
