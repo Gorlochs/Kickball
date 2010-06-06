@@ -11,6 +11,8 @@
 #import "KBTwitterViewController.h"
 #import "IFTweetLabel.h"
 #import "KBTweet.h"
+#import "KBCreateTweetViewController.h"
+#import "KBTwitterProfileViewController.h"
 
 
 @interface KBTwitterDetailViewController : KBTwitterViewController {
@@ -25,6 +27,10 @@
     
     IFTweetLabel *mainTextLabel;
     TTImageView *userProfileImage;
+    
+    KBTwitterProfileViewController *profileController;
+    KBCreateTweetViewController *createRetweetViewController;
+    KBCreateTweetViewController *createReplyViewController;
 }
 
 @property (nonatomic, retain) KBTweet *tweet;

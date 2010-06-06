@@ -7,6 +7,7 @@
 //
 
 #import "KBTwitterProfileViewController.h"
+#import "KBTwitterUserListViewController.h"
 
 @implementation KBTwitterProfileViewController
 

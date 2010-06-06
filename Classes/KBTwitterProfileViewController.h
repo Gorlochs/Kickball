@@ -12,8 +12,8 @@
 #import "IFTweetLabel.h"
 #import "KBTwitterManagerDelegate.h"
 #import "KBUserTweetsViewController.h"
-#import "KBTwitterUserListViewController.h"
 
+@class KBTwitterUserListViewController;
 
 @interface KBTwitterProfileViewController : KBTwitterViewController <KBTwitterManagerDelegate> {
     IBOutlet UILabel *screenNameLabel;

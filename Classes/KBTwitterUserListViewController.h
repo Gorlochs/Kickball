@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "KBBaseTweetViewController.h"
+#import "KBTwitterProfileViewController.h"
 
 typedef enum {
     KBTwitterUserFollower = 0,
@@ -20,6 +21,7 @@ typedef enum {
     NSMutableArray *users;
     KBTwitterUserType userType;
     NSNumber *currentCursor;
+    KBTwitterProfileViewController *profileController;
 }
 
 @property (nonatomic, retain) NSDictionary *userDictionary;

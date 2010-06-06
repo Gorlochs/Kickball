@@ -9,7 +9,6 @@
 #import "KBTwitterUserListViewController.h"
 #import "KBTwitterUser.h"
 #import "KBTwitterUserTableCell.h"
-#import "KBTwitterProfileViewController.h"
 
 
 @implementation KBTwitterUserListViewController
@@ -127,10 +126,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        KBTwitterProfileViewController *profileController = [[KBTwitterProfileViewController alloc] initWithNibName:@"KBTwitterProfileViewController" bundle:nil];
+        profileController = [[KBTwitterProfileViewController alloc] initWithNibName:@"KBTwitterProfileViewController" bundle:nil];
         profileController.screenname = ((KBTwitterUser*)[users objectAtIndex:indexPath.row]).screenName;
         [self.navigationController pushViewController:profileController animated:YES];
-        [profileController release];
     } else {
         [self executeQuery:++pageNum];
     }
@@ -158,6 +156,7 @@
     [userDictionary release];
     [users release];
     [currentCursor release];
+    [profileController release];
     [super dealloc];
 }
 

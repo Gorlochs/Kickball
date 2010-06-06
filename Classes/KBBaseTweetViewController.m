@@ -7,12 +7,11 @@
 //
 
 #import "KBBaseTweetViewController.h"
+#import "KBCreateTweetViewController.h"
+#import "UIAlertView+Helper.h"
 #import "KBUserTweetsViewController.h"
 #import "KBTwitterSearchViewController.h"
 #import "KBTwitterDetailViewController.h"
-#import "KBCreateTweetViewController.h"
-#import "UIAlertView+Helper.h"
-
 
 @implementation KBBaseTweetViewController
 
@@ -40,15 +39,13 @@
 - (void)handleTweetNotification:(NSNotification *)notification {
 	NSLog(@"handleTweetNotification: notification = %@", notification);
     if ([[notification object] rangeOfString:@"@"].location == 0) {
-        KBUserTweetsViewController *controller = [[KBUserTweetsViewController alloc] initWithNibName:@"KBUserTweetsViewController" bundle:nil];
-        controller.username = [notification object];
-        [self.navigationController pushViewController:controller animated:YES];
-        [controller release];
+        userTweetsController = [[KBUserTweetsViewController alloc] initWithNibName:@"KBUserTweetsViewController" bundle:nil];
+        userTweetsController.username = [notification object];
+        [self.navigationController pushViewController:userTweetsController animated:YES];
     } else if ([[notification object] rangeOfString:@"#"].location == 0) {
-        KBTwitterSearchViewController *controller = [[KBTwitterSearchViewController alloc] initWithNibName:@"KBTweetListViewController" bundle:nil];
-        controller.searchTerms = [notification object];
-        [self.navigationController pushViewController:controller animated:YES];
-        [controller release];
+        searchController = [[KBTwitterSearchViewController alloc] initWithNibName:@"KBTweetListViewController" bundle:nil];
+        searchController.searchTerms = [notification object];
+        [self.navigationController pushViewController:searchController animated:YES];
     } else {
         // TODO: push properly styled web view
         [self openWebView:[notification object]];
@@ -202,10 +199,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         [theTableView deselectRowAtIndexPath:indexPath animated:YES];
-        KBTwitterDetailViewController *detailViewController = [[KBTwitterDetailViewController alloc] initWithNibName:@"KBTwitterDetailViewController" bundle:nil];
+        detailViewController = [[KBTwitterDetailViewController alloc] initWithNibName:@"KBTwitterDetailViewController" bundle:nil];
         detailViewController.tweet = [tweets objectAtIndex:indexPath.row];
         [self.navigationController pushViewController:detailViewController animated:YES];
-        [detailViewController release];
     } else {
         [self executeQuery:++pageNum];
     }
@@ -247,6 +243,9 @@
     [twitterArray release];
     [moreCell release];
     [noResultsView release];
+    [detailViewController release];
+    [userTweetsController release];
+    [searchController release];
     [super dealloc];
 }
 

@@ -41,7 +41,6 @@
         loginController = [[KBTwitterXAuthLoginController alloc] initWithNibName:@"TwitterLoginView_v2" bundle:nil];
 		loginController.rootController = self;
         [self presentModalViewController:loginController animated:YES];
-        [loginController release];
     }
 }
 
