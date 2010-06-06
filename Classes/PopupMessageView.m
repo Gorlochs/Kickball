@@ -26,7 +26,7 @@
     
     titleLabel.text = message.mainTitle;
     
-    NSLog(@"message: %@", message.message);
+    DLog(@"message: %@", message.message);
     CGSize maximumLabelSize = CGSizeMake(280, 220);
     CGSize expectedLabelSize = [message.message sizeWithFont:messageLabel.font 
                                            constrainedToSize:maximumLabelSize 
@@ -35,8 +35,8 @@
     //adjust the label the the new height.
     CGRect newFrame = messageLabel.frame;
     newFrame.size.height = expectedLabelSize.height;
-    NSLog(@"frame height: %f", self.view.frame.size.height);
-    NSLog(@"label height: %f", expectedLabelSize.height);
+    DLog(@"frame height: %f", self.view.frame.size.height);
+    DLog(@"label height: %f", expectedLabelSize.height);
     newFrame.origin.y = self.view.frame.size.height - expectedLabelSize.height - 20;
     messageLabel.frame = newFrame;
     

@@ -38,8 +38,8 @@
     
     [super viewDidLoad];
     
-    NSLog(@"PlacesListViewController get venue - geolat: %f", [[KBLocationManager locationManager] latitude]);
-    NSLog(@"PlacesListViewController get venue - geolong: %f", [[KBLocationManager locationManager] longitude]);
+    DLog(@"PlacesListViewController get venue - geolat: %f", [[KBLocationManager locationManager] latitude]);
+    DLog(@"PlacesListViewController get venue - geolong: %f", [[KBLocationManager locationManager] longitude]);
     [self addHeaderAndFooter:theTableView];
     [self startProgressBar:@"Retrieving nearby venues..."];
     if ([FoursquareAPI sharedInstance].cachedVenues == nil) {
@@ -61,13 +61,13 @@
 
 
 - (void)venuesResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    NSLog(@"venue list: %@", inString);
+    DLog(@"venue list: %@", inString);
     NSString *errorMessage = [FoursquareAPI errorFromResponseXML:inString];
     if (errorMessage) {
-        NSLog(@"error found in Places List");
+        DLog(@"error found in Places List");
         [self displayFoursquareErrorMessage:errorMessage];
     } else {
-        NSLog(@"venues: %@", inString);
+        DLog(@"venues: %@", inString);
         NSDictionary *allVenues = [FoursquareAPI venuesFromResponseXML:inString];
         self.venues = [NSDictionary dictionaryWithDictionary:allVenues];
         [FoursquareAPI sharedInstance].cachedVenues = [[NSDictionary alloc] initWithDictionary:self.venues];

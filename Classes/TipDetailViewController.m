@@ -26,10 +26,10 @@
 }
 
 - (void) tipResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    NSLog(@"tip response string: %@", inString);
+    DLog(@"tip response string: %@", inString);
 	NSString *tipId =  [FoursquareAPI tipIdFromResponseXML:inString];
     [self stopProgressBar];
-    NSLog(@"returned tip id: %@", tipId);
+    DLog(@"returned tip id: %@", tipId);
     if (tipId != nil) {
         // display thank you message
         KBMessage *message = [[KBMessage alloc] initWithMember:@"Tips" andMessage:@"Success"];

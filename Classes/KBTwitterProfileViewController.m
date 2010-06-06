@@ -33,12 +33,12 @@
 
 - (void)userInfoReceived:(NSArray *)userInfo {
     
-//    NSLog(@"user inNotification: %@", inNotification);
-//    NSLog(@"userInfo: %@", [inNotification userInfo]);
-//    NSLog(@"userinfo userinfo: %@", [[inNotification userInfo] objectForKey:@"userInfo"]);
-//    NSLog(@"userinfo userinfo object at index 0: %@", [[[inNotification userInfo] objectForKey:@"userInfo"] objectAtIndex:0]);
+//    DLog(@"user inNotification: %@", inNotification);
+//    DLog(@"userInfo: %@", [inNotification userInfo]);
+//    DLog(@"userinfo userinfo: %@", [[inNotification userInfo] objectForKey:@"userInfo"]);
+//    DLog(@"userinfo userinfo object at index 0: %@", [[[inNotification userInfo] objectForKey:@"userInfo"] objectAtIndex:0]);
     userDictionary = [[userInfo objectAtIndex:0] retain];
-    NSLog(@"user: %@", userDictionary);
+    DLog(@"user: %@", userDictionary);
     screenNameLabel.text = [userDictionary objectForKey:@"screen_name"];
     fullName.text = [userDictionary objectForKey:@"name"];
     location.text = [userDictionary objectForKey:@"location"];

@@ -71,7 +71,7 @@
 }
 
 - (void) photoCountRequestWentWrong:(ASIHTTPRequest *) request {
-    NSLog(@"BOOOOOOOOOOOO!");
+    DLog(@"BOOOOOOOOOOOO!");
     hasPhotos = NO;
 }
 
@@ -464,9 +464,9 @@
 - (void) viewProfilesTwitterFeed {
     [self startProgressBar:@"Retrieving tweets..."];
 
-    NSLog(@"twitter username: %@", user.twitter);
+    DLog(@"twitter username: %@", user.twitter);
     NSString *twitters = [twitterEngine getUserTimelineFor:user.twitter sinceID:0 startingAtPage:0 count:20];
-    NSLog(@"twitter: %@", twitters);
+    DLog(@"twitter: %@", twitters);
 }
 
 - (void) facebookProfile {
@@ -521,7 +521,7 @@
 - (void) retrieveUserPhotos {
     
     NSString *gorlochUrlString = [NSString stringWithFormat:@"%@/gifts/owner/%@.xml?limit=4", kickballDomain, userId];
-    NSLog(@"photo url string: %@", gorlochUrlString);
+    DLog(@"photo url string: %@", gorlochUrlString);
     ASIHTTPRequest *gorlochRequest = [[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:gorlochUrlString]] autorelease];
     
     [gorlochRequest setDidFailSelector:@selector(photoRequestWentWrong:)];
@@ -540,7 +540,7 @@
 //}
 
 - (void) photoRequestWentWrong:(ASIHTTPRequest *) request {
-    NSLog(@"BOOOOOOOOOOOO!");
+    DLog(@"BOOOOOOOOOOOO!");
 }
 
 - (void) photoRequestDidFinish:(ASIHTTPRequest *) request {
@@ -618,7 +618,7 @@
 #pragma mark UIActionSheetDelegate methods
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    NSLog(@"clicked the 'leave' button; tag: %d", actionSheet.tag);
+    DLog(@"clicked the 'leave' button; tag: %d", actionSheet.tag);
     if (buttonIndex == 0) {
         switch (actionSheet.tag) {
             case 0:
@@ -648,7 +648,7 @@
 
 
 - (void) friendRequestResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    NSLog(@"friend request instring: %@", inString);
+    DLog(@"friend request instring: %@", inString);
     FSUser *friendedUser = [FoursquareAPI userFromResponseXML:inString];
     [self stopProgressBar];
     user.friendStatus = FSStatusPendingYou;
@@ -660,9 +660,9 @@
 }
 
 - (void) pingUpdateResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    NSLog(@"instring: %@", inString);
+    DLog(@"instring: %@", inString);
 	BOOL newPingSetting = [FoursquareAPI pingSettingFromResponseXML:inString];
-    NSLog(@"new ping setting: %d", newPingSetting);
+    DLog(@"new ping setting: %d", newPingSetting);
     user.sendsPingsToSignedInUser = !user.sendsPingsToSignedInUser;
     isPingAndUpdatesOn = !isPingAndUpdatesOn;
     //pingsAndUpdates.selected = isPingAndUpdatesOn;
@@ -675,7 +675,7 @@
 }
 
 - (void) checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    NSLog(@"instring: %@", inString);
+    DLog(@"instring: %@", inString);
 	checkin = [FoursquareAPI checkinsFromResponseXML:inString];
 //    isUserCheckedIn = YES;
 //	  [theTableView reloadData];
@@ -704,11 +704,11 @@
     [twitterController release];
     
     //[self.tableView reloadData];
-    NSLog(@"statusesReceived: %@", statuses);
+    DLog(@"statusesReceived: %@", statuses);
 }
 
 - (void)requestSucceeded:(NSString *)connectionIdentifier {
-    NSLog(@"requestSucceeded: %@", connectionIdentifier);
+    DLog(@"requestSucceeded: %@", connectionIdentifier);
     [self stopProgressBar];
 }
 
@@ -716,8 +716,8 @@
     KBMessage *message = [[KBMessage alloc] initWithMember:@"Twitter Error" andMessage:@"Sorry. It seems that Twitter is down. Try again later."];
     [self displayPopupMessage:message];
     [message release];
-    NSLog(@"requestFailed: %@", connectionIdentifier);
-    NSLog(@"error: %@", error);
+    DLog(@"requestFailed: %@", connectionIdentifier);
+    DLog(@"error: %@", error);
     [self stopProgressBar];
 }
 

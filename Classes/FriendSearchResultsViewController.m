@@ -50,7 +50,7 @@
                     [phone release];
                 }
             }
-            NSLog(@"phones: %@", phones);
+            DLog(@"phones: %@", phones);
             [[FoursquareAPI sharedInstance] findFriendsByPhone:[phones componentsJoinedByString:@","] withTarget:self andAction:@selector(searchResponseReceived:withResponseString:)];
             [FlurryAPI logEvent:@"Scanning Address Book"];
             [phones release];
@@ -110,7 +110,7 @@
 }
 
 - (void)searchResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    NSLog(@"search response: %@", inString);
+    DLog(@"search response: %@", inString);
     
     searchResults = [[FoursquareAPI usersFromResponseXML:inString] retain];
     [theTableView reloadData];
@@ -209,7 +209,7 @@
 }
 
 - (void) didTapFriendizeButton: (UIControl *) button withEvent: (UIEvent *) event {
-    NSLog(@"friendize button tapped: %d", button.tag);
+    DLog(@"friendize button tapped: %d", button.tag);
     [self startProgressBar:@"Sending friend request..."];
     [[FoursquareAPI sharedInstance] doSendFriendRequest:((FSUser*)[searchResults objectAtIndex:button.tag]).userId withTarget:self andAction:@selector(friendRequestResponseReceived:withResponseString:)];
     [FlurryAPI logEvent:@"Friend Someone"];
@@ -220,7 +220,7 @@
 - (void)friendRequestResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     FSUser *user = [FoursquareAPI userFromResponseXML:inString];
     [self stopProgressBar];
-    NSLog(@"user sent a friend request: %@", user);
+    DLog(@"user sent a friend request: %@", user);
     
     KBMessage *message = [[KBMessage alloc] initWithMember:@"Friend Request" andMessage:@"Your future buddy has been sent a friend request."];
     [self displayPopupMessage:message];

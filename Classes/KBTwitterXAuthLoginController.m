@@ -93,7 +93,7 @@
 	NSString *username = self.twitterUsername.text;
 	NSString *password = self.twitterPassword.text;
 	
-	NSLog(@"About to request an xAuth token exchange for username: ]%@[ password: ]%@[.", username, password);
+	DLog(@"About to request an xAuth token exchange for username: ]%@[ password: ]%@[.", username, password);
 	
 	[self.twitterEngine exchangeAccessTokenForUsername:username password:password];
 }
@@ -116,7 +116,7 @@
 	// ===== Use the keychain instead. Check out SFHFKeychainUtils if you want 
 	//       an easy to use library. (http://github.com/ldandersen/scifihifi-iphone) 
 	//
-	NSLog(@"Access token string returned: %@", tokenString);
+	DLog(@"Access token string returned: %@", tokenString);
 	
 	[[NSUserDefaults standardUserDefaults] setObject:tokenString forKey:kCachedXAuthAccessTokenStringKey];
     
@@ -137,7 +137,7 @@
 {
 	NSString *accessTokenString = [[NSUserDefaults standardUserDefaults] objectForKey:kCachedXAuthAccessTokenStringKey];
 	
-	NSLog(@"About to return access token string: %@", accessTokenString);
+	DLog(@"About to return access token string: %@", accessTokenString);
 	
 	return accessTokenString;
 }
@@ -145,7 +145,7 @@
 
 - (void) twitterXAuthConnectionDidFailWithError: (NSError *)error;
 {
-	NSLog(@"Error: %@", error);
+	DLog(@"Error: %@", error);
 	
 	UIAlertViewQuick(@"Authentication error", @"Please check your username and password and try again.", @"OK");
 }
@@ -156,14 +156,14 @@
 
 - (void)requestSucceeded:(NSString *)connectionIdentifier
 {
-	NSLog(@"Twitter request succeeded: %@", connectionIdentifier);
+	DLog(@"Twitter request succeeded: %@", connectionIdentifier);
 	
 	UIAlertViewQuick(@"Tweet sent!", @"The tweet was successfully sent. Everything works!", @"OK");
 }
 
 - (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error
 {
-	NSLog(@"Twitter request failed: %@ with error:%@", connectionIdentifier, error);
+	DLog(@"Twitter request failed: %@ with error:%@", connectionIdentifier, error);
 		
 	if ([[error domain] isEqualToString: @"HTTP"])
 	{

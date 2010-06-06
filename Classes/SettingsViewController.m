@@ -18,7 +18,7 @@
 @implementation SettingsViewController
 
 - (void)viewDidLoad {
-    NSLog(@"auth'd user: %@", [self getAuthenticatedUser]);
+    DLog(@"auth'd user: %@", [self getAuthenticatedUser]);
     username.text = [[FoursquareAPI sharedInstance] userName];
     password.text = [[FoursquareAPI sharedInstance] passWord];
     [FlurryAPI logEvent:@"Settings View"];
@@ -40,7 +40,7 @@
     if (errorMessage) {
         [self displayFoursquareErrorMessage:errorMessage];
     } else {
-        NSLog(@"pending friend requests: %@", inString);
+        DLog(@"pending friend requests: %@", inString);
         pendingFriendRequests = [[FoursquareAPI usersFromRequestResponseXML:inString] retain];
         friendRequestCount.text = [NSString stringWithFormat:@"%d", [pendingFriendRequests count]];
     }
@@ -67,7 +67,7 @@
 
 
 - (void)friendResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    NSLog(@"friend response for login: %@", inString);
+    DLog(@"friend response for login: %@", inString);
     [username resignFirstResponder];
     [password resignFirstResponder];
     [self stopProgressBar];
@@ -88,7 +88,7 @@
         
         NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
         [prefs setObject:username.text forKey:kUsernameDefaultsKey];
-        NSLog(@"Stored username: %@", username.text);
+        DLog(@"Stored username: %@", username.text);
         
         NSError *error = nil;
         [SFHFKeychainUtils storeUsername:username.text
@@ -120,9 +120,9 @@
 }
 
 - (void) pingUpdateResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    NSLog(@"instring: %@", inString);
+    DLog(@"instring: %@", inString);
 	BOOL newPingSetting = [FoursquareAPI pingSettingFromResponseXML:inString];
-    NSLog(@"new ping setting: %d", newPingSetting);
+    DLog(@"new ping setting: %d", newPingSetting);
     isPingAndUpdatesOn = !isPingAndUpdatesOn;
     [self setPingAndUpdatesButton];
     [self stopProgressBar];

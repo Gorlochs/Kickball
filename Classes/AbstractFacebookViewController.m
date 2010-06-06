@@ -31,7 +31,7 @@ static NSString* kGetSessionProxy = nil; // @"<YOUR SESSION CALLBACK)>";
     } else {
         _session = [[FBSession sessionForApplication:kApiKey secret:kApiSecret delegate:self] retain];
     }
-    NSLog(@"FB session: %@", _session);
+    DLog(@"FB session: %@", _session);
     //headerNibName = HEADER_NIB_FOURSQUARE;
     [super viewDidLoad];
     
@@ -55,7 +55,7 @@ static NSString* kGetSessionProxy = nil; // @"<YOUR SESSION CALLBACK)>";
 - (void)session:(FBSession*)session didLogin:(FBUID)uid {
 	// user just successfully logged in
 	// this also gets called when the app starts up
-    NSLog(@"User with id %lld logged in.", uid);
+    DLog(@"User with id %lld logged in.", uid);
 	[[KBAccountManager sharedInstance] setUsesFacebook:YES];
 	[self hideAppropriateTabs];
 }

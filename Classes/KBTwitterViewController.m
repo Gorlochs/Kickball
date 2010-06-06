@@ -31,7 +31,7 @@
 
 - (void)viewDidLoad {
     twitterEngine = [[KBTwitterManager twitterManager] twitterEngine];
-    NSLog(@"twitterengine: %@", twitterEngine);
+    DLog(@"twitterengine: %@", twitterEngine);
     
     //headerNibName = HEADER_NIB_TWITTER;
     footerType = KBFooterTypeTwitter;

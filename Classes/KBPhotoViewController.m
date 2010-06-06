@@ -51,7 +51,7 @@
 }
 
 - (void)flagAction {
-    NSLog(@"photo index: %d", _centerPhotoIndex);
+    DLog(@"photo index: %d", _centerPhotoIndex);
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Would you like to flag this photo as inappropriate?" 
                                                              delegate:self
                                                     cancelButtonTitle:@"Cancel"
@@ -66,11 +66,11 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
-        NSLog(@"INAPPROPRIATE!!!!");
+        DLog(@"INAPPROPRIATE!!!!");
         NSString *gorlochUrlString = [NSString stringWithFormat:@"%@/gifts/inappropriate/%@.xml",
                                       kickballDomain,
                                       ((KBGoody*)[goodies objectAtIndex:actionSheet.tag]).goodyId];
-        NSLog(@"url: %@", gorlochUrlString);
+        DLog(@"url: %@", gorlochUrlString);
         ASIHTTPRequest *gorlochRequest = [[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:gorlochUrlString]] autorelease];
         
         [gorlochRequest setRequestMethod:@"PUT"];
@@ -83,14 +83,14 @@
 }
 
 - (void) flagWentWrong:(ASIHTTPRequest *) request {
-    NSLog(@"flagging went wrong: %@", [request responseString]);
+    DLog(@"flagging went wrong: %@", [request responseString]);
     KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"There was an error with the flagging of this photo.  Please try again later."];
     [self displayPopupMessage:message];
     [message release];
 }
 
 - (void) flagDidFinish:(ASIHTTPRequest *) request {
-    NSLog(@"flagged inappropriate: %@", [request responseString]);
+    DLog(@"flagged inappropriate: %@", [request responseString]);
     KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"We have flagged this photo and will review it shortly. Thanks for making the world a safer place."];
     [self displayPopupMessage:message];
     [message release];

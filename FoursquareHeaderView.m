@@ -31,7 +31,7 @@
 }
 
 //- (void) backOneView {
-//    NSLog(@"*************** BACK ONE VIEW ***************");
+//    DLog(@"*************** BACK ONE VIEW ***************");
 //    //[self.parentViewController.navigationController popViewControllerAnimated:YES];
 //}
 

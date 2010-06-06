@@ -67,7 +67,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 
 - (void)searchResultsReceived:(NSArray *)searchResults {
 	if (searchResults) {
-		NSLog(@"search results: %@", searchResults);
+		DLog(@"search results: %@", searchResults);
 
 		twitterArray = [[[searchResults objectAtIndex:0] objectForKey:@"results"] retain];
 		if (!nearbyTweets) {
@@ -81,7 +81,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 			[result release];
 		}
 		[self refreshMap];
-		NSLog(@"number of nearby tweets: %d", [nearbyTweets count]);
+		DLog(@"number of nearby tweets: %d", [nearbyTweets count]);
 		if (pageNum < 4 && [nearbyTweets count] < 25 + 25 * numTouches) {
 			[self executeQueryWithPageNumber:++pageNum andCoordinates:mapViewer.centerCoordinate];
 		}
@@ -185,7 +185,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
             anote.title = tweet.screenName;
             anote.subtitle = tweet.tweetText;
             anote.searchResult = tweet;
-            NSLog(@"annotation title: %@", anote.title);
+            DLog(@"annotation title: %@", anote.title);
             [mapViewer addAnnotation:anote];
             [anote release];
 		}
@@ -214,7 +214,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 
 - (void) annotationClicked: (id <MKAnnotation>) annotation {
 	KBPin* ann = (KBPin*) annotation;
-	NSLog(@"Annotation clicked: %@", ann.title);
+	DLog(@"Annotation clicked: %@", ann.title);
 	
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"CustomCalloutMapView" message:[NSString stringWithFormat:@"You clicked at annotation: %@",ann.title] delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
 	[alert show];
@@ -228,11 +228,11 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     if([action isEqualToString:GMAP_ANNOTATION_SELECTED]){
 		BOOL annotationAppeared = [[change valueForKey:@"new"] boolValue];
 		if (annotationAppeared) {
-			NSLog(@"annotation selected %@", ((KBPin*) object).annotation.title);
+			DLog(@"annotation selected %@", ((KBPin*) object).annotation.title);
 			[self showAnnotation:((KBPin*) object).annotation];
 			((KBPin*) object).image = [UIImage imageNamed:@"pin.png"];
 		} else {
-			NSLog(@"annotation deselected %@", ((KBPin*) object).annotation.title);
+			DLog(@"annotation deselected %@", ((KBPin*) object).annotation.title);
 			[self hideAnnotation];
 			((KBPin*) object).image = [UIImage imageNamed:@"pin.png"];
 		}
@@ -240,7 +240,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 }
 
 - (void) stopFollowLocation {
-	NSLog(@"stopFollowLocation called. Good place to put stop follow location annotation code.");
+	DLog(@"stopFollowLocation called. Good place to put stop follow location annotation code.");
 	
 	GeoTweetAnnotation* annotation;
 	for (annotation in mapViewer.selectedAnnotations) {
@@ -294,7 +294,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 #pragma mark IBOutlets
 
 - (void) replyToTweet {
-    NSLog(@"reply to tweet id: %qu", [currentlyDisplayedSearchResult.tweetId longLongValue]);
+    DLog(@"reply to tweet id: %qu", [currentlyDisplayedSearchResult.tweetId longLongValue]);
 	replyCreateViewController = [[KBCreateTweetViewController alloc] initWithNibName:@"KBCreateTweetViewController" bundle:nil];
     replyCreateViewController.replyToStatusId = currentlyDisplayedSearchResult.tweetId;
     replyCreateViewController.replyToScreenName = currentlyDisplayedSearchResult.screenName;
@@ -302,7 +302,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 }
 
 - (void) retweet {
-    NSLog(@"**********retweet**************");
+    DLog(@"**********retweet**************");
 	retweetCreateViewController = [[KBCreateTweetViewController alloc] initWithNibName:@"KBCreateTweetViewController" bundle:nil];
     retweetCreateViewController.replyToStatusId = currentlyDisplayedSearchResult.tweetId;
     retweetCreateViewController.replyToScreenName = currentlyDisplayedSearchResult.screenName;

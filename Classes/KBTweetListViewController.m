@@ -116,11 +116,11 @@
 #pragma mark MGTwitterEngineDelegate methods
 
 - (void)requestSucceeded:(NSString *)connectionIdentifier {
-	NSLog(@"Twitter request succeeded: %@", connectionIdentifier);
+	DLog(@"Twitter request succeeded: %@", connectionIdentifier);
 }
 
 - (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error {
-	NSLog(@"Twitter request failed: %@ with error:%@", connectionIdentifier, error);
+	DLog(@"Twitter request failed: %@ with error:%@", connectionIdentifier, error);
 }
 
 #pragma mark -

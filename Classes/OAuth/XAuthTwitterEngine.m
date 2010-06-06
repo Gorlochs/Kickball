@@ -238,7 +238,7 @@
 	
 	[_accessToken release];
 	_accessToken = [[OAToken alloc] initWithHTTPResponseBody:dataString];
-    NSLog(@"access token: %@", _accessToken);
+    DLog(@"access token: %@", _accessToken);
 }
 
 
@@ -321,7 +321,7 @@
 //                           domain, 
 //                           fullPath];
 //    NSURL *finalURL = [NSURL URLWithString:urlString];
-//    NSLog(@"XAuthTwitterEngine: finalURL = %@", finalURL);
+//    DLog(@"XAuthTwitterEngine: finalURL = %@", finalURL);
 //    if (!finalURL) {
 //        return nil;
 //    }
@@ -335,7 +335,7 @@
 //	//                                                              cachePolicy:NSURLRequestReloadIgnoringCacheData 
 //	//                                                          timeoutInterval:URL_REQUEST_TIMEOUT];
 //	// --------------------------------------------------------------------------------
-//	NSLog(@"here %@", _accessToken);
+//	DLog(@"here %@", _accessToken);
 //	OAMutableURLRequest *theRequest = [[[OAMutableURLRequest alloc] initWithURL:finalURL
 //																	   consumer:self.consumer 
 //																		  token:_accessToken 
@@ -354,7 +354,7 @@
 //    // Set the request body if this is a POST request.
 //    BOOL isPOST = (method && [method isEqualToString:@"POST"]);
 //    if (isPOST) {
-//        NSLog(@"http method:  POST!");
+//        DLog(@"http method:  POST!");
 //        // Set request body, if specified (hopefully so), with 'source' parameter if appropriate.
 //        NSString *finalBody = @"";
 //		if (body) {
@@ -440,7 +440,7 @@
     if (!finalURL) {
         return nil;
     }
-    NSLog(@"XAuthTwitterEngine: finalURL = %@", finalURL);
+    DLog(@"XAuthTwitterEngine: finalURL = %@", finalURL);
 	
 	//
 	// Check if we're authorized. If not don't carry out the request.
@@ -461,7 +461,7 @@
 	//                                                              cachePolicy:NSURLRequestReloadIgnoringCacheData 
 	//                                                          timeoutInterval:URL_REQUEST_TIMEOUT];
 	// --------------------------------------------------------------------------------
-	NSLog(@"About to carry out request with access token: %@", _accessToken);
+	DLog(@"About to carry out request with access token: %@", _accessToken);
 	OAMutableURLRequest *theRequest = [[[OAMutableURLRequest alloc] initWithURL:finalURL
 																	   consumer:self.consumer 
 																		  token:_accessToken 

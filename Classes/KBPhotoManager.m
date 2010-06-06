@@ -95,7 +95,7 @@ static BOOL initialized = NO;
 - (void) imageRequestDidFinish:(ASIHTTPRequest *) request {
     [delegate photoUploadFinished:request];
 //    [self stopProgressBar];
-    NSLog(@"PhotoManager - YAY! Image uploaded! %@", [request responseString]);
+    DLog(@"PhotoManager - YAY! Image uploaded! %@", [request responseString]);
 //    KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"Image upload has been completed!"];
 //    [self displayPopupMessage:message];
 //    [message release];
@@ -110,7 +110,7 @@ static BOOL initialized = NO;
 - (void) imageQueueDidFinish:(ASIHTTPRequest *) request {
     [delegate photoQueueFinished:request];
 //    [self stopProgressBar];
-    NSLog(@"PhotoManager - YAY! Image queue is complete!");
+    DLog(@"PhotoManager - YAY! Image queue is complete!");
 //    
 //    // TODO: this should probably capture the response, parse it into a KBGoody, then add it to the goodies object - it would save an API hit
 //    
@@ -120,12 +120,12 @@ static BOOL initialized = NO;
 - (void) imageRequestDidFail:(ASIHTTPRequest *) request {
     [delegate photoUploadFailed:request];
 //    [self stopProgressBar];
-    NSLog(@"PhotoManager - Uhoh, it did fail!");
+    DLog(@"PhotoManager - Uhoh, it did fail!");
 }
 
 - (void) imageRequestWentWrong:(ASIHTTPRequest *) request {
 //    [self stopProgressBar];
-    NSLog(@"PhotoManager - Uhoh, request went wrong!");
+    DLog(@"PhotoManager - Uhoh, request went wrong!");
 }
 
 -(UIImage*)imageByScalingToSize:(UIImage*)image toSize:(CGSize)targetSize {
@@ -235,8 +235,8 @@ static BOOL initialized = NO;
     if ([request.method isEqualToString:@"facebook.photos.upload"]) {
         NSDictionary* photoInfo = result;
         NSString* pid = [photoInfo objectForKey:@"pid"];
-        NSLog(@"facebook photo uploaded: %@", photoInfo);
-        NSLog(@"facebook photo uploaded. pid: %@", pid);
+        DLog(@"facebook photo uploaded: %@", photoInfo);
+        DLog(@"facebook photo uploaded. pid: %@", pid);
     }
 }
 

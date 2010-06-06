@@ -40,7 +40,7 @@
     photoManager.delegate = self;
     
     FSUser* user = [self getAuthenticatedUser];
-    NSLog(@"user: %@", user);
+    DLog(@"user: %@", user);
     facebookButton.enabled = user.facebook != nil;
     twitterButton.enabled = user.twitter != nil;
     isFacebookOn = YES;
@@ -164,18 +164,18 @@
 - (void)request:(FBRequest*)request didLoad:(id)result {
     if ([request.method isEqualToString:@"facebook.status.set"]) {
         NSDictionary* info = result;
-        NSLog(@"facebook status updated: %@", info);
+        DLog(@"facebook status updated: %@", info);
     }
     [self decrementActionCount];
 }
 
 // 4sq response
 - (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    NSLog(@"instring: %@", inString);
+    DLog(@"instring: %@", inString);
 //	NSArray *checkins = [FoursquareAPI checkinsFromResponseXML:inString];
 //    if ([checkins count] > 0) {
 //        checkin = [checkins objectAtIndex:0];
-//        NSLog(@"checkin: %@", checkin);
+//        DLog(@"checkin: %@", checkin);
 //    }
     checkin = [[FoursquareAPI checkinFromResponseXML:inString] retain];
     
@@ -248,7 +248,7 @@
     thumbnailPreview.clipsToBounds = YES;
     thumbnailPreview.image = [photoImage retain];
     
-    NSLog(@"image picker info: %@", info);
+    DLog(@"image picker info: %@", info);
 }
 
 - (void) getPhoto:(UIImagePickerControllerSourceType)sourceType {
@@ -274,7 +274,7 @@
 
 - (void) photoUploadFinished:(ASIHTTPRequest *) request {
     [self stopProgressBar];
-    NSLog(@"YAY! Image uploaded!");
+    DLog(@"YAY! Image uploaded!");
     KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"Image upload has been completed!"];
     [self displayPopupMessage:message];
     [message release];
@@ -294,7 +294,7 @@
 - (void) photoQueueFinished:(ASIHTTPRequest *) request {
     [self decrementActionCount];
     
-    NSLog(@"YAY! Image queue is complete!");
+    DLog(@"YAY! Image queue is complete!");
     
     // TODO: this should probably capture the response, parse it into a KBGoody, then add it to the goodies object - it would save an API hit
     
@@ -303,7 +303,7 @@
 
 - (void) photoUploadFailed:(ASIHTTPRequest *) request {
     [self stopProgressBar];
-    NSLog(@"Uhoh, it did fail!");
+    DLog(@"Uhoh, it did fail!");
 }
 
 #pragma mark 

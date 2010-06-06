@@ -56,7 +56,7 @@
 }
 
 - (void) setDateLabelWithDate:(NSDate*)theDate {
-    //NSLog(@"label date: %@", theDate);
+    //DLog(@"label date: %@", theDate);
 	NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
 	[dateFormatter setDateFormat:TWITTER_DISPLAY_DATE_FORMAT];
     dateLabel.text = [dateFormatter stringFromDate:theDate];

@@ -48,23 +48,23 @@
 }
 
 - (void) updateVenue:(NSNotification*)notification {
-    NSLog(@"notification: %@", notification);
+    DLog(@"notification: %@", notification);
     venue = nil;
     [venue release];
     venue = [[[notification userInfo] objectForKey:@"updatedVenue"] retain];
     addressNotation.text = @"Added!";
     addressNotation.textColor = [UIColor colorWithRed:0.0 green:164.0/255.0 blue:237.0/255.0 alpha:1.0];
-    NSLog(@"updated address venue: %@", venue);
+    DLog(@"updated address venue: %@", venue);
 }
 
 - (void) updateCategory:(NSNotification*)notification {
-    NSLog(@"notification: %@", notification);
+    DLog(@"notification: %@", notification);
     venue = nil;
     [venue release];
     venue = [[[notification userInfo] objectForKey:@"updatedVenue"] retain];
     categoryNotation.text = @"Added!";
     categoryNotation.textColor = [UIColor colorWithRed:0.0 green:164.0/255.0 blue:237.0/255.0 alpha:1.0];
-    NSLog(@"updated category venue: %@", venue);
+    DLog(@"updated category venue: %@", venue);
     [self.navigationController popToViewController:self animated:YES];
 }
 
@@ -87,8 +87,8 @@
 //    if (![venue.name isEqualToString:@""]) {
 //        [self startProgressBar:@"Searching..."];
 //        // TODO: I am just replacing a space with a +, but other characters might give this method a headache.
-//        NSLog(@"searching on latitude: %f", [[KBLocationManager locationManager] latitude]);
-//        NSLog(@"searching on longitude: %f", [[KBLocationManager locationManager] longitude]);
+//        DLog(@"searching on latitude: %f", [[KBLocationManager locationManager] latitude]);
+//        DLog(@"searching on longitude: %f", [[KBLocationManager locationManager] longitude]);
 //        [[FoursquareAPI sharedInstance] getVenuesByKeyword:[venue.name stringByReplacingOccurrencesOfString:@" " withString:@"+"]
 //                                               andLatitude:[NSString stringWithFormat:@"%f", [[KBLocationManager locationManager] latitude]] 
 //                                              andLongitude:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] longitude]] 
@@ -141,9 +141,9 @@
 }
 
 - (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    NSLog(@"new checkin instring: %@", inString);
+    DLog(@"new checkin instring: %@", inString);
     FSCheckin *ci = [FoursquareAPI checkinFromResponseXML:inString];
-    NSLog(@"venueless checkin: %@", checkin);
+    DLog(@"venueless checkin: %@", checkin);
     [self stopProgressBar];
 
     KBMessage *msg = [[KBMessage alloc] initWithMember:@"Check-in Successful" andMessage:ci.message];
@@ -181,7 +181,7 @@
         [self displayPopupMessage:msg];
         [msg release];
     } else {
-        NSLog(@"new venue instring: %@", inString);
+        DLog(@"new venue instring: %@", inString);
         FSVenue *theVenue = [FoursquareAPI venueFromResponseXML:inString];
         
         // TODO: we should think about removing the Add Venue pages from the stack so users can't use the BACK button to return to them

@@ -45,7 +45,7 @@
 }
 
 - (void)venuesResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    NSLog(@"venues: %@", inString);
+    DLog(@"venues: %@", inString);
 	NSDictionary *allVenues = [FoursquareAPI venuesFromResponseXML:inString];
     self.venues = [[NSMutableArray alloc] initWithCapacity:1];
     for (NSString *key in [allVenues allKeys]) {
@@ -138,7 +138,7 @@
 - (void) zoomToProperDepth {
     if (self.venues && self.venues.count > 0)
 	{
-//		NSLog(@"checkins count: %d", checkins.count);
+//		DLog(@"checkins count: %d", checkins.count);
 		
         double minLat = 1000;
         double maxLat = -1000;
@@ -247,7 +247,7 @@
 - (void) showVenue:(id)sender {
     [FlurryAPI logEvent:@"Clicked on Show Venue from Map Annotation"];
     int nrButtonPressed = ((UIButton *)sender).tag;
-    NSLog(@"annotation for venue pressed: %d", nrButtonPressed);
+    DLog(@"annotation for venue pressed: %d", nrButtonPressed);
     
     PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView_v2" bundle:nil];
     placeDetailController.venueId = [NSString stringWithFormat:@"%d", nrButtonPressed];
@@ -292,7 +292,7 @@
 }
 
 - (void)allVenuesOnScrollResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    NSLog(@"venues from search - instring: %@", inString);
+    DLog(@"venues from search - instring: %@", inString);
 	NSDictionary *allVenues = [FoursquareAPI venuesFromResponseXML:inString];
     NSMutableArray *venueArray = [[NSMutableArray alloc] initWithCapacity:1];
     NSArray *keys = [allVenues allKeys];
@@ -300,14 +300,14 @@
         [venueArray addObjectsFromArray:[allVenues objectForKey:key]];
     }
 	self.venues = [NSArray arrayWithArray:venueArray];
-    NSLog(@"searched on venues: %@", self.venues);
+    DLog(@"searched on venues: %@", self.venues);
     [venueArray release];
     [self stopProgressBar];
     [self addAnnotationsToMap:self.venues];
 }
 
 - (void)allVenuesResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    NSLog(@"venues from search - instring: %@", inString);
+    DLog(@"venues from search - instring: %@", inString);
 	NSDictionary *allVenues = [FoursquareAPI venuesFromResponseXML:inString];
     NSMutableArray *venueArray = [[NSMutableArray alloc] initWithCapacity:1];
     NSArray *keys = [allVenues allKeys];
@@ -315,7 +315,7 @@
         [venueArray addObjectsFromArray:[allVenues objectForKey:key]];
     }
 	self.venues = [NSArray arrayWithArray:venueArray];
-    NSLog(@"searched on venues: %@", self.venues);
+    DLog(@"searched on venues: %@", self.venues);
     [venueArray release];
     [self stopProgressBar];
     [self refreshVenuePoints];

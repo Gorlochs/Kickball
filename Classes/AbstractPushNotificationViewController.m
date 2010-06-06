@@ -31,7 +31,7 @@
 
 - (void) sendPushNotification {
     if ([[Utilities sharedInstance] friendsWithPingOn]) {
-        NSLog(@"friends with ping on pulled from cache: %@", [[[Utilities sharedInstance] friendsWithPingOn] componentsJoinedByString:@","]);
+        DLog(@"friends with ping on pulled from cache: %@", [[[Utilities sharedInstance] friendsWithPingOn] componentsJoinedByString:@","]);
         [self friendsToPingReceived:nil];
     } else {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(friendsToPingReceived:) name:@"friendsWithPingOnReceived" object:nil];
@@ -45,7 +45,7 @@
         [friendIds addObject:friend.userId];
     }
     NSString *friendIdsString = [friendIds componentsJoinedByString:@","];
-    NSLog(@"friend ids: %@", friendIdsString);
+    DLog(@"friend ids: %@", friendIdsString);
     [friendIds release];
     
     FSUser *user = [self getAuthenticatedUser];
@@ -58,7 +58,7 @@
     } else {
         hashInput = [NSString stringWithFormat:@"%@%@%@", uid, un, vn];
     }
-    NSLog(@"hash input: %@", hashInput);
+    DLog(@"hash input: %@", hashInput);
 	
     NSString *hash = [hashInput hmacSha1:kKBHashSalt];
     NSString *urlstring = PUSH_URL;
@@ -85,7 +85,7 @@
 
 - (void)pushCompleted:(ASIHTTPRequest *) request {
 	NSString *result = request.responseString;
-	NSLog(@"Response from push: %@", result);
+	DLog(@"Response from push: %@", result);
 	
     // without the hasPhoto check, the user gets two popup messages, which sucks
     if (!self.venueToPush) {
@@ -100,7 +100,7 @@
 
 - (void)pushFailed:(ASIHTTPRequest *) request {
 	NSString *result = request.responseString;
-	NSLog(@"Failure from push: %@", result);
+	DLog(@"Failure from push: %@", result);
 }
 
 - (void) dealloc {

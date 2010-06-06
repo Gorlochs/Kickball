@@ -73,7 +73,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)_deviceToken {
-    NSLog(@"didRegisterForRemoteNotificationsWithDeviceToken");
+    DLog(@"didRegisterForRemoteNotificationsWithDeviceToken");
 	// Get a hex string from the device token with no spaces or < >
 	self.deviceToken = [[[[_deviceToken description] stringByReplacingOccurrencesOfString:@"<"withString:@""] 
                          stringByReplacingOccurrencesOfString:@">" withString:@""] 
@@ -128,11 +128,11 @@ void uncaughtExceptionHandler(NSException *exception) {
 	[request setDidFailSelector: @selector(requestWentWrong:)];
 	[queue addOperation:request];
 	
-	NSLog(@"Device Token: %@", self.deviceToken);
+	DLog(@"Device Token: %@", self.deviceToken);
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *) error {
-	NSLog(@"Failed to register with error: %@", error);
+	DLog(@"Failed to register with error: %@", error);
 }
 
 - (void)successMethod:(ASIHTTPRequest *) request {
@@ -152,12 +152,12 @@ void uncaughtExceptionHandler(NSException *exception) {
                                               otherButtonTitles: nil];
 	[someError show];
 	[someError release];
-	NSLog(@"ERROR: NSError query result: %@", error);
+	DLog(@"ERROR: NSError query result: %@", error);
 }
 
 // this is called when a user received a push notification but does NOT have the app open
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    NSLog(@"launch options: %@", launchOptions);
+    DLog(@"launch options: %@", launchOptions);
     [self applicationDidFinishLaunching:application];
     self.pushNotificationUserId = [[[launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey] objectForKey: @"aps"] objectForKey: @"uid"];
     if (launchOptions) {
@@ -174,12 +174,12 @@ void uncaughtExceptionHandler(NSException *exception) {
     if([[FoursquareAPI sharedInstance] isAuthenticated]){
         [[FoursquareAPI sharedInstance] getUser:self.pushNotificationUserId withTarget:self andAction:@selector(pushUserResponseReceived:withResponseString:)];
     } else {
-        NSLog(@"this shouldn't happen ever!");
+        DLog(@"this shouldn't happen ever!");
     }
 }
 
 - (void)pushUserResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    NSLog(@"push notification response received");
+    DLog(@"push notification response received");
 	FSUser *pushedUser = [FoursquareAPI userFromResponseXML:inString];
     pushView = [[KBPushNotificationView alloc] initWithNibName:@"PushNotificationView" bundle:nil];
     pushView.view.frame = CGRectMake(0, 435, 320, 42);
@@ -229,7 +229,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 }
 
 - (void) viewUserProfile:(id)sender {
-    NSLog(@"user pressed the view user profile push notification button");
+    DLog(@"user pressed the view user profile push notification button");
     ProfileViewController *profileController = [[ProfileViewController alloc] initWithNibName:@"ProfileView_v2" bundle:nil];
     profileController.userId = self.pushNotificationUserId;
     self.pushNotificationUserId = nil;
@@ -257,8 +257,8 @@ void uncaughtExceptionHandler(NSException *exception) {
             
 //            NSError *error = nil;
 //            NSString *apiTestResponse = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://www.apple.com"] encoding:NSASCIIStringEncoding error:&error];
-//            NSLog(@"api test error: %@", error);
-//            NSLog(@"api test response: %@", apiTestResponse);
+//            DLog(@"api test error: %@", error);
+//            DLog(@"api test response: %@", apiTestResponse);
 //            if (error || [apiTestResponse rangeOfString:@"ok"].length == NSNotFound) {
 //                UIAlertView *apiAlert = [[UIAlertView alloc] initWithTitle:@"Foursquare is Down" message:@"We're sorry. It looks like FourSquare servers are down temporarily. Please try again in a few minutes." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
 //                [apiAlert show];

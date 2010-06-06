@@ -91,7 +91,7 @@
     
 	if(![[FoursquareAPI sharedInstance] isAuthenticated]){
 		//run sheet to log in.
-		NSLog(@"Foursquare is not authenticated");
+		DLog(@"Foursquare is not authenticated");
 		if (self.loginViewModal == nil)
 			self.loginViewModal = [[[LoginViewModalController alloc] initWithNibName:
 									NSStringFromClass([LoginViewModalController class]) bundle:nil] autorelease];
@@ -152,7 +152,7 @@
 }
 
 - (void)userResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    //NSLog(@"authenticated user: %@", inString);
+    //DLog(@"authenticated user: %@", inString);
 	FSUser* user = [[FoursquareAPI userFromResponseXML:inString] retain];
     if (hasViewedInstructions) {
         [self setUserIconViewCustom:user];
@@ -182,15 +182,15 @@
         }
     }  
     
-    NSLog(@"auth'd user: %@", user);
+    DLog(@"auth'd user: %@", user);
     [user release];
 }
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
-    NSLog(@"******************************************************");
-    NSLog(@"******************* MEMORY WARNING!!! ****************");
-    NSLog(@"******************************************************");
+    DLog(@"******************************************************");
+    DLog(@"******************* MEMORY WARNING!!! ****************");
+    DLog(@"******************************************************");
     [super didReceiveMemoryWarning];
     instructionView = nil;
     noNetworkView = nil;
@@ -345,12 +345,12 @@
 //        cell.backgroundView = nil;
 //    }
     
-    //NSLog(@"returning cell for row: %d", indexPath.row);
+    //DLog(@"returning cell for row: %d", indexPath.row);
 	return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"row selected");
+    DLog(@"row selected");
     FSUser *user = nil;
     switch (indexPath.section) {
         case SECTION_RECENT_CHECKINS: // last 3 hours
@@ -515,14 +515,14 @@
 - (void)request:(FBRequest*)request didLoad:(id)result {
     if ([request.method isEqualToString:@"facebook.status.set"]) {
         NSDictionary* info = result;
-        NSLog(@"facebook status updated: %@", info);
+        DLog(@"facebook status updated: %@", info);
     }
     [self decrementActionCount];
 }
 
 // 4sq response
 - (void)shoutResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    //NSLog(@"instring: %@", inString);
+    //DLog(@"instring: %@", inString);
 	NSArray *checkins = [FoursquareAPI checkinsFromResponseXML:inString];
 //    if ([checkins count] > 0) {
 //        checkin = [checkins objectAtIndex:0];
@@ -590,7 +590,7 @@
 }
 
 - (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    NSLog(@"checkins: %@", inString);
+    DLog(@"checkins: %@", inString);
     NSString *errorMessage = [FoursquareAPI errorFromResponseXML:inString];
     if (errorMessage) {
         [self displayFoursquareErrorMessage:errorMessage];
@@ -648,13 +648,13 @@
             }
         }
         
-        NSLog(@"all checkins: %d", [self.checkins count]);
-        NSLog(@"recent checkins: %d", [self.recentCheckins count]);
-        NSLog(@"today checkins: %d", [self.todayCheckins count]);
-        NSLog(@"yesterday checkins: %d", [self.yesterdayCheckins count]);
-        NSLog(@"non city recent checkins: %d", [self.nonCityRecentCheckins count]);
-        NSLog(@"non city today checkins: %d", [self.nonCityTodayCheckins count]);
-        NSLog(@"non city yesterday checkins: %d", [self.nonCityYesterdayCheckins count]);
+        DLog(@"all checkins: %d", [self.checkins count]);
+        DLog(@"recent checkins: %d", [self.recentCheckins count]);
+        DLog(@"today checkins: %d", [self.todayCheckins count]);
+        DLog(@"yesterday checkins: %d", [self.yesterdayCheckins count]);
+        DLog(@"non city recent checkins: %d", [self.nonCityRecentCheckins count]);
+        DLog(@"non city today checkins: %d", [self.nonCityTodayCheckins count]);
+        DLog(@"non city yesterday checkins: %d", [self.nonCityYesterdayCheckins count]);
         
         [theTableView reloadData];
         int sectionToScrollTo = [self.recentCheckins count] > 0 ? SECTION_RECENT_CHECKINS : ([self.todayCheckins count] > 0 ? SECTION_TODAY_CHECKINS: ([self.nonCityRecentCheckins count] > 0 ? SECTION_NONCITY_RECENT_CHECKINS : 0));
@@ -675,7 +675,7 @@
         [standardUserDefaults setObject:recentCheckinsData forKey:@"recentCheckinsData"];
         [standardUserDefaults setObject:todayCheckinsData forKey:@"todayCheckinsData"];
         [standardUserDefaults setObject:yesterdayCheckinsData forKey:@"yesterdayCheckinsData"];
-        NSLog(@"finished with checkin response");
+        DLog(@"finished with checkin response");
         
         if (!hasViewedInstructions) {
             [standardUserDefaults setBool:YES forKey:@"viewedInstructions"];
@@ -701,7 +701,7 @@
 //    [imageButton setImage:user.photo forState:UIControlStateNormal]; 
 
 //    if (user) {
-//        NSLog(@"user is not null");
+//        DLog(@"user is not null");
 //        UIImage *image = [[Utilities sharedInstance] getCachedImage:user.photo];
 //        iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(278, 2, 42, 42)];
 //        iconImageView.image = image;
@@ -725,7 +725,7 @@
 //    hasViewedInstructions = YES;
 ////    if (welcomePageNum == 1) {
 ////        NSString *imageName = [NSString stringWithFormat:@"welcome0%d.png", welcomePageNum + 1];
-////        NSLog(@"image name: %@", imageName);
+////        DLog(@"image name: %@", imageName);
 ////        welcomeImage.image = [UIImage imageNamed:imageName];
 ////        [self.view bringSubviewToFront:nextWelcomeImage];
 ////        [self.view bringSubviewToFront:previousWelcomeImage];
@@ -748,7 +748,7 @@
 
 - (void) displayOlderCheckins {
     isDisplayingMore = YES;
-    NSLog(@"displayolder checkins: %d", isDisplayingMore);
+    DLog(@"displayolder checkins: %d", isDisplayingMore);
     [theTableView reloadData];
 }
 

@@ -40,7 +40,7 @@
 - (void)directMessagesReceived:(NSArray *)messages {
 	if (messages) {
 		twitterArray = [messages retain];
-		//NSLog(@"status retrieved: %@", statuses);
+		//DLog(@"status retrieved: %@", statuses);
 		NSMutableArray *tempTweetArray = [[NSMutableArray alloc] initWithCapacity:[twitterArray count]];
 		for (NSDictionary *dict in twitterArray) {
 			KBDirectMessage *message = [[KBDirectMessage alloc] initWithDictionary:dict];

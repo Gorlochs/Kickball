@@ -34,7 +34,7 @@
 
 - (void)categoryResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     categories = [[FoursquareAPI categoriesFromResponseJSON:inString] retain];
-    NSLog(@"categories: %@", categories);
+    DLog(@"categories: %@", categories);
     [theTableView reloadData];
     [self stopProgressBar];
 }

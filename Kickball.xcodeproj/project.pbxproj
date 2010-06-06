@@ -3957,6 +3957,7 @@
 					$SDKROOT/usr/include/libxml2,
 					../three20/src,
 				);
+				OTHER_CFLAGS = "-DDEBUG";
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",
@@ -3982,6 +3983,7 @@
 					$SDKROOT/usr/include/libxml2,
 					/usr/local/include/yajl,
 				);
+				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",

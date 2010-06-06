@@ -150,9 +150,9 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    NSLog(@"observed value change");
+    DLog(@"observed value change");
     if ([keyPath isEqualToString:@"pushUserId"] ) {
-        NSLog(@"observed value changed for pushnotification venueid");
+        DLog(@"observed value changed for pushnotification venueid");
         KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
         if (appDelegate.pushNotificationUserId != nil) {
             [self displayPushedVenueId];
@@ -171,7 +171,7 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 
 - (void) setUserIconView:(FSUser*)user {
     if (user) {
-        NSLog(@"user is not null");
+        DLog(@"user is not null");
 
         CGRect frame = CGRectMake(136, 0, 46, 41);
         TTImageView *ttImage = [[TTImageView alloc] initWithFrame:frame];
@@ -382,7 +382,7 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 - (void) openWebView:(NSString*)url {
     [FlurryAPI logEvent:@"Opening link from Twitter feed"];
     KBWebViewController *webController = [[KBWebViewController alloc] initWithNibName:@"KBWebViewController" bundle:nil andUrlString:url];
-    NSLog(@"website url: %@", url);
+    DLog(@"website url: %@", url);
     //webController.urlString = url;
     [self presentModalViewController:webController animated:YES];
     // FIXME: commenting out below probably fixes the crash, but it's masking the REAL problem, which I need to find
@@ -423,7 +423,7 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 
 - (void) refreshTable {
     
-    NSLog(@"^^^^^ you should not be in here! ^^^^^^^^");
+    DLog(@"^^^^^ you should not be in here! ^^^^^^^^");
 	[self dataSourceDidFinishLoadingNewData];
 }
 

@@ -136,7 +136,7 @@
         
         [FlurryAPI logEvent:@"Shout"];
     } else {
-        NSLog(@"no text in shout field");
+        DLog(@"no text in shout field");
     }
 }
 
@@ -149,14 +149,14 @@
 - (void)request:(FBRequest*)request didLoad:(id)result {
     if ([request.method isEqualToString:@"facebook.status.set"]) {
         NSDictionary* info = result;
-        NSLog(@"facebook status updated: %@", info);
+        DLog(@"facebook status updated: %@", info);
     }
     [self decrementActionCount];
 }
 
 // 4sq response
 - (void)shoutResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    NSLog(@"instring: %@", inString);
+    DLog(@"instring: %@", inString);
 	NSArray *shoutCheckins = [FoursquareAPI checkinsFromResponseXML:inString];
     
     self.shoutToPush = [NSString stringWithString:theTextView.text];

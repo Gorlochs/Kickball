@@ -398,7 +398,7 @@ NSString *fsPassword			= nil;
 #pragma mark - Private APIs -
 
 - (void)_performedLoad:(MPOAuthAPIRequestLoader *)inLoader receivingData:(NSData *)inData {
-	NSLog(@"loaded %@, and got %@", inLoader, inData);
+	DLog(@"loaded %@, and got %@", inLoader, inData);
 }
 
 #pragma mark -

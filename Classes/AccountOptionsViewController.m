@@ -107,7 +107,7 @@
 //	NSString *username = twitterUsername.text;
 //	NSString *password = twitterPassword.text;
 //	
-//	NSLog(@"About to request an xAuth token exchange for username: ]%@[ password: ]%@[.", username, password);
+//	DLog(@"About to request an xAuth token exchange for username: ]%@[ password: ]%@[.", username, password);
 //	
 //	[self.twitterEngine exchangeAccessTokenForUsername:username password:password];
 //}
@@ -121,7 +121,7 @@
 //	// ===== Use the keychain instead. Check out SFHFKeychainUtils if you want 
 //	//       an easy to use library. (http://github.com/ldandersen/scifihifi-iphone) 
 //	//
-//	NSLog(@"Access token string returned: %@", tokenString);
+//	DLog(@"Access token string returned: %@", tokenString);
 //	
 //	[[NSUserDefaults standardUserDefaults] setObject:tokenString forKey:kCachedXAuthAccessTokenStringKey];
 //    [[KBAccountManager sharedInstance] setUsesTwitter:YES];
@@ -141,7 +141,7 @@
 #pragma mark delgate callbacks
 
 - (void)userResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    NSLog(@"friend response for login: %@", inString);
+    DLog(@"friend response for login: %@", inString);
     [self stopProgressBar];
     // cheap way of checking for successful authentication
     BOOL containsUnauthorized = [inString rangeOfString:@"unauthorized" options:NSCaseInsensitiveSearch].length > 0;
@@ -155,7 +155,7 @@
         
         NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
         [prefs setObject:foursquareUsername.text forKey:kUsernameDefaultsKey];
-        NSLog(@"Stored username: %@", foursquareUsername.text);
+        DLog(@"Stored username: %@", foursquareUsername.text);
         
         NSError *error = nil;
         [SFHFKeychainUtils storeUsername:foursquareUsername.text
@@ -175,7 +175,7 @@
 
 - (void) twitterXAuthConnectionDidFailWithError: (NSError *)error;
 {
-	NSLog(@"Error: %@", error);
+	DLog(@"Error: %@", error);
 	
     KBMessage *message = [[KBMessage alloc] initWithMember:@"Error!" andMessage:@"Authentication error! Please check your username and password and try again."];
     [self displayPopupMessage:message];
@@ -229,7 +229,7 @@
 #pragma mark Text field delegate
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
-    //NSLog(@"text field did begin editing: %@", textField);
+    //DLog(@"text field did begin editing: %@", textField);
     CGRect textFieldRect = [self.view.window convertRect:textField.bounds fromView:textField];
     CGRect viewRect = [self.view.window convertRect:self.view.bounds fromView:self.view];
     CGFloat midline = textFieldRect.origin.y + 0.5 * textFieldRect.size.height;
@@ -249,8 +249,8 @@
     }
     CGRect viewFrame = self.view.frame;
     viewFrame.origin.y -= animatedDistance;
-    NSLog(@"animated distance: %f", animatedDistance);
-    NSLog(@"viewframe origin y: %f", viewFrame.origin.y);
+    DLog(@"animated distance: %f", animatedDistance);
+    DLog(@"viewframe origin y: %f", viewFrame.origin.y);
     
 //    // toolbar stuff
 //    toolbar.hidden = NO;
@@ -282,7 +282,7 @@
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-    //NSLog(@"text field did end editing: %@", textField);
+    //DLog(@"text field did end editing: %@", textField);
     CGRect viewFrame = self.view.frame;
     viewFrame.origin.y += animatedDistance;
     

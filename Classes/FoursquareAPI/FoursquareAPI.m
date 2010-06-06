@@ -95,11 +95,11 @@ static FoursquareAPI *sharedInstance = nil;
 //											 fsPassword:fsPass];
 //	self.oauthAPI.delegate = (id <MPOAuthAPIDelegate>)[UIApplication sharedApplication].delegate;
 //    MPOAuthCredentialConcreteStore *credStore = [self.oauthAPI credentials];
-//    NSLog(@"cred: %@", [credStore oauthParameters]);
-////    NSLog(@"cred time: %@", [self.oauthAPI credentials].timestamp);
-////    NSLog(@"cred request token: %@", [self.oauthAPI credentials].requestToken);
-////    NSLog(@"cred consumer key: %@", [self.oauthAPI credentials].consumerKey);
-//    NSLog(@"auth state: %@", self.oauthAPI.authenticationState);
+//    DLog(@"cred: %@", [credStore oauthParameters]);
+////    DLog(@"cred time: %@", [self.oauthAPI credentials].timestamp);
+////    DLog(@"cred request token: %@", [self.oauthAPI credentials].requestToken);
+////    DLog(@"cred consumer key: %@", [self.oauthAPI credentials].consumerKey);
+//    DLog(@"auth state: %@", self.oauthAPI.authenticationState);
 }
 
 - (BOOL) isAuthenticated{
@@ -116,7 +116,7 @@ static FoursquareAPI *sharedInstance = nil;
 	}
 //	
 //	NSString *accessTokenSecret = [self.oauthAPI findValueFromKeychainUsingName:@"oauth_token_access_secret"];
-//    //NSLog(@"****** accessTokenSecret: %@", accessTokenSecret);
+//    //DLog(@"****** accessTokenSecret: %@", accessTokenSecret);
 //	if(accessTokenSecret != nil){
 //		return YES;
 //	} else return NO;
@@ -193,8 +193,8 @@ static FoursquareAPI *sharedInstance = nil;
 - (void) getCheckinsWithTarget:(id)inTarget andAction:(SEL)inAction {
 	//	[self.oauthAPI performMethod:@"/v1/checkins" withTarget:inTarget andAction:inAction];
 	NSMutableDictionary * requestParams = [[[NSMutableDictionary alloc] initWithCapacity:2] autorelease];
-    NSLog(@"checkins lat: %f", [[KBLocationManager locationManager] latitude]);
-    NSLog(@"checkins long: %f", [[KBLocationManager locationManager] longitude]);
+    DLog(@"checkins lat: %f", [[KBLocationManager locationManager] latitude]);
+    DLog(@"checkins long: %f", [[KBLocationManager locationManager] longitude]);
     if ([[KBLocationManager locationManager] latitude] == 0.0f) {
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         [requestParams setObject:[NSString stringWithFormat:@"%f", [userDefaults floatForKey:kLastLatitudeKey]]  forKey:@"geolat"];	
@@ -267,7 +267,7 @@ static FoursquareAPI *sharedInstance = nil;
 }
 
 - (void)setPings:(NSString*)pingStatus forUser:(NSString *)userId withTarget:(id)inTarget andAction:(SEL)inAction {
-    NSLog(@"setting ping status (%@) for user: %@", pingStatus, userId);
+    DLog(@"setting ping status (%@) for user: %@", pingStatus, userId);
     NSMutableDictionary *requestParams = nil;
     if (userId != nil) {
         requestParams = [[NSMutableDictionary alloc] initWithCapacity:1];
@@ -319,7 +319,7 @@ static FoursquareAPI *sharedInstance = nil;
 	}
 	[requestParams setObject:[NSString stringWithFormat:@"%f", [[KBLocationManager locationManager] latitude]]  forKey:@"geolat"];	
 	[requestParams setObject:[NSString stringWithFormat:@"%f", [[KBLocationManager locationManager] longitude]]  forKey:@"geolong"];	
-	NSLog(@"checkin params: %@", requestParams);
+	DLog(@"checkin params: %@", requestParams);
 	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/checkin"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"POST"];
     //    [self.oauthAPI performMethod:@"/v1/checkin" withTarget:inTarget withParameters:params andAction:inAction doPost:YES];
 }
@@ -355,7 +355,7 @@ static FoursquareAPI *sharedInstance = nil;
 	}
 	[requestParams setObject:[NSString stringWithFormat:@"%f", [[KBLocationManager locationManager] latitude]]  forKey:@"geolat"];	
 	[requestParams setObject:[NSString stringWithFormat:@"%f", [[KBLocationManager locationManager] longitude]]  forKey:@"geolong"];	
-	NSLog(@"checkin params: %@", requestParams);
+	DLog(@"checkin params: %@", requestParams);
 	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/checkin"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"POST"];
     //    [self.oauthAPI performMethod:@"/v1/checkin" withTarget:inTarget withParameters:params andAction:inAction doPost:YES];
 }
@@ -447,9 +447,9 @@ static FoursquareAPI *sharedInstance = nil;
 }
 
 - (void) createTipTodoForVenue:(NSString*)venueId type:(NSString*)tipOrTodo text:(NSString*)tipTodoText withTarget:(id)inTarget andAction:(SEL)inAction {
-    NSLog(@"venueid: %@", venueId);
-    NSLog(@"tipOrTodo: %@", tipOrTodo);
-    NSLog(@"tipTodoText: %@", tipTodoText);
+    DLog(@"venueid: %@", venueId);
+    DLog(@"tipOrTodo: %@", tipOrTodo);
+    DLog(@"tipTodoText: %@", tipTodoText);
     NSMutableDictionary * requestParams = [[[NSMutableDictionary alloc] initWithCapacity:3] autorelease];
 	[requestParams setObject:venueId forKey:@"vid"];
 	[requestParams setObject:tipTodoText forKey:@"text"];
@@ -480,14 +480,14 @@ static FoursquareAPI *sharedInstance = nil;
 	
 	NSError * err = nil;
 	CXMLDocument *userParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
-	NSLog(@"error: %@", [err localizedDescription]);
+	DLog(@"error: %@", [err localizedDescription]);
 	
 	NSArray * allUsers;
     NSMutableArray * users = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
 	
 	//get the groups
 	allUsers = [userParser nodesForXPath:@"//requests/user" error:nil];
-    NSLog(@"allusers: %@", allUsers);
+    DLog(@"allusers: %@", allUsers);
 	for (CXMLElement *userResult in allUsers) {
         FSUser *user = [FoursquareAPI _userFromNode:userResult];
         [users addObject:user];
@@ -500,7 +500,7 @@ static FoursquareAPI *sharedInstance = nil;
 + (NSString*) tipIdFromResponseXML:(NSString *) inString {
 	NSError * err = nil;
 	CXMLDocument *settingsParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
-	NSLog(@"error: %@", [err localizedDescription]);
+	DLog(@"error: %@", [err localizedDescription]);
     
     NSString *tipId = nil;
     NSArray *settings = [settingsParser nodesForXPath:@"//tip" error:&err];
@@ -520,7 +520,7 @@ static FoursquareAPI *sharedInstance = nil;
 + (BOOL) simpleBooleanFromResponseXML:(NSString *) inString {
 	NSError * err = nil;
 	CXMLDocument *settingsParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
-	NSLog(@"error: %@", [err localizedDescription]);
+	DLog(@"error: %@", [err localizedDescription]);
     
     BOOL isOK = NO;
     NSArray *settings = [settingsParser nodesForXPath:@"/" error:&err];
@@ -540,7 +540,7 @@ static FoursquareAPI *sharedInstance = nil;
 + (BOOL) pingSettingFromResponseXML:(NSString *) inString {
 	NSError * err = nil;
 	CXMLDocument *settingsParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
-	NSLog(@"error: %@", [err localizedDescription]);
+	DLog(@"error: %@", [err localizedDescription]);
     
     BOOL isPingSet = NO;
     NSArray *settings = [settingsParser nodesForXPath:@"//settings" error:&err];
@@ -549,7 +549,7 @@ static FoursquareAPI *sharedInstance = nil;
 			NSString * key = [[settingsResult childAtIndex:counter] name];
 			NSString * value = [[settingsResult childAtIndex:counter] stringValue];
             if([key isEqualToString:@"pings"]){
-                NSLog(@"isPingSet (FoursquareAPI): %@", value);
+                DLog(@"isPingSet (FoursquareAPI): %@", value);
 				isPingSet = [value isEqualToString:@"on"];
             }
         }
@@ -562,14 +562,14 @@ static FoursquareAPI *sharedInstance = nil;
 	
 	NSError * err = nil;
 	CXMLDocument *userParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
-	NSLog(@"error: %@", [err localizedDescription]);
+	DLog(@"error: %@", [err localizedDescription]);
 	
 	NSArray * allUsers;
     NSMutableArray * users = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
 	
 	//get the groups
 	allUsers = [userParser nodesForXPath:@"//users/user" error:nil];
-    NSLog(@"allusers: %@", allUsers);
+    DLog(@"allusers: %@", allUsers);
 	for (CXMLElement *userResult in allUsers) {
         FSUser *user = [FoursquareAPI _userFromNode:userResult];
         [users addObject:user];
@@ -583,14 +583,14 @@ static FoursquareAPI *sharedInstance = nil;
 	
 	NSError * err = nil;
 	CXMLDocument *userParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
-	NSLog(@"error: %@", [err localizedDescription]);
+	DLog(@"error: %@", [err localizedDescription]);
 	
 	NSArray * allUsers;
     NSMutableArray * users = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
 	
 	//get the groups
 	allUsers = [userParser nodesForXPath:@"//requests/user" error:nil];
-    NSLog(@"allusers: %@", allUsers);
+    DLog(@"allusers: %@", allUsers);
 	for (CXMLElement *userResult in allUsers) {
         FSUser *user = [FoursquareAPI _userFromNode:userResult];
         [users addObject:user];
@@ -604,14 +604,14 @@ static FoursquareAPI *sharedInstance = nil;
 	
 	NSError * err = nil;
 	CXMLDocument *userParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
-	NSLog(@"error: %@", [err localizedDescription]);
+	DLog(@"error: %@", [err localizedDescription]);
 	
 	NSArray * allUsers;
     NSMutableArray * users = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
 	
 	//get the groups
 	allUsers = [userParser nodesForXPath:@"//friends/user" error:nil];
-    NSLog(@"allusers: %@", allUsers);
+    DLog(@"allusers: %@", allUsers);
 	for (CXMLElement *userResult in allUsers) {
         FSUser *user = [FoursquareAPI _userFromNode:userResult];
         [users addObject:user];
@@ -625,7 +625,7 @@ static FoursquareAPI *sharedInstance = nil;
 //	
 //	NSError * err = nil;
 //	CXMLDocument *friendParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
-//	NSLog(@"%@", [err localizedDescription]);
+//	DLog(@"%@", [err localizedDescription]);
 //	
 //	NSArray * allFriends = nil;
 //	
@@ -642,8 +642,8 @@ static FoursquareAPI *sharedInstance = nil;
 
 	NSError * err = nil;
 	CXMLDocument *venueParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
-	NSLog(@"venues xml: %@", venueParser);
-	NSLog(@"error: %@", [err localizedDescription]);
+	DLog(@"venues xml: %@", venueParser);
+	DLog(@"error: %@", [err localizedDescription]);
 
     NSMutableDictionary *allVenues = [[[NSMutableDictionary alloc] initWithCapacity:1] autorelease];
 
@@ -660,8 +660,8 @@ static FoursquareAPI *sharedInstance = nil;
 	
 	NSError * err = nil;
 	CXMLDocument *userParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
-    //NSLog(@"user xml: %@", userParser);
-	NSLog(@"%@", [err description]);
+    //DLog(@"user xml: %@", userParser);
+	DLog(@"%@", [err description]);
 	
 	NSArray *allUserAttrs = [userParser nodesForXPath:@"user" error:nil];
     FSUser *user = nil;
@@ -678,14 +678,14 @@ static FoursquareAPI *sharedInstance = nil;
     NSError *error = nil;
     NSDictionary *responseDictionary = [[CJSONDeserializer deserializer] deserializeAsDictionary:[inString dataUsingEncoding:NSUTF32BigEndianStringEncoding] error:&error];
     if (error) {
-        NSLog(@"category json error: %@", error);
+        DLog(@"category json error: %@", error);
     }
 	NSMutableArray *categories = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
     for (NSDictionary *dict in [responseDictionary objectForKey:@"categories"]) {
         [categories addObject:[[self parseCategoryFromDictionary:dict] retain]];
-//        NSLog(@"*************************** categories: %@ ***************************", dict);
+//        DLog(@"*************************** categories: %@ ***************************", dict);
 //        for (NSDictionary *cat in [dict objectForKey:@"categories"]) {
-//            NSLog(@"inside cat: %@", cat);
+//            DLog(@"inside cat: %@", cat);
 //        }
     }
     return categories;
@@ -713,7 +713,7 @@ static FoursquareAPI *sharedInstance = nil;
 + (FSUser *) loggedInUserFromResponseXML:(NSString *) inString{
 	NSError * err;
 	CXMLDocument *userParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
-	NSLog(@"%@", [err description]);
+	DLog(@"%@", [err description]);
 
 	FSUser *user = nil;
 	NSArray *allUserAttrs = [userParser nodesForXPath:@"user" error:nil];
@@ -730,14 +730,14 @@ static FoursquareAPI *sharedInstance = nil;
 	
 	NSError * err;
 	CXMLDocument *venueParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
-	NSLog(@"venue xml: %@", venueParser);
+	DLog(@"venue xml: %@", venueParser);
 	FSVenue * thisVenue = [[[FSVenue alloc] init] autorelease];
 	
 	NSArray *allGroups = [venueParser nodesForXPath:@"/" error:nil];
 	
 	for (CXMLElement *groupResult in allGroups) {
 		NSArray * groupOfVenues = [FoursquareAPI _venuesFromNode:groupResult];
-        NSLog(@"group of venues: %@", groupOfVenues);
+        DLog(@"group of venues: %@", groupOfVenues);
         if ([groupOfVenues count] > 0) {
             thisVenue = (FSVenue *)[groupOfVenues objectAtIndex:0];
         }
@@ -749,9 +749,9 @@ static FoursquareAPI *sharedInstance = nil;
 + (NSArray *) checkinsFromResponseXML:(NSString *) inString{
 	NSError * err;
 	CXMLDocument *checkinParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
-	NSLog(@"%@", [err localizedDescription]);
+	DLog(@"%@", [err localizedDescription]);
 	
-	//NSLog(@"checkins xml: %@", checkinParser);
+	//DLog(@"checkins xml: %@", checkinParser);
     
 	NSArray *allCheckinAttrs = [checkinParser nodesForXPath:@"//checkins" error:nil];
     
@@ -767,9 +767,9 @@ static FoursquareAPI *sharedInstance = nil;
 + (FSCheckin *) checkinFromResponseXML:(NSString *) inString{
 	NSError * err;
 	CXMLDocument *checkinParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
-	NSLog(@"%@", [err localizedDescription]);
+	DLog(@"%@", [err localizedDescription]);
 	
-	//NSLog(@"checkins xml: %@", checkinParser);
+	//DLog(@"checkins xml: %@", checkinParser);
     
 	NSArray *allCheckinAttrs = [checkinParser nodesForXPath:@"//checkin" error:nil];
     NSArray *checkins = nil;
@@ -783,7 +783,7 @@ static FoursquareAPI *sharedInstance = nil;
 }
 
 + (NSString*) errorFromResponseXML:(NSString*) inString {
-    //NSLog(@"instring for error check: %@", inString);
+    //DLog(@"instring for error check: %@", inString);
     BOOL hasError = [inString rangeOfString:@"<error>"].location != NSNotFound || [inString rangeOfString:@"<ratelimited>"].location != NSNotFound;
     if (hasError) {
         NSError * err;
@@ -804,20 +804,20 @@ static FoursquareAPI *sharedInstance = nil;
 
 + (NSString *) _errorsFromNode:(CXMLNode *) inputNode {
     NSString *errorMessage = nil;
-    NSLog(@"inside _errors");
+    DLog(@"inside _errors");
     NSArray * errorXML = [inputNode nodesForXPath:@"/" error:nil];
     for (CXMLElement *error in errorXML) {
-        NSLog(@"looping through %d errors", [error childCount]);
+        DLog(@"looping through %d errors", [error childCount]);
         int counter;
         for(counter = 0; counter < [error childCount]; counter++) {
             NSString * key = [[error childAtIndex:counter] name];
             NSString * value = [[error childAtIndex:counter] stringValue];
             if ([key isEqualToString:@"error"]) {
                 errorMessage = value;
-                NSLog(@"error message: %@", errorMessage);
+                DLog(@"error message: %@", errorMessage);
             } else if ([key isEqualToString:@"ratelimited"]) {
                 errorMessage = value;
-                NSLog(@"rate limit message: %@", errorMessage);
+                DLog(@"rate limit message: %@", errorMessage);
             }
         }
     }
@@ -830,7 +830,7 @@ static FoursquareAPI *sharedInstance = nil;
 	NSArray * checkinsReturned = [inputNode nodesForXPath:@"//checkin" error:nil];
 	for (CXMLElement *checkinAttr in checkinsReturned) {
         FSCheckin * oneCheckin = [[FSCheckin alloc] init];
-        //NSLog(@"xml element checkin attr: %@", checkinAttr);
+        //DLog(@"xml element checkin attr: %@", checkinAttr);
 		for (int counter = 0; counter < [checkinAttr childCount]; counter++) {
             NSString * key = [[checkinAttr childAtIndex:counter] name];
             NSString * value = [[checkinAttr childAtIndex:counter] stringValue];
@@ -860,7 +860,7 @@ static FoursquareAPI *sharedInstance = nil;
                 FSVenue * currentVenueInfo = [[FoursquareAPI _venuesFromNode:checkinAttr] objectAtIndex:0];
                 oneCheckin.venue = currentVenueInfo;
             } else if ([key compare:@"scoring"] == 0) {
-                NSLog(@"found the checkin scoring node");
+                DLog(@"found the checkin scoring node");
                 FSScoring * currentCheckinScoring = [FoursquareAPI _scoringFromNode:checkinAttr];
                 oneCheckin.scoring = currentCheckinScoring;
             } else if ([key compare:@"badges"] == 0) {
@@ -906,9 +906,9 @@ static FoursquareAPI *sharedInstance = nil;
                             special.type = value;
                         } else if ([key isEqualToString:@"venue"]) {
                             // FIXME: this was done for expediency's sake
-                            NSLog(@"[checkinAttr nodesForXPath:@//special/venue error:nil] : %@", [checkinAttr nodesForXPath:@"//special/venue" error:nil]);
-                            NSLog(@"[checkinAttr nodesForXPath:@//special error:nil] : %@", [checkinAttr nodesForXPath:@"//special" error:nil]);
-                            NSLog(@"[checkinAttr nodesForXPath:@//venue error:nil] : %@", [checkinAttr nodesForXPath:@"//venue" error:nil]);
+                            DLog(@"[checkinAttr nodesForXPath:@//special/venue error:nil] : %@", [checkinAttr nodesForXPath:@"//special/venue" error:nil]);
+                            DLog(@"[checkinAttr nodesForXPath:@//special error:nil] : %@", [checkinAttr nodesForXPath:@"//special" error:nil]);
+                            DLog(@"[checkinAttr nodesForXPath:@//venue error:nil] : %@", [checkinAttr nodesForXPath:@"//venue" error:nil]);
                             NSArray *venueArray = [FoursquareAPI _venuesFromNode:[[checkinAttr nodesForXPath:@"//special/venue" error:nil] objectAtIndex:0]];
                             if ([venueArray count] > 0) {
                                 special.venue = [venueArray objectAtIndex:0];
@@ -969,7 +969,7 @@ static FoursquareAPI *sharedInstance = nil;
 			}
 		}
 	}
-	NSLog(@"the scoring: %@", theScoring);
+	DLog(@"the scoring: %@", theScoring);
     [allScores release];
 	return theScoring;
 }
@@ -1043,7 +1043,7 @@ static FoursquareAPI *sharedInstance = nil;
 				}
 
 			} else if ([key isEqualToString:@"checkins"]){
-                NSLog(@"checkin name: %@", value);
+                DLog(@"checkin name: %@", value);
 				NSArray * allCheckinAttrs = [venueResult nodesForXPath:@"//venue/checkins" error:nil];
                 for (CXMLElement *checkinAttr in allCheckinAttrs) {
                     newVenue.currentCheckins = [FoursquareAPI _checkinsFromNode:checkinAttr];
@@ -1296,7 +1296,7 @@ static FoursquareAPI *sharedInstance = nil;
             }
 		} else if([key isEqualToString:@"settings"]){
 			NSArray * settingsXML = [usrAttr nodesForXPath:@"//settings" error:nil];
-            NSLog(@"settings xml (for user: %@): %@", loggedInUser.userId, settingsXML);
+            DLog(@"settings xml (for user: %@): %@", loggedInUser.userId, settingsXML);
 			for (CXMLElement *settingsNode in settingsXML) {
                 for (int counter = 0; counter < [settingsNode childCount]; counter++) {
 					NSString * key = [[settingsNode childAtIndex:counter] name];
@@ -1343,12 +1343,12 @@ static FoursquareAPI *sharedInstance = nil;
             }
 		} else if ([key compare:@"checkin"] == 0){
 			NSArray * userCheckinXML = [usrAttr nodesForXPath:@"//checkin" error:nil];
-            NSLog(@"user's last checkin: %@", [userCheckinXML objectAtIndex:0]);
+            DLog(@"user's last checkin: %@", [userCheckinXML objectAtIndex:0]);
             CXMLElement *checkinElement = [userCheckinXML objectAtIndex:0];
             FSCheckin *checkin = [[FSCheckin alloc] init];
-            NSLog(@"childcount: %d", [checkinElement childCount]);
+            DLog(@"childcount: %d", [checkinElement childCount]);
             for (int i = 0; i < [checkinElement childCount]; i++) {
-                //NSLog(@"counter: %d", i);
+                //DLog(@"counter: %d", i);
                 NSString * key = [[checkinElement childAtIndex:i] name];
                 NSString * value = [[checkinElement childAtIndex:i] stringValue];
                 if ([key isEqualToString:@"id"]) {
@@ -1360,7 +1360,7 @@ static FoursquareAPI *sharedInstance = nil;
                 } else if ([key isEqualToString:@"venue"]) {
                     NSArray * checkinVenueXML = [usrAttr nodesForXPath:@"//checkin/venue" error:nil];
                     CXMLElement *checkinVenueElement = [checkinVenueXML objectAtIndex:0];
-                    //NSLog(@"checkin venue element: %@", checkinVenueElement);
+                    //DLog(@"checkin venue element: %@", checkinVenueElement);
                     FSVenue *checkinVenue = [[FSVenue alloc] init];
                     for (int j = 0; j < [checkinVenueElement childCount]; j++) {
                         NSString * key2 = [[checkinVenueElement childAtIndex:j] name];
@@ -1515,7 +1515,7 @@ int encode(unsigned s_len, char *src, unsigned d_len, char *dst)
 
     }
     else {
-		NSLog(@"Could not connect to the network");
+		DLog(@"Could not connect to the network");
     }
 	
 }
@@ -1541,7 +1541,7 @@ int encode(unsigned s_len, char *src, unsigned d_len, char *dst)
 {
 	FSFunctionRequest * fsReq = (FSFunctionRequest *) [activeRequests objectForKey:[NSString stringWithFormat:@"%d", [connection hash]]]; 
     
-    NSLog(@"Succeeded! Received %d bytes of data",[fsReq.receivedData length]);
+    DLog(@"Succeeded! Received %d bytes of data",[fsReq.receivedData length]);
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 	NSString * responseString = [[NSString alloc] initWithData:fsReq.receivedData encoding:NSUTF8StringEncoding];
 	[fsReq.currentTarget performSelector:fsReq.currentSelector withObject:fsReq.currentRequestURL withObject:responseString];	

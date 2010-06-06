@@ -105,7 +105,7 @@
 }
 
 - (void) flipBetweenMapAndList {
-    NSLog(@"!!!!!!!! THIS SHOULDN'T APPEAR!!!!!!!!!!");
+    DLog(@"!!!!!!!! THIS SHOULDN'T APPEAR!!!!!!!!!!");
 }
 
 - (void)didReceiveMemoryWarning {

@@ -194,7 +194,7 @@
 //        [self displayPopupMessage:msg];
 //        [msg release];
 //    } else {
-//        NSLog(@"new venue instring: %@", inString);
+//        DLog(@"new venue instring: %@", inString);
 //        FSVenue *venue = [FoursquareAPI venueFromResponseXML:inString];
 //        
 //        // TODO: we should think about removing the Add Venue pages from the stack so users can't use the BACK button to return to them
@@ -208,10 +208,10 @@
 //}
 //
 //- (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-//    NSLog(@"new checkin instring: %@", inString);
+//    DLog(@"new checkin instring: %@", inString);
 //	NSArray *checkins = [FoursquareAPI checkinFromResponseXML:inString];
 //    FSCheckin *checkin = [checkins objectAtIndex:0];
-//    NSLog(@"venueless checkin: %@", checkins);
+//    DLog(@"venueless checkin: %@", checkins);
 //    [self stopProgressBar];
 //    
 //    // TODO: we should probably take the user off this page.
@@ -221,7 +221,7 @@
 //}
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
-    //NSLog(@"text field did begin editing: %@", textField);
+    //DLog(@"text field did begin editing: %@", textField);
     CGRect textFieldRect = [self.view.window convertRect:textField.bounds fromView:textField];
     CGRect viewRect = [self.view.window convertRect:self.view.bounds fromView:self.view];
     CGFloat midline = textFieldRect.origin.y + 0.5 * textFieldRect.size.height;
@@ -241,8 +241,8 @@
     }
     CGRect viewFrame = self.view.frame;
     viewFrame.origin.y -= animatedDistance;
-//    NSLog(@"animated distance: %f", animatedDistance);
-//    NSLog(@"viewframe origin y: %f", viewFrame.origin.y);
+//    DLog(@"animated distance: %f", animatedDistance);
+//    DLog(@"viewframe origin y: %f", viewFrame.origin.y);
     
 //    // toolbar stuff
 //    toolbar.hidden = NO;
@@ -278,7 +278,7 @@
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-    //NSLog(@"text field did end editing: %@", textField);
+    //DLog(@"text field did end editing: %@", textField);
     CGRect viewFrame = self.view.frame;
     viewFrame.origin.y += animatedDistance;
     

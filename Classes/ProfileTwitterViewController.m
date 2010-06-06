@@ -93,7 +93,7 @@
 
 - (void)handleTweetNotification:(NSNotification *)notification {
     [self openWebView:[notification object]];
-	//NSLog(@"handleTweetNotification: notification = %@", notification);
+	//DLog(@"handleTweetNotification: notification = %@", notification);
 }
 
 - (void)dealloc {

@@ -20,7 +20,7 @@ static KBStats* _stats = nil;
 
 
 - (void) checkinStat:(FSCheckin*)checkin {
-    NSLog(@"stat checkin: %@", checkin);
+    DLog(@"stat checkin: %@", checkin);
     ASIFormDataRequest *statRequest = [[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:CHECKIN_URL]] autorelease];
     
     [statRequest setRequestMethod:@"POST"];
@@ -39,13 +39,13 @@ static KBStats* _stats = nil;
 
      
 - (void) statWentWrong:(ASIHTTPRequest *) request {
-    NSLog(@"BOOOOOOOOOOOO!");
-    NSLog(@"response msg: %@", request.responseStatusMessage);
+    DLog(@"BOOOOOOOOOOOO!");
+    DLog(@"response msg: %@", request.responseStatusMessage);
 }
 
 - (void) statDidFinish:(ASIHTTPRequest *) request {
-    NSLog(@"YAAAAAAAAAAAY!");
-    NSLog(@"response msg: %@", request.responseStatusMessage);
+    DLog(@"YAAAAAAAAAAAY!");
+    DLog(@"response msg: %@", request.responseStatusMessage);
 }
          
 #pragma mark singleton stuff

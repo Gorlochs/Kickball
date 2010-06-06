@@ -85,7 +85,7 @@ static KBTwitterManager *sharedInstance = nil;
 	// ===== Use the keychain instead. Check out SFHFKeychainUtils if you want 
 	//       an easy to use library. (http://github.com/ldandersen/scifihifi-iphone) 
 	//
-	NSLog(@"Access token string returned: %@", tokenString);
+	DLog(@"Access token string returned: %@", tokenString);
 	
 	[[NSUserDefaults standardUserDefaults] setObject:tokenString forKey:kCachedXAuthAccessTokenStringKey];
 	
@@ -97,7 +97,7 @@ static KBTwitterManager *sharedInstance = nil;
 {
 	NSString *accessTokenString = [[NSUserDefaults standardUserDefaults] objectForKey:kCachedXAuthAccessTokenStringKey];
 	
-	NSLog(@"About to return access token string: %@", accessTokenString);
+	DLog(@"About to return access token string: %@", accessTokenString);
 	
 	return accessTokenString;
 }
@@ -105,7 +105,7 @@ static KBTwitterManager *sharedInstance = nil;
 
 - (void) twitterXAuthConnectionDidFailWithError: (NSError *)error;
 {
-	NSLog(@"Error: %@", error);
+	DLog(@"Error: %@", error);
 	
 	UIAlertViewQuick(@"Authentication error", @"Please check your username and password and try again.", @"OK");
 }
@@ -113,21 +113,21 @@ static KBTwitterManager *sharedInstance = nil;
 
 - (void)requestSucceeded:(NSString *)connectionIdentifier
 {
-	NSLog(@"Twitter request succeeded: %@", connectionIdentifier);
+	DLog(@"Twitter request succeeded: %@", connectionIdentifier);
 	
 	//UIAlertViewQuick(@"twitter call worked!", @"Everything works!", @"OK");
 }
 
 //- (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error
 //{
-//	NSLog(@"Twitter request failed: %@ with error:%@", connectionIdentifier, error);
+//	DLog(@"Twitter request failed: %@ with error:%@", connectionIdentifier, error);
 //    
 //}
 
 // These delegate methods shoot off a Notification because the TwitterManager owns the twitterEngine.
 // There needs to be a better way to do this.
 - (void)statusesReceived:(NSArray *)statuses forRequest:(NSString *)connectionIdentifier {
-    NSLog(@"Receive status");
+    DLog(@"Receive status");
 	[delegate statusesReceived:statuses];
 }
 
@@ -149,7 +149,7 @@ static KBTwitterManager *sharedInstance = nil;
 
 - (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error
 {
-	NSLog(@"Twitter request failed: %@ with error:%@", connectionIdentifier, error);
+	DLog(@"Twitter request failed: %@ with error:%@", connectionIdentifier, error);
     
 	if ([[error domain] isEqualToString: @"HTTP"])
 	{
@@ -217,12 +217,12 @@ static KBTwitterManager *sharedInstance = nil;
 - (void) cacheStatusArray:(NSArray*)statuses withKey:(NSString*)key {
     NSData *theData = [NSKeyedArchiver archivedDataWithRootObject:[statuses subarrayWithRange:((NSRange){0, [statuses count] < 25 ? [statuses count] : 25})]];
     [[NSUserDefaults standardUserDefaults] setObject:theData forKey:key];
-    NSLog(@"statuses stored!");
+    DLog(@"statuses stored!");
 }
 
 - (NSArray*) retrieveCachedStatusArrayWithKey:(NSString*)key {
     NSData *statusArrayData = [[NSUserDefaults standardUserDefaults] dataForKey:key];
-    NSLog(@"retrieving statuses!");
+    DLog(@"retrieving statuses!");
     return [NSKeyedUnarchiver unarchiveObjectWithData:statusArrayData];
 }
 

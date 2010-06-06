@@ -37,7 +37,7 @@
 }
 
 - (void)handleTweetNotification:(NSNotification *)notification {
-	NSLog(@"handleTweetNotification: notification = %@", notification);
+	DLog(@"handleTweetNotification: notification = %@", notification);
     if ([[notification object] rangeOfString:@"@"].location == 0) {
         userTweetsController = [[KBUserTweetsViewController alloc] initWithNibName:@"KBUserTweetsViewController" bundle:nil];
         userTweetsController.username = [notification object];
@@ -53,17 +53,17 @@
 }
 
 - (void) showStatuses {
-    NSLog(@"implement this!!");
+    DLog(@"implement this!!");
 }
 
 - (void)requestSucceeded:(NSString *)connectionIdentifier
 {
-	NSLog(@"Twitter request succeeded: %@", connectionIdentifier);
+	DLog(@"Twitter request succeeded: %@", connectionIdentifier);
 }
 
 - (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error
 {
-	NSLog(@"Twitter request failed: %@ with error:%@", connectionIdentifier, error);
+	DLog(@"Twitter request failed: %@ with error:%@", connectionIdentifier, error);
     [self stopProgressBar];
 	if ([[error domain] isEqualToString: @"HTTP"])
 	{

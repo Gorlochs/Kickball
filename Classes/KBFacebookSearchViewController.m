@@ -73,7 +73,7 @@
 //        NSArray* users = result;
 //        NSDictionary* user = [users objectAtIndex:0];
 //        NSString* name = [user objectForKey:@"name"];
-//        NSLog(@"FB user name: %@", name);
+//        DLog(@"FB user name: %@", name);
 ////        _label.text = [NSString stringWithFormat:@"Logged in as %@", name];
 //    } else if ([request.method isEqualToString:@"facebook.users.setStatus"]) {
 //        NSString* success = result;
@@ -88,7 +88,7 @@
 ////        _label.text = [NSString stringWithFormat:@"Uploaded with pid %@", pid];
 //    } else if ([request.method isEqualToString:@"facebook.Friends.get"]) {
 //        NSString* ids = result;
-//        NSLog(@"facebook friends: %@", ids);
+//        DLog(@"facebook friends: %@", ids);
 //    }
 }
 

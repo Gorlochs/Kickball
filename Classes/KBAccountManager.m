@@ -60,9 +60,9 @@ static KBAccountManager *accountManager = nil;
 
 - (BOOL) usesFacebook {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	NSLog(@"![userDefaults boolForKey:USES_FACEBOOK_KEY]: %d", ![userDefaults boolForKey:USES_FACEBOOK_KEY]);
-	NSLog(@"![userDefaults boolForKey:FACEBOOK_NOTHANKS_CLICKED]: %d", ![userDefaults boolForKey:FACEBOOK_NOTHANKS_CLICKED]);
-	NSLog(@"[userDefaults boolForKey:USES_FACEBOOK_KEY]: %d", [userDefaults boolForKey:USES_FACEBOOK_KEY]);
+	DLog(@"![userDefaults boolForKey:USES_FACEBOOK_KEY]: %d", ![userDefaults boolForKey:USES_FACEBOOK_KEY]);
+	DLog(@"![userDefaults boolForKey:FACEBOOK_NOTHANKS_CLICKED]: %d", ![userDefaults boolForKey:FACEBOOK_NOTHANKS_CLICKED]);
+	DLog(@"[userDefaults boolForKey:USES_FACEBOOK_KEY]: %d", [userDefaults boolForKey:USES_FACEBOOK_KEY]);
     return [userDefaults boolForKey:USES_FACEBOOK_KEY];
 }
 

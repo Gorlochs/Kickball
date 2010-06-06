@@ -97,7 +97,7 @@ static Utilities *sharedInstance = nil;
         // Running the image representation function writes the data from the image to a file
         if([imageURLString rangeOfString: @".png" options: NSCaseInsensitiveSearch].location != NSNotFound)
         {
-            NSLog(@"save png to filesystem: %@", filename);
+            DLog(@"save png to filesystem: %@", filename);
             [UIImagePNGRepresentation(image) writeToFile: uniquePath atomically: YES];
         }
         else if(
@@ -105,7 +105,7 @@ static Utilities *sharedInstance = nil;
                 [imageURLString rangeOfString: @".jpeg" options: NSCaseInsensitiveSearch].location != NSNotFound
                 )
         {
-            NSLog(@"save jpg to filesystem: %@", filename);
+            DLog(@"save jpg to filesystem: %@", filename);
             [UIImageJPEGRepresentation(image, 100) writeToFile: uniquePath atomically: YES];
         }
         [image release];
@@ -124,7 +124,7 @@ static Utilities *sharedInstance = nil;
         // Check for a cached version
         if([[NSFileManager defaultManager] fileExistsAtPath: uniquePath])
         {
-            NSLog(@"pulling image from cache: %@", filename);
+            DLog(@"pulling image from cache: %@", filename);
             image = [UIImage imageWithContentsOfFile: uniquePath]; // this is the cached image
         } else {
             // get a new one
@@ -158,28 +158,28 @@ static Utilities *sharedInstance = nil;
 
 - (void)friendsResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     if (friendsWithPingOn == nil) {
-        NSLog(@"all friends: %@", inString);
+        DLog(@"all friends: %@", inString);
         NSArray *allFriends = [[FoursquareAPI friendUsersFromRequestResponseXML:inString] retain];
         totalNumberOfUsersForPush = [allFriends count];
-        NSLog(@"total number of friends: %d", totalNumberOfUsersForPush);
+        DLog(@"total number of friends: %d", totalNumberOfUsersForPush);
         friendsWithPingOn = [[NSMutableArray alloc] initWithCapacity:1];
         for (FSUser *friend in allFriends) {
-            //NSLog(@"friend: %@", friend);
+            //DLog(@"friend: %@", friend);
             [[FoursquareAPI sharedInstance] getUser:friend.userId withTarget:self andAction:@selector(aFriendResponseReceived:withResponseString:)];
-            NSLog(@"running total: %d", runningTotalNumberOfUsersBeingPushed);
+            DLog(@"running total: %d", runningTotalNumberOfUsersBeingPushed);
         }
         [allFriends release];
     }
 }
 
 - (void)aFriendResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    //NSLog(@"********** friend: %@", inString);
+    //DLog(@"********** friend: %@", inString);
     FSUser *friend = [FoursquareAPI userFromResponseXML:inString];
     if (friend.sendsPingsToSignedInUser) {
-        //NSLog(@"this friend sends pings to signed in user: %@", friend);
+        //DLog(@"this friend sends pings to signed in user: %@", friend);
         [friendsWithPingOn addObject:friend];
     } else {
-        //NSLog(@"this friend does NOT send pings: %@", friend);
+        //DLog(@"this friend does NOT send pings: %@", friend);
     }
     runningTotalNumberOfUsersBeingPushed++;
     if (runningTotalNumberOfUsersBeingPushed == totalNumberOfUsersForPush) {

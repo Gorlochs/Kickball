@@ -71,7 +71,7 @@
 	[self.checkins retain];
 
 	if (self.checkins && self.checkins.count > 0) {
-		NSLog(@"checkins count: %d", self.checkins.count);
+		DLog(@"checkins count: %d", self.checkins.count);
 		
 		MKCoordinateRegion region;
 		MKCoordinateSpan span;
@@ -83,7 +83,7 @@
         center.latitude = [[KBLocationManager locationManager] latitude];
         center.longitude = [[KBLocationManager locationManager] longitude];
 		
-		NSLog(@"Lat delta: %f.  Long delta: %f.  Lat: %f.  Long: %f", span.latitudeDelta, span.longitudeDelta, center.latitude, center.longitude);
+		DLog(@"Lat delta: %f.  Long delta: %f.  Lat: %f.  Long: %f", span.latitudeDelta, span.longitudeDelta, center.latitude, center.longitude);
 		
 		region.span = span;
 		region.center = center;
@@ -102,7 +102,7 @@
 
 			FriendPlacemark *placemark=[[FriendPlacemark alloc] initWithCoordinate:location];
 
-            NSLog(@"checkuser: %@", checkUser);
+            DLog(@"checkuser: %@", checkUser);
             placemark.checkin = checkin;
             placemark.title = checkin.display;
             placemark.subtitle = checkin.venue.addressWithCrossstreet;
@@ -173,7 +173,7 @@
 - (void) showProfile:(id)sender {
     [FlurryAPI logEvent:@"Clicked on Profile from Friends Map"];
     int nrButtonPressed = ((UIButton *)sender).tag;
-    NSLog(@"annotation for profile pressed: %d", nrButtonPressed);
+    DLog(@"annotation for profile pressed: %d", nrButtonPressed);
     
     [self displayProperProfileView:[NSString stringWithFormat:@"%d", nrButtonPressed]];
 }

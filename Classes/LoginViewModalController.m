@@ -26,7 +26,7 @@
 	NSString *username = usernameField.text;
 	NSError *error = nil;
 	NSString *password = [SFHFKeychainUtils getPasswordForUsername:username andServiceName:@"Kickball" error:&error];
-	NSLog(@"Password for %@: %@", username, password);
+	DLog(@"Password for %@: %@", username, password);
 	passwordField.text = password;
 }
 
@@ -91,7 +91,7 @@
 }
 
 - (void)friendResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    NSLog(@"friend response for login: %@", inString);
+    DLog(@"friend response for login: %@", inString);
     [self stopProgressBar];
     // cheap way of checking for successful authentication
     BOOL containsUnauthorized = [inString rangeOfString:@"unauthorized" options:NSCaseInsensitiveSearch].length > 0;
@@ -112,7 +112,7 @@
             NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
             [prefs setObject:username forKey:kUsernameDefaultsKey];
             
-            NSLog(@"Stored username: %@", username);
+            DLog(@"Stored username: %@", username);
         }
         
         NSError *error = nil;
@@ -139,7 +139,7 @@
     NSURL *url = [NSURL URLWithString:@"http://foursquare.com/change_password"];
     
     if (![[UIApplication sharedApplication] openURL:url])  {
-        NSLog(@"Failed to open url: %@" ,[url description]);
+        DLog(@"Failed to open url: %@" ,[url description]);
     }
 }
 
@@ -148,7 +148,7 @@
     NSURL *url = [NSURL URLWithString:@"http://foursquare.com/mobile/signup"];
     
     if (![[UIApplication sharedApplication] openURL:url])  {
-        NSLog(@"Failed to open url: %@" ,[url description]);
+        DLog(@"Failed to open url: %@" ,[url description]);
     }
 }
 

@@ -81,7 +81,7 @@
 }
 
 - (void) statusRetrieved:(NSNotification *)inNotification {
-    NSLog(@"********** RETWEET SUCCESSFUL!!!! **********");
+    DLog(@"********** RETWEET SUCCESSFUL!!!! **********");
 }
 
 - (void)dealloc {

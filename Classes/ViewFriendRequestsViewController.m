@@ -87,10 +87,10 @@
 }
 
 - (void)friendRequestResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    NSLog(@"pending friend requests: %@", inString);
+    DLog(@"pending friend requests: %@", inString);
     FSUser *user = [FoursquareAPI userFromResponseXML:inString];
     [self stopProgressBar];
-    NSLog(@"approved user: %@", user);
+    DLog(@"approved user: %@", user);
     
     KBMessage *message = nil;
     if (user) {
@@ -115,10 +115,10 @@
 
 // cheap and crappy, but I don't have the time
 - (void)denyFriendRequestResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    NSLog(@"pending friend requests: %@", inString);
+    DLog(@"pending friend requests: %@", inString);
     FSUser *user = [FoursquareAPI userFromResponseXML:inString];
     [self stopProgressBar];
-    NSLog(@"approved user: %@", user);
+    DLog(@"approved user: %@", user);
     
     KBMessage *message = nil;
     if (user) {
@@ -143,14 +143,14 @@
 
 - (void) acceptFriend:(UIControl*) button {
     [FlurryAPI logEvent:@"Accept Friend"];
-    NSLog(@"acceptfriend tag: %d", button.tag);
+    DLog(@"acceptfriend tag: %d", button.tag);
     [self startProgressBar:@"Accepting your new friend..."];
     [[FoursquareAPI sharedInstance] approveFriendRequest:((FSUser*)[pendingFriendRequests objectAtIndex:button.tag]).userId withTarget:self andAction:@selector(friendRequestResponseReceived:withResponseString:)];
 }
 
 - (void) denyFriend:(UIControl*) button {
     [FlurryAPI logEvent:@"Deny Friend"];
-    NSLog(@"denyfriend tag: %d", button.tag);
+    DLog(@"denyfriend tag: %d", button.tag);
     [self startProgressBar:@"Denying your new friend..."];
     [[FoursquareAPI sharedInstance] denyFriendRequest:((FSUser*)[pendingFriendRequests objectAtIndex:button.tag]).userId withTarget:self andAction:@selector(denyFriendRequestResponseReceived:withResponseString:)];
 }

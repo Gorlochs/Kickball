@@ -63,13 +63,13 @@
 }
 
 - (void)tipTodoResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    NSLog(@"tip/todo response string: %@", inString);
+    DLog(@"tip/todo response string: %@", inString);
     NSString *errorMessage = [FoursquareAPI errorFromResponseXML:inString];
     if (errorMessage) {
         [self displayFoursquareErrorMessage:errorMessage];
     } else {
         tipId = [FoursquareAPI tipIdFromResponseXML:inString];
-        NSLog(@"tipid: %@", tipId);
+        DLog(@"tipid: %@", tipId);
         if (tipId != nil) {
             // present a thank you message
             [[NSNotificationCenter defaultCenter] postNotificationName:@"todoTipSent"
@@ -94,11 +94,11 @@
         NSString *tipOrTodo = nil;
         if (tipTodoSwitch.selectedSegmentIndex == 0) {
             [FlurryAPI logEvent:@"Creating Tip"];
-            NSLog(@"submitting tip");
+            DLog(@"submitting tip");
             tipOrTodo = @"tip";
         } else {
             [FlurryAPI logEvent:@"Creating Todo"];
-            NSLog(@"submitting todo");
+            DLog(@"submitting todo");
             tipOrTodo = @"todo";
         }
         [[FoursquareAPI sharedInstance] createTipTodoForVenue:venue.venueid type:tipOrTodo text:tipTodoText.text withTarget:self andAction:@selector(tipTodoResponseReceived:withResponseString:)];

@@ -92,7 +92,7 @@
 //            [phone release];
 //        }
 //    }
-//    NSLog(@"phones: %@", phones);
+//    DLog(@"phones: %@", phones);
 //    [[FoursquareAPI sharedInstance] findFriendsByPhone:[phones componentsJoinedByString:@","] withTarget:self andAction:@selector(searchResponseReceived:withResponseString:)];
 //    [FlurryAPI logEvent:@"Scanning Address Book"];
 //    [phones release];

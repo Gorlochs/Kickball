@@ -46,7 +46,7 @@
     if (errorMessage) {
         [self displayFoursquareErrorMessage:errorMessage];
     } else {
-        NSLog(@"pending friend requests: %@", inString);
+        DLog(@"pending friend requests: %@", inString);
         pendingFriendRequests = [[FoursquareAPI usersFromRequestResponseXML:inString] retain];
         friendRequestCount.text = [NSString stringWithFormat:@"%d", [pendingFriendRequests count]];
     }
@@ -106,7 +106,7 @@
 #pragma mark button methods
 
 - (void) logout {
-    NSLog(@"*************** logout ****************");
+    DLog(@"*************** logout ****************");
 }
 
 - (void) viewAccountOptions {

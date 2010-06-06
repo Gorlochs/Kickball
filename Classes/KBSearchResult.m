@@ -27,7 +27,7 @@
             NSArray *coordinates = [[statusDictionary objectForKey:@"geo"] objectForKey:@"coordinates"];
             self.latitude = [[coordinates objectAtIndex:0] floatValue];
             self.longitude = [[coordinates objectAtIndex:1] floatValue];
-            NSLog(@"search result lat/long: %f : %f", latitude, longitude);
+            DLog(@"search result lat/long: %f : %f", latitude, longitude);
         }
     }
     return self;

@@ -23,19 +23,19 @@
 	self.frame = CGRectMake(0, 0, kWidth, kHeight);
 	self.backgroundColor = [UIColor whiteColor];
 	if (checkin.user.photo){
-        //NSLog(@"map icon url: %@", inUrl);
+        //DLog(@"map icon url: %@", inUrl);
         imageView = [[UIImageView alloc] initWithImage:[[Utilities sharedInstance] getCachedImage:checkin.user.photo]];
 		imageView.frame = CGRectMake(kBorder, kBorder, kWidth - 2 * kBorder, kWidth - 2 * kBorder);
         
 //        NSDate *checkinDate = [[[Utilities sharedInstance] foursquareCheckinDateFormatter] dateFromString:checkin.created];
 //        NSDate *localCheckinDate = [Utilities convertUTCCheckinDateToLocal:checkinDate];
 //        NSTimeInterval interval = [localCheckinDate timeIntervalSinceNow];
-//        NSLog(@"******* interval in hours %d", (int)(interval/(-60*60)));
+//        DLog(@"******* interval in hours %d", (int)(interval/(-60*60)));
 //        int intervalHours = (int)(interval/(-60*60));
 //        float fadedAlpha = 0.25;
 //        if (interval < 24) {
 //            fadedAlpha = (24.0 - intervalHours*0.75) / 24.0;
-//            NSLog(@"*** alpha: %f", fadedAlpha);
+//            DLog(@"*** alpha: %f", fadedAlpha);
 //        }
 //        
 //        imageView.alpha = fadedAlpha;

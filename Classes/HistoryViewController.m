@@ -108,7 +108,7 @@
     
     unsigned unitFlags = NSHourCalendarUnit | NSMinuteCalendarUnit;
     NSDateComponents *comps = [gregorian components:unitFlags fromDate:[checkin convertUTCCheckinDateToLocal]];
-    NSLog(@"date components: %@", comps);
+    DLog(@"date components: %@", comps);
     if ([comps hour] > 12) {
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%02d:%02dpm", [comps hour] - 12, [comps minute]];
     } else {

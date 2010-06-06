@@ -71,7 +71,7 @@
     }
     
     if (isFacebookOn && [[KBAccountManager sharedInstance] usesFacebook]) {
-        NSLog(@"facebook  is on and the status will be updated (hopefully)");
+        DLog(@"facebook  is on and the status will be updated (hopefully)");
         NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:tweetTextView.text, @"status", nil];
         [[FBRequest requestWithDelegate:self] call:@"facebook.status.set" params:params dataParam:nil];
     }
@@ -105,7 +105,7 @@
 - (void)request:(FBRequest*)request didLoad:(id)result {
     if ([request.method isEqualToString:@"facebook.status.set"]) {
         NSDictionary* info = result;
-        NSLog(@"facebook status updated: %@", info);
+        DLog(@"facebook status updated: %@", info);
     }
     [self decrementActionCount];
 }
@@ -213,7 +213,7 @@
     thumbnailPreview.clipsToBounds = YES;
     thumbnailPreview.image = [photoImage retain];
     
-    NSLog(@"image picker info: %@", info);
+    DLog(@"image picker info: %@", info);
 }
 
 - (void) getPhoto:(UIImagePickerControllerSourceType)sourceType {
@@ -239,7 +239,7 @@
 
 - (void) photoUploadFinished:(ASIHTTPRequest *) request {
     [self stopProgressBar];
-    NSLog(@"YAY! Image uploaded!");
+    DLog(@"YAY! Image uploaded!");
     KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"Image upload has been completed!"];
     [self displayPopupMessage:message];
     [message release];
@@ -259,7 +259,7 @@
 - (void) photoQueueFinished:(ASIHTTPRequest *) request {
     [self decrementActionCount];
     
-    NSLog(@"YAY! Image queue is complete!");
+    DLog(@"YAY! Image queue is complete!");
     
     // TODO: this should probably capture the response, parse it into a KBGoody, then add it to the goodies object - it would save an API hit
     
@@ -268,7 +268,7 @@
 
 - (void) photoUploadFailed:(ASIHTTPRequest *) request {
     [self stopProgressBar];
-    NSLog(@"Uhoh, it did fail!");
+    DLog(@"Uhoh, it did fail!");
 }
 
 #pragma mark -

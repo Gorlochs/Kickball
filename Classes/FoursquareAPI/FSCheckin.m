@@ -15,7 +15,7 @@
 
 - (NSDate*) convertUTCCheckinDateToLocal {
     NSDate *gmtDate = [[[Utilities sharedInstance] foursquareCheckinDateFormatter] dateFromString:self.created];
-    NSLog(@"checkin created on: %@", self.created);
+    DLog(@"checkin created on: %@", self.created);
     NSTimeInterval timeZoneOffset = [[NSTimeZone defaultTimeZone] secondsFromGMT];
     NSTimeInterval localTimeInterval = [gmtDate timeIntervalSinceReferenceDate] + timeZoneOffset;
     NSDate *localDate = [NSDate dateWithTimeIntervalSinceReferenceDate:localTimeInterval];

@@ -45,7 +45,7 @@
 //    NSString *cityGridUrl = [NSString stringWithFormat:@"http://api2.citysearch.com/profile/?client_ip=%@&listing_id=%@&format=json&&publisher=gorlochs&api_key=cpm3fbn4wf4ymf9hvjwuv47u",
 //                             [self getIPAddress],
 //                             place.guid];
-//    NSLog(@"city grid search url: %@", cityGridUrl);    
+//    DLog(@"city grid search url: %@", cityGridUrl);    
 //    ASIHTTPRequest *cityGridRequest = [[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:cityGridUrl]] autorelease];
 //    
 //    [cityGridRequest setDidFailSelector:@selector(cityGridRequestWentWrong:)];
@@ -58,14 +58,14 @@
 #pragma mark CityGrid methods
 
 - (void) cityGridRequestWentWrong:(ASIHTTPRequest *) request {
-    NSLog(@"BOOOOOOOOOOOO!");
+    DLog(@"BOOOOOOOOOOOO!");
 }
 
 - (void) cityGridRequestDidFinish:(ASIHTTPRequest *) request {
     SBJSON *parser = [[SBJSON new] autorelease];
     id dict = [parser objectWithString:[request responseString] error:NULL];
     NSArray *array = (NSArray*)[dict objectForKey:@"locations"];
-    NSLog(@"location: %@", [array objectAtIndex:0]);
+    DLog(@"location: %@", [array objectAtIndex:0]);
     NSDictionary *locationDictionary = [array objectAtIndex:0];
 
     [self stopProgressBar];
@@ -112,7 +112,7 @@
 }
 
 - (void)receivedResponseString:(NSString *)responseString {
-    NSLog(@"geoapi response string: %@", responseString);
+    DLog(@"geoapi response string: %@", responseString);
     
     //label.text = responseString;
     SBJSON *parser = [SBJSON new];
@@ -120,7 +120,7 @@
     NSDictionary *results = [(NSDictionary*)dict objectForKey:@"result"];
     
     place.listing = [[NSDictionary alloc] initWithDictionary:results];
-    NSLog(@"place listing: %@", place.listing);
+    DLog(@"place listing: %@", place.listing);
     place.name = [results objectForKey:@"name"];
     place.address = [results objectForKey:@"address"];
     if (![[results objectForKey:@"web-wide-rating"] isKindOfClass:[NSNull class]]) {
@@ -164,7 +164,7 @@
 }
 
 - (void)requestFailed:(NSError *)error {
-    NSLog(@"geoapi error string: %@", error);
+    DLog(@"geoapi error string: %@", error);
 }
 
 - (void) callVenue {
@@ -172,7 +172,7 @@
 }
 
 - (void) visitWebsite {
-    NSLog(@"site to visit: %@", [place.listing objectForKey:@"listing-url"]);
+    DLog(@"site to visit: %@", [place.listing objectForKey:@"listing-url"]);
     [self openWebView:[place.listing objectForKey:@"listing-url"]];
 }
 

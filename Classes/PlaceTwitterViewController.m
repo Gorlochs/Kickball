@@ -26,7 +26,7 @@
     [self startProgressBar:@"Retrieving tweets..."];
     MGTwitterEngine *twitterEngine = [[[MGTwitterEngine alloc] initWithDelegate:self] autorelease];
     NSString *timeline = [twitterEngine getUserTimelineFor:twitterName sinceID:0 startingAtPage:0 count:20];
-    NSLog(@"timeline: %@", timeline);
+    DLog(@"timeline: %@", timeline);
     [FlurryAPI logEvent:@"Venue Twitter Feed"];
 }
 
@@ -86,7 +86,7 @@
     NSDictionary *tweet = [orderedTweets objectForKey:[sortedKeys objectAtIndex:[sortedKeys count] - indexPath.row - 1]];
     
     //	[tweetLabel setText:[NSString stringWithFormat:@"%@  (%@)", [tweet objectForKey:@"text"], [dateFormatter stringFromDate:[tweet objectForKey:@"created_at"]]]];
-    NSLog(@"tweet text: %@", [tweet objectForKey:@"text"]);
+    DLog(@"tweet text: %@", [tweet objectForKey:@"text"]);
     [cell.tweetLabel setText:[tweet objectForKey:@"text"]];
     [cell.tweetLabel setLinksEnabled:YES];
     [dateFormatter release];
@@ -105,11 +105,11 @@
 }
 
 - (void)handleTweetNotification:(NSNotification *)notification {
-	NSLog(@"handleTweetNotification: notification = %@", notification);
+	DLog(@"handleTweetNotification: notification = %@", notification);
     if ([[notification object] rangeOfString:@"@"].location == 0) {
-        NSLog(@"********* twitter user name ************** %@", [notification object]);
+        DLog(@"********* twitter user name ************** %@", [notification object]);
     } else if ([[notification object] rangeOfString:@"#"].location == 0) {
-        NSLog(@"********* twitter hashtag ************** %@", [notification object]);
+        DLog(@"********* twitter hashtag ************** %@", [notification object]);
     } else {
         [self openWebView:[notification object]];
     }
@@ -121,7 +121,7 @@
 
 - (void)statusesReceived:(NSArray *)statuses forRequest:(NSString *)connectionIdentifier {
     twitterStatuses = [[NSArray alloc] initWithArray:statuses];
-    NSLog(@"number of tweets: %d", [twitterStatuses count]);
+    DLog(@"number of tweets: %d", [twitterStatuses count]);
     NSMutableArray *arr = [[NSMutableArray alloc] initWithCapacity:1];
     orderedTweets = [[NSMutableDictionary alloc] initWithCapacity:1];
     for (NSDictionary *tweet in twitterStatuses) {
@@ -137,13 +137,13 @@
 
 - (void)requestSucceeded:(NSString *)connectionIdentifier {
     [self stopProgressBar];
-    NSLog(@"requestSucceeded: %@", connectionIdentifier);
+    DLog(@"requestSucceeded: %@", connectionIdentifier);
     
 }
 
 - (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error {
     [self stopProgressBar];
-    NSLog(@"requestFailed: %@ - error: %@", connectionIdentifier, error);
+    DLog(@"requestFailed: %@ - error: %@", connectionIdentifier, error);
     KBMessage *message = [[KBMessage alloc] initWithMember:@"Twitter Error" andMessage:[error localizedDescription]];
     [self displayPopupMessage:message];
     [message release];

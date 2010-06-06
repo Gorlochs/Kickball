@@ -10,7 +10,7 @@
 
 #ifdef GA_DEBUG
 #define DebugLog(s, ...) \
-NSLog(@"[%p %@:%d] %@", \
+DLog(@"[%p %@:%d] %@", \
 self, \
 [[NSString stringWithUTF8String:__FILE__] lastPathComponent], \
 __LINE__, \

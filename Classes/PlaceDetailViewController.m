@@ -99,7 +99,7 @@
     
     // pull this up into a method (or property)
     FSUser *tmpUser = [self getAuthenticatedUser];
-    NSLog(@"auth'd user: %@", tmpUser);
+    DLog(@"auth'd user: %@", tmpUser);
     isPingOn = tmpUser.isPingOn;
     isTwitterOn = tmpUser.sendToTwitter && [self getAuthenticatedUser].twitter;
     isFacebookOn = tmpUser.sendToFacebook;
@@ -121,7 +121,7 @@
 - (void) retrievePhotos {
     // get gift info
     NSString *gorlochUrlString = [NSString stringWithFormat:@"%@/gifts/venue/%@.xml", kickballDomain, venueId];
-    NSLog(@"url: %@", gorlochUrlString);
+    DLog(@"url: %@", gorlochUrlString);
     ASIHTTPRequest *gorlochRequest = [[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:gorlochUrlString]] autorelease];
             
     [gorlochRequest setDidFailSelector:@selector(venueRequestWentWrong:)];
@@ -133,7 +133,7 @@
 
 
 - (void) venueRequestWentWrong:(ASIHTTPRequest *) request {
-    NSLog(@"BOOOOOOOOOOOO!");
+    DLog(@"BOOOOOOOOOOOO!");
 }
 
 - (void) venueRequestDidFinish:(ASIHTTPRequest *) request {
@@ -151,7 +151,7 @@
         
         NSMutableArray *tempTTPhotoArray = [[NSMutableArray alloc] initWithCapacity:[goodies count]];
         for (KBGoody *goody in goodies) {
-            NSLog(@"goody %d", i);
+            DLog(@"goody %d", i);
             NSString *caption = nil;
             if (goody.messageText != nil && ![goody.messageText isEqualToString:@"testing"]) {
                 caption = [NSString stringWithFormat:@"%@ \n %@ @ %@ on %@", goody.messageText, goody.ownerName, goody.venueName, [[[KickballAPI kickballApi] photoDateFormatter] stringFromDate:goody.createdAt]];
@@ -228,13 +228,13 @@
 }
 
 - (void)venueResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    //NSLog(@"instring for venue detail: %@", inString);
+    //DLog(@"instring for venue detail: %@", inString);
     NSString *errorMessage = [FoursquareAPI errorFromResponseXML:inString];
     [self stopProgressBar];
     if (errorMessage) {
         [self displayFoursquareErrorMessage:errorMessage];
     } else {
-        NSLog(@"venue response string: %@", inString);
+        DLog(@"venue response string: %@", inString);
         self.venue = [FoursquareAPI venueFromResponseXML:inString];
         [self prepViewWithVenueInfo:self.venue];
 
@@ -657,7 +657,7 @@
 }
 
 - (void) callVenue {
-    NSLog(@"phone number to call: %@", [NSString stringWithFormat:@"tel:%@", venue.phone]);
+    DLog(@"phone number to call: %@", [NSString stringWithFormat:@"tel:%@", venue.phone]);
     [FlurryAPI logEvent:@"call Venue"];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", venue.phone]]];
 }
@@ -708,7 +708,7 @@
     for (FSScore *score in ci.scoring.scores) {
         [checkinText appendFormat:[NSString stringWithFormat:@"+%d %@ \n", score.points, score.message]];
     }
-    NSLog(@"checkin text: %@", checkinText);
+    DLog(@"checkin text: %@", checkinText);
     KBMessage *message = [[KBMessage alloc] initWithMember:@"Check-in successful" andMessage:checkinText];
     [self displayPopupMessage:message];
     [checkinText release];
@@ -734,15 +734,15 @@
 
 - (void) setProperButtonStates {
     if (isTwitterOn && isPingOn) {
-        NSLog(@"twitter and ping is on");
+        DLog(@"twitter and ping is on");
         [pingAndTwitterToggleButton setImage:[UIImage imageNamed:@"ping01b.png"] forState:UIControlStateNormal];
         [pingAndTwitterToggleButton setImage:[UIImage imageNamed:@"ping02b.png"] forState:UIControlStateHighlighted];
     } else if (isPingOn) {
-        NSLog(@"ping is on");
+        DLog(@"ping is on");
         [pingAndTwitterToggleButton setImage:[UIImage imageNamed:@"ping03b.png"] forState:UIControlStateNormal];
         [pingAndTwitterToggleButton setImage:[UIImage imageNamed:@"ping04b.png"] forState:UIControlStateHighlighted];
     } else {
-        NSLog(@"everything is off");
+        DLog(@"everything is off");
         [pingAndTwitterToggleButton setImage:[UIImage imageNamed:@"ping05b.png"] forState:UIControlStateNormal];
         [pingAndTwitterToggleButton setImage:[UIImage imageNamed:@"ping06b.png"] forState:UIControlStateHighlighted];
     }
@@ -762,7 +762,7 @@
                              [venue.name stringByReplacingOccurrencesOfString:@" " withString:@"+"],
                              venue.location.latitude,
                              venue.location.longitude];
-    NSLog(@"city grid search url: %@", cityGridUrl);
+    DLog(@"city grid search url: %@", cityGridUrl);
     ASIHTTPRequest *cityGridRequest = [[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:cityGridUrl]] autorelease];
     
     [cityGridRequest setDidFailSelector:@selector(cityGridRequestWentWrong:)];
@@ -781,8 +781,8 @@
 
 - (void) showSpecial:(int)specialIndex {
     FSSpecial *special = ((FSSpecial*)[[self venue].specials objectAtIndex:specialIndex]);
-    NSLog(@"specials: %@", [self venue].specials);
-    NSLog(@"special: %@", special);
+    DLog(@"specials: %@", [self venue].specials);
+    DLog(@"special: %@", special);
     if (special.venue) {
         specialPlaceName.text = special.venue.name;
         specialAddress.text = special.venue.addressWithCrossstreet;   
@@ -796,7 +796,7 @@
     CGSize expectedLabelSize = [special.messageText sizeWithFont:specialText.font 
                                            constrainedToSize:maximumLabelSize 
                                                lineBreakMode:UILineBreakModeWordWrap];
-    NSLog(@"expected label size: %f", expectedLabelSize.height);
+    DLog(@"expected label size: %f", expectedLabelSize.height);
     
     //adjust the label the the new height.
     CGRect newFrame = specialText.frame;
@@ -909,7 +909,7 @@
 }
 
 - (void)okResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    NSLog(@"flag venue closed response: %@", inString);
+    DLog(@"flag venue closed response: %@", inString);
     
 	BOOL isOK = [FoursquareAPI simpleBooleanFromResponseXML:inString];
     [self stopProgressBar];
@@ -924,20 +924,20 @@
 #pragma mark CityGrid methods
 
 - (void) cityGridRequestWentWrong:(ASIHTTPRequest *) request {
-    NSLog(@"BOOOOOOOOOOOO!");
+    DLog(@"BOOOOOOOOOOOO!");
 }
 
 - (void) cityGridRequestDidFinish:(ASIHTTPRequest *) request {
     SBJSON *parser = [[SBJSON new] autorelease];
-    NSLog(@"city grid response: %@", [request responseString]);
+    DLog(@"city grid response: %@", [request responseString]);
     id dict = [parser objectWithString:[request responseString] error:NULL];
     NSArray *array = (NSArray*)[[dict objectForKey:@"jsonResponse"] objectForKey:@"results"];
-    NSLog(@"array of results: %@", array);
+    DLog(@"array of results: %@", array);
     NSMutableArray *objArray = [[NSMutableArray alloc] initWithCapacity:[array count]];
     bool isMatched = NO;
     for (NSDictionary *dict in array) {
         GAPlace *place = [[GAPlace alloc] init];
-        NSLog(@"location: %@", [dict objectForKey:@"location"]);
+        DLog(@"location: %@", [dict objectForKey:@"location"]);
         place.guid = [[dict objectForKey:@"location"] objectForKey:@"id"];
         place.name = [[dict objectForKey:@"location"] objectForKey:@"name"];
         NSDictionary *tmp = [[dict objectForKey:@"location"] objectForKey:@"address"];
@@ -970,7 +970,7 @@
         vc.geoAPIResults = objArray;
         [self.navigationController pushViewController:vc animated:YES];
         [vc release];
-        NSLog(@"dictionary?: %@", [(NSDictionary*)dict objectForKey:@"entity"]);   
+        DLog(@"dictionary?: %@", [(NSDictionary*)dict objectForKey:@"entity"]);   
     }
     [objArray release];
     [self stopProgressBar];
@@ -980,7 +980,7 @@
 
 // TODO: neaten this mess up
 - (void)receivedResponseString:(NSString *)responseString {
-//    NSLog(@"geoapi response string: %@", responseString);
+//    DLog(@"geoapi response string: %@", responseString);
     SBJSON *parser = [[SBJSON new] autorelease];
     id dict = [parser objectWithString:responseString error:NULL];
     NSArray *array = [(NSDictionary*)dict objectForKey:@"entity"];
@@ -1020,7 +1020,7 @@
         vc.geoAPIResults = objArray;
         [self.navigationController pushViewController:vc animated:YES];
         [vc release];
-        NSLog(@"dictionary?: %@", [(NSDictionary*)dict objectForKey:@"entity"]);   
+        DLog(@"dictionary?: %@", [(NSDictionary*)dict objectForKey:@"entity"]);   
     }
     [objArray release];
     [self stopProgressBar];
@@ -1028,7 +1028,7 @@
 
 - (void)requestFailed:(NSError *)error {
     // TODO: probably want to pop up error message for user
-    NSLog(@"geoapi error string: %@", error);
+    DLog(@"geoapi error string: %@", error);
 }
 
 #pragma mark 
@@ -1088,11 +1088,11 @@
     
     self.photoImage = [photoManager imageByScalingToSize:initialImage toSize:CGSizeMake(480.0, round(480.0/roundedFloat))];
     
-    NSLog(@"image picker info: %@", info);
+    DLog(@"image picker info: %@", info);
     
-//    NSLog(@"image height: %f", photoImage.size.height);
-//    NSLog(@"image width: %f", photoImage.size.width);
-//    NSLog(@"image orientation: %d", photoImage.imageOrientation);
+//    DLog(@"image height: %f", photoImage.size.height);
+//    DLog(@"image width: %f", photoImage.size.width);
+//    DLog(@"image orientation: %d", photoImage.imageOrientation);
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(returnFromMessageView:) name:@"attachMessageToPhoto" object:nil];
     
@@ -1157,7 +1157,7 @@
 
 - (void) photoUploadFinished:(ASIHTTPRequest *) request {
     [self stopProgressBar];
-    NSLog(@"YAY! Image uploaded!");
+    DLog(@"YAY! Image uploaded!");
     KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"Image upload has been completed!"];
     [self displayPopupMessage:message];
     [message release];
@@ -1171,7 +1171,7 @@
 
 - (void) photoQueueFinished:(ASIHTTPRequest *) request {
     [self stopProgressBar];
-    NSLog(@"YAY! Image queue is complete!");
+    DLog(@"YAY! Image queue is complete!");
     
     // TODO: this should probably capture the response, parse it into a KBGoody, then add it to the goodies object - it would save an API hit
     
@@ -1180,7 +1180,7 @@
 
 - (void) photoUploadFailed:(ASIHTTPRequest *) request {
     [self stopProgressBar];
-    NSLog(@"Uhoh, it did fail!");
+    DLog(@"Uhoh, it did fail!");
 }
 
 #pragma mark 

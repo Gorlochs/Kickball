@@ -471,7 +471,7 @@
 //#if YAJL_AVAILABLE || TOUCHJSON_AVAILABLE
 	NSString *domain = nil;
 	NSString *connectionType = nil;
-    NSLog(@"request type: %d", requestType);
+    DLog(@"request type: %d", requestType);
 	if (requestType == MGTwitterSearchRequest || requestType == MGTwitterSearchCurrentTrendsRequest)
 	{
 		domain = _searchDomain;
@@ -526,7 +526,7 @@
 
 //#if DEBUG
     if (YES) {
-		NSLog(@"MGTwitterEngine: finalURL = %@", finalURL);
+		DLog(@"MGTwitterEngine: finalURL = %@", finalURL);
 	}
 //#endif
 
@@ -572,7 +572,7 @@
             [theRequest setHTTPBody:[finalBody dataUsingEncoding:NSUTF8StringEncoding]];
 #if DEBUG
 			if (YES) {
-				NSLog(@"MGTwitterEngine: finalBody = %@", finalBody);
+				DLog(@"MGTwitterEngine: finalBody = %@", finalBody);
 			}
 #endif
         }
@@ -612,7 +612,7 @@
 
 #if DEBUG
 	if (NO) {
-		NSLog(@"MGTwitterEngine: jsonData = %@ from %@", [[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding] autorelease], URL);
+		DLog(@"MGTwitterEngine: jsonData = %@ from %@", [[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding] autorelease], URL);
 	}
 #endif
 
@@ -865,7 +865,7 @@
     if (NO) {
         // Display headers for debugging.
         NSHTTPURLResponse *resp = (NSHTTPURLResponse *)response;
-        NSLog(@"MGTwitterEngine: (%d) [%@]:\r%@", 
+        DLog(@"MGTwitterEngine: (%d) [%@]:\r%@", 
               [resp statusCode], 
               [NSHTTPURLResponse localizedStringForStatusCode:[resp statusCode]], 
               [resp allHeaderFields]);
@@ -907,7 +907,7 @@
         if (NO) {
             // Dump data as string for debugging.
             NSString *dataString = [NSString stringWithUTF8String:[receivedData bytes]];
-            NSLog(@"MGTwitterEngine: Succeeded! Received %d bytes of data:\r\r%@", [receivedData length], dataString);
+            DLog(@"MGTwitterEngine: Succeeded! Received %d bytes of data:\r\r%@", [receivedData length], dataString);
         }
         
         if (NO) {
@@ -1692,7 +1692,7 @@
 
 			Ex: http://search.twitter.com/search.atom?geocode=40.757929%2C-73.985506%2C25km
 	*/
-    NSLog(@"params: %@", params);
+    DLog(@"params: %@", params);
 	
     return [self _sendRequestWithMethod:nil path:path queryParameters:params body:nil 
                             requestType:MGTwitterSearchRequest 

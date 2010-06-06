@@ -30,7 +30,7 @@
         tweetId = [statusDictionary objectForKey:@"id"];
         createDate = [[[[KickballAPI kickballApi] twitterDateFormatter] dateFromString:[statusDictionary objectForKey:@"created_at"]] retain];
         
-        //NSLog(@"tweet created at: %@", createDate);
+        //DLog(@"tweet created at: %@", createDate);
     }
     return self;
 }

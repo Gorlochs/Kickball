@@ -102,23 +102,23 @@ static BOOL initialized = NO;
 
 - (void) stopUpdates {
 	if (locationManager) {
-        NSLog(@"stopping updates!");
+        DLog(@"stopping updates!");
 		[locationManager stopUpdatingLocation];
-        NSLog(@"***** STOPPING LOCATION MANAGER UPDATES ******");
+        DLog(@"***** STOPPING LOCATION MANAGER UPDATES ******");
 	}
 	//[self reset];
 }
 
 - (void) startUpdates {
-    NSLog(@"starting updates");
+    DLog(@"starting updates");
 //	if(![[NSUserDefaults standardUserDefaults] boolForKey:@"UseLocations"]) {
-//        NSLog(@"stopping updates - user doesn't want to detect location");
+//        DLog(@"stopping updates - user doesn't want to detect location");
 //		[self stopUpdates];
 //		return;
 //	}
     
 	if (locationManager) {
-        NSLog(@"stopping updates - location manager already started");
+        DLog(@"stopping updates - location manager already started");
 		[locationManager stopUpdatingLocation];
 	} else {
 		locationManager = [[CLLocationManager alloc] init];
@@ -126,7 +126,7 @@ static BOOL initialized = NO;
 		locationManager.distanceFilter = 100;
 //		locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
 		locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-        NSLog(@"starting updateslocationmanager: %@", locationManager);
+        DLog(@"starting updateslocationmanager: %@", locationManager);
 	}
 	
 	locationDefined = NO;
@@ -142,9 +142,9 @@ static BOOL initialized = NO;
 
     latitude = newLocation.coordinate.latitude;
     longitude = newLocation.coordinate.longitude;
-    NSLog(@"latitude: %f", latitude);
-    NSLog(@"longitude: %f", longitude);
-    NSLog(@"bestEffortAtLocation: %@", bestEffortAtLocation);
+    DLog(@"latitude: %f", latitude);
+    DLog(@"longitude: %f", longitude);
+    DLog(@"bestEffortAtLocation: %@", bestEffortAtLocation);
     
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setFloat:latitude forKey:kLastLatitudeKey];

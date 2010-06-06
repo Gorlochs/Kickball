@@ -46,7 +46,7 @@ static NSArray *expressions = nil;
 - (void)handleButton:(id)sender
 {
 	NSString *buttonTitle = [sender titleForState:UIControlStateNormal];
-	//NSLog(@"IFTweetLabel: handleButton: sender = %@, title = %@", sender, buttonTitle);
+	//DLog(@"IFTweetLabel: handleButton: sender = %@, title = %@", sender, buttonTitle);
 
 	NSString *text = self.label.text;
 
@@ -97,7 +97,7 @@ static NSArray *expressions = nil;
 
 - (void)createButtonsWithText:(NSString *)text atPoint:(CGPoint)point
 {
-	//NSLog(@"output = '%@', point = %@", text, NSStringFromCGPoint(point));
+	//DLog(@"output = '%@', point = %@", text, NSStringFromCGPoint(point));
 
 	UIFont *font = self.label.font;
 
@@ -117,7 +117,7 @@ static NSArray *expressions = nil;
 			CGRect matchFrame = CGRectMake(measureSize.width - 3.0f, point.y, matchSize.width + 6.0f, matchSize.height);
 			[self createButtonWithText:match withFrame:matchFrame];
 			
-			//NSLog(@"match = %@", match);
+			//DLog(@"match = %@", match);
 		}
 	}
 }
@@ -152,7 +152,7 @@ static NSArray *expressions = nil;
 	}
 
 	
-	//NSLog(@"****** text = '%@'", text);
+	//DLog(@"****** text = '%@'", text);
 	
 	// initialize whitespace tracking
 	BOOL scanningWhitespace = NO;
@@ -173,13 +173,13 @@ static NSArray *expressions = nil;
 		NSUInteger index;
 		for (index = 0; index < usedLength; index++)
 		{
-			NSLog(@"token: %3d 0x%02x", tokenRange.location, buffer[index] & 0xff);
+			DLog(@"token: %3d 0x%02x", tokenRange.location, buffer[index] & 0xff);
 		}
 #endif
 		
 		if ([token isEqualToString:@" "] || [token isEqualToString:@"?"] || [token isEqualToString:@"-"])
 		{
-			//NSLog(@"------ whitespace: token = '%@'", token);
+			//DLog(@"------ whitespace: token = '%@'", token);
 			
 			// handle whitespace
 			if (! scanningWhitespace)
@@ -211,14 +211,14 @@ static NSArray *expressions = nil;
 			if ([token isEqualToString:@"\r"] || [token isEqualToString:@"\n"])
 			{
 				// carriage return or newline caused line to break
-				//NSLog(@"------ scanText = '%@', token = '%@'", scanText, token);
+				//DLog(@"------ scanText = '%@', token = '%@'", scanText, token);
 				breakLine = YES;
 			}
 			BOOL breakWidth = NO;
 			if (currentSize.width > frame.size.width)
 			{
 				// the width of the text in the frame caused the line to break
-				//NSLog(@"------ scanText = '%@', currentSize = %@", scanText, NSStringFromCGSize(currentSize));
+				//DLog(@"------ scanText = '%@', currentSize = %@", scanText, NSStringFromCGSize(currentSize));
 				breakWidth = YES;
 			}
 			
@@ -422,7 +422,7 @@ static NSArray *expressions = nil;
 {
 	SEL aSelector = [invocation selector];
 
-	//NSLog(@"forwardInvocation: selector = %@", NSStringFromSelector(aSelector));
+	//DLog(@"forwardInvocation: selector = %@", NSStringFromSelector(aSelector));
 
 	if ([self.label respondsToSelector:aSelector])
 	{
@@ -436,7 +436,7 @@ static NSArray *expressions = nil;
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector
 {
-	//NSLog(@"methodSignatureForSelector: selector = %@", NSStringFromSelector(aSelector));
+	//DLog(@"methodSignatureForSelector: selector = %@", NSStringFromSelector(aSelector));
 
 	NSMethodSignature* methodSignature = [super methodSignatureForSelector:aSelector];
 	if (methodSignature == nil)
@@ -449,7 +449,7 @@ static NSArray *expressions = nil;
 
 - (BOOL)respondsToSelector:(SEL)aSelector
 {
-	//NSLog(@"respondsToSelector: selector = %@", NSStringFromSelector(aSelector));
+	//DLog(@"respondsToSelector: selector = %@", NSStringFromSelector(aSelector));
 	
 	return [super respondsToSelector:aSelector] || [self.label respondsToSelector:aSelector];
 }
