@@ -43,7 +43,7 @@
         userTweetsController.username = [notification object];
         [self.navigationController pushViewController:userTweetsController animated:YES];
     } else if ([[notification object] rangeOfString:@"#"].location == 0) {
-        searchController = [[KBTwitterSearchViewController alloc] initWithNibName:@"KBTweetListViewController" bundle:nil];
+        searchController = [[KBTwitterSearchViewController alloc] initWithNibName:@"KBTwitterSearchViewController" bundle:nil];
         searchController.searchTerms = [notification object];
         [self.navigationController pushViewController:searchController animated:YES];
     } else {
