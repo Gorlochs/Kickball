@@ -8,6 +8,7 @@
 
 #import "KBTwitterManager.h"
 #import "UIAlertView+Helper.h"
+#import "KBAccountManager.h"
 
 #define NUM_TWEETS_TO_CACHE 25
 
@@ -88,6 +89,7 @@ static KBTwitterManager *sharedInstance = nil;
 	DLog(@"Access token string returned: %@", tokenString);
 	
 	[[NSUserDefaults standardUserDefaults] setObject:tokenString forKey:kCachedXAuthAccessTokenStringKey];
+    [[KBAccountManager sharedInstance] setUsesTwitter:YES];
 	
 	// Enable the send tweet button.
 	//self.sendTweetButton.enabled = YES;

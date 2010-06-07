@@ -236,6 +236,7 @@
         DLog(@"venue response string: %@", inString);
         self.venue = [FoursquareAPI venueFromResponseXML:inString];
         [self prepViewWithVenueInfo:self.venue];
+		imHereButton.enabled = YES;
 
         [theTableView reloadData];
         
@@ -619,6 +620,7 @@
     [specialsButton release];
     [mapButton release];
     [closeMapButton release];
+	[imHereButton release];
     [phoneButton release];
     
     [checkin release];

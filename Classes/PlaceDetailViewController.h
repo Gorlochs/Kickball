@@ -43,6 +43,7 @@
     IBOutlet UIButton *closeMapButton;
     IBOutlet UIButton *phoneButton;
     IBOutlet UIButton *choosePhotoButton;
+    IBOutlet UIButton *imHereButton;
     IBOutlet UIImageView *noMayorImage;
     IBOutlet UIImageView *mayorArrow;
     IBOutlet UIImageView *mayorCrown;

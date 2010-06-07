@@ -12,9 +12,10 @@
 #import "FSCheckin.h"
 #import "FSVenue.h"
 #import "KBPhotoManager.h"
+#import "KBTwitterManager.h"
 
 
-@interface KBCheckinModalViewController : AbstractPushNotificationViewController <UITextFieldDelegate, MGTwitterEngineDelegate, PhotoManagerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
+@interface KBCheckinModalViewController : AbstractPushNotificationViewController <KBTwitterManagerDelegate, UITextFieldDelegate, MGTwitterEngineDelegate, PhotoManagerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
     FSVenue *venue;
     IBOutlet UILabel *characterCountLabel;
     
@@ -30,7 +31,8 @@
     UIImage *photoImage;
     KBPhotoManager *photoManager;
     IBOutlet UIImageView *thumbnailPreview;
-    
+    KBTwitterManager *twitterManager;
+	
     int actionCount;
 }
 

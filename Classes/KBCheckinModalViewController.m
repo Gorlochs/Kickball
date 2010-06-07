@@ -29,7 +29,9 @@
     hideHeader = YES;
     hideFooter = YES;
     
-    self.twitterEngine = [[KBTwitterManager twitterManager] twitterEngine];
+	twitterManager = [KBTwitterManager twitterManager];
+	twitterManager.delegate = self;
+    self.twitterEngine = [twitterManager twitterEngine];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusRetrieved:) name:kTwitterStatusRetrievedNotificationKey object:nil];
     
@@ -41,20 +43,21 @@
     
     FSUser* user = [self getAuthenticatedUser];
     DLog(@"user: %@", user);
-    facebookButton.enabled = user.facebook != nil;
-    twitterButton.enabled = user.twitter != nil;
+//    facebookButton.enabled = user.facebook != nil;
+//    twitterButton.enabled = user.twitter != nil;
     isFacebookOn = YES;
     isTwitterOn = YES;
     isFoursquareOn = YES;
+	DLog("auth'd user: %@", [self getAuthenticatedUser]);
     // hack
-    if (![[KBAccountManager sharedInstance] usesFacebook]) {
+    if (![[KBAccountManager sharedInstance] usesFacebook] || !user.facebook) {
         facebookButton.enabled = NO;
     } else {
         if (!user.sendToFacebook) {
             [self toggleFacebook];
         }
-    }   
-    if (![[KBAccountManager sharedInstance] usesTwitter]) {
+    }
+    if (![[KBAccountManager sharedInstance] usesTwitter] || !user.twitter) {
         twitterButton.enabled = NO;
     } else {
         if (!user.sendToTwitter) {
@@ -112,7 +115,7 @@
 - (void) checkin {
     [checkinTextField resignFirstResponder];
     [self startProgressBar:@"Checking in..."];
-    actionCount = 1 + isTwitterOn + isFacebookOn;
+    actionCount = 1;
     
     [[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:venue.venueid 
                                                   andShout:checkinTextField.text 
@@ -124,6 +127,8 @@
     
     // we send twitter/facebook api calls ourself so that the tweets and posts are stamped with the Kickball brand
     if (isTwitterOn && [[KBAccountManager sharedInstance] usesTwitter]) {
+		actionCount++;
+		DLog(@"twitter is on. action count has been incremented: %d", actionCount);
         NSString *tweetString = nil;
         if (![checkinTextField.text isEqualToString:@""]) {
             tweetString = [NSString stringWithFormat:@"%@ (just checked into %@) %@", checkinTextField.text, venue.name, [Utilities getShortenedUrlFromFoursquareVenueId:venue.venueid]];
@@ -137,11 +142,15 @@
     }
     
     if (isFacebookOn && [[KBAccountManager sharedInstance] usesFacebook]) {
+		actionCount++;
+		DLog(@"facebook is on. action count has been incremented: %d", actionCount);
         NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%@ - %@", checkinTextField.text, [Utilities getShortenedUrlFromFoursquareVenueId:venue.venueid]], @"status", nil];
         [[FBRequest requestWithDelegate:self] call:@"facebook.status.set" params:params dataParam:nil];
     }
     
     if (photoImage) {
+		actionCount++;
+		DLog(@"photo is on. action count has been incremented: %d", actionCount);
 		self.hasPhoto = YES;
         [photoManager uploadImage:UIImageJPEGRepresentation(photoImage, 1.0) 
                          filename:@"tweet.jpg" 
@@ -156,7 +165,7 @@
 }
 
 // Twitter response
-- (void) statusRetrieved:(NSNotification *)inNotification {
+- (void)statusesReceived:(NSArray *)statuses {
     [self decrementActionCount];
 }
 
@@ -181,7 +190,7 @@
     
     self.shoutToPush = [NSString stringWithString:checkinTextField.text];
 	self.venueToPush = checkin.venue;
-    if ([self getAuthenticatedUser].isPingOn) {
+    if ([self getAuthenticatedUser].isPingOn && isFoursquareOn) {
         [self sendPushNotification];
     }
     
@@ -190,6 +199,7 @@
 
 - (void) decrementActionCount {
     actionCount--;
+	DLog(@"action count has been decremented: %d", actionCount);
     if (actionCount == 0) {
         [self closeUpShop];
     }

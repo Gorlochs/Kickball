@@ -661,7 +661,7 @@ static FoursquareAPI *sharedInstance = nil;
 	NSError * err = nil;
 	CXMLDocument *userParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
     //DLog(@"user xml: %@", userParser);
-	DLog(@"%@", [err description]);
+	//DLog(@"%@", [err description]);
 	
 	NSArray *allUserAttrs = [userParser nodesForXPath:@"user" error:nil];
     FSUser *user = nil;
@@ -906,9 +906,9 @@ static FoursquareAPI *sharedInstance = nil;
                             special.type = value;
                         } else if ([key isEqualToString:@"venue"]) {
                             // FIXME: this was done for expediency's sake
-                            DLog(@"[checkinAttr nodesForXPath:@//special/venue error:nil] : %@", [checkinAttr nodesForXPath:@"//special/venue" error:nil]);
-                            DLog(@"[checkinAttr nodesForXPath:@//special error:nil] : %@", [checkinAttr nodesForXPath:@"//special" error:nil]);
-                            DLog(@"[checkinAttr nodesForXPath:@//venue error:nil] : %@", [checkinAttr nodesForXPath:@"//venue" error:nil]);
+                            //DLog(@"[checkinAttr nodesForXPath:@//special/venue error:nil] : %@", [checkinAttr nodesForXPath:@"//special/venue" error:nil]);
+                            //DLog(@"[checkinAttr nodesForXPath:@//special error:nil] : %@", [checkinAttr nodesForXPath:@"//special" error:nil]);
+                            //DLog(@"[checkinAttr nodesForXPath:@//venue error:nil] : %@", [checkinAttr nodesForXPath:@"//venue" error:nil]);
                             NSArray *venueArray = [FoursquareAPI _venuesFromNode:[[checkinAttr nodesForXPath:@"//special/venue" error:nil] objectAtIndex:0]];
                             if ([venueArray count] > 0) {
                                 special.venue = [venueArray objectAtIndex:0];
@@ -1540,7 +1540,7 @@ int encode(unsigned s_len, char *src, unsigned d_len, char *dst)
 {
 	FSFunctionRequest * fsReq = (FSFunctionRequest *) [activeRequests objectForKey:[NSString stringWithFormat:@"%d", [connection hash]]]; 
     
-    DLog(@"Succeeded! Received %d bytes of data",[fsReq.receivedData length]);
+    //DLog(@"Succeeded! Received %d bytes of data",[fsReq.receivedData length]);
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 	NSString * responseString = [[NSString alloc] initWithData:fsReq.receivedData encoding:NSUTF8StringEncoding];
 	[fsReq.currentTarget performSelector:fsReq.currentSelector withObject:fsReq.currentRequestURL withObject:responseString];	
