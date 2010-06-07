@@ -18,6 +18,7 @@
 #import "FooterTabView.h"
 #import "FoursquareHeaderView.h"
 
+
 #define HEADER_NIB_TWITTER      @"TwitterHeaderView"
 #define HEADER_NIB_FOURSQUARE   @"FoursquareHeaderView"
 #define kUsernameDefaultsKey    @"FSUsername"
@@ -48,7 +49,7 @@ typedef enum{
 	KBPageViewTypeOther,	
 } KBPageViewType;
 
-@class LoginViewModalController, EGORefreshTableHeaderView;;
+@class LoginViewModalController, EGORefreshTableHeaderView, ProfileViewController;
 
 @interface KBBaseViewController : UIViewController {
     
@@ -83,6 +84,7 @@ typedef enum{
     IBOutlet UIButton *signedInUserIcon;
     KBFooterType footerType;
     NSString *headerNibName;
+    ProfileViewController *profileController;
 }
 
 @property (nonatomic, retain) UITableView *theTableView;

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AbstractFacebookViewController.h"
 #import "XAuthTwitterEngineDelegate.h"
+#import "KBTwitterManagerDelegate.h"
 #import "OAToken.h"
 
 #define kOAuthConsumerKey		@"qyx7QFTRxkJ0BbYN6ZKqbg"		// Replace these with your consumer key 
@@ -17,7 +18,7 @@
 
 @class XAuthTwitterEngine;
 
-@interface AccountOptionsViewController : AbstractFacebookViewController <UITextFieldDelegate, XAuthTwitterEngineDelegate> {
+@interface AccountOptionsViewController : AbstractFacebookViewController <UITextFieldDelegate, XAuthTwitterEngineDelegate, KBTwitterManagerDelegate> {
     IBOutlet UITableViewCell *foursquareCell;
     IBOutlet UITableViewCell *twitterCell;
     IBOutlet UITableViewCell *facebookCell;

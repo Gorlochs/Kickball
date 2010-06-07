@@ -75,9 +75,9 @@
 }
 
 - (void) viewUserProfile {
-	profileController = [[KBTwitterProfileViewController alloc] initWithNibName:@"KBTwitterProfileViewController" bundle:nil];
-    profileController.screenname = tweet.screenName;
-	[self.navigationController pushViewController:profileController animated:YES];
+	twitterProfileController = [[KBTwitterProfileViewController alloc] initWithNibName:@"KBTwitterProfileViewController" bundle:nil];
+    twitterProfileController.screenname = tweet.screenName;
+	[self.navigationController pushViewController:twitterProfileController animated:YES];
 }
 
 - (void) statusRetrieved:(NSNotification *)inNotification {
@@ -97,7 +97,7 @@
     [mainTextLabel release];
     [userProfileImage release];
     
-	[profileController release];
+	[twitterProfileController release];
 	[createReplyViewController release];
 	[createRetweetViewController release];
     

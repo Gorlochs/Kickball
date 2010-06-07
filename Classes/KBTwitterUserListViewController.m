@@ -126,9 +126,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        profileController = [[KBTwitterProfileViewController alloc] initWithNibName:@"KBTwitterProfileViewController" bundle:nil];
-        profileController.screenname = ((KBTwitterUser*)[users objectAtIndex:indexPath.row]).screenName;
-        [self.navigationController pushViewController:profileController animated:YES];
+        twitterProfileController = [[KBTwitterProfileViewController alloc] initWithNibName:@"KBTwitterProfileViewController" bundle:nil];
+        twitterProfileController.screenname = ((KBTwitterUser*)[users objectAtIndex:indexPath.row]).screenName;
+        [self.navigationController pushViewController:twitterProfileController animated:YES];
     } else {
         [self executeQuery:++pageNum];
     }

@@ -28,7 +28,7 @@
     IFTweetLabel *mainTextLabel;
     TTImageView *userProfileImage;
     
-    KBTwitterProfileViewController *profileController;
+    KBTwitterProfileViewController *twitterProfileController;
     KBCreateTweetViewController *createRetweetViewController;
     KBCreateTweetViewController *createReplyViewController;
 }

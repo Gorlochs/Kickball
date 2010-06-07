@@ -94,49 +94,49 @@
     [controller release];
 }
 
-//#pragma mark -
-//#pragma mark twitter auth methods
-//
-//- (IBAction)xAuthAccessTokenRequestButtonTouchUpInside
-//{
-//    [twitterUsername resignFirstResponder];
-//    [twitterPassword resignFirstResponder];
-//    
-//    [self startProgressBar:@"Authenticating Twitter username and password..."];
-//    
-//	NSString *username = twitterUsername.text;
-//	NSString *password = twitterPassword.text;
-//	
-//	DLog(@"About to request an xAuth token exchange for username: ]%@[ password: ]%@[.", username, password);
-//	
-//	[self.twitterEngine exchangeAccessTokenForUsername:username password:password];
-//}
-//
-//#pragma mark XAuthTwitterEngineDelegate methods
-//
-//- (void) storeCachedTwitterXAuthAccessTokenString: (NSString *)tokenString forUsername:(NSString *)username
-//{
-//	// FIXME
-//	// Note: do not use NSUserDefaults to store this in a production environment. 
-//	// ===== Use the keychain instead. Check out SFHFKeychainUtils if you want 
-//	//       an easy to use library. (http://github.com/ldandersen/scifihifi-iphone) 
-//	//
-//	DLog(@"Access token string returned: %@", tokenString);
-//	
-//	[[NSUserDefaults standardUserDefaults] setObject:tokenString forKey:kCachedXAuthAccessTokenStringKey];
-//    [[KBAccountManager sharedInstance] setUsesTwitter:YES];
-//    
-////    [[NSNotificationCenter defaultCenter] postNotificationName:@"loginNotification"
-////                                                        object:nil
-////                                                      userInfo:nil];
-//    
-//    [self stopProgressBar];
-//    KBMessage *message = [[KBMessage alloc] initWithMember:@"Success!" andMessage:@"Authentication succeeded!  Your new username and password have been authenticated."];
-//    [self displayPopupMessage:message];
-//    [message release];
-//    
-//    //[self dismissModalViewControllerAnimated:YES];
-//}
+#pragma mark -
+#pragma mark twitter auth methods
+
+- (IBAction)xAuthAccessTokenRequestButtonTouchUpInside
+{
+    [twitterUsername resignFirstResponder];
+    [twitterPassword resignFirstResponder];
+    
+    [self startProgressBar:@"Authenticating Twitter username and password..."];
+    
+	NSString *username = twitterUsername.text;
+	NSString *password = twitterPassword.text;
+	
+	DLog(@"About to request an xAuth token exchange for username: ]%@[ password: ]%@[.", username, password);
+	
+	[self.twitterEngine exchangeAccessTokenForUsername:username password:password];
+}
+
+#pragma mark XAuthTwitterEngineDelegate methods
+
+- (void) storeCachedTwitterXAuthAccessTokenString: (NSString *)tokenString forUsername:(NSString *)username
+{
+	// FIXME
+	// Note: do not use NSUserDefaults to store this in a production environment. 
+	// ===== Use the keychain instead. Check out SFHFKeychainUtils if you want 
+	//       an easy to use library. (http://github.com/ldandersen/scifihifi-iphone) 
+	//
+	DLog(@"Access token string returned: %@", tokenString);
+	
+	[[NSUserDefaults standardUserDefaults] setObject:tokenString forKey:kCachedXAuthAccessTokenStringKey];
+    [[KBAccountManager sharedInstance] setUsesTwitter:YES];
+    
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"loginNotification"
+//                                                        object:nil
+//                                                      userInfo:nil];
+    
+    [self stopProgressBar];
+    KBMessage *message = [[KBMessage alloc] initWithMember:@"Success!" andMessage:@"Authentication succeeded!  Your new username and password have been authenticated."];
+    [self displayPopupMessage:message];
+    [message release];
+    
+    //[self dismissModalViewControllerAnimated:YES];
+}
 
 #pragma mark delgate callbacks
 

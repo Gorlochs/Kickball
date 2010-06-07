@@ -21,7 +21,7 @@ typedef enum {
     NSMutableArray *users;
     KBTwitterUserType userType;
     NSNumber *currentCursor;
-    KBTwitterProfileViewController *profileController;
+    KBTwitterProfileViewController *twitterProfileController;
 }
 
 @property (nonatomic, retain) NSDictionary *userDictionary;

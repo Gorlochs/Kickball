@@ -255,6 +255,7 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
     [signedInUserIcon release];
     
     [headerNibName release];
+    [profileController release];
     
 //    [iconImageView release];  // uncommenting this crashes shit. not sure why.
     
@@ -473,15 +474,13 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 
 - (void) displayProperProfileView:(NSString*)userId {
     if ([userId isEqualToString:[self getAuthenticatedUser].userId]) {
-        UserProfileViewController *profileController = [[UserProfileViewController alloc] initWithNibName:@"UserProfileView_v2" bundle:nil];
-        profileController.userId = userId;
-        [self.navigationController pushViewController:profileController animated:YES];
-        [profileController release];
+        profileController = [[UserProfileViewController alloc] initWithNibName:@"UserProfileView_v2" bundle:nil];
+        ((UserProfileViewController*)profileController).userId = userId;
+        [self.navigationController pushViewController:(UserProfileViewController*)profileController animated:YES];
     } else {
-        ProfileViewController *profileController = [[ProfileViewController alloc] initWithNibName:@"ProfileView_v2" bundle:nil];
+        profileController = [[ProfileViewController alloc] initWithNibName:@"ProfileView_v2" bundle:nil];
         profileController.userId = userId;
         [self.navigationController pushViewController:profileController animated:YES];
-        [profileController release];
     }
 }
 
