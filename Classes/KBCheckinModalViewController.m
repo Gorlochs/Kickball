@@ -181,7 +181,9 @@
     
     self.shoutToPush = [NSString stringWithString:checkinTextField.text];
 	self.venueToPush = checkin.venue;
-    [self sendPushNotification];
+    if ([self getAuthenticatedUser].isPingOn) {
+        [self sendPushNotification];
+    }
     
     [self decrementActionCount];
 }

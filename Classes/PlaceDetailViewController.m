@@ -714,9 +714,9 @@
     [message release];
     
     self.venueToPush = ci.venue;
-    if (isPingOn) {
-        [self sendPushNotification];
-    }
+//    if (isPingOn) {
+//        [self sendPushNotification];
+//    }
 }
 
 - (void) togglePingsAndTwitter {
@@ -780,7 +780,7 @@
 
 - (void) showSpecial:(int)specialIndex {
     FSSpecial *special = ((FSSpecial*)[[self venue].specials objectAtIndex:specialIndex]);
-    DLog(@"specials: %@", [self venue].specials);
+    //DLog(@"specials: %@", [self venue].specials);
     DLog(@"special: %@", special);
     if (special.venue) {
         specialPlaceName.text = special.venue.name;
