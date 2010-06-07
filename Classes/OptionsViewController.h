@@ -23,10 +23,10 @@
     
     IBOutlet UIButton *defaultCheckinButton;
     IBOutlet UIButton *friendsListPriorityButton;
-    IBOutlet UISwitch *pushNotificationButton;
     IBOutlet UIButton *accountInformationButton;
     IBOutlet UIButton *feedbackButton;
     IBOutlet UIButton *versionInformationsButton;
+    IBOutlet UISwitch *pushNotificationSwitch;
     
     NSArray *cellArray;
 }
@@ -38,5 +38,6 @@
 - (IBAction) viewFriendPriority;
 - (IBAction) viewFeedback;
 - (IBAction) viewDefaultCheckinOptions;
+- (IBAction) togglePushNotifications;
 
 @end

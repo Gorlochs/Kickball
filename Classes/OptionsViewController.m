@@ -31,8 +31,7 @@
     
     [super viewDidLoad];
  
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [pushNotificationSwitch setOn:[self getAuthenticatedUser].isPingOn];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -150,6 +149,26 @@
     FriendRequestsViewController *friendRequestsController = [[FriendRequestsViewController alloc] initWithNibName:@"FriendRequestsViewController" bundle:nil];
     [self.navigationController pushViewController:friendRequestsController animated:YES];
     [friendRequestsController release];
+}
+
+#pragma mark -
+#pragma mark IBActions
+
+- (void) togglePushNotifications {
+    [self startProgressBar:@"Changing your ping update preferences..."];
+    NSString *ping = @"off";
+    if (pushNotificationSwitch.on) {
+        ping = @"on";
+    }
+    [[FoursquareAPI sharedInstance] setPings:ping forUser:@"self" withTarget:self andAction:@selector(pingUpdateResponseReceived:withResponseString:)];
+}
+
+- (void) pingUpdateResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+    DLog(@"instring: %@", inString);
+    BOOL newPingSetting = [FoursquareAPI pingSettingFromResponseXML:inString];
+    DLog(@"new ping setting: %d", newPingSetting);
+    [self stopProgressBar];
+    [self getAuthenticatedUser].isPingOn = newPingSetting;
 }
 
 #pragma mark -
