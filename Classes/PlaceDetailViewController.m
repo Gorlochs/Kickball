@@ -34,7 +34,6 @@
 #import "KickballAPI.h"
 #import "BlackTableCellHeader.h"
 #import "TipListViewController.h"
-#import "KBCheckinModalViewController.h"
 #import "PlacePeopleHereViewController.h"
 
 
@@ -643,6 +642,7 @@
     [specialClose release];
     
     [tipController release];
+    [checkinViewController release];
     
     [super dealloc];
 }
@@ -679,10 +679,9 @@
 }
 
 - (void) openCheckinView {
-    KBCheckinModalViewController *vc = [[KBCheckinModalViewController alloc] initWithNibName:@"CheckinModalView" bundle:nil];
-    vc.venue = venue;
-    [self presentModalViewController:vc animated:YES];
-    [vc release];
+    checkinViewController = [[KBCheckinModalViewController alloc] initWithNibName:@"CheckinModalView" bundle:nil];
+    checkinViewController.venue = venue;
+    [self presentModalViewController:checkinViewController animated:YES];
 }
         
 - (void) presentCheckinOverlay:(NSNotification*)inNotification {

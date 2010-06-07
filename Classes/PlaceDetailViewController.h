@@ -16,6 +16,7 @@
 #import "PhotoMessageViewController.h"
 #import "KBPhotoManager.h"
 #import "TipDetailViewController.h"
+#import "KBCheckinModalViewController.h"
 
 
 @interface PlaceDetailViewController : AbstractPushNotificationViewController <PhotoManagerDelegate, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate, GAConnectionDelegate, UIActionSheetDelegate> {
@@ -82,6 +83,8 @@
     TipDetailViewController *tipController;
     
     int currentSpecial;
+    
+    KBCheckinModalViewController *checkinViewController;
 }
 
 @property (nonatomic, retain) UITableViewCell *mayorMapCell;
