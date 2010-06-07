@@ -8,7 +8,7 @@
 
 #import "FriendPriorityOptionViewController.h"
 #import "AccountOptionsViewController.h"
-
+#import "Utilities.h"
 
 @implementation FriendPriorityOptionViewController
 
@@ -22,12 +22,48 @@
     [slider setMinimumTrackImage:nil forState:UIControlStateNormal];
     [slider setMaximumTrackImage:nil forState:UIControlStateNormal];
     [slider setThumbImage:[UIImage imageNamed:@"slideBar.png"] forState:UIControlStateNormal];
+	NSNumber *currentUserValue = [[Utilities sharedInstance] getCityRadius];
+	int val = [currentUserValue intValue];
+	if (val < 0) {
+		[slider setValue:1.0 animated:NO];
+	}else if (val >CITY_RADIUS_MEDIUM) {
+		[slider setValue:0.75 animated:NO];
+	}else if (val >CITY_RADIUS_SMALL) {
+		[slider setValue:0.50 animated:NO];
+	}else if (val >CITY_RADIUS_TINY) {
+		[slider setValue:0.25 animated:NO];
+	}else {
+		[slider setValue:0.0 animated:NO];
+	}
 }
 
 - (void) nextOptionView {
     AccountOptionsViewController *accountController = [[AccountOptionsViewController alloc] initWithNibName:@"AccountOptionsView_v2" bundle:nil];
     [self.navigationController pushViewController:accountController animated:YES];
     [accountController release];
+}
+
+- (IBAction) releasedSlider{
+	float newValue =[slider	value];
+	NSLog(@"new Slider value: %f",newValue);
+	if (newValue>=0.875) { 
+		[slider setValue:1.0 animated:YES]; // ∞
+		[[Utilities sharedInstance] setCityRadius:CITY_RADIUS_INFINTE];
+	}else if (newValue>=0.625) { 
+		[slider setValue:0.75 animated:YES]; // 100 miles
+		[[Utilities sharedInstance] setCityRadius:CITY_RADIUS_LARGE];
+	}else if (newValue>=0.375) { 
+		[slider setValue:0.5 animated:YES]; // 50 miles
+		[[Utilities sharedInstance] setCityRadius:CITY_RADIUS_MEDIUM];
+	}else if (newValue>=0.125) {
+		[slider setValue:0.25 animated:YES]; // 25 miles
+		[[Utilities sharedInstance] setCityRadius:CITY_RADIUS_SMALL];
+	}else {
+		[slider setValue:0.0 animated:YES]; //10 miles
+		[[Utilities sharedInstance] setCityRadius:CITY_RADIUS_TINY];
+	}
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"refreshFriendsList" object:nil];
+
 }
 
 - (void)didReceiveMemoryWarning {

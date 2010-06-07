@@ -253,7 +253,7 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
 
 - (NSNumber*) getCityRadius {
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSNumber *radius = [NSNumber numberWithInt:50000];
+    NSNumber *radius = [NSNumber numberWithInt:CITY_RADIUS_SMALL]; //25 miles is 40,233.6 meters
     if (userDefaults) {
         NSNumber *cityRadius = [NSNumber numberWithInteger:[userDefaults integerForKey:kCityRadiusKey]];
         if (cityRadius && cityRadius != [NSNumber numberWithInt:0]) {
@@ -264,6 +264,10 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
         }
     }
 	return radius;
+}
+
+- (void) setCityRadius:(int)meters {
+		[[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInt:meters] forKey:kCityRadiusKey];
 }
 
 + (NSString*) getShortenedUrlFromFoursquareVenueId:(NSString*)venueId {
@@ -277,5 +281,7 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
 + (NSString*) shortenUrl:(NSString*)longUrl {
 	return [NSString stringWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://is.gd/api.php?longurl=%@", longUrl]] encoding:NSASCIIStringEncoding error:nil];
 }
+
+
 
 @end

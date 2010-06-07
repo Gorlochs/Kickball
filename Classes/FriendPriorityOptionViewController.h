@@ -15,5 +15,6 @@
 }
 
 - (IBAction) nextOptionView;
+- (IBAction) releasedSlider;
 
 @end

@@ -116,7 +116,8 @@
     [self startProgressBar:@"Retrieving friends' whereabouts..." withTimer:NO];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(instaCheckin:) name:@"touchAndHoldCheckin" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideAppropriateTabs) name:@"hideAppropriateTabs" object:nil];
-    
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTable) name:@"refreshFriendsList" object:nil];
+
 //    if (!hasViewedInstructions) {
 //        [iconImageView setHidden:YES];
 //        [self.view addSubview:instructionView];
@@ -612,27 +613,39 @@
         twentyfourHoursFromNow = [[KickballAPI kickballApi] convertToUTC:twentyfourHoursFromNow];
         
         NSUInteger unitFlags = NSMinuteCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit;
-        
+		int currentRadius = [(NSNumber*)[[Utilities sharedInstance] getCityRadius] intValue];
+		BOOL isInfiniteRadius = (currentRadius == -1 ? YES : NO);
         // FIXME: this is nasty ugly. It should be done the same way that Places List is done. This is crap. -shawn-
         for (FSCheckin *checkin in checkins) {
             NSDate *date = [[[Utilities sharedInstance] foursquareCheckinDateFormatter] dateFromString:checkin.created];
-            if (checkin.distanceFromLoggedInUser < [[[Utilities sharedInstance] getCityRadius] integerValue]) {
-                if ([date compare:oneHourFromNow] == NSOrderedDescending) {
+			// to support infinity... see if the user is set to CITY_RADIUS_INFINITY then there is no point doing the comparison.
+			if (isInfiniteRadius) {
+				if ([date compare:oneHourFromNow] == NSOrderedDescending) {
                     [self.recentCheckins addObject:checkin];
                 } else if ([date compare:oneHourFromNow] == NSOrderedAscending && [date compare:twentyfourHoursFromNow] == NSOrderedDescending) {
                     [self.todayCheckins addObject:checkin];
                 } else {
                     [self.yesterdayCheckins addObject:checkin];
                 }
-            } else {                
-                if ([date compare:oneHourFromNow] == NSOrderedDescending) {
-                    [self.nonCityRecentCheckins addObject:checkin];
-                } else if ([date compare:oneHourFromNow] == NSOrderedAscending && [date compare:twentyfourHoursFromNow] == NSOrderedDescending) {
-                    [self.nonCityTodayCheckins addObject:checkin];
-                } else {
-                    [self.nonCityYesterdayCheckins addObject:checkin];
-                }
-            }
+			}else{
+				if (checkin.distanceFromLoggedInUser < [[[Utilities sharedInstance] getCityRadius] integerValue]) {
+					if ([date compare:oneHourFromNow] == NSOrderedDescending) {
+						[self.recentCheckins addObject:checkin];
+					} else if ([date compare:oneHourFromNow] == NSOrderedAscending && [date compare:twentyfourHoursFromNow] == NSOrderedDescending) {
+						[self.todayCheckins addObject:checkin];
+					} else {
+						[self.yesterdayCheckins addObject:checkin];
+					}
+				} else {                
+					if ([date compare:oneHourFromNow] == NSOrderedDescending) {
+						[self.nonCityRecentCheckins addObject:checkin];
+					} else if ([date compare:oneHourFromNow] == NSOrderedAscending && [date compare:twentyfourHoursFromNow] == NSOrderedDescending) {
+						[self.nonCityTodayCheckins addObject:checkin];
+					} else {
+						[self.nonCityYesterdayCheckins addObject:checkin];
+					}
+				}
+			}
             
             NSDateComponents *components = [gregorian components:unitFlags fromDate:[[KickballAPI kickballApi] convertToUTC:[NSDate date]] toDate:date options:0];
             NSInteger minutes = [components minute] * -1;
