@@ -49,6 +49,10 @@
     [self switchToFoursquare];
 }
 
+- (void) postPhotosToFacebook {
+    [[KBAccountManager sharedInstance] setShouldPostPhotosToFacebook:postPhotosToFacebookSwitch.on];
+}
+
 #pragma mark -
 #pragma mark FBSessionDelegate
 

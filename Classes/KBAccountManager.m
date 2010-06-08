@@ -12,6 +12,7 @@
 #define USES_FACEBOOK_KEY @"usesFacebook"
 #define FACEBOOK_NOTHANKS_CLICKED @"facebookNoThanksClicked"
 #define TWITTER_NOTHANKS_CLICKED @"twitterNoThanksClicked"
+#define SHOULD_POST_PHOTOS_TO_FACEBOOK_KEY @"shouldPostPhotosToFacebook"
 
 static KBAccountManager *accountManager = nil;
 
@@ -19,6 +20,7 @@ static KBAccountManager *accountManager = nil;
 
 @synthesize usesTwitter;
 @synthesize usesFacebook;
+@synthesize shouldPostPhotosToFacebook;
 
 #pragma mark -
 #pragma mark custom getters and setters
@@ -64,6 +66,14 @@ static KBAccountManager *accountManager = nil;
 	DLog(@"![userDefaults boolForKey:FACEBOOK_NOTHANKS_CLICKED]: %d", ![userDefaults boolForKey:FACEBOOK_NOTHANKS_CLICKED]);
 	DLog(@"[userDefaults boolForKey:USES_FACEBOOK_KEY]: %d", [userDefaults boolForKey:USES_FACEBOOK_KEY]);
     return [userDefaults boolForKey:USES_FACEBOOK_KEY];
+}
+
+- (void) setShouldPostPhotosToFacebook:(BOOL)shouldPostPhotos {
+	[[NSUserDefaults standardUserDefaults] setBool:shouldPostPhotos forKey:SHOULD_POST_PHOTOS_TO_FACEBOOK_KEY];
+}
+
+- (BOOL) shouldPostPhotosToFacebook {
+	return [[NSUserDefaults standardUserDefaults] boolForKey:SHOULD_POST_PHOTOS_TO_FACEBOOK_KEY];
 }
 
 #pragma mark -

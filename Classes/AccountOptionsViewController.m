@@ -24,6 +24,7 @@
     self.hideRefresh = YES;
     self.hideHeader = YES;
     isWhatsThisDisplayed = NO;
+	postPhotosToFacebookSwitch.on = [[KBAccountManager sharedInstance] shouldPostPhotosToFacebook];
     
     [super viewDidLoad];
     
@@ -80,7 +81,7 @@
 }
 
 - (void) postPhotosToFacebook {
-    
+    [[KBAccountManager sharedInstance] setShouldPostPhotosToFacebook:postPhotosToFacebookSwitch.on];
 }
 
 - (void) displayWhatsThis {

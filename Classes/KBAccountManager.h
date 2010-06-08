@@ -12,10 +12,12 @@
 @interface KBAccountManager : NSObject {
     BOOL usesTwitter;
     BOOL usesFacebook;
+	BOOL shouldPostPhotosToFacebook;
 }
 
 @property (nonatomic) BOOL usesTwitter;
 @property (nonatomic) BOOL usesFacebook;
+@property (nonatomic) BOOL shouldPostPhotosToFacebook;
 
 + (KBAccountManager*)sharedInstance;
 - (BOOL) usesFacebookOrHasNotDecided;
