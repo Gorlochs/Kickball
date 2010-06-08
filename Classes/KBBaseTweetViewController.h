@@ -10,6 +10,7 @@
 #import "KBTwitterViewController.h"
 #import "KBTweet.h"
 #import "KBTweetTableCell.h"
+#import "KBTweetTableCell320.h"
 #import "KBTwitterManager.h"
 #import "KBTwitterManagerDelegate.h"
 

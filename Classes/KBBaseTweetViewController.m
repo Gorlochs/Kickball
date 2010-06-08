@@ -12,6 +12,8 @@
 #import "KBUserTweetsViewController.h"
 #import "KBTwitterSearchViewController.h"
 #import "KBTwitterDetailViewController.h"
+#import "KickballAPI.h"
+
 
 @implementation KBBaseTweetViewController
 
@@ -161,9 +163,9 @@
     
     static NSString *CellIdentifier = @"Cell";
     
-    KBTweetTableCell *cell = (KBTweetTableCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    KBTweetTableCell320 *cell = (KBTweetTableCell320*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[KBTweetTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[KBTweetTableCell320 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     
     if (indexPath.section == 0) {
@@ -173,10 +175,12 @@
         
         cell.userIcon.urlPath = tweet.profileImageUrl;
         cell.userName.text = tweet.screenName;
-        cell.tweetText.numberOfLines = 0;
-        cell.tweetText.text = tweet.tweetText;
-        [cell setDateLabelWithDate:tweet.createDate];
-        
+        //cell.tweetText.numberOfLines = 0;
+		//cell.tweetText.text = tweet.tweetText;
+        cell.tweetText.text = [TTStyledText textWithURLs:tweet.tweetText lineBreaks:NO]; //tweet.tweetText;
+        //[cell setDateLabelWithDate:tweet.createDate];
+        [cell setDateLabelWithText:[[KickballAPI kickballApi] convertDateToTimeUnitString:tweet.createDate]];
+		/*
         CGSize maximumLabelSize = CGSizeMake(250, MAX_LABEL_HEIGHT);
         CGSize expectedLabelSize = [cell.tweetText.text sizeWithFont:cell.tweetText.font 
                                                    constrainedToSize:maximumLabelSize 
@@ -186,7 +190,10 @@
         CGRect newFrame = cell.tweetText.frame;
         newFrame.size.height = expectedLabelSize.height;
         cell.tweetText.frame = newFrame;
-        
+        */
+		[cell.tweetText sizeToFit];
+		//[cell.tweetText setNeedsLayout];
+		//[cell.tweetText setNeedsDisplay];
         return cell;
     } else {
         return moreCell;

@@ -32,6 +32,17 @@
     fullName.text = tweet.fullName;
     //timeLabel.text = self.tweet.createDate;
     
+	
+	TTStyledTextLabel* label1 = [[[TTStyledTextLabel alloc] initWithFrame:CGRectMake(20, 105, 270, 100)] autorelease];
+	label1.font = [UIFont fontWithName:@"Georgia" size:14.0];
+	label1.text = [TTStyledText textWithURLs:tweet.tweetText lineBreaks:NO];
+	label1.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
+	label1.backgroundColor = [UIColor clearColor];
+	[label1 sizeToFit];
+	[self.view addSubview:label1];
+	
+	
+	/*
     mainTextLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(20, 105, 270, 100)];
     mainTextLabel.textColor = [UIColor colorWithWhite:0.3 alpha:1.0];
     mainTextLabel.font = [UIFont fontWithName:@"Georgia" size:13.0];
@@ -43,6 +54,7 @@
     mainTextLabel.text = tweet.tweetText;
     [self.view addSubview:mainTextLabel];
      
+	 */
     CGRect frame = CGRectMake(11, 53, 49, 49);
     userProfileImage = [[TTImageView alloc] initWithFrame:frame];
     userProfileImage.backgroundColor = [UIColor clearColor];

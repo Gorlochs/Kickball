@@ -1,16 +1,15 @@
 //
-//  KBTweetTableCell.m
+//  KBTweetTableCell320.m
 //  Kickball
 //
-//  Created by Shawn Bernard on 4/18/10.
-//  Copyright 2010 Gorloch Interactive, LLC. All rights reserved.
+//  Created by scott bates on 6/8/10.
+//  Copyright 2010 Scott Bates. All rights reserved.
 //
 
-#import "KBTweetTableCell.h"
+#import "KBTweetTableCell320.h"
 #import "KickballAPI.h"
 
-
-@implementation KBTweetTableCell
+@implementation KBTweetTableCell320
 
 @synthesize userIcon;
 @synthesize userName;
@@ -48,6 +47,13 @@
 		dateLabel.textAlignment = UITextAlignmentRight;
         [self addSubview:dateLabel];
         
+		tweetText = [[TTStyledTextLabel alloc] initWithFrame:CGRectMake(66, 25, 250, 70)];
+		tweetText.textColor = [UIColor colorWithWhite:0.3 alpha:1.0];
+		tweetText.font = [UIFont fontWithName:@"Georgia" size:12.0];
+		tweetText.backgroundColor = [UIColor clearColor];
+		[self addSubview:tweetText];
+		
+		/*
         tweetText = [[IFTweetLabel alloc] initWithFrame:CGRectMake(66, 25, 250, 70)];
         tweetText.textColor = [UIColor colorWithWhite:0.3 alpha:1.0];
         tweetText.font = [UIFont fontWithName:@"Georgia" size:12.0];
@@ -57,7 +63,8 @@
         //tweetText.shadowColor = [UIColor colorWithWhite:1.0 alpha:0.5];
         //tweetText.shadowOffset = CGSizeMake(1.0, 1.0);
         [self addSubview:tweetText];
-        
+        */
+		
         topLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderTop.png"]];
         topLineImage.frame = CGRectMake(0, 0, self.frame.size.width, 1);
         [self addSubview:topLineImage];
@@ -78,11 +85,12 @@
 
 - (void) setDateLabelWithText:(NSString*)theDate {
     dateLabel.text = theDate;
+	
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-
+	
     [super setSelected:selected animated:animated];
-
+	
     // Configure the view for the selected state
 }
 
