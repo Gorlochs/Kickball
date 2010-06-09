@@ -19,6 +19,7 @@
     location.text = @"";
     numberOfFriends.text = @"";
     numberOfFollowers.text = @"";
+	description.text = @"";
     
     pageType = KBPageTypeOther;
     [super viewDidLoad];
@@ -44,29 +45,13 @@
     location.text = [userDictionary objectForKey:@"location"];
     numberOfFriends.text = [NSString stringWithFormat:@"%d", [[userDictionary objectForKey:@"friends_count"] intValue]];
     numberOfFollowers.text = [NSString stringWithFormat:@"%d", [[userDictionary objectForKey:@"followers_count"] intValue]];
+    numberOfFavorites.text = [NSString stringWithFormat:@"%d", [[[userDictionary objectForKey:@"status"] objectForKey:@"favorited"] intValue]];
     
-    description = [[IFTweetLabel alloc] initWithFrame:CGRectMake(12, 170, 300, 60)];
-    description.textColor = [UIColor colorWithWhite:0.8 alpha:1.0];
+    //description.textColor = [UIColor colorWithWhite:0.8 alpha:1.0];
     description.font = [UIFont fontWithName:@"Georgia" size:12.0];
-    description.backgroundColor = [UIColor clearColor];
-    description.linksEnabled = YES;
-    description.numberOfLines = 0;
-    //tweetText.shadowColor = [UIColor colorWithWhite:1.0 alpha:0.5];
-    //tweetText.shadowOffset = CGSizeMake(1.0, 1.0);
-    [self.view addSubview:description];
     description.text = [userDictionary objectForKey:@"description"];
     
-    CGSize maximumLabelSize = CGSizeMake(300,60);
-    CGSize expectedLabelSize = [description.text sizeWithFont:description.font 
-                                               constrainedToSize:maximumLabelSize 
-                                                   lineBreakMode:UILineBreakModeTailTruncation]; 
-    
-    //adjust the label the the new height.
-    CGRect newFrame = description.frame;
-    newFrame.size.height = expectedLabelSize.height;
-    description.frame = newFrame;
-    
-    CGRect frame = CGRectMake(8, 90, 49, 49);
+    CGRect frame = CGRectMake(13, 70, 39, 39);
     userIcon = [[TTImageView alloc] initWithFrame:frame];
     userIcon.backgroundColor = [UIColor clearColor];
     userIcon.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
@@ -75,7 +60,7 @@
     [self.view addSubview:userIcon];
     
     iconBgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellIconBorder.png"]];
-    iconBgImage.frame = CGRectMake(6, 88, 54, 54);
+    iconBgImage.frame = CGRectMake(11, 68, 43, 43);
     [self.view addSubview:iconBgImage];
     
     [self stopProgressBar];

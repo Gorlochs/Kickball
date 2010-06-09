@@ -9,6 +9,7 @@
 #import "KBTwitterUserListViewController.h"
 #import "KBTwitterUser.h"
 #import "KBTwitterUserTableCell.h"
+#import "KBTwitterProfileViewController.h"
 
 
 @implementation KBTwitterUserListViewController

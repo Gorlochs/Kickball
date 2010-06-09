@@ -17,7 +17,7 @@
 
 #define MAX_LABEL_HEIGHT 68.0
 
-@class KBUserTweetsViewController, KBTwitterSearchViewController, KBTwitterDetailViewController;
+@class KBUserTweetsViewController, KBTwitterSearchViewController, KBTwitterDetailViewController, KBTwitterProfileViewController;
 
 @interface KBBaseTweetViewController : KBTwitterViewController <MGTwitterEngineDelegate, KBTwitterManagerDelegate> {
     NSMutableArray *tweets;
@@ -29,6 +29,7 @@
     KBTwitterDetailViewController *detailViewController;
     KBUserTweetsViewController *userTweetsController;
     KBTwitterSearchViewController *searchController;
+	KBTwitterProfileViewController *twitterProfileController;
 }
 
 - (void) showStatuses;

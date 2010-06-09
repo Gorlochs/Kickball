@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "Three20/Three20.h"
 #import "KBTwitterViewController.h"
-#import "IFTweetLabel.h"
 #import "KBTwitterManagerDelegate.h"
 #import "KBUserTweetsViewController.h"
 
@@ -21,7 +20,8 @@
     IBOutlet UILabel *location;
     IBOutlet UILabel *numberOfFollowers;
     IBOutlet UILabel *numberOfFriends;
-    IFTweetLabel *description;
+    IBOutlet UILabel *numberOfFavorites;
+	IBOutlet UITextView *description;
     TTImageView *userIcon;
     UIImageView *iconBgImage;
     

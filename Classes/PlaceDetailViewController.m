@@ -434,11 +434,9 @@
 				break;
 		}
 		[peopleHereCell.contentView setBackgroundColor:[UIColor blackColor]];
-		[peopleHereCell setSelectionStyle:UITableViewCellSelectionStyleNone];
+		[peopleHereCell setSelectionStyle:UITableViewCellSelectionStyleBlue];
 		[peopleHereCell.contentView addSubview:peopleHereContainer];
 		[peopleHereContainer release];
-		
-
 	}
 }
 

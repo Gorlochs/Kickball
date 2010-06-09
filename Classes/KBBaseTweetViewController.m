@@ -211,10 +211,9 @@
 }
 
 - (void) viewUserProfile:(NSString*)userName {
-	KBTwitterProfileViewController *twitterProfileController = [[KBTwitterProfileViewController alloc] initWithNibName:@"KBTwitterProfileViewController" bundle:nil];
+	twitterProfileController = [[KBTwitterProfileViewController alloc] initWithNibName:@"KBTwitterProfileViewController" bundle:nil];
     twitterProfileController.screenname = userName;
 	[self.navigationController pushViewController:twitterProfileController animated:YES];
-	[twitterProfileController release];
 }
 
 #pragma mark -
@@ -254,6 +253,7 @@
     [detailViewController release];
     [userTweetsController release];
     [searchController release];
+	[twitterProfileController release];
     [super dealloc];
 }
 
