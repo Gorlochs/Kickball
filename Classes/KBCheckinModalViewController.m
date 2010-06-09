@@ -50,20 +50,20 @@
     isFoursquareOn = YES;
 	DLog("auth'd user: %@", [self getAuthenticatedUser]);
     // hack
-    if (![[KBAccountManager sharedInstance] usesFacebook] || !user.facebook) {
+    if (![[KBAccountManager sharedInstance] usesFacebook]) {
         facebookButton.enabled = NO;
     } else {
-        if (!user.sendToFacebook) {
+        if (!user.sendToFacebook || (!user.facebook && _session.uid)) {
             [self toggleFacebook];
         }
-    }
-    if (![[KBAccountManager sharedInstance] usesTwitter] || !user.twitter) {
+    }   
+    if (![[KBAccountManager sharedInstance] usesTwitter]) {
         twitterButton.enabled = NO;
     } else {
-        if (!user.sendToTwitter) {
+        if (!user.sendToTwitter || (!user.twitter && self.twitterEngine.accessToken)) {
             [self toggleTwitter];
         }
-    }   
+    }    
     actionCount = 0;
 }
 

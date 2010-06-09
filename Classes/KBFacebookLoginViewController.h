@@ -15,6 +15,5 @@
 }
 
 - (IBAction) noThankYou;
-- (IBAction) postPhotosToFacebook;
 
 @end

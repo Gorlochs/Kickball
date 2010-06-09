@@ -162,8 +162,8 @@
     [signedInUserIcon setImage:[[Utilities sharedInstance] getCachedImage:user.photo] forState:UIControlStateNormal];
     
     // shout view stuff
-    facebookButton.enabled = user.facebook != nil;
-    twitterButton.enabled = user.twitter != nil;
+    facebookButton.enabled = user.facebook != nil || _session.uid;
+    twitterButton.enabled = user.twitter != nil || self.twitterEngine.accessToken != nil;
     isFacebookOn = YES;
     isTwitterOn = YES;
     isFoursquareOn = YES;
@@ -171,14 +171,14 @@
     if (![[KBAccountManager sharedInstance] usesFacebook]) {
         facebookButton.enabled = NO;
     } else {
-        if (!user.sendToFacebook) {
+        if (!user.sendToFacebook || (!user.facebook && _session.uid)) {
             [self toggleFacebook];
         }
     }   
     if (![[KBAccountManager sharedInstance] usesTwitter]) {
         twitterButton.enabled = NO;
     } else {
-        if (!user.sendToTwitter) {
+        if (!user.sendToTwitter || (!user.twitter && self.twitterEngine.accessToken)) {
             [self toggleTwitter];
         }
     }  
@@ -505,12 +505,12 @@
 - (void) decrementActionCount {
     actionCount--;
     if (actionCount == 0) {
-        [self stopProgressBar];
         [self closeUpShop];
     }
 }
 
 - (void) closeUpShop {
+	shoutText.text = @"";
     [self stopProgressBar];
     [self removeShoutView];
     
