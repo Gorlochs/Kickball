@@ -171,6 +171,31 @@
 							<string key="NSResourceName">sendPhoto01.png</string>
 						</object>
 					</object>
+					<object class="IBUIButton" id="1023821302">
+						<reference key="NSNextResponder" ref="191373211"/>
+						<int key="NSvFlags">-2147483356</int>
+						<string key="NSFrame">{{200, 196}, {106, 33}}</string>
+						<reference key="NSSuperview" ref="191373211"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
+						<reference key="IBUIFont" ref="900264740"/>
+						<reference key="IBUIHighlightedTitleColor" ref="971587700"/>
+						<object class="NSColor" key="IBUINormalTitleColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+						</object>
+						<reference key="IBUINormalTitleShadowColor" ref="307742908"/>
+						<object class="NSCustomResource" key="IBUIHighlightedImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">sendPhoto04.png</string>
+						</object>
+						<object class="NSCustomResource" key="IBUINormalImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">sendPhoto03.png</string>
+						</object>
+					</object>
 					<object class="IBUIButton" id="217301347">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
@@ -282,7 +307,7 @@
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
-					<object class="IBUIImageView" id="687019622">
+					<object class="IBUIImageView" id="185702883">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">-2147483392</int>
 						<string key="NSFrame">{{258, 154}, {36, 36}}</string>
@@ -450,9 +475,26 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">thumbnailBackground</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="687019622"/>
+						<reference key="destination" ref="185702883"/>
 					</object>
 					<int key="connectionID">45</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">removePhotoButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="1023821302"/>
+					</object>
+					<int key="connectionID">48</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">removePhoto</string>
+						<reference key="source" ref="1023821302"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">49</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -478,8 +520,9 @@
 							<reference ref="191877443"/>
 							<reference ref="210447611"/>
 							<reference ref="788238105"/>
-							<reference ref="687019622"/>
+							<reference ref="185702883"/>
 							<reference ref="920469619"/>
+							<reference ref="1023821302"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -546,7 +589,12 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">44</int>
-						<reference key="object" ref="687019622"/>
+						<reference key="object" ref="185702883"/>
+						<reference key="parent" ref="191373211"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">46</int>
+						<reference key="object" ref="1023821302"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</object>
@@ -563,6 +611,7 @@
 					<string>26.IBPluginDependency</string>
 					<string>4.IBPluginDependency</string>
 					<string>42.IBPluginDependency</string>
+					<string>46.IBPluginDependency</string>
 					<string>5.IBPluginDependency</string>
 					<string>6.IBPluginDependency</string>
 					<string>7.IBPluginDependency</string>
@@ -573,7 +622,8 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>KBCreateTweetViewController</string>
 					<string>UIResponder</string>
-					<string>{{145, 408}, {320, 480}}</string>
+					<string>{{57, 482}, {320, 480}}</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -602,7 +652,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">45</int>
+			<int key="maxID">49</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -678,6 +728,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>cancelCreate</string>
 							<string>choosePhotoSelectMethod</string>
+							<string>removePhoto</string>
 							<string>submitTweet</string>
 							<string>toggleFacebook</string>
 							<string>toggleFoursquare</string>
@@ -685,6 +736,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -703,6 +755,7 @@
 							<string>facebookButton</string>
 							<string>foursquareButton</string>
 							<string>geotagButton</string>
+							<string>removePhotoButton</string>
 							<string>sendTweet</string>
 							<string>thumbnailBackground</string>
 							<string>thumbnailPreview</string>
@@ -713,6 +766,7 @@
 							<string>UIButton</string>
 							<string>UIButton</string>
 							<string>UILabel</string>
+							<string>UIButton</string>
 							<string>UIButton</string>
 							<string>UIButton</string>
 							<string>UIButton</string>
@@ -1119,6 +1173,8 @@
 				<string>sendGeo02.png</string>
 				<string>sendPhoto01.png</string>
 				<string>sendPhoto02.png</string>
+				<string>sendPhoto03.png</string>
+				<string>sendPhoto04.png</string>
 				<string>sendTweet01.png</string>
 				<string>sendTweet02.png</string>
 				<string>tweetPhotoPreview.png</string>
@@ -1134,6 +1190,8 @@
 				<string>{57, 33}</string>
 				<string>{73, 33}</string>
 				<string>{73, 33}</string>
+				<string>{106, 33}</string>
+				<string>{106, 33}</string>
 				<string>{106, 33}</string>
 				<string>{106, 33}</string>
 				<string>{291, 51}</string>

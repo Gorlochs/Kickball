@@ -30,6 +30,7 @@
     IBOutlet UIButton *facebookButton;
     IBOutlet UIButton *geotagButton;
     IBOutlet UIButton *addPhotoButton;
+    IBOutlet UIButton *removePhotoButton;
     UIImage *photoImage;
     KBPhotoManager *photoManager;
     IBOutlet UIImageView *thumbnailPreview;
@@ -53,5 +54,6 @@
 - (void) closeUpShop;
 - (void) getPhoto:(UIImagePickerControllerSourceType)sourceType;
 - (IBAction) choosePhotoSelectMethod;
+- (IBAction) removePhoto;
 
 @end

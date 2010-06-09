@@ -166,6 +166,15 @@
     isGeotagOn = !isGeotagOn;
 }
 
+- (void) removePhoto {
+    photoImage = nil;
+    [photoImage release];
+    addPhotoButton.hidden = NO;
+    removePhotoButton.hidden = YES;
+    thumbnailBackground.hidden = YES;
+    thumbnailPreview.image = nil;
+}
+
 #pragma mark -
 #pragma mark UITextViewDelegate methods
 
@@ -213,6 +222,8 @@
     thumbnailPreview.clipsToBounds = YES;
     thumbnailPreview.image = [photoImage retain];
     thumbnailBackground.hidden = NO;
+    addPhotoButton.hidden = YES;
+    removePhotoButton.hidden = NO;
     
     DLog(@"image picker info: %@", info);
 }
