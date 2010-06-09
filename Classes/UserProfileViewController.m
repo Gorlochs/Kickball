@@ -30,27 +30,27 @@
 // user is used to set the user header stuff so we don't have to make an API call
 // userId is used for the parent's API call
 - (void) displayStuff {
-    UserProfileViewController *profileController = [[UserProfileViewController alloc] initWithNibName:@"UserProfileView_v2" bundle:nil];
-    profileController.user = user;
-    profileController.userId = userId;
-    [self.navigationController pushViewController:profileController animated:NO];
-    [profileController release];
+    UserProfileViewController *userProfileController = [[UserProfileViewController alloc] initWithNibName:@"UserProfileView_v2" bundle:nil];
+    userProfileController.user = user;
+    userProfileController.userId = userId;
+    [self.navigationController pushViewController:userProfileController animated:NO];
+    [userProfileController release];
 }
 
 - (void) displayFriends {
-    UserProfileFriendsViewController *profileController = [[UserProfileFriendsViewController alloc] initWithNibName:@"UserProfileView_v2" bundle:nil];
-    profileController.user = user;
-    profileController.userId = userId;
-    [self.navigationController pushViewController:profileController animated:NO];
-    [profileController release];
+    UserProfileFriendsViewController *userProfileController = [[UserProfileFriendsViewController alloc] initWithNibName:@"UserProfileView_v2" bundle:nil];
+    userProfileController.user = user;
+    userProfileController.userId = userId;
+    [self.navigationController pushViewController:userProfileController animated:NO];
+    [userProfileController release];
 }
 
 - (void) displayCheckinHistory {
-    UserProfileCheckinHistoryViewController *profileController = [[UserProfileCheckinHistoryViewController alloc] initWithNibName:@"UserProfileView_v2" bundle:nil];
-    profileController.user = user;
-    profileController.userId = userId;
-    [self.navigationController pushViewController:profileController animated:NO];
-    [profileController release];
+    UserProfileCheckinHistoryViewController *userProfileController = [[UserProfileCheckinHistoryViewController alloc] initWithNibName:@"UserProfileView_v2" bundle:nil];
+    userProfileController.user = user;
+    userProfileController.userId = userId;
+    [self.navigationController pushViewController:userProfileController animated:NO];
+    [userProfileController release];
 }
 
 - (void)didReceiveMemoryWarning {

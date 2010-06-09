@@ -39,9 +39,9 @@
 
 - (void)statusesReceived:(NSArray *)statuses {
 	if (statuses) {
-		twitterArray = [statuses retain];
-		NSMutableArray *tempTweetArray = [[NSMutableArray alloc] initWithCapacity:[twitterArray count]];
-		for (NSDictionary *dict in twitterArray) {
+		NSArray *array = [statuses retain];
+		NSMutableArray *tempTweetArray = [[NSMutableArray alloc] initWithCapacity:[array count]];
+		for (NSDictionary *dict in array) {
 			KBTweet *tweet = [[KBTweet alloc] initWithDictionary:dict];
 			[tempTweetArray addObject:tweet];
 			[tweet release];

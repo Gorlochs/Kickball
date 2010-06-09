@@ -34,8 +34,7 @@
 #define SECTION_NONCITY_RECENT_CHECKINS 4
 #define SECTION_NONCITY_TODAY_CHECKINS 5
 #define SECTION_NONCITY_YESTERDAY_CHECKINS 6
-#define SECTION_MORE_BUTTON 7
-#define SECTION_FOOTER 8
+#define SECTION_FOOTER 7
 #define SECTION_SHOUT 0
 
 @interface FriendsListViewController (Private)
@@ -58,9 +57,10 @@
     
     [super viewDidLoad];
     
-    //welcomePageNum = 1;
-    isDisplayingMore = NO;
-    
+	twitterManager = [KBTwitterManager twitterManager];
+	twitterManager.delegate = self;
+    self.twitterEngine = [twitterManager twitterEngine];
+	
     gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     [gregorian setLocale:[NSLocale currentLocale]];
     
@@ -223,7 +223,6 @@
     [instructionView release];
     [noNetworkView release];
     [footerViewCell release];
-    [moreCell release];
     [nextWelcomeImage release];
     [previousWelcomeImage release];
     [welcomeImage release];
@@ -235,7 +234,7 @@
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 9;
+    return 8;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -244,24 +243,13 @@
 	} else if (section == SECTION_TODAY_CHECKINS) {
         return [self.todayCheckins count];
     } else if (section == SECTION_YESTERDAY_CHECKINS) {
-        if (isDisplayingMore) {
-            return [self.yesterdayCheckins count];
-        } else {
-            return 0;
-        }
+		return [self.yesterdayCheckins count];
     } else if (section == SECTION_NONCITY_RECENT_CHECKINS) {
         return [self.nonCityRecentCheckins count];
     } else if (section == SECTION_NONCITY_TODAY_CHECKINS) {
         return [self.nonCityTodayCheckins count];
     } else if (section == SECTION_NONCITY_YESTERDAY_CHECKINS) {
-        if (isDisplayingMore) {
-            return [self.nonCityYesterdayCheckins count];
-        } else {
-            return 0;
-        }
-        //return [self.nonCityYesterdayCheckins count];
-    } else if (section == SECTION_MORE_BUTTON) {
-        return !isDisplayingMore;
+		return [self.nonCityYesterdayCheckins count];
     } else if (section == SECTION_FOOTER) {
         return 1;
     } else if (section == SECTION_SHOUT) {
@@ -286,23 +274,13 @@
     } else if (indexPath.section == SECTION_TODAY_CHECKINS) {
         checkin = [self.todayCheckins objectAtIndex:indexPath.row];
     } else if (indexPath.section == SECTION_YESTERDAY_CHECKINS) {
-        if (isDisplayingMore) {
-            checkin = [self.yesterdayCheckins objectAtIndex:indexPath.row];
-        } else {
-            return nil;
-        }
+		checkin = [self.yesterdayCheckins objectAtIndex:indexPath.row];
     } else if (indexPath.section == SECTION_NONCITY_RECENT_CHECKINS) {
         checkin = [self.nonCityRecentCheckins objectAtIndex:indexPath.row];
     } else if (indexPath.section == SECTION_NONCITY_TODAY_CHECKINS) {
         checkin = [self.nonCityTodayCheckins objectAtIndex:indexPath.row];
     } else if (indexPath.section == SECTION_NONCITY_YESTERDAY_CHECKINS) {
-        if (isDisplayingMore) {
-            checkin = [self.nonCityYesterdayCheckins objectAtIndex:indexPath.row];
-        } else {
-            return nil;
-        }
-    } else if (indexPath.section == SECTION_MORE_BUTTON) {
-        return moreCell;
+		checkin = [self.nonCityYesterdayCheckins objectAtIndex:indexPath.row];
     } else if (indexPath.section == SECTION_FOOTER) {
         return footerViewCell;
     } else if (indexPath.section == SECTION_SHOUT) {
@@ -385,7 +363,7 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section != SECTION_FOOTER) {
-        [cell setBackgroundColor:[UIColor colorWithRed:235.0/255.0 green:235.0/255.0 blue:235.0/255.0 alpha:1.0]];  
+        [cell setBackgroundColor:[UIColor colorWithRed:239.0/255.0 green:239.0/255.0 blue:239.0/255.0 alpha:1.0]];  
     }
 }
 
@@ -396,7 +374,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == SECTION_FOOTER) {
         return 40;
-    } else if (indexPath.section == SECTION_MORE_BUTTON || indexPath.section == SECTION_SHOUT) {
+    } else if (indexPath.section == SECTION_SHOUT) {
         return 44;
     }
     return 72;
@@ -432,12 +410,8 @@
             }
             break;
         case SECTION_YESTERDAY_CHECKINS:
-            if ([yesterdayCheckins count] > 0 && isDisplayingMore) {
-                headerView.leftHeaderLabel.text = @"Older";
-                headerView.rightHeaderLabel.text = @"Days Ago";
-            } else {
-                return nil;
-            }
+			headerView.leftHeaderLabel.text = @"Older";
+			headerView.rightHeaderLabel.text = @"Days Ago";
             break;
         case SECTION_NONCITY_RECENT_CHECKINS:
             if ([nonCityRecentCheckins count] > 0) {
@@ -456,14 +430,9 @@
             }
             break;
         case SECTION_NONCITY_YESTERDAY_CHECKINS:
-            if ([nonCityYesterdayCheckins count] > 0 && isDisplayingMore) {
-                headerView.leftHeaderLabel.text = @"Older Check-ins in Other Cities";
-                headerView.rightHeaderLabel.text = @"Days Ago";
-            } else {
-                return nil;
-            }
+			headerView.leftHeaderLabel.text = @"Older Check-ins in Other Cities";
+			headerView.rightHeaderLabel.text = @"Days Ago";
             break;
-        case SECTION_MORE_BUTTON:  // more cell
         case SECTION_FOOTER:  // footer cell
             return nil;
         default:
@@ -479,7 +448,7 @@
 - (void) shout {
     [shoutText resignFirstResponder];
     [self startProgressBar:@"Shouting..."];
-    actionCount = 1 + isTwitterOn + isFacebookOn;
+    actionCount = 1;
     
     [[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:nil
                                                   andShout:shoutText.text 
@@ -491,15 +460,14 @@
     
     // we send twitter/facebook api calls ourself so that the tweets and posts are stamped with the Kickball brand
     if (isTwitterOn && [[KBAccountManager sharedInstance] usesTwitter]) {
-        // TODO: check for twitter login
+		actionCount++;
         [self.twitterEngine sendUpdate:shoutText.text
                           withLatitude:[[KBLocationManager locationManager] latitude] 
                          withLongitude:[[KBLocationManager locationManager] longitude]];
     }
     
     if (isFacebookOn && [[KBAccountManager sharedInstance] usesFacebook]) {
-        // TODO: check for facebook login
-        
+		actionCount++;
         NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:shoutText.text, @"status", nil];
         [[FBRequest requestWithDelegate:self] call:@"facebook.status.set" params:params dataParam:nil];
     }
@@ -508,7 +476,7 @@
 }
 
 // Twitter response
-- (void) statusRetrieved:(NSNotification *)inNotification {
+- (void)statusesReceived:(NSArray *)statuses {
     [self decrementActionCount];
 }
 
@@ -759,11 +727,6 @@
 //    }
 }
 
-- (void) displayOlderCheckins {
-    isDisplayingMore = YES;
-    DLog(@"displayolder checkins: %d", isDisplayingMore);
-    [theTableView reloadData];
-}
 
 - (void) setupSplashAnimation {
     NSMutableArray *images = [[NSMutableArray alloc] initWithCapacity:1];

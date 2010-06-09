@@ -19,7 +19,7 @@
 #import "KBCheckinModalViewController.h"
 
 
-@interface PlaceDetailViewController : AbstractPushNotificationViewController <PhotoManagerDelegate, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate, GAConnectionDelegate, UIActionSheetDelegate> {
+@interface PlaceDetailViewController : AbstractPushNotificationViewController <TTThumbsTableViewCellDelegate, TTThumbsViewControllerDelegate, PhotoManagerDelegate, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate, GAConnectionDelegate, UIActionSheetDelegate> {
     IBOutlet UITableViewCell *checkinCell;
     IBOutlet KBPhotoThumbnailCell *giftCell;
     IBOutlet UITableViewCell *mayorMapCell;
@@ -111,6 +111,7 @@
 - (IBAction) closeMap;
 - (IBAction) choosePhotoSelectMethod;
 - (IBAction) viewPhotos;
+- (IBAction) viewThumbnails;
 - (IBAction) displayAllImages;
 - (IBAction) openCheckinView;
 - (IBAction) closeSpecialView;

@@ -10,9 +10,9 @@
 #import "KBBaseTweetViewController.h"
 
 
-@interface KBTwitterSearchViewController : KBBaseTweetViewController <UISearchBarDelegate> {
+@interface KBTwitterSearchViewController : KBBaseTweetViewController <UITextFieldDelegate> {
     NSString *searchTerms;
-    IBOutlet UISearchBar *theSearchBar;
+    IBOutlet UITextField *theSearchBar;
 }
 
 @property (nonatomic, retain) NSString *searchTerms;

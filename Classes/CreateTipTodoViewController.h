@@ -12,7 +12,6 @@
 
 
 @interface CreateTipTodoViewController : KBBaseViewController <UITextViewDelegate> {
-    IBOutlet UISegmentedControl *tipTodoSwitch;
     IBOutlet UITextView *tipTodoText;
     NSString *tipId;
     FSVenue *venue;

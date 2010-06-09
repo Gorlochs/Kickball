@@ -14,6 +14,9 @@
     IBOutlet UIButton *yourStuffButton;
     IBOutlet UIButton *yourFriendsButton;
     IBOutlet UIButton *checkinHistoryButton;
+	
+	IBOutlet UITableViewCell *friendToggleCell;
+	IBOutlet UISegmentedControl *friendToggle;
 }
 
 - (IBAction) displayStuff;

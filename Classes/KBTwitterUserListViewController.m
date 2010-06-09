@@ -90,13 +90,13 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 2;
+    return 1;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return section == 0 ? [users count] : 1;
+    return [users count];
 }
 
 // Customize the appearance of table view cells.
@@ -110,28 +110,19 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
-    if (indexPath.section == 0) {
-        // Configure the cell...
-        KBTwitterUser *user = [users objectAtIndex:indexPath.row];
-        cell.userName.text = user.fullName;
-        cell.userIcon.urlPath = user.profileImageUrl;
-        return cell;
-    } else {
-        return moreCell;
-    }
+	KBTwitterUser *user = [users objectAtIndex:indexPath.row];
+	cell.userName.text = user.fullName;
+	cell.userIcon.urlPath = user.profileImageUrl;
+	return cell;
 }
 
 #pragma mark -
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0) {
-        twitterProfileController = [[KBTwitterProfileViewController alloc] initWithNibName:@"KBTwitterProfileViewController" bundle:nil];
-        twitterProfileController.screenname = ((KBTwitterUser*)[users objectAtIndex:indexPath.row]).screenName;
-        [self.navigationController pushViewController:twitterProfileController animated:YES];
-    } else {
-        [self executeQuery:++pageNum];
-    }
+	twitterProfileController = [[KBTwitterProfileViewController alloc] initWithNibName:@"KBTwitterProfileViewController" bundle:nil];
+	twitterProfileController.screenname = ((KBTwitterUser*)[users objectAtIndex:indexPath.row]).screenName;
+	[self.navigationController pushViewController:twitterProfileController animated:YES];
 }
 
 

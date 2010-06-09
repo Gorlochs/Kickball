@@ -84,33 +84,29 @@
         cell = [[[KBTwitterRecentTweetsTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    if (indexPath.section == 0) {
-        // Configure the cell...
-        //cell.textLabel.text = [[statuses objectAtIndex:indexPath.row] objectForKey:@"text"];
-        KBTweet *tweet = [tweets objectAtIndex:indexPath.row];
-        
-        cell.tweetText.numberOfLines = 0;
-        cell.tweetText.text = tweet.tweetText;
-        cell.dateLabel.text = [[KickballAPI kickballApi] convertDateToTimeUnitString:tweet.createDate];
-        
-        CGSize maximumLabelSize = CGSizeMake(250, MAX_LABEL_HEIGHT);
-        CGSize expectedLabelSize = [cell.tweetText.text sizeWithFont:cell.tweetText.font 
-                                                   constrainedToSize:maximumLabelSize 
-                                                       lineBreakMode:UILineBreakModeWordWrap]; 
-        
-        //adjust the label the the new height.
-        CGRect newFrame = cell.tweetText.frame;
-        newFrame.size.height = expectedLabelSize.height;
-        cell.tweetText.frame = newFrame;
-        
-        CGRect dateFrame = cell.dateLabel.frame;
-        dateFrame.origin = CGPointMake(20, expectedLabelSize.height + 10);
-        cell.dateLabel.frame = dateFrame;
-        
-        return cell;
-    } else {
-        return moreCell;
-    }
+	// Configure the cell...
+	//cell.textLabel.text = [[statuses objectAtIndex:indexPath.row] objectForKey:@"text"];
+	KBTweet *tweet = [tweets objectAtIndex:indexPath.row];
+	
+	cell.tweetText.numberOfLines = 0;
+	cell.tweetText.text = tweet.tweetText;
+	cell.dateLabel.text = [[KickballAPI kickballApi] convertDateToTimeUnitString:tweet.createDate];
+	
+	CGSize maximumLabelSize = CGSizeMake(250, MAX_LABEL_HEIGHT);
+	CGSize expectedLabelSize = [cell.tweetText.text sizeWithFont:cell.tweetText.font 
+											   constrainedToSize:maximumLabelSize 
+												   lineBreakMode:UILineBreakModeWordWrap]; 
+	
+	//adjust the label the the new height.
+	CGRect newFrame = cell.tweetText.frame;
+	newFrame.size.height = expectedLabelSize.height;
+	cell.tweetText.frame = newFrame;
+	
+	CGRect dateFrame = cell.dateLabel.frame;
+	dateFrame.origin = CGPointMake(20, expectedLabelSize.height + 10);
+	cell.dateLabel.frame = dateFrame;
+	
+	return cell;
 }
 
 #pragma mark -

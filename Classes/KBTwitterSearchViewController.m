@@ -83,13 +83,6 @@
     [self dataSourceDidFinishLoadingNewData];
 }
 
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    searchTerms = searchBar.text;
-    [searchBar resignFirstResponder];
-    [self showStatuses];
-    [KBTwitterManager twitterManager].searchTerm = searchBar.text;
-}
-
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -100,34 +93,45 @@
         cell = [[[KBTweetTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    if (indexPath.section == 0) {
-        KBSearchResult *tweet = [tweets objectAtIndex:indexPath.row];
-        
-        cell.userIcon.urlPath = tweet.profileImageUrl;
-        cell.userName.text = tweet.screenName;
-        cell.tweetText.text = tweet.tweetText;
-        [cell setDateLabelWithDate:tweet.createDate];
-        
-        CGSize maximumLabelSize = CGSizeMake(250,60);
-        CGSize expectedLabelSize = [cell.tweetText.text sizeWithFont:cell.tweetText.font 
-                                                   constrainedToSize:maximumLabelSize 
-                                                       lineBreakMode:UILineBreakModeTailTruncation]; 
-        
-        //adjust the label the the new height.
-        CGRect newFrame = cell.tweetText.frame;
-        newFrame.size.height = expectedLabelSize.height;
-        cell.tweetText.frame = newFrame;
-        
-        return cell;
-    } else {
-        return moreCell;
-    }
+	KBSearchResult *tweet = [tweets objectAtIndex:indexPath.row];
+	
+	cell.userIcon.urlPath = tweet.profileImageUrl;
+	cell.userName.text = tweet.screenName;
+	cell.tweetText.text = tweet.tweetText;
+	[cell setDateLabelWithDate:tweet.createDate];
+	
+	CGSize maximumLabelSize = CGSizeMake(250,60);
+	CGSize expectedLabelSize = [cell.tweetText.text sizeWithFont:cell.tweetText.font 
+											   constrainedToSize:maximumLabelSize 
+												   lineBreakMode:UILineBreakModeTailTruncation]; 
+	
+	//adjust the label the the new height.
+	CGRect newFrame = cell.tweetText.frame;
+	newFrame.size.height = expectedLabelSize.height;
+	cell.tweetText.frame = newFrame;
+	
+	return cell;
 }
 
 - (void) executeQuery:(int)pageNumber {
     [self startProgressBar:@"Retrieving more tweets..."];
     [twitterEngine getSearchResultsForQuery:theSearchBar.text sinceID:0 startingAtPage:pageNumber count:25];
 }
+
+#pragma mark -
+#pragma mark UITextFieldDelegate methods
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    searchTerms = theSearchBar.text;
+    [theSearchBar resignFirstResponder];
+    [self showStatuses];
+    [KBTwitterManager twitterManager].searchTerm = theSearchBar.text;
+    
+    return YES;
+}
+
+#pragma mark -
+#pragma mark memory management methods
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.

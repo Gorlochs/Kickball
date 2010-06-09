@@ -16,7 +16,7 @@
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
         // Initialization code
-        self.backgroundColor = [UIColor blackColor];
+        self.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.5];
         
         leftHeaderLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 4.0, 150.0, 24.0)];
         leftHeaderLabel.backgroundColor = [UIColor clearColor];

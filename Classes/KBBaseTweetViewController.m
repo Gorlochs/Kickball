@@ -14,7 +14,6 @@
 #import "KBTwitterDetailViewController.h"
 #import "KickballAPI.h"
 
-
 @implementation KBBaseTweetViewController
 
 - (void)viewDidLoad {
@@ -134,29 +133,25 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 2;
+    return 1;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return section == 0 ? [tweets count] : 1;
+    return [tweets count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (indexPath.section == 1) {
-        return 44;
-    } else {
-        KBTweet *tweet = [tweets objectAtIndex:indexPath.row];
-        
-        CGSize maximumLabelSize = CGSizeMake(250, MAX_LABEL_HEIGHT);
-        CGSize expectedLabelSize = [tweet.tweetText sizeWithFont:[UIFont fontWithName:@"Georgia" size:12.0]
-                                               constrainedToSize:maximumLabelSize 
-                                                   lineBreakMode:UILineBreakModeWordWrap];
-        
-        return expectedLabelSize.height + 30.0 > MAX_LABEL_HEIGHT ? expectedLabelSize.height + 30.0 : MAX_LABEL_HEIGHT;
-    }
+	KBTweet *tweet = [tweets objectAtIndex:indexPath.row];
+	
+	CGSize maximumLabelSize = CGSizeMake(250, MAX_LABEL_HEIGHT);
+	CGSize expectedLabelSize = [tweet.tweetText sizeWithFont:[UIFont fontWithName:@"Georgia" size:12.0]
+										   constrainedToSize:maximumLabelSize 
+											   lineBreakMode:UILineBreakModeWordWrap];
+	
+	return expectedLabelSize.height + 30.0 > MAX_LABEL_HEIGHT ? expectedLabelSize.height + 30.0 : MAX_LABEL_HEIGHT;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -164,13 +159,10 @@
     static NSString *CellIdentifier = @"Cell";
     
     KBTweetTableCell320 *cell = (KBTweetTableCell320*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
+	if (cell == nil) {
         cell = [[[KBTweetTableCell320 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-    }
+	}
     
-    if (indexPath.section == 0) {
-        // Configure the cell...
-        //cell.textLabel.text = [[statuses objectAtIndex:indexPath.row] objectForKey:@"text"];
         KBTweet *tweet = [tweets objectAtIndex:indexPath.row];
         
         cell.userIcon.urlPath = tweet.profileImageUrl;
@@ -195,9 +187,6 @@
 		//[cell.tweetText setNeedsLayout];
 		//[cell.tweetText setNeedsDisplay];
         return cell;
-    } else {
-        return moreCell;
-    }
 }
 
 #pragma mark -
@@ -212,6 +201,12 @@
     } else {
         [self executeQuery:++pageNum];
     }
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (indexPath.row == [tweets count] - 1) {
+		[self executeQuery:++pageNum];
+	}
 }
 
 #pragma mark -
@@ -238,7 +233,6 @@
     tweets = nil;
     cachingKey = nil;
     twitterArray = nil;
-    moreCell = nil;
     noResultsView = nil;
 }
 
@@ -248,7 +242,6 @@
     [tweets release];
     [cachingKey release];
     [twitterArray release];
-    [moreCell release];
     [noResultsView release];
     [detailViewController release];
     [userTweetsController release];

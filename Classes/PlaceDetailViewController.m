@@ -35,7 +35,7 @@
 #import "BlackTableCellHeader.h"
 #import "TipListViewController.h"
 #import "PlacePeopleHereViewController.h"
-
+#import "KBThumbnailViewController.h"
 
 #define PHOTOS_PER_ROW 4
 #define THUMBNAIL_IMAGE_SIZE 73
@@ -73,8 +73,6 @@
 
 - (void)viewDidLoad {
     hideFooter = YES;
-    pageType = KBPageTypeOther;
-    pageViewType = KBPageViewTypeList;
     
     [super viewDidLoad];
     photoManager = [KBPhotoManager sharedInstance];
@@ -115,6 +113,10 @@
     
     [self retrievePhotos];
     [self showBackHomeButtons];
+	
+    pageType = KBPageTypePlaces;
+    pageViewType = KBPageViewTypeList;
+    [self setProperFoursquareButtons];
 }
 
 - (void) retrievePhotos {
@@ -444,7 +446,7 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 2 || indexPath.section > 3) {
-        [cell setBackgroundColor:[UIColor colorWithRed:235.0/255.0 green:235.0/255.0 blue:235.0/255.0 alpha:1.0]];  
+        [cell setBackgroundColor:[UIColor colorWithRed:239.0/255.0 green:239.0/255.0 blue:239.0/255.0 alpha:1.0]];  
     }
 }
 
@@ -656,6 +658,17 @@
     //photoController.centerPhoto 
     [self.navigationController pushViewController:photoController animated:YES];
     [photoController release]; 
+}
+
+- (void) viewThumbnails {
+    //TTThumbsViewController *thumbsController = [[TTThumbsViewController alloc] initWithPhotoSource:photoSource];
+	KBThumbnailViewController *thumbsController = [[KBThumbnailViewController alloc] init];
+	thumbsController.title = venue.name;
+	thumbsController.photoSource = photoSource;
+//	thumbsController.delegate = self;
+    //photoController.centerPhoto 
+    [self.navigationController pushViewController:thumbsController animated:YES];
+    [thumbsController release]; 
 }
 
 - (void) callVenue {

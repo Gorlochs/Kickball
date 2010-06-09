@@ -12,6 +12,7 @@
 #import "FriendsListViewController.h"
 #import "FriendsMapViewController.h"
 
+
 @implementation KBFoursquareViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -25,7 +26,7 @@
     
     ///headerNibName = HEADER_NIB_FOURSQUARE;
     footerType = KBFooterTypeFoursquare;
-    
+	
     [super viewDidLoad];
     
     if (!self.hideHeader) {
@@ -34,7 +35,11 @@
         [self.view addSubview:headerView];
     }
     
-    if (pageType == KBPageTypePlaces) {
+	[self setProperFoursquareButtons];
+}
+
+- (void) setProperFoursquareButtons {
+	if (pageType == KBPageTypePlaces) {
         [friendButton setImage:[UIImage imageNamed:@"friendsTab03.png"] forState:UIControlStateNormal];
         [placesButton setImage:[UIImage imageNamed:@"placesTab01.png"] forState:UIControlStateNormal];
         placesButton.enabled = NO;
@@ -60,9 +65,7 @@
         [centerHeaderButton setImage:[UIImage imageNamed:@"kbMap02.png"] forState:UIControlStateHighlighted];
         centerHeaderButton.enabled = NO;
     }
-	
 }
-
 
 - (void) viewPlaces {
     if (pageViewType == KBPageViewTypeList) {

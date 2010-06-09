@@ -29,3 +29,9 @@
 - (void) showBackHomeButtons;
 
 @end
+
+@interface KBFoursquareViewController (Private)
+
+- (void) setProperFoursquareButtons;
+
+@end

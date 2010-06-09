@@ -11,9 +11,10 @@
 #import "LoginViewModalController.h"
 #import "InstructionView.h"
 #import "AbstractPushNotificationViewController.h"
+#import "KBTwitterManagerDelegate.h"
 
 
-@interface FriendsListViewController : AbstractPushNotificationViewController <UITableViewDelegate, UITableViewDataSource> {
+@interface FriendsListViewController : AbstractPushNotificationViewController <UITableViewDelegate, UITableViewDataSource, KBTwitterManagerDelegate> {
     IBOutlet UIButton *mapButton;
 	NSArray * checkins;
 	NSMutableArray * recentCheckins;
@@ -26,7 +27,6 @@
     IBOutlet UIView *noNetworkView;
     IBOutlet InstructionView *instructionView;
     IBOutlet UITableViewCell *footerViewCell;
-    IBOutlet UITableViewCell *moreCell;
     IBOutlet UITableViewCell *shoutCell;
     
     int welcomePageNum;
@@ -35,7 +35,6 @@
     IBOutlet UIImageView *welcomeImage;
     
     BOOL hasViewedInstructions;
-    BOOL isDisplayingMore;
     
     IBOutlet UIImageView *splashView;
     IBOutlet UIImageView *fadeOutImage;
@@ -53,6 +52,7 @@
     IBOutlet UIButton *foursquareButton;
     IBOutlet UITextField *shoutText;
     int actionCount;
+    KBTwitterManager *twitterManager;
 }
 
 @property (nonatomic, retain) NSArray * checkins;

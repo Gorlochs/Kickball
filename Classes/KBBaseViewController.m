@@ -279,8 +279,25 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
     if (textToDisplay == nil) {
         textToDisplay = @"Processing...";
     }
+	
     progressViewController = [[ProgressViewController alloc] initWithNibName:@"ProgressView" bundle:nil];
     [self.view addSubview:progressViewController.view];
+	
+	CGRect frame = progressViewController.view.frame;
+	frame.origin.y = frame.origin.y + 50;
+	progressViewController.view.frame = frame;
+	
+	[UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:0.4];
+	[UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
+	progressViewController.view.frame = CGRectMake(0, 
+												   progressViewController.view.frame.origin.y - 50, 
+												   progressViewController.view.frame.size.width, 
+												   progressViewController.view.frame.size.height);
+    
+    [UIView commitAnimations];
+	
     progressViewController.activityLabel.text = textToDisplay;
     [progressViewController.activityLabel setShadowColor:[UIColor whiteColor]];
     [progressViewController.activityLabel setShadowOffset:CGSizeMake(1, 1)];
@@ -306,7 +323,19 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 - (void) stopProgressBar {
     [progressBarTimer invalidate];
     progressBarTimer = nil;
-    [progressViewController.view removeFromSuperview];
+	
+	[UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:0.4];
+	[UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
+	progressViewController.view.frame = CGRectMake(0, 
+												   progressViewController.view.frame.origin.y + 50, 
+												   progressViewController.view.frame.size.width, 
+												   progressViewController.view.frame.size.height);
+    
+    [UIView commitAnimations];
+	
+    //[progressViewController.view removeFromSuperview];
 }
 
 - (void) doInitialDisplay {

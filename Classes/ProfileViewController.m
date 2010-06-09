@@ -42,8 +42,6 @@
 
 - (void)viewDidLoad {
     hideFooter = YES;
-    pageType = KBPageTypeOther;
-    pageViewType = KBPageViewTypeList;
     
     [super viewDidLoad];
     
@@ -60,6 +58,10 @@
     refreshHeaderView.backgroundColor = [UIColor blackColor];
     
     [self executeFoursquareCalls];
+	
+    pageType = KBPageTypeOther;
+    pageViewType = KBPageViewTypeList;
+    [self setProperFoursquareButtons];
 }
 
 - (void) executeFoursquareCalls {
@@ -635,7 +637,8 @@
                 break;
             case 4:
                 [FlurryAPI logEvent:@"Facebook User"];
-                [[UIApplication sharedApplication] openURL: [NSURL URLWithString: [NSString stringWithFormat:@"fb://%@", user.facebook]]];
+                //[[UIApplication sharedApplication] openURL: [NSURL URLWithString:@"fb://friends"]]];
+                [[UIApplication sharedApplication] openURL: [NSURL URLWithString: [NSString stringWithFormat:@"fb://profile/%@", user.facebook]]];
                 break;
             default:
                 break;

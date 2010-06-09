@@ -50,7 +50,7 @@
 }
 
 - (void) postPhotosToFacebook {
-    [[KBAccountManager sharedInstance] setShouldPostPhotosToFacebook:postPhotosToFacebookSwitch.on];
+    //[[KBAccountManager sharedInstance] setShouldPostPhotosToFacebook:postPhotosToFacebookSwitch.on];
 }
 
 #pragma mark -

@@ -29,6 +29,15 @@
     [yourStuffButton setImage:[UIImage imageNamed:@"myProfileStuffTab02.png"] forState:UIControlStateNormal];
     [yourFriendsButton setImage:[UIImage imageNamed:@"myProfileFriendsTab01.png"] forState:UIControlStateDisabled];
     [checkinHistoryButton setImage:[UIImage imageNamed:@"myProfileHistoryTab03.png"] forState:UIControlStateNormal];
+	
+	filterType = KBFriendsFilterAll;
+    [friendToggle addTarget:self action:@selector(filterFriendsList) forControlEvents:UIControlEventValueChanged];
+	
+	for (FSUser *theUser in friends) {
+		if (theUser.sendsPingsToSignedInUser) {
+			numFriendsWithPings++;
+		}
+	}
 }
 
 - (void) executeFoursquareCalls {
@@ -49,12 +58,22 @@
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 2;
 }
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [friends count];
+	if (section == 1) {
+		return 1;
+	} else {
+		if (filterType == KBFriendsFilterAll) {
+			return [friends count];
+		} else if (filterType == KBFriendsFilterPing) {
+			return numFriendsWithPings;
+		} else {
+			return [friends count] - numFriendsWithPings;
+		}
+	}
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -85,25 +104,33 @@
         [bottomLineImage release];
     }
     
-    // Set up the cell...
-    FSUser *theUser = (FSUser*)[friends objectAtIndex:indexPath.row];
-    cell.textLabel.text = theUser.firstnameLastInitial;
-    
-    CGRect frame = CGRectMake(4,4,36,36);
-    TTImageView *ttImage = [[[TTImageView alloc] initWithFrame:frame] autorelease];
-    ttImage.urlPath = theUser.photo;
-    ttImage.backgroundColor = [UIColor clearColor];
-    ttImage.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
-    ttImage.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
-    [cell addSubview:ttImage];
-    
-    float sw=32/cell.imageView.image.size.width;
-    float sh=32/cell.imageView.image.size.height;
-    cell.imageView.transform=CGAffineTransformMakeScale(sw,sh);
-    cell.imageView.layer.masksToBounds = YES;
-    cell.imageView.layer.cornerRadius = 8.0; 
-    
-    return cell;
+	if (indexPath.section == 1) {
+		return friendToggleCell;
+	} else {
+		FSUser *theUser = (FSUser*)[friends objectAtIndex:indexPath.row];
+		if (filterType == KBFriendsFilterAll || (filterType == KBFriendsFilterPing && theUser.sendsPingsToSignedInUser) || (filterType == KBFriendsFilterNoPing && !theUser.sendsPingsToSignedInUser)) {
+			
+			cell.textLabel.text = theUser.firstnameLastInitial;
+			
+			CGRect frame = CGRectMake(4,4,36,36);
+			TTImageView *ttImage = [[[TTImageView alloc] initWithFrame:frame] autorelease];
+			ttImage.urlPath = theUser.photo;
+			ttImage.backgroundColor = [UIColor clearColor];
+			ttImage.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
+			ttImage.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
+			[cell addSubview:ttImage];
+			
+			float sw=32/cell.imageView.image.size.width;
+			float sh=32/cell.imageView.image.size.height;
+			cell.imageView.transform=CGAffineTransformMakeScale(sw,sh);
+			cell.imageView.layer.masksToBounds = YES;
+			cell.imageView.layer.cornerRadius = 8.0; 
+			
+			return cell;
+		} else {
+			return nil;
+		}
+	}
 }
 
 
@@ -122,6 +149,17 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     [cell setBackgroundColor:[UIColor colorWithWhite:0.9 alpha:1.0]];
+}
+
+- (void) filterFriendsList {
+	if (friendToggle.selectedSegmentIndex == 0) {
+		filterType = KBFriendsFilterAll;
+	} else if (friendToggle.selectedSegmentIndex == 1) {
+		filterType = KBFriendsFilterPing;
+	} else {
+		filterType = KBFriendsFilterNoPing;
+	}
+	[theTableView reloadData];
 }
 
 #pragma mark 

@@ -36,7 +36,6 @@
 
 - (void)dealloc {
     [tipTodoText release];
-    [tipTodoSwitch release];
     [tipId release];
     [venue release];
     [characterCount release];
@@ -92,15 +91,15 @@
     } else {
         [self startProgressBar:@"Submitting Tip/Todo..."];
         NSString *tipOrTodo = nil;
-        if (tipTodoSwitch.selectedSegmentIndex == 0) {
+//        if (tipTodoSwitch.selectedSegmentIndex == 0) {
             [FlurryAPI logEvent:@"Creating Tip"];
             DLog(@"submitting tip");
             tipOrTodo = @"tip";
-        } else {
-            [FlurryAPI logEvent:@"Creating Todo"];
-            DLog(@"submitting todo");
-            tipOrTodo = @"todo";
-        }
+//        } else {
+//            [FlurryAPI logEvent:@"Creating Todo"];
+//            DLog(@"submitting todo");
+//            tipOrTodo = @"todo";
+//        }
         [[FoursquareAPI sharedInstance] createTipTodoForVenue:venue.venueid type:tipOrTodo text:tipTodoText.text withTarget:self andAction:@selector(tipTodoResponseReceived:withResponseString:)];
     }
 }

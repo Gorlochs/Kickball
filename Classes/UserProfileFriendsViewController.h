@@ -10,9 +10,16 @@
 #import "Three20/Three20.h"
 #import "UserProfileViewController.h"
 
+typedef enum {
+	KBFriendsFilterAll = 0,
+	KBFriendsFilterPing,
+	KBFriendsFilterNoPing,	
+} KBFriendsFilterType;
 
 @interface UserProfileFriendsViewController : UserProfileViewController {
     NSArray *friends;
+	KBFriendsFilterType filterType;
+	int numFriendsWithPings;
 }
 
 @end

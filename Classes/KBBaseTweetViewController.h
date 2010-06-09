@@ -23,7 +23,6 @@
     NSString *cachingKey;
     int pageNum;
     NSArray *twitterArray;
-    IBOutlet UITableViewCell *moreCell;
     IBOutlet UIView *noResultsView;
 	KBTwitterManager *twitterManager;
     KBTwitterDetailViewController *detailViewController;
