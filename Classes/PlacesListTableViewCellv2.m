@@ -69,10 +69,24 @@
 	topLineImage.frame = CGRectMake(0, 0, contentRect.size.width, 1);
 	bottomLineImage.frame = CGRectMake(0, contentRect.size.height - 1, contentRect.size.width, 1);
 	if (twoLine) {
-		venueName.numberOfLines = 2;
+		UIFont *font = [UIFont boldSystemFontOfSize:14.0];
+		int i;
+		CGSize constraintSize = CGSizeMake(250.0f, MAXFLOAT);
+		for(i = 14; i > 10; i=i-1)
+		{
+			font = [font fontWithSize:i];// Set the new font size.
+			
+			// This step checks how tall the label would be with the desired font.
+			CGSize labelSize = [venueName.text sizeWithFont:font constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+			if(labelSize.height <= 40.0f) //If the label fits into your required height, it will break the loop
+				break;
+		}
+		venueName.font = font;
+		venueName.numberOfLines = 3;
 		venueName.frame	= CGRectMake(46, contentRect.origin.y+5, 250, 40);
 		venueAddress.frame = CGRectMake(46, contentRect.origin.y+40, 250, 20);
 	}else {
+		venueName.font = [UIFont boldSystemFontOfSize:14.0];
 		venueName.numberOfLines = 1;
 		venueName.frame	= CGRectMake(46, contentRect.origin.y+5, 250, 20);
 		venueAddress.frame = CGRectMake(46, contentRect.origin.y+20, 250, 20);

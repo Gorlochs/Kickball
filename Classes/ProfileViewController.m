@@ -106,12 +106,31 @@
                 lastCheckinAddress.text = theUser.checkin.venue.venueAddress;
             }
         } else {
-			location.font  = [UIFont boldSystemFontOfSize:16.0f];
-			location.frame = CGRectMake(69, 71, 202, 44);
-			location.numberOfLines = 2;
-			location.minimumFontSize = 11.0f;
-			location.adjustsFontSizeToFitWidth = YES;
-			location.text = theUser.checkin.shout;
+			if ([theUser.userId isEqualToString:[[FoursquareAPI sharedInstance] currentUser].userId]) {
+				//I am me so dont make this multiline
+				location.text = theUser.checkin.shout;
+			}else {
+				UIFont *font = [UIFont boldSystemFontOfSize:16.0f];
+				int i;
+				CGSize constraintSize = CGSizeMake(190.0f, MAXFLOAT);
+				for(i = 16; i > 10; i=i-1)
+				{
+					font = [font fontWithSize:i];// Set the new font size.
+					
+					// This step checks how tall the label would be with the desired font.
+					CGSize labelSize = [theUser.checkin.shout sizeWithFont:font constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+					if(labelSize.height <= 44.0f) //If the label fits into your required height, it will break the loop
+						break;
+				}
+				location.font  = font;
+				location.frame = CGRectMake(69, 71, 202, 44);
+				location.numberOfLines = 3;
+				location.minimumFontSize = 11.0f;
+				location.adjustsFontSizeToFitWidth = YES;
+				location.text = theUser.checkin.shout;
+			}
+
+			
 			locationOverlayButton.enabled = NO;
         }
     }

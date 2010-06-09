@@ -80,19 +80,35 @@
 - (void)layoutSubviews
 {
 	[super layoutSubviews];
+	
+	
 	CGRect contentRect = [self.contentView bounds];
 	[userIcon setCenter:CGPointMake(userIcon.center.x, contentRect.size.height/2)];
 	[iconBgImage setCenter:CGPointMake(iconBgImage.center.x, contentRect.size.height/2)];
 	topLineImage.frame = CGRectMake(0, 0, self.frame.size.width, 1);
 	bottomLineImage.frame = CGRectMake(0, contentRect.size.height - 1, self.frame.size.width, 1);
 	if (twoLine) {
+		UIFont *font = [UIFont boldSystemFontOfSize:16.0];
+		int i;
+		CGSize constraintSize = CGSizeMake(200.0f, MAXFLOAT);
+		for(i = 16; i > 10; i=i-1)
+		{
+			font = [font fontWithSize:i];// Set the new font size.
+			
+			// This step checks how tall the label would be with the desired font.
+			CGSize labelSize = [venueName.text sizeWithFont:font constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+			if(labelSize.height <= 50.0f) //If the label fits into your required height, it will break the loop
+				break;
+		}		
+		venueName.font = font;
 		userName.frame = CGRectMake(66, contentRect.origin.y+6, 200, 20);
-		venueName.numberOfLines = 2;
-		venueName.frame	= CGRectMake(66, contentRect.origin.y+24, 200, 40);
+		venueName.numberOfLines = 3;
+		venueName.frame	= CGRectMake(66, contentRect.origin.y+22, 200, 50);
 		venueAddress.frame = CGRectMake(66, contentRect.origin.y+62, 200, 20);
 	}else {
 		userName.frame = CGRectMake(66, contentRect.origin.y+6, 200, 20);
 		venueName.numberOfLines = 1;
+		venueName.font = [UIFont boldSystemFontOfSize:16.0];
 		venueName.frame	= CGRectMake(66, contentRect.origin.y+24, 200, 20);
 		venueAddress.frame = CGRectMake(66, contentRect.origin.y+42, 200, 20);
 	}

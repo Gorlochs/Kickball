@@ -51,7 +51,7 @@
 									 [UIImage imageNamed:@"dodad10.png"],
 									 [UIImage imageNamed:@"dodad11.png"],
 									 [UIImage imageNamed:@"dodad12.png"],nil]];
-	[spinnerView setAnimationDuration:0.5f];
+	[spinnerView setAnimationDuration:1.0f];
 	[self.superview.superview addSubview:spinnerView];
 	[spinnerView startAnimating];
 }
@@ -72,7 +72,7 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     self->_cancelTouches = NO;
     [super touchesBegan:touches withEvent:event];
-    [self performSelector:@selector(tapNHoldFired) withObject:nil afterDelay:.7];
+    [self performSelector:@selector(tapNHoldFired) withObject:nil afterDelay:1.0];
 	[self performSelector:@selector(startSpinner) withObject:nil afterDelay:.25];
 	touchLocation = [[touches anyObject] locationInView:self.superview.superview];
 	
