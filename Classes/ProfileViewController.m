@@ -96,20 +96,23 @@
     if ([theUser.checkin.display rangeOfString:@"[off the grid]"].location != NSNotFound) {
         location.text = @"[off the grid]";
         lastCheckinAddress.text = @"...location unknown...";
-        hereIAmButton.enabled = NO;
         locationOverlayButton.enabled = NO;
     } else {
         if (theUser.checkin.venue) {
             location.text = theUser.checkin.venue.name;
-            hereIAmButton.enabled = YES;
             if (theUser.checkin.shout) {
                 lastCheckinAddress.text = theUser.checkin.shout;
             } else {
                 lastCheckinAddress.text = theUser.checkin.venue.venueAddress;
             }
         } else {
-            location.text = theUser.checkin.shout;
-            hereIAmButton.enabled = NO;
+			location.font  = [UIFont boldSystemFontOfSize:16.0f];
+			location.frame = CGRectMake(69, 71, 202, 44);
+			location.numberOfLines = 2;
+			location.minimumFontSize = 11.0f;
+			location.adjustsFontSizeToFitWidth = YES;
+			location.text = theUser.checkin.shout;
+			locationOverlayButton.enabled = NO;
         }
     }
     
@@ -224,7 +227,6 @@
     [twitterButton release];
     [facebookButton release];
     [locationOverlayButton release];
-    [hereIAmButton release];
     
     [userPhotos release];
     [profileOptionsView release];

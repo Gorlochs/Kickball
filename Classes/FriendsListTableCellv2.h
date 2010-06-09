@@ -20,11 +20,15 @@
     UIImageView *topLineImage;
     UIImageView *bottomLineImage;
     UIImageView *iconBgImage;
+	BOOL twoLine;
 }
 
 @property (nonatomic, retain) TTImageView *userIcon;
 @property (nonatomic, retain) UILabel *userName;
 @property (nonatomic, retain) UILabel *venueName;
 @property (nonatomic, retain) UILabel *venueAddress;
+
+- (void)makeTwoLine;
+- (void)makeOneLine;
 
 @end

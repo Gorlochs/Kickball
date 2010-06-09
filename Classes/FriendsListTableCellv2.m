@@ -19,6 +19,7 @@
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         // Initialization code
+		twoLine = NO;
         CGRect frame = CGRectMake(8, 10, 49, 49);
         userIcon = [[TTImageView alloc] initWithFrame:frame];
         userIcon.backgroundColor = [UIColor clearColor];
@@ -76,6 +77,34 @@
     // Configure the view for the selected state
 }
 
+- (void)layoutSubviews
+{
+	[super layoutSubviews];
+	CGRect contentRect = [self.contentView bounds];
+	[userIcon setCenter:CGPointMake(userIcon.center.x, contentRect.size.height/2)];
+	[iconBgImage setCenter:CGPointMake(iconBgImage.center.x, contentRect.size.height/2)];
+	topLineImage.frame = CGRectMake(0, 0, self.frame.size.width, 1);
+	bottomLineImage.frame = CGRectMake(0, contentRect.size.height - 1, self.frame.size.width, 1);
+	if (twoLine) {
+		userName.frame = CGRectMake(66, contentRect.origin.y+6, 200, 20);
+		venueName.numberOfLines = 2;
+		venueName.frame	= CGRectMake(66, contentRect.origin.y+24, 200, 40);
+		venueAddress.frame = CGRectMake(66, contentRect.origin.y+62, 200, 20);
+	}else {
+		userName.frame = CGRectMake(66, contentRect.origin.y+6, 200, 20);
+		venueName.numberOfLines = 1;
+		venueName.frame	= CGRectMake(66, contentRect.origin.y+24, 200, 20);
+		venueAddress.frame = CGRectMake(66, contentRect.origin.y+42, 200, 20);
+	}
+}
+
+- (void)makeTwoLine {
+	twoLine = YES;
+}
+
+- (void)makeOneLine {
+	twoLine = NO;
+}
 
 - (void)dealloc {
     [userIcon release];

@@ -286,7 +286,7 @@
     } else if (indexPath.section == SECTION_SHOUT) {
         return shoutCell;
     }
-    
+    [cell makeOneLine];
     if (checkin.venue) {
         cell.venueId = checkin.venue.venueid;
     }
@@ -306,7 +306,16 @@
     } else {
         cell.venueAddress.text = checkin.venue.addressWithCrossstreet;
     }
-    
+    if (checkin.shout) {
+		//check to see if it is long enough to need two lines:
+		CGSize maximumLabelSize = CGSizeMake(250, 60);
+		CGSize expectedLabelSize = [checkin.shout sizeWithFont:[UIFont boldSystemFontOfSize:16.0]
+											 constrainedToSize:maximumLabelSize 
+												 lineBreakMode:UILineBreakModeWordWrap];
+		if (expectedLabelSize.height>20) {
+			[cell makeTwoLine];
+		}
+	}
     UILabel *numberOfTimeUnits = [[UILabel alloc] initWithFrame:CGRectMake(290, 5, 37, 20)];
     numberOfTimeUnits.text = checkin.truncatedTimeNumeral;
     numberOfTimeUnits.font = [UIFont systemFontOfSize:26.0];
@@ -377,6 +386,30 @@
     } else if (indexPath.section == SECTION_SHOUT) {
         return 44;
     }
+	FSCheckin *checkin = nil;
+    if (indexPath.section == SECTION_RECENT_CHECKINS) {
+        checkin = [self.recentCheckins objectAtIndex:indexPath.row];
+    } else if (indexPath.section == SECTION_TODAY_CHECKINS) {
+        checkin = [self.todayCheckins objectAtIndex:indexPath.row];
+    } else if (indexPath.section == SECTION_YESTERDAY_CHECKINS) {
+		checkin = [self.yesterdayCheckins objectAtIndex:indexPath.row];
+    } else if (indexPath.section == SECTION_NONCITY_RECENT_CHECKINS) {
+        checkin = [self.nonCityRecentCheckins objectAtIndex:indexPath.row];
+    } else if (indexPath.section == SECTION_NONCITY_TODAY_CHECKINS) {
+        checkin = [self.nonCityTodayCheckins objectAtIndex:indexPath.row];
+    } else if (indexPath.section == SECTION_NONCITY_YESTERDAY_CHECKINS) {
+		checkin = [self.nonCityYesterdayCheckins objectAtIndex:indexPath.row];
+    }
+	if (checkin.shout) {
+		//check to see if it is long enough to need two lines:
+		CGSize maximumLabelSize = CGSizeMake(250, 60);
+		CGSize expectedLabelSize = [checkin.shout sizeWithFont:[UIFont boldSystemFontOfSize:16.0]
+									constrainedToSize:maximumLabelSize 
+										lineBreakMode:UILineBreakModeWordWrap];
+		if (expectedLabelSize.height>20) {
+			return 76;
+		}
+	}
     return 72;
 }
 
