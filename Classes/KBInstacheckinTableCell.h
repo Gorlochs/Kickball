@@ -12,9 +12,13 @@
 @interface KBInstacheckinTableCell : UITableViewCell {
     BOOL _cancelTouches;
     NSString *venueId;
+	CGPoint touchLocation;
+	UIImageView *spinnerView;
 }
 
 @property (nonatomic) BOOL _cancelTouches;
 @property (nonatomic, retain) NSString *venueId;
+-(void) startSpinner;
+-(void) stopSpinner;
 
 @end

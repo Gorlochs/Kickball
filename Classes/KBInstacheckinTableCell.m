@@ -22,27 +22,60 @@
         
         self.textLabel.highlightedTextColor = [UIColor whiteColor];
         self.detailTextLabel.highlightedTextColor = [UIColor whiteColor];
+		spinnerView = nil;
     }
     return self;
 }
 
 -(void) tapNHoldFired {
     self->_cancelTouches = YES;
+	[self stopSpinner];
     // DO WHATEVER YOU LIKE HERE!!!
     NSDictionary *messageInfo = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:self.venueId, nil] forKeys:[NSArray arrayWithObjects:@"venueIdOfCell", nil]];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"touchAndHoldCheckin"
                                                         object:nil
                                                       userInfo:messageInfo];
 }
+-(void) startSpinner {
+	spinnerView = [[UIImageView alloc] initWithFrame:CGRectMake(touchLocation.x-64, touchLocation.y-64, 128, 128)];
+	[spinnerView setAnimationImages:[NSArray arrayWithObjects:[UIImage imageNamed:@"dodad0.png"],
+									 [UIImage imageNamed:@"dodad01.png"],
+									 [UIImage imageNamed:@"dodad02.png"],
+									 [UIImage imageNamed:@"dodad03.png"],
+									 [UIImage imageNamed:@"dodad04.png"],
+									 [UIImage imageNamed:@"dodad05.png"],
+									 [UIImage imageNamed:@"dodad06.png"],
+									 [UIImage imageNamed:@"dodad07.png"],
+									 [UIImage imageNamed:@"dodad08.png"],
+									 [UIImage imageNamed:@"dodad09.png"],
+									 [UIImage imageNamed:@"dodad10.png"],
+									 [UIImage imageNamed:@"dodad11.png"],
+									 [UIImage imageNamed:@"dodad12.png"],nil]];
+	[spinnerView setAnimationDuration:0.5f];
+	[self.superview.superview addSubview:spinnerView];
+	[spinnerView startAnimating];
+}
 
+-(void) stopSpinner {
+	[spinnerView removeFromSuperview];
+	[spinnerView stopAnimating];
+	[spinnerView release];
+	spinnerView = nil;
+}
 -(void) cancelTapNHold {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(tapNHoldFired) object:nil];
+	[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(startSpinner) object:nil];
+	[self stopSpinner];
+
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     self->_cancelTouches = NO;
     [super touchesBegan:touches withEvent:event];
     [self performSelector:@selector(tapNHoldFired) withObject:nil afterDelay:.7];
+	[self performSelector:@selector(startSpinner) withObject:nil afterDelay:.25];
+	touchLocation = [[touches anyObject] locationInView:self.superview.superview];
+	
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
