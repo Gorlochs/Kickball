@@ -19,6 +19,7 @@
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
         // Initialization code
+		twoLine = NO;
         CGRect frame = CGRectMake(6, 6, 32, 32);
         categoryIcon = [[TTImageView alloc] initWithFrame:frame];
         categoryIcon.backgroundColor = [UIColor clearColor];
@@ -60,6 +61,24 @@
     return self;
 }
 
+- (void)layoutSubviews
+{
+	[super layoutSubviews];
+	CGRect contentRect = [self.contentView bounds];
+	[categoryIcon setCenter:CGPointMake(categoryIcon.center.x, contentRect.size.height/2)];
+	topLineImage.frame = CGRectMake(0, 0, contentRect.size.width, 1);
+	bottomLineImage.frame = CGRectMake(0, contentRect.size.height - 1, contentRect.size.width, 1);
+	if (twoLine) {
+		venueName.numberOfLines = 2;
+		venueName.frame	= CGRectMake(46, contentRect.origin.y+5, 250, 40);
+		venueAddress.frame = CGRectMake(46, contentRect.origin.y+40, 250, 20);
+	}else {
+		venueName.numberOfLines = 1;
+		venueName.frame	= CGRectMake(46, contentRect.origin.y+5, 250, 20);
+		venueAddress.frame = CGRectMake(46, contentRect.origin.y+20, 250, 20);
+	}
+}
+
 - (void) adjustLabelWidth:(float)newWidth {
     CGSize newSize = CGSizeMake(newWidth, 20);
     
@@ -70,6 +89,13 @@
     CGRect frame2 = venueAddress.frame;
     frame2.size = newSize;
     venueAddress.frame = frame2;
+}
+- (void)makeTwoLine {
+	twoLine = YES;
+}
+
+- (void)makeOneLine {
+	twoLine = NO;
 }
 
 

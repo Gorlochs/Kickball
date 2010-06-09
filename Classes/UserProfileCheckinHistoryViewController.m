@@ -12,6 +12,7 @@
 
 @implementation UserProfileCheckinHistoryViewController
 
+#define MAX_LABEL_HEIGHT 68.0
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -78,6 +79,18 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	FSCheckin *theCheckin = [[checkinsByDate objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+	if (theCheckin.shout) {
+		//check to see if it is long enough to need two lines:
+		CGSize maximumLabelSize = CGSizeMake(250, MAX_LABEL_HEIGHT);
+		NSString *text = [NSString stringWithFormat:@"shout: \"%@\"", theCheckin.shout];
+		CGSize expectedLabelSize = [text sizeWithFont:[UIFont boldSystemFontOfSize:14.0]
+									constrainedToSize:maximumLabelSize 
+										lineBreakMode:UILineBreakModeWordWrap];
+		if (expectedLabelSize.height>20) {
+			return 64;
+		}
+	}
     return 44;
 }
 
@@ -101,10 +114,19 @@
         cell = [[[PlacesListTableViewCellv2 alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
         cell.venueName.size = CGSizeMake(210, cell.venueName.size.height);
     }
-    
+    [cell makeOneLine];
     FSCheckin *theCheckin = [[checkinsByDate objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     if (theCheckin.shout) {
-        cell.venueName.text = [NSString stringWithFormat:@"shout: \"%@\"", theCheckin.shout];
+		//check to see if it is long enough to need two lines:
+		CGSize maximumLabelSize = CGSizeMake(250, MAX_LABEL_HEIGHT);
+		NSString *text = [NSString stringWithFormat:@"shout: \"%@\"", theCheckin.shout];
+		CGSize expectedLabelSize = [text sizeWithFont:[UIFont boldSystemFontOfSize:14.0]
+									constrainedToSize:maximumLabelSize 
+										lineBreakMode:UILineBreakModeWordWrap];
+		if (expectedLabelSize.height>20) {
+			[cell makeTwoLine];
+		}
+        cell.venueName.text = text;
         cell.accessoryType = UITableViewCellAccessoryNone;
     } else {
         cell.venueName.text = theCheckin.venue.name;

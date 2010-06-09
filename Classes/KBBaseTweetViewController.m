@@ -12,6 +12,7 @@
 #import "KBUserTweetsViewController.h"
 #import "KBTwitterSearchViewController.h"
 #import "KBTwitterDetailViewController.h"
+#import "KBTwitterProfileViewController.h"
 #import "KickballAPI.h"
 
 @implementation KBBaseTweetViewController
@@ -151,7 +152,7 @@
 										   constrainedToSize:maximumLabelSize 
 											   lineBreakMode:UILineBreakModeWordWrap];
 	
-	return expectedLabelSize.height + 30.0 > MAX_LABEL_HEIGHT ? expectedLabelSize.height + 30.0 : MAX_LABEL_HEIGHT;
+	return expectedLabelSize.height + 48.0; // > MAX_LABEL_HEIGHT ? expectedLabelSize.height + 30.0 : MAX_LABEL_HEIGHT;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -185,7 +186,7 @@
         */
 		[cell.tweetText sizeToFit];
 		//[cell.tweetText setNeedsLayout];
-		//[cell.tweetText setNeedsDisplay];
+		[cell.tweetText setNeedsDisplay];
         return cell;
 }
 
@@ -207,6 +208,13 @@
 	if (indexPath.row == [tweets count] - 1) {
 		[self executeQuery:++pageNum];
 	}
+}
+
+- (void) viewUserProfile:(NSString*)userName {
+	KBTwitterProfileViewController *twitterProfileController = [[KBTwitterProfileViewController alloc] initWithNibName:@"KBTwitterProfileViewController" bundle:nil];
+    twitterProfileController.screenname = userName;
+	[self.navigationController pushViewController:twitterProfileController animated:YES];
+	[twitterProfileController release];
 }
 
 #pragma mark -

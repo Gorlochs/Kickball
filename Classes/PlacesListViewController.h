@@ -22,6 +22,7 @@ typedef enum {
     NSDictionary *venues;
     KBListType venuesTypeToDisplay;
     bool isSearchEmpty;
+	UIButton *coverButton;
 }
 
 @property (nonatomic, retain) UITableViewCell *searchCell;

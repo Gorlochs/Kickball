@@ -32,7 +32,7 @@
     
     self.hideFooter = YES;
     [super viewDidLoad];
-	
+	[webView setDelegate:self];
 	NSURL *url = [NSURL URLWithString:urlString];
 	NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
 	
@@ -44,6 +44,22 @@
 		//Load the request in the UIWebView.
 		[webView loadRequest:requestObj];
 	}
+	spinner = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(15, 15, 20, 20)];
+	[spinner retain];
+	[spinner setHidesWhenStopped:YES];
+	[spinner setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
+	[self.view addSubview:spinner];
+	
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
+	[spinner stopAnimating];
+	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+
+}
+- (void)webViewDidStartLoad:(UIWebView *)webView {
+	[spinner startAnimating];
+	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -64,6 +80,7 @@
 
 
 - (void)dealloc {
+	[spinner release];
     [webView release];
     [urlString release];
     [super dealloc];

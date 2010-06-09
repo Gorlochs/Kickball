@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Three20/Three20.h"
 #import "KBTwitterViewController.h"
 #import "KBTweet.h"
 #import "KBTweetTableCell.h"
@@ -33,5 +34,7 @@
 - (void) showStatuses;
 - (void) executeQuery:(int)pageNumber;
 - (NSMutableArray*) addAndTrimArray:(NSMutableArray*)arrayToAdd;
+
+- (void) viewUserProfile:(NSString*)userName;
  
 @end

@@ -20,6 +20,7 @@
     UIImageView *topLineImage;
     UIImageView *bottomLineImage;
     UIImageView *iconBgImage;
+	UIButton *iconButt;
 }
 
 @property (nonatomic, retain) TTImageView *userIcon;
@@ -29,6 +30,6 @@
 
 - (void) setDateLabelWithDate:(NSDate*)theDate;
 - (void) setDateLabelWithText:(NSString*)theDate;
-
+- (void) pushToProfile;
 
 @end

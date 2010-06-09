@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "KBBaseViewController.h"
 
-@interface KBWebViewController : KBBaseViewController {
+@interface KBWebViewController : KBBaseViewController <UIWebViewDelegate>{
     UIWebView *webView;
     NSString *urlString;
 	NSString *twitterUrlString;
+	UIActivityIndicatorView *spinner;
 }
 
 @property (nonatomic, retain) IBOutlet UIWebView *webView;

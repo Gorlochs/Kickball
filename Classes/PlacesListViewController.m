@@ -315,6 +315,28 @@
     return YES;
 }
 
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+	//show cover up
+	coverButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+	[coverButton setFrame:CGRectMake(0, 92, 320, 200)];
+	[coverButton setBackgroundColor:[UIColor blackColor]];
+	[coverButton addTarget:self action:@selector(cancelTheKeyboard) forControlEvents:UIControlEventTouchUpInside];
+	[coverButton setAlpha:0.0];
+	[self.view addSubview:coverButton];
+	[UIView beginAnimations:@"fadeInCover" context:nil];
+	[UIView setAnimationDuration:0.5];
+	[coverButton setAlpha:0.6];
+	[UIView commitAnimations];
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+	//hide cover up
+	[coverButton removeFromSuperview];
+	[coverButton release];
+	coverButton = nil;
+	
+}
+
 - (void) cancelEdit {
     [self cancelTheKeyboard];
     searchbox.text = @"";

@@ -20,6 +20,7 @@
     UIImageView *topLineImage;
     UIImageView *bottomLineImage;
     UIImageView *specialImage;
+	BOOL twoLine;
 }
 
 @property (nonatomic, retain) TTImageView *categoryIcon;
@@ -28,5 +29,7 @@
 @property (nonatomic, retain) UIImageView *specialImage;
 
 - (void) adjustLabelWidth:(float)newWidth;
+- (void)makeTwoLine;
+- (void)makeOneLine;
 
 @end
