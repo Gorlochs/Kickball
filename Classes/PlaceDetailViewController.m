@@ -327,6 +327,218 @@
     } else {
         twitterButton.enabled = NO;
     }
+	
+	if ([venueToDisplay.currentCheckins count] > 0) {
+		//NSString *numPeople;
+		NSString *numPeople = [NSString stringWithFormat:@"%d %@ Here", [venueToDisplay.currentCheckins count], [venueToDisplay.currentCheckins count] == 1 ? @"Person" : @"People"];
+		/*
+		if ([venueToDisplay.currentCheckins count]==1) {
+			numPeople = [NSString stringWithString:@"1 Person Here"];
+		}else {
+			numPeople = [NSString stringWithFormat:@"%i People Here",[venueToDisplay.currentCheckins count]];
+		}
+		 */
+		BOOL seeAllPeople = [venueToDisplay.currentCheckins count] > 4 ? YES : NO;
+		
+		//create base container based on how many people
+		UIView *roundedRect;
+		switch ([venueToDisplay.currentCheckins count]) {
+			case 1:
+			case 2:
+				peopleHereContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 97)];
+				[peopleHereContainer setBackgroundColor:[UIColor clearColor]];
+				roundedRect = [[UIView alloc] initWithFrame:CGRectMake(0, 37, 290, 47)];
+				[[roundedRect layer] setCornerRadius:4.0f];
+				[roundedRect setBackgroundColor:[UIColor whiteColor]];
+				[peopleHereContainer addSubview:roundedRect];
+				[roundedRect release];
+				break;
+			default:
+				peopleHereContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 144)];
+				roundedRect = [[UIView alloc] initWithFrame:CGRectMake(0, 37, 290, 95)];
+				[[roundedRect layer] setCornerRadius:4.0f];
+				[roundedRect setBackgroundColor:[UIColor whiteColor]];
+				[peopleHereContainer addSubview:roundedRect];
+				[roundedRect release];
+				break;
+		}
+		UILabel *peopleCount = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 150, 36)];
+		[peopleCount setBackgroundColor:[UIColor clearColor]];
+		[peopleCount setFont:[UIFont systemFontOfSize:14]];
+		[peopleCount setTextColor:[UIColor grayColor]];
+		[peopleCount setText:numPeople];
+		[peopleHereContainer addSubview:peopleCount];
+		[peopleCount release];
+		if (!seeAllPeople) {
+			UIButton *seeAll = [UIButton buttonWithType:UIButtonTypeCustom];
+			[seeAll setImage:[UIImage imageNamed:@"placePeopleHere01.png"] forState:UIControlStateNormal];
+			[seeAll setImage:[UIImage imageNamed:@"placePeopleHere02.png"] forState:UIControlStateHighlighted];
+			[seeAll addTarget:self action:@selector(displayAllPeopleHere:) forControlEvents:UIControlEventTouchUpInside];
+			[seeAll setFrame:CGRectMake(198, -2, 92, 39)];
+			[peopleHereContainer addSubview:seeAll];
+		}
+		UIView *horizontalSplitter;
+		UIView *verticalSplitter;
+		FSCheckin *currentCheckin;
+		currentCheckin = nil;
+		switch ([venueToDisplay.currentCheckins count]) {
+			case 1:
+				
+				//populate with poeople
+				//person 1
+				//currentCheckin = ((FSCheckin*)[venueToDisplay.currentCheckins objectAtIndex:0]);
+				[self addPersonHere:peopleHereContainer :currentCheckin :1];
+				break;
+			case 2:
+				horizontalSplitter = [[UIView alloc] initWithFrame:CGRectMake(145, 37, 1, 47)];
+				[horizontalSplitter setBackgroundColor:[UIColor grayColor]];
+				[peopleHereContainer addSubview:horizontalSplitter];
+				[horizontalSplitter release];
+				
+				//populate with poeople
+				//person 1
+				//currentCheckin = ((FSCheckin*)[venueToDisplay.currentCheckins objectAtIndex:0]);
+				[self addPersonHere:peopleHereContainer :currentCheckin :21];
+				
+				//person 2
+				//currentCheckin = ((FSCheckin*)[venueToDisplay.currentCheckins objectAtIndex:1]);
+				[self addPersonHere:peopleHereContainer :currentCheckin :22];
+				break;
+			case 3:
+				horizontalSplitter = [[UIView alloc] initWithFrame:CGRectMake(145, 37, 1, 48)];
+				[horizontalSplitter setBackgroundColor:[UIColor grayColor]];
+				[peopleHereContainer addSubview:horizontalSplitter];
+				[horizontalSplitter release];
+				verticalSplitter = [[UIView alloc] initWithFrame:CGRectMake(0, 85, 290, 1)];
+				[verticalSplitter setBackgroundColor:[UIColor grayColor]];
+				[peopleHereContainer addSubview:verticalSplitter];
+				[verticalSplitter release];
+				
+				//populate with poeople
+				//person 1
+				//currentCheckin = ((FSCheckin*)[venueToDisplay.currentCheckins objectAtIndex:0]);
+				[self addPersonHere:peopleHereContainer :currentCheckin :21];
+				
+				//person 2
+				//currentCheckin = ((FSCheckin*)[venueToDisplay.currentCheckins objectAtIndex:1]);
+				[self addPersonHere:peopleHereContainer :currentCheckin :22];
+				
+				//person 3
+				//currentCheckin = ((FSCheckin*)[venueToDisplay.currentCheckins objectAtIndex:2]);
+				[self addPersonHere:peopleHereContainer :currentCheckin :3];
+				break;
+			default:
+				horizontalSplitter = [[UIView alloc] initWithFrame:CGRectMake(145, 37, 1, 95)];
+				[horizontalSplitter setBackgroundColor:[UIColor grayColor]];
+				[peopleHereContainer addSubview:horizontalSplitter];
+				[horizontalSplitter release];
+				verticalSplitter = [[UIView alloc] initWithFrame:CGRectMake(0, 85, 290, 1)];
+				[verticalSplitter setBackgroundColor:[UIColor grayColor]];
+				[peopleHereContainer addSubview:verticalSplitter];
+				[verticalSplitter release];
+				
+				//populate with poeople
+				//person 1
+				//currentCheckin = ((FSCheckin*)[venueToDisplay.currentCheckins objectAtIndex:0]);
+				[self addPersonHere:peopleHereContainer :currentCheckin :21];
+				
+				//person 2
+				//currentCheckin = ((FSCheckin*)[venueToDisplay.currentCheckins objectAtIndex:1]);
+				[self addPersonHere:peopleHereContainer :currentCheckin :22];
+				
+				//person 3
+				//currentCheckin = ((FSCheckin*)[venueToDisplay.currentCheckins objectAtIndex:2]);
+				[self addPersonHere:peopleHereContainer :currentCheckin :23];
+				
+				//person 4
+				//currentCheckin = ((FSCheckin*)[venueToDisplay.currentCheckins objectAtIndex:3]);
+				[self addPersonHere:peopleHereContainer :currentCheckin :24];
+				
+				break;
+		}
+		
+
+	}
+}
+
+-(void)addPersonHere:(UIView*)container :(FSCheckin*)person :(int)position {
+	CGRect headRect,nameRect,accessoryRect,touchRect;
+	int personTag;	
+	switch (position) {
+		case 1:
+			nameRect = CGRectMake(48, 45, 75, 30);
+			headRect = CGRectMake(8, 45, 32, 32);
+			personTag = 1;
+			touchRect = CGRectMake(0, 37, 145, 47);
+			accessoryRect = CGRectMake(125, 54, 9, 12);
+			break;
+		case 3:
+			nameRect = CGRectMake(48, 92, 75, 30);
+			headRect = CGRectMake(8, 92, 32, 32);
+			personTag = 3;
+			touchRect = CGRectMake(0, 85, 145, 47);
+			accessoryRect = CGRectMake(125, 101, 9, 12);
+			break;
+		case 21:
+			nameRect = CGRectMake(48, 45, 75, 30);
+			headRect = CGRectMake(8, 45, 32, 32);
+			personTag = 1;
+			touchRect = CGRectMake(0, 37, 145, 47);
+			accessoryRect = CGRectMake(125, 54, 9, 12);
+			break;
+		case 22:
+			nameRect = CGRectMake(192, 45, 75, 30);
+			headRect = CGRectMake(152, 45, 32, 32);
+			personTag = 2;
+			touchRect = CGRectMake(148, 37, 145, 47);
+			accessoryRect = CGRectMake(270, 54, 9, 12);
+			break;
+		case 23:
+			nameRect = CGRectMake(48, 92, 75, 30);
+			headRect = CGRectMake(8, 92, 32, 32);
+			personTag = 3;
+			touchRect = CGRectMake(0, 85, 145, 47);
+			accessoryRect = CGRectMake(125, 101, 9, 12);
+			break;
+		default:
+			nameRect = CGRectMake(192, 92, 75, 30);
+			headRect = CGRectMake(152, 92, 32, 32);
+			personTag = 4;
+			touchRect = CGRectMake(148, 85, 145, 47);
+			accessoryRect = CGRectMake(270, 101, 9, 12);
+			break;
+	}
+	UILabel *hereName = [[UILabel alloc] initWithFrame:nameRect];
+	[hereName setBackgroundColor:[UIColor clearColor]];
+	[hereName setFont:[UIFont boldSystemFontOfSize:14]];
+	[hereName setTextColor:[UIColor blackColor]];
+	[hereName setText:person.user.firstnameLastInitial]; 
+	[container addSubview:hereName];
+	[hereName release];
+	hereName = nil;
+	TTImageView *hereHead = [[TTImageView alloc] initWithFrame:headRect];
+	hereHead.urlPath = person.user.photo;
+	hereHead.backgroundColor = [UIColor clearColor];
+	hereHead.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
+	hereHead.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
+	[container addSubview:hereHead];
+	[hereHead release];
+	hereHead = nil;
+	UIImageView *accessory = [[UIImageView alloc] initWithFrame:accessoryRect];
+	[accessory setImage:[UIImage imageNamed:@"cellArrow.png"]];
+	[container addSubview:accessory];
+	[accessory release];
+	UIButton *touchMe = [UIButton buttonWithType:UIButtonTypeCustom];
+	[touchMe setFrame:touchRect];
+	[touchMe setAdjustsImageWhenHighlighted:YES];
+	[touchMe addTarget:self action:@selector(touchedPersonHere:) forControlEvents:UIControlEventTouchUpInside];
+	[touchMe setTag:personTag];
+	[container addSubview:touchMe];
+	
+}
+-(void)touchedPersonHere:(id)sender {
+	FSCheckin *tmpCheckin = ((FSCheckin*)[venue.currentCheckins objectAtIndex:[sender tag]-1]);
+	[self pushProfileDetailController:tmpCheckin.user.userId];
 }
 
 
@@ -371,7 +583,8 @@
     } else if (section == 1) { // mayor & map cell
         return ![self isNewMayor];
     } else if (section == 2) { // people here
-        return [venue.currentCheckins count] <= MAX_PEOPLE_HERE_SHOWN ? [venue.currentCheckins count] : MAX_PEOPLE_HERE_SHOWN;
+		//**previous*** return [venue.currentCheckins count] <= MAX_PEOPLE_HERE_SHOWN ? [venue.currentCheckins count] : MAX_PEOPLE_HERE_SHOWN;
+        return [venue.currentCheckins count] > 0 ? 1 : 0;
     } else if (section == 3) { // gift/photos
         //return [goodies count] > 0 ? 1 : 0;
         return 1;
@@ -403,23 +616,10 @@
         mayorMapCell.backgroundColor = [UIColor whiteColor];
         return mayorMapCell;
     } else if (indexPath.section == 2) { // people here
-        if (indexPath.row <= MAX_PEOPLE_HERE_SHOWN) {
-            cell.detailTextLabel.numberOfLines = 1;
-            cell.detailTextLabel.text = nil;
-            cell.textLabel.font = [UIFont boldSystemFontOfSize:16];
-            FSCheckin *currentCheckin = ((FSCheckin*)[venue.currentCheckins objectAtIndex:indexPath.row]);
-            cell.textLabel.text = currentCheckin.user.firstnameLastInitial;
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            cell.imageView.image = [UIImage imageNamed:@"blank_boy.png"];
-            
-            CGRect frame = CGRectMake(0,0,36,36);
-            TTImageView *ttImage = [[[TTImageView alloc] initWithFrame:frame] autorelease];
-            ttImage.urlPath = currentCheckin.user.photo;
-            ttImage.backgroundColor = [UIColor clearColor];
-            ttImage.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
-            ttImage.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
-            [cell.imageView addSubview:ttImage];
-        }
+		[cell.contentView setBackgroundColor:[UIColor blackColor]];
+		[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+		[cell.contentView addSubview:peopleHereContainer];
+		return cell;
     } else if (indexPath.section == 3) {
         return giftCell;
     } else if (indexPath.section == 4) {
@@ -461,8 +661,8 @@
         case 1: // mayor-map cell
             return 69;
             break;
-        case 2:
-            return 44;
+        case 2: //people here
+            return 144;
             break;
         case 3: // photos
 //            if ([goodies count] == 0) {
@@ -575,8 +775,9 @@
     if (indexPath.section == 1) {
         [self pushProfileDetailController:venue.mayor.userId];
     } else if (indexPath.section == 2) {
-        FSCheckin *tmpCheckin = ((FSCheckin*)[venue.currentCheckins objectAtIndex:indexPath.row]);
-        [self pushProfileDetailController:tmpCheckin.user.userId];
+        //FSCheckin *tmpCheckin = ((FSCheckin*)[venue.currentCheckins objectAtIndex:indexPath.row]);
+        //[self pushProfileDetailController:tmpCheckin.user.userId];
+		[theTableView deselectRowAtIndexPath:indexPath animated:NO];
     } else if (indexPath.section == 5) {
         FSTip *tip = ((FSTip*)[venue.tips objectAtIndex:indexPath.row]);
         tipController = [[TipDetailViewController alloc] initWithNibName:@"TipView" bundle:nil];
@@ -650,6 +851,8 @@
     
     [tipController release];
     [checkinViewController release];
+	
+	[peopleHereContainer release];
     
     [super dealloc];
 }

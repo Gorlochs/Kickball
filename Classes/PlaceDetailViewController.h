@@ -86,6 +86,8 @@
     int currentSpecial;
     
     KBCheckinModalViewController *checkinViewController;
+	
+	UIView *peopleHereContainer;
 }
 
 @property (nonatomic, retain) UITableViewCell *mayorMapCell;
@@ -130,5 +132,8 @@
 //- (void) uploadFacebookPhoto:(NSData*)img withCaption:(NSString*)caption;
 //- (BOOL)uploadImage:(NSData *)imageData filename:(NSString *)filename withWidth:(float)width andHeight:(float)height andMessage:(NSString*)message andOrientation:(UIImageOrientation)orientation;
 //- (UIImage*)imageByScalingToSize:(UIImage*)image toSize:(CGSize)targetSize;
+
+-(void)addPersonHere:(UIView*)container :(FSCheckin*)person :(int)position;
+-(void)touchedPersonHere:(id)sender;
 
 @end
