@@ -87,6 +87,9 @@
     twitterButton.enabled = NO;
     
     giftCell.firstTimePhotoButton.hidden = YES;
+	
+	specialText.font = [UIFont systemFontOfSize:14.0];
+	specialText.textColor = [UIColor colorWithRed:0.0 green:86.0/255.0 blue:136.0/255.0 alpha:1.0];
     
     // this is to clear out the placeholder text, which is useful in IB
     venueName.text = @"";
@@ -806,16 +809,16 @@
     }
     specialText.text = special.messageText;
     
-    CGSize maximumLabelSize = CGSizeMake(246, 157);
-    CGSize expectedLabelSize = [special.messageText sizeWithFont:specialText.font 
-                                           constrainedToSize:maximumLabelSize 
-                                               lineBreakMode:UILineBreakModeWordWrap];
-    DLog(@"expected label size: %f", expectedLabelSize.height);
-    
-    //adjust the label the the new height.
-    CGRect newFrame = specialText.frame;
-    newFrame.size.height = expectedLabelSize.height;
-    specialText.frame = newFrame;
+//    CGSize maximumLabelSize = CGSizeMake(246, 157);
+//    CGSize expectedLabelSize = [special.messageText sizeWithFont:specialText.font 
+//                                           constrainedToSize:maximumLabelSize 
+//                                               lineBreakMode:UILineBreakModeWordWrap];
+//    DLog(@"expected label size: %f", expectedLabelSize.height);
+//    
+//    //adjust the label the the new height.
+//    CGRect newFrame = specialText.frame;
+//    newFrame.size.height = expectedLabelSize.height;
+//    specialText.frame = newFrame;
 
     CGRect specialFrame = specialView.frame;
     specialFrame.origin = CGPointMake(0, 119);

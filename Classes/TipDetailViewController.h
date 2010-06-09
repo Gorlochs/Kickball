@@ -16,7 +16,7 @@
     FSVenue *venue;
     
     IBOutlet UILabel *authorNameLabel;
-    IBOutlet UILabel *tipText;
+    IBOutlet UITextView *tipText;
     IBOutlet UILabel *venueName;
     IBOutlet UILabel *venueAddress;
 }

@@ -76,7 +76,7 @@
     IBOutlet UIView *specialView;
     IBOutlet UILabel *specialPlaceName;
     IBOutlet UILabel *specialAddress;
-    IBOutlet UILabel *specialText;
+    IBOutlet UITextView *specialText;
     IBOutlet UIButton *specialClose;
     IBOutlet UIButton *nextSpecialButton;
     IBOutlet UIButton *previousSpecialButton;
