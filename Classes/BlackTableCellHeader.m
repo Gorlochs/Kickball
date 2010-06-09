@@ -18,7 +18,7 @@
         // Initialization code
         self.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.5];
         
-        leftHeaderLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 4.0, 150.0, 24.0)];
+        leftHeaderLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 10.0, 150.0, 20.0)];
         leftHeaderLabel.backgroundColor = [UIColor clearColor];
         leftHeaderLabel.opaque = NO;
         leftHeaderLabel.textColor = [UIColor grayColor];
