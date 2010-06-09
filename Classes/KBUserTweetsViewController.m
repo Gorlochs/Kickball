@@ -40,7 +40,6 @@
 }
 
 - (void) executeQuery:(int)pageNumber {
-    [self startProgressBar:@"Retrieving more tweets..."];
     if (self.userDictionary) {
         [twitterEngine getUserTimelineFor:[self.userDictionary objectForKey:@"screen_name"] sinceID:0 startingAtPage:pageNumber count:25];
     } else {

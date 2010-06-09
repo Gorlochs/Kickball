@@ -16,6 +16,7 @@
     [super viewDidLoad];
     
     cachingKey = kKBTwitterMentionsKey;
+    [self startProgressBar:@"Retrieving your tweets..."];
     [self showStatuses];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusRetrieved:) name:kTwitterStatusRetrievedNotificationKey object:nil];
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTweetNotification:) name:IFTweetLabelURLNotification object:nil];
@@ -27,7 +28,6 @@
 }
 
 - (void) showStatuses {
-    [self startProgressBar:@"Retrieving your tweets..."];
     NSNumber *startAtId = [NSNumber numberWithInt:0];
     tweets = [[NSMutableArray alloc] initWithArray:[[KBTwitterManager twitterManager] retrieveCachedStatusArrayWithKey:cachingKey]];
     if (tweets != nil && [tweets count] > 0) {

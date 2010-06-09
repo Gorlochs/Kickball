@@ -18,6 +18,7 @@
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTweetNotification:) name:IFTweetLabelURLNotification object:nil];
     
     cachingKey = kKBTwitterDirectMessagesKey;
+    [self startProgressBar:@"Retrieving more tweets..."];
     [self showStatuses];
     
     [timelineButton setImage:[UIImage imageNamed:@"tabTweets03.png"] forState:UIControlStateNormal];
@@ -27,7 +28,6 @@
 }
 
 - (void) showStatuses {
-    [self startProgressBar:@"Retrieving your tweets..."];
     NSNumber *startAtId = [NSNumber numberWithInt:0];
     tweets = [[NSMutableArray alloc] initWithArray:[[KBTwitterManager twitterManager] retrieveCachedStatusArrayWithKey:cachingKey]];
     if (tweets != nil && [tweets count] > 0) {
@@ -70,7 +70,6 @@
 }
 
 - (void) executeQuery:(int)pageNumber {
-    [self startProgressBar:@"Retrieving more tweets..."];
     [twitterEngine getDirectMessagesSinceID:0 startingAtPage:pageNumber];
 }
 

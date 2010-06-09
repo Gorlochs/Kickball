@@ -35,7 +35,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginCanceled) name:@"loginCanceled" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideAppropriateTabs) name:@"hideAppropriateTabs" object:nil];
     if ([self.twitterEngine isAuthorized]) {
-        //[self createNotificationObservers];
+		[self startProgressBar:@"Retrieving your tweets..."];
 		[self showStatuses];
 	} else {
         loginController = [[KBTwitterXAuthLoginController alloc] initWithNibName:@"TwitterLoginView_v2" bundle:nil];
@@ -60,7 +60,6 @@
         startAtId = ((KBTweet*)[tweets objectAtIndex:0]).tweetId;
         [theTableView reloadData];
     }
-    [self startProgressBar:@"Retrieving your tweets..."];
     [self.twitterEngine getFollowedTimelineSinceID:[startAtId longLongValue] startingAtPage:0 count:25];
 }
 

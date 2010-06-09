@@ -28,8 +28,7 @@
         noResultsView.hidden = YES;
     }
     
-    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(searchRetrieved:) name:kTwitterSearchRetrievedNotificationKey object:nil];
-    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTweetNotification:) name:IFTweetLabelURLNotification object:nil];
+    [self startProgressBar:@"Retrieving more tweets..."];
     [self showStatuses];
     
     [timelineButton setImage:[UIImage imageNamed:@"tabTweets03.png"] forState:UIControlStateNormal];
@@ -114,7 +113,6 @@
 }
 
 - (void) executeQuery:(int)pageNumber {
-    [self startProgressBar:@"Retrieving more tweets..."];
     [twitterEngine getSearchResultsForQuery:theSearchBar.text sinceID:0 startingAtPage:pageNumber count:25];
 }
 
