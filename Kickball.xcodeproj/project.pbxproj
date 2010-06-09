@@ -22,6 +22,7 @@
 		2B137C7411BF467700B72ECC /* KBTweetTableCell320.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B137C7311BF467700B72ECC /* KBTweetTableCell320.m */; };
 		2B137CCA11C017D300B72ECC /* fl_addFriend01.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B137CC811C017D300B72ECC /* fl_addFriend01.png */; };
 		2B137CCB11C017D300B72ECC /* fl_addFriend02.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B137CC911C017D300B72ECC /* fl_addFriend02.png */; };
+		2B137CCF11C0183400B72ECC /* addFriendShell.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B137CCE11C0183400B72ECC /* addFriendShell.png */; };
 		2BA5A8FB11B57FBF0090173D /* libOAuth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BA5A8F911B57FBF0090173D /* libOAuth.a */; };
 		2BA5A8FC11B57FBF0090173D /* libFlurryWithLocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BA5A8FA11B57FBF0090173D /* libFlurryWithLocation.a */; };
 		2BA5B00611B963180090173D /* addFriend01_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BA5B00311B963180090173D /* addFriend01_red.png */; };
@@ -121,7 +122,6 @@
 		6A044CAD109545200063FC33 /* FriendsListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A044CAB109545200063FC33 /* FriendsListView.xib */; };
 		6A044CB6109545450063FC33 /* FriendsMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A044CB4109545450063FC33 /* FriendsMapViewController.m */; };
 		6A044CB7109545450063FC33 /* FriendsMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A044CB5109545450063FC33 /* FriendsMapView.xib */; };
-		6A05616B11AB79B9007D461A /* addFriendShell.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A05616411AB79B9007D461A /* addFriendShell.png */; };
 		6A05616C11AB79B9007D461A /* addressBook.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A05616511AB79B9007D461A /* addressBook.png */; };
 		6A05616D11AB79B9007D461A /* fullName.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A05616611AB79B9007D461A /* fullName.png */; };
 		6A05616E11AB79B9007D461A /* iconHolder.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A05616711AB79B9007D461A /* iconHolder.png */; };
@@ -704,6 +704,7 @@
 		2B137C7311BF467700B72ECC /* KBTweetTableCell320.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTweetTableCell320.m; sourceTree = "<group>"; };
 		2B137CC811C017D300B72ECC /* fl_addFriend01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fl_addFriend01.png; sourceTree = "<group>"; };
 		2B137CC911C017D300B72ECC /* fl_addFriend02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fl_addFriend02.png; sourceTree = "<group>"; };
+		2B137CCE11C0183400B72ECC /* addFriendShell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addFriendShell.png; sourceTree = "<group>"; };
 		2BA5A8F911B57FBF0090173D /* libOAuth.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOAuth.a; sourceTree = "<group>"; };
 		2BA5A8FA11B57FBF0090173D /* libFlurryWithLocation.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryWithLocation.a; sourceTree = "<group>"; };
 		2BA5AD5711B833DD0090173D /* KBTwitterManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBTwitterManagerDelegate.h; sourceTree = "<group>"; };
@@ -879,7 +880,6 @@
 		6A044CB3109545450063FC33 /* FriendsMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsMapViewController.h; sourceTree = "<group>"; };
 		6A044CB4109545450063FC33 /* FriendsMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsMapViewController.m; sourceTree = "<group>"; };
 		6A044CB5109545450063FC33 /* FriendsMapView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FriendsMapView.xib; path = Classes/FriendsMapView.xib; sourceTree = "<group>"; };
-		6A05616411AB79B9007D461A /* addFriendShell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addFriendShell.png; sourceTree = "<group>"; };
 		6A05616511AB79B9007D461A /* addressBook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addressBook.png; sourceTree = "<group>"; };
 		6A05616611AB79B9007D461A /* fullName.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fullName.png; sourceTree = "<group>"; };
 		6A05616711AB79B9007D461A /* iconHolder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconHolder.png; sourceTree = "<group>"; };
@@ -2030,7 +2030,7 @@
 		6A05616211AB7998007D461A /* add a friend */ = {
 			isa = PBXGroup;
 			children = (
-				6A05616411AB79B9007D461A /* addFriendShell.png */,
+				2B137CCE11C0183400B72ECC /* addFriendShell.png */,
 				6A05616511AB79B9007D461A /* addressBook.png */,
 				6A05616611AB79B9007D461A /* fullName.png */,
 				6A05616711AB79B9007D461A /* iconHolder.png */,
@@ -3570,7 +3570,6 @@
 				6A0B41F711AB029000FB9A6D /* specialCorner.png in Resources */,
 				6A0B422A11AB1E4D00FB9A6D /* AddPlaceCategoryViewController.xib in Resources */,
 				6A0B430E11AB45BB00FB9A6D /* retweet_small.png in Resources */,
-				6A05616B11AB79B9007D461A /* addFriendShell.png in Resources */,
 				6A05616C11AB79B9007D461A /* addressBook.png in Resources */,
 				6A05616D11AB79B9007D461A /* fullName.png in Resources */,
 				6A05616E11AB79B9007D461A /* iconHolder.png in Resources */,
@@ -3609,6 +3608,7 @@
 				6AE88F7111BFF353003AA748 /* tweetPhotoPreview.png in Resources */,
 				2B137CCA11C017D300B72ECC /* fl_addFriend01.png in Resources */,
 				2B137CCB11C017D300B72ECC /* fl_addFriend02.png in Resources */,
+				2B137CCF11C0183400B72ECC /* addFriendShell.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
