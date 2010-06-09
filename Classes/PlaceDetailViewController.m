@@ -50,7 +50,7 @@
 - (void) pushProfileDetailController:(NSString*)profileUserId;
 
 @end
-
+ 
 
 @implementation PlaceDetailViewController
 
