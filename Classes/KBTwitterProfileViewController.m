@@ -34,17 +34,19 @@
 
 - (void)userInfoReceived:(NSArray *)userInfo {
     
+    DLog(@"userInfo: %@", userInfo);
 //    DLog(@"user inNotification: %@", inNotification);
 //    DLog(@"userInfo: %@", [inNotification userInfo]);
 //    DLog(@"userinfo userinfo: %@", [[inNotification userInfo] objectForKey:@"userInfo"]);
 //    DLog(@"userinfo userinfo object at index 0: %@", [[[inNotification userInfo] objectForKey:@"userInfo"] objectAtIndex:0]);
     userDictionary = [[userInfo objectAtIndex:0] retain];
-    DLog(@"user: %@", userDictionary);
+    //DLog(@"userDictionary: %@", userDictionary);
     screenNameLabel.text = [userDictionary objectForKey:@"screen_name"];
     fullName.text = [userDictionary objectForKey:@"name"];
     location.text = [userDictionary objectForKey:@"location"];
     numberOfFriends.text = [NSString stringWithFormat:@"%d", [[userDictionary objectForKey:@"friends_count"] intValue]];
     numberOfFollowers.text = [NSString stringWithFormat:@"%d", [[userDictionary objectForKey:@"followers_count"] intValue]];
+    numberOfTweets.text = [NSString stringWithFormat:@"%d", [[userDictionary objectForKey:@"statuses_count"] intValue]];
     numberOfFavorites.text = [NSString stringWithFormat:@"%d", [[[userDictionary objectForKey:@"status"] objectForKey:@"favorited"] intValue]];
     
     //description.textColor = [UIColor colorWithWhite:0.8 alpha:1.0];
@@ -62,6 +64,14 @@
     iconBgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellIconBorder.png"]];
     iconBgImage.frame = CGRectMake(11, 68, 43, 43);
     [self.view addSubview:iconBgImage];
+	
+	if ([[userDictionary objectForKey:@"following"] boolValue]) {
+		followButton.hidden = YES;
+		unfollowButton.hidden = NO;
+	} else {
+		followButton.hidden = NO;
+		unfollowButton.hidden = YES;
+	}
     
     [self stopProgressBar];
 }
@@ -90,6 +100,17 @@
     friendsController.userType = KBTwitterUserFriend;
 	[self.navigationController pushViewController:friendsController animated:YES];
 }
+
+- (void) follow {
+	[twitterEngine enableUpdatesFor:screenname];
+}
+
+- (void) unfollow {
+	[twitterEngine disableUpdatesFor:screenname];
+}
+
+#pragma mark -
+#pragma mark memory management
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.

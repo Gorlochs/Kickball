@@ -21,7 +21,12 @@
     IBOutlet UILabel *numberOfFollowers;
     IBOutlet UILabel *numberOfFriends;
     IBOutlet UILabel *numberOfFavorites;
+    IBOutlet UILabel *numberOfTweets;
 	IBOutlet UITextView *description;
+	
+	IBOutlet UIButton *followButton;
+	IBOutlet UIButton *unfollowButton;
+	
     TTImageView *userIcon;
     UIImageView *iconBgImage;
     
@@ -39,5 +44,7 @@
 - (IBAction) viewRecentTweets;
 - (IBAction) viewFollowers;
 - (IBAction) viewFriends;
+- (IBAction) follow;
+- (IBAction) unfollow;
 
 @end
