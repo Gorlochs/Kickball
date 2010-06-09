@@ -386,7 +386,7 @@
 				
 				//populate with poeople
 				//person 1
-				//currentCheckin = ((FSCheckin*)[venueToDisplay.currentCheckins objectAtIndex:0]);
+				currentCheckin = ((FSCheckin*)[venueToDisplay.currentCheckins objectAtIndex:0]);
 				[self addPersonHere:peopleHereContainer :currentCheckin :1];
 				break;
 			case 2:
@@ -397,11 +397,11 @@
 				
 				//populate with poeople
 				//person 1
-				//currentCheckin = ((FSCheckin*)[venueToDisplay.currentCheckins objectAtIndex:0]);
+				currentCheckin = ((FSCheckin*)[venueToDisplay.currentCheckins objectAtIndex:0]);
 				[self addPersonHere:peopleHereContainer :currentCheckin :21];
 				
 				//person 2
-				//currentCheckin = ((FSCheckin*)[venueToDisplay.currentCheckins objectAtIndex:1]);
+				currentCheckin = ((FSCheckin*)[venueToDisplay.currentCheckins objectAtIndex:1]);
 				[self addPersonHere:peopleHereContainer :currentCheckin :22];
 				break;
 			case 3:
@@ -416,15 +416,15 @@
 				
 				//populate with poeople
 				//person 1
-				//currentCheckin = ((FSCheckin*)[venueToDisplay.currentCheckins objectAtIndex:0]);
+				currentCheckin = ((FSCheckin*)[venueToDisplay.currentCheckins objectAtIndex:0]);
 				[self addPersonHere:peopleHereContainer :currentCheckin :21];
 				
 				//person 2
-				//currentCheckin = ((FSCheckin*)[venueToDisplay.currentCheckins objectAtIndex:1]);
+				currentCheckin = ((FSCheckin*)[venueToDisplay.currentCheckins objectAtIndex:1]);
 				[self addPersonHere:peopleHereContainer :currentCheckin :22];
 				
 				//person 3
-				//currentCheckin = ((FSCheckin*)[venueToDisplay.currentCheckins objectAtIndex:2]);
+				currentCheckin = ((FSCheckin*)[venueToDisplay.currentCheckins objectAtIndex:2]);
 				[self addPersonHere:peopleHereContainer :currentCheckin :3];
 				break;
 			default:
@@ -439,19 +439,19 @@
 				
 				//populate with poeople
 				//person 1
-				//currentCheckin = ((FSCheckin*)[venueToDisplay.currentCheckins objectAtIndex:0]);
+				currentCheckin = ((FSCheckin*)[venueToDisplay.currentCheckins objectAtIndex:0]);
 				[self addPersonHere:peopleHereContainer :currentCheckin :21];
 				
 				//person 2
-				//currentCheckin = ((FSCheckin*)[venueToDisplay.currentCheckins objectAtIndex:1]);
+				currentCheckin = ((FSCheckin*)[venueToDisplay.currentCheckins objectAtIndex:1]);
 				[self addPersonHere:peopleHereContainer :currentCheckin :22];
 				
 				//person 3
-				//currentCheckin = ((FSCheckin*)[venueToDisplay.currentCheckins objectAtIndex:2]);
+				currentCheckin = ((FSCheckin*)[venueToDisplay.currentCheckins objectAtIndex:2]);
 				[self addPersonHere:peopleHereContainer :currentCheckin :23];
 				
 				//person 4
-				//currentCheckin = ((FSCheckin*)[venueToDisplay.currentCheckins objectAtIndex:3]);
+				currentCheckin = ((FSCheckin*)[venueToDisplay.currentCheckins objectAtIndex:3]);
 				[self addPersonHere:peopleHereContainer :currentCheckin :24];
 				
 				break;
