@@ -550,6 +550,9 @@
 		6AE7809D117AA49100997215 /* whatIsThisExplained.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AE78091117AA49100997215 /* whatIsThisExplained.png */; };
 		6AE7FB68115D1F5B0073979E /* KBStats.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AE7FB67115D1F5B0073979E /* KBStats.m */; };
 		6AE7FD3F115DA11B0073979E /* AbstractPushNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AE7FD3E115DA11B0073979E /* AbstractPushNotificationViewController.m */; };
+		6AE88F6211BFF2FF003AA748 /* btn-options01.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AE88F6011BFF2FF003AA748 /* btn-options01.png */; };
+		6AE88F6311BFF2FF003AA748 /* btn-options02.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AE88F6111BFF2FF003AA748 /* btn-options02.png */; };
+		6AE88F7111BFF353003AA748 /* tweetPhotoPreview.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AE88F7011BFF353003AA748 /* tweetPhotoPreview.png */; };
 		6AEB63D4110BA9BE0066DD05 /* PushNotificationView.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6AEB63D3110BA9BE0066DD05 /* PushNotificationView.xib */; };
 		6AEB63D7110BAA8C0066DD05 /* KBPushNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AEB63D6110BAA8C0066DD05 /* KBPushNotificationView.m */; };
 		6AEC8EEE1175787100BEB591 /* cellArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AEC8EB41175787100BEB591 /* cellArrow.png */; };
@@ -1476,6 +1479,9 @@
 		6AE7FB67115D1F5B0073979E /* KBStats.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBStats.m; sourceTree = "<group>"; };
 		6AE7FD3D115DA11B0073979E /* AbstractPushNotificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractPushNotificationViewController.h; sourceTree = "<group>"; };
 		6AE7FD3E115DA11B0073979E /* AbstractPushNotificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractPushNotificationViewController.m; sourceTree = "<group>"; };
+		6AE88F6011BFF2FF003AA748 /* btn-options01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-options01.png"; sourceTree = "<group>"; };
+		6AE88F6111BFF2FF003AA748 /* btn-options02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-options02.png"; sourceTree = "<group>"; };
+		6AE88F7011BFF353003AA748 /* tweetPhotoPreview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tweetPhotoPreview.png; sourceTree = "<group>"; };
 		6AEB63D3110BA9BE0066DD05 /* PushNotificationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PushNotificationView.xib; sourceTree = "<group>"; };
 		6AEB63D5110BAA8C0066DD05 /* KBPushNotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBPushNotificationView.h; sourceTree = "<group>"; };
 		6AEB63D6110BAA8C0066DD05 /* KBPushNotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBPushNotificationView.m; sourceTree = "<group>"; };
@@ -2780,6 +2786,9 @@
 		6AC28E9C1173D91B00518E37 /* v1.1 */ = {
 			isa = PBXGroup;
 			children = (
+				6AE88F7011BFF353003AA748 /* tweetPhotoPreview.png */,
+				6AE88F6011BFF2FF003AA748 /* btn-options01.png */,
+				6AE88F6111BFF2FF003AA748 /* btn-options02.png */,
 				2BA5B01B11B963470090173D /* shout01.png */,
 				2BA5B01C11B963470090173D /* shout02.png */,
 				2BA5B01111B963400090173D /* friendsListGradient.png */,
@@ -3605,6 +3614,9 @@
 				2B137B5711BF21C700B72ECC /* imgLoader.png in Resources */,
 				2B137BC311BF28C200B72ECC /* flag_on.png in Resources */,
 				2B137BC411BF28C200B72ECC /* flag_off.png in Resources */,
+				6AE88F6211BFF2FF003AA748 /* btn-options01.png in Resources */,
+				6AE88F6311BFF2FF003AA748 /* btn-options02.png in Resources */,
+				6AE88F7111BFF353003AA748 /* tweetPhotoPreview.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
