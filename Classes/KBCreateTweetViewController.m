@@ -212,6 +212,7 @@
     
     thumbnailPreview.clipsToBounds = YES;
     thumbnailPreview.image = [photoImage retain];
+    thumbnailBackground.hidden = NO;
     
     DLog(@"image picker info: %@", info);
 }

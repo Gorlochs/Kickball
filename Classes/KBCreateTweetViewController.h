@@ -33,6 +33,7 @@
     UIImage *photoImage;
     KBPhotoManager *photoManager;
     IBOutlet UIImageView *thumbnailPreview;
+    IBOutlet UIImageView *thumbnailBackground;
     
     int actionCount;
 }

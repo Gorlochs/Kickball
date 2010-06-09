@@ -266,8 +266,9 @@
 							<int key="NSfFlags">16</int>
 						</object>
 						<object class="NSColor" key="IBUITextColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MCAwIDAAA</bytes>
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MC41AA</bytes>
+							<reference key="NSCustomColorSpace" ref="637376076"/>
 						</object>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">1</int>
@@ -276,10 +277,25 @@
 					<object class="IBUIImageView" id="920469619">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{145, 90}, {50, 50}}</string>
+						<string key="NSFrame">{{259, 155}, {34, 34}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+					</object>
+					<object class="IBUIImageView" id="687019622">
+						<reference key="NSNextResponder" ref="191373211"/>
+						<int key="NSvFlags">-2147483392</int>
+						<string key="NSFrame">{{258, 154}, {36, 36}}</string>
+						<reference key="NSSuperview" ref="191373211"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<bool key="IBUIClipsSubviews">YES</bool>
+						<int key="IBUIContentMode">4</int>
+						<bool key="IBUIMultipleTouchEnabled">YES</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<object class="NSCustomResource" key="IBUIImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">tweetPhotoPreview.png</string>
+						</object>
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 460}</string>
@@ -430,6 +446,14 @@
 					</object>
 					<int key="connectionID">43</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">thumbnailBackground</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="687019622"/>
+					</object>
+					<int key="connectionID">45</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -454,6 +478,7 @@
 							<reference ref="191877443"/>
 							<reference ref="210447611"/>
 							<reference ref="788238105"/>
+							<reference ref="687019622"/>
 							<reference ref="920469619"/>
 						</object>
 						<reference key="parent" ref="0"/>
@@ -519,6 +544,11 @@
 						<reference key="object" ref="920469619"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">44</int>
+						<reference key="object" ref="687019622"/>
+						<reference key="parent" ref="191373211"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -543,7 +573,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>KBCreateTweetViewController</string>
 					<string>UIResponder</string>
-					<string>{{236, 371}, {320, 480}}</string>
+					<string>{{145, 408}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -572,7 +602,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">43</int>
+			<int key="maxID">45</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -674,6 +704,7 @@
 							<string>foursquareButton</string>
 							<string>geotagButton</string>
 							<string>sendTweet</string>
+							<string>thumbnailBackground</string>
 							<string>thumbnailPreview</string>
 							<string>tweetTextView</string>
 						</object>
@@ -686,6 +717,7 @@
 							<string>UIButton</string>
 							<string>UIButton</string>
 							<string>UIButton</string>
+							<string>UIImageView</string>
 							<string>UIImageView</string>
 							<string>UITextView</string>
 						</object>
@@ -1089,6 +1121,7 @@
 				<string>sendPhoto02.png</string>
 				<string>sendTweet01.png</string>
 				<string>sendTweet02.png</string>
+				<string>tweetPhotoPreview.png</string>
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1105,6 +1138,7 @@
 				<string>{106, 33}</string>
 				<string>{291, 51}</string>
 				<string>{291, 51}</string>
+				<string>{36, 36}</string>
 			</object>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">87</string>
