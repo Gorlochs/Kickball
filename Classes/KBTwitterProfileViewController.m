@@ -19,6 +19,8 @@
     location.text = @"";
     numberOfFriends.text = @"";
     numberOfFollowers.text = @"";
+    numberOfTweets.text = @"";
+    numberOfFavorites.text = @"";
 	description.text = @"";
     
     pageType = KBPageTypeOther;
@@ -53,7 +55,7 @@
     description.font = [UIFont fontWithName:@"Georgia" size:12.0];
     description.text = [userDictionary objectForKey:@"description"];
     
-    CGRect frame = CGRectMake(13, 70, 39, 39);
+    CGRect frame = CGRectMake(13, 65, 39, 39);
     userIcon = [[TTImageView alloc] initWithFrame:frame];
     userIcon.backgroundColor = [UIColor clearColor];
     userIcon.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
@@ -62,7 +64,7 @@
     [self.view addSubview:userIcon];
     
     iconBgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellIconBorder.png"]];
-    iconBgImage.frame = CGRectMake(11, 68, 43, 43);
+    iconBgImage.frame = CGRectMake(11, 63, 43, 43);
     [self.view addSubview:iconBgImage];
 	
 	if ([[userDictionary objectForKey:@"following"] boolValue]) {

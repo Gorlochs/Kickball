@@ -299,14 +299,6 @@
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
 					</object>
-					<object class="IBUIImageView" id="920469619">
-						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{259, 155}, {34, 34}}</string>
-						<reference key="NSSuperview" ref="191373211"/>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-					</object>
 					<object class="IBUIImageView" id="185702883">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">-2147483392</int>
@@ -321,6 +313,14 @@
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">tweetPhotoPreview.png</string>
 						</object>
+					</object>
+					<object class="IBUIImageView" id="920469619">
+						<reference key="NSNextResponder" ref="191373211"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{259, 155}, {34, 34}}</string>
+						<reference key="NSSuperview" ref="191373211"/>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 460}</string>
