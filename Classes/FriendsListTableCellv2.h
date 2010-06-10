@@ -20,6 +20,7 @@
     UIImageView *topLineImage;
     UIImageView *bottomLineImage;
     UIImageView *iconBgImage;
+    UIImageView *fadeImage;
 	BOOL twoLine;
 }
 

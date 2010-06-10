@@ -47,6 +47,8 @@
     if (pageType == KBPageTypeOther) {
         homeButton.hidden = NO;
         backButton.hidden = NO;
+        directMessageButton.hidden = YES;
+        searchButton.hidden = YES;
     }
     
     if (pageViewType == KBPageViewTypeList) {

@@ -29,7 +29,6 @@
     twitterManager = [KBTwitterManager twitterManager];
 	twitterManager.delegate = self;
     
-    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userRetrieved:) name:kTwitterUserInfoRetrievedNotificationKey object:nil];
     [self startProgressBar:@"Retrieving user information..."];
     [twitterEngine getUserInformationFor:screenname];
 }
@@ -37,12 +36,7 @@
 - (void)userInfoReceived:(NSArray *)userInfo {
     
     DLog(@"userInfo: %@", userInfo);
-//    DLog(@"user inNotification: %@", inNotification);
-//    DLog(@"userInfo: %@", [inNotification userInfo]);
-//    DLog(@"userinfo userinfo: %@", [[inNotification userInfo] objectForKey:@"userInfo"]);
-//    DLog(@"userinfo userinfo object at index 0: %@", [[[inNotification userInfo] objectForKey:@"userInfo"] objectAtIndex:0]);
     userDictionary = [[userInfo objectAtIndex:0] retain];
-    //DLog(@"userDictionary: %@", userDictionary);
     screenNameLabel.text = [userDictionary objectForKey:@"screen_name"];
     fullName.text = [userDictionary objectForKey:@"name"];
     location.text = [userDictionary objectForKey:@"location"];
@@ -51,7 +45,6 @@
     numberOfTweets.text = [NSString stringWithFormat:@"%d", [[userDictionary objectForKey:@"statuses_count"] intValue]];
     numberOfFavorites.text = [NSString stringWithFormat:@"%d", [[[userDictionary objectForKey:@"status"] objectForKey:@"favorited"] intValue]];
     
-    //description.textColor = [UIColor colorWithWhite:0.8 alpha:1.0];
     description.font = [UIFont fontWithName:@"Georgia" size:12.0];
     description.text = [userDictionary objectForKey:@"description"];
     
@@ -129,13 +122,15 @@
 
 
 - (void)dealloc {
-    //[[NSNotificationCenter defaultCenter] removeObserver:self];
     [screenNameLabel release];
     [fullName release];
     [location release];
     [numberOfFollowers release];
     [numberOfFriends release];
+    [numberOfFavorites release];
+    [numberOfTweets release];
     [description release];
+    
     [userIcon release];
     [iconBgImage release];
     

@@ -51,6 +51,7 @@
         friendButton.enabled = NO;
         homeButton.hidden = NO;
         backButton.hidden = NO;
+        placesButton.hidden = YES;
         [placesButton setImage:[UIImage imageNamed:@"placesTab01.png"] forState:UIControlStateNormal];
     }
     

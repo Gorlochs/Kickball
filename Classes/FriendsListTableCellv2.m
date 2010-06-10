@@ -18,18 +18,19 @@
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        // Initialization code
+        
 		twoLine = NO;
-        CGRect frame = CGRectMake(8, 10, 49, 49);
-        userIcon = [[TTImageView alloc] initWithFrame:frame];
-        userIcon.backgroundColor = [UIColor clearColor];
-        userIcon.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
-        userIcon.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
-        [self addSubview:userIcon];
         
         iconBgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellIconBorder.png"]];
         iconBgImage.frame = CGRectMake(6, 8, 54, 54);
         [self addSubview:iconBgImage];
+        
+        CGRect frame = CGRectMake(8, 10, 49, 50);
+        userIcon = [[TTImageView alloc] initWithFrame:frame];
+        userIcon.backgroundColor = [UIColor clearColor];
+        userIcon.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
+        userIcon.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:3 topRight:3 bottomRight:3 bottomLeft:3] next:[TTContentStyle styleWithNext:nil]];
+        [self addSubview:userIcon];
         
         userName = [[UILabel alloc] initWithFrame:CGRectMake(66, 6, 200, 20)];
         userName.textColor = [UIColor colorWithWhite:0.5 alpha:1.0];
@@ -48,6 +49,11 @@
         venueName.shadowOffset = CGSizeMake(1.0, 1.0);
         venueName.highlightedTextColor = [UIColor whiteColor];
         [self addSubview:venueName];
+        
+        fadeImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"friendsListGradient.png"]];
+        fadeImage.frame = CGRectMake(260, 0, 87, 70);
+        [self addSubview:fadeImage];
+        [self bringSubviewToFront:fadeImage];
         
         venueAddress = [[UILabel alloc] initWithFrame:CGRectMake(66, 42, 200, 20)];
         venueAddress.textColor = [UIColor colorWithWhite:0.5 alpha:1.0];
@@ -129,6 +135,8 @@
     [venueAddress release];
     [topLineImage release];
     [bottomLineImage release];
+    [iconBgImage release];
+    [fadeImage release];
     [super dealloc];
 }
 
