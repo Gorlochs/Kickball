@@ -46,5 +46,6 @@
 - (IBAction) viewFriends;
 - (IBAction) follow;
 - (IBAction) unfollow;
+- (IBAction) sendDirectMessage;
 
 @end

@@ -20,21 +20,27 @@
 @synthesize retweetStatusId;
 @synthesize retweetToScreenName;
 @synthesize retweetTweetText;
+@synthesize directMentionToScreenname;
 
 - (void)viewDidLoad {
     hideHeader = YES;
     [super viewDidLoad];
+	
+	// mini-hack to turn off the foursquare button. we might decide to keep it on by default
+	isFoursquareOn = YES;
+	[self toggleFoursquare];
+	
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(createTweetStatusRetrieved:) name:kTwitterStatusRetrievedNotificationKey object:nil];
     if (self.retweetTweetText) {
         tweetTextView.text = [NSString stringWithFormat:@"RT @%@ %@", self.replyToScreenName, self.retweetTweetText];
     } else if (self.replyToScreenName) {
         tweetTextView.text = [NSString stringWithFormat:@"@%@ ", self.replyToScreenName];
-    }
+    } else if (self.directMentionToScreenname) {
+		tweetTextView.text = [NSString stringWithFormat:@"D @%@ ", self.directMentionToScreenname];
+	}
     [tweetTextView becomeFirstResponder];
     tweetTextView.font = [UIFont fontWithName:@"Georgia" size:12.0];
     
-    isFacebookOn = YES;
-    isFoursquareOn = YES;
     
     // FIXME: this is wrong. we need to pull the user's twitter geo settings
     isGeotagOn = YES;
@@ -42,7 +48,13 @@
     photoManager = [KBPhotoManager sharedInstance];
     photoManager.delegate = self;
     
-    // TODO: need to enable/disable buttons depending on whether or not the user signed in
+	if (![[KBAccountManager sharedInstance] usesFacebook]) {
+        facebookButton.enabled = NO;
+    } else {
+        if (![self getAuthenticatedUser].sendToFacebook || (![self getAuthenticatedUser].facebook && _session.uid)) {
+            [self toggleFacebook];
+        }
+    }
 }
 
 #pragma mark -
@@ -55,19 +67,21 @@
     actionCount = 1 + isFoursquareOn + isFacebookOn + photoImage != nil;
     
     // TODO: add shortened url to tweet, if there is a photo, which means all this will have to be reordered
+	// NOTE: I am using the standard sendUpdate call to send DMs. sendDirectMessage wasn't working properly and this works just as well.
     // http://api.bit.ly/v3/shorten?login=sabernar&apiKey=R_fc7cbaa3eccbd1597f18412c9774a351&format=json&longUrl=http%3A%2F%2Fbetaworks.com%2F
+	// http://is.gd/api.php?longurl=%@
     if (replyToStatusId && replyToStatusId > 0) {
-        if (isGeotagOn) {
-            [twitterEngine sendUpdate:tweetTextView.text withLatitude:[[KBLocationManager locationManager] latitude] withLongitude:[[KBLocationManager locationManager] longitude] inReplyTo:[replyToStatusId longLongValue]];
-        } else {
-            [twitterEngine sendUpdate:tweetTextView.text inReplyTo:[replyToStatusId longLongValue]];
-        }
+		if (isGeotagOn) {
+			[twitterEngine sendUpdate:tweetTextView.text withLatitude:[[KBLocationManager locationManager] latitude] withLongitude:[[KBLocationManager locationManager] longitude] inReplyTo:[replyToStatusId longLongValue]];
+		} else {
+			[twitterEngine sendUpdate:tweetTextView.text inReplyTo:[replyToStatusId longLongValue]];
+		}
     } else {
-        if (isGeotagOn) {
-            [twitterEngine sendUpdate:tweetTextView.text withLatitude:[[KBLocationManager locationManager] latitude] withLongitude:[[KBLocationManager locationManager] longitude]];
-        } else {
-            [twitterEngine sendUpdate:tweetTextView.text];
-        }
+		if (isGeotagOn) {
+			[twitterEngine sendUpdate:tweetTextView.text withLatitude:[[KBLocationManager locationManager] latitude] withLongitude:[[KBLocationManager locationManager] longitude]];
+		} else {
+			[twitterEngine sendUpdate:tweetTextView.text];
+		}
     }
     
     if (isFacebookOn && [[KBAccountManager sharedInstance] usesFacebook]) {
@@ -98,6 +112,10 @@
     
 }
 
+- (void)statusesReceived:(NSArray *)statuses {
+    [self decrementActionCount];
+}
+
 - (void)shoutResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     [self decrementActionCount];
 }
@@ -114,10 +132,6 @@
     [tweetTextView resignFirstResponder];
     [self dismissModalViewControllerAnimated:YES];
     //[self.navigationController popViewControllerAnimated:YES];
-}
-
-- (void) createTweetStatusRetrieved:(NSNotification*)inNotification {
-    [self decrementActionCount];
 }
 
 - (void) decrementActionCount {
@@ -299,7 +313,6 @@
     // e.g. self.myOutlet = nil;
 }
 
-
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [tweetTextView release];
@@ -312,6 +325,7 @@
     [retweetStatusId release];
     [retweetToScreenName release];
     [retweetTweetText release];
+	[directMentionToScreenname release];
     
     [foursquareButton release];
     [facebookButton release];
@@ -322,6 +336,5 @@
     [thumbnailPreview release];
     [super dealloc];
 }
-
 
 @end

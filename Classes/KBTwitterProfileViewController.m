@@ -8,6 +8,8 @@
 
 #import "KBTwitterProfileViewController.h"
 #import "KBTwitterUserListViewController.h"
+#import "KBCreateTweetViewController.h"
+
 
 @implementation KBTwitterProfileViewController
 
@@ -102,6 +104,12 @@
 
 - (void) unfollow {
 	[twitterEngine disableUpdatesFor:screenname];
+}
+
+- (void) sendDirectMessage {
+    tweetController = [[KBCreateTweetViewController alloc] initWithNibName:@"KBCreateTweetViewController" bundle:nil];
+	tweetController.directMentionToScreenname = screenname;
+    [self presentModalViewController:tweetController animated:YES];
 }
 
 #pragma mark -
