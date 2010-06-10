@@ -315,10 +315,10 @@
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [tweetTextView release];
-    [characterCountLabel release];
-    [sendTweet release];
-    [cancel release];
+//    [tweetTextView release];
+//    [characterCountLabel release];
+//    [sendTweet release];
+//    [cancel release];
     
     [replyToStatusId release];
     [replyToScreenName release];
@@ -327,13 +327,13 @@
     [retweetTweetText release];
 	[directMentionToScreenname release];
     
-    [foursquareButton release];
-    [facebookButton release];
-    [geotagButton release];
-    [addPhotoButton release];
+//    [foursquareButton release];
+//    [facebookButton release];
+//    [geotagButton release];
+//    [addPhotoButton release];
     [photoImage release];
     [photoManager release];
-    [thumbnailPreview release];
+//    [thumbnailPreview release];
     [super dealloc];
 }
 

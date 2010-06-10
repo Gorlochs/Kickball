@@ -65,7 +65,7 @@
     ttImage.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
     ttImage.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
     [cell.imageView addSubview:ttImage];
-    return cell;
+	return cell;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -127,9 +127,9 @@
 - (void)dealloc {
     [userDictionary release];
     [username release];
-    [screenNameLabel release];
-    [fullName release];
-    [location release];
+//    [screenNameLabel release];
+//    [fullName release];
+//    [location release];
     [userProfileImage release];
     [super dealloc];
 }

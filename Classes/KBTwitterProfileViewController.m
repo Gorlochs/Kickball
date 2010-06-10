@@ -130,14 +130,14 @@
 
 
 - (void)dealloc {
-    [screenNameLabel release];
-    [fullName release];
-    [location release];
-    [numberOfFollowers release];
-    [numberOfFriends release];
-    [numberOfFavorites release];
-    [numberOfTweets release];
-    [description release];
+//    [screenNameLabel release];
+//    [fullName release];
+//    [location release];
+//    [numberOfFollowers release];
+//    [numberOfFriends release];
+//    [numberOfFavorites release];
+//    [numberOfTweets release];
+//    [description release];
     
     [userIcon release];
     [iconBgImage release];

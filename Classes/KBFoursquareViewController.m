@@ -131,12 +131,12 @@
 }
 
 - (void)dealloc {
-    [friendButton release];
-    [placesButton release];
-    [centerHeaderButton release];
-    [homeButton release];
-    [backButton release];
-    [foursquareHeaderView release];
+//    [friendButton release];
+//    [placesButton release];
+//    [centerHeaderButton release];
+//    [homeButton release];
+//    [backButton release];
+//    [foursquareHeaderView release];
     [super dealloc];
 }
 

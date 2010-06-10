@@ -51,10 +51,10 @@
         venueName.lineBreakMode = UILineBreakModeClip;
         [self addSubview:venueName];
         
-        fadeImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"friendsListGradient.png"]];
-        fadeImage.frame = CGRectMake(230, 0, 87, 70);
-        [self addSubview:fadeImage];
-        [self bringSubviewToFront:fadeImage];
+//        fadeImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"friendsListGradient.png"]];
+//        fadeImage.frame = CGRectMake(230, 0, 87, 70);
+//        [self addSubview:fadeImage];
+//        [self bringSubviewToFront:fadeImage];
         
         venueAddress = [[UILabel alloc] initWithFrame:CGRectMake(66, 42, 250, 20)];
         venueAddress.textColor = [UIColor colorWithWhite:0.5 alpha:1.0];

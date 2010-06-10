@@ -344,8 +344,8 @@
 
 - (void)dealloc {
     [searchCell release];
-    [footerCell release];
-    [searchbox release];
+//    [footerCell release];
+//    [searchbox release];
     [venues release];
     [super dealloc];
 }

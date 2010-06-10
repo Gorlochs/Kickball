@@ -39,15 +39,15 @@
 	self.navigationController.navigationBar.hidden = NO;
 }
 
-- (void)showThumbnails {
-    if (!_thumbsController) {
-        // The photo source had no URL mapping in TTURLMap, so we let the subclass show the thumbs
-        _thumbsController = [[self createThumbsViewController] retain];
-        _thumbsController.photoSource = _photoSource;
-    }
-    
-    [self.navigationController pushViewController:_thumbsController animatedWithTransition:UIViewAnimationTransitionNone];
-}
+//- (void)showThumbnails {
+//    if (!_thumbsController) {
+//        // The photo source had no URL mapping in TTURLMap, so we let the subclass show the thumbs
+//        _thumbsController = [[self createThumbsViewController] retain];
+//        _thumbsController.photoSource = _photoSource;
+//    }
+//    
+//    [self.navigationController pushViewController:_thumbsController animatedWithTransition:UIViewAnimationTransitionNone];
+//}
 
 - (void)flagAction {
     DLog(@"photo index: %d", _centerPhotoIndex);

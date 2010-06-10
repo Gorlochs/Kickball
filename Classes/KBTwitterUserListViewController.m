@@ -121,9 +121,10 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	twitterProfileController = [[KBTwitterProfileViewController alloc] initWithNibName:@"KBTwitterProfileViewController" bundle:nil];
+	KBTwitterProfileViewController *twitterProfileController = [[KBTwitterProfileViewController alloc] initWithNibName:@"KBTwitterProfileViewController" bundle:nil];
 	twitterProfileController.screenname = ((KBTwitterUser*)[users objectAtIndex:indexPath.row]).screenName;
 	[self.navigationController pushViewController:twitterProfileController animated:YES];
+	[twitterProfileController release];
 }
 
 
@@ -148,7 +149,6 @@
     [userDictionary release];
     [users release];
     [currentCursor release];
-    [profileController release];
     [super dealloc];
 }
 

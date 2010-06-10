@@ -26,10 +26,10 @@
     NSArray *twitterArray;
     IBOutlet UIView *noResultsView;
 	KBTwitterManager *twitterManager;
-    KBTwitterDetailViewController *detailViewController;
-    KBUserTweetsViewController *userTweetsController;
-    KBTwitterSearchViewController *searchController;
-	KBTwitterProfileViewController *twitterProfileController;
+//    KBTwitterDetailViewController *detailViewController;
+//    KBUserTweetsViewController *userTweetsController;
+//    KBTwitterSearchViewController *searchController;
+//	KBTwitterProfileViewController *twitterProfileController;
 }
 
 - (void) showStatuses;

@@ -147,7 +147,7 @@
 
 - (void)dealloc {
     [searchTerms release];
-    [theSearchBar release];
+    //[theSearchBar release];
     [super dealloc];
 }
 

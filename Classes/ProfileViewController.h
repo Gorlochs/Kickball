@@ -28,7 +28,6 @@
     IBOutlet UILabel *name;
     IBOutlet UILabel *location;
     IBOutlet UILabel *lastCheckinAddress;
-    IBOutlet UILabel *totalCheckins;
     IBOutlet UIImageView *userIcon;
     IBOutlet UIButton *pingsAndUpdates;
     IBOutlet UIButton *hereIAmButton;

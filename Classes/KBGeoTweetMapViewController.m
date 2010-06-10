@@ -339,7 +339,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     [nearbyTweets release];
     [currentlyDisplayedSearchResult release];
     [touchView release];
-    [popupBubbleView release];
+    //[popupBubbleView release];
     
 	[replyCreateViewController release];
 	[retweetCreateViewController release];

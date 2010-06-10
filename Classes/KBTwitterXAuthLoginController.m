@@ -64,8 +64,8 @@
 
 - (void)dealloc {
 	
-	[self.twitterUsername release];
-	[self.twitterPassword release];
+//	[self.twitterUsername release];
+//	[self.twitterPassword release];
 	[self.twitterEngine release];
 	
     [super dealloc];

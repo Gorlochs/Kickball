@@ -121,14 +121,14 @@
 
 
 - (void)dealloc {
-    [timelineButton release];
-    [mentionsButton release];
-    [directMessageButton release];
-    [searchButton release];
-    [twitterCenterHeaderButton release];
+//    [timelineButton release];
+//    [mentionsButton release];
+//    [directMessageButton release];
+//    [searchButton release];
+//    [twitterCenterHeaderButton release];
     [tweetController release];
     [mapController release];
-    [twitterHeaderView release];
+    //[twitterHeaderView release];
     
     [super dealloc];
 }

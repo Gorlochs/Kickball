@@ -219,14 +219,6 @@
     [nonCityTodayCheckins release];
     [nonCityYesterdayCheckins release];
     [checkins release];
-    [mapButton release];
-    [instructionView release];
-    [noNetworkView release];
-    [footerViewCell release];
-    [nextWelcomeImage release];
-    [previousWelcomeImage release];
-    [welcomeImage release];
-    [splashView release];
     [gregorian release];
     [super dealloc];
 }

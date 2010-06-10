@@ -240,22 +240,22 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 }
 
 - (void)dealloc {
-    [theTableView release];
+//    [theTableView release];
     [progressViewController release];
     [loginViewModal release];
     [popupView release];
     [progressBarTimer release];
     
     [refreshHeaderView release];
-    [footerTabView release];
-    [optionsTab release];
-    [facebookTab release];
-    [twitterTab release];
-    [foursquareTab release];
-    [signedInUserIcon release];
+    //[footerTabView release];
+//    [optionsTab release];
+//    [facebookTab release];
+//    [twitterTab release];
+//    [foursquareTab release];
+//    [signedInUserIcon release];
     
     [headerNibName release];
-    [profileController release];
+    //[profileController release];
     
 //    [iconImageView release];  // uncommenting this crashes shit. not sure why.
     
@@ -503,13 +503,15 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 
 - (void) displayProperProfileView:(NSString*)userId {
     if ([userId isEqualToString:[self getAuthenticatedUser].userId]) {
-        profileController = [[UserProfileViewController alloc] initWithNibName:@"UserProfileView_v2" bundle:nil];
-        ((UserProfileViewController*)profileController).userId = userId;
-        [self.navigationController pushViewController:(UserProfileViewController*)profileController animated:YES];
-    } else {
-        profileController = [[ProfileViewController alloc] initWithNibName:@"ProfileView_v2" bundle:nil];
+        UserProfileViewController *profileController = [[UserProfileViewController alloc] initWithNibName:@"UserProfileView_v2" bundle:nil];
         profileController.userId = userId;
         [self.navigationController pushViewController:profileController animated:YES];
+		[profileController release];
+    } else {
+        ProfileViewController *profileController = [[ProfileViewController alloc] initWithNibName:@"ProfileView_v2" bundle:nil];
+        profileController.userId = userId;
+        [self.navigationController pushViewController:profileController animated:YES];
+		[profileController release];
     }
 }
 

@@ -139,14 +139,6 @@
         }
     }
     
-    isPingAndUpdatesOn = theUser.sendsPingsToSignedInUser;
-    if (isPingAndUpdatesOn) {
-        [pingsAndUpdates setImage:[UIImage imageNamed:@"profilePings01x.png"] forState:UIControlStateNormal];
-    } else {
-        [pingsAndUpdates setImage:[UIImage imageNamed:@"profilePings03x.png"] forState:UIControlStateNormal];
-    }
-    //pingsAndUpdates.selected = user.sendsPingsToSignedInUser;
-    
     // user icon
     userIcon.image = [[Utilities sharedInstance] getCachedImage:theUser.photo];
     userIcon.layer.masksToBounds = YES;
@@ -213,7 +205,6 @@
     
     name = nil;
     lastCheckinAddress = nil;
-    totalCheckins = nil;
     userIcon = nil;
 }
 
@@ -222,41 +213,38 @@
 	// e.g. self.myOutlet = nil;
     name = nil;
     lastCheckinAddress = nil;
-    totalCheckins = nil;
     userIcon = nil;
 }
 
 - (void)dealloc {
     [badgeCell release];
-    [addFriendCell release];
-    [friendActionCell release];
-    [friendPendingCell release];
-    [friendHistoryCell release];
-    [friendHistorySplitCell release];
+//    [addFriendCell release];
+//    [friendActionCell release];
+//    [friendPendingCell release];
+//    [friendHistoryCell release];
+//    [friendHistorySplitCell release];
     [userId release];
     [user release];
     [twitterStatuses release];
     [checkin release];
     
-    [name release];
-    [location release];
-    [lastCheckinAddress release];
-    [totalCheckins release];
+//    [name release];
+//    [location release];
+//    [lastCheckinAddress release];
     [userIcon release];
-    [pingsAndUpdates release];
-    [textButton release];
-    [callButton release];
-    [emailButton release];
-    [twitterButton release];
-    [facebookButton release];
-    [locationOverlayButton release];
+//    [textButton release];
+//    [callButton release];
+//    [emailButton release];
+//    [twitterButton release];
+//    [facebookButton release];
+//    [locationOverlayButton release];
     
     [userPhotos release];
-    [profileOptionsView release];
-    [profileInfoView release];
-    [photoCell release];
-    [checkinNotificationSwitch release];
-    [photoNotificationSwitch release];
+//    [profileOptionsView release];
+//    [profileInfoView release];
+//    [photoCell release];
+//    [checkinNotificationSwitch release];
+//    [photoNotificationSwitch release];
     
     [super dealloc];
 }
@@ -687,24 +675,9 @@
     [msg release];
 }
 
-- (void) pingUpdateResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    DLog(@"instring: %@", inString);
-	BOOL newPingSetting = [FoursquareAPI pingSettingFromResponseXML:inString];
-    DLog(@"new ping setting: %d", newPingSetting);
-    user.sendsPingsToSignedInUser = !user.sendsPingsToSignedInUser;
-    isPingAndUpdatesOn = !isPingAndUpdatesOn;
-    //pingsAndUpdates.selected = isPingAndUpdatesOn;
-    if (isPingAndUpdatesOn) {
-        [pingsAndUpdates setImage:[UIImage imageNamed:@"profilePings01x.png"] forState:UIControlStateNormal];
-    } else {
-        [pingsAndUpdates setImage:[UIImage imageNamed:@"profilePings03x.png"] forState:UIControlStateNormal];
-    }
-    [self stopProgressBar];
-}
-
 - (void) checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     DLog(@"instring: %@", inString);
-	checkin = [FoursquareAPI checkinsFromResponseXML:inString];
+	checkin = [[FoursquareAPI checkinsFromResponseXML:inString] retain];
 //    isUserCheckedIn = YES;
 //	  [theTableView reloadData];
 //    FSCheckin *ci = (FSCheckin*)[self.checkin objectAtIndex:0];

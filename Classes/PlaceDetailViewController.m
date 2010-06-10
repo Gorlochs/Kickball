@@ -841,20 +841,26 @@
 
 - (void) viewPhotos {
     KBPhotoViewController *photoController = [[KBPhotoViewController alloc] initWithPhotoSource:photoSource];
-    //photoController.centerPhoto 
     [self.navigationController pushViewController:photoController animated:YES];
     [photoController release]; 
 }
 
 - (void) viewThumbnails {
-    //TTThumbsViewController *thumbsController = [[TTThumbsViewController alloc] initWithPhotoSource:photoSource];
-	KBThumbnailViewController *thumbsController = [[KBThumbnailViewController alloc] init];
-	thumbsController.title = venue.name;
-	thumbsController.photoSource = photoSource;
-//	thumbsController.delegate = self;
-    //photoController.centerPhoto 
-    [self.navigationController pushViewController:thumbsController animated:YES];
-    [thumbsController release]; 
+    KBPhotoViewController *photoController = [[KBPhotoViewController alloc] initWithPhotoSource:photoSource];
+    [self.navigationController pushViewController:photoController animated:YES];
+	//[photoController showThumbnails];
+    [photoController release]; 
+	
+	
+	
+//    //TTThumbsViewController *thumbsController = [[TTThumbsViewController alloc] initWithPhotoSource:photoSource];
+//	KBThumbnailViewController *thumbsController = [[KBThumbnailViewController alloc] init];
+//	thumbsController.title = venue.name;
+//	thumbsController.photoSource = photoSource;
+////	thumbsController.delegate = self;
+//    //photoController.centerPhoto 
+//    [self.navigationController pushViewController:thumbsController animated:YES];
+//    [thumbsController release]; 
 }
 
 - (void) callVenue {

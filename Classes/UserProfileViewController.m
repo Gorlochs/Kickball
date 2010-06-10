@@ -71,9 +71,9 @@
 }
 
 - (void)dealloc {
-    [yourStuffButton release];
-    [yourFriendsButton release];
-    [checkinHistoryButton release];
+//    [yourStuffButton release];
+//    [yourFriendsButton release];
+//    [checkinHistoryButton release];
     [super dealloc];
 }
 

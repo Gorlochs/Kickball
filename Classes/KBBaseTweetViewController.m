@@ -41,13 +41,15 @@
 - (void)handleTweetNotification:(NSNotification *)notification {
 	DLog(@"handleTweetNotification: notification = %@", notification);
     if ([[notification object] rangeOfString:@"@"].location == 0) {
-        userTweetsController = [[KBUserTweetsViewController alloc] initWithNibName:@"KBUserTweetsViewController" bundle:nil];
+        KBUserTweetsViewController *userTweetsController = [[KBUserTweetsViewController alloc] initWithNibName:@"KBUserTweetsViewController" bundle:nil];
         userTweetsController.username = [notification object];
         [self.navigationController pushViewController:userTweetsController animated:YES];
+		[userTweetsController release];
     } else if ([[notification object] rangeOfString:@"#"].location == 0) {
-        searchController = [[KBTwitterSearchViewController alloc] initWithNibName:@"KBTwitterSearchViewController" bundle:nil];
+        KBTwitterSearchViewController *searchController = [[KBTwitterSearchViewController alloc] initWithNibName:@"KBTwitterSearchViewController" bundle:nil];
         searchController.searchTerms = [notification object];
         [self.navigationController pushViewController:searchController animated:YES];
+		[searchController release];
     } else {
         // TODO: push properly styled web view
         [self openWebView:[notification object]];
@@ -196,9 +198,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         [theTableView deselectRowAtIndexPath:indexPath animated:YES];
-        detailViewController = [[KBTwitterDetailViewController alloc] initWithNibName:@"KBTwitterDetailViewController" bundle:nil];
+        KBTwitterDetailViewController *detailViewController = [[KBTwitterDetailViewController alloc] initWithNibName:@"KBTwitterDetailViewController" bundle:nil];
         detailViewController.tweet = [tweets objectAtIndex:indexPath.row];
         [self.navigationController pushViewController:detailViewController animated:YES];
+		[detailViewController release];
     } else {
         [self executeQuery:++pageNum];
     }
@@ -211,9 +214,10 @@
 }
 
 - (void) viewUserProfile:(NSString*)userName {
-	twitterProfileController = [[KBTwitterProfileViewController alloc] initWithNibName:@"KBTwitterProfileViewController" bundle:nil];
+	KBTwitterProfileViewController *twitterProfileController = [[KBTwitterProfileViewController alloc] initWithNibName:@"KBTwitterProfileViewController" bundle:nil];
     twitterProfileController.screenname = userName;
 	[self.navigationController pushViewController:twitterProfileController animated:YES];
+	[twitterProfileController release];
 }
 
 #pragma mark -
@@ -249,11 +253,11 @@
     [tweets release];
     [cachingKey release];
     [twitterArray release];
-    [noResultsView release];
-    [detailViewController release];
-    [userTweetsController release];
-    [searchController release];
-	[twitterProfileController release];
+    //[noResultsView release];
+//    [detailViewController release];
+//    [userTweetsController release];
+//    [searchController release];
+//	[twitterProfileController release];
     [super dealloc];
 }
 
