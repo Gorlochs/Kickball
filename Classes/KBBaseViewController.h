@@ -21,6 +21,7 @@
 
 #define HEADER_NIB_TWITTER      @"TwitterHeaderView"
 #define HEADER_NIB_FOURSQUARE   @"FoursquareHeaderView"
+#define HEADER_NIB_FACEBOOK		@"FacebookHeaderView"
 #define kUsernameDefaultsKey    @"FSUsername"
 
 static const CGFloat KEYBOARD_ANIMATION_DURATION = 0.3;
@@ -40,7 +41,8 @@ typedef enum {
 typedef enum{
 	KBPageTypeFriends = 0,
 	KBPageTypePlaces,
-	KBPageTypeOther,	
+	KBPageTypeOther,
+	KBpageTypeEvents,
 } KBPageType;
 
 typedef enum{

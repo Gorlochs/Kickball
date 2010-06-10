@@ -37,6 +37,7 @@
     BOOL isWhatsThisDisplayed;
     
     CGFloat animatedDistance;
+	UIButton *fbButton;
 }
 
 - (IBAction) xAuthAccessTokenRequestButtonTouchUpInside;

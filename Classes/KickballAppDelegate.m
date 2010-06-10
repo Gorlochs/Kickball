@@ -15,6 +15,7 @@
 #import "ProfileViewController.h"
 #import "PopupMessageView.h"
 #import "FlurryAPI.h"
+#import "FacebookAgent.h"
 
 
 @implementation KickballAppDelegate
@@ -63,6 +64,7 @@
 	[hostReach startNotifer];
     
     [self checkForEmergencyMessage];
+	[[FacebookAgent sharedAgent] initWithApiKey:@"4585c2e42804bca19e21eb30d402905e" ApiSecret:@"5cd7d10f85a36d5aeb4f2f7f99e1c85b" ApiProxy:nil];
 }
 
 void uncaughtExceptionHandler(NSException *exception) {

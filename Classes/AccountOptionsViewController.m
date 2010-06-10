@@ -12,6 +12,7 @@
 #import "XAuthTwitterEngine.h"
 #import "KBAccountManager.h"
 #import "FeedbackViewController.h"
+#import "FacebookAgent.h"
 
 
 @implementation AccountOptionsViewController
@@ -25,7 +26,8 @@
     self.hideHeader = YES;
     isWhatsThisDisplayed = NO;
 	postPhotosToFacebookSwitch.on = [[KBAccountManager sharedInstance] shouldPostPhotosToFacebook];
-    
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(facebookLoggedIn) name:@"completedFacebookLogin" object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(facebookLoggedOut) name:@"completedFacebookLogout" object:nil];
     [super viewDidLoad];
     
     //
@@ -34,20 +36,34 @@
 //	self.twitterEngine = [[XAuthTwitterEngine alloc] initXAuthWithDelegate:self];
 //	self.twitterEngine.consumerKey = kOAuthConsumerKey;
 //	self.twitterEngine.consumerSecret = kOAuthConsumerSecret;
-    
-    FBLoginButton* button = [[[FBLoginButton alloc] init] autorelease];
-    button.style = FBLoginButtonStyleWide;
-    
-    button.frame = CGRectMake(facebookCell.frame.size.width/2 - button.frame.size.width/2, 
-                              50,
-                              button.frame.size.width, 
-                              button.frame.size.height);
-    [facebookCell addSubview:button];
+    fbButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+	if ([[FacebookAgent sharedAgent] isLoggedIn] ) {
+		[fbButton setFrame:CGRectMake(facebookCell.frame.size.width/2 - 90/2, 50, 90, 31)];
+		[fbButton setImage:[UIImage imageNamed:@"logout.png"] forState:UIControlStateNormal];
+		[fbButton addTarget:[FacebookAgent sharedAgent] action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
+	}else {
+		[fbButton setFrame:CGRectMake(facebookCell.frame.size.width/2 - 176/2, 50, 176, 31)];
+		[fbButton setImage:[UIImage imageNamed:@"login2.png"] forState:UIControlStateNormal];
+		[fbButton addTarget:[FacebookAgent sharedAgent] action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
+	}
+    [facebookCell addSubview:fbButton];
 }
 
 #pragma mark -
 #pragma mark Facebook delegate methods
 
+-(void)facebookLoggedIn{
+	[fbButton setImage:[UIImage imageNamed:@"logout.png"] forState:UIControlStateNormal];
+	[fbButton setFrame:CGRectMake(facebookCell.frame.size.width/2 - 90/2, 50, 90, 31)];
+	[fbButton removeTarget:[FacebookAgent sharedAgent] action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
+	[fbButton addTarget:[FacebookAgent sharedAgent] action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
+}
+-(void)facebookLoggedOut{
+	[fbButton setImage:[UIImage imageNamed:@"login2.png"] forState:UIControlStateNormal];
+	[fbButton setFrame:CGRectMake(facebookCell.frame.size.width/2 - 176/2, 50, 176, 31)];
+	[fbButton removeTarget:[FacebookAgent sharedAgent] action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
+	[fbButton addTarget:[FacebookAgent sharedAgent] action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
+}
 - (void)session:(FBSession*)session didLogin:(FBUID)uid {
     [[KBAccountManager sharedInstance] setUsesFacebook:YES];
 }
@@ -333,6 +349,7 @@
 
 
 - (void)dealloc {
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
     [foursquareCell release];
     [twitterCell release];
     [facebookCell release];

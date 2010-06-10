@@ -2,7 +2,7 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">784</int>
-		<string key="IBDocument.SystemVersion">10D573</string>
+		<string key="IBDocument.SystemVersion">10D578</string>
 		<string key="IBDocument.InterfaceBuilderVersion">762</string>
 		<string key="IBDocument.AppKitVersion">1038.29</string>
 		<string key="IBDocument.HIToolboxVersion">460.00</string>
@@ -159,7 +159,7 @@
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						</object>
 						<reference key="IBUIParentViewController" ref="552551490"/>
-						<string key="IBUINibName">KBFacebookLoginViewController</string>
+						<string key="IBUINibName">KBFacebookListViewController</string>
 						<object class="IBUISimulatedOrientationMetrics" key="IBUISimulatedOrientationMetrics">
 							<int key="interfaceOrientation">1</int>
 						</object>
@@ -404,7 +404,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{254, 575}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>KBFacebookLoginViewController</string>
+					<string>KBFacebookListViewController</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -435,10 +435,18 @@
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<object class="IBPartialClassDescription">
 					<string key="className">AbstractFacebookViewController</string>
-					<string key="superclassName">KBFoursquareViewController</string>
+					<string key="superclassName">KBTwitterViewController</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">Classes/AbstractFacebookViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">AbstractPushNotificationViewController</string>
+					<string key="superclassName">AbstractFacebookViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Classes/AbstractPushNotificationViewController.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -451,18 +459,28 @@
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">FriendsListViewController</string>
-					<string key="superclassName">KBFoursquareViewController</string>
+					<string key="superclassName">AbstractPushNotificationViewController</string>
 					<object class="NSMutableDictionary" key="actions">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>addFriend</string>
 							<string>displayOlderCheckins</string>
+							<string>displayShoutView</string>
+							<string>removeShoutView</string>
+							<string>toggleFacebook</string>
+							<string>toggleFoursquare</string>
+							<string>toggleTwitter</string>
 							<string>viewNextWelcomeImage</string>
 							<string>viewPreviousWelcomeImage</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -473,30 +491,38 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>facebookButton</string>
 							<string>fadeOutImage</string>
 							<string>footerViewCell</string>
+							<string>foursquareButton</string>
 							<string>instructionView</string>
 							<string>mapButton</string>
-							<string>moreCell</string>
 							<string>nextWelcomeImage</string>
 							<string>noNetworkView</string>
 							<string>previousWelcomeImage</string>
 							<string>shoutCell</string>
+							<string>shoutText</string>
+							<string>shoutView</string>
 							<string>splashView</string>
+							<string>twitterButton</string>
 							<string>welcomeImage</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>UIButton</string>
 							<string>UIImageView</string>
 							<string>UITableViewCell</string>
+							<string>UIButton</string>
 							<string>InstructionView</string>
 							<string>UIButton</string>
-							<string>UITableViewCell</string>
 							<string>UIButton</string>
 							<string>UIView</string>
 							<string>UIButton</string>
 							<string>UITableViewCell</string>
+							<string>UITextField</string>
+							<string>UIView</string>
 							<string>UIImageView</string>
+							<string>UIButton</string>
 							<string>UIImageView</string>
 						</object>
 					</object>
@@ -519,6 +545,18 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">Classes/InstructionView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">KBBaseTweetViewController</string>
+					<string key="superclassName">KBTwitterViewController</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">noResultsView</string>
+						<string key="NS.object.0">UIView</string>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Classes/KBBaseTweetViewController.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -576,11 +614,63 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
-					<string key="className">KBFacebookLoginViewController</string>
-					<string key="superclassName">AbstractFacebookViewController</string>
+					<string key="className">KBFacebookListViewController</string>
+					<string key="superclassName">KBFacebookViewController</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Classes/KBFacebookLoginViewController.h</string>
+						<string key="minorKey">Classes/KBFacebookListViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">KBFacebookViewController</string>
+					<string key="superclassName">KBBaseViewController</string>
+					<object class="NSMutableDictionary" key="actions">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>backOneView</string>
+							<string>backOneViewNotAnimated</string>
+							<string>flipBetweenMapAndList</string>
+							<string>goToHomeView</string>
+							<string>goToHomeViewNotAnimated</string>
+							<string>openStatusModalView</string>
+							<string>viewEvents</string>
+							<string>viewFriends</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+						</object>
+					</object>
+					<object class="NSMutableDictionary" key="outlets">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>backButton</string>
+							<string>centerHeaderButton</string>
+							<string>eventButton</string>
+							<string>friendButton</string>
+							<string>homeButton</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>UIButton</string>
+							<string>UIButton</string>
+							<string>UIButton</string>
+							<string>UIButton</string>
+							<string>UIButton</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Classes/KBFacebookViewController.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -595,8 +685,8 @@
 							<string>flipBetweenMapAndList</string>
 							<string>goToHomeView</string>
 							<string>goToHomeViewNotAnimated</string>
-							<string>viewFriendsList</string>
-							<string>viewPlacesList</string>
+							<string>viewFriends</string>
+							<string>viewPlaces</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -616,7 +706,6 @@
 							<string>backButton</string>
 							<string>centerHeaderButton</string>
 							<string>friendButton</string>
-							<string>homeBackView</string>
 							<string>homeButton</string>
 							<string>placesButton</string>
 						</object>
@@ -625,7 +714,6 @@
 							<string>UIButton</string>
 							<string>UIButton</string>
 							<string>UIButton</string>
-							<string>UIView</string>
 							<string>UIButton</string>
 							<string>UIButton</string>
 						</object>
@@ -637,7 +725,7 @@
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">KBTweetListViewController</string>
-					<string key="superclassName">KBTwitterViewController</string>
+					<string key="superclassName">KBBaseTweetViewController</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">Classes/KBTweetListViewController.h</string>
@@ -645,11 +733,13 @@
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">KBTwitterViewController</string>
-					<string key="superclassName">KBBaseViewController</string>
+					<string key="superclassName">KBFoursquareViewController</string>
 					<object class="NSMutableDictionary" key="actions">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>flipBetweenMapAndList</string>
+							<string>openTweetModalView</string>
 							<string>showDirectMessages</string>
 							<string>showMentions</string>
 							<string>showSearch</string>
@@ -657,6 +747,8 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -671,9 +763,11 @@
 							<string>mentionsButton</string>
 							<string>searchButton</string>
 							<string>timelineButton</string>
+							<string>twitterCenterHeaderButton</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>UIButton</string>
 							<string>UIButton</string>
 							<string>UIButton</string>
 							<string>UIButton</string>
@@ -987,11 +1081,16 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
-					<string key="className">UIView</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+					<string key="className">UITextField</string>
+					<string key="superclassName">UIControl</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="187312326">
 						<string key="majorKey">IBFrameworkSource</string>
 						<string key="minorKey">UIKit.framework/Headers/UITextField.h</string>
 					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">UIView</string>
+					<reference key="sourceIdentifier" ref="187312326"/>
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">UIView</string>

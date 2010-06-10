@@ -75,6 +75,7 @@
 									 [UIImage imageNamed:@"dodad12.png"],nil]];
 	 */
 	[spinnerView setAnimationDuration:0.75f];
+	[spinnerView setAnimationRepeatCount:1];
 	[self.superview addSubview:spinnerView];
 	[spinnerView startAnimating];
 }
