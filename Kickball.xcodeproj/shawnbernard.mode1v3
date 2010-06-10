@@ -269,11 +269,7 @@
 							<array>
 								<string>29B97314FDCFA39411CA2CEA</string>
 								<string>080E96DDFE201D6D7F000001</string>
-								<string>6AD5B3D8116D3D37008671FD</string>
-								<string>6A211B1F117E183000BE897E</string>
-								<string>6AC7E92D10994FB500776993</string>
-								<string>6ADC9EBE10D3EF4900CFDCA7</string>
-								<string>6A12EC5E10B772B60013BA52</string>
+								<string>6AF9670D109AA2FE00EF665D</string>
 								<string>6A044CB8109545580063FC33</string>
 								<string>6A55B4CC10B36E9A0005E934</string>
 								<string>6AC28D0F117390A100518E37</string>
@@ -289,15 +285,14 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>25</integer>
-									<integer>23</integer>
-									<integer>20</integer>
+									<integer>24</integer>
+									<integer>21</integer>
 									<integer>2</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 142}, {346, 910}}</string>
+							<string>{{0, 741}, {346, 910}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -316,7 +311,7 @@
 							<real>346</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>-2 59 1678 969 0 0 1680 1028 </string>
+						<string>-3 59 1678 969 0 0 1680 1028 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -334,7 +329,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>KBTwitterProfileViewController.m</string>
+								<string>ProfileViewController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -342,11 +337,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>KBTwitterProfileViewController.m</string>
+										<string>ProfileViewController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>6A9D7FFB11C0BFC300EAEB0E</string>
+										<string>6A9D803A11C0C50100EAEB0E</string>
 										<key>history</key>
 										<array>
 											<string>6AC0B76711BC957F00521772</string>
@@ -359,17 +354,22 @@
 											<string>6AE88F7411BFF459003AA748</string>
 											<string>6AE88F8211BFFAF9003AA748</string>
 											<string>6A9D7F3111C0A44100EAEB0E</string>
-											<string>6A9D7F9911C0A62A00EAEB0E</string>
 											<string>6A9D7FAD11C0BA6500EAEB0E</string>
-											<string>6A9D7FD611C0BCF900EAEB0E</string>
 											<string>6A9D7FD711C0BCF900EAEB0E</string>
 											<string>6A9D7FED11C0BF7B00EAEB0E</string>
 											<string>6A9D7FEE11C0BF7B00EAEB0E</string>
 											<string>6A9D7FEF11C0BF7B00EAEB0E</string>
 											<string>6A9D7FF011C0BF7B00EAEB0E</string>
 											<string>6A9D7FF111C0BF7B00EAEB0E</string>
-											<string>6A9D7FF211C0BF7B00EAEB0E</string>
-											<string>6A9D7FF311C0BF7B00EAEB0E</string>
+											<string>6A9D800011C0C1EB00EAEB0E</string>
+											<string>6A9D800111C0C1EB00EAEB0E</string>
+											<string>6A9D800211C0C1EB00EAEB0E</string>
+											<string>6A9D800311C0C1EB00EAEB0E</string>
+											<string>6A9D802B11C0C42900EAEB0E</string>
+											<string>6A9D802C11C0C42900EAEB0E</string>
+											<string>6A9D802D11C0C42900EAEB0E</string>
+											<string>6A9D802E11C0C42900EAEB0E</string>
+											<string>6A9D800D11C0C23400EAEB0E</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -383,7 +383,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {1310, 922}}</string>
 								<key>RubberWindowFrame</key>
-								<string>-2 59 1678 969 0 0 1680 1028 </string>
+								<string>-3 59 1678 969 0 0 1680 1028 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -403,7 +403,7 @@
 								<key>Frame</key>
 								<string>{{0, 927}, {1310, 1}}</string>
 								<key>RubberWindowFrame</key>
-								<string>-2 59 1678 969 0 0 1680 1028 </string>
+								<string>-3 59 1678 969 0 0 1680 1028 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -567,6 +567,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>6A9D803B11C0C50100EAEB0E</string>
 		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>6A9D7F7E11C0A48300EAEB0E</string>
 		<string>6A9D7F7811C0A45A00EAEB0E</string>
@@ -576,7 +577,7 @@
 		<string>/Users/shawnbernard/Documents/projects/Kickball/Kickball.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>-2 59 1678 969 0 0 1680 1028 </string>
+	<string>-3 59 1678 969 0 0 1680 1028 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>

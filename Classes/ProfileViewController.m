@@ -42,9 +42,11 @@
 
 - (void)viewDidLoad {
     hideFooter = YES;
+    pageType = KBPageTypeOther;
     
     [super viewDidLoad];
     
+    // this is a hack 
     twitterHeaderView.hidden = YES;
     
     name.text = @"";
