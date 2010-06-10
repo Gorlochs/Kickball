@@ -23,7 +23,10 @@
 @synthesize directMentionToScreenname;
 
 - (void)viewDidLoad {
-    hideHeader = YES;
+    hideHeader = NO;
+	pageViewType = KBPageViewTypeOther;
+	pageType = KBPageTypeOther;
+	
     [super viewDidLoad];
 	
 	// mini-hack to turn off the foursquare button. we might decide to keep it on by default

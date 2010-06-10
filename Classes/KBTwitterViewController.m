@@ -38,12 +38,6 @@
     
     [super viewDidLoad];
     
-    if (!self.hideHeader) {
-        NSArray* nibViews =  [[NSBundle mainBundle] loadNibNamed:HEADER_NIB_TWITTER owner:self options:nil];
-        twitterHeaderView = [nibViews objectAtIndex:0];
-        [self.view addSubview:twitterHeaderView];
-    }
-    
     if (pageType == KBPageTypeOther) {
         homeButton.hidden = NO;
         backButton.hidden = NO;
@@ -69,14 +63,16 @@
 }
 
 - (void) openTweetModalView {
-    tweetController = [[KBCreateTweetViewController alloc] initWithNibName:@"KBCreateTweetViewController" bundle:nil];
-    [self presentModalViewController:tweetController animated:YES];
+    KBCreateTweetViewController *tweetController = [[KBCreateTweetViewController alloc] initWithNibName:@"KBCreateTweetViewController" bundle:nil];
+    [self.navigationController pushViewController:tweetController animated:YES];
+	[tweetController release];
 }
 
 - (void) flipBetweenMapAndList {
     if (pageViewType == KBPageViewTypeList) {
-        mapController = [[KBGeoTweetMapViewController alloc] initWithNibName:@"KBGeoTweetMapViewController" bundle:nil];
+        KBGeoTweetMapViewController *mapController = [[KBGeoTweetMapViewController alloc] initWithNibName:@"KBGeoTweetMapViewController" bundle:nil];
         [self.navigationController pushViewController:mapController animated:NO];
+		[mapController release];
     } else {
         [self backOneViewNotAnimated];
     }
@@ -121,15 +117,6 @@
 
 
 - (void)dealloc {
-//    [timelineButton release];
-//    [mentionsButton release];
-//    [directMessageButton release];
-//    [searchButton release];
-//    [twitterCenterHeaderButton release];
-    [tweetController release];
-    [mapController release];
-    //[twitterHeaderView release];
-    
     [super dealloc];
 }
 

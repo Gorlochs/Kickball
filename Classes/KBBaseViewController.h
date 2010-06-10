@@ -84,7 +84,8 @@ typedef enum{
     IBOutlet UIButton *signedInUserIcon;
     KBFooterType footerType;
     NSString *headerNibName;
-    //ProfileViewController *profileController;
+    
+    id headerView;
 }
 
 @property (nonatomic, retain) UITableView *theTableView;

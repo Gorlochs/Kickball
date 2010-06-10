@@ -29,12 +29,6 @@
 	
     [super viewDidLoad];
     
-    if (!self.hideHeader) {
-        NSArray* nibViews =  [[NSBundle mainBundle] loadNibNamed:HEADER_NIB_FOURSQUARE owner:self options:nil];
-        foursquareHeaderView = [nibViews objectAtIndex:0];
-        [self.view addSubview:foursquareHeaderView];
-    }
-    
 	[self setProperFoursquareButtons];
 }
 
@@ -136,7 +130,6 @@
 //    [centerHeaderButton release];
 //    [homeButton release];
 //    [backButton release];
-//    [foursquareHeaderView release];
     [super dealloc];
 }
 

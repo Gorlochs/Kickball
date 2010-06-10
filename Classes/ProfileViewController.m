@@ -46,9 +46,6 @@
     
     [super viewDidLoad];
     
-    // this is a hack 
-    twitterHeaderView.hidden = YES;
-    
     name.text = @"";
     location.text = @"";
     lastCheckinAddress.text = @"";

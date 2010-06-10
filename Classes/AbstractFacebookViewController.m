@@ -35,11 +35,11 @@ static NSString* kGetSessionProxy = nil; // @"<YOUR SESSION CALLBACK)>";
     //headerNibName = HEADER_NIB_FOURSQUARE;
     [super viewDidLoad];
     
-    if (!self.hideHeader) {
-        NSArray* nibViews =  [[NSBundle mainBundle] loadNibNamed:HEADER_NIB_FOURSQUARE owner:self options:nil];
-        FoursquareHeaderView *headerView = [nibViews objectAtIndex:0];
-        [self.view addSubview:headerView];
-    }
+//    if (!self.hideHeader) {
+//        NSArray* nibViews =  [[NSBundle mainBundle] loadNibNamed:HEADER_NIB_FOURSQUARE owner:self options:nil];
+//        FoursquareHeaderView *headerView = [nibViews objectAtIndex:0];
+//        [self.view addSubview:headerView];
+//    }
     
     [_session resume];
     

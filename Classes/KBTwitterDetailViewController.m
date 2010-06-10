@@ -90,7 +90,7 @@
 }
 
 - (void) viewUserProfile {
-	KBTwitterProfileViewController *witterProfileController = [[KBTwitterProfileViewController alloc] initWithNibName:@"KBTwitterProfileViewController" bundle:nil];
+	KBTwitterProfileViewController *twitterProfileController = [[KBTwitterProfileViewController alloc] initWithNibName:@"KBTwitterProfileViewController" bundle:nil];
     twitterProfileController.screenname = tweet.screenName;
 	[self.navigationController pushViewController:twitterProfileController animated:YES];
 	[twitterProfileController release];

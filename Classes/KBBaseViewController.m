@@ -44,6 +44,7 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 
 - (void) viewDidLoad {
     [super viewDidLoad];
+	
     
     [UIView setAnimationsEnabled:YES];
     
@@ -52,12 +53,22 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
     KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
     [appDelegate.pushNotificationUserId addObserver:self forKeyPath:@"pushUserId" options:0 context:nil];
     
-    // v1.1
-//    if (!self.hideHeader && headerNibName) {
-//        NSArray* nibViews =  [[NSBundle mainBundle] loadNibNamed:headerNibName owner:self options:nil];
-//        FoursquareHeaderView *headerView = [nibViews objectAtIndex:0];
-//        [self.view addSubview:headerView];
-//    }
+    if (!self.hideHeader) {
+		if (appDelegate.navControllerType == KBNavControllerTypeFoursquare) {
+			NSArray* nibViews =  [[NSBundle mainBundle] loadNibNamed:HEADER_NIB_FOURSQUARE owner:self options:nil];
+			headerView = (FoursquareHeaderView*)[nibViews objectAtIndex:0];
+			[self.view addSubview:headerView];
+		} else if (appDelegate.navControllerType == KBNavControllerTypeTwitter) {
+			NSArray* nibViews =  [[NSBundle mainBundle] loadNibNamed:HEADER_NIB_TWITTER owner:self options:nil];
+			headerView = (FoursquareHeaderView*)[nibViews objectAtIndex:0];
+			[self.view addSubview:headerView];
+		} else if (appDelegate.navControllerType == KBNavControllerTypeFacebook) {
+			NSArray* nibViews =  [[NSBundle mainBundle] loadNibNamed:HEADER_NIB_FOURSQUARE owner:self options:nil];
+			headerView = (FoursquareHeaderView*)[nibViews objectAtIndex:0];
+			[self.view addSubview:headerView];
+		}
+    }
+	
     if (!self.hideFooter) {
         NSArray* nibViews =  [[NSBundle mainBundle] loadNibNamed:@"FooterTabView" owner:self options:nil];
         footerTabView = [nibViews objectAtIndex:0];

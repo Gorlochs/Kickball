@@ -28,11 +28,12 @@
 @synthesize deviceToken;
 @synthesize deviceAlias;
 @synthesize pushNotificationUserId;
-
+@synthesize navControllerType;
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {    
-
-    //[window addSubview:viewController.view];
+	
+	navControllerType = KBNavControllerTypeFoursquare;
+	
     [window addSubview:navigationController.view];
     [window makeKeyAndVisible];
     
@@ -324,14 +325,17 @@ void uncaughtExceptionHandler(NSException *exception) {
 }
 
 - (void) switchToTwitter {
+	navControllerType = KBNavControllerTypeTwitter;
     [window addSubview:twitterNavigationController.view];
 }
 
 - (void) switchToFoursquare {
+	navControllerType = KBNavControllerTypeFoursquare;
     [window addSubview:navigationController.view];
 }
 
 - (void) switchToFacebook {
+	navControllerType = KBNavControllerTypeFacebook;
     [window addSubview:facebookNavigationController.view];
 }
 

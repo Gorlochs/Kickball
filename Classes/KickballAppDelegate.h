@@ -18,6 +18,12 @@
 #define kApplicationKey @"yRIla6gWSyWVmizCFl13Nw"
 #define kApplicationSecret @"-BnhB82eSrWrGG0aXm2PLQ"
 
+typedef enum{
+	KBNavControllerTypeFoursquare = 0,
+	KBNavControllerTypeTwitter,
+	KBNavControllerTypeFacebook,	
+} KBNavControllerType;
+
 @class FriendsListViewController;
 
 @interface KickballAppDelegate : NSObject <UIApplicationDelegate> {
@@ -38,6 +44,8 @@
     KBPushNotificationView *pushView;
     NSDictionary *pushUserInfo;
     PopupMessageView *popupView;
+	
+	KBNavControllerType navControllerType;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -49,6 +57,7 @@
 @property (nonatomic, retain) NSString *deviceToken;
 @property (nonatomic, retain) NSString *deviceAlias;
 @property (nonatomic, retain) NSString *pushNotificationUserId;
+@property (nonatomic) KBNavControllerType navControllerType;
 
 - (void) setupAuthenticatedUserAndPushNotifications;
 - (void) displayPushNotificationView:(NSNotification *)inNotification;

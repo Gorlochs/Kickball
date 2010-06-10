@@ -107,9 +107,10 @@
 }
 
 - (void) sendDirectMessage {
-    tweetController = [[KBCreateTweetViewController alloc] initWithNibName:@"KBCreateTweetViewController" bundle:nil];
+    KBCreateTweetViewController *tweetController = [[KBCreateTweetViewController alloc] initWithNibName:@"KBCreateTweetViewController" bundle:nil];
 	tweetController.directMentionToScreenname = screenname;
-    [self presentModalViewController:tweetController animated:YES];
+	[self.navigationController pushViewController:friendsController animated:YES];
+	[tweetController release];
 }
 
 #pragma mark -
