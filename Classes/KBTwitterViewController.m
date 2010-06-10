@@ -40,8 +40,8 @@
     
     if (!self.hideHeader) {
         NSArray* nibViews =  [[NSBundle mainBundle] loadNibNamed:HEADER_NIB_TWITTER owner:self options:nil];
-        FoursquareHeaderView *headerView = [nibViews objectAtIndex:0];
-        [self.view addSubview:headerView];
+        twitterHeaderView = [nibViews objectAtIndex:0];
+        [self.view addSubview:twitterHeaderView];
     }
     
     if (pageType == KBPageTypeOther) {
@@ -128,8 +128,8 @@
     [twitterCenterHeaderButton release];
     [tweetController release];
     [mapController release];
+    [twitterHeaderView release];
     
-    //[twitterEngine release];
     [super dealloc];
 }
 

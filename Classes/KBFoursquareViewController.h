@@ -17,6 +17,8 @@
     IBOutlet UIButton *centerHeaderButton;
     IBOutlet UIButton *homeButton;
     IBOutlet UIButton *backButton;
+    
+    FoursquareHeaderView *foursquareHeaderView;
 }
 
 - (IBAction) flipBetweenMapAndList;

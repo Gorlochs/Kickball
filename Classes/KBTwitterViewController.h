@@ -23,6 +23,8 @@
     XAuthTwitterEngine *twitterEngine;
     KBCreateTweetViewController *tweetController;
     KBGeoTweetMapViewController *mapController;
+    
+    FoursquareHeaderView *twitterHeaderView;
 }
 
 @property (nonatomic, retain) XAuthTwitterEngine *twitterEngine;

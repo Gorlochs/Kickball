@@ -45,6 +45,8 @@
     
     [super viewDidLoad];
     
+    twitterHeaderView.hidden = YES;
+    
     name.text = @"";
     location.text = @"";
     lastCheckinAddress.text = @"";

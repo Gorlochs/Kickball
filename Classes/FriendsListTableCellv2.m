@@ -32,7 +32,7 @@
         userIcon.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:3 topRight:3 bottomRight:3 bottomLeft:3] next:[TTContentStyle styleWithNext:nil]];
         [self addSubview:userIcon];
         
-        userName = [[UILabel alloc] initWithFrame:CGRectMake(66, 6, 200, 20)];
+        userName = [[UILabel alloc] initWithFrame:CGRectMake(66, 6, 220, 20)];
         userName.textColor = [UIColor colorWithWhite:0.5 alpha:1.0];
         userName.font = [UIFont boldSystemFontOfSize:11.0];
         userName.backgroundColor = [UIColor clearColor];
@@ -41,27 +41,29 @@
         userName.highlightedTextColor = [UIColor whiteColor];
         [self addSubview:userName];
         
-        venueName = [[UILabel alloc] initWithFrame:CGRectMake(66, 24, 200, 20)];
+        venueName = [[UILabel alloc] initWithFrame:CGRectMake(66, 24, 250, 20)];
         venueName.textColor = [UIColor colorWithWhite:0.3 alpha:1.0];
         venueName.font = [UIFont boldSystemFontOfSize:16.0];
         venueName.backgroundColor = [UIColor clearColor];
         venueName.shadowColor = [UIColor colorWithWhite:1.0 alpha:0.5];
         venueName.shadowOffset = CGSizeMake(1.0, 1.0);
         venueName.highlightedTextColor = [UIColor whiteColor];
+        venueName.lineBreakMode = UILineBreakModeClip;
         [self addSubview:venueName];
         
         fadeImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"friendsListGradient.png"]];
-        fadeImage.frame = CGRectMake(260, 0, 87, 70);
+        fadeImage.frame = CGRectMake(230, 0, 87, 70);
         [self addSubview:fadeImage];
         [self bringSubviewToFront:fadeImage];
         
-        venueAddress = [[UILabel alloc] initWithFrame:CGRectMake(66, 42, 200, 20)];
+        venueAddress = [[UILabel alloc] initWithFrame:CGRectMake(66, 42, 250, 20)];
         venueAddress.textColor = [UIColor colorWithWhite:0.5 alpha:1.0];
         venueAddress.font = [UIFont boldSystemFontOfSize:11.0];
         venueAddress.backgroundColor = [UIColor clearColor];
         venueAddress.shadowColor = [UIColor colorWithWhite:1.0 alpha:0.5];
         venueAddress.shadowOffset = CGSizeMake(1.0, 1.0);
         venueAddress.highlightedTextColor = [UIColor whiteColor];
+        venueAddress.lineBreakMode = UILineBreakModeClip;
         [self addSubview:venueAddress];
         
         topLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderTop.png"]];
