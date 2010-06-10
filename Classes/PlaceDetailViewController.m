@@ -340,7 +340,7 @@
 				peopleHereContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 60)];
 				[peopleHereContainer setBackgroundColor:[UIColor clearColor]];
 				roundedRect = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 290, 47)];
-				[[roundedRect layer] setCornerRadius:4.0f];
+				[[roundedRect layer] setCornerRadius:3.0f];
 				[roundedRect setBackgroundColor:[UIColor whiteColor]];
 				[peopleHereContainer addSubview:roundedRect];
 				[roundedRect release];
@@ -348,7 +348,7 @@
 			default:
 				peopleHereContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 107)];
 				roundedRect = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 290, 95)];
-				[[roundedRect layer] setCornerRadius:4.0f];
+				[[roundedRect layer] setCornerRadius:3.0f];
 				[roundedRect setBackgroundColor:[UIColor whiteColor]];
 				[peopleHereContainer addSubview:roundedRect];
 				[roundedRect release];

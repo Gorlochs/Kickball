@@ -38,6 +38,28 @@
 }
 -(void) startSpinner {
 	spinnerView = [[UIImageView alloc] initWithFrame:CGRectMake(touchLocation.x-64, touchLocation.y-64, 128, 128)];
+
+	[spinnerView setAnimationImages:[NSArray arrayWithObjects:[UIImage imageNamed:@"qc01.png"],
+									 [UIImage imageNamed:@"qc02.png"],
+									 [UIImage imageNamed:@"qc03.png"],
+									 [UIImage imageNamed:@"qc04.png"],
+									 [UIImage imageNamed:@"qc05.png"],
+									 [UIImage imageNamed:@"qc06.png"],
+									 [UIImage imageNamed:@"qc07.png"],
+									 [UIImage imageNamed:@"qc08.png"],
+									 [UIImage imageNamed:@"qc09.png"],
+									 [UIImage imageNamed:@"qc10.png"],
+									 [UIImage imageNamed:@"qc11.png"],
+									 [UIImage imageNamed:@"qc12.png"],
+									 [UIImage imageNamed:@"qc13.png"],
+									 [UIImage imageNamed:@"qc14.png"],
+									 [UIImage imageNamed:@"qc15.png"],
+									 [UIImage imageNamed:@"qc16.png"],
+									 [UIImage imageNamed:@"qc17.png"],
+									 [UIImage imageNamed:@"qc18.png"],
+									 [UIImage imageNamed:@"qc19.png"],
+									 [UIImage imageNamed:@"qc20.png"],nil]];
+	/*
 	[spinnerView setAnimationImages:[NSArray arrayWithObjects:[UIImage imageNamed:@"dodad0.png"],
 									 [UIImage imageNamed:@"dodad01.png"],
 									 [UIImage imageNamed:@"dodad02.png"],
@@ -51,8 +73,9 @@
 									 [UIImage imageNamed:@"dodad10.png"],
 									 [UIImage imageNamed:@"dodad11.png"],
 									 [UIImage imageNamed:@"dodad12.png"],nil]];
-	[spinnerView setAnimationDuration:1.0f];
-	[self.superview.superview addSubview:spinnerView];
+	 */
+	[spinnerView setAnimationDuration:0.75f];
+	[self.superview addSubview:spinnerView];
 	[spinnerView startAnimating];
 }
 
@@ -74,7 +97,7 @@
     [super touchesBegan:touches withEvent:event];
     [self performSelector:@selector(tapNHoldFired) withObject:nil afterDelay:1.0];
 	[self performSelector:@selector(startSpinner) withObject:nil afterDelay:.25];
-	touchLocation = [[touches anyObject] locationInView:self.superview.superview];
+	touchLocation = [[touches anyObject] locationInView:self.superview];
 	
 }
 
