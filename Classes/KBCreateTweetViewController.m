@@ -145,7 +145,9 @@
 }
 
 - (void) closeUpShop {
+	[tweetTextView resignFirstResponder];
     [self stopProgressBar];
+	[self backOneView];
 }
 
 - (void) toggleFoursquare {
