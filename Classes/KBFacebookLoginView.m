@@ -7,8 +7,11 @@
 //
 
 #import "KBFacebookLoginView.h"
-#import "FacebookAgent.h"
 #import "KBFacebookListViewController.h"
+#import "FacebookProxy.h"
+#import "GraphAPI.h"
+#import "JSON.h"
+
 
 @implementation KBFacebookLoginView
 
@@ -25,7 +28,7 @@
 		UIButton *fbButt = [UIButton buttonWithType:UIButtonTypeCustom];
 		[fbButt setFrame:CGRectMake(73, 366, 176, 31)];
 		[fbButt setImage:[UIImage imageNamed:@"login2.png"] forState:UIControlStateNormal];
-		[fbButt addTarget:[FacebookAgent sharedAgent] action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
+		[fbButt addTarget:self action:@selector(doAuth) forControlEvents:UIControlEventTouchUpInside];
 		[self addSubview:fbButt];
 		
     }
@@ -40,6 +43,14 @@
 }
 */
 
+#pragma mark FacebookProxy Callback
+
+
+-(void)doAuth
+{
+	//self._statusInfo.text = @"authorizing...";
+	[[FacebookProxy instance] loginAndAuthorizeWithTarget:[FacebookProxy instance] callback:@selector(doneAuthorizing)];
+}
 
 
 

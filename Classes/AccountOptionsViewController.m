@@ -12,7 +12,7 @@
 #import "XAuthTwitterEngine.h"
 #import "KBAccountManager.h"
 #import "FeedbackViewController.h"
-#import "FacebookAgent.h"
+#import "FacebookProxy.h"
 
 
 @implementation AccountOptionsViewController
@@ -37,14 +37,14 @@
 //	self.twitterEngine.consumerKey = kOAuthConsumerKey;
 //	self.twitterEngine.consumerSecret = kOAuthConsumerSecret;
     fbButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
-	if ([[FacebookAgent sharedAgent] isLoggedIn] ) {
+	if ([[FacebookProxy instance] isAuthorized] ) {
 		[fbButton setFrame:CGRectMake(facebookCell.frame.size.width/2 - 90/2, 50, 90, 31)];
 		[fbButton setImage:[UIImage imageNamed:@"logout.png"] forState:UIControlStateNormal];
-		[fbButton addTarget:[FacebookAgent sharedAgent] action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
+		[fbButton addTarget:[FacebookProxy instance] action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
 	}else {
 		[fbButton setFrame:CGRectMake(facebookCell.frame.size.width/2 - 176/2, 50, 176, 31)];
 		[fbButton setImage:[UIImage imageNamed:@"login2.png"] forState:UIControlStateNormal];
-		[fbButton addTarget:[FacebookAgent sharedAgent] action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
+		[fbButton addTarget:[FacebookProxy instance] action:@selector(doAuth) forControlEvents:UIControlEventTouchUpInside];
 	}
     [facebookCell addSubview:fbButton];
 }
@@ -55,14 +55,16 @@
 -(void)facebookLoggedIn{
 	[fbButton setImage:[UIImage imageNamed:@"logout.png"] forState:UIControlStateNormal];
 	[fbButton setFrame:CGRectMake(facebookCell.frame.size.width/2 - 90/2, 50, 90, 31)];
-	[fbButton removeTarget:[FacebookAgent sharedAgent] action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
-	[fbButton addTarget:[FacebookAgent sharedAgent] action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
+	[fbButton removeTarget:[FacebookProxy instance] action:@selector(doAuth) forControlEvents:UIControlEventTouchUpInside];
+	[fbButton addTarget:[FacebookProxy instance] action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
+	[[KBAccountManager sharedInstance] setUsesFacebook:YES];
 }
 -(void)facebookLoggedOut{
 	[fbButton setImage:[UIImage imageNamed:@"login2.png"] forState:UIControlStateNormal];
 	[fbButton setFrame:CGRectMake(facebookCell.frame.size.width/2 - 176/2, 50, 176, 31)];
-	[fbButton removeTarget:[FacebookAgent sharedAgent] action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
-	[fbButton addTarget:[FacebookAgent sharedAgent] action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
+	[fbButton removeTarget:[FacebookProxy instance] action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
+	[fbButton addTarget:[FacebookProxy instance] action:@selector(doAuth) forControlEvents:UIControlEventTouchUpInside];
+	[[KBAccountManager sharedInstance] setUsesFacebook:NO];
 }
 - (void)session:(FBSession*)session didLogin:(FBUID)uid {
     [[KBAccountManager sharedInstance] setUsesFacebook:YES];

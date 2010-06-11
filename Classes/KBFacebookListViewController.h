@@ -17,4 +17,5 @@
 
 -(void)showLoginView;
 -(void)killLoginView;
+-(void)refreshMainFeed;
 @end

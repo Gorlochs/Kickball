@@ -9,6 +9,7 @@
 #import "KBFacebookListViewController.h"
 #import "KBTweetTableCell320.h"
 #import "KBFacebookLoginView.h"
+#import "FacebookProxy.h"
 
 @implementation KBFacebookListViewController
 
@@ -37,10 +38,11 @@
 	fbLoginView = nil;
     [super viewDidLoad];
 	doingLogin = NO;
+	
+	[FacebookProxy loadDefaults];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(killLoginView) name:@"completedFacebookLogin" object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLoginView) name:@"completedFacebookLogout" object:nil];
-	BOOL alreadyPermitted = [[FacebookAgent sharedAgent] hasPermission:FacebookAgentPermissionStatusUpdate];
-    if ([[FacebookAgent sharedAgent] isLoggedIn] && alreadyPermitted) {
+	if ([[FacebookProxy instance] isAuthorized]) {
 		//[self startProgressBar:@"Retrieving your tweets..."];
 		//[self showStatuses];
 	} else {
@@ -56,12 +58,17 @@
 		[fbLoginView removeFromSuperview];
 		[fbLoginView release];
 		fbLoginView = nil;
+		[self refreshMainFeed];
 	}
 	
 }
 -(void)showLoginView{
 	fbLoginView = [[KBFacebookLoginView alloc] initWithFrame:CGRectMake(0, 0, 320, 420)];
 	[self.view addSubview:fbLoginView];
+}
+
+-(void)refreshMainFeed{
+	
 }
 
 

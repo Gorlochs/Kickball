@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "KBBaseViewController.h"
-#import "FacebookAgent.h"
 
 
 @interface KBFacebookViewController : KBBaseViewController {
