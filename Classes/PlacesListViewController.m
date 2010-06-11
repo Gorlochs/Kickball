@@ -278,15 +278,15 @@
         return nil;
     } else {
         
-        TableSectionHeaderView *headerView = [[[TableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)] autorelease];
+        TableSectionHeaderView *sectionHeaderView = [[[TableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)] autorelease];
         
         if (section < [venues count]) {
-            headerView.leftHeaderLabel.text = [[venues allKeys] objectAtIndex:section];
+            sectionHeaderView.leftHeaderLabel.text = [[venues allKeys] objectAtIndex:section];
         } else {
             return nil;
         }
 
-        return headerView;
+        return sectionHeaderView;
     }
 }
 

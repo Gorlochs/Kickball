@@ -21,6 +21,7 @@
 	
 	[self setWantsFullScreenLayout:YES];
 }
+
 - (void) viewDidLoad {
     [super viewDidLoad];
     self.delegate = self;
@@ -68,6 +69,10 @@
 //    } 
 }
 
+- (void)thumbsViewController:(TTThumbsViewController*)controller didSelectPhoto:(id<TTPhoto>)photo { 
+    DLog("this doesn't get called");
+}
+
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
@@ -81,10 +86,8 @@
     // e.g. self.myOutlet = nil;
 }
 
-
 - (void)dealloc {
     [super dealloc];
 }
-
 
 @end

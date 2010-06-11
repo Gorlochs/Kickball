@@ -166,9 +166,9 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
-    BlackTableCellHeader *headerView = [[[BlackTableCellHeader alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 36)] autorelease];
-    headerView.leftHeaderLabel.text = [checkinDaysOfWeek objectAtIndex:section];
-    return headerView;
+    BlackTableCellHeader *sectionHeaderView = [[[BlackTableCellHeader alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 36)] autorelease];
+    sectionHeaderView.leftHeaderLabel.text = [checkinDaysOfWeek objectAtIndex:section];
+    return sectionHeaderView;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {

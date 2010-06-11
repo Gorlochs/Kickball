@@ -408,7 +408,7 @@
 // TODO: most of the below header label stuff should be pulled up into a method in KBBBaseViewController
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
-    TableSectionHeaderView *headerView = [[[TableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)] autorelease];
+    TableSectionHeaderView *sectionHeaderView = [[[TableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)] autorelease];
     
     // damn, this is ugly.  nil should be returned before all the above code is executed.  
     // probably should extract the headerLabel construction and just have a single switch in here
@@ -420,51 +420,51 @@
             break;
         case SECTION_RECENT_CHECKINS:
             if ([recentCheckins count] > 0) {
-                headerView.leftHeaderLabel.text = @"Recent Check-ins";
-                headerView.rightHeaderLabel.text = @"Mins Ago";
+                sectionHeaderView.leftHeaderLabel.text = @"Recent Check-ins";
+                sectionHeaderView.rightHeaderLabel.text = @"Mins Ago";
             } else {
                 return nil;
             }
             break;
         case SECTION_TODAY_CHECKINS:
             if ([todayCheckins count] > 0) {
-                headerView.leftHeaderLabel.text = @"Today";
-                headerView.rightHeaderLabel.text = @"Hours Ago";
+                sectionHeaderView.leftHeaderLabel.text = @"Today";
+                sectionHeaderView.rightHeaderLabel.text = @"Hours Ago";
             } else {
                 return nil;
             }
             break;
         case SECTION_YESTERDAY_CHECKINS:
-			headerView.leftHeaderLabel.text = @"Older";
-			headerView.rightHeaderLabel.text = @"Days Ago";
+			sectionHeaderView.leftHeaderLabel.text = @"Older";
+			sectionHeaderView.rightHeaderLabel.text = @"Days Ago";
             break;
         case SECTION_NONCITY_RECENT_CHECKINS:
             if ([nonCityRecentCheckins count] > 0) {
-                headerView.leftHeaderLabel.text = @"Recent Check-ins in Other Cities";
-                headerView.rightHeaderLabel.text = @"Mins Ago";
+                sectionHeaderView.leftHeaderLabel.text = @"Recent Check-ins in Other Cities";
+                sectionHeaderView.rightHeaderLabel.text = @"Mins Ago";
             } else {
                 return nil;
             }
             break;
         case SECTION_NONCITY_TODAY_CHECKINS:
             if ([nonCityTodayCheckins count] > 0) {
-                headerView.leftHeaderLabel.text = @"Today's Check-ins in Other Cities";
-                headerView.rightHeaderLabel.text = @"Hours Ago";
+                sectionHeaderView.leftHeaderLabel.text = @"Today's Check-ins in Other Cities";
+                sectionHeaderView.rightHeaderLabel.text = @"Hours Ago";
             } else {
                 return nil;
             }
             break;
         case SECTION_NONCITY_YESTERDAY_CHECKINS:
-			headerView.leftHeaderLabel.text = @"Older Check-ins in Other Cities";
-			headerView.rightHeaderLabel.text = @"Days Ago";
+			sectionHeaderView.leftHeaderLabel.text = @"Older Check-ins in Other Cities";
+			sectionHeaderView.rightHeaderLabel.text = @"Days Ago";
             break;
         case SECTION_FOOTER:  // footer cell
             return nil;
         default:
-            headerView.leftHeaderLabel.text = @"You shouldn't see this";
+            sectionHeaderView.leftHeaderLabel.text = @"You shouldn't see this";
             break;
     }
-	return headerView;
+	return sectionHeaderView;
 }
 
 #pragma mark -

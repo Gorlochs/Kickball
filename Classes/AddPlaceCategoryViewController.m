@@ -91,7 +91,7 @@
         formController.categories = category.subcategories;
         formController.newVenue = [newVenue retain];
         [self.navigationController pushViewController:formController animated:YES];
-        //[formController release];
+        [formController release];
     } else {
         newVenue.primaryCategory = category;
         NSDictionary *userInfo = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:newVenue, nil] 

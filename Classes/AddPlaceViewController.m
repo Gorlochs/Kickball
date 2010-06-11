@@ -103,14 +103,14 @@
     formController.newVenue = [venue retain];
     [self.navigationController pushViewController:formController animated:YES];
     // FIXME: vvv this is wrong. please fix vvv
-    //[formController release];
+    [formController release];
 }
 
 - (void) addCategory {
     AddPlaceCategoryViewController *formController = [[AddPlaceCategoryViewController alloc] initWithNibName:@"AddPlaceCategoryViewController" bundle:nil];
     formController.newVenue = [venue retain];
     [self.navigationController pushViewController:formController animated:YES];
-    //[formController release];
+    [formController release];
 }
 
 - (void) backOneView {
