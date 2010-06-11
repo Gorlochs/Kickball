@@ -14,6 +14,4 @@
 
 }
 
-- (IBAction) nextOptionView;
-
 @end

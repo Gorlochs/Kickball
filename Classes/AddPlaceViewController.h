@@ -31,7 +31,7 @@
 @property (nonatomic, retain) FSVenue *venue;
 
 //- (FSVenue*) extractVenueFromDictionaryForRow:(NSIndexPath*)indexPath;
-- (IBAction) checkinToNewVenue;
+//- (IBAction) checkinToNewVenue;
 //- (IBAction) switchToTextFields;
 - (IBAction) doVenuelessCheckin;
 - (IBAction) addAddress;

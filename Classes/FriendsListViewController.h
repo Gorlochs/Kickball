@@ -68,7 +68,7 @@
 - (IBAction) addFriend;
 - (IBAction) viewNextWelcomeImage;
 - (IBAction) viewPreviousWelcomeImage;
-- (IBAction) displayOlderCheckins;
+//- (IBAction) displayOlderCheckins;
 - (void) setupSplashAnimation;
 - (void) instaCheckin:(NSNotification *)inNotification;
 - (void) setUserIconViewCustom:(FSUser*)user;

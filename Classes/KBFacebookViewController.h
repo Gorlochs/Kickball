@@ -25,7 +25,7 @@
 	int pageNum;
 }
 
-- (IBAction) flipBetweenMapAndList;
+//- (IBAction) flipBetweenMapAndList;
 - (IBAction) viewEvents;
 - (IBAction) viewFriends;
 - (IBAction) backOneView;

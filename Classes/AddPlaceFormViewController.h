@@ -36,11 +36,11 @@
 //@property (nonatomic, retain) NSString *state;
 
 - (IBAction) clearFields;
-- (IBAction) saveVenueAndCheckin;
+//- (IBAction) saveVenueAndCheckin;
 - (IBAction) cancelEditing;
 - (IBAction) editNextField;
 - (IBAction) editPreviousField;
 - (IBAction) backToAddAVenue;
-- (void) newVenueResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString;
+//- (void) newVenueResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString;
 
 @end
