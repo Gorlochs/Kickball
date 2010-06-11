@@ -9,12 +9,22 @@
 //#import "FBLoginDialog.h"
 //#import "FBDialog.h"
 
-//FB app
+//FB original app
+
+NSString* const kFBAPIKey = @"4585c2e42804bca19e21eb30d402905e";
+NSString* const kFBAppSecret = @"5cd7d10f85a36d5aeb4f2f7f99e1c85b"; // @"<YOUR SECRET KEY>";
+
+NSString* const kFBClientID = @"111456732216058";
+NSString* const kFBRedirectURI = @"http://www.gorlochs.com/";
+
+//FB app testing 
+/*
 NSString* const kFBAPIKey = @"a578686869ab8192e2eb00b22c0004c7";
 NSString* const kFBAppSecret = @"03808784b1efd1be26a059e296016ca8";
 
 NSString* const kFBClientID = @"127099537321605";
 NSString* const kFBRedirectURI = @"http://www.gorlochs.com/";
+ */
 
 // URL Formats for code & access_token
 NSString* const kFBAuthURLFormat = @"https://graph.facebook.com/oauth/authorize?display=touch&client_id=%@&redirect_uri=%@&scope=%@";
@@ -326,7 +336,7 @@ static FacebookProxy* gFacebookProxy = NULL;
 	{
 		// we default to asking for read_stream and publish_stream, if your app needs something different...this is the code to change
 		// hardcoded for now, so at least we don't break when Facebook changes permissions on June 1
-		NSString* accessTokenURL = [NSString stringWithFormat:kFBAuthURLFormat, kFBClientID, kFBRedirectURI, @"publish_stream,read_stream"];
+		NSString* accessTokenURL = [NSString stringWithFormat:kFBAuthURLFormat, kFBClientID, kFBRedirectURI, @"publish_stream,read_stream,offline_access,user_events,friends_events,user_hometown,friends_hometown,user_location,friends_location,user_status,friends_status,rsvp_event,create_event"];
 
 		NSURLRequest *theRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:accessTokenURL]
 																							cachePolicy:NSURLRequestUseProtocolCachePolicy
@@ -703,12 +713,11 @@ static FacebookProxy* gFacebookProxy = NULL;
 	[[FacebookProxy instance] loginAndAuthorizeWithTarget:self callback:@selector(doneAuthorizing)];
 }
 
--(void)refreshHome{
+-(NSArray*)refreshHome{
 	if (_meGraph==nil) {
 		_meGraph = [self newGraph];
 	}
-	NSArray *newsFeed = [_meGraph newsFeed:@"me"];
-	DLog(@"news feed: %@",newsFeed);
+	return [_meGraph newsFeed:@"me"];
 }
 
 @end

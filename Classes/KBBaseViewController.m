@@ -459,7 +459,7 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 - (void)reloadTableViewDataSource{
 	//  should be calling your tableviews model to reload
 	//  put here just for demo
-	[self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:3.0];
+	[self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:0.1];
 }
 
 - (void) refreshTable {

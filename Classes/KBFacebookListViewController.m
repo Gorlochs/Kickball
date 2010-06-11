@@ -10,6 +10,7 @@
 #import "KBTweetTableCell320.h"
 #import "KBFacebookLoginView.h"
 #import "FacebookProxy.h"
+#import "GraphObject.h"
 
 @implementation KBFacebookListViewController
 
@@ -45,7 +46,8 @@
 	if ([[FacebookProxy instance] isAuthorized]) {
 		//[self startProgressBar:@"Retrieving your tweets..."];
 		//[self showStatuses];
-		[self refreshMainFeed];
+		//[self refreshMainFeed];
+		[self startProgressBar:@"Retrieving news feed..."];
 		[NSThread detachNewThreadSelector:@selector(refreshMainFeed) toTarget:self withObject:nil];
 
 	} else {
@@ -61,7 +63,10 @@
 		[fbLoginView removeFromSuperview];
 		[fbLoginView release];
 		fbLoginView = nil;
-		[self refreshMainFeed];
+		//[self refreshMainFeed];
+		[self startProgressBar:@"Retrieving news feed..."];
+		[NSThread detachNewThreadSelector:@selector(refreshMainFeed) toTarget:self withObject:nil];
+
 	}
 	
 }
@@ -71,9 +76,22 @@
 }
 
 -(void)refreshMainFeed{
-	[[FacebookProxy instance] refreshHome];
+	[newsFeed release];
+	newsFeed = nil;
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	newsFeed = [[FacebookProxy instance] refreshHome];
+	[newsFeed retain];
+	[theTableView reloadData];
+	[pool release];
+	[self performSelectorOnMainThread:@selector(stopProgressBar) withObject:nil waitUntilDone:NO];
+	[self dataSourceDidFinishLoadingNewData];
+
 }
 
+- (void) refreshTable {
+	//[self startProgressBar:@"Retrieving news feed..."];
+	[self refreshMainFeed];
+}
 
 #pragma mark -
 #pragma mark Table view data source
@@ -104,6 +122,17 @@
 	if (cell == nil) {
         cell = [[[KBTweetTableCell320 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
 	}
+	GraphObject *fbItem = [newsFeed objectAtIndex:indexPath.row];
+	//cell.userIcon.urlPath = tweet.profileImageUrl;
+	cell.userName.text = [(NSDictionary*)[fbItem propertyWithKey:@"from"] objectForKey:@"name"]; //tweet.screenName;
+	//cell.tweetText.numberOfLines = 0;
+	//cell.tweetText.text = tweet.tweetText;
+	cell.tweetText.text = [TTStyledText textWithURLs:[fbItem propertyWithKey:@"message"] lineBreaks:NO]; //tweet.tweetText;
+	//[cell setDateLabelWithDate:tweet.createDate];
+	//[cell setDateLabelWithText:[[KickballAPI kickballApi] convertDateToTimeUnitString:tweet.createDate]];
+	[cell.tweetText sizeToFit];
+	//[cell.tweetText setNeedsLayout];
+	[cell.tweetText setNeedsDisplay];
 	return cell;
 }
 
@@ -142,6 +171,7 @@
 
 
 - (void)dealloc {
+	[newsFeed release];
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	[fbLoginView release];
     [super dealloc];
