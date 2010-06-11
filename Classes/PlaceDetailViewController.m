@@ -851,7 +851,7 @@
 - (void) viewThumbnails {
     MockPhotoSource *thePhotoSource = [[KickballAPI kickballApi] convertGoodiesIntoPhotoSource:goodies withTitle:venue.name];
 	KBThumbnailViewController *thumbsController = [[KBThumbnailViewController alloc] init];
-    DLog(@"photosource: %@", photoSource);
+    DLog(@"photosource: %@", thePhotoSource);
 	thumbsController.title = venue.name;
 	thumbsController.photoSource = thePhotoSource;
     thumbsController.navigationBarStyle = UIBarStyleBlackOpaque;

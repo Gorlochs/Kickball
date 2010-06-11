@@ -22,7 +22,7 @@
 #import "KBGoody.h"
 #import "KBPhotoViewController.h"
 #import "PlacesListTableViewCellv2.h"
-
+#import "KBThumbnailViewController.h"
 
 #define BADGES_PER_ROW 4
 
@@ -406,7 +406,7 @@
                     myDetailButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
                     [myDetailButton setImage:[UIImage imageNamed:@"profileSeeAllPhotos01.png"] forState:UIControlStateNormal];
                     [myDetailButton setImage:[UIImage imageNamed:@"profileSeeAllPhotos02.png"] forState:UIControlStateHighlighted];
-                    [myDetailButton addTarget:self action:@selector(displayImages:) forControlEvents:UIControlEventTouchUpInside]; 
+                    [myDetailButton addTarget:self action:@selector(viewThumbnails) forControlEvents:UIControlEventTouchUpInside]; 
                     [sectionHeaderView addSubview:myDetailButton];
                 } else {
                     return nil;
@@ -590,6 +590,18 @@
 
 - (void)pingResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
 	[self stopProgressBar];
+}
+
+- (void) viewThumbnails {
+    MockPhotoSource *thePhotoSource = [[KickballAPI kickballApi] convertGoodiesIntoPhotoSource:userPhotos withTitle:user.firstnameLastInitial];
+	KBThumbnailViewController *thumbsController = [[KBThumbnailViewController alloc] init];
+    DLog(@"photosource: %@", thePhotoSource);
+	thumbsController.title = user.firstnameLastInitial;
+	thumbsController.photoSource = thePhotoSource;
+    thumbsController.navigationBarStyle = UIBarStyleBlackOpaque;
+    thumbsController.statusBarStyle = UIStatusBarStyleBlackOpaque;
+    [self.navigationController pushViewController:thumbsController animated:YES];
+    [thumbsController release]; 
 }
 
 #pragma mark 

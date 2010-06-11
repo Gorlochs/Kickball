@@ -29,39 +29,11 @@
 } 
 
 - (void)thumbsTableViewCell:(TTThumbsTableViewCell*)cell didSelectPhoto:(id<TTPhoto>)photo { 
-    DLog(@"thumbsTableViewCell"); 
-//} 
-//
-//- (void)thumbsViewController:(TTThumbsViewController*)controller 
-//              didSelectPhoto:(id<TTPhoto>)photo 
-//{ 
-//    DLog(@"thumbsViewController"); 
-    /* 
-     [[[super _controller] delegate] thumbsViewController:[super 
-     _controller] didSelectPhoto:photo]; 
-     BOOL shouldNavigate = YES; 
-     if ([[[super _controller] delegate] 
-     respondsToSelector:@selector 
-     (thumbsViewController:shouldNavigateToPhoto:)]) { 
-     shouldNavigate = [[[super _controller] delegate] 
-     thumbsViewController:[super _controller] 
-     shouldNavigateToPhoto:photo]; 
-     } 
-     */ 
-//    if (YES) { 
-        KBPhotoViewController *theController = [[KBPhotoViewController alloc] initWithPhotoSource:self.photoSource]; 
-        [theController setCenterPhoto:photo];
-        [[self navigationController] pushViewController:theController animated:YES];
-        [theController release]; 
-        theController = nil; 
-        /* 
-         TTPhotoViewController* controller = [_controller 
-         createPhotoViewController]; 
-         controller.centerPhoto = photo; 
-         [_controller.navigationController pushViewController:controller 
-         animated:YES]; 
-         */ 
-//    } 
+	KBPhotoViewController *theController = [[KBPhotoViewController alloc] initWithPhotoSource:self.photoSource]; 
+	[theController setCenterPhoto:photo];
+	[[self navigationController] pushViewController:theController animated:YES];
+	[theController release]; 
+	theController = nil; 
 }
 
 - (void)thumbsViewController:(TTThumbsViewController*)controller didSelectPhoto:(id<TTPhoto>)photo { 
