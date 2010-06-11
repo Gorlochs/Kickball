@@ -79,5 +79,6 @@ extern NSString* const kFBRedirectURI;
 -(GraphAPI*)newGraph;
 -(void)doAuth;
 -(void)logout;
+-(void)refreshHome;
 
 @end

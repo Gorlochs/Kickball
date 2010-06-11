@@ -703,5 +703,12 @@ static FacebookProxy* gFacebookProxy = NULL;
 	[[FacebookProxy instance] loginAndAuthorizeWithTarget:self callback:@selector(doneAuthorizing)];
 }
 
+-(void)refreshHome{
+	if (_meGraph==nil) {
+		_meGraph = [self newGraph];
+	}
+	NSArray *newsFeed = [_meGraph newsFeed:@"me"];
+	DLog(@"news feed: %@",newsFeed);
+}
 
 @end

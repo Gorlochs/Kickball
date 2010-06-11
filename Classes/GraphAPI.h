@@ -54,6 +54,8 @@
 -(GraphObject*)putCommentToObject:(NSString*)obj_id message:(NSString*)message;
 -(GraphObject*)putWallPost:(NSString*)profile_id message:(NSString*)message attachment:(NSDictionary*)attachment_args;
 
+//scott's KB additions
+-(NSArray*)newsFeed:(NSString*)user_id;
 @end
 
 // Graph API Argument Keys

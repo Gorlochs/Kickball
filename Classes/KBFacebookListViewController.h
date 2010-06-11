@@ -13,6 +13,7 @@
 @interface KBFacebookListViewController : KBFacebookViewController{
 	KBFacebookLoginView *fbLoginView;
 	BOOL doingLogin;
+	NSArray *newsFeed;
 }
 
 -(void)showLoginView;

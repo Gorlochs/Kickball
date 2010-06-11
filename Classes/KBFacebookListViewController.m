@@ -38,13 +38,16 @@
 	fbLoginView = nil;
     [super viewDidLoad];
 	doingLogin = NO;
-	
+	newsFeed = nil;
 	[FacebookProxy loadDefaults];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(killLoginView) name:@"completedFacebookLogin" object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLoginView) name:@"completedFacebookLogout" object:nil];
 	if ([[FacebookProxy instance] isAuthorized]) {
 		//[self startProgressBar:@"Retrieving your tweets..."];
 		//[self showStatuses];
+		[self refreshMainFeed];
+		[NSThread detachNewThreadSelector:@selector(refreshMainFeed) toTarget:self withObject:nil];
+
 	} else {
 		[self showLoginView];
         //loginController = [[KBTwitterXAuthLoginController alloc] initWithNibName:@"TwitterLoginView_v2" bundle:nil];
@@ -68,7 +71,7 @@
 }
 
 -(void)refreshMainFeed{
-	
+	[[FacebookProxy instance] refreshHome];
 }
 
 
@@ -83,6 +86,9 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
+	if (newsFeed!=nil) {
+		return [newsFeed count];
+	}
     return 0;
 }
 
