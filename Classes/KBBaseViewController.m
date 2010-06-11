@@ -63,9 +63,9 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 			headerView = (FoursquareHeaderView*)[nibViews objectAtIndex:0];
 			[self.view addSubview:headerView];
 		} else if (appDelegate.navControllerType == KBNavControllerTypeFacebook) {
-			NSArray* nibViews =  [[NSBundle mainBundle] loadNibNamed:HEADER_NIB_FOURSQUARE owner:self options:nil];
-			headerView = (FoursquareHeaderView*)[nibViews objectAtIndex:0];
-			[self.view addSubview:headerView];
+			//NSArray* nibViews =  [[NSBundle mainBundle] loadNibNamed:HEADER_NIB_FOURSQUARE owner:self options:nil];
+			//headerView = (FoursquareHeaderView*)[nibViews objectAtIndex:0];
+			//[self.view addSubview:headerView];
 		}
     }
 	
