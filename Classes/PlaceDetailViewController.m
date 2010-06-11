@@ -208,22 +208,24 @@
     [theTableView reloadData];
 }
 
-- (void) displayImages:(id)sender {
-    int buttonPressedIndex = ((UIButton *)sender).tag;
-    KBPhotoViewController *photoController = [[KBPhotoViewController alloc] initWithPhotoSource:photoSource];
-    photoController.centerPhoto = [photoSource photoAtIndex:buttonPressedIndex];  // sets the photo displayer to the correct image
-    photoController.goodies = goodies;
-    [self.navigationController pushViewController:photoController animated:YES];
-    [photoController release];
-}
-
-- (void) displayAllImages {
-    [FlurryAPI logEvent:@"View All Photos"];
-    KBPhotoViewController *photoController = [[KBPhotoViewController alloc] initWithPhotoSource:photoSource];
-    photoController.goodies = goodies;
-    [self.navigationController pushViewController:photoController animated:YES];
-    [photoController release];
-}
+//- (void) displayImages:(id)sender {
+//    int buttonPressedIndex = ((UIButton *)sender).tag;
+//    MockPhotoSource *thePhotoSource = [[KickballAPI kickballApi] convertGoodiesIntoPhotoSource:goodies withTitle:venue.name];
+//    KBPhotoViewController *photoController = [[KBPhotoViewController alloc] initWithPhotoSource:thePhotoSource];
+//    photoController.centerPhoto = [thePhotoSource photoAtIndex:buttonPressedIndex];  // sets the photo displayer to the correct image
+//    photoController.goodies = goodies;
+//    [self.navigationController pushViewController:photoController animated:YES];
+//    [photoController release];
+//}
+//
+//- (void) displayAllImages {
+//    [FlurryAPI logEvent:@"View All Photos"];
+//    MockPhotoSource *thePhotoSource = [[KickballAPI kickballApi] convertGoodiesIntoPhotoSource:goodies withTitle:venue.name];
+//    KBPhotoViewController *photoController = [[KBPhotoViewController alloc] initWithPhotoSource:thePhotoSource];
+//    photoController.goodies = goodies;
+//    [self.navigationController pushViewController:photoController animated:YES];
+//    [photoController release];
+//}
 
 - (void) displayTodoTipMessage:(NSNotification *)inNotification {
     KBMessage *msg = [[KBMessage alloc] initWithMember:@"Kickball Notification" andMessage:@"Your todo/tip was sent"];
@@ -670,7 +672,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
 
-    BlackTableCellHeader *headerView = [[[BlackTableCellHeader alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)] autorelease];
+    BlackTableCellHeader *tableCellHeader = [[[BlackTableCellHeader alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)] autorelease];
     
     switch (section) {
         case 0:
@@ -681,7 +683,7 @@
             if (venue.hereNow == 0 ) {
                 return nil;
             } else {
-                headerView.leftHeaderLabel.text = [NSString stringWithFormat:@"%d %@ Here", venue.hereNow, venue.hereNow == 1 ? @"Person" : @"People"];
+                tableCellHeader.leftHeaderLabel.text = [NSString stringWithFormat:@"%d %@ Here", venue.hereNow, venue.hereNow == 1 ? @"Person" : @"People"];
                 
                 if (venue.hereNow > MAX_PEOPLE_HERE_SHOWN) {
                     UIButton *myDetailButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -691,13 +693,13 @@
                     [myDetailButton setImage:[UIImage imageNamed:@"placePeopleHere01.png"] forState:UIControlStateNormal];
                     [myDetailButton setImage:[UIImage imageNamed:@"placePeopleHere02.png"] forState:UIControlStateHighlighted];
                     [myDetailButton addTarget:self action:@selector(displayAllPeopleHere:) forControlEvents:UIControlEventTouchUpInside]; 
-                    [headerView addSubview:myDetailButton];
+                    [tableCellHeader addSubview:myDetailButton];
                 }
             }
             break;
         case 3: 
             if ([goodies count] == 0) {
-                headerView.leftHeaderLabel.text = @"";
+                tableCellHeader.leftHeaderLabel.text = @"";
             } else {
                 photoHeaderLabel.text = [NSString stringWithFormat:@"%d %@", [goodies count], [goodies count] == 1 ? @"Photo" : @"Photos"];
                 return photoHeaderView;
@@ -715,9 +717,9 @@
                 [addTipButton setImage:[UIImage imageNamed:@"addTip01_hdr.png"] forState:UIControlStateNormal];
                 [addTipButton setImage:[UIImage imageNamed:@"addTip02_hdr.png"] forState:UIControlStateHighlighted];
                 [addTipButton addTarget:self action:@selector(addTipTodo) forControlEvents:UIControlEventTouchUpInside]; 
-                [headerView addSubview:addTipButton];
+                [tableCellHeader addSubview:addTipButton];
             }
-            headerView.leftHeaderLabel.text = [NSString stringWithFormat:@"%d %@", [venue.tips count], [venue.tips count] == 1 ? @"Tip" : @"Tips"];
+            tableCellHeader.leftHeaderLabel.text = [NSString stringWithFormat:@"%d %@", [venue.tips count], [venue.tips count] == 1 ? @"Tip" : @"Tips"];
             
             if ([venue.tips count] > 4) {
                 UIButton *myDetailButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -727,14 +729,14 @@
                 [myDetailButton setImage:[UIImage imageNamed:@"profileSeeAllTips01.png"] forState:UIControlStateNormal];
                 [myDetailButton setImage:[UIImage imageNamed:@"profileSeeAllTips02.png"] forState:UIControlStateHighlighted];
                 [myDetailButton addTarget:self action:@selector(displayAllTips:) forControlEvents:UIControlEventTouchUpInside]; 
-                [headerView addSubview:myDetailButton];
+                [tableCellHeader addSubview:myDetailButton];
             }
             break;
         default:
-            headerView.leftHeaderLabel.text = @"You shouldn't see this";
+            tableCellHeader.leftHeaderLabel.text = @"You shouldn't see this";
             break;
     }
-    return headerView;
+    return tableCellHeader;
 }
 
 - (void) displayAllPeopleHere:(id)sender {
@@ -840,27 +842,23 @@
 #pragma mark IBAction methods
 
 - (void) viewPhotos {
-    KBPhotoViewController *photoController = [[KBPhotoViewController alloc] initWithPhotoSource:photoSource];
+    MockPhotoSource *thePhotoSource = [[KickballAPI kickballApi] convertGoodiesIntoPhotoSource:goodies withTitle:venue.name];
+    KBPhotoViewController *photoController = [[KBPhotoViewController alloc] initWithPhotoSource:thePhotoSource];
     [self.navigationController pushViewController:photoController animated:YES];
     [photoController release]; 
 }
 
 - (void) viewThumbnails {
-    KBPhotoViewController *photoController = [[KBPhotoViewController alloc] initWithPhotoSource:photoSource];
-    [self.navigationController pushViewController:photoController animated:YES];
-	//[photoController showThumbnails];
-    [photoController release]; 
-	
-	
-	
-//    //TTThumbsViewController *thumbsController = [[TTThumbsViewController alloc] initWithPhotoSource:photoSource];
-//	KBThumbnailViewController *thumbsController = [[KBThumbnailViewController alloc] init];
-//	thumbsController.title = venue.name;
-//	thumbsController.photoSource = photoSource;
-////	thumbsController.delegate = self;
-//    //photoController.centerPhoto 
-//    [self.navigationController pushViewController:thumbsController animated:YES];
-//    [thumbsController release]; 
+    MockPhotoSource *thePhotoSource = [[KickballAPI kickballApi] convertGoodiesIntoPhotoSource:goodies withTitle:venue.name];
+	KBThumbnailViewController *thumbsController = [[KBThumbnailViewController alloc] init];
+    DLog(@"photosource: %@", photoSource);
+	thumbsController.title = venue.name;
+	thumbsController.photoSource = thePhotoSource;
+    thumbsController.navigationBarStyle = UIBarStyleBlackOpaque;
+    thumbsController.statusBarStyle = UIStatusBarStyleBlackOpaque;
+//	thumbsController.delegate = self;
+    [self.navigationController pushViewController:thumbsController animated:YES];
+    [thumbsController release]; 
 }
 
 - (void) callVenue {
@@ -924,18 +922,6 @@
 //    if (isPingOn) {
 //        [self sendPushNotification];
 //    }
-}
-
-- (void) togglePingsAndTwitter {
-    if (isTwitterOn && isPingOn) {
-        isTwitterOn = NO;
-    } else if (isPingOn) {
-        isPingOn = NO;
-    } else {
-        isTwitterOn = YES && [self getAuthenticatedUser].twitter;
-        isPingOn = YES;
-    }
-    [self setProperButtonStates];
 }
 
 - (void) setProperButtonStates {

@@ -7,6 +7,7 @@
 //
 
 #import "KBThumbnailViewController.h"
+#import "KBPhotoViewController.h"
 
 
 @implementation KBThumbnailViewController
@@ -16,30 +17,55 @@
 	[super viewWillAppear:animated];
 	UINavigationController* navController = self.navigationController;
 	
-	navController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+	navController.navigationBar.barStyle = UIBarStyleBlackOpaque;
 	
 	[self setWantsFullScreenLayout:YES];
 }
-
-- (void)loadView {
-    [super loadView];
-    
-//    _flagButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"flag_off.png"] 
-//                                                   style:UIBarButtonItemStylePlain
-//                                                  target:self 
-//                                                  action:@selector(flagAction)];
-//    
-//    
-//    UIBarItem* space = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:
-//                         UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
-//    
-//    _toolbar.items = [NSArray arrayWithObjects:
-//                      space, _previousButton, space, _flagButton, space, _nextButton, space, nil];
-//    
-//    
-//    self.defaultImage = [UIImage imageNamed:@"imgLoader.png"];
-//    
+- (void) viewDidLoad {
+    [super viewDidLoad];
+    self.delegate = self;
 	self.navigationController.navigationBar.hidden = NO;
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
+}
+
+- (TTPhotoViewController*)createPhotoViewController { 
+    return [[[KBPhotoViewController alloc] init] autorelease]; 
+} 
+
+- (void)thumbsTableViewCell:(TTThumbsTableViewCell*)cell didSelectPhoto:(id<TTPhoto>)photo { 
+    DLog(@"thumbsTableViewCell"); 
+//} 
+//
+//- (void)thumbsViewController:(TTThumbsViewController*)controller 
+//              didSelectPhoto:(id<TTPhoto>)photo 
+//{ 
+//    DLog(@"thumbsViewController"); 
+    /* 
+     [[[super _controller] delegate] thumbsViewController:[super 
+     _controller] didSelectPhoto:photo]; 
+     BOOL shouldNavigate = YES; 
+     if ([[[super _controller] delegate] 
+     respondsToSelector:@selector 
+     (thumbsViewController:shouldNavigateToPhoto:)]) { 
+     shouldNavigate = [[[super _controller] delegate] 
+     thumbsViewController:[super _controller] 
+     shouldNavigateToPhoto:photo]; 
+     } 
+     */ 
+//    if (YES) { 
+        KBPhotoViewController *theController = [[KBPhotoViewController alloc] initWithPhotoSource:self.photoSource]; 
+        [theController setCenterPhoto:photo];
+        [[self navigationController] pushViewController:theController animated:YES];
+        [theController release]; 
+        theController = nil; 
+        /* 
+         TTPhotoViewController* controller = [_controller 
+         createPhotoViewController]; 
+         controller.centerPhoto = photo; 
+         [_controller.navigationController pushViewController:controller 
+         animated:YES]; 
+         */ 
+//    } 
 }
 
 - (void)didReceiveMemoryWarning {

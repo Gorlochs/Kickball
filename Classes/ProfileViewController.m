@@ -390,15 +390,15 @@
     if (section == 0) {
         return NULL;
     } else {
-        BlackTableCellHeader *headerView = [[[BlackTableCellHeader alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 36)] autorelease];
+        BlackTableCellHeader *sectionHeaderView = [[[BlackTableCellHeader alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 36)] autorelease];
         
         switch (section) {
             case 0:
-                headerView.leftHeaderLabel.text = @"";
+                sectionHeaderView.leftHeaderLabel.text = @"";
                 break;
             case 1:
                 if (userPhotos != nil && [userPhotos count] > 0) {
-                    headerView.leftHeaderLabel.text = [NSString stringWithFormat:@"%d %@", [userPhotos count], [userPhotos count] == 1 ? @"Photo" : @"Photos"];
+                    sectionHeaderView.leftHeaderLabel.text = [NSString stringWithFormat:@"%d %@", [userPhotos count], [userPhotos count] == 1 ? @"Photo" : @"Photos"];
                     
                     UIButton *myDetailButton = [UIButton buttonWithType:UIButtonTypeCustom];
                     myDetailButton.frame = CGRectMake(210, 0, 92, 39);
@@ -407,7 +407,7 @@
                     [myDetailButton setImage:[UIImage imageNamed:@"profileSeeAllPhotos01.png"] forState:UIControlStateNormal];
                     [myDetailButton setImage:[UIImage imageNamed:@"profileSeeAllPhotos02.png"] forState:UIControlStateHighlighted];
                     [myDetailButton addTarget:self action:@selector(displayImages:) forControlEvents:UIControlEventTouchUpInside]; 
-                    [headerView addSubview:myDetailButton];
+                    [sectionHeaderView addSubview:myDetailButton];
                 } else {
                     return nil;
                 }
@@ -416,13 +416,13 @@
                 if ([user.mayorOf count] < 1) {
                     return nil;
                 }
-                headerView.leftHeaderLabel.text = [NSString stringWithFormat:@"%d Mayorship%@", [user.mayorOf count], [user.mayorOf count] > 1 ? @"s" : @""];
+                sectionHeaderView.leftHeaderLabel.text = [NSString stringWithFormat:@"%d Mayorship%@", [user.mayorOf count], [user.mayorOf count] > 1 ? @"s" : @""];
                 break;
             case 3:
                 if ([user.badges count] < 1) {
                     return nil;
                 }
-                headerView.leftHeaderLabel.text = [NSString stringWithFormat:@"%d Badge%@", [user.badges count], [user.badges count] > 1 ? @"s" : @""];
+                sectionHeaderView.leftHeaderLabel.text = [NSString stringWithFormat:@"%d Badge%@", [user.badges count], [user.badges count] > 1 ? @"s" : @""];
                 break;
             case 4:
                 // hack
@@ -431,13 +431,13 @@
 //                    frame.size = CGSizeMake(frame.size.width, 18);
 //                    headerView.frame = frame;
 //                }
-                headerView.leftHeaderLabel.text = @"";
+                sectionHeaderView.leftHeaderLabel.text = @"";
                 break;
             default:
-                headerView.leftHeaderLabel.text = @"You shouldn't see this";
+                sectionHeaderView.leftHeaderLabel.text = @"You shouldn't see this";
                 break;
         }
-        return headerView;
+        return sectionHeaderView;
     }
 }
 

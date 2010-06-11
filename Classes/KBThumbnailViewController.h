@@ -10,7 +10,7 @@
 #import "Three20/Three20.h"
 
 
-@interface KBThumbnailViewController : TTThumbsViewController {
+@interface KBThumbnailViewController : TTThumbsViewController <TTThumbsViewControllerDelegate, TTThumbsTableViewCellDelegate> {
 
 }
 
