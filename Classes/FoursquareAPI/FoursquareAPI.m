@@ -360,6 +360,35 @@ static FoursquareAPI *sharedInstance = nil;
     //    [self.oauthAPI performMethod:@"/v1/checkin" withTarget:inTarget withParameters:params andAction:inAction doPost:YES];
 }
 
+// this method uses the user's default setting for sendToFacebook and sendToTwitter. 
+// this method is used when the view/method doesn't know (or care) what the user's setting is
+- (void) doCheckinAtVenueWithId:(NSString *)venueId andShout:(NSString *)shout offGrid:(BOOL)offGrid withTarget:(id)inTarget andAction:(SEL)inAction {
+    //	NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
+	NSMutableDictionary * requestParams = [[[NSMutableDictionary alloc] initWithCapacity:2] autorelease];
+    
+    //	[params addObject:[[MPURLRequestParameter alloc] initWithName:@"vid" andValue:venueId]];
+    
+    if (venueId) {
+        [requestParams setObject:venueId forKey:@"vid"];	
+    }
+	if(shout){
+		[requestParams setObject:shout forKey:@"shout"];	
+        //		[params addObject:[[MPURLRequestParameter alloc] initWithName:@"shout" andValue:shout]];
+	}
+	if(offGrid == YES){
+		[requestParams setObject:@"1" forKey:@"private"];	
+        //		[params addObject:[[MPURLRequestParameter alloc] initWithName:@"private" andValue:@"1"]];
+	} else {
+		[requestParams setObject:@"0" forKey:@"private"];	
+        //		[params addObject:[[MPURLRequestParameter alloc] initWithName:@"private" andValue:@"0"]];
+	}
+	[requestParams setObject:[NSString stringWithFormat:@"%f", [[KBLocationManager locationManager] latitude]]  forKey:@"geolat"];	
+	[requestParams setObject:[NSString stringWithFormat:@"%f", [[KBLocationManager locationManager] longitude]]  forKey:@"geolong"];	
+	DLog(@"checkin params: %@", requestParams);
+	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/checkin"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"POST"];
+    //    [self.oauthAPI performMethod:@"/v1/checkin" withTarget:inTarget withParameters:params andAction:inAction doPost:YES];
+}
+
 - (void) doSendFriendRequest:(NSString*)userId withTarget:(id)inTarget andAction:(SEL)inAction {
 //    NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];
 //    [params addObject:[[MPURLRequestParameter alloc] initWithName:@"uid" andValue:userId]];

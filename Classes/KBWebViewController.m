@@ -30,6 +30,7 @@
 
 - (void)viewDidLoad {
     
+	self.hideHeader = YES;
     self.hideFooter = YES;
     [super viewDidLoad];
 	[webView setDelegate:self];
@@ -44,21 +45,15 @@
 		//Load the request in the UIWebView.
 		[webView loadRequest:requestObj];
 	}
-	spinner = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(15, 15, 20, 20)];
-	[spinner retain];
-	[spinner setHidesWhenStopped:YES];
-	[spinner setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
-	[self.view addSubview:spinner];
-	
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
-	[spinner stopAnimating];
+	[self stopProgressBar];
 	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 
 }
 - (void)webViewDidStartLoad:(UIWebView *)webView {
-	[spinner startAnimating];
+	[self startProgressBar:@"Loading web page..."];
 	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 }
 
@@ -80,7 +75,6 @@
 
 
 - (void)dealloc {
-	[spinner release];
     [webView release];
     [urlString release];
     [super dealloc];

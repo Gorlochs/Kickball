@@ -48,6 +48,7 @@
 - (void) venueResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString;
 - (void) prepViewWithVenueInfo:(FSVenue*)venueToDisplay;
 - (void) pushProfileDetailController:(NSString*)profileUserId;
+- (void) presentCheckinOverlayWithCheckin:(FSCheckin*)aCheckin;
 
 @end
  
@@ -247,15 +248,36 @@
 
         [theTableView reloadData];
         
-        if (doCheckin) {
-            [self openCheckinView];
-        }
-        
         if (self.venue.specials != nil &&[self.venue.specials count] > 0) {
             specialsButton.hidden = NO;
         } else {
             specialsButton.hidden = YES;
         }
+		
+        if (doCheckin) {
+			[self startProgressBar:@"Checking into this venue..."];
+			[[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:venue.venueid 
+														  andShout:@""
+														   offGrid:NO
+														withTarget:self 
+														 andAction:@selector(checkinResponseReceived:withResponseString:)];
+        }
+    }
+}
+
+- (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+    DLog(@"instring: %@", inString);
+    FSCheckin *theCheckin = [[FoursquareAPI checkinFromResponseXML:inString] retain];
+	[self stopProgressBar];
+	
+	// it was either this or pull out the 
+    NSDictionary *userInfo = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:theCheckin, nil] 
+                                                         forKeys:[NSArray arrayWithObjects:@"checkin", nil]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"checkedIn" object:self userInfo:userInfo];
+    
+	self.venueToPush = theCheckin.venue;
+    if ([self getAuthenticatedUser].isPingOn) {
+        [self sendPushNotification];
     }
 }
 
@@ -882,33 +904,36 @@
     [vc release];
 }
 
-- (void) openCheckinView {
-    checkinViewController = [[KBCheckinModalViewController alloc] initWithNibName:@"CheckinModalView" bundle:nil];
-    checkinViewController.venue = venue;
-    [self presentModalViewController:checkinViewController animated:YES];
-}
+//- (void) openCheckinView {
+//    checkinViewController = [[KBCheckinModalViewController alloc] initWithNibName:@"CheckinModalView" bundle:nil];
+//    checkinViewController.venue = venue;
+//    [self presentModalViewController:checkinViewController animated:YES];
+//}
         
 - (void) presentCheckinOverlay:(NSNotification*)inNotification {
     NSDictionary *dictionary = [inNotification userInfo];
-    FSCheckin *ci = [dictionary objectForKey:@"checkin"];
+	[self presentCheckinOverlayWithCheckin:[dictionary objectForKey:@"checkin"]];
+}
+
+- (void) presentCheckinOverlayWithCheckin:(FSCheckin*)aCheckin {
     NSMutableString *checkinText = [[NSMutableString alloc] initWithCapacity:1];
-    if (ci.mayor.user == nil && [ci.mayor.mayorTransitionType isEqualToString:@"nochange"]) {
+    if (aCheckin.mayor.user == nil && [aCheckin.mayor.mayorTransitionType isEqualToString:@"nochange"]) {
         [checkinText appendFormat:[NSString stringWithFormat:@"You're still the mayor of %@! \n\n", venue.name]];
-    } else if ([ci.mayor.mayorTransitionType isEqualToString:@"stolen"] || [ci.mayor.mayorTransitionType isEqualToString:@"new"]) {
+    } else if ([aCheckin.mayor.mayorTransitionType isEqualToString:@"stolen"] || [aCheckin.mayor.mayorTransitionType isEqualToString:@"new"]) {
         if ([[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"stolen"]) {
             [checkinText appendFormat:[NSString stringWithFormat:@"Congrats! %@ is yours with %d check-ins and %@ lost their crown. \n\n", 
-                                      ci.venue.name, 
-                                      ci.mayor.numCheckins, 
-                                      ci.mayor.user.firstnameLastInitial]];
+                                      aCheckin.venue.name, 
+                                      aCheckin.mayor.numCheckins, 
+                                      aCheckin.mayor.user.firstnameLastInitial]];
         } else {
-            [checkinText appendFormat:[NSString stringWithFormat:@"%@ \n\n", ci.mayor.mayorCheckinMessage]];
+            [checkinText appendFormat:[NSString stringWithFormat:@"%@ \n\n", aCheckin.mayor.mayorCheckinMessage]];
         }
     }
-    for (FSBadge *badge in ci.badges) {
+    for (FSBadge *badge in aCheckin.badges) {
         [checkinText appendFormat:[NSString stringWithFormat:@"%@: %@ \n\n", badge.badgeName, badge.badgeDescription]];
     }
-    [checkinText appendFormat:@"%@ \n\n", ci.message];
-    for (FSScore *score in ci.scoring.scores) {
+    [checkinText appendFormat:@"%@ \n\n", aCheckin.message];
+    for (FSScore *score in aCheckin.scoring.scores) {
         [checkinText appendFormat:[NSString stringWithFormat:@"+%d %@ \n", score.points, score.message]];
     }
     DLog(@"checkin text: %@", checkinText);
@@ -917,10 +942,7 @@
     [checkinText release];
     [message release];
     
-    self.venueToPush = ci.venue;
-//    if (isPingOn) {
-//        [self sendPushNotification];
-//    }
+    self.venueToPush = aCheckin.venue;
 }
 
 - (void) setProperButtonStates {

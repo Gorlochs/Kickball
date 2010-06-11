@@ -13,7 +13,6 @@
     UIWebView *webView;
     NSString *urlString;
 	NSString *twitterUrlString;
-	UIActivityIndicatorView *spinner;
 }
 
 @property (nonatomic, retain) IBOutlet UIWebView *webView;
