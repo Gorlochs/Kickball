@@ -470,7 +470,27 @@
 }
 
 - (void) emailProfile {
-    [self displayActionSheet:@"Yes, open Mail app" withTag:2];
+	MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
+	controller.mailComposeDelegate = self;
+	
+	[controller setToRecipients:[NSArray arrayWithObject:user.email]];
+	[controller setSubject:@"Hello from your Kickball friend!"];
+	[self presentModalViewController:controller animated:YES];
+	[controller release];
+}
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller  
+		  didFinishWithResult:(MFMailComposeResult)result 
+						error:(NSError*)error;
+{
+	if (result == MFMailComposeResultSent) {
+		NSLog(@"It's away!");
+	}
+	[self dismissModalViewControllerAnimated:YES];
+	
+    KBMessage *msg = [[KBMessage alloc] initWithMember:@"Kickball Notification" andMessage:@"Your email has been sent."];
+    [self displayPopupMessage:msg];
+    [msg release];
 }
 
 - (void) viewProfilesTwitterFeed {
@@ -730,5 +750,6 @@
     DLog(@"error: %@", error);
     [self stopProgressBar];
 }
+
 
 @end

@@ -7,13 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
 #import "FSUser.h"
 #import "KBTwitterViewController.h"
 #import "MGTwitterEngineDelegate.h"
 #import "FSCheckin.h"
 #import "BlackTableCellHeader.h"
 
-@interface ProfileViewController : KBTwitterViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, MGTwitterEngineDelegate> {
+
+@interface ProfileViewController : KBTwitterViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, MGTwitterEngineDelegate, MFMailComposeViewControllerDelegate> {
     IBOutlet UITableViewCell *badgeCell;
     IBOutlet UITableViewCell *addFriendCell;
     IBOutlet UITableViewCell *friendActionCell;
