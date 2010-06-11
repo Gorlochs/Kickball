@@ -210,7 +210,11 @@ static BOOL initialized = NO;
         [request setPostValue:[[FoursquareAPI sharedInstance] currentUser].firstnameLastInitial forKey:@"gift[owner_name]"];
         [request setPostValue:message ? message : @"" forKey:@"gift[message_text]"];
         [request setPostValue:[tagKey stringValue] forKey:@"gift[iphone_orientation]"];
-        [request setData:imageData withFileName:filename andContentType:@"image/jpeg" forKey:@"gift[photo]"];
+		if ([filename isEqualToString:@"tweet.jpg"]) {
+			[request setData:imageData withFileName:filename andContentType:@"image/jpeg" forKey:@"gift[photo]"];
+		} else {
+			[request setData:imageData withFileName:filename andContentType:@"image/png" forKey:@"gift[photo]"];
+		}
         [request setDidFailSelector:@selector(imageRequestWentWrong:)];
         [request setTimeOutSeconds:500];
         [networkQueue addOperation:request];

@@ -65,9 +65,10 @@
 
 - (void) submitTweet {
     
+	[tweetTextView resignFirstResponder];
     [self startProgressBar:@"Submitting..."];
     [self dismissModalViewControllerAnimated:YES];
-    actionCount = 1 + isFoursquareOn + isFacebookOn + photoImage != nil;
+    actionCount = 1;
     
     // TODO: add shortened url to tweet, if there is a photo, which means all this will have to be reordered
 	// NOTE: I am using the standard sendUpdate call to send DMs. sendDirectMessage wasn't working properly and this works just as well.
@@ -88,12 +89,14 @@
     }
     
     if (isFacebookOn && [[KBAccountManager sharedInstance] usesFacebook]) {
+		actionCount++;
         DLog(@"facebook  is on and the status will be updated (hopefully)");
         NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:tweetTextView.text, @"status", nil];
         [[FBRequest requestWithDelegate:self] call:@"facebook.status.set" params:params dataParam:nil];
     }
     
     if (isFoursquareOn) {
+		actionCount++;
         [[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:nil 
                                                       andShout:tweetTextView.text 
                                                        offGrid:NO
@@ -104,8 +107,15 @@
     }
     
     if (photoImage) {
-        [photoManager uploadImage:UIImageJPEGRepresentation(photoImage, 1.0) 
-                         filename:@"tweet.jpg" 
+		actionCount++;
+		NSData *data = UIImageJPEGRepresentation(photoImage, 1.0);
+		NSString *filename = @"tweet.jpg";
+		if (!data) {
+			data = UIImagePNGRepresentation(photoImage);
+			filename = @"tweet.png";
+		}
+        [photoManager uploadImage:data
+                         filename:filename
                         withWidth:photoImage.size.width 
                         andHeight:photoImage.size.height
                        andMessage:tweetTextView.text
@@ -115,26 +125,23 @@
     
 }
 
+// twitter response
 - (void)statusesReceived:(NSArray *)statuses {
     [self decrementActionCount];
 }
 
+// foursquare response
 - (void)shoutResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     [self decrementActionCount];
 }
 
+// facebook response
 - (void)request:(FBRequest*)request didLoad:(id)result {
     if ([request.method isEqualToString:@"facebook.status.set"]) {
         NSDictionary* info = result;
         DLog(@"facebook status updated: %@", info);
     }
     [self decrementActionCount];
-}
-
-- (void) cancelCreate {
-    [tweetTextView resignFirstResponder];
-    [self dismissModalViewControllerAnimated:YES];
-    //[self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void) decrementActionCount {
@@ -145,7 +152,6 @@
 }
 
 - (void) closeUpShop {
-	[tweetTextView resignFirstResponder];
     [self stopProgressBar];
 	[self backOneView];
 }

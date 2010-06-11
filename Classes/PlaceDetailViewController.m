@@ -208,16 +208,16 @@
     [theTableView reloadData];
 }
 
-//- (void) displayImages:(id)sender {
-//    int buttonPressedIndex = ((UIButton *)sender).tag;
-//    MockPhotoSource *thePhotoSource = [[KickballAPI kickballApi] convertGoodiesIntoPhotoSource:goodies withTitle:venue.name];
-//    KBPhotoViewController *photoController = [[KBPhotoViewController alloc] initWithPhotoSource:thePhotoSource];
-//    photoController.centerPhoto = [thePhotoSource photoAtIndex:buttonPressedIndex];  // sets the photo displayer to the correct image
-//    photoController.goodies = goodies;
-//    [self.navigationController pushViewController:photoController animated:YES];
-//    [photoController release];
-//}
-//
+- (void) displayImages:(id)sender {
+    int buttonPressedIndex = ((UIButton *)sender).tag;
+    MockPhotoSource *thePhotoSource = [[KickballAPI kickballApi] convertGoodiesIntoPhotoSource:goodies withTitle:venue.name];
+    KBPhotoViewController *photoController = [[KBPhotoViewController alloc] initWithPhotoSource:thePhotoSource];
+    photoController.centerPhoto = [thePhotoSource photoAtIndex:buttonPressedIndex];  // sets the photo displayer to the correct image
+    photoController.goodies = goodies;
+    [self.navigationController pushViewController:photoController animated:YES];
+    [photoController release];
+}
+
 //- (void) displayAllImages {
 //    [FlurryAPI logEvent:@"View All Photos"];
 //    MockPhotoSource *thePhotoSource = [[KickballAPI kickballApi] convertGoodiesIntoPhotoSource:goodies withTitle:venue.name];
@@ -841,12 +841,12 @@
 
 #pragma mark IBAction methods
 
-- (void) viewPhotos {
-    MockPhotoSource *thePhotoSource = [[KickballAPI kickballApi] convertGoodiesIntoPhotoSource:goodies withTitle:venue.name];
-    KBPhotoViewController *photoController = [[KBPhotoViewController alloc] initWithPhotoSource:thePhotoSource];
-    [self.navigationController pushViewController:photoController animated:YES];
-    [photoController release]; 
-}
+//- (void) viewPhotos {
+//    MockPhotoSource *thePhotoSource = [[KickballAPI kickballApi] convertGoodiesIntoPhotoSource:goodies withTitle:venue.name];
+//    KBPhotoViewController *photoController = [[KBPhotoViewController alloc] initWithPhotoSource:thePhotoSource];
+//    [self.navigationController pushViewController:photoController animated:YES];
+//    [photoController release]; 
+//}
 
 - (void) viewThumbnails {
     MockPhotoSource *thePhotoSource = [[KickballAPI kickballApi] convertGoodiesIntoPhotoSource:goodies withTitle:venue.name];
@@ -856,7 +856,6 @@
 	thumbsController.photoSource = thePhotoSource;
     thumbsController.navigationBarStyle = UIBarStyleBlackOpaque;
     thumbsController.statusBarStyle = UIStatusBarStyleBlackOpaque;
-//	thumbsController.delegate = self;
     [self.navigationController pushViewController:thumbsController animated:YES];
     [thumbsController release]; 
 }

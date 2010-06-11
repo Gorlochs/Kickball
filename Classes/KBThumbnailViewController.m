@@ -15,18 +15,13 @@
 - (void)viewWillAppear:(BOOL)animated {
 	
 	[super viewWillAppear:animated];
-	UINavigationController* navController = self.navigationController;
 	
-	navController.navigationBar.barStyle = UIBarStyleBlackOpaque;
-	
+	// FYI: this sucks moose balls
+	self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
+    self.navigationController.navigationBarHidden = NO;
+    self.navigationController.navigationBar.hidden = NO;
 	[self setWantsFullScreenLayout:YES];
-}
-
-- (void) viewDidLoad {
-    [super viewDidLoad];
-    self.delegate = self;
-	self.navigationController.navigationBar.hidden = NO;
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
+	[self.tableView setContentOffset:CGPointMake(0, -10)];
 }
 
 - (TTPhotoViewController*)createPhotoViewController { 
