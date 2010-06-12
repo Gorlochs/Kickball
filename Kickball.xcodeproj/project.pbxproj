@@ -53,6 +53,7 @@
 		0E86F8D211C2B8710070C9D4 /* FacebookProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E86F8CC11C2B8710070C9D4 /* FacebookProxy.m */; };
 		0E86F8D311C2B8710070C9D4 /* GraphAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E86F8CE11C2B8710070C9D4 /* GraphAPI.m */; };
 		0E86F8D411C2B8710070C9D4 /* GraphObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E86F8D011C2B8710070C9D4 /* GraphObject.m */; };
+		0E86FACD11C330B10070C9D4 /* KBFacebookNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E86FACC11C330B10070C9D4 /* KBFacebookNewsCell.m */; };
 		1D3623260D0F684500981E51 /* KickballAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* KickballAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -807,6 +808,8 @@
 		0E86F8CE11C2B8710070C9D4 /* GraphAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphAPI.m; sourceTree = "<group>"; };
 		0E86F8CF11C2B8710070C9D4 /* GraphObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphObject.h; sourceTree = "<group>"; };
 		0E86F8D011C2B8710070C9D4 /* GraphObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphObject.m; sourceTree = "<group>"; };
+		0E86FACB11C330B10070C9D4 /* KBFacebookNewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBFacebookNewsCell.h; sourceTree = "<group>"; };
+		0E86FACC11C330B10070C9D4 /* KBFacebookNewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBFacebookNewsCell.m; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* KickballAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KickballAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* KickballAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KickballAppDelegate.m; sourceTree = "<group>"; };
@@ -3387,6 +3390,8 @@
 				0E76C3FF11C15F6E00BA1E89 /* KBFacebookListViewController.m */,
 				0E76C4C411C185A700BA1E89 /* KBFacebookLoginView.h */,
 				0E76C4C511C185A700BA1E89 /* KBFacebookLoginView.m */,
+				0E86FACB11C330B10070C9D4 /* KBFacebookNewsCell.h */,
+				0E86FACC11C330B10070C9D4 /* KBFacebookNewsCell.m */,
 			);
 			name = Facebook;
 			sourceTree = "<group>";
@@ -4213,6 +4218,7 @@
 				0E86F8D211C2B8710070C9D4 /* FacebookProxy.m in Sources */,
 				0E86F8D311C2B8710070C9D4 /* GraphAPI.m in Sources */,
 				0E86F8D411C2B8710070C9D4 /* GraphObject.m in Sources */,
+				0E86FACD11C330B10070C9D4 /* KBFacebookNewsCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

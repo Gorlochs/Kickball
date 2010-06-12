@@ -45,6 +45,8 @@ extern NSString* const kFBRedirectURI;
 	FBDataDialog* _permissionDialog;
 	GraphAPI *_meGraph;
 	GraphObject* _me;
+	
+	NSMutableDictionary *pictureUrls;
 }
 
 @property (nonatomic, retain) FBSession* _session;
@@ -64,6 +66,7 @@ extern NSString* const kFBRedirectURI;
 
 @property (nonatomic, retain) FBLoginDialog* _loginDialog;
 @property (nonatomic, retain) FBDataDialog* _permissionDialog;
+@property (nonatomic, retain) NSMutableDictionary *pictureUrls;
 
 
 +(FacebookProxy*)instance;

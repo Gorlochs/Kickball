@@ -120,6 +120,8 @@ NSString* const kKeyAccessToken = @"kKeyAccessToken";
 @synthesize _loginDialog;
 @synthesize _permissionDialog;
 
+@synthesize pictureUrls;
+
 #pragma mark Singleton Methods
 
 static FacebookProxy* gFacebookProxy = NULL;
@@ -156,6 +158,7 @@ static FacebookProxy* gFacebookProxy = NULL;
 		self._accessTokenConnection = nil;
 		self._loginDialog = nil;
 		self._permissionDialog = nil;
+		self.pictureUrls = [[NSMutableDictionary alloc] init];
 	}
 	return self;
 }
@@ -192,7 +195,7 @@ static FacebookProxy* gFacebookProxy = NULL;
 	[_loginDialog release];
 	_permissionDialog.delegate = nil;
 	[_permissionDialog release];
-	
+	[pictureUrls release];
 	[super dealloc];
 }
 
@@ -227,6 +230,7 @@ static FacebookProxy* gFacebookProxy = NULL;
 			if ( gFacebookProxy != nil )
 				[gFacebookProxy release];			
 			gFacebookProxy = [[NSKeyedUnarchiver unarchiveObjectWithData:dataRepresentingSavedObject] retain];
+			gFacebookProxy.pictureUrls = [[NSMutableDictionary alloc] init];
 		}
 		else
 		{
@@ -719,5 +723,6 @@ static FacebookProxy* gFacebookProxy = NULL;
 	}
 	return [_meGraph newsFeed:@"me"];
 }
+
 
 @end

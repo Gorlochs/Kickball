@@ -7,7 +7,7 @@
 //
 
 #import "KBFacebookListViewController.h"
-#import "KBTweetTableCell320.h"
+#import "KBFacebookNewsCell.h"
 #import "KBFacebookLoginView.h"
 #import "FacebookProxy.h"
 #import "GraphObject.h"
@@ -118,12 +118,12 @@
     
     static NSString *CellIdentifier = @"Cell";
     
-    KBTweetTableCell320 *cell = (KBTweetTableCell320*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    KBFacebookNewsCell *cell = (KBFacebookNewsCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	if (cell == nil) {
-        cell = [[[KBTweetTableCell320 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[KBFacebookNewsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
 	}
 	GraphObject *fbItem = [newsFeed objectAtIndex:indexPath.row];
-	//cell.userIcon.urlPath = tweet.profileImageUrl;
+	cell.fbPictureUrl = [(NSDictionary*)[fbItem propertyWithKey:@"from"] objectForKey:@"id"];
 	cell.userName.text = [(NSDictionary*)[fbItem propertyWithKey:@"from"] objectForKey:@"name"]; //tweet.screenName;
 	//cell.tweetText.numberOfLines = 0;
 	//cell.tweetText.text = tweet.tweetText;
