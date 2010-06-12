@@ -19,7 +19,7 @@
 #import "KBCheckinModalViewController.h"
 
 
-@interface PlaceDetailViewController : AbstractPushNotificationViewController <TTThumbsTableViewCellDelegate, TTThumbsViewControllerDelegate, PhotoManagerDelegate, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate, GAConnectionDelegate, UIActionSheetDelegate> {
+@interface PlaceDetailViewController : AbstractPushNotificationViewController <PhotoManagerDelegate, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate, GAConnectionDelegate, UIActionSheetDelegate> {
     IBOutlet UITableViewCell *checkinCell;
     IBOutlet KBPhotoThumbnailCell *giftCell;
     IBOutlet UITableViewCell *mayorMapCell;
@@ -102,7 +102,6 @@
 - (IBAction) callVenue;
 - (IBAction) uploadImageToServer;
 - (IBAction) showTwitterFeed;
-- (IBAction) togglePingsAndTwitter;
 - (IBAction) doGeoAPICall;
 - (IBAction) doCityGridCall;
 - (IBAction) showSpecial;
@@ -112,10 +111,10 @@
 - (IBAction) markVenueClosed;
 - (IBAction) closeMap;
 - (IBAction) choosePhotoSelectMethod;
-- (IBAction) viewPhotos;
+//- (IBAction) viewPhotos;
 - (IBAction) viewThumbnails;
-- (IBAction) displayAllImages;
-- (IBAction) openCheckinView;
+//- (IBAction) displayAllImages;
+//- (IBAction) openCheckinView;
 - (IBAction) closeSpecialView;
 - (IBAction) showNextSpecial;
 - (IBAction) showPreviousSpecial;

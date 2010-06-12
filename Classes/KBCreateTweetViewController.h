@@ -48,7 +48,7 @@
 @property (nonatomic, retain) NSString *directMentionToScreenname;
 
 - (IBAction) submitTweet;
-- (IBAction) cancelCreate;
+//- (IBAction) cancelCreate;
 - (IBAction) toggleFacebook;
 - (IBAction) toggleFoursquare;
 - (IBAction) toggleGeotag;

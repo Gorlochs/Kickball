@@ -124,10 +124,10 @@
 //    return (FSVenue*) [venuesForSection objectAtIndex:indexPath.row];
 //}
 
-- (void) checkListings {
-    //[newPlaceName resignFirstResponder];
-    [self checkinToNewVenue];
-}
+//- (void) checkListings {
+//    //[newPlaceName resignFirstResponder];
+//    [self checkinToNewVenue];
+//}
 
 - (void) doVenuelessCheckin {
     if ([venue.name isEqualToString:@""]){

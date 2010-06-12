@@ -276,6 +276,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"checkedIn" object:self userInfo:userInfo];
     
 	self.venueToPush = theCheckin.venue;
+	[theCheckin release];
     if ([self getAuthenticatedUser].isPingOn) {
         [self sendPushNotification];
     }

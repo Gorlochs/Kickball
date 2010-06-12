@@ -711,7 +711,9 @@ static FoursquareAPI *sharedInstance = nil;
     }
 	NSMutableArray *categories = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
     for (NSDictionary *dict in [responseDictionary objectForKey:@"categories"]) {
-        [categories addObject:[[self parseCategoryFromDictionary:dict] retain]];
+		FSCategory *cat = [self parseCategoryFromDictionary:dict];
+        [categories addObject:[cat retain]];
+		[cat release];
 //        DLog(@"*************************** categories: %@ ***************************", dict);
 //        for (NSDictionary *cat in [dict objectForKey:@"categories"]) {
 //            DLog(@"inside cat: %@", cat);
@@ -721,7 +723,7 @@ static FoursquareAPI *sharedInstance = nil;
 }
 
 + (FSCategory*) parseCategoryFromDictionary:(NSDictionary*)dictionary {
-    FSCategory *category = [[FSCategory alloc] init];
+    FSCategory *category = [[[FSCategory alloc] init] autorelease];
     category.fullPathName = [dictionary objectForKey:@"fullpathname"];
     category.iconUrl = [dictionary objectForKey:@"iconurl"];
     category.categoryId = [dictionary objectForKey:@"id"];
@@ -730,7 +732,9 @@ static FoursquareAPI *sharedInstance = nil;
         NSArray *arrayOfDictionaries = [dictionary objectForKey:@"categories"];
         NSMutableArray *subcategories = [[NSMutableArray alloc] initWithCapacity:[arrayOfDictionaries count]];
         for (NSDictionary *subcatDict in [dictionary objectForKey:@"categories"]) {
-            [subcategories addObject:[[self parseCategoryFromDictionary:subcatDict] retain]];
+			FSCategory *cat = [self parseCategoryFromDictionary:subcatDict];
+            [subcategories addObject:[cat retain]];
+			[cat release];
         }
         category.subcategories = [NSArray arrayWithArray:subcategories];
         [subcategories release];
@@ -739,21 +743,21 @@ static FoursquareAPI *sharedInstance = nil;
 }
 
 // TODO: this might have a memory leak in it, but it's not currently being used
-+ (FSUser *) loggedInUserFromResponseXML:(NSString *) inString{
-	NSError * err;
-	CXMLDocument *userParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
-	DLog(@"%@", [err description]);
-
-	FSUser *user = nil;
-	NSArray *allUserAttrs = [userParser nodesForXPath:@"user" error:nil];
-	for (CXMLElement *usrAttr in allUserAttrs) {
-		user = [[FoursquareAPI _userFromNode:usrAttr] retain];
-        break;
-	}
-    [userParser release];
-	
-	return user;
-}
+//+ (FSUser *) loggedInUserFromResponseXML:(NSString *) inString{
+//	NSError * err;
+//	CXMLDocument *userParser = [[CXMLDocument alloc] initWithXMLString:inString options:0 error:&err];
+//	DLog(@"%@", [err description]);
+//
+//	FSUser *user = nil;
+//	NSArray *allUserAttrs = [userParser nodesForXPath:@"user" error:nil];
+//	for (CXMLElement *usrAttr in allUserAttrs) {
+//		user = [[FoursquareAPI _userFromNode:usrAttr] autorelease];
+//        break;
+//	}
+//    [userParser release];
+//	
+//	return user;
+//}
 
 + (FSVenue *) venueFromResponseXML:(NSString *) inString{
 	
