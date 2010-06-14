@@ -42,7 +42,7 @@
 		tweetTextView.text = [NSString stringWithFormat:@"D @%@ ", self.directMentionToScreenname];
 	}
     [tweetTextView becomeFirstResponder];
-    tweetTextView.font = [UIFont fontWithName:@"Georgia" size:12.0];
+    tweetTextView.font = [UIFont fontWithName:@"Helvetica" size:12.0];
     
     
     // FIXME: this is wrong. we need to pull the user's twitter geo settings

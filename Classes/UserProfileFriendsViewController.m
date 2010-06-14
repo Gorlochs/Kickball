@@ -31,7 +31,7 @@
     [checkinHistoryButton setImage:[UIImage imageNamed:@"myProfileHistoryTab03.png"] forState:UIControlStateNormal];
 	
 	filterType = KBFriendsFilterAll;
-    [friendToggle addTarget:self action:@selector(filterFriendsList) forControlEvents:UIControlEventValueChanged];
+    //[friendToggle addTarget:self action:@selector(filterFriendsList) forControlEvents:UIControlEventValueChanged];
 	
 	for (FSUser *theUser in friends) {
 		if (theUser.sendsPingsToSignedInUser) {
@@ -58,14 +58,14 @@
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 1;
 }
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	if (section == 1) {
-		return 1;
-	} else {
+//	if (section == 1) {
+//		return 1;
+//	} else {
 		if (filterType == KBFriendsFilterAll) {
 			return [friends count];
 		} else if (filterType == KBFriendsFilterPing) {
@@ -73,7 +73,7 @@
 		} else {
 			return [friends count] - numFriendsWithPings;
 		}
-	}
+//	}
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -104,9 +104,9 @@
         [bottomLineImage release];
     }
     
-	if (indexPath.section == 1) {
-		return friendToggleCell;
-	} else {
+//	if (indexPath.section == 1) {
+//		return friendToggleCell;
+//	} else {
 		FSUser *theUser = (FSUser*)[friends objectAtIndex:indexPath.row];
 		if (filterType == KBFriendsFilterAll || (filterType == KBFriendsFilterPing && theUser.sendsPingsToSignedInUser) || (filterType == KBFriendsFilterNoPing && !theUser.sendsPingsToSignedInUser)) {
 			
@@ -130,7 +130,7 @@
 		} else {
 			return nil;
 		}
-	}
+//	}
 }
 
 

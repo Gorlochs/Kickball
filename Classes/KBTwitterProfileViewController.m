@@ -47,7 +47,7 @@
     numberOfTweets.text = [NSString stringWithFormat:@"%d", [[userDictionary objectForKey:@"statuses_count"] intValue]];
     numberOfFavorites.text = [NSString stringWithFormat:@"%d", [[[userDictionary objectForKey:@"status"] objectForKey:@"favorited"] intValue]];
     
-    description.font = [UIFont fontWithName:@"Georgia" size:12.0];
+    description.font = [UIFont fontWithName:@"Helvetica" size:12.0];
     description.text = [userDictionary objectForKey:@"description"];
     
     CGRect frame = CGRectMake(13, 65, 39, 39);

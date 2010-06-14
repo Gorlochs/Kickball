@@ -150,7 +150,7 @@
 	KBTweet *tweet = [tweets objectAtIndex:indexPath.row];
 	
 	CGSize maximumLabelSize = CGSizeMake(250, MAX_LABEL_HEIGHT);
-	CGSize expectedLabelSize = [tweet.tweetText sizeWithFont:[UIFont fontWithName:@"Georgia" size:12.0]
+	CGSize expectedLabelSize = [tweet.tweetText sizeWithFont:[UIFont fontWithName:@"Helvetica" size:12.0]
 										   constrainedToSize:maximumLabelSize 
 											   lineBreakMode:UILineBreakModeWordWrap];
 	
@@ -196,6 +196,7 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [theTableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 0) {
         [theTableView deselectRowAtIndexPath:indexPath animated:YES];
         KBTwitterDetailViewController *detailViewController = [[KBTwitterDetailViewController alloc] initWithNibName:@"KBTwitterDetailViewController" bundle:nil];

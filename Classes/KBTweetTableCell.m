@@ -50,7 +50,7 @@
         
         tweetText = [[IFTweetLabel alloc] initWithFrame:CGRectMake(66, 25, 250, 70)];
         tweetText.textColor = [UIColor colorWithWhite:0.3 alpha:1.0];
-        tweetText.font = [UIFont fontWithName:@"Georgia" size:12.0];
+        tweetText.font = [UIFont fontWithName:@"Helvetica" size:12.0];
         tweetText.backgroundColor = [UIColor clearColor];
         tweetText.linksEnabled = YES;
         tweetText.numberOfLines = 0;

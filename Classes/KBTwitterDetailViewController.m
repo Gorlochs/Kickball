@@ -36,7 +36,7 @@
     
 	
 	TTStyledTextLabel* label1 = [[[TTStyledTextLabel alloc] initWithFrame:CGRectMake(20, 105, 270, 100)] autorelease];
-	label1.font = [UIFont fontWithName:@"Georgia" size:14.0];
+	label1.font = [UIFont fontWithName:@"Helvetica" size:14.0];
 	label1.text = [TTStyledText textWithURLs:tweet.tweetText lineBreaks:NO];
 	label1.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
 	label1.backgroundColor = [UIColor clearColor];
@@ -46,7 +46,7 @@
 	/*
     mainTextLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(20, 105, 270, 100)];
     mainTextLabel.textColor = [UIColor colorWithWhite:0.3 alpha:1.0];
-    mainTextLabel.font = [UIFont fontWithName:@"Georgia" size:13.0];
+    mainTextLabel.font = [UIFont fontWithName:@"Helvetica" size:13.0];
     mainTextLabel.backgroundColor = [UIColor clearColor];
     mainTextLabel.linksEnabled = YES;
     mainTextLabel.numberOfLines = 0;

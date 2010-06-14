@@ -31,7 +31,7 @@
     pageType = KBPageTypeOther;
     [super viewDidLoad];
     [theTextView becomeFirstResponder];
-    theTextView.font = [UIFont fontWithName:@"Georgia" size:12.0];
+    theTextView.font = [UIFont fontWithName:@"Helvetica" size:12.0];
     
     FSUser* user = [self getAuthenticatedUser];
     facebookButton.enabled = user.facebook != nil;
