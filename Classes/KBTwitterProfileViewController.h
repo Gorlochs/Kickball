@@ -12,7 +12,6 @@
 #import "KBTwitterManagerDelegate.h"
 #import "KBUserTweetsViewController.h"
 
-@class KBTwitterUserListViewController;
 
 @interface KBTwitterProfileViewController : KBTwitterViewController <KBTwitterManagerDelegate> {
     IBOutlet UILabel *screenNameLabel;
@@ -33,10 +32,6 @@
     NSString *screenname;
     NSDictionary *userDictionary;
 	KBTwitterManager *twitterManager;
-    
-    KBTwitterUserListViewController *followersController;
-    KBTwitterUserListViewController *friendsController;
-    KBUserTweetsViewController *recentTweetsController;
 }
 
 @property (nonatomic, retain) NSString *screenname;
@@ -47,5 +42,6 @@
 - (IBAction) follow;
 - (IBAction) unfollow;
 - (IBAction) sendDirectMessage;
+- (IBAction) sendTweet;
 
 @end

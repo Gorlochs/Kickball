@@ -78,24 +78,27 @@
 
 
 - (void) viewRecentTweets {
-	recentTweetsController = [[KBUserTweetsViewController alloc] initWithNibName:@"KBUserTweetsViewController" bundle:nil];
-    recentTweetsController.userDictionary = userDictionary;
+	KBUserTweetsViewController *recentTweetsController = [[KBUserTweetsViewController alloc] initWithNibName:@"KBUserTweetsViewController" bundle:nil];
+    recentTweetsController.userDictionary = [userDictionary retain];
     recentTweetsController.username = [userDictionary objectForKey:@"screen_name"];
 	[self.navigationController pushViewController:recentTweetsController animated:YES];
+    [recentTweetsController release];
 }
 
 - (void) viewFollowers {
-	followersController = [[KBTwitterUserListViewController alloc] initWithNibName:@"KBTwitterUserListViewController" bundle:nil];
-    followersController.userDictionary = userDictionary;
+	KBTwitterUserListViewController *followersController = [[KBTwitterUserListViewController alloc] initWithNibName:@"KBTwitterUserListViewController" bundle:nil];
+    followersController.userDictionary = [userDictionary retain];
     followersController.userType = KBTwitterUserFollower;
 	[self.navigationController pushViewController:followersController animated:YES];
+    [followersController release];
 }
 
 - (void) viewFriends {
-	friendsController = [[KBTwitterUserListViewController alloc] initWithNibName:@"KBTwitterUserListViewController" bundle:nil];
-    friendsController.userDictionary = userDictionary;
+	KBTwitterUserListViewController *friendsController = [[KBTwitterUserListViewController alloc] initWithNibName:@"KBTwitterUserListViewController" bundle:nil];
+    friendsController.userDictionary = [userDictionary retain];
     friendsController.userType = KBTwitterUserFriend;
 	[self.navigationController pushViewController:friendsController animated:YES];
+    [friendsController release];
 }
 
 - (void) follow {
@@ -109,7 +112,14 @@
 - (void) sendDirectMessage {
     KBCreateTweetViewController *tweetController = [[KBCreateTweetViewController alloc] initWithNibName:@"KBCreateTweetViewController" bundle:nil];
 	tweetController.directMentionToScreenname = screenname;
-	[self.navigationController pushViewController:friendsController animated:YES];
+	[self.navigationController pushViewController:tweetController animated:YES];
+	[tweetController release];
+}
+
+- (void) sendTweet {
+    KBCreateTweetViewController *tweetController = [[KBCreateTweetViewController alloc] initWithNibName:@"KBCreateTweetViewController" bundle:nil];
+	tweetController.replyToScreenName = screenname;
+	[self.navigationController pushViewController:tweetController animated:YES];
 	[tweetController release];
 }
 
@@ -147,9 +157,6 @@
     [userDictionary release];
     [twitterManager release];
     
-    [recentTweetsController release];
-    [friendsController release];
-    [followersController release];
     [super dealloc];
 }
 

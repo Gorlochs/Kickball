@@ -28,7 +28,6 @@
         noResultsView.hidden = YES;
     }
     
-    [self startProgressBar:@"Retrieving more tweets..."];
     [self showStatuses];
     
     [timelineButton setImage:[UIImage imageNamed:@"tabTweets03.png"] forState:UIControlStateNormal];
@@ -113,6 +112,7 @@
 }
 
 - (void) executeQuery:(int)pageNumber {
+    [self startProgressBar:@"Retrieving more tweets..."];
     [twitterEngine getSearchResultsForQuery:theSearchBar.text sinceID:0 startingAtPage:pageNumber count:25];
 }
 

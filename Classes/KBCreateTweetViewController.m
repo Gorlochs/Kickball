@@ -42,8 +42,9 @@
 		tweetTextView.text = [NSString stringWithFormat:@"D @%@ ", self.directMentionToScreenname];
 	}
     [tweetTextView becomeFirstResponder];
-    tweetTextView.font = [UIFont fontWithName:@"Helvetica" size:12.0];
+    tweetTextView.font = [UIFont fontWithName:@"Helvetica" size:13.0];
     
+    characterCountLabel.text = [NSString stringWithFormat:@"%d/140", [tweetTextView.text length]];
     
     // FIXME: this is wrong. we need to pull the user's twitter geo settings
     isGeotagOn = YES;
