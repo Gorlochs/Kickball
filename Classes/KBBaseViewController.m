@@ -54,19 +54,18 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
     [appDelegate.pushNotificationUserId addObserver:self forKeyPath:@"pushUserId" options:0 context:nil];
     
     if (!self.hideHeader) {
+        NSArray *nibViews = nil;
 		if (appDelegate.navControllerType == KBNavControllerTypeFoursquare) {
-			NSArray* nibViews =  [[NSBundle mainBundle] loadNibNamed:HEADER_NIB_FOURSQUARE owner:self options:nil];
-			headerView = (FoursquareHeaderView*)[nibViews objectAtIndex:0];
-			[self.view addSubview:headerView];
+			nibViews =  [[NSBundle mainBundle] loadNibNamed:HEADER_NIB_FOURSQUARE owner:self options:nil];
 		} else if (appDelegate.navControllerType == KBNavControllerTypeTwitter) {
-			NSArray* nibViews =  [[NSBundle mainBundle] loadNibNamed:HEADER_NIB_TWITTER owner:self options:nil];
-			headerView = (FoursquareHeaderView*)[nibViews objectAtIndex:0];
-			[self.view addSubview:headerView];
+			nibViews =  [[NSBundle mainBundle] loadNibNamed:HEADER_NIB_TWITTER owner:self options:nil];
 		} else if (appDelegate.navControllerType == KBNavControllerTypeFacebook) {
-			//NSArray* nibViews =  [[NSBundle mainBundle] loadNibNamed:HEADER_NIB_FOURSQUARE owner:self options:nil];
-			//headerView = (FoursquareHeaderView*)[nibViews objectAtIndex:0];
-			//[self.view addSubview:headerView];
-		}
+			//nibViews =  [[NSBundle mainBundle] loadNibNamed:HEADER_NIB_FOURSQUARE owner:self options:nil];
+        }
+        if (nibViews) {
+            headerView = (FoursquareHeaderView*)[nibViews objectAtIndex:0];
+            [self.view addSubview:headerView];   
+        }
     }
 	
     if (!self.hideFooter) {

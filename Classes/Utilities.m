@@ -143,6 +143,13 @@ static Utilities *sharedInstance = nil;
     return image;
 }
 
+#pragma mark -
+#pragma mark Retrieve ping-on friends
+
+// because the 4sq API doesn't is lacking, we have to retrieve all the user's friends
+// and then loop through each one in order to find get_pings for each user
+// NOTE: this specifies whether the logged-in user is to receive pings from their friend.
+
 - (NSMutableArray*) friendsWithPingOn {
     if (friendsWithPingOn) {
         return friendsWithPingOn;

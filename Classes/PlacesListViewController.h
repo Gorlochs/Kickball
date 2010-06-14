@@ -19,6 +19,7 @@ typedef enum {
     IBOutlet UITableViewCell *searchCell;
     IBOutlet UITextField *searchbox;
     IBOutlet UITableViewCell *footerCell;
+    IBOutlet UIView *noResultsView;
     NSDictionary *venues;
     KBListType venuesTypeToDisplay;
     bool isSearchEmpty;

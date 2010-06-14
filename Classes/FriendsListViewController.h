@@ -27,7 +27,7 @@
     IBOutlet UIView *noNetworkView;
     IBOutlet InstructionView *instructionView;
     IBOutlet UITableViewCell *footerViewCell;
-    IBOutlet UITableViewCell *shoutCell;
+    //IBOutlet UITableViewCell *shoutCell;
     
     int welcomePageNum;
     IBOutlet UIButton *nextWelcomeImage;

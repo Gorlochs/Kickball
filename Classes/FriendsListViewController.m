@@ -28,14 +28,13 @@
 #import "KBAccountManager.h"
 
 
-#define SECTION_RECENT_CHECKINS 1
-#define SECTION_TODAY_CHECKINS 2
-#define SECTION_YESTERDAY_CHECKINS 3
-#define SECTION_NONCITY_RECENT_CHECKINS 4
-#define SECTION_NONCITY_TODAY_CHECKINS 5
-#define SECTION_NONCITY_YESTERDAY_CHECKINS 6
-#define SECTION_FOOTER 7
-#define SECTION_SHOUT 0
+#define SECTION_RECENT_CHECKINS 0
+#define SECTION_TODAY_CHECKINS 1
+#define SECTION_YESTERDAY_CHECKINS 2
+#define SECTION_NONCITY_RECENT_CHECKINS 3
+#define SECTION_NONCITY_TODAY_CHECKINS 4
+#define SECTION_NONCITY_YESTERDAY_CHECKINS 5
+#define SECTION_FOOTER 6
 
 @interface FriendsListViewController (Private)
 
@@ -226,7 +225,7 @@
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 8;
+    return 7;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -243,8 +242,6 @@
     } else if (section == SECTION_NONCITY_YESTERDAY_CHECKINS) {
 		return [self.nonCityYesterdayCheckins count];
     } else if (section == SECTION_FOOTER) {
-        return 1;
-    } else if (section == SECTION_SHOUT) {
         return 1;
     }
 	return 0;
@@ -275,8 +272,6 @@
 		checkin = [self.nonCityYesterdayCheckins objectAtIndex:indexPath.row];
     } else if (indexPath.section == SECTION_FOOTER) {
         return footerViewCell;
-    } else if (indexPath.section == SECTION_SHOUT) {
-        return shoutCell;
     }
     [cell makeOneLine];
     if (checkin.venue) {
@@ -375,8 +370,6 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == SECTION_FOOTER) {
         return 40;
-    } else if (indexPath.section == SECTION_SHOUT) {
-        return 44;
     }
 	FSCheckin *checkin = nil;
     if (indexPath.section == SECTION_RECENT_CHECKINS) {
@@ -415,9 +408,6 @@
     // and pass the text into the method
     // TODO: clean this crap up
     switch (section) {
-        case SECTION_SHOUT:
-            return nil;
-            break;
         case SECTION_RECENT_CHECKINS:
             if ([recentCheckins count] > 0) {
                 sectionHeaderView.leftHeaderLabel.text = @"Recent Check-ins";
@@ -561,7 +551,7 @@
 
 - (void) displayShoutView {
     CGRect frame = shoutView.frame;
-    frame.origin = CGPointMake(0, 47);
+    frame.origin = CGPointMake(0, 46);
     shoutView.frame = frame;
     [self.view addSubview:shoutView];
     [shoutText becomeFirstResponder];
@@ -663,8 +653,8 @@
         DLog(@"non city yesterday checkins: %d", [self.nonCityYesterdayCheckins count]);
         
         [theTableView reloadData];
-        int sectionToScrollTo = [self.recentCheckins count] > 0 ? SECTION_RECENT_CHECKINS : ([self.todayCheckins count] > 0 ? SECTION_TODAY_CHECKINS: ([self.nonCityRecentCheckins count] > 0 ? SECTION_NONCITY_RECENT_CHECKINS : 0));
-        [theTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:sectionToScrollTo] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+//        int sectionToScrollTo = [self.recentCheckins count] > 0 ? SECTION_RECENT_CHECKINS : ([self.todayCheckins count] > 0 ? SECTION_TODAY_CHECKINS: ([self.nonCityRecentCheckins count] > 0 ? SECTION_NONCITY_RECENT_CHECKINS : 0));
+//        [theTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:sectionToScrollTo] atScrollPosition:UITableViewScrollPositionTop animated:NO];
 
         footerViewCell.hidden = NO;
         mapButton.hidden = NO;

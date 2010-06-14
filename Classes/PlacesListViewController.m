@@ -38,6 +38,8 @@
     
     [super viewDidLoad];
     
+    noResultsView.hidden = NO;
+    
     DLog(@"PlacesListViewController get venue - geolat: %f", [[KBLocationManager locationManager] latitude]);
     DLog(@"PlacesListViewController get venue - geolong: %f", [[KBLocationManager locationManager] longitude]);
     [self addHeaderAndFooter:theTableView];
@@ -75,6 +77,7 @@
             isSearchEmpty = YES;
         }
         [theTableView reloadData];
+        noResultsView.hidden = NO;
         
         //move table to new entry
         if ([theTableView numberOfSections] != 0) {
@@ -181,7 +184,7 @@
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (isSearchEmpty) {
-        return 2;
+        return 1;
     } else {
         if (section < [[venues allKeys] count]) {
             return [(NSArray*)[venues objectForKey:[[venues allKeys] objectAtIndex:section]] count];
@@ -204,13 +207,15 @@
     
     cell.imageView.image = nil;
     if (isSearchEmpty) {
-        if (indexPath.row == 0) {
-            cell.venueName.text = @"No search results found.";
-            cell.venueAddress.text = @"";
-        } else {
+        noResultsView.hidden = NO;
+//        if (indexPath.row == 0) {
+//            cell.venueName.text = @"No search results found.";
+//            cell.venueAddress.text = @"";
+//        } else {
             return footerCell;
-        }
+//        }
     } else {
+        noResultsView.hidden = YES;
         if ([venues count] > indexPath.section) {
             FSVenue *venue = [self extractVenueFromDictionaryForRow:indexPath];
             cell.venueName.text = venue.name;

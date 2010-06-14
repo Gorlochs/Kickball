@@ -16,9 +16,10 @@
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         // Initialization code
-        UIView *v = [[[UIView alloc] init] autorelease];
-        v.backgroundColor = [UIColor colorWithRed:224.0/255.0 green:0.0 blue:25.0/255.0 alpha:1.0];
-        self.selectedBackgroundView = v;
+//        UIView *v = [[[UIView alloc] init] autorelease];
+//        v.backgroundColor = [UIColor colorWithRed:224.0/255.0 green:0.0 blue:25.0/255.0 alpha:1.0];
+//        self.selectedBackgroundView = v;
+        [self setSelectionStyle:UITableViewCellSelectionStyleGray];
         
         self.textLabel.highlightedTextColor = [UIColor whiteColor];
         self.detailTextLabel.highlightedTextColor = [UIColor whiteColor];
