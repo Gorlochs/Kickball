@@ -905,11 +905,11 @@
     [vc release];
 }
 
-//- (void) openCheckinView {
-//    checkinViewController = [[KBCheckinModalViewController alloc] initWithNibName:@"CheckinModalView" bundle:nil];
-//    checkinViewController.venue = venue;
-//    [self presentModalViewController:checkinViewController animated:YES];
-//}
+- (void) openCheckinView {
+    checkinViewController = [[KBCheckinModalViewController alloc] initWithNibName:@"CheckinModalView" bundle:nil];
+    checkinViewController.venue = venue;
+    [self presentModalViewController:checkinViewController animated:YES];
+}
         
 - (void) presentCheckinOverlay:(NSNotification*)inNotification {
     NSDictionary *dictionary = [inNotification userInfo];

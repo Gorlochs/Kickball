@@ -114,7 +114,7 @@
 //- (IBAction) viewPhotos;
 - (IBAction) viewThumbnails;
 //- (IBAction) displayAllImages;
-//- (IBAction) openCheckinView;
+- (IBAction) openCheckinView;
 - (IBAction) closeSpecialView;
 - (IBAction) showNextSpecial;
 - (IBAction) showPreviousSpecial;

@@ -127,7 +127,7 @@
     if (![self getAuthenticatedUser]) {
         [[FoursquareAPI sharedInstance] getUser:nil withTarget:self andAction:@selector(userResponseReceived:withResponseString:)];
     }
-    [[Utilities sharedInstance] retrieveAllFriendsWithPingOn];
+    [[Utilities sharedInstance] updateAllFriendsWithPingOn];
 }
 
 // FIXME: this needs to be pulled up

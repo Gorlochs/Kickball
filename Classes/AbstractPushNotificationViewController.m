@@ -29,13 +29,14 @@
     return self;
 }
 
+// FIXME: this will have to use a caching system eventually
 - (void) sendPushNotification {
-    if ([[Utilities sharedInstance] friendsWithPingOn]) {
-        DLog(@"friends with ping on pulled from cache: %@", [[[Utilities sharedInstance] friendsWithPingOn] componentsJoinedByString:@","]);
-        [self friendsToPingReceived:nil];
-    } else {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(friendsToPingReceived:) name:@"friendsWithPingOnReceived" object:nil];
-    }
+//    if ([[Utilities sharedInstance] friendsWithPingOn]) {
+//        DLog(@"friends with ping on pulled from cache: %@", [[[Utilities sharedInstance] friendsWithPingOn] componentsJoinedByString:@","]);
+        [[Utilities sharedInstance] retrieveAllFriendsWithPingOn];
+//    } else {
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(friendsToPingReceived:) name:@"friendsWithPingOnReceived" object:nil];
+//    }
 }
 
 - (void)friendsToPingReceived:(NSNotification *)inNotification {

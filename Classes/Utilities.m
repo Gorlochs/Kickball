@@ -148,9 +148,36 @@ static Utilities *sharedInstance = nil;
 #pragma mark -
 #pragma mark Retrieve ping-on friends
 
+//////////////////////////////////////////////////////////////////////////////////////////
 // because the 4sq API doesn't is lacking, we have to retrieve all the user's friends
 // and then loop through each one in order to find get_pings for each user
 // NOTE: this specifies whether the logged-in user is to receive pings from their friend.
+//////////////////////////////////////////////////////////////////////////////////////////
+
+
+////////////// RETRIEVE PINGS FROM SERVER /////////////////
+
+- (void) retrieveAllFriendsWithPingOn {
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://gorlochs.literalshore.com:3000/kickball/pings/user/%@.json", 
+                                       [[FoursquareAPI sharedInstance] currentUser].userId]];
+    ASIHTTPRequest *gorlochRequest = [[[ASIHTTPRequest alloc] initWithURL:url] autorelease];
+    
+    [gorlochRequest setDidFailSelector:@selector(pingRequestWentWrong:)];
+    [gorlochRequest setDidFinishSelector:@selector(pingRequestDidFinish:)];
+    [gorlochRequest setTimeOutSeconds:500];
+    [gorlochRequest setDelegate:self];
+    [gorlochRequest startAsynchronous];
+}
+
+- (void) pingRequestWentWrong:(ASIHTTPRequest *) request {
+    DLog(@"BOOOOOOOOOOOO!");
+}
+
+- (void) pingRequestDidFinish:(ASIHTTPRequest *) request {
+    DLog("ping request finished: %@", [request responseString]);
+}
+
+////////////// UPDATE PINGS ON SERVER /////////////////
 
 - (NSMutableArray*) friendsWithPingOn {
     if (friendsWithPingOn) {
@@ -161,7 +188,7 @@ static Utilities *sharedInstance = nil;
     }
 }
 
-- (void) retrieveAllFriendsWithPingOn {
+- (void) updateAllFriendsWithPingOn {
     [[FoursquareAPI sharedInstance] getFriendsWithTarget:self andAction:@selector(friendsResponseReceived:withResponseString:)];
 }
 
