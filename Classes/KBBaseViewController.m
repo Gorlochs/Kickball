@@ -80,7 +80,6 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
     }
 	if (refreshHeaderView == nil && !self.hideRefresh) {
 		refreshHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.theTableView.bounds.size.height, 320.0f, self.theTableView.bounds.size.height)];
-		refreshHeaderView.backgroundColor = [UIColor colorWithRed:176.0/255.0 green:36.0/255.0 blue:44.0/255.0 alpha:1.0];
 		[self.theTableView addSubview:refreshHeaderView];
 		self.theTableView.showsVerticalScrollIndicator = YES;
 	}

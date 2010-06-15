@@ -25,7 +25,7 @@
 //
 
 #import "EGORefreshTableHeaderView.h"
-
+#import "KickballAppDelegate.h"
 
 #define TEXT_COLOR	 [UIColor colorWithRed:117.0/255.0 green:0.0/255.0 blue:14.0/255.0 alpha:1.0]
 #define BORDER_COLOR [UIColor colorWithRed:87.0/255.0 green:108.0/255.0 blue:137.0/255.0 alpha:1.0]
@@ -49,7 +49,19 @@
     if (self = [super initWithFrame:frame]) {
 		
 		self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        
+		appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
+		arrowsAndText = [[UIImageView alloc] initWithFrame:CGRectMake(10, frame.size.height - 41.0f, 301, 20)];
+		if (appDelegate.navControllerType == KBNavControllerTypeFoursquare) {
+			self.backgroundColor = [UIColor colorWithRed:176.0/255.0 green:36.0/255.0 blue:44.0/255.0 alpha:1.0];
+			[arrowsAndText setImage:[UIImage imageNamed:@"pull4SQ01.png"]];
+		} else if (appDelegate.navControllerType == KBNavControllerTypeTwitter) {
+			self.backgroundColor = [UIColor colorWithRed:43.0/255.0 green:190.0/255.0 blue:251.0/255.0 alpha:1.0];
+			[arrowsAndText setImage:[UIImage imageNamed:@"pullTW01.png"]];
+		} else if (appDelegate.navControllerType == KBNavControllerTypeFacebook) {
+			self.backgroundColor = [UIColor colorWithRed:76.0/255.0 green:127.0/255.0 blue:220.0/255.0 alpha:1.0];
+			[arrowsAndText setImage:[UIImage imageNamed:@"pullFB01.png"]];
+        }
+		[self addSubview:arrowsAndText];
 //		lastUpdatedLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, frame.size.height - 30.0f, self.frame.size.width, 20.0f)];
 //		lastUpdatedLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 //		lastUpdatedLabel.font = [UIFont systemFontOfSize:12.0f];
@@ -66,7 +78,7 @@
 //		} else {
 //			[self setCurrentDate];
 //		}
-		
+		/*
 		statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, frame.size.height - 41.0f, self.frame.size.width, 20.0f)];
 		statusLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 		statusLabel.font = [UIFont boldSystemFontOfSize:14.0f];
@@ -92,12 +104,12 @@
 		arrowImage2.contents = (id)[UIImage imageNamed:@"pullRefreshArrow.png"].CGImage;
 		[[self layer] addSublayer:arrowImage2];
 		[arrowImage2 release];
+		*/
 		
 		activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
 		activityView.frame = CGRectMake(25.0f, frame.size.height - 38.0f, 20.0f, 20.0f);
 		activityView.hidesWhenStopped = YES;
 		[self addSubview:activityView];
-		[activityView release];
 		
     }
     return self;
@@ -151,11 +163,19 @@
 	switch (aState) {
 		case EGOOPullRefreshPulling:
 			
-			statusLabel.text = @"Release to refresh...";
+			//statusLabel.text = @"Release to refresh...";
+			
 			[CATransaction begin];
 			[CATransaction setAnimationDuration:.18];
-			arrowImage.transform = CATransform3DMakeRotation((M_PI / 180.0) * 180.0f, 0.0f, 0.0f, 1.0f);
-			arrowImage2.transform = CATransform3DMakeRotation((M_PI / 180.0) * 180.0f, 0.0f, 0.0f, 1.0f);
+			if (appDelegate.navControllerType == KBNavControllerTypeFoursquare) {
+				[arrowsAndText setImage:[UIImage imageNamed:@"pull4SQ02.png"]];
+			} else if (appDelegate.navControllerType == KBNavControllerTypeTwitter) {
+				[arrowsAndText setImage:[UIImage imageNamed:@"pullTW02.png"]];
+			} else if (appDelegate.navControllerType == KBNavControllerTypeFacebook) {
+				[arrowsAndText setImage:[UIImage imageNamed:@"pullFB02.png"]];
+			}
+			//arrowImage.transform = CATransform3DMakeRotation((M_PI / 180.0) * 180.0f, 0.0f, 0.0f, 1.0f);
+			//arrowImage2.transform = CATransform3DMakeRotation((M_PI / 180.0) * 180.0f, 0.0f, 0.0f, 1.0f);
 			[CATransaction commit];
 			
 			break;
@@ -164,30 +184,46 @@
 			if (_state == EGOOPullRefreshPulling) {
 				[CATransaction begin];
 				[CATransaction setAnimationDuration:.18];
-				arrowImage.transform = CATransform3DIdentity;
-				arrowImage2.transform = CATransform3DIdentity;
+				if (appDelegate.navControllerType == KBNavControllerTypeFoursquare) {
+					[arrowsAndText setImage:[UIImage imageNamed:@"pull4SQ01.png"]];
+				} else if (appDelegate.navControllerType == KBNavControllerTypeTwitter) {
+					[arrowsAndText setImage:[UIImage imageNamed:@"pullTW01.png"]];
+				} else if (appDelegate.navControllerType == KBNavControllerTypeFacebook) {
+					[arrowsAndText setImage:[UIImage imageNamed:@"pullFB01.png"]];
+				}
+				//arrowImage.transform = CATransform3DIdentity;
+				//arrowImage2.transform = CATransform3DIdentity;
 				[CATransaction commit];
 			}
 			
-			statusLabel.text = @"Pull down to refresh...";
+			//statusLabel.text = @"Pull down to refresh...";
 			[activityView stopAnimating];
 			[CATransaction begin];
 			[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions]; 
-			arrowImage.hidden = NO;
-			arrowImage.transform = CATransform3DIdentity;
-			arrowImage2.hidden = NO;
-			arrowImage2.transform = CATransform3DIdentity;
+			if (appDelegate.navControllerType == KBNavControllerTypeFoursquare) {
+				[arrowsAndText setImage:[UIImage imageNamed:@"pull4SQ01.png"]];
+			} else if (appDelegate.navControllerType == KBNavControllerTypeTwitter) {
+				[arrowsAndText setImage:[UIImage imageNamed:@"pullTW01.png"]];
+			} else if (appDelegate.navControllerType == KBNavControllerTypeFacebook) {
+				[arrowsAndText setImage:[UIImage imageNamed:@"pullFB01.png"]];
+			}
+			arrowsAndText.hidden = NO;
+			//arrowImage.hidden = NO;
+			//arrowImage.transform = CATransform3DIdentity;
+			//arrowImage2.hidden = NO;
+			//arrowImage2.transform = CATransform3DIdentity;
 			[CATransaction commit];
 			
 			break;
 		case EGOOPullRefreshLoading:
 			
-			statusLabel.text = @"Loading...";
+			//statusLabel.text = @"Loading...";
 			[activityView startAnimating];
 			[CATransaction begin];
 			[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions]; 
-			arrowImage.hidden = YES;
-			arrowImage2.hidden = YES;
+			arrowsAndText.hidden = YES;
+			//arrowImage.hidden = YES;
+			//arrowImage2.hidden = YES;
 			[CATransaction commit];
 			
 			break;
@@ -200,10 +236,12 @@
 
 - (void)dealloc {
 	[bottomBorderColor release], bottomBorderColor = nil;
+	[arrowsAndText release];
+	[activityView release];
 	activityView = nil;
-	statusLabel = nil;
-	arrowImage = nil;
-	arrowImage2 = nil;
+	//statusLabel = nil;
+	//arrowImage = nil;
+	//arrowImage2 = nil;
 	lastUpdatedLabel = nil;
     [super dealloc];
 }

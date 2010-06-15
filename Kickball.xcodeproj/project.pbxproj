@@ -58,6 +58,12 @@
 		0EDBDA7911C760EA0065DF0A /* KBFacebookPostDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EDBDA7811C760EA0065DF0A /* KBFacebookPostDetailViewController.xib */; };
 		0EDBDA9911C7631A0065DF0A /* KBFacebookEventsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EDBDA9811C7631A0065DF0A /* KBFacebookEventsListViewController.m */; };
 		0EDBDAA611C7DD220065DF0A /* KBFacebookEventsListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EDBDAA511C7DD220065DF0A /* KBFacebookEventsListView.xib */; };
+		0EDBDB6711C804BB0065DF0A /* pull4SQ01.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EDBDB6111C804BB0065DF0A /* pull4SQ01.png */; };
+		0EDBDB6811C804BB0065DF0A /* pull4SQ02.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EDBDB6211C804BB0065DF0A /* pull4SQ02.png */; };
+		0EDBDB6911C804BB0065DF0A /* pullFB01.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EDBDB6311C804BB0065DF0A /* pullFB01.png */; };
+		0EDBDB6A11C804BB0065DF0A /* pullFB02.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EDBDB6411C804BB0065DF0A /* pullFB02.png */; };
+		0EDBDB6B11C804BB0065DF0A /* pullTW01.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EDBDB6511C804BB0065DF0A /* pullTW01.png */; };
+		0EDBDB6C11C804BB0065DF0A /* pullTW02.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EDBDB6611C804BB0065DF0A /* pullTW02.png */; };
 		1D3623260D0F684500981E51 /* KickballAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* KickballAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -820,6 +826,12 @@
 		0EDBDA9711C7631A0065DF0A /* KBFacebookEventsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBFacebookEventsListViewController.h; sourceTree = "<group>"; };
 		0EDBDA9811C7631A0065DF0A /* KBFacebookEventsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBFacebookEventsListViewController.m; sourceTree = "<group>"; };
 		0EDBDAA511C7DD220065DF0A /* KBFacebookEventsListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KBFacebookEventsListView.xib; sourceTree = "<group>"; };
+		0EDBDB6111C804BB0065DF0A /* pull4SQ01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pull4SQ01.png; sourceTree = "<group>"; };
+		0EDBDB6211C804BB0065DF0A /* pull4SQ02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pull4SQ02.png; sourceTree = "<group>"; };
+		0EDBDB6311C804BB0065DF0A /* pullFB01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pullFB01.png; sourceTree = "<group>"; };
+		0EDBDB6411C804BB0065DF0A /* pullFB02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pullFB02.png; sourceTree = "<group>"; };
+		0EDBDB6511C804BB0065DF0A /* pullTW01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pullTW01.png; sourceTree = "<group>"; };
+		0EDBDB6611C804BB0065DF0A /* pullTW02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pullTW02.png; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* KickballAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KickballAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* KickballAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KickballAppDelegate.m; sourceTree = "<group>"; };
@@ -1885,6 +1897,19 @@
 				0E86F8D011C2B8710070C9D4 /* GraphObject.m */,
 			);
 			name = bamboo;
+			sourceTree = "<group>";
+		};
+		0EDBDB6011C804BB0065DF0A /* Pull to Refresh */ = {
+			isa = PBXGroup;
+			children = (
+				0EDBDB6111C804BB0065DF0A /* pull4SQ01.png */,
+				0EDBDB6211C804BB0065DF0A /* pull4SQ02.png */,
+				0EDBDB6311C804BB0065DF0A /* pullFB01.png */,
+				0EDBDB6411C804BB0065DF0A /* pullFB02.png */,
+				0EDBDB6511C804BB0065DF0A /* pullTW01.png */,
+				0EDBDB6611C804BB0065DF0A /* pullTW02.png */,
+			);
+			path = "Pull to Refresh";
 			sourceTree = "<group>";
 		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
@@ -3050,6 +3075,7 @@
 		6AC28E9C1173D91B00518E37 /* v1.1 */ = {
 			isa = PBXGroup;
 			children = (
+				0EDBDB6011C804BB0065DF0A /* Pull to Refresh */,
 				0E76C3B011C14CF800BA1E89 /* Facebook */,
 				6A9D7FCA11C0BBAA00EAEB0E /* bg-tabDefaultBG.png */,
 				6A9D7F1811C09E5F00EAEB0E /* twitter profile */,
@@ -3955,6 +3981,12 @@
 				2B13815611C2AD9800B72ECC /* tagsBG.png in Resources */,
 				0EDBDA7911C760EA0065DF0A /* KBFacebookPostDetailViewController.xib in Resources */,
 				0EDBDAA611C7DD220065DF0A /* KBFacebookEventsListView.xib in Resources */,
+				0EDBDB6711C804BB0065DF0A /* pull4SQ01.png in Resources */,
+				0EDBDB6811C804BB0065DF0A /* pull4SQ02.png in Resources */,
+				0EDBDB6911C804BB0065DF0A /* pullFB01.png in Resources */,
+				0EDBDB6A11C804BB0065DF0A /* pullFB02.png in Resources */,
+				0EDBDB6B11C804BB0065DF0A /* pullTW01.png in Resources */,
+				0EDBDB6C11C804BB0065DF0A /* pullTW02.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

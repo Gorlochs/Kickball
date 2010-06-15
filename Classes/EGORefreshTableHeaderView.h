@@ -33,7 +33,10 @@ typedef enum{
 	EGOOPullRefreshLoading,	
 } EGOPullRefreshState;
 
+@class KickballAppDelegate;
 @interface EGORefreshTableHeaderView : UIView {
+	UIImageView* arrowsAndText;
+	KickballAppDelegate *appDelegate;
 	
 	UILabel *lastUpdatedLabel;
 	UILabel *statusLabel;
