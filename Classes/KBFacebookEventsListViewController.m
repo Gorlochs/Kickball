@@ -31,6 +31,19 @@
 - (void)loadView {
 }
 */
+NSInteger eventsDateSort(id e1, id e2, void *context) {
+    /* A private comparator fcn to sort two mountains.  To do so,
+     we do a localized compare of mountain names, using 
+     NSString:localizedCompare. */
+    NSDate *e1Date = nil;
+	NSDate *e2Date = nil;
+    if (e1 != nil && [e1 isKindOfClass:[GraphObject class]] &&
+        e2 != nil && [e2 isKindOfClass:[GraphObject class]]) {
+        e1Date = [[FacebookProxy fbDateFormatter] dateFromString:[e1 propertyWithKey:@"start_time"]];
+        e2Date = [[FacebookProxy fbDateFormatter] dateFromString:[e2 propertyWithKey:@"start_time"]];
+    }
+    return [e1Date compare:e2Date];
+}
 
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -67,19 +80,43 @@
 	[eventsFeed release];
 	eventsFeed = nil;
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	//NSArray *baseEventResult = [[FacebookProxy instance] refreshEvents];
+	// = [[FacebookProxy instance] refreshEvents];
 	//GraphObject *baseObj = [baseEventResult objectAtIndex:0];
-	eventsFeed = [[FacebookProxy instance] refreshEvents];//[[FacebookProxy instance] refreshEvents];
+	NSArray *baseEventResult = [[FacebookProxy instance] refreshEvents];
+	NSArray *sortedEvents = [baseEventResult sortedArrayUsingFunction:eventsDateSort context:NULL];
+	NSMutableArray *futureEvents = [[NSMutableArray alloc] init];
+	/*
+	for (GraphObject* fbEvent in sortedEvents) {
+		NSCalendar *cal = [NSCalendar currentCalendar];
+		NSDateComponents *components = [cal components:(NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit) fromDate:[NSDate date]];
+		NSDate *today = [cal dateFromComponents:components];
+		components = [cal components:(NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit) fromDate:aDate];
+		NSDate *otherDate = [cal dateFromComponents:components];
+		
+		if([today isEqualToDate:otherDate]) {
+			//do stuff
+		}
+	}*/
+	
+	eventsFeed  = sortedEvents;
+	
 	[eventsFeed retain];
 	[theTableView reloadData];
 	if ([eventsFeed count]>0) {
 		noResultsView.hidden = YES;
 	}
+	
+	//sort array based on date 
+	//make sub-array of only future dates
+	//group arrays based on common dates into array of dictionaries
+	// as part of the grouping process call out and get event specific info and store that as well.
+	
 	[pool release];
 	[self performSelectorOnMainThread:@selector(stopProgressBar) withObject:nil waitUntilDone:NO];
 	[self dataSourceDidFinishLoadingNewData];
 	
 }
+
 
 - (void) refreshTable {
 	//[self startProgressBar:@"Retrieving news feed..."];
