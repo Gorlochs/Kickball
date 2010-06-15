@@ -9,12 +9,14 @@
 #import "Utilities.h"
 #import "FoursquareAPI.h"
 #import "FSUser.h"
+#import "ASIFormDataRequest.h"
 
 const NSString *kKBHashSalt = @"33eBMKjsW9CTWpX4njEKarkWGoH9ZdzP";
 
 static Utilities *sharedInstance = nil;
 
 #define TMP NSHomeDirectory()
+
 
 @implementation Utilities
 
@@ -182,18 +184,42 @@ static Utilities *sharedInstance = nil;
 - (void)aFriendResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     //DLog(@"********** friend: %@", inString);
     FSUser *friend = [FoursquareAPI userFromResponseXML:inString];
+    
     if (friend.sendsPingsToSignedInUser) {
         //DLog(@"this friend sends pings to signed in user: %@", friend);
-        [friendsWithPingOn addObject:friend];
-    } else {
-        //DLog(@"this friend does NOT send pings: %@", friend);
+        //[friendsWithPingOn addObject:friend];
+        if (!ids) {
+            ids = [[NSMutableString alloc] initWithString:friend.userId];
+        } else {
+            [ids appendFormat:@",%@", friend.userId];
+        }
     }
     runningTotalNumberOfUsersBeingPushed++;
     if (runningTotalNumberOfUsersBeingPushed == totalNumberOfUsersForPush) {
-        [[NSNotificationCenter defaultCenter] postNotificationName: @"friendsWithPingOnReceived" object: nil];
+        
+        NSURL *url = [NSURL URLWithString:@"http://gorlochs.literalshore.com:3000/kickball/pings"];
+        
+        NSOperationQueue *queue = [[[NSOperationQueue alloc] init] autorelease];
+        ASIFormDataRequest *request = [[ASIFormDataRequest alloc] initWithURL:url];
+        [request setPostValue:[[FoursquareAPI sharedInstance] currentUser].userId forKey:@"userId"];
+        [request setPostValue:ids forKey:@"friendIds"];
+        [request setDelegate:self];
+        [request setDidFinishSelector: @selector(pingSubmitCompleted:)];
+        [request setDidFailSelector: @selector(pingSubmitFailed:)];
+        [queue addOperation:request];
     }
 }
 
+- (void)pushCompleted:(ASIHTTPRequest *) request {
+	NSString *result = request.responseString;
+	DLog(@"Response from push: %@", result);
+}
+
+- (void)pushFailed:(ASIHTTPRequest *) request {
+	NSString *result = request.responseString;
+	DLog(@"Failure from push: %@", result);
+}
+                      
 static void addRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWidth, float ovalHeight)
 {
     float fw, fh;

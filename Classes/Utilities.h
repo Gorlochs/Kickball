@@ -27,6 +27,7 @@ extern const NSString *kKBHashSalt;
     int runningTotalNumberOfUsersBeingPushed;
     int totalNumberOfUsersForPush;
     NSDateFormatter *foursquareCheckinDateFormatter;
+    NSMutableString *ids;
 }
 
 @property (nonatomic, retain) NSMutableArray *friendsWithPingOn;

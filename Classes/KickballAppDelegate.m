@@ -63,6 +63,13 @@
 	[hostReach startNotifer];
     
     [self checkForEmergencyMessage];
+    
+    //[NSThread detachNewThreadSelector:@selector(updateFriendsPings) toTarget:self withObject:nil];
+    //[self updateFriendsPings];
+}
+
+- (void) updateFriendsPings {
+    [[Utilities sharedInstance] retrieveAllFriendsWithPingOn];
 }
 
 void uncaughtExceptionHandler(NSException *exception) {
