@@ -7,6 +7,9 @@
 //
 
 #import "KBFacebookViewController.h"
+#import "KBFacebookEventsListViewController.h"
+#import "KBFacebookListViewController.h"
+
 
 
 @implementation KBFacebookViewController
@@ -24,14 +27,16 @@
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
-    
+	fbLoginView = nil;
     [super viewDidLoad];
-    
-    if (!self.hideHeader) {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(killLoginView) name:@"completedFacebookLogin" object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLoginView) name:@"completedFacebookLogout" object:nil];
+	
+    /*if (!self.hideHeader) {
         NSArray* nibViews =  [[NSBundle mainBundle] loadNibNamed:HEADER_NIB_FACEBOOK owner:self options:nil];
         facebookHeaderView = [nibViews objectAtIndex:0];
         [self.view addSubview:facebookHeaderView];
-    }
+    }*/
     
 	[self setProperFacebookButtons];
 }
@@ -69,9 +74,9 @@
 }
 - (void) viewEvents {
     if (pageViewType == KBPageViewTypeList) {
-        //PlacesListViewController *placesController = [[PlacesListViewController alloc] initWithNibName:@"PlacesListView_v2" bundle:nil];
-        //[self.navigationController pushViewController:placesController animated:NO];
-        //[placesController release];
+        KBFacebookEventsListViewController *eventsController = [[KBFacebookEventsListViewController alloc] initWithNibName:@"KBFacebookEventsListView" bundle:nil];
+        [self.navigationController pushViewController:eventsController animated:NO];
+        [eventsController release];
     } else if (pageViewType == KBPageViewTypeMap) {
         //PlacesMapViewController *placesController = [[PlacesMapViewController alloc] initWithNibName:@"PlacesMapView_v2" bundle:nil];
         //[self.navigationController pushViewController:placesController animated:NO];
@@ -81,9 +86,14 @@
 
 - (void) viewFriends {
     if (pageViewType == KBPageViewTypeList) {
-        //FriendsListViewController *friendsController = [[FriendsListViewController alloc] initWithNibName:@"FriendsListView_v2" bundle:nil];
-        //[self.navigationController pushViewController:friendsController animated:NO];
-        //[friendsController release];
+		//if you are in list view than the friends list view is the top of the stack.
+		//DO NOT alloc a new view controller, just pop to the top of the stack!
+		[self.navigationController popToRootViewControllerAnimated:NO];
+        /*
+		KBFacebookListViewController *friendsController = [[KBFacebookListViewController alloc] initWithNibName:@"KBFacebookListViewController" bundle:nil];
+        [self.navigationController pushViewController:friendsController animated:NO];
+        [friendsController release];
+		 */
     } else if (pageViewType == KBPageViewTypeMap) {
         //FriendsMapViewController *friendsController = [[FriendsMapViewController alloc] initWithNibName:@"FriendsMapView_v2" bundle:nil];
         //[self.navigationController pushViewController:friendsController animated:NO];
@@ -113,6 +123,25 @@
 	//[tweetController release];
 }
 
+-(void)killLoginView{
+	//hide loginView and load user info
+	if (fbLoginView!=nil) {
+		[fbLoginView removeFromSuperview];
+		[fbLoginView release];
+		fbLoginView = nil;
+		//[self refreshMainFeed];
+		[self startProgressBar:@"Retrieving news feed..."];
+		[NSThread detachNewThreadSelector:@selector(refreshMainFeed) toTarget:self withObject:nil];
+		
+	}
+	
+}
+-(void)showLoginView{
+	fbLoginView = [[KBFacebookLoginView alloc] initWithFrame:CGRectMake(0, 0, 320, 420)];
+	[self.view addSubview:fbLoginView];
+}
+
+
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
@@ -134,14 +163,17 @@
 
 
 - (void)dealloc {
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
     [friendButton release];
     [eventButton release];
     [centerHeaderButton release];
     [homeButton release];
     [backButton release];
-    [facebookHeaderView release];
+    //[facebookHeaderView release];
     [super dealloc];
 }
 
 
 @end
+
+

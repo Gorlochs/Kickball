@@ -24,6 +24,9 @@
 	UIButton *iconButt;
 	NSString *fbPictureUrl;
 	GraphAPI *fbGraph;
+	int comments;
+	UIImageView *commentBG;
+	UILabel *commentNumber;
 }
 
 @property (nonatomic, retain) TTImageView *userIcon;
@@ -35,4 +38,5 @@
 - (void) setDateLabelWithDate:(NSDate*)theDate;
 - (void) setDateLabelWithText:(NSString*)theDate;
 - (void) pushToProfile;
+-(void)setNumberOfComments:(int)howMany;
 @end

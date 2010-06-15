@@ -1,32 +1,20 @@
     //
-//  KBFacebookListViewController.m
+//  KBFacebookEventsListViewController.m
 //  Kickball
 //
-//  Created by scott bates on 6/10/10.
+//  Created by scott bates on 6/15/10.
 //  Copyright 2010 Scott Bates. All rights reserved.
 //
 
-#import "KBFacebookListViewController.h"
+#import "KBFacebookEventsListViewController.h"
 #import "KBFacebookNewsCell.h"
-#import "KBFacebookLoginView.h"
-#import "KBFacebookPostDetailViewController.h"
+#import "GraphAPI.h"
+#import	"GraphObject.h"
 #import "FacebookProxy.h"
-#import "GraphObject.h"
 #import "KickballAPI.h"
+#import "KBFacebookPostDetailViewController.h"
 
-@interface KBFacebookStyleSheet : TTDefaultStyleSheet
-@end
-
-@implementation KBFacebookStyleSheet
-
-- (TTStyle*)fbBlueText {
-	return [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:12.0] color:[UIColor colorWithRed:76/255.0 green:127/255.0 blue:220/255.0 alpha:1.0]
-					  minimumFontSize:12 shadowColor:[UIColor colorWithWhite:1 alpha:0.8]
-						 shadowOffset:CGSizeMake(0, -1) next:nil];
-}
-@end
-
-@implementation KBFacebookListViewController
+@implementation KBFacebookEventsListViewController
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -47,21 +35,26 @@
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
-	[TTStyleSheet setGlobalStyleSheet:[[[KBFacebookStyleSheet alloc] init] autorelease]];
-	pageType = KBPageTypeFriends;
-	pageNum = 1;
+	pageType = KBpageTypeEvents;
     pageViewType = KBPageViewTypeList;
+    
     [super viewDidLoad];
-	doingLogin = NO;
-	newsFeed = nil;
-	[FacebookProxy loadDefaults];
+    
+    noResultsView.hidden = NO;
+    
+    //DLog(@"PlacesListViewController get venue - geolat: %f", [[KBLocationManager locationManager] latitude]);
+    //DLog(@"PlacesListViewController get venue - geolong: %f", [[KBLocationManager locationManager] longitude]);
+    [self addHeaderAndFooter:theTableView];
+        
+    isSearchEmpty = NO;
+    [FlurryAPI logEvent:@"Facebook Events List"];
 	if ([[FacebookProxy instance] isAuthorized]) {
 		//[self startProgressBar:@"Retrieving your tweets..."];
 		//[self showStatuses];
 		//[self refreshMainFeed];
-		[self startProgressBar:@"Retrieving news feed..."];
+		[self startProgressBar:@"Retrieving events..."];
 		[NSThread detachNewThreadSelector:@selector(refreshMainFeed) toTarget:self withObject:nil];
-
+		
 	} else {
 		[self showLoginView];
         //loginController = [[KBTwitterXAuthLoginController alloc] initWithNibName:@"TwitterLoginView_v2" bundle:nil];
@@ -71,22 +64,28 @@
 }
 
 -(void)refreshMainFeed{
-	[newsFeed release];
-	newsFeed = nil;
+	[eventsFeed release];
+	eventsFeed = nil;
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	newsFeed = [[FacebookProxy instance] refreshHome];
-	[newsFeed retain];
+	//NSArray *baseEventResult = [[FacebookProxy instance] refreshEvents];
+	//GraphObject *baseObj = [baseEventResult objectAtIndex:0];
+	eventsFeed = [[FacebookProxy instance] refreshEvents];//[[FacebookProxy instance] refreshEvents];
+	[eventsFeed retain];
 	[theTableView reloadData];
+	if ([eventsFeed count]>0) {
+		noResultsView.hidden = YES;
+	}
 	[pool release];
 	[self performSelectorOnMainThread:@selector(stopProgressBar) withObject:nil waitUntilDone:NO];
 	[self dataSourceDidFinishLoadingNewData];
-
+	
 }
 
 - (void) refreshTable {
 	//[self startProgressBar:@"Retrieving news feed..."];
 	[self refreshMainFeed];
 }
+
 
 #pragma mark -
 #pragma mark Table view data source
@@ -99,15 +98,15 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-	if (newsFeed!=nil) {
-		return [newsFeed count];
+	if (eventsFeed!=nil) {
+		return [eventsFeed count];
 	}
     return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (newsFeed!=nil) {
-		GraphObject *fbItem = [newsFeed objectAtIndex:indexPath.row];
+	if (eventsFeed!=nil) {
+		GraphObject *fbItem = [eventsFeed objectAtIndex:indexPath.row];
 		NSString *displayString = [NSString	 stringWithFormat:@"%@ %@",[(NSDictionary*)[fbItem propertyWithKey:@"from"] objectForKey:@"name"], [fbItem propertyWithKey:@"message"]];
 		CGSize maximumLabelSize = CGSizeMake(250, 400);
 		CGSize expectedLabelSize = [displayString sizeWithFont:[UIFont fontWithName:@"Helvetica" size:12.0]
@@ -115,7 +114,7 @@
 												 lineBreakMode:UILineBreakModeWordWrap];
 		int calculatedHeight = expectedLabelSize.height + 38;
 		//if (calculatedHeight>50) {
-			return calculatedHeight;
+		return calculatedHeight;
 		//}
 	}
 	return 60;
@@ -130,12 +129,12 @@
 	if (cell == nil) {
         cell = [[[KBFacebookNewsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
 	}
-	GraphObject *fbItem = [newsFeed objectAtIndex:indexPath.row];
-	NSString *displayString = [NSString	 stringWithFormat:@"<span class=\"fbBlueText\">%@</span> %@",[(NSDictionary*)[fbItem propertyWithKey:@"from"] objectForKey:@"name"], [fbItem propertyWithKey:@"message"]];
-	cell.fbPictureUrl = [(NSDictionary*)[fbItem propertyWithKey:@"from"] objectForKey:@"id"];
+	GraphObject *fbItem = [eventsFeed objectAtIndex:indexPath.row];
+	NSString *displayString = [fbItem propertyWithKey:@"name"];
+	//cell.fbPictureUrl = [(NSDictionary*)[fbItem propertyWithKey:@"from"] objectForKey:@"id"];
 	cell.tweetText.text = [TTStyledText textFromXHTML:displayString lineBreaks:NO URLs:NO];
-	[cell setNumberOfComments:[(NSArray*)[(NSDictionary*)[fbItem propertyWithKey:@"comments"] objectForKey:@"data"] count]];
-	[cell setDateLabelWithText:[[KickballAPI kickballApi] convertDateToTimeUnitString:[[FacebookProxy fbDateFormatter] dateFromString:[fbItem propertyWithKey:@"created_time"]]]];
+	//[cell setNumberOfComments:[(NSArray*)[(NSDictionary*)[fbItem propertyWithKey:@"comments"] objectForKey:@"data"] count]];
+	[cell setDateLabelWithText:[[KickballAPI kickballApi] convertDateToTimeUnitString:[[FacebookProxy fbDateFormatter] dateFromString:[fbItem propertyWithKey:@"start_time"]]]];
 	[cell.tweetText sizeToFit];
 	[cell.tweetText setNeedsDisplay];
 	return cell;
@@ -158,7 +157,6 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
 }
-
 
 
 /*
@@ -184,9 +182,6 @@
 
 
 - (void)dealloc {
-	[TTStyleSheet setGlobalStyleSheet:nil];
-	[newsFeed release];
-	[fbLoginView release];
     [super dealloc];
 }
 

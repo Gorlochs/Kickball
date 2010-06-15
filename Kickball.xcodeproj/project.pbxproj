@@ -54,6 +54,10 @@
 		0E86F8D311C2B8710070C9D4 /* GraphAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E86F8CE11C2B8710070C9D4 /* GraphAPI.m */; };
 		0E86F8D411C2B8710070C9D4 /* GraphObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E86F8D011C2B8710070C9D4 /* GraphObject.m */; };
 		0E86FACD11C330B10070C9D4 /* KBFacebookNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E86FACC11C330B10070C9D4 /* KBFacebookNewsCell.m */; };
+		0EB9D5AF11C6BDB4008EDF9F /* KBFacebookPostDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EB9D5AE11C6BDB4008EDF9F /* KBFacebookPostDetailViewController.m */; };
+		0EDBDA7911C760EA0065DF0A /* KBFacebookPostDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EDBDA7811C760EA0065DF0A /* KBFacebookPostDetailViewController.xib */; };
+		0EDBDA9911C7631A0065DF0A /* KBFacebookEventsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EDBDA9811C7631A0065DF0A /* KBFacebookEventsListViewController.m */; };
+		0EDBDAA611C7DD220065DF0A /* KBFacebookEventsListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EDBDAA511C7DD220065DF0A /* KBFacebookEventsListView.xib */; };
 		1D3623260D0F684500981E51 /* KickballAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* KickballAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -810,6 +814,12 @@
 		0E86F8D011C2B8710070C9D4 /* GraphObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphObject.m; sourceTree = "<group>"; };
 		0E86FACB11C330B10070C9D4 /* KBFacebookNewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBFacebookNewsCell.h; sourceTree = "<group>"; };
 		0E86FACC11C330B10070C9D4 /* KBFacebookNewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBFacebookNewsCell.m; sourceTree = "<group>"; };
+		0EB9D5AD11C6BDB4008EDF9F /* KBFacebookPostDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBFacebookPostDetailViewController.h; sourceTree = "<group>"; };
+		0EB9D5AE11C6BDB4008EDF9F /* KBFacebookPostDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBFacebookPostDetailViewController.m; sourceTree = "<group>"; };
+		0EDBDA7811C760EA0065DF0A /* KBFacebookPostDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KBFacebookPostDetailViewController.xib; sourceTree = "<group>"; };
+		0EDBDA9711C7631A0065DF0A /* KBFacebookEventsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBFacebookEventsListViewController.h; sourceTree = "<group>"; };
+		0EDBDA9811C7631A0065DF0A /* KBFacebookEventsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBFacebookEventsListViewController.m; sourceTree = "<group>"; };
+		0EDBDAA511C7DD220065DF0A /* KBFacebookEventsListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KBFacebookEventsListView.xib; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* KickballAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KickballAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* KickballAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KickballAppDelegate.m; sourceTree = "<group>"; };
@@ -1947,6 +1957,7 @@
 				6ADBFAA511738FFD003EB73D /* FooterTabView.xib */,
 				6AD4739611738DFD003CAA34 /* FriendsListView_v2.xib */,
 				6AFE197F1175387800130CBB /* FriendsMapView_v2.xib */,
+				0EDBDAA511C7DD220065DF0A /* KBFacebookEventsListView.xib */,
 				6AC28D541173BC6500518E37 /* PlacesListView_v2.xib */,
 				6AFE19A11175388C00130CBB /* PlacesMapView_v2.xib */,
 				6AEC8FC7117588A600BEB591 /* PlaceDetailView_v2.xib */,
@@ -1966,6 +1977,7 @@
 				6A0B41E011AAF09A00FB9A6D /* AddVenueViewController_v2.xib */,
 				6A921D891187A4F700866C59 /* ShoutViewController.xib */,
 				6A03D9091191E33C00FF036C /* CheckinModalView.xib */,
+				0EDBDA7811C760EA0065DF0A /* KBFacebookPostDetailViewController.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -3392,6 +3404,10 @@
 				0E76C4C511C185A700BA1E89 /* KBFacebookLoginView.m */,
 				0E86FACB11C330B10070C9D4 /* KBFacebookNewsCell.h */,
 				0E86FACC11C330B10070C9D4 /* KBFacebookNewsCell.m */,
+				0EB9D5AD11C6BDB4008EDF9F /* KBFacebookPostDetailViewController.h */,
+				0EB9D5AE11C6BDB4008EDF9F /* KBFacebookPostDetailViewController.m */,
+				0EDBDA9711C7631A0065DF0A /* KBFacebookEventsListViewController.h */,
+				0EDBDA9811C7631A0065DF0A /* KBFacebookEventsListViewController.m */,
 			);
 			name = Facebook;
 			sourceTree = "<group>";
@@ -3937,6 +3953,8 @@
 				2B13815211C2AD8300B72ECC /* featuresBG.png in Resources */,
 				2B13815411C2AD9100B72ECC /* hoursBG.png in Resources */,
 				2B13815611C2AD9800B72ECC /* tagsBG.png in Resources */,
+				0EDBDA7911C760EA0065DF0A /* KBFacebookPostDetailViewController.xib in Resources */,
+				0EDBDAA611C7DD220065DF0A /* KBFacebookEventsListView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4219,6 +4237,8 @@
 				0E86F8D311C2B8710070C9D4 /* GraphAPI.m in Sources */,
 				0E86F8D411C2B8710070C9D4 /* GraphObject.m in Sources */,
 				0E86FACD11C330B10070C9D4 /* KBFacebookNewsCell.m in Sources */,
+				0EB9D5AF11C6BDB4008EDF9F /* KBFacebookPostDetailViewController.m in Sources */,
+				0EDBDA9911C7631A0065DF0A /* KBFacebookEventsListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

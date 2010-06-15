@@ -46,7 +46,7 @@
         userName.backgroundColor = [UIColor clearColor];
         userName.shadowColor = [UIColor colorWithWhite:1.0 alpha:0.5];
         userName.shadowOffset = CGSizeMake(1.0, 1.0);
-        [self addSubview:userName];
+        //[self addSubview:userName];
         
         dateLabel = [[UILabel alloc] init];
         dateLabel.textColor = [UIColor colorWithWhite:0.5 alpha:1.0];
@@ -54,10 +54,10 @@
         dateLabel.backgroundColor = [UIColor clearColor];
         dateLabel.shadowColor = [UIColor colorWithWhite:1.0 alpha:0.5];
         dateLabel.shadowOffset = CGSizeMake(1.0, 1.0);
-		dateLabel.textAlignment = UITextAlignmentRight;
+		dateLabel.textAlignment = UITextAlignmentLeft;
         [self addSubview:dateLabel];
         
-		tweetText = [[TTStyledTextLabel alloc] initWithFrame:CGRectMake(58, 25, 250, 70)];
+		tweetText = [[TTStyledTextLabel alloc] initWithFrame:CGRectMake(58, 10, 250, 70)];
 		tweetText.textColor = [UIColor colorWithWhite:0.3 alpha:1.0];
 		tweetText.font = [UIFont fontWithName:@"Helvetica" size:12.0];
 		tweetText.backgroundColor = [UIColor clearColor];
@@ -74,6 +74,19 @@
 		 //tweetText.shadowOffset = CGSizeMake(1.0, 1.0);
 		 [self addSubview:tweetText];
 		 */
+		
+		commentBG = [[UIImageView alloc] init];
+		[commentBG setImage:[UIImage imageNamed:@"btn-noComment01.png"]];
+		[self addSubview:commentBG];
+		
+		commentNumber = [[UILabel alloc] init];
+        commentNumber.textColor = [UIColor colorWithRed:25.0/255.0 green:144.0/255.0 blue:219.0/255.0 alpha:1.0];
+        commentNumber.font = [UIFont boldSystemFontOfSize:12.0];
+        commentNumber.backgroundColor = [UIColor clearColor];
+        commentNumber.shadowColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+        commentNumber.shadowOffset = CGSizeMake(1.0, 1.0);
+		commentNumber.textAlignment = UITextAlignmentRight;
+		[self addSubview:commentNumber];
 		
         topLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderTop.png"]];
         [self addSubview:topLineImage];
@@ -92,14 +105,25 @@
 {
 	[super layoutSubviews];
 	CGRect contentRect = [self.contentView bounds];
-	userName.frame = CGRectMake(58, contentRect.origin.y+10, 150, 20);
-	dateLabel.frame = CGRectMake(216, contentRect.origin.y+10, 100, 20);
-	tweetText.center = CGPointMake(tweetText.center.x,(tweetText.frame.size.height/2)+32);
+	//userName.frame = CGRectMake(58, contentRect.origin.y+10, 150, 20);
+	tweetText.frame = CGRectMake(contentRect.origin.x+58, contentRect.origin.y+10, 250, tweetText.frame.size.height);
+	CGFloat textHeight = tweetText.frame.size.height;
+	dateLabel.frame = CGRectMake(contentRect.origin.x+58, contentRect.origin.y+10+textHeight, 100, 20);
+
+	//tweetText.center = CGPointMake(tweetText.center.x,(tweetText.frame.size.height/2)+32);
 	topLineImage.frame = CGRectMake(0, 0, contentRect.size.width, 1);
 	bottomLineImage.frame = CGRectMake(0, contentRect.size.height - 1, contentRect.size.width, 1);
-	[iconButt setCenter:CGPointMake(27, contentRect.size.height/2)];
-	[userIcon setCenter:CGPointMake(27, contentRect.size.height/2)];
-	[iconBgImage setCenter:CGPointMake(27, contentRect.size.height/2)];
+	
+	[iconButt setFrame:CGRectMake(8, contentRect.origin.y+10, 38, 38)];//CGPointMake(27, contentRect.size.height/2)];
+	[userIcon setFrame:CGRectMake(10, contentRect.origin.y+12, 34, 34)];//CGPointMake(27, contentRect.size.height/2)];
+	[iconBgImage setFrame:CGRectMake(8, contentRect.origin.y+10, 38, 38)];//CGPointMake(27, contentRect.size.height/2)];
+	commentNumber.frame = CGRectMake(contentRect.origin.x+contentRect.size.width - 95, contentRect.size.height - 25, 91, 24);
+	if (comments) {
+		commentBG.frame = CGRectMake(contentRect.origin.x+contentRect.size.width - 95, contentRect.size.height - 25, 95, 24);
+	}else {
+		commentBG.frame = CGRectMake(contentRect.origin.x+contentRect.size.width - 27, contentRect.size.height - 26, 27, 25);
+	}
+
 	
 }
 
@@ -143,8 +167,12 @@
 	NSDictionary* args = [NSDictionary dictionaryWithObject:@"picture" forKey:@"fields"];
 	GraphObject *fbItem = [fbGraph getObject:fbPictureUrl withArgs:args];
 	//userIcon.urlPath = [fbItem propertyWithKey:@"picture"];
-	[[FacebookProxy instance].pictureUrls setObject:[fbItem propertyWithKey:@"picture"] forKey:fbPictureUrl];
-	[userIcon performSelectorOnMainThread:@selector(setUrlPath:) withObject:[fbItem propertyWithKey:@"picture"] waitUntilDone:YES];
+	NSString *staticUrl = [fbItem propertyWithKey:@"picture"];
+	if (staticUrl!=nil) {
+		[[FacebookProxy instance].pictureUrls setObject:staticUrl forKey:fbPictureUrl];
+		[userIcon performSelectorOnMainThread:@selector(setUrlPath:) withObject:staticUrl waitUntilDone:YES];
+
+	}
 	[pool release];
 }
 
@@ -154,6 +182,16 @@
 	//[(KBBaseTweetViewController*)vc viewUserProfile:userName.text];
 }
 
+-(void)setNumberOfComments:(int)howMany{
+	comments = howMany;
+	if (comments) {
+		commentNumber.text = comments > 1 ? [NSString stringWithFormat:@"%i Comments",comments] : [NSString stringWithFormat:@"%i Comment",comments];
+		commentBG.image = [UIImage imageNamed:@"btn-xComments01.png"];
+	}else{
+		commentNumber.text = @" ";
+		commentBG.image = [UIImage imageNamed:@"btn-noComment01.png"];
+	}
+}
 
 - (void)dealloc {
 	[fbGraph release];

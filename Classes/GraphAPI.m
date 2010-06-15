@@ -219,6 +219,16 @@ NSString* const kConnectionAlbums = @"albums";
 	return connections;
 }
 
+-(GraphObject*)eventsFeed:(NSString*)user_id
+{	
+	NSString* path = [NSString stringWithFormat:@"%@/events", user_id];
+	NSData* response = [self api:path args:nil];
+	NSString* r_string =[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
+	GraphObject* baseEventResult = [self graphObjectArrayFromJSON:r_string];
+	[r_string release];
+	return baseEventResult;
+}
+
 -(GraphObject*)putToObject:(NSString*)parent_obj_id connectionType:(NSString*)connection args:(NSDictionary*)request_args
 {
 	NSMutableDictionary* mutableArgs = [NSMutableDictionary dictionaryWithDictionary:request_args];

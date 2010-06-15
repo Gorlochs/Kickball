@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "KBBaseViewController.h"
-
+#import "KBFacebookLoginView.h"
 
 @interface KBFacebookViewController : KBBaseViewController {
 
@@ -19,7 +19,8 @@
     IBOutlet UIButton *backButton;
     
     UIView *facebookHeaderView;
-	
+	KBFacebookLoginView *fbLoginView;
+
 	//do I need these?
 	int pageNum;
 }
@@ -34,6 +35,9 @@
 - (void) showBackHomeButtons;
 
 - (IBAction) openStatusModalView;
+
+-(void)showLoginView;
+-(void)killLoginView;
 
 @end
 @interface KBFacebookViewController (Private)

@@ -11,12 +11,10 @@
 
 @class KBFacebookLoginView;
 @interface KBFacebookListViewController : KBFacebookViewController{
-	KBFacebookLoginView *fbLoginView;
 	BOOL doingLogin;
 	NSArray *newsFeed;
 }
 
--(void)showLoginView;
--(void)killLoginView;
+
 -(void)refreshMainFeed;
 @end

@@ -125,7 +125,7 @@ NSString* const kKeyAccessToken = @"kKeyAccessToken";
 #pragma mark Singleton Methods
 
 static FacebookProxy* gFacebookProxy = NULL;
-
+static NSDateFormatter* fbDate = NULL;
 +(FacebookProxy*)instance
 {
 	@synchronized(self)
@@ -709,6 +709,16 @@ static FacebookProxy* gFacebookProxy = NULL;
 	
 }
 
++(NSDateFormatter*)fbDateFormatter{
+		if (fbDate == NULL)
+		{
+			fbDate = [[NSDateFormatter alloc] init];
+			[fbDate setTimeStyle:NSDateFormatterFullStyle];
+			[fbDate setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZ"];
+		}
+	return fbDate;
+}
+
 #pragma mark Button Handlers
 
 -(void)doAuth
@@ -722,6 +732,13 @@ static FacebookProxy* gFacebookProxy = NULL;
 		_meGraph = [self newGraph];
 	}
 	return [_meGraph newsFeed:@"me"];
+}
+
+-(NSArray*)refreshEvents{
+	if (_meGraph==nil) {
+		_meGraph = [self newGraph];
+	}
+	return [_meGraph eventsFeed:@"me"];
 }
 
 

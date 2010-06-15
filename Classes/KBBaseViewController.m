@@ -21,6 +21,7 @@
 #import "KBAccountManager.h"
 
 
+
 #define PROGRESS_BAR_TIMER_LENGTH 30.0
 
 const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
@@ -60,7 +61,7 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 		} else if (appDelegate.navControllerType == KBNavControllerTypeTwitter) {
 			nibViews =  [[NSBundle mainBundle] loadNibNamed:HEADER_NIB_TWITTER owner:self options:nil];
 		} else if (appDelegate.navControllerType == KBNavControllerTypeFacebook) {
-			//nibViews =  [[NSBundle mainBundle] loadNibNamed:HEADER_NIB_FOURSQUARE owner:self options:nil];
+			nibViews =  [[NSBundle mainBundle] loadNibNamed:HEADER_NIB_FACEBOOK owner:self options:nil];
         }
         if (nibViews) {
             headerView = (FoursquareHeaderView*)[nibViews objectAtIndex:0];
@@ -544,3 +545,5 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 }
 
 @end
+
+
