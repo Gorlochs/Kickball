@@ -24,5 +24,7 @@
 
 - (void) sendPushNotification;
 - (void) friendsToPingReceived:(NSNotification *)inNotification;
+- (void) retrieveAllFriendsWithPingOn;
+- (void)friendsToPingReceived;
 
 @end

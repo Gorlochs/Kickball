@@ -158,33 +158,33 @@ static Utilities *sharedInstance = nil;
 
 ////////////// RETRIEVE PINGS FROM SERVER /////////////////
 
-- (void) retrieveAllFriendsWithPingOn {
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://gorlochs.literalshore.com:3000/kickball/pings/user/%@.json", 
-                                       [[FoursquareAPI sharedInstance] currentUser].userId]];
-    ASIHTTPRequest *gorlochRequest = [[[ASIHTTPRequest alloc] initWithURL:url] autorelease];
-    
-    [gorlochRequest setDidFailSelector:@selector(pingRequestWentWrong:)];
-    [gorlochRequest setDidFinishSelector:@selector(pingRequestDidFinish:)];
-    [gorlochRequest setTimeOutSeconds:500];
-    [gorlochRequest setDelegate:self];
-    [gorlochRequest startAsynchronous];
-}
-
-- (void) pingRequestWentWrong:(ASIHTTPRequest *) request {
-    DLog(@"BOOOOOOOOOOOO!");
-}
-
-- (void) pingRequestDidFinish:(ASIHTTPRequest *) request {
-    DLog("ping request finished: %@", [request responseString]);
-    userIdsToReceivePings = [[NSMutableArray alloc] initWithCapacity:1];
-    SBJSON *parser = [[SBJSON new] autorelease];
-    id pingArray = [parser objectWithString:[request responseString] error:NULL];
-    for (NSDictionary *dict in (NSArray*)pingArray) {
-        [userIdsToReceivePings addObject:[[dict objectForKey:@"ping"] objectForKey:@"userId"]];
-    }
-    // I could include the array into the userInfo, but that array is available through the singleton anyway
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"friendPingRetrievalComplete" object:self userInfo:nil];
-}
+//- (void) retrieveAllFriendsWithPingOn {
+//    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://gorlochs.literalshore.com:3000/kickball/pings/user/%@.json", 
+//                                       [[FoursquareAPI sharedInstance] currentUser].userId]];
+//    ASIHTTPRequest *gorlochRequest = [[[ASIHTTPRequest alloc] initWithURL:url] autorelease];
+//    
+//    [gorlochRequest setDidFailSelector:@selector(pingRequestWentWrong:)];
+//    [gorlochRequest setDidFinishSelector:@selector(pingRequestDidFinish:)];
+//    [gorlochRequest setTimeOutSeconds:500];
+//    [gorlochRequest setDelegate:self];
+//    [gorlochRequest startAsynchronous];
+//}
+//
+//- (void) pingRequestWentWrong:(ASIHTTPRequest *) request {
+//    DLog(@"BOOOOOOOOOOOO!");
+//}
+//
+//- (void) pingRequestDidFinish:(ASIHTTPRequest *) request {
+//    DLog("ping request finished: %@", [request responseString]);
+//    userIdsToReceivePings = [[NSMutableArray alloc] initWithCapacity:1];
+//    SBJSON *parser = [[SBJSON new] autorelease];
+//    id pingArray = [parser objectWithString:[request responseString] error:NULL];
+//    for (NSDictionary *dict in (NSArray*)pingArray) {
+//        [userIdsToReceivePings addObject:[[dict objectForKey:@"ping"] objectForKey:@"userId"]];
+//    }
+//    // I could include the array into the userInfo, but that array is available through the singleton anyway
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"friendPingRetrievalComplete" object:self userInfo:nil];
+//}
 
 ////////////// UPDATE PINGS ON SERVER /////////////////
 
