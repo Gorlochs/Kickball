@@ -50,17 +50,17 @@
     description.font = [UIFont fontWithName:@"Helvetica" size:12.0];
     description.text = [userDictionary objectForKey:@"description"];
     
-    CGRect frame = CGRectMake(13, 65, 39, 39);
+    iconBgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellIconBorder.png"]];
+    iconBgImage.frame = CGRectMake(14, 63, 37, 38);
+    [self.view addSubview:iconBgImage];
+    
+    CGRect frame = CGRectMake(16, 65, 33, 34);
     userIcon = [[TTImageView alloc] initWithFrame:frame];
     userIcon.backgroundColor = [UIColor clearColor];
     userIcon.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
-    userIcon.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
+    userIcon.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:3 topRight:3 bottomRight:3 bottomLeft:3] next:[TTContentStyle styleWithNext:nil]];
     userIcon.urlPath = [userDictionary objectForKey:@"profile_image_url"];
     [self.view addSubview:userIcon];
-    
-    iconBgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellIconBorder.png"]];
-    iconBgImage.frame = CGRectMake(11, 63, 43, 43);
-    [self.view addSubview:iconBgImage];
 	
 	if ([[userDictionary objectForKey:@"following"] boolValue]) {
 		followButton.hidden = YES;

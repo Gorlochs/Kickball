@@ -25,11 +25,15 @@
         screenNameLabel.text = [self.userDictionary objectForKey:@"screen_name"];
         fullName.text = [self.userDictionary objectForKey:@"name"];
         
-        CGRect frame = CGRectMake(11, 53, 49, 49);
+		iconBgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellIconBorder.png"]];
+		iconBgImage.frame = CGRectMake(14, 63, 37, 38);
+		[self.view addSubview:iconBgImage];
+		
+        CGRect frame = CGRectMake(16, 65, 33, 34);
         userProfileImage = [[TTImageView alloc] initWithFrame:frame];
         userProfileImage.backgroundColor = [UIColor clearColor];
         userProfileImage.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
-        userProfileImage.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
+        userProfileImage.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:3 topRight:3 bottomRight:3 bottomLeft:3] next:[TTContentStyle styleWithNext:nil]];
         userProfileImage.urlPath = [self.userDictionary objectForKey:@"profile_image_url"];
         [self.view addSubview:userProfileImage];
     }
@@ -55,6 +59,7 @@
     if (userDictionary == nil && [userStatuses count] > 0) {
         screenNameLabel.text = [[[userStatuses objectAtIndex:0] objectForKey:@"user"] objectForKey:@"screen_name"];
         fullName.text = [[[userStatuses objectAtIndex:0] objectForKey:@"user"] objectForKey:@"name"];
+		location.text = [userDictionary objectForKey:@"location"];
         
         CGRect frame = CGRectMake(11, 53, 49, 49);
         userProfileImage = [[TTImageView alloc] initWithFrame:frame];
@@ -102,10 +107,14 @@
 	cell.tweetText.frame = newFrame;
 	
 	CGRect dateFrame = cell.dateLabel.frame;
-	dateFrame.origin = CGPointMake(20, expectedLabelSize.height + 10);
+	dateFrame.origin = CGPointMake(20, expectedLabelSize.height + 20);
 	cell.dateLabel.frame = dateFrame;
 	
 	return cell;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+        [cell setBackgroundColor:[UIColor colorWithRed:240.0/255.0 green:240.0/255.0 blue:240.0/255.0 alpha:1.0]];  
 }
 
 #pragma mark -
@@ -130,6 +139,7 @@
 //    [screenNameLabel release];
 //    [fullName release];
 //    [location release];
+	[iconBgImage release];
     [userProfileImage release];
     [super dealloc];
 }

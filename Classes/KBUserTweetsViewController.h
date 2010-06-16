@@ -17,6 +17,7 @@
     IBOutlet UILabel *fullName;
     IBOutlet UILabel *location;
     TTImageView *userProfileImage;
+    UIImageView *iconBgImage;
 }
 
 @property (nonatomic, retain) NSDictionary *userDictionary;

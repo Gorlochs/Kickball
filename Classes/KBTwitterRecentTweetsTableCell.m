@@ -17,6 +17,8 @@
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
+		self.backgroundColor = [UIColor colorWithRed:240.0/250.0 green:240.0/250.0 blue:240.0/250.0 alpha:1.0];
+		
         // Initialization code
         dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(216, 5, 100, 20)];
         dateLabel.textColor = [UIColor colorWithWhite:0.5 alpha:1.0];
@@ -44,13 +46,13 @@
         bottomLineImage.frame = CGRectMake(0, 1, self.frame.size.width, 1);
         [self addSubview:bottomLineImage];
         
-        retweetButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
-        retweetButton.frame = CGRectMake(250, self.frame.size.height - 10, 92, 39);
-        retweetButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-        retweetButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-        [retweetButton setImage:[UIImage imageNamed:@"retweet_small.png"] forState:UIControlStateNormal];
-        //[retweetButton addTarget:self action:@selector(retweet:) forControlEvents:UIControlEventTouchUpInside]; 
-        [self addSubview:retweetButton];
+//        retweetButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+//        retweetButton.frame = CGRectMake(250, self.frame.size.height - 10, 92, 39);
+//        retweetButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+//        retweetButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+//        [retweetButton setImage:[UIImage imageNamed:@"retweet_small.png"] forState:UIControlStateNormal];
+//        //[retweetButton addTarget:self action:@selector(retweet:) forControlEvents:UIControlEventTouchUpInside]; 
+//        [self addSubview:retweetButton];
     }
     return self;
 }
