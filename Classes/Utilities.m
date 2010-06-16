@@ -10,6 +10,7 @@
 #import "FoursquareAPI.h"
 #import "FSUser.h"
 #import "ASIFormDataRequest.h"
+#import "SBJSON.h"
 
 const NSString *kKBHashSalt = @"33eBMKjsW9CTWpX4njEKarkWGoH9ZdzP";
 
@@ -20,7 +21,7 @@ static Utilities *sharedInstance = nil;
 
 @implementation Utilities
 
-@synthesize friendsWithPingOn, foursquareCheckinDateFormatter;
+@synthesize friendsWithPingOn, foursquareCheckinDateFormatter, userIdsToReceivePings;
 
 + (Utilities*)sharedInstance
 {
@@ -175,6 +176,14 @@ static Utilities *sharedInstance = nil;
 
 - (void) pingRequestDidFinish:(ASIHTTPRequest *) request {
     DLog("ping request finished: %@", [request responseString]);
+    userIdsToReceivePings = [[NSMutableArray alloc] initWithCapacity:1];
+    SBJSON *parser = [[SBJSON new] autorelease];
+    id pingArray = [parser objectWithString:[request responseString] error:NULL];
+    for (NSDictionary *dict in (NSArray*)pingArray) {
+        [userIdsToReceivePings addObject:[[dict objectForKey:@"ping"] objectForKey:@"userId"]];
+    }
+    // I could include the array into the userInfo, but that array is available through the singleton anyway
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"friendPingRetrievalComplete" object:self userInfo:nil];
 }
 
 ////////////// UPDATE PINGS ON SERVER /////////////////
@@ -237,15 +246,15 @@ static Utilities *sharedInstance = nil;
     }
 }
 
-- (void)pushCompleted:(ASIHTTPRequest *) request {
-	NSString *result = request.responseString;
-	DLog(@"Response from push: %@", result);
-}
-
-- (void)pushFailed:(ASIHTTPRequest *) request {
-	NSString *result = request.responseString;
-	DLog(@"Failure from push: %@", result);
-}
+//- (void)pushCompleted:(ASIHTTPRequest *) request {
+//	NSString *result = request.responseString;
+//	DLog(@"Response from push: %@", result);
+//}
+//
+//- (void)pushFailed:(ASIHTTPRequest *) request {
+//	NSString *result = request.responseString;
+//	DLog(@"Failure from push: %@", result);
+//}
                       
 static void addRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWidth, float ovalHeight)
 {

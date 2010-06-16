@@ -33,6 +33,7 @@
 - (void) sendPushNotification {
 //    if ([[Utilities sharedInstance] friendsWithPingOn]) {
 //        DLog(@"friends with ping on pulled from cache: %@", [[[Utilities sharedInstance] friendsWithPingOn] componentsJoinedByString:@","]);
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(friendsToPingReceived:) name:@"friendPingRetrievalComplete" object:nil];
         [[Utilities sharedInstance] retrieveAllFriendsWithPingOn];
 //    } else {
 //        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(friendsToPingReceived:) name:@"friendsWithPingOnReceived" object:nil];
@@ -41,10 +42,10 @@
 
 - (void)friendsToPingReceived:(NSNotification *)inNotification {
     
-    NSMutableArray *friendIds = [[NSMutableArray alloc] initWithCapacity:1];
-    for (FSUser* friend in [[Utilities sharedInstance] friendsWithPingOn]) {
-        [friendIds addObject:friend.userId];
-    }
+    NSMutableArray *friendIds = [[[Utilities sharedInstance] userIdsToReceivePings] retain];
+//    for (FSUser* friend in [[Utilities sharedInstance] friendsWithPingOn]) {
+//        [friendIds addObject:friend.userId];
+//    }
     NSString *friendIdsString = [friendIds componentsJoinedByString:@","];
     DLog(@"friend ids: %@", friendIdsString);
     [friendIds release];

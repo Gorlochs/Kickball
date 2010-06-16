@@ -14,6 +14,7 @@
 @synthesize venue;
 
 - (void)viewDidLoad {
+    self.hideHeader = YES;
     [super viewDidLoad];
     tipTodoText.font = [UIFont systemFontOfSize:12.0];
     [tipTodoText becomeFirstResponder];
