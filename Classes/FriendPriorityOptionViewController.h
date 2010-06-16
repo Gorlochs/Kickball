@@ -12,6 +12,7 @@
 
 @interface FriendPriorityOptionViewController : KBFoursquareViewController {
     IBOutlet UISlider *slider;
+	IBOutlet UIImageView *detailText;
 }
 
 - (IBAction) nextOptionView;

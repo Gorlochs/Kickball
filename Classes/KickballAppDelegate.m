@@ -15,7 +15,7 @@
 #import "ProfileViewController.h"
 #import "PopupMessageView.h"
 #import "FlurryAPI.h"
-
+#import "OptionsViewController.h"
 
 @implementation KickballAppDelegate
 
@@ -24,6 +24,7 @@
 @synthesize navigationController;
 @synthesize twitterNavigationController;
 @synthesize facebookNavigationController;
+@synthesize optionsNavigationController;
 @synthesize user;
 @synthesize deviceToken;
 @synthesize deviceAlias;
@@ -33,8 +34,11 @@
 - (void)applicationDidFinishLaunching:(UIApplication *)application {    
 	
 	navControllerType = KBNavControllerTypeFoursquare;
+	flipperView = [[UIView alloc] initWithFrame:window.frame];
+	[flipperView setBackgroundColor:[UIColor blackColor]];
 	
-    [window addSubview:navigationController.view];
+    [window addSubview:flipperView];
+	[flipperView addSubview:navigationController.view];
     [window makeKeyAndVisible];
     
     application.applicationIconBadgeNumber = 0;
@@ -333,23 +337,134 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 - (void) switchToTwitter {
 	navControllerType = KBNavControllerTypeTwitter;
-    [window addSubview:twitterNavigationController.view];
+    [flipperView addSubview:twitterNavigationController.view];
+	if ([navigationController.view superview]!=nil)
+		[navigationController.view removeFromSuperview];
+	if ([facebookNavigationController.view superview]!=nil)
+		[facebookNavigationController.view removeFromSuperview];
+	
 }
 
 - (void) switchToFoursquare {
 	navControllerType = KBNavControllerTypeFoursquare;
-    [window addSubview:navigationController.view];
+    [flipperView addSubview:navigationController.view];
+	if ([facebookNavigationController.view superview]!=nil)
+		[facebookNavigationController.view removeFromSuperview];
+	if ([twitterNavigationController.view superview]!=nil)
+		[twitterNavigationController.view removeFromSuperview];
 }
 
 - (void) switchToFacebook {
 	navControllerType = KBNavControllerTypeFacebook;
-    [window addSubview:facebookNavigationController.view];
+    [flipperView addSubview:facebookNavigationController.view];
+	if ([navigationController.view superview]!=nil)
+		[navigationController.view removeFromSuperview];
+	if ([twitterNavigationController.view superview]!=nil)
+		[twitterNavigationController.view removeFromSuperview];
+}
+
+-(void)flipToOptions {
+	optionsFrame = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, 320, 460)];
+	[optionsFrame setImage:[UIImage imageNamed:@"opt_cornersOptions.png"]];
+	optionsHeaderBg = [[UIView alloc] initWithFrame:CGRectMake(15, 30, 292, 69)];
+	[optionsHeaderBg setBackgroundColor:[UIColor whiteColor]];
+	optionsLeft = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+	[optionsLeft setImage:[UIImage imageNamed:@"optionsArrowLeft01.png"] forState:UIControlStateNormal];
+	[optionsLeft setImage:[UIImage imageNamed:@"optionsArrowLeft02.png"] forState:UIControlStateHighlighted];
+	[optionsLeft setFrame:CGRectMake(0, 200, 35, 44)];
+	[optionsLeft addTarget:optionsNavigationController action:@selector(pressOptionsLeft) forControlEvents:UIControlEventTouchUpInside];
+	optionsRight = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+	[optionsRight setImage:[UIImage imageNamed:@"optionsArrowRight01.png"] forState:UIControlStateNormal];
+	[optionsRight setImage:[UIImage imageNamed:@"optionsArrowRight02.png"] forState:UIControlStateHighlighted];
+	[optionsRight setFrame:CGRectMake(285, 200, 35, 44)];
+	[optionsRight addTarget:optionsNavigationController action:@selector(pressOptionsRight) forControlEvents:UIControlEventTouchUpInside];
+	//optionsController = [[OptionsViewController alloc] initWithNibName:@"OptionsView_v2" bundle:nil];
+	//[optionsController.view setFrame:CGRectMake(0, 20, 320, 460)];
+	
+	[UIView beginAnimations:@"flipToOptions" context:nil];
+    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:flipperView cache:YES];
+	[UIView setAnimationDuration:0.5f];
+	switch (navControllerType) {
+		case KBNavControllerTypeFoursquare:
+			[navigationController.view removeFromSuperview];
+			break;
+		case KBNavControllerTypeTwitter:
+			[twitterNavigationController.view removeFromSuperview];
+			break;
+		case KBNavControllerTypeFacebook:
+			[facebookNavigationController.view removeFromSuperview];
+			break;
+		default:
+			break;
+	}    
+	[flipperView addSubview:optionsHeaderBg];
+	[flipperView addSubview:optionsNavigationController.view];
+	[flipperView addSubview:optionsFrame];
+	//[flipperView addSubview:optionsLeft];
+	//[flipperView addSubview:optionsRight];
+    [UIView commitAnimations];
+	
+}
+
+- (void)returnFromOptions{
+	[UIView beginAnimations:@"returnFromOptions" context:nil];
+    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:flipperView cache:YES];
+	[UIView setAnimationDelegate:self];
+	[UIView setAnimationDidStopSelector:@selector(clearOptions)];
+	[UIView setAnimationDuration:0.5f];
+	[optionsNavigationController.view removeFromSuperview];
+	[optionsFrame removeFromSuperview];
+	[optionsLeft removeFromSuperview];
+	[optionsRight removeFromSuperview];
+	[optionsHeaderBg removeFromSuperview];
+	switch (navControllerType) {
+		case KBNavControllerTypeFoursquare:
+			[flipperView addSubview:navigationController.view];
+			break;
+		case KBNavControllerTypeTwitter:
+			[flipperView addSubview:twitterNavigationController.view];
+			break;
+		case KBNavControllerTypeFacebook:
+			[flipperView addSubview:facebookNavigationController.view];
+			break;
+		default:
+			break;
+	}    
+	
+    [UIView commitAnimations];
+}
+
+-(void)clearOptions{
+	[optionsNavigationController popToRootViewControllerAnimated:NO];
+	[optionsFrame release];
+	[optionsHeaderBg release];
+	[optionsLeft release];
+	[optionsRight release];
+	//[optionsController release];
+	//optionsController = nil;
+}
+-(void)showBothOptionsButts{
+	[flipperView addSubview:optionsLeft];
+	[flipperView addSubview:optionsRight];
+}
+-(void)showNoOptionsButts{
+	[optionsLeft removeFromSuperview];
+	[optionsRight removeFromSuperview];
+}
+-(void)showLeftOptionsButts{
+	[flipperView addSubview:optionsLeft];
+	[optionsRight removeFromSuperview];
+}
+-(void)showRightOptionsButts{
+	[optionsLeft removeFromSuperview];
+	[flipperView addSubview:optionsRight];
 }
 
 - (void)dealloc {
     [viewController release];
-    [window release];
     [popupView release];
+	[flipperView release];
+	[window release];
     [super dealloc];
 }
 

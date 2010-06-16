@@ -27,17 +27,18 @@
     self.hideFooter = YES;
     self.hideRefresh = YES;
     
-    cellArray = [[NSArray alloc] initWithObjects:defaultCheckinCell, friendsListPriorityCell, pushNotificationCell, accountInformationCell, feedbackCell, versionInformationsCell, nil];
+    cellArray = [[NSArray alloc] initWithObjects:defaultCheckinCell, friendsListPriorityCell, pushNotificationCell, quickCheckInCell, accountInformationCell, feedbackCell, versionInformationsCell, nil];
     
     [super viewDidLoad];
  
-    [pushNotificationSwitch setOn:[self getAuthenticatedUser].isPingOn];
+    [pushNotificationSwitch setOn:[[FoursquareAPI sharedInstance] currentUser].isPingOn];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
     //[self startProgressBar:@"Retrieving settings..."];
     [[FoursquareAPI sharedInstance] getPendingFriendRequests:self andAction:@selector(friendRequestResponseReceived:withResponseString:)];
     [super viewWillAppear:animated];
+	[theTableView scrollToFirstRow:NO];
 }
 
 - (void)friendRequestResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
@@ -52,6 +53,12 @@
     [self stopProgressBar];
 }
 
+
+- (void) displayFoursquareErrorMessage:(NSString*)errorMessage {
+    KBMessage *message = [[KBMessage alloc] initWithMember:@"Foursquare Error" andMessage:errorMessage isError:YES];
+    [self displayPopupMessage:message];
+    [message release];
+}
 #pragma mark -
 #pragma mark Table view data source
 
@@ -63,7 +70,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 6;
+    return 7;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -103,6 +110,13 @@
 
 #pragma mark -
 #pragma mark button methods
+
+-(void)pressOptionsLeft{
+	
+}
+-(void)pressOptionsRight{
+	
+}
 
 - (void) logout {
     DLog(@"*************** logout ****************");
@@ -168,7 +182,7 @@
     BOOL newPingSetting = [FoursquareAPI pingSettingFromResponseXML:inString];
     DLog(@"new ping setting: %d", newPingSetting);
     [self stopProgressBar];
-    [self getAuthenticatedUser].isPingOn = newPingSetting;
+    [[FoursquareAPI sharedInstance] currentUser].isPingOn = newPingSetting;
 }
 
 #pragma mark -

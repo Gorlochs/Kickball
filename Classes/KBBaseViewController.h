@@ -129,6 +129,7 @@ typedef enum{
 - (IBAction) switchToTwitter;
 - (IBAction) switchToFoursquare;
 - (IBAction) switchToFacebook;
+- (IBAction) returnFromOptions;
 - (void) setTabImages;
 - (void) hideAppropriateTabs;
 

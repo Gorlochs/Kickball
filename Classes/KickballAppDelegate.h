@@ -21,17 +21,21 @@
 typedef enum{
 	KBNavControllerTypeFoursquare = 0,
 	KBNavControllerTypeTwitter,
-	KBNavControllerTypeFacebook,	
+	KBNavControllerTypeFacebook,
+	KBNavControllerTypeOptions,
 } KBNavControllerType;
 
-@class FriendsListViewController;
+@class FriendsListViewController, OptionsViewController;
 
 @interface KickballAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
+	UIView *flipperView;
+	
     FriendsListViewController *viewController;
     UINavigationController *navigationController;
     UINavigationController *twitterNavigationController;
     UINavigationController *facebookNavigationController;
+	UINavigationController *optionsNavigationController;
     FSUser *user;
 	NSString *deviceToken;
 	NSString *deviceAlias;
@@ -46,13 +50,18 @@ typedef enum{
     PopupMessageView *popupView;
 	
 	KBNavControllerType navControllerType;
-}
+	UIImageView *optionsFrame;
+	UIView *optionsHeaderBg;
+	UIButton *optionsLeft;
+	UIButton *optionsRight;
+	}
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet FriendsListViewController *viewController;
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
 @property (nonatomic, retain) IBOutlet UINavigationController *twitterNavigationController;
 @property (nonatomic, retain) IBOutlet UINavigationController *facebookNavigationController;
+@property (nonatomic, retain) IBOutlet UINavigationController *optionsNavigationController;
 @property (nonatomic, retain) IBOutlet FSUser *user;
 @property (nonatomic, retain) NSString *deviceToken;
 @property (nonatomic, retain) NSString *deviceAlias;
@@ -66,6 +75,9 @@ typedef enum{
 - (void) switchToTwitter;
 - (void) switchToFoursquare;
 - (void) switchToFacebook;
+-(void)flipToOptions;
+- (void)returnFromOptions;
 void uncaughtExceptionHandler(NSException *exception);
+
 
 @end

@@ -406,9 +406,11 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 }
 
 - (void) viewSettings {
-    OptionsViewController *optionsController = [[OptionsViewController alloc] initWithNibName:@"OptionsView_v2" bundle:nil];
-    [self.navigationController pushViewController:optionsController animated:YES];
-    [optionsController release];
+	KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
+	[appDelegate flipToOptions];
+    //OptionsViewController *optionsController = [[OptionsViewController alloc] initWithNibName:@"OptionsView_v2" bundle:nil];
+    //[self.navigationController pushViewController:optionsController animated:YES];
+    //[optionsController release];
 }
 
 - (void) addHeaderAndFooter:(UITableView*)tableView {
@@ -541,6 +543,11 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 - (void) switchToFacebook {
     KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
     [appDelegate switchToFacebook];
+}
+
+- (void) returnFromOptions{
+	KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
+    [appDelegate returnFromOptions];
 }
 
 @end

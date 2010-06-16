@@ -21,7 +21,7 @@
     
     [slider setMinimumTrackImage:nil forState:UIControlStateNormal];
     [slider setMaximumTrackImage:nil forState:UIControlStateNormal];
-    [slider setThumbImage:[UIImage imageNamed:@"slideBar.png"] forState:UIControlStateNormal];
+    [slider setThumbImage:[UIImage imageNamed:@"opt_sliderThumb.png"] forState:UIControlStateNormal];
 	NSNumber *currentUserValue = [[Utilities sharedInstance] getCityRadius];
 	int val = [currentUserValue intValue];
 	if (val < 0) {
@@ -49,18 +49,23 @@
 	if (newValue>=0.875) { 
 		[slider setValue:1.0 animated:YES]; // ∞
 		[[Utilities sharedInstance] setCityRadius:CITY_RADIUS_INFINTE];
+		[detailText setImage:[UIImage imageNamed:@"opt_x-desc.png"]];
 	}else if (newValue>=0.625) { 
 		[slider setValue:0.75 animated:YES]; // 100 miles
 		[[Utilities sharedInstance] setCityRadius:CITY_RADIUS_LARGE];
+		[detailText setImage:[UIImage imageNamed:@"100-desc.png"]];
 	}else if (newValue>=0.375) { 
 		[slider setValue:0.5 animated:YES]; // 50 miles
 		[[Utilities sharedInstance] setCityRadius:CITY_RADIUS_MEDIUM];
+		[detailText setImage:[UIImage imageNamed:@"50-desc.png"]];
 	}else if (newValue>=0.125) {
 		[slider setValue:0.25 animated:YES]; // 25 miles
 		[[Utilities sharedInstance] setCityRadius:CITY_RADIUS_SMALL];
+		[detailText setImage:[UIImage imageNamed:@"opt_25-desc.png"]];
 	}else {
 		[slider setValue:0.0 animated:YES]; //10 miles
 		[[Utilities sharedInstance] setCityRadius:CITY_RADIUS_TINY];
+		[detailText setImage:[UIImage imageNamed:@"opt_5-desc.png"]];
 	}
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"refreshFriendsList" object:nil];
 
