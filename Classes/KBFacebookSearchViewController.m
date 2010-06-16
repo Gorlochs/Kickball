@@ -32,6 +32,13 @@
     [self.view addSubview:button];
 }
 
+-(void)pressOptionsLeft{
+	[[self navigationController] popViewControllerAnimated:YES];
+}
+-(void)pressOptionsRight{
+	
+}
+
 #pragma mark -
 #pragma mark FBSessionDelegate
 

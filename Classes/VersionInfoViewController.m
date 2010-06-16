@@ -19,6 +19,14 @@
     [super viewDidLoad];
 }
 
+-(void)pressOptionsLeft{
+	[[self navigationController] popViewControllerAnimated:YES];
+
+}
+-(void)pressOptionsRight{
+	[[self navigationController] popToRootViewControllerAnimated:YES];
+}
+
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];

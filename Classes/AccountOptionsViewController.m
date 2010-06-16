@@ -319,6 +319,13 @@
     return YES;
 }
 
+-(void)pressOptionsLeft{
+	[[self navigationController] popViewControllerAnimated:YES];
+}
+-(void)pressOptionsRight{
+	[self nextOptionView];
+}
+
 #pragma mark -
 #pragma mark Memory management
 

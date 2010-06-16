@@ -371,13 +371,13 @@ void uncaughtExceptionHandler(NSException *exception) {
 	optionsLeft = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
 	[optionsLeft setImage:[UIImage imageNamed:@"optionsArrowLeft01.png"] forState:UIControlStateNormal];
 	[optionsLeft setImage:[UIImage imageNamed:@"optionsArrowLeft02.png"] forState:UIControlStateHighlighted];
-	[optionsLeft setFrame:CGRectMake(0, 200, 35, 44)];
-	[optionsLeft addTarget:optionsNavigationController action:@selector(pressOptionsLeft) forControlEvents:UIControlEventTouchUpInside];
+	[optionsLeft setFrame:CGRectMake(0, 220, 35, 44)];
+	[optionsLeft addTarget:self action:@selector(pressOptionsLeft) forControlEvents:UIControlEventTouchUpInside];
 	optionsRight = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
 	[optionsRight setImage:[UIImage imageNamed:@"optionsArrowRight01.png"] forState:UIControlStateNormal];
 	[optionsRight setImage:[UIImage imageNamed:@"optionsArrowRight02.png"] forState:UIControlStateHighlighted];
-	[optionsRight setFrame:CGRectMake(285, 200, 35, 44)];
-	[optionsRight addTarget:optionsNavigationController action:@selector(pressOptionsRight) forControlEvents:UIControlEventTouchUpInside];
+	[optionsRight setFrame:CGRectMake(285, 220, 35, 44)];
+	[optionsRight addTarget:self action:@selector(pressOptionsRight) forControlEvents:UIControlEventTouchUpInside];
 	//optionsController = [[OptionsViewController alloc] initWithNibName:@"OptionsView_v2" bundle:nil];
 	//[optionsController.view setFrame:CGRectMake(0, 20, 320, 460)];
 	
@@ -458,6 +458,14 @@ void uncaughtExceptionHandler(NSException *exception) {
 -(void)showRightOptionsButts{
 	[optionsLeft removeFromSuperview];
 	[flipperView addSubview:optionsRight];
+}
+
+-(void)pressOptionsLeft{
+	[[optionsNavigationController visibleViewController] pressOptionsLeft];
+}
+-(void)pressOptionsRight{
+	[[optionsNavigationController visibleViewController] pressOptionsRight];
+
 }
 
 - (void)dealloc {

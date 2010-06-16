@@ -39,6 +39,9 @@
     [[FoursquareAPI sharedInstance] getPendingFriendRequests:self andAction:@selector(friendRequestResponseReceived:withResponseString:)];
     [super viewWillAppear:animated];
 	[theTableView scrollToFirstRow:NO];
+	KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
+	[appDelegate showNoOptionsButts];
+	
 }
 
 - (void)friendRequestResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
@@ -126,24 +129,35 @@
     AccountOptionsViewController *accountController = [[AccountOptionsViewController alloc] initWithNibName:@"AccountOptionsView_v2" bundle:nil];
     [self.navigationController pushViewController:accountController animated:YES];
     [accountController release];
+	KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
+	[appDelegate showBothOptionsButts];
 }
 
 - (void) viewVersion {
     VersionInfoViewController *controller = [[VersionInfoViewController alloc] initWithNibName:@"VersionInfoViewController" bundle:nil];
     [self.navigationController pushViewController:controller animated:YES];
     [controller release];
+	KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
+	[appDelegate showBothOptionsButts];
+
 }
 
 - (void) viewFriendPriority {
     FriendPriorityOptionViewController *controller = [[FriendPriorityOptionViewController alloc] initWithNibName:@"FriendPriorityOptionViewController" bundle:nil];
     [self.navigationController pushViewController:controller animated:YES];
     [controller release];
+	KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
+	[appDelegate showBothOptionsButts];
+
 }
 
 - (void) viewFeedback {
     FeedbackViewController *controller = [[FeedbackViewController alloc] initWithNibName:@"FeedbackViewController" bundle:nil];
     [self.navigationController pushViewController:controller animated:YES];
     [controller release];
+	KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
+	[appDelegate showBothOptionsButts];
+
 }
 
 - (void) viewFriendRequests {
@@ -151,18 +165,27 @@
     controller.pendingFriendRequests = [[NSMutableArray alloc] initWithArray:pendingFriendRequests];
     [self.navigationController pushViewController:controller animated:YES];
     [controller release];
+	KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
+	[appDelegate showLeftOptionsButts];
+
 }
 
 - (void) viewDefaultCheckinOptions {
     CheckinOptionsViewController *controller = [[CheckinOptionsViewController alloc] initWithNibName:@"CheckinOptionsViewController" bundle:nil];
     [self.navigationController pushViewController:controller animated:YES];
     [controller release];
+	KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
+	[appDelegate showBothOptionsButts];
+
 }
 
 - (void) addFriends {
     FriendRequestsViewController *friendRequestsController = [[FriendRequestsViewController alloc] initWithNibName:@"FriendRequestsViewController" bundle:nil];
     [self.navigationController pushViewController:friendRequestsController animated:YES];
     [friendRequestsController release];
+	KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
+	[appDelegate showLeftOptionsButts];
+
 }
 
 #pragma mark -

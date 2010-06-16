@@ -74,6 +74,12 @@
 	// e.g. self.myOutlet = nil;
 }
 
+-(void)pressOptionsLeft{
+	[[self navigationController] popViewControllerAnimated:YES];
+}
+-(void)pressOptionsRight{
+	
+}
 #pragma mark -
 #pragma mark other methods
 

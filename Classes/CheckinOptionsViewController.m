@@ -25,6 +25,13 @@
     [self.navigationController pushViewController:controller animated:YES];
     [controller release];
 }
+-(void)pressOptionsLeft{
+	[[self navigationController] popViewControllerAnimated:YES];
+
+}
+-(void)pressOptionsRight{
+	[self nextOptionView];
+}
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.

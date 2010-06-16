@@ -20,6 +20,12 @@
     return self;
 }
 
+-(void)pressOptionsLeft{
+	[[self navigationController] popViewControllerAnimated:YES];
+}
+-(void)pressOptionsRight{
+	
+}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
 

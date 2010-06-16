@@ -2,7 +2,7 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">784</int>
-		<string key="IBDocument.SystemVersion">10D573</string>
+		<string key="IBDocument.SystemVersion">10D578</string>
 		<string key="IBDocument.InterfaceBuilderVersion">762</string>
 		<string key="IBDocument.AppKitVersion">1038.29</string>
 		<string key="IBDocument.HIToolboxVersion">460.00</string>
@@ -12,7 +12,6 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="8"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -47,6 +46,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{14, 85}, {292, 355}}</string>
 						<reference key="NSSuperview" ref="889428325"/>
+						<reference key="NSWindow"/>
 						<object class="NSColor" key="IBUIBackgroundColor" id="557135982">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
@@ -69,6 +69,7 @@
 						<int key="NSvFlags">256</int>
 						<string key="NSFrame">{{14, 16}, {292, 69}}</string>
 						<reference key="NSSuperview" ref="889428325"/>
+						<reference key="NSWindow"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">4</int>
@@ -84,6 +85,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{255, 26}, {49, 48}}</string>
 						<reference key="NSSuperview" ref="889428325"/>
+						<reference key="NSWindow"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MCAwAA</bytes>
@@ -118,6 +120,7 @@
 				</object>
 				<string key="NSFrameSize">{320, 460}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MAA</bytes>
@@ -166,12 +169,12 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">back</string>
+						<string key="label">returnFromOptions</string>
 						<reference key="source" ref="377657774"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">30</int>
+					<int key="connectionID">31</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -241,7 +244,7 @@
 					<string>{{329, 504}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{733, 501}, {320, 460}}</string>
+					<string>{{733, 396}, {320, 460}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>
@@ -261,7 +264,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">30</int>
+			<int key="maxID">31</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -301,6 +304,7 @@
 							<string>dismiss</string>
 							<string>displayTextView</string>
 							<string>displayTextViewForCheckin</string>
+							<string>returnFromOptions</string>
 							<string>switchToFacebook</string>
 							<string>switchToFoursquare</string>
 							<string>switchToTwitter</string>
@@ -317,6 +321,7 @@
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
+							<string>id</string>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="outlets">
@@ -325,6 +330,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>facebookTab</string>
 							<string>foursquareTab</string>
+							<string>headerView</string>
 							<string>optionsTab</string>
 							<string>signedInUserIcon</string>
 							<string>theTableView</string>
@@ -334,6 +340,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UIButton</string>
 							<string>UIButton</string>
+							<string>id</string>
 							<string>UIButton</string>
 							<string>UIButton</string>
 							<string>UITableView</string>
