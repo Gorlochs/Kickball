@@ -18,12 +18,15 @@
 - (void) viewDidLoad {
     pageType = KBPageTypeOther;
     [super viewDidLoad];
+	
+	location.text = @"";
     
     cachingKey = [NSString stringWithString:username];
     
     if (self.userDictionary) {
         screenNameLabel.text = [self.userDictionary objectForKey:@"screen_name"];
         fullName.text = [self.userDictionary objectForKey:@"name"];
+		location.text = [self.userDictionary objectForKey:@"location"];
         
 		iconBgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellIconBorder.png"]];
 		iconBgImage.frame = CGRectMake(14, 63, 37, 38);
@@ -59,7 +62,7 @@
     if (userDictionary == nil && [userStatuses count] > 0) {
         screenNameLabel.text = [[[userStatuses objectAtIndex:0] objectForKey:@"user"] objectForKey:@"screen_name"];
         fullName.text = [[[userStatuses objectAtIndex:0] objectForKey:@"user"] objectForKey:@"name"];
-		location.text = [userDictionary objectForKey:@"location"];
+		location.text = [[[userStatuses objectAtIndex:0] objectForKey:@"user"] objectForKey:@"location"];
         
         CGRect frame = CGRectMake(11, 53, 49, 49);
         userProfileImage = [[TTImageView alloc] initWithFrame:frame];
