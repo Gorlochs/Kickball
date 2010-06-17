@@ -13,6 +13,7 @@
 #import "FacebookProxy.h"
 #import "KickballAPI.h"
 #import "KBFacebookPostDetailViewController.h"
+#import "KBFacebookEventDetailViewController.h"
 #import "TableSectionHeaderView.h"
 
 @implementation KBFacebookEventsListViewController
@@ -298,14 +299,11 @@ NSInteger eventsDateSort(id e1, id e2, void *context) {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[theTableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.section == 0) {
-        KBFacebookPostDetailViewController *detailViewController = [[KBFacebookPostDetailViewController alloc] initWithNibName:@"KBFacebookPostDetailViewController" bundle:nil];
-        //detailViewController.tweet = [tweets objectAtIndex:indexPath.row];
-        [self.navigationController pushViewController:detailViewController animated:YES];
-		[detailViewController release];
-    } else {
-        //[self executeQuery:++pageNum];
-    }
+    KBFacebookEventDetailViewController *detailViewController = [[KBFacebookEventDetailViewController alloc] initWithNibName:@"KBFacebookEventDetailViewController" bundle:nil];
+	NSDictionary *fbItem = [(NSArray*)[(NSDictionary*)[eventsFeed objectAtIndex:indexPath.section] objectForKey:@"events"] objectAtIndex:indexPath.row];
+	[detailViewController populate:fbItem];
+	[self.navigationController pushViewController:detailViewController animated:YES];
+	[detailViewController release];
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
