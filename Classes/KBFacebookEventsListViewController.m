@@ -7,12 +7,13 @@
 //
 
 #import "KBFacebookEventsListViewController.h"
-#import "KBFacebookNewsCell.h"
+#import "KBFacebookEventsCell.h"
 #import "GraphAPI.h"
 #import	"GraphObject.h"
 #import "FacebookProxy.h"
 #import "KickballAPI.h"
 #import "KBFacebookPostDetailViewController.h"
+#import "TableSectionHeaderView.h"
 
 @implementation KBFacebookEventsListViewController
 
@@ -37,10 +38,14 @@ NSInteger eventsDateSort(id e1, id e2, void *context) {
      NSString:localizedCompare. */
     NSDate *e1Date = nil;
 	NSDate *e2Date = nil;
-    if (e1 != nil && [e1 isKindOfClass:[GraphObject class]] &&
-        e2 != nil && [e2 isKindOfClass:[GraphObject class]]) {
-        e1Date = [[FacebookProxy fbDateFormatter] dateFromString:[e1 propertyWithKey:@"start_time"]];
-        e2Date = [[FacebookProxy fbDateFormatter] dateFromString:[e2 propertyWithKey:@"start_time"]];
+    if (e1 != nil && [e1 isKindOfClass:[NSDictionary class]] &&
+        e2 != nil && [e2 isKindOfClass:[NSDictionary class]]) {
+        //e1Date = [[FacebookProxy fbDateFormatter] dateFromString:[e1 propertyWithKey:@"start_time"]];
+        //e2Date = [[FacebookProxy fbDateFormatter] dateFromString:[e2 propertyWithKey:@"start_time"]];
+		NSTimeInterval e1Epoch = [(NSString*)[(NSDictionary*)e1 objectForKey:@"start_time"] intValue];
+		NSTimeInterval e2Epoch = [(NSString*)[(NSDictionary*)e2 objectForKey:@"start_time"] intValue];
+		e1Date = [NSDate dateWithTimeIntervalSince1970:e1Epoch];
+		e2Date = [NSDate dateWithTimeIntervalSince1970:e2Epoch];
     }
     return [e1Date compare:e2Date];
 }
@@ -85,22 +90,89 @@ NSInteger eventsDateSort(id e1, id e2, void *context) {
 	NSArray *baseEventResult = [[FacebookProxy instance] refreshEvents];
 	NSArray *sortedEvents = [baseEventResult sortedArrayUsingFunction:eventsDateSort context:NULL];
 	NSMutableArray *futureEvents = [[NSMutableArray alloc] init];
-	/*
-	for (GraphObject* fbEvent in sortedEvents) {
-		NSCalendar *cal = [NSCalendar currentCalendar];
-		NSDateComponents *components = [cal components:(NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit) fromDate:[NSDate date]];
-		NSDate *today = [cal dateFromComponents:components];
-		components = [cal components:(NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit) fromDate:aDate];
-		NSDate *otherDate = [cal dateFromComponents:components];
+	NSMutableArray *futureSections = [[NSMutableArray alloc] init];
+	NSMutableArray * todayEvents = [[NSMutableArray alloc] init];
+	NSMutableArray * tomorrowEvents = [[NSMutableArray alloc] init];
+	
+	NSCalendar *cal = [NSCalendar currentCalendar];
+	NSDateComponents *components = [cal components:(NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit) fromDate:[NSDate date]];
+	NSDate *today = [cal dateFromComponents:components];
+	
+	
+	NSDateComponents *offsetComponents = [[NSDateComponents alloc] init];
+    [offsetComponents setDay:1];
+    NSDate *tomorrow = [cal dateByAddingComponents:offsetComponents toDate:today options:0];
+	[offsetComponents release];
+	NSDate *lastFutureDate = [today copy];
+	for (NSDictionary* fbEvent in sortedEvents) {
 		
-		if([today isEqualToDate:otherDate]) {
-			//do stuff
+		NSDate *fbEventDate = [NSDate dateWithTimeIntervalSince1970:[(NSString*)[fbEvent objectForKey:@"start_time"] intValue]];
+		[fbEventDate addTimeInterval:[[NSTimeZone defaultTimeZone] secondsFromGMT]];
+		components = [cal components:(NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit) fromDate:fbEventDate];
+		NSDate *eventDate = [cal dateFromComponents:components];
+		
+		if([today isEqualToDate:eventDate]) {
+			[todayEvents addObject:fbEvent];
+		}else if([tomorrow isEqualToDate:eventDate]) {
+			[tomorrowEvents addObject:fbEvent];
+		}else {
+			NSDate *later = [eventDate laterDate:today];
+			if ([later isEqualToDate:eventDate]) {
+				//this is a future event
+				//is this event on the same day as another future event?
+				if([lastFutureDate isEqualToDate:eventDate]){
+					//yes these events are on the same day, so add this event to the current dictionary
+					[futureEvents addObject:fbEvent];
+				}else {
+					//it's a new day so:
+					//if there are events in current dictionary, push it as a new section
+					//release and re-alloc current dictionary
+					//add self to current dictionary
+					//set last futureDate to this on
+					if ([futureEvents count]>0) {
+						//create date string
+						NSString *sectionHeader = [[FacebookProxy fbEventSectionFormatter] stringFromDate:lastFutureDate];
+						NSDictionary *newSection = [NSDictionary dictionaryWithObjectsAndKeys:sectionHeader,@"headerString",futureEvents,@"events",nil];
+						[futureSections addObject:newSection];
+						[futureEvents release];
+						futureEvents = nil;
+						futureEvents = [[NSMutableArray alloc] init];
+					}
+					[futureEvents addObject:fbEvent];
+					[lastFutureDate release];
+					lastFutureDate = [eventDate copy];
+				}
+			}
 		}
-	}*/
+
+	}
+	if ([futureEvents count]>0) {
+		//create date string
+		NSString *sectionHeader = [[FacebookProxy fbEventSectionFormatter] stringFromDate:lastFutureDate];
+		NSDictionary *newSection = [NSDictionary dictionaryWithObjectsAndKeys:sectionHeader,@"headerString",futureEvents,@"events",nil];
+		[futureSections addObject:newSection];
+	}
+	[futureEvents release];
+	futureEvents = nil;
+	[lastFutureDate release];
+	lastFutureDate = nil;
 	
-	eventsFeed  = sortedEvents;
+	//now that I have a simple array I need to make a sectioned array
+	////create days for today and for tomorrow
+	eventsFeed = [[NSMutableArray alloc] init];
+	if ([todayEvents count]>0) {
+		NSDictionary *newSection = [NSDictionary dictionaryWithObjectsAndKeys:@"Today",@"headerString",todayEvents,@"events",nil];
+		[eventsFeed addObject:newSection];
+	}
+	if ([tomorrowEvents count]>0) {
+		NSDictionary *newSection = [NSDictionary dictionaryWithObjectsAndKeys:@"Tomorrow",@"headerString",tomorrowEvents,@"events",nil];
+		[eventsFeed addObject:newSection];
+	}
 	
-	[eventsFeed retain];
+	[eventsFeed addObjectsFromArray:futureSections];
+	
+	//[eventsFeed retain];
+	[futureSections release];
 	[theTableView reloadData];
 	if ([eventsFeed count]>0) {
 		noResultsView.hidden = YES;
@@ -129,6 +201,14 @@ NSInteger eventsDateSort(id e1, id e2, void *context) {
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
+	if (eventsFeed!=nil) {
+		if ([eventsFeed count]>0) {
+			return [eventsFeed count];
+		}else {
+			return 1;
+		}
+
+	}
     return 1;
 }
 
@@ -136,14 +216,26 @@ NSInteger eventsDateSort(id e1, id e2, void *context) {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
 	if (eventsFeed!=nil) {
-		return [eventsFeed count];
+		NSDictionary *sectionDict = [eventsFeed objectAtIndex:section];
+		if (sectionDict!=nil) {
+			NSArray *rows = [sectionDict objectForKey:@"events"];
+			if (rows!=nil) {
+				return [rows count];
+			}else {
+				return 0;
+			}
+
+		}else {
+			return 0;
+		}
 	}
     return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	/*
 	if (eventsFeed!=nil) {
-		GraphObject *fbItem = [eventsFeed objectAtIndex:indexPath.row];
+		NSDictionary *fbItem = [eventsFeed objectAtIndex:indexPath.row];
 		NSString *displayString = [NSString	 stringWithFormat:@"%@ %@",[(NSDictionary*)[fbItem propertyWithKey:@"from"] objectForKey:@"name"], [fbItem propertyWithKey:@"message"]];
 		CGSize maximumLabelSize = CGSizeMake(250, 400);
 		CGSize expectedLabelSize = [displayString sizeWithFont:[UIFont fontWithName:@"Helvetica" size:12.0]
@@ -154,26 +246,50 @@ NSInteger eventsDateSort(id e1, id e2, void *context) {
 		return calculatedHeight;
 		//}
 	}
+	 */
 	return 60;
 	
 }
+
+- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+	return 30.0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+	if (eventsFeed!=nil) {
+		NSDictionary *sectionDict = [eventsFeed objectAtIndex:section];
+		if (sectionDict!=nil) {
+			NSString *headerString = [sectionDict objectForKey:@"headerString"];
+			if (headerString!=nil) {
+				TableSectionHeaderView *sectionHeaderView = [[[TableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)] autorelease];
+				sectionHeaderView.leftHeaderLabel.text = headerString;
+                sectionHeaderView.rightHeaderLabel.text = @"";
+				return sectionHeaderView;
+			}else {
+				return nil;
+			}
+			
+		}else {
+			return nil;
+		}
+	}
+    return nil;
+	
+}
+
+
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier = @"Cell";
     
-    KBFacebookNewsCell *cell = (KBFacebookNewsCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    KBFacebookEventsCell *cell = (KBFacebookEventsCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	if (cell == nil) {
-        cell = [[[KBFacebookNewsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[KBFacebookEventsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
 	}
-	GraphObject *fbItem = [eventsFeed objectAtIndex:indexPath.row];
-	NSString *displayString = [fbItem propertyWithKey:@"name"];
-	//cell.fbPictureUrl = [(NSDictionary*)[fbItem propertyWithKey:@"from"] objectForKey:@"id"];
-	cell.tweetText.text = [TTStyledText textFromXHTML:displayString lineBreaks:NO URLs:NO];
-	//[cell setNumberOfComments:[(NSArray*)[(NSDictionary*)[fbItem propertyWithKey:@"comments"] objectForKey:@"data"] count]];
-	[cell setDateLabelWithText:[[KickballAPI kickballApi] convertDateToTimeUnitString:[[FacebookProxy fbDateFormatter] dateFromString:[fbItem propertyWithKey:@"start_time"]]]];
-	[cell.tweetText sizeToFit];
-	[cell.tweetText setNeedsDisplay];
+	NSDictionary *fbItem = [(NSArray*)[(NSDictionary*)[eventsFeed objectAtIndex:indexPath.section] objectForKey:@"events"] objectAtIndex:indexPath.row];
+	[cell populate:fbItem];
 	return cell;
 }
 

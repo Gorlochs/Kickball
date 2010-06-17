@@ -54,6 +54,9 @@
 		0E86F8D311C2B8710070C9D4 /* GraphAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E86F8CE11C2B8710070C9D4 /* GraphAPI.m */; };
 		0E86F8D411C2B8710070C9D4 /* GraphObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E86F8D011C2B8710070C9D4 /* GraphObject.m */; };
 		0E86FACD11C330B10070C9D4 /* KBFacebookNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E86FACC11C330B10070C9D4 /* KBFacebookNewsCell.m */; };
+		0E906CD611CA03C60045006C /* opt_optionsCellBG01.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E906CD411CA03C60045006C /* opt_optionsCellBG01.png */; };
+		0E906CD711CA03C60045006C /* opt_optionsCellBG02.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E906CD511CA03C60045006C /* opt_optionsCellBG02.png */; };
+		0E906D6C11CAA7AF0045006C /* KBFacebookEventsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E906D6B11CAA7AF0045006C /* KBFacebookEventsCell.m */; };
 		0EB9D5AF11C6BDB4008EDF9F /* KBFacebookPostDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EB9D5AE11C6BDB4008EDF9F /* KBFacebookPostDetailViewController.m */; };
 		0EC57AC811C95B8800F941FD /* 00.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EC57A9C11C95B8800F941FD /* 00.png */; };
 		0EC57AC911C95B8800F941FD /* opt_addFriends01.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EC57A9D11C95B8800F941FD /* opt_addFriends01.png */; };
@@ -863,6 +866,10 @@
 		0E86F8D011C2B8710070C9D4 /* GraphObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphObject.m; sourceTree = "<group>"; };
 		0E86FACB11C330B10070C9D4 /* KBFacebookNewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBFacebookNewsCell.h; sourceTree = "<group>"; };
 		0E86FACC11C330B10070C9D4 /* KBFacebookNewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBFacebookNewsCell.m; sourceTree = "<group>"; };
+		0E906CD411CA03C60045006C /* opt_optionsCellBG01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = opt_optionsCellBG01.png; sourceTree = "<group>"; };
+		0E906CD511CA03C60045006C /* opt_optionsCellBG02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = opt_optionsCellBG02.png; sourceTree = "<group>"; };
+		0E906D6A11CAA7AF0045006C /* KBFacebookEventsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBFacebookEventsCell.h; sourceTree = "<group>"; };
+		0E906D6B11CAA7AF0045006C /* KBFacebookEventsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBFacebookEventsCell.m; sourceTree = "<group>"; };
 		0EB9D5AD11C6BDB4008EDF9F /* KBFacebookPostDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBFacebookPostDetailViewController.h; sourceTree = "<group>"; };
 		0EB9D5AE11C6BDB4008EDF9F /* KBFacebookPostDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBFacebookPostDetailViewController.m; sourceTree = "<group>"; };
 		0EC57A9C11C95B8800F941FD /* 00.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 00.png; sourceTree = "<group>"; };
@@ -1988,6 +1995,8 @@
 		0EC57A9B11C95B8800F941FD /* Options - 2 */ = {
 			isa = PBXGroup;
 			children = (
+				0E906CD411CA03C60045006C /* opt_optionsCellBG01.png */,
+				0E906CD511CA03C60045006C /* opt_optionsCellBG02.png */,
 				0EC57A9C11C95B8800F941FD /* 00.png */,
 				0EC57A9D11C95B8800F941FD /* opt_addFriends01.png */,
 				0EC57A9E11C95B8800F941FD /* opt_addFriends02.png */,
@@ -3611,6 +3620,8 @@
 				0EB9D5AE11C6BDB4008EDF9F /* KBFacebookPostDetailViewController.m */,
 				0EDBDA9711C7631A0065DF0A /* KBFacebookEventsListViewController.h */,
 				0EDBDA9811C7631A0065DF0A /* KBFacebookEventsListViewController.m */,
+				0E906D6A11CAA7AF0045006C /* KBFacebookEventsCell.h */,
+				0E906D6B11CAA7AF0045006C /* KBFacebookEventsCell.m */,
 			);
 			name = Facebook;
 			sourceTree = "<group>";
@@ -4207,6 +4218,8 @@
 				0EC57AEC11C95B8800F941FD /* 00.png in Resources */,
 				0EC57AED11C95B8800F941FD /* opt_bg-defaultCheckin.png in Resources */,
 				0EC57AEE11C95B8800F941FD /* opt_hdr-defaultCheckin.png in Resources */,
+				0E906CD611CA03C60045006C /* opt_optionsCellBG01.png in Resources */,
+				0E906CD711CA03C60045006C /* opt_optionsCellBG02.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4491,6 +4504,7 @@
 				0E86FACD11C330B10070C9D4 /* KBFacebookNewsCell.m in Sources */,
 				0EB9D5AF11C6BDB4008EDF9F /* KBFacebookPostDetailViewController.m in Sources */,
 				0EDBDA9911C7631A0065DF0A /* KBFacebookEventsListViewController.m in Sources */,
+				0E906D6C11CAA7AF0045006C /* KBFacebookEventsCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

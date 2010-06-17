@@ -1,8 +1,10 @@
 #import "GraphAPI.h"
 #import "JSON.h"
+#import "FBXMLHandler.h"
+#import "TouchXML.h"
 
 NSString* const kGraphAPIServer = @"https://graph.facebook.com/";
-
+NSString* const kRestAPIServer = @"https://api.facebook.com/method/";
 // Graph API Argument Keys
 NSString* const kArgumentKeyAccessToken = @"access_token";
 NSString* const kArgumentKeyMethod = @"method";
@@ -219,14 +221,81 @@ NSString* const kConnectionAlbums = @"albums";
 	return connections;
 }
 
--(GraphObject*)eventsFeed:(NSString*)user_id
+-(NSArray*)eventsFeed:(NSString*)user_id
 {	
+	/*
 	NSString* path = [NSString stringWithFormat:@"%@/events", user_id];
 	NSData* response = [self api:path args:nil];
 	NSString* r_string =[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
 	GraphObject* baseEventResult = [self graphObjectArrayFromJSON:r_string];
 	[r_string release];
 	return baseEventResult;
+	 */
+	NSData* responseData = nil;
+	NSString* r_string = nil;
+	NSString* method = @"events.get";
+	NSDictionary *args = nil;
+	
+	args= [NSDictionary dictionaryWithObjectsAndKeys:@"unsure",@"rsvp_status",@"XML",@"format",self._accessToken,kArgumentKeyAccessToken,nil];
+	responseData = [self makeSynchronousRest:method args:args verb:kRequestVerbGet];
+	r_string = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+	FBXMLHandler* unsure_handler = [[[FBXMLHandler alloc] init] autorelease];
+	NSXMLParser* unsure_parser = [[[NSXMLParser alloc] initWithData:responseData] autorelease];
+	unsure_parser.delegate = unsure_handler;
+	[unsure_parser parse];
+	for(NSMutableDictionary *event in unsure_handler.rootObject){
+		[event setObject:@"unsure" forKey:@"rsvp_status"];
+	}
+	NSArray *returnArray = [NSArray arrayWithArray:unsure_handler.rootObject];
+	
+	[r_string release];
+	
+	args= [NSDictionary dictionaryWithObjectsAndKeys:@"attending",@"rsvp_status",@"XML",@"format",self._accessToken,kArgumentKeyAccessToken,nil];
+	responseData = [self makeSynchronousRest:method args:args verb:kRequestVerbGet];
+	r_string = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+	FBXMLHandler* attending_handler = [[[FBXMLHandler alloc] init] autorelease];
+	NSXMLParser* attending_parser = [[[NSXMLParser alloc] initWithData:responseData] autorelease];
+	attending_parser.delegate = attending_handler;
+	[attending_parser parse];
+	//NSArray *attendingResults = attending_handler.rootObject;
+	for(NSMutableDictionary *event in attending_handler.rootObject){
+		[event setObject:@"attending" forKey:@"rsvp_status"];
+	}
+	
+	returnArray = [returnArray arrayByAddingObjectsFromArray:attending_handler.rootObject];
+	[r_string release];
+
+	args= [NSDictionary dictionaryWithObjectsAndKeys:@"declined",@"rsvp_status",@"XML",@"format",self._accessToken,kArgumentKeyAccessToken,nil];
+	responseData = [self makeSynchronousRest:method args:args verb:kRequestVerbGet];
+	r_string = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+	FBXMLHandler* declined_handler = [[[FBXMLHandler alloc] init] autorelease];
+	NSXMLParser* declined_parser = [[[NSXMLParser alloc] initWithData:responseData] autorelease];
+	declined_parser.delegate = declined_handler;
+	[declined_parser parse];
+	//NSArray *declinedResults = declined_handler.rootObject;
+	for(NSMutableDictionary *event in declined_handler.rootObject){
+		[event setObject:@"declined" forKey:@"rsvp_status"];
+	}
+	returnArray = [returnArray arrayByAddingObjectsFromArray:declined_handler.rootObject];
+	[r_string release];
+
+	args= [NSDictionary dictionaryWithObjectsAndKeys:@"not_replied",@"rsvp_status",@"XML",@"format",self._accessToken,kArgumentKeyAccessToken,nil];
+	responseData = [self makeSynchronousRest:method args:args verb:kRequestVerbGet];
+	r_string = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+	FBXMLHandler* not_replied_handler = [[[FBXMLHandler alloc] init] autorelease];
+	NSXMLParser* not_replied_parser = [[[NSXMLParser alloc] initWithData:responseData] autorelease];
+	not_replied_parser.delegate = not_replied_handler;
+	[not_replied_parser parse];
+	//NSArray *not_repliedResults = not_replied_handler.rootObject;
+	for(NSMutableDictionary *event in not_replied_handler.rootObject){
+		[event setObject:@"not_replied" forKey:@"rsvp_status"];
+	}
+	returnArray = [returnArray arrayByAddingObjectsFromArray:not_replied_handler.rootObject];
+	[r_string release];
+	
+	
+	GraphObject *some = nil;
+	return returnArray;
 }
 
 -(GraphObject*)putToObject:(NSString*)parent_obj_id connectionType:(NSString*)connection args:(NSDictionary*)request_args
@@ -457,6 +526,80 @@ NSString* const kConnectionAlbums = @"albums";
 					[[error userInfo] objectForKey:@"NSUnderlyingError"]);
 	}
 
+	return self._responseData;
+}
+
+-(NSData*)makeSynchronousRest:(NSString*)path args:(NSMutableDictionary*)request_args verb:(NSString*)verb
+{
+	// if the verb isn't get or post, send it as a post argument
+	if ( kRequestVerbGet != verb && kRequestVerbPost != verb )
+	{
+		[request_args setObject:verb forKey:kArgumentKeyMethod];
+		verb = kRequestVerbPost;
+	}
+	
+	//	NSString* responseString = nil;
+	self._responseData = nil;
+	NSString* urlString;
+	NSMutableURLRequest* r_url;
+	
+	if ( [verb isEqualToString:kRequestVerbGet] )
+	{
+		NSString* argString = [self encodeParams:request_args];
+		
+		urlString = [NSString stringWithFormat:@"%@%@?%@", kRestAPIServer, path, argString];
+		
+		r_url = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]
+								 cachePolicy:NSURLRequestUseProtocolCachePolicy
+							 timeoutInterval:60.0];
+	}
+	else
+	{
+		urlString = [NSString stringWithFormat:@"%@%@", kGraphAPIServer, path];
+		
+		r_url = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]
+										cachePolicy:NSURLRequestUseProtocolCachePolicy
+									timeoutInterval:60.0];
+		
+		NSData* postBody = [self generatePostBody:request_args];
+		NSString* contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", kPostStringBoundary];
+		
+		[r_url setHTTPMethod:kRequestVerbPost];
+		[r_url setValue:contentType forHTTPHeaderField:@"Content-Type"];
+		[r_url setHTTPBody:postBody];			
+	}
+	
+	//	NSLog( @"fetching url:\n%@", urlString );	
+	//	NSLog( @"request headers: %@", [r_url allHTTPHeaderFields] );
+	
+	NSURLResponse* response;
+	NSError* error;
+	
+	// synchronous call
+	self._responseData = [NSURLConnection sendSynchronousRequest:r_url returningResponse:&response error:&error];
+	
+	// async
+	// self._connection = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+	
+	//	if ( [verb isEqualToString:kRequestVerbPost] )
+	//	{
+	//		NSLog( @"Post response:" );
+	//		NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
+	//
+	//		NSLog( @"status: %d, %@", [httpResponse statusCode], [NSHTTPURLResponse localizedStringForStatusCode:[httpResponse statusCode]] );	
+	//		NSLog( @"response headers: %@", [httpResponse allHeaderFields] );
+	//		NSLog( @"response: %@", self._responseData );
+	//	}
+	
+	
+	if ( nil == self._responseData )
+	{
+		NSLog(@"Connection failed!\n URL = %@\n Error - %@ %@",
+			  urlString,
+			  [error localizedDescription],						
+			  [[error userInfo] objectForKey:@"NSUnderlyingError"]);
+	}
+	
 	return self._responseData;
 }
 

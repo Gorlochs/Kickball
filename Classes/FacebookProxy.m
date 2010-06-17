@@ -126,6 +126,10 @@ NSString* const kKeyAccessToken = @"kKeyAccessToken";
 
 static FacebookProxy* gFacebookProxy = NULL;
 static NSDateFormatter* fbDate = NULL;
+static NSDateFormatter* fbEventSectionFmt = NULL;
+static NSDateFormatter* fbEventCellTime = NULL;
+
+
 +(FacebookProxy*)instance
 {
 	@synchronized(self)
@@ -717,6 +721,29 @@ static NSDateFormatter* fbDate = NULL;
 			[fbDate setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZ"];
 		}
 	return fbDate;
+}
+
++(NSDateFormatter*)fbEventSectionFormatter{
+	if (fbEventSectionFmt == NULL)
+	{
+		fbEventSectionFmt = [[NSDateFormatter alloc] init];
+		[fbEventSectionFmt setTimeStyle:NSDateFormatterNoStyle];
+		//[fbEventSectionFmt setDateStyle:NSDateFormatterMediumStyle];
+		[fbEventSectionFmt setDateFormat:@"MMMM d"];
+	}
+	return fbEventSectionFmt;
+}
+
++(NSDateFormatter*)fbEventCellTimeFormatter{
+	if (fbEventCellTime == NULL)
+	{
+		fbEventCellTime = [[NSDateFormatter alloc] init];
+		[fbEventCellTime setDateStyle:NSDateFormatterNoStyle];
+		[fbEventCellTime setPMSymbol:@"p"];
+		[fbEventCellTime setAMSymbol:@"a"];
+		[fbEventCellTime setDateFormat:@"h:mma"];
+	}
+	return fbEventCellTime;
 }
 
 #pragma mark Button Handlers

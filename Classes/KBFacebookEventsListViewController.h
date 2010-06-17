@@ -21,7 +21,7 @@
 	UIButton *coverButton;
 	
 	BOOL doingLogin;
-	NSArray *eventsFeed;
+	NSMutableArray *eventsFeed;
 }
 
 @property (nonatomic, retain) UITableViewCell *searchCell;

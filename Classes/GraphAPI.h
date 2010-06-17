@@ -56,6 +56,7 @@
 
 //scott's KB additions
 -(NSArray*)newsFeed:(NSString*)user_id;
+-(NSArray*)eventsFeed:(NSString*)user_id;
 @end
 
 // Graph API Argument Keys

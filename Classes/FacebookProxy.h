@@ -72,6 +72,8 @@ extern NSString* const kFBRedirectURI;
 +(FacebookProxy*)instance;
 +(void)loadDefaults;
 +(NSDateFormatter*)fbDateFormatter;
++(NSDateFormatter*)fbEventSectionFormatter;
++(NSDateFormatter*)fbEventCellTimeFormatter;
 //+(void)updateDefaults;
 
 -(void)loginAndAuthorizeWithTarget:(id)target callback:(SEL)authCallback;
