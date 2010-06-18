@@ -167,6 +167,14 @@
 		2BA5B01A11B963400090173D /* roundedTop.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BA5B01511B963400090173D /* roundedTop.png */; };
 		2BA5B01D11B963470090173D /* shout01.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BA5B01B11B963470090173D /* shout01.png */; };
 		2BA5B01E11B963470090173D /* shout02.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BA5B01C11B963470090173D /* shout02.png */; };
+		2BC943F111C9896D00EAD010 /* btn-arrow01.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BC943E911C9896D00EAD010 /* btn-arrow01.png */; };
+		2BC943F211C9896D00EAD010 /* btn-arrow02.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BC943EA11C9896D00EAD010 /* btn-arrow02.png */; };
+		2BC943F311C9896D00EAD010 /* btn-favorite01.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BC943EB11C9896D00EAD010 /* btn-favorite01.png */; };
+		2BC943F411C9896D00EAD010 /* btn-favorite02.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BC943EC11C9896D00EAD010 /* btn-favorite02.png */; };
+		2BC943F511C9896D00EAD010 /* btn-reply01.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BC943ED11C9896D00EAD010 /* btn-reply01.png */; };
+		2BC943F611C9896D00EAD010 /* btn-reply02.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BC943EE11C9896D00EAD010 /* btn-reply02.png */; };
+		2BC943F711C9896D00EAD010 /* btn-retweet01.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BC943EF11C9896D00EAD010 /* btn-retweet01.png */; };
+		2BC943F811C9896D00EAD010 /* btn-retweet02.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BC943F011C9896D00EAD010 /* btn-retweet02.png */; };
 		552AFD8210A270ED009300E2 /* FSTip.m in Sources */ = {isa = PBXBuildFile; fileRef = 552AFD8110A270ED009300E2 /* FSTip.m */; };
 		552AFDE410A27AED009300E2 /* FriendPlacemark.m in Sources */ = {isa = PBXBuildFile; fileRef = 552AFDE310A27AED009300E2 /* FriendPlacemark.m */; };
 		552AFE4110A285AC009300E2 /* FriendIconAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 552AFE4010A285AC009300E2 /* FriendIconAnnotationView.m */; };
@@ -1001,6 +1009,14 @@
 		2BA5B01511B963400090173D /* roundedTop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = roundedTop.png; sourceTree = "<group>"; };
 		2BA5B01B11B963470090173D /* shout01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shout01.png; sourceTree = "<group>"; };
 		2BA5B01C11B963470090173D /* shout02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shout02.png; sourceTree = "<group>"; };
+		2BC943E911C9896D00EAD010 /* btn-arrow01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-arrow01.png"; sourceTree = "<group>"; };
+		2BC943EA11C9896D00EAD010 /* btn-arrow02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-arrow02.png"; sourceTree = "<group>"; };
+		2BC943EB11C9896D00EAD010 /* btn-favorite01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-favorite01.png"; sourceTree = "<group>"; };
+		2BC943EC11C9896D00EAD010 /* btn-favorite02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-favorite02.png"; sourceTree = "<group>"; };
+		2BC943ED11C9896D00EAD010 /* btn-reply01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-reply01.png"; sourceTree = "<group>"; };
+		2BC943EE11C9896D00EAD010 /* btn-reply02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-reply02.png"; sourceTree = "<group>"; };
+		2BC943EF11C9896D00EAD010 /* btn-retweet01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-retweet01.png"; sourceTree = "<group>"; };
+		2BC943F011C9896D00EAD010 /* btn-retweet02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-retweet02.png"; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Kickball_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kickball_Prefix.pch; sourceTree = "<group>"; };
 		552AFD8010A270ED009300E2 /* FSTip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSTip.h; sourceTree = "<group>"; };
 		552AFD8110A270ED009300E2 /* FSTip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSTip.m; sourceTree = "<group>"; };
@@ -2288,6 +2304,21 @@
 			name = geoapi;
 			sourceTree = "<group>";
 		};
+		2BC943E411C9895A00EAD010 /* tweet detail */ = {
+			isa = PBXGroup;
+			children = (
+				2BC943E911C9896D00EAD010 /* btn-arrow01.png */,
+				2BC943EA11C9896D00EAD010 /* btn-arrow02.png */,
+				2BC943EB11C9896D00EAD010 /* btn-favorite01.png */,
+				2BC943EC11C9896D00EAD010 /* btn-favorite02.png */,
+				2BC943ED11C9896D00EAD010 /* btn-reply01.png */,
+				2BC943EE11C9896D00EAD010 /* btn-reply02.png */,
+				2BC943EF11C9896D00EAD010 /* btn-retweet01.png */,
+				2BC943F011C9896D00EAD010 /* btn-retweet02.png */,
+			);
+			name = "tweet detail";
+			sourceTree = "<group>";
+		};
 		553C50FD10A1BD5000A74641 /* FoursquareAPI */ = {
 			isa = PBXGroup;
 			children = (
@@ -3304,6 +3335,7 @@
 		6AC28E9C1173D91B00518E37 /* v1.1 */ = {
 			isa = PBXGroup;
 			children = (
+				2BC943E411C9895A00EAD010 /* tweet detail */,
 				0E906DF811CABBB50045006C /* Facebook Event Details */,
 				0E906E0211CABBB50045006C /* Facebook Status Details */,
 				6A4532EA11C89F0300A688E3 /* venueDetails01.png */,
@@ -4236,6 +4268,14 @@
 				6A4532EF11C89F0300A688E3 /* venueDetails02.png in Resources */,
 				6A4532F011C89F0300A688E3 /* venueTwitter01.png in Resources */,
 				6A4532F111C89F0300A688E3 /* venueTwitter02.png in Resources */,
+				2BC943F111C9896D00EAD010 /* btn-arrow01.png in Resources */,
+				2BC943F211C9896D00EAD010 /* btn-arrow02.png in Resources */,
+				2BC943F311C9896D00EAD010 /* btn-favorite01.png in Resources */,
+				2BC943F411C9896D00EAD010 /* btn-favorite02.png in Resources */,
+				2BC943F511C9896D00EAD010 /* btn-reply01.png in Resources */,
+				2BC943F611C9896D00EAD010 /* btn-reply02.png in Resources */,
+				2BC943F711C9896D00EAD010 /* btn-retweet01.png in Resources */,
+				2BC943F811C9896D00EAD010 /* btn-retweet02.png in Resources */,
 				0EC57AC811C95B8800F941FD /* 00.png in Resources */,
 				0EC57AC911C95B8800F941FD /* opt_addFriends01.png in Resources */,
 				0EC57ACA11C95B8800F941FD /* opt_addFriends02.png in Resources */,

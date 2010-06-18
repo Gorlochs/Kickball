@@ -18,9 +18,7 @@
 
 - (void)viewDidLoad {
     
-    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(messagesRetrieved:) name:kTwitterDMRetrievedNotificationKey object:nil];
-    
-    self.hideFooter = YES;
+	DLog("tweet detail: %@", self.tweet);
     pageType = KBPageTypeOther;
     
     [super viewDidLoad];
@@ -33,10 +31,10 @@
     screenName.text = tweet.screenName;
     fullName.text = tweet.fullName;
     //timeLabel.text = self.tweet.createDate;
-    
 	
-	TTStyledTextLabel* label1 = [[[TTStyledTextLabel alloc] initWithFrame:CGRectMake(20, 105, 270, 100)] autorelease];
+	TTStyledTextLabel* label1 = [[[TTStyledTextLabel alloc] initWithFrame:CGRectMake(6, 125, 300, 100)] autorelease];
 	label1.font = [UIFont fontWithName:@"Helvetica" size:14.0];
+	label1.textColor = [UIColor colorWithWhite:0.5 alpha:1.0];
 	label1.text = [TTStyledText textWithURLs:tweet.tweetText lineBreaks:NO];
 	label1.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
 	label1.backgroundColor = [UIColor clearColor];
@@ -56,7 +54,7 @@
     [self.view addSubview:mainTextLabel];
      
 	 */
-    CGRect frame = CGRectMake(11, 53, 49, 49);
+    CGRect frame = CGRectMake(17, 67, 33, 34);
     userProfileImage = [[TTImageView alloc] initWithFrame:frame];
     userProfileImage.backgroundColor = [UIColor clearColor];
     userProfileImage.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
@@ -65,6 +63,12 @@
     [self.view addSubview:userProfileImage];
     
     timeLabel.text = [[KickballAPI kickballApi] convertDateToTimeUnitString:tweet.createDate];
+	isFavorited = tweet.isFavorited;
+	if (isFavorited) {
+		[favoriteButton setImage:[UIImage imageNamed:@"btn-favorite02.png"] forState:UIControlStateNormal];
+	} else {
+		[favoriteButton setImage:[UIImage imageNamed:@"btn-favorite01.png"] forState:UIControlStateNormal];
+	}
 }
 
 - (void) createNotificationObservers {
@@ -72,12 +76,11 @@
 }
 
 - (void) retweet {
-    //[twitterEngine sendRetweet:[tweet.tweetId longLongValue]];
 	KBCreateTweetViewController *createRetweetViewController = [[KBCreateTweetViewController alloc] initWithNibName:@"KBCreateTweetViewController" bundle:nil];
     createRetweetViewController.replyToStatusId = tweet.tweetId;
     createRetweetViewController.replyToScreenName = tweet.screenName;
     createRetweetViewController.retweetTweetText = tweet.tweetText;
-	[self presentModalViewController:createRetweetViewController animated:YES];
+	[self.navigationController pushViewController:createRetweetViewController animated:YES];
 	[createRetweetViewController release];
 }
 
@@ -85,8 +88,22 @@
 	KBCreateTweetViewController *createReplyViewController = [[KBCreateTweetViewController alloc] initWithNibName:@"KBCreateTweetViewController" bundle:nil];
     createReplyViewController.replyToStatusId = tweet.tweetId;
     createReplyViewController.replyToScreenName = tweet.screenName;
-	[self presentModalViewController:createReplyViewController animated:YES];
+	[self.navigationController pushViewController:createReplyViewController animated:YES];
 	[createReplyViewController release];
+}
+
+- (void) favorite {
+	[twitterEngine markUpdate:[tweet.tweetId longLongValue] asFavorite:!isFavorited];
+}
+
+- (void)statusesReceived:(NSArray *)statuses {
+	isFavorited = !isFavorited;
+	if (isFavorited) {
+		[favoriteButton setImage:[UIImage imageNamed:@"btn-favorite02.png"] forState:UIControlStateNormal];
+	} else {
+		[favoriteButton setImage:[UIImage imageNamed:@"btn-favorite01.png"] forState:UIControlStateNormal];
+	}
+	DLog("favorite status: %@", statuses);
 }
 
 - (void) viewUserProfile {
@@ -96,24 +113,11 @@
 	[twitterProfileController release];
 }
 
-- (void) statusRetrieved:(NSNotification *)inNotification {
-    DLog(@"********** RETWEET SUCCESSFUL!!!! **********");
-}
-
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [tweet release];
-//    [screenName release];
-//    [fullName release];
-//    [timeLabel release];
-//    [retweetButton release];
-//    [replyButton release];
-//    [forwardButton release];
-    
-    //[mainTextLabel release];
     [userProfileImage release];
-    
-    
+        
     [super dealloc];
 }
 

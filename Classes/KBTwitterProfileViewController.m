@@ -50,7 +50,7 @@
     description.font = [UIFont fontWithName:@"Helvetica" size:12.0];
     description.text = [userDictionary objectForKey:@"description"];
     
-    iconBgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellIconBorder.png"]];
+    iconBgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"twitIconBG.png"]];
     iconBgImage.frame = CGRectMake(14, 63, 37, 38);
     [self.view addSubview:iconBgImage];
     

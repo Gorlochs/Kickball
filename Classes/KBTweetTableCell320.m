@@ -28,11 +28,11 @@
         [self addSubview:userIcon];
         
 		
-        iconBgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellIconBorder.png"]];
-		iconBgImage.frame = CGRectMake(8, 16, 38, 38);
+        iconBgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"twitIconBG.png"]];
+		iconBgImage.frame = CGRectMake(8, 16, 37, 38);
         [self addSubview:iconBgImage];
 		iconButt = [UIButton buttonWithType:UIButtonTypeCustom];
-		[iconButt setFrame:CGRectMake(8, 16, 38, 38)];
+		[iconButt setFrame:CGRectMake(8, 16, 37, 38)];
 		[iconButt retain];
 		[iconButt addTarget:self action:@selector(pushToProfile) forControlEvents:UIControlEventTouchUpInside];
 		[self addSubview:iconButt];

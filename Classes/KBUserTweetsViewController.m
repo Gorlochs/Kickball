@@ -28,7 +28,7 @@
         fullName.text = [self.userDictionary objectForKey:@"name"];
 		location.text = [self.userDictionary objectForKey:@"location"];
         
-		iconBgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellIconBorder.png"]];
+		iconBgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"twitIconBG.png"]];
 		iconBgImage.frame = CGRectMake(14, 63, 37, 38);
 		[self.view addSubview:iconBgImage];
 		

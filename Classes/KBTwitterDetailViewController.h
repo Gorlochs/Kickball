@@ -13,7 +13,7 @@
 #import "KBTweet.h"
 
 
-@interface KBTwitterDetailViewController : KBTwitterViewController {
+@interface KBTwitterDetailViewController : KBTwitterViewController <KBTwitterManagerDelegate> {
     KBTweet *tweet;
     
     IBOutlet UILabel *screenName;
@@ -22,15 +22,20 @@
     IBOutlet UIButton *retweetButton;
     IBOutlet UIButton *replyButton;
     IBOutlet UIButton *forwardButton;
+	IBOutlet UILabel *twitterClient;
+	IBOutlet UIButton *favoriteButton;
     
     //IFTweetLabel *mainTextLabel;
     TTImageView *userProfileImage;
+	
+	BOOL isFavorited;
 }
 
 @property (nonatomic, retain) KBTweet *tweet;
 
 - (IBAction) retweet;
 - (IBAction) reply;
+- (IBAction) favorite;
 - (IBAction) viewUserProfile;
 
 @end

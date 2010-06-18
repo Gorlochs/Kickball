@@ -18,6 +18,7 @@
     NSString *tweetText;
     NSNumber *tweetId;
     NSDictionary *dict;
+	BOOL isFavorited;
 }
 
 @property (nonatomic, retain) NSString *screenName;
@@ -26,6 +27,7 @@
 @property (nonatomic, retain) NSString *profileImageUrl;
 @property (nonatomic, retain) NSString *tweetText;
 @property (nonatomic, retain) NSNumber *tweetId;
+@property (nonatomic) BOOL isFavorited;
 
 - (id) initWithDictionary:(NSDictionary*)statusDictionary;
 

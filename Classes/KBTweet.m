@@ -17,22 +17,28 @@
 @synthesize profileImageUrl;
 @synthesize tweetText;
 @synthesize tweetId;
+@synthesize isFavorited;
 
 
 // init with dictionary
 - (id) initWithDictionary:(NSDictionary*)statusDictionary {		
     if (self = [super init]) {
         dict = [[NSDictionary alloc] initWithDictionary:statusDictionary];
+		DLog("tweet dictionary: %@", dict);
         screenName = [[statusDictionary objectForKey:@"user"] objectForKey:@"screen_name"];
         fullName = [[statusDictionary objectForKey:@"user"] objectForKey:@"name"];
         profileImageUrl = [[statusDictionary objectForKey:@"user"] objectForKey:@"profile_image_url"];
         tweetText = [statusDictionary objectForKey:@"text"];
         tweetId = [statusDictionary objectForKey:@"id"];
         createDate = [[[[KickballAPI kickballApi] twitterDateFormatter] dateFromString:[statusDictionary objectForKey:@"created_at"]] retain];
-        
+        isFavorited = [[statusDictionary objectForKey:@"favorited"] boolValue];
         //DLog(@"tweet created at: %@", createDate);
     }
     return self;
+}
+
+- (NSString*) description {
+	return [NSString stringWithFormat:@"(TWEET : screenName=%@ ; fullName=%@ ; profileImageUrl=%@ ; tweetText=%@ ; tweetId=%qu)", screenName, fullName, profileImageUrl, tweetText, [tweetId longLongValue]];
 }
 
 - (void) encodeWithCoder: (NSCoder *)coder { 
