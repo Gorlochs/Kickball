@@ -73,6 +73,8 @@
 		0EB9D5AF11C6BDB4008EDF9F /* KBFacebookPostDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EB9D5AE11C6BDB4008EDF9F /* KBFacebookPostDetailViewController.m */; };
 		0EBEEE0711CBE9C900A28329 /* KBFacebookCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EBEEE0611CBE9C900A28329 /* KBFacebookCommentCell.m */; };
 		0EBEEE4E11CBF0A300A28329 /* btn-xCommentsWide.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EBEEE4D11CBF0A300A28329 /* btn-xCommentsWide.png */; };
+		0EBEEFD111CC2C5900A28329 /* KBFacebookAddCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EBEEFD011CC2C5900A28329 /* KBFacebookAddCommentViewController.m */; };
+		0EBEEFF911CC2C8C00A28329 /* KBFacebookAddComment.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EBEEFF811CC2C8C00A28329 /* KBFacebookAddComment.xib */; };
 		0EC57AC811C95B8800F941FD /* 00.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EC57A9C11C95B8800F941FD /* 00.png */; };
 		0EC57AC911C95B8800F941FD /* opt_addFriends01.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EC57A9D11C95B8800F941FD /* opt_addFriends01.png */; };
 		0EC57ACA11C95B8800F941FD /* opt_addFriends02.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EC57A9E11C95B8800F941FD /* opt_addFriends02.png */; };
@@ -913,6 +915,9 @@
 		0EBEEE0511CBE9C900A28329 /* KBFacebookCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBFacebookCommentCell.h; sourceTree = "<group>"; };
 		0EBEEE0611CBE9C900A28329 /* KBFacebookCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBFacebookCommentCell.m; sourceTree = "<group>"; };
 		0EBEEE4D11CBF0A300A28329 /* btn-xCommentsWide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-xCommentsWide.png"; sourceTree = "<group>"; };
+		0EBEEFCF11CC2C5900A28329 /* KBFacebookAddCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBFacebookAddCommentViewController.h; sourceTree = "<group>"; };
+		0EBEEFD011CC2C5900A28329 /* KBFacebookAddCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBFacebookAddCommentViewController.m; sourceTree = "<group>"; };
+		0EBEEFF811CC2C8C00A28329 /* KBFacebookAddComment.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = KBFacebookAddComment.xib; path = Classes/KBFacebookAddComment.xib; sourceTree = "<group>"; };
 		0EC57A9C11C95B8800F941FD /* 00.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 00.png; sourceTree = "<group>"; };
 		0EC57A9D11C95B8800F941FD /* opt_addFriends01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = opt_addFriends01.png; sourceTree = "<group>"; };
 		0EC57A9E11C95B8800F941FD /* opt_addFriends02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = opt_addFriends02.png; sourceTree = "<group>"; };
@@ -2255,6 +2260,7 @@
 				6A0B41E011AAF09A00FB9A6D /* AddVenueViewController_v2.xib */,
 				6A921D891187A4F700866C59 /* ShoutViewController.xib */,
 				6A03D9091191E33C00FF036C /* CheckinModalView.xib */,
+				0EBEEFF811CC2C8C00A28329 /* KBFacebookAddComment.xib */,
 				0EDBDA7811C760EA0065DF0A /* KBFacebookPostDetailViewController.xib */,
 			);
 			name = Resources;
@@ -3722,6 +3728,8 @@
 				0E906DDD11CAB9FF0045006C /* KBFacebookEventDetailViewController.m */,
 				0EBEEE0511CBE9C900A28329 /* KBFacebookCommentCell.h */,
 				0EBEEE0611CBE9C900A28329 /* KBFacebookCommentCell.m */,
+				0EBEEFCF11CC2C5900A28329 /* KBFacebookAddCommentViewController.h */,
+				0EBEEFD011CC2C5900A28329 /* KBFacebookAddCommentViewController.m */,
 			);
 			name = Facebook;
 			sourceTree = "<group>";
@@ -4342,6 +4350,7 @@
 				0E906E1311CABBB50045006C /* field-comment.png in Resources */,
 				0EBEEE4E11CBF0A300A28329 /* btn-xCommentsWide.png in Resources */,
 				2B9CE5C911CC194F007E3B79 /* black_square.png in Resources */,
+				0EBEEFF911CC2C8C00A28329 /* KBFacebookAddComment.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4629,6 +4638,7 @@
 				0E906D6C11CAA7AF0045006C /* KBFacebookEventsCell.m in Sources */,
 				0E906DDF11CAB9FF0045006C /* KBFacebookEventDetailViewController.m in Sources */,
 				0EBEEE0711CBE9C900A28329 /* KBFacebookCommentCell.m in Sources */,
+				0EBEEFD111CC2C5900A28329 /* KBFacebookAddCommentViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
