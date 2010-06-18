@@ -10,11 +10,46 @@
 #import "KickballAPI.h"
 #import "KBCreateTweetViewController.h"
 #import "KBTwitterProfileViewController.h"
+#import "KBTwitterUserListViewController.h"
 
 
 @implementation KBTwitterDetailViewController
 
 @synthesize tweet;
+
+- (void) viewRecentTweets {
+	KBUserTweetsViewController *recentTweetsController = [[KBUserTweetsViewController alloc] initWithNibName:@"KBUserTweetsViewController" bundle:nil];
+    recentTweetsController.userDictionary = [userDictionary retain];
+    recentTweetsController.username = [userDictionary objectForKey:@"screen_name"];
+	[self.navigationController pushViewController:recentTweetsController animated:YES];
+    [recentTweetsController release];
+}
+
+- (void) viewFollowers {
+	KBTwitterUserListViewController *followersController = [[KBTwitterUserListViewController alloc] initWithNibName:@"KBTwitterUserListViewController" bundle:nil];
+    followersController.userDictionary = [userDictionary retain];
+    followersController.userType = KBTwitterUserFollower;
+	[self.navigationController pushViewController:followersController animated:YES];
+    [followersController release];
+}
+
+- (void) viewFriends {
+	KBTwitterUserListViewController *friendsController = [[KBTwitterUserListViewController alloc] initWithNibName:@"KBTwitterUserListViewController" bundle:nil];
+    friendsController.userDictionary = [userDictionary retain];
+    friendsController.userType = KBTwitterUserFriend;
+	[self.navigationController pushViewController:friendsController animated:YES];
+    [friendsController release];
+}
+
+- (void)userInfoReceived:(NSArray *)userInfo {
+    userDictionary = [[userInfo objectAtIndex:0] retain];
+    numberOfFriends.text = [NSString stringWithFormat:@"%d", [[userDictionary objectForKey:@"friends_count"] intValue]];
+    numberOfFollowers.text = [NSString stringWithFormat:@"%d", [[userDictionary objectForKey:@"followers_count"] intValue]];
+    numberOfTweets.text = [NSString stringWithFormat:@"%d", [[userDictionary objectForKey:@"statuses_count"] intValue]];
+    numberOfFavorites.text = [NSString stringWithFormat:@"%d", [[[userDictionary objectForKey:@"status"] objectForKey:@"favorited"] intValue]];
+    
+    [self stopProgressBar];
+}
 
 - (void)viewDidLoad {
     
@@ -69,6 +104,10 @@
 	} else {
 		[favoriteButton setImage:[UIImage imageNamed:@"btn-favorite01.png"] forState:UIControlStateNormal];
 	}
+  twitterManager = [KBTwitterManager twitterManager];
+	twitterManager.delegate = self;
+  
+  [twitterEngine getUserInformationFor:tweet.screenName];
 }
 
 - (void) createNotificationObservers {
@@ -97,6 +136,7 @@
 }
 
 - (void)statusesReceived:(NSArray *)statuses {
+  DLog(@"statusesreceived twitter detailview");
 	isFavorited = !isFavorited;
 	if (isFavorited) {
 		[favoriteButton setImage:[UIImage imageNamed:@"btn-favorite02.png"] forState:UIControlStateNormal];

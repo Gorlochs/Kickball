@@ -64,14 +64,17 @@
     userIcon.urlPath = [userDictionary objectForKey:@"profile_image_url"];
     [self.view addSubview:userIcon];
 	
-	if ([[userDictionary objectForKey:@"following"] boolValue]) {
+  if ([[userDictionary objectForKey:@"following"] isKindOfClass:[NSNull class]]) { //fix for crash
+		followButton.hidden = NO;
+		unfollowButton.hidden = YES;
+	} else if ([[userDictionary objectForKey:@"following"] boolValue]) {
 		followButton.hidden = YES;
 		unfollowButton.hidden = NO;
 	} else {
 		followButton.hidden = NO;
 		unfollowButton.hidden = YES;
 	}
-    
+
     [self stopProgressBar];
 }
 

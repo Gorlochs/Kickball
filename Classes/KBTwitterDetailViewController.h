@@ -24,10 +24,16 @@
     IBOutlet UIButton *forwardButton;
 	IBOutlet UILabel *twitterClient;
 	IBOutlet UIButton *favoriteButton;
+    IBOutlet UILabel *numberOfFollowers;
+    IBOutlet UILabel *numberOfFriends;
+    IBOutlet UILabel *numberOfFavorites;
+    IBOutlet UILabel *numberOfTweets;
     
     //IFTweetLabel *mainTextLabel;
     TTImageView *userProfileImage;
+    NSDictionary *userDictionary;
 	
+	KBTwitterManager *twitterManager;
 	BOOL isFavorited;
 }
 
