@@ -108,7 +108,7 @@
 	//userName.frame = CGRectMake(58, contentRect.origin.y+10, 150, 20);
 	tweetText.frame = CGRectMake(contentRect.origin.x+58, contentRect.origin.y+10, 250, tweetText.frame.size.height);
 	CGFloat textHeight = tweetText.frame.size.height;
-	dateLabel.frame = CGRectMake(contentRect.origin.x+58, contentRect.origin.y+10+textHeight, 100, 20);
+	dateLabel.frame = CGRectMake(contentRect.origin.x+58, contentRect.size.height - 20, 200, 16);
 
 	//tweetText.center = CGPointMake(tweetText.center.x,(tweetText.frame.size.height/2)+32);
 	topLineImage.frame = CGRectMake(0, 0, contentRect.size.width, 1);
@@ -119,7 +119,14 @@
 	[iconBgImage setFrame:CGRectMake(8, contentRect.origin.y+10, 38, 38)];//CGPointMake(27, contentRect.size.height/2)];
 	commentNumber.frame = CGRectMake(contentRect.origin.x+contentRect.size.width - 95, contentRect.size.height - 25, 91, 24);
 	if (comments) {
-		commentBG.frame = CGRectMake(contentRect.origin.x+contentRect.size.width - 95, contentRect.size.height - 25, 95, 24);
+		if (comments==1) {
+			commentBG.frame = CGRectMake(contentRect.origin.x+contentRect.size.width - 95, contentRect.size.height - 25, 130, 24);
+		}else if (comments < 10) {
+			commentBG.frame = CGRectMake(contentRect.origin.x+contentRect.size.width - 104, contentRect.size.height - 25, 130, 24);
+		}else {
+			commentBG.frame = CGRectMake(contentRect.origin.x+contentRect.size.width - 112, contentRect.size.height - 25, 130, 24);
+		}
+
 	}else {
 		commentBG.frame = CGRectMake(contentRect.origin.x+contentRect.size.width - 27, contentRect.size.height - 26, 27, 25);
 	}
@@ -186,7 +193,7 @@
 	comments = howMany;
 	if (comments) {
 		commentNumber.text = comments > 1 ? [NSString stringWithFormat:@"%i Comments",comments] : [NSString stringWithFormat:@"%i Comment",comments];
-		commentBG.image = [UIImage imageNamed:@"btn-xComments01.png"];
+		commentBG.image = [UIImage imageNamed:@"btn-xCommentsWide.png"];
 	}else{
 		commentNumber.text = @" ";
 		commentBG.image = [UIImage imageNamed:@"btn-noComment01.png"];

@@ -8,7 +8,10 @@
 
 #import "KBFacebookEventDetailViewController.h"
 #import "TableSectionHeaderView.h"
-#import "KBFacebookEventsCell.h"
+#import "KBFacebookCommentCell.h"
+#import "FacebookProxy.h"
+#import "GraphObject.h"
+
 @implementation KBFacebookEventDetailViewController
 
 /*
@@ -34,9 +37,12 @@
 	eventName.text = ![content isKindOfClass:[NSNull class]] ? content : @"";
 	content = [event objectForKey:@"location"];
 	eventLocation.text = ![content isKindOfClass:[NSNull class]] ? content : @"";
-	eventTime.text = @"6:30p";//[event objectForKey:];
-	eventMonth.text = @"SEP"; //[event objectForKey:@"24"];
-	eventDay.text = @"24"; //[event objectForKey:];
+	NSDate *fbEventDate = [NSDate dateWithTimeIntervalSince1970:[(NSString*)[event objectForKey:@"start_time"] intValue]];
+	[fbEventDate addTimeInterval:[[NSTimeZone defaultTimeZone] secondsFromGMT]];
+	
+	eventTime.text = [[FacebookProxy fbEventCellTimeFormatter] stringFromDate:fbEventDate];//@"6:30p";//[event objectForKey:];
+	eventMonth.text = [[[FacebookProxy fbEventDetailMonthFormatter] stringFromDate:fbEventDate] uppercaseString];//@"SEP"; //[event objectForKey:@"24"];
+	eventDay.text = [[FacebookProxy fbEventDetailDateFormatter] stringFromDate:fbEventDate];//@"24"; //[event objectForKey:];
 	content = [event objectForKey:@"description"];
 	detailText.font = [UIFont systemFontOfSize:14.0];
 	detailText.text = ![content isKindOfClass:[NSNull class]] ? content : @"";
@@ -52,7 +58,13 @@
 		[notAttendingButt setSelected:YES];
 		//[notAttendingButt setEnabled:NO];
 	}
+	comments = nil;
+	commentHightTester = [[TTStyledTextLabel alloc] initWithFrame:CGRectMake(58, 10, 250, 70)];
+	commentHightTester.textColor = [UIColor colorWithWhite:0.3 alpha:1.0];
+	commentHightTester.font = [UIFont fontWithName:@"Helvetica" size:12.0];
+	commentHightTester.backgroundColor = [UIColor clearColor];
 	
+	[NSThread detachNewThreadSelector:@selector(grabComments) toTarget:self withObject:nil];
 }
 
 
@@ -66,6 +78,21 @@
 
 -(void)populate:(NSDictionary*)ev{
 	event = [ev copy];
+}
+
+-(void)grabComments{
+	[comments release];
+	comments = nil;
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	NSString *method = [NSString stringWithFormat:@"%@/feed",[event objectForKey:@"eid"]];
+	GraphObject* response = [[[FacebookProxy instance] newGraph] getObject:method];
+	comments = [response propertyWithKey:@"data"];
+	[comments retain];
+	[theTableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];//[theTableView reloadData];
+	// = [[FacebookProxy instance] refreshEvents];
+	//GraphObject *baseObj = [baseEventResult objectAtIndex:0];
+	//comments = [[FacebookProxy instance] refreshEvents];
+	[pool release];
 }
 
 #pragma mark -
@@ -83,6 +110,9 @@
 			return 2;
 		case 1:
 			//return the number of comments
+			if (comments!=nil) {
+				return [comments count];
+			}
 			return 0;
 		default:
 			return 0;
@@ -90,7 +120,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	
+	NSDictionary *comment;
 	switch (indexPath.section) {
 		case 0:
 			if (indexPath.row==0) {
@@ -101,25 +131,15 @@
 			}
 		case 1:
 			//calculate height of comment cell
-			return 60;
+			comment = [comments objectAtIndex:indexPath.row];
+			NSString *displayString = [NSString	 stringWithFormat:@"<span class=\"fbBlueText\">%@</span> %@",[(NSDictionary*)[comment objectForKey:@"from"] objectForKey:@"name"], [comment objectForKey:@"message"]];
+			commentHightTester.text = [TTStyledText textFromXHTML:displayString lineBreaks:NO URLs:NO];
+			[commentHightTester sizeToFit];
+			return commentHightTester.frame.size.height+30 > 58 ? commentHightTester.frame.size.height+30 : 58;
 		default:
 			return 44;
 	}
 	
-	/*
-	 if (eventsFeed!=nil) {
-	 NSDictionary *fbItem = [eventsFeed objectAtIndex:indexPath.row];
-	 NSString *displayString = [NSString	 stringWithFormat:@"%@ %@",[(NSDictionary*)[fbItem propertyWithKey:@"from"] objectForKey:@"name"], [fbItem propertyWithKey:@"message"]];
-	 CGSize maximumLabelSize = CGSizeMake(250, 400);
-	 CGSize expectedLabelSize = [displayString sizeWithFont:[UIFont fontWithName:@"Helvetica" size:12.0]
-	 constrainedToSize:maximumLabelSize 
-	 lineBreakMode:UILineBreakModeWordWrap];
-	 int calculatedHeight = expectedLabelSize.height + 38;
-	 //if (calculatedHeight>50) {
-	 return calculatedHeight;
-	 //}
-	 }
-	 */	
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -138,6 +158,12 @@
 			//		NSString *headerString = [sectionDict objectForKey:@"headerString"];
 			//		if (headerString!=nil) {
 						sectionHeaderView = [[[TableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)] autorelease];
+			int numComments = [comments count];
+			if (numComments) {
+				sectionHeaderView.leftHeaderLabel.text = numComments > 1 ? [NSString stringWithFormat:@"%i Comments",numComments] : [NSString stringWithFormat:@"%i Comment",numComments];
+			}else{
+				sectionHeaderView.leftHeaderLabel.text = @"No Comments";
+			}
 						sectionHeaderView.leftHeaderLabel.text = @"Comments";
 						sectionHeaderView.rightHeaderLabel.text = @"";
 						return sectionHeaderView;
@@ -160,7 +186,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	static NSString *CellIdentifier = @"Cell";
-	KBFacebookEventsCell *cell;
+	KBFacebookCommentCell *cell;
 	switch (indexPath.section) {
 		case 0:
 			if (indexPath.row==0) {
@@ -171,12 +197,16 @@
 			}
 		case 1:
 			
-			 cell = (KBFacebookEventsCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+			 cell = (KBFacebookCommentCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 			if (cell == nil) {
-				cell = [[[KBFacebookEventsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+				cell = [[[KBFacebookCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
 			}
-			//NSDictionary *fbItem = [(NSArray*)[(NSDictionary*)[eventsFeed objectAtIndex:indexPath.section] objectForKey:@"events"] objectAtIndex:indexPath.row];
-			//[cell populate:fbItem];
+			NSDictionary *comment = [comments objectAtIndex:indexPath.row];
+			NSString *displayString = [NSString	 stringWithFormat:@"<span class=\"fbBlueText\">%@</span> %@",[(NSDictionary*)[comment objectForKey:@"from"] objectForKey:@"name"], [comment objectForKey:@"message"]];
+			cell.fbPictureUrl = [(NSDictionary*)[comment objectForKey:@"from"] objectForKey:@"id"];
+			cell.commentText.text = [TTStyledText textFromXHTML:displayString lineBreaks:NO URLs:NO];
+			[cell.commentText sizeToFit];
+			[cell.commentText setNeedsDisplay];
 			return cell;
 		default:
 			return nil;
@@ -219,6 +249,7 @@
 
 
 - (void)dealloc {
+	[comments release];
 	[event release];
     [super dealloc];
 }

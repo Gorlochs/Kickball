@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "KBFacebookViewController.h"
+#import "Three20/Three20.h"
+
 
 @interface KBFacebookEventDetailViewController : KBFacebookViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
 	IBOutlet UILabel *eventHost;
@@ -22,6 +24,10 @@
 	IBOutlet UIButton *attendingButt;
 	IBOutlet UIButton *notAttendingButt;
 	NSDictionary *event;
+	NSArray *comments;
+	
+	TTStyledTextLabel *commentHightTester;
+
 }
 
 -(IBAction)pressAttending;

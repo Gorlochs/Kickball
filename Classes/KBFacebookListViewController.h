@@ -8,11 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "KBFacebookViewController.h"
+#import "Three20/Three20.h"
+
 
 @class KBFacebookLoginView;
 @interface KBFacebookListViewController : KBFacebookViewController{
 	BOOL doingLogin;
 	NSArray *newsFeed;
+	TTStyledTextLabel *heightTester;
+
 }
 
 

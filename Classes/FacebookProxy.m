@@ -128,6 +128,8 @@ static FacebookProxy* gFacebookProxy = NULL;
 static NSDateFormatter* fbDate = NULL;
 static NSDateFormatter* fbEventSectionFmt = NULL;
 static NSDateFormatter* fbEventCellTime = NULL;
+static NSDateFormatter* fbEventDetailMonth = NULL;
+static NSDateFormatter* fbEventDetailDate = NULL;
 
 
 +(FacebookProxy*)instance
@@ -744,6 +746,25 @@ static NSDateFormatter* fbEventCellTime = NULL;
 		[fbEventCellTime setDateFormat:@"h:mma"];
 	}
 	return fbEventCellTime;
+}
+
++(NSDateFormatter*)fbEventDetailMonthFormatter{
+	if (fbEventDetailMonth == NULL)
+	{
+		fbEventDetailMonth = [[NSDateFormatter alloc] init];
+		[fbEventDetailMonth setTimeStyle:NSDateFormatterNoStyle];
+		[fbEventDetailMonth setDateFormat:@"MMM"];
+	}
+	return fbEventDetailMonth;
+}
++(NSDateFormatter*)fbEventDetailDateFormatter{
+	if (fbEventDetailDate == NULL)
+	{
+		fbEventDetailDate = [[NSDateFormatter alloc] init];
+		[fbEventDetailDate setTimeStyle:NSDateFormatterNoStyle];
+		[fbEventDetailDate setDateFormat:@"d"];
+	}
+	return fbEventDetailDate;
 }
 
 #pragma mark Button Handlers

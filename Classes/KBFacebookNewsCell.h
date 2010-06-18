@@ -13,18 +13,19 @@
 @class GraphAPI;
 @interface KBFacebookNewsCell : UITableViewCell {
 	TTImageView *userIcon;
-    
-    UILabel *userName;
+	UIImageView *iconBgImage;
     TTStyledTextLabel *tweetText;
-    UILabel *dateLabel;
-    
+	UILabel *dateLabel;
+	int comments;
+	NSString *fbPictureUrl;
+
+	
+    UILabel *userName;
+
     UIImageView *topLineImage;
     UIImageView *bottomLineImage;
-    UIImageView *iconBgImage;
 	UIButton *iconButt;
-	NSString *fbPictureUrl;
 	GraphAPI *fbGraph;
-	int comments;
 	UIImageView *commentBG;
 	UILabel *commentNumber;
 }

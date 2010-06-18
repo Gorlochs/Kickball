@@ -74,6 +74,8 @@ extern NSString* const kFBRedirectURI;
 +(NSDateFormatter*)fbDateFormatter;
 +(NSDateFormatter*)fbEventSectionFormatter;
 +(NSDateFormatter*)fbEventCellTimeFormatter;
++(NSDateFormatter*)fbEventDetailMonthFormatter;
++(NSDateFormatter*)fbEventDetailDateFormatter;
 //+(void)updateDefaults;
 
 -(void)loginAndAuthorizeWithTarget:(id)target callback:(SEL)authCallback;

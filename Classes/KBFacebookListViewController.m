@@ -68,6 +68,11 @@
 		//loginController.rootController = self;
         //[self presentModalViewController:loginController animated:YES];
     }
+	
+	heightTester = [[TTStyledTextLabel alloc] initWithFrame:CGRectMake(58, 10, 250, 70)];
+	heightTester.textColor = [UIColor colorWithWhite:0.3 alpha:1.0];
+	heightTester.font = [UIFont fontWithName:@"Helvetica" size:12.0];
+	heightTester.backgroundColor = [UIColor clearColor];
 }
 
 -(void)refreshMainFeed{
@@ -108,7 +113,13 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (newsFeed!=nil) {
 		GraphObject *fbItem = [newsFeed objectAtIndex:indexPath.row];
-		NSString *displayString = [NSString	 stringWithFormat:@"%@ %@",[(NSDictionary*)[fbItem propertyWithKey:@"from"] objectForKey:@"name"], [fbItem propertyWithKey:@"message"]];
+		NSString *displayString = [NSString	 stringWithFormat:@"<span class=\"fbBlueText\">%@</span> %@",[(NSDictionary*)[fbItem propertyWithKey:@"from"] objectForKey:@"name"], [fbItem propertyWithKey:@"message"]];
+		//
+		heightTester.text = [TTStyledText textFromXHTML:displayString lineBreaks:NO URLs:NO];
+		[heightTester sizeToFit];
+		return heightTester.frame.size.height+38 > 58 ? heightTester.frame.size.height+38 : 58;
+		//
+		/*
 		CGSize maximumLabelSize = CGSizeMake(250, 400);
 		CGSize expectedLabelSize = [displayString sizeWithFont:[UIFont fontWithName:@"Helvetica" size:12.0]
 											 constrainedToSize:maximumLabelSize 
@@ -117,6 +128,7 @@
 		//if (calculatedHeight>50) {
 			return calculatedHeight;
 		//}
+		 */
 	}
 	return 60;
 	
@@ -147,8 +159,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[theTableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 0) {
+		GraphObject *fbItem = [newsFeed objectAtIndex:indexPath.row];
         KBFacebookPostDetailViewController *detailViewController = [[KBFacebookPostDetailViewController alloc] initWithNibName:@"KBFacebookPostDetailViewController" bundle:nil];
-        //detailViewController.tweet = [tweets objectAtIndex:indexPath.row];
+        [detailViewController populate:fbItem];
         [self.navigationController pushViewController:detailViewController animated:YES];
 		[detailViewController release];
     } else {
@@ -184,6 +197,7 @@
 
 
 - (void)dealloc {
+	[heightTester release];
 	[TTStyleSheet setGlobalStyleSheet:nil];
 	[newsFeed release];
 	[fbLoginView release];
