@@ -56,14 +56,16 @@
 
 - (void)statusesReceived:(NSArray *)statuses {
     [super statusesReceived:statuses];
-	
+
     // this is used when there is no userDictionary, which occurs when a user clicks a @screenname inside the body of a tweet
     NSArray *userStatuses = [statuses retain];
     if (userDictionary == nil && [userStatuses count] > 0) {
         screenNameLabel.text = [[[userStatuses objectAtIndex:0] objectForKey:@"user"] objectForKey:@"screen_name"];
         fullName.text = [[[userStatuses objectAtIndex:0] objectForKey:@"user"] objectForKey:@"name"];
-		location.text = [[[userStatuses objectAtIndex:0] objectForKey:@"user"] objectForKey:@"location"];
-        
+    NSString *locationText = [[[userStatuses objectAtIndex:0] objectForKey:@"user"] objectForKey:@"location"];
+    if ([locationText isKindOfClass:[NSString class]]) 
+  		location.text = [[[userStatuses objectAtIndex:0] objectForKey:@"user"] objectForKey:@"location"];
+
         CGRect frame = CGRectMake(11, 53, 49, 49);
         userProfileImage = [[TTImageView alloc] initWithFrame:frame];
         userProfileImage.backgroundColor = [UIColor clearColor];
@@ -73,6 +75,7 @@
         [self.view addSubview:userProfileImage];
     }
 	[userStatuses release];
+    DLog(@"done with tweets view");
 }
 
 - (void) refreshTable {
