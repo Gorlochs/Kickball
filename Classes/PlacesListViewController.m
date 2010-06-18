@@ -22,6 +22,7 @@
 - (void)stopUpdatingLocation:(NSString *)state;
 - (void)venuesResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString;
 - (FSVenue*) extractVenueFromDictionaryForRow:(NSIndexPath*)indexPath;
+- (void) displayPlacesList;
 
 @end
 
@@ -45,12 +46,11 @@
     [self addHeaderAndFooter:theTableView];
     [self startProgressBar:@"Retrieving nearby venues..."];
     if ([FoursquareAPI sharedInstance].cachedVenues == nil) {
-        [[FoursquareAPI sharedInstance] getVenuesNearLatitude:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] latitude]]
-                                                 andLongitude:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] longitude]]
-                                                   withTarget:self 
-                                                    andAction:@selector(venuesResponseReceived:withResponseString:)
-         
-         ];   
+		if ([[KBLocationManager locationManager] locationDefined]) {
+			[self displayPlacesList];
+		} else {
+			[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(displayPlacesList) name:kUpdatedLocationKey object:nil];
+		}
     } else {
         self.venues = [NSDictionary dictionaryWithDictionary:[FoursquareAPI sharedInstance].cachedVenues];
         [theTableView reloadData];
@@ -61,6 +61,14 @@
     [FlurryAPI logEvent:@"Venue List"];
 }
 
+- (void) displayPlacesList {
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:kUpdatedLocationKey object:nil];
+	[[FoursquareAPI sharedInstance] getVenuesNearLatitude:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] latitude]]
+											 andLongitude:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] longitude]]
+											   withTarget:self 
+												andAction:@selector(venuesResponseReceived:withResponseString:)
+	 ];
+}
 
 - (void)venuesResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     DLog(@"venue list: %@", inString);

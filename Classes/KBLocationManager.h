@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
+#define kUpdatedLocationKey @"UpdateLocationNotification"
+
 
 @interface KBLocationManager : NSObject <CLLocationManagerDelegate> {
     CLLocationManager* locationManager;
@@ -25,12 +27,13 @@
 
 @property (nonatomic, retain) NSMutableArray *locationMeasurements;
 @property (nonatomic, retain) CLLocation *bestEffortAtLocation;
+@property (nonatomic) BOOL locationDefined;
 
 + (KBLocationManager*)locationManager;
 
 - (void) startUpdates;
 - (void) stopUpdates;
-- (BOOL) locationDefined;
+//- (BOOL) locationDefined;
 - (BOOL) locationDenied;
 - (float) latitude;
 - (float) longitude;

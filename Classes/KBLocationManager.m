@@ -18,6 +18,7 @@ static BOOL initialized = NO;
 
 @synthesize locationMeasurements;
 @synthesize bestEffortAtLocation;
+@synthesize locationDefined;
 
 + (KBLocationManager*)locationManager {
 	if(!globalLocationManager)  {
@@ -153,7 +154,7 @@ static BOOL initialized = NO;
     [FlurryAPI setLocation:newLocation];
         
     locationDefined = YES;
-    [[NSNotificationCenter defaultCenter] postNotificationName: @"UpdateLocationNotification" object: nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kUpdatedLocationKey object: nil];
 }
 
 - (BOOL) locationDenied {
@@ -183,7 +184,7 @@ static BOOL initialized = NO;
         }
 	}
 	
-	[[NSNotificationCenter defaultCenter] postNotificationName: @"UpdateLocationNotification" object: nil];
+	[[NSNotificationCenter defaultCenter] postNotificationName:kUpdatedLocationKey object: nil];
 }
 
 - (BOOL) locationDefined {
