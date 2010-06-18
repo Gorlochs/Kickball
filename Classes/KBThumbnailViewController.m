@@ -21,8 +21,13 @@
     self.navigationController.navigationBarHidden = NO;
     self.navigationController.navigationBar.hidden = NO;
 	[self setWantsFullScreenLayout:YES];
-	[self.tableView setContentOffset:CGPointMake(0, -10)];
+	//[self.tableView setContentOffset:CGPointMake(0, -10)];
+	CGRect frame = self.tableView.frame;
+	frame.origin = CGPointMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y - 64);
+	frame.size = CGSizeMake(self.tableView.frame.size.width, self.tableView.frame.size.height + 64);
+	self.tableView.frame = frame;
 }
+
 
 - (TTPhotoViewController*)createPhotoViewController { 
     return [[[KBPhotoViewController alloc] init] autorelease]; 

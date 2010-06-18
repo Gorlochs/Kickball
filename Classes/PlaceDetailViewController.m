@@ -366,7 +366,7 @@
 				[peopleHereContainer setBackgroundColor:[UIColor clearColor]];
 				roundedRect = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 290, 47)];
 				[[roundedRect layer] setCornerRadius:3.0f];
-				[roundedRect setBackgroundColor:[UIColor whiteColor]];
+				[roundedRect setBackgroundColor:[UIColor colorWithRed:239.0/255.0 green:239.0/255.0 blue:239.0/255.0 alpha:1.0]];  
 				[peopleHereContainer addSubview:roundedRect];
 				[roundedRect release];
 				break;
@@ -374,7 +374,7 @@
 				peopleHereContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 107)];
 				roundedRect = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 290, 95)];
 				[[roundedRect layer] setCornerRadius:3.0f];
-				[roundedRect setBackgroundColor:[UIColor whiteColor]];
+				[roundedRect setBackgroundColor:[UIColor colorWithRed:239.0/255.0 green:239.0/255.0 blue:239.0/255.0 alpha:1.0]];  
 				[peopleHereContainer addSubview:roundedRect];
 				[roundedRect release];
 				break;
@@ -514,7 +514,7 @@
 	}
 	UILabel *hereName = [[UILabel alloc] initWithFrame:nameRect];
 	[hereName setBackgroundColor:[UIColor clearColor]];
-	[hereName setFont:[UIFont boldSystemFontOfSize:14]];
+	[hereName setFont:[UIFont boldSystemFontOfSize:15]];
 	[hereName setTextColor:[UIColor blackColor]];
 	[hereName setText:person.user.firstnameLastInitial]; 
 	[container addSubview:hereName];
@@ -617,7 +617,6 @@
         //return nil;
         return checkinCell;
     } else if (indexPath.section == 1) {
-        mayorMapCell.backgroundColor = [UIColor whiteColor];
         return mayorMapCell;
     } else if (indexPath.section == 2) { // people here
 		return peopleHereCell;
