@@ -15,6 +15,8 @@
 @synthesize venueName;
 @synthesize venueAddress;
 @synthesize specialImage;
+@synthesize roundedTopCorners;
+@synthesize roundedBottomCorners;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
@@ -36,7 +38,7 @@
         venueName.highlightedTextColor = [UIColor whiteColor];
         [self addSubview:venueName];
         
-        venueAddress = [[UILabel alloc] initWithFrame:CGRectMake(46, 20, 250, 20)];
+        venueAddress = [[UILabel alloc] initWithFrame:CGRectMake(46, 20, 240, 20)];
         venueAddress.textColor = [UIColor colorWithWhite:0.5 alpha:1.0];
         venueAddress.font = [UIFont systemFontOfSize:12.0];
         venueAddress.backgroundColor = [UIColor clearColor];
@@ -47,16 +49,28 @@
         
         topLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderTop.png"]];
         topLineImage.frame = CGRectMake(0, 0, self.frame.size.width, 1);
+		topLineImage.contentMode = UIViewContentModeScaleAspectFill;
         [self addSubview:topLineImage];
         
         // TODO: the origin.y should probably not be hard coded
         bottomLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderBottom.png"]];
         bottomLineImage.frame = CGRectMake(0, self.frame.size.height - 1, self.frame.size.width, 1);
+		bottomLineImage.contentMode = UIViewContentModeScaleAspectFill;
         [self addSubview:bottomLineImage];
         
         specialImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"specialCorner.png"]];
         specialImage.frame = CGRectMake(298, 0, 22, 22);
         [self addSubview:specialImage];
+		
+		roundedTopCorners = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"roundedTop.png"]];
+		roundedTopCorners.frame = CGRectMake(0, 0, roundedTopCorners.frame.size.width, roundedTopCorners.frame.size.height);
+		[self addSubview:roundedTopCorners];
+		[self bringSubviewToFront:roundedTopCorners];
+	
+		roundedBottomCorners = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"roundedBottom.png"]];
+		roundedBottomCorners.frame = CGRectMake(0, self.frame.size.height - 3, roundedBottomCorners.frame.size.width, roundedBottomCorners.frame.size.height);
+		[self addSubview:roundedBottomCorners];
+		[self bringSubviewToFront:roundedBottomCorners];
     }
     return self;
 }
@@ -85,7 +99,7 @@
 		venueName.numberOfLines = 3;
 		venueName.frame	= CGRectMake(46, contentRect.origin.y+5, 250, 40);
 		venueAddress.frame = CGRectMake(46, contentRect.origin.y+40, 250, 20);
-	}else {
+	} else {
 		venueName.font = [UIFont boldSystemFontOfSize:14.0];
 		venueName.numberOfLines = 1;
 		venueName.frame	= CGRectMake(46, contentRect.origin.y+5, 250, 20);
@@ -130,6 +144,9 @@
     [topLineImage release];
     [bottomLineImage release];
     [specialImage release];
+	
+	[roundedTopCorners release];
+	[roundedBottomCorners release];
     [super dealloc];
 }
 

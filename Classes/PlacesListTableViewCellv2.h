@@ -20,6 +20,10 @@
     UIImageView *topLineImage;
     UIImageView *bottomLineImage;
     UIImageView *specialImage;
+	
+	UIImageView *roundedTopCorners;
+	UIImageView *roundedBottomCorners;
+	
 	BOOL twoLine;
 }
 
@@ -27,9 +31,11 @@
 @property (nonatomic, retain) UILabel *venueName;
 @property (nonatomic, retain) UILabel *venueAddress;
 @property (nonatomic, retain) UIImageView *specialImage;
+@property (nonatomic, retain) UIImageView *roundedTopCorners;
+@property (nonatomic, retain) UIImageView *roundedBottomCorners;
 
 - (void) adjustLabelWidth:(float)newWidth;
-- (void)makeTwoLine;
-- (void)makeOneLine;
+- (void) makeTwoLine;
+- (void) makeOneLine;
 
 @end

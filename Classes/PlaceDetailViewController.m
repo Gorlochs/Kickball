@@ -616,6 +616,16 @@
     } else if (indexPath.section == 2) { // people here
 		return peopleHereCell;
     } else if (indexPath.section == 3) {
+		UIImageView *roundedTopCorners = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"roundedTop.png"]];
+		roundedTopCorners.frame = CGRectMake(0, 0, roundedTopCorners.frame.size.width, roundedTopCorners.frame.size.height);
+		[giftCell addSubview:roundedTopCorners];
+		
+		UIImageView *roundedBottomCorners = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"roundedBottom.png"]];
+		roundedBottomCorners.frame = CGRectMake(0, giftCell.frame.size.height - 3, roundedBottomCorners.frame.size.width, roundedBottomCorners.frame.size.height);
+		[giftCell addSubview:roundedBottomCorners];
+		[giftCell bringSubviewToFront:roundedTopCorners];
+		[giftCell bringSubviewToFront:roundedBottomCorners];
+		
         return giftCell;
     } else if (indexPath.section == 4) {
         return bottomButtonCell;
@@ -639,6 +649,18 @@
         ttImage.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
         [cell.imageView addSubview:ttImage];
     }
+	if (indexPath.row == 0) {
+		UIImageView *roundedTopCorners = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"roundedTop.png"]];
+		roundedTopCorners.frame = CGRectMake(0, 0, roundedTopCorners.frame.size.width, roundedTopCorners.frame.size.height);
+		[cell addSubview:roundedTopCorners];
+		[cell bringSubviewToFront:roundedTopCorners];
+	}
+	if (indexPath.row == [theTableView numberOfRowsInSection:indexPath.section] - 1 && indexPath.section == 5) {
+		UIImageView *roundedBottomCorners = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"roundedBottom.png"]];
+		roundedBottomCorners.frame = CGRectMake(0, 52, roundedBottomCorners.frame.size.width, roundedBottomCorners.frame.size.height);
+		[cell addSubview:roundedBottomCorners];
+		[cell bringSubviewToFront:roundedBottomCorners];
+	}
     return cell;
 }
 

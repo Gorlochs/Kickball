@@ -13,6 +13,7 @@
 #import "KBMessage.h"
 #import "FlurryAPI.h"
 #import "FoursquareAPI.h"
+#import "FacebookProxy.h"
 
 
 static inline double radians (double degrees) {return degrees * M_PI/180;}
@@ -223,7 +224,9 @@ static BOOL initialized = NO;
     [networkQueue go];
     
     // FIXME: check for FB session & facebook image upload setting
-//    [self uploadFacebookPhoto:imageData withCaption:message];
+	if ([[FacebookProxy instance] isAuthorized]) {
+		[self uploadFacebookPhoto:imageData withCaption:message];
+	}
     return YES;
 }
 

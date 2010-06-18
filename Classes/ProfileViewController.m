@@ -330,6 +330,15 @@
                     [button release];
                     [ttImage release];
                 }
+				UIImageView *roundedTopCorners = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"roundedTop.png"]];
+				roundedTopCorners.frame = CGRectMake(0, 0, roundedTopCorners.frame.size.width, roundedTopCorners.frame.size.height);
+				[photoCell addSubview:roundedTopCorners];
+				
+				UIImageView *roundedBottomCorners = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"roundedBottom.png"]];
+				roundedBottomCorners.frame = CGRectMake(0, photoCell.frame.size.height - 3, roundedBottomCorners.frame.size.width, roundedBottomCorners.frame.size.height);
+				[photoCell addSubview:roundedBottomCorners];
+				[photoCell bringSubviewToFront:roundedTopCorners];
+				[photoCell bringSubviewToFront:roundedBottomCorners];
             }
             return photoCell;
             break;
@@ -352,6 +361,16 @@
         default:
             break;
     }
+	if (indexPath.row == 0) {
+		cell.roundedTopCorners.hidden = NO;
+	} else {
+		cell.roundedTopCorners.hidden = YES;
+	}
+	if (indexPath.row == [theTableView numberOfRowsInSection:indexPath.section] - 1) {
+		cell.roundedBottomCorners.hidden = NO;
+	} else {
+		cell.roundedBottomCorners.hidden = YES;
+	}
     return cell;
 }
 
