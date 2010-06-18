@@ -273,7 +273,7 @@
 	// it was either this or pull out the 
     NSDictionary *userInfo = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:theCheckin, nil] 
                                                          forKeys:[NSArray arrayWithObjects:@"checkin", nil]];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"checkedIn" object:self userInfo:userInfo];
+    //[[NSNotificationCenter defaultCenter] postNotificationName:@"checkedIn" object:self userInfo:userInfo];
     
 	self.venueToPush = theCheckin.venue;
 	[theCheckin release];

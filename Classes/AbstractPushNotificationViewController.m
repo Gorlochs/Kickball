@@ -44,8 +44,7 @@
 }
 
 - (void) retrieveAllFriendsWithPingOn {
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://gorlochs.literalshore.com:3000/kickball/pings/user/%@.json", 
-                                       [[FoursquareAPI sharedInstance] currentUser].userId]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://gorlochs.literalshore.com:3000/kickball/pings/user/%@.json", [self getAuthenticatedUser].userId]];
     ASIHTTPRequest *gorlochRequest = [[[ASIHTTPRequest alloc] initWithURL:url] autorelease];
     
     [gorlochRequest setDidFailSelector:@selector(pingRequestWentWrong:)];
@@ -56,7 +55,7 @@
 }
 
 - (void) pingRequestWentWrong:(ASIHTTPRequest *) request {
-    DLog(@"BOOOOOOOOOOOO!");
+    DLog(@"BOOOOOOOOOOOO! %@", [request responseString]);
 }
 
 - (void) pingRequestDidFinish:(ASIHTTPRequest *) request {
