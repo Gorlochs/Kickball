@@ -130,7 +130,9 @@ static KBTwitterManager *sharedInstance = nil;
 // There needs to be a better way to do this.
 - (void)statusesReceived:(NSArray *)statuses forRequest:(NSString *)connectionIdentifier {
     DLog(@"Receive status");
-	[delegate statusesReceived:statuses];
+    if([delegate respondsToSelector:@selector(statusesReceived:)]){
+    	[delegate statusesReceived:statuses]; //if it doesn't respond, there was a network error
+    }
 }
 
 - (void)directMessagesReceived:(NSArray *)messages forRequest:(NSString *)connectionIdentifier {
