@@ -77,7 +77,7 @@
 */
 
 -(void)populate:(NSDictionary*)ev{
-	event = [ev copy];
+	event = [ev retain];
 }
 
 -(void)grabComments{
@@ -217,10 +217,20 @@
 }
 
 -(IBAction)pressAttending{
-	
+	GraphAPI *graph = [[FacebookProxy instance] newGraph];
+	[NSThread detachNewThreadSelector:@selector(attendObject:) toTarget:graph withObject:[event objectForKey:@"eid"]];
+	[attendingButt setSelected:YES];
+	[notAttendingButt setSelected:NO];
+	[event objectForKey:@"rsvp_status"];
+	[event setValue:@"attending" forKey:@"rsvp_status"];
 }
 -(IBAction)pressNotAttending{
-	
+	GraphAPI *graph = [[FacebookProxy instance] newGraph];
+	[NSThread detachNewThreadSelector:@selector(declineObject:) toTarget:graph withObject:[event objectForKey:@"eid"]];
+	[attendingButt setSelected:NO];
+	[notAttendingButt setSelected:YES];
+	[event setValue:@"declined" forKey:@"rsvp_status"];
+
 }
 -(IBAction)touchComment{
 	

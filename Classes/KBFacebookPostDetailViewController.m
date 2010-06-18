@@ -191,7 +191,10 @@
 }
 
 -(IBAction)pressLike{
-	
+	GraphAPI *graph = [[FacebookProxy instance] newGraph];
+	[NSThread detachNewThreadSelector:@selector(likeObject:) toTarget:graph withObject:[fbItem propertyWithKey:@"id"]];
+	//GraphObject *result = [[[FacebookProxy instance] newGraph] likeObject:[fbItem propertyWithKey:@"id"]]
+	//[fbItem propertyWithKey:@"id"]
 }
 
 #pragma mark -

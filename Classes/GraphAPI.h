@@ -51,6 +51,8 @@
 
 // these 3 are just convenience methods that wrap putToObject, nothing special about them
 -(GraphObject*)likeObject:(NSString*)obj_id;
+-(GraphObject*)attendObject:(NSString*)obj_id;
+-(GraphObject*)declineObject:(NSString*)obj_id;
 -(GraphObject*)putCommentToObject:(NSString*)obj_id message:(NSString*)message;
 -(GraphObject*)putWallPost:(NSString*)profile_id message:(NSString*)message attachment:(NSDictionary*)attachment_args;
 

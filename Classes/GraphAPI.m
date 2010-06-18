@@ -341,6 +341,15 @@ NSString* const kConnectionAlbums = @"albums";
 	return [self putToObject:obj_id connectionType:kConnectionLikes args:nil];
 }
 
+-(GraphObject*)attendObject:(NSString*)obj_id
+{
+	return [self putToObject:obj_id connectionType:kConnectionAttending args:nil];
+}
+-(GraphObject*)declineObject:(NSString*)obj_id
+{
+	return [self putToObject:obj_id connectionType:kConnectionDeclined args:nil];
+}
+
 -(GraphObject*)putCommentToObject:(NSString*)obj_id message:(NSString*)message
 {
 	NSMutableDictionary* args = [NSMutableDictionary dictionaryWithObjectsAndKeys:message, kKeyArgumentMessage, nil];
