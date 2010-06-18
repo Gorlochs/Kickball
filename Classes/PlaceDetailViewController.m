@@ -87,7 +87,6 @@
     venueDetailButton.hidden = YES;
     twitterButton.enabled = NO;
     
-    giftCell.firstTimePhotoButton.hidden = YES;
 	
 	specialText.font = [UIFont systemFontOfSize:14.0];
 	specialText.textColor = [UIColor colorWithRed:0.0 green:86.0/255.0 blue:136.0/255.0 alpha:1.0];
@@ -147,12 +146,10 @@
     
 
     if ([goodies count] > 0) {
-        giftCell.firstTimePhotoButton.hidden = YES;
 
         int i = 0;
         int x = 0;
         int y = 0;
-        
         
         NSMutableArray *tempTTPhotoArray = [[NSMutableArray alloc] initWithCapacity:[goodies count]];
         for (KBGoody *goody in goodies) {
@@ -196,15 +193,13 @@
         
         photoSource = [[MockPhotoSource alloc] initWithType:MockPhotoSourceNormal title:venue.name photos:tempTTPhotoArray photos2:nil];
         [tempTTPhotoArray release];
-        giftCell.firstTimePhotoButton.hidden = YES;
         seeAllPhotosButton.hidden = NO;
         addPhotoButton.hidden = NO;
         photoHeaderLabel.hidden = NO;
     } else {
-        giftCell.firstTimePhotoButton.hidden = NO;
-        seeAllPhotosButton.hidden = YES;
-        addPhotoButton.hidden = YES;
-        photoHeaderLabel.hidden = YES;
+        //seeAllPhotosButton.hidden = YES;
+        //addPhotoButton.hidden = YES;
+        //photoHeaderLabel.hidden = YES;
     }
     [theTableView reloadData];
 }
@@ -590,8 +585,8 @@
 		//**previous*** return [venue.currentCheckins count] <= MAX_PEOPLE_HERE_SHOWN ? [venue.currentCheckins count] : MAX_PEOPLE_HERE_SHOWN;
         return [venue.currentCheckins count] > 0 ? 1 : 0;
     } else if (section == 3) { // gift/photos
-        //return [goodies count] > 0 ? 1 : 0;
-        return 1;
+        return [goodies count] > 0 ? 1 : 0;
+        //return 1;
     } else if (section == 4) { // venue buttons
         return 1;
     } else if (section == 5) { // tips
@@ -721,11 +716,16 @@
             break;
         case 3: 
             if ([goodies count] == 0) {
-                tableCellHeader.leftHeaderLabel.text = @"";
-            } else {
+                //tableCellHeader.leftHeaderLabel.text = @"";
+				seeAllPhotosButton.hidden = YES;
+				CGRect frame = addPhotoButton.frame;
+				frame.origin = CGPointMake(230, addPhotoButton.frame.origin.y);
+				addPhotoButton.frame = frame;
+			}
+//            } else {
                 photoHeaderLabel.text = [NSString stringWithFormat:@"%d %@", [goodies count], [goodies count] == 1 ? @"Photo" : @"Photos"];
                 return photoHeaderView;
-            }
+//            }
             break;
         case 4:
             return nil;
@@ -740,18 +740,22 @@
                 [addTipButton setImage:[UIImage imageNamed:@"addTip02_hdr.png"] forState:UIControlStateHighlighted];
                 [addTipButton addTarget:self action:@selector(addTipTodo) forControlEvents:UIControlEventTouchUpInside]; 
                 [tableCellHeader addSubview:addTipButton];
-            }
-            tableCellHeader.leftHeaderLabel.text = [NSString stringWithFormat:@"%d %@", [venue.tips count], [venue.tips count] == 1 ? @"Tip" : @"Tips"];
-            
-            if ([venue.tips count] > 4) {
-                UIButton *myDetailButton = [UIButton buttonWithType:UIButtonTypeCustom];
-                myDetailButton.frame = CGRectMake(210, 0, 92, 39);
-                myDetailButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-                myDetailButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-                [myDetailButton setImage:[UIImage imageNamed:@"profileSeeAllTips01.png"] forState:UIControlStateNormal];
-                [myDetailButton setImage:[UIImage imageNamed:@"profileSeeAllTips02.png"] forState:UIControlStateHighlighted];
-                [myDetailButton addTarget:self action:@selector(displayAllTips:) forControlEvents:UIControlEventTouchUpInside]; 
-                [tableCellHeader addSubview:myDetailButton];
+				tableCellHeader.leftHeaderLabel.text = [NSString stringWithFormat:@"%d %@", [venue.tips count], [venue.tips count] == 1 ? @"Tip" : @"Tips"];
+				
+				if ([venue.tips count] > 4) {
+					UIButton *myDetailButton = [UIButton buttonWithType:UIButtonTypeCustom];
+					myDetailButton.frame = CGRectMake(210, 0, 92, 39);
+					myDetailButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+					myDetailButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+					[myDetailButton setImage:[UIImage imageNamed:@"profileSeeAllTips01.png"] forState:UIControlStateNormal];
+					[myDetailButton setImage:[UIImage imageNamed:@"profileSeeAllTips02.png"] forState:UIControlStateHighlighted];
+					[myDetailButton addTarget:self action:@selector(displayAllTips:) forControlEvents:UIControlEventTouchUpInside]; 
+					[tableCellHeader addSubview:myDetailButton];
+				} else {
+					CGRect frame = addTipButton.frame;
+					frame.origin = CGPointMake(213, addTipButton.frame.origin.y);
+					addTipButton.frame = frame;
+				}
             }
             break;
         default:

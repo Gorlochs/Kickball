@@ -12,7 +12,7 @@
 
 @implementation KBPhotoThumbnailCell
 
-@synthesize goodies, bgImage, firstTimePhotoButton;
+@synthesize goodies, bgImage;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
@@ -31,7 +31,6 @@
 
 - (void)dealloc {
     [goodies release];
-    [firstTimePhotoButton release];
     [bgImage release];
     [super dealloc];
 }
