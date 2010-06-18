@@ -13,6 +13,7 @@
 #import "TableSectionHeaderView.h"
 #import "KBFacebookCommentCell.h"
 #import "FacebookProxy.h"
+#import "KBFacebookAddCommentViewController.h"
 
 @implementation KBFacebookPostDetailViewController
 @synthesize postView, commentView;
@@ -112,7 +113,24 @@
 	[pool release];
 }
 
+-(void)refreshMainFeed{
+	[comments release];
+	comments = nil;
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	GraphAPI *graph = [[FacebookProxy instance] newGraph];
+	comments = [graph getConnections:@"comments" forObject:[fbItem propertyWithKey:@"id"]];
+	[comments retain];
+	[theTableView reloadData];
+	[pool release];
+	[self performSelectorOnMainThread:@selector(stopProgressBar) withObject:nil waitUntilDone:NO];
+	[self dataSourceDidFinishLoadingNewData];
+	
+}
 
+- (void) refreshTable {
+	//[self startProgressBar:@"Retrieving news feed..."];
+	[self refreshMainFeed];
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -159,7 +177,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
 	TableSectionHeaderView *sectionHeaderView;
 	sectionHeaderView = [[[TableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)] autorelease];
-	
+	numComments = [comments count];
 	if (numComments) {
 		sectionHeaderView.leftHeaderLabel.text = numComments > 1 ? [NSString stringWithFormat:@"%i Comments",numComments] : [NSString stringWithFormat:@"%i Comment",numComments];
 	}else{
@@ -195,6 +213,13 @@
 	[NSThread detachNewThreadSelector:@selector(likeObject:) toTarget:graph withObject:[fbItem propertyWithKey:@"id"]];
 	//GraphObject *result = [[[FacebookProxy instance] newGraph] likeObject:[fbItem propertyWithKey:@"id"]]
 	//[fbItem propertyWithKey:@"id"]
+}
+-(IBAction)touchComment{
+	KBFacebookAddCommentViewController* commentController = [[KBFacebookAddCommentViewController alloc] initWithNibName:@"KBFacebookAddComment" bundle:nil];
+    commentController.fbId = [fbItem propertyWithKey:@"id"];
+	commentController.parentView = self;
+	commentController.isComment = YES;
+    [self presentModalViewController:commentController animated:YES];
 }
 
 #pragma mark -

@@ -39,6 +39,8 @@
         [self addSubview:bottomLineImage];
 		fbPictureUrl = nil;
 		
+		[self setSelectionStyle:UITableViewCellSelectionStyleNone];
+		
     }
     return self;
 }

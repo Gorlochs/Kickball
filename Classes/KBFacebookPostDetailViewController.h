@@ -32,4 +32,5 @@
 
 -(void)populate:(GraphObject*)obj;
 -(IBAction)pressLike;
+-(IBAction)touchComment;
 @end

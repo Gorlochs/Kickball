@@ -27,6 +27,7 @@
 -(id)initWithDict:(NSDictionary*)newProperties;
 
 -(id)propertyWithKey:(id)key;
+-(id)objectForKey:(id)key;
 
 -(UIImage*)smallPicture;
 -(UIImage*)largePicture;

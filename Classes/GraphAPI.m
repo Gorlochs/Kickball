@@ -356,6 +356,7 @@ NSString* const kConnectionAlbums = @"albums";
 	return [self putToObject:obj_id connectionType:kConnectionComments args:args];
 }
 
+
 -(bool)deleteObject:(NSString*)obj_id
 {
 	NSString* path = obj_id;	

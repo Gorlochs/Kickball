@@ -11,6 +11,7 @@
 #import "KBFacebookCommentCell.h"
 #import "FacebookProxy.h"
 #import "GraphObject.h"
+#import "KBFacebookAddCommentViewController.h"
 
 @implementation KBFacebookEventDetailViewController
 
@@ -64,7 +65,7 @@
 	commentHightTester.font = [UIFont fontWithName:@"Helvetica" size:12.0];
 	commentHightTester.backgroundColor = [UIColor clearColor];
 	
-	[NSThread detachNewThreadSelector:@selector(grabComments) toTarget:self withObject:nil];
+	[NSThread detachNewThreadSelector:@selector(refreshMainFeed) toTarget:self withObject:nil];
 }
 
 
@@ -80,7 +81,7 @@
 	event = [ev retain];
 }
 
--(void)grabComments{
+-(void)refreshMainFeed{
 	[comments release];
 	comments = nil;
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
@@ -93,6 +94,14 @@
 	//GraphObject *baseObj = [baseEventResult objectAtIndex:0];
 	//comments = [[FacebookProxy instance] refreshEvents];
 	[pool release];
+	[self performSelectorOnMainThread:@selector(stopProgressBar) withObject:nil waitUntilDone:NO];
+	[self dataSourceDidFinishLoadingNewData];
+}
+
+
+- (void) refreshTable {
+	//[self startProgressBar:@"Retrieving news feed..."];
+	[self refreshMainFeed];
 }
 
 #pragma mark -
@@ -233,7 +242,11 @@
 
 }
 -(IBAction)touchComment{
-	
+	KBFacebookAddCommentViewController* commentController = [[KBFacebookAddCommentViewController alloc] initWithNibName:@"KBFacebookAddComment" bundle:nil];
+    commentController.fbId = [event objectForKey:@"eid"];
+	commentController.parentView = self;
+	commentController.isComment = NO;
+    [self presentModalViewController:commentController animated:YES];
 }
 
 #pragma mark -

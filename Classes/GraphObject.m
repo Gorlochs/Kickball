@@ -69,6 +69,14 @@
 	return propertyObject;
 }
 
+-(id)objectForKey:(id)key
+{
+	id propertyObject = nil;
+	if ( nil != self._properties )
+		propertyObject = [self._properties objectForKey:key];
+	return propertyObject;
+}
+
 -(NSString*)objectID
 {
 	return [self propertyWithKey:@"id"];
