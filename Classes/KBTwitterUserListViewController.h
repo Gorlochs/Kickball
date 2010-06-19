@@ -11,7 +11,8 @@
 
 typedef enum {
     KBTwitterUserFollower = 0,
-    KBTwitterUserFriend
+    KBTwitterUserFriend,
+    KBTwitterUserFavorites
 } KBTwitterUserType;
 
 

@@ -43,5 +43,9 @@
 - (IBAction) reply;
 - (IBAction) favorite;
 - (IBAction) viewUserProfile;
+- (IBAction) viewRecentTweets;
+- (IBAction) viewFollowers;
+- (IBAction) viewFriends;
+- (IBAction) viewFavorites;
 
 @end

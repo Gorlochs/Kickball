@@ -17,7 +17,7 @@
 
 @synthesize tweet;
 
-- (void) viewRecentTweets {
+- (IBAction) viewRecentTweets {
 	KBUserTweetsViewController *recentTweetsController = [[KBUserTweetsViewController alloc] initWithNibName:@"KBUserTweetsViewController" bundle:nil];
     recentTweetsController.userDictionary = [userDictionary retain];
     recentTweetsController.username = [userDictionary objectForKey:@"screen_name"];
@@ -25,7 +25,15 @@
     [recentTweetsController release];
 }
 
-- (void) viewFollowers {
+- (IBAction) viewFavorites {
+	KBTwitterUserListViewController *followersController = [[KBTwitterUserListViewController alloc] initWithNibName:@"KBTwitterUserListViewController" bundle:nil];
+    followersController.userDictionary = [userDictionary retain];
+    followersController.userType = KBTwitterUserFavorites;
+	[self.navigationController pushViewController:followersController animated:YES];
+    [followersController release];
+}
+
+- (IBAction) viewFollowers {
 	KBTwitterUserListViewController *followersController = [[KBTwitterUserListViewController alloc] initWithNibName:@"KBTwitterUserListViewController" bundle:nil];
     followersController.userDictionary = [userDictionary retain];
     followersController.userType = KBTwitterUserFollower;
@@ -33,7 +41,7 @@
     [followersController release];
 }
 
-- (void) viewFriends {
+- (IBAction) viewFriends {
 	KBTwitterUserListViewController *friendsController = [[KBTwitterUserListViewController alloc] initWithNibName:@"KBTwitterUserListViewController" bundle:nil];
     friendsController.userDictionary = [userDictionary retain];
     friendsController.userType = KBTwitterUserFriend;

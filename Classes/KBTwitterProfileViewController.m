@@ -98,6 +98,14 @@
     [followersController release];
 }
 
+- (IBAction) viewFavorites {
+	KBTwitterUserListViewController *followersController = [[KBTwitterUserListViewController alloc] initWithNibName:@"KBTwitterUserListViewController" bundle:nil];
+    followersController.userDictionary = [userDictionary retain];
+    followersController.userType = KBTwitterUserFavorites;
+	[self.navigationController pushViewController:followersController animated:YES];
+    [followersController release];
+}
+
 - (void) viewFriends {
 	KBTwitterUserListViewController *friendsController = [[KBTwitterUserListViewController alloc] initWithNibName:@"KBTwitterUserListViewController" bundle:nil];
     friendsController.userDictionary = [userDictionary retain];

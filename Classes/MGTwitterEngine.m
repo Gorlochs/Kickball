@@ -1256,6 +1256,19 @@
                            responseType:MGTwitterUsers];
 }
 
+- (NSString *)getFavoritesForUser:(NSString *)username withCursor:(NSNumber*)cursor {
+    NSString *path = [NSString stringWithFormat:@"favorites.%@", API_FORMAT];
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
+    [params setObject:username forKey:@"screen_name"];
+    [params setObject:[NSString stringWithFormat:@"%qu", [cursor longLongValue]] forKey:@"cursor"];
+    
+    return [self _sendRequestWithMethod:nil path:path 
+                        queryParameters:params 
+                                   body:nil 
+                            requestType:MGTwitterFavoritesForUserRequest 
+                           responseType:MGTwitterStatuses];
+}
+
 - (NSString *)getFriendsForUser:(NSString *)username withCursor:(NSNumber*)cursor {
     NSString *path = [NSString stringWithFormat:@"statuses/friends.%@", API_FORMAT];
     

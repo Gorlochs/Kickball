@@ -81,8 +81,10 @@
     [self startProgressBar:@"Retrieving users..."];
     if (userType == KBTwitterUserFollower) {
         [twitterEngine getFollowersForUser:[userDictionary objectForKey:@"screen_name"] withCursor:currentCursor];
-    } else {
+    } else if (userType == KBTwitterUserFriend) {
         [twitterEngine getFriendsForUser:[userDictionary objectForKey:@"screen_name"] withCursor:currentCursor];
+    } else if (userType == KBTwitterUserFavorites) {
+        [twitterEngine getFavoritesForUser:[userDictionary objectForKey:@"screen_name"] withCursor:currentCursor];
     }
 }
 
