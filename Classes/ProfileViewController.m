@@ -339,6 +339,8 @@
 				[photoCell addSubview:roundedBottomCorners];
 				[photoCell bringSubviewToFront:roundedTopCorners];
 				[photoCell bringSubviewToFront:roundedBottomCorners];
+                [roundedTopCorners release];
+                [roundedBottomCorners release];
             }
             return photoCell;
             break;

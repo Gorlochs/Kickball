@@ -625,6 +625,8 @@
 		[giftCell addSubview:roundedBottomCorners];
 		[giftCell bringSubviewToFront:roundedTopCorners];
 		[giftCell bringSubviewToFront:roundedBottomCorners];
+        [roundedTopCorners release];
+        [roundedBottomCorners release];
 		
         return giftCell;
     } else if (indexPath.section == 4) {
@@ -654,12 +656,14 @@
 		roundedTopCorners.frame = CGRectMake(0, 0, roundedTopCorners.frame.size.width, roundedTopCorners.frame.size.height);
 		[cell addSubview:roundedTopCorners];
 		[cell bringSubviewToFront:roundedTopCorners];
+        [roundedTopCorners release];
 	}
 	if (indexPath.row == [theTableView numberOfRowsInSection:indexPath.section] - 1 && indexPath.section == 5) {
 		UIImageView *roundedBottomCorners = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"roundedBottom.png"]];
 		roundedBottomCorners.frame = CGRectMake(0, 52, roundedBottomCorners.frame.size.width, roundedBottomCorners.frame.size.height);
 		[cell addSubview:roundedBottomCorners];
 		[cell bringSubviewToFront:roundedBottomCorners];
+        [roundedBottomCorners release];
 	}
     return cell;
 }
