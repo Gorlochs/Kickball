@@ -51,6 +51,7 @@
 
 - (void)userInfoReceived:(NSArray *)userInfo {
     userDictionary = [[userInfo objectAtIndex:0] retain];
+    DLog(@"userdictionary - favorites gone?: %@", userDictionary);
     numberOfFriends.text = [NSString stringWithFormat:@"%d", [[userDictionary objectForKey:@"friends_count"] intValue]];
     numberOfFollowers.text = [NSString stringWithFormat:@"%d", [[userDictionary objectForKey:@"followers_count"] intValue]];
     numberOfTweets.text = [NSString stringWithFormat:@"%d", [[userDictionary objectForKey:@"statuses_count"] intValue]];

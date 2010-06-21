@@ -132,7 +132,7 @@ static KBTwitterManager *sharedInstance = nil;
     DLog(@"Receive status");
     if([delegate respondsToSelector:@selector(statusesReceived:)]){
     	[delegate statusesReceived:statuses]; //if it doesn't respond, there was a network error
-    }
+    } else DLog(@"unable to call statusesReceived with info %@ ----------------------------------------------- for controller %@", statuses, delegate);
 }
 
 - (void)directMessagesReceived:(NSArray *)messages forRequest:(NSString *)connectionIdentifier {
