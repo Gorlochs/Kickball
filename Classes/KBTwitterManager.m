@@ -130,24 +130,28 @@ static KBTwitterManager *sharedInstance = nil;
 // There needs to be a better way to do this.
 - (void)statusesReceived:(NSArray *)statuses forRequest:(NSString *)connectionIdentifier {
     DLog(@"Receive status");
-    if([delegate respondsToSelector:@selector(statusesReceived:)]){
+    if([(NSObject*)delegate respondsToSelector:@selector(statusesReceived:)]){
     	[delegate statusesReceived:statuses]; //if it doesn't respond, there was a network error
     } else DLog(@"unable to call statusesReceived with info %@ ----------------------------------------------- for controller %@", statuses, delegate);
 }
 
 - (void)directMessagesReceived:(NSArray *)messages forRequest:(NSString *)connectionIdentifier {
-	[delegate directMessagesReceived:messages];
+  if ([(NSObject*)delegate respondsToSelector:@selector(directMessagesReceived:)])
+  	[delegate directMessagesReceived:messages];
 }
 
 - (void)userInfoReceived:(NSArray *)userInfo forRequest:(NSString *)connectionIdentifier {
+  if ([(NSObject*)delegate respondsToSelector:@selector(userInfoReceived:)])
 	[delegate userInfoReceived:userInfo];
 }
 
 - (void)miscInfoReceived:(NSArray *)miscInfo forRequest:(NSString *)connectionIdentifier {
+  if ([(NSObject*)delegate respondsToSelector:@selector(miscInfoReceived:)])
     [delegate miscInfoReceived:miscInfo];
 }
 
 - (void)searchResultsReceived:(NSArray *)searchResults forRequest:(NSString *)connectionIdentifier; {
+  if ([(NSObject*)delegate respondsToSelector:@selector(searchResultsReceived:)])
     [delegate searchResultsReceived:searchResults];
 }
 
