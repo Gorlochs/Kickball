@@ -366,17 +366,31 @@ void uncaughtExceptionHandler(NSException *exception) {
 -(void)flipToOptions {
 	optionsFrame = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, 320, 460)];
 	[optionsFrame setImage:[UIImage imageNamed:@"opt_cornersOptions.png"]];
-	optionsHeaderBg = [[UIView alloc] initWithFrame:CGRectMake(15, 30, 292, 69)];
-	[optionsHeaderBg setBackgroundColor:[UIColor whiteColor]];
+	optionsHeaderBg = [[UIView alloc] initWithFrame:CGRectMake(0, 29, 320, 69)];
+	[optionsHeaderBg setBackgroundColor:[UIColor colorWithRed:229/255.0 green:229/255.0 blue:229/255.0 alpha:1.0]];
+	UIButton *optionsHomeButt = [UIButton buttonWithType:UIButtonTypeCustom];
+	[optionsHomeButt setFrame:CGRectMake(14, -1, 212, 69)];
+	[optionsHomeButt setImage:[UIImage imageNamed:@"btn-hdr_options01.png"] forState:UIControlStateNormal];
+	[optionsHomeButt setImage:[UIImage imageNamed:@"btn-hdr_options02.png"] forState:UIControlStateHighlighted];
+	[optionsHomeButt addTarget:self action:@selector(popToOptionsHome) forControlEvents:UIControlEventTouchUpInside];
+	[optionsHeaderBg addSubview:optionsHomeButt];
+	UIButton *optionsCloseButt = [UIButton buttonWithType:UIButtonTypeCustom];
+	[optionsCloseButt setFrame:CGRectMake(227, -1, 80, 69)];
+	[optionsCloseButt setImage:[UIImage imageNamed:@"btn-hdr_x01.png"] forState:UIControlStateNormal];
+	[optionsCloseButt setImage:[UIImage imageNamed:@"btn-hdr_x02.png"] forState:UIControlStateHighlighted];
+	[optionsCloseButt addTarget:self action:@selector(returnFromOptions) forControlEvents:UIControlEventTouchUpInside];
+	[optionsHeaderBg addSubview:optionsCloseButt];
+	[optionsNavigationController.view setFrame:CGRectMake(0, 98, 320, 382)];
+	
 	optionsLeft = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
-	[optionsLeft setImage:[UIImage imageNamed:@"optionsArrowLeft01.png"] forState:UIControlStateNormal];
-	[optionsLeft setImage:[UIImage imageNamed:@"optionsArrowLeft02.png"] forState:UIControlStateHighlighted];
-	[optionsLeft setFrame:CGRectMake(0, 220, 35, 44)];
+	[optionsLeft setImage:[UIImage imageNamed:@"opt_leftV2_01.png"] forState:UIControlStateNormal];
+	[optionsLeft setImage:[UIImage imageNamed:@"opt_leftV2_02.png"] forState:UIControlStateHighlighted];
+	[optionsLeft setFrame:CGRectMake(0, 98, 40, 29)];
 	[optionsLeft addTarget:self action:@selector(pressOptionsLeft) forControlEvents:UIControlEventTouchUpInside];
 	optionsRight = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
-	[optionsRight setImage:[UIImage imageNamed:@"optionsArrowRight01.png"] forState:UIControlStateNormal];
-	[optionsRight setImage:[UIImage imageNamed:@"optionsArrowRight02.png"] forState:UIControlStateHighlighted];
-	[optionsRight setFrame:CGRectMake(285, 220, 35, 44)];
+	[optionsRight setImage:[UIImage imageNamed:@"opt_rightV2_01.png"] forState:UIControlStateNormal];
+	[optionsRight setImage:[UIImage imageNamed:@"opt_rightV2_02.png"] forState:UIControlStateHighlighted];
+	[optionsRight setFrame:CGRectMake(280, 98, 40, 29)];
 	[optionsRight addTarget:self action:@selector(pressOptionsRight) forControlEvents:UIControlEventTouchUpInside];
 	//optionsController = [[OptionsViewController alloc] initWithNibName:@"OptionsView_v2" bundle:nil];
 	//[optionsController.view setFrame:CGRectMake(0, 20, 320, 460)];
@@ -432,6 +446,10 @@ void uncaughtExceptionHandler(NSException *exception) {
 	}    
 	
     [UIView commitAnimations];
+}
+
+- (void)popToOptionsHome{
+	[optionsNavigationController popToRootViewControllerAnimated:YES];
 }
 
 -(void)clearOptions{
