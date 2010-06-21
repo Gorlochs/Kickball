@@ -22,7 +22,6 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        // Custom initialization
     }
     return self;
 }
@@ -37,7 +36,6 @@
     if ([self.twitterEngine isAuthorized]) {
         [self startProgressBar:@"Retrieving your tweets..."];
         [twitterEngine getFavoritesForUser:[userDictionary objectForKey:@"screen_name"] withCursor:currentCursor];
-        NSLog(@"getting favorites------------------------------------------------------------------------------++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
     } else {
         loginController = [[KBTwitterXAuthLoginController alloc] initWithNibName:@"TwitterLoginView_v2" bundle:nil];
         loginController.rootController = self;

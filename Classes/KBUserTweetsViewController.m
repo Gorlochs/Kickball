@@ -22,11 +22,11 @@
 	location.text = @"";
     
     cachingKey = [NSString stringWithString:username];
-    
     if (self.userDictionary) {
         screenNameLabel.text = [self.userDictionary objectForKey:@"screen_name"];
         fullName.text = [self.userDictionary objectForKey:@"name"];
-		location.text = [self.userDictionary objectForKey:@"location"];
+    if ([[self.userDictionary objectForKey:@"location"] isKindOfClass:[NSString class]])
+  		location.text = [self.userDictionary objectForKey:@"location"];
         
 		iconBgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"twitIconBG.png"]];
 		iconBgImage.frame = CGRectMake(14, 63, 37, 38);
