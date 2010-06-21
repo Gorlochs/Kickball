@@ -13,6 +13,8 @@
 
 
 - (void)viewDidLoad {
+	self.hideHeader = YES;
+	self.hideFooter = YES;
     [super viewDidLoad];
     [photoMessage becomeFirstResponder];
 }
