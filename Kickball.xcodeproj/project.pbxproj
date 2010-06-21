@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		035C1FD41112A2E10075E553 /* NSString+hmac.m in Sources */ = {isa = PBXBuildFile; fileRef = 035C1FD31112A2E10075E553 /* NSString+hmac.m */; };
 		03CECEA510D8B62C00E06966 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CECEA410D8B62C00E06966 /* SFHFKeychainUtils.m */; };
+		07A3A52311CFFCE000FC7375 /* KBTwitterFavsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07A3A52011CFFCE000FC7375 /* KBTwitterFavsViewController.xib */; };
+		07A3A54311D0002F00FC7375 /* KBTwitterFavsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A3A54211D0002F00FC7375 /* KBTwitterFavsViewController.m */; };
 		0E1F229D11C1474D00EA8AF1 /* qc01.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E1F228911C1474D00EA8AF1 /* qc01.png */; };
 		0E1F229E11C1474D00EA8AF1 /* qc02.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E1F228A11C1474D00EA8AF1 /* qc02.png */; };
 		0E1F229F11C1474D00EA8AF1 /* qc03.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E1F228B11C1474D00EA8AF1 /* qc03.png */; };
@@ -851,6 +853,9 @@
 		035C1FD31112A2E10075E553 /* NSString+hmac.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+hmac.m"; sourceTree = "<group>"; };
 		03CECEA310D8B62C00E06966 /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
 		03CECEA410D8B62C00E06966 /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
+		07A3A52011CFFCE000FC7375 /* KBTwitterFavsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = KBTwitterFavsViewController.xib; path = Classes/KBTwitterFavsViewController.xib; sourceTree = "<group>"; };
+		07A3A54111D0002F00FC7375 /* KBTwitterFavsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBTwitterFavsViewController.h; sourceTree = "<group>"; };
+		07A3A54211D0002F00FC7375 /* KBTwitterFavsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTwitterFavsViewController.m; sourceTree = "<group>"; };
 		0E1F228911C1474D00EA8AF1 /* qc01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qc01.png; sourceTree = "<group>"; };
 		0E1F228A11C1474D00EA8AF1 /* qc02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qc02.png; sourceTree = "<group>"; };
 		0E1F228B11C1474D00EA8AF1 /* qc03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qc03.png; sourceTree = "<group>"; };
@@ -2283,6 +2288,7 @@
 				6A8ADA611187597E00D9328D /* KBGeoTweetMapViewController.xib */,
 				6A2EFAF1117F832F007F2D3D /* KBUserTweetsViewController.xib */,
 				6AA19FB21188E62D001EB415 /* KBTwitterUserListViewController.xib */,
+				07A3A52011CFFCE000FC7375 /* KBTwitterFavsViewController.xib */,
 				6A086FE9117652D400BD6094 /* TwitterLoginView_v2.xib */,
 				0E76C3FA11C158F100BA1E89 /* FacebookHeaderView.xib */,
 				6ADBFAA111738FE6003EB73D /* FoursquareHeaderView.xib */,
@@ -2856,6 +2862,8 @@
 				6A211967117D68EE00BE897E /* KBTwitterSearchViewController.m */,
 				6A211B4B117E1E1100BE897E /* KBUserTweetsViewController.h */,
 				6A211B4C117E1E1100BE897E /* KBUserTweetsViewController.m */,
+				07A3A54111D0002F00FC7375 /* KBTwitterFavsViewController.h */,
+				07A3A54211D0002F00FC7375 /* KBTwitterFavsViewController.m */,
 			);
 			name = "tab controllers";
 			sourceTree = "<group>";
@@ -4415,6 +4423,7 @@
 				0E27CECA11CFC7A800FD1A3F /* bg-hideKeyboard.png in Resources */,
 				0E27CECB11CFC7A800FD1A3F /* btn-hideKeyboard01.png in Resources */,
 				0E27CECC11CFC7A800FD1A3F /* btn-hideKeyboard02.png in Resources */,
+				07A3A52311CFFCE000FC7375 /* KBTwitterFavsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4703,6 +4712,7 @@
 				0E906DDF11CAB9FF0045006C /* KBFacebookEventDetailViewController.m in Sources */,
 				0EBEEE0711CBE9C900A28329 /* KBFacebookCommentCell.m in Sources */,
 				0EBEEFD111CC2C5900A28329 /* KBFacebookAddCommentViewController.m in Sources */,
+				07A3A54311D0002F00FC7375 /* KBTwitterFavsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

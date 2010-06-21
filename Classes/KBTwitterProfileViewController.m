@@ -9,7 +9,7 @@
 #import "KBTwitterProfileViewController.h"
 #import "KBTwitterUserListViewController.h"
 #import "KBCreateTweetViewController.h"
-
+#import "KBTwitterFavsViewController.h"
 
 @implementation KBTwitterProfileViewController
 
@@ -99,11 +99,11 @@
 }
 
 - (IBAction) viewFavorites {
-	KBTwitterUserListViewController *followersController = [[KBTwitterUserListViewController alloc] initWithNibName:@"KBTwitterUserListViewController" bundle:nil];
-    followersController.userDictionary = [userDictionary retain];
-    followersController.userType = KBTwitterUserFavorites;
-	[self.navigationController pushViewController:followersController animated:YES];
-    [followersController release];
+  KBTwitterFavsViewController *favTweets = [[KBTwitterFavsViewController alloc] initWithNibName:@"KBTwitterFavsViewController" bundle:nil];
+  favTweets.userDictionary = [userDictionary retain];
+  favTweets.username = [userDictionary objectForKey:@"screen_name"];
+  [self.navigationController pushViewController:favTweets animated:YES];
+  [favTweets release];
 }
 
 - (void) viewFriends {
