@@ -747,11 +747,14 @@
 				CGRect frame = addPhotoButton.frame;
 				frame.origin = CGPointMake(230, addPhotoButton.frame.origin.y);
 				addPhotoButton.frame = frame;
+			} else {
+				seeAllPhotosButton.hidden = NO;
+				CGRect frame = addPhotoButton.frame;
+				frame.origin = CGPointMake(142, addPhotoButton.frame.origin.y);
+				addPhotoButton.frame = frame;
 			}
-//            } else {
-                photoHeaderLabel.text = [NSString stringWithFormat:@"%d %@", [goodies count], [goodies count] == 1 ? @"Photo" : @"Photos"];
-                return photoHeaderView;
-//            }
+			photoHeaderLabel.text = [NSString stringWithFormat:@"%d %@", [goodies count], [goodies count] == 1 ? @"Photo" : @"Photos"];
+			return photoHeaderView;
             break;
         case 4:
             return nil;
@@ -1400,7 +1403,7 @@
 
 - (void) photoUploadFinished:(ASIHTTPRequest *) request {
     [self stopProgressBar];
-    DLog(@"YAY! Image uploaded!");
+    DLog(@"YAY! Image uploaded! %@", [request responseString]);
     KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"Image upload has been completed!"];
     [self displayPopupMessage:message];
     [message release];

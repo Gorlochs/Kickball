@@ -277,7 +277,7 @@
 
 - (void) photoUploadFinished:(ASIHTTPRequest *) request {
     [self stopProgressBar];
-    DLog(@"YAY! Image uploaded!");
+    DLog(@"YAY! Image uploaded! %@", [request responseString]);
     KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"Image upload has been completed!"];
     [self displayPopupMessage:message];
     [message release];
