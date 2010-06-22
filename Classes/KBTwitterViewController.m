@@ -66,6 +66,7 @@
     KBCreateTweetViewController *tweetController = [[KBCreateTweetViewController alloc] initWithNibName:@"KBCreateTweetViewController" bundle:nil];
     [self.navigationController pushViewController:tweetController animated:YES];
 	[tweetController release];
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"didStartModalTweet" object:nil]; 
 }
 
 - (void) flipBetweenMapAndList {

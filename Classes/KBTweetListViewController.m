@@ -25,13 +25,18 @@
     }
     return self;
 }
- 
+
+- (void)didStartModalTweet {
+  _inModalTweetView = YES;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _inModalTweetView = NO;
     pageNum = 1;
     cachingKey = kKBTwitterTimelineKey;
     pageViewType = KBPageViewTypeList;
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didStartModalTweet) name:@"didStartModalTweet" object:nil];    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginCanceled) name:@"loginCanceled" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideAppropriateTabs) name:@"hideAppropriateTabs" object:nil];
     if ([self.twitterEngine isAuthorized]) {
@@ -64,6 +69,10 @@
 }
 
 - (void)statusesReceived:(NSArray *)statuses {
+  if (_inModalTweetView) {
+    [self.navigationController popViewControllerAnimated:YES];
+    _inModalTweetView = NO;
+  }
 	if (statuses) {
 		twitterArray = [statuses retain];
 		NSMutableArray *tempTweetArray = [[NSMutableArray alloc] initWithCapacity:[twitterArray count]];
