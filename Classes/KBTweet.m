@@ -48,6 +48,7 @@
     [coder encodeObject: profileImageUrl forKey:@"profileImageUrl"]; 
     [coder encodeObject: tweetText forKey:@"tweetText"]; 
     [coder encodeObject: tweetId forKey:@"tweetId"]; 
+    [coder encodeObject: [NSNumber numberWithBool:isFavorited] forKey:@"favorited"]; 
 } 
 
 - (id) initWithCoder: (NSCoder *)coder { 
@@ -58,6 +59,7 @@
         [self setProfileImageUrl: [coder decodeObjectForKey:@"profileImageUrl"]]; 
         [self setTweetText: [coder decodeObjectForKey:@"tweetText"]]; 
         [self setTweetId: [coder decodeObjectForKey:@"tweetId"]]; 
+        [self setIsFavorited: [[coder decodeObjectForKey:@"favorited"] boolValue]]; 
     } 
     return self; 
 }

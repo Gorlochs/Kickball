@@ -149,14 +149,19 @@
 }
 
 - (void)statusesReceived:(NSArray *)statuses {
-  DLog(@"statusesreceived twitter detailview");
-	isFavorited = !isFavorited;
+  for (NSDictionary *tweetDict in statuses) {
+    tweet.isFavorited = isFavorited = [[tweetDict objectForKey:@"favorited"] boolValue];
+  }
+  //update the new tweet favorite status
+  //NSMutableArray *tempTweetArray = [[NSMutableArray alloc] initWithCapacity:1];
+	//[tempTweetArray addObject:tweet];
+  //[[KBTwitterManager twitterManager] cacheStatusArray:tempTweetArray withKey:kKBTwitterTimelineKey];
+  //[tempTweetArray release];
 	if (isFavorited) {
 		[favoriteButton setImage:[UIImage imageNamed:@"btn-favorite02.png"] forState:UIControlStateNormal];
 	} else {
 		[favoriteButton setImage:[UIImage imageNamed:@"btn-favorite01.png"] forState:UIControlStateNormal];
 	}
-	DLog("favorite status: %@", statuses);
 }
 
 - (void) viewUserProfile {
