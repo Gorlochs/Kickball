@@ -114,6 +114,8 @@
 
 - (void)dealloc {
     [loginController release];
+    [userDictionary release];
+    [username release];
     [super dealloc];
 }
 
