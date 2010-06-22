@@ -44,40 +44,6 @@
     [self executeQuery:0];
 }
 
-- (void)statusesReceived:(NSArray *)statuses { //display Favorites received
-	if (statuses) {
-		NSArray *array = [statuses retain];
-		NSMutableArray *tempFavArray = [[NSMutableArray alloc] initWithCapacity:[array count]];
-		for (NSDictionary *dict in array) {
-			//KBFavorite *fav = [[KBFavorite alloc] initWithDictionary:dict];
-			//[tempFavArray addObject:fav];
-			//[fav release];
-		}
-		// not very pretty, but it gets the job done. if there is a cached array, combine them.
-		// the other way to do it would be to just add all the objects (above) by index
-		if (pageNum > 1) {
-			[tweets addObjectsFromArray:tempFavArray];
-		} else if (!tweets) {
-			tweets = [[NSMutableArray alloc] initWithArray:tempFavArray];
-		} else {
-			// need to keep all the tweets in the right order
-			[tempFavArray addObjectsFromArray:tweets];
-			tweets = nil;
-			[tweets release];
-			tweets = [[self addAndTrimArray:tempFavArray] retain];
-		}
-		[tempFavArray release];
-		[theTableView reloadData];
-    
-	}
-  [self stopProgressBar];
-  [[NSNotificationCenter defaultCenter] removeObserver:self];
-	[self dataSourceDidFinishLoadingNewData];
-  //[[KBTwitterManager twitterManager] cacheStatusArray:tweets withKey:cachingKey];
-    
-}
-
-
 - (void)userInfoReceived:(NSArray *)userInfo {
 	if (userInfo) {
 		twitterArray = [[[userInfo objectAtIndex:0] objectForKey:@"users"] retain];
