@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "KBBaseViewController.h"
 
-
+@class KBFoursquareLoginView;
 @interface KBFoursquareViewController : KBBaseViewController {
     
     IBOutlet UIButton *friendButton;
@@ -17,6 +17,7 @@
     IBOutlet UIButton *centerHeaderButton;
     IBOutlet UIButton *homeButton;
     IBOutlet UIButton *backButton;
+	KBFoursquareLoginView *fsLoginView;
 }
 
 - (IBAction) flipBetweenMapAndList;
@@ -27,6 +28,9 @@
 - (IBAction) goToHomeView;
 - (IBAction) goToHomeViewNotAnimated;
 - (void) showBackHomeButtons;
+
+-(void)showLoginView;
+-(void)killLoginView;
 
 @end
 

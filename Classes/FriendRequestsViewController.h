@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AbstractFacebookViewController.h"
+#import "KBFoursquareViewController.h"
 
-@interface FriendRequestsViewController : AbstractFacebookViewController {
+@interface FriendRequestsViewController : KBFoursquareViewController {
     IBOutlet UIButton *addressBookSearchButton;
     IBOutlet UIButton *twitterSearchButton;
     IBOutlet UIButton *nameSearchButton;

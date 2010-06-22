@@ -13,8 +13,13 @@
 #define FACEBOOK_NOTHANKS_CLICKED @"facebookNoThanksClicked"
 #define TWITTER_NOTHANKS_CLICKED @"twitterNoThanksClicked"
 #define SHOULD_POST_PHOTOS_TO_FACEBOOK_KEY @"shouldPostPhotosToFacebook"
+#define DEFAULT_POST_TO_TWITTER @"defaultTwitter"
+#define DEFAULT_POST_TO_FACEBOOK @"defaultFacebok"
+#define DEFAULT_POST_TO_FOURSQUARE @"defaultFoursquare"
+#define FIRST_RUN_COMPLETED @"firstRunCompleted"
 
 static KBAccountManager *accountManager = nil;
+static BOOL initialized = NO;
 
 @implementation KBAccountManager
 
@@ -76,12 +81,41 @@ static KBAccountManager *accountManager = nil;
 	return [[NSUserDefaults standardUserDefaults] boolForKey:SHOULD_POST_PHOTOS_TO_FACEBOOK_KEY];
 }
 
+-(void)setDefaultPostToTwitter:(BOOL)should{
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	[userDefaults setBool:should forKey:DEFAULT_POST_TO_TWITTER];
+}
+
+-(void)setDefaultPostToFacebook:(BOOL)should{
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	[userDefaults setBool:should forKey:DEFAULT_POST_TO_FACEBOOK];
+}
+
+-(void)setDefaultPostToFoursquare:(BOOL)should{
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	[userDefaults setBool:should forKey:DEFAULT_POST_TO_FOURSQUARE];
+}
+
+-(BOOL)defaultPostToTwitter{
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	return [userDefaults boolForKey:DEFAULT_POST_TO_TWITTER];
+}
+
+-(BOOL)defaultPostToFacebook{
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	return [userDefaults boolForKey:DEFAULT_POST_TO_FACEBOOK];
+}
+-(BOOL)defaultPostToFoursquare{
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	return [userDefaults boolForKey:DEFAULT_POST_TO_FOURSQUARE];
+}
 #pragma mark -
 #pragma mark singleton stuff
 
 + (KBAccountManager*) sharedInstance {
 	if(!accountManager)  {
         accountManager = [[KBAccountManager allocWithZone:nil] init];
+		
     }
     
 	return accountManager;
@@ -94,6 +128,29 @@ static KBAccountManager *accountManager = nil;
     }
 	
     return accountManager;
+}
+
+- (id)init {
+	if(initialized)
+		return accountManager;
+	
+	self = [super init];
+    if (!self)
+	{
+		if(accountManager)
+			[accountManager release];
+		return nil;
+	}
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	firstRunCompleted =  [userDefaults boolForKey:FIRST_RUN_COMPLETED];
+	if (!firstRunCompleted) {
+		[userDefaults setBool:YES forKey:DEFAULT_POST_TO_TWITTER];
+		[userDefaults setBool:YES forKey:DEFAULT_POST_TO_FACEBOOK];
+		[userDefaults setBool:YES forKey:DEFAULT_POST_TO_FOURSQUARE];
+		[userDefaults setBool:YES forKey:FIRST_RUN_COMPLETED];
+	}
+	initialized = YES;
+	return self;
 }
 
 - (id)copyWithZone:(NSZone *)zone {

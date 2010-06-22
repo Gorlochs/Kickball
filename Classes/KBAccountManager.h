@@ -13,11 +13,19 @@
     BOOL usesTwitter;
     BOOL usesFacebook;
 	BOOL shouldPostPhotosToFacebook;
+	BOOL defaultPostToFacebook;
+	BOOL defaultPostToTwitter;
+	BOOL defaultPostToFoursquare;
+	
+	BOOL firstRunCompleted;
 }
 
 @property (nonatomic) BOOL usesTwitter;
 @property (nonatomic) BOOL usesFacebook;
 @property (nonatomic) BOOL shouldPostPhotosToFacebook;
+@property (nonatomic) BOOL defaultPostToFacebook;
+@property (nonatomic) BOOL defaultPostToTwitter;
+@property (nonatomic) BOOL defaultPostToFoursquare;
 
 + (KBAccountManager*)sharedInstance;
 - (BOOL) usesFacebookOrHasNotDecided;

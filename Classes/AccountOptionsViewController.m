@@ -128,7 +128,7 @@
 	
 	DLog(@"About to request an xAuth token exchange for username: ]%@[ password: ]%@[.", username, password);
 	
-	[self.twitterEngine exchangeAccessTokenForUsername:username password:password];
+	[[[KBTwitterManager twitterManager] twitterEngine] exchangeAccessTokenForUsername:username password:password];
 }
 
 #pragma mark XAuthTwitterEngineDelegate methods

@@ -17,7 +17,7 @@
 #import "KBTwitterManager.h"
 #import "KBLocationManager.h"
 #import "KBAccountManager.h"
-
+#import "FacebookProxy.h"
 
 @implementation KBCheckinModalViewController
 
@@ -29,10 +29,10 @@
     hideHeader = YES;
     hideFooter = YES;
     
-	twitterManager = [KBTwitterManager twitterManager];
-	twitterManager.delegate = self;
-    self.twitterEngine = [twitterManager twitterEngine];
-    
+	//twitterManager = [KBTwitterManager twitterManager];
+	//twitterManager.delegate = self;
+    //self.twitterEngine = [twitterManager twitterEngine];
+    [[KBTwitterManager twitterManager] setDelegate:self];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusRetrieved:) name:kTwitterStatusRetrievedNotificationKey object:nil];
     
     pageType = KBPageTypeOther;
@@ -53,14 +53,14 @@
     if (![[KBAccountManager sharedInstance] usesFacebook]) {
         facebookButton.enabled = NO;
     } else {
-        if (!user.sendToFacebook || (!user.facebook && _session.uid)) {
+        if (!user.sendToFacebook || (!user.facebook && [[FacebookProxy instance] isAuthorized])) {
             [self toggleFacebook];
         }
     }   
     if (![[KBAccountManager sharedInstance] usesTwitter]) {
         twitterButton.enabled = NO;
     } else {
-        if (!user.sendToTwitter || (!user.twitter && self.twitterEngine.accessToken)) {
+        if (!user.sendToTwitter || (!user.twitter && [[KBTwitterManager twitterManager] twitterEngine].accessToken)) {
             [self toggleTwitter];
         }
     }    
@@ -136,7 +136,7 @@
             tweetString = [NSString stringWithFormat:@"I just checked into %@. %@", venue.name, [Utilities getShortenedUrlFromFoursquareVenueId:venue.venueid]];
         }
 
-        [self.twitterEngine sendUpdate:tweetString
+        [[[KBTwitterManager twitterManager] twitterEngine] sendUpdate:tweetString
                           withLatitude:[[KBLocationManager locationManager] latitude] 
                          withLongitude:[[KBLocationManager locationManager] longitude]];
     }
@@ -341,7 +341,7 @@
     [foursquareButton release];
     [checkinButton release];
     [checkinTextField release];
-    [twitterEngine release];
+    //[twitterEngine release];
     [photoManager release];
     [thumbnailPreview release];
     [super dealloc];

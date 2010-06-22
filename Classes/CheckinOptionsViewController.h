@@ -17,5 +17,8 @@
 }
 
 - (IBAction) nextOptionView;
+- (IBAction) toggleFoursquare;
+- (IBAction) toggleFacebook;
+- (IBAction) toggleTwitter;
 
 @end

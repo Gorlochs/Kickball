@@ -12,7 +12,7 @@
 #import "InstructionView.h"
 #import "AbstractPushNotificationViewController.h"
 #import "KBTwitterManagerDelegate.h"
-
+@class KBTwitterManager;
 
 @interface FriendsListViewController : AbstractPushNotificationViewController <UITableViewDelegate, UITableViewDataSource, KBTwitterManagerDelegate> {
     IBOutlet UIButton *mapButton;

@@ -14,5 +14,5 @@
 
 }
 
--(void)switchToPermissionsButt;
+-(IBAction)doAuth;
 @end

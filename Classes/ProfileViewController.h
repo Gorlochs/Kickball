@@ -15,7 +15,7 @@
 #import "BlackTableCellHeader.h"
 
 
-@interface ProfileViewController : KBTwitterViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, MGTwitterEngineDelegate, MFMailComposeViewControllerDelegate> {
+@interface ProfileViewController : KBFoursquareViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, MGTwitterEngineDelegate, MFMailComposeViewControllerDelegate> {
     IBOutlet UITableViewCell *badgeCell;
     IBOutlet UITableViewCell *addFriendCell;
     IBOutlet UITableViewCell *friendActionCell;

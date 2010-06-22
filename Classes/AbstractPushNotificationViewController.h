@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AbstractFacebookViewController.h"
+#import "KBFoursquareViewController.h"
 #import "FSVenue.h"
 
-@interface AbstractPushNotificationViewController : AbstractFacebookViewController {
+@interface AbstractPushNotificationViewController : KBFoursquareViewController {
     FSVenue *venueToPush;
     NSString *shoutToPush;
     NSString *photoMessageToPush;

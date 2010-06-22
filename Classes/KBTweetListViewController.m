@@ -43,9 +43,13 @@
 		[self startProgressBar:@"Retrieving your tweets..."];
 		[self showStatuses];
 	} else {
+		//old login method removed
+		/*
         loginController = [[KBTwitterXAuthLoginController alloc] initWithNibName:@"TwitterLoginView_v2" bundle:nil];
 		loginController.rootController = self;
         [self presentModalViewController:loginController animated:YES];
+		 */
+		[self showLoginView];
     }
 }
 

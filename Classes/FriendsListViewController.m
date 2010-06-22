@@ -26,6 +26,8 @@
 #import "KickballAPI.h"
 #import "KBLocationManager.h"
 #import "KBAccountManager.h"
+#import "FacebookProxy.h"
+#import "KBTwitterManager.h"
 
 
 #define SECTION_RECENT_CHECKINS 0
@@ -56,10 +58,10 @@
     
     [super viewDidLoad];
     
-	twitterManager = [KBTwitterManager twitterManager];
-	twitterManager.delegate = self;
-    self.twitterEngine = [twitterManager twitterEngine];
-	
+	//twitterManager = [KBTwitterManager twitterManager];
+	//twitterManager.delegate = self;
+    //self.twitterEngine = [twitterManager twitterEngine];
+	[[KBTwitterManager twitterManager] setDelegate:self];
     gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     [gregorian setLocale:[NSLocale currentLocale]];
     
@@ -91,6 +93,7 @@
 	if(![[FoursquareAPI sharedInstance] isAuthenticated]){
 		//run sheet to log in.
 		DLog(@"Foursquare is not authenticated");
+		/* *** old modal login ~ replaced by scott
 		if (self.loginViewModal == nil)
 			self.loginViewModal = [[[LoginViewModalController alloc] initWithNibName:
 									NSStringFromClass([LoginViewModalController class]) bundle:nil] autorelease];
@@ -100,6 +103,9 @@
         
 //		[self.loginViewModal setRootController:self];
 //		[self.navigationController presentModalViewController:self.loginViewModal animated:YES];
+		 
+		 */
+		[self showLoginView];  //new method
         
 	} else {
 		[self doInitialDisplay];
@@ -162,8 +168,8 @@
     [signedInUserIcon setImage:[[Utilities sharedInstance] getCachedImage:user.photo] forState:UIControlStateNormal];
     
     // shout view stuff
-    facebookButton.enabled = user.facebook != nil || _session.uid;
-    twitterButton.enabled = user.twitter != nil || self.twitterEngine.accessToken != nil;
+    facebookButton.enabled = user.facebook != nil || [[FacebookProxy instance] isAuthorized];
+    twitterButton.enabled = user.twitter != nil || [[KBTwitterManager twitterManager] twitterEngine].accessToken != nil;
     isFacebookOn = YES;
     isTwitterOn = YES;
     isFoursquareOn = YES;
@@ -171,14 +177,14 @@
     if (![[KBAccountManager sharedInstance] usesFacebook]) {
         facebookButton.enabled = NO;
     } else {
-        if (!user.sendToFacebook || (!user.facebook && _session.uid)) {
+        if (!user.sendToFacebook || (!user.facebook && [[FacebookProxy instance] isAuthorized])) {
             [self toggleFacebook];
         }
     }   
     if (![[KBAccountManager sharedInstance] usesTwitter]) {
         twitterButton.enabled = NO;
     } else {
-        if (!user.sendToTwitter || (!user.twitter && self.twitterEngine.accessToken)) {
+        if (!user.sendToTwitter || (!user.twitter && [[KBTwitterManager twitterManager] twitterEngine].accessToken)) {
             [self toggleTwitter];
         }
     }  
@@ -477,7 +483,7 @@
     // we send twitter/facebook api calls ourself so that the tweets and posts are stamped with the Kickball brand
     if (isTwitterOn && [[KBAccountManager sharedInstance] usesTwitter]) {
 		actionCount++;
-        [self.twitterEngine sendUpdate:shoutText.text
+        [[[KBTwitterManager twitterManager] twitterEngine] sendUpdate:shoutText.text
                           withLatitude:[[KBLocationManager locationManager] latitude] 
                          withLongitude:[[KBLocationManager locationManager] longitude]];
     }
@@ -578,7 +584,11 @@
     DLog(@"checkins: %@", inString);
     NSString *errorMessage = [FoursquareAPI errorFromResponseXML:inString];
     if (errorMessage) {
+		if ([errorMessage rangeOfString:@"authentication"].location != NSNotFound) {
+			[self showLoginView];
+		}
         [self displayFoursquareErrorMessage:errorMessage];
+		
     } else {
         NSArray * allCheckins = [FoursquareAPI checkinsFromResponseXML:inString];
         self.checkins = [allCheckins copy];

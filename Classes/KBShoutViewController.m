@@ -16,6 +16,8 @@
 #import "FSUser.h"
 #import "KBTwitterManager.h"
 #import "KBLocationManager.h"
+#import "FacebookProxy.h"
+#import "GraphAPI.h"
 
 
 @implementation KBShoutViewController
@@ -25,7 +27,7 @@
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
-    self.twitterEngine = [[KBTwitterManager twitterManager] twitterEngine];
+    //self.twitterEngine = [[KBTwitterManager twitterManager] twitterEngine];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusRetrieved:) name:kTwitterStatusRetrievedNotificationKey object:nil];
     
     pageType = KBPageTypeOther;
@@ -122,16 +124,23 @@
         
         if (isTwitterOn) {
             // TODO: check for twitter login
-            [self.twitterEngine sendUpdate:theTextView.text
+            [[[KBTwitterManager twitterManager] twitterEngine] sendUpdate:theTextView.text
                               withLatitude:[[KBLocationManager locationManager] latitude] 
                              withLongitude:[[KBLocationManager locationManager] longitude]];
         }
         
         if (isFacebookOn) {
             // TODO: check for facebook login
-            
-            NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:theTextView.text, @"status", nil];
-            [[FBRequest requestWithDelegate:self] call:@"facebook.status.set" params:params dataParam:nil];
+            //** old method...  use new method
+            //NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:theTextView.text, @"status", nil];
+            //[[FBRequest requestWithDelegate:self] call:@"facebook.status.set" params:params dataParam:nil];
+			
+			//new shout post to fb
+			if ([[FacebookProxy instance] isAuthorized]) {
+				GraphAPI *graph = [[FacebookProxy instance] newGraph];
+				[graph putWallPost:@"me" message:theTextView.text attachment:nil];
+				
+			}
         }
         
         [FlurryAPI logEvent:@"Shout"];

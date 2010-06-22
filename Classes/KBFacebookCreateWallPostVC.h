@@ -1,5 +1,5 @@
 //
-//  KBCreateTweetViewController.h
+//  KBFacebookCreateWallPostVC.h
 //  Kickball
 //
 //  Created by Shawn Bernard on 4/19/10.
@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "KBTwitterViewController.h"
+#import "KBFacebookViewController.h"
 #import "KBPhotoManager.h"
+#import "MGTwitterEngineDelegate.h"
 
 
-@interface KBCreateTweetViewController : KBTwitterViewController <UITextViewDelegate, MGTwitterEngineDelegate, PhotoManagerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
+@interface KBFacebookCreateWallPostVC : KBFacebookViewController <UITextViewDelegate, MGTwitterEngineDelegate, PhotoManagerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
     IBOutlet UITextView *tweetTextView;
     IBOutlet UILabel *characterCountLabel;
     IBOutlet UIButton *sendTweet;

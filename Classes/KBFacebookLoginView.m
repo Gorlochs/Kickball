@@ -19,6 +19,7 @@
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
         // Initialization code
+		/*
 		[self setBackgroundColor:[UIColor colorWithWhite:248.0f alpha:0.8f]];
 		UIView *roundedRect = [[UIView alloc] initWithFrame:CGRectMake(20, 340, 280, 64)];
 		[[roundedRect layer] setCornerRadius:3.0f];
@@ -30,6 +31,7 @@
 		[fbButt setImage:[UIImage imageNamed:@"login2.png"] forState:UIControlStateNormal];
 		[fbButt addTarget:self action:@selector(doAuth) forControlEvents:UIControlEventTouchUpInside];
 		[self addSubview:fbButt];
+		 */
 		
     }
     return self;
@@ -46,7 +48,7 @@
 #pragma mark FacebookProxy Callback
 
 
--(void)doAuth
+-(IBAction)doAuth
 {
 	//self._statusInfo.text = @"authorizing...";
 	[[FacebookProxy instance] loginAndAuthorizeWithTarget:[FacebookProxy instance] callback:@selector(doneAuthorizing)];

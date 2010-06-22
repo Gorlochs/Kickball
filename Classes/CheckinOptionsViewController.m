@@ -8,7 +8,7 @@
 
 #import "CheckinOptionsViewController.h"
 #import "FriendPriorityOptionViewController.h"
-
+#import "KBAccountManager.h"
 
 @implementation CheckinOptionsViewController
 
@@ -18,6 +18,9 @@
     self.hideHeader = YES;
     
     [super viewDidLoad];
+	[foursquareSwitch setOn:[[KBAccountManager sharedInstance] defaultPostToFoursquare]];
+	[facebookSwitch setOn:[[KBAccountManager sharedInstance] defaultPostToFacebook]];
+	[twitterSwitch setOn:[[KBAccountManager sharedInstance] defaultPostToTwitter]];
 }
 
 - (void) nextOptionView {
@@ -31,6 +34,16 @@
 }
 -(void)pressOptionsRight{
 	[self nextOptionView];
+}
+
+- (IBAction) toggleFoursquare{
+	[[KBAccountManager sharedInstance] setDefaultPostToFoursquare:[foursquareSwitch isOn]];
+}
+- (IBAction) toggleFacebook{
+	[[KBAccountManager sharedInstance] setDefaultPostToFacebook:[facebookSwitch isOn]];
+}
+- (IBAction) toggleTwitter{
+	[[KBAccountManager sharedInstance] setDefaultPostToTwitter:[twitterSwitch isOn]];
 }
 
 - (void)didReceiveMemoryWarning {

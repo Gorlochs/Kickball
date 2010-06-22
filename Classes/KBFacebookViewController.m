@@ -9,7 +9,9 @@
 #import "KBFacebookViewController.h"
 #import "KBFacebookEventsListViewController.h"
 #import "KBFacebookListViewController.h"
-
+#import "KBFacebookCreateWallPostVC.h"
+#import "KBCreateTweetViewController.h"
+#import "FBFacebookCreatePostViewController.h"
 
 
 @implementation KBFacebookViewController
@@ -121,13 +123,20 @@
     //KBCreateTweetViewController *tweetController = [[KBCreateTweetViewController alloc] initWithNibName:@"KBCreateTweetViewController" bundle:nil];
     //[self presentModalViewController:tweetController animated:YES];
 	//[tweetController release];
+	//KBFacebookCreateWallPostVC *wallPostController = [[KBFacebookCreateWallPostVC alloc] initWithNibName:@"KBFacebookCreateWallPostVC" bundle:nil];
+    //[self.navigationController pushViewController:wallPostController animated:YES];
+	//[wallPostController release];
+	
+	FBFacebookCreatePostViewController *tweetController = [[FBFacebookCreatePostViewController alloc] initWithNibName:@"FBFacebookCreatePostViewController" bundle:nil];
+    [self.navigationController pushViewController:tweetController animated:YES];
+	[tweetController release];
 }
 
 -(void)killLoginView{
 	//hide loginView and load user info
 	if (fbLoginView!=nil) {
 		[fbLoginView removeFromSuperview];
-		[fbLoginView release];
+		//[fbLoginView release];
 		fbLoginView = nil;
 		//[self refreshMainFeed];
 		[self startProgressBar:@"Retrieving news feed..."];
@@ -137,7 +146,14 @@
 	
 }
 -(void)showLoginView{
-	fbLoginView = [[KBFacebookLoginView alloc] initWithFrame:CGRectMake(0, 0, 320, 420)];
+	// Ingest the nib. Should there be a copy or retain here?
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"KBFacebookLoginView" owner:self options:nil];
+	
+    // Pull the view from the nib. Should there be a copy or retain here?
+    fbLoginView = (KBFacebookLoginView *)[topLevelObjects objectAtIndex:0];
+	
+	//fbLoginView = [[KBFacebookLoginView alloc] initWithFrame:CGRectMake(0, 0, 320, 420)];
+	[fbLoginView setFrame:CGRectMake(0, 0, 320, 420)];
 	[self.view addSubview:fbLoginView];
 }
 

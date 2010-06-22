@@ -11,6 +11,8 @@
 #import "PlacesMapViewController.h"
 #import "FriendsListViewController.h"
 #import "FriendsMapViewController.h"
+#import "KBFoursquareLoginView.h"
+
 
 
 @implementation KBFoursquareViewController
@@ -23,6 +25,7 @@
 }
 
 - (void)viewDidLoad {
+	fsLoginView = nil;
     
     ///headerNibName = HEADER_NIB_FOURSQUARE;
     footerType = KBFooterTypeFoursquare;
@@ -106,6 +109,31 @@
     DLog(@"!!!!!!!! THIS SHOULDN'T APPEAR!!!!!!!!!!");
 }
 
+-(void)killLoginView{
+	//hide loginView and load user info
+	if (fsLoginView!=nil) {
+		[fsLoginView removeFromSuperview];
+		fsLoginView = nil;
+		//[self refreshMainFeed];
+		//[self startProgressBar:@"Retrieving news feed..."];
+		//[NSThread detachNewThreadSelector:@selector(refreshMainFeed) toTarget:self withObject:nil];
+		
+	}
+	
+}
+-(void)showLoginView{
+	//fbLoginView = [[KBFacebookLoginView alloc] initWithFrame:CGRectMake(0, 0, 320, 420)];
+	//[self.view addSubview:fbLoginView];
+	// Ingest the nib. Should there be a copy or retain here?
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"KBFoursquareLoginView" owner:self options:nil];
+	
+    // Pull the view from the nib. Should there be a copy or retain here?
+    fsLoginView = (KBFoursquareLoginView *)[topLevelObjects objectAtIndex:0];
+	[fsLoginView setDelegate:self];
+    fsLoginView.frame = CGRectMake(0, 0,320, 419);
+	[self.view addSubview:fsLoginView];
+}
+
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
@@ -125,6 +153,7 @@
 }
 
 - (void)dealloc {
+	[fsLoginView release];
 //    [friendButton release];
 //    [placesButton release];
 //    [centerHeaderButton release];

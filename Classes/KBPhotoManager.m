@@ -224,9 +224,10 @@ static BOOL initialized = NO;
     [networkQueue go];
     
     // FIXME: check for FB session & facebook image upload setting
-	if ([[FacebookProxy instance] isAuthorized]) {
-		[self uploadFacebookPhoto:imageData withCaption:message];
-	}
+	// ***This needs to be moved to a place where we will know the image UUID
+	//if ([[FacebookProxy instance] isAuthorized]) {
+	//	[self uploadFacebookPhoto:imageData withCaption:message];
+	//}
     return YES;
 }
 

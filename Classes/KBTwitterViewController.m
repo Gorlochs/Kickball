@@ -15,7 +15,7 @@
 #import "KBTwitterSearchViewController.h"
 #import "KBGeoTweetMapViewController.h"
 #import "KBCreateTweetViewController.h"
-
+#import "KBTwitterLoginView.h"
 
 @implementation KBTwitterViewController
 
@@ -101,6 +101,33 @@
     KBTwitterSearchViewController *controller = [[KBTwitterSearchViewController alloc] initWithNibName:@"KBTwitterSearchViewController" bundle:nil];
     [self.navigationController pushViewController:controller animated:NO];
     [controller release];
+}
+
+-(void)killLoginView{
+	//hide loginView and load user info
+	if (twLoginView!=nil) {
+		[twLoginView removeFromSuperview];
+		twLoginView = nil;
+		//[self refreshMainFeed];
+		//[self startProgressBar:@"Retrieving news feed..."];
+		//[NSThread detachNewThreadSelector:@selector(refreshMainFeed) toTarget:self withObject:nil];
+		
+	}
+	
+	
+}
+-(void)showLoginView{
+	//fbLoginView = [[KBFacebookLoginView alloc] initWithFrame:CGRectMake(0, 0, 320, 420)];
+	//[self.view addSubview:fbLoginView];
+	
+	// Ingest the nib. Should there be a copy or retain here?
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"KBTwitterLoginView" owner:self options:nil];
+	
+    // Pull the view from the nib. Should there be a copy or retain here?
+    twLoginView = (KBTwitterLoginView *)[topLevelObjects objectAtIndex:0];
+	[twLoginView setDelegate:self];
+    twLoginView.frame = CGRectMake(0, 0,320, 419);
+	[self.view addSubview:twLoginView];
 }
 
 - (void)didReceiveMemoryWarning {

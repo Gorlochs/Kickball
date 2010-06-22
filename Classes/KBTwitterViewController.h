@@ -11,7 +11,7 @@
 #import "XAuthTwitterEngine.h"
 #import "KBTwitterManager.h"
 
-
+@class KBTwitterLoginView;
 @interface KBTwitterViewController : KBFoursquareViewController {
     IBOutlet UIButton *timelineButton;
     IBOutlet UIButton *mentionsButton;
@@ -20,6 +20,7 @@
     IBOutlet UIButton *twitterCenterHeaderButton;
     
     XAuthTwitterEngine *twitterEngine;
+	KBTwitterLoginView *twLoginView;
 }
 
 @property (nonatomic, retain) XAuthTwitterEngine *twitterEngine;
@@ -30,5 +31,9 @@
 - (IBAction) showUserTimeline;
 - (IBAction) showSearch;
 - (IBAction) openTweetModalView;
+
+
+-(void)showLoginView;
+-(void)killLoginView;
 
 @end

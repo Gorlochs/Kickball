@@ -13,6 +13,7 @@
 #import "FSVenue.h"
 #import "PlaceDetailViewController.h"
 #import "MGTwitterEngine.h"
+#import "KBTwitterManager.h"
 #import "Utilities.h"
 #import "ProfileTwitterViewController.h"
 #import "ProfileFriendsViewController.h"
@@ -518,7 +519,7 @@
     [self startProgressBar:@"Retrieving tweets..."];
 
     DLog(@"twitter username: %@", user.twitter);
-    NSString *twitters = [twitterEngine getUserTimelineFor:user.twitter sinceID:0 startingAtPage:0 count:20];
+    NSString *twitters = [[KBTwitterManager twitterManager] getUserTimelineFor:user.twitter sinceID:0 startingAtPage:0 count:20];
     DLog(@"twitter: %@", twitters);
 }
 

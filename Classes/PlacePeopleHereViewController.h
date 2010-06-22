@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AbstractFacebookViewController.h"
+#import "KBFoursquareViewController.h"
 
 
-@interface PlacePeopleHereViewController : AbstractFacebookViewController {
+@interface PlacePeopleHereViewController : KBFoursquareViewController {
     NSArray *checkedInUsers;
 }
 

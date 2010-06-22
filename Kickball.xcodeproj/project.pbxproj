@@ -88,6 +88,13 @@
 		0EB19C1A11D0175000BFF849 /* opt_leftV2_02.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EB19C1211D0175000BFF849 /* opt_leftV2_02.png */; };
 		0EB19C1B11D0175000BFF849 /* opt_rightV2_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EB19C1311D0175000BFF849 /* opt_rightV2_01.png */; };
 		0EB19C1C11D0175000BFF849 /* opt_rightV2_02.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EB19C1411D0175000BFF849 /* opt_rightV2_02.png */; };
+		0EB19C2C11D01C2000BFF849 /* sendGeo03.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EB19C2911D01C2000BFF849 /* sendGeo03.png */; };
+		0EB19C2D11D01C2000BFF849 /* sendTW01.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EB19C2A11D01C2000BFF849 /* sendTW01.png */; };
+		0EB19C2E11D01C2000BFF849 /* sendTW02.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EB19C2B11D01C2000BFF849 /* sendTW02.png */; };
+		0EB19C3311D01E5E00BFF849 /* KBFacebookCreateWallPostVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EB19C3111D01E5E00BFF849 /* KBFacebookCreateWallPostVC.m */; };
+		0EB19C3411D01E5E00BFF849 /* KBFacebookCreateWallPostVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EB19C3211D01E5E00BFF849 /* KBFacebookCreateWallPostVC.xib */; };
+		0EB19CB411D026E300BFF849 /* FBFacebookCreatePostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EB19CB211D026E300BFF849 /* FBFacebookCreatePostViewController.m */; };
+		0EB19CB511D026E300BFF849 /* FBFacebookCreatePostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EB19CB311D026E300BFF849 /* FBFacebookCreatePostViewController.xib */; };
 		0EB9D5AF11C6BDB4008EDF9F /* KBFacebookPostDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EB9D5AE11C6BDB4008EDF9F /* KBFacebookPostDetailViewController.m */; };
 		0EBEEE0711CBE9C900A28329 /* KBFacebookCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EBEEE0611CBE9C900A28329 /* KBFacebookCommentCell.m */; };
 		0EBEEE4E11CBF0A300A28329 /* btn-xCommentsWide.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EBEEE4D11CBF0A300A28329 /* btn-xCommentsWide.png */; };
@@ -132,6 +139,20 @@
 		0EC57AEC11C95B8800F941FD /* 00.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EC57AC511C95B8800F941FD /* 00.png */; };
 		0EC57AED11C95B8800F941FD /* opt_bg-defaultCheckin.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EC57AC611C95B8800F941FD /* opt_bg-defaultCheckin.png */; };
 		0EC57AEE11C95B8800F941FD /* opt_hdr-defaultCheckin.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EC57AC711C95B8800F941FD /* opt_hdr-defaultCheckin.png */; };
+		0ED06D0011D117840048886E /* bgLogin-4sq.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ED06CF811D117840048886E /* bgLogin-4sq.png */; };
+		0ED06D0111D117840048886E /* bgLogin-fb.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ED06CF911D117840048886E /* bgLogin-fb.png */; };
+		0ED06D0211D117840048886E /* bgLogin-tw.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ED06CFA11D117840048886E /* bgLogin-tw.png */; };
+		0ED06D0311D117840048886E /* fieldsLogin-4sq.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ED06CFB11D117840048886E /* fieldsLogin-4sq.png */; };
+		0ED06D0411D117840048886E /* fieldsLogin-fb.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ED06CFC11D117840048886E /* fieldsLogin-fb.png */; };
+		0ED06D0511D117840048886E /* fieldsLogin-tw.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ED06CFD11D117840048886E /* fieldsLogin-tw.png */; };
+		0ED06D0611D117850048886E /* tip-addTWFB.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ED06CFE11D117840048886E /* tip-addTWFB.png */; };
+		0ED06D2611D11D290048886E /* KBFoursquareLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ED06D2511D11D290048886E /* KBFoursquareLoginView.m */; };
+		0ED06D2A11D11E7E0048886E /* KBFoursquareLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0ED06D2911D11E7E0048886E /* KBFoursquareLoginView.xib */; };
+		0ED06E0911D1367D0048886E /* KBTwitterLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ED06E0811D1367D0048886E /* KBTwitterLoginView.m */; };
+		0ED06E0B11D136B30048886E /* KBTwitterLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0ED06E0A11D136B30048886E /* KBTwitterLoginView.xib */; };
+		0ED06E0F11D137840048886E /* KBFacebookLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0ED06E0E11D137840048886E /* KBFacebookLoginView.xib */; };
+		0ED06E1311D138660048886E /* btn-addFB01.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ED06E1111D138660048886E /* btn-addFB01.png */; };
+		0ED06E1411D138660048886E /* btn-addFB02.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ED06E1211D138660048886E /* btn-addFB02.png */; };
 		0EDBDA7911C760EA0065DF0A /* KBFacebookPostDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EDBDA7811C760EA0065DF0A /* KBFacebookPostDetailViewController.xib */; };
 		0EDBDA9911C7631A0065DF0A /* KBFacebookEventsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EDBDA9811C7631A0065DF0A /* KBFacebookEventsListViewController.m */; };
 		0EDBDAA611C7DD220065DF0A /* KBFacebookEventsListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EDBDAA511C7DD220065DF0A /* KBFacebookEventsListView.xib */; };
@@ -947,6 +968,15 @@
 		0EB19C1211D0175000BFF849 /* opt_leftV2_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = opt_leftV2_02.png; sourceTree = "<group>"; };
 		0EB19C1311D0175000BFF849 /* opt_rightV2_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = opt_rightV2_01.png; sourceTree = "<group>"; };
 		0EB19C1411D0175000BFF849 /* opt_rightV2_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = opt_rightV2_02.png; sourceTree = "<group>"; };
+		0EB19C2911D01C2000BFF849 /* sendGeo03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sendGeo03.png; sourceTree = "<group>"; };
+		0EB19C2A11D01C2000BFF849 /* sendTW01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sendTW01.png; sourceTree = "<group>"; };
+		0EB19C2B11D01C2000BFF849 /* sendTW02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sendTW02.png; sourceTree = "<group>"; };
+		0EB19C3011D01E5E00BFF849 /* KBFacebookCreateWallPostVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBFacebookCreateWallPostVC.h; sourceTree = "<group>"; };
+		0EB19C3111D01E5E00BFF849 /* KBFacebookCreateWallPostVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBFacebookCreateWallPostVC.m; sourceTree = "<group>"; };
+		0EB19C3211D01E5E00BFF849 /* KBFacebookCreateWallPostVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = KBFacebookCreateWallPostVC.xib; path = Classes/KBFacebookCreateWallPostVC.xib; sourceTree = "<group>"; };
+		0EB19CB111D026E300BFF849 /* FBFacebookCreatePostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBFacebookCreatePostViewController.h; sourceTree = "<group>"; };
+		0EB19CB211D026E300BFF849 /* FBFacebookCreatePostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBFacebookCreatePostViewController.m; sourceTree = "<group>"; };
+		0EB19CB311D026E300BFF849 /* FBFacebookCreatePostViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FBFacebookCreatePostViewController.xib; sourceTree = "<group>"; };
 		0EB9D5AD11C6BDB4008EDF9F /* KBFacebookPostDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBFacebookPostDetailViewController.h; sourceTree = "<group>"; };
 		0EB9D5AE11C6BDB4008EDF9F /* KBFacebookPostDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBFacebookPostDetailViewController.m; sourceTree = "<group>"; };
 		0EBEEE0511CBE9C900A28329 /* KBFacebookCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBFacebookCommentCell.h; sourceTree = "<group>"; };
@@ -994,6 +1024,22 @@
 		0EC57AC511C95B8800F941FD /* 00.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 00.png; sourceTree = "<group>"; };
 		0EC57AC611C95B8800F941FD /* opt_bg-defaultCheckin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "opt_bg-defaultCheckin.png"; sourceTree = "<group>"; };
 		0EC57AC711C95B8800F941FD /* opt_hdr-defaultCheckin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "opt_hdr-defaultCheckin.png"; sourceTree = "<group>"; };
+		0ED06CF811D117840048886E /* bgLogin-4sq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bgLogin-4sq.png"; sourceTree = "<group>"; };
+		0ED06CF911D117840048886E /* bgLogin-fb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bgLogin-fb.png"; sourceTree = "<group>"; };
+		0ED06CFA11D117840048886E /* bgLogin-tw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bgLogin-tw.png"; sourceTree = "<group>"; };
+		0ED06CFB11D117840048886E /* fieldsLogin-4sq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fieldsLogin-4sq.png"; sourceTree = "<group>"; };
+		0ED06CFC11D117840048886E /* fieldsLogin-fb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fieldsLogin-fb.png"; sourceTree = "<group>"; };
+		0ED06CFD11D117840048886E /* fieldsLogin-tw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fieldsLogin-tw.png"; sourceTree = "<group>"; };
+		0ED06CFE11D117840048886E /* tip-addTWFB.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tip-addTWFB.png"; sourceTree = "<group>"; };
+		0ED06D2411D11D290048886E /* KBFoursquareLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBFoursquareLoginView.h; sourceTree = "<group>"; };
+		0ED06D2511D11D290048886E /* KBFoursquareLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBFoursquareLoginView.m; sourceTree = "<group>"; };
+		0ED06D2911D11E7E0048886E /* KBFoursquareLoginView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KBFoursquareLoginView.xib; sourceTree = "<group>"; };
+		0ED06E0711D1367D0048886E /* KBTwitterLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBTwitterLoginView.h; sourceTree = "<group>"; };
+		0ED06E0811D1367D0048886E /* KBTwitterLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTwitterLoginView.m; sourceTree = "<group>"; };
+		0ED06E0A11D136B30048886E /* KBTwitterLoginView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KBTwitterLoginView.xib; sourceTree = "<group>"; };
+		0ED06E0E11D137840048886E /* KBFacebookLoginView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KBFacebookLoginView.xib; sourceTree = "<group>"; };
+		0ED06E1111D138660048886E /* btn-addFB01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-addFB01.png"; sourceTree = "<group>"; };
+		0ED06E1211D138660048886E /* btn-addFB02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-addFB02.png"; sourceTree = "<group>"; };
 		0EDBDA7811C760EA0065DF0A /* KBFacebookPostDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KBFacebookPostDetailViewController.xib; sourceTree = "<group>"; };
 		0EDBDA9711C7631A0065DF0A /* KBFacebookEventsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBFacebookEventsListViewController.h; sourceTree = "<group>"; };
 		0EDBDA9811C7631A0065DF0A /* KBFacebookEventsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBFacebookEventsListViewController.m; sourceTree = "<group>"; };
@@ -2223,6 +2269,22 @@
 			path = "Options- Default Checkin Actions";
 			sourceTree = "<group>";
 		};
+		0ED06CF611D117840048886E /* kbAccounts */ = {
+			isa = PBXGroup;
+			children = (
+				0ED06E1111D138660048886E /* btn-addFB01.png */,
+				0ED06E1211D138660048886E /* btn-addFB02.png */,
+				0ED06CF811D117840048886E /* bgLogin-4sq.png */,
+				0ED06CF911D117840048886E /* bgLogin-fb.png */,
+				0ED06CFA11D117840048886E /* bgLogin-tw.png */,
+				0ED06CFB11D117840048886E /* fieldsLogin-4sq.png */,
+				0ED06CFC11D117840048886E /* fieldsLogin-fb.png */,
+				0ED06CFD11D117840048886E /* fieldsLogin-tw.png */,
+				0ED06CFE11D117840048886E /* tip-addTWFB.png */,
+			);
+			path = kbAccounts;
+			sourceTree = "<group>";
+		};
 		0EDBDB6011C804BB0065DF0A /* Pull to Refresh */ = {
 			isa = PBXGroup;
 			children = (
@@ -2294,6 +2356,7 @@
 				6A211938117D579600BE897E /* KBCreateTweetViewController.xib */,
 				6A211968117D68EE00BE897E /* KBTwitterSearchViewController.xib */,
 				0E76C40111C15FBF00BA1E89 /* KBFacebookListViewController.xib */,
+				0EB19C3211D01E5E00BFF849 /* KBFacebookCreateWallPostVC.xib */,
 				0E906DDE11CAB9FF0045006C /* KBFacebookEventDetailViewController.xib */,
 				6A30075511797649001CB933 /* KBTweetListViewController.xib */,
 				6AC85203117E2BB4007B5220 /* KBTwitterDetailViewController.xib */,
@@ -2331,6 +2394,9 @@
 				6A03D9091191E33C00FF036C /* CheckinModalView.xib */,
 				0EBEEFF811CC2C8C00A28329 /* KBFacebookAddComment.xib */,
 				0EDBDA7811C760EA0065DF0A /* KBFacebookPostDetailViewController.xib */,
+				0ED06E0A11D136B30048886E /* KBTwitterLoginView.xib */,
+				0ED06E0E11D137840048886E /* KBFacebookLoginView.xib */,
+				0ED06D2911D11E7E0048886E /* KBFoursquareLoginView.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -3066,6 +3132,8 @@
 				6AEB63D6110BAA8C0066DD05 /* KBPushNotificationView.m */,
 				6A533B291191E8D6007C283C /* KBCheckinModalViewController.h */,
 				6A533B2A1191E8D6007C283C /* KBCheckinModalViewController.m */,
+				0ED06D2411D11D290048886E /* KBFoursquareLoginView.h */,
+				0ED06D2511D11D290048886E /* KBFoursquareLoginView.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -3084,6 +3152,9 @@
 		6A533B591191ED33007C283C /* tweet */ = {
 			isa = PBXGroup;
 			children = (
+				0EB19C2911D01C2000BFF849 /* sendGeo03.png */,
+				0EB19C2A11D01C2000BFF849 /* sendTW01.png */,
+				0EB19C2B11D01C2000BFF849 /* sendTW02.png */,
 				6A4C18A611AA5D4A006BBC61 /* tweetField01.png */,
 				6A4C18A711AA5D4A006BBC61 /* tweetField02.png */,
 				6A533B5B1191ED3D007C283C /* sendTweet02.png */,
@@ -3420,6 +3491,7 @@
 		6AC28E9C1173D91B00518E37 /* v1.1 */ = {
 			isa = PBXGroup;
 			children = (
+				0ED06CF611D117840048886E /* kbAccounts */,
 				2BC943E411C9895A00EAD010 /* tweet detail */,
 				0E906DF811CABBB50045006C /* Facebook Event Details */,
 				0E906E0211CABBB50045006C /* Facebook Status Details */,
@@ -3623,6 +3695,8 @@
 				6AC85201117E2BA5007B5220 /* KBTwitterDetailViewController.m */,
 				6AA19FB01188E62D001EB415 /* KBTwitterUserListViewController.h */,
 				6AA19FB11188E62D001EB415 /* KBTwitterUserListViewController.m */,
+				0ED06E0711D1367D0048886E /* KBTwitterLoginView.h */,
+				0ED06E0811D1367D0048886E /* KBTwitterLoginView.m */,
 			);
 			name = KBTwitter;
 			sourceTree = "<group>";
@@ -3782,6 +3856,8 @@
 			isa = PBXGroup;
 			children = (
 				0E86F8C811C2B8710070C9D4 /* bamboo */,
+				0EB19C3011D01E5E00BFF849 /* KBFacebookCreateWallPostVC.h */,
+				0EB19C3111D01E5E00BFF849 /* KBFacebookCreateWallPostVC.m */,
 				6AF6ABA51180BB2900704B24 /* KBFacebookLoginViewController.h */,
 				6AF6ABA61180BB2900704B24 /* KBFacebookLoginViewController.m */,
 				0E76C3FE11C15F6E00BA1E89 /* KBFacebookListViewController.h */,
@@ -3802,6 +3878,9 @@
 				0EBEEE0611CBE9C900A28329 /* KBFacebookCommentCell.m */,
 				0EBEEFCF11CC2C5900A28329 /* KBFacebookAddCommentViewController.h */,
 				0EBEEFD011CC2C5900A28329 /* KBFacebookAddCommentViewController.m */,
+				0EB19CB111D026E300BFF849 /* FBFacebookCreatePostViewController.h */,
+				0EB19CB211D026E300BFF849 /* FBFacebookCreatePostViewController.m */,
+				0EB19CB311D026E300BFF849 /* FBFacebookCreatePostViewController.xib */,
 			);
 			name = Facebook;
 			sourceTree = "<group>";
@@ -4440,6 +4519,23 @@
 				0EB19C1A11D0175000BFF849 /* opt_leftV2_02.png in Resources */,
 				0EB19C1B11D0175000BFF849 /* opt_rightV2_01.png in Resources */,
 				0EB19C1C11D0175000BFF849 /* opt_rightV2_02.png in Resources */,
+				0EB19C2C11D01C2000BFF849 /* sendGeo03.png in Resources */,
+				0EB19C2D11D01C2000BFF849 /* sendTW01.png in Resources */,
+				0EB19C2E11D01C2000BFF849 /* sendTW02.png in Resources */,
+				0EB19C3411D01E5E00BFF849 /* KBFacebookCreateWallPostVC.xib in Resources */,
+				0EB19CB511D026E300BFF849 /* FBFacebookCreatePostViewController.xib in Resources */,
+				0ED06D0011D117840048886E /* bgLogin-4sq.png in Resources */,
+				0ED06D0111D117840048886E /* bgLogin-fb.png in Resources */,
+				0ED06D0211D117840048886E /* bgLogin-tw.png in Resources */,
+				0ED06D0311D117840048886E /* fieldsLogin-4sq.png in Resources */,
+				0ED06D0411D117840048886E /* fieldsLogin-fb.png in Resources */,
+				0ED06D0511D117840048886E /* fieldsLogin-tw.png in Resources */,
+				0ED06D0611D117850048886E /* tip-addTWFB.png in Resources */,
+				0ED06D2A11D11E7E0048886E /* KBFoursquareLoginView.xib in Resources */,
+				0ED06E0B11D136B30048886E /* KBTwitterLoginView.xib in Resources */,
+				0ED06E0F11D137840048886E /* KBFacebookLoginView.xib in Resources */,
+				0ED06E1311D138660048886E /* btn-addFB01.png in Resources */,
+				0ED06E1411D138660048886E /* btn-addFB02.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4729,6 +4825,10 @@
 				0EBEEE0711CBE9C900A28329 /* KBFacebookCommentCell.m in Sources */,
 				0EBEEFD111CC2C5900A28329 /* KBFacebookAddCommentViewController.m in Sources */,
 				07A3A54311D0002F00FC7375 /* KBTwitterFavsViewController.m in Sources */,
+				0EB19C3311D01E5E00BFF849 /* KBFacebookCreateWallPostVC.m in Sources */,
+				0EB19CB411D026E300BFF849 /* FBFacebookCreatePostViewController.m in Sources */,
+				0ED06D2611D11D290048886E /* KBFoursquareLoginView.m in Sources */,
+				0ED06E0911D1367D0048886E /* KBTwitterLoginView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
