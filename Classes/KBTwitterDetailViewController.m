@@ -67,6 +67,11 @@
     pageType = KBPageTypeOther;
     
     [super viewDidLoad];
+
+    numberOfFollowers.text = @"";
+    numberOfFriends.text = @"";
+    numberOfFavorites.text = @"";
+    numberOfTweets.text = @"";
     
     [timelineButton setImage:[UIImage imageNamed:@"tabTweets03.png"] forState:UIControlStateNormal];
     [mentionsButton setImage:[UIImage imageNamed:@"tabMentions03.png"] forState:UIControlStateNormal];
@@ -142,6 +147,7 @@
 }
 
 - (void) favorite {
+  NSLog(@"favoriting");
 	[twitterEngine markUpdate:[tweet.tweetId longLongValue] asFavorite:!isFavorited];
 }
 
