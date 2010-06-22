@@ -12,6 +12,8 @@
 #import "FoursquareAPI.h"
 #import "PhotoMessageViewController.h"
 #import "KBAccountManager.h"
+#import "FacebookProxy.h"
+#import "GraphAPI.h"
 
 @implementation KBCreateTweetViewController
 
@@ -30,7 +32,7 @@
     [super viewDidLoad];
 	
 	// mini-hack to turn off the foursquare button. we might decide to keep it on by default
-	isFoursquareOn = YES;
+	//isFoursquareOn = YES; --commented out...  calling the toggle will actually turn it on. so this was actually turning it off.
 	[self toggleFoursquare];
 	
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(createTweetStatusRetrieved:) name:kTwitterStatusRetrievedNotificationKey object:nil];
@@ -52,6 +54,7 @@
     photoManager = [KBPhotoManager sharedInstance];
     photoManager.delegate = self;
     
+	/* old logic - changed by scott
 	if (![[KBAccountManager sharedInstance] usesFacebook]) {
         facebookButton.enabled = NO;
     } else {
@@ -59,6 +62,15 @@
             [self toggleFacebook];
         }
     }
+	 */
+	if (![[FacebookProxy instance] isAuthorized]) {
+        facebookButton.enabled = NO;
+    } else {
+        if ([[KBAccountManager sharedInstance] defaultPostToFacebook]) {
+            [self toggleFacebook];
+        }
+    }
+	
 }
 
 #pragma mark -
@@ -89,12 +101,14 @@
 		}
     }
     
+	/* this is double posting to facebook.   wait and post with the image
     if (isFacebookOn && [[KBAccountManager sharedInstance] usesFacebook]) {
 		actionCount++;
         DLog(@"facebook  is on and the status will be updated (hopefully)");
         NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:tweetTextView.text, @"status", nil];
         [[FBRequest requestWithDelegate:self] call:@"facebook.status.set" params:params dataParam:nil];
     }
+	 */
     
     if (isFoursquareOn) {
 		actionCount++;
@@ -122,7 +136,12 @@
                        andMessage:tweetTextView.text
                    andOrientation:photoImage.imageOrientation
                          andVenue:nil];
-    }
+    }else{
+		//post to facebook with google maps image rather than user supplied image
+		
+	}
+	
+	
     
 }
 
@@ -277,7 +296,7 @@
 
 - (void) photoUploadFinished:(ASIHTTPRequest *) request {
     [self stopProgressBar];
-    DLog(@"YAY! Image uploaded! %@", [request responseString]);
+    DLog(@"YAY! Image uploaded! *****************%@",[request responseString]);
     KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"Image upload has been completed!"];
     [self displayPopupMessage:message];
     [message release];
@@ -285,13 +304,29 @@
 //    CGRect frame = CGRectMake(300, 50, 25, 25);
 //    TTImageView *thumbnail = [[[TTImageView alloc] initWithFrame:frame] autorelease];
 //    thumbnail.backgroundColor = [UIColor clearColor];
-//    NSString *uuid = [[((NSDictionary*)[request responseString]) objectForKey:@"gift"] objectForKey:@"uuid"];
+    //NSString *uuid = [[((NSDictionary*)[request responseString]) objectForKey:@"gift"] objectForKey:@"uuid"];
+	//NSString *urlPath = [NSString stringWithFormat:@"http://s3.amazonaws.com/kickball/photos/%@/thumb/%@.jpg", uuid, uuid];
+
 //    thumbnail.urlPath = [NSString stringWithFormat:@"http://s3.amazonaws.com/kickball/photos/%@/thumb/%@.jpg", uuid, uuid];
 //    //thumbnail.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
 //    [self.view addSubview:thumbnail];
     
     // NOTE: the self.photoMessageToPush is being set above in the returnFromMessageView: method
     [FlurryAPI logEvent:@"Image Upload Completed"];
+	
+	//
+	
+	if (isFacebookOn && [[FacebookProxy instance] isAuthorized]) {
+		//if facebook submissio is turned on and I'm logged in and permitted to facebook
+		
+		NSString *uuid = [[((NSDictionary*)[request responseString]) objectForKey:@"gift"] objectForKey:@"uuid"];
+		NSString *urlPath = [NSString stringWithFormat:@"https://kickball.s3.amazonaws.com/photos/%@/large/%@.jpg", uuid, uuid];
+		NSDictionary *fbPicture = [NSDictionary dictionaryWithObjectsAndKeys:urlPath, @"picture",nil];
+		GraphAPI *graph = [[FacebookProxy instance] newGraph];
+		[graph putWallPost:@"me" message:tweetTextView.text attachment:fbPicture];
+		
+	}
+	
 }
 
 - (void) photoQueueFinished:(ASIHTTPRequest *) request {
@@ -307,6 +342,7 @@
 - (void) photoUploadFailed:(ASIHTTPRequest *) request {
     [self stopProgressBar];
     DLog(@"Uhoh, it did fail!");
+	//post to facebook with google map instead of user supplied image
 }
 
 #pragma mark -
