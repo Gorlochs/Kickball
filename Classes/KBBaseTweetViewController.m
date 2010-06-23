@@ -201,6 +201,7 @@
         [theTableView deselectRowAtIndexPath:indexPath animated:YES];
         KBTwitterDetailViewController *detailViewController = [[KBTwitterDetailViewController alloc] initWithNibName:@"KBTwitterDetailViewController" bundle:nil];
         detailViewController.tweet = [tweets objectAtIndex:indexPath.row];
+        detailViewController.tweets = tweets;
         [self.navigationController pushViewController:detailViewController animated:YES];
 		[detailViewController release];
     } else {

@@ -15,7 +15,7 @@
 
 @interface KBTwitterDetailViewController : KBTwitterViewController <KBTwitterManagerDelegate> {
     KBTweet *tweet;
-    
+    KBTweet *tweets; //for re-caching the tweets when the user favorites one
     IBOutlet UILabel *screenName;
     IBOutlet UILabel *fullName;
     IBOutlet UILabel *timeLabel;
@@ -38,6 +38,7 @@
 }
 
 @property (nonatomic, retain) KBTweet *tweet;
+@property (nonatomic, retain) KBTweet *tweets;
 
 - (IBAction) retweet;
 - (IBAction) reply;
