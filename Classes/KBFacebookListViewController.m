@@ -82,9 +82,10 @@
 	newsFeed = [[FacebookProxy instance] refreshHome];
 	[newsFeed retain];
 	[theTableView reloadData];
-	[pool release];
 	[self performSelectorOnMainThread:@selector(stopProgressBar) withObject:nil waitUntilDone:NO];
 	[self dataSourceDidFinishLoadingNewData];
+	[pool release];
+
 
 }
 

@@ -80,7 +80,7 @@
 }
 
 -(void)threadedSubmit{
-    
+    pool = [[NSAutoreleasePool alloc] init];
     if (isFoursquareOn) {
 		actionCount++;
         [[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:nil 
@@ -121,7 +121,6 @@
 		[graph putWallPost:@"me" message:tweetTextView.text attachment:nil];
 		//[self decrementActionCount];
 		[self closeUpShop];
-		
 		
 	}
 	
@@ -316,6 +315,7 @@
 	[self performSelectorOnMainThread:@selector(stopProgressBar) withObject:nil waitUntilDone:NO];
 	[self.navigationController popViewControllerAnimated:YES];
 	[delegate delayedRefresh];
+	[pool release];
 	//[delegate performSelector:@selector(refreshTable) withObject:nil afterDelay:3.0f];
 }
 

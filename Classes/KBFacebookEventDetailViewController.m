@@ -10,6 +10,7 @@
 #import "TableSectionHeaderView.h"
 #import "KBFacebookCommentCell.h"
 #import "FacebookProxy.h"
+#import "GraphAPI.h"
 #import "GraphObject.h"
 #import "KBFacebookAddCommentViewController.h"
 
@@ -86,16 +87,18 @@
 	comments = nil;
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	NSString *method = [NSString stringWithFormat:@"%@/feed",[event objectForKey:@"eid"]];
-	GraphObject* response = [[[FacebookProxy instance] newGraph] getObject:method];
+	GraphAPI *graph = [[[FacebookProxy instance] newGraph] autorelease];
+	GraphObject* response = [graph getObject:method];
 	comments = [response propertyWithKey:@"data"];
 	[comments retain];
 	[theTableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];//[theTableView reloadData];
 	// = [[FacebookProxy instance] refreshEvents];
 	//GraphObject *baseObj = [baseEventResult objectAtIndex:0];
 	//comments = [[FacebookProxy instance] refreshEvents];
-	[pool release];
 	[self performSelectorOnMainThread:@selector(stopProgressBar) withObject:nil waitUntilDone:NO];
 	[self dataSourceDidFinishLoadingNewData];
+	[pool release];
+
 }
 
 
@@ -226,21 +229,40 @@
 }
 
 -(IBAction)pressAttending{
-	GraphAPI *graph = [[FacebookProxy instance] newGraph];
-	[NSThread detachNewThreadSelector:@selector(attendObject:) toTarget:graph withObject:[event objectForKey:@"eid"]];
+	[NSThread detachNewThreadSelector:@selector(threadedAttending) toTarget:self withObject:nil];
+
+	//GraphAPI *graph = [[[FacebookProxy instance] newGraph] autorelease];
+	//[NSThread detachNewThreadSelector:@selector(attendObject:) toTarget:graph withObject:[event objectForKey:@"eid"]];
 	[attendingButt setSelected:YES];
 	[notAttendingButt setSelected:NO];
 	[event objectForKey:@"rsvp_status"];
 	[event setValue:@"attending" forKey:@"rsvp_status"];
 }
 -(IBAction)pressNotAttending{
-	GraphAPI *graph = [[FacebookProxy instance] newGraph];
-	[NSThread detachNewThreadSelector:@selector(declineObject:) toTarget:graph withObject:[event objectForKey:@"eid"]];
+	[NSThread detachNewThreadSelector:@selector(threadedNotAttending) toTarget:self withObject:nil];
+
+	//GraphAPI *graph = [[[FacebookProxy instance] newGraph] autorelease];
+	//[NSThread detachNewThreadSelector:@selector(declineObject:) toTarget:graph withObject:[event objectForKey:@"eid"]];
 	[attendingButt setSelected:NO];
 	[notAttendingButt setSelected:YES];
 	[event setValue:@"declined" forKey:@"rsvp_status"];
 
 }
+
+-(void)threadedAttending{
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	GraphAPI *graph = [[[FacebookProxy instance] newGraph] autorelease];
+	[graph attendObject:[event objectForKey:@"eid"]];
+	[pool release];
+}
+
+-(void)threadedNotAttending{
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	GraphAPI *graph = [[[FacebookProxy instance] newGraph] autorelease];
+	[graph declineObject:[event objectForKey:@"eid"]];
+	[pool release];
+}
+
 -(IBAction)touchComment{
 	KBFacebookAddCommentViewController* commentController = [[KBFacebookAddCommentViewController alloc] initWithNibName:@"KBFacebookAddComment" bundle:nil];
     commentController.fbId = [event objectForKey:@"eid"];

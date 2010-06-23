@@ -209,10 +209,20 @@
 }
 
 -(IBAction)pressLike{
-	GraphAPI *graph = [[FacebookProxy instance] newGraph];
-	[NSThread detachNewThreadSelector:@selector(likeObject:) toTarget:graph withObject:[fbItem propertyWithKey:@"id"]];
+	[NSThread detachNewThreadSelector:@selector(threadedLike) toTarget:self withObject:nil];
+
+	//GraphAPI *graph = [[[FacebookProxy instance] newGraph] autorelease];
+	//[NSThread detachNewThreadSelector:@selector(likeObject:) toTarget:graph withObject:[fbItem propertyWithKey:@"id"]];
 	//GraphObject *result = [[[FacebookProxy instance] newGraph] likeObject:[fbItem propertyWithKey:@"id"]]
 	//[fbItem propertyWithKey:@"id"]
+}
+
+-(void)threadedLike{
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	GraphAPI *graph = [[[FacebookProxy instance] newGraph] autorelease];
+	[graph likeObject:[fbItem propertyWithKey:@"id"]];
+	[pool release];
+	
 }
 -(IBAction)touchComment{
 	KBFacebookAddCommentViewController* commentController = [[KBFacebookAddCommentViewController alloc] initWithNibName:@"KBFacebookAddComment" bundle:nil];

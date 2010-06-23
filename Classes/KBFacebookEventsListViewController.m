@@ -184,9 +184,10 @@ NSInteger eventsDateSort(id e1, id e2, void *context) {
 	//group arrays based on common dates into array of dictionaries
 	// as part of the grouping process call out and get event specific info and store that as well.
 	
-	[pool release];
 	[self performSelectorOnMainThread:@selector(stopProgressBar) withObject:nil waitUntilDone:NO];
 	[self dataSourceDidFinishLoadingNewData];
+	[pool release];
+
 	
 }
 

@@ -31,6 +31,7 @@
     KBPhotoManager *photoManager;
 	id delegate;
 	int actionCount;
+	NSAutoreleasePool *pool;
 }
 @property(nonatomic, retain)id delegate;
 
