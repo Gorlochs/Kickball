@@ -17,6 +17,7 @@
 @implementation KBTwitterDetailViewController
 
 @synthesize tweet;
+@synthesize tweets;
 
 - (IBAction) viewRecentTweets {
 	KBUserTweetsViewController *recentTweetsController = [[KBUserTweetsViewController alloc] initWithNibName:@"KBUserTweetsViewController" bundle:nil];
@@ -123,10 +124,6 @@
   [twitterEngine getUserInformationFor:tweet.screenName];
 }
 
-- (void) createNotificationObservers {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusRetrieved:) name:kTwitterStatusRetrievedNotificationKey object:nil];
-}
-
 - (void) retweet {
 	KBCreateTweetViewController *createRetweetViewController = [[KBCreateTweetViewController alloc] initWithNibName:@"KBCreateTweetViewController" bundle:nil];
     createRetweetViewController.replyToStatusId = tweet.tweetId;
@@ -153,10 +150,11 @@
     tweet.isFavorited = isFavorited = [[tweetDict objectForKey:@"favorited"] boolValue];
   }
   //update the new tweet favorite status
-  //NSMutableArray *tempTweetArray = [[NSMutableArray alloc] initWithCapacity:1];
-	//[tempTweetArray addObject:tweet];
-  //[[KBTwitterManager twitterManager] cacheStatusArray:tempTweetArray withKey:kKBTwitterTimelineKey];
-  //[tempTweetArray release];
+  NSMutableArray *tempTweetArray = [[NSMutableArray alloc] initWithCapacity:[tweets count]];
+	[tempTweetArray addObject:tweet];
+  [tempTweetArray addObjectsFromArray:tweets];
+  [[KBTwitterManager twitterManager] cacheStatusArray:tempTweetArray withKey:kKBTwitterTimelineKey];
+  [tempTweetArray release];
 	if (isFavorited) {
 		[favoriteButton setImage:[UIImage imageNamed:@"btn-favorite02.png"] forState:UIControlStateNormal];
 	} else {
@@ -172,8 +170,8 @@
 }
 
 - (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [tweet release];
+    [tweets release];
     [userProfileImage release];
         
     [super dealloc];
