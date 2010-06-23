@@ -7,6 +7,9 @@
 //
 
 #import "KBAccountManager.h"
+#import "FacebookProxy.h"
+#import "KBTwitterManager.h"
+#import "FoursquareAPI.h"
 
 #define USES_TWITTER_KEY @"usesTwitter"
 #define USES_FACEBOOK_KEY @"usesFacebook"
@@ -14,7 +17,7 @@
 #define TWITTER_NOTHANKS_CLICKED @"twitterNoThanksClicked"
 #define SHOULD_POST_PHOTOS_TO_FACEBOOK_KEY @"shouldPostPhotosToFacebook"
 #define DEFAULT_POST_TO_TWITTER @"defaultTwitter"
-#define DEFAULT_POST_TO_FACEBOOK @"defaultFacebok"
+#define DEFAULT_POST_TO_FACEBOOK @"defaultFacebook"
 #define DEFAULT_POST_TO_FOURSQUARE @"defaultFoursquare"
 #define FIRST_RUN_COMPLETED @"firstRunCompleted"
 
@@ -44,11 +47,25 @@ static BOOL initialized = NO;
     // if the value doesn't exist, that means a user hasn't chosen yet, so display the tab
     return [userDefaults boolForKey:USES_TWITTER_KEY] || (![userDefaults boolForKey:USES_TWITTER_KEY] && ![userDefaults boolForKey:TWITTER_NOTHANKS_CLICKED]);
 }
+-(BOOL) usesGeoTag{
+	return YES;
+}
+-(void) setUsesGeoTag:(BOOL)b {
+	usesGeoTag = b;
+}
+
+-(BOOL) usesFoursquare{
+	return [[FoursquareAPI sharedInstance] isAuthenticated];
+}
 
 - (BOOL) usesTwitter {
+	return [[[KBTwitterManager twitterManager] twitterEngine] isAuthorized];
+	/*
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     return [userDefaults boolForKey:USES_TWITTER_KEY];
+	 */
 }
+
 
 - (void) setUsesFacebook:(BOOL)b {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -66,11 +83,14 @@ static BOOL initialized = NO;
 }
 
 - (BOOL) usesFacebook {
+	return [[FacebookProxy instance] isAuthorized];
+	/*
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	DLog(@"![userDefaults boolForKey:USES_FACEBOOK_KEY]: %d", ![userDefaults boolForKey:USES_FACEBOOK_KEY]);
 	DLog(@"![userDefaults boolForKey:FACEBOOK_NOTHANKS_CLICKED]: %d", ![userDefaults boolForKey:FACEBOOK_NOTHANKS_CLICKED]);
 	DLog(@"[userDefaults boolForKey:USES_FACEBOOK_KEY]: %d", [userDefaults boolForKey:USES_FACEBOOK_KEY]);
     return [userDefaults boolForKey:USES_FACEBOOK_KEY];
+	 */
 }
 
 - (void) setShouldPostPhotosToFacebook:(BOOL)shouldPostPhotos {
@@ -150,6 +170,8 @@ static BOOL initialized = NO;
 		[userDefaults setBool:YES forKey:FIRST_RUN_COMPLETED];
 	}
 	initialized = YES;
+	// try to load up the managers for the variosu services
+	[FacebookProxy loadDefaults];
 	return self;
 }
 

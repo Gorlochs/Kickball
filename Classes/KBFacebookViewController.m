@@ -127,9 +127,10 @@
     //[self.navigationController pushViewController:wallPostController animated:YES];
 	//[wallPostController release];
 	
-	FBFacebookCreatePostViewController *tweetController = [[FBFacebookCreatePostViewController alloc] initWithNibName:@"FBFacebookCreatePostViewController" bundle:nil];
-    [self.navigationController pushViewController:tweetController animated:YES];
-	[tweetController release];
+	FBFacebookCreatePostViewController *postController = [[FBFacebookCreatePostViewController alloc] initWithNibName:@"FBFacebookCreatePostViewController" bundle:nil];
+    [postController setDelegate:self];
+	[self.navigationController pushViewController:postController animated:YES];
+	[postController release];
 }
 
 -(void)killLoginView{

@@ -16,6 +16,7 @@
 #import "PopupMessageView.h"
 #import "FlurryAPI.h"
 #import "OptionsViewController.h"
+#import "KBAccountManager.h"
 
 @implementation KickballAppDelegate
 
@@ -70,6 +71,9 @@
     
     //[NSThread detachNewThreadSelector:@selector(updateFriendsPings) toTarget:self withObject:nil];
     //[self updateFriendsPings];
+	if ([KBAccountManager sharedInstance]) {
+		
+	}
 }
 
 - (void) updateFriendsPings {

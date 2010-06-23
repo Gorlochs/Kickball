@@ -12,16 +12,19 @@
 @interface KBAccountManager : NSObject {
     BOOL usesTwitter;
     BOOL usesFacebook;
+	BOOL usesFoursquare;
 	BOOL shouldPostPhotosToFacebook;
 	BOOL defaultPostToFacebook;
 	BOOL defaultPostToTwitter;
 	BOOL defaultPostToFoursquare;
-	
+	BOOL usesGeoTag;
 	BOOL firstRunCompleted;
 }
 
 @property (nonatomic) BOOL usesTwitter;
 @property (nonatomic) BOOL usesFacebook;
+@property (nonatomic) BOOL usesFoursquare;
+@property (nonatomic) BOOL usesGeoTag;
 @property (nonatomic) BOOL shouldPostPhotosToFacebook;
 @property (nonatomic) BOOL defaultPostToFacebook;
 @property (nonatomic) BOOL defaultPostToTwitter;

@@ -93,6 +93,10 @@
 	[self refreshMainFeed];
 }
 
+-(void)delayedRefresh{
+	[self performSelector:@selector(refreshMainFeed) withObject:nil afterDelay:2.0f];
+}
+
 #pragma mark -
 #pragma mark Table view data source
 

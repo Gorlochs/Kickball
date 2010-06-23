@@ -18,6 +18,8 @@
 #import "KBLocationManager.h"
 #import "KBAccountManager.h"
 #import "FacebookProxy.h"
+#import "GraphAPI.h"
+#import "SBJSON.h"
 
 @implementation KBCheckinModalViewController
 
@@ -45,25 +47,27 @@
     DLog(@"user: %@", user);
 //    facebookButton.enabled = user.facebook != nil;
 //    twitterButton.enabled = user.twitter != nil;
-    isFacebookOn = YES;
-    isTwitterOn = YES;
-    isFoursquareOn = YES;
+	
+	
 	DLog("auth'd user: %@", [self getAuthenticatedUser]);
     // hack
-    if (![[KBAccountManager sharedInstance] usesFacebook]) {
-        facebookButton.enabled = NO;
-    } else {
-        if (!user.sendToFacebook || (!user.facebook && [[FacebookProxy instance] isAuthorized])) {
-            [self toggleFacebook];
-        }
-    }   
-    if (![[KBAccountManager sharedInstance] usesTwitter]) {
-        twitterButton.enabled = NO;
-    } else {
-        if (!user.sendToTwitter || (!user.twitter && [[KBTwitterManager twitterManager] twitterEngine].accessToken)) {
-            [self toggleTwitter];
-        }
-    }    
+	
+	isFoursquareOn = YES;
+	isTwitterOn = ![[KBAccountManager sharedInstance] defaultPostToTwitter];
+	if ([[KBAccountManager sharedInstance] usesTwitter]) {
+		[self toggleTwitter];
+	}else {
+		isTwitterOn = NO;
+		twitterButton.enabled = NO;
+	}
+	isFacebookOn = ![[KBAccountManager sharedInstance] defaultPostToFacebook];
+	if ([[KBAccountManager sharedInstance] usesFacebook]) {
+		[self toggleFacebook];
+	}else {
+		isFacebookOn = NO;
+		facebookButton.enabled = NO;
+	}
+
     actionCount = 0;
 }
 
@@ -126,7 +130,7 @@
                                                  andAction:@selector(checkinResponseReceived:withResponseString:)];
     
     // we send twitter/facebook api calls ourself so that the tweets and posts are stamped with the Kickball brand
-    if (isTwitterOn && [[KBAccountManager sharedInstance] usesTwitter]) {
+    if (isTwitterOn) {
 		actionCount++;
 		DLog(@"twitter is on. action count has been incremented: %d", actionCount);
         NSString *tweetString = nil;
@@ -141,12 +145,6 @@
                          withLongitude:[[KBLocationManager locationManager] longitude]];
     }
     
-    if (isFacebookOn && [[KBAccountManager sharedInstance] usesFacebook]) {
-		actionCount++;
-		DLog(@"facebook is on. action count has been incremented: %d", actionCount);
-        NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%@ - %@", checkinTextField.text, [Utilities getShortenedUrlFromFoursquareVenueId:venue.venueid]], @"status", nil];
-        [[FBRequest requestWithDelegate:self] call:@"facebook.status.set" params:params dataParam:nil];
-    }
     
     if (photoImage) {
 		actionCount++;
@@ -159,7 +157,14 @@
                        andMessage:checkinTextField.text
                    andOrientation:photoImage.imageOrientation
                          andVenue:venue];
-    }
+    }else {
+		if (isFacebookOn ) {
+			//actionCount++;
+			GraphAPI *graph = [[FacebookProxy instance] newGraph];
+			[graph putWallPost:@"me" message:checkinTextField.text attachment:nil];
+		}
+	}
+
     
     [FlurryAPI logEvent:@"checked in"];
 }
@@ -285,6 +290,21 @@
 }
 
 - (void) photoUploadFinished:(ASIHTTPRequest *) request {
+	
+	if (isFacebookOn) {
+		//if facebook submissio is turned on and I'm logged in and permitted to facebook
+		SBJSON *parser = [[SBJSON new] autorelease];
+		id dict = [parser objectWithString:[request responseString] error:NULL];
+		
+		NSString *uuid = [[(NSDictionary*)dict objectForKey:@"gift"] objectForKey:@"uuid"];
+		NSString *urlPath = [NSString stringWithFormat:@"https://kickball.s3.amazonaws.com/photos/%@/large/%@.jpg", uuid, uuid];
+		NSDictionary *fbPicture = [NSDictionary dictionaryWithObjectsAndKeys:urlPath, @"picture",@" ",@"caption",nil];
+		GraphAPI *graph = [[FacebookProxy instance] newGraph];
+		[graph putWallPost:@"me" message:checkinTextField.text attachment:fbPicture];
+		
+	}
+	
+	
     [self stopProgressBar];
     DLog(@"YAY! Image uploaded!");
     KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"Image upload has been completed!"];
@@ -301,6 +321,8 @@
     
     // NOTE: the self.photoMessageToPush is being set above in the returnFromMessageView: method
     [FlurryAPI logEvent:@"Image Upload Completed"];
+	
+	
 }
 
 - (void) photoQueueFinished:(ASIHTTPRequest *) request {
@@ -316,6 +338,11 @@
 - (void) photoUploadFailed:(ASIHTTPRequest *) request {
     [self stopProgressBar];
     DLog(@"Uhoh, it did fail!");
+	if (isFacebookOn ) {
+		//actionCount++;
+		GraphAPI *graph = [[FacebookProxy instance] newGraph];
+		[graph putWallPost:@"me" message:checkinTextField.text attachment:nil];
+	}
 }
 
 #pragma mark 

@@ -29,14 +29,21 @@
     BOOL isGeotagOn;
 	UIImage *photoImage;
     KBPhotoManager *photoManager;
+	id delegate;
+	int actionCount;
 }
+@property(nonatomic, retain)id delegate;
 
+-(void)threadedSubmit;
 
 - (IBAction) submitTweet;
 //- (IBAction) cancelCreate;
 - (IBAction) toggleTwitter;
 - (IBAction) toggleFoursquare;
 - (IBAction) toggleGeotag;
+- (void) decrementActionCount;
+- (void) closeUpShop;
+- (void) getPhoto:(UIImagePickerControllerSourceType)sourceType;
 - (IBAction) choosePhotoSelectMethod;
 - (IBAction) removePhoto;
 

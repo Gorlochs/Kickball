@@ -27,6 +27,7 @@
 #import "KBLocationManager.h"
 #import "KBAccountManager.h"
 #import "FacebookProxy.h"
+#import "GraphAPI.h"
 #import "KBTwitterManager.h"
 
 
@@ -167,27 +168,8 @@
     [self setAuthenticatedUser:user];
     [signedInUserIcon setImage:[[Utilities sharedInstance] getCachedImage:user.photo] forState:UIControlStateNormal];
     
-    // shout view stuff
-    facebookButton.enabled = user.facebook != nil || [[FacebookProxy instance] isAuthorized];
-    twitterButton.enabled = user.twitter != nil || [[KBTwitterManager twitterManager] twitterEngine].accessToken != nil;
-    isFacebookOn = YES;
-    isTwitterOn = YES;
-    isFoursquareOn = YES;
-    // hack
-    if (![[KBAccountManager sharedInstance] usesFacebook]) {
-        facebookButton.enabled = NO;
-    } else {
-        if (!user.sendToFacebook || (!user.facebook && [[FacebookProxy instance] isAuthorized])) {
-            [self toggleFacebook];
-        }
-    }   
-    if (![[KBAccountManager sharedInstance] usesTwitter]) {
-        twitterButton.enabled = NO;
-    } else {
-        if (!user.sendToTwitter || (!user.twitter && [[KBTwitterManager twitterManager] twitterEngine].accessToken)) {
-            [self toggleTwitter];
-        }
-    }  
+	
+	 
     
     DLog(@"auth'd user: %@", user);
     [user release];
@@ -481,17 +463,17 @@
                                                  andAction:@selector(shoutResponseReceived:withResponseString:)];
     
     // we send twitter/facebook api calls ourself so that the tweets and posts are stamped with the Kickball brand
-    if (isTwitterOn && [[KBAccountManager sharedInstance] usesTwitter]) {
+    if (isTwitterOn) {
 		actionCount++;
         [[[KBTwitterManager twitterManager] twitterEngine] sendUpdate:shoutText.text
                           withLatitude:[[KBLocationManager locationManager] latitude] 
                          withLongitude:[[KBLocationManager locationManager] longitude]];
     }
     
-    if (isFacebookOn && [[KBAccountManager sharedInstance] usesFacebook]) {
-		actionCount++;
-        NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:shoutText.text, @"status", nil];
-        [[FBRequest requestWithDelegate:self] call:@"facebook.status.set" params:params dataParam:nil];
+    if (isFacebookOn ) {
+		//actionCount++;
+		GraphAPI *graph = [[FacebookProxy instance] newGraph];
+		[graph putWallPost:@"me" message:shoutText.text attachment:nil];
     }
     
     [FlurryAPI logEvent:@"checked in"];
@@ -557,6 +539,24 @@
 //}
 
 - (void) displayShoutView {
+	
+	// update buttons
+	isFoursquareOn = YES;
+	isTwitterOn = ![[KBAccountManager sharedInstance] defaultPostToTwitter];
+	if ([[KBAccountManager sharedInstance] usesTwitter]) {
+		[self toggleTwitter];
+	}else {
+		isTwitterOn = NO;
+		twitterButton.enabled = NO;
+	}
+	isFacebookOn = ![[KBAccountManager sharedInstance] defaultPostToFacebook];
+	if ([[KBAccountManager sharedInstance] usesFacebook]) {
+		[self toggleFacebook];
+	}else {
+		isFacebookOn = NO;
+		facebookButton.enabled = NO;
+	}
+	
     CGRect frame = shoutView.frame;
     frame.origin = CGPointMake(0, 46);
     shoutView.frame = frame;

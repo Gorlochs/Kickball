@@ -34,7 +34,23 @@
 	
 	// mini-hack to turn off the foursquare button. we might decide to keep it on by default
 	//isFoursquareOn = YES; --commented out...  calling the toggle will actually turn it on. so this was actually turning it off.
-	[self toggleFoursquare];
+	isFoursquareOn = ![[KBAccountManager sharedInstance] defaultPostToFoursquare];
+	if ([[KBAccountManager sharedInstance] usesFoursquare]) {
+		[self toggleFoursquare];
+	}else {
+		isFacebookOn = NO;
+		foursquareButton.enabled = NO;
+	}
+	
+	isFacebookOn = ![[KBAccountManager sharedInstance] defaultPostToFacebook];
+	if ([[KBAccountManager sharedInstance] usesFacebook]) {
+		[self toggleFacebook];
+	}else {
+		isFacebookOn = NO;
+		facebookButton.enabled = NO;
+	}
+
+	//[self toggleFoursquare];
 	
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(createTweetStatusRetrieved:) name:kTwitterStatusRetrievedNotificationKey object:nil];
     if (self.retweetTweetText) {
@@ -64,13 +80,8 @@
         }
     }
 	 */
-	if (![[FacebookProxy instance] isAuthorized]) {
-        facebookButton.enabled = NO;
-    } else {
-        if ([[KBAccountManager sharedInstance] defaultPostToFacebook]) {
-            [self toggleFacebook];
-        }
-    }
+	
+	
 	
 }
 
@@ -139,6 +150,10 @@
                          andVenue:nil];
     }else{
 		//post to facebook with google maps image rather than user supplied image
+		if (isFacebookOn) {
+			GraphAPI *graph = [[FacebookProxy instance] newGraph];
+			[graph putWallPost:@"me" message:tweetTextView.text attachment:nil];
+		}
 		
 	}
 	
@@ -317,7 +332,7 @@
 	
 	//
 	
-	if (isFacebookOn && [[FacebookProxy instance] isAuthorized]) {
+	if (isFacebookOn) {
 		//if facebook submissio is turned on and I'm logged in and permitted to facebook
 		SBJSON *parser = [[SBJSON new] autorelease];
 		DLog(@"city grid response: %@", [request responseString]);
@@ -347,6 +362,11 @@
     [self stopProgressBar];
     DLog(@"Uhoh, it did fail!");
 	//post to facebook with google map instead of user supplied image
+	
+	if (isFacebookOn) {
+		GraphAPI *graph = [[FacebookProxy instance] newGraph];
+		[graph putWallPost:@"me" message:tweetTextView.text attachment:nil];
+	}
 }
 
 #pragma mark -
