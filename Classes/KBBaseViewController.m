@@ -152,7 +152,6 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 }
 
 - (void) viewDidUnload {
-    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:@"shoutSent"];
     KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
     [appDelegate.pushNotificationUserId removeObserver:self forKeyPath:@"pushUserId"];
 	refreshHeaderView=nil;
