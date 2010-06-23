@@ -66,6 +66,10 @@
     [self setProperFoursquareButtons];
 }
 
+-(void)pressOptionsLeft{ //called when the user leaves options
+	[[self navigationController] popViewControllerAnimated:YES];
+}
+
 - (void) executeFoursquareCalls {
     [self startProgressBar:@"Retrieving profile..."];
     [[FoursquareAPI sharedInstance] getUser:self.userId withTarget:self andAction:@selector(userResponseReceived:withResponseString:)];

@@ -166,7 +166,7 @@ static KBTwitterManager *sharedInstance = nil;
 			case 401:
 			{
 				// Unauthorized. The user's credentials failed to verify.
-				UIAlertViewQuick(@"Oops!", @"Your username and password could not be verified. Double check that you entered them correctly and try again.", @"OK");	
+				UIAlertViewQuick(@"Oops!", @"This person has protected their tweets.  You need to send a request before you can start following this person.", @"OK");	
 				break;				
 			}
 				
