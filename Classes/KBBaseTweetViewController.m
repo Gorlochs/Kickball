@@ -209,11 +209,6 @@
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (indexPath.row == [tweets count] - 1) {
-    DLog(@"NOT executing query repeatedly for row: %i", indexPath.row);
-    //TODO: fix this - when there are no more results it will keep hitting the server until twitter blacklists the IP+app-key
-		//[self executeQuery:++pageNum];
-	}
 }
 
 - (void) viewUserProfile:(NSString*)userName {

@@ -7,6 +7,7 @@
 //
 
 #import "KBDirectMessage.h"
+#import "KickballAPI.h"
 
 
 @implementation KBDirectMessage
@@ -16,7 +17,7 @@
         screenName = [[statusDictionary objectForKey:@"sender"] objectForKey:@"screen_name"];
         profileImageUrl = [[statusDictionary objectForKey:@"sender"] objectForKey:@"profile_image_url"];
         tweetText = [statusDictionary objectForKey:@"text"];
-        createDate = [[NSDate dateWithTimeIntervalSince1970:[[statusDictionary objectForKey:@"created_at"] doubleValue]] retain];
+        createDate = [[[[KickballAPI kickballApi] twitterDateFormatter] dateFromString:[statusDictionary objectForKey:@"created_at"]] retain];
         tweetId = [statusDictionary objectForKey:@"id"];
     }
     return self;
