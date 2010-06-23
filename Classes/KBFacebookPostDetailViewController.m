@@ -70,8 +70,10 @@
 	[self.postView addSubview:userIcon];
 	[self.postView addSubview:dateLabel];
 	[self.postView addSubview:fbPostText];
-
-	NSString *displayString = [NSString	 stringWithFormat:@"<span class=\"fbBlueText\">%@</span> %@",[(NSDictionary*)[fbItem propertyWithKey:@"from"] objectForKey:@"name"], [fbItem propertyWithKey:@"message"]];
+	NSString *bodyText = [self findSuitableText:fbItem];
+	NSString *displayString = [NSString	 stringWithFormat:@"<span class=\"fbBlueText\">%@</span> %@",[(NSDictionary*)[fbItem propertyWithKey:@"from"] objectForKey:@"name"], bodyText];
+	
+	//NSString *displayString = [NSString	 stringWithFormat:@"<span class=\"fbBlueText\">%@</span> %@",[(NSDictionary*)[fbItem propertyWithKey:@"from"] objectForKey:@"name"], [fbItem propertyWithKey:@"message"]];
 	fbPictureUrl = [(NSDictionary*)[fbItem propertyWithKey:@"from"] objectForKey:@"id"];
 	fbPostText.text = [TTStyledText textFromXHTML:displayString lineBreaks:NO URLs:NO];
 	comments = (NSArray*)[(NSDictionary*)[fbItem propertyWithKey:@"comments"] objectForKey:@"data"];
@@ -131,6 +133,78 @@
 	//[self startProgressBar:@"Retrieving news feed..."];
 	[self refreshMainFeed];
 }
+
+-(NSString*)findSuitableText:(GraphObject*)_fbItem {
+	NSString *message = [_fbItem propertyWithKey:@"message"];
+	NSString *type = [_fbItem propertyWithKey:@"type"];
+	if ([type isEqualToString:@"status"]) {
+		if (message!=nil) {
+			return message;
+		}
+	} else if ([type isEqualToString:@"link"]) {
+		if (message!=nil) {
+			return message;
+		}else {
+			NSString *text = [_fbItem propertyWithKey:@"name"];
+			if (text==nil) {
+				text = [_fbItem propertyWithKey:@"caption"];
+			}
+			
+			NSString *link = [NSString stringWithFormat:@"%@ %@",text,[_fbItem propertyWithKey:@"link"]];
+			/* NSMutableString *result = [[[NSMutableString alloc] init] autorelease];
+			 if (text!=nil) {
+			 [result appendString:text];
+			 [result appendString:@" "];
+			 }
+			 [result appendString:link];
+			 */
+			return text;
+		}
+		
+	}else if ([type isEqualToString:@"photo"]) {
+		if (message!=nil) {
+			return message;
+		}else {
+			NSString *text = [_fbItem propertyWithKey:@"name"];
+			if (text==nil) {
+				text = [_fbItem propertyWithKey:@"caption"];
+			}
+			/*
+			 NSString *link = [fbItem propertyWithKey:@"link"];
+			 NSMutableString *result = [[[NSMutableString alloc] init] autorelease];
+			 if (text!=nil) {
+			 [result appendString:text];
+			 [result appendString:@" "];
+			 }
+			 [result appendString:link];
+			 */
+			return text;
+		}
+		
+	}else if ([type isEqualToString:@"video"]) {
+		if (message!=nil) {
+			return message;
+		}else {
+			NSString *text = [_fbItem propertyWithKey:@"name"];
+			if (text==nil) {
+				text = [_fbItem propertyWithKey:@"caption"];
+			}
+			/*
+			 NSString *link = [fbItem propertyWithKey:@"link"];
+			 NSMutableString *result = [[[NSMutableString alloc] init] autorelease];
+			 if (text!=nil) {
+			 [result appendString:text];
+			 [result appendString:@" "];
+			 }
+			 [result appendString:link];
+			 */
+			return text;
+		}
+		
+	}
+	return type;
+}
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;

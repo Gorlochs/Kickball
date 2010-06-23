@@ -76,7 +76,7 @@
 		 */
 		
 		commentBG = [[UIImageView alloc] init];
-		[commentBG setImage:[UIImage imageNamed:@"btn-noComment01.png"]];
+		[commentBG setImage:[UIImage imageNamed:@"cmt-grey.png"]];
 		[self addSubview:commentBG];
 		
 		commentNumber = [[UILabel alloc] init];
@@ -117,18 +117,20 @@
 	[iconButt setFrame:CGRectMake(8, contentRect.origin.y+10, 38, 38)];//CGPointMake(27, contentRect.size.height/2)];
 	[userIcon setFrame:CGRectMake(10, contentRect.origin.y+12, 34, 34)];//CGPointMake(27, contentRect.size.height/2)];
 	[iconBgImage setFrame:CGRectMake(8, contentRect.origin.y+10, 38, 38)];//CGPointMake(27, contentRect.size.height/2)];
-	commentNumber.frame = CGRectMake(contentRect.origin.x+contentRect.size.width - 95, contentRect.size.height - 25, 91, 24);
+	commentNumber.frame = CGRectMake(contentRect.origin.x+contentRect.size.width - 46, contentRect.size.height - 26, 40, 25);
 	if (comments) {
 		if (comments==1) {
-			commentBG.frame = CGRectMake(contentRect.origin.x+contentRect.size.width - 95, contentRect.size.height - 25, 130, 24);
+			commentBG.frame = CGRectMake(contentRect.origin.x+contentRect.size.width - 40, contentRect.size.height - 26, 60, 25);
 		}else if (comments < 10) {
-			commentBG.frame = CGRectMake(contentRect.origin.x+contentRect.size.width - 104, contentRect.size.height - 25, 130, 24);
-		}else {
-			commentBG.frame = CGRectMake(contentRect.origin.x+contentRect.size.width - 112, contentRect.size.height - 25, 130, 24);
+			commentBG.frame = CGRectMake(contentRect.origin.x+contentRect.size.width - 40, contentRect.size.height - 26, 60, 24);
+		}else if (comments < 100) {
+			commentBG.frame = CGRectMake(contentRect.origin.x+contentRect.size.width - 50, contentRect.size.height - 26, 60, 24);
+		}		else {
+			commentBG.frame = CGRectMake(contentRect.origin.x+contentRect.size.width - 60, contentRect.size.height - 26, 60, 25);
 		}
 
 	}else {
-		commentBG.frame = CGRectMake(contentRect.origin.x+contentRect.size.width - 27, contentRect.size.height - 26, 27, 25);
+		commentBG.frame = CGRectMake(contentRect.origin.x+contentRect.size.width - 25, contentRect.size.height - 26, 25, 25);
 	}
 
 	
@@ -192,11 +194,11 @@
 -(void)setNumberOfComments:(int)howMany{
 	comments = howMany;
 	if (comments) {
-		commentNumber.text = comments > 1 ? [NSString stringWithFormat:@"%i Comments",comments] : [NSString stringWithFormat:@"%i Comment",comments];
-		commentBG.image = [UIImage imageNamed:@"btn-xCommentsWide.png"];
+		commentNumber.text = comments > 1 ? [NSString stringWithFormat:@"%i",comments] : [NSString stringWithFormat:@"%i",comments];
+		commentBG.image = [UIImage imageNamed:@"cmt-blue.png"];
 	}else{
 		commentNumber.text = @" ";
-		commentBG.image = [UIImage imageNamed:@"btn-noComment01.png"];
+		commentBG.image = [UIImage imageNamed:@"cmt-grey.png"];
 	}
 }
 
