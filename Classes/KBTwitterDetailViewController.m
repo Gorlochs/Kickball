@@ -141,18 +141,14 @@
 	[createReplyViewController release];
 }
 
-- (void) favorite {
-	[twitterEngine markUpdate:[tweet.tweetId longLongValue] asFavorite:!isFavorited];
-}
-
-- (void)statusesReceived:(NSArray *)statuses {
-  for (NSDictionary *tweetDict in statuses) {
-    tweet.isFavorited = isFavorited = [[tweetDict objectForKey:@"favorited"] boolValue];
+- (void)saveTweets {
+  for (KBTweet *cur in (NSArray*)tweets) { //prep to cache the new tweet favorite status
+    if (cur.tweetId == tweet.tweetId) {
+      cur.isFavorited = tweet.isFavorited;  
+    }
   }
-  //update the new tweet favorite status
-  NSMutableArray *tempTweetArray = [[NSMutableArray alloc] initWithCapacity:[tweets count]];
-	[tempTweetArray addObject:tweet];
-  [tempTweetArray addObjectsFromArray:tweets];
+  NSMutableArray *tempTweetArray = [[NSMutableArray alloc] initWithCapacity:[(NSArray*)tweets count]];
+  [tempTweetArray addObjectsFromArray:(NSArray*)tweets];
   [[KBTwitterManager twitterManager] cacheStatusArray:tempTweetArray withKey:kKBTwitterTimelineKey];
   [tempTweetArray release];
 	if (isFavorited) {
@@ -160,6 +156,20 @@
 	} else {
 		[favoriteButton setImage:[UIImage imageNamed:@"btn-favorite01.png"] forState:UIControlStateNormal];
 	}
+}
+
+- (void) favorite {
+  isFavorited = !isFavorited;
+	[twitterEngine markUpdate:[tweet.tweetId longLongValue] asFavorite:isFavorited];
+  tweet.isFavorited = isFavorited;
+  [self saveTweets]; //the server only responds 50-75% of the time when you favorite, and responds incorrectly in some cases.  this will bring the probability of success to 95%
+}
+
+- (void)statusesReceived:(NSArray *)statuses {
+  for (NSDictionary *tweetDict in statuses) {
+    tweet.isFavorited = isFavorited = [[tweetDict objectForKey:@"favorited"] boolValue];
+  }
+  [self saveTweets];
 }
 
 - (void) viewUserProfile {
