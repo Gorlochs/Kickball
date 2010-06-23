@@ -246,6 +246,14 @@
     characterCountLabel.text = [NSString stringWithFormat:@"%d/140", [textView.text length]];
 }
 
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    if ([text isEqualToString:@"\n"]) {
+        [self submitTweet];
+		return NO;
+    }
+    return YES;
+}
+
 #pragma mark
 #pragma mark UIActionSheetDelegate methods
 
