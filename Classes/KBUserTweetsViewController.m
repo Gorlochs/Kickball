@@ -22,6 +22,9 @@
 	location.text = @"";
     
     cachingKey = [NSString stringWithString:username];
+    
+    screenNameLabel.text = @""; //a dictionary may not have been returned, such as when a user views protected tweets
+    fullName.text = @"";
     if (self.userDictionary) {
         screenNameLabel.text = [self.userDictionary objectForKey:@"screen_name"];
         fullName.text = [self.userDictionary objectForKey:@"name"];
