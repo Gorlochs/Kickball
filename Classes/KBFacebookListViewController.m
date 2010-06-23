@@ -118,7 +118,8 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (newsFeed!=nil) {
 		GraphObject *fbItem = [newsFeed objectAtIndex:indexPath.row];
-		NSString *displayString = [NSString	 stringWithFormat:@"<span class=\"fbBlueText\">%@</span> %@",[(NSDictionary*)[fbItem propertyWithKey:@"from"] objectForKey:@"name"], [fbItem propertyWithKey:@"message"]];
+		NSString *bodyText = [self findSuitableText:fbItem];
+		NSString *displayString = [NSString	 stringWithFormat:@"<span class=\"fbBlueText\">%@</span> %@",[(NSDictionary*)[fbItem propertyWithKey:@"from"] objectForKey:@"name"], bodyText];
 		//
 		heightTester.text = [TTStyledText textFromXHTML:displayString lineBreaks:NO URLs:NO];
 		[heightTester sizeToFit];
@@ -139,6 +140,77 @@
 	
 }
 
+-(NSString*)findSuitableText:(GraphObject*)fbItem {
+	NSString *message = [fbItem propertyWithKey:@"message"];
+	NSString *type = [fbItem propertyWithKey:@"type"];
+	if ([type isEqualToString:@"status"]) {
+		if (message!=nil) {
+			return message;
+		}
+	} else if ([type isEqualToString:@"link"]) {
+		if (message!=nil) {
+			return message;
+		}else {
+			NSString *text = [fbItem propertyWithKey:@"name"];
+			if (text==nil) {
+				text = [fbItem propertyWithKey:@"caption"];
+			}
+			/*
+			NSString *link = [fbItem propertyWithKey:@"link"];
+			NSMutableString *result = [[[NSMutableString alloc] init] autorelease];
+			if (text!=nil) {
+				[result appendString:text];
+				[result appendString:@" "];
+			}
+			[result appendString:link];
+			 */
+			return text;
+		}
+
+	}else if ([type isEqualToString:@"photo"]) {
+		if (message!=nil) {
+			return message;
+		}else {
+			NSString *text = [fbItem propertyWithKey:@"name"];
+			if (text==nil) {
+				text = [fbItem propertyWithKey:@"caption"];
+			}
+			/*
+			NSString *link = [fbItem propertyWithKey:@"link"];
+			NSMutableString *result = [[[NSMutableString alloc] init] autorelease];
+			if (text!=nil) {
+				[result appendString:text];
+				[result appendString:@" "];
+			}
+			[result appendString:link];
+			 */
+			return text;
+		}
+		
+	}else if ([type isEqualToString:@"video"]) {
+		if (message!=nil) {
+			return message;
+		}else {
+			NSString *text = [fbItem propertyWithKey:@"name"];
+			if (text==nil) {
+				text = [fbItem propertyWithKey:@"caption"];
+			}
+			/*
+			NSString *link = [fbItem propertyWithKey:@"link"];
+			NSMutableString *result = [[[NSMutableString alloc] init] autorelease];
+			if (text!=nil) {
+				[result appendString:text];
+				[result appendString:@" "];
+			}
+			[result appendString:link];
+			 */
+			return text;
+		}
+		
+	}
+	return type;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier = @"Cell";
@@ -148,7 +220,10 @@
         cell = [[[KBFacebookNewsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
 	}
 	GraphObject *fbItem = [newsFeed objectAtIndex:indexPath.row];
-	NSString *displayString = [NSString	 stringWithFormat:@"<span class=\"fbBlueText\">%@</span> %@",[(NSDictionary*)[fbItem propertyWithKey:@"from"] objectForKey:@"name"], [fbItem propertyWithKey:@"message"]];
+	NSString *bodyText = [self findSuitableText:fbItem];
+	NSString *displayString = [NSString	 stringWithFormat:@"<span class=\"fbBlueText\">%@</span> %@",[(NSDictionary*)[fbItem propertyWithKey:@"from"] objectForKey:@"name"], bodyText];
+	
+	//NSString *displayString = [NSString	 stringWithFormat:@"<span class=\"fbBlueText\">%@</span> %@",[(NSDictionary*)[fbItem propertyWithKey:@"from"] objectForKey:@"name"], [fbItem propertyWithKey:@"message"]];
 	cell.fbPictureUrl = [(NSDictionary*)[fbItem propertyWithKey:@"from"] objectForKey:@"id"];
 	cell.tweetText.text = [TTStyledText textFromXHTML:displayString lineBreaks:NO URLs:NO];
 	[cell setNumberOfComments:[(NSArray*)[(NSDictionary*)[fbItem propertyWithKey:@"comments"] objectForKey:@"data"] count]];

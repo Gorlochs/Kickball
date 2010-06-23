@@ -10,8 +10,7 @@
 #import "KBFacebookViewController.h"
 #import "Three20/Three20.h"
 
-
-@class KBFacebookLoginView;
+@class KBFacebookLoginView, GraphObject;
 @interface KBFacebookListViewController : KBFacebookViewController{
 	BOOL doingLogin;
 	NSArray *newsFeed;
@@ -21,4 +20,5 @@
 
 
 -(void)refreshMainFeed;
+-(NSString*)findSuitableText:(GraphObject*)fbItem;
 @end
