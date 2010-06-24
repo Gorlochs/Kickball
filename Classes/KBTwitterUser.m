@@ -23,7 +23,6 @@
         fullName = [userDictionary objectForKey:@"name"];
         profileImageUrl = [userDictionary objectForKey:@"profile_image_url"];
         userId = [userDictionary objectForKey:@"id"];
-//        createDate = [[NSDate dateWithTimeIntervalSince1970:[[statusDictionary objectForKey:@"created_at"] doubleValue]] retain];
     }
     return self;
 }

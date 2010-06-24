@@ -7,6 +7,7 @@
 //
 
 #define kMGTwitterDateFormatString @"EEE MMM dd HH:mm:ss ZZZ yyyy"
+#define kMGTwitterSearchDateFormatString @"EEE, d MMM yyyy HH:mm:ss ZZZZZ"
 
 #import "MGTwitterEngineGlobalHeader.h"
 

@@ -8,7 +8,7 @@
 
 
 #import "KBSearchResult.h"
-
+#import "KickballAPI.h"
 
 @implementation KBSearchResult
 
@@ -20,7 +20,11 @@
         screenName = [statusDictionary objectForKey:@"from_user"];
         profileImageUrl = [statusDictionary objectForKey:@"profile_image_url"];
         tweetText = [statusDictionary objectForKey:@"text"];
-        createDate = [[NSDate dateWithTimeIntervalSince1970:[[statusDictionary objectForKey:@"created_at"] doubleValue]] retain];
+        //createDate = [[[[KickballAPI kickballApi] twitterSearchDateFormatter] dateFromString:[statusDictionary objectForKey:@"created_at"]] retain];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"EEE, d MMM yyyy HH:mm:ss ZZZZZ"];
+        createDate = [[dateFormatter dateFromString:[statusDictionary objectForKey:@"created_at"]] retain];
+        [dateFormatter release];        
         tweetId = [statusDictionary objectForKey:@"id"];
         // the nil check doesn't work by itself. I must be missing something
         if ([statusDictionary objectForKey:@"geo"] != nil && ![[statusDictionary objectForKey:@"geo"] isKindOfClass:[NSNull class]]) {

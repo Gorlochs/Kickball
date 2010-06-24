@@ -9,6 +9,7 @@
 #import "KBTwitterSearchViewController.h"
 #import "KBSearchResult.h"
 #import "KBTweetTableCell.h"
+#import "KickballAPI.h"
 
 @implementation KBTwitterSearchViewController
 
@@ -96,7 +97,8 @@
 	cell.userIcon.urlPath = tweet.profileImageUrl;
 	cell.userName.text = tweet.screenName;
 	cell.tweetText.text = tweet.tweetText;
-	[cell setDateLabelWithDate:tweet.createDate];
+	//[cell setDateLabelWithDate:tweet.createDate];
+	cell.dateLabel.text = [[KickballAPI kickballApi] convertDateToTimeUnitString:tweet.createDate];
 	
 	CGSize maximumLabelSize = CGSizeMake(250,60);
 	CGSize expectedLabelSize = [cell.tweetText.text sizeWithFont:cell.tweetText.font 
