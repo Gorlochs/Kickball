@@ -210,6 +210,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([searchResults count] == 0) return; //near escape from certain death!
     [theTableView deselectRowAtIndexPath:indexPath animated:YES];
     [self displayProperProfileView:((FSUser*)[searchResults objectAtIndex:indexPath.row]).userId];
 }
@@ -234,9 +235,9 @@
 }
 
 - (void)dealloc {
-    [searchBar release];
-    [searchResults release];
-    [titleImage release];
+    if (searchBar) [searchBar release];
+    if (searchResults) [searchResults release];
+    if (titleImage) [titleImage release];
     [super dealloc];
 }
 
