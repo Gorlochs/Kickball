@@ -253,13 +253,13 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 }
 
 - (void)dealloc {
-//    [theTableView release];
-    [progressViewController release];
-    [loginViewModal release];
-    [popupView release];
-    [progressBarTimer release];
+    if (theTableView) [theTableView release];
+    if (progressViewController) [progressViewController release];
+    if (loginViewModal) [loginViewModal release];
+    if (popupView) [popupView release];
+    if (progressBarTimer) [progressBarTimer release];
     
-    [refreshHeaderView release];
+    if (refreshHeaderView) [refreshHeaderView release];
     //[footerTabView release];
 //    [optionsTab release];
 //    [facebookTab release];
@@ -267,7 +267,7 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 //    [foursquareTab release];
 //    [signedInUserIcon release];
     
-    [headerNibName release];
+    if (headerNibName) [headerNibName release];
     //[profileController release];
     
 //    [iconImageView release];  // uncommenting this crashes shit. not sure why.

@@ -30,9 +30,9 @@
         profileImageUrl = [[statusDictionary objectForKey:@"user"] objectForKey:@"profile_image_url"];
         tweetText = [statusDictionary objectForKey:@"text"];
         tweetId = [statusDictionary objectForKey:@"id"];
+        
         createDate = [[[[KickballAPI kickballApi] twitterDateFormatter] dateFromString:[statusDictionary objectForKey:@"created_at"]] retain];
         isFavorited = [[statusDictionary objectForKey:@"favorited"] boolValue];
-        //DLog(@"tweet created at: %@", createDate);
     }
     return self;
 }

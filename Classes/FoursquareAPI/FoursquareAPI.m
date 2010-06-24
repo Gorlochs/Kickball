@@ -1514,8 +1514,9 @@ int encode(unsigned s_len, char *src, unsigned d_len, char *dst)
 	if(httpMethod == nil){
 		httpMethod = @"GET";
 	}
-	
+	DLog(@"initwithstring - crash?");
 	NSMutableString *parameterString = [[NSMutableString alloc] initWithString:[FoursquareAPI parameterStringForDictionary:parameters]];
+	DLog(@"done with initwithstring");
 
 	if(httpMethod == @"POST"){
 		//this is a post so do some form encoding

@@ -149,7 +149,7 @@
 
 
 - (void)dealloc {
-    [loginController release];
+    if (loginController) [loginController release];
     [super dealloc];
 }
 

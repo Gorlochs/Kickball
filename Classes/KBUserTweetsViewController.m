@@ -145,11 +145,11 @@
 - (void)dealloc {
     [userDictionary release];
     [username release];
-//    [screenNameLabel release];
-//    [fullName release];
-//    [location release];
-	[iconBgImage release];
-    [userProfileImage release];
+    //    [screenNameLabel release];
+    //    [fullName release];
+    //    [location release];
+    if (iconBgImage) [iconBgImage release];
+    if (userProfileImage)  [userProfileImage release];
     [super dealloc];
 }
 

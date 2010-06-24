@@ -35,7 +35,7 @@
     NSString *searchTerm;
 }
 
-@property (retain, nonatomic) id <KBTwitterManagerDelegate> delegate;
+@property (nonatomic, retain) id <KBTwitterManagerDelegate> delegate;
 @property (nonatomic, retain) XAuthTwitterEngine *twitterEngine;
 @property (nonatomic, retain) NSArray *theSearchResults;
 @property (nonatomic, retain) NSString *searchTerm;

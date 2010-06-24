@@ -145,6 +145,8 @@
 
 
 - (void)dealloc {
+    DLog(@"---------------------------warning, NOT releasing twitterEngine");
+    //[twitterEngine release];
     [super dealloc];
 }
 

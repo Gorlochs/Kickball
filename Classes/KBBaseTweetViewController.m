@@ -173,7 +173,6 @@
         //cell.tweetText.numberOfLines = 0;
 		//cell.tweetText.text = tweet.tweetText;
         cell.tweetText.text = [TTStyledText textWithURLs:tweet.tweetText lineBreaks:NO]; //tweet.tweetText;
-        //[cell setDateLabelWithDate:tweet.createDate];
         [cell setDateLabelWithText:[[KickballAPI kickballApi] convertDateToTimeUnitString:tweet.createDate]];
 		/*
         CGSize maximumLabelSize = CGSizeMake(250, MAX_LABEL_HEIGHT);
@@ -249,9 +248,9 @@
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [tweets release];
-    [cachingKey release];
-    [twitterArray release];
+    if (tweets) [tweets release];
+    if (cachingKey) [cachingKey release];
+//    if (twitterArray) [twitterArray release];
     //[noResultsView release];
 //    [detailViewController release];
 //    [userTweetsController release];
