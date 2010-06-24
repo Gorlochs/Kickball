@@ -10,10 +10,17 @@
 #import "KBFoursquareViewController.h"
 
 
-@interface FeedbackViewController : KBFoursquareViewController {
-
+@interface FeedbackViewController : KBFoursquareViewController <UIPickerViewDelegate, UIPickerViewDataSource, UITextViewDelegate>{
+	IBOutlet UIPickerView *subjectPicker;
+	NSMutableArray *subjects;
+	IBOutlet UILabel *subjectLabel;
+	IBOutlet UIButton *subjectButt;
+	IBOutlet UITextView *content;
 }
 
 - (IBAction) nextOptionView;
+- (IBAction) showPicker;
+- (void) hidePicker;
+-(void)sendFeedback;
 
 @end

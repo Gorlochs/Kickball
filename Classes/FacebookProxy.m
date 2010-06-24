@@ -121,6 +121,7 @@ NSString* const kKeyAccessToken = @"kKeyAccessToken";
 @synthesize _permissionDialog;
 
 @synthesize pictureUrls;
+@synthesize profilePic;
 
 #pragma mark Singleton Methods
 
@@ -237,6 +238,10 @@ static NSDateFormatter* fbEventDetailDate = NULL;
 				[gFacebookProxy release];			
 			gFacebookProxy = [[NSKeyedUnarchiver unarchiveObjectWithData:dataRepresentingSavedObject] retain];
 			gFacebookProxy.pictureUrls = [[NSMutableDictionary alloc] init];
+			if (gFacebookProxy.profilePic==nil) {
+				[gFacebookProxy storeProfilePic];
+			}
+			
 		}
 		else
 		{
@@ -694,6 +699,7 @@ static NSDateFormatter* fbEventDetailDate = NULL;
 		_meGraph = [self newGraph];
 	
 	_me = [_meGraph getObject:@"me"];
+	profilePic = [_meGraph getProfilePhotoForObject:@"me"];
 	NSString* name = [_me name];
 	//	
 	NSArray* metadata = [_meGraph getConnectionTypesForObject:@"me"];
@@ -787,6 +793,12 @@ static NSDateFormatter* fbEventDetailDate = NULL;
 		_meGraph = [self newGraph];
 	}
 	return [_meGraph eventsFeed:@"me"];
+}
+
+-(void)storeProfilePic{
+	GraphAPI *graph = [self newGraph];
+	self.profilePic = [graph getProfilePhotoForObject:@"me"];
+	[graph release];
 }
 
 

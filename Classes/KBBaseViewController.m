@@ -19,7 +19,7 @@
 #import "KBShoutViewController.h"
 #import "ASIFormDataRequest.h"
 #import "KBAccountManager.h"
-
+#import "FacebookProxy.h"
 
 
 #define PROGRESS_BAR_TIMER_LENGTH 30.0
@@ -53,7 +53,7 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
     
     KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
     [appDelegate.pushNotificationUserId addObserver:self forKeyPath:@"pushUserId" options:0 context:nil];
-    
+    [signedInUserIcon setAdjustsImageWhenDisabled:NO];
     if (!self.hideHeader) {
         NSArray *nibViews = nil;
 		if (appDelegate.navControllerType == KBNavControllerTypeFoursquare) {
@@ -87,13 +87,17 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 
 - (void) setTabImages {
     [signedInUserIcon setImage:[[Utilities sharedInstance] getCachedImage:[self getAuthenticatedUser].photo] forState:UIControlStateNormal];
-    switch (footerType) {
+	[signedInUserIcon setEnabled:YES];
+	switch (footerType) {
         case KBFooterTypeProfile:
             break;
         case KBFooterTypeFacebook:
             [foursquareTab setImage:[UIImage imageNamed:@"kbTab04.png"] forState:UIControlStateNormal];
             [twitterTab setImage:[UIImage imageNamed:@"twitTab03.png"] forState:UIControlStateNormal];
             [facebookTab setImage:[UIImage imageNamed:@"fbTab01.png"] forState:UIControlStateNormal];
+			[signedInUserIcon setImage:[FacebookProxy instance].profilePic forState:UIControlStateNormal];
+			[signedInUserIcon setAdjustsImageWhenDisabled:NO];
+			[signedInUserIcon setEnabled:NO];
             break;
         case KBFooterTypeTwitter:
             [foursquareTab setImage:[UIImage imageNamed:@"kbTab03.png"] forState:UIControlStateNormal];

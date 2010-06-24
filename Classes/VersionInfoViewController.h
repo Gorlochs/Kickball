@@ -11,7 +11,7 @@
 
 
 @interface VersionInfoViewController : KBFoursquareViewController {
-
+	IBOutlet UIWebView *webView;
 }
 
 @end

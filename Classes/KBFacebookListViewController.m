@@ -54,7 +54,7 @@
     [super viewDidLoad];
 	doingLogin = NO;
 	newsFeed = nil;
-	[FacebookProxy loadDefaults];
+	//[FacebookProxy loadDefaults];
 	if ([[FacebookProxy instance] isAuthorized]) {
 		//[self startProgressBar:@"Retrieving your tweets..."];
 		//[self showStatuses];
