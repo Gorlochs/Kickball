@@ -20,6 +20,8 @@ static KickballAPI* _kickballApi = nil;
 
 @synthesize photoDateFormatter;
 @synthesize twitterDateFormatter;
+@synthesize twitterSearchDateFormatter;
+@synthesize goodyDateFormatter;
 
 - (NSMutableArray*) parsePhotosFromXML:(NSString*)responseString {
     
@@ -180,7 +182,12 @@ static KickballAPI* _kickballApi = nil;
 }
 
 - (void)release {
+  DLog(@"kickball api released");
     //do nothing
+}
+- (void)dealloc {
+  DLog(@"kickball api dealloc - leaking memory");
+  [super dealloc];
 }
 
 - (id)autorelease {
@@ -218,6 +225,10 @@ static KickballAPI* _kickballApi = nil;
         twitterDateFormatter = [[NSDateFormatter alloc] init];
         [twitterDateFormatter setLocale:locale];
         [twitterDateFormatter setDateFormat:kMGTwitterDateFormatString];
+
+        twitterSearchDateFormatter = [[NSDateFormatter alloc] init];
+        [twitterSearchDateFormatter setLocale:locale];
+        [twitterSearchDateFormatter setDateFormat:kMGTwitterSearchDateFormatString];
         
         [locale release];
 	}

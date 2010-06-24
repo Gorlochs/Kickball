@@ -13,10 +13,13 @@
     NSDateFormatter *goodyDateFormatter;
     NSDateFormatter *photoDateFormatter;
     NSDateFormatter *twitterDateFormatter;
+    NSDateFormatter *twitterSearchDateFormatter;
 }
 
-@property (nonatomic, retain) NSDateFormatter *photoDateFormatter;
-@property (nonatomic, retain) NSDateFormatter *twitterDateFormatter;
+@property (nonatomic, assign) NSDateFormatter *goodyDateFormatter;
+@property (nonatomic, assign) NSDateFormatter *photoDateFormatter;
+@property (nonatomic, assign) NSDateFormatter *twitterDateFormatter;
+@property (nonatomic, assign) NSDateFormatter *twitterSearchDateFormatter;
 
 + (KickballAPI*) kickballApi;
 
