@@ -430,7 +430,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 	[UIView setAnimationDelegate:self];
 	[UIView setAnimationDidStopSelector:@selector(clearOptions)];
 	[UIView setAnimationDuration:0.5f];
-	[optionsNavigationController.view removeFromSuperview];
+  [self.navigationController popViewControllerAnimated:NO];
 	[optionsFrame removeFromSuperview];
 	[optionsLeft removeFromSuperview];
 	[optionsRight removeFromSuperview];
