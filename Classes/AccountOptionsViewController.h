@@ -22,6 +22,7 @@
     IBOutlet UITableViewCell *foursquareCell;
     IBOutlet UITableViewCell *twitterCell;
     IBOutlet UITableViewCell *facebookCell;
+	IBOutlet UITableViewCell *uberCell;
     IBOutlet UIImageView *whyThisImage;
     
     IBOutlet UITextField *foursquareUsername;
@@ -38,6 +39,15 @@
     
     CGFloat animatedDistance;
 	UIButton *fbButton;
+	
+	IBOutlet UIButton *vote1Butt;
+	IBOutlet UIButton *vote2Butt;
+	IBOutlet UIButton *vote3Butt;
+	IBOutlet UIButton *vote4Butt;
+	IBOutlet UIButton *x4SQ;
+	IBOutlet UIButton *xTW;
+	IBOutlet UIButton *xFB;
+
 }
 
 - (IBAction) xAuthAccessTokenRequestButtonTouchUpInside;
@@ -47,5 +57,10 @@
 - (IBAction) postPhotosToFacebook;
 - (IBAction) displayWhatsThis;
 - (IBAction) nextOptionView;
+
+- (IBAction) doVote1;
+- (IBAction) doVote2;
+- (IBAction) doVote3;
+- (IBAction) doVote4;
 
 @end

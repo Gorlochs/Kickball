@@ -430,11 +430,11 @@ void uncaughtExceptionHandler(NSException *exception) {
 	[UIView setAnimationDelegate:self];
 	[UIView setAnimationDidStopSelector:@selector(clearOptions)];
 	[UIView setAnimationDuration:0.5f];
-  [self.navigationController popViewControllerAnimated:NO];
 	[optionsFrame removeFromSuperview];
 	[optionsLeft removeFromSuperview];
 	[optionsRight removeFromSuperview];
 	[optionsHeaderBg removeFromSuperview];
+	[optionsNavigationController.view removeFromSuperview];
 	switch (navControllerType) {
 		case KBNavControllerTypeFoursquare:
 			[flipperView addSubview:navigationController.view];
@@ -449,6 +449,8 @@ void uncaughtExceptionHandler(NSException *exception) {
 			break;
 	}    
 	
+	//[self.navigationController popViewControllerAnimated:NO];
+
     [UIView commitAnimations];
 }
 

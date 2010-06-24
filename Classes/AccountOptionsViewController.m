@@ -13,7 +13,7 @@
 #import "KBAccountManager.h"
 #import "FeedbackViewController.h"
 #import "FacebookProxy.h"
-
+#import "ASIFormDataRequest.h"
 
 @implementation AccountOptionsViewController
 
@@ -47,6 +47,19 @@
 		[fbButton addTarget:[FacebookProxy instance] action:@selector(doAuth) forControlEvents:UIControlEventTouchUpInside];
 	}
     [facebookCell addSubview:fbButton];
+	
+	[vote1Butt setSelected:[[NSUserDefaults standardUserDefaults] boolForKey:@"vote1"]];
+	[vote2Butt setSelected:[[NSUserDefaults standardUserDefaults] boolForKey:@"vote2"]];
+	[vote3Butt setSelected:[[NSUserDefaults standardUserDefaults] boolForKey:@"vote3"]];
+	[vote4Butt setSelected:[[NSUserDefaults standardUserDefaults] boolForKey:@"vote4"]];
+	
+	[x4SQ setEnabled:[[KBAccountManager sharedInstance] usesFoursquare]];
+	[xTW setEnabled:[[KBAccountManager sharedInstance] usesTwitter]];
+	[xFB setEnabled:[[KBAccountManager sharedInstance] usesFacebook]];
+	[x4SQ setHidden:![[KBAccountManager sharedInstance] usesFoursquare]];
+	[xTW setHidden:![[KBAccountManager sharedInstance] usesTwitter]];
+	[xFB setHidden:![[KBAccountManager sharedInstance] usesFacebook]];
+	
 }
 
 #pragma mark -
@@ -212,13 +225,13 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 3;
+    return 1;
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
-        return !isWhatsThisDisplayed ? 229 : 355;
+        return 400; // !isWhatsThisDisplayed ? 229 : 355;
     } else if (indexPath.row == 1) {
         return 211;
     } else {
@@ -228,6 +241,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
+		/*
         if (isWhatsThisDisplayed) {
             CGRect frame = whyThisImage.frame;
             frame.origin = CGPointMake(17, 220);
@@ -237,6 +251,8 @@
             [whatIsThisButton removeFromSuperview];
         }
         return foursquareCell;
+		 */
+		return uberCell;
     } else if (indexPath.row == 1) {
         return twitterCell;
     } else {
@@ -324,6 +340,89 @@
 }
 -(void)pressOptionsRight{
 	[self nextOptionView];
+}
+
+
+- (IBAction) doVote1{
+	BOOL voted = [[NSUserDefaults standardUserDefaults] boolForKey:@"vote1"];
+	if (!voted) {
+		//go ahead and vote
+		ASIFormDataRequest *feedback = [[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://gorlochs.literalshore.com:3000/kickball/votes"]] autorelease];
+		[feedback setRequestMethod:@"POST"];
+		[feedback setPostValue:@"xbox live" forKey:@"nextService"];
+		[feedback setDidFailSelector:@selector(feedbackWentWrong:)];
+		[feedback setDidFinishSelector:@selector(feedbackDidFinish:)];
+		[feedback setTimeOutSeconds:100];
+		[feedback setDelegate:self];
+		[feedback startAsynchronous];
+		//[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"vote1"];
+
+	}
+	//make this one selected
+	[vote1Butt setSelected:YES];
+}
+- (IBAction) doVote2{
+	BOOL voted = [[NSUserDefaults standardUserDefaults] boolForKey:@"vote2"];
+	if (!voted) {
+		//go ahead and vote
+		ASIFormDataRequest *feedback = [[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://gorlochs.literalshore.com:3000/kickball/votes"]] autorelease];
+		[feedback setRequestMethod:@"POST"];
+		[feedback setPostValue:@"linked in" forKey:@"nextService"];
+		[feedback setDidFailSelector:@selector(feedbackWentWrong:)];
+		[feedback setDidFinishSelector:@selector(feedbackDidFinish:)];
+		[feedback setTimeOutSeconds:100];
+		[feedback setDelegate:self];
+		[feedback startAsynchronous];
+		//[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"vote2"];
+	}
+	//make this one selected
+	[vote2Butt setSelected:YES];
+}
+- (IBAction) doVote3{
+	BOOL voted = [[NSUserDefaults standardUserDefaults] boolForKey:@"vote3"];
+	if (!voted) {
+		//go ahead and vote
+		ASIFormDataRequest *feedback = [[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://gorlochs.literalshore.com:3000/kickball/votes"]] autorelease];
+		[feedback setRequestMethod:@"POST"];
+		[feedback setPostValue:@"flickr" forKey:@"nextService"];
+		[feedback setDidFailSelector:@selector(feedbackWentWrong:)];
+		[feedback setDidFinishSelector:@selector(feedbackDidFinish:)];
+		[feedback setTimeOutSeconds:100];
+		[feedback setDelegate:self];
+		[feedback startAsynchronous];
+		//[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"vote3"];
+
+	}
+	//make this one selected
+	[vote3Butt setSelected:YES];
+}
+- (IBAction) doVote4{
+	BOOL voted = [[NSUserDefaults standardUserDefaults] boolForKey:@"vote4"];
+	if (!voted) {
+		//go ahead and vote
+		ASIFormDataRequest *feedback = [[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://gorlochs.literalshore.com:3000/kickball/votes"]] autorelease];
+		[feedback setRequestMethod:@"POST"];
+		[feedback setPostValue:@"gowalla" forKey:@"nextService"];
+		[feedback setDidFailSelector:@selector(feedbackWentWrong:)];
+		[feedback setDidFinishSelector:@selector(feedbackDidFinish:)];
+		[feedback setTimeOutSeconds:100];
+		[feedback setDelegate:self];
+		[feedback startAsynchronous];
+		//[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"vote4"];
+
+	}
+	//make this one selected
+	[vote4Butt setSelected:YES];
+}
+
+- (void) feedbackWentWrong:(ASIHTTPRequest *) request {
+    DLog(@"BOOOOOOOOOOOO!");
+    DLog(@"response msg: %@", request.responseStatusMessage);
+}
+
+- (void) feedbackDidFinish:(ASIHTTPRequest *) request {
+    DLog(@"YAAAAAAAAAAAY!");
+    DLog(@"response msg: %@", request.responseStatusMessage);
 }
 
 #pragma mark -

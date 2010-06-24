@@ -15,6 +15,7 @@
 #import "FriendPriorityOptionViewController.h"
 #import "FeedbackViewController.h"
 #import "CheckinOptionsViewController.h"
+#import "KickballAppDelegate.h"
 
 
 @implementation OptionsViewController
@@ -27,7 +28,7 @@
     self.hideFooter = YES;
     self.hideRefresh = YES;
     
-    cellArray = [[NSArray alloc] initWithObjects:defaultCheckinCell, friendsListPriorityCell, pushNotificationCell, quickCheckInCell, accountInformationCell, feedbackCell, versionInformationsCell, nil];
+    cellArray = [[NSArray alloc] initWithObjects:defaultCheckinCell, accountInformationCell, pushNotificationCell, quickCheckInCell,friendsListPriorityCell, feedbackCell, versionInformationsCell, nil];
     
     [super viewDidLoad];
  
