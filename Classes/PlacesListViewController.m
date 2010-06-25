@@ -211,6 +211,8 @@
     PlacesListTableViewCellv2 *cell = (PlacesListTableViewCellv2*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[PlacesListTableViewCellv2 alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        cell.roundedTopCorners.hidden = YES;
+        cell.roundedBottomCorners.hidden = YES;
     }
     
     cell.imageView.image = nil;
