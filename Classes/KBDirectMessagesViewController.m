@@ -41,9 +41,7 @@
 
 - (void)directMessagesReceived:(NSArray *)messages {
 	if ([messages count] > 0 || isInitialLoad) {
-		//twitterArray = messages;//[messages retain];
-        twitterArray = messages;//[messages retain];
-		//DLog(@"status retrieved: %@", statuses);
+        twitterArray = [messages retain];
 		NSMutableArray *tempTweetArray = [[NSMutableArray alloc] initWithCapacity:[twitterArray count]];
 		for (NSDictionary *dict in twitterArray) {
 			KBDirectMessage *message = [[KBDirectMessage alloc] initWithDictionary:dict];
@@ -63,18 +61,15 @@
 			tweets = nil;
 			tweets = [[self addAndTrimArray:tempTweetArray] retain];
 		}
-        NSLog(@"reload table");
-		//[theTableView reloadData];
+		[theTableView reloadData];
 		[tempTweetArray release];
-        NSLog(@"done");
 	} else {
         requeryWhenTableGetsToBottom = NO;
     }
     [self stopProgressBar];
-//    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self dataSourceDidFinishLoadingNewData];
     [[KBTwitterManager twitterManager] cacheStatusArray:tweets withKey:cachingKey];
-        NSLog(@"done done");
 }
 
 - (void) executeQuery:(int)pageNumber {
