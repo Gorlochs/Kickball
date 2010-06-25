@@ -233,8 +233,6 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
     [FlurryAPI logEvent:@"View User Profile from Top Nav Icon"];
     UserProfileViewController *pvc = [[UserProfileViewController alloc] initWithNibName:@"UserProfileView_v2" bundle:nil];
     pvc.userId = [self getAuthenticatedUser].userId;
-    KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
-    appDelegate.navControllerType = KBNavControllerTypeFoursquare;
     [self.navigationController pushViewController:pvc animated:YES];
     [pvc release];
 }

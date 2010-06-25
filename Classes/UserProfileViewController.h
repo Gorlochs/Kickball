@@ -17,6 +17,12 @@
 	
 	IBOutlet UITableViewCell *friendToggleCell;
 	IBOutlet UISegmentedControl *friendToggle;
+    
+    IBOutlet UIButton *timelineButton;
+    IBOutlet UIButton *mentionsButton;
+    IBOutlet UIButton *searchButton;
+    IBOutlet UIButton *directMessageButton;
+
 }
 
 - (IBAction) displayStuff;
