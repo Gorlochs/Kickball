@@ -97,7 +97,7 @@
 }
 
 - (void)dealloc {
-    [tweets release];
+    //[tweets release];
     if (orderedTweets) [orderedTweets release];
     if (sortedKeys) [sortedKeys release];
     [super dealloc];

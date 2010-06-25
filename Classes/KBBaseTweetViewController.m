@@ -22,6 +22,7 @@
     requeryWhenTableGetsToBottom = YES;
     [super viewDidLoad];
 	twitterManager = [KBTwitterManager twitterManager];
+    DLog(@"if you get BAD_EXC_ACCESS here, memory is corrupt");
 	twitterManager.delegate = self;
 	
 	// TODO: find a better way to do this
@@ -252,9 +253,10 @@
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    if (tweets) [tweets release];
+    //if (tweets) 
+    [tweets release];
     if (cachingKey) [cachingKey release];
-    if (twitterArray) [twitterArray release];
+    //if (twitterArray) [twitterArray release]; //bad!
     //[noResultsView release];
 //    [detailViewController release];
 //    [userTweetsController release];

@@ -23,9 +23,8 @@
     noResultsView.hidden = NO;
     
     if ([[KBTwitterManager twitterManager] theSearchResults]) {
-        //if (tweets) [tweets release];
-        tweets = [[NSMutableArray alloc] initWithArray:[[KBTwitterManager twitterManager] theSearchResults]];
-
+        //if (tweets) [tweets release]; //release and die
+        //tweets = [[NSMutableArray alloc] initWithArray:[[KBTwitterManager twitterManager] theSearchResults]];
         searchTerms = [KBTwitterManager twitterManager].searchTerm;
         if (theTableView) [theTableView reloadData];
         noResultsView.hidden = YES;
@@ -101,7 +100,6 @@
 	cell.userIcon.urlPath = tweet.profileImageUrl;
 	cell.userName.text = tweet.screenName;
 	cell.tweetText.text = tweet.tweetText;
-	//[cell setDateLabelWithDate:tweet.createDate];
 	cell.dateLabel.text = [[KickballAPI kickballApi] convertDateToTimeUnitString:tweet.createDate];
 	
 	CGSize maximumLabelSize = CGSizeMake(250,60);

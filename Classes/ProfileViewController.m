@@ -203,7 +203,7 @@
     [super didReceiveMemoryWarning];
 	
 	// Release any cached data, images, etc that aren't in use.
-    theTableView = nil;
+    //theTableView = nil;
     
     name = nil;
     lastCheckinAddress = nil;

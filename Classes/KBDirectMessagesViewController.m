@@ -29,7 +29,7 @@
 
 - (void) showStatuses {
     NSNumber *startAtId = [NSNumber numberWithInt:0];
-    if (tweets) [tweets release];
+    //bad! if (tweets) [tweets release];
     tweets = [[NSMutableArray alloc] initWithArray:[[KBTwitterManager twitterManager] retrieveCachedStatusArrayWithKey:cachingKey]];
     if (tweets != nil && [tweets count] > 0) {
         startAtId = ((KBTweet*)[tweets objectAtIndex:0]).tweetId;
@@ -40,10 +40,9 @@
 }
 
 - (void)directMessagesReceived:(NSArray *)messages {
-    DLog("direct messages array: %@", messages);
-    DLog("direct messages array count: %d", [messages count]);
 	if ([messages count] > 0 || isInitialLoad) {
-		twitterArray = [messages retain];
+		//twitterArray = messages;//[messages retain];
+        twitterArray = messages;//[messages retain];
 		//DLog(@"status retrieved: %@", statuses);
 		NSMutableArray *tempTweetArray = [[NSMutableArray alloc] initWithCapacity:[twitterArray count]];
 		for (NSDictionary *dict in twitterArray) {
@@ -64,15 +63,18 @@
 			tweets = nil;
 			tweets = [[self addAndTrimArray:tempTweetArray] retain];
 		}
+        NSLog(@"reload table");
+		//[theTableView reloadData];
 		[tempTweetArray release];
-		[theTableView reloadData];
+        NSLog(@"done");
 	} else {
         requeryWhenTableGetsToBottom = NO;
     }
     [self stopProgressBar];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self dataSourceDidFinishLoadingNewData];
     [[KBTwitterManager twitterManager] cacheStatusArray:tweets withKey:cachingKey];
+        NSLog(@"done done");
 }
 
 - (void) executeQuery:(int)pageNumber {
@@ -83,6 +85,15 @@
 - (void) refreshTable {
     [self showStatuses];
 }
+
+- (void)requestSucceeded:(NSString *)connectionIdentifier {
+	DLog(@"Twitter DM request succeeded: %@", connectionIdentifier);
+}
+
+- (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error {
+	DLog(@"Twitter DM request failed: %@ with error:%@", connectionIdentifier, error);
+}
+
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.

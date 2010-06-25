@@ -54,7 +54,7 @@ static KBStats* _stats = nil;
 	@synchronized([KBStats class])
 	{
 		if (!_stats)
-			[[self alloc] init];
+			[[[self alloc] init] autorelease];
         
 		return _stats;
 	}

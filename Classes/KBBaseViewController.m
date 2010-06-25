@@ -158,7 +158,6 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 - (void) viewDidUnload {
     KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
     [appDelegate.pushNotificationUserId removeObserver:self forKeyPath:@"pushUserId"];
-	refreshHeaderView=nil;
     [super viewDidUnload];
 }
 
@@ -253,11 +252,10 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 }
 
 - (void)dealloc {
-    //if (theTableView) [theTableView release];
+    [theTableView release];
     if (progressViewController) [progressViewController release];
-    if (loginViewModal) [loginViewModal release];
+    [loginViewModal release];
     if (popupView) [popupView release];
-    if (progressBarTimer) [progressBarTimer release];
     
     if (refreshHeaderView) [refreshHeaderView release];
     //[footerTabView release];
@@ -267,7 +265,6 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 //    [foursquareTab release];
 //    [signedInUserIcon release];
     
-    if (headerNibName) [headerNibName release];
     //[profileController release];
     
 //    [iconImageView release];  // uncommenting this crashes shit. not sure why.
@@ -292,9 +289,8 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
     if (textToDisplay == nil) {
         textToDisplay = @"Processing...";
     }
-	
+	if (progressViewController) [progressViewController release];
     progressViewController = [[ProgressViewController alloc] initWithNibName:@"ProgressView" bundle:nil];
-    [self.view addSubview:progressViewController.view];
 	
 	CGRect frame = progressViewController.view.frame;
 	frame.origin.y = frame.origin.y + 50;
@@ -314,6 +310,7 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
     progressViewController.activityLabel.text = textToDisplay;
     [progressViewController.activityLabel setShadowColor:[UIColor whiteColor]];
     [progressViewController.activityLabel setShadowOffset:CGSizeMake(1, 1)];
+    [self.view addSubview:progressViewController.view];
     
     if (shouldSetTimer) {
         progressBarTimer = [NSTimer scheduledTimerWithTimeInterval:PROGRESS_BAR_TIMER_LENGTH target:self selector:@selector(stopProgressBarAndDisplayErrorMessage:) userInfo:nil repeats:NO];        
@@ -357,6 +354,7 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 - (void) displayPopupMessage:(KBMessage*)message {
     
     [self stopProgressBar];
+    if (popupView) [popupView release];
     popupView = [[PopupMessageView alloc] initWithNibName:@"PopupMessageView" bundle:nil];
     popupView.message = message;
     popupView.view.alpha = 0;
@@ -380,6 +378,7 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 - (void) displayPopupMessageForLogin:(KBMessage*)message {
     
     [self stopProgressBar];
+    if (popupView) [popupView release];
     popupView = [[PopupMessageView alloc] initWithNibName:@"PopupMessageView" bundle:nil];
     popupView.message = message;
     popupView.view.alpha = 0;

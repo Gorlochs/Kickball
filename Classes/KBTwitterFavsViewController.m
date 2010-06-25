@@ -67,7 +67,7 @@
 			tweets = [[NSMutableArray alloc] initWithArray:tempTweetArray];
 		} else {
 			[tempTweetArray addObjectsFromArray:tweets];
-			[tweets release];
+//			[tweets release]; //BAD!
 			tweets = nil;
 			tweets = [[self addAndTrimArray:tempTweetArray] retain];
 		}

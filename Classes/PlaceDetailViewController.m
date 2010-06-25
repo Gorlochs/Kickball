@@ -557,7 +557,7 @@
     badgeImage = nil;
     smallMapView = nil;
     
-    theTableView = nil;
+    //theTableView = nil;
     checkinCell = nil;
     giftCell = nil;
     mayorMapCell = nil;

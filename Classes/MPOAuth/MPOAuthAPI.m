@@ -239,6 +239,7 @@ NSString *fsPassword			= nil;
 		[tempMute addObject:[[MPURLRequestParameter alloc] initWithName:@"fs_username" andValue:fsUsername]];
 		[tempMute addObject:[[MPURLRequestParameter alloc] initWithName:@"fs_password" andValue:fsPassword]];
 	} else {
+        [tempMute release];
 		tempMute = nil;
 	}
 	

@@ -85,7 +85,6 @@ typedef enum{
     IBOutlet UIButton *foursquareTab;
     IBOutlet UIButton *signedInUserIcon;
     KBFooterType footerType;
-    NSString *headerNibName;
     
     id headerView;
 }

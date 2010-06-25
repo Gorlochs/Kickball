@@ -27,9 +27,10 @@
         userIcon.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
         [self addSubview:userIcon];
         
-        iconBgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellIconBorder.png"]];
+        UIImageView *iconBgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellIconBorder.png"]];
         iconBgImage.frame = CGRectMake(6, 10, 54, 54);
         [self addSubview:iconBgImage];
+        [iconBgImage release];
         
         userName = [[UILabel alloc] initWithFrame:CGRectMake(66, 5, 150, 20)];
         userName.textColor = [UIColor colorWithRed:25.0/255.0 green:144.0/255.0 blue:219.0/255.0 alpha:1.0];
@@ -58,22 +59,24 @@
         //tweetText.shadowOffset = CGSizeMake(1.0, 1.0);
         [self addSubview:tweetText];
         
-        topLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderTop.png"]];
+        UIImageView *topLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderTop.png"]];
         topLineImage.frame = CGRectMake(0, 0, self.frame.size.width, 1);
         [self addSubview:topLineImage];
+        [topLineImage release];
         
-        bottomLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderBottom.png"]];
+        UIImageView *bottomLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderBottom.png"]];
         bottomLineImage.frame = CGRectMake(0, 1, self.frame.size.width, 1);
         [self addSubview:bottomLineImage];
+        [bottomLineImage release];
     }
     return self;
 }
 
 - (void) setDateLabelWithDate:(NSDate*)theDate {
-    //DLog(@"label date: %@", theDate);
-	NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
+	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setDateFormat:TWITTER_DISPLAY_DATE_FORMAT];
     dateLabel.text = [dateFormatter stringFromDate:theDate];
+    [dateFormatter release];
 }
 
 - (void) setDateLabelWithText:(NSString*)theDate {
@@ -92,10 +95,6 @@
     [userName release];
     [tweetText release];
     [dateLabel release];
-    
-    [topLineImage release];
-    [bottomLineImage release];
-    [iconBgImage release];
     [super dealloc];
 }
 

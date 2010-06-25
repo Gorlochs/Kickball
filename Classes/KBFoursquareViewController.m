@@ -153,7 +153,6 @@
 }
 
 - (void)dealloc {
-	if (fsLoginView) [fsLoginView release];
 //    [friendButton release];
 //    [placesButton release];
 //    [centerHeaderButton release];

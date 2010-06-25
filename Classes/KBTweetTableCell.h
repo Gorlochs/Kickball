@@ -13,14 +13,10 @@
 
 @interface KBTweetTableCell : UITableViewCell {
     TTImageView *userIcon;
-    
     UILabel *userName;
     IFTweetLabel *tweetText;
     UILabel *dateLabel;
     
-    UIImageView *topLineImage;
-    UIImageView *bottomLineImage;
-    UIImageView *iconBgImage;
 }
 
 @property (nonatomic, retain) TTImageView *userIcon;

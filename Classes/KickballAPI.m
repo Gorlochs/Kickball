@@ -91,7 +91,7 @@ static KickballAPI* _kickballApi = nil;
 	@synchronized([KickballAPI class])
 	{
 		if (!_kickballApi)
-			[[self alloc] init];
+			[[[self alloc] init] autorelease];
         
 		return _kickballApi;
 	}
