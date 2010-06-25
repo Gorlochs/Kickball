@@ -61,7 +61,9 @@
 		}
 		[tempTweetArray release];
 		[theTableView reloadData];
-	}
+	} else {
+        requeryWhenTableGetsToBottom = NO;
+    }
     [self stopProgressBar];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 	[self dataSourceDidFinishLoadingNewData];

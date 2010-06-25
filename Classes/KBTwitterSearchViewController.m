@@ -77,7 +77,9 @@
 		} else {
 			noResultsView.hidden = NO;
 		}
-	}
+	} else {
+        requeryWhenTableGetsToBottom = NO;
+    }
     [self stopProgressBar];
     [self dataSourceDidFinishLoadingNewData];
 }

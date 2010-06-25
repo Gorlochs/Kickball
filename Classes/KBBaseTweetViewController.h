@@ -26,6 +26,9 @@
     NSArray *twitterArray;
     IBOutlet UIView *noResultsView;
 	KBTwitterManager *twitterManager;
+    
+    BOOL requeryWhenTableGetsToBottom;
+    
 //    KBTwitterDetailViewController *detailViewController;
 //    KBUserTweetsViewController *userTweetsController;
 //    KBTwitterSearchViewController *searchController;

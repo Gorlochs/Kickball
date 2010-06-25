@@ -29,22 +29,11 @@
 }
 
 - (void)viewDidLoad {
-    
-	self.hideHeader = YES;
-    self.hideFooter = YES;
     [super viewDidLoad];
 	[webView setDelegate:self];
 	NSURL *url = [NSURL URLWithString:urlString];
 	NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
-	
-	if (twitterUrlString) {
-        // this is for the mobile geo twitter page. it really needs to be oauth'd
-		//MGTwitterHTTPURLConnection *conn = [[MGTwitterHTTPURLConnection alloc] initWithRequest:requestObj delegate:self requestType:nil responseType:nil];
-	} else {
-		
-		//Load the request in the UIWebView.
-		[webView loadRequest:requestObj];
-	}
+    [webView loadRequest:requestObj];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{

@@ -19,6 +19,7 @@
 
 - (void)viewDidLoad {
     pageNum = 0;
+    requeryWhenTableGetsToBottom = YES;
     [super viewDidLoad];
 	twitterManager = [KBTwitterManager twitterManager];
 	twitterManager.delegate = self;
@@ -209,6 +210,13 @@
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (indexPath.row == [tweets count] - 1) {
+        if (requeryWhenTableGetsToBottom) {
+            [self executeQuery:++pageNum];
+        } else {
+            DLog("********************* REACHED NO MORE RESULTS!!!!! **********************");
+        }
+	}
 }
 
 - (void) viewUserProfile:(NSString*)userName {
