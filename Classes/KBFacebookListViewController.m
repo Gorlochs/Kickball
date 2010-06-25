@@ -13,6 +13,7 @@
 #import "FacebookProxy.h"
 #import "GraphObject.h"
 #import "KickballAPI.h"
+#import "GraphAPI.h"
 
 @interface KBFacebookStyleSheet : TTDefaultStyleSheet
 @end
@@ -54,6 +55,8 @@
     [super viewDidLoad];
 	doingLogin = NO;
 	newsFeed = nil;
+	nextPageURL = [[NSString alloc] init];
+	requeryWhenTableGetsToBottom = YES;
 	//[FacebookProxy loadDefaults];
 	if ([[FacebookProxy instance] isAuthorized]) {
 		//[self startProgressBar:@"Retrieving your tweets..."];
@@ -79,14 +82,48 @@
 	[newsFeed release];
 	newsFeed = nil;
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	newsFeed = [[FacebookProxy instance] refreshHome];
+	GraphAPI *graph = [[FacebookProxy instance] newGraph];
+	newsFeed = [graph newsFeed:@"me"];
 	[newsFeed retain];
+	[nextPageURL release];
+	nextPageURL = nil;
+	nextPageURL = graph._pagingNext;
+	[nextPageURL retain];
+	[graph release];
 	[theTableView reloadData];
 	[self performSelectorOnMainThread:@selector(stopProgressBar) withObject:nil waitUntilDone:NO];
 	[self dataSourceDidFinishLoadingNewData];
 	[pool release];
+}
 
-
+-(void)concatenateMore:(NSString*)urlString{
+	if (urlString==nil) {
+		return;
+	}
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	GraphAPI *graph = [[FacebookProxy instance] newGraph];
+	NSArray *moreNews = [graph nextPage:urlString];
+	if (moreNews!=nil) {
+		[nextPageURL release];
+		nextPageURL = nil;
+		nextPageURL = graph._pagingNext;
+		[nextPageURL retain];
+		NSMutableArray * fullBoat = [[NSMutableArray alloc] init];
+		[fullBoat addObjectsFromArray:newsFeed];
+		[fullBoat addObjectsFromArray:moreNews];
+		[newsFeed release];
+		newsFeed = nil;
+		newsFeed = fullBoat;
+		[newsFeed retain];
+		[fullBoat release];
+		fullBoat = nil;
+		[theTableView reloadData];
+		[self performSelectorOnMainThread:@selector(stopProgressBar) withObject:nil waitUntilDone:NO];
+		[self dataSourceDidFinishLoadingNewData];
+	}
+	[graph release];
+	[pool release];
+	
 }
 
 - (void) refreshTable {
@@ -247,6 +284,20 @@
     } else {
         //[self executeQuery:++pageNum];
     }
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (indexPath.row == [newsFeed count] - 1) {
+        if (requeryWhenTableGetsToBottom) {
+            //[self executeQuery:++pageNum];
+			[self startProgressBar:@"Retrieving more..."];
+
+			[NSThread detachNewThreadSelector:@selector(concatenateMore:) toTarget:self withObject:nextPageURL];
+			
+        } else {
+            DLog("********************* REACHED NO MORE RESULTS!!!!! **********************");
+        }
+	}
 }
 
 //- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {

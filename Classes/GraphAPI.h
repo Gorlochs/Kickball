@@ -11,6 +11,7 @@
 	
 	NSData* _responseData;
 	BOOL _isSynchronous;
+	NSString *_pagingNext;
 }
 
 @property (nonatomic, retain) NSString* _accessToken;
@@ -18,6 +19,8 @@
 @property (nonatomic, retain) GraphDelegate* _asyncronousDelegate;
 @property (nonatomic, retain) NSData* _responseData;
 @property (nonatomic, assign) BOOL _isSynchronous;
+@property (nonatomic, retain) NSString *_pagingNext;
+
 
 -(id)initWithAccessToken:(NSString*)access_token;
 
@@ -59,6 +62,7 @@
 //scott's KB additions
 -(NSArray*)newsFeed:(NSString*)user_id;
 -(NSArray*)eventsFeed:(NSString*)user_id;
+-(NSArray*)nextPage:(NSString*)pageURL;
 @end
 
 // Graph API Argument Keys

@@ -15,10 +15,14 @@
 	BOOL doingLogin;
 	NSArray *newsFeed;
 	TTStyledTextLabel *heightTester;
+	NSString *nextPageURL;
+	BOOL requeryWhenTableGetsToBottom;
 
 }
 
 
 -(void)refreshMainFeed;
+//-(void)concatenateMore;
 -(NSString*)findSuitableText:(GraphObject*)fbItem;
+-(void)concatenateMore:(NSString*)urlString;
 @end

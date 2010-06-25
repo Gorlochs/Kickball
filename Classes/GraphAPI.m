@@ -64,6 +64,9 @@ NSString* const kConnectionAlbums = @"albums";
 -(NSData*)makeSynchronousRequest:(NSString*)path args:(NSMutableDictionary*)request_args verb:(NSString*)verb;
 -(NSData*)makeAsynchronousRequest:(NSString*)path args:(NSMutableDictionary*)request_args verb:(NSString*)verb;
 
+-(NSData*)makeSynchronousRest:(NSString*)path args:(NSMutableDictionary*)request_args verb:(NSString*)verb;
+-(NSData*)makeSynchronousRequest:(NSString*)fullpath;
+
 -(NSString*)encodeParams:(NSDictionary*)request_args;
 -(NSData*)generatePostBody:(NSDictionary*)request_args;
 -(NSArray*)graphObjectArrayFromJSON:(NSString*)jsonString;
@@ -77,6 +80,7 @@ NSString* const kConnectionAlbums = @"albums";
 @synthesize _asyncronousDelegate;
 @synthesize _responseData;
 @synthesize _isSynchronous;
+@synthesize _pagingNext;
 
 #pragma mark Initialization
 
@@ -104,6 +108,7 @@ NSString* const kConnectionAlbums = @"albums";
 
 -(void)dealloc
 {
+	[_pagingNext release];
 	[_accessToken release];
 	[_connections release];
 	[_asyncronousDelegate release];
@@ -220,6 +225,14 @@ NSString* const kConnectionAlbums = @"albums";
 	[r_string release];
 	return connections;
 }
+-(NSArray*)nextPage:(NSString*)pageURL
+{	
+	NSData* response = [self makeSynchronousRequest:pageURL];
+	NSString* r_string =[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
+	NSArray* connections = [self graphObjectArrayFromJSON:r_string];
+	[r_string release];
+	return connections;
+}
 
 -(NSArray*)eventsFeed:(NSString*)user_id
 {	
@@ -234,9 +247,9 @@ NSString* const kConnectionAlbums = @"albums";
 	NSData* responseData = nil;
 	NSString* r_string = nil;
 	NSString* method = @"events.get";
-	NSDictionary *args = nil;
+	NSMutableDictionary *args = nil;
 	
-	args= [NSDictionary dictionaryWithObjectsAndKeys:@"unsure",@"rsvp_status",@"XML",@"format",self._accessToken,kArgumentKeyAccessToken,nil];
+	args= [NSMutableDictionary dictionaryWithObjectsAndKeys:@"unsure",@"rsvp_status",@"XML",@"format",self._accessToken,kArgumentKeyAccessToken,nil];
 	responseData = [self makeSynchronousRest:method args:args verb:kRequestVerbGet];
 	r_string = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
 	FBXMLHandler* unsure_handler = [[[FBXMLHandler alloc] init] autorelease];
@@ -250,7 +263,7 @@ NSString* const kConnectionAlbums = @"albums";
 	
 	[r_string release];
 	
-	args= [NSDictionary dictionaryWithObjectsAndKeys:@"attending",@"rsvp_status",@"XML",@"format",self._accessToken,kArgumentKeyAccessToken,nil];
+	args= [NSMutableDictionary dictionaryWithObjectsAndKeys:@"attending",@"rsvp_status",@"XML",@"format",self._accessToken,kArgumentKeyAccessToken,nil];
 	responseData = [self makeSynchronousRest:method args:args verb:kRequestVerbGet];
 	r_string = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
 	FBXMLHandler* attending_handler = [[[FBXMLHandler alloc] init] autorelease];
@@ -265,7 +278,7 @@ NSString* const kConnectionAlbums = @"albums";
 	returnArray = [returnArray arrayByAddingObjectsFromArray:attending_handler.rootObject];
 	[r_string release];
 
-	args= [NSDictionary dictionaryWithObjectsAndKeys:@"declined",@"rsvp_status",@"XML",@"format",self._accessToken,kArgumentKeyAccessToken,nil];
+	args= [NSMutableDictionary dictionaryWithObjectsAndKeys:@"declined",@"rsvp_status",@"XML",@"format",self._accessToken,kArgumentKeyAccessToken,nil];
 	responseData = [self makeSynchronousRest:method args:args verb:kRequestVerbGet];
 	r_string = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
 	FBXMLHandler* declined_handler = [[[FBXMLHandler alloc] init] autorelease];
@@ -279,7 +292,7 @@ NSString* const kConnectionAlbums = @"albums";
 	returnArray = [returnArray arrayByAddingObjectsFromArray:declined_handler.rootObject];
 	[r_string release];
 
-	args= [NSDictionary dictionaryWithObjectsAndKeys:@"not_replied",@"rsvp_status",@"XML",@"format",self._accessToken,kArgumentKeyAccessToken,nil];
+	args= [NSMutableDictionary dictionaryWithObjectsAndKeys:@"not_replied",@"rsvp_status",@"XML",@"format",self._accessToken,kArgumentKeyAccessToken,nil];
 	responseData = [self makeSynchronousRest:method args:args verb:kRequestVerbGet];
 	r_string = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
 	FBXMLHandler* not_replied_handler = [[[FBXMLHandler alloc] init] autorelease];
@@ -294,7 +307,7 @@ NSString* const kConnectionAlbums = @"albums";
 	[r_string release];
 	
 	
-	GraphObject *some = nil;
+	//GraphObject *some = nil;
 	return returnArray;
 }
 
@@ -539,6 +552,26 @@ NSString* const kConnectionAlbums = @"albums";
 	return self._responseData;
 }
 
+-(NSData*)makeSynchronousRequest:(NSString*)fullpath{
+	NSMutableURLRequest  *r_url = [NSURLRequest requestWithURL:[NSURL URLWithString:fullpath]
+							 cachePolicy:NSURLRequestUseProtocolCachePolicy
+						 timeoutInterval:60.0];
+	NSURLResponse* response;
+	NSError* error;
+	
+	// synchronous call
+	self._responseData = [NSURLConnection sendSynchronousRequest:r_url returningResponse:&response error:&error];
+	if ( nil == self._responseData )
+	{
+		NSLog(@"Connection failed!\n URL = %@\n Error - %@ %@",
+			  fullpath,
+			  [error localizedDescription],						
+			  [[error userInfo] objectForKey:@"NSUnderlyingError"]);
+	}
+	
+	return self._responseData;
+}
+
 -(NSData*)makeSynchronousRest:(NSString*)path args:(NSMutableDictionary*)request_args verb:(NSString*)verb
 {
 	// if the verb isn't get or post, send it as a post argument
@@ -698,6 +731,11 @@ NSString* const kConnectionAlbums = @"albums";
 				[connections addObject:i_obj];
 				[i_obj release];				
 			}
+			NSDictionary *paging = [r_obj._properties objectForKey:@"paging"];
+			if (paging!=nil) {
+				_pagingNext = [[NSString alloc] initWithString:[paging objectForKey:@"next"]];
+			}
+			
 		}
 	}
 	@catch (id exception) 
