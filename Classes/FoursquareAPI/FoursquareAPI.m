@@ -114,6 +114,8 @@ static FoursquareAPI *sharedInstance = nil;
     } else {
 		return NO;
 	}
+	
+	
 //	
 //	NSString *accessTokenSecret = [self.oauthAPI findValueFromKeychainUsingName:@"oauth_token_access_secret"];
 //    //DLog(@"****** accessTokenSecret: %@", accessTokenSecret);
@@ -122,6 +124,20 @@ static FoursquareAPI *sharedInstance = nil;
 //	} else return NO;
 }
 
+- (void)logout{
+	NSString *user = [[NSUserDefaults standardUserDefaults] objectForKey:@"FSUsername"];
+	
+	if (user!=nil) {
+		[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"FSUsername"];
+		NSError *error = nil;
+		[SFHFKeychainUtils deleteItemForUsername:self.userName andServiceName:@"Kickball" error:&error];
+		[self.passWord release];
+		[self.userName release];
+		self.passWord = nil;
+		self.userName = nil;
+		
+	}
+}
 
 - (void)getVenuesNearLatitude: (NSString *)geolat andLongitude:(NSString *) geolong withTarget:(id)inTarget andAction:(SEL)inAction{
 //	NSMutableArray * params = [[NSMutableArray alloc] initWithCapacity:1];

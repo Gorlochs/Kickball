@@ -47,6 +47,7 @@
 	IBOutlet UIButton *x4SQ;
 	IBOutlet UIButton *xTW;
 	IBOutlet UIButton *xFB;
+	IBOutlet UIButton *yFB;
 
 }
 
@@ -62,5 +63,11 @@
 - (IBAction) doVote2;
 - (IBAction) doVote3;
 - (IBAction) doVote4;
+
+- (IBAction) logout4SQ;
+- (IBAction) logoutFB;
+- (IBAction) logoutTW;
+
+- (IBAction) loginFB;
 
 @end

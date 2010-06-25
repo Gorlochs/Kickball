@@ -64,8 +64,8 @@
 }
 
 - (void)sessionDidLogout:(FBSession*)session {
-    [[KBAccountManager sharedInstance] setUsesFacebook:NO];
-	[self hideAppropriateTabs];
+    //[[KBAccountManager sharedInstance] setUsesFacebook:NO];
+	//[self hideAppropriateTabs];
 }
 
 #pragma mark -

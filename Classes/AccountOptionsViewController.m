@@ -59,32 +59,48 @@
 	[x4SQ setHidden:![[KBAccountManager sharedInstance] usesFoursquare]];
 	[xTW setHidden:![[KBAccountManager sharedInstance] usesTwitter]];
 	[xFB setHidden:![[KBAccountManager sharedInstance] usesFacebook]];
-	
+	[yFB setEnabled:![[KBAccountManager sharedInstance] usesFacebook]];
+	[yFB setHidden:[[KBAccountManager sharedInstance] usesFacebook]];
+
 }
 
 #pragma mark -
 #pragma mark Facebook delegate methods
 
 -(void)facebookLoggedIn{
+	/* old
 	[fbButton setImage:[UIImage imageNamed:@"logout.png"] forState:UIControlStateNormal];
 	[fbButton setFrame:CGRectMake(facebookCell.frame.size.width/2 - 90/2, 50, 90, 31)];
 	[fbButton removeTarget:[FacebookProxy instance] action:@selector(doAuth) forControlEvents:UIControlEventTouchUpInside];
 	[fbButton addTarget:[FacebookProxy instance] action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
 	[[KBAccountManager sharedInstance] setUsesFacebook:YES];
+	 */
+	[xFB setEnabled:YES];
+	[xFB setHidden:NO];
+	[yFB setEnabled:NO];
+	[yFB setHidden:YES];
+	
 }
 -(void)facebookLoggedOut{
+	/*old
 	[fbButton setImage:[UIImage imageNamed:@"login2.png"] forState:UIControlStateNormal];
 	[fbButton setFrame:CGRectMake(facebookCell.frame.size.width/2 - 176/2, 50, 176, 31)];
 	[fbButton removeTarget:[FacebookProxy instance] action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
 	[fbButton addTarget:[FacebookProxy instance] action:@selector(doAuth) forControlEvents:UIControlEventTouchUpInside];
 	[[KBAccountManager sharedInstance] setUsesFacebook:NO];
+	 */
+	[xFB setEnabled:NO];
+	[xFB setHidden:YES];
+	[yFB setEnabled:YES];
+	[yFB setHidden:NO];
+	
 }
 - (void)session:(FBSession*)session didLogin:(FBUID)uid {
-    [[KBAccountManager sharedInstance] setUsesFacebook:YES];
+    //[[KBAccountManager sharedInstance] setUsesFacebook:YES];
 }
 
 - (void)sessionDidLogout:(FBSession*)session {
-    [[KBAccountManager sharedInstance] setUsesFacebook:NO];
+   // [[KBAccountManager sharedInstance] setUsesFacebook:NO];
 }
 
 #pragma mark -
@@ -355,7 +371,7 @@
 		[feedback setTimeOutSeconds:100];
 		[feedback setDelegate:self];
 		[feedback startAsynchronous];
-		//[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"vote1"];
+		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"vote1"];
 
 	}
 	//make this one selected
@@ -373,7 +389,7 @@
 		[feedback setTimeOutSeconds:100];
 		[feedback setDelegate:self];
 		[feedback startAsynchronous];
-		//[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"vote2"];
+		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"vote2"];
 	}
 	//make this one selected
 	[vote2Butt setSelected:YES];
@@ -390,7 +406,7 @@
 		[feedback setTimeOutSeconds:100];
 		[feedback setDelegate:self];
 		[feedback startAsynchronous];
-		//[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"vote3"];
+		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"vote3"];
 
 	}
 	//make this one selected
@@ -408,7 +424,7 @@
 		[feedback setTimeOutSeconds:100];
 		[feedback setDelegate:self];
 		[feedback startAsynchronous];
-		//[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"vote4"];
+		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"vote4"];
 
 	}
 	//make this one selected
@@ -424,6 +440,104 @@
     DLog(@"YAAAAAAAAAAAY!");
     DLog(@"response msg: %@", request.responseStatusMessage);
 }
+
+#pragma mark -
+#pragma mark logout
+
+- (IBAction) logout4SQ{
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Logout from Foursquare?"
+                                                             delegate:self
+                                                    cancelButtonTitle:@"Cancel"
+                                               destructiveButtonTitle:@"Yes, logout now."
+                                                    otherButtonTitles:nil];
+    
+    actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+    actionSheet.tag = 1;
+    [actionSheet showInView:self.view];
+    [actionSheet release];
+}
+- (IBAction) logoutFB{
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Logout from Facebook?"
+                                                             delegate:self
+                                                    cancelButtonTitle:@"Cancel"
+                                               destructiveButtonTitle:@"Yes, logout now."
+                                                    otherButtonTitles:nil];
+    
+    actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+    actionSheet.tag = 2;
+    [actionSheet showInView:self.view];
+    [actionSheet release];
+	
+}
+- (IBAction) logoutTW{
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Logout from Twitter?"
+                                                             delegate:self
+                                                    cancelButtonTitle:@"Cancel"
+                                               destructiveButtonTitle:@"Yes, logout now."
+                                                    otherButtonTitles:nil];
+    
+    actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+    actionSheet.tag = 3;
+    [actionSheet showInView:self.view];
+    [actionSheet release];
+	
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+	switch (actionSheet.tag) {
+		case 1:
+			//foursquare
+			switch (buttonIndex) {
+				case 0:
+					//do logout
+					[[FoursquareAPI sharedInstance] logout];
+					break;
+				case 1:
+					//do noting?
+					break;
+				default:
+					break;
+			}
+			break;
+		case 2:
+			//facebook
+			switch (buttonIndex) {
+				case 0:
+					//do logout
+					[[FacebookProxy instance] logout];
+					break;
+				case 1:
+					//do noting?
+					break;
+				default:
+					break;
+			}
+			break;
+		case 3:
+			//twitter
+			switch (buttonIndex) {
+				case 0:
+					//do logout
+					[[[KBTwitterManager twitterManager] twitterEngine] clearAccessToken];
+					
+					break;
+				case 1:
+					//do noting?
+					break;
+				default:
+					break;
+			}
+			break;
+		default:
+			break;
+	}
+}
+
+- (IBAction) loginFB{
+	[[FacebookProxy instance] doAuth];	
+}
+					 
+					 
 
 #pragma mark -
 #pragma mark Memory management
