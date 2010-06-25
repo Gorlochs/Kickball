@@ -249,10 +249,15 @@
     }
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-}
-
-
+//- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+//	if (indexPath.row == [tweets count] - 1) {
+//        if (requeryWhenTableGetsToBottom) {
+//            //[self executeQuery:++pageNum];
+//        } else {
+//            DLog("********************* REACHED NO MORE RESULTS!!!!! **********************");
+//        }
+//	}
+//}
 
 /*
 // Override to allow orientations other than the default portrait orientation.

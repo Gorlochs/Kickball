@@ -10,11 +10,12 @@
 #import "MGTwitterEngine.h"
 #import "FlurryAPI.h"
 #import "KBTwitterCell.h"
+#import "KBTwitterManager.h"
+
 
 @implementation PlaceTwitterViewController
 
 @synthesize twitterName, venueName;
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -24,10 +25,14 @@
     venueLabel.text = venueName;
 
     [self startProgressBar:@"Retrieving tweets..."];
-    MGTwitterEngine *twitterEngine = [[[MGTwitterEngine alloc] initWithDelegate:self] autorelease];
+    MGTwitterEngine *twitterEngine = [[KBTwitterManager twitterManager] twitterEngine];// [[[MGTwitterEngine alloc] initWithDelegate:self] autorelease];
     NSString *timeline = [twitterEngine getUserTimelineFor:twitterName sinceID:0 startingAtPage:0 count:20];
     DLog(@"timeline: %@", timeline);
     [FlurryAPI logEvent:@"Venue Twitter Feed"];
+}
+
+- (void)statusesReceived:(NSArray *)statuses {
+    
 }
 
 - (void)didReceiveMemoryWarning {

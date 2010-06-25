@@ -93,6 +93,8 @@
     [UIView setAnimationDuration:0.7];
     tipController.view.alpha = 1.0;        
     [UIView commitAnimations];
+    
+    [theTableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 

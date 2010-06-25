@@ -9,7 +9,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "PlaceDetailViewController.h"
 #import "ProfileViewController.h"
-#import "PlaceTwitterViewController.h"
+#import "KBUserTweetsViewController.h"
 #import "FoursquareAPI.h"
 #import "VenueAnnotation.h"
 #import "GAConnectionManager.h"
@@ -930,11 +930,14 @@
 }
 
 - (void) showTwitterFeed {
-    PlaceTwitterViewController *vc = [[PlaceTwitterViewController alloc] initWithNibName:@"PlaceTwitterViewController" bundle:nil];
-    vc.twitterName = venue.twitter;
-    vc.venueName = venue.name;
-    [self presentModalViewController:vc animated:YES];
-    [vc release];
+	KBUserTweetsViewController *recentTweetsController = [[KBUserTweetsViewController alloc] initWithNibName:@"KBUserTweetsViewController" bundle:nil];
+    recentTweetsController.username = venue.twitter;
+    
+//    PlaceTwitterViewController *vc = [[PlaceTwitterViewController alloc] initWithNibName:@"PlaceTwitterViewController" bundle:nil];
+//    vc.twitterName = venue.twitter;
+//    vc.venueName = venue.name;
+    [self presentModalViewController:recentTweetsController animated:YES];
+    [recentTweetsController release];
 }
 
 - (void) openCheckinView {

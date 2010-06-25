@@ -24,7 +24,6 @@
 - (id) initWithDictionary:(NSDictionary*)statusDictionary {		
     if (self = [super init]) {
         dict = [[NSDictionary alloc] initWithDictionary:statusDictionary];
-		DLog("tweet dictionary: %@", dict);
         screenName = [[statusDictionary objectForKey:@"user"] objectForKey:@"screen_name"];
         fullName = [[statusDictionary objectForKey:@"user"] objectForKey:@"name"];
         profileImageUrl = [[statusDictionary objectForKey:@"user"] objectForKey:@"profile_image_url"];
