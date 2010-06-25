@@ -124,9 +124,9 @@
 - (void)dealloc {
 	[fbId release];
 	[parentView release];
-	[tipTodoText release];
-    [tipId release];
-    [characterCount release];
+	//[tipTodoText release];
+    //[tipId release];
+    //[characterCount release];
     [super dealloc];
 }
 

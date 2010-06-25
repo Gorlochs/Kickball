@@ -64,7 +64,7 @@
 - (void)viewDidLoad {
 	self.hideFooter = YES;
     pageType = KBPageTypeOther;
-    
+    requeryWhenTableGetsToBottom = YES;
     [super viewDidLoad];
 	[self.postView addSubview:iconBgImage];
 	[self.postView addSubview:userIcon];
@@ -76,7 +76,14 @@
 	//NSString *displayString = [NSString	 stringWithFormat:@"<span class=\"fbBlueText\">%@</span> %@",[(NSDictionary*)[fbItem propertyWithKey:@"from"] objectForKey:@"name"], [fbItem propertyWithKey:@"message"]];
 	fbPictureUrl = [(NSDictionary*)[fbItem propertyWithKey:@"from"] objectForKey:@"id"];
 	fbPostText.text = [TTStyledText textFromXHTML:displayString lineBreaks:NO URLs:NO];
-	comments = (NSArray*)[(NSDictionary*)[fbItem propertyWithKey:@"comments"] objectForKey:@"data"];
+	comments = [[NSArray alloc] initWithArray:(NSArray*)[(NSDictionary*)[fbItem propertyWithKey:@"comments"] objectForKey:@"data"]];
+	NSDictionary *paging = (NSDictionary*)[(NSDictionary*)[fbItem propertyWithKey:@"comments"] objectForKey:@"paging"];
+	if (paging!=nil) {
+		nextPageURL = [[NSString alloc] initWithString:(NSString*)[paging objectForKey:@"next"]];
+	}else {
+		nextPageURL = nil;
+	}
+
 	numComments = [comments count];
 	dateLabel.text = [[KickballAPI kickballApi] convertDateToTimeUnitString:[[FacebookProxy fbDateFormatter] dateFromString:[fbItem propertyWithKey:@"created_time"]]];
 	[fbPostText sizeToFit];
@@ -104,30 +111,73 @@
 -(void)loadPicUrl{
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	NSDictionary* args = [NSDictionary dictionaryWithObject:@"picture" forKey:@"fields"];
-	GraphObject *fbItem = [[[FacebookProxy instance] newGraph] getObject:fbPictureUrl withArgs:args];
+	GraphAPI *graph = [[FacebookProxy instance] newGraph];
+	GraphObject *graphObj = [graph getObject:fbPictureUrl withArgs:args];
 	//userIcon.urlPath = [fbItem propertyWithKey:@"picture"];
-	NSString *staticUrl = [fbItem propertyWithKey:@"picture"];
+	NSString *staticUrl = [graphObj propertyWithKey:@"picture"];
 	if (staticUrl!=nil) {
 		[[FacebookProxy instance].pictureUrls setObject:staticUrl forKey:fbPictureUrl];
 		[userIcon performSelectorOnMainThread:@selector(setUrlPath:) withObject:staticUrl waitUntilDone:YES];
 		
 	}
+	[graph release];
 	[pool release];
 }
 
 -(void)refreshMainFeed{
 	[comments release];
 	comments = nil;
+	requeryWhenTableGetsToBottom = YES;
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	GraphAPI *graph = [[FacebookProxy instance] newGraph];
 	comments = [graph getConnections:@"comments" forObject:[fbItem propertyWithKey:@"id"]];
 	[comments retain];
+	[nextPageURL release];
+	nextPageURL = nil;
+	nextPageURL = graph._pagingNext;
+	[nextPageURL retain];
+	[graph release];	
 	[theTableView reloadData];
 	[pool release];
 	[self performSelectorOnMainThread:@selector(stopProgressBar) withObject:nil waitUntilDone:NO];
 	[self dataSourceDidFinishLoadingNewData];
 	
 }
+
+-(void)concatenateMore:(NSString*)urlString{
+	if (urlString==nil) {
+		[self performSelectorOnMainThread:@selector(stopProgressBar) withObject:nil waitUntilDone:NO];
+		return;
+	}
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	GraphAPI *graph = [[FacebookProxy instance] newGraph];
+	NSArray *moreNews = [graph nextPage:urlString];
+	if (moreNews!=nil) {
+		if ([moreNews count]==0) {
+			requeryWhenTableGetsToBottom = NO;
+		}
+		[nextPageURL release];
+		nextPageURL = nil;
+		nextPageURL = graph._pagingNext;
+		[nextPageURL retain];
+		NSMutableArray * fullBoat = [[NSMutableArray alloc] init];
+		[fullBoat addObjectsFromArray:comments];
+		[fullBoat addObjectsFromArray:moreNews];
+		[comments release];
+		comments = nil;
+		comments = fullBoat;
+		[comments retain];
+		[fullBoat release];
+		fullBoat = nil;
+		[theTableView reloadData];
+	}
+	[self performSelectorOnMainThread:@selector(stopProgressBar) withObject:nil waitUntilDone:NO];
+	[self dataSourceDidFinishLoadingNewData];
+	[graph release];
+	[pool release];
+	
+}
+
 
 - (void) refreshTable {
 	//[self startProgressBar:@"Retrieving news feed..."];
@@ -150,7 +200,7 @@
 				text = [_fbItem propertyWithKey:@"caption"];
 			}
 			
-			NSString *link = [NSString stringWithFormat:@"%@ %@",text,[_fbItem propertyWithKey:@"link"]];
+			//NSString *link = [NSString stringWithFormat:@"%@ %@",text,[_fbItem propertyWithKey:@"link"]];
 			/* NSMutableString *result = [[[NSMutableString alloc] init] autorelease];
 			 if (text!=nil) {
 			 [result appendString:text];
@@ -281,6 +331,21 @@
 	
     
 }
+/*
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (indexPath.row == [comments count] - 1) {
+        if (requeryWhenTableGetsToBottom) {
+            //[self executeQuery:++pageNum];
+			[self startProgressBar:@"Retrieving more..."];
+			
+			[NSThread detachNewThreadSelector:@selector(concatenateMore:) toTarget:self withObject:nextPageURL];
+			
+        } else {
+            DLog("********************* REACHED NO MORE RESULTS!!!!! **********************");
+        }
+	}
+}
+*/
 
 -(IBAction)pressLike{
 	[NSThread detachNewThreadSelector:@selector(threadedLike) toTarget:self withObject:nil];
@@ -304,6 +369,7 @@
 	commentController.parentView = self;
 	commentController.isComment = YES;
     [self presentModalViewController:commentController animated:YES];
+	[commentController release];
 }
 
 #pragma mark -
@@ -337,6 +403,8 @@
 
 
 - (void)dealloc {
+	[nextPageURL release];
+	[comments release];
 	[commentHightTester release];
 	[iconBgImage release];
 	[userIcon release];

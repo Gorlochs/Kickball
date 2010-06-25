@@ -12,7 +12,7 @@
 #import "MGTwitterEngineDelegate.h"
 
 
-@interface KBFacebookCreateWallPostVC : KBFacebookViewController <UITextViewDelegate, MGTwitterEngineDelegate, PhotoManagerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
+@interface KBFacebookCreateWallPostVC : KBFacebookViewController <UITextViewDelegate, PhotoManagerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
     IBOutlet UITextView *tweetTextView;
     IBOutlet UILabel *characterCountLabel;
     IBOutlet UIButton *sendTweet;

@@ -9,6 +9,7 @@
 #import "KBFacebookCommentCell.h"
 #import "FacebookProxy.h"
 #import "GraphObject.h"
+#import "GraphAPI.h"
 
 @implementation KBFacebookCommentCell
 @synthesize userIcon, commentText, fbPictureUrl;
@@ -51,7 +52,7 @@
 	CGRect contentRect = [self.contentView bounds];
 	//userName.frame = CGRectMake(58, contentRect.origin.y+10, 150, 20);
 	commentText.frame = CGRectMake(contentRect.origin.x+58, contentRect.origin.y+10, 250, commentText.frame.size.height);
-	CGFloat textHeight = commentText.frame.size.height;
+	//CGFloat textHeight = commentText.frame.size.height;
 	
 	//tweetText.center = CGPointMake(tweetText.center.x,(tweetText.frame.size.height/2)+32);
 	topLineImage.frame = CGRectMake(0, 0, contentRect.size.width, 1);
@@ -81,7 +82,8 @@
 -(void)loadPicUrl{
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	NSDictionary* args = [NSDictionary dictionaryWithObject:@"picture" forKey:@"fields"];
-	GraphObject *fbItem = [[[FacebookProxy instance] newGraph] getObject:fbPictureUrl withArgs:args];
+	GraphAPI *graph = [[FacebookProxy instance] newGraph];
+	GraphObject *fbItem = [graph getObject:fbPictureUrl withArgs:args];
 	//userIcon.urlPath = [fbItem propertyWithKey:@"picture"];
 	NSString *staticUrl = [fbItem propertyWithKey:@"picture"];
 	if (staticUrl!=nil) {
@@ -89,6 +91,7 @@
 		[userIcon performSelectorOnMainThread:@selector(setUrlPath:) withObject:staticUrl waitUntilDone:YES];
 		
 	}
+	[graph release];
 	[pool release];
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

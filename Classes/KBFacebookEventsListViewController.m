@@ -56,7 +56,7 @@ NSInteger eventsDateSort(id e1, id e2, void *context) {
 - (void)viewDidLoad {
 	pageType = KBpageTypeEvents;
     pageViewType = KBPageViewTypeList;
-    
+    eventsFeed = nil;
     [super viewDidLoad];
     
     noResultsView.hidden = NO;
@@ -173,7 +173,10 @@ NSInteger eventsDateSort(id e1, id e2, void *context) {
 	[eventsFeed addObjectsFromArray:futureSections];
 	
 	//[eventsFeed retain];
+	[todayEvents release];
+	[tomorrowEvents release];
 	[futureSections release];
+	
 	[theTableView reloadData];
 	if ([eventsFeed count]>0) {
 		noResultsView.hidden = YES;
@@ -334,6 +337,7 @@ NSInteger eventsDateSort(id e1, id e2, void *context) {
 
 
 - (void)dealloc {
+	[eventsFeed release];
     [super dealloc];
 }
 

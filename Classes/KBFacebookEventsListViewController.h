@@ -24,15 +24,15 @@
 	NSMutableArray *eventsFeed;
 }
 
-@property (nonatomic, retain) UITableViewCell *searchCell;
-@property (nonatomic, retain) NSDictionary *venues;
+//@property (nonatomic, retain) UITableViewCell *searchCell;
+//@property (nonatomic, retain) NSDictionary *venues;
 
-- (IBAction) searchOnKeywordsandLatLong;
-- (IBAction) refresh: (UIControl *) button;
-- (IBAction) addNewVenue;
-- (IBAction) cancelKeyboard: (UIControl *) button;
-- (IBAction) cancelTheKeyboard;
-- (IBAction) cancelEdit;
+//- (IBAction) searchOnKeywordsandLatLong;
+//- (IBAction) refresh: (UIControl *) button;
+//- (IBAction) addNewVenue;
+//- (IBAction) cancelKeyboard: (UIControl *) button;
+//- (IBAction) cancelTheKeyboard;
+//- (IBAction) cancelEdit;
 
 
 @end

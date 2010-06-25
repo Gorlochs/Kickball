@@ -11,7 +11,7 @@
 #import "KBPhotoManager.h"
 #import "KBTwitterManager.h"
 
-@interface FBFacebookCreatePostViewController : KBFacebookViewController <UITextViewDelegate, MGTwitterEngineDelegate, PhotoManagerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>{
+@interface FBFacebookCreatePostViewController : KBFacebookViewController <UITextViewDelegate, PhotoManagerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>{
 	IBOutlet UITextView *tweetTextView;
     IBOutlet UILabel *characterCountLabel;
     IBOutlet UIButton *sendTweet;
@@ -41,7 +41,7 @@
 //- (IBAction) cancelCreate;
 - (IBAction) toggleTwitter;
 - (IBAction) toggleFoursquare;
-- (IBAction) toggleGeotag;
+//- (IBAction) toggleGeotag;
 - (void) decrementActionCount;
 - (void) closeUpShop;
 - (void) getPhoto:(UIImagePickerControllerSourceType)sourceType;

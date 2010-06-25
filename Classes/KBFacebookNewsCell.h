@@ -10,7 +10,6 @@
 #import "Three20/Three20.h"
 #import "Utilities.h"
 
-@class GraphAPI;
 @interface KBFacebookNewsCell : UITableViewCell {
 	TTImageView *userIcon;
 	UIImageView *iconBgImage;
@@ -25,7 +24,6 @@
     UIImageView *topLineImage;
     UIImageView *bottomLineImage;
 	UIButton *iconButt;
-	GraphAPI *fbGraph;
 	UIImageView *commentBG;
 	UILabel *commentNumber;
 }

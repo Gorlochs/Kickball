@@ -94,7 +94,6 @@
         bottomLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderBottom.png"]];
         [self addSubview:bottomLineImage];
 		fbPictureUrl = nil;
-		fbGraph = [[FacebookProxy instance] newGraph];
 		
 		
     }
@@ -107,7 +106,7 @@
 	CGRect contentRect = [self.contentView bounds];
 	//userName.frame = CGRectMake(58, contentRect.origin.y+10, 150, 20);
 	tweetText.frame = CGRectMake(contentRect.origin.x+58, contentRect.origin.y+10, 250, tweetText.frame.size.height);
-	CGFloat textHeight = tweetText.frame.size.height;
+	//CGFloat textHeight = tweetText.frame.size.height;
 	dateLabel.frame = CGRectMake(contentRect.origin.x+58, contentRect.size.height - 20, 200, 16);
 
 	//tweetText.center = CGPointMake(tweetText.center.x,(tweetText.frame.size.height/2)+32);
@@ -174,7 +173,8 @@
 -(void)loadPicUrl{
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	NSDictionary* args = [NSDictionary dictionaryWithObject:@"picture" forKey:@"fields"];
-	GraphObject *fbItem = [fbGraph getObject:fbPictureUrl withArgs:args];
+	GraphAPI *graph = [[FacebookProxy instance] newGraph];
+	GraphObject *fbItem = [graph getObject:fbPictureUrl withArgs:args];
 	//userIcon.urlPath = [fbItem propertyWithKey:@"picture"];
 	NSString *staticUrl = [fbItem propertyWithKey:@"picture"];
 	if (staticUrl!=nil) {
@@ -182,12 +182,13 @@
 		[userIcon performSelectorOnMainThread:@selector(setUrlPath:) withObject:staticUrl waitUntilDone:YES];
 
 	}
+	[graph release];
 	[pool release];
 }
 
 - (void) pushToProfile{
-	UITableView *tv = (UITableView *) self.superview;
-	UITableViewController *vc = (UITableViewController *) tv.dataSource;
+	//UITableView *tv = (UITableView *) self.superview;
+	//UITableViewController *vc = (UITableViewController *) tv.dataSource;
 	//[(KBBaseTweetViewController*)vc viewUserProfile:userName.text];
 }
 
@@ -203,14 +204,14 @@
 }
 
 - (void)dealloc {
-	[fbGraph release];
 	[fbPictureUrl release];
     [userIcon release];
     [userName release];
 	[iconButt retain];
     [tweetText release];
     [dateLabel release];
-    
+    [commentBG release];
+	[commentNumber release];
     [topLineImage release];
     [bottomLineImage release];
     [iconBgImage release];

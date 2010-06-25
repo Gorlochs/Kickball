@@ -81,6 +81,7 @@
 -(void)refreshMainFeed{
 	[newsFeed release];
 	newsFeed = nil;
+	requeryWhenTableGetsToBottom = YES;
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	GraphAPI *graph = [[FacebookProxy instance] newGraph];
 	newsFeed = [graph newsFeed:@"me"];
@@ -98,12 +99,16 @@
 
 -(void)concatenateMore:(NSString*)urlString{
 	if (urlString==nil) {
+		[self performSelectorOnMainThread:@selector(stopProgressBar) withObject:nil waitUntilDone:NO];
 		return;
 	}
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	GraphAPI *graph = [[FacebookProxy instance] newGraph];
 	NSArray *moreNews = [graph nextPage:urlString];
 	if (moreNews!=nil) {
+		if ([moreNews count]==0) {
+			requeryWhenTableGetsToBottom = NO;
+		}
 		[nextPageURL release];
 		nextPageURL = nil;
 		nextPageURL = graph._pagingNext;
@@ -118,9 +123,9 @@
 		[fullBoat release];
 		fullBoat = nil;
 		[theTableView reloadData];
-		[self performSelectorOnMainThread:@selector(stopProgressBar) withObject:nil waitUntilDone:NO];
-		[self dataSourceDidFinishLoadingNewData];
 	}
+	[self performSelectorOnMainThread:@selector(stopProgressBar) withObject:nil waitUntilDone:NO];
+	[self dataSourceDidFinishLoadingNewData];
 	[graph release];
 	[pool release];
 	
@@ -334,9 +339,10 @@
 
 - (void)dealloc {
 	[heightTester release];
+	[nextPageURL release];
 	[TTStyleSheet setGlobalStyleSheet:nil];
 	[newsFeed release];
-	[fbLoginView release];
+	//[fbLoginView release];
     [super dealloc];
 }
 

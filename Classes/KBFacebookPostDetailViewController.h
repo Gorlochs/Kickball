@@ -26,6 +26,8 @@
 	NSString *fbPictureUrl;
 	
 	NSArray *comments;
+	NSString *nextPageURL;
+	BOOL requeryWhenTableGetsToBottom;
 }
 @property(nonatomic,retain)UIView *postView;
 @property(nonatomic,retain)UIView *commentView;
@@ -33,4 +35,7 @@
 -(void)populate:(GraphObject*)obj;
 -(IBAction)pressLike;
 -(IBAction)touchComment;
+-(void)concatenateMore:(NSString*)urlString;
+-(NSString*)findSuitableText:(GraphObject*)_fbItem;
+
 @end

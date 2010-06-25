@@ -90,5 +90,7 @@ extern NSString* const kFBRedirectURI;
 -(void)doAuth;
 -(void)logout;
 -(NSArray*)refreshHome;
+-(NSArray*)refreshEvents;
+-(bool)isAuthorized;
 
 @end

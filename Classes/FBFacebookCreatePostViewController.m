@@ -40,7 +40,7 @@
 	characterCountLabel.text = [NSString stringWithFormat:@"%d/140", [tweetTextView.text length]];
 	photoManager = [KBPhotoManager sharedInstance];
     photoManager.delegate = self;
-	
+	photoImage = nil;
 	isFoursquareOn = ![[KBAccountManager sharedInstance] defaultPostToFoursquare];
 	if ([[KBAccountManager sharedInstance] usesFoursquare]) {
 		[self toggleFoursquare];
@@ -216,10 +216,10 @@
     NSString *roundedFloatString = [NSString stringWithFormat:@"%.1f", ratio];
     float roundedFloat = [roundedFloatString floatValue];
     
-    photoImage = [[photoManager imageByScalingToSize:initialImage toSize:CGSizeMake(480.0, round(480.0/roundedFloat))] retain];
-    
+    photoImage = [photoManager imageByScalingToSize:initialImage toSize:CGSizeMake(480.0, round(480.0/roundedFloat))];
+    [photoImage retain];
     thumbnailPreview.clipsToBounds = YES;
-    thumbnailPreview.image = [photoImage retain];
+    thumbnailPreview.image = photoImage;
     thumbnailBackground.hidden = NO;
     addPhotoButton.hidden = YES;
     removePhotoButton.hidden = NO;
@@ -295,8 +295,8 @@
 
 
 - (void) removePhoto {
+	[photoImage release];
     photoImage = nil;
-    [photoImage release];
     addPhotoButton.hidden = NO;
     removePhotoButton.hidden = YES;
     thumbnailBackground.hidden = YES;
@@ -334,6 +334,7 @@
 
 
 - (void)dealloc {
+	[photoImage release];
 	[delegate release];
     [super dealloc];
 }

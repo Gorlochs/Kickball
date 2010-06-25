@@ -27,6 +27,8 @@
 	NSArray *comments;
 	
 	TTStyledTextLabel *commentHightTester;
+	NSString *nextPageURL;
+	BOOL requeryWhenTableGetsToBottom;
 
 }
 
@@ -34,4 +36,6 @@
 -(IBAction)pressNotAttending;
 -(IBAction)touchComment;
 -(void)populate:(NSDictionary*)ev;
+
+-(void)concatenateMore:(NSString*)urlString;
 @end

@@ -85,6 +85,11 @@
 }
 
 - (void)dealloc {
+	[eventHost release];
+	[eventName release];
+	[eventTime release];
+	[topLineImage release];
+	[bottomLineImage release];
     [super dealloc];
 }
 

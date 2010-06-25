@@ -32,6 +32,9 @@
 	self.hideFooter = YES;
     pageType = KBPageTypeOther;
     [super viewDidLoad];
+	nextPageURL = [[NSString alloc] init];
+	requeryWhenTableGetsToBottom = YES;
+
 	NSString *content = nil;
 	content = [event objectForKey:@"host"];
 	eventHost.text = ![content isKindOfClass:[NSNull class]] ? content : @"";
@@ -85,12 +88,20 @@
 -(void)refreshMainFeed{
 	[comments release];
 	comments = nil;
+	requeryWhenTableGetsToBottom = YES;
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	NSString *method = [NSString stringWithFormat:@"%@/feed",[event objectForKey:@"eid"]];
 	GraphAPI *graph = [[[FacebookProxy instance] newGraph] autorelease];
 	GraphObject* response = [graph getObject:method];
+	[nextPageURL release];
+	nextPageURL = nil;
 	comments = [response propertyWithKey:@"data"];
 	[comments retain];
+	NSDictionary *paging = [response propertyWithKey:@"paging"];
+	if (paging!=nil) {
+		nextPageURL = [[NSString alloc] initWithString:[paging objectForKey:@"next"]];
+		//[nextPageURL retain];
+	}
 	[theTableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];//[theTableView reloadData];
 	// = [[FacebookProxy instance] refreshEvents];
 	//GraphObject *baseObj = [baseEventResult objectAtIndex:0];
@@ -99,6 +110,40 @@
 	[self dataSourceDidFinishLoadingNewData];
 	[pool release];
 
+}
+
+-(void)concatenateMore:(NSString*)urlString{
+	if (urlString==nil) {
+		[self performSelectorOnMainThread:@selector(stopProgressBar) withObject:nil waitUntilDone:NO];
+		return;
+	}
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	GraphAPI *graph = [[FacebookProxy instance] newGraph];
+	NSArray *moreNews = [graph nextPage:urlString];
+	if (moreNews!=nil) {
+		if ([moreNews count]==0) {
+			requeryWhenTableGetsToBottom = NO;
+		}
+		[nextPageURL release];
+		nextPageURL = nil;
+		nextPageURL = graph._pagingNext;
+		[nextPageURL retain];
+		NSMutableArray * fullBoat = [[NSMutableArray alloc] init];
+		[fullBoat addObjectsFromArray:comments];
+		[fullBoat addObjectsFromArray:moreNews];
+		[comments release];
+		comments = nil;
+		comments = fullBoat;
+		[comments retain];
+		[fullBoat release];
+		fullBoat = nil;
+		[theTableView reloadData];
+	}
+	[self performSelectorOnMainThread:@selector(stopProgressBar) withObject:nil waitUntilDone:NO];
+	[self dataSourceDidFinishLoadingNewData];
+	[graph release];
+	[pool release];
+	
 }
 
 
@@ -228,6 +273,21 @@
     
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (indexPath.row == [comments count] - 1) {
+        if (requeryWhenTableGetsToBottom) {
+            //[self executeQuery:++pageNum];
+			[self startProgressBar:@"Retrieving more..."];
+			
+			[NSThread detachNewThreadSelector:@selector(concatenateMore:) toTarget:self withObject:nextPageURL];
+			
+        } else {
+            DLog("********************* REACHED NO MORE RESULTS!!!!! **********************");
+        }
+	}
+}
+
+
 -(IBAction)pressAttending{
 	[NSThread detachNewThreadSelector:@selector(threadedAttending) toTarget:self withObject:nil];
 
@@ -269,6 +329,7 @@
 	commentController.parentView = self;
 	commentController.isComment = NO;
     [self presentModalViewController:commentController animated:YES];
+	[commentController release];
 }
 
 #pragma mark -
@@ -294,6 +355,8 @@
 
 
 - (void)dealloc {
+	[commentHightTester release];
+	[nextPageURL release];
 	[comments release];
 	[event release];
     [super dealloc];
