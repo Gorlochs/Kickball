@@ -34,11 +34,14 @@
         startAtId = ((KBTweet*)[tweets objectAtIndex:0]).tweetId;
         [theTableView reloadData];
     }
+    isInitialLoad = YES;
     [twitterEngine getDirectMessagesSinceID:[startAtId longLongValue] startingAtPage:0];
 }
 
 - (void)directMessagesReceived:(NSArray *)messages {
-	if (messages) {
+    DLog("direct messages array: %@", messages);
+    DLog("direct messages array count: %d", [messages count]);
+	if ([messages count] > 0 || isInitialLoad) {
 		twitterArray = [messages retain];
 		//DLog(@"status retrieved: %@", statuses);
 		NSMutableArray *tempTweetArray = [[NSMutableArray alloc] initWithCapacity:[twitterArray count]];
@@ -72,6 +75,7 @@
 }
 
 - (void) executeQuery:(int)pageNumber {
+    isInitialLoad = NO;
     [twitterEngine getDirectMessagesSinceID:0 startingAtPage:pageNumber];
 }
 

@@ -11,7 +11,7 @@
 
 
 @interface KBDirectMessagesViewController : KBBaseTweetViewController {
-
+    BOOL isInitialLoad;
 }
 
 @end
