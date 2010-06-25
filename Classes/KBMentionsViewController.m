@@ -29,6 +29,7 @@
 
 - (void) showStatuses {
     NSNumber *startAtId = [NSNumber numberWithInt:0];
+    if (tweets) [tweets release];
     tweets = [[NSMutableArray alloc] initWithArray:[[KBTwitterManager twitterManager] retrieveCachedStatusArrayWithKey:cachingKey]];
     if (tweets != nil && [tweets count] > 0) {
         startAtId = ((KBTweet*)[tweets objectAtIndex:0]).tweetId;
@@ -55,8 +56,8 @@
 		} else {
 			// need to keep all the tweets in the right order
 			[tempTweetArray addObjectsFromArray:tweets];
-			tweets = nil;
 			[tweets release];
+			tweets = nil;
 			tweets = [[self addAndTrimArray:tempTweetArray] retain];
 		}
 		[tempTweetArray release];

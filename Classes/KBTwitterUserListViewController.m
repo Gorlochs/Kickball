@@ -62,8 +62,8 @@
 		} else {
 			// need to keep all the tweets in the right order
 			[tempTweetArray addObjectsFromArray:users];
-			users = nil;
 			[users release];
+			users = nil;
 			users = [[NSMutableArray alloc] initWithArray:tempTweetArray];
 		}
 		[tempTweetArray release];
@@ -149,8 +149,8 @@
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [userDictionary release];
-    [users release];
-    [currentCursor release];
+    if (users) [users release];
+    if (currentCursor) [currentCursor release];
     [super dealloc];
 }
 

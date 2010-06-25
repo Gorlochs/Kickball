@@ -31,17 +31,19 @@
     if ([[self.userDictionary objectForKey:@"location"] isKindOfClass:[NSString class]])
   		location.text = [self.userDictionary objectForKey:@"location"];
         
-		iconBgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"twitIconBG.png"]];
+		UIImageView *iconBgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"twitIconBG.png"]];
 		iconBgImage.frame = CGRectMake(14, 63, 37, 38);
 		[self.view addSubview:iconBgImage];
+        [iconBgImage release];
 		
         CGRect frame = CGRectMake(16, 65, 33, 34);
-        userProfileImage = [[TTImageView alloc] initWithFrame:frame];
+        TTImageView *userProfileImage = [[TTImageView alloc] initWithFrame:frame];
         userProfileImage.backgroundColor = [UIColor clearColor];
         userProfileImage.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
         userProfileImage.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:3 topRight:3 bottomRight:3 bottomLeft:3] next:[TTContentStyle styleWithNext:nil]];
         userProfileImage.urlPath = [self.userDictionary objectForKey:@"profile_image_url"];
         [self.view addSubview:userProfileImage];
+        [userProfileImage release];
     }
 }
 
@@ -70,12 +72,13 @@
   		location.text = [[[userStatuses objectAtIndex:0] objectForKey:@"user"] objectForKey:@"location"];
 
         CGRect frame = CGRectMake(11, 53, 49, 49);
-        userProfileImage = [[TTImageView alloc] initWithFrame:frame];
+        TTImageView *userProfileImage = [[TTImageView alloc] initWithFrame:frame];
         userProfileImage.backgroundColor = [UIColor clearColor];
         userProfileImage.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
         userProfileImage.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
         userProfileImage.urlPath = [[[userStatuses objectAtIndex:0] objectForKey:@"user"] objectForKey:@"profile_image_url"];
         [self.view addSubview:userProfileImage];
+        [userProfileImage release];
     }
 	[userStatuses release];
     DLog(@"done with tweets view");
@@ -145,11 +148,6 @@
 - (void)dealloc {
     [userDictionary release];
     [username release];
-    //    [screenNameLabel release];
-    //    [fullName release];
-    //    [location release];
-    if (iconBgImage) [iconBgImage release];
-    if (userProfileImage)  [userProfileImage release];
     [super dealloc];
 }
 

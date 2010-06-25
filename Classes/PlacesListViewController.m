@@ -101,13 +101,13 @@
     [super didReceiveMemoryWarning];
 	
 	// Release any cached data, images, etc that aren't in use.
-    theTableView = nil;
-    searchCell = nil;
+    //memleak theTableView = nil;
+    //memleak searchCell = nil;
 }
 
 - (void)viewDidUnload {
-    theTableView = nil;
-    searchCell = nil;
+    //memleak theTableView = nil;
+    //memleak searchCell = nil;
 }
 
 #pragma mark IBAction methods

@@ -23,9 +23,11 @@
     noResultsView.hidden = NO;
     
     if ([[KBTwitterManager twitterManager] theSearchResults]) {
+        //if (tweets) [tweets release];
         tweets = [[NSMutableArray alloc] initWithArray:[[KBTwitterManager twitterManager] theSearchResults]];
+
         searchTerms = [KBTwitterManager twitterManager].searchTerm;
-        [theTableView reloadData];
+        if (theTableView) [theTableView reloadData];
         noResultsView.hidden = YES;
     }
     
@@ -63,8 +65,8 @@
 			} else {
 				// need to keep all the tweets in the right order
 				[tempTweetArray addObjectsFromArray:tweets];
-				tweets = nil;
 				[tweets release];
+				tweets = nil;
 				tweets = [[self addAndTrimArray:tempTweetArray] retain];
 			}
 			[tempTweetArray release];
@@ -150,8 +152,6 @@
 
 
 - (void)dealloc {
-    [searchTerms release];
-    //[theSearchBar release];
     [super dealloc];
 }
 

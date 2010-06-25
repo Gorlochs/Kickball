@@ -247,10 +247,6 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-    tweets = nil;
-    cachingKey = nil;
-    twitterArray = nil;
-    noResultsView = nil;
 }
 
 
@@ -258,12 +254,11 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     if (tweets) [tweets release];
     if (cachingKey) [cachingKey release];
-//    if (twitterArray) [twitterArray release];
+    if (twitterArray) [twitterArray release];
     //[noResultsView release];
 //    [detailViewController release];
 //    [userTweetsController release];
 //    [searchController release];
-//	[twitterProfileController release];
     [super dealloc];
 }
 

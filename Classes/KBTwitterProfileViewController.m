@@ -163,12 +163,12 @@
 //    [numberOfTweets release];
 //    [description release];
     
-    [userIcon release];
-    [iconBgImage release];
+    if (userIcon) [userIcon release];
+    if (iconBgImage) [iconBgImage release];
     
     [screenname release];
-    [userDictionary release];
-    [twitterManager release];
+    if (userDictionary) [userDictionary release];
+    if (twitterManager) [twitterManager release];
     
     [super dealloc];
 }

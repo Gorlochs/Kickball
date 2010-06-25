@@ -21,7 +21,7 @@
     [FlurryAPI logEvent:@"Profile Twitter View"];
     
     NSMutableArray *arr = [[NSMutableArray alloc] initWithCapacity:1];
-    orderedTweets = [[NSMutableDictionary alloc] initWithCapacity:1];
+    //memleak orderedTweets = [[NSMutableDictionary alloc] initWithCapacity:1];
     for (NSDictionary *tweet in tweets) {
         [arr addObject:[tweet objectForKey:@"id"]];
     }
@@ -98,8 +98,8 @@
 
 - (void)dealloc {
     [tweets release];
-    [orderedTweets release];
-    [sortedKeys release];
+    if (orderedTweets) [orderedTweets release];
+    if (sortedKeys) [sortedKeys release];
     [super dealloc];
 }
 

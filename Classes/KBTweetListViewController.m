@@ -62,7 +62,7 @@
 }
 
 - (void) showStatuses {
-    [loginController removeFromSupercontroller];
+    if (loginController) [loginController removeFromSupercontroller];
     NSNumber *startAtId = [NSNumber numberWithInt:0];
     tweets = [[NSMutableArray alloc] initWithArray:[[KBTwitterManager twitterManager] retrieveCachedStatusArrayWithKey:cachingKey]];
     if (tweets != nil && [tweets count] > 0) {
@@ -94,8 +94,8 @@
 		} else {
 			// need to keep all the tweets in the right order
 			[tempTweetArray addObjectsFromArray:tweets];
-			tweets = nil;
 			[tweets release];
+			tweets = nil;
 			tweets = [[self addAndTrimArray:tempTweetArray] retain];
 		}
 		[theTableView reloadData];
@@ -140,13 +140,13 @@
     [super didReceiveMemoryWarning];
     
     // Relinquish ownership any cached data, images, etc that aren't in use.
+    if (loginController) [loginController release];
     loginController = nil;
 }
 
 - (void)viewDidUnload {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
     // For example: self.myOutlet = nil;
-    loginController = nil;
 }
 
 

@@ -103,12 +103,13 @@
      
 	 */
     CGRect frame = CGRectMake(17, 67, 33, 34);
-    userProfileImage = [[TTImageView alloc] initWithFrame:frame];
+    TTImageView *userProfileImage = [[TTImageView alloc] initWithFrame:frame];
     userProfileImage.backgroundColor = [UIColor clearColor];
     userProfileImage.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
     userProfileImage.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
     userProfileImage.urlPath = tweet.profileImageUrl;
     [self.view addSubview:userProfileImage];
+    [userProfileImage release];
     
     timeLabel.text = [[KickballAPI kickballApi] convertDateToTimeUnitString:tweet.createDate];
 	isFavorited = tweet.isFavorited;
@@ -141,15 +142,16 @@
 }
 
 - (void)saveTweets {
-  for (KBTweet *cur in (NSArray*)tweets) { //prep to cache the new tweet favorite status
-    if (cur.tweetId == tweet.tweetId) {
-      cur.isFavorited = tweet.isFavorited;  
+    for (KBTweet *cur in (NSArray*)tweets) { //prep to cache the new tweet favorite status
+        if (cur.tweetId == tweet.tweetId) {
+            cur.isFavorited = tweet.isFavorited;  
+        }
     }
-  }
-  NSMutableArray *tempTweetArray = [[NSMutableArray alloc] initWithCapacity:[(NSArray*)tweets count]];
-  [tempTweetArray addObjectsFromArray:(NSArray*)tweets];
-  [[KBTwitterManager twitterManager] cacheStatusArray:tempTweetArray withKey:kKBTwitterTimelineKey];
-  [tempTweetArray release];
+    //NSMutableArray *tempTweetArray = [[NSMutableArray alloc] initWithCapacity:[(NSArray*)tweets count]];
+    //[tempTweetArray addObjectsFromArray:(NSArray*)tweets];
+    //[[KBTwitterManager twitterManager] cacheStatusArray:tempTweetArray withKey:kKBTwitterTimelineKey];
+    //[tempTweetArray release];
+    [[KBTwitterManager twitterManager] cacheStatusArray:tweets withKey:kKBTwitterTimelineKey];
 	if (isFavorited) {
 		[favoriteButton setImage:[UIImage imageNamed:@"btn-favorite02.png"] forState:UIControlStateNormal];
 	} else {
@@ -180,9 +182,7 @@
 
 - (void)dealloc {
     [tweet release];
-    [tweets release];
-    [userProfileImage release];
-        
+    [tweets release];        
     [super dealloc];
 }
 

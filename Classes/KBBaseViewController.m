@@ -253,7 +253,7 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 }
 
 - (void)dealloc {
-    if (theTableView) [theTableView release];
+    //if (theTableView) [theTableView release];
     if (progressViewController) [progressViewController release];
     if (loginViewModal) [loginViewModal release];
     if (popupView) [popupView release];

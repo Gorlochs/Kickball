@@ -30,7 +30,6 @@
     IBOutlet UILabel *numberOfTweets;
     
     //IFTweetLabel *mainTextLabel;
-    TTImageView *userProfileImage;
     NSDictionary *userDictionary;
 	
 	KBTwitterManager *twitterManager;

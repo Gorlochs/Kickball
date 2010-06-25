@@ -63,6 +63,10 @@ static KBTwitterManager *sharedInstance = nil;
     return self;
 }
 
+- (void)dealloc {
+    [super dealloc];
+}
+
 - (XAuthTwitterEngine*) twitterEngine {
     if (!twitterEngine) {
         twitterEngine = [[XAuthTwitterEngine alloc] initXAuthWithDelegate:self];

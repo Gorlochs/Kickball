@@ -15,6 +15,6 @@
     IBOutlet UITextField *theSearchBar;
 }
 
-@property (nonatomic, retain) NSString *searchTerms;
+@property (nonatomic, assign) NSString *searchTerms;
 
 @end
