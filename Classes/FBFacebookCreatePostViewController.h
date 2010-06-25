@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "KBFacebookViewController.h"
+#import "KBTwitterViewController.h"
 #import "KBPhotoManager.h"
 #import "KBTwitterManager.h"
 
-@interface FBFacebookCreatePostViewController : KBFacebookViewController <UITextViewDelegate, PhotoManagerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>{
+@interface FBFacebookCreatePostViewController : KBFacebookViewController <UITextViewDelegate, MGTwitterEngineDelegate,PhotoManagerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>{
 	IBOutlet UITextView *tweetTextView;
     IBOutlet UILabel *characterCountLabel;
     IBOutlet UIButton *sendTweet;
@@ -35,6 +36,7 @@
 }
 @property(nonatomic, retain)id delegate;
 
+- (void)shoutResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString;
 -(void)threadedSubmit;
 
 - (IBAction) submitTweet;

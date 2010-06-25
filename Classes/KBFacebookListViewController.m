@@ -10,6 +10,7 @@
 #import "KBFacebookNewsCell.h"
 #import "KBFacebookLoginView.h"
 #import "KBFacebookPostDetailViewController.h"
+#import "FBFacebookCreatePostViewController.h"
 #import "FacebookProxy.h"
 #import "GraphObject.h"
 #import "KickballAPI.h"
@@ -137,7 +138,14 @@
 }
 
 -(void)delayedRefresh{
-	[self performSelector:@selector(refreshMainFeed) withObject:nil afterDelay:2.0f];
+	[self performSelector:@selector(refreshTable) withObject:nil afterDelay:2.0f];
+}
+
+-(IBAction)createPost{
+	FBFacebookCreatePostViewController *postController = [[FBFacebookCreatePostViewController alloc] initWithNibName:@"FBFacebookCreatePostViewController" bundle:nil];
+    [postController setDelegate:self];
+	[self.navigationController pushViewController:postController animated:YES];
+	[postController release];
 }
 
 #pragma mark -

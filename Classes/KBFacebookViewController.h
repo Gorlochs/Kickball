@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "KBBaseViewController.h"
 #import "KBFacebookLoginView.h"
+#import "KBFoursquareViewController.h"
 
 @interface KBFacebookViewController : KBBaseViewController {
 

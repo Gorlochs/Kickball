@@ -14,6 +14,7 @@
 #import "GraphAPI.h"
 #import "SBJSON.h"
 #import "KBLocationManager.h"
+#import "KBFacebookListViewController.h"
 
 @implementation FBFacebookCreatePostViewController
 @synthesize delegate;
@@ -75,12 +76,14 @@
     [self startProgressBar:@"Submitting..."];
     [self dismissModalViewControllerAnimated:YES];
     actionCount = 1;
-	[NSThread detachNewThreadSelector:@selector(threadedSubmit) toTarget:self withObject:nil];
+	//[NSThread detachNewThreadSelector:@selector(threadedSubmit) toTarget:self withObject:nil];
+	[self threadedSubmit];
 
 }
 
 -(void)threadedSubmit{
     pool = [[NSAutoreleasePool alloc] init];
+	actionCount = 1;
     if (isFoursquareOn) {
 		actionCount++;
         [[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:nil 
@@ -92,16 +95,18 @@
                                                      andAction:@selector(shoutResponseReceived:withResponseString:)];
     }
 	if (isTwitterOn) {
+		actionCount++;
 		if ([[KBAccountManager sharedInstance] usesGeoTag]) {
+			[[KBTwitterManager twitterManager] setDelegate:self];
 			[[[KBTwitterManager twitterManager] twitterEngine] sendUpdate:tweetTextView.text withLatitude:[[KBLocationManager locationManager] latitude] withLongitude:[[KBLocationManager locationManager] longitude]];
 		} else {
+			[[KBTwitterManager twitterManager] setDelegate:self];
 			[[[KBTwitterManager twitterManager] twitterEngine] sendUpdate:tweetTextView.text];
 		}
 	}
 	
     
     if (photoImage) {
-		actionCount++;
 		NSData *data = UIImageJPEGRepresentation(photoImage, 1.0);
 		NSString *filename = @"tweet.jpg";
 		if (!data) {
@@ -119,8 +124,10 @@
 		//post to facebook with google maps image rather than user supplied image
 		GraphAPI *graph = [[FacebookProxy instance] newGraph];
 		[graph putWallPost:@"me" message:tweetTextView.text attachment:nil];
+		[graph release];
 		//[self decrementActionCount];
-		[self closeUpShop];
+		//[self closeUpShop];
+		[self decrementActionCount];
 		
 	}
 	
@@ -259,9 +266,8 @@
 	NSDictionary *fbPicture = [NSDictionary dictionaryWithObjectsAndKeys:urlPath, @"picture",@" ",@"caption",nil];
 	GraphAPI *graph = [[FacebookProxy instance] newGraph];
 	[graph putWallPost:@"me" message:tweetTextView.text attachment:fbPicture];
-
-	
-	[self closeUpShop];
+	[graph release];
+	//[self closeUpShop];
     KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"Image upload has been completed!"];
     [delegate displayPopupMessage:message];
     [message release];
@@ -271,10 +277,12 @@
 }
 
 - (void) photoQueueFinished:(ASIHTTPRequest *) request {
-    [self decrementActionCount];
     
     DLog(@"YAY! Image queue is complete!");
-    
+	//[self performSelectorOnMainThread:@selector(closeUpShop) withObject:nil waitUntilDone:NO];
+    [self decrementActionCount];
+
+	
     // TODO: this should probably capture the response, parse it into a KBGoody, then add it to the goodies object - it would save an API hit
     
     //[self retrievePhotos];
@@ -285,12 +293,12 @@
 	//post to facebook with google map instead of user supplied image
 	GraphAPI *graph = [[FacebookProxy instance] newGraph];
 	[graph putWallPost:@"me" message:tweetTextView.text attachment:nil];
-
-	[self closeUpShop];
 	KBMessage *message = [[KBMessage alloc] initWithMember:@"Error" andMessage:@"Image upload failed!"];
     [delegate displayPopupMessage:message];
     [message release];
     [FlurryAPI logEvent:@"Image Upload Failed- facebook post"];
+	[self decrementActionCount];
+
 }
 
 
@@ -312,10 +320,10 @@
 }
 
 - (void) closeUpShop {
+	[pool release];
 	[self performSelectorOnMainThread:@selector(stopProgressBar) withObject:nil waitUntilDone:NO];
 	[self.navigationController popViewControllerAnimated:YES];
-	[delegate delayedRefresh];
-	[pool release];
+	[(KBFacebookListViewController*)delegate performSelectorOnMainThread:@selector(delayedRefresh) withObject:nil waitUntilDone:NO];
 	//[delegate performSelector:@selector(refreshTable) withObject:nil afterDelay:3.0f];
 }
 
