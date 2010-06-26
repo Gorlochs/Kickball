@@ -29,7 +29,7 @@
 
 - (void) showStatuses {
     NSNumber *startAtId = [NSNumber numberWithInt:0];
-    //bad! if (tweets) [tweets release];
+    if (tweets) [tweets release];
     tweets = [[NSMutableArray alloc] initWithArray:[[KBTwitterManager twitterManager] retrieveCachedStatusArrayWithKey:cachingKey]];
     if (tweets != nil && [tweets count] > 0) {
         startAtId = ((KBTweet*)[tweets objectAtIndex:0]).tweetId;
@@ -42,6 +42,12 @@
 - (void)directMessagesReceived:(NSArray *)messages {
 	if ([messages count] > 0 || isInitialLoad) {
         twitterArray = [messages retain];
+        for (KBDirectMessage *message in messages) {
+            for (KBDirectMessage *cur in tweets) {
+                NSNumber *tweetID = [message objectForKey:@"id"];
+                if ([cur.tweetId longValue] == [tweetID longValue]) return; //don't add the same direct messages 
+            }
+        }    
 		NSMutableArray *tempTweetArray = [[NSMutableArray alloc] initWithCapacity:[twitterArray count]];
 		for (NSDictionary *dict in twitterArray) {
 			KBDirectMessage *message = [[KBDirectMessage alloc] initWithDictionary:dict];
@@ -73,6 +79,7 @@
 }
 
 - (void) executeQuery:(int)pageNumber {
+//for shawn: this gets called multiple times, creating multiple sets of direct messages.  the first check at directMessages received stops this.
     isInitialLoad = NO;
     [twitterEngine getDirectMessagesSinceID:0 startingAtPage:pageNumber];
 }
@@ -80,15 +87,6 @@
 - (void) refreshTable {
     [self showStatuses];
 }
-
-- (void)requestSucceeded:(NSString *)connectionIdentifier {
-	DLog(@"Twitter DM request succeeded: %@", connectionIdentifier);
-}
-
-- (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error {
-	DLog(@"Twitter DM request failed: %@ with error:%@", connectionIdentifier, error);
-}
-
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
