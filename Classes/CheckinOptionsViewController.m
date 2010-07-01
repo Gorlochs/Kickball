@@ -24,17 +24,20 @@
 }
 
 - (void) nextOptionView {
-    FriendPriorityOptionViewController *controller = [[FriendPriorityOptionViewController alloc] initWithNibName:@"FriendPriorityOptionViewController" bundle:nil];
-    [self.navigationController pushViewController:controller animated:YES];
-    [controller release];
 }
 -(void)pressOptionsLeft{
+	NSArray *newStack = [NSArray arrayWithObjects:[(OptionsNavigationController*)self.navigationController base],[(OptionsNavigationController*)self.navigationController versionInfo],self,nil];
+	[[self navigationController] setViewControllers:newStack animated:NO];
 	[[self navigationController] popViewControllerAnimated:YES];
 
 }
 -(void)pressOptionsRight{
-	[self nextOptionView];
+	NSArray *newStack = [NSArray arrayWithObjects:[(OptionsNavigationController*)self.navigationController base],self,nil];
+	[[self navigationController] setViewControllers:newStack animated:NO];
+	[[self navigationController] pushViewController:[(OptionsNavigationController*)self.navigationController account] animated:YES];
 }
+
+
 
 - (IBAction) toggleFoursquare{
 	[[KBAccountManager sharedInstance] setDefaultPostToFoursquare:[foursquareSwitch isOn]];

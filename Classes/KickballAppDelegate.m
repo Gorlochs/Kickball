@@ -16,7 +16,9 @@
 #import "PopupMessageView.h"
 #import "FlurryAPI.h"
 #import "OptionsViewController.h"
+#import "OptionsNavigationController.h"
 #import "KBAccountManager.h"
+#import "OptionsVC.h"
 
 @implementation KickballAppDelegate
 
@@ -385,7 +387,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 	[optionsCloseButt addTarget:self action:@selector(returnFromOptions) forControlEvents:UIControlEventTouchUpInside];
 	[optionsHeaderBg addSubview:optionsCloseButt];
 	[optionsNavigationController.view setFrame:CGRectMake(0, 98, 320, 382)];
-	
+	[optionsNavigationController setBase:(OptionsVC*)[optionsNavigationController topViewController]];
 	optionsLeft = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
 	[optionsLeft setImage:[UIImage imageNamed:@"opt_leftV2_01.png"] forState:UIControlStateNormal];
 	[optionsLeft setImage:[UIImage imageNamed:@"opt_leftV2_02.png"] forState:UIControlStateHighlighted];
@@ -485,10 +487,10 @@ void uncaughtExceptionHandler(NSException *exception) {
 }
 
 -(void)pressOptionsLeft{
-	[[optionsNavigationController visibleViewController] pressOptionsLeft];
+	[(OptionsVC*)[optionsNavigationController visibleViewController] pressOptionsLeft];
 }
 -(void)pressOptionsRight{
-	[[optionsNavigationController visibleViewController] pressOptionsRight];
+	[(OptionsVC*)[optionsNavigationController visibleViewController] pressOptionsRight];
 
 }
 

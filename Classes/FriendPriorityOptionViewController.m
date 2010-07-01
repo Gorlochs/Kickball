@@ -71,12 +71,16 @@
 
 }
 
--(void)pressOptionsLeft{
-	[[self navigationController] popViewControllerAnimated:YES];
 
+-(void)pressOptionsLeft{
+	NSArray *newStack = [NSArray arrayWithObjects:[(OptionsNavigationController*)self.navigationController base],[(OptionsNavigationController*)self.navigationController account],self,nil];
+	[[self navigationController] setViewControllers:newStack animated:NO];
+	[[self navigationController] popViewControllerAnimated:YES];
 }
 -(void)pressOptionsRight{
-	[self nextOptionView];
+	NSArray *newStack = [NSArray arrayWithObjects:[(OptionsNavigationController*)self.navigationController base],self,nil];
+	[[self navigationController] setViewControllers:newStack animated:NO];
+	[[self navigationController] pushViewController:[(OptionsNavigationController*)self.navigationController feedback] animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -39,6 +39,9 @@
 		0E27CECA11CFC7A800FD1A3F /* bg-hideKeyboard.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E27CEBD11CFC7A800FD1A3F /* bg-hideKeyboard.png */; };
 		0E27CECB11CFC7A800FD1A3F /* btn-hideKeyboard01.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E27CEBE11CFC7A800FD1A3F /* btn-hideKeyboard01.png */; };
 		0E27CECC11CFC7A800FD1A3F /* btn-hideKeyboard02.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E27CEBF11CFC7A800FD1A3F /* btn-hideKeyboard02.png */; };
+		0E2E954C11DCF79C0042D0E2 /* OptionsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2E954B11DCF79C0042D0E2 /* OptionsNavigationController.m */; };
+		0E2E955111DCF9630042D0E2 /* OptionsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2E955011DCF9630042D0E2 /* OptionsVC.m */; };
+		0E2E95C111DD09E90042D0E2 /* opt_navBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E2E95C011DD09E90042D0E2 /* opt_navBG.png */; };
 		0E76631611D3ECA6004B0F37 /* opt_optionsCell_G01.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E76631411D3ECA6004B0F37 /* opt_optionsCell_G01.png */; };
 		0E76631711D3ECA6004B0F37 /* opt_optionsCell_G02.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E76631511D3ECA6004B0F37 /* opt_optionsCell_G02.png */; };
 		0E76632C11D3F184004B0F37 /* opt_bg-fields2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E76632B11D3F184004B0F37 /* opt_bg-fields2.png */; };
@@ -913,6 +916,11 @@
 		0E27CEBD11CFC7A800FD1A3F /* bg-hideKeyboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-hideKeyboard.png"; sourceTree = "<group>"; };
 		0E27CEBE11CFC7A800FD1A3F /* btn-hideKeyboard01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-hideKeyboard01.png"; sourceTree = "<group>"; };
 		0E27CEBF11CFC7A800FD1A3F /* btn-hideKeyboard02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-hideKeyboard02.png"; sourceTree = "<group>"; };
+		0E2E954A11DCF79C0042D0E2 /* OptionsNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionsNavigationController.h; sourceTree = "<group>"; };
+		0E2E954B11DCF79C0042D0E2 /* OptionsNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionsNavigationController.m; sourceTree = "<group>"; };
+		0E2E954F11DCF9630042D0E2 /* OptionsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionsVC.h; sourceTree = "<group>"; };
+		0E2E955011DCF9630042D0E2 /* OptionsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionsVC.m; sourceTree = "<group>"; };
+		0E2E95C011DD09E90042D0E2 /* opt_navBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = opt_navBG.png; sourceTree = "<group>"; };
 		0E76631411D3ECA6004B0F37 /* opt_optionsCell_G01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = opt_optionsCell_G01.png; sourceTree = "<group>"; };
 		0E76631511D3ECA6004B0F37 /* opt_optionsCell_G02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = opt_optionsCell_G02.png; sourceTree = "<group>"; };
 		0E76632B11D3F184004B0F37 /* opt_bg-fields2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "opt_bg-fields2.png"; sourceTree = "<group>"; };
@@ -2105,6 +2113,7 @@
 		0E27CEB111CFC7A700FD1A3F /* Options - New Logic */ = {
 			isa = PBXGroup;
 			children = (
+				0E2E95C011DD09E90042D0E2 /* opt_navBG.png */,
 				0EB19C0D11D0174F00BFF849 /* btn-hdr_options01.png */,
 				0EB19C0E11D0175000BFF849 /* btn-hdr_options02.png */,
 				0EB19C0F11D0175000BFF849 /* btn-hdr_x01.png */,
@@ -2986,6 +2995,10 @@
 				6A4C17FA11A90BA9006BBC61 /* VersionInfoViewController.m */,
 				6A4C17FE11A90BBE006BBC61 /* FeedbackViewController.h */,
 				6A4C17FF11A90BBE006BBC61 /* FeedbackViewController.m */,
+				0E2E954A11DCF79C0042D0E2 /* OptionsNavigationController.h */,
+				0E2E954B11DCF79C0042D0E2 /* OptionsNavigationController.m */,
+				0E2E954F11DCF9630042D0E2 /* OptionsVC.h */,
+				0E2E955011DCF9630042D0E2 /* OptionsVC.m */,
 			);
 			name = Options;
 			sourceTree = "<group>";
@@ -4551,6 +4564,7 @@
 				0E76631611D3ECA6004B0F37 /* opt_optionsCell_G01.png in Resources */,
 				0E76631711D3ECA6004B0F37 /* opt_optionsCell_G02.png in Resources */,
 				0E76632C11D3F184004B0F37 /* opt_bg-fields2.png in Resources */,
+				0E2E95C111DD09E90042D0E2 /* opt_navBG.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4843,6 +4857,8 @@
 				0EB19CB411D026E300BFF849 /* FBFacebookCreatePostViewController.m in Sources */,
 				0ED06D2611D11D290048886E /* KBFoursquareLoginView.m in Sources */,
 				0ED06E0911D1367D0048886E /* KBTwitterLoginView.m in Sources */,
+				0E2E954C11DCF79C0042D0E2 /* OptionsNavigationController.m in Sources */,
+				0E2E955111DCF9630042D0E2 /* OptionsVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "KBFoursquareViewController.h"
+#import "OptionsVC.h"
 
 
-@interface FeedbackViewController : KBFoursquareViewController <UIPickerViewDelegate, UIPickerViewDataSource, UITextViewDelegate>{
+@interface FeedbackViewController : OptionsVC <UIPickerViewDelegate, UIPickerViewDataSource, UITextViewDelegate>{
 	IBOutlet UIPickerView *subjectPicker;
 	NSMutableArray *subjects;
 	IBOutlet UILabel *subjectLabel;

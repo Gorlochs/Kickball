@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "KBFoursquareViewController.h"
+#import "OptionsVC.h"
 
 
-@interface FriendPriorityOptionViewController : KBFoursquareViewController {
+@interface FriendPriorityOptionViewController : OptionsVC {
     IBOutlet UISlider *slider;
 	IBOutlet UIImageView *detailText;
 }

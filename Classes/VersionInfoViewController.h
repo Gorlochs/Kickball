@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "KBFoursquareViewController.h"
+#import "OptionsVC.h"
 
 
-@interface VersionInfoViewController : KBFoursquareViewController {
+@interface VersionInfoViewController : OptionsVC {
 	IBOutlet UIWebView *webView;
 }
 

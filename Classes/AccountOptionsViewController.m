@@ -14,6 +14,8 @@
 #import "FeedbackViewController.h"
 #import "FacebookProxy.h"
 #import "ASIFormDataRequest.h"
+#import "KBTwitterManager.h"
+#import "OptionsNavigationController.h"
 
 @implementation AccountOptionsViewController
 
@@ -352,10 +354,14 @@
 }
 
 -(void)pressOptionsLeft{
+	NSArray *newStack = [NSArray arrayWithObjects:[(OptionsNavigationController*)self.navigationController base],[(OptionsNavigationController*)self.navigationController checkin],self,nil];
+	[[self navigationController] setViewControllers:newStack animated:NO];
 	[[self navigationController] popViewControllerAnimated:YES];
 }
 -(void)pressOptionsRight{
-	[self nextOptionView];
+	NSArray *newStack = [NSArray arrayWithObjects:[(OptionsNavigationController*)self.navigationController base],self,nil];
+	[[self navigationController] setViewControllers:newStack animated:NO];
+	[[self navigationController] pushViewController:[(OptionsNavigationController*)self.navigationController friendPriority] animated:YES];
 }
 
 

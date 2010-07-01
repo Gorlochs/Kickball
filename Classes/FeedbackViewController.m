@@ -168,15 +168,22 @@
     [controller release];
 }
 
+
 -(void)pressOptionsLeft{
 	[content resignFirstResponder];
 	[self hidePicker];
+	NSArray *newStack = [NSArray arrayWithObjects:[(OptionsNavigationController*)self.navigationController base],[(OptionsNavigationController*)self.navigationController friendPriority],self,nil];
+	[[self navigationController] setViewControllers:newStack animated:NO];
 	[[self navigationController] popViewControllerAnimated:YES];
-
 }
 -(void)pressOptionsRight{
-	[self nextOptionView];
+	[content resignFirstResponder];
+	[self hidePicker];
+	NSArray *newStack = [NSArray arrayWithObjects:[(OptionsNavigationController*)self.navigationController base],self,nil];
+	[[self navigationController] setViewControllers:newStack animated:NO];
+	[[self navigationController] pushViewController:[(OptionsNavigationController*)self.navigationController versionInfo] animated:YES];
 }
+
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];

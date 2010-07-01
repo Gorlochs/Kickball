@@ -25,7 +25,7 @@ typedef enum{
 	KBNavControllerTypeOptions,
 } KBNavControllerType;
 
-@class FriendsListViewController, OptionsViewController;
+@class FriendsListViewController, OptionsViewController, OptionsNavigationController;
 
 @interface KickballAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
@@ -35,7 +35,7 @@ typedef enum{
     UINavigationController *navigationController;
     UINavigationController *twitterNavigationController;
     UINavigationController *facebookNavigationController;
-	UINavigationController *optionsNavigationController;
+	OptionsNavigationController *optionsNavigationController;
     FSUser *user;
 	NSString *deviceToken;
 	NSString *deviceAlias;

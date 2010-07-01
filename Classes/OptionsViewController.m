@@ -16,6 +16,7 @@
 #import "FeedbackViewController.h"
 #import "CheckinOptionsViewController.h"
 #import "KickballAppDelegate.h"
+#import "OptionsNavigationController.h"
 
 
 @implementation OptionsViewController
@@ -42,6 +43,8 @@
 	[theTableView scrollToFirstRow:NO];
 	KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
 	[appDelegate showNoOptionsButts];
+	NSArray *newStack = [NSArray arrayWithObjects:self,nil];
+	[[self navigationController] setViewControllers:newStack animated:NO];
 	
 }
 
@@ -127,35 +130,35 @@
 }
 
 - (void) viewAccountOptions {
-    AccountOptionsViewController *accountController = [[AccountOptionsViewController alloc] initWithNibName:@"AccountOptionsView_v2" bundle:nil];
-    [self.navigationController pushViewController:accountController animated:YES];
-    [accountController release];
+    //AccountOptionsViewController *accountController = [[AccountOptionsViewController alloc] initWithNibName:@"AccountOptionsView_v2" bundle:nil];
+    [self.navigationController pushViewController:[(OptionsNavigationController*)self.parentViewController account] animated:YES];
+    //[accountController release];
 	KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
 	[appDelegate showBothOptionsButts];
 }
 
 - (void) viewVersion {
-    VersionInfoViewController *controller = [[VersionInfoViewController alloc] initWithNibName:@"VersionInfoViewController" bundle:nil];
-    [self.navigationController pushViewController:controller animated:YES];
-    [controller release];
+    //VersionInfoViewController *controller = [[VersionInfoViewController alloc] initWithNibName:@"VersionInfoViewController" bundle:nil];
+    [self.navigationController pushViewController:[(OptionsNavigationController*)self.parentViewController versionInfo] animated:YES];
+    //[controller release];
 	KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
 	[appDelegate showBothOptionsButts];
 
 }
 
 - (void) viewFriendPriority {
-    FriendPriorityOptionViewController *controller = [[FriendPriorityOptionViewController alloc] initWithNibName:@"FriendPriorityOptionViewController" bundle:nil];
-    [self.navigationController pushViewController:controller animated:YES];
-    [controller release];
+    //FriendPriorityOptionViewController *controller = [[FriendPriorityOptionViewController alloc] initWithNibName:@"FriendPriorityOptionViewController" bundle:nil];
+    [self.navigationController pushViewController:[(OptionsNavigationController*)self.parentViewController friendPriority] animated:YES];
+    //[controller release];
 	KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
 	[appDelegate showBothOptionsButts];
 
 }
 
 - (void) viewFeedback {
-    FeedbackViewController *controller = [[FeedbackViewController alloc] initWithNibName:@"FeedbackViewController" bundle:nil];
-    [self.navigationController pushViewController:controller animated:YES];
-    [controller release];
+   //FeedbackViewController *controller = [[FeedbackViewController alloc] initWithNibName:@"FeedbackViewController" bundle:nil];
+    [self.navigationController pushViewController:[(OptionsNavigationController*)self.parentViewController feedback] animated:YES];
+    //[controller release];
 	KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
 	[appDelegate showBothOptionsButts];
 
@@ -172,9 +175,9 @@
 }
 
 - (void) viewDefaultCheckinOptions {
-    CheckinOptionsViewController *controller = [[CheckinOptionsViewController alloc] initWithNibName:@"CheckinOptionsViewController" bundle:nil];
-    [self.navigationController pushViewController:controller animated:YES];
-    [controller release];
+    //CheckinOptionsViewController *controller = [[CheckinOptionsViewController alloc] initWithNibName:@"CheckinOptionsViewController" bundle:nil];
+    [self.navigationController pushViewController:[(OptionsNavigationController*)self.parentViewController checkin] animated:YES];
+    //[controller release];
 	KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
 	[appDelegate showBothOptionsButts];
 
