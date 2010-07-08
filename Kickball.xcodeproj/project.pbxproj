@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -204,7 +204,6 @@
 		2B13815611C2AD9800B72ECC /* tagsBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B13815511C2AD9800B72ECC /* tagsBG.png */; };
 		2B9CE5C911CC194F007E3B79 /* black_square.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B9CE5C811CC194F007E3B79 /* black_square.png */; };
 		2BA5A8FB11B57FBF0090173D /* libOAuth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BA5A8F911B57FBF0090173D /* libOAuth.a */; };
-		2BA5A8FC11B57FBF0090173D /* libFlurryWithLocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BA5A8FA11B57FBF0090173D /* libFlurryWithLocation.a */; };
 		2BA5B00611B963180090173D /* addFriend01_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BA5B00311B963180090173D /* addFriend01_red.png */; };
 		2BA5B00711B963180090173D /* addFriend02_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BA5B00411B963180090173D /* addFriend02_red.png */; };
 		2BA5B00811B963180090173D /* addFriend03_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BA5B00511B963180090173D /* addFriend03_red.png */; };
@@ -227,6 +226,7 @@
 		2BC943F611C9896D00EAD010 /* btn-reply02.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BC943EE11C9896D00EAD010 /* btn-reply02.png */; };
 		2BC943F711C9896D00EAD010 /* btn-retweet01.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BC943EF11C9896D00EAD010 /* btn-retweet01.png */; };
 		2BC943F811C9896D00EAD010 /* btn-retweet02.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BC943F011C9896D00EAD010 /* btn-retweet02.png */; };
+		2BDECE7711E67F2300BCF92D /* libFlurryWithLocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BDECE7611E67F2300BCF92D /* libFlurryWithLocation.a */; };
 		552AFD8210A270ED009300E2 /* FSTip.m in Sources */ = {isa = PBXBuildFile; fileRef = 552AFD8110A270ED009300E2 /* FSTip.m */; };
 		552AFDE410A27AED009300E2 /* FriendPlacemark.m in Sources */ = {isa = PBXBuildFile; fileRef = 552AFDE310A27AED009300E2 /* FriendPlacemark.m */; };
 		552AFE4110A285AC009300E2 /* FriendIconAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 552AFE4010A285AC009300E2 /* FriendIconAnnotationView.m */; };
@@ -307,9 +307,7 @@
 		6A03D9071191E21600FF036C /* checkinBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A03D8FB1191E21600FF036C /* checkinBG.png */; };
 		6A03D90A1191E33C00FF036C /* CheckinModalView.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A03D9091191E33C00FF036C /* CheckinModalView.xib */; };
 		6A044CAC109545200063FC33 /* FriendsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A044CAA109545200063FC33 /* FriendsListViewController.m */; };
-		6A044CAD109545200063FC33 /* FriendsListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A044CAB109545200063FC33 /* FriendsListView.xib */; };
 		6A044CB6109545450063FC33 /* FriendsMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A044CB4109545450063FC33 /* FriendsMapViewController.m */; };
-		6A044CB7109545450063FC33 /* FriendsMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A044CB5109545450063FC33 /* FriendsMapView.xib */; };
 		6A05616C11AB79B9007D461A /* addressBook.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A05616511AB79B9007D461A /* addressBook.png */; };
 		6A05616D11AB79B9007D461A /* fullName.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A05616611AB79B9007D461A /* fullName.png */; };
 		6A05616E11AB79B9007D461A /* iconHolder.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A05616711AB79B9007D461A /* iconHolder.png */; };
@@ -523,7 +521,6 @@
 		6A4C18F311AA5F68006BBC61 /* pr_text01.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4C18E211AA5F68006BBC61 /* pr_text01.png */; };
 		6A4C18F411AA5F68006BBC61 /* pr_text02.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4C18E311AA5F68006BBC61 /* pr_text02.png */; };
 		6A4C30C510DED6E300C89F55 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4C30C310DED6E300C89F55 /* SettingsViewController.m */; };
-		6A4C30C610DED6E300C89F55 /* SettingsViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A4C30C410DED6E300C89F55 /* SettingsViewController.xib */; };
 		6A4C30CA10DF24FD00C89F55 /* PlaceMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4C30C810DF24FD00C89F55 /* PlaceMapViewController.m */; };
 		6A4C30CB10DF24FD00C89F55 /* PlaceMapViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6A4C30C910DF24FD00C89F55 /* PlaceMapViewController.xib */; };
 		6A533B2B1191E8D6007C283C /* KBCheckinModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A533B2A1191E8D6007C283C /* KBCheckinModalViewController.m */; };
@@ -625,7 +622,6 @@
 		6AAEE7401188EC6E00188EC0 /* KBTwitterUserTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AAEE73F1188EC6E00188EC0 /* KBTwitterUserTableCell.m */; };
 		6AAEE75E1188F5D100188EC0 /* KBTwitterUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AAEE75D1188F5D100188EC0 /* KBTwitterUser.m */; };
 		6ABA7858109BDCAF001E7293 /* PlacesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABA7856109BDCAF001E7293 /* PlacesListViewController.m */; };
-		6ABA7859109BDCAF001E7293 /* PlacesListViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6ABA7857109BDCAF001E7293 /* PlacesListViewController.xib */; };
 		6ABB8B2F10D88C99001ECDAD /* FSMayor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABB8B2E10D88C99001ECDAD /* FSMayor.m */; };
 		6ABD307A1163D89C008F6A5D /* KickballAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABD30791163D89C008F6A5D /* KickballAPI.m */; };
 		6ABD313D116438E1008F6A5D /* KBGenericPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABD313C116438E1008F6A5D /* KBGenericPhotoViewController.m */; };
@@ -638,9 +634,7 @@
 		6AC28EB31173DAB800518E37 /* cellBorderTop.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC28EB11173DAB800518E37 /* cellBorderTop.png */; };
 		6AC28EB41173DAB800518E37 /* cellBorderBottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC28EB21173DAB800518E37 /* cellBorderBottom.png */; };
 		6AC5817B10B517FB0043B90C /* PlacesMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC5817910B517FB0043B90C /* PlacesMapViewController.m */; };
-		6AC5817C10B517FB0043B90C /* PlacesMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AC5817A10B517FB0043B90C /* PlacesMapView.xib */; };
 		6AC7E93110994FD000776993 /* PlaceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC7E92F10994FD000776993 /* PlaceDetailViewController.m */; };
-		6AC7E93210994FD000776993 /* PlaceDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AC7E93010994FD000776993 /* PlaceDetailView.xib */; };
 		6AC85202117E2BA5007B5220 /* KBTwitterDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC85201117E2BA5007B5220 /* KBTwitterDetailViewController.m */; };
 		6AC85204117E2BB4007B5220 /* KBTwitterDetailViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6AC85203117E2BB4007B5220 /* KBTwitterDetailViewController.xib */; };
 		6AC85B891177E518002FB92C /* KBTwitterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC85B881177E518002FB92C /* KBTwitterViewController.m */; };
@@ -693,7 +687,6 @@
 		6ADC9EC610D3F08600CFDCA7 /* AddPlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ADC9EC410D3F08600CFDCA7 /* AddPlaceViewController.m */; };
 		6ADC9EC710D3F08600CFDCA7 /* AddPlaceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6ADC9EC510D3F08600CFDCA7 /* AddPlaceViewController.xib */; };
 		6ADD23B7115AE24E005D14BE /* changelog in Resources */ = {isa = PBXBuildFile; fileRef = 6ADD23B6115AE24E005D14BE /* changelog */; };
-		6AE61217109AB04C008ABF79 /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AF96710109AA32700EF665D /* ProfileView.xib */; };
 		6AE77E0A117984B600997215 /* KBTwitterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AE77E09117984B600997215 /* KBTwitterManager.m */; };
 		6AE77FAD117A979D00997215 /* loading01.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AE77F9C117A979D00997215 /* loading01.png */; };
 		6AE77FAE117A979D00997215 /* loading02.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AE77F9D117A979D00997215 /* loading02.png */; };
@@ -1105,7 +1098,6 @@
 		2B13815511C2AD9800B72ECC /* tagsBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tagsBG.png; sourceTree = "<group>"; };
 		2B9CE5C811CC194F007E3B79 /* black_square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = black_square.png; sourceTree = "<group>"; };
 		2BA5A8F911B57FBF0090173D /* libOAuth.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOAuth.a; sourceTree = "<group>"; };
-		2BA5A8FA11B57FBF0090173D /* libFlurryWithLocation.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryWithLocation.a; sourceTree = "<group>"; };
 		2BA5AD5711B833DD0090173D /* KBTwitterManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBTwitterManagerDelegate.h; sourceTree = "<group>"; };
 		2BA5B00311B963180090173D /* addFriend01_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addFriend01_red.png; sourceTree = "<group>"; };
 		2BA5B00411B963180090173D /* addFriend02_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addFriend02_red.png; sourceTree = "<group>"; };
@@ -1129,6 +1121,9 @@
 		2BC943EE11C9896D00EAD010 /* btn-reply02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-reply02.png"; sourceTree = "<group>"; };
 		2BC943EF11C9896D00EAD010 /* btn-retweet01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-retweet01.png"; sourceTree = "<group>"; };
 		2BC943F011C9896D00EAD010 /* btn-retweet02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-retweet02.png"; sourceTree = "<group>"; };
+		2BDECE7611E67F2300BCF92D /* libFlurryWithLocation.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryWithLocation.a; sourceTree = "<group>"; };
+		2BDECE7911E67F6B00BCF92D /* FlurryAdDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAdDelegate.h; sourceTree = "<group>"; };
+		2BDECE7A11E67F6B00BCF92D /* FlurryAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAPI.h; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Kickball_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kickball_Prefix.pch; sourceTree = "<group>"; };
 		552AFD8010A270ED009300E2 /* FSTip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSTip.h; sourceTree = "<group>"; };
 		552AFD8110A270ED009300E2 /* FSTip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSTip.m; sourceTree = "<group>"; };
@@ -1283,10 +1278,8 @@
 		6A03D9091191E33C00FF036C /* CheckinModalView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckinModalView.xib; sourceTree = "<group>"; };
 		6A044CA9109545200063FC33 /* FriendsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsListViewController.h; sourceTree = "<group>"; };
 		6A044CAA109545200063FC33 /* FriendsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsListViewController.m; sourceTree = "<group>"; };
-		6A044CAB109545200063FC33 /* FriendsListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FriendsListView.xib; path = Classes/FriendsListView.xib; sourceTree = "<group>"; };
 		6A044CB3109545450063FC33 /* FriendsMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsMapViewController.h; sourceTree = "<group>"; };
 		6A044CB4109545450063FC33 /* FriendsMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsMapViewController.m; sourceTree = "<group>"; };
-		6A044CB5109545450063FC33 /* FriendsMapView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FriendsMapView.xib; path = Classes/FriendsMapView.xib; sourceTree = "<group>"; };
 		6A05616511AB79B9007D461A /* addressBook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addressBook.png; sourceTree = "<group>"; };
 		6A05616611AB79B9007D461A /* fullName.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fullName.png; sourceTree = "<group>"; };
 		6A05616711AB79B9007D461A /* iconHolder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconHolder.png; sourceTree = "<group>"; };
@@ -1509,8 +1502,6 @@
 		6A4532ED11C89F0300A688E3 /* venueTwitter02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = venueTwitter02.png; sourceTree = "<group>"; };
 		6A4796D511B0EB6000C6EB89 /* addFirst01a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addFirst01a.png; sourceTree = "<group>"; };
 		6A4796D711B0EB6000C6EB89 /* addFirst02a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addFirst02a.png; sourceTree = "<group>"; };
-		6A47991C11B3601A00C6EB89 /* FlurryAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAPI.h; sourceTree = "<group>"; };
-		6A47991D11B3601A00C6EB89 /* FlurryAdDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAdDelegate.h; sourceTree = "<group>"; };
 		6A47C00310DCA8DE00DCF011 /* KBWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBWebViewController.h; sourceTree = "<group>"; };
 		6A47C00410DCA8DE00DCF011 /* KBWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBWebViewController.m; sourceTree = "<group>"; };
 		6A47C00510DCA8DE00DCF011 /* KBWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KBWebViewController.xib; path = Classes/KBWebViewController.xib; sourceTree = "<group>"; };
@@ -1559,7 +1550,6 @@
 		6A4C18E311AA5F68006BBC61 /* pr_text02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pr_text02.png; sourceTree = "<group>"; };
 		6A4C30C210DED6E300C89F55 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		6A4C30C310DED6E300C89F55 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
-		6A4C30C410DED6E300C89F55 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingsViewController.xib; path = Classes/SettingsViewController.xib; sourceTree = "<group>"; };
 		6A4C30C710DF24FD00C89F55 /* PlaceMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceMapViewController.h; sourceTree = "<group>"; };
 		6A4C30C810DF24FD00C89F55 /* PlaceMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceMapViewController.m; sourceTree = "<group>"; };
 		6A4C30C910DF24FD00C89F55 /* PlaceMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaceMapViewController.xib; sourceTree = "<group>"; };
@@ -1730,7 +1720,6 @@
 		6AAEE75D1188F5D100188EC0 /* KBTwitterUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTwitterUser.m; sourceTree = "<group>"; };
 		6ABA7855109BDCAF001E7293 /* PlacesListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlacesListViewController.h; sourceTree = "<group>"; };
 		6ABA7856109BDCAF001E7293 /* PlacesListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlacesListViewController.m; sourceTree = "<group>"; };
-		6ABA7857109BDCAF001E7293 /* PlacesListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PlacesListViewController.xib; path = Classes/PlacesListViewController.xib; sourceTree = "<group>"; };
 		6ABB8B2D10D88C99001ECDAD /* FSMayor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSMayor.h; sourceTree = "<group>"; };
 		6ABB8B2E10D88C99001ECDAD /* FSMayor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSMayor.m; sourceTree = "<group>"; };
 		6ABD30781163D89C008F6A5D /* KickballAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KickballAPI.h; sourceTree = "<group>"; };
@@ -1752,10 +1741,8 @@
 		6AC28EB21173DAB800518E37 /* cellBorderBottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cellBorderBottom.png; sourceTree = "<group>"; };
 		6AC5817810B517FB0043B90C /* PlacesMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlacesMapViewController.h; sourceTree = "<group>"; };
 		6AC5817910B517FB0043B90C /* PlacesMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlacesMapViewController.m; sourceTree = "<group>"; };
-		6AC5817A10B517FB0043B90C /* PlacesMapView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PlacesMapView.xib; path = Classes/PlacesMapView.xib; sourceTree = "<group>"; };
 		6AC7E92E10994FD000776993 /* PlaceDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceDetailViewController.h; sourceTree = "<group>"; };
 		6AC7E92F10994FD000776993 /* PlaceDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceDetailViewController.m; sourceTree = "<group>"; };
-		6AC7E93010994FD000776993 /* PlaceDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = PlaceDetailView.xib; path = Classes/PlaceDetailView.xib; sourceTree = "<group>"; };
 		6AC85200117E2BA5007B5220 /* KBTwitterDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBTwitterDetailViewController.h; sourceTree = "<group>"; };
 		6AC85201117E2BA5007B5220 /* KBTwitterDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTwitterDetailViewController.m; sourceTree = "<group>"; };
 		6AC85203117E2BB4007B5220 /* KBTwitterDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KBTwitterDetailViewController.xib; sourceTree = "<group>"; };
@@ -1991,7 +1978,6 @@
 		6AF794BD10CCAF4B00E77D49 /* ViewFriendRequestsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewFriendRequestsViewController.h; sourceTree = "<group>"; };
 		6AF794BE10CCAF4B00E77D49 /* ViewFriendRequestsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewFriendRequestsViewController.m; sourceTree = "<group>"; };
 		6AF794BF10CCAF4B00E77D49 /* ViewFriendRequestsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ViewFriendRequestsViewController.xib; path = Classes/ViewFriendRequestsViewController.xib; sourceTree = "<group>"; };
-		6AF96710109AA32700EF665D /* ProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfileView.xib; path = Classes/ProfileView.xib; sourceTree = "<group>"; };
 		6AFC1D9510BA42A9006B7E5F /* ProgressView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProgressView.xib; sourceTree = "<group>"; };
 		6AFC1D9810BA4320006B7E5F /* ProgressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressViewController.h; sourceTree = "<group>"; };
 		6AFC1D9910BA4320006B7E5F /* ProgressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressViewController.m; sourceTree = "<group>"; };
@@ -2035,7 +2021,7 @@
 				6AD0C1E4113F049E00A971E3 /* libThree20.a in Frameworks */,
 				6A6F2E141177C1CA00B2869B /* MessageUI.framework in Frameworks */,
 				2BA5A8FB11B57FBF0090173D /* libOAuth.a in Frameworks */,
-				2BA5A8FC11B57FBF0090173D /* libFlurryWithLocation.a in Frameworks */,
+				2BDECE7711E67F2300BCF92D /* libFlurryWithLocation.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2356,20 +2342,13 @@
 				6AD0C1FD113F04F500A971E3 /* Three20.bundle */,
 				6A39EC4B109662D3006F76C3 /* images */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
-				6A044CAB109545200063FC33 /* FriendsListView.xib */,
-				6A044CB5109545450063FC33 /* FriendsMapView.xib */,
-				6AC7E93010994FD000776993 /* PlaceDetailView.xib */,
-				6AF96710109AA32700EF665D /* ProfileView.xib */,
 				6A10E61510BE0541006538DB /* LoginViewModalController.xib */,
 				6AFF23F010A247B100CD30E5 /* PlaceTwitterViewController.xib */,
 				6A5F8F3B10B7707100914709 /* GeoAPIView.xib */,
 				6A12EC6210B772FA0013BA52 /* GeoApiDetailsView.xib */,
-				6AC5817A10B517FB0043B90C /* PlacesMapView.xib */,
 				6ADC9EC510D3F08600CFDCA7 /* AddPlaceViewController.xib */,
-				6ABA7857109BDCAF001E7293 /* PlacesListViewController.xib */,
 				6AD5B3DD116D3D56008671FD /* XAuthTwitterEngineDemoViewController.xib */,
 				6AEB63D3110BA9BE0066DD05 /* PushNotificationView.xib */,
-				6A4C30C410DED6E300C89F55 /* SettingsViewController.xib */,
 				6A3DF72F10F6E0ED008BD8AA /* KBTextViewController.xib */,
 				6ADD23B6115AE24E005D14BE /* changelog */,
 				6A47C00510DCA8DE00DCF011 /* KBWebViewController.xib */,
@@ -2438,7 +2417,7 @@
 				6A978A601099FBC000FCE8F1 /* StoreKit.framework */,
 				6A39EB6210965868006F76C3 /* SystemConfiguration.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
-				2BA5A8FA11B57FBF0090173D /* libFlurryWithLocation.a */,
+				2BDECE7611E67F2300BCF92D /* libFlurryWithLocation.a */,
 				6A63DDCE1108EF4B00E2F9BB /* libicucore.dylib */,
 				0331DFCE10D36737009C5089 /* libisimulate.a */,
 				2BA5A8F911B57FBF0090173D /* libOAuth.a */,
@@ -3063,8 +3042,8 @@
 		6A47991311B3600E00C6EB89 /* Flurry */ = {
 			isa = PBXGroup;
 			children = (
-				6A47991C11B3601A00C6EB89 /* FlurryAPI.h */,
-				6A47991D11B3601A00C6EB89 /* FlurryAdDelegate.h */,
+				2BDECE7911E67F6B00BCF92D /* FlurryAdDelegate.h */,
+				2BDECE7A11E67F6B00BCF92D /* FlurryAPI.h */,
 			);
 			name = Flurry;
 			sourceTree = "<group>";
@@ -3984,7 +3963,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Kickball" */;
-			compatibilityVersion = "Xcode 3.1";
+			compatibilityVersion = "Xcode 3.2";
 			hasScannedForEncodings = 1;
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
@@ -4023,18 +4002,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6AC5817C10B517FB0043B90C /* PlacesMapView.xib in Resources */,
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				6AF794AF10CCADFF00E77D49 /* FriendRequestsViewController.xib in Resources */,
-				6A044CAD109545200063FC33 /* FriendsListView.xib in Resources */,
-				6A044CB7109545450063FC33 /* FriendsMapView.xib in Resources */,
 				6AF794C110CCAF4B00E77D49 /* ViewFriendRequestsViewController.xib in Resources */,
-				6AE61217109AB04C008ABF79 /* ProfileView.xib in Resources */,
 				6ADC9EC710D3F08600CFDCA7 /* AddPlaceViewController.xib in Resources */,
 				6A5F8F3C10B7707100914709 /* GeoAPIView.xib in Resources */,
 				6A10E61710BE0541006538DB /* LoginViewModalController.xib in Resources */,
 				6A86F6AB116AF376000BF6C6 /* KBFacebookSearchViewController.xib in Resources */,
-				6AC7E93210994FD000776993 /* PlaceDetailView.xib in Resources */,
 				6AF2F0AE10C2EBB300A29C96 /* TipView.xib in Resources */,
 				6AFF241210A24A0900CD30E5 /* PlaceTwitterViewController.xib in Resources */,
 				553C519410A1BD5100A74641 /* oauthAutoConfig.plist in Resources */,
@@ -4582,7 +4556,6 @@
 				6AC7E93110994FD000776993 /* PlaceDetailViewController.m in Sources */,
 				6A8AC8F1109AB31400C4FE1B /* ProfileViewController.m in Sources */,
 				6ABA7858109BDCAF001E7293 /* PlacesListViewController.m in Sources */,
-				6ABA7859109BDCAF001E7293 /* PlacesListViewController.xib in Sources */,
 				553C517F10A1BD5100A74641 /* FoursquareAPI.m in Sources */,
 				553C518010A1BD5100A74641 /* FSBadge.m in Sources */,
 				553C518110A1BD5100A74641 /* FSCheckin.m in Sources */,
@@ -4679,7 +4652,6 @@
 				6A47C00710DCA8DE00DCF011 /* KBWebViewController.xib in Sources */,
 				6AA8B86C10DDCECC005634D4 /* FSSpecial.m in Sources */,
 				6A4C30C510DED6E300C89F55 /* SettingsViewController.m in Sources */,
-				6A4C30C610DED6E300C89F55 /* SettingsViewController.xib in Sources */,
 				6A4C30CA10DF24FD00C89F55 /* PlaceMapViewController.m in Sources */,
 				6A4C30CB10DF24FD00C89F55 /* PlaceMapViewController.xib in Sources */,
 				6A223A4F10E46CE1003550F2 /* CreateTipTodoViewController.m in Sources */,
@@ -4967,7 +4939,7 @@
 					"-ObjC",
 				);
 				PREBINDING = NO;
-				SDKROOT = iphonesimulator3.1.3;
+				SDKROOT = iphoneos4.0;
 			};
 			name = Debug;
 		};
@@ -4992,7 +4964,7 @@
 					"-ObjC",
 				);
 				PREBINDING = NO;
-				SDKROOT = iphonesimulator3.1.3;
+				SDKROOT = iphoneos4.0;
 			};
 			name = Release;
 		};
