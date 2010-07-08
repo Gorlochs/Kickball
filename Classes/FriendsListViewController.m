@@ -621,7 +621,7 @@
                 } else {
                     [self.yesterdayCheckins addObject:checkin];
                 }
-			}else{
+			} else {
 				if (checkin.distanceFromLoggedInUser < [[[Utilities sharedInstance] getCityRadius] integerValue]) {
 					if ([date compare:oneHourFromNow] == NSOrderedDescending) {
 						[self.recentCheckins addObject:checkin];
@@ -645,7 +645,6 @@
             NSInteger minutes = [components minute] * -1;
             NSInteger hours = [components hour] * -1;
             NSInteger days = [components day] * -1;
-            
             if (days == 0 && hours == 0) {
                 checkin.truncatedTimeNumeral = [NSString stringWithFormat:@"%02d", minutes];
             } else if (days == 0) {
