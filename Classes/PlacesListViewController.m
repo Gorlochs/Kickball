@@ -54,6 +54,7 @@
     } else {
         self.venues = [NSDictionary dictionaryWithDictionary:[FoursquareAPI sharedInstance].cachedVenues];
         [theTableView reloadData];
+		theTableView.hidden = NO;
         [self stopProgressBar];
     }
     
@@ -93,6 +94,7 @@
             [theTableView scrollToRowAtIndexPath:[NSIndexPath indexPathWithIndexes:indexArr length:2] atScrollPosition:UITableViewScrollPositionTop animated:YES];
         }
     }
+	theTableView.hidden = NO;
     [self stopProgressBar];
 }
 

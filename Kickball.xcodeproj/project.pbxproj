@@ -202,6 +202,7 @@
 		2B13815211C2AD8300B72ECC /* featuresBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B13815111C2AD8300B72ECC /* featuresBG.png */; };
 		2B13815411C2AD9100B72ECC /* hoursBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B13815311C2AD9100B72ECC /* hoursBG.png */; };
 		2B13815611C2AD9800B72ECC /* tagsBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B13815511C2AD9800B72ECC /* tagsBG.png */; };
+		2B32BE5211E68B8D00D9E72E /* libOAuth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B32BE5111E68B8D00D9E72E /* libOAuth.a */; };
 		2B9CE5C911CC194F007E3B79 /* black_square.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B9CE5C811CC194F007E3B79 /* black_square.png */; };
 		2BA5B00611B963180090173D /* addFriend01_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BA5B00311B963180090173D /* addFriend01_red.png */; };
 		2BA5B00711B963180090173D /* addFriend02_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BA5B00411B963180090173D /* addFriend02_red.png */; };
@@ -226,7 +227,6 @@
 		2BC943F711C9896D00EAD010 /* btn-retweet01.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BC943EF11C9896D00EAD010 /* btn-retweet01.png */; };
 		2BC943F811C9896D00EAD010 /* btn-retweet02.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BC943F011C9896D00EAD010 /* btn-retweet02.png */; };
 		2BDECE7711E67F2300BCF92D /* libFlurryWithLocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BDECE7611E67F2300BCF92D /* libFlurryWithLocation.a */; };
-		2BDECE9911E680BB00BCF92D /* libOAuth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BDECE9811E680BB00BCF92D /* libOAuth.a */; };
 		552AFD8210A270ED009300E2 /* FSTip.m in Sources */ = {isa = PBXBuildFile; fileRef = 552AFD8110A270ED009300E2 /* FSTip.m */; };
 		552AFDE410A27AED009300E2 /* FriendPlacemark.m in Sources */ = {isa = PBXBuildFile; fileRef = 552AFDE310A27AED009300E2 /* FriendPlacemark.m */; };
 		552AFE4110A285AC009300E2 /* FriendIconAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 552AFE4010A285AC009300E2 /* FriendIconAnnotationView.m */; };
@@ -1096,6 +1096,7 @@
 		2B13815111C2AD8300B72ECC /* featuresBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = featuresBG.png; sourceTree = "<group>"; };
 		2B13815311C2AD9100B72ECC /* hoursBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hoursBG.png; sourceTree = "<group>"; };
 		2B13815511C2AD9800B72ECC /* tagsBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tagsBG.png; sourceTree = "<group>"; };
+		2B32BE5111E68B8D00D9E72E /* libOAuth.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOAuth.a; path = /Users/shawnb/Desktop/libOAuth.a; sourceTree = "<absolute>"; };
 		2B9CE5C811CC194F007E3B79 /* black_square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = black_square.png; sourceTree = "<group>"; };
 		2BA5AD5711B833DD0090173D /* KBTwitterManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBTwitterManagerDelegate.h; sourceTree = "<group>"; };
 		2BA5B00311B963180090173D /* addFriend01_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addFriend01_red.png; sourceTree = "<group>"; };
@@ -1123,7 +1124,6 @@
 		2BDECE7611E67F2300BCF92D /* libFlurryWithLocation.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryWithLocation.a; sourceTree = "<group>"; };
 		2BDECE7911E67F6B00BCF92D /* FlurryAdDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAdDelegate.h; sourceTree = "<group>"; };
 		2BDECE7A11E67F6B00BCF92D /* FlurryAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAPI.h; sourceTree = "<group>"; };
-		2BDECE9811E680BB00BCF92D /* libOAuth.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOAuth.a; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Kickball_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kickball_Prefix.pch; sourceTree = "<group>"; };
 		552AFD8010A270ED009300E2 /* FSTip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSTip.h; sourceTree = "<group>"; };
 		552AFD8110A270ED009300E2 /* FSTip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSTip.m; sourceTree = "<group>"; };
@@ -2021,7 +2021,7 @@
 				6AD0C1E4113F049E00A971E3 /* libThree20.a in Frameworks */,
 				6A6F2E141177C1CA00B2869B /* MessageUI.framework in Frameworks */,
 				2BDECE7711E67F2300BCF92D /* libFlurryWithLocation.a in Frameworks */,
-				2BDECE9911E680BB00BCF92D /* libOAuth.a in Frameworks */,
+				2B32BE5211E68B8D00D9E72E /* libOAuth.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2404,7 +2404,6 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2BDECE9811E680BB00BCF92D /* libOAuth.a */,
 				6A8F68E910E9B9FC00E0275E /* AddressBook.framework */,
 				6AFF0FFE1101796600AD6E55 /* CFNetwork.framework */,
 				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
@@ -2424,6 +2423,7 @@
 				6A39EB5B1096584A006F76C3 /* libsqlite3.dylib */,
 				6A8EEF0A10A14F3F00DC630C /* libxml2.dylib */,
 				6AFF10041101798000AD6E55 /* libz.1.2.3.dylib */,
+				2B32BE5111E68B8D00D9E72E /* libOAuth.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

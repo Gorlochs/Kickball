@@ -74,6 +74,7 @@
 
 - (void)viewDidLoad {
     hideFooter = YES;
+	theTableView.hidden = YES;
     
     [super viewDidLoad];
     photoManager = [KBPhotoManager sharedInstance];
@@ -249,6 +250,7 @@
             specialsButton.hidden = YES;
         }
 		
+		theTableView.hidden = NO;
         if (doCheckin) {
 			[self startProgressBar:@"Checking into this venue..."];
 			[[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:venue.venueid 
