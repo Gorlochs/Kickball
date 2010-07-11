@@ -621,11 +621,13 @@
 		6AACC53210D48F240059E604 /* KBLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AACC53110D48F240059E604 /* KBLocationManager.m */; };
 		6AAEE7401188EC6E00188EC0 /* KBTwitterUserTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AAEE73F1188EC6E00188EC0 /* KBTwitterUserTableCell.m */; };
 		6AAEE75E1188F5D100188EC0 /* KBTwitterUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AAEE75D1188F5D100188EC0 /* KBTwitterUser.m */; };
+		6AB9AFC611E9648F00923E1C /* imgLoader_light.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AB9AFC511E9648F00923E1C /* imgLoader_light.png */; };
 		6ABA7858109BDCAF001E7293 /* PlacesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABA7856109BDCAF001E7293 /* PlacesListViewController.m */; };
 		6ABB8B2F10D88C99001ECDAD /* FSMayor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABB8B2E10D88C99001ECDAD /* FSMayor.m */; };
 		6ABD307A1163D89C008F6A5D /* KickballAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABD30791163D89C008F6A5D /* KickballAPI.m */; };
 		6ABD313D116438E1008F6A5D /* KBGenericPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABD313C116438E1008F6A5D /* KBGenericPhotoViewController.m */; };
 		6ABD31D61164FBEF008F6A5D /* KBInstacheckinTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABD31D51164FBEF008F6A5D /* KBInstacheckinTableCell.m */; };
+		6AC0A7F811E8305B008360D8 /* libOAuth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AC0A7F711E8305B008360D8 /* libOAuth.a */; };
 		6AC28D13117390CC00518E37 /* FoursquareHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC28D12117390CC00518E37 /* FoursquareHeaderView.m */; };
 		6AC28D311173A07400518E37 /* FooterTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC28D301173A07400518E37 /* FooterTabView.m */; };
 		6AC28D491173B96B00518E37 /* KBFoursquareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC28D481173B96B00518E37 /* KBFoursquareViewController.m */; };
@@ -1718,6 +1720,7 @@
 		6AAEE73F1188EC6E00188EC0 /* KBTwitterUserTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTwitterUserTableCell.m; sourceTree = "<group>"; };
 		6AAEE75C1188F5D100188EC0 /* KBTwitterUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBTwitterUser.h; sourceTree = "<group>"; };
 		6AAEE75D1188F5D100188EC0 /* KBTwitterUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTwitterUser.m; sourceTree = "<group>"; };
+		6AB9AFC511E9648F00923E1C /* imgLoader_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = imgLoader_light.png; sourceTree = "<group>"; };
 		6ABA7855109BDCAF001E7293 /* PlacesListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlacesListViewController.h; sourceTree = "<group>"; };
 		6ABA7856109BDCAF001E7293 /* PlacesListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlacesListViewController.m; sourceTree = "<group>"; };
 		6ABB8B2D10D88C99001ECDAD /* FSMayor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSMayor.h; sourceTree = "<group>"; };
@@ -1728,6 +1731,7 @@
 		6ABD313C116438E1008F6A5D /* KBGenericPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBGenericPhotoViewController.m; sourceTree = "<group>"; };
 		6ABD31D41164FBEF008F6A5D /* KBInstacheckinTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBInstacheckinTableCell.h; sourceTree = "<group>"; };
 		6ABD31D51164FBEF008F6A5D /* KBInstacheckinTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBInstacheckinTableCell.m; sourceTree = "<group>"; };
+		6AC0A7F711E8305B008360D8 /* libOAuth.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOAuth.a; sourceTree = "<group>"; };
 		6AC28D11117390CC00518E37 /* FoursquareHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoursquareHeaderView.h; sourceTree = "<group>"; };
 		6AC28D12117390CC00518E37 /* FoursquareHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoursquareHeaderView.m; sourceTree = "<group>"; };
 		6AC28D2F1173A07400518E37 /* FooterTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FooterTabView.h; sourceTree = "<group>"; };
@@ -2022,6 +2026,7 @@
 				6A6F2E141177C1CA00B2869B /* MessageUI.framework in Frameworks */,
 				2BDECE7711E67F2300BCF92D /* libFlurryWithLocation.a in Frameworks */,
 				2B32BE5211E68B8D00D9E72E /* libOAuth.a in Frameworks */,
+				6AC0A7F811E8305B008360D8 /* libOAuth.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2351,27 +2356,16 @@
 				6AEB63D3110BA9BE0066DD05 /* PushNotificationView.xib */,
 				6A3DF72F10F6E0ED008BD8AA /* KBTextViewController.xib */,
 				6ADD23B6115AE24E005D14BE /* changelog */,
+				6A05617211AB7A22007D461A /* add a friend */,
+				6AC0A7EE11E8291C008360D8 /* twitter nibs */,
+				6A4C180D11A90BE1006BBC61 /* option nibs */,
+				6AC0A7F011E8293A008360D8 /* facebook nibs */,
 				6A47C00510DCA8DE00DCF011 /* KBWebViewController.xib */,
-				6A211933117D577800BE897E /* KBTwitterProfileViewController.xib */,
-				6A211938117D579600BE897E /* KBCreateTweetViewController.xib */,
-				6A211968117D68EE00BE897E /* KBTwitterSearchViewController.xib */,
-				0E76C40111C15FBF00BA1E89 /* KBFacebookListViewController.xib */,
-				0EB19C3211D01E5E00BFF849 /* KBFacebookCreateWallPostVC.xib */,
-				0E906DDE11CAB9FF0045006C /* KBFacebookEventDetailViewController.xib */,
-				6A30075511797649001CB933 /* KBTweetListViewController.xib */,
-				6AC85203117E2BB4007B5220 /* KBTwitterDetailViewController.xib */,
-				6A8ADA611187597E00D9328D /* KBGeoTweetMapViewController.xib */,
-				6A2EFAF1117F832F007F2D3D /* KBUserTweetsViewController.xib */,
-				6AA19FB21188E62D001EB415 /* KBTwitterUserListViewController.xib */,
-				07A3A52011CFFCE000FC7375 /* KBTwitterFavsViewController.xib */,
-				6A086FE9117652D400BD6094 /* TwitterLoginView_v2.xib */,
-				0E76C3FA11C158F100BA1E89 /* FacebookHeaderView.xib */,
-				6ADBFAA111738FE6003EB73D /* FoursquareHeaderView.xib */,
 				6ADBFAA311738FF1003EB73D /* TwitterHeaderView.xib */,
+				6ADBFAA111738FE6003EB73D /* FoursquareHeaderView.xib */,
 				6ADBFAA511738FFD003EB73D /* FooterTabView.xib */,
 				6AD4739611738DFD003CAA34 /* FriendsListView_v2.xib */,
 				6AFE197F1175387800130CBB /* FriendsMapView_v2.xib */,
-				0EDBDAA511C7DD220065DF0A /* KBFacebookEventsListView.xib */,
 				6AC28D541173BC6500518E37 /* PlacesListView_v2.xib */,
 				6AFE19A11175388C00130CBB /* PlacesMapView_v2.xib */,
 				6AEC8FC7117588A600BEB591 /* PlaceDetailView_v2.xib */,
@@ -2379,11 +2373,8 @@
 				6A2AEFC611742ECC00F1EA88 /* ProfileView_v2.xib */,
 				6A086FBD1176501700BD6094 /* UserProfileView_v2.xib */,
 				6A8AC21611612EE5009082F2 /* PhotoMessageViewController.xib */,
-				6A05617211AB7A22007D461A /* add a friend */,
-				6A4C180D11A90BE1006BBC61 /* option nibs */,
 				6A79D0D810E5E692009082E5 /* PopupMessageView.xib */,
 				6AFC1D9510BA42A9006B7E5F /* ProgressView.xib */,
-				6AF6ABA71180BB2900704B24 /* KBFacebookLoginViewController.xib */,
 				6A98EC1E1182351200E2F508 /* TipListViewController.xib */,
 				6A223A4E10E46CE1003550F2 /* CreateTipTodoViewController.xib */,
 				6AF2F0AD10C2EBB300A29C96 /* TipView.xib */,
@@ -2392,10 +2383,7 @@
 				6A0B41E011AAF09A00FB9A6D /* AddVenueViewController_v2.xib */,
 				6A921D891187A4F700866C59 /* ShoutViewController.xib */,
 				6A03D9091191E33C00FF036C /* CheckinModalView.xib */,
-				0EBEEFF811CC2C8C00A28329 /* KBFacebookAddComment.xib */,
-				0EDBDA7811C760EA0065DF0A /* KBFacebookPostDetailViewController.xib */,
 				0ED06E0A11D136B30048886E /* KBTwitterLoginView.xib */,
-				0ED06E0E11D137840048886E /* KBFacebookLoginView.xib */,
 				0ED06D2911D11E7E0048886E /* KBFoursquareLoginView.xib */,
 			);
 			name = Resources;
@@ -2423,6 +2411,7 @@
 				6A39EB5B1096584A006F76C3 /* libsqlite3.dylib */,
 				6A8EEF0A10A14F3F00DC630C /* libxml2.dylib */,
 				6AFF10041101798000AD6E55 /* libz.1.2.3.dylib */,
+				6AC0A7F711E8305B008360D8 /* libOAuth.a */,
 				2B32BE5111E68B8D00D9E72E /* libOAuth.a */,
 			);
 			name = Frameworks;
@@ -2985,6 +2974,7 @@
 		6A39EC4B109662D3006F76C3 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				6AB9AFC511E9648F00923E1C /* imgLoader_light.png */,
 				2B9CE5C811CC194F007E3B79 /* black_square.png */,
 				2B13811411C2AC7000B72ECC /* geoapi */,
 				0E1F228811C1474D00EA8AF1 /* quickCheckin */,
@@ -3476,6 +3466,39 @@
 				6A0B42F111AB431300FB9A6D /* KBTwitterRecentTweetsTableCell.m */,
 			);
 			name = "table cells";
+			sourceTree = "<group>";
+		};
+		6AC0A7EE11E8291C008360D8 /* twitter nibs */ = {
+			isa = PBXGroup;
+			children = (
+				6A211933117D577800BE897E /* KBTwitterProfileViewController.xib */,
+				6A211938117D579600BE897E /* KBCreateTweetViewController.xib */,
+				6A211968117D68EE00BE897E /* KBTwitterSearchViewController.xib */,
+				0E76C40111C15FBF00BA1E89 /* KBFacebookListViewController.xib */,
+				0EB19C3211D01E5E00BFF849 /* KBFacebookCreateWallPostVC.xib */,
+				0E906DDE11CAB9FF0045006C /* KBFacebookEventDetailViewController.xib */,
+				6A30075511797649001CB933 /* KBTweetListViewController.xib */,
+				6AC85203117E2BB4007B5220 /* KBTwitterDetailViewController.xib */,
+				6A8ADA611187597E00D9328D /* KBGeoTweetMapViewController.xib */,
+				6A2EFAF1117F832F007F2D3D /* KBUserTweetsViewController.xib */,
+				6AA19FB21188E62D001EB415 /* KBTwitterUserListViewController.xib */,
+				07A3A52011CFFCE000FC7375 /* KBTwitterFavsViewController.xib */,
+				6A086FE9117652D400BD6094 /* TwitterLoginView_v2.xib */,
+			);
+			name = "twitter nibs";
+			sourceTree = "<group>";
+		};
+		6AC0A7F011E8293A008360D8 /* facebook nibs */ = {
+			isa = PBXGroup;
+			children = (
+				0EDBDAA511C7DD220065DF0A /* KBFacebookEventsListView.xib */,
+				0EBEEFF811CC2C8C00A28329 /* KBFacebookAddComment.xib */,
+				0EDBDA7811C760EA0065DF0A /* KBFacebookPostDetailViewController.xib */,
+				6AF6ABA71180BB2900704B24 /* KBFacebookLoginViewController.xib */,
+				0ED06E0E11D137840048886E /* KBFacebookLoginView.xib */,
+				0E76C3FA11C158F100BA1E89 /* FacebookHeaderView.xib */,
+			);
+			name = "facebook nibs";
 			sourceTree = "<group>";
 		};
 		6AC28D0F117390A100518E37 /* Headers and Footers */ = {
@@ -4539,6 +4562,7 @@
 				0E76631711D3ECA6004B0F37 /* opt_optionsCell_G02.png in Resources */,
 				0E76632C11D3F184004B0F37 /* opt_bg-fields2.png in Resources */,
 				0E2E95C111DD09E90042D0E2 /* opt_navBG.png in Resources */,
+				6AB9AFC611E9648F00923E1C /* imgLoader_light.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -52,6 +52,7 @@
     friends = [[FoursquareAPI friendUsersFromRequestResponseXML:inString] retain];
     [theTableView reloadData];
     [self stopProgressBar];
+    theTableView.hidden = NO;
 }
 
 

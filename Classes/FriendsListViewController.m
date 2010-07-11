@@ -56,6 +56,7 @@
     
     pageType = KBPageTypeFriends;
     pageViewType = KBPageViewTypeList;
+    theTableView.hidden = YES;
     
     [super viewDidLoad];
     
@@ -86,6 +87,7 @@
         self.yesterdayCheckins = [NSKeyedUnarchiver unarchiveObjectWithData:yesterdayCheckinsData];
     }
     [theTableView reloadData];
+    theTableView.hidden = NO;
     
     // this is so the cell doesn't show up before the table is filled in
     footerViewCell.hidden = YES;

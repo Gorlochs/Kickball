@@ -71,6 +71,7 @@
     [dayOfWeekFormatter release];
     [self stopProgressBar];
     [theTableView reloadData];
+    theTableView.hidden = NO;
 }
 #pragma mark Table view methods
 

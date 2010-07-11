@@ -44,6 +44,7 @@
 - (void)viewDidLoad {
     hideFooter = YES;
     pageType = KBPageTypeOther;
+    theTableView.hidden = YES;
     
     [super viewDidLoad];
     
@@ -186,6 +187,7 @@
         
         [theTableView reloadData];
     }
+    theTableView.hidden = NO;
     [self stopProgressBar];
 }
 
