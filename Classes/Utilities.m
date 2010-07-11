@@ -245,16 +245,6 @@ static Utilities *sharedInstance = nil;
         [queue addOperation:request];
     }
 }
-
-//- (void)pushCompleted:(ASIHTTPRequest *) request {
-//	NSString *result = request.responseString;
-//	DLog(@"Response from push: %@", result);
-//}
-//
-//- (void)pushFailed:(ASIHTTPRequest *) request {
-//	NSString *result = request.responseString;
-//	DLog(@"Failure from push: %@", result);
-//}
                       
 static void addRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWidth, float ovalHeight)
 {

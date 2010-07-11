@@ -40,7 +40,7 @@ extern const NSString *kKBHashSalt;
 - (void) cacheImage: (NSString *) ImageURLString;
 - (UIImage *) getCachedImage: (NSString *) ImageURLString;
 //- (UIImage *) roundCorners: (UIImage*) img;
-- (void) retrieveAllFriendsWithPingOn;
+//- (void) retrieveAllFriendsWithPingOn;
 - (void) updateAllFriendsWithPingOn;
 + (UIImage *)makeRoundCornerImage:(UIImage*)img cornerwidth:(int) cornerWidth cornerheight:(int) cornerHeight;
 + (NSDate*) convertUTCCheckinDateToLocal:(NSDate*)utcDate;

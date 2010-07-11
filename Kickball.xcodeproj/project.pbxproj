@@ -1379,7 +1379,7 @@
 		6A12EC6210B772FA0013BA52 /* GeoApiDetailsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeoApiDetailsView.xib; sourceTree = "<group>"; };
 		6A145FB310FE74E7002CE938 /* ProfileFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileFriendsViewController.h; sourceTree = "<group>"; };
 		6A145FB410FE74E7002CE938 /* ProfileFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileFriendsViewController.m; sourceTree = "<group>"; };
-		6A145FB510FE74E7002CE938 /* ProfileFriendsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileFriendsViewController.xib; sourceTree = "<group>"; };
+		6A145FB510FE74E7002CE938 /* ProfileFriendsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.xib; name = ProfileFriendsViewController.xib; path = Classes/ProfileFriendsViewController.xib; sourceTree = "<group>"; };
 		6A1572BC11A5C0C80025D024 /* KBPhotoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBPhotoManager.h; sourceTree = "<group>"; };
 		6A1572BD11A5C0C80025D024 /* KBPhotoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBPhotoManager.m; sourceTree = "<group>"; };
 		6A1572C511A5C2620025D024 /* PhotoManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoManagerDelegate.h; sourceTree = "<group>"; };
@@ -1713,7 +1713,7 @@
 		6AA8BE9811A46EF700F60550 /* PlacePeopleHereViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = PlacePeopleHereViewController.xib; path = Classes/PlacePeopleHereViewController.xib; sourceTree = "<group>"; };
 		6AABEBD510FBB29500A5AF8B /* ProfileTwitterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileTwitterViewController.h; sourceTree = "<group>"; };
 		6AABEBD610FBB29500A5AF8B /* ProfileTwitterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileTwitterViewController.m; sourceTree = "<group>"; };
-		6AABEBD710FBB29500A5AF8B /* ProfileTwitterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileTwitterViewController.xib; sourceTree = "<group>"; };
+		6AABEBD710FBB29500A5AF8B /* ProfileTwitterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.xib; name = ProfileTwitterViewController.xib; path = Classes/ProfileTwitterViewController.xib; sourceTree = "<group>"; };
 		6AACC53010D48F240059E604 /* KBLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBLocationManager.h; sourceTree = "<group>"; };
 		6AACC53110D48F240059E604 /* KBLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBLocationManager.m; sourceTree = "<group>"; };
 		6AAEE73E1188EC6E00188EC0 /* KBTwitterUserTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBTwitterUserTableCell.h; sourceTree = "<group>"; };
@@ -1754,7 +1754,7 @@
 		6AC85B881177E518002FB92C /* KBTwitterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTwitterViewController.m; sourceTree = "<group>"; };
 		6ACBCCC6111FD2B900CF400C /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
 		6ACBCCC7111FD2B900CF400C /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
-		6ACBCCC8111FD2B900CF400C /* HistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistoryViewController.xib; sourceTree = "<group>"; };
+		6ACBCCC8111FD2B900CF400C /* HistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.xib; name = HistoryViewController.xib; path = Classes/HistoryViewController.xib; sourceTree = "<group>"; };
 		6ACD449811B8C2AF00BDA7B7 /* acct_title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = acct_title.png; sourceTree = "<group>"; };
 		6AD0C133113E3F2B00A971E3 /* KBTwitterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBTwitterCell.h; sourceTree = "<group>"; };
 		6AD0C134113E3F2B00A971E3 /* KBTwitterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTwitterCell.m; sourceTree = "<group>"; };
@@ -2385,6 +2385,9 @@
 				6A03D9091191E33C00FF036C /* CheckinModalView.xib */,
 				0ED06E0A11D136B30048886E /* KBTwitterLoginView.xib */,
 				0ED06D2911D11E7E0048886E /* KBFoursquareLoginView.xib */,
+				6AABEBD710FBB29500A5AF8B /* ProfileTwitterViewController.xib */,
+				6A145FB510FE74E7002CE938 /* ProfileFriendsViewController.xib */,
+				6ACBCCC8111FD2B900CF400C /* HistoryViewController.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -3937,13 +3940,10 @@
 				6A8AC8EF109AB31400C4FE1B /* ProfileViewController.m */,
 				6AABEBD510FBB29500A5AF8B /* ProfileTwitterViewController.h */,
 				6AABEBD610FBB29500A5AF8B /* ProfileTwitterViewController.m */,
-				6AABEBD710FBB29500A5AF8B /* ProfileTwitterViewController.xib */,
 				6A145FB310FE74E7002CE938 /* ProfileFriendsViewController.h */,
 				6A145FB410FE74E7002CE938 /* ProfileFriendsViewController.m */,
-				6A145FB510FE74E7002CE938 /* ProfileFriendsViewController.xib */,
 				6ACBCCC6111FD2B900CF400C /* HistoryViewController.h */,
 				6ACBCCC7111FD2B900CF400C /* HistoryViewController.m */,
-				6ACBCCC8111FD2B900CF400C /* HistoryViewController.xib */,
 				6AFE168611743EC200130CBB /* BlackTableCellHeader.h */,
 				6AFE168711743EC200130CBB /* BlackTableCellHeader.m */,
 			);

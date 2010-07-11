@@ -74,13 +74,12 @@ static BOOL initialized = NO;
 			[globalLocationManager release];
 		return nil;
 	}
-    
 	
 	locationManager = nil;
 	initialized = YES;
 	locationDenied = NO;
 	[self reset];
-    [self performSelector:@selector(stopUpdates) withObject:@"Timed Out" afterDelay:[[NSNumber numberWithDouble:60] doubleValue]];
+    //[self performSelector:@selector(stopUpdates) withObject:@"Timed Out" afterDelay:[[NSNumber numberWithDouble:60] doubleValue]];
     return self;
 }
 
@@ -92,7 +91,7 @@ static BOOL initialized = NO;
 
 - (CLLocationDistance) distanceFromCoordinate:(CLLocation*)coordinate {
     CLLocation *currentLocation = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
-    CLLocationDistance distance = [currentLocation getDistanceFrom:coordinate];
+    CLLocationDistance distance = [currentLocation distanceFromLocation:coordinate];
     [currentLocation release];
     return distance;
 }
@@ -134,8 +133,6 @@ static BOOL initialized = NO;
 	[locationManager startUpdatingLocation];
 }
 
-
-// FIXME: stop location updates at a certain point
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation  fromLocation:(CLLocation *)oldLocation {
 	locationDenied = NO;
 
