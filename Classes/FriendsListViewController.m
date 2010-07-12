@@ -616,6 +616,7 @@
         // FIXME: this is nasty ugly. It should be done the same way that Places List is done. This is crap. -shawn-
         for (FSCheckin *checkin in checkins) {
             NSDate *date = [[[Utilities sharedInstance] foursquareCheckinDateFormatter] dateFromString:checkin.created];
+            date = [[KickballAPI kickballApi] convertToUTC:date];
 			// to support infinity... see if the user is set to CITY_RADIUS_INFINITY then there is no point doing the comparison.
 			if (isInfiniteRadius) {
 				if ([date compare:oneHourFromNow] == NSOrderedDescending) {
