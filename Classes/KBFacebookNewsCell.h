@@ -16,8 +16,8 @@
     TTStyledTextLabel *tweetText;
 	UILabel *dateLabel;
 	int comments;
+	NSString *fbProfilePicUrl;
 	NSString *fbPictureUrl;
-
 	
     UILabel *userName;
 
@@ -26,13 +26,16 @@
 	UIButton *iconButt;
 	UIImageView *commentBG;
 	UILabel *commentNumber;
+	TTImageView *pictureThumb1;
 }
 
 @property (nonatomic, retain) TTImageView *userIcon;
 @property (nonatomic, retain) UILabel *userName;
 @property (nonatomic, retain) UILabel *dateLabel;
 @property (nonatomic, retain) TTStyledTextLabel *tweetText;
+@property (nonatomic, retain) NSString *fbProfilePicUrl;
 @property (nonatomic, retain) NSString *fbPictureUrl;
+
 
 - (void) setDateLabelWithDate:(NSDate*)theDate;
 - (void) setDateLabelWithText:(NSString*)theDate;

@@ -18,7 +18,7 @@
 @synthesize userName;
 @synthesize tweetText;
 @synthesize dateLabel;
-@synthesize fbPictureUrl;
+@synthesize fbProfilePicUrl, fbPictureUrl;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
@@ -93,8 +93,13 @@
         
         bottomLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderBottom.png"]];
         [self addSubview:bottomLineImage];
+		fbProfilePicUrl = nil;
 		fbPictureUrl = nil;
-		
+		pictureThumb1 = [[TTImageView alloc] initWithFrame:CGRectMake(60, 50, 34, 34)];
+        pictureThumb1.backgroundColor = [UIColor clearColor];
+        pictureThumb1.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
+        pictureThumb1.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
+        		
 		
     }
     return self;
@@ -131,6 +136,9 @@
 	}else {
 		commentBG.frame = CGRectMake(contentRect.origin.x+contentRect.size.width - 25, contentRect.size.height - 26, 25, 25);
 	}
+	if (fbPictureUrl!=nil) {
+		pictureThumb1.frame = CGRectMake(60, tweetText.frame.size.height+20, 64, 64);
+	}
 
 	
 }
@@ -153,15 +161,15 @@
     // Configure the view for the selected state
 }
 
--(void)setFbPictureUrl:(NSString *)_url{
+-(void)setFbProfilePicUrl:(NSString *)_url{
 	//avoid reloading the image if it;s the same one already in use	
-	if ([fbPictureUrl isEqualToString:_url]) {
+	if ([fbProfilePicUrl isEqualToString:_url]) {
 			return;
 	}
-	[fbPictureUrl release];
-	fbPictureUrl = nil;
-	fbPictureUrl = [_url copy];
-	NSString *cachedUrl = [[FacebookProxy instance].pictureUrls objectForKey:fbPictureUrl];
+	[fbProfilePicUrl release];
+	fbProfilePicUrl = nil;
+	fbProfilePicUrl = [_url copy];
+	NSString *cachedUrl = [[FacebookProxy instance].pictureUrls objectForKey:fbProfilePicUrl];
 	if (cachedUrl!=nil) {
 		[userIcon setUrlPath:cachedUrl];
 	}else {
@@ -170,15 +178,35 @@
 
 }
 
+-(void)setFbPictureUrl:(NSString *)_url{
+	//avoid reloading the image if it;s the same one already in use	
+	if (_url == nil) {
+		[pictureThumb1 removeFromSuperview];
+		return;
+	}else{
+		if ([pictureThumb1 superview] !=self) {
+			[self addSubview:pictureThumb1];
+		}
+	}
+	if ([fbPictureUrl isEqualToString:_url]) {
+		return;
+	}
+	
+	[fbPictureUrl release];
+	fbPictureUrl = nil;
+	fbPictureUrl = [_url copy];
+	[pictureThumb1 setUrlPath:fbPictureUrl];
+}
+
 -(void)loadPicUrl{
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	NSDictionary* args = [NSDictionary dictionaryWithObject:@"picture" forKey:@"fields"];
 	GraphAPI *graph = [[FacebookProxy instance] newGraph];
-	GraphObject *fbItem = [graph getObject:fbPictureUrl withArgs:args];
+	GraphObject *fbItem = [graph getObject:fbProfilePicUrl withArgs:args];
 	//userIcon.urlPath = [fbItem propertyWithKey:@"picture"];
 	NSString *staticUrl = [fbItem propertyWithKey:@"picture"];
 	if (staticUrl!=nil) {
-		[[FacebookProxy instance].pictureUrls setObject:staticUrl forKey:fbPictureUrl];
+		[[FacebookProxy instance].pictureUrls setObject:staticUrl forKey:fbProfilePicUrl];
 		[userIcon performSelectorOnMainThread:@selector(setUrlPath:) withObject:staticUrl waitUntilDone:YES];
 
 	}
@@ -204,7 +232,7 @@
 }
 
 - (void)dealloc {
-	[fbPictureUrl release];
+	[fbProfilePicUrl release];
     [userIcon release];
     [userName release];
 	[iconButt retain];
