@@ -142,13 +142,25 @@
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     
     unsigned unitFlags = NSHourCalendarUnit | NSMinuteCalendarUnit;
-    NSDateComponents *comps = [gregorian components:unitFlags fromDate:[theCheckin convertUTCCheckinDateToLocal]];
+//    NSDateComponents *comps = [gregorian components:unitFlags fromDate:[theCheckin convertUTCCheckinDateToLocal]];
+	NSDateComponents *comps = [gregorian components:unitFlags fromDate:[[[Utilities sharedInstance] foursquareCheckinDateFormatter] dateFromString:theCheckin.created]];
     DLog(@"date components: %@", comps);
     if ([comps hour] > 12) {
         cell.venueAddress.text = [NSString stringWithFormat:@"%02d:%02dpm", [comps hour] - 12, [comps minute]];
     } else {
         cell.venueAddress.text = [NSString stringWithFormat:@"%02d:%02dam", [comps hour], [comps minute]];
     }
+	
+	if (indexPath.row == 0) {
+		cell.roundedTopCorners.hidden = NO;
+	} else {
+		cell.roundedTopCorners.hidden = YES;
+	}
+	if (indexPath.row == [theTableView numberOfRowsInSection:indexPath.section] - 1) {
+		cell.roundedBottomCorners.hidden = NO;
+	} else {
+		cell.roundedBottomCorners.hidden = YES;
+	}
     [gregorian release];
 	return cell;
 }
