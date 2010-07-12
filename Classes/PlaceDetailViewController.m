@@ -972,15 +972,15 @@
         [checkinText appendString:[NSString stringWithFormat:@"%@: %@ \n\n", badge.badgeName, badge.badgeDescription]];
     }
     [checkinText appendFormat:@"%@ \n\n", aCheckin.message];
-	//Scoring *scoring = aCheckin.scoring;
-	NSArray *scores = [[NSArray alloc] initWithArray:aCheckin.scoring.scores];
-//	if (scoring && scoring.scores && [scoring.scores count] > 0) {
-	if (scores && [scores count] > 0) {
-		for (FSScore *score in scores) {
+//	//Scoring *scoring = aCheckin.scoring;
+//	NSArray *scores = [[NSArray alloc] initWithArray:aCheckin.scoring.scores];
+////	if (scoring && scoring.scores && [scoring.scores count] > 0) {
+//	if (scores && [scores count] > 0) {
+		for (FSScore *score in aCheckin.scoring.scores) {
 			[checkinText appendString:[NSString stringWithFormat:@"+%d %@ \n", score.points, score.message]];
 		}
-	}
-	[scores release];
+//	}
+//	[scores release];
     DLog(@"checkin text: %@", checkinText);
     KBMessage *message = [[KBMessage alloc] initWithMember:@"Check-in successful" andMessage:checkinText];
     [self displayPopupMessage:message];
@@ -1186,9 +1186,10 @@
 }
 
 - (void) cityGridRequestDidFinish:(ASIHTTPRequest *) request {
-    SBJSON *parser = [[SBJSON new] autorelease];
+    SBJSON *parser = [SBJSON new];
     DLog(@"city grid response: %@", [request responseString]);
     id dict = [parser objectWithString:[request responseString] error:NULL];
+	[parser release];
     NSArray *array = (NSArray*)[[dict objectForKey:@"jsonResponse"] objectForKey:@"results"];
     DLog(@"array of results: %@", array);
     NSMutableArray *objArray = [[NSMutableArray alloc] initWithCapacity:[array count]];
@@ -1239,8 +1240,9 @@
 // TODO: neaten this mess up
 - (void)receivedResponseString:(NSString *)responseString {
 //    DLog(@"geoapi response string: %@", responseString);
-    SBJSON *parser = [[SBJSON new] autorelease];
+    SBJSON *parser = [SBJSON new];
     id dict = [parser objectWithString:responseString error:NULL];
+	[parser release];
     NSArray *array = [(NSDictionary*)dict objectForKey:@"entity"];
     NSMutableArray *objArray = [[NSMutableArray alloc] initWithCapacity:[array count]];
     bool isMatched = NO;

@@ -293,8 +293,9 @@
 	
 	if (isFacebookOn) {
 		//if facebook submissio is turned on and I'm logged in and permitted to facebook
-		SBJSON *parser = [[SBJSON new] autorelease];
+		SBJSON *parser = [SBJSON new];
 		id dict = [parser objectWithString:[request responseString] error:NULL];
+		[parser release];
 		
 		NSString *uuid = [[(NSDictionary*)dict objectForKey:@"gift"] objectForKey:@"uuid"];
 		NSString *urlPath = [NSString stringWithFormat:@"https://kickball.s3.amazonaws.com/photos/%@/large/%@.jpg", uuid, uuid];

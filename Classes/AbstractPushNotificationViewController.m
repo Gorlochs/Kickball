@@ -61,8 +61,9 @@
 - (void) pingRequestDidFinish:(ASIHTTPRequest *) request {
     DLog("ping request finished: %@", [request responseString]);
     [Utilities sharedInstance].userIdsToReceivePings = [[NSMutableArray alloc] initWithCapacity:1];
-    SBJSON *parser = [[SBJSON new] autorelease];
+    SBJSON *parser = [SBJSON new];
     id pingArray = [parser objectWithString:[request responseString] error:NULL];
+	[parser release];
     for (NSDictionary *dict in (NSArray*)pingArray) {
         [[Utilities sharedInstance].userIdsToReceivePings addObject:[[dict objectForKey:@"ping"] objectForKey:@"userId"]];
     }

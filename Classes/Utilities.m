@@ -177,7 +177,7 @@ static Utilities *sharedInstance = nil;
 //- (void) pingRequestDidFinish:(ASIHTTPRequest *) request {
 //    DLog("ping request finished: %@", [request responseString]);
 //    userIdsToReceivePings = [[NSMutableArray alloc] initWithCapacity:1];
-//    SBJSON *parser = [[SBJSON new] autorelease];
+//    SBJSON *parser = [SBJSON new];
 //    id pingArray = [parser objectWithString:[request responseString] error:NULL];
 //    for (NSDictionary *dict in (NSArray*)pingArray) {
 //        [userIdsToReceivePings addObject:[[dict objectForKey:@"ping"] objectForKey:@"userId"]];

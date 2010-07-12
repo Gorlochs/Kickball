@@ -171,11 +171,11 @@
 		fullBoat = nil;
 		[theTableView reloadData];
 	}
-	[self performSelectorOnMainThread:@selector(stopProgressBar) withObject:nil waitUntilDone:NO];
 	[self dataSourceDidFinishLoadingNewData];
 	[graph release];
 	[pool release];
 	
+	[self performSelectorOnMainThread:@selector(stopProgressBar) withObject:nil waitUntilDone:NO];
 }
 
 

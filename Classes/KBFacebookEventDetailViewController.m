@@ -106,9 +106,9 @@
 	// = [[FacebookProxy instance] refreshEvents];
 	//GraphObject *baseObj = [baseEventResult objectAtIndex:0];
 	//comments = [[FacebookProxy instance] refreshEvents];
-	[self performSelectorOnMainThread:@selector(stopProgressBar) withObject:nil waitUntilDone:NO];
 	[self dataSourceDidFinishLoadingNewData];
 	[pool release];
+	[self performSelectorOnMainThread:@selector(stopProgressBar) withObject:nil waitUntilDone:NO];
 
 }
 
@@ -138,12 +138,12 @@
 		[fullBoat release];
 		fullBoat = nil;
 		[theTableView reloadData];
-	}
-	[self performSelectorOnMainThread:@selector(stopProgressBar) withObject:nil waitUntilDone:NO];
-	[self dataSourceDidFinishLoadingNewData];
+	}	[self dataSourceDidFinishLoadingNewData];
 	[graph release];
 	[pool release];
 	
+	[self performSelectorOnMainThread:@selector(stopProgressBar) withObject:nil waitUntilDone:NO];
+
 }
 
 

@@ -62,8 +62,9 @@
 }
 
 - (void) cityGridRequestDidFinish:(ASIHTTPRequest *) request {
-    SBJSON *parser = [[SBJSON new] autorelease];
+    SBJSON *parser = [SBJSON new];
     id dict = [parser objectWithString:[request responseString] error:NULL];
+	[parser release];
     NSArray *array = (NSArray*)[dict objectForKey:@"locations"];
     DLog(@"location: %@", [array objectAtIndex:0]);
     NSDictionary *locationDictionary = [array objectAtIndex:0];

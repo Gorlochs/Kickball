@@ -289,9 +289,10 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
     if (textToDisplay == nil) {
         textToDisplay = @"Processing...";
     }
-	if (progressViewController) [progressViewController release];
-    progressViewController = [[ProgressViewController alloc] initWithNibName:@"ProgressView" bundle:nil];
-	
+//	if (progressViewController) [progressViewController release];
+	if (!progressViewController) {
+		progressViewController = [[ProgressViewController alloc] initWithNibName:@"ProgressView" bundle:nil];
+	}
 	CGRect frame = progressViewController.view.frame;
 	frame.origin.y = frame.origin.y + 50;
 	progressViewController.view.frame = frame;
@@ -307,9 +308,9 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
     
     [UIView commitAnimations];
 	
-    progressViewController.activityLabel.text = textToDisplay;
-    [progressViewController.activityLabel setShadowColor:[UIColor whiteColor]];
-    [progressViewController.activityLabel setShadowOffset:CGSizeMake(1, 1)];
+//    progressViewController.activityLabel.text = textToDisplay;
+//    [progressViewController.activityLabel setShadowColor:[UIColor whiteColor]];
+//    [progressViewController.activityLabel setShadowOffset:CGSizeMake(1, 1)];
     [self.view addSubview:progressViewController.view];
     
     if (shouldSetTimer) {
@@ -335,16 +336,17 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
     progressBarTimer = nil;
 	
 	[UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationDuration:0.4];
+	[UIView setAnimationBeginsFromCurrentState:YES];
+	[UIView setAnimationDuration:0.4];
 	[UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
+	DLog("progressViewController: %i", progressViewController);
+	DLog("progressViewController: %@", [progressViewController class]);
 	progressViewController.view.frame = CGRectMake(0, 
 												   progressViewController.view.frame.origin.y + 50, 
 												   progressViewController.view.frame.size.width, 
 												   progressViewController.view.frame.size.height);
-    
-    [UIView commitAnimations];
 	
+	[UIView commitAnimations];
     //[progressViewController.view removeFromSuperview];
 }
 

@@ -258,7 +258,7 @@
 
 - (void) photoUploadFinished:(ASIHTTPRequest *) request {
 	
-	SBJSON *parser = [[SBJSON new] autorelease];
+	SBJSON *parser = [SBJSON new];
 	id dict = [parser objectWithString:[request responseString] error:NULL];
 	
 	NSString *uuid = [[(NSDictionary*)dict objectForKey:@"gift"] objectForKey:@"uuid"];
@@ -272,8 +272,7 @@
     [delegate displayPopupMessage:message];
     [message release];
     [FlurryAPI logEvent:@"Image Upload Completed- facebook post"];
-
-	
+	[parser release];
 }
 
 - (void) photoQueueFinished:(ASIHTTPRequest *) request {

@@ -93,9 +93,10 @@
 	[nextPageURL retain];
 	[graph release];
 	[theTableView reloadData];
-	[self performSelectorOnMainThread:@selector(stopProgressBar) withObject:nil waitUntilDone:NO];
 	[self dataSourceDidFinishLoadingNewData];
 	[pool release];
+	
+	[self performSelectorOnMainThread:@selector(stopProgressBar) withObject:nil waitUntilDone:NO];
 }
 
 -(void)concatenateMore:(NSString*)urlString{
@@ -125,11 +126,11 @@
 		fullBoat = nil;
 		[theTableView reloadData];
 	}
-	[self performSelectorOnMainThread:@selector(stopProgressBar) withObject:nil waitUntilDone:NO];
 	[self dataSourceDidFinishLoadingNewData];
 	[graph release];
 	[pool release];
 	
+	[self performSelectorOnMainThread:@selector(stopProgressBar) withObject:nil waitUntilDone:NO];
 }
 
 - (void) refreshTable {
