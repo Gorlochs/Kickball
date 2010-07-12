@@ -13,6 +13,7 @@
 #import "Utilities.h"
 #import "PlaceDetailViewController.h"
 #import "AddPlaceCategoryViewController.h"
+#import "KBPin.h"
 
 
 @implementation AddPlaceViewController
@@ -45,6 +46,30 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateVenue:) name:@"venueAddressUpdate" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateCategory:) name:@"venueCategoryUpdate" object:nil];
+    
+    // center map on user location
+    MKCoordinateRegion region;
+    MKCoordinateSpan span;
+    span.latitudeDelta = 0.01;
+    span.longitudeDelta = 0.01;
+    
+    region.span = span;
+    region.center = [[KBLocationManager locationManager] bestEffortAtLocation].coordinate;
+    
+    [mapView setRegion:region animated:NO];
+    [mapView regionThatFits:region];
+}
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
+	
+    if( [[annotation title] isEqualToString:@"Current Location"] ) {
+		return nil;
+	}
+    
+    KBPin *annView=[[[KBPin alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomId"] autorelease];
+    annView.image = [UIImage imageNamed:@"pin.png"];
+
+    return annView;
 }
 
 - (void) updateVenue:(NSNotification*)notification {

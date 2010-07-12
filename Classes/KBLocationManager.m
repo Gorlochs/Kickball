@@ -142,14 +142,15 @@ static BOOL initialized = NO;
     longitude = newLocation.coordinate.longitude;
     DLog(@"latitude: %f", latitude);
     DLog(@"longitude: %f", longitude);
-    DLog(@"bestEffortAtLocation: %@", bestEffortAtLocation);
+    //DLog(@"bestEffortAtLocation: %@", bestEffortAtLocation);
     
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setFloat:latitude forKey:kLastLatitudeKey];
     [userDefaults setFloat:longitude forKey:kLastLongitudeKey];
     
     [FlurryAPI setLocation:newLocation];
-        
+    
+    self.bestEffortAtLocation = newLocation;
     locationDefined = YES;
     [[NSNotificationCenter defaultCenter] postNotificationName:kUpdatedLocationKey object: nil];
 }
