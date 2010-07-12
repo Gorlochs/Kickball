@@ -191,14 +191,17 @@ static Utilities *sharedInstance = nil;
 - (NSMutableArray*) friendsWithPingOn {
     if (friendsWithPingOn) {
         return friendsWithPingOn;
-    } else {
-        [self retrieveAllFriendsWithPingOn];
+    } else {		
+		[NSThread detachNewThreadSelector:@selector(retrieveAllFriendsWithPingOn) toTarget:self withObject:nil];
+//        [self retrieveAllFriendsWithPingOn];
         return nil;
     }
 }
 
 - (void) updateAllFriendsWithPingOn {
+	pool = [[NSAutoreleasePool alloc] init];
     [[FoursquareAPI sharedInstance] getFriendsWithTarget:self andAction:@selector(friendsResponseReceived:withResponseString:)];
+	[pool release];
 }
 
 - (void)friendsResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
@@ -211,7 +214,7 @@ static Utilities *sharedInstance = nil;
         for (FSUser *friend in allFriends) {
             //DLog(@"friend: %@", friend);
             [[FoursquareAPI sharedInstance] getUser:friend.userId withTarget:self andAction:@selector(aFriendResponseReceived:withResponseString:)];
-            DLog(@"running total: %d", runningTotalNumberOfUsersBeingPushed);
+            //DLog(@"running total: %d", runningTotalNumberOfUsersBeingPushed);
         }
         [allFriends release];
     }
@@ -244,6 +247,18 @@ static Utilities *sharedInstance = nil;
         [request setDidFailSelector: @selector(pingSubmitFailed:)];
         [queue addOperation:request];
     }
+}
+
+- (void) pingSubmitFailed:(ASIHTTPRequest *) request {
+    DLog(@"BOOOOOOOOOOOO!");
+    DLog(@"response msg: %@", request.responseStatusMessage);
+	//[pool release];
+}
+
+- (void) pingSubmitCompleted:(ASIHTTPRequest *) request {
+    DLog(@"YAAAAAAAAAAAY!");
+    DLog(@"response msg: %@", request.responseStatusMessage);
+	//[pool release];
 }
                       
 static void addRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWidth, float ovalHeight)

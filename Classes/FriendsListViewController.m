@@ -136,7 +136,9 @@
     if (![self getAuthenticatedUser]) {
         [[FoursquareAPI sharedInstance] getUser:nil withTarget:self andAction:@selector(userResponseReceived:withResponseString:)];
     }
+#ifndef DEBUG
     [[Utilities sharedInstance] updateAllFriendsWithPingOn];
+#endif
 }
 
 // FIXME: this needs to be pulled up
@@ -583,7 +585,7 @@
 }
 
 - (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    DLog(@"checkins: %@", inString);
+    //DLog(@"checkins: %@", inString);
     NSString *errorMessage = [FoursquareAPI errorFromResponseXML:inString];
     if (errorMessage) {
 		if ([errorMessage rangeOfString:@"authentication"].location != NSNotFound) {

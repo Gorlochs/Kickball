@@ -113,7 +113,7 @@
 		venueName.numberOfLines = 3;
 		venueName.frame	= CGRectMake(66, contentRect.origin.y+22, 200, 50);
 		venueAddress.frame = CGRectMake(66, contentRect.origin.y+62, 200, 20);
-	}else {
+	} else {
 		userName.frame = CGRectMake(66, contentRect.origin.y+6, 200, 20);
 		venueName.numberOfLines = 1;
 		venueName.font = [UIFont boldSystemFontOfSize:16.0];

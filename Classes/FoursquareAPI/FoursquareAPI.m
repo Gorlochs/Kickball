@@ -913,7 +913,7 @@ static FoursquareAPI *sharedInstance = nil;
                 oneCheckin.venue = currentVenueInfo;
             } else if ([key compare:@"scoring"] == 0) {
                 DLog(@"found the checkin scoring node");
-                FSScoring * currentCheckinScoring = [FoursquareAPI _scoringFromNode:checkinAttr];
+                FSScoring * currentCheckinScoring = [[FoursquareAPI _scoringFromNode:checkinAttr] retain];
                 oneCheckin.scoring = currentCheckinScoring;
             } else if ([key compare:@"badges"] == 0) {
                 NSArray * badgeXML = [checkinAttr nodesForXPath:@"//badges" error:nil];
@@ -981,7 +981,7 @@ static FoursquareAPI *sharedInstance = nil;
 }
 
 + (FSScoring *) _scoringFromNode:(CXMLNode *) inputNode{
-	NSMutableArray * allScores = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
+	NSMutableArray * allScores = [[NSMutableArray alloc] initWithCapacity:1];
 	FSScoring *theScoring = [[[FSScoring alloc] init] autorelease];
 	
 	//get all the scores in the checkin
@@ -1530,9 +1530,9 @@ int encode(unsigned s_len, char *src, unsigned d_len, char *dst)
 	if(httpMethod == nil){
 		httpMethod = @"GET";
 	}
-	DLog(@"initwithstring - crash?");
+	//DLog(@"initwithstring - crash?");
 	NSMutableString *parameterString = [[NSMutableString alloc] initWithString:[FoursquareAPI parameterStringForDictionary:parameters]];
-	DLog(@"done with initwithstring");
+	//DLog(@"done with initwithstring");
 
 	if(httpMethod == @"POST"){
 		//this is a post so do some form encoding

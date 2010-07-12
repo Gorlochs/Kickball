@@ -305,7 +305,7 @@
 	}
 	
 	
-    [self stopProgressBar];
+    //[self stopProgressBar];
     DLog(@"YAY! Image uploaded!");
     KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"Image upload has been completed!"];
     [self displayPopupMessage:message];
@@ -322,11 +322,11 @@
     // NOTE: the self.photoMessageToPush is being set above in the returnFromMessageView: method
     [FlurryAPI logEvent:@"Image Upload Completed"];
 	
-	
+    [self decrementActionCount];
 }
 
 - (void) photoQueueFinished:(ASIHTTPRequest *) request {
-    [self decrementActionCount];
+    //[self decrementActionCount];
     
     DLog(@"YAY! Image queue is complete!");
     
@@ -337,6 +337,7 @@
 
 - (void) photoUploadFailed:(ASIHTTPRequest *) request {
     [self stopProgressBar];
+    [self decrementActionCount];
     DLog(@"Uhoh, it did fail!");
 	if (isFacebookOn ) {
 		//actionCount++;

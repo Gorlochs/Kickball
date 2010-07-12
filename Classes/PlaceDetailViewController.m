@@ -246,6 +246,7 @@
         
         if (self.venue.specials != nil &&[self.venue.specials count] > 0) {
             specialsButton.hidden = NO;
+			[self.view bringSubviewToFront:specialsButton];
         } else {
             specialsButton.hidden = YES;
         }
@@ -956,24 +957,30 @@
 - (void) presentCheckinOverlayWithCheckin:(FSCheckin*)aCheckin {
     NSMutableString *checkinText = [[NSMutableString alloc] initWithCapacity:1];
     if (aCheckin.mayor.user == nil && [aCheckin.mayor.mayorTransitionType isEqualToString:@"nochange"]) {
-        [checkinText appendFormat:[NSString stringWithFormat:@"You're still the mayor of %@! \n\n", venue.name]];
+        [checkinText appendString:[NSString stringWithFormat:@"You're still the mayor of %@! \n\n", venue.name]];
     } else if ([aCheckin.mayor.mayorTransitionType isEqualToString:@"stolen"] || [aCheckin.mayor.mayorTransitionType isEqualToString:@"new"]) {
         if ([[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"stolen"]) {
-            [checkinText appendFormat:[NSString stringWithFormat:@"Congrats! %@ is yours with %d check-ins and %@ lost their crown. \n\n", 
+            [checkinText appendString:[NSString stringWithFormat:@"Congrats! %@ is yours with %d check-ins and %@ lost their crown. \n\n", 
                                       aCheckin.venue.name, 
                                       aCheckin.mayor.numCheckins, 
                                       aCheckin.mayor.user.firstnameLastInitial]];
         } else {
-            [checkinText appendFormat:[NSString stringWithFormat:@"%@ \n\n", aCheckin.mayor.mayorCheckinMessage]];
+            [checkinText appendString:[NSString stringWithFormat:@"%@ \n\n", aCheckin.mayor.mayorCheckinMessage]];
         }
     }
     for (FSBadge *badge in aCheckin.badges) {
-        [checkinText appendFormat:[NSString stringWithFormat:@"%@: %@ \n\n", badge.badgeName, badge.badgeDescription]];
+        [checkinText appendString:[NSString stringWithFormat:@"%@: %@ \n\n", badge.badgeName, badge.badgeDescription]];
     }
     [checkinText appendFormat:@"%@ \n\n", aCheckin.message];
-    for (FSScore *score in aCheckin.scoring.scores) {
-        [checkinText appendFormat:[NSString stringWithFormat:@"+%d %@ \n", score.points, score.message]];
-    }
+	//Scoring *scoring = aCheckin.scoring;
+	NSArray *scores = [[NSArray alloc] initWithArray:aCheckin.scoring.scores];
+//	if (scoring && scoring.scores && [scoring.scores count] > 0) {
+	if (scores && [scores count] > 0) {
+		for (FSScore *score in scores) {
+			[checkinText appendString:[NSString stringWithFormat:@"+%d %@ \n", score.points, score.message]];
+		}
+	}
+	[scores release];
     DLog(@"checkin text: %@", checkinText);
     KBMessage *message = [[KBMessage alloc] initWithMember:@"Check-in successful" andMessage:checkinText];
     [self displayPopupMessage:message];

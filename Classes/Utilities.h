@@ -29,6 +29,7 @@ extern const NSString *kKBHashSalt;
     NSDateFormatter *foursquareCheckinDateFormatter;
     NSMutableString *ids;
     NSMutableArray *userIdsToReceivePings;
+	NSAutoreleasePool *pool;
 }
 
 @property (nonatomic, retain) NSMutableArray *friendsWithPingOn;
