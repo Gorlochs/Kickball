@@ -61,8 +61,7 @@
 }
 
 - (void)viewDidLoad {
-    
-	DLog("tweet detail: %@", self.tweet);
+    DLog(@"--------------------------------------------------------- loaded twitter detail");
     pageType = KBPageTypeOther;
     
     [super viewDidLoad];
@@ -80,7 +79,7 @@
     screenName.text = tweet.screenName;
     fullName.text = tweet.fullName;
 	
-	TTStyledTextLabel* label1 = [[[TTStyledTextLabel alloc] initWithFrame:CGRectMake(6, 125, 300, 100)] autorelease];
+	TTStyledTextLabel* label1 = [[TTStyledTextLabel alloc] initWithFrame:CGRectMake(6, 125, 300, 100)];
 	label1.font = [UIFont fontWithName:@"Helvetica" size:14.0];
 	label1.textColor = [UIColor colorWithWhite:0.5 alpha:1.0];
 	label1.text = [TTStyledText textWithURLs:tweet.tweetText lineBreaks:NO];
@@ -88,6 +87,7 @@
 	label1.backgroundColor = [UIColor clearColor];
 	[label1 sizeToFit];
 	[self.view addSubview:label1];
+    [label1 release];
 	
 	/*
     mainTextLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(20, 105, 270, 100)];
@@ -182,7 +182,7 @@
 
 - (void)dealloc {
     [tweet release];
-    [tweets release];        
+    [tweets release];  
     [super dealloc];
 }
 

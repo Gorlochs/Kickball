@@ -64,7 +64,7 @@
 
 - (void)requestSucceeded:(NSString *)connectionIdentifier
 {
-	DLog(@"Twitter request succeeded: %@", connectionIdentifier);
+	DLog(@"Twitter request succeeded 1: %@", connectionIdentifier);
 }
 
 - (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error
@@ -195,7 +195,6 @@
 
 #pragma mark -
 #pragma mark Table view delegate
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [theTableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 0) {
@@ -258,9 +257,6 @@
     if (cachingKey) [cachingKey release];
     //if (twitterArray) [twitterArray release]; //bad!
     //[noResultsView release];
-//    [detailViewController release];
-//    [userTweetsController release];
-//    [searchController release];
     [super dealloc];
 }
 

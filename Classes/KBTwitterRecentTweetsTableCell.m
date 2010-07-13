@@ -59,9 +59,10 @@
 
 - (void) setDateLabelWithDate:(NSDate*)theDate {
     //DLog(@"label date: %@", theDate);
-	NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
+	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setDateFormat:TWITTER_DISPLAY_DATE_FORMAT];
     dateLabel.text = [dateFormatter stringFromDate:theDate];
+    [dateFormatter release];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -29,7 +29,7 @@
 	NSDateFormatter *dateFormatter;
 }
 
-@property (nonatomic, retain) NSDateFormatter *dateFormatter;
+@property (nonatomic, assign) NSDateFormatter *dateFormatter;
 
 + (id)parserWithXML:(NSData *)theXML delegate:(NSObject *)theDelegate 
 connectionIdentifier:(NSString *)identifier requestType:(MGTwitterRequestType)reqType 

@@ -50,6 +50,7 @@ NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
 	if (kTrue == NULL)
 		kTrue = [[NSData alloc] initWithBytesNoCopy:"true" length:4 freeWhenDone:NO];
 	}
+DLog(@"-----------------------WARNING, draining POOL CJSONDataSerializer");
 
 [thePool release];
 }

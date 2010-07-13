@@ -512,7 +512,7 @@
 						error:(NSError*)error;
 {
 	if (result == MFMailComposeResultSent) {
-		NSLog(@"It's away!");
+		DLog(@"It's away!");
 	}
 	[self dismissModalViewControllerAnimated:YES];
 	

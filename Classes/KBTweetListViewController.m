@@ -32,6 +32,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    twitterManager.delegate = self;
     _inModalTweetView = NO;
     pageNum = 1;
     cachingKey = kKBTwitterTimelineKey;
@@ -125,7 +126,7 @@
 #pragma mark MGTwitterEngineDelegate methods
 
 - (void)requestSucceeded:(NSString *)connectionIdentifier {
-	DLog(@"Twitter request succeeded: %@", connectionIdentifier);
+	DLog(@"Twitter request succeeded 2: %@", connectionIdentifier);
 }
 
 - (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error {

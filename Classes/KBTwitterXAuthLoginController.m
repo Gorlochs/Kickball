@@ -156,7 +156,7 @@
 
 - (void)requestSucceeded:(NSString *)connectionIdentifier
 {
-	DLog(@"Twitter request succeeded: %@", connectionIdentifier);
+	DLog(@"Twitter request succeeded 4: %@", connectionIdentifier);
 	
 	UIAlertViewQuick(@"Tweet sent!", @"The tweet was successfully sent. Everything works!", @"OK");
 }

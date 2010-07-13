@@ -462,11 +462,11 @@
 	//                                                          timeoutInterval:URL_REQUEST_TIMEOUT];
 	// --------------------------------------------------------------------------------
 	DLog(@"About to carry out request with access token: %@", _accessToken);
-	OAMutableURLRequest *theRequest = [[[OAMutableURLRequest alloc] initWithURL:finalURL
+	OAMutableURLRequest *theRequest = [[OAMutableURLRequest alloc] initWithURL:finalURL
 																	   consumer:self.consumer 
 																		  token:_accessToken 
 																		  realm: nil
-															  signatureProvider:nil] autorelease];
+															  signatureProvider:nil];
     if (method) {
         [theRequest setHTTPMethod:method];
     }
@@ -510,9 +510,12 @@
                                                         responseType:responseType];
     
     if (!connection) {
+        DLog(@"no xauthtwitter engine connection!");
+        [theRequest release];
         return nil;
     } else {
         [_connections setObject:connection forKey:[connection identifier]];
+        [theRequest release];
         [connection release];
     }
     

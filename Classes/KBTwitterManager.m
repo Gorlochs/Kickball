@@ -57,9 +57,12 @@ static KBTwitterManager *sharedInstance = nil;
 
 - (void)release {
     //do nothing
+    DLog(@"twittermanager release called");
+    //[super release];
 }
 
 - (id)autorelease {
+  DLog(@"twittermanager autorelease called");
     return self;
 }
 
@@ -115,7 +118,7 @@ static KBTwitterManager *sharedInstance = nil;
 
 - (void)requestSucceeded:(NSString *)connectionIdentifier
 {
-	DLog(@"Twitter request succeeded: %@", connectionIdentifier);
+	DLog(@"Twitter request succeeded 5: %@", connectionIdentifier);
 	
 	//UIAlertViewQuick(@"twitter call worked!", @"Everything works!", @"OK");
 }
