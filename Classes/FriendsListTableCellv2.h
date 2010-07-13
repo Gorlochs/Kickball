@@ -22,12 +22,14 @@
     UIImageView *iconBgImage;
     UIImageView *fadeImage;
 	BOOL twoLine;
+	BOOL hasShoutAndCheckin;
 }
 
 @property (nonatomic, retain) TTImageView *userIcon;
 @property (nonatomic, retain) UILabel *userName;
 @property (nonatomic, retain) UILabel *venueName;
 @property (nonatomic, retain) UILabel *venueAddress;
+@property (nonatomic) BOOL hasShoutAndCheckin;
 
 - (void)makeTwoLine;
 - (void)makeOneLine;

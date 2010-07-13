@@ -268,12 +268,14 @@
     cell.userIcon.urlPath = checkin.user.photo;
     cell.userName.text = checkin.user.firstnameLastInitial;
     cell.venueName.text = checkin.venue.name;
+	cell.hasShoutAndCheckin = NO;
     
     if ([checkin.display rangeOfString:@"[off the grid]"].location != NSNotFound) {
         cell.venueName.text = @"[off the grid]";
         cell.venueAddress.text = @"...location unknown...";
     } else if (checkin.shout != nil && checkin.venue) {
         cell.venueAddress.text = checkin.shout;
+		cell.hasShoutAndCheckin = YES;
     } else if (checkin.shout != nil && !checkin.venue) {
         cell.venueName.text = checkin.shout;
         cell.venueAddress.text = @"";
@@ -372,7 +374,15 @@
     } else if (indexPath.section == SECTION_NONCITY_YESTERDAY_CHECKINS) {
 		checkin = [self.nonCityYesterdayCheckins objectAtIndex:indexPath.row];
     }
-	if (checkin.shout) {
+	if (checkin.shout && checkin.venue) {
+		CGSize maximumLabelSize = CGSizeMake(250, 60);
+		CGSize expectedLabelSize = [checkin.shout sizeWithFont:[UIFont boldSystemFontOfSize:11.0]
+											 constrainedToSize:maximumLabelSize 
+												 lineBreakMode:UILineBreakModeWordWrap];
+		if (expectedLabelSize.height>20) {
+			return 96;
+		}
+	} else if (checkin.shout) {
 		//check to see if it is long enough to need two lines:
 		CGSize maximumLabelSize = CGSizeMake(250, 60);
 		CGSize expectedLabelSize = [checkin.shout sizeWithFont:[UIFont boldSystemFontOfSize:16.0]
