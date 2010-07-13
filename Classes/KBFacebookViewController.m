@@ -9,7 +9,6 @@
 #import "KBFacebookViewController.h"
 #import "KBFacebookEventsListViewController.h"
 #import "KBFacebookListViewController.h"
-#import "KBFacebookCreateWallPostVC.h"
 #import "KBCreateTweetViewController.h"
 #import "FBFacebookCreatePostViewController.h"
 
