@@ -1431,7 +1431,7 @@
 
 - (void) photoQueueFinished:(ASIHTTPRequest *) request {
     [self stopProgressBar];
-    DLog(@"YAY! Image queue is complete!");
+    DLog(@"YAY! Image queue is complete! 3");
     
     // TODO: this should probably capture the response, parse it into a KBGoody, then add it to the goodies object - it would save an API hit
     

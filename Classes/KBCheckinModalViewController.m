@@ -116,6 +116,13 @@
 #pragma mark -
 #pragma mark shout related methods
 
+- (NSString*)formatCheckinMessage:(NSString*)shout {
+	if (![shout isEqualToString:@""]) {
+		return [NSString stringWithFormat:@"%@ (just checked into %@) %@", shout, venue.name, [Utilities getShortenedUrlFromFoursquareVenueId:venue.venueid]];
+	}
+	return [NSString stringWithFormat:@"I just checked into %@. %@", venue.name, [Utilities getShortenedUrlFromFoursquareVenueId:venue.venueid]];
+}
+
 - (void) checkin {
     [checkinTextField resignFirstResponder];
     [self startProgressBar:@"Checking in..."];
@@ -148,13 +155,7 @@
 		if (isFacebookOn ) {
 			//actionCount++;
 			GraphAPI *graph = [[FacebookProxy instance] newGraph];
-            NSString *formattedMessage = nil;
-            if ([checkinTextField.text isEqualToString:@""]) {
-              formattedMessage = [NSString stringWithFormat:@"I just checked into %@. %@", venue.name, [Utilities getShortenedUrlFromFoursquareVenueId:venue.venueid]];
-            } else {
-              formattedMessage = [NSString stringWithFormat:@"%@ @ %@. %@", checkinTextField.text, venue.name, [Utilities getShortenedUrlFromFoursquareVenueId:venue.venueid]];
-            }
-			[graph putWallPost:@"me" message:formattedMessage attachment:nil];
+			[graph putWallPost:@"me" message:[self formatCheckinMessage:checkinTextField.text] attachment:nil];
 			[graph release];
 		}
 		
@@ -178,16 +179,9 @@
 - (void) submitToTwitter:(TweetPhotoResponse*)response {
 	actionCount++;
 	DLog(@"twitter is on. action count has been incremented: %d", actionCount);
-	NSString *tweetString = nil;
-	if (![checkinTextField.text isEqualToString:@""]) {
-		tweetString = [NSString stringWithFormat:@"%@ (just checked into %@) %@ %@", checkinTextField.text, venue.name, [Utilities getShortenedUrlFromFoursquareVenueId:venue.venueid], response ? response.mediaUrl : @""];
-	} else {
-		tweetString = [NSString stringWithFormat:@"I just checked into %@. %@ %@", venue.name, [Utilities getShortenedUrlFromFoursquareVenueId:venue.venueid], response ? response.mediaUrl : @""];
-	}
-	
 	DLog(@"tweetphoto response: %@", response);
 	
-	[[[KBTwitterManager twitterManager] twitterEngine] sendUpdate:tweetString
+	[[[KBTwitterManager twitterManager] twitterEngine] sendUpdate:[NSString stringWithFormat:@"%@ %@", [self formatCheckinMessage:checkinTextField.text], response ? response.mediaUrl : @""]
 													 withLatitude:[[KBLocationManager locationManager] latitude] 
 													withLongitude:[[KBLocationManager locationManager] longitude]];
 }
@@ -324,7 +318,7 @@
 		NSString *urlPath = [NSString stringWithFormat:@"https://kickball.s3.amazonaws.com/photos/%@/large/%@.jpg", uuid, uuid];
 		NSDictionary *fbPicture = [NSDictionary dictionaryWithObjectsAndKeys:urlPath, @"picture",@" ",@"caption",nil];
 		GraphAPI *graph = [[FacebookProxy instance] newGraph];
-		[graph putWallPost:@"me" message:checkinTextField.text attachment:fbPicture];
+		[graph putWallPost:@"me" message:[self formatCheckinMessage:checkinTextField.text] attachment:fbPicture];
 		[graph release];
 		
 	}
@@ -367,7 +361,7 @@
 	if (isFacebookOn ) {
 		//actionCount++;
 		GraphAPI *graph = [[FacebookProxy instance] newGraph];
-		[graph putWallPost:@"me" message:checkinTextField.text attachment:nil];
+		[graph putWallPost:@"me" message:[self formatCheckinMessage:checkinTextField.text] attachment:nil];
 		[graph release];
 	}
 }
