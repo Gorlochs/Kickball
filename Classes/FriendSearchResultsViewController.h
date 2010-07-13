@@ -28,6 +28,7 @@ typedef enum {
 @property (nonatomic) KBFriendSearchType searchType;;
 
 - (IBAction) back;
+-(IBAction)returnToOptions;
 
 
 @end

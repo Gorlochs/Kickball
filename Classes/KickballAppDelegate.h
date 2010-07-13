@@ -36,6 +36,8 @@ typedef enum{
     UINavigationController *twitterNavigationController;
     UINavigationController *facebookNavigationController;
 	OptionsNavigationController *optionsNavigationController;
+	UINavigationController *friendRequestsNavController;
+	UINavigationController *addFriendsNavController;
     FSUser *user;
 	NSString *deviceToken;
 	NSString *deviceAlias;
@@ -79,5 +81,15 @@ typedef enum{
 - (void)returnFromOptions;
 void uncaughtExceptionHandler(NSException *exception);
 
+-(void)showFriendRequests:(NSArray*)pendingRequests;
+-(void)returnFromFriendRequests;
+-(void)showAddFriends;
+-(void)returnFromAddFriends;
 
+-(void)showBothOptionsButts;
+-(void)showNoOptionsButts;
+-(void)showLeftOptionsButts;
+-(void)showRightOptionsButts;
+-(void)pressOptionsLeft;
+-(void)pressOptionsRight;
 @end

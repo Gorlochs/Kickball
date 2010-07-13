@@ -18,5 +18,5 @@
 
 - (void) acceptFriend:(UIControl*) button;
 - (void) denyFriend:(UIControl*) button;
-
+-(IBAction)returnToOptions;
 @end

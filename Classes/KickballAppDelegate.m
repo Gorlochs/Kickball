@@ -19,6 +19,8 @@
 #import "OptionsNavigationController.h"
 #import "KBAccountManager.h"
 #import "OptionsVC.h"
+#import "ViewFriendRequestsViewController.h"
+#import "FriendRequestsViewController.h"
 
 @implementation KickballAppDelegate
 
@@ -234,7 +236,17 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 
 -(void)animationDidStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context {
-    [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(startFadeOut:) userInfo:nil repeats:NO];
+    //[NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(startFadeOut:) userInfo:nil repeats:NO];
+	if ([animationID isEqualToString:@"slideBackFromFriendRequests"]) {
+		[friendRequestsNavController popToRootViewControllerAnimated:NO];
+		[friendRequestsNavController.view removeFromSuperview];
+		[friendRequestsNavController release];
+	}else if ([animationID isEqualToString:@"slideBackFromAddFriends"]) {
+		[addFriendsNavController popToRootViewControllerAnimated:NO];
+		[addFriendsNavController.view removeFromSuperview];
+		[addFriendsNavController release];
+	}
+	
 }
 
 -(void) startFadeOut:(NSTimer*)theTimer {
@@ -491,8 +503,55 @@ void uncaughtExceptionHandler(NSException *exception) {
 }
 -(void)pressOptionsRight{
 	[(OptionsVC*)[optionsNavigationController visibleViewController] pressOptionsRight];
-
+	
 }
+
+#pragma mark  -
+#pragma mark friend requests
+
+-(void)showFriendRequests:(NSArray*)pendingRequests{
+	ViewFriendRequestsViewController *controller = [[ViewFriendRequestsViewController alloc] initWithNibName:@"ViewFriendRequestsViewController" bundle:nil];
+    controller.pendingFriendRequests = [[NSMutableArray alloc] initWithArray:pendingRequests];
+	friendRequestsNavController = [[UINavigationController alloc] initWithRootViewController:controller];
+	[friendRequestsNavController.view setFrame:CGRectMake(320, 0, 320, 480)];
+	[flipperView addSubview:friendRequestsNavController.view];
+	[UIView beginAnimations:@"slideToFriendRequests" context:nil];
+	[UIView setAnimationDuration:0.4f];
+	//[optionsNavigationController.view setCenter:CGPointMake(optionsNavigationController.view.center.x - 320, optionsNavigationController.view.center.y)];
+	[friendRequestsNavController.view setCenter:CGPointMake(friendRequestsNavController.view.center.x - 320, friendRequestsNavController.view.center.y)];
+    [UIView commitAnimations];
+	[controller release];
+}
+-(void)returnFromFriendRequests{
+	[UIView beginAnimations:@"slideBackFromFriendRequests" context:nil];
+	[UIView setAnimationDelegate:self];
+	[UIView setAnimationDuration:0.4f];
+	//[optionsNavigationController.view setCenter:CGPointMake(optionsNavigationController.view.center.x - 320, optionsNavigationController.view.center.y)];
+	[friendRequestsNavController.view setCenter:CGPointMake(friendRequestsNavController.view.center.x + 320, friendRequestsNavController.view.center.y)];
+    [UIView commitAnimations];
+}
+
+-(void)showAddFriends{
+	FriendRequestsViewController *controller = [[FriendRequestsViewController alloc] initWithNibName:@"FriendRequestsViewController" bundle:nil];
+	addFriendsNavController = [[UINavigationController alloc] initWithRootViewController:controller];
+	[addFriendsNavController.view setFrame:CGRectMake(320, 0, 320, 480)];
+	[flipperView addSubview:addFriendsNavController.view];
+	[UIView beginAnimations:@"slideToAddFriends" context:nil];
+	[UIView setAnimationDuration:0.4f];
+	[addFriendsNavController.view setCenter:CGPointMake(addFriendsNavController.view.center.x - 320, addFriendsNavController.view.center.y)];
+    [UIView commitAnimations];
+	[controller release];
+}
+-(void)returnFromAddFriends{
+	[UIView beginAnimations:@"slideBackFromAddFriends" context:nil];
+	[UIView setAnimationDelegate:self];
+	[UIView setAnimationDuration:0.4f];
+	[addFriendsNavController.view setCenter:CGPointMake(addFriendsNavController.view.center.x + 320, addFriendsNavController.view.center.y)];
+    [UIView commitAnimations];
+}
+
+#pragma mark -
+
 
 - (void)dealloc {
     [viewController release];

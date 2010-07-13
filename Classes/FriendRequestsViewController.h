@@ -23,4 +23,6 @@
 - (IBAction) searchByPhone;
 - (IBAction) searchFacebook;
 
+-(IBAction)returnToOptions;
+
 @end

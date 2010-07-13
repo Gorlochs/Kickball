@@ -11,6 +11,7 @@
 #import "FriendSearchResultsViewController.h"
 #import "KBFacebookSearchViewController.h"
 #import "KBAccountManager.h"
+#import "KickballAppDelegate.h"
 
 
 @implementation FriendRequestsViewController
@@ -32,6 +33,11 @@
 }
 -(void)pressOptionsRight{
 	
+}
+
+-(IBAction)returnToOptions{
+	KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
+	[appDelegate returnFromAddFriends];
 }
 
 - (void)didReceiveMemoryWarning {

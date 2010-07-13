@@ -11,6 +11,7 @@
 #import "ProfileViewController.h"
 #import "AddFriendTableCell.h"
 #import "FoursquareAPI.h"
+#import "KickballAppDelegate.h"
 
 
 @implementation FriendSearchResultsViewController
@@ -79,6 +80,12 @@
 }
 -(void)pressOptionsRight{
 	
+}
+
+-(IBAction)returnToOptions{
+	[searchBar resignFirstResponder];
+	KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
+	[appDelegate returnFromAddFriends];
 }
 #pragma mark -
 #pragma mark other methods

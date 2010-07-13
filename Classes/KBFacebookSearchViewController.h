@@ -15,5 +15,6 @@
 }
 
 - (IBAction) askPermissionPublishStream;
+-(IBAction)returnToOptions;
 
 @end

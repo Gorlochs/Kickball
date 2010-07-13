@@ -164,15 +164,7 @@
 
 }
 
-- (void) viewFriendRequests {
-    ViewFriendRequestsViewController *controller = [[ViewFriendRequestsViewController alloc] initWithNibName:@"ViewFriendRequestsViewController" bundle:nil];
-    controller.pendingFriendRequests = [[NSMutableArray alloc] initWithArray:pendingFriendRequests];
-    [self.navigationController pushViewController:controller animated:YES];
-    [controller release];
-	KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
-	[appDelegate showLeftOptionsButts];
 
-}
 
 - (void) viewDefaultCheckinOptions {
     //CheckinOptionsViewController *controller = [[CheckinOptionsViewController alloc] initWithNibName:@"CheckinOptionsViewController" bundle:nil];
@@ -184,12 +176,26 @@
 }
 
 - (void) addFriends {
-    FriendRequestsViewController *friendRequestsController = [[FriendRequestsViewController alloc] initWithNibName:@"FriendRequestsViewController" bundle:nil];
-    [self.navigationController pushViewController:friendRequestsController animated:YES];
-    [friendRequestsController release];
+    //FriendRequestsViewController *friendRequestsController = [[FriendRequestsViewController alloc] initWithNibName:@"FriendRequestsViewController" bundle:nil];
+    //[self.navigationController pushViewController:friendRequestsController animated:YES];
+    //[friendRequestsController release];
 	KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
-	[appDelegate showLeftOptionsButts];
+	[appDelegate showNoOptionsButts];
+	[appDelegate showAddFriends];
 
+}
+
+- (void) viewFriendRequests {
+    /*ViewFriendRequestsViewController *controller = [[ViewFriendRequestsViewController alloc] initWithNibName:@"ViewFriendRequestsViewController" bundle:nil];
+    controller.pendingFriendRequests = [[NSMutableArray alloc] initWithArray:pendingFriendRequests];
+	[self.navigationController.view setFrame:CGRectMake(0, 0, 320, 480)];
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
+	*/
+	KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
+	[appDelegate showNoOptionsButts];
+	[appDelegate showFriendRequests:pendingFriendRequests];
+	
 }
 
 #pragma mark -
