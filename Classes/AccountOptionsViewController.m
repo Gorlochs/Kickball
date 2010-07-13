@@ -371,7 +371,8 @@
 		//go ahead and vote
 		ASIFormDataRequest *feedback = [[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://gorlochs.literalshore.com:3000/kickball/votes"]] autorelease];
 		[feedback setRequestMethod:@"POST"];
-		[feedback setPostValue:@"xbox live" forKey:@"nextService"];
+		[feedback setPostValue:@"xbox live" forKey:@"vote[voteValue]"];
+		[feedback setPostValue:@"next service 1.5" forKey:@"vote[voteId]"];
 		[feedback setDidFailSelector:@selector(feedbackWentWrong:)];
 		[feedback setDidFinishSelector:@selector(feedbackDidFinish:)];
 		[feedback setTimeOutSeconds:100];
@@ -389,7 +390,8 @@
 		//go ahead and vote
 		ASIFormDataRequest *feedback = [[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://gorlochs.literalshore.com:3000/kickball/votes"]] autorelease];
 		[feedback setRequestMethod:@"POST"];
-		[feedback setPostValue:@"linked in" forKey:@"nextService"];
+		[feedback setPostValue:@"linked in" forKey:@"vote[voteValue]"];
+		[feedback setPostValue:@"next service 1.5" forKey:@"vote[voteId]"];
 		[feedback setDidFailSelector:@selector(feedbackWentWrong:)];
 		[feedback setDidFinishSelector:@selector(feedbackDidFinish:)];
 		[feedback setTimeOutSeconds:100];
@@ -406,7 +408,8 @@
 		//go ahead and vote
 		ASIFormDataRequest *feedback = [[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://gorlochs.literalshore.com:3000/kickball/votes"]] autorelease];
 		[feedback setRequestMethod:@"POST"];
-		[feedback setPostValue:@"flickr" forKey:@"nextService"];
+		[feedback setPostValue:@"flickr" forKey:@"vote[voteValue]"];
+		[feedback setPostValue:@"next service 1.5" forKey:@"vote[voteId]"];
 		[feedback setDidFailSelector:@selector(feedbackWentWrong:)];
 		[feedback setDidFinishSelector:@selector(feedbackDidFinish:)];
 		[feedback setTimeOutSeconds:100];
@@ -424,7 +427,8 @@
 		//go ahead and vote
 		ASIFormDataRequest *feedback = [[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://gorlochs.literalshore.com:3000/kickball/votes"]] autorelease];
 		[feedback setRequestMethod:@"POST"];
-		[feedback setPostValue:@"gowalla" forKey:@"nextService"];
+		[feedback setPostValue:@"gowalla" forKey:@"vote[voteValue]"];
+		[feedback setPostValue:@"next service 1.5" forKey:@"vote[voteId]"];
 		[feedback setDidFailSelector:@selector(feedbackWentWrong:)];
 		[feedback setDidFinishSelector:@selector(feedbackDidFinish:)];
 		[feedback setTimeOutSeconds:100];
