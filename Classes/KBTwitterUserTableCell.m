@@ -17,7 +17,7 @@
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
         // Initialization code
-        CGRect frame = CGRectMake(8, 12, 49, 49);
+        CGRect frame = CGRectMake(8, 6, 49, 49);
         userIcon = [[TTImageView alloc] initWithFrame:frame];
         userIcon.backgroundColor = [UIColor clearColor];
         userIcon.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
@@ -25,10 +25,10 @@
         [self addSubview:userIcon];
         
         iconBgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellIconBorder.png"]];
-        iconBgImage.frame = CGRectMake(6, 10, 54, 54);
+        iconBgImage.frame = CGRectMake(6, 4, 54, 54);
         [self addSubview:iconBgImage];
         
-        userName = [[UILabel alloc] initWithFrame:CGRectMake(66, 24, 150, 20)];
+        userName = [[UILabel alloc] initWithFrame:CGRectMake(66, 19, 150, 20)];
         userName.textColor = [UIColor colorWithRed:25.0/255.0 green:144.0/255.0 blue:219.0/255.0 alpha:1.0];
         userName.font = [UIFont boldSystemFontOfSize:16.0];
         userName.backgroundColor = [UIColor clearColor];
