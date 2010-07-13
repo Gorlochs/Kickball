@@ -148,7 +148,13 @@
 		if (isFacebookOn ) {
 			//actionCount++;
 			GraphAPI *graph = [[FacebookProxy instance] newGraph];
-			[graph putWallPost:@"me" message:checkinTextField.text attachment:nil];
+            NSString *formattedMessage = nil;
+            if ([checkinTextField.text isEqualToString:@""]) {
+              formattedMessage = [NSString stringWithFormat:@"I just checked into %@. %@", venue.name, [Utilities getShortenedUrlFromFoursquareVenueId:venue.venueid]];
+            } else {
+              formattedMessage = [NSString stringWithFormat:@"%@ @ %@. %@", checkinTextField.text, venue.name, [Utilities getShortenedUrlFromFoursquareVenueId:venue.venueid]];
+            }
+			[graph putWallPost:@"me" message:formattedMessage attachment:nil];
 			[graph release];
 		}
 		
