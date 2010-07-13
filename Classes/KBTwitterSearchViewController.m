@@ -37,7 +37,10 @@
     [directMessageButton setImage:[UIImage imageNamed:@"tabDM03.png"] forState:UIControlStateNormal];
     [searchButton setImage:[UIImage imageNamed:@"tabSearch01.png"] forState:UIControlStateNormal];
 }
-
+- (void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+  twitterManager.delegate = self;
+}
 - (void) showStatuses {
     if (searchTerms) {
         theSearchBar.text = searchTerms;
