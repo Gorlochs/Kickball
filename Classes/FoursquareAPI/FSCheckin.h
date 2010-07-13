@@ -29,6 +29,8 @@
     NSString *truncatedTimeUnits;
     NSString *truncatedTimeNumeral;
     NSInteger distanceFromLoggedInUser;
+	
+	BOOL checkedInUserGetsPings;
 }
 
 @property (nonatomic, retain) NSString * message;
@@ -43,6 +45,7 @@
 @property (nonatomic, retain) FSScoring * scoring;
 @property (nonatomic, retain) FSMayor * mayor;
 @property (nonatomic) BOOL isMayor;
+@property (nonatomic) BOOL checkedInUserGetsPings;
 @property (nonatomic) NSInteger distanceFromLoggedInUser;
 
 @property (nonatomic, retain) NSString * truncatedTimeUnits;

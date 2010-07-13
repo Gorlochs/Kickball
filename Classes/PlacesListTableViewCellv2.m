@@ -29,7 +29,7 @@
         categoryIcon.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
         [self addSubview:categoryIcon];
         
-        venueName = [[UILabel alloc] initWithFrame:CGRectMake(46, 5, 250, 20)];
+        venueName = [[UILabel alloc] initWithFrame:CGRectMake(46, 5, 240, 20)];
         venueName.textColor = [UIColor colorWithWhite:0.2 alpha:1.0];
         venueName.font = [UIFont boldSystemFontOfSize:14.0];
         venueName.backgroundColor = [UIColor clearColor];

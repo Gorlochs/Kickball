@@ -900,6 +900,8 @@ static FoursquareAPI *sharedInstance = nil;
                 oneCheckin.isMayor = [value isEqualToString:@"true"];
             } else if([key isEqualToString:@"distance"]){
                 oneCheckin.distanceFromLoggedInUser = [value integerValue];
+            } else if([key isEqualToString:@"ping"]){
+                oneCheckin.checkedInUserGetsPings = [value boolValue];
             }
         
             if([key compare:@"user"] == 0){

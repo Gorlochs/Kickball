@@ -136,9 +136,6 @@
     if (![self getAuthenticatedUser]) {
         [[FoursquareAPI sharedInstance] getUser:nil withTarget:self andAction:@selector(userResponseReceived:withResponseString:)];
     }
-#ifndef DEBUG
-    [[Utilities sharedInstance] updateAllFriendsWithPingOn];
-#endif
 }
 
 // FIXME: this needs to be pulled up
@@ -171,10 +168,7 @@
     }
     [self setAuthenticatedUser:user];
     [signedInUserIcon setImage:[[Utilities sharedInstance] getCachedImage:user.photo] forState:UIControlStateNormal];
-    
-	
-	 
-    
+        
     DLog(@"auth'd user: %@", user);
     [user release];
 }
@@ -692,7 +686,17 @@
             [standardUserDefaults setBool:YES forKey:@"viewedInstructions"];
             hasViewedInstructions = YES;
         }
+		
+		// update KB server with friends with pings on
+		//TODO: detach to a separate thread
+		[NSThread detachNewThreadSelector:@selector(updateFriendsPingsOn) toTarget:self withObject:nil];
     }
+}
+
+- (void) updateFriendsPingsOn {
+	//NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	[[Utilities sharedInstance] updateAllFriendsWithPingOn:self.checkins];
+	//[pool release];
 }
 
 - (void) addFriend {
@@ -700,12 +704,6 @@
     [self.navigationController pushViewController:friendsController animated:YES];
     [friendsController release];
 }
-
-//- (void) displayTwitterXAuthLogin {
-//    XAuthTwitterEngineViewController *twitterController = [[XAuthTwitterEngineViewController alloc] initWithNibName:@"XAuthTwitterEngineDemoViewController" bundle:nil];
-//    [self presentModalViewController:twitterController animated:YES];
-//    [twitterController release];
-//}
 
 - (void) setUserIconViewCustom:(FSUser*)user {
 //    TTButton *imageButton = [TTButton buttonWithStyle:@"blockPhoto:"]; 

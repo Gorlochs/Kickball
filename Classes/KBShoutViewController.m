@@ -139,6 +139,7 @@
 			if ([[FacebookProxy instance] isAuthorized]) {
 				GraphAPI *graph = [[FacebookProxy instance] newGraph];
 				[graph putWallPost:@"me" message:theTextView.text attachment:nil];
+				[graph release];
 				
 			}
         }

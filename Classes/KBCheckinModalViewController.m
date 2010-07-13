@@ -162,6 +162,7 @@
 			//actionCount++;
 			GraphAPI *graph = [[FacebookProxy instance] newGraph];
 			[graph putWallPost:@"me" message:checkinTextField.text attachment:nil];
+			[graph release];
 		}
 	}
 
@@ -302,6 +303,7 @@
 		NSDictionary *fbPicture = [NSDictionary dictionaryWithObjectsAndKeys:urlPath, @"picture",@" ",@"caption",nil];
 		GraphAPI *graph = [[FacebookProxy instance] newGraph];
 		[graph putWallPost:@"me" message:checkinTextField.text attachment:fbPicture];
+		[graph release];
 		
 	}
 	
@@ -344,6 +346,7 @@
 		//actionCount++;
 		GraphAPI *graph = [[FacebookProxy instance] newGraph];
 		[graph putWallPost:@"me" message:checkinTextField.text attachment:nil];
+		[graph release];
 	}
 }
 

@@ -339,15 +339,12 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
 	[UIView setAnimationBeginsFromCurrentState:YES];
 	[UIView setAnimationDuration:0.4];
 	[UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
-	DLog("progressViewController: %i", progressViewController);
-	DLog("progressViewController: %@", [progressViewController class]);
 	progressViewController.view.frame = CGRectMake(0, 
 												   progressViewController.view.frame.origin.y + 50, 
 												   progressViewController.view.frame.size.width, 
 												   progressViewController.view.frame.size.height);
 	
 	[UIView commitAnimations];
-    //[progressViewController.view removeFromSuperview];
 }
 
 - (void) doInitialDisplay {

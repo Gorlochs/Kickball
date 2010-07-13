@@ -11,6 +11,8 @@
 #import "FSUser.h"
 #import "ASIFormDataRequest.h"
 #import "SBJSON.h"
+#import "FSCheckin.h"
+
 
 const NSString *kKBHashSalt = @"33eBMKjsW9CTWpX4njEKarkWGoH9ZdzP";
 
@@ -149,104 +151,32 @@ static Utilities *sharedInstance = nil;
 #pragma mark -
 #pragma mark Retrieve ping-on friends
 
-//////////////////////////////////////////////////////////////////////////////////////////
-// because the 4sq API doesn't is lacking, we have to retrieve all the user's friends
-// and then loop through each one in order to find get_pings for each user
-// NOTE: this specifies whether the logged-in user is to receive pings from their friend.
-//////////////////////////////////////////////////////////////////////////////////////////
-
-
-////////////// RETRIEVE PINGS FROM SERVER /////////////////
-
-//- (void) retrieveAllFriendsWithPingOn {
-//    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://gorlochs.literalshore.com:3000/kickball/pings/user/%@.json", 
-//                                       [[FoursquareAPI sharedInstance] currentUser].userId]];
-//    ASIHTTPRequest *gorlochRequest = [[[ASIHTTPRequest alloc] initWithURL:url] autorelease];
-//    
-//    [gorlochRequest setDidFailSelector:@selector(pingRequestWentWrong:)];
-//    [gorlochRequest setDidFinishSelector:@selector(pingRequestDidFinish:)];
-//    [gorlochRequest setTimeOutSeconds:500];
-//    [gorlochRequest setDelegate:self];
-//    [gorlochRequest startAsynchronous];
-//}
-//
-//- (void) pingRequestWentWrong:(ASIHTTPRequest *) request {
-//    DLog(@"BOOOOOOOOOOOO!");
-//}
-//
-//- (void) pingRequestDidFinish:(ASIHTTPRequest *) request {
-//    DLog("ping request finished: %@", [request responseString]);
-//    userIdsToReceivePings = [[NSMutableArray alloc] initWithCapacity:1];
-//    SBJSON *parser = [SBJSON new];
-//    id pingArray = [parser objectWithString:[request responseString] error:NULL];
-//    for (NSDictionary *dict in (NSArray*)pingArray) {
-//        [userIdsToReceivePings addObject:[[dict objectForKey:@"ping"] objectForKey:@"userId"]];
-//    }
-//    // I could include the array into the userInfo, but that array is available through the singleton anyway
-//    [[NSNotificationCenter defaultCenter] postNotificationName:@"friendPingRetrievalComplete" object:self userInfo:nil];
-//}
-
-////////////// UPDATE PINGS ON SERVER /////////////////
-
-- (NSMutableArray*) friendsWithPingOn {
-    if (friendsWithPingOn) {
-        return friendsWithPingOn;
-    } else {		
-		[NSThread detachNewThreadSelector:@selector(retrieveAllFriendsWithPingOn) toTarget:self withObject:nil];
-//        [self retrieveAllFriendsWithPingOn];
-        return nil;
-    }
-}
-
-- (void) updateAllFriendsWithPingOn {
+- (void) updateAllFriendsWithPingOn:(NSArray*)checkins {
 	pool = [[NSAutoreleasePool alloc] init];
-    [[FoursquareAPI sharedInstance] getFriendsWithTarget:self andAction:@selector(friendsResponseReceived:withResponseString:)];
+	
+	for (FSCheckin *checkin in checkins) {
+		if (checkin.checkedInUserGetsPings) {
+			if (!ids) {
+				ids = [[NSMutableString alloc] initWithString:checkin.user.userId];
+			} else {
+				[ids appendFormat:@",%@", checkin.user.userId];
+			}
+		}
+	}
+	
+	DLog("ping ids: %@", ids);
+	NSURL *url = [NSURL URLWithString:@"http://gorlochs.literalshore.com:3000/kickball/pings"];
+	
+	NSOperationQueue *queue = [[[NSOperationQueue alloc] init] autorelease];
+	ASIFormDataRequest *request = [[ASIFormDataRequest alloc] initWithURL:url];
+	[request setPostValue:[[FoursquareAPI sharedInstance] currentUser].userId forKey:@"userId"];
+	[request setPostValue:ids forKey:@"friendIds"];
+	[request setDelegate:self];
+	[request setDidFinishSelector: @selector(pingSubmitCompleted:)];
+	[request setDidFailSelector: @selector(pingSubmitFailed:)];
+	[queue addOperation:request];
+	
 	[pool release];
-}
-
-- (void)friendsResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    if (friendsWithPingOn == nil) {
-        DLog(@"all friends: %@", inString);
-        NSArray *allFriends = [[FoursquareAPI friendUsersFromRequestResponseXML:inString] retain];
-        totalNumberOfUsersForPush = [allFriends count];
-        DLog(@"total number of friends: %d", totalNumberOfUsersForPush);
-        friendsWithPingOn = [[NSMutableArray alloc] initWithCapacity:1];
-        for (FSUser *friend in allFriends) {
-            //DLog(@"friend: %@", friend);
-            [[FoursquareAPI sharedInstance] getUser:friend.userId withTarget:self andAction:@selector(aFriendResponseReceived:withResponseString:)];
-            //DLog(@"running total: %d", runningTotalNumberOfUsersBeingPushed);
-        }
-        [allFriends release];
-    }
-}
-
-- (void)aFriendResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    //DLog(@"********** friend: %@", inString);
-    FSUser *friend = [FoursquareAPI userFromResponseXML:inString];
-    
-    if (friend.sendsPingsToSignedInUser) {
-        //DLog(@"this friend sends pings to signed in user: %@", friend);
-        //[friendsWithPingOn addObject:friend];
-        if (!ids) {
-            ids = [[NSMutableString alloc] initWithString:friend.userId];
-        } else {
-            [ids appendFormat:@",%@", friend.userId];
-        }
-    }
-    runningTotalNumberOfUsersBeingPushed++;
-    if (runningTotalNumberOfUsersBeingPushed == totalNumberOfUsersForPush) {
-        
-        NSURL *url = [NSURL URLWithString:@"http://gorlochs.literalshore.com:3000/kickball/pings"];
-        
-        NSOperationQueue *queue = [[[NSOperationQueue alloc] init] autorelease];
-        ASIFormDataRequest *request = [[ASIFormDataRequest alloc] initWithURL:url];
-        [request setPostValue:[[FoursquareAPI sharedInstance] currentUser].userId forKey:@"userId"];
-        [request setPostValue:ids forKey:@"friendIds"];
-        [request setDelegate:self];
-        [request setDidFinishSelector: @selector(pingSubmitCompleted:)];
-        [request setDidFailSelector: @selector(pingSubmitFailed:)];
-        [queue addOperation:request];
-    }
 }
 
 - (void) pingSubmitFailed:(ASIHTTPRequest *) request {

@@ -11,7 +11,7 @@
 
 
 @implementation FSCheckin
-@synthesize message, venue, badges, specials, created, checkinId, shout, display, user, scoring, mayor, isMayor, truncatedTimeUnits, truncatedTimeNumeral, distanceFromLoggedInUser;
+@synthesize message, venue, badges, specials, created, checkinId, shout, display, user, scoring, mayor, isMayor, truncatedTimeUnits, truncatedTimeNumeral, distanceFromLoggedInUser, checkedInUserGetsPings;
 
 - (NSDate*) convertUTCCheckinDateToLocal {
     NSDate *gmtDate = [[[Utilities sharedInstance] foursquareCheckinDateFormatter] dateFromString:self.created];

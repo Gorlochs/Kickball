@@ -292,6 +292,7 @@
 	//post to facebook with google map instead of user supplied image
 	GraphAPI *graph = [[FacebookProxy instance] newGraph];
 	[graph putWallPost:@"me" message:tweetTextView.text attachment:nil];
+	[graph release];
 	KBMessage *message = [[KBMessage alloc] initWithMember:@"Error" andMessage:@"Image upload failed!"];
     [delegate displayPopupMessage:message];
     [message release];

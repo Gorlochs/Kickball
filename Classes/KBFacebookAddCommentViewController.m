@@ -84,6 +84,7 @@
 	}else {
 		GraphObject *result = [graph putWallPost:fbId message:tipTodoText.text attachment:nil];
 	}
+	[graph release];
 
 	[pool release];
 	[self performSelectorOnMainThread:@selector(success) withObject:nil waitUntilDone:NO];

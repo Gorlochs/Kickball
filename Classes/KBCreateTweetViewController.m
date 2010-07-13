@@ -153,6 +153,7 @@
 		if (isFacebookOn) {
 			GraphAPI *graph = [[FacebookProxy instance] newGraph];
 			[graph putWallPost:@"me" message:tweetTextView.text attachment:nil];
+			[graph release];
 		}
 		
 	}
@@ -352,6 +353,7 @@
 		NSDictionary *fbPicture = [NSDictionary dictionaryWithObjectsAndKeys:urlPath, @"picture",@" ",@"caption",nil];
 		GraphAPI *graph = [[FacebookProxy instance] newGraph];
 		[graph putWallPost:@"me" message:tweetTextView.text attachment:fbPicture];
+		[graph release];
 		
 	}
 	
@@ -375,6 +377,7 @@
 	if (isFacebookOn) {
 		GraphAPI *graph = [[FacebookProxy instance] newGraph];
 		[graph putWallPost:@"me" message:tweetTextView.text attachment:nil];
+		[graph release];
 	}
 }
 
