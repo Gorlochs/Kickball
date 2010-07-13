@@ -137,8 +137,16 @@
 			
 			//new shout post to fb
 			if ([[FacebookProxy instance] isAuthorized]) {
+                NSString *placeURL = @"http://P-I-E.com";
+                NSString *formattedMessage;
+                if ([theTextView.text isEqualToString:@""]) {
+                  formattedMessage = [NSString stringWithFormat:@"I just checked into P-I-E. %@", placeURL];
+                } else {
+                  formattedMessage = [NSString stringWithFormat:@"%@ @ P-I-E. %@", theTextView.text, placeURL];
+                }
 				GraphAPI *graph = [[FacebookProxy instance] newGraph];
-				[graph putWallPost:@"me" message:theTextView.text attachment:nil];
+  				[graph putWallPost:@"me" message:formattedMessage attachment:nil];
+
 				[graph release];
 				
 			}
