@@ -1441,7 +1441,7 @@ static FoursquareAPI *sharedInstance = nil;
 }
 
 
-int encode(unsigned s_len, char *src, unsigned d_len, char *dst)
+int fs_encode(unsigned s_len, char *src, unsigned d_len, char *dst)
 {
 	char base64[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	"abcdefghijklmnopqrstuvwxyz"
@@ -1516,7 +1516,7 @@ int encode(unsigned s_len, char *src, unsigned d_len, char *dst)
     memset(encodeArray, '\0', sizeof(encodeArray));
 	
     // Base64 Encode username and password
-    encode([encodeData length], (char *)[encodeData bytes], sizeof(encodeArray), encodeArray);
+    fs_encode([encodeData length], (char *)[encodeData bytes], sizeof(encodeArray), encodeArray);
 	NSData * data = [[NSData alloc] initWithBytes:encodeArray length:strlen(encodeArray)];
     dataStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
     NSString * authenticationString = [@"" stringByAppendingFormat:@"Basic %@", dataStr];
