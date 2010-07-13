@@ -131,10 +131,10 @@ static FoursquareAPI *sharedInstance = nil;
 		[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"FSUsername"];
 		NSError *error = nil;
 		[SFHFKeychainUtils deleteItemForUsername:self.userName andServiceName:@"Kickball" error:&error];
-		[self.passWord release];
-		[self.userName release];
-		self.passWord = nil;
-		self.userName = nil;
+		[passWord release];
+		[userName release];
+		passWord = nil;
+		userName = nil;
 		
 	}
 }

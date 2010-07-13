@@ -92,10 +92,14 @@ static KBTwitterManager *sharedInstance = nil;
 	DLog(@"Access token string returned: %@", tokenString);
 	
 	[[NSUserDefaults standardUserDefaults] setObject:tokenString forKey:kCachedXAuthAccessTokenStringKey];
-    [[KBAccountManager sharedInstance] setUsesTwitter:YES];
-	
-	// Enable the send tweet button.
-	//self.sendTweetButton.enabled = YES;
+	if (![tokenString isEqualToString:@""]) {
+		[[KBAccountManager sharedInstance] setUsesTwitter:YES];
+		
+		// Enable the send tweet button.
+		//self.sendTweetButton.enabled = YES;
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"completedTwitterLogin" object:nil];
+		
+	}
 }
 
 - (NSString *) cachedTwitterXAuthAccessTokenStringForUsername: (NSString *)username;

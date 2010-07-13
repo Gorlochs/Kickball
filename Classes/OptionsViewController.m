@@ -38,7 +38,9 @@
 
 - (void) viewWillAppear:(BOOL)animated {
     //[self startProgressBar:@"Retrieving settings..."];
-    [[FoursquareAPI sharedInstance] getPendingFriendRequests:self andAction:@selector(friendRequestResponseReceived:withResponseString:)];
+	if([[KBAccountManager sharedInstance] usesFoursquare]){
+		[[FoursquareAPI sharedInstance] getPendingFriendRequests:self andAction:@selector(friendRequestResponseReceived:withResponseString:)];
+	}	
     [super viewWillAppear:animated];
 	[theTableView scrollToFirstRow:NO];
 	KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];

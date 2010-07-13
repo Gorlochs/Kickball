@@ -356,9 +356,10 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
     if (popupView) [popupView release];
     popupView = [[PopupMessageView alloc] initWithNibName:@"PopupMessageView" bundle:nil];
     popupView.message = message;
+	popupView.view.frame = CGRectMake(0, 0, 320, 460);
     popupView.view.alpha = 0;
     //    popupView.view.layer.cornerRadius = 8.0;
-    [self.view addSubview:popupView.view];
+    [self.navigationController.view.superview addSubview:popupView.view];
     
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "KBBaseViewController.h"
+#import "KBAccountManager.h"
 
 
 @interface OptionsViewController : KBBaseViewController {

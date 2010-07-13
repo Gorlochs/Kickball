@@ -398,7 +398,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 	[optionsCloseButt setImage:[UIImage imageNamed:@"btn-hdr_x02.png"] forState:UIControlStateHighlighted];
 	[optionsCloseButt addTarget:self action:@selector(returnFromOptions) forControlEvents:UIControlEventTouchUpInside];
 	[optionsHeaderBg addSubview:optionsCloseButt];
-	[optionsNavigationController.view setFrame:CGRectMake(0, 98, 320, 382)];
+	[optionsNavigationController.view setFrame:CGRectMake(0, 20, 320, 460)];
 	[optionsNavigationController setBase:(OptionsVC*)[optionsNavigationController topViewController]];
 	optionsLeft = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
 	[optionsLeft setImage:[UIImage imageNamed:@"opt_leftV2_01.png"] forState:UIControlStateNormal];
@@ -429,8 +429,8 @@ void uncaughtExceptionHandler(NSException *exception) {
 		default:
 			break;
 	}    
-	[flipperView addSubview:optionsHeaderBg];
 	[flipperView addSubview:optionsNavigationController.view];
+	[flipperView addSubview:optionsHeaderBg];
 	[flipperView addSubview:optionsFrame];
 	//[flipperView addSubview:optionsLeft];
 	//[flipperView addSubview:optionsRight];
@@ -551,6 +551,30 @@ void uncaughtExceptionHandler(NSException *exception) {
 }
 
 #pragma mark -
+
+-(void)loggedOutOfTwitter{
+	[twitterNavigationController popToRootViewControllerAnimated:NO];
+	[twitterNavigationController.visibleViewController showLoginView];
+}
+
+-(void)loggedOutOfFoursquare{
+	[navigationController popToRootViewControllerAnimated:NO];
+	[navigationController.visibleViewController showLoginView];
+}
+
+-(void)loggedInToTwitter{
+	[twitterNavigationController.visibleViewController killLoginView];
+	if([twitterNavigationController.visibleViewController  respondsToSelector:@selector(showStatuses)]){
+		[twitterNavigationController.visibleViewController  showStatuses];
+	}
+}
+
+-(void)loggedInToFoursquare{
+	[navigationController.visibleViewController killLoginView];
+	if([navigationController.visibleViewController respondsToSelector:@selector(doInitialDisplay)]){
+		[navigationController.visibleViewController doInitialDisplay];
+	}
+}
 
 
 - (void)dealloc {

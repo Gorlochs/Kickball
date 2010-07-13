@@ -30,6 +30,7 @@
 	postPhotosToFacebookSwitch.on = [[KBAccountManager sharedInstance] shouldPostPhotosToFacebook];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(facebookLoggedIn) name:@"completedFacebookLogin" object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(facebookLoggedOut) name:@"completedFacebookLogout" object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(twitterLoggedIn) name:@"completedTwitterLogin" object:nil];
     [super viewDidLoad];
     
     //
@@ -55,6 +56,26 @@
 	[vote3Butt setSelected:[[NSUserDefaults standardUserDefaults] boolForKey:@"vote3"]];
 	[vote4Butt setSelected:[[NSUserDefaults standardUserDefaults] boolForKey:@"vote4"]];
 	
+	
+
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+	if ([[KBAccountManager sharedInstance] usesFoursquare]) {
+		[foursquareUsername setPlaceholder:@"logged in"];
+		[foursquarePassword setPlaceholder:@" "];
+	}else {
+		[foursquareUsername setPlaceholder:@"username"];
+		[foursquarePassword setPlaceholder:@"password"];
+	}
+	if ([[KBAccountManager sharedInstance] usesTwitter]) {
+		[twitterUsername setPlaceholder:@"logged in"];
+		[twitterPassword setPlaceholder:@" "];
+	}else {
+		[twitterUsername setPlaceholder:@"username"];
+		[twitterPassword setPlaceholder:@"password"];
+	}
+
 	[x4SQ setEnabled:[[KBAccountManager sharedInstance] usesFoursquare]];
 	[xTW setEnabled:[[KBAccountManager sharedInstance] usesTwitter]];
 	[xFB setEnabled:[[KBAccountManager sharedInstance] usesFacebook]];
@@ -63,9 +84,7 @@
 	[xFB setHidden:![[KBAccountManager sharedInstance] usesFacebook]];
 	[yFB setEnabled:![[KBAccountManager sharedInstance] usesFacebook]];
 	[yFB setHidden:[[KBAccountManager sharedInstance] usesFacebook]];
-
 }
-
 #pragma mark -
 #pragma mark Facebook delegate methods
 
@@ -187,7 +206,14 @@
     
     //[self dismissModalViewControllerAnimated:YES];
 }
-
+-(void)twitterLoggedIn{
+	[self stopProgressBar];
+    KBMessage *message = [[KBMessage alloc] initWithMember:@"Success!" andMessage:@"Authentication succeeded!  Your new username and password have been authenticated."];
+    [self displayPopupMessage:message];
+    [message release];
+	KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
+	[appDelegate loggedInToTwitter];
+}
 #pragma mark delgate callbacks
 
 - (void)userResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
@@ -215,11 +241,14 @@
         
         FSUser* user = [[FoursquareAPI userFromResponseXML:inString] retain];
         [self setAuthenticatedUser:user];
-        
+		//[[KBAccountManager sharedInstance] setUsesFoursquare:YES];
+
         // display success message and save to keychain
         KBMessage *message = [[KBMessage alloc] initWithMember:@"Success!" andMessage:@"Authentication succeeded!  Your new username and password have been authenticated."];
         [self displayPopupMessage:message];
         [message release];
+		KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
+		[appDelegate loggedInToFoursquare];
     }
 }
 
@@ -231,6 +260,9 @@
     [self displayPopupMessage:message];
     [message release];
 }
+
+
+
 
 #pragma mark -
 #pragma mark Table view data source
@@ -280,6 +312,39 @@
 
 #pragma mark -
 #pragma mark Text field delegate
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+	if (textField==foursquareUsername) {
+		if ([[KBAccountManager sharedInstance] usesFoursquare]) {
+			//pop action sheet, and return NO
+			return NO;
+		}else {
+			return YES;
+		}
+	}else if (textField==foursquarePassword) {
+		if ([[KBAccountManager sharedInstance] usesFoursquare]) {
+			//pop action sheet, and return NO
+			return NO;
+		}else {
+			return YES;
+		}
+	}else if (textField==twitterUsername) {
+		if ([[KBAccountManager sharedInstance] usesTwitter]) {
+			//pop action sheet, and return NO
+			return NO;
+		}else {
+			return YES;
+		}
+	}else if (textField==twitterPassword) {
+		if ([[KBAccountManager sharedInstance] usesTwitter]) {
+			//pop action sheet, and return NO
+			return NO;
+		}else {
+			return YES;
+		}
+	}
+
+}
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     //DLog(@"text field did begin editing: %@", textField);
@@ -349,8 +414,34 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if (textField==foursquareUsername) {
+		//[userName resignFirstResponder];
+		[foursquarePassword becomeFirstResponder];
+	}else if (textField==foursquarePassword){
+		[foursquarePassword resignFirstResponder];
+		[self startProgressBar:@"Logging in..."];
+		[[FoursquareAPI sharedInstance] getFriendsWithTarget:foursquareUsername.text andPassword:foursquarePassword.text andTarget:self andAction:@selector(userResponseReceived:withResponseString:)];
+	}else if (textField==twitterUsername) {
+		//[userName resignFirstResponder];
+		[twitterPassword becomeFirstResponder];
+	}else if (textField==twitterPassword) {
+		[twitterPassword resignFirstResponder];
+		[self startProgressBar:@"Logging in..."];
+		NSString *un = twitterUsername.text;
+		NSString *pw = twitterPassword.text;
+		
+		/*
+		DLog(@"About to request an xAuth token exchange for username: ]%@[ password: ]%@[.", un, pw);
+		if (self.twitterEngine==nil) {
+			self.twitterEngine = [[XAuthTwitterEngine alloc] initXAuthWithDelegate:self];
+			self.twitterEngine.consumerKey = kOAuthConsumerKey;
+			self.twitterEngine.consumerSecret = kOAuthConsumerSecret;
+		}*/
+		[[[KBTwitterManager twitterManager] twitterEngine] exchangeAccessTokenForUsername:un password:pw];
+	}
+	
     //[self cancelEditing];
-    return YES;
+    return NO;
 }
 
 -(void)pressOptionsLeft{
@@ -501,6 +592,12 @@
 				case 0:
 					//do logout
 					[[FoursquareAPI sharedInstance] logout];
+					KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
+					[appDelegate loggedOutOfFoursquare];
+					[x4SQ setEnabled:NO];
+					[x4SQ setHidden:YES];
+					[foursquareUsername setPlaceholder:@"username"];
+					[foursquarePassword setPlaceholder:@"password"];
 					break;
 				case 1:
 					//do noting?
@@ -529,7 +626,12 @@
 				case 0:
 					//do logout
 					[[[KBTwitterManager twitterManager] twitterEngine] clearAccessToken];
-					
+					KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
+					[appDelegate loggedOutOfTwitter];
+					[xTW setEnabled:NO];
+					[xTW setHidden:YES];
+					[twitterUsername setPlaceholder:@"username"];
+					[twitterPassword setPlaceholder:@"password"];
 					break;
 				case 1:
 					//do noting?

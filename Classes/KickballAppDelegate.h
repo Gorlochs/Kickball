@@ -92,4 +92,9 @@ void uncaughtExceptionHandler(NSException *exception);
 -(void)showRightOptionsButts;
 -(void)pressOptionsLeft;
 -(void)pressOptionsRight;
+
+-(void)loggedOutOfTwitter;
+-(void)loggedOutOfFoursquare;
+-(void)loggedInToTwitter;
+-(void)loggedInToFoursquare;
 @end
