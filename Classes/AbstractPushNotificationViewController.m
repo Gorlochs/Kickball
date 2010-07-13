@@ -123,7 +123,7 @@
 	
     // without the hasPhoto check, the user gets two popup messages, which sucks
     if (!self.venueToPush) {
-		[[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:@"friendPingRetrievalComplete"];
+		//[[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:@"friendPingRetrievalComplete"];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"shoutSent"
                                                             object:nil
                                                           userInfo:nil];
