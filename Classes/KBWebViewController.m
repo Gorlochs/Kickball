@@ -29,6 +29,8 @@
 }
 
 - (void)viewDidLoad {
+	self.hideFooter = YES;
+	self.hideHeader = YES;
     [super viewDidLoad];
 	[webView setDelegate:self];
 	NSURL *url = [NSURL URLWithString:urlString];
