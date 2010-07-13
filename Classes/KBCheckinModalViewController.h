@@ -13,6 +13,7 @@
 #import "FSVenue.h"
 #import "KBPhotoManager.h"
 #import "KBTwitterManager.h"
+#import "TweetPhoto.h"
 
 
 @interface KBCheckinModalViewController : AbstractPushNotificationViewController <KBTwitterManagerDelegate, UITextFieldDelegate, MGTwitterEngineDelegate, PhotoManagerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
@@ -32,6 +33,8 @@
     KBPhotoManager *photoManager;
     IBOutlet UIImageView *thumbnailPreview;
     KBTwitterManager *twitterManager;
+	TweetPhoto * tweetPhoto;
+	TweetPhotoResponse *tweetPhotoResponse;
 	
     int actionCount;
 }

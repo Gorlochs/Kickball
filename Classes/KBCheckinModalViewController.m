@@ -129,23 +129,6 @@
                                                 withTarget:self 
                                                  andAction:@selector(checkinResponseReceived:withResponseString:)];
     
-    // we send twitter/facebook api calls ourself so that the tweets and posts are stamped with the Kickball brand
-    if (isTwitterOn) {
-		actionCount++;
-		DLog(@"twitter is on. action count has been incremented: %d", actionCount);
-        NSString *tweetString = nil;
-        if (![checkinTextField.text isEqualToString:@""]) {
-            tweetString = [NSString stringWithFormat:@"%@ (just checked into %@) %@", checkinTextField.text, venue.name, [Utilities getShortenedUrlFromFoursquareVenueId:venue.venueid]];
-        } else {
-            tweetString = [NSString stringWithFormat:@"I just checked into %@. %@", venue.name, [Utilities getShortenedUrlFromFoursquareVenueId:venue.venueid]];
-        }
-
-        [[[KBTwitterManager twitterManager] twitterEngine] sendUpdate:tweetString
-                          withLatitude:[[KBLocationManager locationManager] latitude] 
-                         withLongitude:[[KBLocationManager locationManager] longitude]];
-    }
-    
-    
     if (photoImage) {
 		actionCount++;
 		DLog(@"photo is on. action count has been incremented: %d", actionCount);
@@ -157,17 +140,50 @@
                        andMessage:checkinTextField.text
                    andOrientation:photoImage.imageOrientation
                          andVenue:venue];
-    }else {
+		
+	    if (isTwitterOn) {
+			[NSThread detachNewThreadSelector:@selector(uploadToTweetPhoto) toTarget:self withObject:nil];
+		}
+    } else {
 		if (isFacebookOn ) {
 			//actionCount++;
 			GraphAPI *graph = [[FacebookProxy instance] newGraph];
 			[graph putWallPost:@"me" message:checkinTextField.text attachment:nil];
 			[graph release];
 		}
+		
+	    if (isTwitterOn) {
+			[self submitToTwitter:nil];
+		}
 	}
-
     
     [FlurryAPI logEvent:@"checked in"];
+}
+
+- (void) uploadToTweetPhoto {
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	tweetPhoto = [[TweetPhoto alloc] initWithSetup:[[FoursquareAPI sharedInstance] userName] identitySecret:[[FoursquareAPI sharedInstance] passWord] apiKey:@"bd1cf27c-0f19-4af5-b409-1c1a5bd35332" serviceName:@"Foursquare" isoAuth:NO];
+	tweetPhotoResponse = [[tweetPhoto photoUpload:UIImageJPEGRepresentation(photoImage, 1.0) comment:checkinTextField.text tags:@"Kickball" latitude:[[KBLocationManager locationManager] latitude] longitude:[[KBLocationManager locationManager] longitude]] retain];
+	[pool release];
+	DLog(@"tweetphoto url: %@", tweetPhotoResponse.mediaUrl);
+	[self performSelectorOnMainThread:@selector(submitToTwitter:) withObject:tweetPhotoResponse waitUntilDone:NO];
+}
+
+- (void) submitToTwitter:(TweetPhotoResponse*)response {
+	actionCount++;
+	DLog(@"twitter is on. action count has been incremented: %d", actionCount);
+	NSString *tweetString = nil;
+	if (![checkinTextField.text isEqualToString:@""]) {
+		tweetString = [NSString stringWithFormat:@"%@ (just checked into %@) %@ %@", checkinTextField.text, venue.name, [Utilities getShortenedUrlFromFoursquareVenueId:venue.venueid], response ? response.mediaUrl : @""];
+	} else {
+		tweetString = [NSString stringWithFormat:@"I just checked into %@. %@ %@", venue.name, [Utilities getShortenedUrlFromFoursquareVenueId:venue.venueid], response ? response.mediaUrl : @""];
+	}
+	
+	DLog(@"tweetphoto response: %@", response);
+	
+	[[[KBTwitterManager twitterManager] twitterEngine] sendUpdate:tweetString
+													 withLatitude:[[KBLocationManager locationManager] latitude] 
+													withLongitude:[[KBLocationManager locationManager] longitude]];
 }
 
 // Twitter response

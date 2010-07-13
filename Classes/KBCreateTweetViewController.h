@@ -61,5 +61,6 @@
 - (void) getPhoto:(UIImagePickerControllerSourceType)sourceType;
 - (IBAction) choosePhotoSelectMethod;
 - (IBAction) removePhoto;
+- (void) submitToTwitter:(TweetPhotoResponse*)response;
 
 @end
