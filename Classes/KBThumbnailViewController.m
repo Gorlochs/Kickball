@@ -23,8 +23,8 @@
 	[self setWantsFullScreenLayout:YES];
 	//[self.tableView setContentOffset:CGPointMake(0, -10)];
 	CGRect frame = self.tableView.frame;
-	frame.origin = CGPointMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y - 64);
-	frame.size = CGSizeMake(self.tableView.frame.size.width, self.tableView.frame.size.height + 64);
+	frame.origin = CGPointMake(self.tableView.frame.origin.x, -64);
+	frame.size = CGSizeMake(self.tableView.frame.size.width, 480 + 64);
 	self.tableView.frame = frame;
 }
 
