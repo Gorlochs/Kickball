@@ -24,6 +24,7 @@
 @synthesize retweetToScreenName;
 @synthesize retweetTweetText;
 @synthesize directMentionToScreenname;
+@synthesize tweetPhoto;
 
 - (void)viewDidLoad {
     hideHeader = NO;
@@ -94,24 +95,7 @@
     [self startProgressBar:@"Submitting..."];
     [self dismissModalViewControllerAnimated:YES];
     actionCount = 1;
-    
-    // TODO: add shortened url to tweet, if there is a photo, which means all this will have to be reordered
-	// NOTE: I am using the standard sendUpdate call to send DMs. sendDirectMessage wasn't working properly and this works just as well.
-    // http://api.bit.ly/v3/shorten?login=sabernar&apiKey=R_fc7cbaa3eccbd1597f18412c9774a351&format=json&longUrl=http%3A%2F%2Fbetaworks.com%2F
-	// http://is.gd/api.php?longurl=%@
-    if (replyToStatusId && replyToStatusId > 0) {
-		if (isGeotagOn) {
-			[twitterEngine sendUpdate:tweetTextView.text withLatitude:[[KBLocationManager locationManager] latitude] withLongitude:[[KBLocationManager locationManager] longitude] inReplyTo:[replyToStatusId longLongValue]];
-		} else {
-			[twitterEngine sendUpdate:tweetTextView.text inReplyTo:[replyToStatusId longLongValue]];
-		}
-    } else {
-		if (isGeotagOn) {
-			[twitterEngine sendUpdate:tweetTextView.text withLatitude:[[KBLocationManager locationManager] latitude] withLongitude:[[KBLocationManager locationManager] longitude]];
-		} else {
-			[twitterEngine sendUpdate:tweetTextView.text];
-		}
-    }
+
     
 	/* this is double posting to facebook.   wait and post with the image
     if (isFacebookOn && [[KBAccountManager sharedInstance] usesFacebook]) {
@@ -148,18 +132,47 @@
                        andMessage:tweetTextView.text
                    andOrientation:photoImage.imageOrientation
                          andVenue:nil];
-    }else{
+		
+		
+		[NSThread detachNewThreadSelector:@selector(uploadToTweetPhoto) toTarget:self withObject:nil];
+		
+    } else {
+		[self submitToTwitter:nil];
+		
 		//post to facebook with google maps image rather than user supplied image
 		if (isFacebookOn) {
 			GraphAPI *graph = [[FacebookProxy instance] newGraph];
 			[graph putWallPost:@"me" message:tweetTextView.text attachment:nil];
 			[graph release];
 		}
-		
 	}
-	
-	
-    
+}
+
+- (void) uploadToTweetPhoto {
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	self.tweetPhoto = [[TweetPhoto alloc] initWithSetup:[[FoursquareAPI sharedInstance] userName] identitySecret:[[FoursquareAPI sharedInstance] passWord] apiKey:@"bd1cf27c-0f19-4af5-b409-1c1a5bd35332" serviceName:@"Foursquare" isoAuth:NO];
+	tweetPhotoResponse = [[self.tweetPhoto photoUpload:UIImageJPEGRepresentation(photoImage, 1.0) comment:tweetTextView.text tags:@"Kickball" latitude:[[KBLocationManager locationManager] latitude] longitude:[[KBLocationManager locationManager] longitude]] retain];
+	[pool release];
+	DLog(@"tweetphoto url: %@", tweetPhotoResponse.mediaUrl);
+	[self performSelectorOnMainThread:@selector(submitToTwitter:) withObject:tweetPhotoResponse waitUntilDone:NO];
+}
+
+- (void) submitToTwitter:(TweetPhotoResponse*)response {
+	DLog(@"tweetphoto response: %@", response);
+	NSString *textToTweet = [NSString stringWithFormat:@"%@ %@", tweetTextView.text, response ? response.mediaUrl : @""];
+	if (replyToStatusId && replyToStatusId > 0) {
+		if (isGeotagOn) {
+			[twitterEngine sendUpdate:textToTweet withLatitude:[[KBLocationManager locationManager] latitude] withLongitude:[[KBLocationManager locationManager] longitude] inReplyTo:[replyToStatusId longLongValue]];
+		} else {
+			[twitterEngine sendUpdate:textToTweet inReplyTo:[replyToStatusId longLongValue]];
+		}
+	} else {
+		if (isGeotagOn) {
+			[twitterEngine sendUpdate:textToTweet withLatitude:[[KBLocationManager locationManager] latitude] withLongitude:[[KBLocationManager locationManager] longitude]];
+		} else {
+			[twitterEngine sendUpdate:textToTweet];
+		}
+	}
 }
 
 // twitter response
@@ -354,7 +367,6 @@
 		GraphAPI *graph = [[FacebookProxy instance] newGraph];
 		[graph putWallPost:@"me" message:tweetTextView.text attachment:fbPicture];
 		[graph release];
-		
 	}
 	
 }
@@ -410,6 +422,7 @@
     [retweetToScreenName release];
     [retweetTweetText release];
 	[directMentionToScreenname release];
+	[tweetPhotoResponse release];
     
 //    [foursquareButton release];
 //    [facebookButton release];

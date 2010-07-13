@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "KBTwitterViewController.h"
 #import "KBPhotoManager.h"
+#import "TweetPhoto.h"
 
 
 @interface KBCreateTweetViewController : KBTwitterViewController <UITextViewDelegate, MGTwitterEngineDelegate, PhotoManagerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
@@ -38,8 +39,11 @@
     IBOutlet UIImageView *thumbnailBackground;
     
     int actionCount;
+	TweetPhoto * tweetPhoto;
+	TweetPhotoResponse *tweetPhotoResponse;
 }
 
+@property (retain, nonatomic) TweetPhoto * tweetPhoto;
 @property (nonatomic, retain) NSNumber *replyToStatusId;
 @property (nonatomic, retain) NSString *replyToScreenName;
 @property (nonatomic, retain) NSNumber *retweetStatusId;
