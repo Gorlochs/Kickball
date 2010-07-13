@@ -94,17 +94,6 @@
                                                     withTarget:self 
                                                      andAction:@selector(shoutResponseReceived:withResponseString:)];
     }
-	if (isTwitterOn) {
-		actionCount++;
-		if ([[KBAccountManager sharedInstance] usesGeoTag]) {
-			[[KBTwitterManager twitterManager] setDelegate:self];
-			[[[KBTwitterManager twitterManager] twitterEngine] sendUpdate:tweetTextView.text withLatitude:[[KBLocationManager locationManager] latitude] withLongitude:[[KBLocationManager locationManager] longitude]];
-		} else {
-			[[KBTwitterManager twitterManager] setDelegate:self];
-			[[[KBTwitterManager twitterManager] twitterEngine] sendUpdate:tweetTextView.text];
-		}
-	}
-	
     
     if (photoImage) {
 		NSData *data = UIImageJPEGRepresentation(photoImage, 1.0);
@@ -120,7 +109,11 @@
                        andMessage:tweetTextView.text
                    andOrientation:photoImage.imageOrientation
                          andVenue:nil];
-    }else{
+		
+	    if (isTwitterOn) {
+			[NSThread detachNewThreadSelector:@selector(uploadToTweetPhoto) toTarget:self withObject:nil];
+		}
+    } else {
 		//post to facebook with google maps image rather than user supplied image
 		GraphAPI *graph = [[FacebookProxy instance] newGraph];
 		[graph putWallPost:@"me" message:tweetTextView.text attachment:nil];
@@ -129,11 +122,33 @@
 		//[self closeUpShop];
 		[self decrementActionCount];
 		
+	    if (isTwitterOn) {
+			[self submitToTwitter:nil];
+		}
 	}
-	
+}
 
+- (void) uploadToTweetPhoto {
+	NSAutoreleasePool *pool2 = [[NSAutoreleasePool alloc] init];
+	tweetPhoto = [[TweetPhoto alloc] initWithSetup:[[FoursquareAPI sharedInstance] userName] identitySecret:[[FoursquareAPI sharedInstance] passWord] apiKey:@"bd1cf27c-0f19-4af5-b409-1c1a5bd35332" serviceName:@"Foursquare" isoAuth:NO];
+	tweetPhotoResponse = [[tweetPhoto photoUpload:UIImageJPEGRepresentation(photoImage, 1.0) comment:tweetTextView.text tags:@"Kickball" latitude:[[KBLocationManager locationManager] latitude] longitude:[[KBLocationManager locationManager] longitude]] retain];
+	[pool2 release];
+	DLog(@"tweetphoto url: %@", tweetPhotoResponse.mediaUrl);
+	[self performSelectorOnMainThread:@selector(submitToTwitter:) withObject:tweetPhotoResponse waitUntilDone:NO];
+}
+
+- (void) submitToTwitter:(TweetPhotoResponse*)response {
+	actionCount++;
+	DLog(@"twitter is on. action count has been incremented: %d", actionCount);
+	DLog(@"tweetphoto response: %@", response);
 	
-    
+	if ([[KBAccountManager sharedInstance] usesGeoTag]) {
+		[[KBTwitterManager twitterManager] setDelegate:self];
+		[[[KBTwitterManager twitterManager] twitterEngine] sendUpdate:[NSString stringWithFormat:@"%@ %@", tweetTextView.text, response ? response.mediaUrl : @""] withLatitude:[[KBLocationManager locationManager] latitude] withLongitude:[[KBLocationManager locationManager] longitude]];
+	} else {
+		[[KBTwitterManager twitterManager] setDelegate:self];
+		[[[KBTwitterManager twitterManager] twitterEngine] sendUpdate:[NSString stringWithFormat:@"%@ %@", tweetTextView.text, response ? response.mediaUrl : @""]];
+	}
 }
 
 // twitter response

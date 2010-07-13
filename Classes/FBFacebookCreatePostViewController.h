@@ -11,8 +11,9 @@
 #import "KBTwitterViewController.h"
 #import "KBPhotoManager.h"
 #import "KBTwitterManager.h"
+#import "TweetPhoto.h"
 
-@interface FBFacebookCreatePostViewController : KBFacebookViewController <UITextViewDelegate, MGTwitterEngineDelegate,PhotoManagerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>{
+@interface FBFacebookCreatePostViewController : KBFacebookViewController <KBTwitterManagerDelegate, UITextViewDelegate, MGTwitterEngineDelegate,PhotoManagerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>{
 	IBOutlet UITextView *tweetTextView;
     IBOutlet UILabel *characterCountLabel;
     IBOutlet UIButton *sendTweet;
@@ -33,6 +34,8 @@
 	id delegate;
 	int actionCount;
 	NSAutoreleasePool *pool;
+	TweetPhoto * tweetPhoto;
+	TweetPhotoResponse *tweetPhotoResponse;
 }
 @property(nonatomic, retain)id delegate;
 

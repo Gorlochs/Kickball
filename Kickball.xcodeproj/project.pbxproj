@@ -110,7 +110,6 @@
 		0EB19C2C11D01C2000BFF849 /* sendGeo03.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EB19C2911D01C2000BFF849 /* sendGeo03.png */; };
 		0EB19C2D11D01C2000BFF849 /* sendTW01.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EB19C2A11D01C2000BFF849 /* sendTW01.png */; };
 		0EB19C2E11D01C2000BFF849 /* sendTW02.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EB19C2B11D01C2000BFF849 /* sendTW02.png */; };
-		0EB19C3311D01E5E00BFF849 /* KBFacebookCreateWallPostVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EB19C3111D01E5E00BFF849 /* KBFacebookCreateWallPostVC.m */; };
 		0EB19C3411D01E5E00BFF849 /* KBFacebookCreateWallPostVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EB19C3211D01E5E00BFF849 /* KBFacebookCreateWallPostVC.xib */; };
 		0EB19CB411D026E300BFF849 /* FBFacebookCreatePostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EB19CB211D026E300BFF849 /* FBFacebookCreatePostViewController.m */; };
 		0EB19CB511D026E300BFF849 /* FBFacebookCreatePostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EB19CB311D026E300BFF849 /* FBFacebookCreatePostViewController.xib */; };
@@ -1037,8 +1036,6 @@
 		0EB19C2911D01C2000BFF849 /* sendGeo03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sendGeo03.png; sourceTree = "<group>"; };
 		0EB19C2A11D01C2000BFF849 /* sendTW01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sendTW01.png; sourceTree = "<group>"; };
 		0EB19C2B11D01C2000BFF849 /* sendTW02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sendTW02.png; sourceTree = "<group>"; };
-		0EB19C3011D01E5E00BFF849 /* KBFacebookCreateWallPostVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBFacebookCreateWallPostVC.h; sourceTree = "<group>"; };
-		0EB19C3111D01E5E00BFF849 /* KBFacebookCreateWallPostVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBFacebookCreateWallPostVC.m; sourceTree = "<group>"; };
 		0EB19C3211D01E5E00BFF849 /* KBFacebookCreateWallPostVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = KBFacebookCreateWallPostVC.xib; path = Classes/KBFacebookCreateWallPostVC.xib; sourceTree = "<group>"; };
 		0EB19CB111D026E300BFF849 /* FBFacebookCreatePostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBFacebookCreatePostViewController.h; sourceTree = "<group>"; };
 		0EB19CB211D026E300BFF849 /* FBFacebookCreatePostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBFacebookCreatePostViewController.m; sourceTree = "<group>"; };
@@ -4185,8 +4182,6 @@
 			isa = PBXGroup;
 			children = (
 				0E86F8C811C2B8710070C9D4 /* bamboo */,
-				0EB19C3011D01E5E00BFF849 /* KBFacebookCreateWallPostVC.h */,
-				0EB19C3111D01E5E00BFF849 /* KBFacebookCreateWallPostVC.m */,
 				0E76C3FE11C15F6E00BA1E89 /* KBFacebookListViewController.h */,
 				0E76C3FF11C15F6E00BA1E89 /* KBFacebookListViewController.m */,
 				0E76C4C411C185A700BA1E89 /* KBFacebookLoginView.h */,
@@ -5152,7 +5147,6 @@
 				0EBEEE0711CBE9C900A28329 /* KBFacebookCommentCell.m in Sources */,
 				0EBEEFD111CC2C5900A28329 /* KBFacebookAddCommentViewController.m in Sources */,
 				07A3A54311D0002F00FC7375 /* KBTwitterFavsViewController.m in Sources */,
-				0EB19C3311D01E5E00BFF849 /* KBFacebookCreateWallPostVC.m in Sources */,
 				0EB19CB411D026E300BFF849 /* FBFacebookCreatePostViewController.m in Sources */,
 				0ED06D2611D11D290048886E /* KBFoursquareLoginView.m in Sources */,
 				0ED06E0911D1367D0048886E /* KBTwitterLoginView.m in Sources */,
