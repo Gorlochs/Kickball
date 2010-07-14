@@ -32,6 +32,7 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
 	hideHeader = NO;
+	hideFooter = YES;
 	pageViewType = KBPageViewTypeOther;
 	pageType = KBPageTypeOther;
     [super viewDidLoad];

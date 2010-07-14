@@ -45,8 +45,10 @@
     numberOfFriends.text = [NSString stringWithFormat:@"%d", [[userDictionary objectForKey:@"friends_count"] intValue]];
     numberOfFollowers.text = [NSString stringWithFormat:@"%d", [[userDictionary objectForKey:@"followers_count"] intValue]];
     numberOfTweets.text = [NSString stringWithFormat:@"%d", [[userDictionary objectForKey:@"statuses_count"] intValue]];
-    numberOfFavorites.text = [NSString stringWithFormat:@"%d", [[[userDictionary objectForKey:@"status"] objectForKey:@"favorited"] intValue]];
-    
+//    numberOfFavorites.text = [NSString stringWithFormat:@"%d", [[[userDictionary objectForKey:@"status"] objectForKey:@"favorited"] intValue]];
+    numberOfFavorites.text = [NSString stringWithFormat:@"%d", [[userDictionary objectForKey:@"favourites_count"] intValue]];
+	
+	
     description.font = [UIFont fontWithName:@"Helvetica" size:12.0];
     if (![[userDictionary objectForKey:@"description"] isKindOfClass:[NSNull class]]) {
       description.text = [userDictionary objectForKey:@"description"];
