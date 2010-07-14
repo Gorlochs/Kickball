@@ -166,6 +166,7 @@ static NSDateFormatter* fbEventDetailDate = NULL;
 		self._loginDialog = nil;
 		self._permissionDialog = nil;
 		self.pictureUrls = [[NSMutableDictionary alloc] init];
+		self.profilePic = nil;
 	}
 	return self;
 }
@@ -238,9 +239,9 @@ static NSDateFormatter* fbEventDetailDate = NULL;
 				[gFacebookProxy release];			
 			gFacebookProxy = [[NSKeyedUnarchiver unarchiveObjectWithData:dataRepresentingSavedObject] retain];
 			gFacebookProxy.pictureUrls = [[NSMutableDictionary alloc] init];
-			if (gFacebookProxy.profilePic==nil) {
+			//if (gFacebookProxy.profilePic==nil) {
 				[gFacebookProxy storeProfilePic];
-			}
+			//}
 			
 		}
 		else
@@ -699,12 +700,14 @@ static NSDateFormatter* fbEventDetailDate = NULL;
 		_meGraph = [self newGraph];
 	
 	_me = [_meGraph getObject:@"me"];
-	profilePic = [_meGraph getProfilePhotoForObject:@"me"];
 	NSString* name = [_me name];
 	//	
 	NSArray* metadata = [_meGraph getConnectionTypesForObject:@"me"];
 	//	
 	NSLog( @"connection types = %@", metadata );
+	UIImage *pic = [_meGraph getProfilePhotoForObject:@"me"];
+	self.profilePic = pic;
+
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"completedFacebookLogin" object:nil];
 
 	
@@ -797,7 +800,8 @@ static NSDateFormatter* fbEventDetailDate = NULL;
 
 -(void)storeProfilePic{
 	GraphAPI *graph = [self newGraph];
-	self.profilePic = [graph getProfilePhotoForObject:@"me"];
+	UIImage *pic = [graph getProfilePhotoForObject:@"me"];
+	self.profilePic = pic;
 	[graph release];
 }
 
