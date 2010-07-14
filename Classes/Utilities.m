@@ -68,14 +68,12 @@ static Utilities *sharedInstance = nil;
     return self;
 }
 
-
-+ (void)putGoogleMapsWallPostWithMessage:(NSString*)message andVenueAddress:(NSString*)venueAddress {
-    //post to facebook with google maps image rather than user supplied image
+//post to facebook with google maps image
++ (void)putGoogleMapsWallPostWithMessage:(NSString*)message andVenueAddress:(NSString*)venueAddress {    
     NSDictionary *googleMapPic;
     if (!venueAddress) {
         double lat = [[KBLocationManager locationManager] latitude];
-        double lng = [[KBLocationManager locationManager] latitude];
-        //TODO: host a map icon to use for the facebook google api map
+        double lng = [[KBLocationManager locationManager] longitude];
         NSString *url = [NSString stringWithFormat:@"http://maps.google.com/maps/api/staticmap?size=96x96&markers=icon:http://s3.amazonaws.com/kickball/assets/pin.png|%f,%f&sensor=true", lat,lng,lat,lng];
         googleMapPic = [NSDictionary dictionaryWithObjectsAndKeys:url, @"picture",@" ",@"caption",nil];
     } else {
