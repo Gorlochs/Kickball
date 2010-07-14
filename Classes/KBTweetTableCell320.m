@@ -54,23 +54,23 @@
 		dateLabel.textAlignment = UITextAlignmentRight;
         [self addSubview:dateLabel];
         
+		/*
 		tweetText = [[TTStyledTextLabel alloc] initWithFrame:CGRectMake(58, 25, 250, 70)];
 		tweetText.textColor = [UIColor colorWithWhite:0.3 alpha:1.0];
 		tweetText.font = [UIFont fontWithName:@"Helvetica" size:12.0];
 		tweetText.backgroundColor = [UIColor clearColor];
 		[self addSubview:tweetText];
+		*/
 		
-		/*
-        tweetText = [[IFTweetLabel alloc] initWithFrame:CGRectMake(66, 25, 250, 70)];
+        tweetText = [[IFTweetLabel alloc] initWithFrame:CGRectMake(58, 0, 250, 70)];
         tweetText.textColor = [UIColor colorWithWhite:0.3 alpha:1.0];
         tweetText.font = [UIFont fontWithName:@"Helvetica" size:12.0];
         tweetText.backgroundColor = [UIColor clearColor];
-        tweetText.linksEnabled = YES;
+        tweetText.linksEnabled = NO;
         tweetText.numberOfLines = 0;
         //tweetText.shadowColor = [UIColor colorWithWhite:1.0 alpha:0.5];
         //tweetText.shadowOffset = CGSizeMake(1.0, 1.0);
         [self addSubview:tweetText];
-        */
 		
         topLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderTop.png"]];
         [self addSubview:topLineImage];

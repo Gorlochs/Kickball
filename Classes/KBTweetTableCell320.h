@@ -9,12 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "Three20/Three20.h"
 #import "Utilities.h"
+#import "IFTweetLabel.h"
+
 
 @interface KBTweetTableCell320 : UITableViewCell {
 	TTImageView *userIcon;
     
     UILabel *userName;
-    TTStyledTextLabel *tweetText;
+    IFTweetLabel *tweetText;
     UILabel *dateLabel;
     
     UIImageView *topLineImage;
@@ -26,7 +28,7 @@
 @property (nonatomic, retain) TTImageView *userIcon;
 @property (nonatomic, retain) UILabel *userName;
 @property (nonatomic, retain) UILabel *dateLabel;
-@property (nonatomic, retain) TTStyledTextLabel *tweetText;
+@property (nonatomic, retain) IFTweetLabel *tweetText;
 
 - (void) setDateLabelWithDate:(NSDate*)theDate;
 - (void) setDateLabelWithText:(NSString*)theDate;

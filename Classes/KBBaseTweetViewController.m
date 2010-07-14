@@ -174,9 +174,9 @@
         cell.userName.text = tweet.screenName;
         //cell.tweetText.numberOfLines = 0;
 		//cell.tweetText.text = tweet.tweetText;
-        cell.tweetText.text = [TTStyledText textWithURLs:tweet.tweetText lineBreaks:NO]; //tweet.tweetText;
+		cell.tweetText.text = tweet.tweetText; // [TTStyledText textWithURLs:tweet.tweetText lineBreaks:NO]; //tweet.tweetText;
         [cell setDateLabelWithText:[[KickballAPI kickballApi] convertDateToTimeUnitString:tweet.createDate]];
-		/*
+		
         CGSize maximumLabelSize = CGSizeMake(250, MAX_LABEL_HEIGHT);
         CGSize expectedLabelSize = [cell.tweetText.text sizeWithFont:cell.tweetText.font 
                                                    constrainedToSize:maximumLabelSize 
@@ -186,10 +186,10 @@
         CGRect newFrame = cell.tweetText.frame;
         newFrame.size.height = expectedLabelSize.height;
         cell.tweetText.frame = newFrame;
-        */
-		[cell.tweetText sizeToFit];
+        
+		//[cell.tweetText sizeToFit];
 		//[cell.tweetText setNeedsLayout];
-		[cell.tweetText setNeedsDisplay];
+		//[cell.tweetText setNeedsDisplay];
         return cell;
 }
 
