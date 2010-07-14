@@ -36,6 +36,8 @@
 #import "TipListViewController.h"
 #import "PlacePeopleHereViewController.h"
 #import "KBThumbnailViewController.h"
+#import "GraphAPI.h"
+#import "KBAccountManager.h"
 
 #define PHOTOS_PER_ROW 4
 #define THUMBNAIL_IMAGE_SIZE 73
@@ -103,7 +105,9 @@
     DLog(@"auth'd user: %@", tmpUser);
     isPingOn = tmpUser.isPingOn;
     isTwitterOn = tmpUser.sendToTwitter && [self getAuthenticatedUser].twitter;
+	//isFacebookOn = ![[KBAccountManager sharedInstance] defaultPostToFacebook];
     isFacebookOn = tmpUser.sendToFacebook;
+    
     [self setProperButtonStates];
     
     mayorCrown.hidden = YES;
@@ -956,10 +960,12 @@
 
 - (void) presentCheckinOverlayWithCheckin:(FSCheckin*)aCheckin {
     NSMutableString *checkinText = [[NSMutableString alloc] initWithCapacity:1];
+    NSMutableString *noteworthyCheckin = [[NSMutableString alloc] initWithString:@""];
     if (aCheckin.mayor.user == nil && [aCheckin.mayor.mayorTransitionType isEqualToString:@"nochange"]) {
         [checkinText appendString:[NSString stringWithFormat:@"You're still the mayor of %@! \n\n", venue.name]];
     } else if ([aCheckin.mayor.mayorTransitionType isEqualToString:@"stolen"] || [aCheckin.mayor.mayorTransitionType isEqualToString:@"new"]) {
         if ([[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"stolen"]) {
+            [noteworthyCheckin setString:@"I just became mayor"];
             [checkinText appendString:[NSString stringWithFormat:@"Congrats! %@ is yours with %d check-ins and %@ lost their crown. \n\n", 
                                       aCheckin.venue.name, 
                                       aCheckin.mayor.numCheckins, 
@@ -968,25 +974,32 @@
             [checkinText appendString:[NSString stringWithFormat:@"%@ \n\n", aCheckin.mayor.mayorCheckinMessage]];
         }
     }
+
+    if ([noteworthyCheckin length] > 0) [noteworthyCheckin appendString:[NSString stringWithFormat:@" and I just unlocked the %@ badge", @"Hillbilly"]];
+    else [noteworthyCheckin appendString:[NSString stringWithFormat:@"I just unlocked the %@ badge", @"Adventurer"]];
+
+
     for (FSBadge *badge in aCheckin.badges) {
+        if ([noteworthyCheckin length] > 0) [noteworthyCheckin appendString:[NSString stringWithFormat:@" and I unlocked the %@ badge", badge.badgeName]];
+        else [noteworthyCheckin appendString:[NSString stringWithFormat:@"I just unlocked the %@ badge at %@", badge.badgeName]];
         [checkinText appendString:[NSString stringWithFormat:@"%@: %@ \n\n", badge.badgeName, badge.badgeDescription]];
     }
     [checkinText appendFormat:@"%@ \n\n", aCheckin.message];
-//	//Scoring *scoring = aCheckin.scoring;
-//	NSArray *scores = [[NSArray alloc] initWithArray:aCheckin.scoring.scores];
-////	if (scoring && scoring.scores && [scoring.scores count] > 0) {
-//	if (scores && [scores count] > 0) {
-		for (FSScore *score in aCheckin.scoring.scores) {
-			[checkinText appendString:[NSString stringWithFormat:@"+%d %@ \n", score.points, score.message]];
-		}
-//	}
-//	[scores release];
+    for (FSScore *score in aCheckin.scoring.scores) {
+        [checkinText appendString:[NSString stringWithFormat:@"+%d %@ \n", score.points, score.message]];
+    }
+	if (isFacebookOn && [noteworthyCheckin length] > 0) {
+        [noteworthyCheckin appendString:[NSString stringWithFormat:@" at %@!", venue.name]];
+		GraphAPI *graph = [[FacebookProxy instance] newGraph];
+		[graph putWallPost:@"me" message:noteworthyCheckin attachment:nil];
+		[graph release];
+	}
     DLog(@"checkin text: %@", checkinText);
     KBMessage *message = [[KBMessage alloc] initWithMember:@"Check-in successful" andMessage:checkinText];
     [self displayPopupMessage:message];
     [checkinText release];
     [message release];
-    
+    [noteworthyCheckin release];
     self.venueToPush = aCheckin.venue;
 }
 
