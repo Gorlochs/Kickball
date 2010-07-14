@@ -76,14 +76,12 @@ static Utilities *sharedInstance = nil;
         double lat = [[KBLocationManager locationManager] latitude];
         double lng = [[KBLocationManager locationManager] latitude];
         //TODO: host a map icon to use for the facebook google api map
-        NSString *url = [NSString stringWithFormat:@"http://maps.google.com/maps/api/staticmap?size=96x96&markers=color:red|label:O|%f,%f&sensor=true", lat,lng,lat,lng];
+        NSString *url = [NSString stringWithFormat:@"http://maps.google.com/maps/api/staticmap?size=96x96&markers=icon:http://s3.amazonaws.com/kickball/assets/pin.png|%f,%f&sensor=true", lat,lng,lat,lng];
         googleMapPic = [NSDictionary dictionaryWithObjectsAndKeys:url, @"picture",@" ",@"caption",nil];
     } else {
         NSMutableString *addy = [[NSMutableString alloc] initWithString:venueAddress];
         [addy replaceOccurrencesOfString:@" " withString:@"+" options:NSLiteralSearch range:NSMakeRange(0, [addy length])];
-        //TODO: host a map icon to use for the facebook google api map
-        //NSMutableString *urlPath = [[NSMutableString alloc] initWithString:@"http://maps.google.com/maps/api/staticmap?size=96x96&markers=icon:http://chart.apis.google.com/chart%3Fchst%3Dd_map_pin_icon%26chld%3Dcafe%257C996600|"];
-        NSMutableString *urlPath = [[NSMutableString alloc] initWithString:@"http://maps.google.com/maps/api/staticmap?size=96x96&markers=color:red|label:O|"];
+        NSMutableString *urlPath = [[NSMutableString alloc] initWithString:@"http://maps.google.com/maps/api/staticmap?size=96x96&markers=icon:http://s3.amazonaws.com/kickball/assets/pin.png|"];
         [urlPath appendFormat:@"%@&sensor=true", addy];
         googleMapPic = [NSDictionary dictionaryWithObjectsAndKeys:urlPath, @"picture",@" ",@"caption",nil];
         [addy release];
