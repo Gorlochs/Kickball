@@ -9,6 +9,7 @@
 #import "KBUserTweetsViewController.h"
 #import "KBTwitterRecentTweetsTableCell.h"
 #import "KickballAPI.h"
+#import "KBCreateTweetViewController.h"
 
 @implementation KBUserTweetsViewController
 
@@ -89,6 +90,21 @@
 
 - (void) refreshTable {
     [self showStatuses];
+}
+
+
+- (void) sendDirectMessage {
+    KBCreateTweetViewController *tweetController = [[KBCreateTweetViewController alloc] initWithNibName:@"KBCreateTweetViewController" bundle:nil];
+	tweetController.directMentionToScreenname = username;
+	[self.navigationController pushViewController:tweetController animated:YES];
+	[tweetController release];
+}
+
+- (void) sendTweet {
+    KBCreateTweetViewController *tweetController = [[KBCreateTweetViewController alloc] initWithNibName:@"KBCreateTweetViewController" bundle:nil];
+	tweetController.replyToScreenName = username;
+	[self.navigationController pushViewController:tweetController animated:YES];
+	[tweetController release];
 }
 
 #pragma mark -

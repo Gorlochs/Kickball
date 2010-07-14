@@ -23,4 +23,7 @@
 @property (nonatomic, retain) NSDictionary *userDictionary;
 @property (nonatomic, retain) NSString *username;
 
+- (IBAction) sendDirectMessage;
+- (IBAction) sendTweet;
+
 @end

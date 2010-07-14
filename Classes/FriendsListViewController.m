@@ -481,6 +481,7 @@
 		//actionCount++;
 		GraphAPI *graph = [[FacebookProxy instance] newGraph];
 		[graph putWallPost:@"me" message:shoutText.text attachment:nil];
+		[graph release];
     }
     
     [FlurryAPI logEvent:@"checked in"];

@@ -105,6 +105,10 @@
         [[FBRequest requestWithDelegate:self] call:@"facebook.status.set" params:params dataParam:nil];
     }
 	 */
+	
+	if (isFacebookOn) {
+		actionCount++;
+	}
     
     if (isFoursquareOn) {
 		actionCount++;
@@ -139,7 +143,7 @@
     } else {
 		[self submitToTwitter:nil];
 		if (isFacebookOn) {
-          [Utilities putGoogleMapsWallPostWithMessage:tweetTextView.text andVenueAddress:nil];
+            [Utilities putGoogleMapsWallPostWithMessage:tweetTextView.text andVenueAddress:nil];
 		}
 	}
 }
@@ -199,6 +203,7 @@
 
 - (void) closeUpShop {
     [self stopProgressBar];
+	// FIXME: POST NOTIFICATION TO DISPLAY THE SUCCESS VIEW
 	[self backOneView];
 }
 
