@@ -37,9 +37,6 @@ static BOOL initialized = NO;
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	[userDefaults setBool:b forKey:USES_TWITTER_KEY];
 	[userDefaults setBool:YES forKey:TWITTER_NOTHANKS_CLICKED]; // before the user says 'no thanks', we need to show the tab
-    if (!b) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"hideAppropriateTabs" object:nil userInfo:nil];
-    }
 }
 
 - (BOOL) usesTwitterOrHasNotDecided {
@@ -71,9 +68,6 @@ static BOOL initialized = NO;
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	[userDefaults setBool:b forKey:USES_FACEBOOK_KEY];
 	[userDefaults setBool:YES forKey:FACEBOOK_NOTHANKS_CLICKED]; // before the user says 'no thanks', we need to show the tab
-    if (!b) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"hideAppropriateTabs" object:nil userInfo:nil];
-    }
 }
 
 - (BOOL) usesFacebookOrHasNotDecided {

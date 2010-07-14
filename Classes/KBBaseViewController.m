@@ -116,43 +116,10 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
     }
 }
 
-// ugly ugly ugly. this was much nicer, but due to crazy architecture, I had to explicitly declare the exact position of each tab button
-- (void) hideAppropriateTabs {
-    if (![[KBAccountManager sharedInstance] usesTwitterOrHasNotDecided] && ![[KBAccountManager sharedInstance] usesFacebookOrHasNotDecided]) {
-        facebookTab.hidden = YES;
-        twitterTab.hidden = YES;
-        
-        CGRect frame = signedInUserIcon.frame;
-        frame.origin = CGPointMake(228, signedInUserIcon.frame.origin.y);
-        signedInUserIcon.frame = frame;
-    } else if (![[KBAccountManager sharedInstance] usesTwitterOrHasNotDecided]) {
-        twitterTab.hidden = YES;
-        
-        CGRect frame = facebookTab.frame;
-        frame.origin = CGPointMake(228, facebookTab.frame.origin.y);
-        facebookTab.frame = frame;
-        
-        CGRect frame2 = signedInUserIcon.frame;
-        frame2.origin = CGPointMake(182, signedInUserIcon.frame.origin.y);
-        signedInUserIcon.frame = frame2;
-    } else if (![[KBAccountManager sharedInstance] usesFacebookOrHasNotDecided]) {
-        facebookTab.hidden = YES;
-        
-        CGRect frame = twitterTab.frame;
-        frame.origin = CGPointMake(228, twitterTab.frame.origin.y);
-        twitterTab.frame = frame;
-        
-        CGRect frame2 = signedInUserIcon.frame;
-        frame2.origin = CGPointMake(182, signedInUserIcon.frame.origin.y);
-        signedInUserIcon.frame = frame2;
-    }
-}
-
 - (void)viewWillAppear:(BOOL)animated {
     // this is to clean up some stuff that gets set by the photo viewer
     self.navigationController.navigationBar.hidden = YES;
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
-    //[self hideAppropriateTabs];
 }
 
 - (void) viewDidUnload {

@@ -130,6 +130,5 @@ typedef enum{
 - (IBAction) switchToFacebook;
 - (IBAction) returnFromOptions;
 - (void) setTabImages;
-- (void) hideAppropriateTabs;
 
 @end

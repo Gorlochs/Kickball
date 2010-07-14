@@ -32,7 +32,6 @@
     cachingKey = kKBTwitterTimelineKey;
     pageViewType = KBPageViewTypeList;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginCanceled) name:@"loginCanceled" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideAppropriateTabs) name:@"hideAppropriateTabs" object:nil];
     if ([self.twitterEngine isAuthorized]) {
         [self startProgressBar:@"Retrieving your tweets..."];
         [twitterEngine getFavoritesForUser:[userDictionary objectForKey:@"screen_name"] withCursor:currentCursor];

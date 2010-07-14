@@ -57,7 +57,6 @@ static NSString* kGetSessionProxy = nil; // @"<YOUR SESSION CALLBACK)>";
 	// this also gets called when the app starts up
     DLog(@"User with id %lld logged in.", uid);
 	[[KBAccountManager sharedInstance] setUsesFacebook:YES];
-	[self hideAppropriateTabs];
 }
 
 - (void)sessionDidNotLogin:(FBSession*)session {
@@ -67,7 +66,6 @@ static NSString* kGetSessionProxy = nil; // @"<YOUR SESSION CALLBACK)>";
 - (void)sessionDidLogout:(FBSession*)session {
 	// user just logged out
     [[KBAccountManager sharedInstance] setUsesFacebook:NO];
-	[self hideAppropriateTabs];
 }
 
 #pragma mark -

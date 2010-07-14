@@ -123,7 +123,6 @@
     [FlurryAPI logEvent:@"Initial Friends List Display"];
     [self startProgressBar:@"Retrieving friends' whereabouts..." withTimer:NO];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(instaCheckin:) name:@"touchAndHoldCheckin" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideAppropriateTabs) name:@"hideAppropriateTabs" object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTable) name:@"refreshFriendsList" object:nil];
 
 //    if (!hasViewedInstructions) {
