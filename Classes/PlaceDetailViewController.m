@@ -975,10 +975,6 @@
         }
     }
 
-    if ([noteworthyCheckin length] > 0) [noteworthyCheckin appendString:[NSString stringWithFormat:@" and I just unlocked the %@ badge", @"Hillbilly"]];
-    else [noteworthyCheckin appendString:[NSString stringWithFormat:@"I just unlocked the %@ badge", @"Adventurer"]];
-
-
     for (FSBadge *badge in aCheckin.badges) {
         if ([noteworthyCheckin length] > 0) [noteworthyCheckin appendString:[NSString stringWithFormat:@" and I unlocked the %@ badge", badge.badgeName]];
         else [noteworthyCheckin appendString:[NSString stringWithFormat:@"I just unlocked the %@ badge at %@", badge.badgeName]];
@@ -989,7 +985,7 @@
         [checkinText appendString:[NSString stringWithFormat:@"+%d %@ \n", score.points, score.message]];
     }
 	if (isFacebookOn && [noteworthyCheckin length] > 0) {
-        [noteworthyCheckin appendString:[NSString stringWithFormat:@" at %@!", venue.name]];
+        [noteworthyCheckin appendString:[NSString stringWithFormat:@" at %@! %@", venue.name, [Utilities getShortenedUrlFromFoursquareVenueId:venue.venueid]]];
 		GraphAPI *graph = [[FacebookProxy instance] newGraph];
 		[graph putWallPost:@"me" message:noteworthyCheckin attachment:nil];
 		[graph release];
