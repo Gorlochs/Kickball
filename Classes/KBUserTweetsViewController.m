@@ -75,7 +75,7 @@
                 location.text = locationText;
             }
         }
-        CGRect frame = CGRectMake(11, 53, 49, 49);
+        CGRect frame = CGRectMake(9, 58, 49, 49);
         TTImageView *userProfileImage = [[TTImageView alloc] initWithFrame:frame];
         userProfileImage.backgroundColor = [UIColor clearColor];
         userProfileImage.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
