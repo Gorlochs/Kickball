@@ -138,12 +138,8 @@
 		
     } else {
 		[self submitToTwitter:nil];
-		
-		//post to facebook with google maps image rather than user supplied image
 		if (isFacebookOn) {
-			GraphAPI *graph = [[FacebookProxy instance] newGraph];
-			[graph putWallPost:@"me" message:tweetTextView.text attachment:nil];
-			[graph release];
+          [Utilities putGoogleMapsWallPostWithMessage:tweetTextView.text andVenueAddress:nil];
 		}
 	}
 }
@@ -384,12 +380,8 @@
 - (void) photoUploadFailed:(ASIHTTPRequest *) request {
     [self stopProgressBar];
     DLog(@"Uhoh, it did fail!");
-	//post to facebook with google map instead of user supplied image
-	
 	if (isFacebookOn) {
-		GraphAPI *graph = [[FacebookProxy instance] newGraph];
-		[graph putWallPost:@"me" message:tweetTextView.text attachment:nil];
-		[graph release];
+        [Utilities putGoogleMapsWallPostWithMessage:tweetTextView.text andVenueAddress:nil];
 	}
 }
 

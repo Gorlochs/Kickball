@@ -153,17 +153,7 @@
 		}
     } else {
 		if (isFacebookOn ) {
-            //post to facebook with google maps image rather than user supplied image
-            NSMutableString *addy = [[NSMutableString alloc] initWithString:venue.venueAddress];
-            [addy replaceOccurrencesOfString:@" " withString:@"+" options:NSLiteralSearch range:NSMakeRange(0, [addy length])];
-            NSMutableString *urlPath = [[NSMutableString alloc] initWithString:@"http://maps.google.com/maps/api/staticmap?size=96x96&markers=icon:http://chart.apis.google.com/chart%3Fchst%3Dd_map_pin_icon%26chld%3Dcafe%257C996600|"];
-            [urlPath appendFormat:@"%@&sensor=true", addy];
-            NSDictionary *googleMapPic = [NSDictionary dictionaryWithObjectsAndKeys:urlPath, @"picture",@" ",@"caption",nil];
-            GraphAPI *graph = [[FacebookProxy instance] newGraph];
-            [graph putWallPost:@"me" message:[self formatCheckinMessage:checkinTextField.text] attachment:googleMapPic];
-            [graph release];
-            [addy release];
-            [urlPath release];
+            [Utilities putGoogleMapsWallPostWithMessage:[self formatCheckinMessage:checkinTextField.text] andVenueAddress:venue.venueAddress];
 		}
 		
 	    if (isTwitterOn) {

@@ -114,12 +114,7 @@
 			[NSThread detachNewThreadSelector:@selector(uploadToTweetPhoto) toTarget:self withObject:nil];
 		}
     } else {
-		//post to facebook with google maps image rather than user supplied image
-		GraphAPI *graph = [[FacebookProxy instance] newGraph];
-		[graph putWallPost:@"me" message:tweetTextView.text attachment:nil];
-		[graph release];
-		//[self decrementActionCount];
-		//[self closeUpShop];
+        [Utilities putGoogleMapsWallPostWithMessage:tweetTextView.text andVenueAddress:nil];
 		[self decrementActionCount];
 		
 	    if (isTwitterOn) {
@@ -304,10 +299,7 @@
 
 - (void) photoUploadFailed:(ASIHTTPRequest *) request {
     DLog(@"Uhoh, it did fail!");
-	//post to facebook with google map instead of user supplied image
-	GraphAPI *graph = [[FacebookProxy instance] newGraph];
-	[graph putWallPost:@"me" message:tweetTextView.text attachment:nil];
-	[graph release];
+    [Utilities putGoogleMapsWallPostWithMessage:tweetTextView.text andVenueAddress:nil];
 	KBMessage *message = [[KBMessage alloc] initWithMember:@"Error" andMessage:@"Image upload failed!"];
     [delegate displayPopupMessage:message];
     [message release];
