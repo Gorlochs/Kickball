@@ -126,7 +126,7 @@
 - (void)dealloc {
     [userIcon release];
     [userName release];
-	[iconButt retain];
+	[iconButt release];
     [tweetText release];
     [dateLabel release];
     
