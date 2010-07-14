@@ -49,7 +49,7 @@
     [super viewDidLoad];
     
     name.text = @"";
-    location.text = @"";
+    location.text = @"Not available";
     lastCheckinAddress.text = @"";
     
     if ([userId isEqualToString:[self getAuthenticatedUser].userId]) {

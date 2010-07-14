@@ -18,7 +18,7 @@
 - (void)viewDidLoad {
     screenNameLabel.text = @"";
     fullName.text = @"";
-    location.text = @"";
+    location.text = @"Not available";
     numberOfFriends.text = @"";
     numberOfFollowers.text = @"";
     numberOfTweets.text = @"";
@@ -39,8 +39,9 @@
     userDictionary = [[userInfo objectAtIndex:0] retain];
     screenNameLabel.text = [userDictionary objectForKey:@"screen_name"];
     fullName.text = [userDictionary objectForKey:@"name"];
-    if (![[userDictionary objectForKey:@"location"] isKindOfClass:[NSNull class]]) {
-      location.text = [userDictionary objectForKey:@"location"];
+    NSString *locationText = [userDictionary objectForKey:@"location"];
+    if (![locationText isKindOfClass:[NSNull class]] && ![locationText isEqualToString:@""]) {
+      location.text = locationText;
     }
     numberOfFriends.text = [NSString stringWithFormat:@"%d", [[userDictionary objectForKey:@"friends_count"] intValue]];
     numberOfFollowers.text = [NSString stringWithFormat:@"%d", [[userDictionary objectForKey:@"followers_count"] intValue]];

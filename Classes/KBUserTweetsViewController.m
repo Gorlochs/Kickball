@@ -19,7 +19,7 @@
     pageType = KBPageTypeOther;
     [super viewDidLoad];
 	
-	location.text = @"";
+	location.text = @"Not available";
     
     cachingKey = [NSString stringWithString:username];
     
@@ -29,8 +29,9 @@
         screenNameLabel.text = [self.userDictionary objectForKey:@"screen_name"];
         fullName.text = [self.userDictionary objectForKey:@"name"];
     if ([[self.userDictionary objectForKey:@"location"] isKindOfClass:[NSString class]])
-  		location.text = [self.userDictionary objectForKey:@"location"];
-        
+        if (![[self.userDictionary objectForKey:@"location"] isEqualToString:@""]) {
+    		location.text = [self.userDictionary objectForKey:@"location"];
+        }
 		UIImageView *iconBgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"twitIconBG.png"]];
 		iconBgImage.frame = CGRectMake(14, 63, 37, 38);
 		[self.view addSubview:iconBgImage];
@@ -67,10 +68,12 @@
     if (userDictionary == nil && [userStatuses count] > 0) {
         screenNameLabel.text = [[[userStatuses objectAtIndex:0] objectForKey:@"user"] objectForKey:@"screen_name"];
         fullName.text = [[[userStatuses objectAtIndex:0] objectForKey:@"user"] objectForKey:@"name"];
-    NSString *locationText = [[[userStatuses objectAtIndex:0] objectForKey:@"user"] objectForKey:@"location"];
-    if ([locationText isKindOfClass:[NSString class]]) 
-  		location.text = [[[userStatuses objectAtIndex:0] objectForKey:@"user"] objectForKey:@"location"];
-
+        NSString *locationText = [[[userStatuses objectAtIndex:0] objectForKey:@"user"] objectForKey:@"location"];
+        if ([locationText isKindOfClass:[NSString class]]) {
+            if (![locationText isEqualToString:@""]) {
+                location.text = locationText;
+            }
+        }
         CGRect frame = CGRectMake(11, 53, 49, 49);
         TTImageView *userProfileImage = [[TTImageView alloc] initWithFrame:frame];
         userProfileImage.backgroundColor = [UIColor clearColor];
