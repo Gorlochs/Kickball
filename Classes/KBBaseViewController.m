@@ -152,7 +152,7 @@ const NSString *kickballDomain = @"http://gorlochs.literalshore.com/kickball";
     // this is to clean up some stuff that gets set by the photo viewer
     self.navigationController.navigationBar.hidden = YES;
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
-    [self hideAppropriateTabs];
+    //[self hideAppropriateTabs];
 }
 
 - (void) viewDidUnload {

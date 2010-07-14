@@ -154,13 +154,11 @@ static Utilities *sharedInstance = nil;
 - (void) updateAllFriendsWithPingOn:(NSArray*)checkins {
 	pool = [[NSAutoreleasePool alloc] init];
 	
+	ids = [[NSMutableString alloc] initWithCapacity:1];
+	
 	for (FSCheckin *checkin in checkins) {
 		if (checkin.checkedInUserGetsPings) {
-			if (!ids) {
-				ids = [[NSMutableString alloc] initWithString:checkin.user.userId];
-			} else {
-				[ids appendFormat:@",%@", checkin.user.userId];
-			}
+			[ids appendFormat:@"%@%@", [ids length] < 1 ? @"" : @",", checkin.user.userId];
 		}
 	}
 	
