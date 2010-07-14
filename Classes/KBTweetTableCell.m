@@ -53,7 +53,7 @@
         tweetText.textColor = [UIColor colorWithWhite:0.3 alpha:1.0];
         tweetText.font = [UIFont fontWithName:@"Helvetica" size:12.0];
         tweetText.backgroundColor = [UIColor clearColor];
-        tweetText.linksEnabled = YES;
+        tweetText.linksEnabled = NO;
         tweetText.numberOfLines = 0;
         //tweetText.shadowColor = [UIColor colorWithWhite:1.0 alpha:0.5];
         //tweetText.shadowOffset = CGSizeMake(1.0, 1.0);
