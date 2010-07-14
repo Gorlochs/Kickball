@@ -74,12 +74,12 @@ static Utilities *sharedInstance = nil;
     if (!venueAddress) {
         double lat = [[KBLocationManager locationManager] latitude];
         double lng = [[KBLocationManager locationManager] longitude];
-        NSString *url = [NSString stringWithFormat:@"http://maps.google.com/maps/api/staticmap?size=96x96&markers=icon:http://s3.amazonaws.com/kickball/assets/pin.png|%f,%f&sensor=true", lat,lng,lat,lng];
+        NSString *url = [NSString stringWithFormat:@"http://maps.google.com/maps/api/staticmap?size=96x96&zoom=14&markers=icon:http://s3.amazonaws.com/kickball/assets/pin.png|%f,%f&sensor=true", lat,lng,lat,lng];
         googleMapPic = [NSDictionary dictionaryWithObjectsAndKeys:url, @"picture",@" ",@"caption",nil];
     } else {
         NSMutableString *addy = [[NSMutableString alloc] initWithString:venueAddress];
         [addy replaceOccurrencesOfString:@" " withString:@"+" options:NSLiteralSearch range:NSMakeRange(0, [addy length])];
-        NSMutableString *urlPath = [[NSMutableString alloc] initWithString:@"http://maps.google.com/maps/api/staticmap?size=96x96&markers=icon:http://s3.amazonaws.com/kickball/assets/pin.png|"];
+        NSMutableString *urlPath = [[NSMutableString alloc] initWithString:@"http://maps.google.com/maps/api/staticmap?zoom=14&size=96x96&markers=icon:http://s3.amazonaws.com/kickball/assets/pin.png|"];
         [urlPath appendFormat:@"%@&sensor=true", addy];
         googleMapPic = [NSDictionary dictionaryWithObjectsAndKeys:urlPath, @"picture",@" ",@"caption",nil];
         [addy release];
