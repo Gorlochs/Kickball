@@ -219,7 +219,7 @@ NSInteger eventsDateSort(id e1, id e2, void *context) {
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-	if (eventsFeed!=nil) {
+	if (eventsFeed!=nil && [eventsFeed count] > 0) {
 		NSDictionary *sectionDict = [eventsFeed objectAtIndex:section];
 		if (sectionDict!=nil) {
 			NSArray *rows = [sectionDict objectForKey:@"events"];
@@ -260,7 +260,7 @@ NSInteger eventsDateSort(id e1, id e2, void *context) {
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-	if (eventsFeed!=nil) {
+	if (eventsFeed!=nil && [eventsFeed count] > 0) {
 		NSDictionary *sectionDict = [eventsFeed objectAtIndex:section];
 		if (sectionDict!=nil) {
 			NSString *headerString = [sectionDict objectForKey:@"headerString"];
@@ -292,8 +292,10 @@ NSInteger eventsDateSort(id e1, id e2, void *context) {
 	if (cell == nil) {
         cell = [[[KBFacebookEventsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
 	}
-	NSDictionary *fbItem = [(NSArray*)[(NSDictionary*)[eventsFeed objectAtIndex:indexPath.section] objectForKey:@"events"] objectAtIndex:indexPath.row];
-	[cell populate:fbItem];
+	if (eventsFeed && [eventsFeed count] > 0) {
+		NSDictionary *fbItem = [(NSArray*)[(NSDictionary*)[eventsFeed objectAtIndex:indexPath.section] objectForKey:@"events"] objectAtIndex:indexPath.row];
+		[cell populate:fbItem];
+	}
 	return cell;
 }
 

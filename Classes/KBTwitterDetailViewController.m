@@ -84,8 +84,9 @@
 	label1.textColor = [UIColor colorWithWhite:0.5 alpha:1.0];
 	label1.text = [TTStyledText textWithURLs:tweet.tweetText lineBreaks:NO];
 	label1.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
-	label1.backgroundColor = [UIColor clearColor];
+	label1.backgroundColor = [UIColor clearColor];	
 	[label1 sizeToFit];
+	[label1 setNeedsLayout];
 	[self.view addSubview:label1];
     [label1 release];
 	
