@@ -52,7 +52,7 @@
     }
 }
 
-- (void) executeStatusesQuery:(int)pageNumber {
+- (void) executeQuery:(int)pageNumber {
     if (self.userDictionary) {
         [twitterEngine getUserTimelineFor:[self.userDictionary objectForKey:@"screen_name"] sinceID:0 startingAtPage:pageNumber count:25];
     } else {
@@ -61,7 +61,7 @@
 }
 
 - (void) showStatuses {
-    [self executeStatusesQuery:0];
+    [self executeQuery:1];
 }
 
 - (void)statusesReceived:(NSArray *)statuses {
