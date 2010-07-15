@@ -81,7 +81,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	FSCheckin *theCheckin = [[checkinsByDate objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-	if (theCheckin.shout) {
+    if (theCheckin.shout && !theCheckin.venue) {
 		//check to see if it is long enough to need two lines:
 		CGSize maximumLabelSize = CGSizeMake(250, MAX_LABEL_HEIGHT);
 		NSString *text = [NSString stringWithFormat:@"shout: \"%@\"", theCheckin.shout];
@@ -117,7 +117,7 @@
     }
     [cell makeOneLine];
     FSCheckin *theCheckin = [[checkinsByDate objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-    if (theCheckin.shout) {
+    if (theCheckin.shout && !theCheckin.venue) {
 		//check to see if it is long enough to need two lines:
 		CGSize maximumLabelSize = CGSizeMake(250, MAX_LABEL_HEIGHT);
 		NSString *text = [NSString stringWithFormat:@"shout: \"%@\"", theCheckin.shout];
