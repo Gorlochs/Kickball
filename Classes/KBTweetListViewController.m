@@ -31,7 +31,8 @@
 }
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+     DLog(@"tweetlistviewcontroller");
+   [super viewDidLoad];
     twitterManager.delegate = self;
     _inModalTweetView = NO;
     pageNum = 1;
@@ -73,6 +74,7 @@
 }
 
 - (void)statusesReceived:(NSArray *)statuses {
+     DLog(@"statusesreceived, tweetlistviewcontroller");
   if (_inModalTweetView) {
     [self.navigationController popViewControllerAnimated:YES];
     _inModalTweetView = NO;

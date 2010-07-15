@@ -61,6 +61,7 @@
 }
 
 - (void)statusesReceived:(NSArray *)statuses {
+DLog(@"statusesreceived, usertweetsviewcontroller");
     [super statusesReceived:statuses];
 
     // this is used when there is no userDictionary, which occurs when a user clicks a @screenname inside the body of a tweet
@@ -75,7 +76,7 @@
         userProfileImage.backgroundColor = [UIColor clearColor];
         userProfileImage.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
         userProfileImage.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
-        userProfileImage.urlPath = [[[userStatuses objectAtIndex:0] objectForKey:@"user"] objectForKey:@"profile_image_url"];
+        userProfileImage.urlPath = [Utilities safeString:[[[userStatuses objectAtIndex:0] objectForKey:@"user"] objectForKey:@"profile_image_url"]];
         [self.view addSubview:userProfileImage];
         [userProfileImage release];
     }
