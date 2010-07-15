@@ -74,7 +74,7 @@ static Utilities *sharedInstance = nil;
 }
 
 //post to facebook with google maps image
-+ (void)putGoogleMapsWallPostWithMessage:(NSString*)message andVenueAddress:(FSVenue*)venue {    
++ (void)putGoogleMapsWallPostWithMessage:(NSString*)message andVenue:(FSVenue*)venue {    
 //    NSDictionary *googleMapPic = [[NSDictionary alloc] initWithObjectsAndKeys:urlPath, @"picture",venue.name,@"caption",venue.addressWithCrossstreet,@"description",nil];
 	NSDictionary *googleMapPic;
     if (!venue) {

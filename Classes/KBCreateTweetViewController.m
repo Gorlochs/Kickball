@@ -143,7 +143,7 @@
     } else {
 		[self submitToTwitter:nil];
 		if (isFacebookOn) {
-            [Utilities putGoogleMapsWallPostWithMessage:tweetTextView.text andVenueAddress:nil];
+            [Utilities putGoogleMapsWallPostWithMessage:tweetTextView.text andVenue:nil];
 		}
 	}
 }
@@ -386,7 +386,7 @@
     [self stopProgressBar];
     DLog(@"Uhoh, it did fail!");
 	if (isFacebookOn) {
-        [Utilities putGoogleMapsWallPostWithMessage:tweetTextView.text andVenueAddress:nil];
+        [Utilities putGoogleMapsWallPostWithMessage:tweetTextView.text andVenue:nil];
 	}
 }
 

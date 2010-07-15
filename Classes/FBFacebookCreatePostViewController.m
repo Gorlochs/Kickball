@@ -115,7 +115,7 @@
 			[NSThread detachNewThreadSelector:@selector(uploadToTweetPhoto) toTarget:self withObject:nil];
 		}
     } else {
-        [Utilities putGoogleMapsWallPostWithMessage:tweetTextView.text andVenueAddress:nil];
+        [Utilities putGoogleMapsWallPostWithMessage:tweetTextView.text andVenue:nil];
 		[self decrementActionCount];
 		
 	    if (isTwitterOn) {
@@ -300,7 +300,7 @@
 
 - (void) photoUploadFailed:(ASIHTTPRequest *) request {
     DLog(@"Uhoh, it did fail!");
-    [Utilities putGoogleMapsWallPostWithMessage:tweetTextView.text andVenueAddress:nil];
+    [Utilities putGoogleMapsWallPostWithMessage:tweetTextView.text andVenue:nil];
 	KBMessage *message = [[KBMessage alloc] initWithMember:@"Error" andMessage:@"Image upload failed!"];
     [delegate displayPopupMessage:message];
     [message release];
