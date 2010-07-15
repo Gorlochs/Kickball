@@ -19,8 +19,8 @@
     
     [super viewDidLoad];
     
-    [slider setMinimumTrackImage:nil forState:UIControlStateNormal];
-    [slider setMaximumTrackImage:nil forState:UIControlStateNormal];
+    [slider setMinimumTrackImage:[UIImage imageNamed:@"sliderBar.png"] forState:UIControlStateNormal];
+    [slider setMaximumTrackImage:[UIImage imageNamed:@"sliderBar.png"] forState:UIControlStateNormal];
     [slider setThumbImage:[UIImage imageNamed:@"opt_sliderThumb.png"] forState:UIControlStateNormal];
 	NSNumber *currentUserValue = [[Utilities sharedInstance] getCityRadius];
 	int val = [currentUserValue intValue];

@@ -48,6 +48,11 @@
 	IBOutlet UIButton *xTW;
 	IBOutlet UIButton *xFB;
 	IBOutlet UIButton *yFB;
+	
+	IBOutlet UIButton *hideKeyboardButt;
+	IBOutlet UIImageView *keyboardMask;
+	
+	BOOL actionSheetUp;
 
 }
 
@@ -69,5 +74,9 @@
 - (IBAction) logoutTW;
 
 - (IBAction) loginFB;
+
+- (IBAction) hideKeyboard;
+-(void)showKeyboardMask;
+
 
 @end

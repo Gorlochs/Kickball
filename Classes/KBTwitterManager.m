@@ -90,6 +90,7 @@ static KBTwitterManager *sharedInstance = nil;
 	DLog(@"Access token string returned: %@", tokenString);
 	
 	[[NSUserDefaults standardUserDefaults] setObject:tokenString forKey:kCachedXAuthAccessTokenStringKey];
+	[[NSUserDefaults standardUserDefaults] synchronize];
 	if (![tokenString isEqualToString:@""]) {
 		[[KBAccountManager sharedInstance] setUsesTwitter:YES];
 		

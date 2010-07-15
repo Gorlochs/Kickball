@@ -61,18 +61,22 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+	[foursquarePassword setText:nil];
+	[foursquareUsername setText:nil];
+	[twitterPassword setText:nil];
+	[twitterUsername setText:nil];
 	if ([[KBAccountManager sharedInstance] usesFoursquare]) {
 		[foursquareUsername setPlaceholder:@"logged in"];
 		[foursquarePassword setPlaceholder:@" "];
 	}else {
-		[foursquareUsername setPlaceholder:@"username"];
+		[foursquareUsername setPlaceholder:@"4sq email/phone"];
 		[foursquarePassword setPlaceholder:@"password"];
 	}
 	if ([[KBAccountManager sharedInstance] usesTwitter]) {
 		[twitterUsername setPlaceholder:@"logged in"];
 		[twitterPassword setPlaceholder:@" "];
 	}else {
-		[twitterUsername setPlaceholder:@"username"];
+		[twitterUsername setPlaceholder:@"twitter name"];
 		[twitterPassword setPlaceholder:@"password"];
 	}
 
@@ -213,6 +217,12 @@
     [message release];
 	KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
 	[appDelegate loggedInToTwitter];
+	[twitterPassword setPlaceholder:@" "];
+	[twitterUsername setPlaceholder:@"logged in"];
+	[twitterPassword setText:nil];
+	[twitterUsername setText:nil];
+	[xTW setEnabled:YES];
+	[xTW setHidden:NO];
 }
 #pragma mark delgate callbacks
 
@@ -249,6 +259,12 @@
         [message release];
 		KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
 		[appDelegate loggedInToFoursquare];
+		[foursquareUsername setPlaceholder:@"logged in"];
+		[foursquarePassword setPlaceholder:@" "];
+		[foursquarePassword setText:nil];
+		[foursquareUsername setText:nil];
+		[x4SQ setEnabled:YES];
+		[x4SQ setHidden:NO];
     }
 }
 
@@ -317,6 +333,7 @@
 	if (textField==foursquareUsername) {
 		if ([[KBAccountManager sharedInstance] usesFoursquare]) {
 			//pop action sheet, and return NO
+			[self logout4SQ];
 			return NO;
 		}else {
 			return YES;
@@ -324,6 +341,7 @@
 	}else if (textField==foursquarePassword) {
 		if ([[KBAccountManager sharedInstance] usesFoursquare]) {
 			//pop action sheet, and return NO
+			[self logout4SQ];
 			return NO;
 		}else {
 			return YES;
@@ -331,6 +349,7 @@
 	}else if (textField==twitterUsername) {
 		if ([[KBAccountManager sharedInstance] usesTwitter]) {
 			//pop action sheet, and return NO
+			[self logoutTW];
 			return NO;
 		}else {
 			return YES;
@@ -338,6 +357,7 @@
 	}else if (textField==twitterPassword) {
 		if ([[KBAccountManager sharedInstance] usesTwitter]) {
 			//pop action sheet, and return NO
+			[self logoutTW];
 			return NO;
 		}else {
 			return YES;
@@ -356,15 +376,18 @@
     CGFloat heightFraction = numerator / denominator;
     if (heightFraction < 0.0) {
         heightFraction = 0.0;
-    } else if (heightFraction > 1.0) {
-        heightFraction = 1.0;
+    } else if (heightFraction > 0.7) {
+        heightFraction = 0.7;
     }
-    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-    if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown) {
-        animatedDistance = floor(PORTRAIT_KEYBOARD_HEIGHT * heightFraction);
-    } else {
-        animatedDistance = floor(LANDSCAPE_KEYBOARD_HEIGHT * heightFraction);
-    }
+	animatedDistance = 0;
+	if(textField==twitterPassword || textField==twitterUsername){
+		UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+		if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown) {
+			animatedDistance = floor(PORTRAIT_KEYBOARD_HEIGHT * heightFraction);
+		} else {
+			animatedDistance = floor(LANDSCAPE_KEYBOARD_HEIGHT * heightFraction);
+		}
+	}
     CGRect viewFrame = self.view.frame;
     viewFrame.origin.y -= animatedDistance;
     DLog(@"animated distance: %f", animatedDistance);
@@ -388,13 +411,15 @@
 //    } else if (textField == twitter || textField == phone) {
 //        toolbarFrame.origin.y = 330;
 //    }
-    
+    int hideOffset = PORTRAIT_KEYBOARD_HEIGHT + hideKeyboardButt.frame.size.height - animatedDistance;
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
     [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
     
 //    [toolbar setFrame:toolbarFrame];
     [self.view setFrame:viewFrame];
+	[keyboardMask setCenter:CGPointMake(keyboardMask.center.x, keyboardMask.center.y - hideOffset)];
+	[hideKeyboardButt setCenter:CGPointMake(hideKeyboardButt.center.x, hideKeyboardButt.center.y - hideOffset)];
     
     [UIView commitAnimations];
 }
@@ -403,12 +428,14 @@
     //DLog(@"text field did end editing: %@", textField);
     CGRect viewFrame = self.view.frame;
     viewFrame.origin.y += animatedDistance;
-    
+    int hideOffset = PORTRAIT_KEYBOARD_HEIGHT + hideKeyboardButt.frame.size.height - animatedDistance;
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
     [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
     
     [self.view setFrame:viewFrame];
+	[keyboardMask setCenter:CGPointMake(keyboardMask.center.x, keyboardMask.center.y + hideOffset)];
+	[hideKeyboardButt setCenter:CGPointMake(hideKeyboardButt.center.x, hideKeyboardButt.center.y + hideOffset)];
     
     [UIView commitAnimations];
 }
@@ -445,11 +472,13 @@
 }
 
 -(void)pressOptionsLeft{
+	[self hideKeyboard];
 	NSArray *newStack = [NSArray arrayWithObjects:[(OptionsNavigationController*)self.navigationController base],[(OptionsNavigationController*)self.navigationController checkin],self,nil];
 	[[self navigationController] setViewControllers:newStack animated:NO];
 	[[self navigationController] popViewControllerAnimated:YES];
 }
 -(void)pressOptionsRight{
+	[self hideKeyboard];
 	NSArray *newStack = [NSArray arrayWithObjects:[(OptionsNavigationController*)self.navigationController base],self,nil];
 	[[self navigationController] setViewControllers:newStack animated:NO];
 	[[self navigationController] pushViewController:[(OptionsNavigationController*)self.navigationController friendPriority] animated:YES];
@@ -546,6 +575,10 @@
 #pragma mark logout
 
 - (IBAction) logout4SQ{
+	if (actionSheetUp) {
+		return;
+	}
+	actionSheetUp = YES;
 	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Logout from Foursquare?"
                                                              delegate:self
                                                     cancelButtonTitle:@"Cancel"
@@ -558,6 +591,12 @@
     [actionSheet release];
 }
 - (IBAction) logoutFB{
+	if (actionSheetUp) {
+		return;
+	}
+	actionSheetUp = YES;
+	[self hideKeyboard];
+	
 	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Logout from Facebook?"
                                                              delegate:self
                                                     cancelButtonTitle:@"Cancel"
@@ -571,6 +610,10 @@
 	
 }
 - (IBAction) logoutTW{
+	if (actionSheetUp) {
+		return;
+	}
+	actionSheetUp = YES;
 	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Logout from Twitter?"
                                                              delegate:self
                                                     cancelButtonTitle:@"Cancel"
@@ -585,6 +628,7 @@
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+	actionSheetUp = NO;
 	switch (actionSheet.tag) {
 		case 1:
 			//foursquare
@@ -596,7 +640,7 @@
 					[appDelegate loggedOutOfFoursquare];
 					[x4SQ setEnabled:NO];
 					[x4SQ setHidden:YES];
-					[foursquareUsername setPlaceholder:@"username"];
+					[foursquareUsername setPlaceholder:@"4sq email/phone"];
 					[foursquarePassword setPlaceholder:@"password"];
 					break;
 				case 1:
@@ -630,7 +674,7 @@
 					[appDelegate loggedOutOfTwitter];
 					[xTW setEnabled:NO];
 					[xTW setHidden:YES];
-					[twitterUsername setPlaceholder:@"username"];
+					[twitterUsername setPlaceholder:@"twitter name"];
 					[twitterPassword setPlaceholder:@"password"];
 					break;
 				case 1:
@@ -646,10 +690,20 @@
 }
 
 - (IBAction) loginFB{
+	[self hideKeyboard];
 	[[FacebookProxy instance] doAuth];	
 }
 					 
 					 
+-(IBAction)hideKeyboard{
+	[foursquareUsername resignFirstResponder];
+	[foursquarePassword resignFirstResponder];
+	[twitterUsername resignFirstResponder];
+	[twitterPassword resignFirstResponder];
+}
+
+-(void)showKeyboardMask{
+}
 
 #pragma mark -
 #pragma mark Memory management

@@ -36,7 +36,7 @@
 	[UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.3];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-    [subjectPicker setCenter:CGPointMake(160, 274)];
+    [subjectPicker setCenter:CGPointMake(160, 338)];
     [UIView setAnimationDelegate:self];
     [UIView commitAnimations];
 }
@@ -44,7 +44,7 @@
 	[UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.3];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-    [subjectPicker setCenter:CGPointMake(160, 490)];
+    [subjectPicker setCenter:CGPointMake(160, 560)];
     [UIView setAnimationDelegate:self];
     [UIView commitAnimations];
 }

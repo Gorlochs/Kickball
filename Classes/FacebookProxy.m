@@ -239,6 +239,7 @@ static NSDateFormatter* fbEventDetailDate = NULL;
 				[gFacebookProxy release];			
 			gFacebookProxy = [[NSKeyedUnarchiver unarchiveObjectWithData:dataRepresentingSavedObject] retain];
 			gFacebookProxy.pictureUrls = [[NSMutableDictionary alloc] init];
+			gFacebookProxy.profilePic = nil;
 			//if (gFacebookProxy.profilePic==nil) {
 				[gFacebookProxy storeProfilePic];
 			//}
