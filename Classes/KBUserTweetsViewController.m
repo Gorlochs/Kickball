@@ -10,6 +10,7 @@
 #import "KBTwitterRecentTweetsTableCell.h"
 #import "KickballAPI.h"
 #import "KBCreateTweetViewController.h"
+#import "Utilities.h"
 
 @implementation KBUserTweetsViewController
 
@@ -27,15 +28,10 @@
     screenNameLabel.text = @""; //a dictionary may not have been returned, such as when a user views protected tweets
     fullName.text = @"";
     if (self.userDictionary) {
-        screenNameLabel.text = [self.userDictionary objectForKey:@"screen_name"];
-        fullName.text = [self.userDictionary objectForKey:@"name"];
-        if ([[self.userDictionary objectForKey:@"location"] isKindOfClass:[NSString class]]) {
-            if (![[self.userDictionary objectForKey:@"location"] isEqualToString:@""]) {
-                location.text = [self.userDictionary objectForKey:@"location"];
-            } else {
-                location.text = @"Not available";
-            }
-        }
+        screenNameLabel.text = [Utilities safeString:[self.userDictionary objectForKey:@"screen_name"]];
+        fullName.text = [Utilities safeString:[self.userDictionary objectForKey:@"name"]];
+        location.text = [Utilities safeString:[self.userDictionary objectForKey:@"location"]];
+        if ([location.text isEqualToString:@""]) location.text = @"Not available";
 		UIImageView *iconBgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"twitIconBG.png"]];
 		iconBgImage.frame = CGRectMake(14, 63, 37, 38);
 		[self.view addSubview:iconBgImage];
@@ -70,14 +66,10 @@
     // this is used when there is no userDictionary, which occurs when a user clicks a @screenname inside the body of a tweet
     NSArray *userStatuses = [statuses retain];
     if (userDictionary == nil && [userStatuses count] > 0) {
-        screenNameLabel.text = [[[userStatuses objectAtIndex:0] objectForKey:@"user"] objectForKey:@"screen_name"];
-        fullName.text = [[[userStatuses objectAtIndex:0] objectForKey:@"user"] objectForKey:@"name"];
-        NSString *locationText = [[[userStatuses objectAtIndex:0] objectForKey:@"user"] objectForKey:@"location"];
-        if ([locationText isKindOfClass:[NSString class]]) {
-            if (![locationText isEqualToString:@""]) {
-                location.text = locationText;
-            }
-        }
+        screenNameLabel.text = [Utilities safeString:[[[userStatuses objectAtIndex:0] objectForKey:@"user"] objectForKey:@"screen_name"]];
+        fullName.text = [Utilities safeString:[[[userStatuses objectAtIndex:0] objectForKey:@"user"] objectForKey:@"name"]];
+        location.text = [Utilities safeString:[[[userStatuses objectAtIndex:0] objectForKey:@"user"] objectForKey:@"location"]];
+        if ([location.text isEqualToString:@""]) location.text = @"Not available";
         CGRect frame = CGRectMake(9, 58, 49, 49);
         TTImageView *userProfileImage = [[TTImageView alloc] initWithFrame:frame];
         userProfileImage.backgroundColor = [UIColor clearColor];

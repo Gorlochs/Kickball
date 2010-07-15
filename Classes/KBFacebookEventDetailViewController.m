@@ -35,22 +35,17 @@
 	nextPageURL = [[NSString alloc] init];
 	requeryWhenTableGetsToBottom = YES;
 
-	NSString *content = nil;
-	content = [event objectForKey:@"host"];
-	eventHost.text = ![content isKindOfClass:[NSNull class]] ? content : @"";
-	content = [event objectForKey:@"name"];
-	eventName.text = ![content isKindOfClass:[NSNull class]] ? content : @"";
-	content = [event objectForKey:@"location"];
-	eventLocation.text = ![content isKindOfClass:[NSNull class]] ? content : @"";
+	eventHost.text = [Utilities safeString:[event objectForKey:@"host"]];
+	eventName.text = [Utilities safeString:[event objectForKey:@"name"]];
+	eventLocation.text = [Utilities safeString:[event objectForKey:@"location"]];
 	NSDate *fbEventDate = [NSDate dateWithTimeIntervalSince1970:[(NSString*)[event objectForKey:@"start_time"] intValue]];
 	[fbEventDate addTimeInterval:[[NSTimeZone defaultTimeZone] secondsFromGMT]];
 	
 	eventTime.text = [[FacebookProxy fbEventCellTimeFormatter] stringFromDate:fbEventDate];//@"6:30p";//[event objectForKey:];
 	eventMonth.text = [[[FacebookProxy fbEventDetailMonthFormatter] stringFromDate:fbEventDate] uppercaseString];//@"SEP"; //[event objectForKey:@"24"];
 	eventDay.text = [[FacebookProxy fbEventDetailDateFormatter] stringFromDate:fbEventDate];//@"24"; //[event objectForKey:];
-	content = [event objectForKey:@"description"];
 	detailText.font = [UIFont systemFontOfSize:14.0];
-	detailText.text = ![content isKindOfClass:[NSNull class]] ? content : @"";
+	detailText.text = [Utilities safeString:[event objectForKey:@"description"]];
 	NSString *rsvp = [event objectForKey:@"rsvp_status"];
 	[attendingButt setSelected:NO];
 	[notAttendingButt setSelected:NO];

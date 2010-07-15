@@ -10,6 +10,7 @@
 #import "KBTwitterUserListViewController.h"
 #import "KBCreateTweetViewController.h"
 #import "KBTwitterFavsViewController.h"
+#import "Utilities.h"
 
 @implementation KBTwitterProfileViewController
 
@@ -37,21 +38,17 @@
 
 - (void)userInfoReceived:(NSArray *)userInfo {
     userDictionary = [[userInfo objectAtIndex:0] retain];
-    screenNameLabel.text = [userDictionary objectForKey:@"screen_name"];
-    fullName.text = [userDictionary objectForKey:@"name"];
-    NSString *locationText = [userDictionary objectForKey:@"location"];
-    if (![locationText isKindOfClass:[NSNull class]] && ![locationText isEqualToString:@""]) {
-      location.text = locationText;
-    }
+    screenNameLabel.text = [Utilities safeString:[userDictionary objectForKey:@"screen_name"]];
+    fullName.text = [Utilities safeString:[userDictionary objectForKey:@"name"]];
+    NSString *locationText = [Utilities safeString:[userDictionary objectForKey:@"location"]];
+    if (![locationText isEqualToString:@""]) location.text = locationText;
     numberOfFriends.text = [NSString stringWithFormat:@"%d", [[userDictionary objectForKey:@"friends_count"] intValue]];
     numberOfFollowers.text = [NSString stringWithFormat:@"%d", [[userDictionary objectForKey:@"followers_count"] intValue]];
     numberOfTweets.text = [NSString stringWithFormat:@"%d", [[userDictionary objectForKey:@"statuses_count"] intValue]];
     numberOfFavorites.text = [NSString stringWithFormat:@"%d", [[userDictionary objectForKey:@"favourites_count"] intValue]];
 	
     description.font = [UIFont fontWithName:@"Helvetica" size:12.0];
-    if (![[userDictionary objectForKey:@"description"] isKindOfClass:[NSNull class]]) {
-      description.text = [userDictionary objectForKey:@"description"];
-    }
+    description.text = [Utilities safeString:[userDictionary objectForKey:@"description"]];
     
     iconBgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"twitIconBG.png"]];
     iconBgImage.frame = CGRectMake(14, 63, 37, 38);

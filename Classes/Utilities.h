@@ -48,6 +48,7 @@ extern const NSString *kKBHashSalt;
 - (void) updateAllFriendsWithPingOn:(NSArray*)checkins;
 + (UIImage *)makeRoundCornerImage:(UIImage*)img cornerwidth:(int) cornerWidth cornerheight:(int) cornerHeight;
 + (NSDate*) convertUTCCheckinDateToLocal:(NSDate*)utcDate;
++ (NSString*)safeString:(NSString*)fromString;
 - (NSNumber*) getCityRadius;
 - (void) setCityRadius:(int)meters;
 + (NSString*) shortenUrl:(NSString*)longUrl;
