@@ -74,7 +74,10 @@ static KBDialogueManager* dialogue;
 	
 	if (message.isError) {
 		titleLabel.textColor = [UIColor redColor];
+	}else {
+		[titleLabel setTextColor:[UIColor colorWithRed:14/255.0 green:140/255.0 blue:192/255.0 alpha:1]];
 	}
+
 	
 	
 }
