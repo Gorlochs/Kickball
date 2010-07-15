@@ -21,6 +21,7 @@
 #import "OptionsVC.h"
 #import "ViewFriendRequestsViewController.h"
 #import "FriendRequestsViewController.h"
+#import "KBDialogueManager.h"
 
 @implementation KickballAppDelegate
 
@@ -321,6 +322,8 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 - (void) displayPopupMessage:(KBMessage*)message {
     
+	[[KBDialogueManager sharedInstance] displayMessage:message];
+	/*
     popupView = [[PopupMessageView alloc] initWithNibName:@"PopupMessageView" bundle:nil];
     popupView.message = message;
     popupView.view.alpha = 0;
@@ -332,6 +335,7 @@ void uncaughtExceptionHandler(NSException *exception) {
     popupView.view.alpha = 1.0;
     popupView.view.frame = CGRectMake(0, 0, popupView.view.frame.size.width, popupView.view.frame.size.height + 21);
     [UIView commitAnimations];
+	 */
     //[self performSelector:@selector(fadePopupMessage) withObject:nil afterDelay:3];
 }
 

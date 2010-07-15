@@ -20,6 +20,7 @@
 #import "ASIFormDataRequest.h"
 #import "KBAccountManager.h"
 #import "FacebookProxy.h"
+#import "KBDialogueManager.h"
 
 
 #define PROGRESS_BAR_TIMER_LENGTH 30.0
@@ -329,31 +330,37 @@ const NSString *kickballDomain = @"http://kickball.gorlochs.com/kickball";
 - (void) displayPopupMessage:(KBMessage*)message {
     
     [self stopProgressBar];
-    if (popupView) [popupView release];
-    popupView = [[PopupMessageView alloc] initWithNibName:@"PopupMessageView" bundle:nil];
-    popupView.message = message;
-	popupView.view.frame = CGRectMake(0, 0, 320, 460);
-    popupView.view.alpha = 0;
+	
+	[[KBDialogueManager sharedInstance] displayMessage:message];
+	
+    //if (popupView) [popupView release];
+    //popupView = [[PopupMessageView alloc] initWithNibName:@"PopupMessageView" bundle:nil];
+    //popupView.message = message;
+	//popupView.view.frame = CGRectMake(0, 0, 320, 460);
+    //popupView.view.alpha = 0;
     //    popupView.view.layer.cornerRadius = 8.0;
-    [self.navigationController.view.superview addSubview:popupView.view];
+    //[self.navigationController.view.superview addSubview:popupView.view];
     
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationDuration:0.7];
-    popupView.view.alpha = 1.0;
+    //[UIView beginAnimations:nil context:NULL];
+    //[UIView setAnimationBeginsFromCurrentState:YES];
+    //[UIView setAnimationDuration:0.7];
+    //popupView.view.alpha = 1.0;
     
-    [UIView commitAnimations];
+    //[UIView commitAnimations];
     //[self performSelector:@selector(fadePopupMessage) withObject:nil afterDelay:3];
 }
 
 - (void) displayPopupMessageWithFadeout:(KBMessage*)message {
-    [self displayPopupMessage:message];
-    [self performSelector:@selector(fadePopupMessage) withObject:nil afterDelay:3];
+    //[self displayPopupMessage:message];
+    //[self performSelector:@selector(fadePopupMessage) withObject:nil afterDelay:3];
+	[[KBDialogueManager sharedInstance] displayMessageWithAutoFade:message];
 }
 
 - (void) displayPopupMessageForLogin:(KBMessage*)message {
     
     [self stopProgressBar];
+	[self displayPopupMessage:message];
+	/*
     if (popupView) [popupView release];
     popupView = [[PopupMessageView alloc] initWithNibName:@"PopupMessageView" bundle:nil];
     popupView.message = message;
@@ -372,6 +379,7 @@ const NSString *kickballDomain = @"http://kickball.gorlochs.com/kickball";
     popupView.closeButton.frame = frame;
     
     [UIView commitAnimations];
+	 */
     //[self performSelector:@selector(fadePopupMessage) withObject:nil afterDelay:3];
 }
 

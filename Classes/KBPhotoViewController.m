@@ -11,6 +11,7 @@
 #import "ASIHTTPRequest.h"
 #import "KBGoody.h"
 #import "KBMessage.h"
+#import "KBDialogueManager.h"
 
 
 @implementation KBPhotoViewController
@@ -98,6 +99,8 @@
 // copy and paste from KBBaseViewController
 - (void) displayPopupMessage:(KBMessage*)message {
     
+	[[KBDialogueManager sharedInstance] displayMessage:message];
+	/*
     popupView = [[PopupMessageView alloc] initWithNibName:@"PopupMessageView" bundle:nil];
     popupView.message = message;
     popupView.view.alpha = 0;
@@ -110,6 +113,7 @@
     popupView.view.alpha = 1.0;
     
     [UIView commitAnimations];
+	 */
 }
 
 - (void) dealloc {
