@@ -34,6 +34,7 @@
 	
 	KBTwitterManager *twitterManager;
 	BOOL isFavorited;
+    BOOL _isObservingNotifications;
 }
 
 @property (nonatomic, retain) KBTweet *tweet;

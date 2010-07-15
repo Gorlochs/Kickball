@@ -12,12 +12,12 @@
 #import "KBTwitterProfileViewController.h"
 #import "KBTwitterUserListViewController.h"
 #import "KBTwitterFavsViewController.h"
+#import "KBTwitterSearchViewController.h"
 
 
 @implementation KBTwitterDetailViewController
 
-@synthesize tweet;
-@synthesize tweets;
+@synthesize tweet, tweets;
 
 - (IBAction) viewRecentTweets {
 	KBUserTweetsViewController *recentTweetsController = [[KBUserTweetsViewController alloc] initWithNibName:@"KBUserTweetsViewController" bundle:nil];
@@ -61,7 +61,6 @@
 }
 
 - (void)viewDidLoad {
-    DLog(@"--------------------------------------------------------- loaded twitter detail");
     pageType = KBPageTypeOther;
     
     [super viewDidLoad];
@@ -90,19 +89,6 @@
 	[self.view addSubview:label1];
     [label1 release];
 	
-	/*
-    mainTextLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(20, 105, 270, 100)];
-    mainTextLabel.textColor = [UIColor colorWithWhite:0.3 alpha:1.0];
-    mainTextLabel.font = [UIFont fontWithName:@"Helvetica" size:13.0];
-    mainTextLabel.backgroundColor = [UIColor clearColor];
-    mainTextLabel.linksEnabled = YES;
-    mainTextLabel.numberOfLines = 0;
-    //tweetText.shadowColor = [UIColor colorWithWhite:1.0 alpha:0.5];
-    //tweetText.shadowOffset = CGSizeMake(1.0, 1.0);
-    mainTextLabel.text = tweet.tweetText;
-    [self.view addSubview:mainTextLabel];
-     
-	 */
     CGRect frame = CGRectMake(17, 67, 33, 34);
     TTImageView *userProfileImage = [[TTImageView alloc] initWithFrame:frame];
     userProfileImage.backgroundColor = [UIColor clearColor];
@@ -119,10 +105,29 @@
 	} else {
 		[favoriteButton setImage:[UIImage imageNamed:@"btn-favorite01.png"] forState:UIControlStateNormal];
 	}
-  twitterManager = [KBTwitterManager twitterManager];
+    twitterManager = [KBTwitterManager twitterManager];
 	twitterManager.delegate = self;
   
-  [twitterEngine getUserInformationFor:tweet.screenName];
+    [twitterEngine getUserInformationFor:tweet.screenName];
+    DLog(@"33333333333333333view did appear - turning on notifications!!!");
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTweetNotification:) name:IFTweetLabelURLNotification object:nil];
+    _isObservingNotifications = true;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    if (!_isObservingNotifications) {
+       DLog(@"+++++++++++++++++++++++++view did appear - turning on notifications!!!");
+      _isObservingNotifications = true;
+      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTweetNotification:) name:IFTweetLabelURLNotification object:nil];
+    }
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    DLog(@"-------------------------------------------------view did disappear - turning off notifications!!!");
+    [super viewDidDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    _isObservingNotifications = false;
 }
 
 - (void) retweet {
@@ -148,10 +153,6 @@
             cur.isFavorited = tweet.isFavorited;  
         }
     }
-    //NSMutableArray *tempTweetArray = [[NSMutableArray alloc] initWithCapacity:[(NSArray*)tweets count]];
-    //[tempTweetArray addObjectsFromArray:(NSArray*)tweets];
-    //[[KBTwitterManager twitterManager] cacheStatusArray:tempTweetArray withKey:kKBTwitterTimelineKey];
-    //[tempTweetArray release];
     [[KBTwitterManager twitterManager] cacheStatusArray:tweets withKey:kKBTwitterTimelineKey];
 	if (isFavorited) {
 		[favoriteButton setImage:[UIImage imageNamed:@"btn-favorite02.png"] forState:UIControlStateNormal];
@@ -159,6 +160,34 @@
 		[favoriteButton setImage:[UIImage imageNamed:@"btn-favorite01.png"] forState:UIControlStateNormal];
 	}
 }
+
+- (void)handleTweetNotification:(NSNotification *)notification {
+	DLog(@"handleTweetNotification: notification = %@", notification);
+    if ([[notification object] rangeOfString:@"@"].location == 0) {
+        KBUserTweetsViewController *userTweetsController = [[KBUserTweetsViewController alloc] initWithNibName:@"KBUserTweetsViewController" bundle:nil];
+        NSMutableString *username = [[NSMutableString alloc] initWithString:[notification object]];
+        [username replaceOccurrencesOfString:@":" withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [username length])];
+        DLog(@"pushing usertweetsview, -%@-", username);
+        userTweetsController.username = username;
+        [self.navigationController pushViewController:userTweetsController animated:YES];
+		[userTweetsController release];
+        [username release];
+    } else if ([[notification object] rangeOfString:@"#"].location == 0) {
+        DLog(@"pushing searchview, -%@-", [notification object]);
+        KBTwitterSearchViewController *searchController = [[KBTwitterSearchViewController alloc] initWithNibName:@"KBTwitterSearchViewController" bundle:nil];
+        NSMutableString *search = [[NSMutableString alloc] initWithString:[notification object]];
+        [search replaceOccurrencesOfString:@":" withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [search length])];
+        searchController.searchTerms = search;
+        [self.navigationController pushViewController:searchController animated:YES];
+		[searchController release];
+        [search release];
+    } else {
+         DLog(@"pushing webview");
+        // TODO: push properly styled web view
+        [self openWebView:[notification object]];
+    }
+}
+
 
 - (void) favorite {
   isFavorited = !isFavorited;
@@ -182,6 +211,7 @@
 }
 
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [tweet release];
     [tweets release];  
     [super dealloc];

@@ -16,6 +16,8 @@
 @synthesize searchTerms;
 
 - (void)viewDidLoad {
+NSLog(@"------------------------------------------------------------------------------------------------------------------------------------------------");
+NSLog(@"loading twitter search view");
     pageType = KBPageTypeFriends;
     pageViewType = KBPageViewTypeList;
     [super viewDidLoad];
@@ -23,8 +25,6 @@
     noResultsView.hidden = NO;
     
     if ([[KBTwitterManager twitterManager] theSearchResults]) {
-        //if (tweets) [tweets release]; //release and die
-        //tweets = [[NSMutableArray alloc] initWithArray:[[KBTwitterManager twitterManager] theSearchResults]];
         searchTerms = [KBTwitterManager twitterManager].searchTerm;
         if (theTableView) [theTableView reloadData];
         noResultsView.hidden = YES;
@@ -149,11 +149,6 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-}
-
-
-- (void)dealloc {
-    [super dealloc];
 }
 
 

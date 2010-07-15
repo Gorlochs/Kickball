@@ -17,6 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    DLog(@"warning, if you are seeing this message and the view has links, notifications must be cleaned up!");
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTweetNotification:) name:IFTweetLabelURLNotification object:nil];
     [FlurryAPI logEvent:@"Profile Twitter View"];
     

@@ -25,11 +25,19 @@
 	twitterManager.delegate = self;
 	
 	// TODO: find a better way to do this
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTweetNotification:) name:IFTweetLabelURLNotification object:nil];
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTweetNotification:) name:IFTweetLabelURLNotification object:nil];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+//- (void)viewDidAppear:(BOOL)animated {
+    //[super viewDidAppear:animated];
+    //NSLog(@"+++++++++++++++++++++++++view did appear - turning on notifications!!!");
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTweetNotification:) name:IFTweetLabelURLNotification object:nil];
+//}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    //NSLog(@"-------------------------------------------------view did disappear - turning off notifications!!!");
+    [super viewDidDisappear:animated];
+    //[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (NSMutableArray*) addAndTrimArray:(NSMutableArray*)arrayToAdd {
@@ -250,12 +258,9 @@
 
 
 - (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    //if (tweets) 
+    //[[NSNotificationCenter defaultCenter] removeObserver:self];
     [tweets release];
     if (cachingKey) [cachingKey release];
-    //if (twitterArray) [twitterArray release]; //bad!
-    //[noResultsView release];
     [super dealloc];
 }
 
