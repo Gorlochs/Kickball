@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FSVenue.h"
 
 #define kCityRadiusKey @"cityRadius"
 #define kLastLatitudeKey @"lastLatitude"
@@ -21,6 +22,7 @@ static const int CITY_RADIUS_LARGE = 106934;
 
 // Salt for hash function. Can be any arbitrary value, but must be shared with server
 extern const NSString *kKBHashSalt;
+
 
 @interface Utilities : NSObject {
     NSMutableArray *friendsWithPingOn;
@@ -42,7 +44,7 @@ extern const NSString *kKBHashSalt;
 - (UIImage *) getCachedImage: (NSString *) ImageURLString;
 //- (UIImage *) roundCorners: (UIImage*) img;
 //- (void) retrieveAllFriendsWithPingOn;
-+ (void)putGoogleMapsWallPostWithMessage:(NSString*)message andVenueAddress:(NSString*)venueAddress;
++ (void)putGoogleMapsWallPostWithMessage:(NSString*)message andVenue:(FSVenue*)venue;
 - (void) updateAllFriendsWithPingOn:(NSArray*)checkins;
 + (UIImage *)makeRoundCornerImage:(UIImage*)img cornerwidth:(int) cornerWidth cornerheight:(int) cornerHeight;
 + (NSDate*) convertUTCCheckinDateToLocal:(NSDate*)utcDate;

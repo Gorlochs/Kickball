@@ -153,7 +153,7 @@
 		}
     } else {
 		if (isFacebookOn ) {
-            [Utilities putGoogleMapsWallPostWithMessage:[self formatCheckinMessage:checkinTextField.text] andVenueAddress:venue.venueAddress];
+            [Utilities putGoogleMapsWallPostWithMessage:[self formatCheckinMessage:checkinTextField.text] andVenue:venue];
 		}
 		
 	    if (isTwitterOn) {
