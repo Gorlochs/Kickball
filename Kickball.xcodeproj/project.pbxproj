@@ -551,7 +551,6 @@
 		6A0B422A11AB1E4D00FB9A6D /* AddPlaceCategoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A0B422811AB1E4D00FB9A6D /* AddPlaceCategoryViewController.xib */; };
 		6A0B42F211AB431300FB9A6D /* KBTwitterRecentTweetsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A0B42F111AB431300FB9A6D /* KBTwitterRecentTweetsTableCell.m */; };
 		6A10E61610BE0541006538DB /* LoginViewModalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A10E61410BE0541006538DB /* LoginViewModalController.m */; };
-		6A10E61710BE0541006538DB /* LoginViewModalController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A10E61510BE0541006538DB /* LoginViewModalController.xib */; };
 		6A12EC6110B772D60013BA52 /* GeoApiDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A12EC6010B772D60013BA52 /* GeoApiDetailsViewController.m */; };
 		6A12EC6310B772FA0013BA52 /* GeoApiDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A12EC6210B772FA0013BA52 /* GeoApiDetailsView.xib */; };
 		6A145FB610FE74E7002CE938 /* ProfileFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A145FB410FE74E7002CE938 /* ProfileFriendsViewController.m */; };
@@ -762,14 +761,12 @@
 		6AD5B350116D2FD8008671FD /* MGTwitterStatusesLibXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD5B34A116D2FD8008671FD /* MGTwitterStatusesLibXMLParser.m */; };
 		6AD5B351116D2FD8008671FD /* MGTwitterUsersLibXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD5B34C116D2FD8008671FD /* MGTwitterUsersLibXMLParser.m */; };
 		6AD5B3DC116D3D4A008671FD /* KBTwitterXAuthLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD5B3DB116D3D4A008671FD /* KBTwitterXAuthLoginController.m */; };
-		6AD5B3DE116D3D56008671FD /* XAuthTwitterEngineDemoViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6AD5B3DD116D3D56008671FD /* XAuthTwitterEngineDemoViewController.xib */; };
 		6ADB706C1117005A00A26D35 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ADB706B1117005A00A26D35 /* MediaPlayer.framework */; };
 		6ADBFAA211738FE6003EB73D /* FoursquareHeaderView.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6ADBFAA111738FE6003EB73D /* FoursquareHeaderView.xib */; };
 		6ADBFAA411738FF1003EB73D /* TwitterHeaderView.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6ADBFAA311738FF1003EB73D /* TwitterHeaderView.xib */; };
 		6ADBFAA611738FFD003EB73D /* FooterTabView.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6ADBFAA511738FFD003EB73D /* FooterTabView.xib */; };
 		6ADC9C1A10D1EE5100CFDCA7 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ADC9C1910D1EE5100CFDCA7 /* Utilities.m */; };
 		6ADC9EC610D3F08600CFDCA7 /* AddPlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ADC9EC410D3F08600CFDCA7 /* AddPlaceViewController.m */; };
-		6ADC9EC710D3F08600CFDCA7 /* AddPlaceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6ADC9EC510D3F08600CFDCA7 /* AddPlaceViewController.xib */; };
 		6ADD23B7115AE24E005D14BE /* changelog in Resources */ = {isa = PBXBuildFile; fileRef = 6ADD23B6115AE24E005D14BE /* changelog */; };
 		6AE77E0A117984B600997215 /* KBTwitterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AE77E09117984B600997215 /* KBTwitterManager.m */; };
 		6AE7FB68115D1F5B0073979E /* KBStats.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AE7FB67115D1F5B0073979E /* KBStats.m */; };
@@ -794,8 +791,6 @@
 		6AFF0FFF1101796600AD6E55 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AFF0FFE1101796600AD6E55 /* CFNetwork.framework */; };
 		6AFF10051101798000AD6E55 /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AFF10041101798000AD6E55 /* libz.1.2.3.dylib */; };
 		6AFF23F110A247B100CD30E5 /* PlaceTwitterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AFF23EF10A247B100CD30E5 /* PlaceTwitterViewController.m */; };
-		6AFF23F210A247B100CD30E5 /* PlaceTwitterViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6AFF23F010A247B100CD30E5 /* PlaceTwitterViewController.xib */; };
-		6AFF241210A24A0900CD30E5 /* PlaceTwitterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AFF23F010A247B100CD30E5 /* PlaceTwitterViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1484,7 +1479,6 @@
 		6A0B42F111AB431300FB9A6D /* KBTwitterRecentTweetsTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTwitterRecentTweetsTableCell.m; sourceTree = "<group>"; };
 		6A10E61310BE0541006538DB /* LoginViewModalController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewModalController.h; sourceTree = "<group>"; };
 		6A10E61410BE0541006538DB /* LoginViewModalController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewModalController.m; sourceTree = "<group>"; };
-		6A10E61510BE0541006538DB /* LoginViewModalController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginViewModalController.xib; path = Classes/LoginViewModalController.xib; sourceTree = "<group>"; };
 		6A12EC5F10B772D60013BA52 /* GeoApiDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeoApiDetailsViewController.h; sourceTree = "<group>"; };
 		6A12EC6010B772D60013BA52 /* GeoApiDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeoApiDetailsViewController.m; sourceTree = "<group>"; };
 		6A12EC6210B772FA0013BA52 /* GeoApiDetailsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeoApiDetailsView.xib; sourceTree = "<group>"; };
@@ -1878,7 +1872,6 @@
 		6AD5B34C116D2FD8008671FD /* MGTwitterUsersLibXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTwitterUsersLibXMLParser.m; sourceTree = "<group>"; };
 		6AD5B3DA116D3D4A008671FD /* KBTwitterXAuthLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBTwitterXAuthLoginController.h; sourceTree = "<group>"; };
 		6AD5B3DB116D3D4A008671FD /* KBTwitterXAuthLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTwitterXAuthLoginController.m; sourceTree = "<group>"; };
-		6AD5B3DD116D3D56008671FD /* XAuthTwitterEngineDemoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XAuthTwitterEngineDemoViewController.xib; sourceTree = "<group>"; };
 		6ADB706B1117005A00A26D35 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		6ADBFAA111738FE6003EB73D /* FoursquareHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FoursquareHeaderView.xib; sourceTree = "<group>"; };
 		6ADBFAA311738FF1003EB73D /* TwitterHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TwitterHeaderView.xib; sourceTree = "<group>"; };
@@ -1887,7 +1880,6 @@
 		6ADC9C1910D1EE5100CFDCA7 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		6ADC9EC310D3F08600CFDCA7 /* AddPlaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPlaceViewController.h; sourceTree = "<group>"; };
 		6ADC9EC410D3F08600CFDCA7 /* AddPlaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPlaceViewController.m; sourceTree = "<group>"; };
-		6ADC9EC510D3F08600CFDCA7 /* AddPlaceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AddPlaceViewController.xib; path = Classes/AddPlaceViewController.xib; sourceTree = "<group>"; };
 		6ADD23B6115AE24E005D14BE /* changelog */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = changelog; sourceTree = "<group>"; };
 		6AE77E08117984B600997215 /* KBTwitterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBTwitterManager.h; sourceTree = "<group>"; };
 		6AE77E09117984B600997215 /* KBTwitterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTwitterManager.m; sourceTree = "<group>"; };
@@ -1924,7 +1916,6 @@
 		6AFF10041101798000AD6E55 /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
 		6AFF23EE10A247B100CD30E5 /* PlaceTwitterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceTwitterViewController.h; sourceTree = "<group>"; };
 		6AFF23EF10A247B100CD30E5 /* PlaceTwitterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceTwitterViewController.m; sourceTree = "<group>"; };
-		6AFF23F010A247B100CD30E5 /* PlaceTwitterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PlaceTwitterViewController.xib; path = Classes/PlaceTwitterViewController.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Kickball-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Kickball-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -2621,12 +2612,8 @@
 				6AD0C1FD113F04F500A971E3 /* Three20.bundle */,
 				6A39EC4B109662D3006F76C3 /* images */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
-				6A10E61510BE0541006538DB /* LoginViewModalController.xib */,
-				6AFF23F010A247B100CD30E5 /* PlaceTwitterViewController.xib */,
 				6A5F8F3B10B7707100914709 /* GeoAPIView.xib */,
 				6A12EC6210B772FA0013BA52 /* GeoApiDetailsView.xib */,
-				6ADC9EC510D3F08600CFDCA7 /* AddPlaceViewController.xib */,
-				6AD5B3DD116D3D56008671FD /* XAuthTwitterEngineDemoViewController.xib */,
 				6AEB63D3110BA9BE0066DD05 /* PushNotificationView.xib */,
 				6A3DF72F10F6E0ED008BD8AA /* KBTextViewController.xib */,
 				6ADD23B6115AE24E005D14BE /* changelog */,
@@ -3905,12 +3892,9 @@
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				6AF794AF10CCADFF00E77D49 /* FriendRequestsViewController.xib in Resources */,
 				6AF794C110CCAF4B00E77D49 /* ViewFriendRequestsViewController.xib in Resources */,
-				6ADC9EC710D3F08600CFDCA7 /* AddPlaceViewController.xib in Resources */,
 				6A5F8F3C10B7707100914709 /* GeoAPIView.xib in Resources */,
-				6A10E61710BE0541006538DB /* LoginViewModalController.xib in Resources */,
 				6A86F6AB116AF376000BF6C6 /* KBFacebookSearchViewController.xib in Resources */,
 				6AF2F0AE10C2EBB300A29C96 /* TipView.xib in Resources */,
-				6AFF241210A24A0900CD30E5 /* PlaceTwitterViewController.xib in Resources */,
 				553C519410A1BD5100A74641 /* oauthAutoConfig.plist in Resources */,
 				6A12EC6310B772FA0013BA52 /* GeoApiDetailsView.xib in Resources */,
 				6A79D0D910E5E692009082E5 /* PopupMessageView.xib in Resources */,
@@ -4430,7 +4414,6 @@
 				553C51B810A1BD5100A74641 /* CXMLNode_XPathExtensions.m in Sources */,
 				553C51B910A1BD5100A74641 /* CTidy.m in Sources */,
 				6AFF23F110A247B100CD30E5 /* PlaceTwitterViewController.m in Sources */,
-				6AFF23F210A247B100CD30E5 /* PlaceTwitterViewController.xib in Sources */,
 				552AFD8210A270ED009300E2 /* FSTip.m in Sources */,
 				552AFDE410A27AED009300E2 /* FriendPlacemark.m in Sources */,
 				552AFE4110A285AC009300E2 /* FriendIconAnnotationView.m in Sources */,
@@ -4535,7 +4518,6 @@
 				6AD5B350116D2FD8008671FD /* MGTwitterStatusesLibXMLParser.m in Sources */,
 				6AD5B351116D2FD8008671FD /* MGTwitterUsersLibXMLParser.m in Sources */,
 				6AD5B3DC116D3D4A008671FD /* KBTwitterXAuthLoginController.m in Sources */,
-				6AD5B3DE116D3D56008671FD /* XAuthTwitterEngineDemoViewController.xib in Sources */,
 				6AD4739711738DFD003CAA34 /* FriendsListView_v2.xib in Sources */,
 				6ADBFAA211738FE6003EB73D /* FoursquareHeaderView.xib in Sources */,
 				6ADBFAA411738FF1003EB73D /* TwitterHeaderView.xib in Sources */,
