@@ -27,6 +27,7 @@
 }
  
 - (void)viewDidLoad {
+	pageType = KBPageTypeOther;
     [super viewDidLoad];
     pageNum = 1;
     cachingKey = kKBTwitterTimelineKey;

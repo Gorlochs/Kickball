@@ -20,6 +20,7 @@
     NSString *username;
     NSNumber *currentCursor;
 }
+
 @property (nonatomic, retain) NSDictionary *userDictionary;
 @property (nonatomic, retain) NSString *username;
 

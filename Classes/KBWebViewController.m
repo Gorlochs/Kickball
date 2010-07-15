@@ -11,7 +11,7 @@
 
 @implementation KBWebViewController
 
-@synthesize webView;
+@synthesize theWebView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andUrlString:(NSString*)url {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
@@ -32,20 +32,46 @@
 	self.hideFooter = YES;
 	self.hideHeader = YES;
     [super viewDidLoad];
-	[webView setDelegate:self];
+	[theWebView setDelegate:self];
 	NSURL *url = [NSURL URLWithString:urlString];
 	NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
-    [webView loadRequest:requestObj];
+	
+	[self retain];
+    if ([theWebView isLoading])
+        [theWebView stopLoading];
+    [theWebView loadRequest:requestObj];
+    [self release];
+}
+
+- (void) forward {
+    [theWebView goForward];
+}
+
+- (void) back {
+    [theWebView goBack];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
 	[self stopProgressBar];
 	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-
+    backButton.enabled = [webView canGoBack];
+    forwardButton.enabled = [webView canGoForward];
+    [self release];
 }
+
 - (void)webViewDidStartLoad:(UIWebView *)webView {
 	[self startProgressBar:@"Loading web page..."];
 	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+	[self retain];
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+    [self release];
+}
+
+- (void)viewWillDisappear {
+    if ([theWebView isLoading])
+        [theWebView stopLoading];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -66,7 +92,10 @@
 
 
 - (void)dealloc {
-    [webView release];
+    [theWebView setDelegate:nil];
+    [theWebView release];
+    theWebView = nil;
+	
     [urlString release];
     [super dealloc];
 }

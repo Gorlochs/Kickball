@@ -33,7 +33,6 @@
     twitterManager = [KBTwitterManager twitterManager];
 	twitterManager.delegate = self;
     
-    [self startProgressBar:@"Retrieving user information..."];
     [twitterEngine getUserInformationFor:screenname];
 }
 
