@@ -52,16 +52,16 @@
     }
 }
 
-- (void) showStatuses {
-    [self executeQuery:0];
-}
-
-- (void) executeQuery:(int)pageNumber {
+- (void) executeStatusesQuery:(int)pageNumber {
     if (self.userDictionary) {
         [twitterEngine getUserTimelineFor:[self.userDictionary objectForKey:@"screen_name"] sinceID:0 startingAtPage:pageNumber count:25];
     } else {
         [twitterEngine getUserTimelineFor:self.username sinceID:0 startingAtPage:pageNumber count:25];
     }
+}
+
+- (void) showStatuses {
+    [self executeStatusesQuery:0];
 }
 
 - (void)statusesReceived:(NSArray *)statuses {
@@ -148,7 +148,14 @@
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-        [cell setBackgroundColor:[UIColor colorWithRed:240.0/255.0 green:240.0/255.0 blue:240.0/255.0 alpha:1.0]];  
+	if (indexPath.row == [tweets count] - 1) {
+        if (requeryWhenTableGetsToBottom) {
+            [self executeQuery:++pageNum];
+        } else {
+            DLog("********************* REACHED NO MORE RESULTS!!!!! **********************");
+        }
+	}
+    [cell setBackgroundColor:[UIColor colorWithRed:240.0/255.0 green:240.0/255.0 blue:240.0/255.0 alpha:1.0]];  
 }
 
 #pragma mark -

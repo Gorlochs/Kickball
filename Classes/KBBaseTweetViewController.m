@@ -22,7 +22,6 @@
     requeryWhenTableGetsToBottom = YES;
     [super viewDidLoad];
 	twitterManager = [KBTwitterManager twitterManager];
-    DLog(@"if you get BAD_EXC_ACCESS here, memory is corrupt");
 	twitterManager.delegate = self;
 	
 	// TODO: find a better way to do this
