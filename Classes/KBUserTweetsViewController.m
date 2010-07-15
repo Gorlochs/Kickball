@@ -20,7 +20,7 @@
     pageType = KBPageTypeOther;
     [super viewDidLoad];
 	
-	location.text = @"Not available";
+	location.text = @"";
     
     cachingKey = [NSString stringWithString:username];
     
@@ -29,9 +29,12 @@
     if (self.userDictionary) {
         screenNameLabel.text = [self.userDictionary objectForKey:@"screen_name"];
         fullName.text = [self.userDictionary objectForKey:@"name"];
-    if ([[self.userDictionary objectForKey:@"location"] isKindOfClass:[NSString class]])
-        if (![[self.userDictionary objectForKey:@"location"] isEqualToString:@""]) {
-    		location.text = [self.userDictionary objectForKey:@"location"];
+        if ([[self.userDictionary objectForKey:@"location"] isKindOfClass:[NSString class]]) {
+            if (![[self.userDictionary objectForKey:@"location"] isEqualToString:@""]) {
+                location.text = [self.userDictionary objectForKey:@"location"];
+            } else {
+                location.text = @"Not available";
+            }
         }
 		UIImageView *iconBgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"twitIconBG.png"]];
 		iconBgImage.frame = CGRectMake(14, 63, 37, 38);
