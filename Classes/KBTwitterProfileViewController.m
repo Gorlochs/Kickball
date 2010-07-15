@@ -17,6 +17,7 @@
 @synthesize screenname;
 
 - (void)viewDidLoad {
+	[self startProgressBar:@""];
     screenNameLabel.text = @"";
     fullName.text = @"";
     location.text = @"Not available";

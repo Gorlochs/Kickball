@@ -457,34 +457,38 @@
 #pragma mark shout related methods
 
 - (void) shout {
-    [shoutText resignFirstResponder];
-    [self startProgressBar:@"Shouting..."];
-    actionCount = 1;
-    
-    [[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:nil
-                                                  andShout:shoutText.text 
-                                                   offGrid:!isFoursquareOn
-                                                 toTwitter:NO
-                                                toFacebook:NO 
-                                                withTarget:self 
-                                                 andAction:@selector(shoutResponseReceived:withResponseString:)];
-    
-    // we send twitter/facebook api calls ourself so that the tweets and posts are stamped with the Kickball brand
-    if (isTwitterOn) {
-		actionCount++;
-        [[[KBTwitterManager twitterManager] twitterEngine] sendUpdate:shoutText.text
-                          withLatitude:[[KBLocationManager locationManager] latitude] 
-                         withLongitude:[[KBLocationManager locationManager] longitude]];
-    }
-    
-    if (isFacebookOn ) {
-		//actionCount++;
-		GraphAPI *graph = [[FacebookProxy instance] newGraph];
-		[graph putWallPost:@"me" message:shoutText.text attachment:nil];
-		[graph release];
-    }
-    
-    [FlurryAPI logEvent:@"checked in"];
+	if ([shoutText.text length] > 0) {
+		[shoutText resignFirstResponder];
+		[self startProgressBar:@"Shouting..."];
+		actionCount = 1;
+		
+		[[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:nil
+													  andShout:shoutText.text 
+													   offGrid:!isFoursquareOn
+													 toTwitter:NO
+													toFacebook:NO 
+													withTarget:self 
+													 andAction:@selector(shoutResponseReceived:withResponseString:)];
+		
+		// we send twitter/facebook api calls ourself so that the tweets and posts are stamped with the Kickball brand
+		if (isTwitterOn) {
+			actionCount++;
+			[[[KBTwitterManager twitterManager] twitterEngine] sendUpdate:shoutText.text
+							  withLatitude:[[KBLocationManager locationManager] latitude] 
+							 withLongitude:[[KBLocationManager locationManager] longitude]];
+		}
+		
+		if (isFacebookOn ) {
+			//actionCount++;
+			GraphAPI *graph = [[FacebookProxy instance] newGraph];
+			[graph putWallPost:@"me" message:shoutText.text attachment:nil];
+			[graph release];
+		}
+		
+		[FlurryAPI logEvent:@"shout"];
+	} else {
+		DLog("nothing in the shout");
+	}
 }
 
 // Twitter response

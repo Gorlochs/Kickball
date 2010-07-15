@@ -62,10 +62,9 @@
 		[userName resignFirstResponder];
 		[password becomeFirstResponder];
 	}else {
-		[password resignFirstResponder];
 		[delegate startProgressBar:@"Logging in..."];
+		[password resignFirstResponder];
 		[[FoursquareAPI sharedInstance] getFriendsWithTarget:userName.text andPassword:password.text andTarget:self andAction:@selector(friendResponseReceived:withResponseString:)];
-
 	}
 
     //[self cancelEditing];

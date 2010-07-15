@@ -28,11 +28,11 @@
 }
 
 - (IBAction) viewFavorites {
-  KBTwitterFavsViewController *favTweets = [[KBTwitterFavsViewController alloc] initWithNibName:@"KBTwitterFavsViewController" bundle:nil];
-  favTweets.userDictionary = [userDictionary retain];
-  favTweets.username = [userDictionary objectForKey:@"screen_name"];
-  [self.navigationController pushViewController:favTweets animated:YES];
-  [favTweets release];
+	KBTwitterFavsViewController *favTweets = [[KBTwitterFavsViewController alloc] initWithNibName:@"KBTwitterFavsViewController" bundle:nil];
+	favTweets.userDictionary = [userDictionary retain];
+	favTweets.username = [userDictionary objectForKey:@"screen_name"];
+	[self.navigationController pushViewController:favTweets animated:YES];
+	[favTweets release];
 }
 
 - (IBAction) viewFollowers {
@@ -62,9 +62,10 @@
 
 - (void)viewDidLoad {
     pageType = KBPageTypeOther;
+	[self startProgressBar:@""];
     
     [super viewDidLoad];
-
+	
     numberOfFollowers.text = @"";
     numberOfFriends.text = @"";
     numberOfFavorites.text = @"";
@@ -107,7 +108,7 @@
 	}
     twitterManager = [KBTwitterManager twitterManager];
 	twitterManager.delegate = self;
-  
+	
     [twitterEngine getUserInformationFor:tweet.screenName];
     DLog(@"33333333333333333view did appear - turning on notifications!!!");
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTweetNotification:) name:IFTweetLabelURLNotification object:nil];
@@ -117,9 +118,9 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     if (!_isObservingNotifications) {
-       DLog(@"+++++++++++++++++++++++++view did appear - turning on notifications!!!");
-      _isObservingNotifications = true;
-      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTweetNotification:) name:IFTweetLabelURLNotification object:nil];
+		DLog(@"+++++++++++++++++++++++++view did appear - turning on notifications!!!");
+		_isObservingNotifications = true;
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTweetNotification:) name:IFTweetLabelURLNotification object:nil];
     }
 }
 
@@ -183,7 +184,7 @@
 		[searchController release];
         [search release];
     } else {
-         DLog(@"pushing webview");
+		DLog(@"pushing webview");
         // TODO: push properly styled web view
         [self openWebView:[notification object]];
     }
@@ -191,17 +192,18 @@
 
 
 - (void) favorite {
-  isFavorited = !isFavorited;
+	isFavorited = !isFavorited;
 	[twitterEngine markUpdate:[tweet.tweetId longLongValue] asFavorite:isFavorited];
-  tweet.isFavorited = isFavorited;
-  [self saveTweets]; //the server only responds 50-75% of the time when you favorite, and responds incorrectly in some cases.  this will bring the probability of success to 95%
+	tweet.isFavorited = isFavorited;
+	[self saveTweets]; //the server only responds 50-75% of the time when you favorite, and responds incorrectly in some cases.  this will bring the probability of success to 95%
 }
 
 - (void)statusesReceived:(NSArray *)statuses {
-  for (NSDictionary *tweetDict in statuses) {
-    tweet.isFavorited = isFavorited = [[tweetDict objectForKey:@"favorited"] boolValue];
-  }
-  [self saveTweets];
+	for (NSDictionary *tweetDict in statuses) {
+		tweet.isFavorited = isFavorited = [[tweetDict objectForKey:@"favorited"] boolValue];
+	}
+	[self stopProgressBar];
+	[self saveTweets];
 }
 
 - (void) viewUserProfile {
