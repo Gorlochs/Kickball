@@ -188,7 +188,7 @@ static Utilities *sharedInstance = nil;
 	}
 	
 	DLog("ping ids: %@", ids);
-	NSURL *url = [NSURL URLWithString:@"http://gorlochs.literalshore.com:3000/kickball/pings"];
+	NSURL *url = [NSURL URLWithString:@"http://kickball.gorlochs.com/kickball/pings"];
 	
 	NSOperationQueue *queue = [[[NSOperationQueue alloc] init] autorelease];
 	ASIFormDataRequest *request = [[ASIFormDataRequest alloc] initWithURL:url];

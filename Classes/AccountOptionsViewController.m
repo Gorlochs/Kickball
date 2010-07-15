@@ -460,7 +460,7 @@
 	BOOL voted = [[NSUserDefaults standardUserDefaults] boolForKey:@"vote1"];
 	if (!voted) {
 		//go ahead and vote
-		ASIFormDataRequest *feedback = [[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://gorlochs.literalshore.com:3000/kickball/votes"]] autorelease];
+		ASIFormDataRequest *feedback = [[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://kickball.gorlochs.com/kickball/votes"]] autorelease];
 		[feedback setRequestMethod:@"POST"];
 		[feedback setPostValue:@"xbox live" forKey:@"vote[voteValue]"];
 		[feedback setPostValue:@"next service 1.5" forKey:@"vote[voteId]"];
@@ -479,7 +479,7 @@
 	BOOL voted = [[NSUserDefaults standardUserDefaults] boolForKey:@"vote2"];
 	if (!voted) {
 		//go ahead and vote
-		ASIFormDataRequest *feedback = [[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://gorlochs.literalshore.com:3000/kickball/votes"]] autorelease];
+		ASIFormDataRequest *feedback = [[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://kickball.gorlochs.com/kickball/votes"]] autorelease];
 		[feedback setRequestMethod:@"POST"];
 		[feedback setPostValue:@"linked in" forKey:@"vote[voteValue]"];
 		[feedback setPostValue:@"next service 1.5" forKey:@"vote[voteId]"];
@@ -497,7 +497,7 @@
 	BOOL voted = [[NSUserDefaults standardUserDefaults] boolForKey:@"vote3"];
 	if (!voted) {
 		//go ahead and vote
-		ASIFormDataRequest *feedback = [[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://gorlochs.literalshore.com:3000/kickball/votes"]] autorelease];
+		ASIFormDataRequest *feedback = [[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://kickball.gorlochs.com/kickball/votes"]] autorelease];
 		[feedback setRequestMethod:@"POST"];
 		[feedback setPostValue:@"flickr" forKey:@"vote[voteValue]"];
 		[feedback setPostValue:@"next service 1.5" forKey:@"vote[voteId]"];
@@ -516,7 +516,7 @@
 	BOOL voted = [[NSUserDefaults standardUserDefaults] boolForKey:@"vote4"];
 	if (!voted) {
 		//go ahead and vote
-		ASIFormDataRequest *feedback = [[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://gorlochs.literalshore.com:3000/kickball/votes"]] autorelease];
+		ASIFormDataRequest *feedback = [[[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:@"http://kickball.gorlochs.com/kickball/votes"]] autorelease];
 		[feedback setRequestMethod:@"POST"];
 		[feedback setPostValue:@"gowalla" forKey:@"vote[voteValue]"];
 		[feedback setPostValue:@"next service 1.5" forKey:@"vote[voteId]"];

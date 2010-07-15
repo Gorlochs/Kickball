@@ -190,7 +190,7 @@ static BOOL initialized = NO;
     
     // Return if there is no image
     if(imageData != nil){
-        url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/gifts.json", @"http://gorlochs.literalshore.com/kickball"]];
+        url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/gifts.json", @"http://kickball.gorlochs.com/kickball"]];
         request = [[[ASIFormDataRequest alloc] initWithURL:url] autorelease];
         if (venue) {
             [request setPostValue:venue.venueid forKey:@"gift[venue_id]"];

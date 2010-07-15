@@ -13,8 +13,8 @@
 #import "FoursquareAPI.h"
 #import "SBJSON.h"
     
-//#define PUSH_URL @"https://www.gorlochs.com/kickball/app/push.1.1.php"
-#define PUSH_URL @"http://www.literalshore.com/gorloch/kickball/push.1.1.php"
+#define PUSH_URL @"https://www.gorlochs.com/kickball/app/push.1.1.php"
+//#define PUSH_URL @"http://www.literalshore.com/gorloch/kickball/push.1.1.php"
 
 @implementation AbstractPushNotificationViewController
 
@@ -44,7 +44,7 @@
 }
 
 - (void) retrieveAllFriendsWithPingOn {
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://gorlochs.literalshore.com:3000/kickball/pings/user/%@.json", [self getAuthenticatedUser].userId]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://kickball.gorlochs.com/kickball/pings/user/%@.json", [self getAuthenticatedUser].userId]];
     ASIHTTPRequest *gorlochRequest = [[[ASIHTTPRequest alloc] initWithURL:url] autorelease];
     
     [gorlochRequest setDidFailSelector:@selector(pingRequestWentWrong:)];
