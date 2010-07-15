@@ -78,18 +78,26 @@
 //		} else {
 //			[self setCurrentDate];
 //		}
-		/*
+		
 		statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, frame.size.height - 41.0f, self.frame.size.width, 20.0f)];
 		statusLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 		statusLabel.font = [UIFont boldSystemFontOfSize:14.0f];
-		statusLabel.textColor = TEXT_COLOR;
-//		statusLabel.shadowColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
-//		statusLabel.shadowOffset = CGSizeMake(0.0f, 1.0f);
+		if (appDelegate.navControllerType == KBNavControllerTypeFoursquare) {
+			statusLabel.textColor = TEXT_COLOR;
+		} else if (appDelegate.navControllerType == KBNavControllerTypeTwitter) {
+			statusLabel.textColor = [UIColor colorWithRed:0.0/255.0 green:118.0/255.0 blue:164.0/255.0 alpha:1.0];
+		} else if (appDelegate.navControllerType == KBNavControllerTypeFacebook) {
+			statusLabel.textColor = [UIColor colorWithRed:40.0/255.0 green:72.0/255.0 blue:140.0/255.0 alpha:1.0];
+        }
+		//		statusLabel.shadowColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
+		//		statusLabel.shadowOffset = CGSizeMake(0.0f, 1.0f);
 		statusLabel.backgroundColor = [UIColor clearColor];
 		statusLabel.textAlignment = UITextAlignmentCenter;
 		[self setState:EGOOPullRefreshNormal];
 		[self addSubview:statusLabel];
 		[statusLabel release];
+		
+		/*
 		
 		arrowImage = [[CALayer alloc] init];
 		arrowImage.frame = CGRectMake(10.0f, frame.size.height - 35.0f, 19.0f, 21.0f);
@@ -163,6 +171,7 @@
 	switch (aState) {
 		case EGOOPullRefreshPulling:
 			
+			statusLabel.text = @"";
 			//statusLabel.text = @"Release to refresh...";
 			
 			[CATransaction begin];
@@ -196,6 +205,7 @@
 				[CATransaction commit];
 			}
 			
+			statusLabel.text = @"";
 			//statusLabel.text = @"Pull down to refresh...";
 			[activityView stopAnimating];
 			[CATransaction begin];
@@ -217,7 +227,7 @@
 			break;
 		case EGOOPullRefreshLoading:
 			
-			//statusLabel.text = @"Loading...";
+			statusLabel.text = @"Loading...";
 			[activityView startAnimating];
 			[CATransaction begin];
 			[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions]; 
