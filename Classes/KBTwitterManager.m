@@ -57,8 +57,6 @@ static KBTwitterManager *sharedInstance = nil;
 
 - (void)release {
     //do nothing
-    DLog(@"twittermanager release called");
-    //[super release];
 }
 
 - (id)autorelease {

@@ -169,7 +169,6 @@
     
     [screenname release];
     if (userDictionary) [userDictionary release];
-    if (twitterManager) [twitterManager release]; //this doesn't do anything
     
     [super dealloc];
 }
