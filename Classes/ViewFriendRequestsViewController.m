@@ -12,6 +12,7 @@
 #import "KBMessage.h"
 #import "ViewFriendRequestsTableCell.h"
 #import "ProfileViewController.h"
+#import "FriendsListViewController.h"
 
 @implementation ViewFriendRequestsViewController
 
@@ -32,8 +33,13 @@
 }
 
 -(IBAction)returnToOptions{
-	KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
-	[appDelegate returnFromFriendRequests];
+	id rootVC = [[self.navigationController viewControllers] objectAtIndex:0];
+	if([rootVC isMemberOfClass:[FriendsListViewController class]]){
+		[self.navigationController popToRootViewControllerAnimated:YES];
+	}else {
+		KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
+		[appDelegate returnFromFriendRequests];
+	}
 }
 
 - (void)didReceiveMemoryWarning {

@@ -12,6 +12,7 @@
 #import "AddFriendTableCell.h"
 #import "FoursquareAPI.h"
 #import "KickballAppDelegate.h"
+#import "FriendsListViewController.h"
 
 
 @implementation FriendSearchResultsViewController
@@ -84,8 +85,13 @@
 
 -(IBAction)returnToOptions{
 	[searchBar resignFirstResponder];
-	KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
-	[appDelegate returnFromAddFriends];
+	id rootVC = [[self.navigationController viewControllers] objectAtIndex:0];
+	if([rootVC isMemberOfClass:[FriendsListViewController class]]){
+		[self.navigationController popToRootViewControllerAnimated:YES];
+	}else {
+		KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
+		[appDelegate returnFromAddFriends];
+	}
 }
 #pragma mark -
 #pragma mark other methods

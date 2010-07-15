@@ -12,6 +12,7 @@
 #import "KBFacebookSearchViewController.h"
 #import "KBAccountManager.h"
 #import "KickballAppDelegate.h"
+#import "FriendsListViewController.h"
 
 
 @implementation FriendRequestsViewController
@@ -36,8 +37,13 @@
 }
 
 -(IBAction)returnToOptions{
-	KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
-	[appDelegate returnFromAddFriends];
+	id rootVC = [[self.navigationController viewControllers] objectAtIndex:0];
+	if([rootVC isMemberOfClass:[FriendsListViewController class]]){
+		[self.navigationController popToRootViewControllerAnimated:YES];
+	}else {
+		KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
+		[appDelegate returnFromAddFriends];
+	}
 }
 
 - (void)didReceiveMemoryWarning {
