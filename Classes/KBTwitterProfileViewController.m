@@ -116,6 +116,13 @@
 }
 
 - (void) follow {
+	if (followButton.hidden) {
+        unfollowButton.hidden = YES;
+        followButton.hidden = NO;
+    } else {
+        unfollowButton.hidden = NO;
+        followButton.hidden = YES;
+    }
 	[twitterEngine enableUpdatesFor:screenname];
 }
 
