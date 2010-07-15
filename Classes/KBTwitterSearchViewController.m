@@ -16,8 +16,6 @@
 @synthesize searchTerms;
 
 - (void)viewDidLoad {
-NSLog(@"------------------------------------------------------------------------------------------------------------------------------------------------");
-NSLog(@"loading twitter search view");
     pageType = KBPageTypeFriends;
     pageViewType = KBPageViewTypeList;
     [super viewDidLoad];

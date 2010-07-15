@@ -997,7 +997,6 @@
 
 - (NSString *)getUserTimelineFor:(NSString *)username sinceID:(unsigned long)sinceID startingAtPage:(int)page count:(int)count
 {
-  // ...  return [self getUserTimelineFor:username sinceID:sinceID withMaximumID:0 startingAtPage:0 count:count];
   return [self getUserTimelineFor:username sinceID:sinceID withMaximumID:0 startingAtPage:page count:count];
 }
 

@@ -174,6 +174,7 @@
         [username release];
     } else if ([[notification object] rangeOfString:@"#"].location == 0) {
         DLog(@"pushing searchview, -%@-", [notification object]);
+        [[KBTwitterManager twitterManager] setTheSearchResults:nil]; //DIE!
         KBTwitterSearchViewController *searchController = [[KBTwitterSearchViewController alloc] initWithNibName:@"KBTwitterSearchViewController" bundle:nil];
         NSMutableString *search = [[NSMutableString alloc] initWithString:[notification object]];
         [search replaceOccurrencesOfString:@":" withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [search length])];
