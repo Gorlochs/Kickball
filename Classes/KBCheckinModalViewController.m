@@ -236,7 +236,9 @@
 }
 
 - (void) closeUpShop {
-    NSDictionary *userInfo = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:checkin, nil] 
+    NSDictionary *userInfo = nil;
+    NSArray *checkinArray = [NSArray arrayWithObjects:checkin, nil];
+    if ([checkinArray count] > 0) userInfo = [NSDictionary dictionaryWithObjects:checkinArray 
                                                          forKeys:[NSArray arrayWithObjects:@"checkin", nil]];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"checkedIn" object:self userInfo:userInfo];
     [self stopProgressBar];
