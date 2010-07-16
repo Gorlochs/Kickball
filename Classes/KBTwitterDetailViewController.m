@@ -161,30 +161,33 @@
 
 - (void)handleTweetNotification:(NSNotification *)notification {
 	DLog(@"handleTweetNotification: notification = %@", notification);
+    NSMutableString *nObject = [[NSMutableString alloc] initWithString:[notification object]];
+   [nObject replaceOccurrencesOfString:@":" withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [nObject length])];
+   [nObject replaceOccurrencesOfString:@"." withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [nObject length])];
+   [nObject replaceOccurrencesOfString:@"!" withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [nObject length])];
+   [nObject replaceOccurrencesOfString:@";" withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [nObject length])];
+   [nObject replaceOccurrencesOfString:@"," withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [nObject length])];
+   [nObject replaceOccurrencesOfString:@"?" withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [nObject length])];
     if ([[notification object] rangeOfString:@"@"].location == 0) {
         KBUserTweetsViewController *userTweetsController = [[KBUserTweetsViewController alloc] initWithNibName:@"KBUserTweetsViewController" bundle:nil];
-        NSMutableString *username = [[NSMutableString alloc] initWithString:[notification object]];
-        [username replaceOccurrencesOfString:@":" withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [username length])];
-        DLog(@"pushing usertweetsview, -%@-", username);
-        userTweetsController.username = username;
+        DLog(@"pushing usertweetsview, -%@-", nObject);
+        userTweetsController.username = nObject;
         [self.navigationController pushViewController:userTweetsController animated:YES];
 		[userTweetsController release];
-        [username release];
     } else if ([[notification object] rangeOfString:@"#"].location == 0) {
         DLog(@"pushing searchview, -%@-", [notification object]);
         [[KBTwitterManager twitterManager] setTheSearchResults:nil]; //DIE!
         KBTwitterSearchViewController *searchController = [[KBTwitterSearchViewController alloc] initWithNibName:@"KBTwitterSearchViewController" bundle:nil];
         NSMutableString *search = [[NSMutableString alloc] initWithString:[notification object]];
-        [search replaceOccurrencesOfString:@":" withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [search length])];
-        searchController.searchTerms = search;
+        searchController.searchTerms = nObject;
         [self.navigationController pushViewController:searchController animated:YES];
 		[searchController release];
-        [search release];
     } else {
 		DLog(@"pushing webview");
         // TODO: push properly styled web view
         [self openWebView:[notification object]];
     }
+    [nObject release];
 }
 
 
