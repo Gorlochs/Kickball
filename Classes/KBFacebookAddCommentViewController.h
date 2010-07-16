@@ -22,8 +22,8 @@
 @property(nonatomic,retain)id parentView;
 @property(nonatomic,assign)BOOL isComment;
 
-- (void)tipTodoResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString;
-- (IBAction) submitTipOrTodoToFoursquare;
+//- (void)tipTodoResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString;
+//- (IBAction) submitTipOrTodoToFoursquare;
 - (IBAction) cancel;
 
 

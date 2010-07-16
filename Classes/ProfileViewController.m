@@ -722,7 +722,7 @@
 
 - (void) friendRequestResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     DLog(@"friend request instring: %@", inString);
-    FSUser *friendedUser = [FoursquareAPI userFromResponseXML:inString];
+    /*FSUser *friendedUser = */[FoursquareAPI userFromResponseXML:inString];
     [self stopProgressBar];
     user.friendStatus = FSStatusPendingYou;
     [theTableView reloadData];

@@ -15,8 +15,6 @@
 #import "GraphAPI.h"
 #import "KBLocationManager.h"
 
-const NSString *kKBHashSalt = @"33eBMKjsW9CTWpX4njEKarkWGoH9ZdzP";
-
 static Utilities *sharedInstance = nil;
 
 #define TMP NSHomeDirectory()

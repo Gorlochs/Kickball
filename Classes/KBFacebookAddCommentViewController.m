@@ -80,9 +80,9 @@
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	GraphAPI *graph = [[FacebookProxy instance] newGraph];
 	if (isComment) {
-		GraphObject *result = [graph putCommentToObject:fbId message:tipTodoText.text];
+		/*GraphObject *result = */[graph putCommentToObject:fbId message:tipTodoText.text];
 	}else {
-		GraphObject *result = [graph putWallPost:fbId message:tipTodoText.text attachment:nil];
+		/*GraphObject *result = */[graph putWallPost:fbId message:tipTodoText.text attachment:nil];
 	}
 	[graph release];
 

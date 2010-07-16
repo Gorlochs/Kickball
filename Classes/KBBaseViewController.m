@@ -21,6 +21,7 @@
 #import "KBAccountManager.h"
 #import "FacebookProxy.h"
 #import "KBDialogueManager.h"
+#import "GraphAPI.h"
 
 
 #define PROGRESS_BAR_TIMER_LENGTH 30.0

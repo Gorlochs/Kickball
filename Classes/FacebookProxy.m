@@ -701,7 +701,7 @@ static NSDateFormatter* fbEventDetailDate = NULL;
 		_meGraph = [self newGraph];
 	
 	_me = [_meGraph getObject:@"me"];
-	NSString* name = [_me name];
+	//NSString* name = [_me name];
 	//	
 	NSArray* metadata = [_meGraph getConnectionTypesForObject:@"me"];
 	//	

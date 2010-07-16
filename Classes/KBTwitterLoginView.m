@@ -11,7 +11,7 @@
 #import "XAuthTwitterEngine.h"
 #import "UIAlertView+Helper.h"
 #import "KBAccountManager.h"
-
+#import "KBBaseTweetViewController.h"
 @implementation KBTwitterLoginView
 @synthesize twitterEngine;
 
@@ -37,7 +37,7 @@
 		[password becomeFirstResponder];
 	}else {
 		[password resignFirstResponder];
-		[delegate startProgressBar:@"Logging in..."];
+		[(KBBaseViewController*)delegate startProgressBar:@"Logging in..."];
 		NSString *un = userName.text;
 		NSString *pw = password.text;
 		
@@ -76,7 +76,7 @@
 	//	[twitterEngine release];
 	//    twitterEngine = [[KBTwitterManager twitterManager] twitterEngine];
 	if([delegate respondsToSelector:@selector(showStatuses)]){
-		[delegate showStatuses];
+		[(KBBaseTweetViewController*)delegate showStatuses];
 	}
 	[delegate killLoginView];
 	[delegate stopProgressBar];
@@ -96,7 +96,7 @@
 - (void) twitterXAuthConnectionDidFailWithError: (NSError *)error;
 {
 	DLog(@"Error: %@", error);
-	[delegate stopProgressBar];
+	[(KBBaseViewController*)delegate stopProgressBar];
 	UIAlertViewQuick(@"Authentication error", @"Please check your username and password and try again.", @"OK");
 }
 
@@ -114,7 +114,7 @@
 - (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error
 {
 	DLog(@"Twitter request failed: %@ with error:%@", connectionIdentifier, error);
-	[delegate stopProgressBar];
+	[(KBBaseViewController*)delegate stopProgressBar];
 	if ([[error domain] isEqualToString: @"HTTP"])
 	{
 		switch ([error code]) {

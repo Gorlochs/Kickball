@@ -14,6 +14,6 @@
 
 }
 
--(void)pressOptionsLeft;
--(void)pressOptionsRight;
+//-(void)pressOptionsLeft;
+//-(void)pressOptionsRight;
 @end

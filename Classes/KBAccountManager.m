@@ -29,6 +29,7 @@ static BOOL initialized = NO;
 @synthesize usesTwitter;
 @synthesize usesFacebook;
 @synthesize shouldPostPhotosToFacebook;
+@synthesize usesFoursquare;
 
 #pragma mark -
 #pragma mark custom getters and setters

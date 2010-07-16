@@ -13,6 +13,7 @@
 #import "ViewFriendRequestsTableCell.h"
 #import "ProfileViewController.h"
 #import "FriendsListViewController.h"
+#import "KickballAppDelegate.h"
 
 @implementation ViewFriendRequestsViewController
 

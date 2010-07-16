@@ -23,7 +23,7 @@
 @property (nonatomic) BOOL hasPhoto;
 
 - (void) sendPushNotification;
-- (void) friendsToPingReceived:(NSNotification *)inNotification;
+//- (void) friendsToPingReceived:(NSNotification *)inNotification;
 - (void) retrieveAllFriendsWithPingOn;
 - (void)friendsToPingReceived;
 

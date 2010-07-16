@@ -21,8 +21,7 @@ static const int CITY_RADIUS_MEDIUM = 80467;
 static const int CITY_RADIUS_LARGE = 106934;
 
 // Salt for hash function. Can be any arbitrary value, but must be shared with server
-extern const NSString *kKBHashSalt;
-
+#define kKBHashSalt @"33eBMKjsW9CTWpX4njEKarkWGoH9ZdzP"
 
 @interface Utilities : NSObject {
     NSMutableArray *friendsWithPingOn;

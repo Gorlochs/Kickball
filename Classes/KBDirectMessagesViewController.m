@@ -42,7 +42,7 @@
 - (void)directMessagesReceived:(NSArray *)messages {
 	if ([messages count] > 0 || isInitialLoad) {
         twitterArray = [messages retain];
-        for (KBDirectMessage *message in messages) {
+        for (NSDictionary *message in messages) {
             for (KBDirectMessage *cur in tweets) {
                 NSNumber *tweetID = [message objectForKey:@"id"];
                 if ([cur.tweetId longValue] == [tweetID longValue]) return; //don't add the same direct messages 

@@ -508,7 +508,7 @@
 // 4sq response
 - (void)shoutResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     //DLog(@"instring: %@", inString);
-	NSArray *checkins = [FoursquareAPI checkinsFromResponseXML:inString];
+	/*NSArray *checkins =*/ [FoursquareAPI checkinsFromResponseXML:inString];
 //    if ([checkins count] > 0) {
 //        checkin = [checkins objectAtIndex:0];
 //    }

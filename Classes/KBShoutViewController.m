@@ -168,7 +168,7 @@
 // 4sq response
 - (void)shoutResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     DLog(@"instring: %@", inString);
-	NSArray *shoutCheckins = [FoursquareAPI checkinsFromResponseXML:inString];
+	/*NSArray *shoutCheckins = */[FoursquareAPI checkinsFromResponseXML:inString];
     
     self.shoutToPush = [NSString stringWithString:theTextView.text];
     [self sendPushNotification];
@@ -223,6 +223,11 @@
 - (void)viewDidUnload {
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
+}
+
+- (void)requestSucceeded:(NSString *)connectionIdentifier {
+}
+- (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error {
 }
 
 - (void)dealloc {
