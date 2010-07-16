@@ -110,7 +110,6 @@
             [placemark release];
 		}
 	}
-    [self stopProgressBar];
 }
 
 - (void) retrieveNewFriendLocationsAndRefresh {
@@ -168,6 +167,14 @@
     //pinView.calloutOffset = CGPointMake(-5, 5);
 		
 	return pinView;	
+}
+
+- (void)mapViewDidFinishLoadingMap:(MKMapView *)mapView {
+    [self stopProgressBar];
+}
+
+- (void)mapViewDidFailLoadingMap:(MKMapView *)mapView withError:(NSError *)error {
+    [self stopProgressBar];
 }
 
 - (void) showProfile:(id)sender {
