@@ -30,6 +30,11 @@
   _inModalTweetView = YES;
 }
 
+-(void) viewDidAppear:(BOOL)animated{
+	[super viewDidAppear:animated];
+    twitterManager.delegate = self; //make sure we can keep scrolling
+}
+
 - (void)viewDidLoad {
    [super viewDidLoad];
     twitterManager.delegate = self;
