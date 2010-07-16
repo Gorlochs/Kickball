@@ -74,13 +74,8 @@ static Utilities *sharedInstance = nil;
 //post to facebook with google maps image
 + (void)putGoogleMapsWallPostWithMessage:(NSString*)message andVenue:(FSVenue*)venue {    
 //    NSDictionary *googleMapPic = [[NSDictionary alloc] initWithObjectsAndKeys:urlPath, @"picture",venue.name,@"caption",venue.addressWithCrossstreet,@"description",nil];
-	NSDictionary *googleMapPic;
-    if (!venue) {
-        double lat = [[KBLocationManager locationManager] latitude];
-        double lng = [[KBLocationManager locationManager] longitude];
-        NSString *url = [NSString stringWithFormat:@"http://maps.google.com/maps/api/staticmap?size=96x96&zoom=14&markers=icon:http://s3.amazonaws.com/kickball/assets/pin2.png|%f,%f&sensor=true", lat,lng,lat,lng];
-        googleMapPic = [[NSDictionary alloc] initWithObjectsAndKeys:url, @"picture",@" ",@"caption",nil];
-    } else {
+	NSDictionary *googleMapPic = nil;
+    if (venue && venue.venueAddress) {
         NSMutableString *addy = [[NSMutableString alloc] initWithString:venue.venueAddress];
         [addy replaceOccurrencesOfString:@" " withString:@"+" options:NSLiteralSearch range:NSMakeRange(0, [addy length])];
         NSMutableString *urlPath = [[NSMutableString alloc] initWithString:@"http://maps.google.com/maps/api/staticmap?zoom=14&size=96x96&markers=icon:http://s3.amazonaws.com/kickball/assets/pin2.png|"];
@@ -88,6 +83,11 @@ static Utilities *sharedInstance = nil;
         googleMapPic = [[NSDictionary alloc] initWithObjectsAndKeys:urlPath, @"picture",venue.name,@"caption",venue.addressWithCrossstreet,@"description",nil];
         [addy release];
         [urlPath release];
+    } else {
+        double lat = [[KBLocationManager locationManager] latitude];
+        double lng = [[KBLocationManager locationManager] longitude];
+        NSString *url = [NSString stringWithFormat:@"http://maps.google.com/maps/api/staticmap?size=96x96&zoom=14&markers=icon:http://s3.amazonaws.com/kickball/assets/pin2.png|%f,%f&sensor=true", lat,lng,lat,lng];
+        googleMapPic = [[NSDictionary alloc] initWithObjectsAndKeys:url, @"picture",@" ",@"caption",nil];
     }
     GraphAPI *graph = [[FacebookProxy instance] newGraph];
     [graph putWallPost:@"me" message:message attachment:googleMapPic];
