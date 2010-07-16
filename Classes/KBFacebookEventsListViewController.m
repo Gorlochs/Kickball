@@ -18,21 +18,6 @@
 
 @implementation KBFacebookEventsListViewController
 
-/*
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
-
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView {
-}
-*/
 NSInteger eventsDateSort(id e1, id e2, void *context) {
     /* A private comparator fcn to sort two mountains.  To do so,
      we do a localized compare of mountain names, using 
@@ -51,15 +36,13 @@ NSInteger eventsDateSort(id e1, id e2, void *context) {
     return [e1Date compare:e2Date];
 }
 
-
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
 	pageType = KBpageTypeEvents;
     pageViewType = KBPageViewTypeList;
     eventsFeed = nil;
-    [super viewDidLoad];
+	[super viewDidLoad];
     
-    noResultsView.hidden = NO;
+    noResultsView.hidden = YES;
     
     //DLog(@"PlacesListViewController get venue - geolat: %f", [[KBLocationManager locationManager] latitude]);
     //DLog(@"PlacesListViewController get venue - geolong: %f", [[KBLocationManager locationManager] longitude]);
@@ -178,8 +161,8 @@ NSInteger eventsDateSort(id e1, id e2, void *context) {
 	[futureSections release];
 	
 	[theTableView reloadData];
-	if ([eventsFeed count]>0) {
-		noResultsView.hidden = YES;
+	if ([eventsFeed count] == 0) {
+		noResultsView.hidden = NO;
 	}
 	
 	//sort array based on date 
