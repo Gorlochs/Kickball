@@ -950,7 +950,8 @@
 //    PlaceTwitterViewController *vc = [[PlaceTwitterViewController alloc] initWithNibName:@"PlaceTwitterViewController" bundle:nil];
 //    vc.twitterName = venue.twitter;
 //    vc.venueName = venue.name;
-    [self presentModalViewController:recentTweetsController animated:YES];
+    //[self presentModalViewController:recentTweetsController animated:YES];
+    [self.navigationController pushViewController:recentTweetsController animated:YES];
     [recentTweetsController release];
 }
 
