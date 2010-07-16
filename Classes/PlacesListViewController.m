@@ -33,7 +33,7 @@
 
 
 - (void)viewDidLoad {
-    
+
     pageType = KBPageTypePlaces;
     pageViewType = KBPageViewTypeList;
     
@@ -70,7 +70,9 @@
 												andAction:@selector(venuesResponseReceived:withResponseString:)
 	 ];
 }
-
+- (void)finishScrollback {
+  theTableView.contentOffset = CGPointMake(0,0);
+}
 - (void)venuesResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     DLog(@"venue list: %@", inString);
     NSString *errorMessage = [FoursquareAPI errorFromResponseXML:inString];
@@ -90,8 +92,10 @@
         
         //move table to new entry
         if ([theTableView numberOfSections] != 0) {
+            //theTableView.contentOffset = CGPointMake(0,-30);
             NSUInteger indexArr[] = {0,0};
             [theTableView scrollToRowAtIndexPath:[NSIndexPath indexPathWithIndexes:indexArr length:2] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+            [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(finishScrollback) userInfo:nil repeats:NO];
         }
     }
 	theTableView.hidden = NO;
