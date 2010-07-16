@@ -1044,7 +1044,7 @@
         [checkinView addSubview:badgeImageView];
         [badgeImageView release];
         
-        IFTweetLabel *messageLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(75.0f, height, 280.0f, 60.0f)];
+        IFTweetLabel *messageLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(75.0f, height, 220.0f, 60.0f)];
         [messageLabel setFont:[UIFont boldSystemFontOfSize:14.0f]];
         [messageLabel setTextColor:[UIColor whiteColor]];
         [messageLabel setBackgroundColor:[UIColor clearColor]];
@@ -1101,9 +1101,7 @@
     // add view to main view
     [self.view addSubview:checkinView];
     
-    
-    
-    
+	
 //    NSMutableString *checkinText = [[NSMutableString alloc] initWithCapacity:1];
 //    NSMutableString *noteworthyCheckin = [[NSMutableString alloc] initWithString:@""];
 //    if (aCheckin.mayor.user == nil && [aCheckin.mayor.mayorTransitionType isEqualToString:@"nochange"]) {
@@ -1141,6 +1139,7 @@
 //    [checkinText release];
 //    [message release];
 //    [noteworthyCheckin release];
+	
     self.venueToPush = aCheckin.venue;
 }
 
