@@ -127,10 +127,6 @@
     pageType = KBPageTypePlaces;
     pageViewType = KBPageViewTypeList;
     [self setProperFoursquareButtons];
-    
-    if (showCheckinView) {
-        [self openCheckinView];
-    }
 }
 
 - (void) retrievePhotos {
@@ -254,6 +250,10 @@
 		
 		theTableView.hidden = NO;
         
+		if (showCheckinView) {
+			[self openCheckinView];
+		}
+		
         if (doCheckin) {
 			[self startProgressBar:@"Checking into this venue..."];
 			// seems idiotic, but you can turn off insta checkin to foursquare. (i agree. stupid.)
