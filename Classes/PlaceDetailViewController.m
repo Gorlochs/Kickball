@@ -914,6 +914,7 @@
     [checkinViewController release];
 	
 	[peopleHereCell release];
+	[checkinView release];
     
     [super dealloc];
 }
@@ -978,10 +979,12 @@
 
 - (void) presentCheckinOverlayWithCheckin:(FSCheckin*)aCheckin {
     NSMutableString *noteworthyCheckin = [[NSMutableString alloc] initWithString:@""];
+	float height = 0.0;
+	float buffer = 10.0;
     
     // create view
     UIWindow* keywindow = [[UIApplication sharedApplication] keyWindow];
-    UIView *checkinView = [[UIView alloc] initWithFrame:[keywindow frame]];
+    checkinView = [[UIView alloc] initWithFrame:[keywindow frame]];
     checkinView.backgroundColor = [UIColor blackColor];
     checkinView.alpha = 0.85;
     checkinView.opaque = NO;
@@ -995,22 +998,43 @@
     [titleLabel setBackgroundColor:[UIColor clearColor]];
     [titleLabel setText:@"Success!"];
     [checkinView addSubview:titleLabel];
+	height = height + titleLabel.frame.size.height + buffer;
     [titleLabel release];
     
     // create mayorship badge
-//    if (aCheckin.mayor.user == nil && [aCheckin.mayor.mayorTransitionType isEqualToString:@"nochange"]) {
-//        [checkinText appendString:[NSString stringWithFormat:@"You're still the mayor of %@! \n\n", venue.name]];
-//    } else if ([aCheckin.mayor.mayorTransitionType isEqualToString:@"stolen"] || [aCheckin.mayor.mayorTransitionType isEqualToString:@"new"]) {
-//        if ([[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"stolen"]) {
-//            [noteworthyCheckin setString:@"I just became mayor"];
-//            [checkinText appendString:[NSString stringWithFormat:@"Congrats! %@ is yours with %d check-ins and %@ lost their crown. \n\n", 
-//                                       aCheckin.venue.name, 
-//                                       aCheckin.mayor.numCheckins, 
-//                                       aCheckin.mayor.user.firstnameLastInitial]];
-//        } else {
-//            [checkinText appendString:[NSString stringWithFormat:@"%@ \n\n", aCheckin.mayor.mayorCheckinMessage]];
-//        }
-//    }
+	bool showMayorBadge = NO;
+	NSString *mayorText = nil;
+    if (aCheckin.mayor.user == nil && [aCheckin.mayor.mayorTransitionType isEqualToString:@"nochange"]) {
+        mayorText = [NSString stringWithFormat:@"You're still the mayor of %@! \n\n", venue.name];
+		showMayorBadge = YES;
+    } else if ([aCheckin.mayor.mayorTransitionType isEqualToString:@"stolen"] || [aCheckin.mayor.mayorTransitionType isEqualToString:@"new"]) {
+        if ([[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"stolen"]) {
+            [noteworthyCheckin setString:@"I just became mayor"];
+            mayorText = [NSString stringWithFormat:@"Congrats! %@ is yours with %d check-ins and %@ lost their crown. \n\n", 
+                                       aCheckin.venue.name, 
+                                       aCheckin.mayor.numCheckins, 
+                                       aCheckin.mayor.user.firstnameLastInitial];
+        } else {
+            mayorText = [NSString stringWithFormat:@"%@ \n\n", aCheckin.mayor.mayorCheckinMessage];
+        }
+		showMayorBadge = YES;
+    }
+	if (showMayorBadge) {
+		UIImageView *mayorBadgeImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mayorBG.png"]];
+        mayorBadgeImageView.frame = CGRectMake(17, 70, 320, 221);
+        [checkinView addSubview:mayorBadgeImageView];
+		
+        IFTweetLabel *mayorLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(25.0f, height, 280.0f, 50.0f)];
+        [mayorLabel setFont:[UIFont boldSystemFontOfSize:12.0f]];
+        [mayorLabel setTextColor:[UIColor whiteColor]];
+        [mayorLabel setBackgroundColor:[UIColor clearColor]];
+        [mayorLabel setNumberOfLines:0];
+        [mayorLabel setText:mayorText];
+        [checkinView addSubview:mayorLabel];
+		height = height + mayorBadgeImageView.frame.size.height + buffer;
+        [mayorBadgeImageView release];
+        [mayorLabel release];
+	}
     
     // loop through badges
     int i = 0;
@@ -1024,34 +1048,36 @@
         NSData *data = [NSData dataWithContentsOfURL:url];
         UIImage *img = [[UIImage alloc] initWithData:data];
         UIImageView *badgeImageView = [[UIImageView alloc] initWithImage:img];
-        badgeImageView.frame = CGRectMake(17, 70 + 50*i, 50, 50);
+        badgeImageView.frame = CGRectMake(17, height, 50, 50);
         [checkinView addSubview:badgeImageView];
         [badgeImageView release];
         
-        IFTweetLabel *messageLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(75.0f, 70.0f + 50*i, 280.0f, 60.0f)];
-        [messageLabel setFont:[UIFont systemFontOfSize:14.0f]];
+        IFTweetLabel *messageLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(75.0f, height, 280.0f, 60.0f)];
+        [messageLabel setFont:[UIFont boldSystemFontOfSize:14.0f]];
         [messageLabel setTextColor:[UIColor whiteColor]];
         [messageLabel setBackgroundColor:[UIColor clearColor]];
         [messageLabel setNumberOfLines:0];
         [messageLabel setText:[NSString stringWithFormat:@"%@: %@ \n\n", badge.badgeName, badge.badgeDescription]];
         [checkinView addSubview:messageLabel];
+		height = height + messageLabel.frame.size.height + buffer;
         [messageLabel release];
         i++;
     }
     
     // display message
-    IFTweetLabel *messageLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(17.0f, 70.0 + 50*i + 15, 280.0f, 100.0f)];
-    [messageLabel setFont:[UIFont systemFontOfSize:14.0f]];
+    IFTweetLabel *messageLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(17.0f, height, 280.0f, 80.0f)];
+    [messageLabel setFont:[UIFont boldSystemFontOfSize:14.0f]];
     [messageLabel setTextColor:[UIColor whiteColor]];
     [messageLabel setBackgroundColor:[UIColor clearColor]];
     [messageLabel setNumberOfLines:0];
     [messageLabel setText:aCheckin.message];
     [checkinView addSubview:messageLabel];
+	height = height + messageLabel.frame.size.height + buffer;
     [messageLabel release];
     
     // loop through scores to display points
-    IFTweetLabel *scoreLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(17.0f, 70.0 + 50*i + 100 + 15, 280.0f, 100.0f)];
-    [scoreLabel setFont:[UIFont systemFontOfSize:14.0f]];
+    IFTweetLabel *scoreLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(17.0f, height, 280.0f, 80.0f)];
+    [scoreLabel setFont:[UIFont boldSystemFontOfSize:14.0f]];
     [scoreLabel setTextColor:[UIColor whiteColor]];
     [scoreLabel setBackgroundColor:[UIColor clearColor]];
     [scoreLabel setNumberOfLines:0];
@@ -1062,10 +1088,17 @@
     }
     [scoreLabel setText:scoreText];
     [checkinView addSubview:scoreLabel];
+	height = height + scoreLabel.frame.size.height + buffer;
     [scoreLabel release];
     
     // do facebook stuff
     
+	// add close button overlay
+	UIButton *closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+	[closeButton setFrame:CGRectMake(0, 0, 320, 480)];
+	[closeButton addTarget:self action:@selector(checkinFadeOut) forControlEvents:UIControlEventTouchUpInside];
+	[checkinView addSubview:closeButton];
+//	[closeButton release];
     
     // add view to main view
     [self.view addSubview:checkinView];
@@ -1111,6 +1144,14 @@
 //    [message release];
 //    [noteworthyCheckin release];
     self.venueToPush = aCheckin.venue;
+}
+
+-(void) checkinFadeOut {
+	[UIView beginAnimations:@"fadeOut" context:NULL];
+	[UIView setAnimationDuration:0.7];
+	[UIView setAnimationDelegate:self];
+	checkinView.alpha = 0.0;
+	[UIView commitAnimations];
 }
 
 - (void) setProperButtonStates {

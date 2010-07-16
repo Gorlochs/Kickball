@@ -190,8 +190,7 @@ NSString* const kConnectionAlbums = @"albums";
 
 -(NSArray*)searchTerms:(NSString*)search_terms objectType:(NSString*)objType
 {
-	NSMutableDictionary* args = [NSMutableDictionary dictionaryWithObjectsAndKeys:search_terms, kKeySearchQuery,
-																																				 objType, kKeySearchObjectType, nil];
+	NSMutableDictionary* args = [NSMutableDictionary dictionaryWithObjectsAndKeys:search_terms, kKeySearchQuery, objType, kKeySearchObjectType, nil];
 
 	NSString* path = @"search";
 	NSData* response = [self api:path args:args];
@@ -221,6 +220,7 @@ NSString* const kConnectionAlbums = @"albums";
 	NSString* path = [NSString stringWithFormat:@"%@/home", user_id];
 	NSData* response = [self api:path args:nil];
 	NSString* r_string =[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
+	DLog("facebook newsFeed response: %@", r_string);
 	NSArray* connections = [self graphObjectArrayFromJSON:r_string];
 	[r_string release];
 	return connections;

@@ -91,6 +91,7 @@
     KBCheckinModalViewController *checkinViewController;
 	
 	UITableViewCell *peopleHereCell;
+	UIView *checkinView;
 }
 
 @property (nonatomic, retain) UITableViewCell *mayorMapCell;

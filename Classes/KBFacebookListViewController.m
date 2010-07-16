@@ -86,6 +86,7 @@
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	GraphAPI *graph = [[FacebookProxy instance] newGraph];
 	newsFeed = [graph newsFeed:@"me"];
+	DLog("facebook news feed: %@", newsFeed);
 	[newsFeed retain];
 	[nextPageURL release];
 	nextPageURL = nil;
