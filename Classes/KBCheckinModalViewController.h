@@ -46,6 +46,9 @@
 - (IBAction) toggleTwitter;
 - (IBAction) toggleFacebook;
 - (IBAction) toggleFoursquare;
+-(void)updateTwitterButton;
+-(void)updateFacebookButton;
+-(void)updateFoursquareButton;
 - (void) closeUpShop;
 - (void) statusRetrieved:(NSNotification *)inNotification;
 - (void) decrementActionCount;

@@ -53,21 +53,19 @@
     // hack
 	
 	isFoursquareOn = YES;
-	isTwitterOn = ![[KBAccountManager sharedInstance] defaultPostToTwitter];
-	if ([[KBAccountManager sharedInstance] usesTwitter]) {
-		[self toggleTwitter];
-	}else {
+	[self updateFoursquareButton];
+	isTwitterOn = [[KBAccountManager sharedInstance] foursquarePollinatesTwitter];
+	if (![[KBAccountManager sharedInstance] usesTwitter]) {
 		isTwitterOn = NO;
 		twitterButton.enabled = NO;
 	}
-	isFacebookOn = ![[KBAccountManager sharedInstance] defaultPostToFacebook];
-	if ([[KBAccountManager sharedInstance] usesFacebook]) {
-		[self toggleFacebook];
-	}else {
+	[self updateTwitterButton];
+	isFacebookOn = [[KBAccountManager sharedInstance] foursquarePollinatesFacebook];
+	if (![[KBAccountManager sharedInstance] usesFacebook]) {
 		isFacebookOn = NO;
 		facebookButton.enabled = NO;
 	}
-
+	[self updateFacebookButton];
     actionCount = 0;
 }
 
@@ -79,38 +77,47 @@
 #pragma mark IBActions
 
 - (void) toggleTwitter {
-    if (isTwitterOn) {
-        [twitterButton setImage:[UIImage imageNamed:@"checkinTWT02.png"] forState:UIControlStateNormal];
-        [twitterButton setImage:[UIImage imageNamed:@"checkinTWT01.png"] forState:UIControlStateHighlighted];
-    } else {
+    isTwitterOn = !isTwitterOn;
+	[self updateTwitterButton];
+	[[KBAccountManager sharedInstance] setFoursquarePollinatesTwitter:isTwitterOn];
+}
+-(void)updateTwitterButton{
+	if (isTwitterOn) {
         [twitterButton setImage:[UIImage imageNamed:@"checkinTWT01.png"] forState:UIControlStateNormal];
         [twitterButton setImage:[UIImage imageNamed:@"checkinTWT02.png"] forState:UIControlStateHighlighted];
+    } else {
+        [twitterButton setImage:[UIImage imageNamed:@"checkinTWT02.png"] forState:UIControlStateNormal];
+        [twitterButton setImage:[UIImage imageNamed:@"checkinTWT01.png"] forState:UIControlStateHighlighted];
     }
-    isTwitterOn = !isTwitterOn;
 }
 
 - (void) toggleFacebook {
-    if (isFacebookOn) {
-        [facebookButton setImage:[UIImage imageNamed:@"checkinFB02.png"] forState:UIControlStateNormal];
-        [facebookButton setImage:[UIImage imageNamed:@"checkinFB01.png"] forState:UIControlStateHighlighted];
-    } else {
+    isFacebookOn = !isFacebookOn;
+	[self updateFacebookButton];
+	[[KBAccountManager sharedInstance] setFoursquarePollinatesFacebook:isFacebookOn];
+}
+-(void)updateFacebookButton{
+	if (isFacebookOn) {
         [facebookButton setImage:[UIImage imageNamed:@"checkinFB01.png"] forState:UIControlStateNormal];
         [facebookButton setImage:[UIImage imageNamed:@"checkinFB02.png"] forState:UIControlStateHighlighted];
+    } else {
+        [facebookButton setImage:[UIImage imageNamed:@"checkinFB02.png"] forState:UIControlStateNormal];
+        [facebookButton setImage:[UIImage imageNamed:@"checkinFB01.png"] forState:UIControlStateHighlighted];
     }
-    isFacebookOn = !isFacebookOn;
 }
 
 - (void) toggleFoursquare {
-    if (isFoursquareOn) {
-        // turn 4sq off
-        [foursquareButton setImage:[UIImage imageNamed:@"checkin4SQ02.png"] forState:UIControlStateNormal];
-        [foursquareButton setImage:[UIImage imageNamed:@"checkin4SQ01.png"] forState:UIControlStateHighlighted];
-    } else {
-        // turn 4sq on
+    isFoursquareOn = !isFoursquareOn;
+	[self updateFoursquareButton];
+}
+-(void)updateFoursquareButton{
+	if (isFoursquareOn) {
         [foursquareButton setImage:[UIImage imageNamed:@"checkin4SQ01.png"] forState:UIControlStateNormal];
         [foursquareButton setImage:[UIImage imageNamed:@"checkin4SQ02.png"] forState:UIControlStateHighlighted];
+    } else {
+        [foursquareButton setImage:[UIImage imageNamed:@"checkin4SQ02.png"] forState:UIControlStateNormal];
+        [foursquareButton setImage:[UIImage imageNamed:@"checkin4SQ01.png"] forState:UIControlStateHighlighted];
     }
-    isFoursquareOn = !isFoursquareOn;
 }
 
 #pragma mark -

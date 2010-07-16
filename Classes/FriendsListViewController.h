@@ -80,5 +80,8 @@
 - (IBAction) toggleTwitter;
 - (IBAction) toggleFacebook;
 - (IBAction) toggleFoursquare;
+-(void)updateFoursquareButton;
+-(void)updateFacebookButton;
+-(void)updateTwitterButton;
 
 @end

@@ -211,6 +211,8 @@
 - (void) toggleFoursquare {
     isFoursquareOn = !isFoursquareOn;
 	[self updateFoursquareButt];
+	[[KBAccountManager sharedInstance] setTwitterPollinatesFoursquare:isFoursquareOn];
+
 }
 
 -(void) updateFoursquareButt{
@@ -226,6 +228,8 @@
 - (void) toggleFacebook {
     isFacebookOn = !isFacebookOn;
 	[self updateFacebookButt];
+	[[KBAccountManager sharedInstance] setTwitterPollinatesFacebook:isFacebookOn];
+
 }
 -(void) updateFacebookButt{
 	if (isFacebookOn) {
