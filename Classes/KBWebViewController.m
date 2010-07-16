@@ -60,7 +60,7 @@
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
-	[self startProgressBar:@"Loading web page..."];
+    [self startProgressBar:@"Loading web page..." withTimer:YES andLongerTime:YES];
 	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 	[self retain];
 }

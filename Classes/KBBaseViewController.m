@@ -263,7 +263,7 @@ const NSString *kickballDomain = @"http://kickball.gorlochs.com/kickball";
 	[self dismissModalViewControllerAnimated:YES];
 }
 
-- (void) startProgressBar:(NSString*)textToDisplay withTimer:(BOOL)shouldSetTimer {
+- (void) startProgressBar:(NSString*)textToDisplay withTimer:(BOOL)shouldSetTimer andLongerTime:(BOOL)longerTime{
     if (textToDisplay == nil) {
         textToDisplay = @"Processing...";
     }
@@ -292,18 +292,22 @@ const NSString *kickballDomain = @"http://kickball.gorlochs.com/kickball";
     [self.view addSubview:progressViewController.view];
     
     if (shouldSetTimer) {
-        progressBarTimer = [NSTimer scheduledTimerWithTimeInterval:PROGRESS_BAR_TIMER_LENGTH target:self selector:@selector(stopProgressBarAndDisplayErrorMessage:) userInfo:nil repeats:NO];        
+        if (longerTime) {
+            progressBarTimer = [NSTimer scheduledTimerWithTimeInterval:PROGRESS_BAR_TIMER_LENGTH * 2 target:self selector:@selector(stopProgressBarAndDisplayErrorMessage:) userInfo:nil repeats:NO];        
+        } else {
+            progressBarTimer = [NSTimer scheduledTimerWithTimeInterval:PROGRESS_BAR_TIMER_LENGTH target:self selector:@selector(stopProgressBarAndDisplayErrorMessage:) userInfo:nil repeats:NO];        
+        }
     }
 }
 
 - (void) startProgressBar:(NSString*)textToDisplay {
-    [self startProgressBar:textToDisplay withTimer:YES];
+    [self startProgressBar:textToDisplay withTimer:YES andLongerTime:NO];
 }
 
 -(void) stopProgressBarAndDisplayErrorMessage:(NSTimer*)theTimer {
     [self stopProgressBar];
     
-    KBMessage *message = [[KBMessage alloc] initWithMember:@"FourSquare Message" andMessage:@"The server is not currently responding. Please try again shortly."];
+    KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"The server is not currently responding. Please try again shortly."];
     [self displayPopupMessage:message];
     [message release];
 }

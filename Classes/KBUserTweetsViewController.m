@@ -61,7 +61,6 @@
 }
 
 - (void)statusesReceived:(NSArray *)statuses {
-DLog(@"statusesreceived, usertweetsviewcontroller");
     [super statusesReceived:statuses];
 
     // this is used when there is no userDictionary, which occurs when a user clicks a @screenname inside the body of a tweet
@@ -81,7 +80,6 @@ DLog(@"statusesreceived, usertweetsviewcontroller");
         [userProfileImage release];
     }
 	[userStatuses release];
-    DLog(@"done with tweets view");
 }
 
 - (void) refreshTable {

@@ -107,7 +107,7 @@ typedef enum{
 - (FSUser*) getAuthenticatedUser;
 - (void) doLoginUsername: (NSString *)fsUser andPass:(NSString *) fsPass;
 - (void) startProgressBar:(NSString*)textToDisplay;
-- (void) startProgressBar:(NSString*)textToDisplay withTimer:(BOOL)shouldSetTimer;
+- (void) startProgressBar:(NSString*)textToDisplay withTimer:(BOOL)shouldSetTimer andLongerTime:(BOOL)longerTime;
 - (void) stopProgressBar;
 - (void) doInitialDisplay;
 - (void) displayPopupMessage:(KBMessage*)message;
