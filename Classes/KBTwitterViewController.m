@@ -28,6 +28,12 @@
     return self;
 }
 
+-(void) stopProgressBarAndDisplayErrorMessage:(NSTimer*)theTimer {
+    [self stopProgressBar];
+    KBMessage *message = [[KBMessage alloc] initWithMember:@"Twitter Message" andMessage:@"The server is not currently responding. Please try again shortly."];
+    [self displayPopupMessage:message];
+    [message release];
+}
 
 - (void)viewDidLoad {
     twitterEngine = [[KBTwitterManager twitterManager] twitterEngine];

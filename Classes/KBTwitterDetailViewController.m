@@ -110,7 +110,6 @@
 	twitterManager.delegate = self;
 	
     [twitterEngine getUserInformationFor:tweet.screenName];
-    DLog(@"33333333333333333view did appear - turning on notifications!!!");
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTweetNotification:) name:IFTweetLabelURLNotification object:nil];
     _isObservingNotifications = true;
 }
@@ -118,14 +117,12 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     if (!_isObservingNotifications) {
-		DLog(@"+++++++++++++++++++++++++view did appear - turning on notifications!!!");
 		_isObservingNotifications = true;
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTweetNotification:) name:IFTweetLabelURLNotification object:nil];
     }
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
-    DLog(@"-------------------------------------------------view did disappear - turning off notifications!!!");
     [super viewDidDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     _isObservingNotifications = false;

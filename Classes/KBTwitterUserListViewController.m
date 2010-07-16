@@ -26,13 +26,9 @@
     hideRefresh = YES;
     [super viewDidLoad];
     
-    //if (!currentCursor) {
-        currentCursor = [NSNumber numberWithInt:-1];
-    //}
+    currentCursor = [NSNumber numberWithInt:-1];
     
     [self showStatuses];
-    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(usersRetrieved:) name:kTwitterUserInfoRetrievedNotificationKey object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTweetNotification:) name:IFTweetLabelURLNotification object:nil];
     
     [timelineButton setImage:[UIImage imageNamed:@"tabTweets03.png"] forState:UIControlStateNormal];
     [mentionsButton setImage:[UIImage imageNamed:@"tabMentions03.png"] forState:UIControlStateNormal];
