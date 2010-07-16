@@ -60,6 +60,9 @@
     // set to YES if the user should be checked in with the initialization of this view
     BOOL doCheckin;
     
+    // set ot YES if the user should have the checkin modal view displayed
+    BOOL showCheckinView;
+    
     // photo related objects
     NSMutableArray *goodies;
     MockPhotoSource *photoSource;
@@ -98,6 +101,7 @@
 @property (nonatomic, retain) NSString *venueId;
 @property (nonatomic, retain) UIImage *photoImage;
 @property (nonatomic) BOOL doCheckin;
+@property (nonatomic) BOOL showCheckinView;
 
 - (IBAction) callVenue;
 - (IBAction) uploadImageToServer;

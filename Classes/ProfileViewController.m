@@ -557,7 +557,7 @@
 - (void) checkinToProfilesVenue {
 	PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView_v2" bundle:nil];    
     placeDetailController.venueId = user.checkin.venue.venueid;
-    placeDetailController.doCheckin = YES;
+    placeDetailController.showCheckinView = YES;
     [self.navigationController pushViewController:placeDetailController animated:YES];
     [placeDetailController release];
 }

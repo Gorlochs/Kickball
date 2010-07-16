@@ -65,6 +65,7 @@
 @synthesize giftCell;
 @synthesize doCheckin;
 @synthesize photoImage;
+@synthesize showCheckinView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
@@ -125,6 +126,10 @@
     pageType = KBPageTypePlaces;
     pageViewType = KBPageViewTypeList;
     [self setProperFoursquareButtons];
+    
+    if (showCheckinView) {
+        [self openCheckinView];
+    }
 }
 
 - (void) retrievePhotos {
@@ -256,6 +261,8 @@
         }
 		
 		theTableView.hidden = NO;
+        
+        // FIXME: this checks the user in, but doesn't give the user any feedback that they are being checked in.
         if (doCheckin) {
 			[self startProgressBar:@"Checking into this venue..."];
 			[[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:venue.venueid 
