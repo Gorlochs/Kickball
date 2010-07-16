@@ -281,6 +281,7 @@
 			if ([[KBAccountManager sharedInstance] usesFacebook] && [[KBAccountManager sharedInstance] defaultPostToFacebook]) {
 				//cross post to facebook
 			}
+			// FIXME: after all three are called (or whichever need to be called), then call [self presentCheckinOverlayWithCheckin]
         }
     }
 }
@@ -1094,7 +1095,13 @@
     [scoreLabel release];
     
     // do facebook stuff
-    
+	if (isFacebookOn && [noteworthyCheckin length] > 0) {
+        [noteworthyCheckin appendString:[NSString stringWithFormat:@" at %@! %@", venue.name, [Utilities getShortenedUrlFromFoursquareVenueId:venue.venueid]]];
+		GraphAPI *graph = [[FacebookProxy instance] newGraph];
+		[graph putWallPost:@"me" message:noteworthyCheckin attachment:nil];
+		[graph release];
+	}
+	
 	// add close button overlay
 	UIButton *closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
 	[closeButton setFrame:CGRectMake(0, 0, 320, 480)];

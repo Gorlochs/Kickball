@@ -203,7 +203,7 @@ void uncaughtExceptionHandler(NSException *exception) {
     DLog(@"push notification response received");
 	FSUser *pushedUser = [FoursquareAPI userFromResponseXML:inString];
     pushView = [[KBPushNotificationView alloc] initWithNibName:@"PushNotificationView" bundle:nil];
-    pushView.view.frame = CGRectMake(0, 438, 320, 42);
+    pushView.view.frame = CGRectMake(0, navigationController.view.frame.size.height - 42, 320, 42);
     if (pushedUser.checkin.shout != nil) {
         pushView.messageLabel.text = [NSString stringWithFormat:@"%@ just shouted!", pushedUser.firstnameLastInitial];
         pushView.addressLabel.text = [NSString stringWithFormat:@"%@", pushedUser.checkin.shout];
@@ -214,7 +214,8 @@ void uncaughtExceptionHandler(NSException *exception) {
     [pushView.button addTarget:self action:@selector(viewUserProfile:) forControlEvents:UIControlEventTouchUpInside]; 
     pushView.view.alpha = 0;
     [navigationController.view addSubview:pushView.view];
-    
+    [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(startFadeOut:) userInfo:nil repeats:NO];
+	
     [UIView setAnimationsEnabled:YES];
     
     [UIView beginAnimations:nil context:NULL];
@@ -261,7 +262,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 - (void) viewUserProfile:(id)sender {
     DLog(@"user pressed the view user profile push notification button");
-	//[pushView removeFromSupercontroller];
+	[pushView.view removeFromSuperview];
     ProfileViewController *profileController = [[ProfileViewController alloc] initWithNibName:@"ProfileView_v2" bundle:nil];
     profileController.userId = self.pushNotificationUserId;
     [self.navigationController pushViewController:profileController animated:YES];
