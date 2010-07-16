@@ -157,6 +157,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+	if([[FoursquareAPI sharedInstance] isAuthenticated]) [self doInitialDisplay]; //fix for showing the wrong place when user hits the home button
 }
 
 - (void)userResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
