@@ -11,9 +11,8 @@
 #import "Three20/Three20.h"
 
 
-@class GraphObject;
 @interface KBFacebookPostDetailViewController : KBFacebookViewController {
-	GraphObject *fbItem;
+	NSDictionary *fbItem;
 	IBOutlet UIView *postView;
 	IBOutlet UIView *commentView;
 	
@@ -32,10 +31,9 @@
 @property(nonatomic,retain)UIView *postView;
 @property(nonatomic,retain)UIView *commentView;
 
--(void)populate:(GraphObject*)obj;
+-(void)populate:(NSDictionary*)obj;
 -(IBAction)pressLike;
 -(IBAction)touchComment;
 -(void)concatenateMore:(NSString*)urlString;
--(NSString*)findSuitableText:(GraphObject*)_fbItem;
 
 @end

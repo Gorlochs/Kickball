@@ -48,6 +48,8 @@ extern NSString* const kFBRedirectURI;
 	
 	NSMutableDictionary *pictureUrls;
 	UIImage *profilePic;
+	
+	NSMutableDictionary *profileLookup;
 }
 
 @property (nonatomic, retain) FBSession* _session;
@@ -69,7 +71,7 @@ extern NSString* const kFBRedirectURI;
 @property (nonatomic, retain) FBDataDialog* _permissionDialog;
 @property (nonatomic, retain) NSMutableDictionary *pictureUrls;
 @property (nonatomic, retain) UIImage *profilePic;
-
+@property (nonatomic, retain)NSMutableDictionary *profileLookup;
 
 +(FacebookProxy*)instance;
 +(void)loadDefaults;
@@ -92,5 +94,12 @@ extern NSString* const kFBRedirectURI;
 -(NSArray*)refreshHome;
 -(NSArray*)refreshEvents;
 -(bool)isAuthorized;
+
+//convenience stuff
+-(NSString*)findSuitableText:(NSDictionary*)fbItem;
+-(BOOL)doesHavePhoto:(NSDictionary*)fbItem;
+-(NSString*)userNameFrom:(NSNumber*)_id;
+-(NSString*)profilePicUrlFrom:(NSNumber*)_id;
+-(void)cacheIncomingProfiles:(NSArray*)profiles;
 
 @end

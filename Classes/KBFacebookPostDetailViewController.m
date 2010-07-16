@@ -70,22 +70,22 @@
 	[self.postView addSubview:userIcon];
 	[self.postView addSubview:dateLabel];
 	[self.postView addSubview:fbPostText];
-	NSString *bodyText = [self findSuitableText:fbItem];
-	NSString *displayString = [NSString	 stringWithFormat:@"<span class=\"fbBlueText\">%@</span> %@",[(NSDictionary*)[fbItem propertyWithKey:@"from"] objectForKey:@"name"], bodyText];
+	NSString *bodyText = [[FacebookProxy instance] findSuitableText:fbItem];
+	NSString *displayString = [NSString	 stringWithFormat:@"<span class=\"fbBlueText\">%@</span> %@",[[FacebookProxy instance] userNameFrom:[fbItem objectForKey:@"actor_id"]], bodyText];
 	
 	//NSString *displayString = [NSString	 stringWithFormat:@"<span class=\"fbBlueText\">%@</span> %@",[(NSDictionary*)[fbItem propertyWithKey:@"from"] objectForKey:@"name"], [fbItem propertyWithKey:@"message"]];
-	fbPictureUrl = [(NSDictionary*)[fbItem propertyWithKey:@"from"] objectForKey:@"id"];
+	//fbPictureUrl = [(NSDictionary*)[fbItem objectForKey:<#(id)aKey#>:@"from"] objectForKey:@"id"];
 	fbPostText.text = [TTStyledText textFromXHTML:displayString lineBreaks:NO URLs:NO];
-	comments = [[NSArray alloc] initWithArray:(NSArray*)[(NSDictionary*)[fbItem propertyWithKey:@"comments"] objectForKey:@"data"]];
-	NSDictionary *paging = (NSDictionary*)[(NSDictionary*)[fbItem propertyWithKey:@"comments"] objectForKey:@"paging"];
+	//comments = [[NSArray alloc] initWithArray:(NSArray*)[(NSDictionary*)[fbItem propertyWithKey:@"comments"] objectForKey:@"data"]];
+	/*NSDictionary *paging = (NSDictionary*)[(NSDictionary*)[fbItem propertyWithKey:@"comments"] objectForKey:@"paging"];
 	if (paging!=nil) {
 		nextPageURL = [[NSString alloc] initWithString:(NSString*)[paging objectForKey:@"next"]];
 	}else {
 		nextPageURL = nil;
-	}
+	}*/
 
-	numComments = [comments count];
-	dateLabel.text = [[KickballAPI kickballApi] convertDateToTimeUnitString:[[FacebookProxy fbDateFormatter] dateFromString:[fbItem propertyWithKey:@"created_time"]]];
+	numComments = 0;//[comments count];
+	//dateLabel.text = [[KickballAPI kickballApi] convertDateToTimeUnitString:[[FacebookProxy fbDateFormatter] dateFromString:[fbItem propertyWithKey:@"created_time"]]];
 	[fbPostText sizeToFit];
 	CGRect postSize = fbPostText.frame;
 	[fbPostText setNeedsDisplay];
@@ -95,16 +95,16 @@
 	theTableView.frame = CGRectMake(0, frameHeight+93, 320, 460-frameHeight-93);
 	dateLabel.frame = CGRectMake(58, frameHeight-20, 200, 16);
 	
-	NSString *cachedUrl = [[FacebookProxy instance].pictureUrls objectForKey:fbPictureUrl];
-	if (cachedUrl!=nil) {
-		[userIcon setUrlPath:cachedUrl];
-	}else {
-		[NSThread detachNewThreadSelector:@selector(loadPicUrl) toTarget:self withObject:nil];
-	}
+	//NSString *cachedUrl = [[FacebookProxy instance].pictureUrls objectForKey:fbPictureUrl];
+	//if (cachedUrl!=nil) {
+		[userIcon setUrlPath:[[FacebookProxy instance] profilePicUrlFrom:[fbItem objectForKey:@"actor_id"]]];
+	//}else {
+	//	[NSThread detachNewThreadSelector:@selector(loadPicUrl) toTarget:self withObject:nil];
+	//}
 	[theTableView reloadData];
 }
 
--(void)populate:(GraphObject*)obj{
+-(void)populate:(NSDictionary*)obj{
 	fbItem = [obj retain];
 }
 
@@ -184,76 +184,6 @@
 	[self refreshMainFeed];
 }
 
--(NSString*)findSuitableText:(GraphObject*)_fbItem {
-	NSString *message = [_fbItem propertyWithKey:@"message"];
-	NSString *type = [_fbItem propertyWithKey:@"type"];
-	if ([type isEqualToString:@"status"]) {
-		if (message!=nil) {
-			return message;
-		}
-	} else if ([type isEqualToString:@"link"]) {
-		if (message!=nil) {
-			return message;
-		}else {
-			NSString *text = [_fbItem propertyWithKey:@"name"];
-			if (text==nil) {
-				text = [_fbItem propertyWithKey:@"caption"];
-			}
-			
-			//NSString *link = [NSString stringWithFormat:@"%@ %@",text,[_fbItem propertyWithKey:@"link"]];
-			/* NSMutableString *result = [[[NSMutableString alloc] init] autorelease];
-			 if (text!=nil) {
-			 [result appendString:text];
-			 [result appendString:@" "];
-			 }
-			 [result appendString:link];
-			 */
-			return text;
-		}
-		
-	}else if ([type isEqualToString:@"photo"]) {
-		if (message!=nil) {
-			return message;
-		}else {
-			NSString *text = [_fbItem propertyWithKey:@"name"];
-			if (text==nil) {
-				text = [_fbItem propertyWithKey:@"caption"];
-			}
-			/*
-			 NSString *link = [fbItem propertyWithKey:@"link"];
-			 NSMutableString *result = [[[NSMutableString alloc] init] autorelease];
-			 if (text!=nil) {
-			 [result appendString:text];
-			 [result appendString:@" "];
-			 }
-			 [result appendString:link];
-			 */
-			return text;
-		}
-		
-	}else if ([type isEqualToString:@"video"]) {
-		if (message!=nil) {
-			return message;
-		}else {
-			NSString *text = [_fbItem propertyWithKey:@"name"];
-			if (text==nil) {
-				text = [_fbItem propertyWithKey:@"caption"];
-			}
-			/*
-			 NSString *link = [fbItem propertyWithKey:@"link"];
-			 NSMutableString *result = [[[NSMutableString alloc] init] autorelease];
-			 if (text!=nil) {
-			 [result appendString:text];
-			 [result appendString:@" "];
-			 }
-			 [result appendString:link];
-			 */
-			return text;
-		}
-		
-	}
-	return type;
-}
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

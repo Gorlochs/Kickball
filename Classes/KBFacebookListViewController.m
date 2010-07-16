@@ -85,13 +85,16 @@
 	requeryWhenTableGetsToBottom = YES;
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	GraphAPI *graph = [[FacebookProxy instance] newGraph];
-	newsFeed = [graph newsFeed:@"me"];
+	//newsFeed = [graph newsFeed:@"me"];
+	NSDictionary *feed = [graph newMeFeed];
 	DLog("facebook news feed: %@", newsFeed);
-	[newsFeed retain];
-	[nextPageURL release];
-	nextPageURL = nil;
-	nextPageURL = graph._pagingNext;
-	[nextPageURL retain];
+	newsFeed = [[NSMutableArray alloc] initWithArray:[feed objectForKey:@"posts"]];
+	[[FacebookProxy instance] cacheIncomingProfiles:[feed objectForKey:@"profiles"]];
+	//[newsFeed retain];
+	//[nextPageURL release];
+	//nextPageURL = nil;
+	//nextPageURL = graph._pagingNext;
+	//[nextPageURL retain];
 	[graph release];
 	[theTableView reloadData];
 	[self dataSourceDidFinishLoadingNewData];
@@ -99,6 +102,8 @@
 	
 	[self performSelectorOnMainThread:@selector(stopProgressBar) withObject:nil waitUntilDone:NO];
 }
+
+				
 
 -(void)concatenateMore:(NSString*)urlString{
 	if (urlString==nil) {
@@ -167,19 +172,47 @@
     return 0;
 }
 
+-(BOOL)doesHavePhoto:(NSDictionary*)fbItem{
+	NSDictionary *attachment = [fbItem objectForKey:@"attachment"];
+	if (attachment) {
+		NSArray *media  = [attachment objectForKey:@"media"];
+		if (media) {
+			if ([media isKindOfClass:[NSArray class]]) {
+				if ([media count]>0) {
+					NSDictionary *item = [media objectAtIndex:0];
+					NSString *type = [item objectForKey:@"type"];
+					if ([type isEqualToString:@"photo"]) {
+						return YES;
+					}else {
+						return NO;
+					}
+				}else {
+					return NO;
+				}
+
+			}else {
+				return NO;
+			}
+
+		}else {
+			return NO;
+		}
+	}else {
+		return NO;
+	}
+
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (newsFeed!=nil) {
-		GraphObject *fbItem = [newsFeed objectAtIndex:indexPath.row];
-		NSString *bodyText = [self findSuitableText:fbItem];
-		NSString *displayString = [NSString	 stringWithFormat:@"<span class=\"fbBlueText\">%@</span> %@",[(NSDictionary*)[fbItem propertyWithKey:@"from"] objectForKey:@"name"], bodyText];
+		NSDictionary *fbItem = [newsFeed objectAtIndex:indexPath.row];
+		NSString *bodyText = [[FacebookProxy instance] findSuitableText:fbItem];
+		NSString *displayString = [NSString	 stringWithFormat:@"<span class=\"fbBlueText\">%@</span> %@",[[FacebookProxy instance] userNameFrom:[fbItem objectForKey:@"actor_id"]], bodyText];
 
 		heightTester.text = [TTStyledText textFromXHTML:displayString lineBreaks:NO URLs:NO];
 		[heightTester sizeToFit];
 		int baseHeight = 38;
-		NSString *type = [fbItem propertyWithKey:@"type"];
-		if ([type isEqualToString:@"photo"]) {
-			baseHeight+=72;
-		}else if ([type isEqualToString:@"video"]) {
+		BOOL withPhoto = [self doesHavePhoto:fbItem];
+		if (withPhoto) {
 			baseHeight+=72;
 		}
 		return heightTester.frame.size.height+baseHeight > 58 ? heightTester.frame.size.height+baseHeight : 58;
@@ -199,85 +232,6 @@
 	
 }
 
--(NSString*)findSuitableText:(GraphObject*)fbItem {
-	NSString *message = [fbItem propertyWithKey:@"message"];
-	NSString *type = [fbItem propertyWithKey:@"type"];
-	if ([type isEqualToString:@"status"]) {
-		if (message!=nil) {
-			return message;
-		}
-	} else if ([type isEqualToString:@"link"]) {
-		if (message!=nil) {
-			return message;
-		}else {
-			NSString *text = [fbItem propertyWithKey:@"name"];
-			if (text==nil) {
-				text = [fbItem propertyWithKey:@"caption"];
-			}
-			if (text==nil) {
-				text = @" ";
-			}
-			/*
-			NSString *link = [fbItem propertyWithKey:@"link"];
-			NSMutableString *result = [[[NSMutableString alloc] init] autorelease];
-			if (text!=nil) {
-				[result appendString:text];
-				[result appendString:@" "];
-			}
-			[result appendString:link];
-			 */
-			return text;
-		}
-
-	}else if ([type isEqualToString:@"photo"]) {
-		if (message!=nil) {
-			return message;
-		}else {
-			NSString *text = [fbItem propertyWithKey:@"name"];
-			if (text==nil) {
-				text = [fbItem propertyWithKey:@"caption"];
-			}
-			if (text==nil) {
-				text = @" ";
-			}
-			/*
-			NSString *link = [fbItem propertyWithKey:@"link"];
-			NSMutableString *result = [[[NSMutableString alloc] init] autorelease];
-			if (text!=nil) {
-				[result appendString:text];
-				[result appendString:@" "];
-			}
-			[result appendString:link];
-			 */
-			return text;
-		}
-		
-	}else if ([type isEqualToString:@"video"]) {
-		if (message!=nil) {
-			return message;
-		}else {
-			NSString *text = [fbItem propertyWithKey:@"name"];
-			if (text==nil) {
-				text = [fbItem propertyWithKey:@"caption"];
-			}
-			if (text==nil) {
-				text = @" ";
-			}
-			/*
-			NSString *link = [fbItem propertyWithKey:@"link"];
-			NSMutableString *result = [[[NSMutableString alloc] init] autorelease];
-			if (text!=nil) {
-				[result appendString:text];
-				[result appendString:@" "];
-			}
-			[result appendString:link];
-			 */
-			return text;
-		}
-		
-	}
-	return type;
-}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -287,24 +241,32 @@
 	if (cell == nil) {
         cell = [[[KBFacebookNewsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
 	}
-	GraphObject *fbItem = [newsFeed objectAtIndex:indexPath.row];
-	NSString *bodyText = [self findSuitableText:fbItem];
-	NSString *displayString = [NSString	 stringWithFormat:@"<span class=\"fbBlueText\">%@</span> %@",[(NSDictionary*)[fbItem propertyWithKey:@"from"] objectForKey:@"name"], bodyText];
-	
-	NSString *type = [fbItem propertyWithKey:@"type"];
+	NSDictionary *fbItem = [newsFeed objectAtIndex:indexPath.row];
+	NSString *bodyText = [[FacebookProxy instance] findSuitableText:fbItem];
+	NSString *displayString = [NSString	 stringWithFormat:@"<span class=\"fbBlueText\">%@</span> %@",[[FacebookProxy instance] userNameFrom:[fbItem objectForKey:@"actor_id"]], bodyText];
+	/*
+	NSString *type = [fbItem objectForKey:@"type"];
 	if ([type isEqualToString:@"photo"]) {
-		cell.fbPictureUrl = [fbItem propertyWithKey:@"picture"];
+		cell.fbPictureUrl = [fbItem objectForKey:@"picture"];
 	}else if ([type isEqualToString:@"video"]) {
-		cell.fbPictureUrl = [fbItem propertyWithKey:@"picture"];
+		cell.fbPictureUrl = [fbItem objectForKey:@"picture"];
 	} else {
 		cell.fbPictureUrl = nil;
 	}
 
 	//NSString *displayString = [NSString	 stringWithFormat:@"<span class=\"fbBlueText\">%@</span> %@",[(NSDictionary*)[fbItem propertyWithKey:@"from"] objectForKey:@"name"], [fbItem propertyWithKey:@"message"]];
-	cell.fbProfilePicUrl = [(NSDictionary*)[fbItem propertyWithKey:@"from"] objectForKey:@"id"];
+	*/
+	cell.fbProfilePicUrl = [[FacebookProxy instance] profilePicUrlFrom:[fbItem objectForKey:@"actor_id"]];
+
 	cell.tweetText.text = [TTStyledText textFromXHTML:displayString lineBreaks:NO URLs:NO];
-	[cell setNumberOfComments:[(NSArray*)[(NSDictionary*)[fbItem propertyWithKey:@"comments"] objectForKey:@"data"] count]];
-	[cell setDateLabelWithText:[[KickballAPI kickballApi] convertDateToTimeUnitString:[[FacebookProxy fbDateFormatter] dateFromString:[fbItem propertyWithKey:@"created_time"]]]];
+	NSDictionary* commentDict = [fbItem objectForKey:@"comments"];
+	if(commentDict){
+		[cell setNumberOfComments:[(NSNumber*)[commentDict objectForKey:@"count"] intValue]];
+	}else {
+		[cell setNumberOfComments:0];
+	}
+
+	//[cell setDateLabelWithText:[[KickballAPI kickballApi] convertDateToTimeUnitString:[[FacebookProxy fbDateFormatter] dateFromString:[fbItem objectForKey:@"created_time"]]]];
 	[cell.tweetText sizeToFit];
 	[cell.tweetText setNeedsDisplay];
 	return cell;
@@ -316,7 +278,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[theTableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 0) {
-		GraphObject *fbItem = [newsFeed objectAtIndex:indexPath.row];
+		NSDictionary *fbItem = [newsFeed objectAtIndex:indexPath.row];
         KBFacebookPostDetailViewController *detailViewController = [[KBFacebookPostDetailViewController alloc] initWithNibName:@"KBFacebookPostDetailViewController" bundle:nil];
         [detailViewController populate:fbItem];
         [self.navigationController pushViewController:detailViewController animated:YES];

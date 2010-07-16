@@ -24,8 +24,6 @@
 -(void)refreshMainFeed;
 -(void)delayedRefresh;
 //-(void)concatenateMore;
--(NSString*)findSuitableText:(GraphObject*)fbItem;
 -(void)concatenateMore:(NSString*)urlString;
-
 -(IBAction)createPost;
 @end

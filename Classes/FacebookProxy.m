@@ -122,6 +122,7 @@ NSString* const kKeyAccessToken = @"kKeyAccessToken";
 
 @synthesize pictureUrls;
 @synthesize profilePic;
+@synthesize profileLookup;
 
 #pragma mark Singleton Methods
 
@@ -167,6 +168,7 @@ static NSDateFormatter* fbEventDetailDate = NULL;
 		self._permissionDialog = nil;
 		self.pictureUrls = [[NSMutableDictionary alloc] init];
 		self.profilePic = nil;
+		self.profileLookup = [[NSMutableDictionary alloc] init];
 	}
 	return self;
 }
@@ -243,6 +245,8 @@ static NSDateFormatter* fbEventDetailDate = NULL;
 			//if (gFacebookProxy.profilePic==nil) {
 				[gFacebookProxy storeProfilePic];
 			//}
+			gFacebookProxy.profileLookup = [[NSMutableDictionary alloc] init];
+
 			
 		}
 		else
@@ -806,5 +810,77 @@ static NSDateFormatter* fbEventDetailDate = NULL;
 	[graph release];
 }
 
+-(NSString*)findSuitableText:(NSDictionary*)fbItem {
+	NSString *message = [fbItem objectForKey:@"message"];
+	NSDictionary *attachment = [fbItem objectForKey:@"attachment"];
+	if (attachment == nil) {
+		//there was no attachment so this is simply a status update
+		if (message!=nil) {
+			return message;
+		}
+	} else{
+		NSMutableString *suitable = [NSMutableString stringWithString:@""];
+		if (message!=nil) {
+			[suitable appendString:message];
+		}
+		NSString *name = [attachment objectForKey:@"name"];
+		if(name!=nil){
+			[suitable appendFormat:@" %@",name];
+		}
+		NSString *caption = [attachment objectForKey:@"caption"];
+		if (caption!=nil) {
+			[suitable appendFormat:@" %@",caption];
+		}
+		return suitable;
+	}
+
+}
+-(BOOL)doesHavePhoto:(NSDictionary*)fbItem{
+	NSDictionary *attachment = [fbItem objectForKey:@"attachment"];
+	if (attachment) {
+		NSArray *media  = [attachment objectForKey:@"media"];
+		if (media) {
+			if ([media isKindOfClass:[NSArray class]]) {
+				if ([media count]>0) {
+					NSDictionary *item = [media objectAtIndex:0];
+					NSString *type = [item objectForKey:@"type"];
+					if ([type isEqualToString:@"photo"]) {
+						return YES;
+					}else {
+						return NO;
+					}
+				}else {
+					return NO;
+				}
+				
+			}else {
+				return NO;
+			}
+			
+		}else {
+			return NO;
+		}
+	}else {
+		return NO;
+	}
+	
+}
+-(NSString*)userNameFrom:(NSNumber*)_id{
+	NSDictionary *profile = [profileLookup objectForKey:[_id stringValue]];
+	return [profile objectForKey:@"name"];
+}
+-(NSString*)profilePicUrlFrom:(NSNumber*)_id{
+	NSDictionary *profile = [profileLookup objectForKey:[_id stringValue]];
+	return [profile objectForKey:@"pic_square"];
+}
+-(void)cacheIncomingProfiles:(NSArray*)profiles{
+	for (NSDictionary*p in profiles){
+		NSNumber *id = [p objectForKey:@"id"];
+		NSDictionary *exists = [profileLookup objectForKey:[id stringValue]];
+		if (exists==nil) {
+			[profileLookup setObject:p forKey:[id stringValue]];
+		}
+	}
+}
 
 @end

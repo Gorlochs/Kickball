@@ -163,7 +163,7 @@
 
 -(void)setFbProfilePicUrl:(NSString *)_url{
 	//avoid reloading the image if it;s the same one already in use	
-	if ([fbProfilePicUrl isEqualToString:_url]) {
+	/*if ([fbProfilePicUrl isEqualToString:_url]) {
 			return;
 	}
 	[fbProfilePicUrl release];
@@ -175,6 +175,12 @@
 	}else {
 		[NSThread detachNewThreadSelector:@selector(loadPicUrl) toTarget:self withObject:nil];
 	}
+	 */
+	[fbProfilePicUrl release];
+	fbProfilePicUrl = nil;
+	fbProfilePicUrl = [_url copy];
+	[userIcon setUrlPath:fbProfilePicUrl];
+	
 
 }
 
@@ -187,9 +193,6 @@
 		if ([pictureThumb1 superview] !=self) {
 			[self addSubview:pictureThumb1];
 		}
-	}
-	if ([fbPictureUrl isEqualToString:_url]) {
-		return;
 	}
 	
 	[fbPictureUrl release];

@@ -234,6 +234,25 @@ NSString* const kConnectionAlbums = @"albums";
 	return connections;
 }
 
+-(NSDictionary*)newMeFeed{
+	NSData* responseData = nil;
+	NSString* r_string = nil;
+	NSString* method = @"stream.get";
+	NSMutableDictionary *args = nil;
+	args= [NSMutableDictionary dictionaryWithObjectsAndKeys:@"json",@"format",self._accessToken,kArgumentKeyAccessToken,nil];
+	responseData = [self makeSynchronousRest:method args:args verb:kRequestVerbGet];
+	r_string = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+	SBJSON *parser = [SBJSON new];
+	id dict = [parser objectWithString:r_string error:NULL];
+	[parser release];
+	if ([dict isKindOfClass:[NSDictionary class]]) {
+		DLog(@"woohoo parsed a dictionary");
+		return dict;
+	}else {
+		DLog(@"parsed and got an array.  bummer.");
+		return nil;
+	}
+}
 -(NSArray*)eventsFeed:(NSString*)user_id
 {	
 	/*
