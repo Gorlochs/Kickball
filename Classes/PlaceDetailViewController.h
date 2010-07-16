@@ -87,6 +87,7 @@
     TipDetailViewController *tipController;
     
     int currentSpecial;
+	int actionCount;
     
     KBCheckinModalViewController *checkinViewController;
 	

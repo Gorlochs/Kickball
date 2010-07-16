@@ -225,15 +225,6 @@
     [photoController release];
 }
 
-//- (void) displayAllImages {
-//    [FlurryAPI logEvent:@"View All Photos"];
-//    MockPhotoSource *thePhotoSource = [[KickballAPI kickballApi] convertGoodiesIntoPhotoSource:goodies withTitle:venue.name];
-//    KBPhotoViewController *photoController = [[KBPhotoViewController alloc] initWithPhotoSource:thePhotoSource];
-//    photoController.goodies = goodies;
-//    [self.navigationController pushViewController:photoController animated:YES];
-//    [photoController release];
-//}
-
 - (void) displayTodoTipMessage:(NSNotification *)inNotification {
     KBMessage *msg = [[KBMessage alloc] initWithMember:@"Kickball Notification" andMessage:@"Your todo/tip was sent"];
     [self displayPopupMessage:msg];
@@ -263,10 +254,9 @@
 		
 		theTableView.hidden = NO;
         
-        // FIXME: this checks the user in, but doesn't give the user any feedback that they are being checked in.
         if (doCheckin) {
 			[self startProgressBar:@"Checking into this venue..."];
-			// seems idiotic, but you can turn off insta checkin to foursquare
+			// seems idiotic, but you can turn off insta checkin to foursquare. (i agree. stupid.)
 			if ([[KBAccountManager sharedInstance] defaultPostToFoursquare]) {
 				//cross post to foursquare
 				[[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:venue.venueid 
@@ -289,26 +279,23 @@
 				[Utilities putGoogleMapsWallPostWithMessage:msg andVenue:venue];
 				
 			}
-			// FIXME: after all three are called (or whichever need to be called), then call [self presentCheckinOverlayWithCheckin]
         }
     }
 }
 
 - (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     DLog(@"instring: %@", inString);
+	
     FSCheckin *theCheckin = [[FoursquareAPI checkinFromResponseXML:inString] retain];
 	[self stopProgressBar];
-	
-	// it was either this or pull out the 
-    //NSDictionary *userInfo = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:theCheckin, nil] 
-    //                                                     forKeys:[NSArray arrayWithObjects:@"checkin", nil]];
-    //[[NSNotificationCenter defaultCenter] postNotificationName:@"checkedIn" object:self userInfo:userInfo];
     
 	self.venueToPush = theCheckin.venue;
-	[theCheckin release];
     if ([self getAuthenticatedUser].isPingOn) {
         [self sendPushNotification];
     }
+	
+	[self presentCheckinOverlayWithCheckin:[theCheckin retain]];
+	[theCheckin release];
 }
 
 - (void) prepViewWithVenueInfo:(FSVenue*)venueToDisplay {
@@ -322,16 +309,10 @@
     fullSpan.longitudeDelta = 0.02;
     
     CLLocationCoordinate2D location = venueToDisplay.location;
-    
-//    double tmp = [[NSNumber numberWithDouble:location.longitude] doubleValue];
-//    // need to shift the pin location because the pin needs to be centered in the right box 
-//    // but the map extends underneath the mayor section of the table cell
-//    CLLocationCoordinate2D shiftedLocation = {latitude: venueToDisplay.location.latitude , longitude: (CLLocationDegrees)(tmp - 0.0045) };
-    
+        
     fullRegion.span = fullSpan;
     fullRegion.center = location;
     region.span = span;
-//    region.center = shiftedLocation;
     region.center = location;
     
     [smallMapView setRegion:region animated:NO];
@@ -1053,7 +1034,7 @@
         if ([noteworthyCheckin length] > 0) {
             [noteworthyCheckin appendString:[NSString stringWithFormat:@" and I unlocked the %@ badge", badge.badgeName]];
         } else {
-            [noteworthyCheckin appendString:[NSString stringWithFormat:@"I just unlocked the %@ badge at %@", badge.badgeName]];
+            [noteworthyCheckin appendString:[NSString stringWithFormat:@"I just unlocked the %@ badge at %@", badge.badgeName, venue.name]];
         }
         NSURL *url = [NSURL URLWithString:badge.icon];
         NSData *data = [NSData dataWithContentsOfURL:url];
