@@ -421,8 +421,12 @@
             }
             break;
         case SECTION_YESTERDAY_CHECKINS:
-			sectionHeaderView.leftHeaderLabel.text = @"Older";
-			sectionHeaderView.rightHeaderLabel.text = @"Days Ago";
+            if ([yesterdayCheckins count] > 0) {
+                sectionHeaderView.leftHeaderLabel.text = @"Older";
+                sectionHeaderView.rightHeaderLabel.text = @"Days Ago";
+            } else {
+                return nil;
+            }
             break;
         case SECTION_NONCITY_RECENT_CHECKINS:
             if ([nonCityRecentCheckins count] > 0) {
@@ -441,8 +445,12 @@
             }
             break;
         case SECTION_NONCITY_YESTERDAY_CHECKINS:
-			sectionHeaderView.leftHeaderLabel.text = @"Older Check-ins in Other Cities";
-			sectionHeaderView.rightHeaderLabel.text = @"Days Ago";
+            if ([nonCityYesterdayCheckins count] > 0) {
+                sectionHeaderView.leftHeaderLabel.text = @"Older Check-ins in Other Cities";
+                sectionHeaderView.rightHeaderLabel.text = @"Days Ago";
+            } else {
+                return nil;
+            }
             break;
         case SECTION_FOOTER:  // footer cell
             return nil;
