@@ -130,9 +130,7 @@
 	return [NSString stringWithFormat:@"I just checked into %@. %@", venue.name, [Utilities getShortenedUrlFromFoursquareVenueId:venue.venueid]];
 }
 
-- (void) checkin {
-    [checkinTextField resignFirstResponder];
-    [self startProgressBar:@"Checking in..."];
+- (void)delayedCheckin {
     actionCount = 1;
     
     [[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:venue.venueid 
@@ -169,6 +167,12 @@
 	}
     
     [FlurryAPI logEvent:@"checked in"];
+}
+
+- (void)checkin {
+    [checkinTextField resignFirstResponder];
+    [self startProgressBar:@"Checking in..."];
+    [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(delayedCheckin) userInfo:nil repeats:NO];
 }
 
 - (void) uploadToTweetPhoto {

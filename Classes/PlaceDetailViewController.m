@@ -80,6 +80,7 @@
 	theTableView.hidden = YES;
     
     [super viewDidLoad];
+    checkinViewController = nil;
     photoManager = [KBPhotoManager sharedInstance];
     photoManager.delegate = self;
     
@@ -967,6 +968,7 @@
 }
 
 - (void) openCheckinView {
+    if (checkinViewController) [checkinViewController release];
     checkinViewController = [[KBCheckinModalViewController alloc] initWithNibName:@"CheckinModalView" bundle:nil];
     checkinViewController.venue = venue;
     [self presentModalViewController:checkinViewController animated:YES];
