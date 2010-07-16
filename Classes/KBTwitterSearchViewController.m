@@ -50,7 +50,6 @@
 	if (searchResults) {
 		twitterArray = [[[searchResults objectAtIndex:0] objectForKey:@"results"] retain];
 		if ([twitterArray count] > 1) {
-			
 			NSMutableArray *tempTweetArray = [[NSMutableArray alloc] initWithCapacity:[twitterArray count]];
 			for (NSDictionary *dict in twitterArray) {
 				KBSearchResult *tweet = [[KBSearchResult alloc] initWithDictionary:dict];
@@ -77,7 +76,7 @@
 			
 			noResultsView.hidden = YES;
 		} else {
-			noResultsView.hidden = NO;
+            if (!tweets) noResultsView.hidden = NO;
 		}
 	} else {
         requeryWhenTableGetsToBottom = NO;
@@ -125,11 +124,13 @@
 #pragma mark UITextFieldDelegate methods
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if (tweets) [tweets release];
+    tweets = nil;
+    pageNum = 0;
     searchTerms = theSearchBar.text;
     [theSearchBar resignFirstResponder];
     [self showStatuses];
     [KBTwitterManager twitterManager].searchTerm = theSearchBar.text;
-    
     return YES;
 }
 
