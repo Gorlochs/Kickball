@@ -967,43 +967,139 @@
 }
 
 - (void) presentCheckinOverlayWithCheckin:(FSCheckin*)aCheckin {
-    NSMutableString *checkinText = [[NSMutableString alloc] initWithCapacity:1];
     NSMutableString *noteworthyCheckin = [[NSMutableString alloc] initWithString:@""];
-    if (aCheckin.mayor.user == nil && [aCheckin.mayor.mayorTransitionType isEqualToString:@"nochange"]) {
-        [checkinText appendString:[NSString stringWithFormat:@"You're still the mayor of %@! \n\n", venue.name]];
-    } else if ([aCheckin.mayor.mayorTransitionType isEqualToString:@"stolen"] || [aCheckin.mayor.mayorTransitionType isEqualToString:@"new"]) {
-        if ([[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"stolen"]) {
-            [noteworthyCheckin setString:@"I just became mayor"];
-            [checkinText appendString:[NSString stringWithFormat:@"Congrats! %@ is yours with %d check-ins and %@ lost their crown. \n\n", 
-                                      aCheckin.venue.name, 
-                                      aCheckin.mayor.numCheckins, 
-                                      aCheckin.mayor.user.firstnameLastInitial]];
-        } else {
-            [checkinText appendString:[NSString stringWithFormat:@"%@ \n\n", aCheckin.mayor.mayorCheckinMessage]];
-        }
-    }
-
+    
+    // create view
+    UIWindow* keywindow = [[UIApplication sharedApplication] keyWindow];
+    UIView *checkinView = [[UIView alloc] initWithFrame:[keywindow frame]];
+    checkinView.backgroundColor = [UIColor blackColor];
+    checkinView.alpha = 0.85;
+    checkinView.opaque = NO;
+    
+    // create title
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(17, 5, 291, 60)];
+    [titleLabel setFont:[UIFont boldSystemFontOfSize:42]];
+    [titleLabel setTextColor:[UIColor colorWithRed:14/255.0 green:140/255.0 blue:192/255.0 alpha:1]];
+    [titleLabel setNumberOfLines:1];
+    [titleLabel setMinimumFontSize:10];
+    [titleLabel setBackgroundColor:[UIColor clearColor]];
+    [titleLabel setText:@"Success!"];
+    [checkinView addSubview:titleLabel];
+    [titleLabel release];
+    
+    // create mayorship badge
+//    if (aCheckin.mayor.user == nil && [aCheckin.mayor.mayorTransitionType isEqualToString:@"nochange"]) {
+//        [checkinText appendString:[NSString stringWithFormat:@"You're still the mayor of %@! \n\n", venue.name]];
+//    } else if ([aCheckin.mayor.mayorTransitionType isEqualToString:@"stolen"] || [aCheckin.mayor.mayorTransitionType isEqualToString:@"new"]) {
+//        if ([[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"stolen"]) {
+//            [noteworthyCheckin setString:@"I just became mayor"];
+//            [checkinText appendString:[NSString stringWithFormat:@"Congrats! %@ is yours with %d check-ins and %@ lost their crown. \n\n", 
+//                                       aCheckin.venue.name, 
+//                                       aCheckin.mayor.numCheckins, 
+//                                       aCheckin.mayor.user.firstnameLastInitial]];
+//        } else {
+//            [checkinText appendString:[NSString stringWithFormat:@"%@ \n\n", aCheckin.mayor.mayorCheckinMessage]];
+//        }
+//    }
+    
+    // loop through badges
+    int i = 0;
     for (FSBadge *badge in aCheckin.badges) {
-        if ([noteworthyCheckin length] > 0) [noteworthyCheckin appendString:[NSString stringWithFormat:@" and I unlocked the %@ badge", badge.badgeName]];
-        else [noteworthyCheckin appendString:[NSString stringWithFormat:@"I just unlocked the %@ badge at %@", badge.badgeName]];
-        [checkinText appendString:[NSString stringWithFormat:@"%@: %@ \n\n", badge.badgeName, badge.badgeDescription]];
+        if ([noteworthyCheckin length] > 0) {
+            [noteworthyCheckin appendString:[NSString stringWithFormat:@" and I unlocked the %@ badge", badge.badgeName]];
+        } else {
+            [noteworthyCheckin appendString:[NSString stringWithFormat:@"I just unlocked the %@ badge at %@", badge.badgeName]];
+        }
+        NSURL *url = [NSURL URLWithString:badge.icon];
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        UIImage *img = [[UIImage alloc] initWithData:data];
+        UIImageView *badgeImageView = [[UIImageView alloc] initWithImage:img];
+        badgeImageView.frame = CGRectMake(17, 70 + 50*i, 50, 50);
+        [checkinView addSubview:badgeImageView];
+        [badgeImageView release];
+        
+        IFTweetLabel *messageLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(75.0f, 70.0f + 50*i, 280.0f, 60.0f)];
+        [messageLabel setFont:[UIFont systemFontOfSize:14.0f]];
+        [messageLabel setTextColor:[UIColor whiteColor]];
+        [messageLabel setBackgroundColor:[UIColor clearColor]];
+        [messageLabel setNumberOfLines:0];
+        [messageLabel setText:[NSString stringWithFormat:@"%@: %@ \n\n", badge.badgeName, badge.badgeDescription]];
+        [checkinView addSubview:messageLabel];
+        [messageLabel release];
+        i++;
     }
-    [checkinText appendFormat:@"%@ \n\n", aCheckin.message];
+    
+    // display message
+    IFTweetLabel *messageLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(17.0f, 70.0 + 50*i + 15, 280.0f, 100.0f)];
+    [messageLabel setFont:[UIFont systemFontOfSize:14.0f]];
+    [messageLabel setTextColor:[UIColor whiteColor]];
+    [messageLabel setBackgroundColor:[UIColor clearColor]];
+    [messageLabel setNumberOfLines:0];
+    [messageLabel setText:aCheckin.message];
+    [checkinView addSubview:messageLabel];
+    [messageLabel release];
+    
+    // loop through scores to display points
+    IFTweetLabel *scoreLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(17.0f, 70.0 + 50*i + 100 + 15, 280.0f, 100.0f)];
+    [scoreLabel setFont:[UIFont systemFontOfSize:14.0f]];
+    [scoreLabel setTextColor:[UIColor whiteColor]];
+    [scoreLabel setBackgroundColor:[UIColor clearColor]];
+    [scoreLabel setNumberOfLines:0];
+    [scoreLabel setText:aCheckin.message];
+    NSMutableString *scoreText = [[NSMutableString alloc] initWithCapacity:1];
     for (FSScore *score in aCheckin.scoring.scores) {
-        [checkinText appendString:[NSString stringWithFormat:@"+%d %@ \n", score.points, score.message]];
+        [scoreText appendString:[NSString stringWithFormat:@"+%d %@ \n", score.points, score.message]];
     }
-	if (isFacebookOn && [noteworthyCheckin length] > 0) {
-        [noteworthyCheckin appendString:[NSString stringWithFormat:@" at %@! %@", venue.name, [Utilities getShortenedUrlFromFoursquareVenueId:venue.venueid]]];
-		GraphAPI *graph = [[FacebookProxy instance] newGraph];
-		[graph putWallPost:@"me" message:noteworthyCheckin attachment:nil];
-		[graph release];
-	}
-    DLog(@"checkin text: %@", checkinText);
-    KBMessage *message = [[KBMessage alloc] initWithMember:@"Check-in successful" andMessage:checkinText];
-    [self displayPopupMessage:message];
-    [checkinText release];
-    [message release];
-    [noteworthyCheckin release];
+    [scoreLabel setText:scoreText];
+    [checkinView addSubview:scoreLabel];
+    [scoreLabel release];
+    
+    // do facebook stuff
+    
+    
+    // add view to main view
+    [self.view addSubview:checkinView];
+    
+    
+    
+    
+//    NSMutableString *checkinText = [[NSMutableString alloc] initWithCapacity:1];
+//    NSMutableString *noteworthyCheckin = [[NSMutableString alloc] initWithString:@""];
+//    if (aCheckin.mayor.user == nil && [aCheckin.mayor.mayorTransitionType isEqualToString:@"nochange"]) {
+//        [checkinText appendString:[NSString stringWithFormat:@"You're still the mayor of %@! \n\n", venue.name]];
+//    } else if ([aCheckin.mayor.mayorTransitionType isEqualToString:@"stolen"] || [aCheckin.mayor.mayorTransitionType isEqualToString:@"new"]) {
+//        if ([[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"stolen"]) {
+//            [noteworthyCheckin setString:@"I just became mayor"];
+//            [checkinText appendString:[NSString stringWithFormat:@"Congrats! %@ is yours with %d check-ins and %@ lost their crown. \n\n", 
+//                                      aCheckin.venue.name, 
+//                                      aCheckin.mayor.numCheckins, 
+//                                      aCheckin.mayor.user.firstnameLastInitial]];
+//        } else {
+//            [checkinText appendString:[NSString stringWithFormat:@"%@ \n\n", aCheckin.mayor.mayorCheckinMessage]];
+//        }
+//    }
+//
+//    for (FSBadge *badge in aCheckin.badges) {
+//        if ([noteworthyCheckin length] > 0) [noteworthyCheckin appendString:[NSString stringWithFormat:@" and I unlocked the %@ badge", badge.badgeName]];
+//        else [noteworthyCheckin appendString:[NSString stringWithFormat:@"I just unlocked the %@ badge at %@", badge.badgeName]];
+//        [checkinText appendString:[NSString stringWithFormat:@"%@: %@ \n\n", badge.badgeName, badge.badgeDescription]];
+//    }
+//    [checkinText appendFormat:@"%@ \n\n", aCheckin.message];
+//    for (FSScore *score in aCheckin.scoring.scores) {
+//        [checkinText appendString:[NSString stringWithFormat:@"+%d %@ \n", score.points, score.message]];
+//    }
+//	if (isFacebookOn && [noteworthyCheckin length] > 0) {
+//        [noteworthyCheckin appendString:[NSString stringWithFormat:@" at %@! %@", venue.name, [Utilities getShortenedUrlFromFoursquareVenueId:venue.venueid]]];
+//		GraphAPI *graph = [[FacebookProxy instance] newGraph];
+//		[graph putWallPost:@"me" message:noteworthyCheckin attachment:nil];
+//		[graph release];
+//	}
+//    DLog(@"checkin text: %@", checkinText);
+//    KBMessage *message = [[KBMessage alloc] initWithMember:@"Check-in successful" andMessage:checkinText];
+//    [self displayPopupMessage:message];
+//    [checkinText release];
+//    [message release];
+//    [noteworthyCheckin release];
     self.venueToPush = aCheckin.venue;
 }
 

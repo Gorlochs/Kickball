@@ -163,7 +163,9 @@ NSInteger eventsDateSort(id e1, id e2, void *context) {
 	[theTableView reloadData];
 	if ([eventsFeed count] == 0) {
 		noResultsView.hidden = NO;
-	}
+	} else {
+        noResultsView.hidden = YES;
+    }
 	
 	//sort array based on date 
 	//make sub-array of only future dates
