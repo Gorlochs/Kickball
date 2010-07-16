@@ -275,11 +275,19 @@
 															withTarget:self 
 															 andAction:@selector(checkinResponseReceived:withResponseString:)];
 			}
+			NSString *msg = [NSString stringWithFormat:@"I just checked into %@. %@", venue.name, [Utilities getShortenedUrlFromFoursquareVenueId:venue.venueid]];
 			if ([[KBAccountManager sharedInstance] usesTwitter] && [[KBAccountManager sharedInstance] defaultPostToTwitter]) {
 				//cross post to twitter
+				[[[KBTwitterManager twitterManager] twitterEngine] sendUpdate:msg
+																 withLatitude:[[KBLocationManager locationManager] latitude] 
+																withLongitude:[[KBLocationManager locationManager] longitude]];
+				
+				
 			}
 			if ([[KBAccountManager sharedInstance] usesFacebook] && [[KBAccountManager sharedInstance] defaultPostToFacebook]) {
 				//cross post to facebook
+				[Utilities putGoogleMapsWallPostWithMessage:msg andVenue:venue];
+				
 			}
 			// FIXME: after all three are called (or whichever need to be called), then call [self presentCheckinOverlayWithCheckin]
         }
