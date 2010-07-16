@@ -20,6 +20,12 @@
 #define DEFAULT_POST_TO_FACEBOOK @"defaultFacebook"
 #define DEFAULT_POST_TO_FOURSQUARE @"defaultFoursquare"
 #define FIRST_RUN_COMPLETED @"firstRunCompleted"
+#define TW_POLLINATES_4SQ @"twitterPollinatesFoursquare"
+#define TW_POLLINATES_FB @"twitterPollinatesFacebook"
+#define FB_POLLINATES_4SQ @"facebookPollinatesFoursquare"
+#define FB_POLLINATES_TW @"facebookPollinatesTwitter"
+#define FOURSQ_POLLINATES_TW @"foursquarePollinatesTwitter"
+#define FOURSQ_POLLINATES_FB @"foursquarePollinatesFacebook"
 
 static KBAccountManager *accountManager = nil;
 static BOOL initialized = NO;
@@ -123,6 +129,54 @@ static BOOL initialized = NO;
 -(BOOL)defaultPostToFoursquare{
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	return [userDefaults boolForKey:DEFAULT_POST_TO_FOURSQUARE];
+}
+-(BOOL)twitterPollinatesFoursquare{
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	return [userDefaults boolForKey:TW_POLLINATES_4SQ];
+}
+-(BOOL)twitterPollinatesFacebook{
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	return [userDefaults boolForKey:TW_POLLINATES_FB];
+}
+-(BOOL)facebookPollinatesFoursquare{
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	return [userDefaults boolForKey:FB_POLLINATES_4SQ];
+}
+-(BOOL)facebookPollinatesTwitter{
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	return [userDefaults boolForKey:FB_POLLINATES_TW];
+}
+-(BOOL)foursquarePollinatesTwitter{
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	return [userDefaults boolForKey:FOURSQ_POLLINATES_TW];
+}
+-(BOOL)foursquarePollinatesFacebook{
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	return [userDefaults boolForKey:FOURSQ_POLLINATES_FB];
+}
+-(void)setTwitterPollinatesFoursquare:(BOOL)should{
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	[userDefaults setBool:should forKey:TW_POLLINATES_4SQ];
+}
+-(void)setTwitterPollinatesFacebook:(BOOL)should{
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	[userDefaults setBool:should forKey:TW_POLLINATES_FB];
+}
+-(void)setFacebookPollinatesFoursquare:(BOOL)should{
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	[userDefaults setBool:should forKey:FB_POLLINATES_4SQ];
+}
+-(void)setFacebookPollinatesTwitter:(BOOL)should{
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	[userDefaults setBool:should forKey:FB_POLLINATES_TW];
+}
+-(void)setFoursquarePollinatesTwitter:(BOOL)should{
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	[userDefaults setBool:should forKey:FOURSQ_POLLINATES_TW];
+}
+-(void)setFoursquarePollinatesFacebook:(BOOL)should{
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	[userDefaults setBool:should forKey:FOURSQ_POLLINATES_FB];
 }
 #pragma mark -
 #pragma mark singleton stuff

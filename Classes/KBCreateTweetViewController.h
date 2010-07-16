@@ -55,6 +55,8 @@
 //- (IBAction) cancelCreate;
 - (IBAction) toggleFacebook;
 - (IBAction) toggleFoursquare;
+-(void) updateFacebookButt;
+-(void) updateFoursquareButt;
 - (IBAction) toggleGeotag;
 - (void) decrementActionCount;
 - (void) closeUpShop;

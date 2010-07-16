@@ -34,4 +34,16 @@
 - (BOOL) usesFacebookOrHasNotDecided;
 - (BOOL) usesTwitterOrHasNotDecided;
 
+- (BOOL) twitterPollinatesFoursquare;
+- (BOOL) twitterPollinatesFacebook;
+- (BOOL) facebookPollinatesFoursquare;
+- (BOOL) facebookPollinatesTwitter;
+- (BOOL) foursquarePollinatesTwitter;
+- (BOOL) foursquarePollinatesFacebook;
+- (void) setTwitterPollinatesFoursquare:(BOOL)should;
+- (void) setTwitterPollinatesFacebook:(BOOL)should;
+- (void) setFacebookPollinatesFoursquare:(BOOL)should;
+- (void) setFacebookPollinatesTwitter:(BOOL)should;
+- (void) setFoursquarePollinatesTwitter:(BOOL)should;
+- (void) setFoursquarePollinatesFacebook:(BOOL)should;
 @end

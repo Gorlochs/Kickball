@@ -35,21 +35,22 @@
 	
 	// mini-hack to turn off the foursquare button. we might decide to keep it on by default
 	//isFoursquareOn = YES; --commented out...  calling the toggle will actually turn it on. so this was actually turning it off.
-	isFoursquareOn = ![[KBAccountManager sharedInstance] defaultPostToFoursquare];
-	if ([[KBAccountManager sharedInstance] usesFoursquare]) {
-		[self toggleFoursquare];
-	}else {
-		isFacebookOn = NO;
+	isFoursquareOn = [[KBAccountManager sharedInstance] twitterPollinatesFoursquare];
+	if (![[KBAccountManager sharedInstance] usesFoursquare]) {
+		isFoursquareOn = NO;
 		foursquareButton.enabled = NO;
+		foursquareButton.adjustsImageWhenDisabled = NO;
 	}
-	
-	isFacebookOn = ![[KBAccountManager sharedInstance] defaultPostToFacebook];
-	if ([[KBAccountManager sharedInstance] usesFacebook]) {
-		[self toggleFacebook];
-	}else {
+	[self updateFoursquareButt];
+
+	isFacebookOn = [[KBAccountManager sharedInstance] twitterPollinatesFacebook];
+	if (![[KBAccountManager sharedInstance] usesFacebook]) {
 		isFacebookOn = NO;
 		facebookButton.enabled = NO;
+		facebookButton.adjustsImageWhenDisabled = NO;
+
 	}
+	[self updateFacebookButt];
 
 	//[self toggleFoursquare];
 	
@@ -208,27 +209,32 @@
 }
 
 - (void) toggleFoursquare {
-    if (isFoursquareOn) {
-        // turn 4sq off
-        [foursquareButton setImage:[UIImage imageNamed:@"send4SQ02.png"] forState:UIControlStateNormal];
-        [foursquareButton setImage:[UIImage imageNamed:@"send4SQ01.png"] forState:UIControlStateHighlighted];
-    } else {
-        // turn 4sq on
+    isFoursquareOn = !isFoursquareOn;
+	[self updateFoursquareButt];
+}
+
+-(void) updateFoursquareButt{
+	if (isFoursquareOn) {
         [foursquareButton setImage:[UIImage imageNamed:@"send4SQ01.png"] forState:UIControlStateNormal];
         [foursquareButton setImage:[UIImage imageNamed:@"send4SQ02.png"] forState:UIControlStateHighlighted];
+    } else {
+        [foursquareButton setImage:[UIImage imageNamed:@"send4SQ02.png"] forState:UIControlStateNormal];
+        [foursquareButton setImage:[UIImage imageNamed:@"send4SQ01.png"] forState:UIControlStateHighlighted];
     }
-    isFoursquareOn = !isFoursquareOn;
 }
 
 - (void) toggleFacebook {
-    if (isFacebookOn) {
-        [facebookButton setImage:[UIImage imageNamed:@"sendFB02.png"] forState:UIControlStateNormal];
-        [facebookButton setImage:[UIImage imageNamed:@"sendFB01.png"] forState:UIControlStateHighlighted];
-    } else {
+    isFacebookOn = !isFacebookOn;
+	[self updateFacebookButt];
+}
+-(void) updateFacebookButt{
+	if (isFacebookOn) {
         [facebookButton setImage:[UIImage imageNamed:@"sendFB01.png"] forState:UIControlStateNormal];
         [facebookButton setImage:[UIImage imageNamed:@"sendFB02.png"] forState:UIControlStateHighlighted];
-    }
-    isFacebookOn = !isFacebookOn;
+    } else {
+        [facebookButton setImage:[UIImage imageNamed:@"sendFB02.png"] forState:UIControlStateNormal];
+        [facebookButton setImage:[UIImage imageNamed:@"sendFB01.png"] forState:UIControlStateHighlighted];
+    }	
 }
 
 - (void) toggleGeotag {

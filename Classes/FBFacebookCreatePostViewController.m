@@ -43,21 +43,19 @@
 	photoManager = [KBPhotoManager sharedInstance];
     photoManager.delegate = self;
 	photoImage = nil;
-	isFoursquareOn = ![[KBAccountManager sharedInstance] defaultPostToFoursquare];
-	if ([[KBAccountManager sharedInstance] usesFoursquare]) {
-		[self toggleFoursquare];
-	}else {
+	isFoursquareOn = [[KBAccountManager sharedInstance] facebookPollinatesFoursquare];
+	if (![[KBAccountManager sharedInstance] usesFoursquare]) {
 		isFoursquareOn = NO;
 		foursquareButton.enabled = NO;
 	}
+	[self updateFoursquareButton];
 	
-	isTwitterOn = ![[KBAccountManager sharedInstance] defaultPostToTwitter];
-	if ([[KBAccountManager sharedInstance] usesTwitter]) {
-		[self toggleTwitter];
-	}else {
+	isTwitterOn = [[KBAccountManager sharedInstance] facebookPollinatesTwitter];
+	if (![[KBAccountManager sharedInstance] usesTwitter]) {
 		isTwitterOn = NO;
 		twitterButton.enabled = NO;
 	}
+	[self updateTwitterButton];
 }
 
 
@@ -159,27 +157,33 @@
 
 
 - (void) toggleFoursquare {
-    if (isFoursquareOn) {
-        // turn 4sq off
-        [foursquareButton setImage:[UIImage imageNamed:@"send4SQ02.png"] forState:UIControlStateNormal];
-        [foursquareButton setImage:[UIImage imageNamed:@"send4SQ01.png"] forState:UIControlStateHighlighted];
-    } else {
-        // turn 4sq on
+    isFoursquareOn = !isFoursquareOn;
+	[self updateFoursquareButton];
+	[[KBAccountManager sharedInstance] setFacebookPollinatesFoursquare:isFoursquareOn];
+}
+-(void) updateFoursquareButton{
+	if (isFoursquareOn) {
         [foursquareButton setImage:[UIImage imageNamed:@"send4SQ01.png"] forState:UIControlStateNormal];
         [foursquareButton setImage:[UIImage imageNamed:@"send4SQ02.png"] forState:UIControlStateHighlighted];
+    } else {
+        [foursquareButton setImage:[UIImage imageNamed:@"send4SQ02.png"] forState:UIControlStateNormal];
+        [foursquareButton setImage:[UIImage imageNamed:@"send4SQ01.png"] forState:UIControlStateHighlighted];
     }
-    isFoursquareOn = !isFoursquareOn;
 }
 
 - (void) toggleTwitter {
-    if (isTwitterOn) {
-        [twitterButton setImage:[UIImage imageNamed:@"sendTW02.png"] forState:UIControlStateNormal];
-        [twitterButton setImage:[UIImage imageNamed:@"sendTW01.png"] forState:UIControlStateHighlighted];
-    } else {
+    isTwitterOn = !isTwitterOn;
+	[self updateTwitterButton];
+	[[KBAccountManager sharedInstance] setFacebookPollinatesTwitter:isTwitterOn];
+}
+-(void) updateTwitterButton{
+	if (isTwitterOn) {
         [twitterButton setImage:[UIImage imageNamed:@"sendTW01.png"] forState:UIControlStateNormal];
         [twitterButton setImage:[UIImage imageNamed:@"sendTW02.png"] forState:UIControlStateHighlighted];
+    } else {
+        [twitterButton setImage:[UIImage imageNamed:@"sendTW02.png"] forState:UIControlStateNormal];
+        [twitterButton setImage:[UIImage imageNamed:@"sendTW01.png"] forState:UIControlStateHighlighted];
     }
-    isTwitterOn = !isTwitterOn;
 }
 #pragma mark -
 #pragma mark UITextViewDelegate methods

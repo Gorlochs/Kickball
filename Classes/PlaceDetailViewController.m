@@ -265,11 +265,21 @@
         // FIXME: this checks the user in, but doesn't give the user any feedback that they are being checked in.
         if (doCheckin) {
 			[self startProgressBar:@"Checking into this venue..."];
-			[[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:venue.venueid 
-														  andShout:@""
-														   offGrid:NO
-														withTarget:self 
-														 andAction:@selector(checkinResponseReceived:withResponseString:)];
+			// seems idiotic, but you can turn off insta checkin to foursquare
+			if ([[KBAccountManager sharedInstance] defaultPostToFoursquare]) {
+				//cross post to foursquare
+				[[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:venue.venueid 
+															  andShout:@""
+															   offGrid:NO
+															withTarget:self 
+															 andAction:@selector(checkinResponseReceived:withResponseString:)];
+			}
+			if ([[KBAccountManager sharedInstance] usesTwitter] && [[KBAccountManager sharedInstance] defaultPostToTwitter]) {
+				//cross post to twitter
+			}
+			if ([[KBAccountManager sharedInstance] usesFacebook] && [[KBAccountManager sharedInstance] defaultPostToFacebook]) {
+				//cross post to facebook
+			}
         }
     }
 }
