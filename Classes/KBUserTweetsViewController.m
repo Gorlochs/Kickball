@@ -48,6 +48,11 @@
     }
 }
 
+-(void) viewDidAppear:(BOOL)animated{
+	[super viewDidAppear:animated];
+    twitterManager.delegate = self; //make sure we can keep scrolling
+}
+
 - (void) executeQuery:(int)pageNumber {
     if (self.userDictionary) {
         [twitterEngine getUserTimelineFor:[self.userDictionary objectForKey:@"screen_name"] sinceID:0 startingAtPage:pageNumber count:25];
