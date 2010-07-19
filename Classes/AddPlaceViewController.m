@@ -183,13 +183,13 @@
         
         [self startProgressBar:@"Adding new venue and checking you in..."];
         [[FoursquareAPI sharedInstance] addNewVenue:venue.name
-                                          atAddress:venue.venueAddress
-                                     andCrossstreet:venue.crossStreet 
-                                            andCity:venue.city
-                                           andState:venue.venueState
-                                     andOptionalZip:venue.zip
-                                  andRequiredCityId:venue.city 
-                                   andOptionalPhone:venue.phone 
+                                          atAddress:[Utilities safeString:venue.venueAddress]
+                                     andCrossstreet:[Utilities safeString:venue.crossStreet]
+                                            andCity:[Utilities safeString:venue.city]
+                                           andState:[Utilities safeString:venue.venueState]
+                                     andOptionalZip:[Utilities safeString:venue.zip]
+                                  andRequiredCityId:[Utilities safeString:venue.city]
+                                   andOptionalPhone:[Utilities safeString:venue.phone]
                                          withTarget:self 
                                           andAction:@selector(newVenueResponseReceived:withResponseString:)];
 //    } else {
