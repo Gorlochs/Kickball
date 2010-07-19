@@ -17,7 +17,7 @@
     
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTweetNotification:) name:IFTweetLabelURLNotification object:nil];
     
-    cachingKey = kKBTwitterDirectMessagesKey;
+    cachingKey = [kKBTwitterDirectMessagesKey retain];
     [self startProgressBar:@"Retrieving more tweets..."];
     [self showStatuses];
     

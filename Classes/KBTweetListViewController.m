@@ -48,7 +48,7 @@
     twitterManager.delegate = self;
     _inModalTweetView = NO;
     pageNum = 1;
-    cachingKey = kKBTwitterTimelineKey;
+    cachingKey = [kKBTwitterTimelineKey retain];
     pageViewType = KBPageViewTypeList;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didStartModalTweet) name:@"didStartModalTweet" object:nil];    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginCanceled) name:@"loginCanceled" object:nil];
@@ -101,7 +101,9 @@
             while ([tweets count] > 25) [tweets removeLastObject];
         }
 		[theTableView reloadData];
-        [[KBTwitterManager twitterManager] cacheStatusArray:tweets withKey:cachingKey];
+		if (cachingKey) {
+			[[KBTwitterManager twitterManager] cacheStatusArray:tweets withKey:cachingKey];
+		}
         [[NSUserDefaults standardUserDefaults] synchronize];
 	} else {
         requeryWhenTableGetsToBottom = NO;

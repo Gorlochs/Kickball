@@ -15,7 +15,7 @@
     pageViewType = KBPageViewTypeList;
     [super viewDidLoad];
     
-    cachingKey = kKBTwitterMentionsKey;
+    cachingKey = [kKBTwitterMentionsKey retain];
     [self startProgressBar:@"Retrieving your tweets..."];
     [self showStatuses];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusRetrieved:) name:kTwitterStatusRetrievedNotificationKey object:nil];
