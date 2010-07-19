@@ -97,10 +97,14 @@
 		fbPictureUrl = nil;
 		pictureThumb1 = [[TTImageView alloc] initWithFrame:CGRectMake(60, 50, 34, 34)];
         pictureThumb1.backgroundColor = [UIColor clearColor];
-        pictureThumb1.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
+        //pictureThumb1.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
         pictureThumb1.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
         pictureThumb1.contentMode = UIViewContentModeScaleAspectFit;		
 		
+		pictureActivityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+		pictureActivityIndicator.frame = CGRectMake(60, 50, 20, 20);
+		pictureActivityIndicator.center = pictureThumb1.center;
+		pictureActivityIndicator.hidden = YES;
     }
     return self;
 }
@@ -195,6 +199,7 @@
 		}
 	}
 	
+	pictureActivityIndicator.hidden = NO;
 	[fbPictureUrl release];
 	fbPictureUrl = nil;
 	fbPictureUrl = [_url copy];

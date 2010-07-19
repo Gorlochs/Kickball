@@ -86,8 +86,8 @@
 {
 	[super layoutSubviews];
 	CGRect contentRect = [self.contentView bounds];
-	userName.frame = CGRectMake(58, contentRect.origin.y+10, 150, 20);
-	dateLabel.frame = CGRectMake(216, contentRect.origin.y+10, 100, 20);
+	userName.frame = CGRectMake(58, contentRect.origin.y+8, 150, 20);
+	dateLabel.frame = CGRectMake(216, contentRect.origin.y+8, 100, 20);
 	tweetText.center = CGPointMake(tweetText.center.x,(tweetText.frame.size.height/2)+32);
 	topLineImage.frame = CGRectMake(0, 0, contentRect.size.width, 1);
 	bottomLineImage.frame = CGRectMake(0, contentRect.size.height - 1, contentRect.size.width, 1);

@@ -27,6 +27,7 @@
 	UIImageView *commentBG;
 	UILabel *commentNumber;
 	TTImageView *pictureThumb1;
+	UIActivityIndicatorView *pictureActivityIndicator;
 }
 
 @property (nonatomic, retain) TTImageView *userIcon;
