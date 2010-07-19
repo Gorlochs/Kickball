@@ -29,6 +29,12 @@
 }
 
 - (IBAction) viewFavorites {
+    if ([numberOfFavorites.text isEqualToString:@""] || [numberOfFavorites.text isEqualToString:@"0"]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry" message:@"This user has no favorites." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+        return;
+    }
 	KBTwitterFavsViewController *favTweets = [[KBTwitterFavsViewController alloc] initWithNibName:@"KBTwitterFavsViewController" bundle:nil];
 	//favTweets.userDictionary = [userDictionary retain];
     favTweets.userDictionary = userDictionary;
