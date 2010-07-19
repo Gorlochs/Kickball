@@ -83,10 +83,10 @@
 }
 
 - (void)statusesReceived:(NSArray *)statuses {
-  if (_inModalTweetView) {
+    if (_inModalTweetView) {
     [self.navigationController popViewControllerAnimated:YES];
     _inModalTweetView = NO;
-  }
+    }
 	if (statuses) {
         if (twitterArray) [twitterArray release];
 		twitterArray = [statuses retain];
@@ -97,7 +97,9 @@
 			KBTweet *tweet = [[KBTweet alloc] initWithDictionary:dict];
             [tweets insertObject:tweet atIndex:count++];
 			[tweet release];
+            [[KBTwitterManager twitterManager] cacheStatusArray:[NSArray arrayWithObject:tweet] withKey:cachingKey];
 		}
+        [[NSUserDefaults standardUserDefaults] synchronize];
         if (!pageNum) {
           while ([tweets count] > 25) [tweets removeLastObject];
         }
@@ -107,7 +109,6 @@
     }
     [self stopProgressBar];
 	[self dataSourceDidFinishLoadingNewData];
-    [[KBTwitterManager twitterManager] cacheStatusArray:tweets withKey:cachingKey];
 }
 
 - (void) executeQuery:(int)pageNumber {
@@ -138,7 +139,7 @@
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
+    DLog(@"got memory warning");
     // Relinquish ownership any cached data, images, etc that aren't in use.
     if (loginController) [loginController release];
     loginController = nil;

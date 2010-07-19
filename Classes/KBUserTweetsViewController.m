@@ -48,7 +48,7 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated{
-	[super viewDidAppear:animated];
+	//[super viewDidAppear:animated];
     if (_tweetsFirstView) return;
     _tweetsFirstView = true;
     twitterManager.delegate = self; //make sure we can keep appending more tweets when user scrolls to bottom
@@ -165,7 +165,7 @@
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
+    DLog(@"got memory warning");
     // Release any cached data, images, etc that aren't in use.
 }
 
