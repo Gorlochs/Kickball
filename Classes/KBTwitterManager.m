@@ -60,7 +60,6 @@ static KBTwitterManager *sharedInstance = nil;
 }
 
 - (id)autorelease {
-  DLog(@"twittermanager autorelease called");
     return self;
 }
 
@@ -231,7 +230,7 @@ static KBTwitterManager *sharedInstance = nil;
 - (void) cacheStatusArray:(NSArray*)statuses withKey:(NSString*)key {
     NSData *theData = [NSKeyedArchiver archivedDataWithRootObject:[statuses subarrayWithRange:((NSRange){0, [statuses count] < 25 ? [statuses count] : 25})]];
     [[NSUserDefaults standardUserDefaults] setObject:theData forKey:key];
-    DLog(@"statuses stored!");
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (NSArray*) retrieveCachedStatusArrayWithKey:(NSString*)key {

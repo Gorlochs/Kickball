@@ -16,8 +16,7 @@
     IBOutlet UILabel *screenNameLabel;
     IBOutlet UILabel *fullName;
     IBOutlet UILabel *location;
-    //TTImageView *userProfileImage;
-    //UIImageView *iconBgImage;
+    BOOL _tweetsFirstView;
 }
 
 @property (nonatomic, retain) NSDictionary *userDictionary;

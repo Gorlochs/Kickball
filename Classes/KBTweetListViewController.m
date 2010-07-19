@@ -30,12 +30,20 @@
   _inModalTweetView = YES;
 }
 
--(void) viewDidAppear:(BOOL)animated{
-	[super viewDidAppear:animated];
-    twitterManager.delegate = self; //make sure we can keep scrolling
+-(void)viewDidAppear:(BOOL)animated{
+	//[super viewDidAppear:animated];
+    if (_firstView) return;
+    _firstView = true;
+    twitterManager.delegate = self; //make sure we can keep appending more tweets when user scrolls to bottom
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+  [super viewDidDisappear:animated];
+  _firstView = false;
 }
 
 - (void)viewDidLoad {
+   _firstView = true;
    [super viewDidLoad];
     twitterManager.delegate = self;
     _inModalTweetView = NO;
@@ -58,10 +66,6 @@
     }
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
-    //overriding the removal of notifications
-}
-
 - (void) loginCanceled {
     [self switchToFoursquare];
 }
@@ -69,6 +73,7 @@
 - (void) showStatuses {
     if (loginController) [loginController removeFromSupercontroller];
     NSNumber *startAtId = [NSNumber numberWithInt:0];
+    if (tweets) [tweets release];
     tweets = [[NSMutableArray alloc] initWithArray:[[KBTwitterManager twitterManager] retrieveCachedStatusArrayWithKey:cachingKey]];
     if (tweets != nil && [tweets count] > 0) {
         startAtId = ((KBTweet*)[tweets objectAtIndex:0]).tweetId;
@@ -83,34 +88,24 @@
     _inModalTweetView = NO;
   }
 	if (statuses) {
+        if (twitterArray) [twitterArray release];
 		twitterArray = [statuses retain];
-		NSMutableArray *tempTweetArray = [[NSMutableArray alloc] initWithCapacity:[twitterArray count]];
+        int count = 0;
+        if (!tweets) tweets = [[NSMutableArray alloc] init];
+        if (pageNum > 1) count = [tweets count];
 		for (NSDictionary *dict in twitterArray) {
 			KBTweet *tweet = [[KBTweet alloc] initWithDictionary:dict];
-			[tempTweetArray addObject:tweet];
+            [tweets insertObject:tweet atIndex:count++];
 			[tweet release];
 		}
-		// not very pretty, but it gets the job done. if there is a cached array, combine them.
-		// the other way to do it would be to just add all the objects (above) by index
-		if (pageNum > 1) {
-			[tweets addObjectsFromArray:tempTweetArray];
-		} else if (!tweets) {
-			tweets = [[NSMutableArray alloc] initWithArray:tempTweetArray];
-		} else {
-			// need to keep all the tweets in the right order
-			[tempTweetArray addObjectsFromArray:tweets];
-			[tweets release];
-			tweets = nil;
-			tweets = [[self addAndTrimArray:tempTweetArray] retain];
-		}
+        if (!pageNum) {
+          while ([tweets count] > 25) [tweets removeLastObject];
+        }
 		[theTableView reloadData];
-		 
-		[tempTweetArray release];
 	} else {
         requeryWhenTableGetsToBottom = NO;
     }
     [self stopProgressBar];
-    //[[NSNotificationCenter defaultCenter] removeObserver:self];
 	[self dataSourceDidFinishLoadingNewData];
     [[KBTwitterManager twitterManager] cacheStatusArray:tweets withKey:cachingKey];
 }

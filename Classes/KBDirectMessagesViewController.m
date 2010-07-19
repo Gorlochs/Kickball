@@ -41,6 +41,7 @@
 
 - (void)directMessagesReceived:(NSArray *)messages {
 	if ([messages count] > 0 || isInitialLoad) {
+        if (twitterArray) [twitterArray release];
         twitterArray = [messages retain];
         for (NSDictionary *message in messages) {
             for (KBDirectMessage *cur in tweets) {

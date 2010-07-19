@@ -21,7 +21,8 @@
 
 - (IBAction) viewRecentTweets {
 	KBUserTweetsViewController *recentTweetsController = [[KBUserTweetsViewController alloc] initWithNibName:@"KBUserTweetsViewController" bundle:nil];
-    recentTweetsController.userDictionary = [userDictionary retain];
+    //recentTweetsController.userDictionary = [userDictionary retain];
+    recentTweetsController.userDictionary = userDictionary;
     recentTweetsController.username = [userDictionary objectForKey:@"screen_name"];
 	[self.navigationController pushViewController:recentTweetsController animated:YES];
     [recentTweetsController release];
@@ -29,7 +30,8 @@
 
 - (IBAction) viewFavorites {
 	KBTwitterFavsViewController *favTweets = [[KBTwitterFavsViewController alloc] initWithNibName:@"KBTwitterFavsViewController" bundle:nil];
-	favTweets.userDictionary = [userDictionary retain];
+	//favTweets.userDictionary = [userDictionary retain];
+    favTweets.userDictionary = userDictionary;
 	favTweets.username = [userDictionary objectForKey:@"screen_name"];
 	[self.navigationController pushViewController:favTweets animated:YES];
 	[favTweets release];
@@ -168,17 +170,15 @@
    [nObject replaceOccurrencesOfString:@";" withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [nObject length])];
    [nObject replaceOccurrencesOfString:@"," withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [nObject length])];
    [nObject replaceOccurrencesOfString:@"?" withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [nObject length])];
+   //[nObject replaceOccurrencesOfString:@"@" withString:@"#" options:NSLiteralSearch range:NSMakeRange(0, [nObject length])];
     if ([[notification object] rangeOfString:@"@"].location == 0) {
         KBUserTweetsViewController *userTweetsController = [[KBUserTweetsViewController alloc] initWithNibName:@"KBUserTweetsViewController" bundle:nil];
-        DLog(@"pushing usertweetsview, -%@-", nObject);
         userTweetsController.username = nObject;
         [self.navigationController pushViewController:userTweetsController animated:YES];
 		[userTweetsController release];
     } else if ([[notification object] rangeOfString:@"#"].location == 0) {
-        DLog(@"pushing searchview, -%@-", [notification object]);
-        [[KBTwitterManager twitterManager] setTheSearchResults:nil]; //DIE!
+        [[KBTwitterManager twitterManager] setTheSearchResults:nil];
         KBTwitterSearchViewController *searchController = [[KBTwitterSearchViewController alloc] initWithNibName:@"KBTwitterSearchViewController" bundle:nil];
-        NSMutableString *search = [[NSMutableString alloc] initWithString:[notification object]];
         searchController.searchTerms = nObject;
         [self.navigationController pushViewController:searchController animated:YES];
 		[searchController release];

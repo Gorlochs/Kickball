@@ -18,6 +18,7 @@
 @synthesize username;
 
 - (void) viewDidLoad {
+    _tweetsFirstView = true;
     pageType = KBPageTypeOther;
     [super viewDidLoad];
 	
@@ -46,9 +47,16 @@
     }
 }
 
--(void) viewDidAppear:(BOOL)animated{
+-(void)viewDidAppear:(BOOL)animated{
 	[super viewDidAppear:animated];
-    twitterManager.delegate = self; //make sure we can keep scrolling
+    if (_tweetsFirstView) return;
+    _tweetsFirstView = true;
+    twitterManager.delegate = self; //make sure we can keep appending more tweets when user scrolls to bottom
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+  [super viewDidDisappear:animated];
+  _tweetsFirstView = false;
 }
 
 - (void) executeQuery:(int)pageNumber {
@@ -65,9 +73,8 @@
 
 - (void)statusesReceived:(NSArray *)statuses {
     [super statusesReceived:statuses];
-
-    // this is used when there is no userDictionary, which occurs when a user clicks a @screenname inside the body of a tweet
     NSArray *userStatuses = [statuses retain];
+    // this is used when there is no userDictionary, which occurs when a user clicks a @screenname inside the body of a tweet
     if (userDictionary == nil && [userStatuses count] > 0) {
         screenNameLabel.text = [Utilities safeString:[[[userStatuses objectAtIndex:0] objectForKey:@"user"] objectForKey:@"screen_name"]];
         fullName.text = [Utilities safeString:[[[userStatuses objectAtIndex:0] objectForKey:@"user"] objectForKey:@"name"]];

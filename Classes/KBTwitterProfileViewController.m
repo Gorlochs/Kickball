@@ -82,7 +82,8 @@
 
 - (void) viewRecentTweets {
 	KBUserTweetsViewController *recentTweetsController = [[KBUserTweetsViewController alloc] initWithNibName:@"KBUserTweetsViewController" bundle:nil];
-    recentTweetsController.userDictionary = [userDictionary retain];
+    //recentTweetsController.userDictionary = [userDictionary retain];
+    recentTweetsController.userDictionary = userDictionary;
     recentTweetsController.username = [userDictionary objectForKey:@"screen_name"];
 	[self.navigationController pushViewController:recentTweetsController animated:YES];
     [recentTweetsController release];
@@ -90,7 +91,8 @@
 
 - (void) viewFollowers {
 	KBTwitterUserListViewController *followersController = [[KBTwitterUserListViewController alloc] initWithNibName:@"KBTwitterUserListViewController" bundle:nil];
-    followersController.userDictionary = [userDictionary retain];
+    //followersController.userDictionary = [userDictionary retain];
+    followersController.userDictionary = userDictionary;
     followersController.userType = KBTwitterUserFollower;
 	[self.navigationController pushViewController:followersController animated:YES];
     [followersController release];

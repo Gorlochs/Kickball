@@ -17,6 +17,7 @@
 @interface KBTweetListViewController : KBBaseTweetViewController {
     KBTwitterXAuthLoginController *loginController;
     BOOL _inModalTweetView;
+    BOOL _firstView;
 }
 
 @end
