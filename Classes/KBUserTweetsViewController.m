@@ -11,6 +11,7 @@
 #import "KickballAPI.h"
 #import "KBCreateTweetViewController.h"
 #import "Utilities.h"
+#import "KBTwitterProfileViewController.h"
 
 @implementation KBUserTweetsViewController
 
@@ -181,5 +182,11 @@
     [super dealloc];
 }
 
+- (IBAction) viewUserProfile {
+	KBTwitterProfileViewController *twitterProfileController = [[KBTwitterProfileViewController alloc] initWithNibName:@"KBTwitterProfileViewController" bundle:nil];
+    if (username) twitterProfileController.screenname = username;
+	[self.navigationController pushViewController:twitterProfileController animated:YES];
+	[twitterProfileController release];
+}
 
 @end

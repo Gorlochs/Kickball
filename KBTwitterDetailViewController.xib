@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">1024</int>
-		<string key="IBDocument.SystemVersion">10D573</string>
+		<string key="IBDocument.SystemVersion">10F569</string>
 		<string key="IBDocument.InterfaceBuilderVersion">788</string>
 		<string key="IBDocument.AppKitVersion">1038.29</string>
-		<string key="IBDocument.HIToolboxVersion">460.00</string>
+		<string key="IBDocument.HIToolboxVersion">461.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			<string key="NS.object.0">117</string>
@@ -129,6 +129,21 @@
 						<int key="NSvFlags">292</int>
 						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBUIImageView" id="921810397">
+								<reference key="NSNextResponder" ref="16969202"/>
+								<int key="NSvFlags">256</int>
+								<string key="NSFrame">{{28, 66}, {10, 5}}</string>
+								<reference key="NSSuperview" ref="16969202"/>
+								<bool key="IBUIOpaque">NO</bool>
+								<bool key="IBUIClipsSubviews">YES</bool>
+								<int key="IBUIContentMode">4</int>
+								<bool key="IBUIMultipleTouchEnabled">YES</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<object class="NSCustomResource" key="IBUIImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">iconTriangle.png</string>
+								</object>
+							</object>
 							<object class="IBUIButton" id="339388545">
 								<reference key="NSNextResponder" ref="16969202"/>
 								<int key="NSvFlags">292</int>
@@ -154,6 +169,10 @@
 								<object class="NSColor" key="IBUINormalTitleShadowColor" id="287806066">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MC41AA</bytes>
+								</object>
+								<object class="NSCustomResource" key="IBUIHighlightedImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">graybackground.png</string>
 								</object>
 							</object>
 							<object class="IBUILabel" id="607627685">
@@ -222,21 +241,6 @@
 								<string key="IBUIShadowOffset">{1, 1}</string>
 								<int key="IBUIBaselineAdjustment">1</int>
 								<float key="IBUIMinimumFontSize">10</float>
-							</object>
-							<object class="IBUIImageView" id="921810397">
-								<reference key="NSNextResponder" ref="16969202"/>
-								<int key="NSvFlags">256</int>
-								<string key="NSFrame">{{28, 66}, {10, 5}}</string>
-								<reference key="NSSuperview" ref="16969202"/>
-								<bool key="IBUIOpaque">NO</bool>
-								<bool key="IBUIClipsSubviews">YES</bool>
-								<int key="IBUIContentMode">4</int>
-								<bool key="IBUIMultipleTouchEnabled">YES</bool>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<object class="NSCustomResource" key="IBUIImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">iconTriangle.png</string>
-								</object>
 							</object>
 							<object class="IBUIImageView" id="365684997">
 								<reference key="NSNextResponder" ref="16969202"/>
@@ -1073,7 +1077,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>KBTwitterDetailViewController</string>
 					<string>UIResponder</string>
-					<string>{{152, 97}, {320, 480}}</string>
+					<string>{{466, 2}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -2277,7 +2281,7 @@
 			<integer value="3100" key="NS.object.0"/>
 		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
-		<string key="IBDocument.LastKnownRelativeProjectPath">Kickball4.1.xcodeproj</string>
+		<string key="IBDocument.LastKnownRelativeProjectPath">Kickball.xcodeproj</string>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2293,6 +2297,7 @@
 				<string>btn-retweet01.png</string>
 				<string>btn-retweet02.png</string>
 				<string>cellArrow.png</string>
+				<string>graybackground.png</string>
 				<string>iconTriangle.png</string>
 				<string>twittIconBG.png</string>
 			</object>
@@ -2308,6 +2313,7 @@
 				<string>{50, 50}</string>
 				<string>{50, 50}</string>
 				<string>{9, 12}</string>
+				<string>{320, 70}</string>
 				<string>{10, 5}</string>
 				<string>{37, 38}</string>
 			</object>
