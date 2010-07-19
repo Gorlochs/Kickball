@@ -264,9 +264,9 @@ const NSString *kickballDomain = @"http://kickball.gorlochs.com/kickball";
 }
 
 - (void) startProgressBar:(NSString*)textToDisplay withTimer:(BOOL)shouldSetTimer andLongerTime:(BOOL)longerTime{
-    if (textToDisplay == nil) {
-        textToDisplay = @"Processing...";
-    }
+//    if (textToDisplay == nil) {
+//        textToDisplay = @"Processing...";
+//    }
 //	if (progressViewController) [progressViewController release];
 	if (!progressViewController) {
 		progressViewController = [[ProgressViewController alloc] initWithNibName:@"ProgressView" bundle:nil];

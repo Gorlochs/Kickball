@@ -179,6 +179,7 @@
     } else if ([[notification object] rangeOfString:@"#"].location == 0) {
         [[KBTwitterManager twitterManager] setTheSearchResults:nil];
         KBTwitterSearchViewController *searchController = [[KBTwitterSearchViewController alloc] initWithNibName:@"KBTwitterSearchViewController" bundle:nil];
+        //NSMutableString *search = [[NSMutableString alloc] initWithString:[notification object]];
         searchController.searchTerms = nObject;
         [self.navigationController pushViewController:searchController animated:YES];
 		[searchController release];

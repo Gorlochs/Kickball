@@ -1047,8 +1047,9 @@
         badgeImageView.frame = CGRectMake(17, height, 50, 50);
         [checkinView addSubview:badgeImageView];
         [badgeImageView release];
+		[img release];
         
-        IFTweetLabel *messageLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(75.0f, height, 220.0f, 60.0f)];
+        IFTweetLabel *messageLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(75.0f, height - 10, 220.0f, 70.0f)];
         [messageLabel setFont:[UIFont boldSystemFontOfSize:14.0f]];
         [messageLabel setTextColor:[UIColor whiteColor]];
         [messageLabel setBackgroundColor:[UIColor clearColor]];
@@ -1083,8 +1084,9 @@
         [scoreText appendString:[NSString stringWithFormat:@"+%d %@ \n", score.points, score.message]];
     }
     [scoreLabel setText:scoreText];
+	[scoreText release];
     [checkinView addSubview:scoreLabel];
-	height = height + scoreLabel.frame.size.height + buffer;
+	//height = height + scoreLabel.frame.size.height + buffer;
     [scoreLabel release];
     
     // do facebook stuff
