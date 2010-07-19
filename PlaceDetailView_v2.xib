@@ -12,8 +12,9 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="67"/>
 			<integer value="1"/>
+			<integer value="17"/>
+			<integer value="67"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -368,7 +369,7 @@
 				<reference key="IBUIContentView" ref="600391645"/>
 			</object>
 			<object class="IBUITableViewCell" id="733853659">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -491,6 +492,28 @@
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="424839964"/>
 							</object>
+							<object class="IBUILabel" id="1048737599">
+								<reference key="NSNextResponder" ref="661548319"/>
+								<int key="NSvFlags">-2147483356</int>
+								<string key="NSFrame">{{15, 23}, {140, 21}}</string>
+								<reference key="NSSuperview" ref="661548319"/>
+								<bool key="IBUIOpaque">NO</bool>
+								<bool key="IBUIClipsSubviews">YES</bool>
+								<int key="IBUIContentMode">7</int>
+								<bool key="IBUIUserInteractionEnabled">NO</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<string key="IBUIText">No Mayor</string>
+								<object class="NSColor" key="IBUITextColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MSAxIDEAA</bytes>
+									<object class="NSColorSpace" key="NSCustomColorSpace">
+										<int key="NSID">1</int>
+									</object>
+								</object>
+								<nil key="IBUIHighlightedColor"/>
+								<int key="IBUIBaselineAdjustment">1</int>
+								<float key="IBUIMinimumFontSize">10</float>
+							</object>
 						</object>
 						<string key="NSFrameSize">{290, 69}</string>
 						<reference key="NSSuperview" ref="733853659"/>
@@ -503,6 +526,7 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{290, 69}</string>
+				<reference key="NSSuperview"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MCAwAA</bytes>
@@ -1345,6 +1369,30 @@
 					</object>
 					<int key="connectionID">161</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">mayorCrown</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="266793759"/>
+					</object>
+					<int key="connectionID">164</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">mayorArrow</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="40992106"/>
+					</object>
+					<int key="connectionID">166</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">noMayorLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="1048737599"/>
+					</object>
+					<int key="connectionID">167</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -1430,6 +1478,7 @@
 							<reference ref="226127715"/>
 							<reference ref="910466846"/>
 							<reference ref="646245951"/>
+							<reference ref="1048737599"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Mayor Map Cell</string>
@@ -1639,6 +1688,11 @@
 						<reference key="object" ref="655894641"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">165</int>
+						<reference key="object" ref="1048737599"/>
+						<reference key="parent" ref="733853659"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -1669,6 +1723,7 @@
 					<string>16.CustomClassName</string>
 					<string>16.IBEditorWindowLastContentRect</string>
 					<string>16.IBPluginDependency</string>
+					<string>165.IBPluginDependency</string>
 					<string>17.IBEditorWindowLastContentRect</string>
 					<string>17.IBPluginDependency</string>
 					<string>3.IBPluginDependency</string>
@@ -1721,7 +1776,8 @@
 					<string>KBPhotoThumbnailCell</string>
 					<string>{{440, 299}, {291, 73}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{650, 491}, {290, 69}}</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>{{666, 850}, {290, 69}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1764,7 +1820,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">163</int>
+			<int key="maxID">167</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2264,6 +2320,7 @@
 							<string>mayorNameLabel</string>
 							<string>nextSpecialButton</string>
 							<string>noMayorImage</string>
+							<string>noMayorLabel</string>
 							<string>phoneButton</string>
 							<string>photoHeaderLabel</string>
 							<string>photoHeaderView</string>
@@ -2303,6 +2360,7 @@
 							<string>UILabel</string>
 							<string>UIButton</string>
 							<string>UIImageView</string>
+							<string>UILabel</string>
 							<string>UIButton</string>
 							<string>UILabel</string>
 							<string>UIView</string>
@@ -2345,6 +2403,7 @@
 							<string>mayorNameLabel</string>
 							<string>nextSpecialButton</string>
 							<string>noMayorImage</string>
+							<string>noMayorLabel</string>
 							<string>phoneButton</string>
 							<string>photoHeaderLabel</string>
 							<string>photoHeaderView</string>
@@ -2440,6 +2499,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">noMayorImage</string>
 								<string key="candidateClassName">UIImageView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">noMayorLabel</string>
+								<string key="candidateClassName">UILabel</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">phoneButton</string>
@@ -2832,8 +2895,8 @@
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>{23, 22}</string>
 				<string>{23, 22}</string>
-				<string>{320, 102}</string>
-				<string>{320, 102}</string>
+				<string>{16, 16}</string>
+				<string>{16, 16}</string>
 				<string>{44, 12}</string>
 				<string>{44, 12}</string>
 				<string>{16, 16}</string>
@@ -2848,7 +2911,7 @@
 				<string>{9, 12}</string>
 				<string>{16, 16}</string>
 				<string>{13, 7}</string>
-				<string>{108, 108}</string>
+				<string>{16, 16}</string>
 				<string>{23, 22}</string>
 				<string>{46, 44}</string>
 				<string>{46, 44}</string>

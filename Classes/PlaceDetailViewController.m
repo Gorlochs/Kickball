@@ -253,7 +253,7 @@
 		if (showCheckinView) {
 			[self openCheckinView];
 		}
-		
+				
         if (doCheckin) {
 			[self startProgressBar:@"Checking into this venue..."];
 			// seems idiotic, but you can turn off insta checkin to foursquare. (i agree. stupid.)
@@ -351,10 +351,12 @@
         noMayorImage.hidden = YES;
         mayorArrow.hidden = NO;
         mayorCrown.hidden = NO;
+		noMayorLabel.hidden = YES;
     } else {
         noMayorImage.hidden = NO;
         mayorArrow.hidden = YES;
         mayorCrown.hidden = YES;
+		noMayorLabel.hidden = NO;
     }
     
     if (venueToDisplay.twitter != nil && ![venueToDisplay.twitter isEqualToString:@""]) {
@@ -824,7 +826,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 1) {
+    if (indexPath.section == 1 && venue.mayor) {
         [self pushProfileDetailController:venue.mayor.userId];
     } else if (indexPath.section == 2) {
         //FSCheckin *tmpCheckin = ((FSCheckin*)[venue.currentCheckins objectAtIndex:indexPath.row]);
