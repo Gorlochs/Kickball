@@ -111,6 +111,8 @@
 		[self showLoginView];  //new method
         
 	} else {
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(instaCheckin:) name:@"touchAndHoldCheckin" object:nil];
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTable) name:@"refreshFriendsList" object:nil];
 		[self doInitialDisplay];
 	}
 	
@@ -122,8 +124,6 @@
 - (void) doInitialDisplay {
     [FlurryAPI logEvent:@"Initial Friends List Display"];
     [self startProgressBar:@"Retrieving friends' whereabouts..." withTimer:NO andLongerTime:NO];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(instaCheckin:) name:@"touchAndHoldCheckin" object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTable) name:@"refreshFriendsList" object:nil];
 
 //    if (!hasViewedInstructions) {
 //        [iconImageView setHidden:YES];
@@ -195,6 +195,8 @@
 	// e.g. self.myOutlet = nil;
     instructionView = nil;
     footerViewCell = nil;
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:@"touchAndHoldCheckin" object:nil];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:@"refreshFriendsList" object:nil];
 }
 
 - (void)dealloc {

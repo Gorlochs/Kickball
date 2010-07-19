@@ -60,21 +60,6 @@
 									 [UIImage imageNamed:@"qc18.png"],
 									 [UIImage imageNamed:@"qc19.png"],
 									 [UIImage imageNamed:@"qc20.png"],nil]];
-	/*
-	[spinnerView setAnimationImages:[NSArray arrayWithObjects:[UIImage imageNamed:@"dodad0.png"],
-									 [UIImage imageNamed:@"dodad01.png"],
-									 [UIImage imageNamed:@"dodad02.png"],
-									 [UIImage imageNamed:@"dodad03.png"],
-									 [UIImage imageNamed:@"dodad04.png"],
-									 [UIImage imageNamed:@"dodad05.png"],
-									 [UIImage imageNamed:@"dodad06.png"],
-									 [UIImage imageNamed:@"dodad07.png"],
-									 [UIImage imageNamed:@"dodad08.png"],
-									 [UIImage imageNamed:@"dodad09.png"],
-									 [UIImage imageNamed:@"dodad10.png"],
-									 [UIImage imageNamed:@"dodad11.png"],
-									 [UIImage imageNamed:@"dodad12.png"],nil]];
-	 */
 	[spinnerView setAnimationDuration:0.75f];
 	[spinnerView setAnimationRepeatCount:1];
 	[self.superview addSubview:spinnerView];
