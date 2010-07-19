@@ -82,7 +82,6 @@
 
 - (void) viewRecentTweets {
 	KBUserTweetsViewController *recentTweetsController = [[KBUserTweetsViewController alloc] initWithNibName:@"KBUserTweetsViewController" bundle:nil];
-    //recentTweetsController.userDictionary = [userDictionary retain];
     recentTweetsController.userDictionary = userDictionary;
     recentTweetsController.username = [userDictionary objectForKey:@"screen_name"];
 	[self.navigationController pushViewController:recentTweetsController animated:YES];
@@ -91,7 +90,6 @@
 
 - (void) viewFollowers {
 	KBTwitterUserListViewController *followersController = [[KBTwitterUserListViewController alloc] initWithNibName:@"KBTwitterUserListViewController" bundle:nil];
-    //followersController.userDictionary = [userDictionary retain];
     followersController.userDictionary = userDictionary;
     followersController.userType = KBTwitterUserFollower;
 	[self.navigationController pushViewController:followersController animated:YES];
@@ -99,16 +97,22 @@
 }
 
 - (IBAction) viewFavorites {
-  KBTwitterFavsViewController *favTweets = [[KBTwitterFavsViewController alloc] initWithNibName:@"KBTwitterFavsViewController" bundle:nil];
-  favTweets.userDictionary = [userDictionary retain];
-  favTweets.username = [userDictionary objectForKey:@"screen_name"];
-  [self.navigationController pushViewController:favTweets animated:YES];
-  [favTweets release];
+    if ([numberOfFavorites.text isEqualToString:@""] || [numberOfFavorites.text isEqualToString:@"0"]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry" message:@"This user has no favorites." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+        return;
+    }
+    KBTwitterFavsViewController *favTweets = [[KBTwitterFavsViewController alloc] initWithNibName:@"KBTwitterFavsViewController" bundle:nil];
+    favTweets.userDictionary = userDictionary;
+    favTweets.username = [userDictionary objectForKey:@"screen_name"];
+    [self.navigationController pushViewController:favTweets animated:YES];
+    [favTweets release];
 }
 
 - (void) viewFriends {
 	KBTwitterUserListViewController *friendsController = [[KBTwitterUserListViewController alloc] initWithNibName:@"KBTwitterUserListViewController" bundle:nil];
-    friendsController.userDictionary = [userDictionary retain];
+    friendsController.userDictionary = userDictionary;
     friendsController.userType = KBTwitterUserFriend;
 	[self.navigationController pushViewController:friendsController animated:YES];
     [friendsController release];
