@@ -64,7 +64,7 @@
 - (void)viewDidLoad {
 	self.hideFooter = YES;
     pageType = KBPageTypeOther;
-    requeryWhenTableGetsToBottom = YES;
+    requeryWhenTableGetsToBottom = NO;
     [super viewDidLoad];
 	[self.postView addSubview:iconBgImage];
 	[self.postView addSubview:userIcon];
@@ -76,7 +76,8 @@
 	//NSString *displayString = [NSString	 stringWithFormat:@"<span class=\"fbBlueText\">%@</span> %@",[(NSDictionary*)[fbItem propertyWithKey:@"from"] objectForKey:@"name"], [fbItem propertyWithKey:@"message"]];
 	//fbPictureUrl = [(NSDictionary*)[fbItem objectForKey:<#(id)aKey#>:@"from"] objectForKey:@"id"];
 	fbPostText.text = [TTStyledText textFromXHTML:displayString lineBreaks:NO URLs:NO];
-	//comments = [[NSArray alloc] initWithArray:(NSArray*)[(NSDictionary*)[fbItem propertyWithKey:@"comments"] objectForKey:@"data"]];
+	NSDictionary *commentDict = [fbItem objectForKey:@"comments"];
+	comments = [[NSArray alloc] initWithArray:(NSArray*)[commentDict objectForKey:@"comment_list"]];
 	/*NSDictionary *paging = (NSDictionary*)[(NSDictionary*)[fbItem propertyWithKey:@"comments"] objectForKey:@"paging"];
 	if (paging!=nil) {
 		nextPageURL = [[NSString alloc] initWithString:(NSString*)[paging objectForKey:@"next"]];
@@ -84,8 +85,8 @@
 		nextPageURL = nil;
 	}*/
 
-	numComments = 0;//[comments count];
-	//dateLabel.text = [[KickballAPI kickballApi] convertDateToTimeUnitString:[[FacebookProxy fbDateFormatter] dateFromString:[fbItem propertyWithKey:@"created_time"]]];
+	numComments = [(NSNumber*)[commentDict objectForKey:@"count"] intValue];
+	dateLabel.text = [[KickballAPI kickballApi] convertDateToTimeUnitString:[NSDate dateWithTimeIntervalSince1970:[(NSNumber*)[fbItem objectForKey:@"created_time"] intValue]]]; //[[FacebookProxy fbDateFormatter] dateFromString:[fbItem objectForKey:@"created_time"]]]];
 	[fbPostText sizeToFit];
 	CGRect postSize = fbPostText.frame;
 	[fbPostText setNeedsDisplay];
@@ -102,6 +103,10 @@
 	//	[NSThread detachNewThreadSelector:@selector(loadPicUrl) toTarget:self withObject:nil];
 	//}
 	[theTableView reloadData];
+	if (numComments> [comments count]) {
+		[self startProgressBar:@"loading comments"];
+		[NSThread detachNewThreadSelector:@selector(refreshMainFeed) toTarget:self withObject:nil];
+	}
 }
 
 -(void)populate:(NSDictionary*)obj{
@@ -125,22 +130,31 @@
 }
 
 -(void)refreshMainFeed{
-	[comments release];
-	comments = nil;
+	
 	requeryWhenTableGetsToBottom = YES;
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	GraphAPI *graph = [[FacebookProxy instance] newGraph];
-	comments = [graph getConnections:@"comments" forObject:[fbItem propertyWithKey:@"id"]];
+	NSArray* incomingComments = [graph commentFeedForPost:[fbItem objectForKey:@"post_id"]];//[graph getConnections:@"comments" forObject:[fbItem propertyWithKey:@"id"]];
+	[comments release];
+	comments = nil;
+	comments = incomingComments;
 	[comments retain];
-	[nextPageURL release];
-	nextPageURL = nil;
-	nextPageURL = graph._pagingNext;
-	[nextPageURL retain];
+	NSMutableArray *profileIds = [[NSMutableArray alloc] init];
+	for (NSDictionary *comm in comments){
+		[profileIds addObject:[comm objectForKey:@"fromid"]];
+	}
+	NSArray *incomingProfiles = [graph getProfileObjects:profileIds];
+	[[FacebookProxy instance] cacheIncomingProfiles:incomingProfiles];
+	[profileIds release];
+	//[nextPageURL release];
+	//nextPageURL = nil;
+	//nextPageURL = graph._pagingNext;
+	//[nextPageURL retain];
 	[graph release];	
 	[theTableView reloadData];
 	[pool release];
 	[self performSelectorOnMainThread:@selector(stopProgressBar) withObject:nil waitUntilDone:NO];
-	[self dataSourceDidFinishLoadingNewData];
+	[self performSelectorOnMainThread:@selector(dataSourceDidFinishLoadingNewData) withObject:nil waitUntilDone:NO];
 	
 }
 
@@ -212,7 +226,7 @@
 	switch (indexPath.section) {
 		case 0:
 			comment = [comments objectAtIndex:indexPath.row];
-			NSString *displayString = [NSString	 stringWithFormat:@"<span class=\"fbBlueText\">%@</span> %@",[(NSDictionary*)[comment objectForKey:@"from"] objectForKey:@"name"], [comment objectForKey:@"message"]];
+			NSString *displayString = [NSString	 stringWithFormat:@"<span class=\"fbBlueText\">%@</span> %@",[[FacebookProxy instance] userNameFrom:[comment objectForKey:@"fromid"]], [comment objectForKey:@"text"]];
 			commentHightTester.text = [TTStyledText textFromXHTML:displayString lineBreaks:NO URLs:NO];
 			[commentHightTester sizeToFit];
 			return commentHightTester.frame.size.height+30 > 58 ? commentHightTester.frame.size.height+30 : 58;
@@ -231,7 +245,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
 	TableSectionHeaderView *sectionHeaderView;
 	sectionHeaderView = [[[TableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)] autorelease];
-	numComments = [comments count];
+	//numComments = [comments count];
 	if (numComments) {
 		sectionHeaderView.leftHeaderLabel.text = numComments > 1 ? [NSString stringWithFormat:@"%i Comments",numComments] : [NSString stringWithFormat:@"%i Comment",numComments];
 	}else{
@@ -252,8 +266,8 @@
 		cell = [[[KBFacebookCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
 	}
 	NSDictionary *comment = [comments objectAtIndex:indexPath.row];
-	NSString *displayString = [NSString	 stringWithFormat:@"<span class=\"fbBlueText\">%@</span> %@",[(NSDictionary*)[comment objectForKey:@"from"] objectForKey:@"name"], [comment objectForKey:@"message"]];
-	cell.fbPictureUrl = [(NSDictionary*)[comment objectForKey:@"from"] objectForKey:@"id"];
+	NSString *displayString = [NSString	 stringWithFormat:@"<span class=\"fbBlueText\">%@</span> %@",[[FacebookProxy instance] userNameFrom:[comment objectForKey:@"fromid"]], [comment objectForKey:@"text"]];
+	cell.fbPictureUrl = [[FacebookProxy instance] profilePicUrlFrom:[comment objectForKey:@"fromid"]];
 	cell.commentText.text = [TTStyledText textFromXHTML:displayString lineBreaks:NO URLs:NO];
 	[cell.commentText sizeToFit];
 	[cell.commentText setNeedsDisplay];

@@ -813,13 +813,13 @@ static NSDateFormatter* fbEventDetailDate = NULL;
 -(NSString*)findSuitableText:(NSDictionary*)fbItem {
 	NSString *message = [fbItem objectForKey:@"message"];
 	NSDictionary *attachment = [fbItem objectForKey:@"attachment"];
+	NSMutableString *suitable = [NSMutableString stringWithString:@""];
 	if (attachment == nil) {
 		//there was no attachment so this is simply a status update
 		if (message!=nil) {
-			return message;
+			[suitable appendString:message];
 		}
 	} else{
-		NSMutableString *suitable = [NSMutableString stringWithString:@""];
 		if (message!=nil) {
 			[suitable appendString:message];
 		}
@@ -831,9 +831,9 @@ static NSDateFormatter* fbEventDetailDate = NULL;
 		if (caption!=nil) {
 			[suitable appendFormat:@" %@",caption];
 		}
-		return suitable;
 	}
-
+	NSString *result = [suitable stringByReplacingOccurrencesOfString: @"&" withString: @"&amp;"]; 
+	return result;
 }
 -(BOOL)doesHavePhoto:(NSDictionary*)fbItem{
 	NSDictionary *attachment = [fbItem objectForKey:@"attachment"];
@@ -865,6 +865,37 @@ static NSDateFormatter* fbEventDetailDate = NULL;
 	}
 	
 }
+
+-(NSString*)imageUrlForPhoto:(NSDictionary*)fbItem{
+	NSDictionary *attachment = [fbItem objectForKey:@"attachment"];
+	if (attachment) {
+		NSArray *media  = [attachment objectForKey:@"media"];
+		if (media) {
+			if ([media isKindOfClass:[NSArray class]]) {
+				if ([media count]>0) {
+					NSDictionary *item = [media objectAtIndex:0];
+					NSString *type = [item objectForKey:@"type"];
+					if ([type isEqualToString:@"photo"]) {
+						return [item objectForKey:@"src"];
+					}else {
+						return nil;
+					}
+				}else {
+					return nil;
+				}
+				
+			}else {
+				return nil;
+			}
+			
+		}else {
+			return nil;
+		}
+	}else {
+		return nil;
+	}
+
+}
 -(NSString*)userNameFrom:(NSNumber*)_id{
 	NSDictionary *profile = [profileLookup objectForKey:[_id stringValue]];
 	return [profile objectForKey:@"name"];
@@ -874,11 +905,19 @@ static NSDateFormatter* fbEventDetailDate = NULL;
 	return [profile objectForKey:@"pic_square"];
 }
 -(void)cacheIncomingProfiles:(NSArray*)profiles{
-	for (NSDictionary*p in profiles){
-		NSNumber *id = [p objectForKey:@"id"];
-		NSDictionary *exists = [profileLookup objectForKey:[id stringValue]];
-		if (exists==nil) {
-			[profileLookup setObject:p forKey:[id stringValue]];
+	@synchronized(profileLookup){
+		for (NSDictionary*p in profiles){
+			NSNumber *id = [p objectForKey:@"id"];
+			if (id==nil) {
+				id = [p objectForKey:@"uid"];
+			}
+			if (id!=nil) {
+				NSDictionary *exists = [profileLookup objectForKey:[id stringValue]];
+				if (exists==nil) {
+					[profileLookup setObject:p forKey:[id stringValue]];
+				}
+			}
+			
 		}
 	}
 }

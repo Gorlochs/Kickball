@@ -106,21 +106,23 @@
 				
 
 -(void)concatenateMore:(NSString*)urlString{
-	if (urlString==nil) {
-		[self performSelectorOnMainThread:@selector(stopProgressBar) withObject:nil waitUntilDone:NO];
-		return;
-	}
+	
+	
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	NSDictionary *lastItem = [newsFeed objectAtIndex:[newsFeed count]-1];
+	NSNumber *lastStamp = [lastItem objectForKey:@"updated_time"];
 	GraphAPI *graph = [[FacebookProxy instance] newGraph];
-	NSArray *moreNews = [graph nextPage:urlString];
+	NSDictionary *moreFeed = [graph newMeFeed:lastStamp];
+	NSArray *moreNews = [[NSMutableArray alloc] initWithArray:[moreFeed objectForKey:@"posts"]];
+	[[FacebookProxy instance] cacheIncomingProfiles:[moreFeed objectForKey:@"profiles"]];
 	if (moreNews!=nil) {
 		if ([moreNews count]==0) {
 			requeryWhenTableGetsToBottom = NO;
 		}
-		[nextPageURL release];
-		nextPageURL = nil;
-		nextPageURL = graph._pagingNext;
-		[nextPageURL retain];
+		//[nextPageURL release];
+		//nextPageURL = nil;
+		//nextPageURL = graph._pagingNext;
+		//[nextPageURL retain];
 		NSMutableArray * fullBoat = [[NSMutableArray alloc] init];
 		[fullBoat addObjectsFromArray:newsFeed];
 		[fullBoat addObjectsFromArray:moreNews];
@@ -172,6 +174,7 @@
     return 0;
 }
 
+/*
 -(BOOL)doesHavePhoto:(NSDictionary*)fbItem{
 	NSDictionary *attachment = [fbItem objectForKey:@"attachment"];
 	if (attachment) {
@@ -202,6 +205,7 @@
 	}
 
 }
+ */
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (newsFeed!=nil) {
 		NSDictionary *fbItem = [newsFeed objectAtIndex:indexPath.row];
@@ -211,9 +215,9 @@
 		heightTester.text = [TTStyledText textFromXHTML:displayString lineBreaks:NO URLs:NO];
 		[heightTester sizeToFit];
 		int baseHeight = 38;
-		BOOL withPhoto = [self doesHavePhoto:fbItem];
+		BOOL withPhoto = [[FacebookProxy instance] doesHavePhoto:fbItem];
 		if (withPhoto) {
-			baseHeight+=72;
+			baseHeight+=138;
 		}
 		return heightTester.frame.size.height+baseHeight > 58 ? heightTester.frame.size.height+baseHeight : 58;
 		//
@@ -244,6 +248,14 @@
 	NSDictionary *fbItem = [newsFeed objectAtIndex:indexPath.row];
 	NSString *bodyText = [[FacebookProxy instance] findSuitableText:fbItem];
 	NSString *displayString = [NSString	 stringWithFormat:@"<span class=\"fbBlueText\">%@</span> %@",[[FacebookProxy instance] userNameFrom:[fbItem objectForKey:@"actor_id"]], bodyText];
+	
+	BOOL withPhoto = [[FacebookProxy instance] doesHavePhoto:fbItem];
+	if (withPhoto) {
+		cell.fbPictureUrl = [[FacebookProxy instance] imageUrlForPhoto:fbItem];
+	}else {
+		cell.fbPictureUrl = nil;
+	}
+
 	/*
 	NSString *type = [fbItem objectForKey:@"type"];
 	if ([type isEqualToString:@"photo"]) {
@@ -266,7 +278,7 @@
 		[cell setNumberOfComments:0];
 	}
 
-	//[cell setDateLabelWithText:[[KickballAPI kickballApi] convertDateToTimeUnitString:[[FacebookProxy fbDateFormatter] dateFromString:[fbItem objectForKey:@"created_time"]]]];
+	[cell setDateLabelWithText:[[KickballAPI kickballApi] convertDateToTimeUnitString:[NSDate dateWithTimeIntervalSince1970:[(NSNumber*)[fbItem objectForKey:@"created_time"] intValue]]]]; //[[FacebookProxy fbDateFormatter] dateFromString:[fbItem objectForKey:@"created_time"]]]];
 	[cell.tweetText sizeToFit];
 	[cell.tweetText setNeedsDisplay];
 	return cell;

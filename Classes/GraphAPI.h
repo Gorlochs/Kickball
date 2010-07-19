@@ -63,6 +63,12 @@
 -(NSArray*)newsFeed:(NSString*)user_id;
 -(NSArray*)eventsFeed:(NSString*)user_id;
 -(NSArray*)nextPage:(NSString*)pageURL;
+
+-(NSArray*)commentFeedForPost:(NSString*)post_id;
+-(NSDictionary*)newMeFeed;
+-(NSArray*)getProfileObjects:(NSArray*)profileIds;
+-(NSDictionary*)newMeFeed:(NSNumber*)timeMarker;
+
 @end
 
 // Graph API Argument Keys

@@ -99,7 +99,7 @@
         pictureThumb1.backgroundColor = [UIColor clearColor];
         pictureThumb1.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
         pictureThumb1.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
-        		
+        pictureThumb1.contentMode = UIViewContentModeScaleAspectFit;		
 		
     }
     return self;
@@ -137,7 +137,7 @@
 		commentBG.frame = CGRectMake(contentRect.origin.x+contentRect.size.width - 25, contentRect.size.height - 26, 25, 25);
 	}
 	if (fbPictureUrl!=nil) {
-		pictureThumb1.frame = CGRectMake(60, tweetText.frame.size.height+20, 64, 64);
+		pictureThumb1.frame = CGRectMake(60, tweetText.frame.size.height+20, 130, 130);
 	}
 
 	

@@ -65,17 +65,21 @@
 -(void)setFbPictureUrl:(NSString *)_url{
 	//avoid reloading the image if it;s the same one already in use	
 	if ([fbPictureUrl isEqualToString:_url]) {
-		return;
+	//	return;
 	}
 	[fbPictureUrl release];
 	fbPictureUrl = nil;
-	fbPictureUrl = [_url copy];
-	NSString *cachedUrl = [[FacebookProxy instance].pictureUrls objectForKey:fbPictureUrl];
-	if (cachedUrl!=nil) {
-		[userIcon setUrlPath:cachedUrl];
-	}else {
-		[NSThread detachNewThreadSelector:@selector(loadPicUrl) toTarget:self withObject:nil];
-	}
+	NSString *forceUTF = [[NSString alloc] initWithUTF8String:[_url UTF8String]];
+	fbPictureUrl = [forceUTF stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+	[forceUTF release];
+	[fbPictureUrl retain];
+	DLog(@"fbPictureUrl:: %@",fbPictureUrl);
+	//NSString *cachedUrl = [[FacebookProxy instance].pictureUrls objectForKey:fbPictureUrl];
+	//if (cachedUrl!=nil) {
+		[userIcon setUrlPath:fbPictureUrl];
+	//}else {
+	//	[NSThread detachNewThreadSelector:@selector(loadPicUrl) toTarget:self withObject:nil];
+	//}
 	
 }
 

@@ -253,6 +253,74 @@ NSString* const kConnectionAlbums = @"albums";
 		return nil;
 	}
 }
+-(NSDictionary*)newMeFeed:(NSNumber*)timeMarker{
+	
+	NSData* responseData = nil;
+	NSString* r_string = nil;
+	NSString* method = @"stream.get";
+	NSMutableDictionary *args = nil;
+	args= [NSMutableDictionary dictionaryWithObjectsAndKeys:[timeMarker stringValue],@"end_time",@"json",@"format",self._accessToken,kArgumentKeyAccessToken,nil];
+	responseData = [self makeSynchronousRest:method args:args verb:kRequestVerbGet];
+	r_string = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+	SBJSON *parser = [SBJSON new];
+	id dict = [parser objectWithString:r_string error:NULL];
+	[parser release];
+	if ([dict isKindOfClass:[NSDictionary class]]) {
+		DLog(@"woohoo parsed a dictionary");
+		return dict;
+	}else {
+		DLog(@"parsed and got an array.  bummer.");
+		return nil;
+	}
+}
+
+-(NSArray*)commentFeedForPost:(NSString*)post_id{
+	NSArray* ids = [post_id componentsSeparatedByString:@"_"];
+	NSData* responseData = nil;
+	NSString* r_string = nil;
+	NSString* method = @"comments.get";
+	NSMutableDictionary *args = nil;
+	if ([ids count]!=2) {
+		//there was a problem with the incoming post_id
+		return nil;
+	}
+	args= [NSMutableDictionary dictionaryWithObjectsAndKeys:[ids objectAtIndex:1],@"object_id",@"json",@"format",self._accessToken,kArgumentKeyAccessToken,nil];
+	responseData = [self makeSynchronousRest:method args:args verb:kRequestVerbGet];
+	r_string = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+	SBJSON *parser = [SBJSON new];
+	id arr = [parser objectWithString:r_string error:NULL];
+	[parser release];
+	if ([arr isKindOfClass:[NSArray class]]) {
+		DLog(@"woohoo parsed an array");
+		return arr;
+	}else {
+		DLog(@"parsed and got a dictionary.  bummer.");
+		return nil;
+	}
+}
+
+-(NSArray*)getProfileObjects:(NSArray*)profileIds{
+	NSData* responseData = nil;
+	NSString* r_string = nil;
+	NSString* method = @"users.getInfo";
+	NSString* fields = @"name,pic_square";
+	NSString* profiles = [profileIds componentsJoinedByString:@","];
+	NSMutableDictionary *args = nil;
+	args= [NSMutableDictionary dictionaryWithObjectsAndKeys:profiles,@"uids",fields,@"fields",@"json",@"format",self._accessToken,kArgumentKeyAccessToken,nil];
+	responseData = [self makeSynchronousRest:method args:args verb:kRequestVerbGet];
+	r_string = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+	SBJSON *parser = [SBJSON new];
+	id arr = [parser objectWithString:r_string error:NULL];
+	[parser release];
+	if ([arr isKindOfClass:[NSArray class]]) {
+		DLog(@"woohoo parsed an array");
+		return arr;
+	}else {
+		DLog(@"parsed and got a dictionary.  bummer.");
+		return nil;
+	}
+}
+
 -(NSArray*)eventsFeed:(NSString*)user_id
 {	
 	/*

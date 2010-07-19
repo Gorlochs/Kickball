@@ -446,6 +446,9 @@
 		0E906DE011CAB9FF0045006C /* KBFacebookEventDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E906DDE11CAB9FF0045006C /* KBFacebookEventDetailViewController.xib */; };
 		0E985E1D11EF8F1E0027E401 /* sliderBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E985E1C11EF8F1E0027E401 /* sliderBar.png */; };
 		0E985EDF11EFB5960027E401 /* KBDialogueManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E985EDE11EFB5960027E401 /* KBDialogueManager.m */; };
+		0EAC002611F50B210004CF53 /* btn-like01.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EAC002311F50B210004CF53 /* btn-like01.png */; };
+		0EAC002711F50B210004CF53 /* btn-like02.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EAC002411F50B210004CF53 /* btn-like02.png */; };
+		0EAC002811F50B210004CF53 /* field-comment.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EAC002511F50B210004CF53 /* field-comment.png */; };
 		0EB19C3411D01E5E00BFF849 /* KBFacebookCreateWallPostVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EB19C3211D01E5E00BFF849 /* KBFacebookCreateWallPostVC.xib */; };
 		0EB19CB411D026E300BFF849 /* FBFacebookCreatePostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EB19CB211D026E300BFF849 /* FBFacebookCreatePostViewController.m */; };
 		0EB19CB511D026E300BFF849 /* FBFacebookCreatePostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EB19CB311D026E300BFF849 /* FBFacebookCreatePostViewController.xib */; };
@@ -1287,6 +1290,9 @@
 		0E985E1C11EF8F1E0027E401 /* sliderBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sliderBar.png; sourceTree = "<group>"; };
 		0E985EDD11EFB5960027E401 /* KBDialogueManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBDialogueManager.h; sourceTree = "<group>"; };
 		0E985EDE11EFB5960027E401 /* KBDialogueManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBDialogueManager.m; sourceTree = "<group>"; };
+		0EAC002311F50B210004CF53 /* btn-like01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btn-like01.png"; path = "Facebook Status Details/btn-like01.png"; sourceTree = SOURCE_ROOT; };
+		0EAC002411F50B210004CF53 /* btn-like02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btn-like02.png"; path = "Facebook Status Details/btn-like02.png"; sourceTree = SOURCE_ROOT; };
+		0EAC002511F50B210004CF53 /* field-comment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "field-comment.png"; path = "Facebook Status Details/field-comment.png"; sourceTree = SOURCE_ROOT; };
 		0EB19C3211D01E5E00BFF849 /* KBFacebookCreateWallPostVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = KBFacebookCreateWallPostVC.xib; path = Classes/KBFacebookCreateWallPostVC.xib; sourceTree = "<group>"; };
 		0EB19CB111D026E300BFF849 /* FBFacebookCreatePostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBFacebookCreatePostViewController.h; sourceTree = "<group>"; };
 		0EB19CB211D026E300BFF849 /* FBFacebookCreatePostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBFacebookCreatePostViewController.m; sourceTree = "<group>"; };
@@ -2373,6 +2379,9 @@
 		0739077E11EE7B82008756C2 /* Facebook */ = {
 			isa = PBXGroup;
 			children = (
+				0EAC002311F50B210004CF53 /* btn-like01.png */,
+				0EAC002411F50B210004CF53 /* btn-like02.png */,
+				0EAC002511F50B210004CF53 /* field-comment.png */,
 				0739077F11EE7B82008756C2 /* addCommentHeader.png */,
 				0739078011EE7B82008756C2 /* btn-fbEvents01.png */,
 				0739078111EE7B82008756C2 /* btn-fbEvents02.png */,
@@ -4401,6 +4410,9 @@
 				2B48BB4311F50A670028E36A /* pullFB02.png in Resources */,
 				2B48BB4411F50A670028E36A /* pullTW01.png in Resources */,
 				2B48BB4511F50A670028E36A /* pullTW02.png in Resources */,
+				0EAC002611F50B210004CF53 /* btn-like01.png in Resources */,
+				0EAC002711F50B210004CF53 /* btn-like02.png in Resources */,
+				0EAC002811F50B210004CF53 /* field-comment.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
