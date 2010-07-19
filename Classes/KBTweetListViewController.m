@@ -88,7 +88,6 @@
     _inModalTweetView = NO;
     }
 	if (statuses) {
-        if (twitterArray) [twitterArray release];
 		twitterArray = [statuses retain];
         int count = 0;
         if (!tweets) tweets = [[NSMutableArray alloc] init];
@@ -98,12 +97,12 @@
             [tweets insertObject:tweet atIndex:count++];
 			[tweet release];
 		}
-        [[NSUserDefaults standardUserDefaults] synchronize];
         if (!pageNum) {
-          while ([tweets count] > 25) [tweets removeLastObject];
+            while ([tweets count] > 25) [tweets removeLastObject];
         }
 		[theTableView reloadData];
         [[KBTwitterManager twitterManager] cacheStatusArray:tweets withKey:cachingKey];
+        [[NSUserDefaults standardUserDefaults] synchronize];
 	} else {
         requeryWhenTableGetsToBottom = NO;
     }
