@@ -97,13 +97,13 @@
 			KBTweet *tweet = [[KBTweet alloc] initWithDictionary:dict];
             [tweets insertObject:tweet atIndex:count++];
 			[tweet release];
-            [[KBTwitterManager twitterManager] cacheStatusArray:[NSArray arrayWithObject:tweet] withKey:cachingKey];
 		}
         [[NSUserDefaults standardUserDefaults] synchronize];
         if (!pageNum) {
           while ([tweets count] > 25) [tweets removeLastObject];
         }
 		[theTableView reloadData];
+        [[KBTwitterManager twitterManager] cacheStatusArray:tweets withKey:cachingKey];
 	} else {
         requeryWhenTableGetsToBottom = NO;
     }
