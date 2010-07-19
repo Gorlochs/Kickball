@@ -20,6 +20,7 @@
 
 - (void)viewDidLoad {
     pageType = KBPageTypeOther;
+    [self addHeaderAndFooter:theTableView];
     [super viewDidLoad];
 
     [self showBackHomeButtons];

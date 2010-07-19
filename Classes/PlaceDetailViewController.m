@@ -280,6 +280,8 @@
 				
 			}
         }
+		doCheckin = NO;
+		showCheckinView = NO;
     }
 }
 
