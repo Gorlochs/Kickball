@@ -164,7 +164,6 @@ NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
 
 [nodePool release];
 nodePool = NULL;
-DLog(@"-----------------------WARNING, draining POOL CXMLDocument");
 [thePool release];
 //
 xmlFreeDoc((xmlDocPtr)_node);

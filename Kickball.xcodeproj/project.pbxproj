@@ -11,6 +11,9 @@
 		03CECEA510D8B62C00E06966 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CECEA410D8B62C00E06966 /* SFHFKeychainUtils.m */; };
 		070909F111F4BF2400454CFF /* imgLoader_light.png in Resources */ = {isa = PBXBuildFile; fileRef = 070909F011F4BF2400454CFF /* imgLoader_light.png */; };
 		07090C2311F514A100454CFF /* graybackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 07090C2211F514A100454CFF /* graybackground.png */; };
+		07090ED011F6646300454CFF /* addFriend02.png in Resources */ = {isa = PBXBuildFile; fileRef = 07090ECF11F6646300454CFF /* addFriend02.png */; };
+		07090ED911F666E400454CFF /* addFirst01a.png in Resources */ = {isa = PBXBuildFile; fileRef = 07090ED711F666E400454CFF /* addFirst01a.png */; };
+		07090EDA11F666E400454CFF /* addFirst02a.png in Resources */ = {isa = PBXBuildFile; fileRef = 07090ED811F666E400454CFF /* addFirst02a.png */; };
 		0739062D11EE70F8008756C2 /* aap_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 073904EC11EE70F8008756C2 /* aap_arrow.png */; };
 		0739062E11EE70F8008756C2 /* aap_check.png in Resources */ = {isa = PBXBuildFile; fileRef = 073904ED11EE70F8008756C2 /* aap_check.png */; };
 		0739062F11EE70F8008756C2 /* aap_x01.png in Resources */ = {isa = PBXBuildFile; fileRef = 073904EE11EE70F8008756C2 /* aap_x01.png */; };
@@ -845,6 +848,9 @@
 		03CECEA410D8B62C00E06966 /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
 		070909F011F4BF2400454CFF /* imgLoader_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = imgLoader_light.png; sourceTree = "<group>"; };
 		07090C2211F514A100454CFF /* graybackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = graybackground.png; sourceTree = "<group>"; };
+		07090ECF11F6646300454CFF /* addFriend02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addFriend02.png; sourceTree = "<group>"; };
+		07090ED711F666E400454CFF /* addFirst01a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addFirst01a.png; sourceTree = "<group>"; };
+		07090ED811F666E400454CFF /* addFirst02a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addFirst02a.png; sourceTree = "<group>"; };
 		073904EC11EE70F8008756C2 /* aap_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aap_arrow.png; sourceTree = "<group>"; };
 		073904ED11EE70F8008756C2 /* aap_check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aap_check.png; sourceTree = "<group>"; };
 		073904EE11EE70F8008756C2 /* aap_x01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aap_x01.png; sourceTree = "<group>"; };
@@ -2017,8 +2023,11 @@
 				073904F411EE70F8008756C2 /* addAddSave01.png */,
 				073904F511EE70F8008756C2 /* addAddSave02.png */,
 				073904F611EE70F8008756C2 /* addCat.png */,
+				07090ED711F666E400454CFF /* addFirst01a.png */,
+				07090ED811F666E400454CFF /* addFirst02a.png */,
 				073904F711EE70F8008756C2 /* addFriend01_red.png */,
 				073904F811EE70F8008756C2 /* addFriend02_red.png */,
+				07090ECF11F6646300454CFF /* addFriend02.png */,
 				073904F911EE70F8008756C2 /* addFriend03_red.png */,
 				073904FA11EE70F8008756C2 /* addFriendShell.png */,
 				073904FB11EE70F8008756C2 /* addPhoto01.png */,
@@ -4429,6 +4438,9 @@
 				0E5A96E211F6115200E8155E /* photoLoading.png in Resources */,
 				2B436BAC11F643D200E2063B /* tweetField02.png in Resources */,
 				2B436BDE11F6506100E2063B /* button_right.png in Resources */,
+				07090ED011F6646300454CFF /* addFriend02.png in Resources */,
+				07090ED911F666E400454CFF /* addFirst01a.png in Resources */,
+				07090EDA11F666E400454CFF /* addFirst02a.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4770,7 +4782,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Shawn Bernard (6MN36SS56H)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Adam Winiecki (73XW6X7UZD)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -4798,7 +4810,7 @@
 					"\"$(SRCROOT)/../../../Downloads\"",
 				);
 				PRODUCT_NAME = kickball;
-				"PROVISIONING_PROFILE[sdk=*]" = "DC45A20E-0AB7-429E-A35E-2D0DAE94FF84";
+				"PROVISIONING_PROFILE[sdk=*]" = "AB9D818C-924D-48E5-BBC2-20D7DDC1CA7F";
 			};
 			name = Debug;
 		};
