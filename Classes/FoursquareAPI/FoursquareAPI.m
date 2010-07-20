@@ -482,6 +482,8 @@ static FoursquareAPI *sharedInstance = nil;
 	//[requestParams setObject:zip forKey:@"zip"];
 	//[requestParams setObject:cityId forKey:@"cityId"];
 	[requestParams setObject:phone forKey:@"phone"];
+    [requestParams setObject:[NSString stringWithFormat:@"%f", [[KBLocationManager locationManager] latitude]]  forKey:@"geolat"];	
+    [requestParams setObject:[NSString stringWithFormat:@"%f", [[KBLocationManager locationManager] longitude]]  forKey:@"geolong"];  
 	[self loadBasicAuthURL:[NSURL URLWithString:@"http://api.foursquare.com/v1/addvenue"] withUser:self.userName andPassword:self.passWord andParams:requestParams withTarget:inTarget andAction:inAction usingMethod:@"POST"];
 }
 

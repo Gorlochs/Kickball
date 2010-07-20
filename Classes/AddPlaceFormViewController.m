@@ -109,13 +109,13 @@
 
 - (void) backToAddAVenue {
     // FIXME: send the address data back to the main page
-    newVenue.venueAddress = [NSString stringWithString:address.text];
-    newVenue.crossStreet = [NSString stringWithString:crossstreet.text];
-    newVenue.phone = [NSString stringWithString:phone.text];
-    newVenue.city = [NSString stringWithString:city.text];
-    newVenue.venueState = [NSString stringWithString:state.text];
-    newVenue.zip = [NSString stringWithString:zip.text];
-    newVenue.twitter = [NSString stringWithString:twitter.text];
+    newVenue.venueAddress = address.text;
+    newVenue.crossStreet = crossstreet.text;
+    newVenue.phone = phone.text;
+    newVenue.city = city.text;
+    newVenue.venueState = state.text;
+    newVenue.zip = zip.text;
+    newVenue.twitter = twitter.text;
     
     NSDictionary *userInfo = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:newVenue, nil] 
                                                          forKeys:[NSArray arrayWithObjects:@"updatedVenue", nil]];
