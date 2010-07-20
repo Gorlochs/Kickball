@@ -1534,8 +1534,7 @@
     self.photoMessageToPush = message;
     [photoMessageViewController dismissModalViewControllerAnimated:NO];
     [self startProgressBar:@"Uploading photo..." withTimer:NO andLongerTime:NO];
-    // TODO: we'd have to confirm success to the user.
-    //       we also need to send a notification to the gift recipient
+	
     [photoManager uploadImage:UIImageJPEGRepresentation(self.photoImage, 1.0) 
              filename:@"gift.jpg" 
             withWidth:self.photoImage.size.width 
@@ -1544,7 +1543,7 @@
        andOrientation:self.photoImage.imageOrientation
              andVenue:venue];
     
-    //[[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:@"attachMessageToPhoto"];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"attachMessageToPhoto" object:nil];
 }
 
 #pragma mark

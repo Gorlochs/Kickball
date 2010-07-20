@@ -179,14 +179,14 @@
 
 -(void)displayAlbum:(NSString*)aid{
 	[self startProgressBar:@"loading photos"];
-	[NSThread detachNewThreadSelector:@selector(displayAlbumThreaded:) toTarget:self withObject:aid];
-}
--(void)displayAlbumThreaded:(NSString *)aid{
-	//fetch album photo array based on aid
-	//convert photo array to MockPhoto
-	//display photo viewer
-	//kill progress bar
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+//	[NSThread detachNewThreadSelector:@selector(displayAlbumThreaded:) toTarget:self withObject:aid];
+//}
+//-(void)displayAlbumThreaded:(NSString *)aid{
+//	//fetch album photo array based on aid
+//	//convert photo array to MockPhoto
+//	//display photo viewer
+//	//kill progress bar
+//	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	GraphAPI *graph = [[FacebookProxy instance] newGraph];
 	NSArray* photos = [graph getPhotosForAlbum:aid];
 	
@@ -214,7 +214,7 @@
 	[thePhotoSource release];
 	[tempTTPhotoArray release];
 	[graph release];
-	[pool release];
+	//[pool release];
 	
 	
 	[self stopProgressBar];
