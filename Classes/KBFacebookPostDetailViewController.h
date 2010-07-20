@@ -23,6 +23,9 @@
 	UILabel *dateLabel;
 	int numComments;
 	NSString *fbPictureUrl;
+	TTImageView *pictureThumb1;
+	UIButton *pictureButt;
+	NSString *pictureAlbumId;
 	
 	NSArray *comments;
 	NSString *nextPageURL;
@@ -33,7 +36,8 @@
 
 -(void)populate:(NSDictionary*)obj;
 -(IBAction)pressLike;
+-(void)pressLikeThreaded;
 -(IBAction)touchComment;
 -(void)concatenateMore:(NSString*)urlString;
-
+-(void)pressPhotoAlbum;
 @end

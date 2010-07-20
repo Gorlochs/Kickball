@@ -48,6 +48,19 @@
 		commentHightTester.textColor = [UIColor colorWithWhite:0.3 alpha:1.0];
 		commentHightTester.font = [UIFont fontWithName:@"Helvetica" size:12.0];
 		commentHightTester.backgroundColor = [UIColor clearColor];
+		
+		fbPictureUrl = nil;
+		pictureAlbumId = nil;
+		pictureThumb1 = [[TTImageView alloc] initWithFrame:CGRectMake(60, 50, 34, 34)];
+        pictureThumb1.backgroundColor = [UIColor clearColor];
+        pictureThumb1.defaultImage = [UIImage imageNamed:@"photoLoading.png"];
+        pictureThumb1.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
+        pictureThumb1.contentMode = UIViewContentModeScaleAspectFit;
+		pictureButt = [UIButton buttonWithType:UIButtonTypeCustom];
+		[pictureButt setFrame:pictureThumb1.frame];
+		[pictureButt retain];
+		[pictureButt addTarget:self action:@selector(pressPhotoAlbum) forControlEvents:UIControlEventTouchUpInside];
+		[pictureButt setEnabled:NO];
     }
     return self;
 }
@@ -72,36 +85,40 @@
 	[self.postView addSubview:fbPostText];
 	NSString *bodyText = [[FacebookProxy instance] findSuitableText:fbItem];
 	NSString *displayString = [NSString	 stringWithFormat:@"<span class=\"fbBlueText\">%@</span> %@",[[FacebookProxy instance] userNameFrom:[fbItem objectForKey:@"actor_id"]], bodyText];
-	
-	//NSString *displayString = [NSString	 stringWithFormat:@"<span class=\"fbBlueText\">%@</span> %@",[(NSDictionary*)[fbItem propertyWithKey:@"from"] objectForKey:@"name"], [fbItem propertyWithKey:@"message"]];
-	//fbPictureUrl = [(NSDictionary*)[fbItem objectForKey:<#(id)aKey#>:@"from"] objectForKey:@"id"];
 	fbPostText.text = [TTStyledText textFromXHTML:displayString lineBreaks:NO URLs:NO];
 	NSDictionary *commentDict = [fbItem objectForKey:@"comments"];
 	comments = [[NSArray alloc] initWithArray:(NSArray*)[commentDict objectForKey:@"comment_list"]];
-	/*NSDictionary *paging = (NSDictionary*)[(NSDictionary*)[fbItem propertyWithKey:@"comments"] objectForKey:@"paging"];
-	if (paging!=nil) {
-		nextPageURL = [[NSString alloc] initWithString:(NSString*)[paging objectForKey:@"next"]];
-	}else {
-		nextPageURL = nil;
-	}*/
-
 	numComments = [(NSNumber*)[commentDict objectForKey:@"count"] intValue];
 	dateLabel.text = [[KickballAPI kickballApi] convertDateToTimeUnitString:[NSDate dateWithTimeIntervalSince1970:[(NSNumber*)[fbItem objectForKey:@"created_time"] intValue]]]; //[[FacebookProxy fbDateFormatter] dateFromString:[fbItem objectForKey:@"created_time"]]]];
 	[fbPostText sizeToFit];
 	CGRect postSize = fbPostText.frame;
 	[fbPostText setNeedsDisplay];
 	int frameHeight = postSize.size.height+30 > 70 ? postSize.size.height+30 : 70;
-	postView.frame = CGRectMake(0, 47, 320, frameHeight);
-	commentView.frame = CGRectMake(0, frameHeight+47, 320, 46);
-	theTableView.frame = CGRectMake(0, frameHeight+93, 320, 460-frameHeight-93);
-	dateLabel.frame = CGRectMake(58, frameHeight-20, 200, 16);
+	BOOL withPhoto = [[FacebookProxy instance] doesHavePhoto:fbItem];
+	if (withPhoto) {
+		frameHeight+=140;
+		fbPictureUrl = [[FacebookProxy instance] imageUrlForPhoto:fbItem];
+		pictureAlbumId = [[FacebookProxy instance] albumIdForPhoto:fbItem];
+		pictureThumb1.frame = CGRectMake(58, frameHeight-154, 130, 130);
+		pictureButt.frame = pictureThumb1.frame;
+		postView.frame = CGRectMake(0, 47, 320, frameHeight);
+		commentView.frame = CGRectMake(0, frameHeight+47, 320, 46);
+		theTableView.frame = CGRectMake(0, frameHeight+93, 320, 460-frameHeight-93);
+		dateLabel.frame = CGRectMake(58, frameHeight-20, 200, 16);
+		[self.postView addSubview:pictureThumb1];
+		[self.postView addSubview:pictureButt];
+		[pictureButt setEnabled:YES];
+		[pictureThumb1 setUrlPath:fbPictureUrl];
+	}else {
+		fbPictureUrl = nil;
+		pictureAlbumId = nil;
+		postView.frame = CGRectMake(0, 47, 320, frameHeight);
+		commentView.frame = CGRectMake(0, frameHeight+47, 320, 46);
+		theTableView.frame = CGRectMake(0, frameHeight+93, 320, 460-frameHeight-93);
+		dateLabel.frame = CGRectMake(58, frameHeight-20, 200, 16);
+	}
 	
-	//NSString *cachedUrl = [[FacebookProxy instance].pictureUrls objectForKey:fbPictureUrl];
-	//if (cachedUrl!=nil) {
-		[userIcon setUrlPath:[[FacebookProxy instance] profilePicUrlFrom:[fbItem objectForKey:@"actor_id"]]];
-	//}else {
-	//	[NSThread detachNewThreadSelector:@selector(loadPicUrl) toTarget:self withObject:nil];
-	//}
+	[userIcon setUrlPath:[[FacebookProxy instance] profilePicUrlFrom:[fbItem objectForKey:@"actor_id"]]];
 	[theTableView reloadData];
 	if (numComments> [comments count]) {
 		[self startProgressBar:@"loading comments"];
@@ -138,7 +155,7 @@
 	BOOL update = YES;
 	if (incomingComments==nil) {
 		update = NO;
-	}else if ([incomingComments count]<2) {
+	}if ([incomingComments count]<2) {
 		update = NO;
 	}
 	if (update) {
@@ -301,7 +318,7 @@
 */
 
 -(IBAction)pressLike{
-	[NSThread detachNewThreadSelector:@selector(threadedLike) toTarget:self withObject:nil];
+	[NSThread detachNewThreadSelector:@selector(pressLikeThreaded) toTarget:self withObject:nil];
 
 	//GraphAPI *graph = [[[FacebookProxy instance] newGraph] autorelease];
 	//[NSThread detachNewThreadSelector:@selector(likeObject:) toTarget:graph withObject:[fbItem propertyWithKey:@"id"]];
@@ -309,12 +326,16 @@
 	//[fbItem propertyWithKey:@"id"]
 }
 
--(void)threadedLike{
+-(void)pressLikeThreaded{
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	GraphAPI *graph = [[[FacebookProxy instance] newGraph] autorelease];
-	[graph likeObject:[fbItem propertyWithKey:@"id"]];
+	[graph likeObject:[fbItem objectForKey:@"post_id"]];
 	[pool release];
 	
+}
+
+-(void)pressPhotoAlbum{
+	[self displayAlbum:pictureAlbumId];
 }
 -(IBAction)touchComment{
 	KBFacebookAddCommentViewController* commentController = [[KBFacebookAddCommentViewController alloc] initWithNibName:@"KBFacebookAddComment" bundle:nil];
