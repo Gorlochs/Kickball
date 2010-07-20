@@ -161,7 +161,7 @@
 }
 
 - (void)userResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
-    //DLog(@"authenticated user: %@", inString);
+    DLog(@"authenticated user: %@", inString);
 	FSUser* user = [[FoursquareAPI userFromResponseXML:inString] retain];
     if (hasViewedInstructions) {
         [self setUserIconViewCustom:user];

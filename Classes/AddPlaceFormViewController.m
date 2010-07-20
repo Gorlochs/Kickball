@@ -37,6 +37,12 @@
     twitter.text = newVenue.twitter;
     zip.text = newVenue.zip;
     state.text = newVenue.venueState;
+	
+	FSUser *authdUser = [self getAuthenticatedUser];
+	if (authdUser.checkin && authdUser.checkin.venue && !newVenue.city) {
+		city.text = authdUser.checkin.venue.city;
+		state.text = authdUser.checkin.venue.venueState;
+	}
 }
 
 - (void)didReceiveMemoryWarning {
