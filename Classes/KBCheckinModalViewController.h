@@ -49,6 +49,7 @@
 -(void)updateTwitterButton;
 -(void)updateFacebookButton;
 -(void)updateFoursquareButton;
+- (void) submitToTwitter:(TweetPhotoResponse*)response;
 - (void) closeUpShop;
 - (void) statusRetrieved:(NSNotification *)inNotification;
 - (void) decrementActionCount;

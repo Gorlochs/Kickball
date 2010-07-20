@@ -157,9 +157,9 @@
 			[NSThread detachNewThreadSelector:@selector(uploadToTweetPhoto) toTarget:self withObject:nil];
 		}
     } else {
-		//if (isFacebookOn ) {
+		if (isFacebookOn ) {
             [Utilities putGoogleMapsWallPostWithMessage:[self formatCheckinMessage:checkinTextField.text] andVenue:venue andLink:[Utilities getShortenedUrlFromFoursquareVenueId:venue.venueid]];
-		//}
+		}
 		
 	    if (isTwitterOn) {
 			[self submitToTwitter:nil];

@@ -7,7 +7,7 @@
 //
 
 #import "KBInstacheckinTableCell.h"
-
+#import "Utilities.h"
 
 @implementation KBInstacheckinTableCell
 
@@ -32,7 +32,7 @@
     self->_cancelTouches = YES;
 	[self stopSpinner];
     // DO WHATEVER YOU LIKE HERE!!!
-    NSDictionary *messageInfo = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:self.venueId, nil] forKeys:[NSArray arrayWithObjects:@"venueIdOfCell", nil]];
+    NSDictionary *messageInfo = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[Utilities safeString:self.venueId], nil] forKeys:[NSArray arrayWithObjects:@"venueIdOfCell", nil]];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"touchAndHoldCheckin"
                                                         object:nil
                                                       userInfo:messageInfo];
