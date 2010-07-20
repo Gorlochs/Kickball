@@ -135,23 +135,32 @@
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	GraphAPI *graph = [[FacebookProxy instance] newGraph];
 	NSArray* incomingComments = [graph commentFeedForPost:[fbItem objectForKey:@"post_id"]];//[graph getConnections:@"comments" forObject:[fbItem propertyWithKey:@"id"]];
-	[comments release];
-	comments = nil;
-	comments = incomingComments;
-	[comments retain];
-	NSMutableArray *profileIds = [[NSMutableArray alloc] init];
-	for (NSDictionary *comm in comments){
-		[profileIds addObject:[comm objectForKey:@"fromid"]];
+	BOOL update = YES;
+	if (incomingComments==nil) {
+		update = NO;
+	}else if ([incomingComments count]<2) {
+		update = NO;
 	}
-	NSArray *incomingProfiles = [graph getProfileObjects:profileIds];
-	[[FacebookProxy instance] cacheIncomingProfiles:incomingProfiles];
-	[profileIds release];
+	if (update) {
+		[comments release];
+		comments = nil;
+		comments = incomingComments;
+		[comments retain];
+		NSMutableArray *profileIds = [[NSMutableArray alloc] init];
+		for (NSDictionary *comm in comments){
+			[profileIds addObject:[comm objectForKey:@"fromid"]];
+		}
+		NSArray *incomingProfiles = [graph getProfileObjects:profileIds];
+		[[FacebookProxy instance] cacheIncomingProfiles:incomingProfiles];
+		[profileIds release];
+		[theTableView reloadData];
+	}
+	
 	//[nextPageURL release];
 	//nextPageURL = nil;
 	//nextPageURL = graph._pagingNext;
 	//[nextPageURL retain];
 	[graph release];	
-	[theTableView reloadData];
 	[pool release];
 	[self performSelectorOnMainThread:@selector(stopProgressBar) withObject:nil waitUntilDone:NO];
 	[self performSelectorOnMainThread:@selector(dataSourceDidFinishLoadingNewData) withObject:nil waitUntilDone:NO];
@@ -309,7 +318,7 @@
 }
 -(IBAction)touchComment{
 	KBFacebookAddCommentViewController* commentController = [[KBFacebookAddCommentViewController alloc] initWithNibName:@"KBFacebookAddComment" bundle:nil];
-    commentController.fbId = [fbItem propertyWithKey:@"id"];
+    commentController.fbId = [fbItem objectForKey:@"post_id"];
 	commentController.parentView = self;
 	commentController.isComment = YES;
     [self presentModalViewController:commentController animated:YES];

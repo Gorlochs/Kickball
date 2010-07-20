@@ -97,14 +97,12 @@
 		fbPictureUrl = nil;
 		pictureThumb1 = [[TTImageView alloc] initWithFrame:CGRectMake(60, 50, 34, 34)];
         pictureThumb1.backgroundColor = [UIColor clearColor];
-        //pictureThumb1.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
+        pictureThumb1.defaultImage = nil;//[UIImage imageNamed:@"blank_boy.png"];
         pictureThumb1.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
-        pictureThumb1.contentMode = UIViewContentModeScaleAspectFit;		
+        pictureThumb1.contentMode = UIViewContentModeScaleAspectFit;	
 		
-		pictureActivityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-		pictureActivityIndicator.frame = CGRectMake(60, 50, 20, 20);
-		pictureActivityIndicator.center = pictureThumb1.center;
-		pictureActivityIndicator.hidden = YES;
+		spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+		
     }
     return self;
 }
@@ -142,6 +140,7 @@
 	}
 	if (fbPictureUrl!=nil) {
 		pictureThumb1.frame = CGRectMake(60, tweetText.frame.size.height+20, 130, 130);
+		spinner.frame = CGRectMake(115, tweetText.frame.size.height+75, 20, 20);
 	}
 
 	
@@ -192,10 +191,12 @@
 	//avoid reloading the image if it;s the same one already in use	
 	if (_url == nil) {
 		[pictureThumb1 removeFromSuperview];
+		[spinner removeFromSuperview];
 		return;
 	}else{
 		if ([pictureThumb1 superview] !=self) {
 			[self addSubview:pictureThumb1];
+			[self insertSubview:spinner belowSubview:pictureThumb1];
 		}
 	}
 	
