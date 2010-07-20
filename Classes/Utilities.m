@@ -79,7 +79,8 @@ static Utilities *sharedInstance = nil;
         NSMutableString *addy = [[NSMutableString alloc] initWithString:venue.venueAddress];
         [addy replaceOccurrencesOfString:@" " withString:@"+" options:NSLiteralSearch range:NSMakeRange(0, [addy length])];
         [urlPath appendFormat:@"%@&sensor=true", addy];
-        googleMapPic = [[NSDictionary alloc] initWithObjectsAndKeys:venue.name, @"name", urlPath, @"picture",@"Kickball",@"caption",venue.venueAddress,@"description", [Utilities safeString:link], @"link", nil];
+		NSString *fullAddress = [NSString stringWithFormat:@"%@, %@, %@", venue.addressWithCrossstreet, venue.city, venue.venueState];
+        googleMapPic = [[NSDictionary alloc] initWithObjectsAndKeys:urlPath, @"picture",venue.name,@"caption",fullAddress,@"description",nil];
         [addy release];
     } else {
         double lat = [[KBLocationManager locationManager] latitude];

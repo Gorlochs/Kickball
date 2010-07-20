@@ -7,16 +7,14 @@
 //
 
 #import "UIAlertView+Helper.h"
+#import "KBMessage.h"
+#import "KBDialogueManager.h"
+
 
 void UIAlertViewQuick(NSString* title, NSString* message, NSString* dismissButtonTitle) {
-	UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title
-													message:message
-												   delegate:nil 
-										  cancelButtonTitle:dismissButtonTitle
-										  otherButtonTitles:nil
-						  ];
-	[alert show];
-	[alert autorelease];
+    KBMessage *theMessage = [[KBMessage alloc] initWithMember:title andMessage:message];
+	[[KBDialogueManager sharedInstance] displayMessage:theMessage];
+    [theMessage release];
 }
 
 

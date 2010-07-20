@@ -17,6 +17,7 @@
     NSString *profileImageUrl;
     NSString *tweetText;
     NSNumber *tweetId;
+	NSString *clientName;
     NSDictionary *dict;
 	BOOL isFavorited;
 }
@@ -26,6 +27,7 @@
 @property (nonatomic, retain) NSDate *createDate;
 @property (nonatomic, retain) NSString *profileImageUrl;
 @property (nonatomic, retain) NSString *tweetText;
+@property (nonatomic, retain) NSString *clientName;
 @property (nonatomic, retain) NSNumber *tweetId;
 @property (nonatomic) BOOL isFavorited;
 

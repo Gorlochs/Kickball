@@ -4762,7 +4762,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Scott bates (T8KW7H6C92)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Shawn Bernard (6MN36SS56H)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -4790,7 +4790,7 @@
 					"\"$(SRCROOT)/../../../Downloads\"",
 				);
 				PRODUCT_NAME = kickball;
-				"PROVISIONING_PROFILE[sdk=*]" = "9D308040-B676-4C81-8769-E3CFE9C89010";
+				"PROVISIONING_PROFILE[sdk=*]" = "DC45A20E-0AB7-429E-A35E-2D0DAE94FF84";
 			};
 			name = Debug;
 		};
@@ -4838,6 +4838,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Shawn Bernard (6MN36SS56H)";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Shawn Bernard (6MN36SS56H)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -4855,6 +4856,8 @@
 					"-ObjC",
 				);
 				PREBINDING = NO;
+				PROVISIONING_PROFILE = "DC45A20E-0AB7-429E-A35E-2D0DAE94FF84";
+				"PROVISIONING_PROFILE[sdk=*]" = "DC45A20E-0AB7-429E-A35E-2D0DAE94FF84";
 				SDKROOT = iphoneos4.0;
 			};
 			name = Debug;

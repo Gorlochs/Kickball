@@ -84,6 +84,10 @@
     
     screenName.text = tweet.screenName;
     fullName.text = tweet.fullName;
+	twitterClient.text = @"";
+	if (tweet.clientName) {
+		twitterClient.text = tweet.clientName;
+	}
 	
 	TTStyledTextLabel* label1 = [[TTStyledTextLabel alloc] initWithFrame:CGRectMake(6, 125, 300, 100)];
 	label1.font = [UIFont fontWithName:@"Helvetica" size:14.0];

@@ -8,6 +8,8 @@
 
 #import "KBTweet.h"
 #import "KickballAPI.h"
+#import "RegexKitLite.h"
+
 
 @implementation KBTweet
 
@@ -18,7 +20,7 @@
 @synthesize tweetText;
 @synthesize tweetId;
 @synthesize isFavorited;
-
+@synthesize clientName;
 
 // init with dictionary
 - (id) initWithDictionary:(NSDictionary*)statusDictionary {		
@@ -29,6 +31,28 @@
         profileImageUrl = [[statusDictionary objectForKey:@"user"] objectForKey:@"profile_image_url"];
         tweetText = [statusDictionary objectForKey:@"text"];
         tweetId = [statusDictionary objectForKey:@"id"];
+		//clientName = [statusDictionary objectForKey:@"source"];
+		
+		NSRange   matchedRange = NSMakeRange(NSNotFound, 0);
+		NSString *clientWithLink = [statusDictionary objectForKey:@"source"];
+		DLog("************** client with link: %@", clientWithLink);
+		matchedRange = [clientWithLink rangeOfRegex:@">(.*)<"];
+		clientName = @"";
+		if (matchedRange.location != NSNotFound) {
+			NSRange reducedRange = NSMakeRange(matchedRange.location + 1, matchedRange.length - 2);
+			clientName = [[clientWithLink substringWithRange:reducedRange] retain];
+			DLog(@"********************************* clientName: %@", clientName);
+		} else if ([statusDictionary objectForKey:@"source"]) {
+			clientName = [statusDictionary objectForKey:@"source"];
+		}
+		
+//		NSString * searchString = [statusDictionary objectForKey:@"text"];
+//		NSString *regexString = @">(.*)<";
+//		NSArray  *matchArray   = nil;
+//		matchArray = [searchString componentsMatchedByRegex:regexString];
+		
+		
+		
         
         createDate = [[[[KickballAPI kickballApi] twitterDateFormatter] dateFromString:[statusDictionary objectForKey:@"created_at"]] retain];
         isFavorited = [[statusDictionary objectForKey:@"favorited"] boolValue];
@@ -46,6 +70,7 @@
     [coder encodeObject: createDate forKey:@"createDate"]; 
     [coder encodeObject: profileImageUrl forKey:@"profileImageUrl"]; 
     [coder encodeObject: tweetText forKey:@"tweetText"]; 
+    [coder encodeObject: clientName forKey:@"clientName"]; 
     [coder encodeObject: tweetId forKey:@"tweetId"]; 
     [coder encodeObject: [NSNumber numberWithBool:isFavorited] forKey:@"favorited"]; 
 } 
@@ -57,6 +82,7 @@
         [self setCreateDate: [coder decodeObjectForKey:@"createDate"]];  
         [self setProfileImageUrl: [coder decodeObjectForKey:@"profileImageUrl"]]; 
         [self setTweetText: [coder decodeObjectForKey:@"tweetText"]]; 
+        [self setClientName: [coder decodeObjectForKey:@"clientName"]]; 
         [self setTweetId: [coder decodeObjectForKey:@"tweetId"]]; 
         [self setIsFavorited: [[coder decodeObjectForKey:@"favorited"] boolValue]]; 
     } 
@@ -71,6 +97,7 @@
     [profileImageUrl release];
     [tweetText release];
     [tweetId release];
+	[clientName release];
     [super dealloc];
 }
 
