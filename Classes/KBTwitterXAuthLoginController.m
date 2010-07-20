@@ -163,7 +163,7 @@
 
 - (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error
 {
-	DLog(@"Twitter request failed: %@ with error:%@", connectionIdentifier, error);
+	DLog(@"actual Twitter request failed 1: %@ with error:%@", connectionIdentifier, error);
 		
 	if ([[error domain] isEqualToString: @"HTTP"])
 	{

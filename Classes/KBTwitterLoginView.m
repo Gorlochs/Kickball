@@ -113,7 +113,7 @@
 
 - (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error
 {
-	DLog(@"Twitter request failed: %@ with error:%@", connectionIdentifier, error);
+	DLog(@"Twitter request failed 6: %@ with error:%@", connectionIdentifier, error);
 	[(KBBaseViewController*)delegate stopProgressBar];
 	if ([[error domain] isEqualToString: @"HTTP"])
 	{

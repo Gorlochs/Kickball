@@ -9,6 +9,7 @@
 #import "KBTwitterManager.h"
 #import "UIAlertView+Helper.h"
 #import "KBAccountManager.h"
+#import "KBBaseViewController.h"
 
 #define NUM_TWEETS_TO_CACHE 25
 
@@ -160,10 +161,12 @@ static KBTwitterManager *sharedInstance = nil;
     [delegate searchResultsReceived:searchResults];
 }
 
+- (void)stopProgressBar {
+	[(KBBaseViewController*)delegate stopProgressBar];
+}
 - (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error
 {
-	DLog(@"Twitter request failed: %@ with error:%@", connectionIdentifier, error);
-    
+	DLog(@"actual Twitter request failed 2: %@ with error:%@", connectionIdentifier, error);
 	if ([[error domain] isEqualToString: @"HTTP"])
 	{
 		switch ([error code]) {
@@ -223,6 +226,7 @@ static KBTwitterManager *sharedInstance = nil;
 			}
 		}
 	}
+    [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(stopProgressBar) userInfo:nil repeats:NO];
 	
 }
 
