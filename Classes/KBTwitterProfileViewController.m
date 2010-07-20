@@ -81,6 +81,7 @@
 
 
 - (void) viewRecentTweets {
+    if (![userDictionary objectForKey:@"screen_name"]) return;
 	KBUserTweetsViewController *recentTweetsController = [[KBUserTweetsViewController alloc] initWithNibName:@"KBUserTweetsViewController" bundle:nil];
     recentTweetsController.userDictionary = userDictionary;
     recentTweetsController.username = [userDictionary objectForKey:@"screen_name"];
@@ -89,6 +90,7 @@
 }
 
 - (void) viewFollowers {
+    if (![userDictionary objectForKey:@"screen_name"]) return;
 	KBTwitterUserListViewController *followersController = [[KBTwitterUserListViewController alloc] initWithNibName:@"KBTwitterUserListViewController" bundle:nil];
     followersController.userDictionary = userDictionary;
     followersController.userType = KBTwitterUserFollower;
@@ -111,6 +113,7 @@
 }
 
 - (void) viewFriends {
+    if (![userDictionary objectForKey:@"screen_name"]) return;
 	KBTwitterUserListViewController *friendsController = [[KBTwitterUserListViewController alloc] initWithNibName:@"KBTwitterUserListViewController" bundle:nil];
     friendsController.userDictionary = userDictionary;
     friendsController.userType = KBTwitterUserFriend;

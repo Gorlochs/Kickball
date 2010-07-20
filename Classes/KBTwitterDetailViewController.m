@@ -20,6 +20,7 @@
 @synthesize tweet, tweets;
 
 - (IBAction) viewRecentTweets {
+    if (![userDictionary objectForKey:@"screen_name"]) return;
 	KBUserTweetsViewController *recentTweetsController = [[KBUserTweetsViewController alloc] initWithNibName:@"KBUserTweetsViewController" bundle:nil];
     recentTweetsController.userDictionary = userDictionary;
     recentTweetsController.username = [userDictionary objectForKey:@"screen_name"];
@@ -28,6 +29,7 @@
 }
 
 - (IBAction) viewFavorites {
+    if (![userDictionary objectForKey:@"screen_name"]) return;
     if ([numberOfFavorites.text isEqualToString:@""] || [numberOfFavorites.text isEqualToString:@"0"]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry" message:@"This user has no favorites." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
@@ -42,6 +44,7 @@
 }
 
 - (IBAction) viewFollowers {
+    if (![userDictionary objectForKey:@"screen_name"]) return;
 	KBTwitterUserListViewController *followersController = [[KBTwitterUserListViewController alloc] initWithNibName:@"KBTwitterUserListViewController" bundle:nil];
     followersController.userDictionary = userDictionary;
     followersController.userType = KBTwitterUserFollower;
@@ -50,6 +53,7 @@
 }
 
 - (IBAction) viewFriends {
+    if (![userDictionary objectForKey:@"screen_name"]) return;
 	KBTwitterUserListViewController *friendsController = [[KBTwitterUserListViewController alloc] initWithNibName:@"KBTwitterUserListViewController" bundle:nil];
     friendsController.userDictionary = userDictionary;
     friendsController.userType = KBTwitterUserFriend;
