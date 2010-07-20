@@ -67,7 +67,7 @@
 - (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error
 {
 	DLog(@"actual Twitter request failed 4: %@ with error:%@", connectionIdentifier, error);
-    [self stopProgressBar];
+    [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(stopProgressBar) userInfo:nil repeats:NO];
 	if ([[error domain] isEqualToString: @"HTTP"])
 	{
 		switch ([error code]) {

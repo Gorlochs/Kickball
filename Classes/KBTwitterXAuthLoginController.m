@@ -13,7 +13,7 @@
 #import "KBAccountManager.h"
 #import "KBTwitterManager.h"
 #import "KBTweetListViewController.h"
-
+#import "KBBaseViewController.h"
 
 @implementation KBTwitterXAuthLoginController
 
@@ -161,9 +161,14 @@
 	UIAlertViewQuick(@"Tweet sent!", @"The tweet was successfully sent. Everything works!", @"OK");
 }
 
+/*- (void)stopProgressBar {
+	[(KBBaseViewController*)delegate stopProgressBar];
+}*/
 - (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error
 {
 	DLog(@"actual Twitter request failed 1: %@ with error:%@", connectionIdentifier, error);
+  //FIXME: stop the progress bar
+    //[NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(stopProgressBar) userInfo:nil repeats:NO];
 		
 	if ([[error domain] isEqualToString: @"HTTP"])
 	{
