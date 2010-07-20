@@ -174,6 +174,17 @@
     backButton.hidden = NO;
 }
 
+-(void)displayAlbum:(NSString*)aid{
+	[self startProgressBar:@"loading photos"];
+	[NSThread detachNewThreadSelector:@selector(displayAlbumThreaded:) toTarget:self withObject:aid];
+}
+-(void)displayAlbumThreaded:(NSString *)aid{
+	//fetch album photo array based on aid
+	//convert photo array to MockPhoto
+	//display photo viewer
+	//kill progress bar
+}
+
 
 
 - (void)dealloc {

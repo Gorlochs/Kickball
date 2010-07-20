@@ -430,6 +430,7 @@
 		07A3A54311D0002F00FC7375 /* KBTwitterFavsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A3A54211D0002F00FC7375 /* KBTwitterFavsViewController.m */; };
 		0E2E954C11DCF79C0042D0E2 /* OptionsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2E954B11DCF79C0042D0E2 /* OptionsNavigationController.m */; };
 		0E2E955111DCF9630042D0E2 /* OptionsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2E955011DCF9630042D0E2 /* OptionsVC.m */; };
+		0E5A96E211F6115200E8155E /* photoLoading.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E5A96E111F6115200E8155E /* photoLoading.png */; };
 		0E76C3F311C1571F00BA1E89 /* KBFacebookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E76C3F111C1571F00BA1E89 /* KBFacebookViewController.m */; };
 		0E76C3FB11C158F100BA1E89 /* FacebookHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E76C3FA11C158F100BA1E89 /* FacebookHeaderView.xib */; };
 		0E76C40011C15F6E00BA1E89 /* KBFacebookListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E76C3FF11C15F6E00BA1E89 /* KBFacebookListViewController.m */; };
@@ -1264,6 +1265,7 @@
 		0E2E954B11DCF79C0042D0E2 /* OptionsNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionsNavigationController.m; sourceTree = "<group>"; };
 		0E2E954F11DCF9630042D0E2 /* OptionsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionsVC.h; sourceTree = "<group>"; };
 		0E2E955011DCF9630042D0E2 /* OptionsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionsVC.m; sourceTree = "<group>"; };
+		0E5A96E111F6115200E8155E /* photoLoading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photoLoading.png; sourceTree = "<group>"; };
 		0E76C3F011C1571F00BA1E89 /* KBFacebookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBFacebookViewController.h; sourceTree = "<group>"; };
 		0E76C3F111C1571F00BA1E89 /* KBFacebookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBFacebookViewController.m; sourceTree = "<group>"; };
 		0E76C3FA11C158F100BA1E89 /* FacebookHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FacebookHeaderView.xib; sourceTree = "<group>"; };
@@ -2382,6 +2384,7 @@
 		0739077E11EE7B82008756C2 /* Facebook */ = {
 			isa = PBXGroup;
 			children = (
+				0E5A96E111F6115200E8155E /* photoLoading.png */,
 				0EAC002311F50B210004CF53 /* btn-like01.png */,
 				0EAC002411F50B210004CF53 /* btn-like02.png */,
 				0EAC002511F50B210004CF53 /* field-comment.png */,
@@ -4417,6 +4420,7 @@
 				0EAC002711F50B210004CF53 /* btn-like02.png in Resources */,
 				0EAC002811F50B210004CF53 /* field-comment.png in Resources */,
 				07090C2311F514A100454CFF /* graybackground.png in Resources */,
+				0E5A96E211F6115200E8155E /* photoLoading.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4758,7 +4762,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Adam Winiecki (73XW6X7UZD)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Scott bates (T8KW7H6C92)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -4786,7 +4790,7 @@
 					"\"$(SRCROOT)/../../../Downloads\"",
 				);
 				PRODUCT_NAME = kickball;
-				"PROVISIONING_PROFILE[sdk=*]" = "AB9D818C-924D-48E5-BBC2-20D7DDC1CA7F";
+				"PROVISIONING_PROFILE[sdk=*]" = "9D308040-B676-4C81-8769-E3CFE9C89010";
 			};
 			name = Debug;
 		};

@@ -11,6 +11,7 @@
 #import "FacebookProxy.h"
 #import "GraphObject.h"
 #import "GraphAPI.h"
+#import "KBFacebookViewController.h"
 
 @implementation KBFacebookNewsCell
 
@@ -18,7 +19,7 @@
 @synthesize userName;
 @synthesize tweetText;
 @synthesize dateLabel;
-@synthesize fbProfilePicUrl, fbPictureUrl;
+@synthesize fbProfilePicUrl, fbPictureUrl, pictureAlbumId;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
@@ -97,12 +98,15 @@
 		fbPictureUrl = nil;
 		pictureThumb1 = [[TTImageView alloc] initWithFrame:CGRectMake(60, 50, 34, 34)];
         pictureThumb1.backgroundColor = [UIColor clearColor];
-        pictureThumb1.defaultImage = nil;//[UIImage imageNamed:@"blank_boy.png"];
+        pictureThumb1.defaultImage = [UIImage imageNamed:@"photoLoading.png"];
         pictureThumb1.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
-        pictureThumb1.contentMode = UIViewContentModeScaleAspectFit;	
-		
-		spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-		
+        pictureThumb1.contentMode = UIViewContentModeScaleAspectFit;
+		pictureButt = [UIButton buttonWithType:UIButtonTypeCustom];
+		[pictureButt setFrame:pictureThumb1.frame];
+		[pictureButt retain];
+		[pictureButt addTarget:self action:@selector(pressPhotoAlbum) forControlEvents:UIControlEventTouchUpInside];
+		[pictureButt setEnabled:NO];
+				
     }
     return self;
 }
@@ -140,7 +144,7 @@
 	}
 	if (fbPictureUrl!=nil) {
 		pictureThumb1.frame = CGRectMake(60, tweetText.frame.size.height+20, 130, 130);
-		spinner.frame = CGRectMake(115, tweetText.frame.size.height+75, 20, 20);
+		pictureButt.frame = pictureThumb1.frame;
 	}
 
 	
@@ -191,12 +195,14 @@
 	//avoid reloading the image if it;s the same one already in use	
 	if (_url == nil) {
 		[pictureThumb1 removeFromSuperview];
-		[spinner removeFromSuperview];
+		[pictureButt removeFromSuperview];
+		[pictureButt setEnabled:NO];
 		return;
 	}else{
 		if ([pictureThumb1 superview] !=self) {
 			[self addSubview:pictureThumb1];
-			[self insertSubview:spinner belowSubview:pictureThumb1];
+			[self addSubview:pictureButt];
+			[pictureButt setEnabled:YES];
 		}
 	}
 	
@@ -239,8 +245,14 @@
 	}
 }
 
+-(void)pressPhotoAlbum{
+	UITableView *tv = (UITableView *) self.superview;
+	UITableViewController *vc = (UITableViewController *) tv.dataSource;
+	[(KBFacebookViewController*)vc displayAlbum:pictureAlbumId];
+}
+
 - (void)dealloc {
-	[spinner release];
+	[pictureAlbumId release];
 	[fbProfilePicUrl release];
     [userIcon release];
     [userName release];

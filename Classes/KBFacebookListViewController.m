@@ -252,8 +252,10 @@
 	BOOL withPhoto = [[FacebookProxy instance] doesHavePhoto:fbItem];
 	if (withPhoto) {
 		cell.fbPictureUrl = [[FacebookProxy instance] imageUrlForPhoto:fbItem];
+		cell.pictureAlbumId = [[FacebookProxy instance] albumIdForPhoto:fbItem];
 	}else {
 		cell.fbPictureUrl = nil;
+		cell.pictureAlbumId = nil;
 	}
 
 	/*

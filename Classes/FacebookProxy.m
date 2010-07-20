@@ -896,6 +896,39 @@ static NSDateFormatter* fbEventDetailDate = NULL;
 	}
 
 }
+
+-(NSString*)albumIdForPhoto:(NSDictionary*)fbItem{
+	NSDictionary *attachment = [fbItem objectForKey:@"attachment"];
+	if (attachment) {
+		NSArray *media  = [attachment objectForKey:@"media"];
+		if (media) {
+			if ([media isKindOfClass:[NSArray class]]) {
+				if ([media count]>0) {
+					NSDictionary *item = [media objectAtIndex:0];
+					NSString *type = [item objectForKey:@"type"];
+					if ([type isEqualToString:@"photo"]) {
+						return [item objectForKey:@"aid"];
+					}else {
+						return nil;
+					}
+				}else {
+					return nil;
+				}
+				
+			}else {
+				return nil;
+			}
+			
+		}else {
+			return nil;
+		}
+	}else {
+		return nil;
+	}
+	
+}
+
+
 -(NSString*)userNameFrom:(NSNumber*)_id{
 	NSDictionary *profile = [profileLookup objectForKey:[_id stringValue]];
 	return [profile objectForKey:@"name"];

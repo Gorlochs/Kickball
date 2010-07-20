@@ -27,7 +27,8 @@
 	UIImageView *commentBG;
 	UILabel *commentNumber;
 	TTImageView *pictureThumb1;
-	UIActivityIndicatorView *spinner;
+	UIButton *pictureButt;
+	NSString *pictureAlbumId;
 }
 
 @property (nonatomic, retain) TTImageView *userIcon;
@@ -36,10 +37,12 @@
 @property (nonatomic, retain) TTStyledTextLabel *tweetText;
 @property (nonatomic, retain) NSString *fbProfilePicUrl;
 @property (nonatomic, retain) NSString *fbPictureUrl;
+@property (nonatomic, retain) NSString *pictureAlbumId;
 
 
 - (void) setDateLabelWithDate:(NSDate*)theDate;
 - (void) setDateLabelWithText:(NSString*)theDate;
 - (void) pushToProfile;
 -(void)setNumberOfComments:(int)howMany;
+-(void)pressPhotoAlbum;
 @end

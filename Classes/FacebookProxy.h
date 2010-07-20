@@ -102,4 +102,5 @@ extern NSString* const kFBRedirectURI;
 -(NSString*)profilePicUrlFrom:(NSNumber*)_id;
 -(void)cacheIncomingProfiles:(NSArray*)profiles;
 -(NSString*)imageUrlForPhoto:(NSDictionary*)fbItem;
+-(NSString*)albumIdForPhoto:(NSDictionary*)fbItem;
 @end
