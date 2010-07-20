@@ -68,6 +68,7 @@
 -(NSDictionary*)newMeFeed;
 -(NSArray*)getProfileObjects:(NSArray*)profileIds;
 -(NSDictionary*)newMeFeed:(NSNumber*)timeMarker;
+-(NSArray*)getPhotosForAlbum:(NSString*)aid;
 
 @end
 

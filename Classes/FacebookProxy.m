@@ -123,6 +123,7 @@ NSString* const kKeyAccessToken = @"kKeyAccessToken";
 @synthesize pictureUrls;
 @synthesize profilePic;
 @synthesize profileLookup;
+@synthesize albumLookup;
 
 #pragma mark Singleton Methods
 
@@ -169,6 +170,8 @@ static NSDateFormatter* fbEventDetailDate = NULL;
 		self.pictureUrls = [[NSMutableDictionary alloc] init];
 		self.profilePic = nil;
 		self.profileLookup = [[NSMutableDictionary alloc] init];
+		self.albumLookup = [[NSMutableDictionary alloc] init];
+
 	}
 	return self;
 }
@@ -246,6 +249,7 @@ static NSDateFormatter* fbEventDetailDate = NULL;
 				[gFacebookProxy storeProfilePic];
 			//}
 			gFacebookProxy.profileLookup = [[NSMutableDictionary alloc] init];
+			gFacebookProxy.albumLookup = [[NSMutableDictionary alloc] init];
 
 			
 		}
@@ -357,7 +361,7 @@ static NSDateFormatter* fbEventDetailDate = NULL;
 	{
 		// we default to asking for read_stream and publish_stream, if your app needs something different...this is the code to change
 		// hardcoded for now, so at least we don't break when Facebook changes permissions on June 1
-		NSString* accessTokenURL = [NSString stringWithFormat:kFBAuthURLFormat, kFBClientID, kFBRedirectURI, @"publish_stream,read_stream,offline_access,user_events,friends_events,user_hometown,friends_hometown,user_location,friends_location,user_status,friends_status,rsvp_event,create_event"];
+		NSString* accessTokenURL = [NSString stringWithFormat:kFBAuthURLFormat, kFBClientID, kFBRedirectURI, @"publish_stream,read_stream,offline_access,user_events,friends_events,user_hometown,friends_hometown,user_location,friends_location,user_status,friends_status,rsvp_event,create_event,user_photos,friends_photos,user_videos,friends_videos,read_requests,user_likes,friends_likes"];
 
 		NSURLRequest *theRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:accessTokenURL]
 																							cachePolicy:NSURLRequestUseProtocolCachePolicy
@@ -907,7 +911,13 @@ static NSDateFormatter* fbEventDetailDate = NULL;
 					NSDictionary *item = [media objectAtIndex:0];
 					NSString *type = [item objectForKey:@"type"];
 					if ([type isEqualToString:@"photo"]) {
-						return [item objectForKey:@"aid"];
+						NSDictionary *photo = [item objectForKey:@"photo"];
+						if ([photo isKindOfClass:[NSDictionary class]]) {
+							return [photo objectForKey:@"aid"];
+						}else {
+							return nil;
+						}
+
 					}else {
 						return nil;
 					}
@@ -953,6 +963,24 @@ static NSDateFormatter* fbEventDetailDate = NULL;
 			
 		}
 	}
+}
+-(void)cacheIncomingAlbums:(NSArray*)albums{
+	@synchronized(albumLookup){
+		for (NSDictionary*a in albums){
+			NSNumber *id = [a objectForKey:@"aid"];
+			if (id!=nil) {
+				NSDictionary *exists = [albumLookup objectForKey:[id stringValue]];
+				if (exists==nil) {
+					[albumLookup setObject:a forKey:[id stringValue]];
+				}
+			}
+			
+		}
+	}
+}
+-(NSString*)albumNameFrom:(NSString*)_id{
+	NSDictionary *album = [albumLookup objectForKey:_id];
+	return [album objectForKey:@"name"];
 }
 
 @end

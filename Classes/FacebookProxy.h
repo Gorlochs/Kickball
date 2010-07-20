@@ -50,6 +50,7 @@ extern NSString* const kFBRedirectURI;
 	UIImage *profilePic;
 	
 	NSMutableDictionary *profileLookup;
+	NSMutableDictionary *albumLookup;
 }
 
 @property (nonatomic, retain) FBSession* _session;
@@ -72,6 +73,7 @@ extern NSString* const kFBRedirectURI;
 @property (nonatomic, retain) NSMutableDictionary *pictureUrls;
 @property (nonatomic, retain) UIImage *profilePic;
 @property (nonatomic, retain)NSMutableDictionary *profileLookup;
+@property (nonatomic, retain)NSMutableDictionary *albumLookup;
 
 +(FacebookProxy*)instance;
 +(void)loadDefaults;
@@ -101,6 +103,8 @@ extern NSString* const kFBRedirectURI;
 -(NSString*)userNameFrom:(NSNumber*)_id;
 -(NSString*)profilePicUrlFrom:(NSNumber*)_id;
 -(void)cacheIncomingProfiles:(NSArray*)profiles;
+-(void)cacheIncomingAlbums:(NSArray*)albums;
 -(NSString*)imageUrlForPhoto:(NSDictionary*)fbItem;
 -(NSString*)albumIdForPhoto:(NSDictionary*)fbItem;
+-(NSString*)albumNameFrom:(NSString*)_id;
 @end

@@ -90,6 +90,8 @@
 	DLog("facebook news feed: %@", newsFeed);
 	newsFeed = [[NSMutableArray alloc] initWithArray:[feed objectForKey:@"posts"]];
 	[[FacebookProxy instance] cacheIncomingProfiles:[feed objectForKey:@"profiles"]];
+	[[FacebookProxy instance] cacheIncomingProfiles:[feed objectForKey:@"albums"]];
+
 	//[newsFeed retain];
 	//[nextPageURL release];
 	//nextPageURL = nil;
@@ -115,6 +117,8 @@
 	NSDictionary *moreFeed = [graph newMeFeed:lastStamp];
 	NSArray *moreNews = [[NSMutableArray alloc] initWithArray:[moreFeed objectForKey:@"posts"]];
 	[[FacebookProxy instance] cacheIncomingProfiles:[moreFeed objectForKey:@"profiles"]];
+	[[FacebookProxy instance] cacheIncomingProfiles:[moreFeed objectForKey:@"albums"]];
+
 	if (moreNews!=nil) {
 		if ([moreNews count]==0) {
 			requeryWhenTableGetsToBottom = NO;

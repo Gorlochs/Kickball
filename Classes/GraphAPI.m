@@ -321,6 +321,26 @@ NSString* const kConnectionAlbums = @"albums";
 	}
 }
 
+-(NSArray*)getPhotosForAlbum:(NSString*)aid{
+	NSData* responseData = nil;
+	NSString* r_string = nil;
+	NSString* method = @"photos.get";
+	NSMutableDictionary *args = nil;
+	args= [NSMutableDictionary dictionaryWithObjectsAndKeys:aid,@"aid",@"json",@"format",self._accessToken,kArgumentKeyAccessToken,nil];
+	responseData = [self makeSynchronousRest:method args:args verb:kRequestVerbGet];
+	r_string = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+	SBJSON *parser = [SBJSON new];
+	id arr = [parser objectWithString:r_string error:NULL];
+	[parser release];
+	if ([arr isKindOfClass:[NSArray class]]) {
+		DLog(@"woohoo parsed an array");
+		return arr;
+	}else {
+		DLog(@"parsed and got a dictionary.  bummer.");
+		return nil;
+	}
+}
+
 -(NSArray*)eventsFeed:(NSString*)user_id
 {	
 	/*

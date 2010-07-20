@@ -11,7 +11,10 @@
 #import "KBFacebookListViewController.h"
 #import "KBCreateTweetViewController.h"
 #import "FBFacebookCreatePostViewController.h"
-
+#import "FacebookProxy.h"
+#import "GraphAPI.h"
+#import "MockPhotoSource.h"
+#import "KBThumbnailViewController.h"
 
 @implementation KBFacebookViewController
 
@@ -183,6 +186,40 @@
 	//convert photo array to MockPhoto
 	//display photo viewer
 	//kill progress bar
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	GraphAPI *graph = [[FacebookProxy instance] newGraph];
+	NSArray* photos = [graph getPhotosForAlbum:aid];
+	
+	NSMutableArray *tempTTPhotoArray = [[NSMutableArray alloc] initWithCapacity:[photos count]];
+    for (NSDictionary *pic in photos) {
+        MockPhoto *photo = [[MockPhoto alloc] initWithURL:[pic objectForKey:@"src_big"] smallURL:[pic objectForKey:@"src_small"] size:CGSizeMake([[pic objectForKey:@"src_big_width"] intValue], [[pic objectForKey:@"src_big_height"] intValue]) caption:[pic objectForKey:@"caption"]];
+        [tempTTPhotoArray addObject:photo];
+        [photo release];
+    }
+	
+    MockPhotoSource *thePhotoSource = [[MockPhotoSource alloc] initWithType:MockPhotoSourceNormal title:[[FacebookProxy instance] albumNameFrom:aid] photos:tempTTPhotoArray photos2:nil];
+	KBThumbnailViewController *thumbsController = [[KBThumbnailViewController alloc] init];
+	self.title = @"facebook";
+	thumbsController.title = [[FacebookProxy instance] albumNameFrom:aid];
+	thumbsController.photoSource = thePhotoSource;
+    thumbsController.navigationBarStyle = UIBarStyleBlackOpaque;
+    thumbsController.statusBarStyle = UIStatusBarStyleBlackOpaque;
+    [self.navigationController pushViewController:thumbsController animated:YES];
+    [thumbsController release]; 
+	
+	//KBGenericPhotoViewController *photoController = [[KBGenericPhotoViewController alloc] initWithPhotoSource:thePhotoSource];
+    //photoController.centerPhoto = [thePhotoSource photoAtIndex:0];  // sets the photo displayer to the correct image
+    //[self.navigationController pushViewController:photoController animated:YES];
+    //[photoController release];
+	[thePhotoSource release];
+	[tempTTPhotoArray release];
+	[graph release];
+	[pool release];
+	
+	
+	[self stopProgressBar];
+
+
 }
 
 
