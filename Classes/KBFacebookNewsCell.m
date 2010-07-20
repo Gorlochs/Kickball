@@ -200,7 +200,6 @@
 		}
 	}
 	
-	pictureActivityIndicator.hidden = NO;
 	[fbPictureUrl release];
 	fbPictureUrl = nil;
 	fbPictureUrl = [_url copy];
@@ -241,6 +240,7 @@
 }
 
 - (void)dealloc {
+	[spinner release];
 	[fbProfilePicUrl release];
     [userIcon release];
     [userName release];
