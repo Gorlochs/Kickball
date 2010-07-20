@@ -12,6 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="10"/>
 			<integer value="1"/>
 			<integer value="31"/>
 		</object>
@@ -111,7 +112,7 @@
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 			<object class="IBUITableViewCell" id="93784494">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -146,10 +147,6 @@
 											<string key="NSClassName">NSImage</string>
 											<string key="NSResourceName">fl_addFriend02.png</string>
 										</object>
-										<object class="NSCustomResource" key="IBUISelectedImage">
-											<string key="NSClassName">NSImage</string>
-											<string key="NSResourceName">addFriend02.png</string>
-										</object>
 										<object class="NSCustomResource" key="IBUINormalImage">
 											<string key="NSClassName">NSImage</string>
 											<string key="NSResourceName">fl_addFriend01.png</string>
@@ -180,6 +177,7 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 40}</string>
+				<reference key="NSSuperview"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
 					<bytes key="NSRGB">MCAwIDAAA</bytes>
@@ -280,11 +278,11 @@
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">checkin4SQ02.png</string>
 						</object>
-						<object class="NSCustomResource" key="IBUIDisabledImage" id="340993760">
+						<object class="NSCustomResource" key="IBUIDisabledImage" id="924423938">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">checkin4SQ01.png</string>
 						</object>
-						<reference key="IBUINormalImage" ref="340993760"/>
+						<reference key="IBUINormalImage" ref="924423938"/>
 					</object>
 					<object class="IBUIButton" id="1015986001">
 						<reference key="NSNextResponder" ref="998255390"/>
@@ -788,7 +786,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>FriendsListViewController</string>
 					<string>UIResponder</string>
-					<string>{{502, 409}, {320, 480}}</string>
+					<string>{{555, 513}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{125, 278}, {320, 66}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -801,7 +799,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{667, 436}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{429, 197}, {320, 300}}</string>
+					<string>{{434, 163}, {320, 300}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1636,7 +1634,6 @@
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>addFriend02.png</string>
 				<string>checkin4SQ01.png</string>
 				<string>checkin4SQ02.png</string>
 				<string>checkinFB01.png</string>
@@ -1652,7 +1649,6 @@
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>{16, 16}</string>
 				<string>{94, 38}</string>
 				<string>{94, 38}</string>
 				<string>{95, 38}</string>
