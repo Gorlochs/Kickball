@@ -475,6 +475,7 @@
 		2B137C0D11BF2CAC00B72ECC /* KBThumbnailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B137C0C11BF2CAC00B72ECC /* KBThumbnailViewController.m */; };
 		2B137C7411BF467700B72ECC /* KBTweetTableCell320.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B137C7311BF467700B72ECC /* KBTweetTableCell320.m */; };
 		2B32BE5211E68B8D00D9E72E /* libOAuth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B32BE5111E68B8D00D9E72E /* libOAuth.a */; };
+		2B436BAC11F643D200E2063B /* tweetField02.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B436BAB11F643D200E2063B /* tweetField02.png */; };
 		2B48BB4011F50A670028E36A /* pull4SQ01.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B48BB3A11F50A670028E36A /* pull4SQ01.png */; };
 		2B48BB4111F50A670028E36A /* pull4SQ02.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B48BB3B11F50A670028E36A /* pull4SQ02.png */; };
 		2B48BB4211F50A670028E36A /* pullFB01.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B48BB3C11F50A670028E36A /* pullFB01.png */; };
@@ -1332,6 +1333,7 @@
 		2B137C7211BF467700B72ECC /* KBTweetTableCell320.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBTweetTableCell320.h; sourceTree = "<group>"; };
 		2B137C7311BF467700B72ECC /* KBTweetTableCell320.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTweetTableCell320.m; sourceTree = "<group>"; };
 		2B32BE5111E68B8D00D9E72E /* libOAuth.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOAuth.a; path = /Users/shawnb/Desktop/libOAuth.a; sourceTree = "<absolute>"; };
+		2B436BAB11F643D200E2063B /* tweetField02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tweetField02.png; sourceTree = "<group>"; };
 		2B48BB3A11F50A670028E36A /* pull4SQ01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pull4SQ01.png; sourceTree = "<group>"; };
 		2B48BB3B11F50A670028E36A /* pull4SQ02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pull4SQ02.png; sourceTree = "<group>"; };
 		2B48BB3C11F50A670028E36A /* pullFB01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pullFB01.png; sourceTree = "<group>"; };
@@ -2313,6 +2315,7 @@
 		073905FD11EE70F8008756C2 /* twitter */ = {
 			isa = PBXGroup;
 			children = (
+				2B436BAB11F643D200E2063B /* tweetField02.png */,
 				2BD3AC9611EFAF8400834DCB /* tweetField01.png */,
 				073905FE11EE70F8008756C2 /* bg-follow.png */,
 				073905FF11EE70F8008756C2 /* bg-numbers.png */,
@@ -3681,9 +3684,6 @@
 				6A211933117D577800BE897E /* KBTwitterProfileViewController.xib */,
 				6A211938117D579600BE897E /* KBCreateTweetViewController.xib */,
 				6A211968117D68EE00BE897E /* KBTwitterSearchViewController.xib */,
-				0E76C40111C15FBF00BA1E89 /* KBFacebookListViewController.xib */,
-				0EB19C3211D01E5E00BFF849 /* KBFacebookCreateWallPostVC.xib */,
-				0E906DDE11CAB9FF0045006C /* KBFacebookEventDetailViewController.xib */,
 				6A30075511797649001CB933 /* KBTweetListViewController.xib */,
 				6AC85203117E2BB4007B5220 /* KBTwitterDetailViewController.xib */,
 				6A8ADA611187597E00D9328D /* KBGeoTweetMapViewController.xib */,
@@ -3698,6 +3698,9 @@
 		6AC0A7F011E8293A008360D8 /* facebook nibs */ = {
 			isa = PBXGroup;
 			children = (
+				0E76C40111C15FBF00BA1E89 /* KBFacebookListViewController.xib */,
+				0EB19C3211D01E5E00BFF849 /* KBFacebookCreateWallPostVC.xib */,
+				0E906DDE11CAB9FF0045006C /* KBFacebookEventDetailViewController.xib */,
 				0EDBDAA511C7DD220065DF0A /* KBFacebookEventsListView.xib */,
 				0EBEEFF811CC2C8C00A28329 /* KBFacebookAddComment.xib */,
 				0EDBDA7811C760EA0065DF0A /* KBFacebookPostDetailViewController.xib */,
@@ -4421,6 +4424,7 @@
 				0EAC002811F50B210004CF53 /* field-comment.png in Resources */,
 				07090C2311F514A100454CFF /* graybackground.png in Resources */,
 				0E5A96E211F6115200E8155E /* photoLoading.png in Resources */,
+				2B436BAC11F643D200E2063B /* tweetField02.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
