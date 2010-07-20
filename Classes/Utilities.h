@@ -43,7 +43,7 @@ static const int CITY_RADIUS_LARGE = 106934;
 - (UIImage *) getCachedImage: (NSString *) ImageURLString;
 //- (UIImage *) roundCorners: (UIImage*) img;
 //- (void) retrieveAllFriendsWithPingOn;
-+ (void)putGoogleMapsWallPostWithMessage:(NSString*)message andVenue:(FSVenue*)venue;
++ (void)putGoogleMapsWallPostWithMessage:(NSString*)message andVenue:(FSVenue*)venue andLink:(NSString*)link;
 - (void) updateAllFriendsWithPingOn:(NSArray*)checkins;
 + (UIImage *)makeRoundCornerImage:(UIImage*)img cornerwidth:(int) cornerWidth cornerheight:(int) cornerHeight;
 + (NSDate*) convertUTCCheckinDateToLocal:(NSDate*)utcDate;

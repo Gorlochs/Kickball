@@ -276,7 +276,7 @@
 			}
 			if ([[KBAccountManager sharedInstance] usesFacebook] && [[KBAccountManager sharedInstance] defaultPostToFacebook]) {
 				//cross post to facebook
-				[Utilities putGoogleMapsWallPostWithMessage:msg andVenue:venue];
+				[Utilities putGoogleMapsWallPostWithMessage:msg andVenue:venue andLink:[Utilities getShortenedUrlFromFoursquareVenueId:venue.venueid]];
 				
 			}
         }
