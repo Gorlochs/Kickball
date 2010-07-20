@@ -92,7 +92,7 @@ static BOOL initialized = NO;
 - (CLLocationDistance) distanceFromCoordinate:(CLLocation*)coordinate {
     CLLocation *currentLocation = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
     CLLocationDistance distance;
-    if ([[UIDevice currentDevice] respondsToSelector:@selector(userInterfaceIdiom)]) {    
+    if ([[UIDevice currentDevice] respondsToSelector:@selector(userInterfaceIdiom)]) {    //check for iphone OS 3.1
       distance = [currentLocation distanceFromLocation:coordinate];
     } else {
       distance = [currentLocation getDistanceFrom:coordinate];

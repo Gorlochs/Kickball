@@ -43,6 +43,11 @@
     [self release];
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+#pragma unused(interfaceOrientation)
+  return YES;
+}
+
 - (void) forward {
     [theWebView goForward];
 }
