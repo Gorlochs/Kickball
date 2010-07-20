@@ -91,7 +91,12 @@ static BOOL initialized = NO;
 
 - (CLLocationDistance) distanceFromCoordinate:(CLLocation*)coordinate {
     CLLocation *currentLocation = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
-    CLLocationDistance distance = [currentLocation distanceFromLocation:coordinate];
+    CLLocationDistance distance;
+    if ([[UIDevice currentDevice] respondsToSelector:@selector(userInterfaceIdiom)]) {    
+      distance = [currentLocation distanceFromLocation:coordinate];
+    } else {
+      distance = [currentLocation getDistanceFrom:coordinate];
+    }
     [currentLocation release];
     return distance;
 }
