@@ -166,6 +166,7 @@
 
 - (void)requestFailed:(NSError *)error {
     DLog(@"geoapi error string: %@", error);
+    [self stopProgressBar];
 }
 
 - (void) callVenue {

@@ -15,6 +15,8 @@
 #import "FacebookProxy.h"
 #import "GraphAPI.h"
 #import "SBJSON.h"
+#import "KBDialogueManager.h"
+
 
 @implementation KBCreateTweetViewController
 
@@ -82,9 +84,11 @@
         }
     }
 	 */
-	
-	
-	
+}
+
+- (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error {
+	DLog(@"Twitter request failed: %@ with error:%@", connectionIdentifier, error);
+	[self stopProgressBar];
 }
 
 #pragma mark -
@@ -92,60 +96,68 @@
 
 - (void) submitTweet {
     
-	[tweetTextView resignFirstResponder];
-    [self startProgressBar:@"Submitting..."];
-    [self dismissModalViewControllerAnimated:YES];
-    actionCount = 1;
+	if (tweetTextView.text && ![tweetTextView.text isEqualToString:@""]) {
+		[tweetTextView resignFirstResponder];
+		[self startProgressBar:@"Submitting..."];
+		[self dismissModalViewControllerAnimated:YES];
+		actionCount = 1;
 
-    
-	/* this is double posting to facebook.   wait and post with the image
-    if (isFacebookOn && [[KBAccountManager sharedInstance] usesFacebook]) {
-		actionCount++;
-        DLog(@"facebook  is on and the status will be updated (hopefully)");
-        NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:tweetTextView.text, @"status", nil];
-        [[FBRequest requestWithDelegate:self] call:@"facebook.status.set" params:params dataParam:nil];
-    }
-	 */
-	
-	if (isFacebookOn) {
-		actionCount++;
-	}
-    
-    if (isFoursquareOn) {
-		actionCount++;
-        [[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:nil 
-                                                      andShout:tweetTextView.text 
-                                                       offGrid:NO
-                                                     toTwitter:NO
-                                                    toFacebook:NO 
-                                                    withTarget:self 
-                                                     andAction:@selector(shoutResponseReceived:withResponseString:)];
-    }
-    
-    if (photoImage) {
-		actionCount++;
-		NSData *data = UIImageJPEGRepresentation(photoImage, 1.0);
-		NSString *filename = @"tweet.jpg";
-		if (!data) {
-			data = UIImagePNGRepresentation(photoImage);
-			filename = @"tweet.png";
+		
+		/* this is double posting to facebook.   wait and post with the image
+		if (isFacebookOn && [[KBAccountManager sharedInstance] usesFacebook]) {
+			actionCount++;
+			DLog(@"facebook  is on and the status will be updated (hopefully)");
+			NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:tweetTextView.text, @"status", nil];
+			[[FBRequest requestWithDelegate:self] call:@"facebook.status.set" params:params dataParam:nil];
 		}
-        [photoManager uploadImage:data
-                         filename:filename
-                        withWidth:photoImage.size.width 
-                        andHeight:photoImage.size.height
-                       andMessage:tweetTextView.text
-                   andOrientation:photoImage.imageOrientation
-                         andVenue:nil];
+		 */
 		
-		
-		[NSThread detachNewThreadSelector:@selector(uploadToTweetPhoto) toTarget:self withObject:nil];
-		
-    } else {
-		[self submitToTwitter:nil];
 		if (isFacebookOn) {
-            [Utilities putGoogleMapsWallPostWithMessage:tweetTextView.text andVenue:nil andLink:nil];
+			actionCount++;
 		}
+		
+		if (isFoursquareOn) {
+			actionCount++;
+			[[FoursquareAPI sharedInstance] doCheckinAtVenueWithId:nil 
+														  andShout:tweetTextView.text 
+														   offGrid:NO
+														 toTwitter:NO
+														toFacebook:NO 
+														withTarget:self 
+														 andAction:@selector(shoutResponseReceived:withResponseString:)];
+		}
+		
+		if (photoImage) {
+			actionCount++;
+			NSData *data = UIImageJPEGRepresentation(photoImage, 1.0);
+			NSString *filename = @"tweet.jpg";
+			if (!data) {
+				data = UIImagePNGRepresentation(photoImage);
+				filename = @"tweet.png";
+			}
+			[photoManager uploadImage:data
+							 filename:filename
+							withWidth:photoImage.size.width 
+							andHeight:photoImage.size.height
+						   andMessage:tweetTextView.text
+					   andOrientation:photoImage.imageOrientation
+							 andVenue:nil];
+			
+			
+			[NSThread detachNewThreadSelector:@selector(uploadToTweetPhoto) toTarget:self withObject:nil];
+			
+		} else {
+			[self submitToTwitter:nil];
+			if (isFacebookOn) {
+				[Utilities putGoogleMapsWallPostWithMessage:tweetTextView.text andVenue:nil andLink:nil];
+			}
+		}
+	} else {
+		[tweetTextView resignFirstResponder];
+		
+		KBMessage *theMessage = [[KBMessage alloc] initWithMember:@"Form Error"	andMessage:@"Please fill in the shout before submitting"];
+		[[KBDialogueManager sharedInstance] displayMessage:theMessage];
+		[theMessage release];
 	}
 }
 

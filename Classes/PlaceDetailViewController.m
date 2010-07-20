@@ -1456,6 +1456,7 @@
 - (void)requestFailed:(NSError *)error {
     // TODO: probably want to pop up error message for user
     DLog(@"geoapi error string: %@", error);
+    [self stopProgressBar];
 }
 
 #pragma mark 

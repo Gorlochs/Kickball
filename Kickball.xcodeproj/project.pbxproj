@@ -476,6 +476,7 @@
 		2B137C7411BF467700B72ECC /* KBTweetTableCell320.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B137C7311BF467700B72ECC /* KBTweetTableCell320.m */; };
 		2B32BE5211E68B8D00D9E72E /* libOAuth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B32BE5111E68B8D00D9E72E /* libOAuth.a */; };
 		2B436BAC11F643D200E2063B /* tweetField02.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B436BAB11F643D200E2063B /* tweetField02.png */; };
+		2B436BDE11F6506100E2063B /* button_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B436BDD11F6506100E2063B /* button_right.png */; };
 		2B48BB4011F50A670028E36A /* pull4SQ01.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B48BB3A11F50A670028E36A /* pull4SQ01.png */; };
 		2B48BB4111F50A670028E36A /* pull4SQ02.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B48BB3B11F50A670028E36A /* pull4SQ02.png */; };
 		2B48BB4211F50A670028E36A /* pullFB01.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B48BB3C11F50A670028E36A /* pullFB01.png */; };
@@ -1334,6 +1335,7 @@
 		2B137C7311BF467700B72ECC /* KBTweetTableCell320.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTweetTableCell320.m; sourceTree = "<group>"; };
 		2B32BE5111E68B8D00D9E72E /* libOAuth.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOAuth.a; path = /Users/shawnb/Desktop/libOAuth.a; sourceTree = "<absolute>"; };
 		2B436BAB11F643D200E2063B /* tweetField02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tweetField02.png; sourceTree = "<group>"; };
+		2B436BDD11F6506100E2063B /* button_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_right.png; sourceTree = "<group>"; };
 		2B48BB3A11F50A670028E36A /* pull4SQ01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pull4SQ01.png; sourceTree = "<group>"; };
 		2B48BB3B11F50A670028E36A /* pull4SQ02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pull4SQ02.png; sourceTree = "<group>"; };
 		2B48BB3C11F50A670028E36A /* pullFB01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pullFB01.png; sourceTree = "<group>"; };
@@ -3095,6 +3097,7 @@
 		6A39EC4B109662D3006F76C3 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				2B436BDD11F6506100E2063B /* button_right.png */,
 				6A5DD32911F02E4D00219EF9 /* mayorBG.png */,
 				0739077D11EE7B82008756C2 /* addPlace */,
 				0739077E11EE7B82008756C2 /* Facebook */,
@@ -4425,6 +4428,7 @@
 				07090C2311F514A100454CFF /* graybackground.png in Resources */,
 				0E5A96E211F6115200E8155E /* photoLoading.png in Resources */,
 				2B436BAC11F643D200E2063B /* tweetField02.png in Resources */,
+				2B436BDE11F6506100E2063B /* button_right.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

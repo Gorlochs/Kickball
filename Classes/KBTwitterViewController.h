@@ -12,13 +12,14 @@
 #import "KBTwitterManager.h"
 
 @class KBTwitterLoginView;
-@interface KBTwitterViewController : KBFoursquareViewController {
+@interface KBTwitterViewController : KBFoursquareViewController <KBTwitterManagerDelegate> {
     IBOutlet UIButton *timelineButton;
     IBOutlet UIButton *mentionsButton;
     IBOutlet UIButton *directMessageButton;
     IBOutlet UIButton *searchButton;
     IBOutlet UIButton *twitterCenterHeaderButton;
     
+	KBTwitterManager *twitterManager;
     XAuthTwitterEngine *twitterEngine;
 	KBTwitterLoginView *twLoginView;
 }

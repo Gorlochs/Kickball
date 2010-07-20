@@ -92,6 +92,7 @@
 
 - (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error {
 	DLog(@"Twitter request failed: %@ with error:%@", connectionIdentifier, error);
+    [self stopProgressBar];
 }
 
 #pragma mark -

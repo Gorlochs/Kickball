@@ -31,7 +31,6 @@
     
     NSString *screenname;
     NSDictionary *userDictionary;
-	KBTwitterManager *twitterManager;
 }
 
 @property (nonatomic, retain) NSString *screenname;

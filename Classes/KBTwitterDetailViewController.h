@@ -13,7 +13,7 @@
 #import "KBTweet.h"
 
 
-@interface KBTwitterDetailViewController : KBTwitterViewController <KBTwitterManagerDelegate> {
+@interface KBTwitterDetailViewController : KBTwitterViewController {
     KBTweet *tweet;
     NSMutableArray *tweets; //for re-caching the tweets when the user favorites one
     IBOutlet UILabel *screenName;
@@ -32,7 +32,6 @@
     //IFTweetLabel *mainTextLabel;
     NSDictionary *userDictionary;
 	
-	KBTwitterManager *twitterManager;
 	BOOL isFavorited;
     BOOL _isObservingNotifications;
 }

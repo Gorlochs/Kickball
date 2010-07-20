@@ -227,6 +227,7 @@
 - (void)requestSucceeded:(NSString *)connectionIdentifier {
 }
 - (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error {
+    [self stopProgressBar];
 }
 
 - (void)dealloc {
