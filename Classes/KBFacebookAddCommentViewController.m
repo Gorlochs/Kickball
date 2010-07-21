@@ -42,20 +42,11 @@
     [FlurryAPI logEvent:@"Facebook Add Comment"];
 }
 
-
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
-
 - (void)textViewDidChange:(UITextView *)textView {
-    if ([textView.text length] > 100) {
-        textView.text = [textView.text substringToIndex:99];
+    if ([textView.text length] > 400) {
+        textView.text = [textView.text substringToIndex:400];
     }
-    characterCount.text = [NSString stringWithFormat:@"%d/100", [textView.text length]];
+    characterCount.text = [NSString stringWithFormat:@"%d/400", [textView.text length]];
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
