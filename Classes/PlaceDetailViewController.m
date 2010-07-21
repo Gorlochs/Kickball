@@ -831,8 +831,6 @@
     if (indexPath.section == 1 && venue.mayor) {
         [self pushProfileDetailController:venue.mayor.userId];
     } else if (indexPath.section == 2) {
-        //FSCheckin *tmpCheckin = ((FSCheckin*)[venue.currentCheckins objectAtIndex:indexPath.row]);
-        //[self pushProfileDetailController:tmpCheckin.user.userId];
 		[theTableView deselectRowAtIndexPath:indexPath animated:NO];
     } else if (indexPath.section == 5) {
         FSTip *tip = ((FSTip*)[venue.tips objectAtIndex:indexPath.row]);
