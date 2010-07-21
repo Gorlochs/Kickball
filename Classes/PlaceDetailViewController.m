@@ -453,7 +453,7 @@
 				[peopleHereContainer addSubview:verticalSplitter];
 				[verticalSplitter release];
 				
-				//populate with poeople
+				//populate with people
 				//person 1
 				currentCheckin = ((FSCheckin*)[venueToDisplay.currentCheckins objectAtIndex:0]);
 				[self addPersonHere:peopleHereContainer :currentCheckin :21];
