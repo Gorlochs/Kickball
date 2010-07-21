@@ -1526,6 +1526,9 @@
     UIImage *initialImage = (UIImage*)[info objectForKey:UIImagePickerControllerOriginalImage];
     float initialHeight = initialImage.size.height;
     float initialWidth = initialImage.size.width;
+	
+    DLog(@"initialImage height: %f", initialImage.size.height);
+    DLog(@"initialImage width: %f", initialImage.size.width);
     
     float ratio = 1.0f;
     if (initialHeight > initialWidth) {
@@ -1540,8 +1543,8 @@
     
     DLog(@"image picker info: %@", info);
     
-//    DLog(@"image height: %f", photoImage.size.height);
-//    DLog(@"image width: %f", photoImage.size.width);
+    DLog(@"image height: %f", self.photoImage.size.height);
+    DLog(@"image width: %f", self.photoImage.size.width);
 //    DLog(@"image orientation: %d", photoImage.imageOrientation);
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(returnFromMessageView:) name:@"attachMessageToPhoto" object:nil];
