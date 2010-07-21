@@ -973,6 +973,7 @@
 	[self presentCheckinOverlayWithCheckin:[dictionary objectForKey:@"checkin"]];
 }
 
+// TODO: probably should pull this out into a separate class
 - (void) presentCheckinOverlayWithCheckin:(FSCheckin*)aCheckin {
     NSMutableString *noteworthyCheckin = [[NSMutableString alloc] initWithString:@""];
 	float height = 0.0;
@@ -1017,15 +1018,16 @@
     }
 	if (showMayorBadge) {
 		UIImageView *mayorBadgeImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mayorBG.png"]];
-        mayorBadgeImageView.frame = CGRectMake(17, 70, 320, 221);
+        mayorBadgeImageView.frame = CGRectMake(0, 70, 320, 221);
         [checkinView addSubview:mayorBadgeImageView];
 		
-        IFTweetLabel *mayorLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(25.0f, height, 280.0f, 50.0f)];
+        IFTweetLabel *mayorLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(17.0f, height, 280.0f, 50.0f)];
         [mayorLabel setFont:[UIFont boldSystemFontOfSize:12.0f]];
         [mayorLabel setTextColor:[UIColor whiteColor]];
         [mayorLabel setBackgroundColor:[UIColor clearColor]];
         [mayorLabel setNumberOfLines:0];
         [mayorLabel setText:mayorText];
+		
         [checkinView addSubview:mayorLabel];
 		height = height + mayorBadgeImageView.frame.size.height + buffer;
         [mayorBadgeImageView release];
@@ -1068,6 +1070,16 @@
     [messageLabel setBackgroundColor:[UIColor clearColor]];
     [messageLabel setNumberOfLines:0];
     [messageLabel setText:aCheckin.message];
+	
+	//// resize messageLabel ////
+	CGSize maximumLabelSize = CGSizeMake(280, 80);
+	CGSize expectedLabelSize = [aCheckin.message sizeWithFont:messageLabel.font 
+										   constrainedToSize:maximumLabelSize 
+											   lineBreakMode:UILineBreakModeClip]; 
+	CGRect newFrame = messageLabel.frame;
+	newFrame.size.height = expectedLabelSize.height;
+	messageLabel.frame = newFrame;
+		
     [checkinView addSubview:messageLabel];
 	height = height + messageLabel.frame.size.height + buffer;
     [messageLabel release];
@@ -1084,6 +1096,16 @@
         [scoreText appendString:[NSString stringWithFormat:@"+%d %@ \n", score.points, score.message]];
     }
     [scoreLabel setText:scoreText];
+	
+	//// resize scoreLabel ////
+	CGSize maximumLabelSize2 = CGSizeMake(280, 80);
+	CGSize expectedLabelSize2 = [scoreText sizeWithFont:scoreLabel.font 
+											constrainedToSize:maximumLabelSize2 
+												lineBreakMode:UILineBreakModeClip]; 
+	CGRect newFrame2 = scoreLabel.frame;
+	newFrame2.size.height = expectedLabelSize2.height;
+	scoreLabel.frame = newFrame2;
+	
 	[scoreText release];
     [checkinView addSubview:scoreLabel];
 	//height = height + scoreLabel.frame.size.height + buffer;
