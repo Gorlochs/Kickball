@@ -229,7 +229,7 @@
 		NSDictionary *fbItem = [newsFeed objectAtIndex:indexPath.row];
 		NSString *bodyText = [[FacebookProxy instance] findSuitableText:fbItem];
 		NSString *displayString = [NSString stringWithFormat:@"<span class=\"fbBlueText\">%@</span> %@",[[FacebookProxy instance] userNameFrom:[fbItem objectForKey:@"actor_id"]], bodyText];
-		DLog(@"display string: %@", displayString);
+		//DLog(@"display string: %@", displayString);
 		
 		heightTester.text = [TTStyledText textFromXHTML:[displayString stringByReplacingOccurrencesOfString:@"\n" withString:@""] lineBreaks:NO URLs:NO];
 		[heightTester sizeToFit];

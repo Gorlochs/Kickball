@@ -839,6 +839,7 @@ static NSDateFormatter* fbEventDetailDate = NULL;
 	NSString *result = [suitable stringByReplacingOccurrencesOfString: @"&" withString: @"&amp;"]; 
 	return result;
 }
+
 -(BOOL)doesHavePhoto:(NSDictionary*)fbItem{
 	NSDictionary *attachment = [fbItem objectForKey:@"attachment"];
 	if (attachment) {
