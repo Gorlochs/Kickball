@@ -126,6 +126,13 @@
 				break;				
 			}
 				
+			case 404:
+			{
+				// Page doesn't exist. e.g., a nonexistant username was searched on
+				UIAlertViewQuick(@"Page Does Not Exist", @"The Twitter information that you are looking for does not exist.", @"OK");	
+				break;				
+			}
+				
 			case 502:
 			{
 				// Bad gateway: twitter is down or being upgraded.
