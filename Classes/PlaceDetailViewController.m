@@ -1561,12 +1561,12 @@
     [self startProgressBar:@"Uploading photo..." withTimer:NO andLongerTime:NO];
 	
     [photoManager uploadImage:UIImageJPEGRepresentation(self.photoImage, 1.0) 
-             filename:@"gift.jpg" 
-            withWidth:self.photoImage.size.width 
-            andHeight:self.photoImage.size.height
-           andMessage:message ? message : @""
-       andOrientation:self.photoImage.imageOrientation
-             andVenue:venue];
+					 filename:@"gift.jpg" 
+					withWidth:self.photoImage.size.width 
+					andHeight:self.photoImage.size.height
+				   andMessage:message ? message : @""
+			   andOrientation:self.photoImage.imageOrientation
+					 andVenue:venue];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"attachMessageToPhoto" object:nil];
 }
