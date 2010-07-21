@@ -914,13 +914,6 @@
 
 #pragma mark IBAction methods
 
-//- (void) viewPhotos {
-//    MockPhotoSource *thePhotoSource = [[KickballAPI kickballApi] convertGoodiesIntoPhotoSource:goodies withTitle:venue.name];
-//    KBPhotoViewController *photoController = [[KBPhotoViewController alloc] initWithPhotoSource:thePhotoSource];
-//    [self.navigationController pushViewController:photoController animated:YES];
-//    [photoController release]; 
-//}
-
 - (void) viewThumbnails {
     MockPhotoSource *thePhotoSource = [[KickballAPI kickballApi] convertGoodiesIntoPhotoSource:goodies withTitle:venue.name];
 	KBThumbnailViewController *thumbsController = [[KBThumbnailViewController alloc] init];
