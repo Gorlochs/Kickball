@@ -48,6 +48,10 @@
 			self.twitterEngine.consumerSecret = kOAuthConsumerSecret;
 		}
 		[self.twitterEngine exchangeAccessTokenForUsername:un password:pw];
+		//store the username so we can get their profile pic later
+		[[NSUserDefaults standardUserDefaults] setObject:un forKey:@"twittername"];
+		[[NSUserDefaults standardUserDefaults] synchronize];
+		
 	}
 	
     //[self cancelEditing];

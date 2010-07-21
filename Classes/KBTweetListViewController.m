@@ -66,6 +66,17 @@
     }
 }
 
+- (void)userInfoReceived:(NSArray *)userInfo {
+    NSDictionary *userDictionary = [userInfo objectAtIndex:0];
+	if (userDictionary) {
+		NSString *profileImage = [userDictionary objectForKey:@"profile_image_url"];
+		[[NSUserDefaults standardUserDefaults] setObject:profileImage forKey:@"twitUserPhotoURL"];
+		[[NSUserDefaults standardUserDefaults] synchronize];
+		UIImage *twitterUserPic = [[Utilities sharedInstance] getCachedImage:profileImage];
+		if (twitterUserPic) [signedInUserIcon setImage:twitterUserPic forState:UIControlStateNormal];
+	}
+}
+
 - (void) loginCanceled {
     [self switchToFoursquare];
 }
@@ -83,6 +94,8 @@
 }
 
 - (void)statusesReceived:(NSArray *)statuses {
+	NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:@"twittername"];
+	if (username) [self.twitterEngine getUserInformationFor:username]; //get the twitter profile pic to save it
     if (_inModalTweetView) {
     [self.navigationController popViewControllerAnimated:YES];
     _inModalTweetView = NO;

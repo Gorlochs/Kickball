@@ -114,6 +114,9 @@ const NSString *kickballDomain = @"http://kickball.gorlochs.com/kickball";
             [foursquareTab setImage:[UIImage imageNamed:@"kbTab03.png"] forState:UIControlStateNormal];
             [twitterTab setImage:[UIImage imageNamed:@"twitTab01.png"] forState:UIControlStateNormal];
             [facebookTab setImage:[UIImage imageNamed:@"fbTab04.png"] forState:UIControlStateNormal];
+			NSString *twitUserPhotoURL = [[NSUserDefaults standardUserDefaults] objectForKey:@"twitUserPhotoURL"];
+			UIImage *twitterUserPic = [[Utilities sharedInstance] getCachedImage:twitUserPhotoURL];
+			if (twitterUserPic) [signedInUserIcon setImage:twitterUserPic forState:UIControlStateNormal];
             break;
         case KBFooterTypeFoursquare:
             [foursquareTab setImage:[UIImage imageNamed:@"kbTab01.png"] forState:UIControlStateNormal];
