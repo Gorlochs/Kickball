@@ -26,6 +26,11 @@
 					  minimumFontSize:12 shadowColor:[UIColor colorWithWhite:1 alpha:0.8]
 						 shadowOffset:CGSizeMake(0, -1) next:nil];
 }
+- (TTStyle*)fbLargeBlueText {
+	return [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:14.0] color:[UIColor colorWithRed:76/255.0 green:127/255.0 blue:220/255.0 alpha:1.0]
+					  minimumFontSize:12 shadowColor:[UIColor colorWithWhite:1 alpha:0.8]
+						 shadowOffset:CGSizeMake(0, -1) next:nil];
+}
 @end
 
 @implementation KBFacebookListViewController
@@ -223,10 +228,10 @@
 	if (newsFeed!=nil) {
 		NSDictionary *fbItem = [newsFeed objectAtIndex:indexPath.row];
 		NSString *bodyText = [[FacebookProxy instance] findSuitableText:fbItem];
-		NSString *displayString = [NSString	 stringWithFormat:@"<span class=\"fbBlueText\">%@</span> %@",[[FacebookProxy instance] userNameFrom:[fbItem objectForKey:@"actor_id"]], bodyText];
+		NSString *displayString = [NSString stringWithFormat:@"<span class=\"fbBlueText\">%@</span> %@",[[FacebookProxy instance] userNameFrom:[fbItem objectForKey:@"actor_id"]], bodyText];
 		DLog(@"display string: %@", displayString);
 		
-		heightTester.text = [TTStyledText textFromXHTML:displayString lineBreaks:NO URLs:NO];
+		heightTester.text = [TTStyledText textFromXHTML:[displayString stringByReplacingOccurrencesOfString:@"\n" withString:@""] lineBreaks:NO URLs:NO];
 		[heightTester sizeToFit];
 		int baseHeight = 38;
 		BOOL withPhoto = [[FacebookProxy instance] doesHavePhoto:fbItem];
@@ -286,7 +291,7 @@
 	*/
 	cell.fbProfilePicUrl = [[FacebookProxy instance] profilePicUrlFrom:[fbItem objectForKey:@"actor_id"]];
 
-	cell.tweetText.text = [TTStyledText textFromXHTML:displayString lineBreaks:NO URLs:NO];
+	cell.tweetText.text = [TTStyledText textFromXHTML:[displayString stringByReplacingOccurrencesOfString:@"\n" withString:@""] lineBreaks:NO URLs:NO];
 	NSDictionary* commentDict = [fbItem objectForKey:@"comments"];
 	if(commentDict){
 		[cell setNumberOfComments:[(NSNumber*)[commentDict objectForKey:@"count"] intValue]];

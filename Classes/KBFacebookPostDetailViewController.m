@@ -41,7 +41,7 @@
         
 		fbPostText = [[TTStyledTextLabel alloc] initWithFrame:CGRectMake(58, 10, 250, 70)];
 		fbPostText.textColor = [UIColor colorWithWhite:0.3 alpha:1.0];
-		fbPostText.font = [UIFont fontWithName:@"Helvetica" size:12.0];
+		fbPostText.font = [UIFont fontWithName:@"Helvetica" size:14.0];
 		fbPostText.backgroundColor = [UIColor clearColor];
 		
 		commentHightTester = [[TTStyledTextLabel alloc] initWithFrame:CGRectMake(58, 10, 250, 70)];
@@ -65,14 +65,6 @@
     return self;
 }
 
-
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView {
-}
-*/
-
-
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
 	self.hideFooter = YES;
@@ -84,8 +76,8 @@
 	[self.postView addSubview:dateLabel];
 	[self.postView addSubview:fbPostText];
 	NSString *bodyText = [[FacebookProxy instance] findSuitableText:fbItem];
-	NSString *displayString = [NSString	 stringWithFormat:@"<span class=\"fbBlueText\">%@</span> %@",[[FacebookProxy instance] userNameFrom:[fbItem objectForKey:@"actor_id"]], bodyText];
-	fbPostText.text = [TTStyledText textFromXHTML:displayString lineBreaks:NO URLs:NO];
+	NSString *displayString = [NSString	 stringWithFormat:@"<span class=\"fbLargeBlueText\">%@</span> %@",[[FacebookProxy instance] userNameFrom:[fbItem objectForKey:@"actor_id"]], bodyText];
+	fbPostText.text = [TTStyledText textFromXHTML:[displayString stringByReplacingOccurrencesOfString:@"\n" withString:@""] lineBreaks:YES URLs:YES];
 	NSDictionary *commentDict = [fbItem objectForKey:@"comments"];
 	comments = [[NSArray alloc] initWithArray:(NSArray*)[commentDict objectForKey:@"comment_list"]];
 	numComments = [(NSNumber*)[commentDict objectForKey:@"count"] intValue];
@@ -124,10 +116,28 @@
 		[self startProgressBar:@"loading comments"];
 		[NSThread detachNewThreadSelector:@selector(refreshMainFeed) toTarget:self withObject:nil];
 	}
+	
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTweetNotification:) name:IFTweetLabelURLNotification object:nil];
 }
 
 -(void)populate:(NSDictionary*)obj{
 	fbItem = [obj retain];
+}
+
+- (void)handleTweetNotification:(NSNotification *)notification {
+	DLog(@"handleTweetNotification: notification = %@", notification);
+    NSMutableString *nObject = [[NSMutableString alloc] initWithString:[notification object]];
+	[nObject replaceOccurrencesOfString:@":" withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [nObject length])];
+	[nObject replaceOccurrencesOfString:@"." withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [nObject length])];
+	[nObject replaceOccurrencesOfString:@"!" withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [nObject length])];
+	[nObject replaceOccurrencesOfString:@";" withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [nObject length])];
+	[nObject replaceOccurrencesOfString:@"," withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [nObject length])];
+	[nObject replaceOccurrencesOfString:@"?" withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [nObject length])];
+	//[nObject replaceOccurrencesOfString:@"@" withString:@"#" options:NSLiteralSearch range:NSMakeRange(0, [nObject length])];
+
+        [self openWebView:[notification object]];
+
+    [nObject release];
 }
 
 -(void)loadPicUrl{
