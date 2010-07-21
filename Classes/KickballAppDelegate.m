@@ -79,6 +79,16 @@
 	if ([KBAccountManager sharedInstance]) {
 	
 	}
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasHidden:) name:UIKeyboardDidHideNotification object:nil];    
+    [[KBDialogueManager sharedInstance] setKeyboardIsShowing:NO];
+}
+
+- (void)keyboardWasShown:(NSNotification*)aNotification {
+    [[KBDialogueManager sharedInstance] setKeyboardIsShowing:YES];
+}
+- (void)keyboardWasHidden:(NSNotification*)aNotification {
+    [[KBDialogueManager sharedInstance] setKeyboardIsShowing:NO];
 }
 
 - (void) updateFriendsPings {

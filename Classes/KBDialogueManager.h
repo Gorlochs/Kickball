@@ -16,7 +16,10 @@
 	UIView *view;
 	UILabel *titleLabel;
 	UIButton *closeButton;
+    BOOL keyboardIsShowing;
 }
+
+@property (assign) BOOL keyboardIsShowing;
 
 + (KBDialogueManager*)sharedInstance;
 

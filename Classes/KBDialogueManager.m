@@ -14,6 +14,8 @@ static KBDialogueManager* dialogue;
 
 @implementation KBDialogueManager
 
+@synthesize keyboardIsShowing;
+
 - (id)init{
 	if( (self = [super init])){
 		messageCount = 0;
@@ -66,6 +68,7 @@ static KBDialogueManager* dialogue;
 	DLog(@"frame height: %f", view.frame.size.height);
 	DLog(@"label height: %f", expectedLabelSize.height);
 	newFrame.origin.y = view.frame.size.height - expectedLabelSize.height - 20;
+    if (keyboardIsShowing) newFrame.origin.y -= 300;
 	messageLabel.frame = newFrame;
 	
 	CGRect newTitleFrame = titleLabel.frame;
