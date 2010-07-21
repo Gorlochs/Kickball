@@ -46,9 +46,18 @@
 }
 */
 
+- (void)startLoadingDefaults {
+    // try to load up the managers for the various services
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    [FacebookProxy loadDefaults];
+    [pool release];
+}
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
+    _loginThread = [[NSThread alloc] initWithTarget:self selector:@selector(startLoadingDefaults) object:nil];
+    [_loginThread start];
+
 	[TTStyleSheet setGlobalStyleSheet:[[[KBFacebookStyleSheet alloc] init] autorelease]];
 	pageType = KBPageTypeFriends;
 	pageNum = 1;
@@ -354,6 +363,7 @@
 
 
 - (void)dealloc {
+    [_loginThread release];
 	[heightTester release];
 	[nextPageURL release];
 	[TTStyleSheet setGlobalStyleSheet:nil];

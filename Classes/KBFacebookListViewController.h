@@ -17,6 +17,7 @@
 	TTStyledTextLabel *heightTester;
 	NSString *nextPageURL;
 	BOOL requeryWhenTableGetsToBottom;
+    NSThread *_loginThread;
 
 }
 

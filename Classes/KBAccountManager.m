@@ -219,8 +219,6 @@ static BOOL initialized = NO;
 		[userDefaults setBool:YES forKey:FIRST_RUN_COMPLETED];
 	}
 	initialized = YES;
-	// try to load up the managers for the variosu services
-	[FacebookProxy loadDefaults];
 	return self;
 }
 
