@@ -72,12 +72,12 @@
 	hostReach = [[Reachability reachabilityWithHostName: @"apple.com"] retain];
 	[hostReach startNotifer];
     
-    [self checkForEmergencyMessage];
+    //[NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(checkForEmergencyMessage) userInfo:nil repeats:NO];
     
     //[NSThread detachNewThreadSelector:@selector(updateFriendsPings) toTarget:self withObject:nil];
     //[self updateFriendsPings];
 	if ([KBAccountManager sharedInstance]) {
-		
+	
 	}
 }
 
