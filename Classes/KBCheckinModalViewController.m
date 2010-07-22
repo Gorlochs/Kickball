@@ -274,6 +274,7 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     [picker dismissModalViewControllerAnimated:NO];
     
+    DLog(@"image picker info: %@", info);
     UIImage *initialImage = (UIImage*)[info objectForKey:UIImagePickerControllerOriginalImage];
     float initialHeight = initialImage.size.height;
     float initialWidth = initialImage.size.width;
@@ -287,12 +288,10 @@
     NSString *roundedFloatString = [NSString stringWithFormat:@"%.1f", ratio];
     float roundedFloat = [roundedFloatString floatValue];
     
-    photoImage = [[photoManager imageByScalingToSize:initialImage toSize:CGSizeMake(480.0, round(480.0/roundedFloat))] retain];
-    
+    photoImage = [photoManager imageByScalingToSize:initialImage toSize:CGSizeMake(480.0, round(480.0/roundedFloat))];
+	
     thumbnailPreview.clipsToBounds = YES;
-    thumbnailPreview.image = [photoImage retain];
-    
-    DLog(@"image picker info: %@", info);
+    thumbnailPreview.image = photoImage;
 }
 
 - (void) getPhoto:(UIImagePickerControllerSourceType)sourceType {
@@ -331,17 +330,14 @@
 		[graph putWallPost:@"me" message:[self formatCheckinMessage:checkinTextField.text] attachment:fbPicture];
 		[graph release];
 		
-		
 		//[[KBPhotoManager sharedInstance] uploadFacebookPhoto:UIImageJPEGRepresentation(photoImage, 1.0) withCaption:checkinTextField.text];
-		
 	}
 	
-	
-    //[self stopProgressBar];
     DLog(@"YAY! Image uploaded!");
-    KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"Image upload has been completed!"];
-    [self displayPopupMessage:message];
-    [message release];
+
+//    KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"Image upload has been completed!"];
+//    [self displayPopupMessage:message];
+//    [message release];
     
     //    CGRect frame = CGRectMake(300, 50, 25, 25);
     //    TTImageView *thumbnail = [[[TTImageView alloc] initWithFrame:frame] autorelease];
@@ -405,6 +401,7 @@
     //[twitterEngine release];
     [photoManager release];
     [thumbnailPreview release];
+	[photoImage release];
     [super dealloc];
 }
 
