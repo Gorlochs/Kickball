@@ -929,7 +929,13 @@
 - (void) callVenue {
     DLog(@"phone number to call: %@", [NSString stringWithFormat:@"tel:%@", venue.phone]);
     [FlurryAPI logEvent:@"call Venue"];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", venue.phone]]];
+	if (!venue.phone) {
+		KBMessage *message = [[KBMessage alloc] initWithMember:@"Foursquare Message" andMessage:@"Sorry, a phone number for this venue could not be found."];
+		[self displayPopupMessage:message];
+		[message release];
+	} else {
+		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", venue.phone]]];
+	}
 }
 
 - (void) uploadImageToServer {
@@ -941,7 +947,6 @@
 }
 
 - (void) showTwitterFeed {
-NSLog(@"++++++++++++++++++++++++++++THIS NEVER GETS CALLED++++++++++++++++++++++++++++++++++++++++++++++++++++ get twitter feed");
 	KBUserTweetsViewController *recentTweetsController = [[KBUserTweetsViewController alloc] initWithNibName:@"KBUserTweetsViewController" bundle:nil];
     recentTweetsController.username = venue.twitter;
     
