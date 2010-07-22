@@ -46,24 +46,6 @@
 	if ([messages count] > 0 || isInitialLoad) {
         if (twitterArray) [twitterArray release];
         twitterArray = [messages retain];
-        for (NSDictionary *message in twitterArray) {
-		    if (tweets) {
-			int x = 4;
-				for (KBDirectMessage *cur in tweets) {
-				   DLog(@"%@", [cur class]);
-					NSNumber *tweetID = [message objectForKey:@"id"];
-					if (--x > 0) {
-					  continue;
-					}
-					if ([cur.tweetId respondsToSelector:@selector(longValue)]) {
-					  if ([cur.tweetId longValue] == [tweetID longValue]) return; //don't add the same direct messages 
-					} else {
-					  DLog(@"no longvalue!");
-					  return;
-					}
-				}
-			}
-        } 
         int count = 0;
         if (!tweets) tweets = [[NSMutableArray alloc] init];
         if (pageNum > 1) count = [tweets count];
@@ -72,11 +54,6 @@
             [tweets insertObject:message atIndex:count++];
 			[message release];
 		}
-		DLog(@"done inserting tweets");
-		for (KBDirectMessage *cur in tweets) {
-		  DLog(@"printing %i", cur.tweetId);
-		  DLog(@"%i", [cur.tweetId longValue]);
-        }
         if (!pageNum) {
             while ([tweets count] > 25) [tweets removeLastObject];
         }
@@ -93,7 +70,6 @@
 - (void) executeQuery:(int)pageNumber {
 //for shawn: this gets called multiple times, creating multiple sets of direct messages.  the first check at directMessages received stops this.
     isInitialLoad = NO;
-	DLog(@"asking for page %i", pageNumber);
     [twitterEngine getDirectMessagesSinceID:0 startingAtPage:pageNumber];
 }
 
