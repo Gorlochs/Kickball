@@ -35,6 +35,7 @@
 
 @property (nonatomic, retain) NSString *screenname;
 
+- (void)hideOwnUserButtons;
 - (IBAction) viewFavorites;
 - (IBAction) viewRecentTweets;
 - (IBAction) viewFollowers;

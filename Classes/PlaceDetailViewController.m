@@ -941,6 +941,7 @@
 }
 
 - (void) showTwitterFeed {
+NSLog(@"++++++++++++++++++++++++++++THIS NEVER GETS CALLED++++++++++++++++++++++++++++++++++++++++++++++++++++ get twitter feed");
 	KBUserTweetsViewController *recentTweetsController = [[KBUserTweetsViewController alloc] initWithNibName:@"KBUserTweetsViewController" bundle:nil];
     recentTweetsController.username = venue.twitter;
     

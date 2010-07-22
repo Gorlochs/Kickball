@@ -38,8 +38,9 @@
 }
 
 - (void)handleTweetNotification:(NSNotification *)notification {
+    DLog(@"--------------------------this should never be called, because links were removed from most views-----------------------------------------------------------------------------------------");
 	DLog(@"handleTweetNotification: notification = %@", notification);
-    if ([[notification object] rangeOfString:@"@"].location == 0) {
+    /*if ([[notification object] rangeOfString:@"@"].location == 0) {
         KBUserTweetsViewController *userTweetsController = [[KBUserTweetsViewController alloc] initWithNibName:@"KBUserTweetsViewController" bundle:nil];
         userTweetsController.username = [notification object];
         [self.navigationController pushViewController:userTweetsController animated:YES];
@@ -52,7 +53,7 @@
     } else {
         // TODO: push properly styled web view
         [self openWebView:[notification object]];
-    }
+    }*/
 }
 
 - (void) showStatuses {

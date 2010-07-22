@@ -34,6 +34,17 @@
 	twitterManager.delegate = self;
     
     [twitterEngine getUserInformationFor:screenname];
+
+
+    [self hideOwnUserButtons];	
+}
+
+- (void)hideOwnUserButtons {
+    NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:@"twittername"];
+    if ([screenname isEqualToString:username]) {
+		[followButton setHidden:YES];
+		[unfollowButton setHidden:YES];
+	}
 }
 
 - (void)userInfoReceived:(NSArray *)userInfo {
@@ -72,7 +83,7 @@
 		followButton.hidden = NO;
 		unfollowButton.hidden = YES;
 	}
-
+    [self hideOwnUserButtons];
     [self stopProgressBar];
 }
 

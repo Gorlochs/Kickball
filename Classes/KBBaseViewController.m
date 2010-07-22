@@ -22,6 +22,7 @@
 #import "FacebookProxy.h"
 #import "KBDialogueManager.h"
 #import "GraphAPI.h"
+#import "KBTwitterProfileViewController.h"
 
 
 #define PROGRESS_BAR_TIMER_LENGTH 30.0
@@ -208,13 +209,27 @@ const NSString *kickballDomain = @"http://kickball.gorlochs.com/kickball";
     [msg release];
 }
 
+- (BOOL)displaysTwitterUserProfile {
+    DLog(@"displaying twitter userprofile");
+    KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
+	if (appDelegate.navControllerType == KBNavControllerTypeTwitter) {
+		KBTwitterProfileViewController *pvc = [[KBTwitterProfileViewController alloc] initWithNibName:@"KBTwitterProfileViewController" bundle:nil];
+		pvc.screenname = [[NSUserDefaults standardUserDefaults] objectForKey:@"twittername"];
+		[self.navigationController pushViewController:pvc animated:YES];
+		[pvc release];
+		return YES;
+	}
+	return NO;
+}
+
 - (void) viewUserProfile {
     // take user to their profile
     [FlurryAPI logEvent:@"View User Profile from Top Nav Icon"];
-    UserProfileViewController *pvc = [[UserProfileViewController alloc] initWithNibName:@"UserProfileView_v2" bundle:nil];
-    pvc.userId = [self getAuthenticatedUser].userId;
-    [self.navigationController pushViewController:pvc animated:YES];
-    [pvc release];
+    if ([self displaysTwitterUserProfile]) return;
+	UserProfileViewController *pvc = [[UserProfileViewController alloc] initWithNibName:@"UserProfileView_v2" bundle:nil];
+	pvc.userId = [self getAuthenticatedUser].userId;
+	[self.navigationController pushViewController:pvc animated:YES];
+	[pvc release];
 }
 
 - (FSUser*) getAuthenticatedUser {
@@ -507,6 +522,7 @@ const NSString *kickballDomain = @"http://kickball.gorlochs.com/kickball";
 #pragma mark utility methods
 
 - (void) displayProperProfileView:(NSString*)userId {
+    if ([self displaysTwitterUserProfile]) return;
     if ([userId isEqualToString:[self getAuthenticatedUser].userId]) {
         UserProfileViewController *profileController = [[UserProfileViewController alloc] initWithNibName:@"UserProfileView_v2" bundle:nil];
         profileController.userId = userId;
