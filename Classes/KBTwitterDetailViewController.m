@@ -219,7 +219,7 @@
 	[self saveTweets];
 }
 
-- (void) viewUserProfile {
+- (void) viewOtherUserProfile {
 	KBTwitterProfileViewController *twitterProfileController = [[KBTwitterProfileViewController alloc] initWithNibName:@"KBTwitterProfileViewController" bundle:nil];
     twitterProfileController.screenname = tweet.screenName;
 	[self.navigationController pushViewController:twitterProfileController animated:YES];

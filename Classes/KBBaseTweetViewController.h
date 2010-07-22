@@ -33,6 +33,6 @@
 - (void) executeQuery:(int)pageNumber;
 - (NSMutableArray*) addAndTrimArray:(NSMutableArray*)arrayToAdd;
 
-- (void) viewUserProfile:(NSString*)userName;
+- (void) viewOtherUserProfile:(NSString*)userName;
  
 @end

@@ -119,7 +119,7 @@
 - (void) pushToProfile{
 	UITableView *tv = (UITableView *) self.superview;
 	UITableViewController *vc = (UITableViewController *) tv.dataSource;
-	[(KBBaseTweetViewController*)vc viewUserProfile:userName.text];
+	[(KBBaseTweetViewController*)vc viewOtherUserProfile:userName.text];
 }
 
 

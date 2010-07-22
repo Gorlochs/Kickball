@@ -182,7 +182,7 @@
     [super dealloc];
 }
 
-- (IBAction) viewUserProfile {
+- (IBAction) viewOtherUserProfile {
 	KBTwitterProfileViewController *twitterProfileController = [[KBTwitterProfileViewController alloc] initWithNibName:@"KBTwitterProfileViewController" bundle:nil];
     if (username) twitterProfileController.screenname = username;
 	[self.navigationController pushViewController:twitterProfileController animated:YES];

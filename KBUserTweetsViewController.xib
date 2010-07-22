@@ -371,12 +371,12 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">viewUserProfile</string>
+						<string key="label">viewOtherUserProfile</string>
 						<reference key="source" ref="671501440"/>
 						<reference key="destination" ref="975951072"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">37</int>
+					<int key="connectionID">38</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -528,7 +528,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">37</int>
+			<int key="maxID">38</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -857,8 +857,8 @@
 							<string>viewFavorites</string>
 							<string>viewFollowers</string>
 							<string>viewFriends</string>
+							<string>viewOtherUserProfile</string>
 							<string>viewRecentTweets</string>
-							<string>viewUserProfile</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -882,8 +882,8 @@
 							<string>viewFavorites</string>
 							<string>viewFollowers</string>
 							<string>viewFriends</string>
+							<string>viewOtherUserProfile</string>
 							<string>viewRecentTweets</string>
-							<string>viewUserProfile</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -912,11 +912,11 @@
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
-								<string key="name">viewRecentTweets</string>
+								<string key="name">viewOtherUserProfile</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
-								<string key="name">viewUserProfile</string>
+								<string key="name">viewRecentTweets</string>
 								<string key="candidateClassName">id</string>
 							</object>
 						</object>

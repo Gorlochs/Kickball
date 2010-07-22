@@ -42,7 +42,7 @@
 - (IBAction) retweet;
 - (IBAction) reply;
 - (IBAction) favorite;
-- (IBAction) viewUserProfile;
+- (IBAction) viewOtherUserProfile;
 - (IBAction) viewRecentTweets;
 - (IBAction) viewFollowers;
 - (IBAction) viewFriends;
