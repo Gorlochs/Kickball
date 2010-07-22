@@ -36,6 +36,8 @@
     //self.twitterEngine = [twitterManager twitterEngine];
     [[KBTwitterManager twitterManager] setDelegate:self];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusRetrieved:) name:kTwitterStatusRetrievedNotificationKey object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(limitTextField:) name:UITextFieldTextDidChangeNotification object:checkinTextField];
+
     
     pageType = KBPageTypeOther;
     [super viewDidLoad];
@@ -170,7 +172,7 @@
 }
 
 - (void)checkin {
-    [checkinTextField resignFirstResponder];
+	[checkinTextField resignFirstResponder];
     [self startProgressBar:@"Checking in..."];
     [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(delayedCheckin) userInfo:nil repeats:NO];
 }
@@ -178,7 +180,7 @@
 - (void) uploadToTweetPhoto {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	tweetPhoto = [[TweetPhoto alloc] initWithSetup:[[FoursquareAPI sharedInstance] userName] identitySecret:[[FoursquareAPI sharedInstance] passWord] apiKey:@"bd1cf27c-0f19-4af5-b409-1c1a5bd35332" serviceName:@"Foursquare" isoAuth:NO];
-	tweetPhotoResponse = [[tweetPhoto photoUpload:UIImageJPEGRepresentation(photoImage, 1.0) comment:checkinTextField.text tags:@"Kickball" latitude:[[KBLocationManager locationManager] latitude] longitude:[[KBLocationManager locationManager] longitude]] retain];
+	tweetPhotoResponse = [[tweetPhoto photoUpload:UIImageJPEGRepresentation(photoImage, 1.0) comment:[NSString stringWithFormat:@"%@...",[checkinTextField.text substringToIndex:120]] tags:@"Kickball" latitude:[[KBLocationManager locationManager] latitude] longitude:[[KBLocationManager locationManager] longitude]] retain];
 	[pool release];
 	DLog(@"tweetphoto url: %@", tweetPhotoResponse.mediaUrl);
 	[self performSelectorOnMainThread:@selector(submitToTwitter:) withObject:tweetPhotoResponse waitUntilDone:NO];
@@ -375,6 +377,16 @@
 	}
 }
 
+#pragma mark -
+#pragma mark UITextFieldDelegate methods
+
+-(void) limitTextField:(NSNotification*)notification {
+    if ([checkinTextField.text length] > 255) {
+        checkinTextField.text = [checkinTextField.text substringToIndex:255];
+    }
+    characterCountLabel.text = [NSString stringWithFormat:@"%d/255", [checkinTextField.text length]];
+}
+
 #pragma mark 
 #pragma mark memory management methods
 
@@ -398,7 +410,6 @@
     [foursquareButton release];
     [checkinButton release];
     [checkinTextField release];
-    //[twitterEngine release];
     [photoManager release];
     [thumbnailPreview release];
 	[photoImage release];
