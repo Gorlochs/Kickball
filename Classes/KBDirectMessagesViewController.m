@@ -25,13 +25,16 @@
     [mentionsButton setImage:[UIImage imageNamed:@"tabMentions03.png"] forState:UIControlStateNormal];
     [directMessageButton setImage:[UIImage imageNamed:@"tabDM01.png"] forState:UIControlStateNormal];
     [searchButton setImage:[UIImage imageNamed:@"tabSearch03.png"] forState:UIControlStateNormal];
+	pageNum = 1;
 }
 
 - (void) showStatuses {
     NSNumber *startAtId = [NSNumber numberWithInt:0];
     if (tweets) [tweets release];
-    tweets = [[NSMutableArray alloc] initWithArray:[[KBTwitterManager twitterManager] retrieveCachedStatusArrayWithKey:cachingKey]];
-    if (tweets != nil && [tweets count] > 0) {
+	tweets = nil;
+	NSMutableArray *newArray = [[KBTwitterManager twitterManager] retrieveCachedStatusArrayWithKey:cachingKey];
+    if (newArray != nil && [newArray count] > 0) {
+		tweets = [[NSMutableArray alloc] initWithArray:newArray];
         startAtId = ((KBTweet*)[tweets objectAtIndex:0]).tweetId;
         [theTableView reloadData];
     }
@@ -43,33 +46,41 @@
 	if ([messages count] > 0 || isInitialLoad) {
         if (twitterArray) [twitterArray release];
         twitterArray = [messages retain];
-        for (NSDictionary *message in messages) {
-            for (KBDirectMessage *cur in tweets) {
-                NSNumber *tweetID = [message objectForKey:@"id"];
-                if ([cur.tweetId longValue] == [tweetID longValue]) return; //don't add the same direct messages 
-            }
-        }    
-		NSMutableArray *tempTweetArray = [[NSMutableArray alloc] initWithCapacity:[twitterArray count]];
+        for (NSDictionary *message in twitterArray) {
+		    if (tweets) {
+			int x = 4;
+				for (KBDirectMessage *cur in tweets) {
+				   DLog(@"%@", [cur class]);
+					NSNumber *tweetID = [message objectForKey:@"id"];
+					if (--x > 0) {
+					  continue;
+					}
+					if ([cur.tweetId respondsToSelector:@selector(longValue)]) {
+					  if ([cur.tweetId longValue] == [tweetID longValue]) return; //don't add the same direct messages 
+					} else {
+					  DLog(@"no longvalue!");
+					  return;
+					}
+				}
+			}
+        } 
+        int count = 0;
+        if (!tweets) tweets = [[NSMutableArray alloc] init];
+        if (pageNum > 1) count = [tweets count];
 		for (NSDictionary *dict in twitterArray) {
 			KBDirectMessage *message = [[KBDirectMessage alloc] initWithDictionary:dict];
-			[tempTweetArray addObject:message];
+            [tweets insertObject:message atIndex:count++];
 			[message release];
 		}
-		// not very pretty, but it gets the job done. if there is a cached array, combine them.
-		// the other way to do it would be to just add all the objects (above) by index
-		if (pageNum > 1) {
-			[tweets addObjectsFromArray:tempTweetArray];
-		} else if (!tweets) {
-			tweets = [[NSMutableArray alloc] initWithArray:tempTweetArray];
-		} else {
-			// need to keep all the tweets in the right order
-			[tempTweetArray addObjectsFromArray:tweets];
-			[tweets release];
-			tweets = nil;
-			tweets = [[self addAndTrimArray:tempTweetArray] retain];
-		}
+		DLog(@"done inserting tweets");
+		for (KBDirectMessage *cur in tweets) {
+		  DLog(@"printing %i", cur.tweetId);
+		  DLog(@"%i", [cur.tweetId longValue]);
+        }
+        if (!pageNum) {
+            while ([tweets count] > 25) [tweets removeLastObject];
+        }
 		[theTableView reloadData];
-		[tempTweetArray release];
 	} else {
         requeryWhenTableGetsToBottom = NO;
     }
@@ -82,6 +93,7 @@
 - (void) executeQuery:(int)pageNumber {
 //for shawn: this gets called multiple times, creating multiple sets of direct messages.  the first check at directMessages received stops this.
     isInitialLoad = NO;
+	DLog(@"asking for page %i", pageNumber);
     [twitterEngine getDirectMessagesSinceID:0 startingAtPage:pageNumber];
 }
 
