@@ -75,6 +75,7 @@
 }
 - (void)venuesResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     DLog(@"venue list: %@", inString);
+	[self stopProgressBar];
     NSString *errorMessage = [FoursquareAPI errorFromResponseXML:inString];
     if (errorMessage) {
         DLog(@"error found in Places List");
@@ -99,7 +100,6 @@
         }
     }
 	theTableView.hidden = NO;
-    [self stopProgressBar];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -130,7 +130,7 @@
                                                andLatitude:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] latitude]] 
                                               andLongitude:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] longitude]] 
                                                 withTarget:self 
-                                                 andAction:@selector(venuesResponseReceived:withResponseString:)
+                                                 andAction:@selector(venuesRefreshResponseReceived:withResponseString:)
          ];
         [FlurryAPI logEvent:@"Venue Search from Venue List View"];
     }
@@ -153,16 +153,18 @@
 
 // TODO: currently refresh button refreshes the list to the original list
 - (void) refresh: (UIControl *) button {
-    isSearchEmpty = NO;
     [self startProgressBar:@"Retrieving nearby venues..."];
-    [[FoursquareAPI sharedInstance] getVenuesNearLatitude:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] latitude]] 
-                                             andLongitude:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] longitude]]
-                                               withTarget:self 
-                                                andAction:@selector(venuesResponseReceived:withResponseString:)
-     ];
+	if (isSearchEmpty) {
+		[[FoursquareAPI sharedInstance] getVenuesNearLatitude:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] latitude]] 
+												 andLongitude:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] longitude]]
+												   withTarget:self 
+													andAction:@selector(venuesResponseReceived:withResponseString:)
+		 ];
+		venuesTypeToDisplay = KBNearbyVenues;
+	} else {
+		[self searchOnKeywordsandLatLong];
+	}
     [FlurryAPI logEvent:@"Refreshing Venue List"];
-    
-    venuesTypeToDisplay = KBNearbyVenues;
 }
 
 - (void) addNewVenue {
@@ -314,12 +316,19 @@
 #pragma mark 
 #pragma mark table refresh methods
 
-- (void) refreshTable {        
-    [[FoursquareAPI sharedInstance] getVenuesNearLatitude:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] latitude]]
-                                             andLongitude:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] longitude]]
-                                               withTarget:self 
-                                                andAction:@selector(venuesRefreshResponseReceived:withResponseString:)
-     ];
+- (void) refreshTable {    
+	[self startProgressBar:@"Retrieving nearby venues..."];
+	if (searchbox.text.length == 0) {
+		[[FoursquareAPI sharedInstance] getVenuesNearLatitude:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] latitude]] 
+												 andLongitude:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] longitude]]
+												   withTarget:self 
+													andAction:@selector(venuesRefreshResponseReceived:withResponseString:)
+		 ];
+		venuesTypeToDisplay = KBNearbyVenues;
+	} else {
+		[self searchOnKeywordsandLatLong];
+	}
+    [FlurryAPI logEvent:@"Refreshing Venue List"];
 }
 
 - (void)venuesRefreshResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {

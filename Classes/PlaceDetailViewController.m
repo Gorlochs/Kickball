@@ -336,7 +336,7 @@
     
     venueDetailButton.hidden = NO;
     
-    if (!venueToDisplay.phone) {
+    if (!venueToDisplay.phone || UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad || [[[UIDevice currentDevice] model] isEqualToString:@"iPod Touch"] ) {
         phoneButton.hidden = YES;
     }
     
