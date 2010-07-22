@@ -82,7 +82,7 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     self->_cancelTouches = NO;
     [super touchesBegan:touches withEvent:event];
-    [self performSelector:@selector(tapNHoldFired) withObject:nil afterDelay:1.0];
+    [self performSelector:@selector(tapNHoldFired) withObject:nil afterDelay:0.9];
 	[self performSelector:@selector(startSpinner) withObject:nil afterDelay:.25];
 	touchLocation = [[touches anyObject] locationInView:self.superview];
 	
@@ -96,7 +96,12 @@
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
-    [self cancelTapNHold];
+    CGPoint movedTouch = [[touches anyObject] locationInView:self.superview];
+	float movedDistX = movedTouch.x - touchLocation.x;
+	if (movedDistX < 0) movedDistX = -movedDistX;
+	float movedDistY = movedTouch.y - touchLocation.y;
+	if (movedDistY < 0) movedDistY = -movedDistY;
+	if (movedDistX + movedDistY > 30) [self cancelTapNHold]; //cancel if they move their finger away, but not if their finger shakes
     [super touchesMoved:touches withEvent:event];
 }
 
