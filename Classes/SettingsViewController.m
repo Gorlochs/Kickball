@@ -88,6 +88,7 @@
         
         NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
         [prefs setObject:username.text forKey:kUsernameDefaultsKey];
+		[prefs synchronize];
         DLog(@"Stored username: %@", username.text);
         
         NSError *error = nil;

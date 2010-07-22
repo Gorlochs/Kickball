@@ -93,7 +93,7 @@
         {
             NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
             [prefs setObject:un forKey:kUsernameDefaultsKey];
-            
+            [prefs synchronize];
             DLog(@"Stored username: %@", un);
         }
         

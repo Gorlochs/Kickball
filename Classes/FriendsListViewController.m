@@ -697,13 +697,14 @@
         NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
         NSData *theData=[NSKeyedArchiver archivedDataWithRootObject:checkins];
         [standardUserDefaults setObject:theData forKey:@"checkinsData"];
-        
+		
         NSData *recentCheckinsData=[NSKeyedArchiver archivedDataWithRootObject:recentCheckins];
         NSData *todayCheckinsData=[NSKeyedArchiver archivedDataWithRootObject:todayCheckins];
         NSData *yesterdayCheckinsData=[NSKeyedArchiver archivedDataWithRootObject:yesterdayCheckins];
         [standardUserDefaults setObject:recentCheckinsData forKey:@"recentCheckinsData"];
         [standardUserDefaults setObject:todayCheckinsData forKey:@"todayCheckinsData"];
         [standardUserDefaults setObject:yesterdayCheckinsData forKey:@"yesterdayCheckinsData"];
+        [standardUserDefaults synchronize];
         DLog(@"finished with checkin response");
         
         if (!hasViewedInstructions) {

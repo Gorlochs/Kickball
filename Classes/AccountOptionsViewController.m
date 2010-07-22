@@ -198,6 +198,7 @@
 	DLog(@"Access token string returned: %@", tokenString);
 	
 	[[NSUserDefaults standardUserDefaults] setObject:tokenString forKey:kCachedXAuthAccessTokenStringKey];
+	[[NSUserDefaults standardUserDefaults] synchronize];
     [[KBAccountManager sharedInstance] setUsesTwitter:YES];
     
 //    [[NSNotificationCenter defaultCenter] postNotificationName:@"loginNotification"
@@ -242,6 +243,7 @@
         
         NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
         [prefs setObject:foursquareUsername.text forKey:kUsernameDefaultsKey];
+		[prefs synchronize];
         DLog(@"Stored username: %@", foursquareUsername.text);
         
         NSError *error = nil;

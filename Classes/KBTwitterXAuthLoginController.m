@@ -119,7 +119,7 @@
 	DLog(@"Access token string returned: %@", tokenString);
 	
 	[[NSUserDefaults standardUserDefaults] setObject:tokenString forKey:kCachedXAuthAccessTokenStringKey];
-    
+    [[NSUserDefaults standardUserDefaults] synchronize];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"loginNotification"
                                                         object:nil
                                                       userInfo:nil];

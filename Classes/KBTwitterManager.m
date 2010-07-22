@@ -257,6 +257,7 @@ static KBTwitterManager *sharedInstance = nil;
 
 - (void) setHasGeoTweetTurnedOn:(BOOL)hasGeoTweet {
     [[NSUserDefaults standardUserDefaults] setObject:hasGeoTweet forKey:kKBTwitterGeoTweetKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 
