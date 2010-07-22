@@ -190,7 +190,7 @@
 
 - (void) textViewDidChange:(UITextView *)textView {
     if ([textView.text length] > 140) {
-        textView.text = [textView.text substringToIndex:139];
+        textView.text = [textView.text substringToIndex:140];
     }
     characterCountLabel.text = [NSString stringWithFormat:@"%d/140", [textView.text length]];
 }

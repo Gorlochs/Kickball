@@ -48,7 +48,7 @@
 
 - (void)textViewDidChange:(UITextView *)textView {
     if ([textView.text length] > 100) {
-        textView.text = [textView.text substringToIndex:99];
+        textView.text = [textView.text substringToIndex:100];
     }
     characterCount.text = [NSString stringWithFormat:@"%d/100", [textView.text length]];
 }
