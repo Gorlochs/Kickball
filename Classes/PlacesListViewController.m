@@ -126,7 +126,7 @@
         venuesTypeToDisplay = KBSearchVenues;
         [self startProgressBar:@"Searching..."];
         // TODO: I am just replacing a space with a +, but other characters might give this method a headache.
-        [[FoursquareAPI sharedInstance] getVenuesByKeyword:[searchbox.text stringByReplacingOccurrencesOfString:@" " withString:@"+"]
+        [[FoursquareAPI sharedInstance] getVenuesByKeyword:searchbox.text 
                                                andLatitude:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] latitude]] 
                                               andLongitude:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] longitude]] 
                                                 withTarget:self 
