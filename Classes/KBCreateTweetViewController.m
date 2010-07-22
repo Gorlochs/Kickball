@@ -128,6 +128,13 @@
 		}
 		
 		if (photoImage) {
+			if(![[FoursquareAPI sharedInstance] isAuthenticated]){
+				KBMessage *message = [[KBMessage alloc] initWithMember:@"Error" andMessage:@"Please sign in to Foursquare before submitting an image."];
+				[self displayPopupMessage:message];
+				[message release];
+				return;
+			}
+
 			actionCount++;
 			NSData *data = UIImageJPEGRepresentation(photoImage, 1.0);
 			NSString *filename = @"tweet.jpg";
