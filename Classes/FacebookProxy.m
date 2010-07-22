@@ -245,9 +245,7 @@ static NSDateFormatter* fbEventDetailDate = NULL;
 			gFacebookProxy = [[NSKeyedUnarchiver unarchiveObjectWithData:dataRepresentingSavedObject] retain];
 			gFacebookProxy.pictureUrls = [[NSMutableDictionary alloc] init];
 			gFacebookProxy.profilePic = nil;
-			//if (gFacebookProxy.profilePic==nil) {
-				[gFacebookProxy storeProfilePic];
-			//}
+//			[gFacebookProxy storeProfilePic];
 			gFacebookProxy.profileLookup = [[NSMutableDictionary alloc] init];
 			gFacebookProxy.albumLookup = [[NSMutableDictionary alloc] init];
 

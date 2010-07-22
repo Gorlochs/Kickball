@@ -319,7 +319,7 @@
 - (void) photoUploadFinished:(ASIHTTPRequest *) request {
 	
 	if (isFacebookOn) {
-		//if facebook submissio is turned on and I'm logged in and permitted to facebook
+		//if facebook submission is turned on and I'm logged in and permitted to facebook
 		SBJSON *parser = [SBJSON new];
 		id dict = [parser objectWithString:[request responseString] error:NULL];
 		[parser release];
@@ -330,6 +330,9 @@
 		GraphAPI *graph = [[FacebookProxy instance] newGraph];
 		[graph putWallPost:@"me" message:[self formatCheckinMessage:checkinTextField.text] attachment:fbPicture];
 		[graph release];
+		
+		
+		//[[KBPhotoManager sharedInstance] uploadFacebookPhoto:UIImageJPEGRepresentation(photoImage, 1.0) withCaption:checkinTextField.text];
 		
 	}
 	

@@ -54,7 +54,8 @@
 - (void)startLoadingDefaults {
     // try to load up the managers for the various services
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    [FacebookProxy loadDefaults];
+//    [FacebookProxy loadDefaults];
+	[[FacebookProxy instance] storeProfilePic];
     [pool release];
 }
 
@@ -259,6 +260,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier = @"Cell";
+	DLog(@"cell # %d", indexPath.row);
     
     KBFacebookNewsCell *cell = (KBFacebookNewsCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	if (cell == nil) {

@@ -76,7 +76,8 @@
     [[FoursquareAPI sharedInstance] getUser:self.userId withTarget:self andAction:@selector(userResponseReceived:withResponseString:)];
     [FlurryAPI logEvent:@"Profile"];
 
-    [self retrieveUserPhotos];
+	
+	[NSThread detachNewThreadSelector:@selector(retrieveUserPhotos) toTarget:self withObject:nil];
 }
 
 - (void) photoCountRequestWentWrong:(ASIHTTPRequest *) request {
@@ -580,6 +581,7 @@
 
 - (void) retrieveUserPhotos {
     
+	pool = [[NSAutoreleasePool alloc] init];
     NSString *gorlochUrlString = [NSString stringWithFormat:@"%@/gifts/owner/%@.xml?limit=4", kickballDomain, userId];
     DLog(@"photo url string: %@", gorlochUrlString);
     ASIHTTPRequest *gorlochRequest = [[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:gorlochUrlString]] autorelease];
@@ -600,12 +602,14 @@
 //}
 
 - (void) photoRequestWentWrong:(ASIHTTPRequest *) request {
+	[pool release];
     DLog(@"BOOOOOOOOOOOO!");
 }
 
 - (void) photoRequestDidFinish:(ASIHTTPRequest *) request {
     userPhotos = [[[KickballAPI kickballApi] parsePhotosFromXML:[request responseString]] retain];
     
+	[pool release];
     [theTableView reloadData];
 }
 

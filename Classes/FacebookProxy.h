@@ -96,6 +96,7 @@ extern NSString* const kFBRedirectURI;
 -(NSArray*)refreshHome;
 -(NSArray*)refreshEvents;
 -(bool)isAuthorized;
+-(void)storeProfilePic; // this was pulled out of loadDefaults
 
 //convenience stuff
 -(NSString*)findSuitableText:(NSDictionary*)fbItem;

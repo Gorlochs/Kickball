@@ -219,6 +219,7 @@ static BOOL initialized = NO;
 		[userDefaults setBool:YES forKey:FIRST_RUN_COMPLETED];
 	}
 	initialized = YES;
+	[FacebookProxy loadDefaults];
 	return self;
 }
 

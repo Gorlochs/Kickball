@@ -55,6 +55,7 @@
     IBOutlet UITableViewCell *photoCell;
     IBOutlet UISwitch *checkinNotificationSwitch;
     IBOutlet UISwitch *photoNotificationSwitch;
+	NSAutoreleasePool *pool;
 }
 
 @property (nonatomic, retain) UITableViewCell *badgeCell;

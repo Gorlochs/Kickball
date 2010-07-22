@@ -22,7 +22,6 @@ static BOOL initialized = NO;
 
 @interface KBPhotoManager (Private)
 
-- (void) uploadFacebookPhoto:(NSData*)img withCaption:(NSString*)caption;
 
 @end
  
