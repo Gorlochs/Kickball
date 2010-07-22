@@ -44,10 +44,10 @@
 
 - (void)directMessagesReceived:(NSArray *)messages {
 	if ([messages count] > 0 || isInitialLoad) {
-        if (twitterArray) [twitterArray release];
+        //if (twitterArray) [twitterArray release];
         twitterArray = [messages retain];
         int count = 0;
-        if (!tweets) tweets = [[NSMutableArray alloc] init];
+        if (!tweets) tweets = [[NSMutableArray alloc] initWithCapacity:1];
         if (pageNum > 1) count = [tweets count];
 		for (NSDictionary *dict in twitterArray) {
 			KBDirectMessage *message = [[KBDirectMessage alloc] initWithDictionary:dict];
@@ -75,6 +75,18 @@
 
 - (void) refreshTable {
     [self showStatuses];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+	KBDirectMessage *tweet = [tweets objectAtIndex:indexPath.row];
+	
+	CGSize maximumLabelSize = CGSizeMake(250, MAX_LABEL_HEIGHT);
+	CGSize expectedLabelSize = [tweet.tweetText sizeWithFont:[UIFont fontWithName:@"Helvetica" size:12.0]
+										   constrainedToSize:maximumLabelSize 
+											   lineBreakMode:UILineBreakModeWordWrap];
+	
+	return expectedLabelSize.height + 48.0; // > MAX_LABEL_HEIGHT ? expectedLabelSize.height + 30.0 : MAX_LABEL_HEIGHT;
 }
 
 - (void)didReceiveMemoryWarning {

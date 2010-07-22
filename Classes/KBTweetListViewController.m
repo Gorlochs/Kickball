@@ -55,6 +55,10 @@
     if ([self.twitterEngine isAuthorized]) {
 		[self startProgressBar:@"Retrieving your tweets..."];
 		[self showStatuses];
+		
+		// FIXME: put in separate thread
+		NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:@"twittername"];
+		if (username) [self.twitterEngine getUserInformationFor:username]; //get the twitter profile pic to save it
 	} else {
 		//old login method removed
 		/*
@@ -94,8 +98,6 @@
 }
 
 - (void)statusesReceived:(NSArray *)statuses {
-	NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:@"twittername"];
-	if (username) [self.twitterEngine getUserInformationFor:username]; //get the twitter profile pic to save it
     if (_inModalTweetView) {
     [self.navigationController popViewControllerAnimated:YES];
     _inModalTweetView = NO;
