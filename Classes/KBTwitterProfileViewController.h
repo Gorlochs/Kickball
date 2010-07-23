@@ -31,6 +31,7 @@
     
     NSString *screenname;
     NSDictionary *userDictionary;
+	BOOL _didUnfollowUser;
 }
 
 @property (nonatomic, retain) NSString *screenname;

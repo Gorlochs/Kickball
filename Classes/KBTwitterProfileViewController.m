@@ -76,15 +76,18 @@
   if ([[userDictionary objectForKey:@"following"] isKindOfClass:[NSNull class]]) { //fix for crash
 		followButton.hidden = NO;
 		unfollowButton.hidden = YES;
-	} else if ([[userDictionary objectForKey:@"following"] boolValue]) {
-		followButton.hidden = YES;
-		unfollowButton.hidden = NO;
+	} else if ([[userDictionary objectForKey:@"following"] boolValue]) { //TWITTER BUG: when you unfollow someone, the server returns true whether it is really true or not!!!
+		if (!_didUnfollowUser) {
+			followButton.hidden = YES;
+			unfollowButton.hidden = NO;
+		}
 	} else {
 		followButton.hidden = NO;
 		unfollowButton.hidden = YES;
 	}
     [self hideOwnUserButtons];
     [self stopProgressBar];
+	_didUnfollowUser = NO;
 }
 
 #pragma mark -
@@ -133,17 +136,16 @@
 }
 
 - (void) follow {
-	if (followButton.hidden) {
-        unfollowButton.hidden = YES;
-        followButton.hidden = NO;
-    } else {
-        unfollowButton.hidden = NO;
-        followButton.hidden = YES;
-    }
+	_didUnfollowUser = NO;
+    unfollowButton.hidden = NO;
+    followButton.hidden = YES;
 	[twitterEngine enableUpdatesFor:screenname];
 }
 
 - (void) unfollow {
+    _didUnfollowUser = YES;
+    followButton.hidden = NO;
+    unfollowButton.hidden = YES;
 	[twitterEngine disableUpdatesFor:screenname];
 }
 
@@ -179,15 +181,6 @@
 
 
 - (void)dealloc {
-//    [screenNameLabel release];
-//    [fullName release];
-//    [location release];
-//    [numberOfFollowers release];
-//    [numberOfFriends release];
-//    [numberOfFavorites release];
-//    [numberOfTweets release];
-//    [description release];
-    
     if (userIcon) [userIcon release];
     if (iconBgImage) [iconBgImage release];
     
