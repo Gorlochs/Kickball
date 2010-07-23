@@ -13,7 +13,7 @@
 @class KBFacebookLoginView, GraphObject;
 @interface KBFacebookListViewController : KBFacebookViewController{
 	BOOL doingLogin;
-	NSArray *newsFeed;
+	NSMutableArray *newsFeed;
 	TTStyledTextLabel *heightTester;
 	NSString *nextPageURL;
 	BOOL requeryWhenTableGetsToBottom;

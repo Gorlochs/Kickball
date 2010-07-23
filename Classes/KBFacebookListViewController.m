@@ -102,7 +102,6 @@
 	GraphAPI *graph = [[FacebookProxy instance] newGraph];
 	//newsFeed = [graph newsFeed:@"me"];
 	NSDictionary *feed = [graph newMeFeed];
-	//DLog("facebook news feed: %@", newsFeed);
 	newsFeed = [[NSMutableArray alloc] initWithArray:[feed objectForKey:@"posts"]];
 	[[FacebookProxy instance] cacheIncomingProfiles:[feed objectForKey:@"profiles"]];
 	[[FacebookProxy instance] cacheIncomingProfiles:[feed objectForKey:@"albums"]];
@@ -121,17 +120,14 @@
 	[self performSelectorOnMainThread:@selector(setTabImages) withObject:nil waitUntilDone:NO];
 }
 
-				
-
 -(void)concatenateMore:(NSString*)urlString{
-	
-	
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	NSDictionary *lastItem = [newsFeed objectAtIndex:[newsFeed count]-1];
 	NSNumber *lastStamp = [lastItem objectForKey:@"updated_time"];
 	GraphAPI *graph = [[FacebookProxy instance] newGraph];
 	NSDictionary *moreFeed = [graph newMeFeed:lastStamp];
-	NSArray *moreNews = [[NSMutableArray alloc] initWithArray:[moreFeed objectForKey:@"posts"]];
+	NSMutableArray *moreNews = [[NSMutableArray alloc] initWithArray:[moreFeed objectForKey:@"posts"]];
+	[moreNews retain]; //startLoadingDefaults sometimes releases an autorelease pool while we use this object.  this will keep the object from getting released, and us from crashing
 	[[FacebookProxy instance] cacheIncomingProfiles:[moreFeed objectForKey:@"profiles"]];
 	[[FacebookProxy instance] cacheIncomingProfiles:[moreFeed objectForKey:@"albums"]];
 
@@ -139,25 +135,14 @@
 		if ([moreNews count]==0) {
 			requeryWhenTableGetsToBottom = NO;
 		}
-		//[nextPageURL release];
-		//nextPageURL = nil;
-		//nextPageURL = graph._pagingNext;
-		//[nextPageURL retain];
-		NSMutableArray * fullBoat = [[NSMutableArray alloc] init];
-		[fullBoat addObjectsFromArray:newsFeed];
-		[fullBoat addObjectsFromArray:moreNews];
-		[newsFeed release];
-		newsFeed = nil;
-		newsFeed = fullBoat;
-		[newsFeed retain];
-		[fullBoat release];
-		fullBoat = nil;
+        if (!newsFeed) newsFeed = [[NSMutableArray alloc] init];
+		[newsFeed addObjectsFromArray:moreNews];
 		[theTableView reloadData];
 	}
 	[self dataSourceDidFinishLoadingNewData];
 	[graph release];
 	[pool release];
-	
+	[moreNews release];
 	[self performSelectorOnMainThread:@selector(stopProgressBar) withObject:nil waitUntilDone:NO];
 }
 
@@ -259,7 +244,6 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     static NSString *CellIdentifier = @"Cell";
 	DLog(@"cell # %d", indexPath.row);
     
@@ -359,7 +343,6 @@
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
     // Release any cached data, images, etc that aren't in use.
 }
 
