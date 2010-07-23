@@ -95,14 +95,14 @@
 }
 
 -(void)refreshMainFeed{
-	[newsFeed release];
+	if (newsFeed) [newsFeed release];
 	newsFeed = nil;
 	requeryWhenTableGetsToBottom = YES;
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	GraphAPI *graph = [[FacebookProxy instance] newGraph];
 	//newsFeed = [graph newsFeed:@"me"];
 	NSDictionary *feed = [graph newMeFeed];
-	DLog("facebook news feed: %@", newsFeed);
+	//DLog("facebook news feed: %@", newsFeed);
 	newsFeed = [[NSMutableArray alloc] initWithArray:[feed objectForKey:@"posts"]];
 	[[FacebookProxy instance] cacheIncomingProfiles:[feed objectForKey:@"profiles"]];
 	[[FacebookProxy instance] cacheIncomingProfiles:[feed objectForKey:@"albums"]];
