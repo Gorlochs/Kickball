@@ -89,7 +89,6 @@
 	[parentView refreshTable];
     [msg release];
 	[self stopProgressBar];
-
 }
 
 

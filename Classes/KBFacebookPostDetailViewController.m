@@ -162,7 +162,7 @@
 	[pool release];
 }
 
--(void)refreshMainFeed{
+-(void)refreshMainFeed {
 	
 	requeryWhenTableGetsToBottom = YES;
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];

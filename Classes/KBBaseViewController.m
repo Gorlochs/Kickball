@@ -285,7 +285,7 @@ const NSString *kickballDomain = @"http://kickball.gorlochs.com/kickball";
 //    if (textToDisplay == nil) {
 //        textToDisplay = @"Processing...";
 //    }
-//	if (progressViewController) [progressViewController release];
+	//	if (progressViewController) [progressViewController release];
 	if (!progressViewController) {
 		progressViewController = [[ProgressViewController alloc] initWithNibName:@"ProgressView" bundle:nil];
 	}
@@ -333,6 +333,7 @@ const NSString *kickballDomain = @"http://kickball.gorlochs.com/kickball";
 - (void) stopProgressBar {
     [progressBarTimer invalidate];
     progressBarTimer = nil;
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 	
 	[UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationBeginsFromCurrentState:YES];

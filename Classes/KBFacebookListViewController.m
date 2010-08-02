@@ -83,9 +83,6 @@
 
 	} else {
 		[self showLoginView];
-        //loginController = [[KBTwitterXAuthLoginController alloc] initWithNibName:@"TwitterLoginView_v2" bundle:nil];
-		//loginController.rootController = self;
-        //[self presentModalViewController:loginController animated:YES];
     }
 	
 	heightTester = [[TTStyledTextLabel alloc] initWithFrame:CGRectMake(58, 10, 250, 70)];
@@ -118,6 +115,7 @@
 	
 	[self performSelectorOnMainThread:@selector(stopProgressBar) withObject:nil waitUntilDone:NO];
 	[self performSelectorOnMainThread:@selector(setTabImages) withObject:nil waitUntilDone:NO];
+	[self stopProgressBar];
 }
 
 -(void)concatenateMore:(NSString*)urlString{
@@ -245,17 +243,15 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"Cell";
-	DLog(@"cell # %d", indexPath.row);
-    
-    KBFacebookNewsCell *cell = (KBFacebookNewsCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-	if (cell == nil) {
-        cell = [[[KBFacebookNewsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+	KBFacebookNewsCell *cell = (KBFacebookNewsCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+		cell = [[[KBFacebookNewsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
 	}
-	NSDictionary *fbItem = [newsFeed objectAtIndex:indexPath.row];
-	NSString *bodyText = [[FacebookProxy instance] findSuitableText:fbItem];
-	NSString *displayString = [NSString	 stringWithFormat:@"<span class=\"fbBlueText\">%@</span> %@",[[FacebookProxy instance] userNameFrom:[fbItem objectForKey:@"actor_id"]], bodyText];
+    NSDictionary *fbItem = [newsFeed objectAtIndex:indexPath.row];
+    NSString *bodyText = [[FacebookProxy instance] findSuitableText:fbItem];
+    NSString *displayString = [NSString	 stringWithFormat:@"<span class=\"fbBlueText\">%@</span> %@",[[FacebookProxy instance] userNameFrom:[fbItem objectForKey:@"actor_id"]], bodyText];
 	
-	BOOL withPhoto = [[FacebookProxy instance] doesHavePhoto:fbItem];
+    BOOL withPhoto = [[FacebookProxy instance] doesHavePhoto:fbItem];
 	if (withPhoto) {
 		cell.fbPictureUrl = [[FacebookProxy instance] imageUrlForPhoto:fbItem];
 		cell.pictureAlbumId = [[FacebookProxy instance] albumIdForPhoto:fbItem];
@@ -263,7 +259,7 @@
 		cell.fbPictureUrl = nil;
 		cell.pictureAlbumId = nil;
 	}
-
+    
 	/*
 	NSString *type = [fbItem objectForKey:@"type"];
 	if ([type isEqualToString:@"photo"]) {
@@ -275,12 +271,12 @@
 	}
 
 	//NSString *displayString = [NSString	 stringWithFormat:@"<span class=\"fbBlueText\">%@</span> %@",[(NSDictionary*)[fbItem propertyWithKey:@"from"] objectForKey:@"name"], [fbItem propertyWithKey:@"message"]];
-	*/
-	cell.fbProfilePicUrl = [[FacebookProxy instance] profilePicUrlFrom:[fbItem objectForKey:@"actor_id"]];
-
-	cell.tweetText.text = [TTStyledText textFromXHTML:[displayString stringByReplacingOccurrencesOfString:@"\n" withString:@""] lineBreaks:NO URLs:NO];
+	 */
+    cell.fbProfilePicUrl = [[FacebookProxy instance] profilePicUrlFrom:[fbItem objectForKey:@"actor_id"]];
+	
+    cell.tweetText.text = [TTStyledText textFromXHTML:[displayString stringByReplacingOccurrencesOfString:@"\n" withString:@""] lineBreaks:NO URLs:NO];
 	NSDictionary* commentDict = [fbItem objectForKey:@"comments"];
-	if(commentDict){
+    if(commentDict){
 		[cell setNumberOfComments:[(NSNumber*)[commentDict objectForKey:@"count"] intValue]];
 	}else {
 		[cell setNumberOfComments:0];
@@ -289,6 +285,7 @@
 	[cell setDateLabelWithText:[[KickballAPI kickballApi] convertDateToTimeUnitString:[NSDate dateWithTimeIntervalSince1970:[(NSNumber*)[fbItem objectForKey:@"created_time"] intValue]]]]; //[[FacebookProxy fbDateFormatter] dateFromString:[fbItem objectForKey:@"created_time"]]]];
 	[cell.tweetText sizeToFit];
 	[cell.tweetText setNeedsDisplay];
+	
 	return cell;
 }
 
@@ -312,7 +309,7 @@
 	if (indexPath.row == [newsFeed count] - 1) {
         if (requeryWhenTableGetsToBottom) {
             //[self executeQuery:++pageNum];
-			[self startProgressBar:@"Retrieving more..."];
+			//[self startProgressBar:@"Retrieving more..."];
 
 			[NSThread detachNewThreadSelector:@selector(concatenateMore:) toTarget:self withObject:nextPageURL];
 			
@@ -321,24 +318,6 @@
         }
 	}
 }
-
-//- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-//	if (indexPath.row == [tweets count] - 1) {
-//        if (requeryWhenTableGetsToBottom) {
-//            //[self executeQuery:++pageNum];
-//        } else {
-//            DLog("********************* REACHED NO MORE RESULTS!!!!! **********************");
-//        }
-//	}
-//}
-
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
