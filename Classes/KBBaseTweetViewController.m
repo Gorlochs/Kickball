@@ -14,10 +14,12 @@
 #import "KBTwitterDetailViewController.h"
 #import "KBTwitterProfileViewController.h"
 #import "KickballAPI.h"
+#import "Utilities.h"
 
 @implementation KBBaseTweetViewController
 
 - (void)viewDidLoad {
+    NSLog(@"viewdidload %i", [Utilities getMemory]);
     pageNum = 0;
     requeryWhenTableGetsToBottom = YES;
     [super viewDidLoad];
@@ -258,6 +260,7 @@
     [tweets release];
     if (cachingKey) [cachingKey release];
     [super dealloc];
+    NSLog(@"dealloc %i", [Utilities getMemory]);
 }
 
 
