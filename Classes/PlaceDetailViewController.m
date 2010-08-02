@@ -247,8 +247,6 @@
         } else {
             specialsButton.hidden = YES;
         }
-		
-		theTableView.hidden = NO;
         
 		if (showCheckinView) {
 			[self openCheckinView];
@@ -280,6 +278,7 @@
 				
 			}
         }
+		theTableView.hidden = NO;
 		doCheckin = NO;
 		showCheckinView = NO;
     }
