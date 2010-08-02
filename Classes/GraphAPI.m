@@ -418,6 +418,21 @@ NSString* const kConnectionAlbums = @"albums";
 	return returnArray;
 }
 
+-(void)postToWall:(NSString*)message withImage:(UIImage*)photo{
+	NSData* responseData = nil;
+	NSString* r_string = nil;
+	NSString* method = @"photos.upload";
+	NSMutableDictionary *args = nil;
+	
+	args= [NSMutableDictionary dictionaryWithObjectsAndKeys:self._accessToken,kArgumentKeyAccessToken,photo,@"photo",message,@"caption",nil];
+	responseData = [self makeSynchronousRest:method args:args verb:kRequestVerbPost];
+	r_string = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+	
+	
+}
+
+
+
 -(GraphObject*)putToObject:(NSString*)parent_obj_id connectionType:(NSString*)connection args:(NSDictionary*)request_args
 {
 	NSMutableDictionary* mutableArgs = [NSMutableDictionary dictionaryWithDictionary:request_args];
@@ -705,7 +720,7 @@ NSString* const kConnectionAlbums = @"albums";
 	}
 	else
 	{
-		urlString = [NSString stringWithFormat:@"%@%@", kGraphAPIServer, path];
+		urlString = [NSString stringWithFormat:@"%@%@", kRestAPIServer, path];
 		
 		r_url = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]
 										cachePolicy:NSURLRequestUseProtocolCachePolicy

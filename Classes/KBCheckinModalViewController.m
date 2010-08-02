@@ -158,6 +158,9 @@
 	    if (isTwitterOn) {
 			[NSThread detachNewThreadSelector:@selector(uploadToTweetPhoto) toTarget:self withObject:nil];
 		}
+		if (isFacebookOn){
+			[NSThread detachNewThreadSelector:@selector(uploadToFacebook) toTarget:self withObject:nil];
+		}
     } else {
 		if (isFacebookOn ) {
             [Utilities putGoogleMapsWallPostWithMessage:[self formatCheckinMessage:checkinTextField.text] andVenue:venue andLink:[Utilities getShortenedUrlFromFoursquareVenueId:venue.venueid]];
@@ -184,6 +187,12 @@
 	[pool release];
 	DLog(@"tweetphoto url: %@", tweetPhotoResponse.mediaUrl);
 	[self performSelectorOnMainThread:@selector(submitToTwitter:) withObject:tweetPhotoResponse waitUntilDone:NO];
+}
+
+-(void) uploadToFacebook{
+	GraphAPI *graph = [[FacebookProxy instance] newGraph];
+	[graph postToWall:[self formatCheckinMessage:checkinTextField.text] withImage:photoImage];	
+	[graph release];
 }
 
 - (void) submitToTwitter:(TweetPhotoResponse*)response {
@@ -318,7 +327,7 @@
 }
 
 - (void) photoUploadFinished:(ASIHTTPRequest *) request {
-	
+	/*
 	if (isFacebookOn) {
 		//if facebook submission is turned on and I'm logged in and permitted to facebook
 		SBJSON *parser = [SBJSON new];
@@ -329,11 +338,13 @@
 		NSString *urlPath = [NSString stringWithFormat:@"https://kickball.s3.amazonaws.com/photos/%@/large/%@.jpg", uuid, uuid];
 		NSDictionary *fbPicture = [NSDictionary dictionaryWithObjectsAndKeys:urlPath, @"picture",@" ",@"caption",nil];
 		GraphAPI *graph = [[FacebookProxy instance] newGraph];
-		[graph putWallPost:@"me" message:[self formatCheckinMessage:checkinTextField.text] attachment:fbPicture];
+		[graph postToWall:[self formatCheckinMessage:checkinTextField.text] withImage:photoImage];
+		//[graph putWallPost:@"me" message:[self formatCheckinMessage:checkinTextField.text] attachment:fbPicture];
+		
 		[graph release];
 		
 		//[[KBPhotoManager sharedInstance] uploadFacebookPhoto:UIImageJPEGRepresentation(photoImage, 1.0) withCaption:checkinTextField.text];
-	}
+	}*/
 	
     DLog(@"YAY! Image uploaded!");
 

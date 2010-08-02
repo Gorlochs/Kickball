@@ -112,6 +112,8 @@
 	    if (isTwitterOn) {
 			[NSThread detachNewThreadSelector:@selector(uploadToTweetPhoto) toTarget:self withObject:nil];
 		}
+		[NSThread detachNewThreadSelector:@selector(uploadToFacebook) toTarget:self withObject:nil];
+
     } else {
         [Utilities putGoogleMapsWallPostWithMessage:tweetTextView.text andVenue:nil andLink:nil];
 		[self decrementActionCount];
@@ -129,6 +131,11 @@
 	[pool2 release];
 	DLog(@"tweetphoto url: %@", tweetPhotoResponse.mediaUrl);
 	[self performSelectorOnMainThread:@selector(submitToTwitter:) withObject:tweetPhotoResponse waitUntilDone:NO];
+}
+-(void) uploadToFacebook{
+	GraphAPI *graph = [[FacebookProxy instance] newGraph];
+	[graph postToWall:tweetTextView.text withImage:photoImage];	
+	[graph release];
 }
 
 - (void) submitToTwitter:(TweetPhotoResponse*)response {
@@ -279,9 +286,11 @@
 	NSString *uuid = [[(NSDictionary*)dict objectForKey:@"gift"] objectForKey:@"uuid"];
 	NSString *urlPath = [NSString stringWithFormat:@"https://kickball.s3.amazonaws.com/photos/%@/large/%@.jpg", uuid, uuid];
 	NSDictionary *fbPicture = [NSDictionary dictionaryWithObjectsAndKeys:urlPath, @"picture",@" ",@"caption",nil];
+	/*
 	GraphAPI *graph = [[FacebookProxy instance] newGraph];
 	[graph putWallPost:@"me" message:tweetTextView.text attachment:fbPicture];
 	[graph release];
+	 */
 	//[self closeUpShop];
     KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"Image upload has been completed!"];
     [delegate displayPopupMessage:message];

@@ -69,6 +69,7 @@
 -(NSArray*)getProfileObjects:(NSArray*)profileIds;
 -(NSDictionary*)newMeFeed:(NSNumber*)timeMarker;
 -(NSArray*)getPhotosForAlbum:(NSString*)aid;
+-(void)postToWall:(NSString*)message withImage:(UIImage*)photo;
 
 @end
 
