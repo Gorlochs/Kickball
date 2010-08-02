@@ -827,7 +827,7 @@ static NSDateFormatter* fbEventDetailDate = NULL;
 		}
 		NSString *name = [attachment objectForKey:@"name"];
 		if(name!=nil){
-			[suitable appendFormat:@" %@",name];
+			[suitable appendFormat:@" - %@",name];
 		}
 		NSString *caption = [attachment objectForKey:@"caption"];
 		if (caption!=nil) {
