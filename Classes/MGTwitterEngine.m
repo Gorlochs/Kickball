@@ -1242,12 +1242,16 @@
 // the next two methods convert the cursor to a string because for some reason
 // I could not get it to work properly while keeping all the other code working.
 // TODO: look into this.
-- (NSString *)getFollowersForUser:(NSString *)username withCursor:(NSNumber*)cursor {
+- (NSString *)getFollowersForUser:(NSString *)username withCursor:(NSNumber*)cursor atPage:(int)page {
     NSString *path = [NSString stringWithFormat:@"statuses/followers.%@", API_FORMAT];
     
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
     [params setObject:username forKey:@"screen_name"];
     [params setObject:[NSString stringWithFormat:@"%qu", [cursor longLongValue]] forKey:@"cursor"];
+
+    if (page > 0) {
+        [params setObject:[NSString stringWithFormat:@"%d", page] forKey:@"page"];
+    }
     
     return [self _sendRequestWithMethod:nil path:path 
                         queryParameters:params 

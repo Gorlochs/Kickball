@@ -111,7 +111,7 @@
 
 - (NSString *)getFriendsForUser:(NSString *)username withCursor:(NSNumber*)cursor;   // statuses/friends
 - (NSString *)getFavoritesForUser:(NSString *)username withCursor:(NSNumber*)cursor; // favorites
-- (NSString *)getFollowersForUser:(NSString *)username withCursor:(NSNumber*)cursor; // statuses/followers
+- (NSString *)getFollowersForUser:(NSString *)username withCursor:(NSNumber*)cursor atPage:(int)page; // statuses/followers
 
 // User methods
 

@@ -40,6 +40,20 @@
     [self executeQuery:0];
 }
 
+- (void)statusesReceived:(NSArray *)statuses {
+  [super statusesReceived:statuses];
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (indexPath.row == [users count] - 1) {
+        if (requeryWhenTableGetsToBottom) {
+            [self executeQuery:++pageNum];
+        } else {
+            DLog("********************* REACHED NO MORE RESULTS!!!!! **********************");
+        }
+	}
+}
+
 - (void)userInfoReceived:(NSArray *)userInfo {
 	if (userInfo) {
 		twitterArray = [[[userInfo objectAtIndex:0] objectForKey:@"users"] retain];
@@ -63,6 +77,16 @@
 			users = [[NSMutableArray alloc] initWithArray:tempTweetArray];
 		}
 		[tempTweetArray release];
+   
+        //FIXME: use this code instead, it's more stable!
+        //if (!users) users = [[NSMutableArray alloc] init];
+		/*for (NSDictionary *dict in twitterArray) {
+			KBTwitterUser *user = [[KBTwitterUser alloc] initWithDictionary:dict];
+            [users addObject:user];
+			[user release];
+		}*/
+		//[users addObjectsFromArray:twitterArray];
+		
 
 		[theTableView reloadData];
 		NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
@@ -73,10 +97,11 @@
     [self stopProgressBar];
 }
 
+
 - (void) executeQuery:(int)pageNumber {
     [self startProgressBar:@"Retrieving users..."];
     if (userType == KBTwitterUserFollower) {
-        [twitterEngine getFollowersForUser:[userDictionary objectForKey:@"screen_name"] withCursor:currentCursor];
+        [twitterEngine getFollowersForUser:[userDictionary objectForKey:@"screen_name"] withCursor:currentCursor atPage:pageNumber];
     } else if (userType == KBTwitterUserFriend) {
         [twitterEngine getFriendsForUser:[userDictionary objectForKey:@"screen_name"] withCursor:currentCursor];
     } else if (userType == KBTwitterUserFavorites) {
