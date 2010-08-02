@@ -72,10 +72,8 @@
 
 - (void)viewDidLoad {
     pageType = KBPageTypeOther;
-	[self startProgressBar:@""];
-    
     [super viewDidLoad];
-	
+	[self startProgressBar:@"Retrieving Info"];
     numberOfFollowers.text = @"";
     numberOfFriends.text = @"";
     numberOfFavorites.text = @"";
