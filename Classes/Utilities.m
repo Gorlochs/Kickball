@@ -220,6 +220,7 @@ static Utilities *sharedInstance = nil;
 	[request setDidFinishSelector: @selector(pingSubmitCompleted:)];
 	[request setDidFailSelector: @selector(pingSubmitFailed:)];
 	[queue addOperation:request];
+	[request release];
 	
 	[pool release];
 }

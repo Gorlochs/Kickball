@@ -1560,10 +1560,12 @@ int fs_encode(unsigned s_len, char *src, unsigned d_len, char *dst)
     if (theConnection) {
 		FSFunctionRequest * fsReq = [[FSFunctionRequest alloc] init];
 		
-		fsReq.currentTarget = [inTarget retain];
+		fsReq.currentTarget = inTarget;
 		fsReq.currentSelector = inAction;
-		fsReq.currentRequestURL = [url retain];
-		fsReq.receivedData = [[[NSMutableData alloc] initWithCapacity:15] retain];
+		fsReq.currentRequestURL = url;
+		NSMutableData *data = [[NSMutableData alloc] initWithCapacity:15];
+		fsReq.receivedData = data;
+		[data release];
 		[activeRequests setObject:fsReq forKey:[NSString stringWithFormat:@"%d", [theConnection hash]]];
 		[fsReq release];
 //		[inTarget performSelector:inAction withObject:url withObject:receivedData];	
@@ -1602,4 +1604,13 @@ int fs_encode(unsigned s_len, char *src, unsigned d_len, char *dst)
 	[activeRequests removeObjectForKey:[NSString stringWithFormat:@"%d", [connection hash]]]; 
 }
 
+-(void)dealloc{
+	[oauthAPI release];
+	[currentUser release];
+	[userName release];
+	[passWord release];
+	[activeRequests release];
+	[cachedVenues release];
+	[super dealloc];
+}
 @end

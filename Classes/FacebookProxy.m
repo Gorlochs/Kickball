@@ -191,7 +191,7 @@ static NSDateFormatter* fbEventDetailDate = NULL;
 	//	[self stopEvents];
 	if ( self._session != nil )
 		[self._session.delegates removeObject:self];	
-	
+	[_session release];
 	[_oAuthAccessToken release];
 	[_authResponse release];
 	[_accessTokenResponse release];
@@ -209,6 +209,9 @@ static NSDateFormatter* fbEventDetailDate = NULL;
 	_permissionDialog.delegate = nil;
 	[_permissionDialog release];
 	[pictureUrls release];
+	[profilePic release];
+	[profileLookup release];
+	[albumLookup release];
 	[super dealloc];
 }
 
@@ -243,11 +246,11 @@ static NSDateFormatter* fbEventDetailDate = NULL;
 			if ( gFacebookProxy != nil )
 				[gFacebookProxy release];			
 			gFacebookProxy = [[NSKeyedUnarchiver unarchiveObjectWithData:dataRepresentingSavedObject] retain];
-			gFacebookProxy.pictureUrls = [[NSMutableDictionary alloc] init];
-			gFacebookProxy.profilePic = nil;
+			//gFacebookProxy.pictureUrls = [[NSMutableDictionary alloc] init];
+			//gFacebookProxy.profilePic = nil;
 //			[gFacebookProxy storeProfilePic];
-			gFacebookProxy.profileLookup = [[NSMutableDictionary alloc] init];
-			gFacebookProxy.albumLookup = [[NSMutableDictionary alloc] init];
+			//gFacebookProxy.profileLookup = [[NSMutableDictionary alloc] init];
+			//gFacebookProxy.albumLookup = [[NSMutableDictionary alloc] init];
 
 			
 		}
