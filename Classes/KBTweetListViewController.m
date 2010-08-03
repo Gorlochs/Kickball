@@ -74,10 +74,16 @@
     NSDictionary *userDictionary = [userInfo objectAtIndex:0];
 	if (userDictionary) {
 		NSString *profileImage = [userDictionary objectForKey:@"profile_image_url"];
-		[[NSUserDefaults standardUserDefaults] setObject:profileImage forKey:@"twitUserPhotoURL"];
-		[[NSUserDefaults standardUserDefaults] synchronize];
-		UIImage *twitterUserPic = [[Utilities sharedInstance] getCachedImage:profileImage];
-		if (twitterUserPic) [signedInUserIcon setImage:twitterUserPic forState:UIControlStateNormal];
+		if (profileImage) {
+			NSString *screenName = [userDictionary objectForKey:@"screen_name"];
+			NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:@"twittername"];
+			if (screenName && username && [screenName isEqualToString:username]) { //only use the profile pic for the user!!
+				[[NSUserDefaults standardUserDefaults] setObject:profileImage forKey:@"twitUserPhotoURL"];
+				[[NSUserDefaults standardUserDefaults] synchronize];
+				UIImage *twitterUserPic = [[Utilities sharedInstance] getCachedImage:profileImage];
+				if (twitterUserPic) [signedInUserIcon setImage:twitterUserPic forState:UIControlStateNormal];
+			}
+		}
 	}
 }
 
