@@ -329,11 +329,18 @@ static NSArray *expressions = nil;
 
 - (void)dealloc
 {
-	self.normalColor = nil;
-	self.highlightColor = nil;
-
-	self.normalImage = nil;
-	self.highlightImage = nil;
+//	self.normalColor = nil;
+//	self.highlightColor = nil;
+//
+//	self.normalImage = nil;
+//	self.highlightImage = nil;
+	
+	[normalColor release];
+	[highlightColor release];
+	[labelHighlightedTextColor release];
+	[normalImage release];
+	[highlightImage release];
+	[label release];
 	
 	[self removeButtons];
 	

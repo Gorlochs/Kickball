@@ -374,6 +374,7 @@
 
 - (void)dealloc {
     [searchCell release];
+    [coverButton release];
 //    [footerCell release];
 //    [searchbox release];
     [venues release];
