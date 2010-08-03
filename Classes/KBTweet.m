@@ -33,10 +33,10 @@
         tweetId = [statusDictionary objectForKey:@"id"];
 		//clientName = [statusDictionary objectForKey:@"source"];
 		
-		NSRange   matchedRange = NSMakeRange(NSNotFound, 0);
+		//NSRange   matchedRange = NSMakeRange(NSNotFound, 0);
 		NSString *clientWithLink = [statusDictionary objectForKey:@"source"];
 		DLog("************** client with link: %@", clientWithLink);
-		matchedRange = [clientWithLink rangeOfRegex:@">(.*)<"];
+		NSRange matchedRange = [clientWithLink rangeOfRegex:@">(.*)<"];
 		clientName = @"";
 		if (matchedRange.location != NSNotFound) {
 			NSRange reducedRange = NSMakeRange(matchedRange.location + 1, matchedRange.length - 2);

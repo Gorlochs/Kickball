@@ -376,38 +376,8 @@
     [self displayPopupMessage:message];
     [message release];
     
-//    CGRect frame = CGRectMake(300, 50, 25, 25);
-//    TTImageView *thumbnail = [[[TTImageView alloc] initWithFrame:frame] autorelease];
-//    thumbnail.backgroundColor = [UIColor clearColor];
-    //NSString *uuid = [[((NSDictionary*)[request responseString]) objectForKey:@"gift"] objectForKey:@"uuid"];
-	//NSString *urlPath = [NSString stringWithFormat:@"http://s3.amazonaws.com/kickball/photos/%@/thumb/%@.jpg", uuid, uuid];
-
-//    thumbnail.urlPath = [NSString stringWithFormat:@"http://s3.amazonaws.com/kickball/photos/%@/thumb/%@.jpg", uuid, uuid];
-//    //thumbnail.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
-//    [self.view addSubview:thumbnail];
-    
     // NOTE: the self.photoMessageToPush is being set above in the returnFromMessageView: method
     [FlurryAPI logEvent:@"Image Upload Completed"];
-	
-	//
-	
-	if (isFacebookOn) {
-		//if facebook submissio is turned on and I'm logged in and permitted to facebook
-		SBJSON *parser = [SBJSON new];
-		DLog(@"city grid response: %@", [request responseString]);
-		id dict = [parser objectWithString:[request responseString] error:NULL];
-		[parser release];
-		
-		NSString *uuid = [[(NSDictionary*)dict objectForKey:@"gift"] objectForKey:@"uuid"];
-		NSString *urlPath = [NSString stringWithFormat:@"https://kickball.s3.amazonaws.com/photos/%@/large/%@.jpg", uuid, uuid];
-		NSDictionary *fbPicture = [NSDictionary dictionaryWithObjectsAndKeys:urlPath, @"picture",@" ",@"caption",nil];
-		/*
-		GraphAPI *graph = [[FacebookProxy instance] newGraph];
-		[graph putWallPost:@"me" message:tweetTextView.text attachment:fbPicture];
-		[graph release];
-		 */
-	}
-	
 }
 
 - (void) photoQueueFinished:(ASIHTTPRequest *) request {

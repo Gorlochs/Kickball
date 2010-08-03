@@ -244,6 +244,7 @@ NSString* const kConnectionAlbums = @"albums";
 	r_string = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
 	SBJSON *parser = [SBJSON new];
 	id dict = [parser objectWithString:r_string error:NULL];
+	[r_string release];
 	[parser release];
 	if ([dict isKindOfClass:[NSDictionary class]]) {
 		DLog(@"woohoo parsed a dictionary");
@@ -265,6 +266,7 @@ NSString* const kConnectionAlbums = @"albums";
 	SBJSON *parser = [SBJSON new];
 	id dict = [parser objectWithString:r_string error:NULL];
 	[parser release];
+	[r_string release];
 	if ([dict isKindOfClass:[NSDictionary class]]) {
 		DLog(@"woohoo parsed a dictionary");
 		return dict;
@@ -287,9 +289,11 @@ NSString* const kConnectionAlbums = @"albums";
 	args= [NSMutableDictionary dictionaryWithObjectsAndKeys:[ids objectAtIndex:1],@"object_id",@"json",@"format",self._accessToken,kArgumentKeyAccessToken,nil];
 	responseData = [self makeSynchronousRest:method args:args verb:kRequestVerbGet];
 	r_string = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+	//[responseData release];
 	SBJSON *parser = [SBJSON new];
 	id arr = [parser objectWithString:r_string error:NULL];
 	[parser release];
+	[r_string release];
 	if ([arr isKindOfClass:[NSArray class]]) {
 		DLog(@"woohoo parsed an array");
 		return arr;
@@ -312,6 +316,7 @@ NSString* const kConnectionAlbums = @"albums";
 	SBJSON *parser = [SBJSON new];
 	id arr = [parser objectWithString:r_string error:NULL];
 	[parser release];
+	[r_string release];
 	if ([arr isKindOfClass:[NSArray class]]) {
 		DLog(@"woohoo parsed an array");
 		return arr;
@@ -332,6 +337,7 @@ NSString* const kConnectionAlbums = @"albums";
 	SBJSON *parser = [SBJSON new];
 	id arr = [parser objectWithString:r_string error:NULL];
 	[parser release];
+	[r_string release];
 	if ([arr isKindOfClass:[NSArray class]]) {
 		DLog(@"woohoo parsed an array");
 		return arr;
@@ -426,9 +432,7 @@ NSString* const kConnectionAlbums = @"albums";
 	
 	args= [NSMutableDictionary dictionaryWithObjectsAndKeys:self._accessToken,kArgumentKeyAccessToken,photo,@"photo",message,@"caption",nil];
 	responseData = [self makeSynchronousRest:method args:args verb:kRequestVerbPost];
-	r_string = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-	
-	
+	//r_string = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
 }
 
 
@@ -544,7 +548,7 @@ NSString* const kConnectionAlbums = @"albums";
 	
 	//	NSString* responseString = nil;
 	self._responseData = nil;
-	NSString* urlString;
+	NSString* urlString = nil;
 	NSMutableURLRequest* r_url;
 	
 	if ( [verb isEqualToString:kRequestVerbGet] )
@@ -577,7 +581,7 @@ NSString* const kConnectionAlbums = @"albums";
 	//	NSLog( @"request headers: %@", [r_url allHTTPHeaderFields] );
 	
 //	NSURLResponse* response;
-	NSError* error;
+	NSError* error = nil;
 	
 	if ( nil == self._asyncronousDelegate )
 		self._asyncronousDelegate = [[GraphDelegate alloc] init];

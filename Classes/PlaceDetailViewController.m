@@ -1114,7 +1114,7 @@
 		[graph putWallPost:@"me" message:noteworthyCheckin attachment:nil];
 		[graph release];
 	}
-	
+	[noteworthyCheckin release];
 	// add close button overlay
 	UIButton *closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
 	[closeButton setFrame:CGRectMake(0, 0, 320, 480)];

@@ -279,24 +279,10 @@
 
 
 - (void) photoUploadFinished:(ASIHTTPRequest *) request {
-	
-	SBJSON *parser = [SBJSON new];
-	id dict = [parser objectWithString:[request responseString] error:NULL];
-	
-	NSString *uuid = [[(NSDictionary*)dict objectForKey:@"gift"] objectForKey:@"uuid"];
-	NSString *urlPath = [NSString stringWithFormat:@"https://kickball.s3.amazonaws.com/photos/%@/large/%@.jpg", uuid, uuid];
-	NSDictionary *fbPicture = [NSDictionary dictionaryWithObjectsAndKeys:urlPath, @"picture",@" ",@"caption",nil];
-	/*
-	GraphAPI *graph = [[FacebookProxy instance] newGraph];
-	[graph putWallPost:@"me" message:tweetTextView.text attachment:fbPicture];
-	[graph release];
-	 */
-	//[self closeUpShop];
     KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"Image upload has been completed!"];
     [delegate displayPopupMessage:message];
     [message release];
     [FlurryAPI logEvent:@"Image Upload Completed- facebook post"];
-	[parser release];
 }
 
 - (void) photoQueueFinished:(ASIHTTPRequest *) request {

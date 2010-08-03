@@ -40,17 +40,21 @@
             
         case KBFriendSearchByAddressBook:
             titleImage.image = [UIImage imageNamed:@"addressBook.png"];
-            people = (NSArray*)ABAddressBookCopyArrayOfAllPeople(ABAddressBookCreate());
+			ABAddressBookRef addressBook = ABAddressBookCreate();
+            people = (NSArray*)ABAddressBookCopyArrayOfAllPeople(addressBook);
+			CFRelease(addressBook);
             NSMutableArray *phones = [[NSMutableArray alloc] initWithCapacity:1];
             for (int i = 0; i<[people count]; i++) {
                 ABRecordRef person = [people objectAtIndex:i];
-                if (ABMultiValueGetCount(ABRecordCopyValue(person,kABPersonPhoneProperty)) > 0) {
-                    NSString *phone = (NSString *)ABMultiValueCopyValueAtIndex(ABRecordCopyValue(person,kABPersonPhoneProperty) ,0);
+				CFTypeRef abRecord = ABRecordCopyValue(person,kABPersonPhoneProperty);
+                if (ABMultiValueGetCount(abRecord) > 0) {
+                    NSString *phone = (NSString *)ABMultiValueCopyValueAtIndex(abRecord, 0);
                     if (phone != nil && ![phone isEqualToString:@""]) {
                         [phones addObject:phone];
                     }
                     [phone release];
                 }
+				CFRelease(abRecord);
             }
             DLog(@"phones: %@", phones);
             [[FoursquareAPI sharedInstance] findFriendsByPhone:[phones componentsJoinedByString:@","] withTarget:self andAction:@selector(searchResponseReceived:withResponseString:)];
