@@ -1554,7 +1554,7 @@ int fs_encode(unsigned s_len, char *src, unsigned d_len, char *dst)
     [parameterString release];
 	
 	[theRequest setHTTPMethod:httpMethod];
-    NSURLConnection * theConnection = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+    NSURLConnection * theConnection = [NSURLConnection connectionWithRequest:theRequest delegate:self];// [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
 
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     if (theConnection) {
@@ -1564,16 +1564,14 @@ int fs_encode(unsigned s_len, char *src, unsigned d_len, char *dst)
 		fsReq.currentSelector = inAction;
 		fsReq.currentRequestURL = [url retain];
 		fsReq.receivedData = [[[NSMutableData alloc] initWithCapacity:15] retain];
-		[fsReq retain];
 		[activeRequests setObject:fsReq forKey:[NSString stringWithFormat:@"%d", [theConnection hash]]];
-
+		[fsReq release];
 //		[inTarget performSelector:inAction withObject:url withObject:receivedData];	
 
     }
     else {
 		DLog(@"Could not connect to the network");
     }
-	
 }
 
 
@@ -1597,12 +1595,10 @@ int fs_encode(unsigned s_len, char *src, unsigned d_len, char *dst)
 {
 	FSFunctionRequest * fsReq = (FSFunctionRequest *) [activeRequests objectForKey:[NSString stringWithFormat:@"%d", [connection hash]]]; 
     
-    //DLog(@"Succeeded! Received %d bytes of data",[fsReq.receivedData length]);
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-	NSString * responseString = [[NSString alloc] initWithData:fsReq.receivedData encoding:NSUTF8StringEncoding];
+	NSString * responseString = [[[NSString alloc] initWithData:fsReq.receivedData encoding:NSUTF8StringEncoding] autorelease];
 	[fsReq.currentTarget performSelector:fsReq.currentSelector withObject:fsReq.currentRequestURL withObject:responseString];	
-//    [responseString release];
-    [connection release];
+    //[connection release];
 	[activeRequests removeObjectForKey:[NSString stringWithFormat:@"%d", [connection hash]]]; 
 }
 

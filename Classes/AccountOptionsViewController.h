@@ -18,7 +18,7 @@
 
 @class XAuthTwitterEngine;
 
-@interface AccountOptionsViewController : OptionsVC <UITextFieldDelegate, XAuthTwitterEngineDelegate, KBTwitterManagerDelegate> {
+@interface AccountOptionsViewController : OptionsVC <UITextFieldDelegate, XAuthTwitterEngineDelegate, KBTwitterManagerDelegate, UIActionSheetDelegate> {
     IBOutlet UITableViewCell *foursquareCell;
     IBOutlet UITableViewCell *twitterCell;
     IBOutlet UITableViewCell *facebookCell;

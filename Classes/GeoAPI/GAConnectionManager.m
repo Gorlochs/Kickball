@@ -147,16 +147,14 @@ NSString *const kGAPlaceParentsFormat =
 }
 
 - (void)requestURL:(NSString *)url {
-  NSURLRequest *request = [NSURLRequest
-                           requestWithURL:[NSURL URLWithString:url]];
+  NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
   // Connection is released in connectionDidFinishLoading
   [[NSURLConnection alloc] initWithRequest:request delegate:self];  
   DebugLog(@"Requesting URL %@", url);
 }
 
 - (void)requestURL:(NSString *)url withData:(NSString *)data {
-  NSMutableURLRequest *request = [NSMutableURLRequest
-                                  requestWithURL:[NSURL URLWithString:url]];
+  NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
   [request setHTTPMethod:@"POST"];
   [request setHTTPBody:[data dataUsingEncoding:NSUTF8StringEncoding]];
   // Connection is released in connectionDidFinishLoading
