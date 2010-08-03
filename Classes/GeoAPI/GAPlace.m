@@ -41,8 +41,8 @@
     self.guid = [placeDict objectForKey:@"guid"];
     self.address =
       [[self.listing objectForKey:@"address"] componentsJoinedByString:@", "];
-    NSArray *geomCoords = [[[placeDict objectForKey:@"meta"] 
-                            objectForKey:@"geom"] objectForKey:@"coordinates"];
+    NSArray *geomCoords = [[placeDict objectForKey:@"geom"]
+                           objectForKey:@"coordinates"];
     coords_.latitude = [[geomCoords objectAtIndex:1] doubleValue];
     coords_.longitude = [[geomCoords objectAtIndex:0] doubleValue];    
   }
