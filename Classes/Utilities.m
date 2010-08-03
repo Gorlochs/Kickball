@@ -257,42 +257,6 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
     CGContextRestoreGState(context);
 }
 
-+(UIImage *)makeRoundCornerImage:(UIImage*)img cornerwidth:(int)cornerWidth cornerheight:(int)cornerHeight
-{
-	UIImage * newImage = nil;
-    
-	if( nil != img)
-	{
-		NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
-		int w = img.size.width;
-		int h = img.size.height;
-        
-		CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-		CGContextRef context = CGBitmapContextCreate(NULL, w, h, 8, 4 * w, colorSpace, kCGImageAlphaPremultipliedFirst);
-        
-		CGContextBeginPath(context);
-		CGRect rect = CGRectMake(0, 0, img.size.width, img.size.height);
-		addRoundedRectToPath(context, rect, cornerWidth, cornerHeight);
-		CGContextClosePath(context);
-		CGContextClip(context);
-        
-		CGContextDrawImage(context, CGRectMake(0, 0, w, h), img.CGImage);
-        
-		CGImageRef imageMasked = CGBitmapContextCreateImage(context);
-		CGContextRelease(context);
-		CGColorSpaceRelease(colorSpace);
-		//[img release];
-        
-		newImage = [[UIImage imageWithCGImage:imageMasked] retain];
-		CGImageRelease(imageMasked);
-        
-		[pool release];
-	}
-    
-    return newImage;
-}
-
-
 + (NSDate*) convertUTCCheckinDateToLocal:(NSDate*)utcDate {
     NSTimeInterval timeZoneOffset = [[NSTimeZone defaultTimeZone] secondsFromGMT];
     NSTimeInterval localTimeInterval = [utcDate timeIntervalSinceReferenceDate] + timeZoneOffset;

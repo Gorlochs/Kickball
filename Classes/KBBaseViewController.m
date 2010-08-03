@@ -23,7 +23,7 @@
 #import "KBDialogueManager.h"
 #import "GraphAPI.h"
 #import "KBTwitterProfileViewController.h"
-
+#import "Utilities.h"
 
 #define PROGRESS_BAR_TIMER_LENGTH 30.0
 
@@ -47,6 +47,8 @@ const NSString *kickballDomain = @"http://kickball.gorlochs.com/kickball";
 @synthesize reloading=_reloading;
 
 - (void) viewDidLoad {
+    NSLog(@"kickball baseview viewdidload %i", [Utilities getMemory]);
+
     [super viewDidLoad];
 	
     
@@ -266,6 +268,8 @@ const NSString *kickballDomain = @"http://kickball.gorlochs.com/kickball";
 //    [iconImageView release];  // uncommenting this crashes shit. not sure why.
     
     [super dealloc];
+	    NSLog(@"kickball baseview dealloc %i", [Utilities getMemory]);
+
 }
 
 - (void)doLoginUsername: (NSString *)fsUser andPass:(NSString *) fsPass{

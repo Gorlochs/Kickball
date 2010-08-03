@@ -244,8 +244,8 @@
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-	DLog(@"got memory warning, popping ROOT View Controllers!!!!");
-	[self.navigationController popToRootViewControllerAnimated:NO]; // Pops until there's only a single view controller left on the stack. Returns the popped controllers.
+	//DLog(@"got memory warning, popping ROOT View Controllers!!!!");
+	//[self.navigationController popToRootViewControllerAnimated:NO]; // Pops until there's only a single view controller left on the stack. Returns the popped controllers.
 }
 
 - (void)viewDidUnload {
