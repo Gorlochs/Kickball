@@ -99,6 +99,7 @@
 	KBUserTweetsViewController *recentTweetsController = [[KBUserTweetsViewController alloc] initWithNibName:@"KBUserTweetsViewController" bundle:nil];
     recentTweetsController.userDictionary = userDictionary;
     recentTweetsController.username = [userDictionary objectForKey:@"screen_name"];
+	[self checkMemoryUsage];
 	[self.navigationController pushViewController:recentTweetsController animated:YES];
     [recentTweetsController release];
 }
@@ -108,6 +109,7 @@
 	KBTwitterUserListViewController *followersController = [[KBTwitterUserListViewController alloc] initWithNibName:@"KBTwitterUserListViewController" bundle:nil];
     followersController.userDictionary = userDictionary;
     followersController.userType = KBTwitterUserFollower;
+	[self checkMemoryUsage];
 	[self.navigationController pushViewController:followersController animated:YES];
     [followersController release];
 }
@@ -122,6 +124,7 @@
     KBTwitterFavsViewController *favTweets = [[KBTwitterFavsViewController alloc] initWithNibName:@"KBTwitterFavsViewController" bundle:nil];
     favTweets.userDictionary = userDictionary;
     favTweets.username = [userDictionary objectForKey:@"screen_name"];
+	[self checkMemoryUsage];
     [self.navigationController pushViewController:favTweets animated:YES];
     [favTweets release];
 }
@@ -131,6 +134,7 @@
 	KBTwitterUserListViewController *friendsController = [[KBTwitterUserListViewController alloc] initWithNibName:@"KBTwitterUserListViewController" bundle:nil];
     friendsController.userDictionary = userDictionary;
     friendsController.userType = KBTwitterUserFriend;
+	[self checkMemoryUsage];
 	[self.navigationController pushViewController:friendsController animated:YES];
     [friendsController release];
 }
@@ -152,6 +156,7 @@
 - (void) sendDirectMessage {
     KBCreateTweetViewController *tweetController = [[KBCreateTweetViewController alloc] initWithNibName:@"KBCreateTweetViewController" bundle:nil];
 	tweetController.directMentionToScreenname = screenname;
+	[self checkMemoryUsage];
 	[self.navigationController pushViewController:tweetController animated:YES];
 	[tweetController release];
 }
@@ -159,6 +164,7 @@
 - (void) sendTweet {
     KBCreateTweetViewController *tweetController = [[KBCreateTweetViewController alloc] initWithNibName:@"KBCreateTweetViewController" bundle:nil];
 	tweetController.replyToScreenName = screenname;
+	[self checkMemoryUsage];
 	[self.navigationController pushViewController:tweetController animated:YES];
 	[tweetController release];
 }

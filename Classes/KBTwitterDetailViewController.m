@@ -24,6 +24,7 @@
 	KBUserTweetsViewController *recentTweetsController = [[KBUserTweetsViewController alloc] initWithNibName:@"KBUserTweetsViewController" bundle:nil];
     recentTweetsController.userDictionary = userDictionary;
     recentTweetsController.username = [userDictionary objectForKey:@"screen_name"];
+	[self checkMemoryUsage];
 	[self.navigationController pushViewController:recentTweetsController animated:YES];
     [recentTweetsController release];
 }
@@ -39,6 +40,7 @@
 	KBTwitterFavsViewController *favTweets = [[KBTwitterFavsViewController alloc] initWithNibName:@"KBTwitterFavsViewController" bundle:nil];
     favTweets.userDictionary = userDictionary;
 	favTweets.username = [userDictionary objectForKey:@"screen_name"];
+	[self checkMemoryUsage];
 	[self.navigationController pushViewController:favTweets animated:YES];
 	[favTweets release];
 }
@@ -48,6 +50,7 @@
 	KBTwitterUserListViewController *followersController = [[KBTwitterUserListViewController alloc] initWithNibName:@"KBTwitterUserListViewController" bundle:nil];
     followersController.userDictionary = userDictionary;
     followersController.userType = KBTwitterUserFollower;
+	[self checkMemoryUsage];
 	[self.navigationController pushViewController:followersController animated:YES];
     [followersController release];
 }
@@ -57,6 +60,7 @@
 	KBTwitterUserListViewController *friendsController = [[KBTwitterUserListViewController alloc] initWithNibName:@"KBTwitterUserListViewController" bundle:nil];
     friendsController.userDictionary = userDictionary;
     friendsController.userType = KBTwitterUserFriend;
+	[self checkMemoryUsage];
 	[self.navigationController pushViewController:friendsController animated:YES];
     [friendsController release];
 }
@@ -184,6 +188,7 @@
     if ([[notification object] rangeOfString:@"@"].location == 0) {
         KBUserTweetsViewController *userTweetsController = [[KBUserTweetsViewController alloc] initWithNibName:@"KBUserTweetsViewController" bundle:nil];
         userTweetsController.username = nObject;
+		[self checkMemoryUsage];
         [self.navigationController pushViewController:userTweetsController animated:YES];
 		[userTweetsController release];
     } else if ([[notification object] rangeOfString:@"#"].location == 0) {
@@ -191,6 +196,7 @@
         KBTwitterSearchViewController *searchController = [[KBTwitterSearchViewController alloc] initWithNibName:@"KBTwitterSearchViewController" bundle:nil];
         //NSMutableString *search = [[NSMutableString alloc] initWithString:[notification object]];
         searchController.searchTerms = nObject;
+		[self checkMemoryUsage];
         [self.navigationController pushViewController:searchController animated:YES];
 		[searchController release];
     } else {
@@ -220,6 +226,7 @@
 - (void) viewOtherUserProfile {
 	KBTwitterProfileViewController *twitterProfileController = [[KBTwitterProfileViewController alloc] initWithNibName:@"KBTwitterProfileViewController" bundle:nil];
     twitterProfileController.screenname = tweet.screenName;
+	[self checkMemoryUsage];
 	[self.navigationController pushViewController:twitterProfileController animated:YES];
 	[twitterProfileController release];
 }

@@ -14,7 +14,6 @@
 #import "KBTwitterDetailViewController.h"
 #import "KBTwitterProfileViewController.h"
 #import "KickballAPI.h"
-#import "Utilities.h"
 
 @implementation KBBaseTweetViewController
 
@@ -207,6 +206,7 @@
         KBTwitterDetailViewController *detailViewController = [[KBTwitterDetailViewController alloc] initWithNibName:@"KBTwitterDetailViewController" bundle:nil];
         detailViewController.tweet = [tweets objectAtIndex:indexPath.row];
         detailViewController.tweets = tweets;
+	[self checkMemoryUsage];
         [self.navigationController pushViewController:detailViewController animated:YES];
 		[detailViewController release];
     } else {
@@ -227,6 +227,7 @@
 - (void) viewOtherUserProfile:(NSString*)userName {
 	KBTwitterProfileViewController *twitterProfileController = [[KBTwitterProfileViewController alloc] initWithNibName:@"KBTwitterProfileViewController" bundle:nil];
     twitterProfileController.screenname = userName;
+	[self checkMemoryUsage];
 	[self.navigationController pushViewController:twitterProfileController animated:YES];
 	[twitterProfileController release];
 }

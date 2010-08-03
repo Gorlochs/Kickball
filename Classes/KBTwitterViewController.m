@@ -16,6 +16,7 @@
 #import "KBGeoTweetMapViewController.h"
 #import "KBCreateTweetViewController.h"
 #import "KBTwitterLoginView.h"
+#import "Utilities.h"
 
 @implementation KBTwitterViewController
 
@@ -95,12 +96,21 @@
 
 - (void) showUserTimeline {
     KBTweetListViewController *controller = [[KBTweetListViewController alloc] initWithNibName:@"KBTweetListViewController" bundle:nil];
+	[self checkMemoryUsage];
     [self.navigationController pushViewController:controller animated:NO];
     [controller release];
 }
 
+- (void)checkMemoryUsage {
+	if ([Utilities getMemory] < 15000000) {
+	  NSLog(@"out of memory - popping");
+	  [self.navigationController popToRootViewControllerAnimated:NO]; // Pops until there's only a single view controller left on the stack. Returns the popped controllers.
+	}
+}
+
 - (void) showMentions {
     KBMentionsViewController *controller = [[KBMentionsViewController alloc] initWithNibName:@"KBTweetListViewController" bundle:nil];
+	[self checkMemoryUsage];
     [self.navigationController pushViewController:controller animated:NO];
     [controller release];
 }
