@@ -18,13 +18,12 @@
     cachingKey = [kKBTwitterMentionsKey retain];
     [self startProgressBar:@"Retrieving your tweets..."];
     [self showStatuses];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusRetrieved:) name:kTwitterStatusRetrievedNotificationKey object:nil];
-    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTweetNotification:) name:IFTweetLabelURLNotification object:nil];
     
     [timelineButton setImage:[UIImage imageNamed:@"tabTweets03.png"] forState:UIControlStateNormal];
     [mentionsButton setImage:[UIImage imageNamed:@"tabMentions01.png"] forState:UIControlStateNormal];
     [directMessageButton setImage:[UIImage imageNamed:@"tabDM03.png"] forState:UIControlStateNormal];
     [searchButton setImage:[UIImage imageNamed:@"tabSearch03.png"] forState:UIControlStateNormal];
+	pageNum = 1;
 }
 
 - (void) showStatuses {
@@ -40,35 +39,28 @@
 
 - (void)statusesReceived:(NSArray *)statuses {
 	if (statuses) {
-		NSArray *array = [statuses retain];
-		NSMutableArray *tempTweetArray = [[NSMutableArray alloc] initWithCapacity:[array count]];
-		for (NSDictionary *dict in array) {
+		twitterArray = [statuses retain];
+        int count = 0;
+        if (!tweets) tweets = [[NSMutableArray alloc] init];
+        if (pageNum > 1) count = [tweets count];
+		for (NSDictionary *dict in twitterArray) {
 			KBTweet *tweet = [[KBTweet alloc] initWithDictionary:dict];
-			[tempTweetArray addObject:tweet];
+            [tweets insertObject:tweet atIndex:count++];
 			[tweet release];
 		}
-		// not very pretty, but it gets the job done. if there is a cached array, combine them.
-		// the other way to do it would be to just add all the objects (above) by index
-		if (pageNum > 1) {
-			[tweets addObjectsFromArray:tempTweetArray];
-		} else if (!tweets) {
-			tweets = [[NSMutableArray alloc] initWithArray:tempTweetArray];
-		} else {
-			// need to keep all the tweets in the right order
-			[tempTweetArray addObjectsFromArray:tweets];
-			[tweets release];
-			tweets = nil;
-			tweets = [[self addAndTrimArray:tempTweetArray] retain];
-		}
-		[tempTweetArray release];
+        if (!pageNum) {
+            while ([tweets count] > 25) [tweets removeLastObject];
+        }
 		[theTableView reloadData];
+		if (cachingKey) {
+			[[KBTwitterManager twitterManager] cacheStatusArray:tweets withKey:cachingKey];
+		}
+        [[NSUserDefaults standardUserDefaults] synchronize];
 	} else {
         requeryWhenTableGetsToBottom = NO;
     }
     [self stopProgressBar];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 	[self dataSourceDidFinishLoadingNewData];
-    [[KBTwitterManager twitterManager] cacheStatusArray:tweets withKey:cachingKey];
 }
 
 - (void) executeQuery:(int)pageNumber {
