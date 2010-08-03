@@ -19,13 +19,11 @@
 @implementation KBBaseTweetViewController
 
 - (void)viewDidLoad {
-    NSLog(@"viewdidload %i", [Utilities getMemory]);
     pageNum = 0;
     requeryWhenTableGetsToBottom = YES;
     [super viewDidLoad];
 	twitterManager = [KBTwitterManager twitterManager];
 	twitterManager.delegate = self;
-	
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -246,7 +244,8 @@
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
+	DLog(@"got memory warning, popping ROOT View Controllers!!!!");
+	[self.navigationController popToRootViewControllerAnimated:NO]; // Pops until there's only a single view controller left on the stack. Returns the popped controllers.
 }
 
 - (void)viewDidUnload {
@@ -260,7 +259,6 @@
     [tweets release];
     if (cachingKey) [cachingKey release];
     [super dealloc];
-    NSLog(@"dealloc %i", [Utilities getMemory]);
 }
 
 
