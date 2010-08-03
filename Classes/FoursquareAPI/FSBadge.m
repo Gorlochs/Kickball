@@ -34,4 +34,11 @@
     return self; 
 } 
 
+-(void)dealloc{
+	[badgeId release];
+	[badgeName release];
+	[icon release];
+	[badgeDescription release];
+	[super dealloc];
+}
 @end

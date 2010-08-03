@@ -62,4 +62,22 @@
     return self; 
 } 
 
+-(void)dealloc{
+	
+	[message release];
+	[venue release];
+	[badges release];
+	[specials release];
+	[created release];
+	[checkinId release];
+	[shout release];
+	[display release];
+	[user release];
+	[scoring release];
+	[mayor release];
+	[truncatedTimeUnits	release];
+	[truncatedTimeNumeral release];
+	[super dealloc];
+}
+
 @end

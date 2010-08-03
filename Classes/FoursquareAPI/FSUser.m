@@ -88,4 +88,23 @@
     return self; 
 } 
 
+-(void)dealloc{
+	[userId release];
+	[firstname release];
+	[lastname release];
+	[photo release];
+	[gender release];
+	[twitter release];
+	[email release];
+	[phone release];
+	[facebook release];
+	[badges release];
+	[mayorOf release];
+	[checkin release];
+	[firstnameLastInitial release];
+	[fullname release];
+	[icon release];
+	[super dealloc];
+}
+
 @end

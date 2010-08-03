@@ -33,4 +33,11 @@
     } 
     return self; 
 } 
+-(void)dealloc{
+	[specialId release];
+	[type release];
+	[messageText release];
+	[venue release];
+	[super dealloc];
+}
 @end

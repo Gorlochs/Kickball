@@ -11,4 +11,10 @@
 
 @implementation FSFunctionRequest
 @synthesize currentTarget, currentSelector, currentRequestURL, receivedData;
+-(void)dealloc{
+	[currentTarget release];
+	[currentRequestURL release];
+	[receivedData release];
+	[super dealloc];
+}
 @end

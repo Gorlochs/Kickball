@@ -879,7 +879,7 @@ static FoursquareAPI *sharedInstance = nil;
 }
 
 + (NSArray *) _checkinsFromNode:(CXMLNode *) inputNode {
-    NSMutableArray * allCheckins = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
+    NSMutableArray * allCheckins = [[NSMutableArray alloc] initWithCapacity:1];
     //FSCheckin * oneCheckin = [[FSCheckin alloc] init];
 	NSArray * checkinsReturned = [inputNode nodesForXPath:@"//checkin" error:nil];
 	for (CXMLElement *checkinAttr in checkinsReturned) {
@@ -909,7 +909,7 @@ static FoursquareAPI *sharedInstance = nil;
             if([key compare:@"user"] == 0){
                 NSArray * checkinUser = [checkinAttr elementsForName:@"user"];
                 for (CXMLElement *checkedUser in checkinUser) {
-                    FSUser * currentUserInfo = [[FoursquareAPI _userFromNode:checkedUser] retain];
+                    FSUser * currentUserInfo = [FoursquareAPI _userFromNode:checkedUser];
                     oneCheckin.user = currentUserInfo;
                 }
             } else if([key compare:@"venue"] == 0){
@@ -917,7 +917,7 @@ static FoursquareAPI *sharedInstance = nil;
                 oneCheckin.venue = currentVenueInfo;
             } else if ([key compare:@"scoring"] == 0) {
                 DLog(@"found the checkin scoring node");
-                FSScoring * currentCheckinScoring = [[FoursquareAPI _scoringFromNode:checkinAttr] retain];
+                FSScoring * currentCheckinScoring = [FoursquareAPI _scoringFromNode:checkinAttr];
                 oneCheckin.scoring = currentCheckinScoring;
             } else if ([key compare:@"badges"] == 0) {
                 NSArray * badgeXML = [checkinAttr nodesForXPath:@"//badges" error:nil];
@@ -929,7 +929,7 @@ static FoursquareAPI *sharedInstance = nil;
                 FSMayor *checkinMayor = [[FSMayor alloc] init];
                 NSArray * mayorUserNodes = [checkinAttr nodesForXPath:@"//mayor/user" error:nil];
                 if(mayorUserNodes && [mayorUserNodes count] > 0){
-                    checkinMayor.user = [[FoursquareAPI _userFromNode:[mayorUserNodes objectAtIndex:0]] retain];
+                    checkinMayor.user = [FoursquareAPI _userFromNode:[mayorUserNodes objectAtIndex:0]];
                 }
                 for (CXMLElement *mayorNode in mayorNodes) {
                     for (int counter = 0; counter < [mayorNode childCount]; counter++) {

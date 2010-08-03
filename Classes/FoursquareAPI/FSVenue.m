@@ -103,4 +103,26 @@
     return self; 
 } 
 
+-(void)dealloc{
+	
+	[name release];
+	[geolat release];
+	[geolong release];
+	[venueAddress release];
+	[zip release];
+	[city release];
+	[venueState release];
+	[venueid release];
+	[phone release];
+	[crossStreet release];
+	[twitter release];
+	[mayor release];
+	[tips release];
+	[currentCheckins release];
+	[specials release];
+	[addressWithCrossstreet release];
+	[primaryCategory release];
+	[super dealloc];
+}
+
 @end

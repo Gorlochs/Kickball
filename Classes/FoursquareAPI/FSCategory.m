@@ -39,5 +39,12 @@
     } 
     return self; 
 } 
-
+-(void)dealloc{
+	[categoryId release];
+	[fullPathName release];
+	[nodeName release];
+	[iconUrl release];
+	[subcategories release];
+	[super dealloc];
+}
 @end

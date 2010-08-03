@@ -32,4 +32,10 @@
     return self; 
 } 
 
+-(void)dealloc{
+	[scores release];
+	[message release];
+	[super dealloc];
+}
+
 @end

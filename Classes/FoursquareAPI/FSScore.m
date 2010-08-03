@@ -28,4 +28,10 @@
     return self; 
 }
 
+-(void)dealloc{
+	[message release];
+	[icon release];
+	[super dealloc];
+}
+
 @end

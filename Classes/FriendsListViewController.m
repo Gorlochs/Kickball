@@ -60,6 +60,15 @@
     
     [super viewDidLoad];
     
+	checkins = nil;
+	recentCheckins = nil;
+	todayCheckins = nil;
+	yesterdayCheckins = nil;
+	nonCityRecentCheckins = nil;
+	nonCityTodayCheckins = nil;
+	nonCityYesterdayCheckins = nil;
+	
+	
 	//twitterManager = [KBTwitterManager twitterManager];
 	//twitterManager.delegate = self;
     //self.twitterEngine = [twitterManager twitterEngine];
@@ -613,9 +622,39 @@
 		
     } else {
         NSArray * allCheckins = [FoursquareAPI checkinsFromResponseXML:inString];
-        self.checkins = [allCheckins copy];
+		if (checkins!=nil) {
+			[checkins release];
+			checkins = nil;
+		}
+        checkins = allCheckins;
+		[checkins retain];
+		[allCheckins release];
         allCheckins = nil;
         
+		if (recentCheckins!=nil) {
+			[recentCheckins release];
+			recentCheckins = nil;
+		}
+		if (todayCheckins!=nil) {
+			[todayCheckins release];
+			todayCheckins = nil;
+		}
+		if (yesterdayCheckins!=nil) {
+			[yesterdayCheckins release];
+			yesterdayCheckins = nil;
+		}
+		if (nonCityRecentCheckins!=nil) {
+			[nonCityRecentCheckins release];
+			nonCityRecentCheckins = nil;
+		}
+		if (nonCityTodayCheckins!=nil) {
+			[nonCityTodayCheckins release];
+			nonCityTodayCheckins = nil;
+		}
+		if (nonCityYesterdayCheckins!=nil) {
+			[nonCityYesterdayCheckins release];
+			nonCityYesterdayCheckins = nil;
+		}
         recentCheckins = [[NSMutableArray alloc] init];
         todayCheckins = [[NSMutableArray alloc] init];
         yesterdayCheckins = [[NSMutableArray alloc] init];

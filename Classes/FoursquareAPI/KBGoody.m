@@ -56,6 +56,19 @@
 }
 
 - (void)dealloc {
+	[imagePath release];
+	[thumbnailImagePath release];
+	[mediumImagePath release];
+	[largeImagePath release];
+	[imageName release];
+	[recipientId release];
+	[venueId release];
+	[ownerId release];
+	[messageText release];
+	[createdAt release];
+	[goodyId release];
+	[ownerName release];
+	[venueName release];
     [super dealloc];
 }
 

@@ -34,4 +34,10 @@
     return self; 
 }
 
+-(void)dealloc{
+	[user release];
+	[mayorCheckinMessage release];
+	[mayorTransitionType release];
+	[super dealloc];
+}
 @end

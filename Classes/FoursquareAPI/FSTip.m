@@ -30,4 +30,12 @@
     return self; 
 } 
 
+-(void)dealloc{
+	[submittedBy release];
+	[text release];
+	[url release];
+	[tipId release];
+	[super dealloc];
+}
+
 @end
