@@ -587,7 +587,7 @@ NSString* const kConnectionAlbums = @"albums";
 		self._asyncronousDelegate = [[GraphDelegate alloc] init];
 	
 	// async call
-	NSURLConnection* newConnection = [[NSURLConnection alloc] initWithRequest:r_url delegate:self._asyncronousDelegate];
+	NSURLConnection* newConnection = [NSURLConnection connectionWithRequest:r_url delegate:self._asyncronousDelegate];// [[NSURLConnection alloc] initWithRequest:r_url delegate:self._asyncronousDelegate];
 	
 	if ( nil != newConnection )
 	{

@@ -102,7 +102,6 @@
 	newsFeed = [[NSMutableArray alloc] initWithArray:[feed objectForKey:@"posts"]];
 	[[FacebookProxy instance] cacheIncomingProfiles:[feed objectForKey:@"profiles"]];
 	[[FacebookProxy instance] cacheIncomingProfiles:[feed objectForKey:@"albums"]];
-
 	//[newsFeed retain];
 	//[nextPageURL release];
 	//nextPageURL = nil;
@@ -139,8 +138,8 @@
 	}
 	[self dataSourceDidFinishLoadingNewData];
 	[graph release];
-	[pool release];
 	[moreNews release];
+	[pool release];
 	[self performSelectorOnMainThread:@selector(stopProgressBar) withObject:nil waitUntilDone:NO];
 }
 

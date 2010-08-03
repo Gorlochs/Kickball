@@ -486,7 +486,7 @@ static NSDateFormatter* fbEventDetailDate = NULL;
 		NSLog( @"didReceiveData._auth" );
 		[self._authResponse appendData:data];
 	}
-	else if ( connection = self._accessTokenConnection )
+	else if ( connection == self._accessTokenConnection )
 	{		
 		NSLog( @"didReceiveData._token" );
 		[self._accessTokenResponse appendData:data];
