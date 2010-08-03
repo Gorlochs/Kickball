@@ -311,7 +311,8 @@
     if (cell == nil) {
         cell = [[[PlacesListTableViewCellv2 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        [cell adjustLabelWidth:220.0];
+		cell.labelWidth = 220;
+//        [cell adjustLabelWidth:180.0];
     }
     
     switch (indexPath.section) {

@@ -17,9 +17,13 @@
 @synthesize specialImage;
 @synthesize roundedTopCorners;
 @synthesize roundedBottomCorners;
+@synthesize labelWidth;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
+		
+		labelWidth = 250;
+		
         // Initialization code
 		twoLine = NO;
         CGRect frame = CGRectMake(6, 6, 32, 32);
@@ -85,7 +89,7 @@
 	if (twoLine) {
 		UIFont *font = [UIFont boldSystemFontOfSize:14.0];
 		int i;
-		CGSize constraintSize = CGSizeMake(250.0f, MAXFLOAT);
+		CGSize constraintSize = CGSizeMake(self.labelWidth, MAXFLOAT);
 		for(i = 14; i > 10; i=i-1)
 		{
 			font = [font fontWithSize:i];// Set the new font size.
@@ -97,27 +101,16 @@
 		}
 		venueName.font = font;
 		venueName.numberOfLines = 3;
-		venueName.frame	= CGRectMake(46, contentRect.origin.y+5, 250, 40);
-		venueAddress.frame = CGRectMake(46, contentRect.origin.y+40, 250, 20);
+		venueName.frame	= CGRectMake(46, contentRect.origin.y+5, self.labelWidth, 40);
+		venueAddress.frame = CGRectMake(46, contentRect.origin.y+40, self.labelWidth, 20);
 	} else {
 		venueName.font = [UIFont boldSystemFontOfSize:14.0];
 		venueName.numberOfLines = 1;
-		venueName.frame	= CGRectMake(46, contentRect.origin.y+5, 250, 20);
-		venueAddress.frame = CGRectMake(46, contentRect.origin.y+20, 250, 20);
+		venueName.frame	= CGRectMake(46, contentRect.origin.y+5, self.labelWidth, 20);
+		venueAddress.frame = CGRectMake(46, contentRect.origin.y+20, self.labelWidth, 20);
 	}
 }
 
-- (void) adjustLabelWidth:(float)newWidth {
-    CGSize newSize = CGSizeMake(newWidth, 20);
-    
-    CGRect frame = venueName.frame;
-    frame.size = newSize;
-    venueName.frame = frame;
-    
-    CGRect frame2 = venueAddress.frame;
-    frame2.size = newSize;
-    venueAddress.frame = frame2;
-}
 - (void)makeTwoLine {
 	twoLine = YES;
 }
@@ -126,14 +119,12 @@
 	twoLine = NO;
 }
 
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
 
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
 }
-
 
 - (void)dealloc {
     [categoryIcon release];

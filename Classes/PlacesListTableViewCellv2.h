@@ -25,6 +25,7 @@
 	UIImageView *roundedBottomCorners;
 	
 	BOOL twoLine;
+	float labelWidth;
 }
 
 @property (nonatomic, retain) TTImageView *categoryIcon;
@@ -33,8 +34,8 @@
 @property (nonatomic, retain) UIImageView *specialImage;
 @property (nonatomic, retain) UIImageView *roundedTopCorners;
 @property (nonatomic, retain) UIImageView *roundedBottomCorners;
+@property (nonatomic) float labelWidth;
 
-- (void) adjustLabelWidth:(float)newWidth;
 - (void) makeTwoLine;
 - (void) makeOneLine;
 
