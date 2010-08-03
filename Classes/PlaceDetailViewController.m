@@ -855,8 +855,8 @@
 
 - (void)dealloc {
     
-    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:@"todoTipSent"];
-    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:@"shoutAndCheckinSent"];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];// removeObserver:self forKeyPath:@"todoTipSent"];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:@"shoutAndCheckinSent"];
     
     [mayorMapCell release];
     [checkinCell release];

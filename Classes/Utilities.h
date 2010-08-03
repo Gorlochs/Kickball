@@ -45,7 +45,6 @@ static const int CITY_RADIUS_LARGE = 106934;
 //- (void) retrieveAllFriendsWithPingOn;
 + (void)putGoogleMapsWallPostWithMessage:(NSString*)message andVenue:(FSVenue*)venue andLink:(NSString*)link;
 - (void) updateAllFriendsWithPingOn:(NSArray*)checkins;
-+ (UIImage *)makeRoundCornerImage:(UIImage*)img cornerwidth:(int) cornerWidth cornerheight:(int) cornerHeight;
 + (NSDate*) convertUTCCheckinDateToLocal:(NSDate*)utcDate;
 + (NSString*)safeString:(NSString*)fromString;
 - (NSNumber*) getCityRadius;
