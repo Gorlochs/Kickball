@@ -17,7 +17,6 @@
 @synthesize screenname;
 
 - (void)viewDidLoad {
-	[self startProgressBar:@""];
     screenNameLabel.text = @"";
     fullName.text = @"";
     location.text = @"Not available";
@@ -29,6 +28,7 @@
     
     pageType = KBPageTypeOther;
     [super viewDidLoad];
+	[self startProgressBar:@""];
     
     twitterManager = [KBTwitterManager twitterManager];
 	twitterManager.delegate = self;
