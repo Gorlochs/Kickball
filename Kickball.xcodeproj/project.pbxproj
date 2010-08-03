@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		035C1FD41112A2E10075E553 /* NSString+hmac.m in Sources */ = {isa = PBXBuildFile; fileRef = 035C1FD31112A2E10075E553 /* NSString+hmac.m */; };
-		03CECEA510D8B62C00E06966 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CECEA410D8B62C00E06966 /* SFHFKeychainUtils.m */; };
 		070909F111F4BF2400454CFF /* imgLoader_light.png in Resources */ = {isa = PBXBuildFile; fileRef = 070909F011F4BF2400454CFF /* imgLoader_light.png */; };
 		07090C2311F514A100454CFF /* graybackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 07090C2211F514A100454CFF /* graybackground.png */; };
 		07090ED011F6646300454CFF /* addFriend02.png in Resources */ = {isa = PBXBuildFile; fileRef = 07090ECF11F6646300454CFF /* addFriend02.png */; };
@@ -486,6 +485,8 @@
 		2B48BB4311F50A670028E36A /* pullFB02.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B48BB3D11F50A670028E36A /* pullFB02.png */; };
 		2B48BB4411F50A670028E36A /* pullTW01.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B48BB3E11F50A670028E36A /* pullTW01.png */; };
 		2B48BB4511F50A670028E36A /* pullTW02.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B48BB3F11F50A670028E36A /* pullTW02.png */; };
+		2BCBC6FB1208CCFF0017920E /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCBC6F91208CCFF0017920E /* SFHFKeychainUtils.m */; };
+		2BCBC7021208CDF10017920E /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCBC7011208CDF10017920E /* RegexKitLite.m */; };
 		2BD3AC5F11EF909000834DCB /* shout01.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BD3AC5E11EF909000834DCB /* shout01.png */; };
 		2BD3AC9711EFAF8400834DCB /* tweetField01.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BD3AC9611EFAF8400834DCB /* tweetField01.png */; };
 		2BD3AC9A11EFAFB600834DCB /* fl_shoutToggle.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BD3AC9911EFAFB600834DCB /* fl_shoutToggle.png */; };
@@ -689,8 +690,6 @@
 		6A5DD32A11F02E4D00219EF9 /* mayorBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A5DD32911F02E4D00219EF9 /* mayorBG.png */; };
 		6A5F8F3C10B7707100914709 /* GeoAPIView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A5F8F3B10B7707100914709 /* GeoAPIView.xib */; };
 		6A63DDA41108EDBA00E2F9BB /* IFTweetLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A63DD9E1108EDBA00E2F9BB /* IFTweetLabel.m */; };
-		6A63DDA51108EDBA00E2F9BB /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A63DDA11108EDBA00E2F9BB /* RegexKitLite.m */; };
-		6A63DDA61108EDBA00E2F9BB /* RKLMatchEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A63DDA31108EDBA00E2F9BB /* RKLMatchEnumerator.m */; };
 		6A63DDCF1108EF4B00E2F9BB /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A63DDCE1108EF4B00E2F9BB /* libicucore.dylib */; };
 		6A649A0B113F629800052FF9 /* KBPhotoThumbnailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A649A0A113F629800052FF9 /* KBPhotoThumbnailCell.m */; };
 		6A6F2BA311778CC500B2869B /* UserProfileFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A6F2BA211778CC500B2869B /* UserProfileFriendsViewController.m */; };
@@ -844,8 +843,6 @@
 		0331DFCE10D36737009C5089 /* libisimulate.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libisimulate.a; path = libs/libisimulate.a; sourceTree = "<group>"; };
 		035C1FD21112A2E10075E553 /* NSString+hmac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+hmac.h"; sourceTree = "<group>"; };
 		035C1FD31112A2E10075E553 /* NSString+hmac.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+hmac.m"; sourceTree = "<group>"; };
-		03CECEA310D8B62C00E06966 /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
-		03CECEA410D8B62C00E06966 /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
 		070909F011F4BF2400454CFF /* imgLoader_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = imgLoader_light.png; sourceTree = "<group>"; };
 		07090C2211F514A100454CFF /* graybackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = graybackground.png; sourceTree = "<group>"; };
 		07090ECF11F6646300454CFF /* addFriend02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addFriend02.png; sourceTree = "<group>"; };
@@ -1349,6 +1346,10 @@
 		2B48BB3E11F50A670028E36A /* pullTW01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pullTW01.png; sourceTree = "<group>"; };
 		2B48BB3F11F50A670028E36A /* pullTW02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pullTW02.png; sourceTree = "<group>"; };
 		2BA5AD5711B833DD0090173D /* KBTwitterManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBTwitterManagerDelegate.h; sourceTree = "<group>"; };
+		2BCBC6F91208CCFF0017920E /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
+		2BCBC6FA1208CCFF0017920E /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
+		2BCBC7001208CDF10017920E /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
+		2BCBC7011208CDF10017920E /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
 		2BD3AC5E11EF909000834DCB /* shout01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shout01.png; sourceTree = "<group>"; };
 		2BD3AC9611EFAF8400834DCB /* tweetField01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tweetField01.png; sourceTree = "<group>"; };
 		2BD3AC9911EFAFB600834DCB /* fl_shoutToggle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fl_shoutToggle.png; sourceTree = "<group>"; };
@@ -1734,10 +1735,6 @@
 		6A5F8F3B10B7707100914709 /* GeoAPIView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GeoAPIView.xib; sourceTree = "<group>"; };
 		6A63DD9D1108EDBA00E2F9BB /* IFTweetLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFTweetLabel.h; sourceTree = "<group>"; };
 		6A63DD9E1108EDBA00E2F9BB /* IFTweetLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFTweetLabel.m; sourceTree = "<group>"; };
-		6A63DDA01108EDBA00E2F9BB /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
-		6A63DDA11108EDBA00E2F9BB /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
-		6A63DDA21108EDBA00E2F9BB /* RKLMatchEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKLMatchEnumerator.h; sourceTree = "<group>"; };
-		6A63DDA31108EDBA00E2F9BB /* RKLMatchEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKLMatchEnumerator.m; sourceTree = "<group>"; };
 		6A63DDCE1108EF4B00E2F9BB /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		6A649A09113F629800052FF9 /* KBPhotoThumbnailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBPhotoThumbnailCell.h; sourceTree = "<group>"; };
 		6A649A0A113F629800052FF9 /* KBPhotoThumbnailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBPhotoThumbnailCell.m; sourceTree = "<group>"; };
@@ -2001,8 +1998,8 @@
 		0300485410D85F8C004590BD /* Keychain */ = {
 			isa = PBXGroup;
 			children = (
-				03CECEA310D8B62C00E06966 /* SFHFKeychainUtils.h */,
-				03CECEA410D8B62C00E06966 /* SFHFKeychainUtils.m */,
+				2BCBC6F91208CCFF0017920E /* SFHFKeychainUtils.m */,
+				2BCBC6FA1208CCFF0017920E /* SFHFKeychainUtils.h */,
 			);
 			name = Keychain;
 			sourceTree = "<group>";
@@ -3463,10 +3460,8 @@
 		6A63DD9F1108EDBA00E2F9BB /* RegexKitLite */ = {
 			isa = PBXGroup;
 			children = (
-				6A63DDA01108EDBA00E2F9BB /* RegexKitLite.h */,
-				6A63DDA11108EDBA00E2F9BB /* RegexKitLite.m */,
-				6A63DDA21108EDBA00E2F9BB /* RKLMatchEnumerator.h */,
-				6A63DDA31108EDBA00E2F9BB /* RKLMatchEnumerator.m */,
+				2BCBC7001208CDF10017920E /* RegexKitLite.h */,
+				2BCBC7011208CDF10017920E /* RegexKitLite.m */,
 			);
 			path = RegexKitLite;
 			sourceTree = "<group>";
@@ -4542,7 +4537,6 @@
 				6A3900B110D6F1A0001D133C /* AddPlaceFormViewController.m in Sources */,
 				6A3900B210D6F1A0001D133C /* AddPlaceFormViewController.xib in Sources */,
 				6ABB8B2F10D88C99001ECDAD /* FSMayor.m in Sources */,
-				03CECEA510D8B62C00E06966 /* SFHFKeychainUtils.m in Sources */,
 				6A47C00610DCA8DE00DCF011 /* KBWebViewController.m in Sources */,
 				6A47C00710DCA8DE00DCF011 /* KBWebViewController.xib in Sources */,
 				6AA8B86C10DDCECC005634D4 /* FSSpecial.m in Sources */,
@@ -4562,8 +4556,6 @@
 				6A812ED410FF465600BB51A0 /* ViewFriendRequestsTableCell.m in Sources */,
 				6A812ED610FF467100BB51A0 /* ViewFriendRequestsTableCell.xib in Sources */,
 				6A63DDA41108EDBA00E2F9BB /* IFTweetLabel.m in Sources */,
-				6A63DDA51108EDBA00E2F9BB /* RegexKitLite.m in Sources */,
-				6A63DDA61108EDBA00E2F9BB /* RKLMatchEnumerator.m in Sources */,
 				6AEB63D4110BA9BE0066DD05 /* PushNotificationView.xib in Sources */,
 				6AEB63D7110BAA8C0066DD05 /* KBPushNotificationView.m in Sources */,
 				035C1FD41112A2E10075E553 /* NSString+hmac.m in Sources */,
@@ -4764,6 +4756,8 @@
 				2BDF053711EBB62A00D79131 /* NSObject+SBJSON.m in Sources */,
 				2BDF053811EBB62A00D79131 /* NSString+SBJSON.m in Sources */,
 				0E985EDF11EFB5960027E401 /* KBDialogueManager.m in Sources */,
+				2BCBC6FB1208CCFF0017920E /* SFHFKeychainUtils.m in Sources */,
+				2BCBC7021208CDF10017920E /* RegexKitLite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
