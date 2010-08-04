@@ -32,6 +32,7 @@
 	[fullName release];
 	[profileImageUrl release];
 	[userId release];
+	[dict release];
 	[super	dealloc];
 }
 
