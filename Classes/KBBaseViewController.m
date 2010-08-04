@@ -256,7 +256,6 @@ const NSString *kickballDomain = @"http://kickball.gorlochs.com/kickball";
     if (popupView) [popupView release];
     
     if (refreshHeaderView) [refreshHeaderView release];
-	if (webController) [webController release];
 	
     //[footerTabView release];
 //    [optionsTab release];
@@ -438,13 +437,11 @@ const NSString *kickballDomain = @"http://kickball.gorlochs.com/kickball";
 
 - (void) openWebView:(NSString*)url {
     [FlurryAPI logEvent:@"Opening link from Twitter feed"];
-	if (webController) [webController release];
-    webController = [[KBWebViewController alloc] initWithNibName:@"KBWebViewController" bundle:nil andUrlString:url];
+    KBWebViewController *webController = [[KBWebViewController alloc] initWithNibName:@"KBWebViewController" bundle:nil andUrlString:url];
     DLog(@"website url: %@", url);
     //webController.urlString = url;
     [self presentModalViewController:webController animated:YES];
-    // FIXME: commenting out below probably fixes the crash, but it's masking the REAL problem, which I need to find
-    //[webController release];
+    [webController release];
 }
 
 - (void) displayTextView {

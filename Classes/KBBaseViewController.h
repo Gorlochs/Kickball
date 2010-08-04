@@ -51,7 +51,7 @@ typedef enum{
 	KBPageViewTypeOther,	
 } KBPageViewType;
 
-@class LoginViewModalController, EGORefreshTableHeaderView, ProfileViewController, KBWebViewController;
+@class LoginViewModalController, EGORefreshTableHeaderView, ProfileViewController;
 
 @interface KBBaseViewController : UIViewController {
     
@@ -88,7 +88,6 @@ typedef enum{
     
     id headerView;
 	
-	KBWebViewController *webController;
 }
 
 @property (nonatomic, retain) UITableView *theTableView;
