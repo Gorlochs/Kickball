@@ -349,6 +349,7 @@
 
 
 - (void)dealloc {
+	photoManager.delegate = nil;
 	[photoImage release];
 	[delegate release];
     [super dealloc];

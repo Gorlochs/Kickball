@@ -858,6 +858,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];// removeObserver:self forKeyPath:@"todoTipSent"];
 //    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:@"shoutAndCheckinSent"];
     
+	photoManager.delegate = nil;
     [mayorMapCell release];
     [checkinCell release];
     [giftCell release];

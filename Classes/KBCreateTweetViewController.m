@@ -416,6 +416,8 @@
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+	photoManager.delegate = nil;
+	
 //    [tweetTextView release];
 //    [characterCountLabel release];
 //    [sendTweet release];

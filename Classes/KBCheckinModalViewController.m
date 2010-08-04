@@ -414,6 +414,7 @@
 }
 
 - (void)dealloc {
+	photoManager.delegate = nil;
     [venue release];
     [characterCountLabel release];
     [twitterButton release];
