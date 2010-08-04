@@ -256,6 +256,8 @@ const NSString *kickballDomain = @"http://kickball.gorlochs.com/kickball";
     if (popupView) [popupView release];
     
     if (refreshHeaderView) [refreshHeaderView release];
+	if (webController) [webController release];
+	
     //[footerTabView release];
 //    [optionsTab release];
 //    [facebookTab release];
@@ -436,7 +438,8 @@ const NSString *kickballDomain = @"http://kickball.gorlochs.com/kickball";
 
 - (void) openWebView:(NSString*)url {
     [FlurryAPI logEvent:@"Opening link from Twitter feed"];
-    KBWebViewController *webController = [[KBWebViewController alloc] initWithNibName:@"KBWebViewController" bundle:nil andUrlString:url];
+	if (webController) [webController release];
+    webController = [[KBWebViewController alloc] initWithNibName:@"KBWebViewController" bundle:nil andUrlString:url];
     DLog(@"website url: %@", url);
     //webController.urlString = url;
     [self presentModalViewController:webController animated:YES];

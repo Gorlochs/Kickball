@@ -169,6 +169,7 @@
 
 
 - (void)dealloc {
+	//twitterManager.delegate = nil;
     //[twitterEngine release];
     [super dealloc];
 }

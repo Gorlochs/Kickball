@@ -16,14 +16,14 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andUrlString:(NSString*)url {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         // Custom initialization
-        urlString = url;
+        urlString = [url retain];
     }
     return self;
 }
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andTwitterUrlString:(NSString*)url {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         // Custom initialization
-        twitterUrlString = url;
+        twitterUrlString = [url retain];
     }
     return self;
 }
@@ -102,6 +102,7 @@
     theWebView = nil;
 	
     [urlString release];
+	[twitterUrlString release];
     [super dealloc];
 }
 

@@ -33,7 +33,7 @@
 - (IBAction) showSearch;
 - (IBAction) openTweetModalView;
 
-
+- (void)checkMemoryUsage;
 -(void)showLoginView;
 -(void)killLoginView;
 

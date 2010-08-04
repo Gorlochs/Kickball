@@ -34,6 +34,7 @@
 	//[super viewDidAppear:animated];
     if (_firstView) return;
     _firstView = true;
+	
     twitterManager.delegate = self; //make sure we can keep appending more tweets when user scrolls to bottom
 }
 
@@ -60,12 +61,6 @@
 		NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:@"twittername"];
 		if (username) [self.twitterEngine getUserInformationFor:username]; //get the twitter profile pic to save it
 	} else {
-		//old login method removed
-		/*
-        loginController = [[KBTwitterXAuthLoginController alloc] initWithNibName:@"TwitterLoginView_v2" bundle:nil];
-		loginController.rootController = self;
-        [self presentModalViewController:loginController animated:YES];
-		 */
 		[self showLoginView];
     }
 }
@@ -175,6 +170,7 @@
 
 
 - (void)dealloc {
+	//twitterManager.delegate = nil;
     if (loginController) [loginController release];
     [super dealloc];
 }

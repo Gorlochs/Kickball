@@ -25,6 +25,11 @@
 	twitterManager.delegate = self;
 }
 
+- (void) viewDidAppear:(BOOL)animated {
+	twitterManager.delegate = self;
+	[super viewDidAppear:animated];
+}
+
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
 }
@@ -257,6 +262,7 @@
 
 
 - (void)dealloc {
+	//twitterManager.delegate = nil;
     [tweets release];
     if (cachingKey) [cachingKey release];
     [super dealloc];

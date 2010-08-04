@@ -232,6 +232,7 @@
 }
 
 - (void)dealloc {
+	//twitterManager.delegate = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [tweet release];
     [tweets release];  
