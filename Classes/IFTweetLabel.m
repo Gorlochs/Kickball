@@ -8,8 +8,6 @@
 
 #import "IFTweetLabel.h"
 
-#import "RKLMatchEnumerator.h"
-
 
 #define DRAW_DEBUG_FRAMES 0
 
