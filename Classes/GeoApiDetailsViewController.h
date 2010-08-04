@@ -8,12 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "KBFoursquareViewController.h"
+#import "GAConnectionManager.h"
 #import "GAConnectionDelegate.h"
 #import "GAPlace.h"
 
 
 @interface GeoApiDetailsViewController : KBFoursquareViewController <GAConnectionDelegate, UITextFieldDelegate> {
     GAPlace *place;
+	GAConnectionManager *connectionManager_;
     
     IBOutlet UILabel *venueName;
     IBOutlet UILabel *venueAddress;

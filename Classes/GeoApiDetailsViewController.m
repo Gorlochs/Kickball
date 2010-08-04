@@ -38,7 +38,7 @@
     venueAddress.text = @"";
 
     [self startProgressBar:@"Retrieving venue details..."];
-    GAConnectionManager *connectionManager_ = [[GAConnectionManager alloc] initWithAPIKey:@"K6afuuFTXK" delegate:self];
+    connectionManager_ = [[GAConnectionManager alloc] initWithAPIKey:@"K6afuuFTXK" delegate:self];
     [connectionManager_ requestListingForPlace:place.guid];
     
 //    // http://api2.citysearch.com/profile/?listing_id=273&publisher=acme&client_ip=122.123.124.125&api_key=34vziofhdiofh8349hrt934h
@@ -213,6 +213,7 @@
 }
 
 - (void)dealloc {
+	[connectionManager_ release];
     [place release];
     [venueName release];
     [venueAddress release];
