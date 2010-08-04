@@ -212,7 +212,7 @@ static Utilities *sharedInstance = nil;
 	DLog("ping ids: %@", ids);
 	NSURL *url = [NSURL URLWithString:@"http://kickball.gorlochs.com/kickball/pings"];
 	
-	NSOperationQueue *queue = [[[NSOperationQueue alloc] init] autorelease];
+	NSOperationQueue *queue = [[NSOperationQueue alloc] init];
 	ASIFormDataRequest *request = [[ASIFormDataRequest alloc] initWithURL:url];
 	[request setPostValue:[[FoursquareAPI sharedInstance] currentUser].userId forKey:@"userId"];
 	[request setPostValue:ids forKey:@"friendIds"];
@@ -221,6 +221,7 @@ static Utilities *sharedInstance = nil;
 	[request setDidFailSelector: @selector(pingSubmitFailed:)];
 	[queue addOperation:request];
 	[request release];
+	[queue release];
 	[ids release];
 	[pool release];
 }
