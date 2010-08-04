@@ -111,10 +111,11 @@
 	[theTableView reloadData];
 	[self dataSourceDidFinishLoadingNewData];
 	[pool release];
-	
+
 	[self performSelectorOnMainThread:@selector(stopProgressBar) withObject:nil waitUntilDone:NO];
 	[self performSelectorOnMainThread:@selector(setTabImages) withObject:nil waitUntilDone:NO];
-	[self stopProgressBar];
+	//[self stopProgressBar];
+
 }
 
 -(void)concatenateMore:(NSString*)urlString{

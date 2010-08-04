@@ -49,6 +49,10 @@
 
 - (void)friendsResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     DLog(@"friends: %@", inString);
+	if (friends!=nil) {
+		[friends release];
+		friends = nil;
+	}
     friends = [[FoursquareAPI friendUsersFromRequestResponseXML:inString] retain];
     [theTableView reloadData];
     [self stopProgressBar];

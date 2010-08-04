@@ -221,7 +221,7 @@ static Utilities *sharedInstance = nil;
 	[request setDidFailSelector: @selector(pingSubmitFailed:)];
 	[queue addOperation:request];
 	[request release];
-	
+	[ids release];
 	[pool release];
 }
 

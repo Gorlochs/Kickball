@@ -27,4 +27,12 @@
     return self;
 }
 
+-(void)dealloc{
+	[screenName release];
+	[fullName release];
+	[profileImageUrl release];
+	[userId release];
+	[super	dealloc];
+}
+
 @end

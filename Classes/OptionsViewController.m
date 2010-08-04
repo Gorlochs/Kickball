@@ -56,6 +56,10 @@
         [self displayFoursquareErrorMessage:errorMessage];
     } else {
         DLog(@"pending friend requests: %@", inString);
+		if (pendingFriendRequests!=nil) {
+			[pendingFriendRequests release];
+			pendingFriendRequests = nil;
+		}
         pendingFriendRequests = [[FoursquareAPI usersFromRequestResponseXML:inString] retain];
         friendRequestCount.text = [NSString stringWithFormat:@"%d", [pendingFriendRequests count]];
     }

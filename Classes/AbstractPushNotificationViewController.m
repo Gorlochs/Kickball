@@ -115,6 +115,7 @@
 	[request setDidFinishSelector: @selector(pushCompleted:)];
 	[request setDidFailSelector: @selector(pushFailed:)];
 	[queue addOperation:request];
+	[request release];
 }
 
 - (void)pushCompleted:(ASIHTTPRequest *) request {
