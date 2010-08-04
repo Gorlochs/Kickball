@@ -236,6 +236,7 @@
     }
     
     [self decrementActionCount];
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"didCheckin" object:nil]; 	
 }
 
 - (void) decrementActionCount {
