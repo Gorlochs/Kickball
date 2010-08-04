@@ -57,6 +57,8 @@
     pageType = KBPageTypeFriends;
     pageViewType = KBPageViewTypeList;
     theTableView.hidden = YES;
+	didPingUpdateRun = NO;
+	didInitialDisplay = NO;
     
     [super viewDidLoad];
     
@@ -122,6 +124,7 @@
 	} else {
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTable) name:@"refreshFriendsList" object:nil];
 		[self doInitialDisplay];
+		didInitialDisplay = YES;
 	}
 	
 	// blech
@@ -164,10 +167,15 @@
     [requestObj setValue:authString forHTTPHeaderField:@"Authorization"];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-	if([[FoursquareAPI sharedInstance] isAuthenticated]) [self doInitialDisplay]; //fix for showing the wrong place when user hits the home button
-}
+//- (void)viewDidAppear:(BOOL)animated {
+//    [super viewDidAppear:animated];
+//	//fix for showing the wrong place when user hits the home button
+//	if([[FoursquareAPI sharedInstance] isAuthenticated] && !didInitialDisplay) {
+//		[self startProgressBar:@"Retrieving friends' whereabouts..." withTimer:NO andLongerTime:NO];
+//		[[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
+//	}
+//	didInitialDisplay = NO;
+//}
 
 - (void)userResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     DLog(@"authenticated user: %@", inString);
@@ -752,8 +760,10 @@
         }
 		
 		// update KB server with friends with pings on
-		//TODO: detach to a separate thread
-		[NSThread detachNewThreadSelector:@selector(updateFriendsPingsOn) toTarget:self withObject:nil];
+		if (!didPingUpdateRun) {
+			[NSThread detachNewThreadSelector:@selector(updateFriendsPingsOn) toTarget:self withObject:nil];
+			didPingUpdateRun = YES;
+		}
     }
 }
 

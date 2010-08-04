@@ -53,6 +53,9 @@
     IBOutlet UITextField *shoutText;
     int actionCount;
     KBTwitterManager *twitterManager;
+	
+	BOOL didPingUpdateRun;
+	BOOL didInitialDisplay;
 }
 
 @property (nonatomic, retain) NSArray * checkins;
