@@ -390,7 +390,7 @@
     }
 	if (checkin.shout && checkin.venue) {
 		CGSize maximumLabelSize = CGSizeMake(250, 60);
-		CGSize expectedLabelSize = [checkin.shout sizeWithFont:[UIFont boldSystemFontOfSize:11.0]
+		CGSize expectedLabelSize = [checkin.shout sizeWithFont:[UIFont boldSystemFontOfSize:16.0]
 											 constrainedToSize:maximumLabelSize 
 												 lineBreakMode:UILineBreakModeWordWrap];
 		if (expectedLabelSize.height>20) {
