@@ -130,6 +130,7 @@
 	// blech
 	footerType = KBFooterTypeFoursquare;
     [self setTabImages];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidCheckin) name:@"didCheckin" object:nil];    
 }
 
 - (void) doInitialDisplay {
@@ -167,15 +168,9 @@
     [requestObj setValue:authString forHTTPHeaderField:@"Authorization"];
 }
 
-//- (void)viewDidAppear:(BOOL)animated {
-//    [super viewDidAppear:animated];
-//	//fix for showing the wrong place when user hits the home button
-//	if([[FoursquareAPI sharedInstance] isAuthenticated] && !didInitialDisplay) {
-//		[self startProgressBar:@"Retrieving friends' whereabouts..." withTimer:NO andLongerTime:NO];
-//		[[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
-//	}
-//	didInitialDisplay = NO;
-//}
+- (void)userDidCheckin {
+	[[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
+}
 
 - (void)userResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     DLog(@"authenticated user: %@", inString);
@@ -629,16 +624,9 @@
         [self displayFoursquareErrorMessage:errorMessage];
 		
     } else {
-        NSArray * allCheckins = [FoursquareAPI checkinsFromResponseXML:inString];
-		if (checkins!=nil) {
-			[checkins release];
-			checkins = nil;
-		}
-        checkins = allCheckins;
-		[checkins retain];
-		[allCheckins release];
-        allCheckins = nil;
-        
+		if (checkins) [checkins release];
+		checkins = [[NSArray alloc] initWithArray:[FoursquareAPI checkinsFromResponseXML:inString]];
+
 		if (recentCheckins!=nil) {
 			[recentCheckins release];
 			recentCheckins = nil;

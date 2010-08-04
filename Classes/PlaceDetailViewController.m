@@ -297,6 +297,7 @@
 	
 	[self presentCheckinOverlayWithCheckin:[theCheckin retain]];
 	[theCheckin release];
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"didCheckin" object:nil]; 
 }
 
 - (void) prepViewWithVenueInfo:(FSVenue*)venueToDisplay {
