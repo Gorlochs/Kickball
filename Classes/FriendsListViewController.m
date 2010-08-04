@@ -218,7 +218,7 @@
     [nonCityRecentCheckins release];
     [nonCityTodayCheckins release];
     [nonCityYesterdayCheckins release];
-    [checkins release];
+    if (checkins) [checkins release];
     [gregorian release];
     [super dealloc];
 }
@@ -625,8 +625,8 @@
 		
     } else {
 		if (checkins) [checkins release];
-		checkins = [[NSArray alloc] initWithArray:[FoursquareAPI checkinsFromResponseXML:inString]];
-
+		checkins = [FoursquareAPI checkinsFromResponseXML:inString];
+	
 		if (recentCheckins!=nil) {
 			[recentCheckins release];
 			recentCheckins = nil;

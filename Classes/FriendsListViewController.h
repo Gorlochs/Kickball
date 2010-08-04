@@ -58,7 +58,7 @@
 	BOOL didInitialDisplay;
 }
 
-@property (nonatomic, retain) NSArray * checkins;
+@property (nonatomic, assign) NSArray * checkins;
 @property (nonatomic, retain) NSMutableArray * recentCheckins;
 @property (nonatomic, retain) NSMutableArray * todayCheckins;
 @property (nonatomic, retain) NSMutableArray * yesterdayCheckins;
