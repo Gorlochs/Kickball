@@ -62,6 +62,9 @@
     backButton.enabled = [webView canGoBack];
     forwardButton.enabled = [webView canGoForward];
     [self release];
+    CGRect frame = webView.frame;
+    frame.size.height *= 4; //fix for odd web view bug that can't detect the right height for a webpage. exists is safari as well
+    webView.frame = frame;
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
