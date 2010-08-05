@@ -46,7 +46,7 @@ const NSString *kickballDomain = @"http://kickball.gorlochs.com/kickball";
 @synthesize reloading=_reloading;
 
 - (void) viewDidLoad {
-    NSLog(@"kickball baseview viewdidload %i", [Utilities getMemory]);
+    DLog(@"kickball baseview viewdidload %i", [Utilities getMemory]);
 
     [super viewDidLoad];
 	
@@ -268,7 +268,7 @@ const NSString *kickballDomain = @"http://kickball.gorlochs.com/kickball";
 //    [iconImageView release];  // uncommenting this crashes shit. not sure why.
     
     [super dealloc];
-	    NSLog(@"kickball baseview dealloc %i", [Utilities getMemory]);
+	    DLog(@"kickball baseview dealloc %i", [Utilities getMemory]);
 
 }
 

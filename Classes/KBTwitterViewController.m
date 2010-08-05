@@ -103,7 +103,7 @@
 
 - (void)checkMemoryUsage {
 	if ([Utilities getMemory] < 15000000) {
-	  NSLog(@"out of memory - popping");
+	  DLog(@"out of memory - popping");
 	  [self.navigationController popToRootViewControllerAnimated:NO]; // Pops until there's only a single view controller left on the stack. Returns the popped controllers.
 	}
 }
