@@ -123,7 +123,7 @@
 - (void) viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
 	
-	if ([theTableView numberOfSections] != 0) {
+	if ([theTableView numberOfSections] != 0 && [[FoursquareAPI sharedInstance] isAuthenticated]) {
 		NSUInteger indexArr[] = {0,0};
 		[theTableView scrollToRowAtIndexPath:[NSIndexPath indexPathWithIndexes:indexArr length:2] atScrollPosition:UITableViewScrollPositionTop animated:YES];
 	}
