@@ -125,7 +125,8 @@
 	
 	if ([theTableView numberOfSections] != 0 && [[FoursquareAPI sharedInstance] isAuthenticated]) {
 		NSUInteger indexArr[] = {0,0};
-		[theTableView scrollToRowAtIndexPath:[NSIndexPath indexPathWithIndexes:indexArr length:2] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    if ([theTableView numberOfRowsInSection:0] > 0)
+      [theTableView scrollToRowAtIndexPath:[NSIndexPath indexPathWithIndexes:indexArr length:2] atScrollPosition:UITableViewScrollPositionTop animated:YES];
 	}
 }
 
