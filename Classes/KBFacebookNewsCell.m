@@ -186,7 +186,9 @@
 	[fbProfilePicUrl release];
 	fbProfilePicUrl = nil;
 	fbProfilePicUrl = [_url copy];
-	[userIcon setUrlPath:fbProfilePicUrl];
+	//userIcon.urlPath = _url;
+	[userIcon performSelectorOnMainThread:@selector(setUrlPath:) withObject:fbProfilePicUrl waitUntilDone:NO];
+
 	
 
 }
@@ -209,7 +211,10 @@
 	[fbPictureUrl release];
 	fbPictureUrl = nil;
 	fbPictureUrl = [_url copy];
-	[pictureThumb1 setUrlPath:fbPictureUrl];
+	//pictureThumb1.urlPath = _url;
+	[pictureThumb1 performSelectorOnMainThread:@selector(setUrlPath:) withObject:fbPictureUrl waitUntilDone:NO];
+
+
 }
 
 -(void)loadPicUrl{
