@@ -493,6 +493,7 @@
         
         if (finalBody) {
             [theRequest setHTTPBody:[finalBody dataUsingEncoding:NSUTF8StringEncoding]];
+			DLog(@"XAuthTwitterEngine: finalBody: %@", finalBody);
         }
     }
 	

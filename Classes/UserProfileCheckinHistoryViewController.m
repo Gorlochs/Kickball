@@ -28,14 +28,14 @@
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(instaCheckin:) name:@"touchAndHoldCheckin" object:nil];
 }
 
-- (void) instaCheckin:(NSNotification *)inNotification {
-    NSString *venueId = [[inNotification userInfo] objectForKey:@"venueIdOfCell"];
-    PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView_v2" bundle:nil];    
-    placeDetailController.venueId = venueId;
-    placeDetailController.doCheckin = YES;
-    [self.navigationController pushViewController:placeDetailController animated:YES];
-    [placeDetailController release]; 
-}
+//- (void) instaCheckin:(NSNotification *)inNotification {
+//    NSString *venueId = [[inNotification userInfo] objectForKey:@"venueIdOfCell"];
+//    PlaceDetailViewController *placeDetailController = [[PlaceDetailViewController alloc] initWithNibName:@"PlaceDetailView_v2" bundle:nil];    
+//    placeDetailController.venueId = venueId;
+//    placeDetailController.doCheckin = YES;
+//    [self.navigationController pushViewController:placeDetailController animated:YES];
+//    [placeDetailController release]; 
+//}
 
 - (void) executeFoursquareCalls {
     [self startProgressBar:@"Retrieving your check-in history..."];

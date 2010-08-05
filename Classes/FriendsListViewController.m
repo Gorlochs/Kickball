@@ -107,20 +107,7 @@
 	if(![[FoursquareAPI sharedInstance] isAuthenticated]){
 		//run sheet to log in.
 		DLog(@"Foursquare is not authenticated");
-		/* *** old modal login ~ replaced by scott
-		if (self.loginViewModal == nil)
-			self.loginViewModal = [[[LoginViewModalController alloc] initWithNibName:
-									NSStringFromClass([LoginViewModalController class]) bundle:nil] autorelease];
-		
-		self.loginViewModal.rootController = self;
-		[self.navigationController presentModalViewController:self.loginViewModal animated:YES];
-        
-//		[self.loginViewModal setRootController:self];
-//		[self.navigationController presentModalViewController:self.loginViewModal animated:YES];
-		 
-		 */
 		[self showLoginView];  //new method
-        
 	} else {
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTable) name:@"refreshFriendsList" object:nil];
 		[self doInitialDisplay];
@@ -131,6 +118,15 @@
 	footerType = KBFooterTypeFoursquare;
     [self setTabImages];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidCheckin) name:@"didCheckin" object:nil];    
+}
+
+- (void) viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+	
+	if ([theTableView numberOfSections] != 0) {
+		NSUInteger indexArr[] = {0,0};
+		[theTableView scrollToRowAtIndexPath:[NSIndexPath indexPathWithIndexes:indexArr length:2] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+	}
 }
 
 - (void) doInitialDisplay {

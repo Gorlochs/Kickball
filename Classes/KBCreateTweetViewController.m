@@ -164,7 +164,7 @@
 	} else {
 		[tweetTextView resignFirstResponder];
 		
-		KBMessage *theMessage = [[KBMessage alloc] initWithMember:@"Form Error"	andMessage:@"Please fill in the shout before submitting"];
+		KBMessage *theMessage = [[KBMessage alloc] initWithMember:@"Form Error"	andMessage:@"Please fill in the tweet before submitting"];
 		[[KBDialogueManager sharedInstance] displayMessage:theMessage];
 		[theMessage release];
 	}
