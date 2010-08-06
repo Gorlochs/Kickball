@@ -41,5 +41,6 @@ connectionIdentifier:(NSString *)identifier
 - (void)_parsingDidEnd;
 - (void)_parsingErrorOccurred:(NSError *)parseError;
 - (void)_parsedObject:(NSDictionary *)dictionary;
+-(void)cleanup;
 
 @end

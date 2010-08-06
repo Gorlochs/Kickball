@@ -18,11 +18,10 @@
 
 - (id) initWithDictionary:(NSDictionary*)userDictionary {
     if (self = [super init]) {
-        dict = [[NSDictionary alloc] initWithDictionary:userDictionary];
-        screenName = [userDictionary objectForKey:@"screen_name"];
-        fullName = [userDictionary objectForKey:@"name"];
-        profileImageUrl = [userDictionary objectForKey:@"profile_image_url"];
-        userId = [userDictionary objectForKey:@"id"];
+        screenName =  [[userDictionary objectForKey:@"screen_name"] copy];
+        fullName = [[userDictionary objectForKey:@"name"] copy];
+        profileImageUrl = [[userDictionary objectForKey:@"profile_image_url"] copy];
+        userId = [[userDictionary objectForKey:@"id"] copy];
     }
     return self;
 }
@@ -32,7 +31,6 @@
 	[fullName release];
 	[profileImageUrl release];
 	[userId release];
-	[dict release];
 	[super	dealloc];
 }
 

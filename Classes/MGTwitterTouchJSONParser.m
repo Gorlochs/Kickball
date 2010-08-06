@@ -8,6 +8,7 @@
 
 #import "MGTwitterTouchJSONParser.h"
 #import "CJSONDeserializer.h"
+#import "SBJSON.h"
 
 @implementation MGTwitterTouchJSONParser
 
@@ -19,13 +20,13 @@ connectionIdentifier:(NSString *)identifier
 				 URL:(NSURL *)URL
 	 deliveryOptions:(MGTwitterEngineDeliveryOptions)deliveryOptions
 {
-	return [[[self alloc] initWithJSON:theJSON
+	return [[self alloc] initWithJSON:theJSON
 							  delegate:theDelegate 
 				  connectionIdentifier:identifier
 						   requestType:reqType
 						  responseType:respType
 								   URL:URL
-					   deliveryOptions:deliveryOptions] autorelease];
+					   deliveryOptions:deliveryOptions];
 }
 
 - (id)  initWithJSON:(NSData *)theJSON
@@ -82,8 +83,15 @@ connectionIdentifier:(NSString *)theIdentifier
 		}
 		else
 		{
-			id results = [[CJSONDeserializer deserializer] deserialize:json
-																 error:nil];
+			//hose this and parse with SBJSON
+			//id results = [[CJSONDeserializer deserializer] deserialize:json error:nil];
+			
+			SBJSON *parser = [SBJSON new];
+			NSString *r_string = [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding];
+
+			id results = [parser objectWithString:r_string error:NULL];
+			
+			
 			if([results isKindOfClass:[NSArray class]]){
 				for(NSDictionary *result in results){
 					[self _parsedObject:result];
@@ -91,7 +99,8 @@ connectionIdentifier:(NSString *)theIdentifier
 			}else{
 				[self _parsedObject:results];
 			}
-			
+			[r_string release];
+			[parser release];
 		}
 		
 		// notify the delegate that parsing completed
@@ -102,13 +111,19 @@ connectionIdentifier:(NSString *)theIdentifier
 
 - (void)dealloc
 {
-	[parsedObjects release];
-	[json release];
-	[identifier release];
-	[URL release];
-	
-	delegate = nil;
 	[super dealloc];
+}
+-(void)cleanup{
+	[parsedObjects release];
+	parsedObjects = nil;
+	[json release];
+	json = nil;
+	[identifier release];
+	identifier = nil;
+	[URL release];
+	URL = nil;
+	delegate = nil;
+	
 }
 
 #pragma mark Delegate callbacks

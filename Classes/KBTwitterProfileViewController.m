@@ -48,7 +48,7 @@
 }
 
 - (void)userInfoReceived:(NSArray *)userInfo {
-    userDictionary = [[userInfo objectAtIndex:0] retain];
+    userDictionary = [[userInfo objectAtIndex:0] copy];
     screenNameLabel.text = [Utilities safeString:[userDictionary objectForKey:@"screen_name"]];
     fullName.text = [Utilities safeString:[userDictionary objectForKey:@"name"]];
     NSString *locationText = [Utilities safeString:[userDictionary objectForKey:@"location"]];

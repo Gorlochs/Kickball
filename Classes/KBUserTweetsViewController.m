@@ -74,7 +74,7 @@
 
 - (void)statusesReceived:(NSArray *)statuses {
     [super statusesReceived:statuses];
-    NSArray *userStatuses = [statuses retain];
+    NSArray *userStatuses = statuses; //retain];
     // this is used when there is no userDictionary, which occurs when a user clicks a @screenname inside the body of a tweet
     if (userDictionary == nil && [userStatuses count] > 0) {
         screenNameLabel.text = [Utilities safeString:[[[userStatuses objectAtIndex:0] objectForKey:@"user"] objectForKey:@"screen_name"]];
@@ -90,7 +90,7 @@
         [self.view addSubview:userProfileImage];
         [userProfileImage release];
     }
-	[userStatuses release];
+	//[userStatuses release];
 }
 
 - (void) refreshTable {

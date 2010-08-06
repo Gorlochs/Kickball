@@ -66,7 +66,7 @@
 }
 
 - (void)userInfoReceived:(NSArray *)userInfo {
-    userDictionary = [[userInfo objectAtIndex:0] retain];
+    userDictionary = [[userInfo objectAtIndex:0] copy];
     numberOfFriends.text = [NSString stringWithFormat:@"%d", [[userDictionary objectForKey:@"friends_count"] intValue]];
     numberOfFollowers.text = [NSString stringWithFormat:@"%d", [[userDictionary objectForKey:@"followers_count"] intValue]];
     numberOfTweets.text = [NSString stringWithFormat:@"%d", [[userDictionary objectForKey:@"statuses_count"] intValue]];
@@ -82,7 +82,7 @@
     numberOfFriends.text = @"";
     numberOfFavorites.text = @"";
     numberOfTweets.text = @"";
-    
+    userDictionary = nil;
     [timelineButton setImage:[UIImage imageNamed:@"tabTweets03.png"] forState:UIControlStateNormal];
     [mentionsButton setImage:[UIImage imageNamed:@"tabMentions03.png"] forState:UIControlStateNormal];
     [directMessageButton setImage:[UIImage imageNamed:@"tabDM03.png"] forState:UIControlStateNormal];
@@ -234,6 +234,7 @@
 - (void)dealloc {
 	//twitterManager.delegate = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+	[userDictionary release];
     [tweet release];
     [tweets release];  
     [super dealloc];

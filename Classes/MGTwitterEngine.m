@@ -655,9 +655,11 @@
             break;
     }
 #elif TOUCHJSON_AVAILABLE
-	[MGTwitterTouchJSONParser parserWithJSON:jsonData delegate:self
+	MGTwitterTouchJSONParser *jsonParser = [MGTwitterTouchJSONParser parserWithJSON:jsonData delegate:self
 						connectionIdentifier:identifier requestType:requestType
 								responseType:responseType URL:URL deliveryOptions:_deliveryOptions];
+	[jsonParser cleanup];
+	[jsonParser release];
 #endif
 }
 #else
@@ -784,6 +786,8 @@
         default:
             break;
     }
+	
+	//release parser;
 }
 
 - (void)parsingFailedForRequest:(NSString *)requestIdentifier 

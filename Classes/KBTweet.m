@@ -25,12 +25,11 @@
 // init with dictionary
 - (id) initWithDictionary:(NSDictionary*)statusDictionary {		
     if (self = [super init]) {
-        dict = [[NSDictionary alloc] initWithDictionary:statusDictionary];
-        screenName = [[statusDictionary objectForKey:@"user"] objectForKey:@"screen_name"];
-        fullName = [[statusDictionary objectForKey:@"user"] objectForKey:@"name"];
-        profileImageUrl = [[statusDictionary objectForKey:@"user"] objectForKey:@"profile_image_url"];
-        tweetText = [statusDictionary objectForKey:@"text"];
-        tweetId = [statusDictionary objectForKey:@"id"];
+        screenName = [[[statusDictionary objectForKey:@"user"] objectForKey:@"screen_name"] copy];
+        fullName = [[[statusDictionary objectForKey:@"user"] objectForKey:@"name"] copy];
+        profileImageUrl = [[[statusDictionary objectForKey:@"user"] objectForKey:@"profile_image_url"] copy];
+        tweetText = [[statusDictionary objectForKey:@"text"] copy];
+        tweetId = [[statusDictionary objectForKey:@"id"] copy];
 		//clientName = [statusDictionary objectForKey:@"source"];
 		
 		//NSRange   matchedRange = NSMakeRange(NSNotFound, 0);
@@ -40,10 +39,10 @@
 		clientName = @"";
 		if (matchedRange.location != NSNotFound) {
 			NSRange reducedRange = NSMakeRange(matchedRange.location + 1, matchedRange.length - 2);
-			clientName = [[clientWithLink substringWithRange:reducedRange] retain];
+			clientName = [[clientWithLink substringWithRange:reducedRange] copy];
 			DLog(@"********************************* clientName: %@", clientName);
 		} else if ([statusDictionary objectForKey:@"source"]) {
-			clientName = [statusDictionary objectForKey:@"source"];
+			clientName = [[statusDictionary objectForKey:@"source"] copy];
 		}
 		
 //		NSString * searchString = [statusDictionary objectForKey:@"text"];
@@ -90,7 +89,6 @@
 }
 
 - (void) dealloc {
-    [dict release];
     [screenName release];
     [fullName release];
     [createDate release];
