@@ -39,11 +39,11 @@
 
 - (void)statusesReceived:(NSArray *)statuses {
 	if (statuses) {
-		twitterArray = [statuses retain];
+		//twitterArray = [statuses retain];
         int count = 0;
         if (!tweets) tweets = [[NSMutableArray alloc] init];
         if (pageNum > 1) count = [tweets count];
-		for (NSDictionary *dict in twitterArray) {
+		for (NSDictionary *dict in statuses) {
 			KBTweet *tweet = [[KBTweet alloc] initWithDictionary:dict];
             [tweets insertObject:tweet atIndex:count++];
 			[tweet release];

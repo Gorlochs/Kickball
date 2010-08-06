@@ -45,11 +45,11 @@
 - (void)directMessagesReceived:(NSArray *)messages {
 	if ([messages count] > 0 || isInitialLoad) {
         //if (twitterArray) [twitterArray release];
-        twitterArray = [messages retain];
+        //twitterArray = [messages retain];
         int count = 0;
         if (!tweets) tweets = [[NSMutableArray alloc] initWithCapacity:1];
         if (pageNum > 1) count = [tweets count];
-		for (NSDictionary *dict in twitterArray) {
+		for (NSDictionary *dict in messages) {
 			KBDirectMessage *message = [[KBDirectMessage alloc] initWithDictionary:dict];
             [tweets insertObject:message atIndex:count++];
 			[message release];

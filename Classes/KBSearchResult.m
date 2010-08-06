@@ -37,4 +37,8 @@
     return [NSString stringWithFormat:@"screenname: %@ ; profile image url: %@ ; tweet text: %@", self.screenName, self.profileImageUrl, self.tweetText];
 }
 
+-(void)dealloc{
+	[super dealloc];
+}
+
 @end

@@ -48,7 +48,7 @@
 
 - (void)searchResultsReceived:(NSArray *)searchResults {
 	if (searchResults) {
-		twitterArray = [[[searchResults objectAtIndex:0] objectForKey:@"results"] retain];
+		twitterArray = [[searchResults objectAtIndex:0] objectForKey:@"results"];
 		if ([twitterArray count] > 1) {
 			NSMutableArray *tempTweetArray = [[NSMutableArray alloc] initWithCapacity:[twitterArray count]];
 			for (NSDictionary *dict in twitterArray) {
@@ -150,5 +150,8 @@
     // e.g. self.myOutlet = nil;
 }
 
+-(void)dealloc{
+	[super dealloc];
+}
 
 @end
