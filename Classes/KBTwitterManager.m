@@ -65,6 +65,8 @@ static KBTwitterManager *sharedInstance = nil;
 }
 
 - (void)dealloc {
+	[theSearchResults release];
+	[searchTerm release];
     [super dealloc];
 }
 

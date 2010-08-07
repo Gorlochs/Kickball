@@ -22,7 +22,7 @@
     pageNum = 1;
     noResultsView.hidden = NO;
     
-    if ([[KBTwitterManager twitterManager] theSearchResults]) {
+    if ([[KBTwitterManager twitterManager] searchTerm]) {
         searchTerms = [KBTwitterManager twitterManager].searchTerm;
         if (theTableView) [theTableView reloadData];
         noResultsView.hidden = YES;
@@ -48,7 +48,7 @@
 
 - (void)searchResultsReceived:(NSArray *)searchResults {
 	if (searchResults) {
-		twitterArray = [[searchResults objectAtIndex:0] objectForKey:@"results"];
+		twitterArray = [[[searchResults objectAtIndex:0] objectForKey:@"results"] copy];
 		if ([twitterArray count] > 1) {
 			NSMutableArray *tempTweetArray = [[NSMutableArray alloc] initWithCapacity:[twitterArray count]];
 			for (NSDictionary *dict in twitterArray) {
@@ -71,8 +71,8 @@
 			[tempTweetArray release];
 			[theTableView reloadData];
 			
-			[KBTwitterManager twitterManager].theSearchResults = nil;
-			[KBTwitterManager twitterManager].theSearchResults = [[NSArray alloc] initWithArray:tweets];
+			//[KBTwitterManager twitterManager].theSearchResults = nil;
+			//[KBTwitterManager twitterManager].theSearchResults = [NSArray arrayWithArray:tweets];
 			
 			noResultsView.hidden = YES;
 		} else {
@@ -151,6 +151,7 @@
 }
 
 -(void)dealloc{
+	[twitterArray release];
 	[super dealloc];
 }
 
