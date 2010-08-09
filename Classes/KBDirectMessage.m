@@ -14,11 +14,13 @@
 
 - (id) initWithDictionary:(NSDictionary*)statusDictionary {		
     if (self = [super init]) {
-        screenName = [[statusDictionary objectForKey:@"sender"] objectForKey:@"screen_name"];
-        profileImageUrl = [[statusDictionary objectForKey:@"sender"] objectForKey:@"profile_image_url"];
-        tweetText = [statusDictionary objectForKey:@"text"];
+        screenName = [[[statusDictionary objectForKey:@"sender"] objectForKey:@"screen_name"] copy];
+        profileImageUrl = [[[statusDictionary objectForKey:@"sender"] objectForKey:@"profile_image_url"] copy];
+        tweetText = [[statusDictionary objectForKey:@"text"] copy];
         createDate = [[[[KickballAPI kickballApi] twitterDateFormatter] dateFromString:[statusDictionary objectForKey:@"created_at"]] retain];
-        tweetId = [statusDictionary objectForKey:@"id"];
+        tweetId = [[statusDictionary objectForKey:@"id"] copy];
+		fullName = nil;
+		clientName = nil;
     }
     return self;
 }
