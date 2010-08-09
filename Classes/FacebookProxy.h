@@ -101,11 +101,12 @@ extern NSString* const kFBRedirectURI;
 //convenience stuff
 -(NSString*)findSuitableText:(NSDictionary*)fbItem;
 -(BOOL)doesHavePhoto:(NSDictionary*)fbItem;
--(NSString*)userNameFrom:(NSNumber*)_id;
--(NSString*)profilePicUrlFrom:(NSNumber*)_id;
+-(NSString*)userNameFrom:(id)_id;
+-(NSString*)profilePicUrlFrom:(id)_id;
 -(void)cacheIncomingProfiles:(NSArray*)profiles;
 -(void)cacheIncomingAlbums:(NSArray*)albums;
 -(NSString*)imageUrlForPhoto:(NSDictionary*)fbItem;
 -(NSString*)albumIdForPhoto:(NSDictionary*)fbItem;
--(NSString*)albumNameFrom:(NSString*)_id;
+-(NSString*)albumNameFrom:(id)_id;
+-(NSString*)normalizeIdAsString:(id)_id;
 @end

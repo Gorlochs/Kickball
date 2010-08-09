@@ -941,25 +941,25 @@ static NSDateFormatter* fbEventDetailDate = NULL;
 }
 
 
--(NSString*)userNameFrom:(NSNumber*)_id{
-	NSDictionary *profile = [profileLookup objectForKey:[_id stringValue]];
+-(NSString*)userNameFrom:(id)_id{
+	NSDictionary *profile = [profileLookup objectForKey:[self normalizeIdAsString:_id]];
 	return [profile objectForKey:@"name"];
 }
--(NSString*)profilePicUrlFrom:(NSNumber*)_id{
-	NSDictionary *profile = [profileLookup objectForKey:[_id stringValue]];
+-(NSString*)profilePicUrlFrom:(id)_id{
+	NSDictionary *profile = [profileLookup objectForKey:[self normalizeIdAsString:_id]];
 	return [profile objectForKey:@"pic_square"];
 }
 -(void)cacheIncomingProfiles:(NSArray*)profiles{
 	@synchronized(profileLookup){
 		for (NSDictionary*p in profiles){
-			NSNumber *id = [p objectForKey:@"id"];
-			if (id==nil) {
-				id = [p objectForKey:@"uid"];
+			id _id = [p objectForKey:@"id"];
+			if (_id==nil) {
+				_id = [p objectForKey:@"uid"];
 			}
-			if (id!=nil) {
-				NSDictionary *exists = [profileLookup objectForKey:[id stringValue]];
+			if (_id!=nil) {
+				NSDictionary *exists = [profileLookup objectForKey:[self normalizeIdAsString:_id]];
 				if (exists==nil) {
-					[profileLookup setObject:p forKey:[id stringValue]];
+					[profileLookup setObject:p forKey:[self normalizeIdAsString:_id]];
 				}
 			}
 			
@@ -969,20 +969,29 @@ static NSDateFormatter* fbEventDetailDate = NULL;
 -(void)cacheIncomingAlbums:(NSArray*)albums{
 	@synchronized(albumLookup){
 		for (NSDictionary*a in albums){
-			NSNumber *id = [a objectForKey:@"aid"];
-			if (id!=nil) {
-				NSDictionary *exists = [albumLookup objectForKey:[id stringValue]];
+			id _id = [a objectForKey:@"aid"];
+			if (_id!=nil) {
+				NSDictionary *exists = [albumLookup objectForKey:[self normalizeIdAsString:_id]];
 				if (exists==nil) {
-					[albumLookup setObject:a forKey:[id stringValue]];
+					[albumLookup setObject:a forKey:[self normalizeIdAsString:_id]];
 				}
 			}
 			
 		}
 	}
 }
--(NSString*)albumNameFrom:(NSString*)_id{
-	NSDictionary *album = [albumLookup objectForKey:_id];
+-(NSString*)albumNameFrom:(id)_id{
+	NSDictionary *album = [albumLookup objectForKey:[self normalizeIdAsString:_id]];
 	return [album objectForKey:@"name"];
 }
 
+-(NSString*)normalizeIdAsString:(id)_id{
+	if([_id isKindOfClass:[NSNumber class]]){
+		return [_id stringValue];
+	}else if([_id isKindOfClass:[NSString class]]){
+		return _id;
+	}else{
+		return nil;
+	}
+}
 @end
