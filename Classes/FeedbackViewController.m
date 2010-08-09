@@ -157,6 +157,8 @@
     [message release];
     DLog(@"YAAAAAAAAAAAY!");
     DLog(@"response msg: %@", request.responseStatusMessage);
+	subjectLabel.text = @"";
+	content.text = @"";
 }
 
 
