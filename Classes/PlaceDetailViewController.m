@@ -237,7 +237,7 @@
         DLog(@"venue response string: %@", inString);
         self.venue = [FoursquareAPI venueFromResponseXML:inString];
         [self prepViewWithVenueInfo:self.venue];
-		imHereButton.enabled = YES;
+		//imHereButton.enabled = YES;
 
         [theTableView reloadData];
         
@@ -281,6 +281,7 @@
 		theTableView.hidden = NO;
 		doCheckin = NO;
 		showCheckinView = NO;
+		imHereButton.enabled = NO;
     }
 }
 

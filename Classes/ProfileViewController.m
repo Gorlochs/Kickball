@@ -734,6 +734,7 @@
     KBMessage *msg = [[KBMessage alloc] initWithMember:@"Kickball Notification" andMessage:@"Your friend request has been sent."];
     [self displayPopupMessage:msg];
     [msg release];
+	befriendUserButton.enabled = NO;
 }
 
 - (void) checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
