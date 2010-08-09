@@ -49,6 +49,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     
     // this should TOTALLY be inside the KBMapPopupView, but I couldn't find an init method that is actually being called.
     self.popupBubbleView.frame = CGRectMake(20.0, 250.0 + 300 , self.popupBubbleView.frame.size.width, self.popupBubbleView.frame.size.height);
+	// FIXME: this is still using IFTweetLabel
     IFTweetLabel *tweetLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(8, 29, 250, 50)];
 	self.popupBubbleView.tweetText = tweetLabel;
 	[tweetLabel release];

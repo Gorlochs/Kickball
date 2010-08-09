@@ -52,18 +52,19 @@ static NSArray *expressions = nil;
 	// This code collects all possible links in the current label text and gets a full match that can be passed
 	// with the notification.
 	
-	for (NSString *expression in expressions)
-	{
-		NSString *match;
-		NSEnumerator *enumerator = [text matchEnumeratorWithRegex:expression];
-		while (match = [enumerator nextObject])
-		{
-			if ([match hasPrefix:buttonTitle])
-			{
-				[[NSNotificationCenter defaultCenter] postNotificationName:IFTweetLabelURLNotification object:match];
-			}
-		}
-	}
+	//for (NSString *expression in expressions)
+	//{
+		//NSString *match;
+		//NSArray *matches = [text componentsMatchedByRegex:expression];
+		//for (match in matches){
+		//	if ([match hasPrefix:buttonTitle])
+		//	{
+		//		[[NSNotificationCenter defaultCenter] postNotificationName:IFTweetLabelURLNotification object:match];
+		//	}
+		//}
+	//}
+	[[NSNotificationCenter defaultCenter] postNotificationName:IFTweetLabelURLNotification object:buttonTitle];
+
 }
 
 - (void)createButtonWithText:(NSString *)text withFrame:(CGRect)frame

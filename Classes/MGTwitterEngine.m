@@ -411,7 +411,7 @@
     NSString *result = (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, 
                                                                  (CFStringRef)string, 
                                                                  NULL, 
-                                                                 (CFStringRef)@";/?:@&=$+{}<>,",
+                                                                 (CFStringRef)@";/?:@&=$+{}<>,.",
                                                                  kCFStringEncodingUTF8);
     return [result autorelease];
 }
@@ -1220,7 +1220,7 @@
     if (!usernameOrID) {
         return nil;
     }
-    NSString *path = [NSString stringWithFormat:@"users/show/%@.%@", usernameOrID, API_FORMAT];
+    NSString *path = [NSString stringWithFormat:@"users/show/%@.%@", [self _encodeString:usernameOrID], API_FORMAT];
     
     return [self _sendRequestWithMethod:nil path:path queryParameters:nil body:nil 
                             requestType:MGTwitterUserInformationRequest 
