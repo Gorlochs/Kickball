@@ -175,6 +175,7 @@
 }
 
 - (void)checkin {
+	checkinButton.enabled = NO;
 	[checkinTextField resignFirstResponder];
     [self startProgressBar:@"Checking in..."];
     [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(delayedCheckin) userInfo:nil repeats:NO];
