@@ -13,6 +13,7 @@
 @interface KBTwitterSearchViewController : KBBaseTweetViewController <UITextFieldDelegate> {
     NSString *searchTerms;
     IBOutlet UITextField *theSearchBar;
+	NSArray *localTwitterArray;
 }
 
 @property (nonatomic, assign) NSString *searchTerms;

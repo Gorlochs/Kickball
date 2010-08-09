@@ -48,10 +48,10 @@
 
 - (void)searchResultsReceived:(NSArray *)searchResults {
 	if (searchResults) {
-		twitterArray = [[[searchResults objectAtIndex:0] objectForKey:@"results"] copy];
-		if ([twitterArray count] > 1) {
-			NSMutableArray *tempTweetArray = [[NSMutableArray alloc] initWithCapacity:[twitterArray count]];
-			for (NSDictionary *dict in twitterArray) {
+		localTwitterArray = [[[searchResults objectAtIndex:0] objectForKey:@"results"] copy];
+		if ([localTwitterArray count] > 1) {
+			NSMutableArray *tempTweetArray = [[NSMutableArray alloc] initWithCapacity:[localTwitterArray count]];
+			for (NSDictionary *dict in localTwitterArray) {
 				KBSearchResult *tweet = [[KBSearchResult alloc] initWithDictionary:dict];
 				[tempTweetArray addObject:tweet];
 				[tweet release];
@@ -151,7 +151,7 @@
 }
 
 -(void)dealloc{
-	[twitterArray release];
+	[localTwitterArray release];
 	[super dealloc];
 }
 

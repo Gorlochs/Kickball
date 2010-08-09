@@ -17,11 +17,13 @@
 
 - (id) initWithDictionary:(NSDictionary*)statusDictionary {		
     if (self = [super init]) {
-        screenName = [statusDictionary objectForKey:@"from_user"];
-        profileImageUrl = [statusDictionary objectForKey:@"profile_image_url"];
-        tweetText = [statusDictionary objectForKey:@"text"];
+        screenName = [[statusDictionary objectForKey:@"from_user"] copy];
+        profileImageUrl = [[statusDictionary objectForKey:@"profile_image_url"] copy];
+        tweetText = [[statusDictionary objectForKey:@"text"] copy];
         createDate = [[[[KickballAPI kickballApi] twitterSearchDateFormatter] dateFromString:[statusDictionary objectForKey:@"created_at"]] retain];
-        tweetId = [statusDictionary objectForKey:@"id"];
+        tweetId = [[statusDictionary objectForKey:@"id"] copy];
+		fullName = nil;
+		clientName = nil;
         // the nil check doesn't work by itself. I must be missing something
         if ([statusDictionary objectForKey:@"geo"] != nil && ![[statusDictionary objectForKey:@"geo"] isKindOfClass:[NSNull class]]) {
             NSArray *coordinates = [[statusDictionary objectForKey:@"geo"] objectForKey:@"coordinates"];
