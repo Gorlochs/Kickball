@@ -7,7 +7,7 @@
 //
 
 #import "MGTwitterTouchJSONParser.h"
-#import "CJSONDeserializer.h"
+//#import "CJSONDeserializer.h"
 #import "SBJSON.h"
 
 @implementation MGTwitterTouchJSONParser

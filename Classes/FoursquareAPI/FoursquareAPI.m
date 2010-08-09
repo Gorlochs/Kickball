@@ -13,7 +13,8 @@
 #import "SFHFKeychainUtils.h"
 #import "KBLocationManager.h"
 #import "FSCategory.h"
-#import "CJSONDeserializer.h"
+//#import "CJSONDeserializer.h"
+#import "SBJSON.h"
 
 #define USER_AGENT @"Kickball:1.1.0"
 
@@ -723,7 +724,10 @@ static FoursquareAPI *sharedInstance = nil;
 + (NSArray *) categoriesFromResponseJSON:(NSString *) inString {
 
     NSError *error = nil;
-    NSDictionary *responseDictionary = [[CJSONDeserializer deserializer] deserializeAsDictionary:[inString dataUsingEncoding:NSUTF32BigEndianStringEncoding] error:&error];
+	SBJSON *parser = [SBJSON new];
+	NSDictionary *responseDictionary = [parser objectWithString:inString error:&error];
+	[parser release];
+    //NSDictionary *responseDictionary = [[CJSONDeserializer deserializer] deserializeAsDictionary:[inString dataUsingEncoding:NSUTF32BigEndianStringEncoding] error:&error];
     if (error) {
         DLog(@"category json error: %@", error);
     }
