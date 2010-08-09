@@ -833,6 +833,8 @@
     isTwitterOn = !isTwitterOn;
 	[self updateTwitterButton];
 	[[KBAccountManager sharedInstance] setFoursquarePollinatesTwitter:isTwitterOn];
+	[[KBAccountManager sharedInstance] checkForCrossPollinateWarning:@"foursquare"];
+
 }
 
 -(void)updateTwitterButton{
@@ -849,6 +851,8 @@
     isFacebookOn = !isFacebookOn;
 	[self updateFacebookButton];
 	[[KBAccountManager sharedInstance] setFoursquarePollinatesFacebook:isFacebookOn];
+	[[KBAccountManager sharedInstance] checkForCrossPollinateWarning:@"foursquare"];
+
 }
 
 -(void)updateFacebookButton{	

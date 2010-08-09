@@ -10,6 +10,8 @@
 #import "FacebookProxy.h"
 #import "KBTwitterManager.h"
 #import "FoursquareAPI.h"
+#import "KBMessage.h"
+#import	"KBDialogueManager.h"
 
 #define USES_TWITTER_KEY @"usesTwitter"
 #define USES_FACEBOOK_KEY @"usesFacebook"
@@ -26,6 +28,7 @@
 #define FB_POLLINATES_TW @"facebookPollinatesTwitter"
 #define FOURSQ_POLLINATES_TW @"foursquarePollinatesTwitter"
 #define FOURSQ_POLLINATES_FB @"foursquarePollinatesFacebook"
+#define CROSS_POLLINATE_WARNING @"crossPollinateWarning"
 
 static KBAccountManager *accountManager = nil;
 static BOOL initialized = NO;
@@ -178,6 +181,40 @@ static BOOL initialized = NO;
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	[userDefaults setBool:should forKey:FOURSQ_POLLINATES_FB];
 }
+
+-(void)checkForCrossPollinateWarning:(NSString*)service{
+	if ([service isEqualToString:@"twitter"]) {
+		if ([self twitterPollinatesFacebook]) {
+			[self displayCrossPollinateWarning];
+		}
+	}else if ([service isEqualToString:@"facebook"]) {
+		if ([self facebookPollinatesTwitter]) {
+			[self displayCrossPollinateWarning];
+		}
+	}else if ([service isEqualToString:@"foursquare"]) {
+		if ([self foursquarePollinatesFacebook] && [self foursquarePollinatesTwitter]) {
+			[self displayCrossPollinateWarning];
+		}
+	}else if ([service isEqualToString:@"instaCheckin"]) {
+		if ([self defaultPostToTwitter] && [self defaultPostToFacebook]) {
+			[self displayCrossPollinateWarning];
+		}
+	}
+
+}
+
+-(void)displayCrossPollinateWarning{
+	//check number of times warning has been displayed.  if more than 2, dont display anymore.
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	int numberTimesDisplayed = [userDefaults integerForKey:CROSS_POLLINATE_WARNING];
+	if (numberTimesDisplayed<2) {
+		KBMessage *message = [[KBMessage alloc] initWithMember:@"FYI" andMessage:@"If you already have your twitter and facebook accounts linked together online, you may see your posts appear twice."];
+		[[KBDialogueManager sharedInstance] displayMessage:message];
+		numberTimesDisplayed++;
+		[userDefaults setInteger:numberTimesDisplayed forKey:CROSS_POLLINATE_WARNING];
+	}
+}
+
 #pragma mark -
 #pragma mark singleton stuff
 

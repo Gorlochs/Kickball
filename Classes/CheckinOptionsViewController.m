@@ -44,9 +44,13 @@
 }
 - (IBAction) toggleFacebook{
 	[[KBAccountManager sharedInstance] setDefaultPostToFacebook:[facebookSwitch isOn]];
+	[[KBAccountManager sharedInstance] checkForCrossPollinateWarning:@"instaCheckin"];
+
 }
 - (IBAction) toggleTwitter{
 	[[KBAccountManager sharedInstance] setDefaultPostToTwitter:[twitterSwitch isOn]];
+	[[KBAccountManager sharedInstance] checkForCrossPollinateWarning:@"instaCheckin"];
+
 }
 
 - (void)didReceiveMemoryWarning {

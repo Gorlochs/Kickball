@@ -46,4 +46,6 @@
 - (void) setFacebookPollinatesTwitter:(BOOL)should;
 - (void) setFoursquarePollinatesTwitter:(BOOL)should;
 - (void) setFoursquarePollinatesFacebook:(BOOL)should;
+-(void)checkForCrossPollinateWarning:(NSString*)service;
+-(void)displayCrossPollinateWarning;
 @end

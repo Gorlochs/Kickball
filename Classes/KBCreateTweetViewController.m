@@ -255,6 +255,7 @@
     isFacebookOn = !isFacebookOn;
 	[self updateFacebookButt];
 	[[KBAccountManager sharedInstance] setTwitterPollinatesFacebook:isFacebookOn];
+	[[KBAccountManager sharedInstance] checkForCrossPollinateWarning:@"twitter"];
 
 }
 -(void) updateFacebookButt{

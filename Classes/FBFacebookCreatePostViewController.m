@@ -183,6 +183,8 @@
     isTwitterOn = !isTwitterOn;
 	[self updateTwitterButton];
 	[[KBAccountManager sharedInstance] setFacebookPollinatesTwitter:isTwitterOn];
+	[[KBAccountManager sharedInstance] checkForCrossPollinateWarning:@"facebook"];
+
 }
 -(void) updateTwitterButton{
 	if (isTwitterOn) {
