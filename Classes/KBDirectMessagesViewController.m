@@ -32,7 +32,7 @@
     NSNumber *startAtId = [NSNumber numberWithInt:0];
     if (tweets) [tweets release];
 	tweets = nil;
-	NSMutableArray *newArray = [[KBTwitterManager twitterManager] retrieveCachedStatusArrayWithKey:cachingKey];
+	NSArray *newArray = [[KBTwitterManager twitterManager] retrieveCachedStatusArrayWithKey:cachingKey];
     if (newArray != nil && [newArray count] > 0) {
 		tweets = [[NSMutableArray alloc] initWithArray:newArray];
         startAtId = ((KBTweet*)[tweets objectAtIndex:0]).tweetId;

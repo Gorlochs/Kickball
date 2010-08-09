@@ -102,9 +102,10 @@ static NSArray *expressions = nil;
 	for (NSString *expression in expressions)
 	{
 		NSString *match;
-		NSEnumerator *enumerator = [text matchEnumeratorWithRegex:expression];
-		while (match = [enumerator nextObject])
-		{
+		NSArray *matches = [text componentsMatchedByRegex:expression];
+		//while (match = [enumerator nextObject])
+		//{
+		for (match in matches){
 			CGSize matchSize = [match sizeWithFont:font];
 
 			NSRange matchRange = [text rangeOfString:match];

@@ -49,7 +49,9 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     
     // this should TOTALLY be inside the KBMapPopupView, but I couldn't find an init method that is actually being called.
     self.popupBubbleView.frame = CGRectMake(20.0, 250.0 + 300 , self.popupBubbleView.frame.size.width, self.popupBubbleView.frame.size.height);
-    self.popupBubbleView.tweetText = [[IFTweetLabel alloc] initWithFrame:CGRectMake(8, 29, 250, 50)];
+    IFTweetLabel *tweetLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(8, 29, 250, 50)];
+	self.popupBubbleView.tweetText = tweetLabel;
+	[tweetLabel release];
     self.popupBubbleView.tweetText.textColor = [UIColor colorWithWhite:0.3 alpha:1.0];
     self.popupBubbleView.tweetText.font = [UIFont fontWithName:@"Helvetica" size:12.0];
     self.popupBubbleView.tweetText.backgroundColor = [UIColor clearColor];
@@ -69,11 +71,11 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 	if (searchResults) {
 		DLog(@"search results: %@", searchResults);
 
-		twitterArray = [[[searchResults objectAtIndex:0] objectForKey:@"results"] retain];
+		NSArray *localTwitterArray = [[searchResults objectAtIndex:0] objectForKey:@"results"];
 		if (!nearbyTweets) {
 			nearbyTweets = [[NSMutableArray alloc] initWithCapacity:1];
 		}
-		for (NSDictionary *dict in twitterArray) {
+		for (NSDictionary *dict in localTwitterArray) {
 			KBSearchResult *result = [[KBSearchResult alloc] initWithDictionary:dict];
 			if (result.latitude > 0.0) {
 				[nearbyTweets addObject:result];
@@ -324,8 +326,9 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-    popupBubbleView = nil;
-    currentlyDisplayedSearchResult = nil;
+    //popupBubbleView = nil;
+	//mapViewer = nil;
+    //currentlyDisplayedSearchResult = nil;
 }
 
 
@@ -333,14 +336,14 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     [mapViewer removeAnnotations:mapViewer.annotations];
     mapViewer.delegate = nil;
     mapViewer.showsUserLocation = NO;
-    mapViewer = nil;
-    [mapViewer performSelector:@selector(release) withObject:nil afterDelay:4.0f];
+    //[mapViewer performSelector:@selector(release) withObject:nil afterDelay:4.0f];
+	[mapViewer release];
     
+	[popupBubbleView release];
     [nearbyTweets release];
     [currentlyDisplayedSearchResult release];
     [touchView release];
-    //[popupBubbleView release];
-    
+	
 	[replyCreateViewController release];
 	[retweetCreateViewController release];
     [super dealloc];

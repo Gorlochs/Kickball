@@ -45,10 +45,12 @@
 //    // Drawing code
 //}
 //*/
-//
-//- (void)dealloc {
-//    [super dealloc];
-//}
+
+- (void)dealloc {
+	[screenname release];
+	[tweetText release];
+    [super dealloc];
+}
 
 
 @end
