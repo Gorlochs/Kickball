@@ -81,7 +81,6 @@
 }
 
 -(void)threadedSubmit{
-    pool = [[NSAutoreleasePool alloc] init];
 	actionCount = 1;
     if (isFoursquareOn) {
 		actionCount++;
@@ -133,9 +132,11 @@
 	[self performSelectorOnMainThread:@selector(submitToTwitter:) withObject:tweetPhotoResponse waitUntilDone:NO];
 }
 -(void) uploadToFacebook{
+	NSAutoreleasePool *pool2 = [[NSAutoreleasePool alloc] init];
 	GraphAPI *graph = [[FacebookProxy instance] newGraph];
 	[graph postToWall:tweetTextView.text withImage:photoImage];	
 	[graph release];
+	[pool2 release];
 }
 
 - (void) submitToTwitter:(TweetPhotoResponse*)response {
@@ -327,7 +328,6 @@
 }
 
 - (void) closeUpShop {
-	[pool release];
 	[self performSelectorOnMainThread:@selector(stopProgressBar) withObject:nil waitUntilDone:NO];
 	[self.navigationController popViewControllerAnimated:YES];
 	[(KBFacebookListViewController*)delegate performSelectorOnMainThread:@selector(delayedRefresh) withObject:nil waitUntilDone:NO];
