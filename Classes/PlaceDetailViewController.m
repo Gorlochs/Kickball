@@ -236,7 +236,6 @@
         DLog(@"venue response string: %@", inString);
         self.venue = [FoursquareAPI venueFromResponseXML:inString];
         [self prepViewWithVenueInfo:self.venue];
-		//imHereButton.enabled = YES;
 
         [theTableView reloadData];
         
@@ -294,7 +293,6 @@
         [self sendPushNotification];
     }
 	
-	imHereButton.enabled = NO;
 	[self presentCheckinOverlayWithCheckin:[theCheckin retain]];
 	[theCheckin release];
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"didCheckin" object:nil]; 
@@ -977,6 +975,8 @@
 	float height = 0.0;
 	float buffer = 10.0;
     
+	imHereButton.enabled = NO;
+	
     // create view
     UIWindow* keywindow = [[UIApplication sharedApplication] keyWindow];
     checkinView = [[UIView alloc] initWithFrame:[keywindow frame]];
