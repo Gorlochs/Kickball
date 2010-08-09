@@ -60,9 +60,7 @@
 
 - (void) storeCachedTwitterXAuthAccessTokenString: (NSString *)tokenString forUsername:(NSString *)username
 {
-	//store the username so we can get their profile pic later
-	[[NSUserDefaults standardUserDefaults] setObject:username forKey:@"twittername"];
-	[[NSUserDefaults standardUserDefaults] synchronize];
+	[[NSUserDefaults standardUserDefaults] setObject:username forKey:@"twittername"]; //store the username
 	//
 	// Note: do not use NSUserDefaults to store this in a production environment. 
 	// ===== Use the keychain instead. Check out SFHFKeychainUtils if you want 

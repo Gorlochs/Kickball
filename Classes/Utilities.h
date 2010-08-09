@@ -52,5 +52,6 @@ static const int CITY_RADIUS_LARGE = 106934;
 + (NSString*) shortenUrl:(NSString*)longUrl;
 + (NSString*) convertVenueToFoursquareUrl:(NSString*)venueId;
 + (NSString*) getShortenedUrlFromFoursquareVenueId:(NSString*)venueId;
++ (natural_t)getMemory;
 
 @end

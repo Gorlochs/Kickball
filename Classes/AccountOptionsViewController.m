@@ -190,6 +190,7 @@
 
 - (void) storeCachedTwitterXAuthAccessTokenString: (NSString *)tokenString forUsername:(NSString *)username
 {
+	[[NSUserDefaults standardUserDefaults] setObject:username forKey:@"twittername"]; //store the username
 	// FIXME
 	// Note: do not use NSUserDefaults to store this in a production environment. 
 	// ===== Use the keychain instead. Check out SFHFKeychainUtils if you want 
