@@ -91,7 +91,6 @@
     
     venueDetailButton.hidden = YES;
     twitterButton.enabled = NO;
-    
 	
 	specialText.font = [UIFont systemFontOfSize:14.0];
 	specialText.textColor = [UIColor colorWithRed:0.0 green:86.0/255.0 blue:136.0/255.0 alpha:1.0];
@@ -281,7 +280,6 @@
 		theTableView.hidden = NO;
 		doCheckin = NO;
 		showCheckinView = NO;
-		imHereButton.enabled = NO;
     }
 }
 
@@ -296,6 +294,7 @@
         [self sendPushNotification];
     }
 	
+	imHereButton.enabled = NO;
 	[self presentCheckinOverlayWithCheckin:[theCheckin retain]];
 	[theCheckin release];
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"didCheckin" object:nil]; 
