@@ -604,9 +604,9 @@
 - (void) flipBetweenMapAndList {
     FriendsMapViewController *mapViewController = [[FriendsMapViewController alloc] initWithNibName:@"FriendsMapView_v2" bundle:nil];
     if ([self.recentCheckins count] > 0 && [self.todayCheckins count] > 0) {
-        mapViewController.checkins = [[NSArray arrayWithArray:self.recentCheckins] arrayByAddingObjectsFromArray:self.todayCheckins];
+        [mapViewController setCheckins:[[NSArray arrayWithArray:self.recentCheckins] arrayByAddingObjectsFromArray:self.todayCheckins]];
     } else if ([self.nonCityRecentCheckins count] > 0 || [self.nonCityTodayCheckins count] > 0 || [self.nonCityYesterdayCheckins count] > 0) {
-        mapViewController.checkins = [[[NSArray arrayWithArray:self.nonCityRecentCheckins] arrayByAddingObjectsFromArray:self.nonCityTodayCheckins] arrayByAddingObjectsFromArray:self.nonCityYesterdayCheckins];
+        [mapViewController setCheckins:[[[NSArray arrayWithArray:self.nonCityRecentCheckins] arrayByAddingObjectsFromArray:self.nonCityTodayCheckins] arrayByAddingObjectsFromArray:self.nonCityYesterdayCheckins]];
     }
     [self.navigationController pushViewController:mapViewController animated:NO];
     [mapViewController release];

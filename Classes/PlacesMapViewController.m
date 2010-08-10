@@ -18,18 +18,18 @@
 
 @implementation PlacesMapViewController
 
-@synthesize mapViewer, bestEffortAtLocation, searchKeywords;
+@synthesize bestEffortAtLocation, searchKeywords;
 
 
  // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     pageType = KBPageTypePlaces;
     pageViewType = KBPageViewTypeMap;
-    
+    venues = nil;
     [super viewDidLoad];
     
     // this hack is here to help make the toggle 'global'
-    if (self.venues == nil || [self.venues count] == 0) {
+    if (venues == nil || [venues count] == 0) {
         [self startProgressBar:@"Retrieving venues..."];
         [[FoursquareAPI sharedInstance] getVenuesNearLatitude:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] latitude]]
                                                  andLongitude:[NSString stringWithFormat:@"%f",[[KBLocationManager locationManager] longitude]]
@@ -47,9 +47,11 @@
 - (void)venuesResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     DLog(@"venues: %@", inString);
 	NSDictionary *allVenues = [FoursquareAPI venuesFromResponseXML:inString];
-    self.venues = [[NSMutableArray alloc] initWithCapacity:1];
+	[venues release];
+	venues = nil;
+    venues = [[NSMutableArray alloc] initWithCapacity:1];
     for (NSString *key in [allVenues allKeys]) {
-        [self.venues addObjectsFromArray:[allVenues objectForKey:key]];
+        [venues addObjectsFromArray:[allVenues objectForKey:key]];
     }
     [self stopProgressBar];
     [self refreshVenuePoints];
@@ -86,8 +88,8 @@
 
 - (void) setVenues:(NSMutableArray *) venue{
 	[venues release];
+	venues = nil;
 	venues = venue;
-	[venues retain];
     
 	//[self refreshVenuePoints];
 }
@@ -299,11 +301,13 @@
     for (NSString *key in keys) {
         [venueArray addObjectsFromArray:[allVenues objectForKey:key]];
     }
-	self.venues = [NSArray arrayWithArray:venueArray];
-    DLog(@"searched on venues: %@", self.venues);
+	[venues release];
+	venues = nil;
+	venues = [venueArray copy];
+    DLog(@"searched on venues: %@", venues);
     [venueArray release];
     [self stopProgressBar];
-    [self addAnnotationsToMap:self.venues];
+    [self addAnnotationsToMap:venues];
 }
 
 - (void)allVenuesResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
@@ -314,8 +318,10 @@
     for (NSString *key in keys) {
         [venueArray addObjectsFromArray:[allVenues objectForKey:key]];
     }
-	self.venues = [NSArray arrayWithArray:venueArray];
-    DLog(@"searched on venues: %@", self.venues);
+	[venues release];
+	venues = nil;
+	venues = [venueArray copy];
+    DLog(@"searched on venues: %@", venues);
     [venueArray release];
     [self stopProgressBar];
     [self refreshVenuePoints];
@@ -355,16 +361,15 @@
 
 - (void) dealloc {
     // all this is a fix for the MKMapView bug where the bouncing blue dot animation causes a crash when you go back one view
-    [self.mapViewer removeAnnotations:self.mapViewer.annotations];
-    self.mapViewer.delegate = nil;
-    self.mapViewer.showsUserLocation = NO;
-    self.mapViewer = nil;
-    [mapViewer performSelector:@selector(release) withObject:nil afterDelay:4.0f];
-    
+    [mapViewer removeAnnotations:mapViewer.annotations];
+    mapViewer.delegate = nil;
+    mapViewer.showsUserLocation = NO;
+    [mapViewer release];
+
     [venues release];
     [bestEffortAtLocation release];
     [searchbox release];
     [switchingButton release];
-    if (false) [super dealloc]; // I assume that this is just so that there is no Xcode warning
+    [super dealloc]; // I assume that this is just so that there is no Xcode warning
 }
 @end

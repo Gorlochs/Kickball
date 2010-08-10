@@ -144,7 +144,7 @@
         [allvenues addObjectsFromArray:[venues objectForKey:key]];
     }
     
-	mapViewController.venues = allvenues;
+	[mapViewController setVenues:allvenues];
     mapViewController.searchKeywords = searchbox.text;
     [allvenues release];
     [self.navigationController pushViewController:mapViewController animated:NO];

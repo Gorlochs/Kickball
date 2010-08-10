@@ -19,8 +19,6 @@
 
 @implementation FriendsMapViewController
 
-@synthesize mapViewer, checkins;
-
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
@@ -28,6 +26,7 @@
     pageViewType = KBPageViewTypeMap;
     [super viewDidLoad];
     [FlurryAPI logEvent:@"Friends Map View"];
+	checkins = nil;
 }
  
 -(void) viewDidAppear:(BOOL)animated{
@@ -55,7 +54,7 @@
 }
 
 - (void)viewDidUnload {
-    self.mapViewer = nil;
+    //mapViewer = nil;
 }
 
 - (void) refreshMapRegion {
@@ -66,12 +65,12 @@
 // map is to be centered on the user and a generic zoom level
 // FUTURE: allow user to set zoom level in settings
 - (void) setCheckins:(NSArray *) checkin {
-	[self.checkins release];
+	[checkins release];
+	checkins = nil;
 	checkins = checkin;
-	[self.checkins retain];
 
-	if (self.checkins && self.checkins.count > 0) {
-		DLog(@"checkins count: %d", self.checkins.count);
+	if (checkins && checkins.count > 0) {
+		DLog(@"checkins count: %d", checkins.count);
 		
 		MKCoordinateRegion region;
 		MKCoordinateSpan span;
@@ -94,7 +93,7 @@
 }
 
 - (void) refreshFriendPoints {
-	for(FSCheckin * checkin in self.checkins){		
+	for(FSCheckin * checkin in checkins){		
 		FSVenue * checkVenue = checkin.venue;
 		if(checkVenue.geolat && checkVenue.geolong){
 			CLLocationCoordinate2D location = checkVenue.location;
@@ -187,15 +186,13 @@
 
 - (void)dealloc {
     // all this is a fix for the MKMapView bug where the bouncing blue dot animation causes a crash when you go back one view
-    [self.mapViewer removeAnnotations:self.mapViewer.annotations];
-    self.mapViewer.delegate = nil;
-    self.mapViewer.showsUserLocation = NO;
-    self.mapViewer = nil;
+    [mapViewer removeAnnotations:mapViewer.annotations];
+    mapViewer.delegate = nil;
+    mapViewer.showsUserLocation = NO;
+    [mapViewer release];
     
-    [mapViewer performSelector:@selector(release) withObject:nil afterDelay:4.0f];
-    //[mapViewer release];
     [checkins release];
-    if (false) [super dealloc]; // I assume that this is just so that there is no Xcode warning
+	[super dealloc]; // I assume that this is just so that there is no Xcode warning
 }
 
 @end

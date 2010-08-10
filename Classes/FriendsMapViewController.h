@@ -19,9 +19,6 @@
 	MKCoordinateRegion mapRegion;
 }
 
-@property (nonatomic, retain) NSArray * checkins;
-@property (nonatomic, retain) MKMapView * mapViewer;
-
 - (void) refreshFriendPoints;
 - (void) refreshMapRegion;
 - (void) setCheckins:(NSArray *) checkin;

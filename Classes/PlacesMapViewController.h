@@ -25,8 +25,6 @@
     BOOL isMapFinishedLoading;
 }
 
-@property (nonatomic, retain) NSMutableArray * venues;
-@property (nonatomic, retain) MKMapView * mapViewer;
 @property (nonatomic, retain) CLLocation *bestEffortAtLocation;
 @property (nonatomic, retain) NSString *searchKeywords;
 
