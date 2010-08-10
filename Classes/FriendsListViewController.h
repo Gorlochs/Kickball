@@ -86,5 +86,6 @@
 -(void)updateFoursquareButton;
 -(void)updateFacebookButton;
 -(void)updateTwitterButton;
+-(void)reloadCheckinTable;
 
 @end

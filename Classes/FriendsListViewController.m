@@ -109,9 +109,9 @@
 		DLog(@"Foursquare is not authenticated");
 		[self showLoginView];  //new method
 	} else {
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTable) name:@"refreshFriendsList" object:nil];
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadCheckinTable) name:@"refreshFriendsList" object:nil];
 		[self doInitialDisplay];
-		didInitialDisplay = YES;
+		//didInitialDisplay = YES;
 	}
 	
 	// blech
@@ -141,7 +141,8 @@
 //        [self.view bringSubviewToFront:instructionView];
 //    }  
     [[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
-    
+	//[[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceivedWithRefresh:withResponseString:)];
+
     if (![self getAuthenticatedUser]) {
         [[FoursquareAPI sharedInstance] getUser:nil withTarget:self andAction:@selector(userResponseReceived:withResponseString:)];
     }
@@ -624,100 +625,8 @@
 		if (checkins) [checkins release];
 		checkins = [FoursquareAPI checkinsFromResponseXML:inString];
 	
-		if (recentCheckins!=nil) {
-			[recentCheckins release];
-			recentCheckins = nil;
-		}
-		if (todayCheckins!=nil) {
-			[todayCheckins release];
-			todayCheckins = nil;
-		}
-		if (yesterdayCheckins!=nil) {
-			[yesterdayCheckins release];
-			yesterdayCheckins = nil;
-		}
-		if (nonCityRecentCheckins!=nil) {
-			[nonCityRecentCheckins release];
-			nonCityRecentCheckins = nil;
-		}
-		if (nonCityTodayCheckins!=nil) {
-			[nonCityTodayCheckins release];
-			nonCityTodayCheckins = nil;
-		}
-		if (nonCityYesterdayCheckins!=nil) {
-			[nonCityYesterdayCheckins release];
-			nonCityYesterdayCheckins = nil;
-		}
-        recentCheckins = [[NSMutableArray alloc] init];
-        todayCheckins = [[NSMutableArray alloc] init];
-        yesterdayCheckins = [[NSMutableArray alloc] init];
-        nonCityRecentCheckins = [[NSMutableArray alloc] init];
-        nonCityTodayCheckins = [[NSMutableArray alloc] init];
-        nonCityYesterdayCheckins = [[NSMutableArray alloc] init];
-        
-        NSDate *oneHourFromNow = [[[NSDate alloc] initWithTimeIntervalSinceNow:-60*60*1] autorelease];
-        NSDate *twentyfourHoursFromNow = [[[NSDate alloc] initWithTimeIntervalSinceNow:-60*60*24] autorelease];
-        oneHourFromNow = [[KickballAPI kickballApi] convertToUTC:oneHourFromNow];
-        twentyfourHoursFromNow = [[KickballAPI kickballApi] convertToUTC:twentyfourHoursFromNow];
-        
-        NSUInteger unitFlags = NSMinuteCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit;
-		int currentRadius = [(NSNumber*)[[Utilities sharedInstance] getCityRadius] intValue];
-		BOOL isInfiniteRadius = (currentRadius == -1 ? YES : NO);
-        // FIXME: this is nasty ugly. It should be done the same way that Places List is done. This is crap. -shawn-
-        for (FSCheckin *checkin in checkins) {
-            NSDate *date = [[[Utilities sharedInstance] foursquareCheckinDateFormatter] dateFromString:checkin.created];
-            date = [[KickballAPI kickballApi] convertToUTC:date];
-			// to support infinity... see if the user is set to CITY_RADIUS_INFINITY then there is no point doing the comparison.
-			if (isInfiniteRadius) {
-				if ([date compare:oneHourFromNow] == NSOrderedDescending) {
-                    [self.recentCheckins addObject:checkin];
-                } else if ([date compare:oneHourFromNow] == NSOrderedAscending && [date compare:twentyfourHoursFromNow] == NSOrderedDescending) {
-                    [self.todayCheckins addObject:checkin];
-                } else {
-                    [self.yesterdayCheckins addObject:checkin];
-                }
-			} else {
-				if (checkin.distanceFromLoggedInUser < [[[Utilities sharedInstance] getCityRadius] integerValue]) {
-					if ([date compare:oneHourFromNow] == NSOrderedDescending) {
-						[self.recentCheckins addObject:checkin];
-					} else if ([date compare:oneHourFromNow] == NSOrderedAscending && [date compare:twentyfourHoursFromNow] == NSOrderedDescending) {
-						[self.todayCheckins addObject:checkin];
-					} else {
-						[self.yesterdayCheckins addObject:checkin];
-					}
-				} else {                
-					if ([date compare:oneHourFromNow] == NSOrderedDescending) {
-						[self.nonCityRecentCheckins addObject:checkin];
-					} else if ([date compare:oneHourFromNow] == NSOrderedAscending && [date compare:twentyfourHoursFromNow] == NSOrderedDescending) {
-						[self.nonCityTodayCheckins addObject:checkin];
-					} else {
-						[self.nonCityYesterdayCheckins addObject:checkin];
-					}
-				}
-			}
-            
-            NSDateComponents *components = [gregorian components:unitFlags fromDate:[[KickballAPI kickballApi] convertToUTC:[NSDate date]] toDate:date options:0];
-            NSInteger minutes = [components minute] * -1;
-            NSInteger hours = [components hour] * -1;
-            NSInteger days = [components day] * -1;
-            if (days == 0 && hours == 0) {
-                checkin.truncatedTimeNumeral = [NSString stringWithFormat:@"%02d", minutes];
-            } else if (days == 0) {
-                checkin.truncatedTimeNumeral = [NSString stringWithFormat:@"%02d", hours];
-            } else {
-                checkin.truncatedTimeNumeral = [NSString stringWithFormat:@"%02d", days];
-            }
-        }
-        
-        DLog(@"all checkins: %d", [self.checkins count]);
-        DLog(@"recent checkins: %d", [self.recentCheckins count]);
-        DLog(@"today checkins: %d", [self.todayCheckins count]);
-        DLog(@"yesterday checkins: %d", [self.yesterdayCheckins count]);
-        DLog(@"non city recent checkins: %d", [self.nonCityRecentCheckins count]);
-        DLog(@"non city today checkins: %d", [self.nonCityTodayCheckins count]);
-        DLog(@"non city yesterday checkins: %d", [self.nonCityYesterdayCheckins count]);
-        
-        [theTableView reloadData];
+		[self reloadCheckinTable];
+		
 //        int sectionToScrollTo = [self.recentCheckins count] > 0 ? SECTION_RECENT_CHECKINS : ([self.todayCheckins count] > 0 ? SECTION_TODAY_CHECKINS: ([self.nonCityRecentCheckins count] > 0 ? SECTION_NONCITY_RECENT_CHECKINS : 0));
 //        [theTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:sectionToScrollTo] atScrollPosition:UITableViewScrollPositionTop animated:NO];
 
@@ -749,7 +658,110 @@
 			[NSThread detachNewThreadSelector:@selector(updateFriendsPingsOn) toTarget:self withObject:nil];
 			didPingUpdateRun = YES;
 		}
+		if (!didInitialDisplay) {
+			didInitialDisplay = YES;
+			[self dataSourceDidFinishLoadingNewData];
+
+		}
     }
+}
+
+-(void)reloadCheckinTable{
+	if (recentCheckins!=nil) {
+		[recentCheckins release];
+		recentCheckins = nil;
+	}
+	if (todayCheckins!=nil) {
+		[todayCheckins release];
+		todayCheckins = nil;
+	}
+	if (yesterdayCheckins!=nil) {
+		[yesterdayCheckins release];
+		yesterdayCheckins = nil;
+	}
+	if (nonCityRecentCheckins!=nil) {
+		[nonCityRecentCheckins release];
+		nonCityRecentCheckins = nil;
+	}
+	if (nonCityTodayCheckins!=nil) {
+		[nonCityTodayCheckins release];
+		nonCityTodayCheckins = nil;
+	}
+	if (nonCityYesterdayCheckins!=nil) {
+		[nonCityYesterdayCheckins release];
+		nonCityYesterdayCheckins = nil;
+	}
+	recentCheckins = [[NSMutableArray alloc] init];
+	todayCheckins = [[NSMutableArray alloc] init];
+	yesterdayCheckins = [[NSMutableArray alloc] init];
+	nonCityRecentCheckins = [[NSMutableArray alloc] init];
+	nonCityTodayCheckins = [[NSMutableArray alloc] init];
+	nonCityYesterdayCheckins = [[NSMutableArray alloc] init];
+	
+	NSDate *oneHourFromNow = [[[NSDate alloc] initWithTimeIntervalSinceNow:-60*60*1] autorelease];
+	NSDate *twentyfourHoursFromNow = [[[NSDate alloc] initWithTimeIntervalSinceNow:-60*60*24] autorelease];
+	oneHourFromNow = [[KickballAPI kickballApi] convertToUTC:oneHourFromNow];
+	twentyfourHoursFromNow = [[KickballAPI kickballApi] convertToUTC:twentyfourHoursFromNow];
+	
+	NSUInteger unitFlags = NSMinuteCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit;
+	int currentRadius = [(NSNumber*)[[Utilities sharedInstance] getCityRadius] intValue];
+	BOOL isInfiniteRadius = (currentRadius == -1 ? YES : NO);
+	// FIXME: this is nasty ugly. It should be done the same way that Places List is done. This is crap. -shawn-
+	for (FSCheckin *checkin in checkins) {
+		NSDate *date = [[[Utilities sharedInstance] foursquareCheckinDateFormatter] dateFromString:checkin.created];
+		date = [[KickballAPI kickballApi] convertToUTC:date];
+		// to support infinity... see if the user is set to CITY_RADIUS_INFINITY then there is no point doing the comparison.
+		if (isInfiniteRadius) {
+			if ([date compare:oneHourFromNow] == NSOrderedDescending) {
+				[self.recentCheckins addObject:checkin];
+			} else if ([date compare:oneHourFromNow] == NSOrderedAscending && [date compare:twentyfourHoursFromNow] == NSOrderedDescending) {
+				[self.todayCheckins addObject:checkin];
+			} else {
+				[self.yesterdayCheckins addObject:checkin];
+			}
+		} else {
+			if (checkin.distanceFromLoggedInUser < [[[Utilities sharedInstance] getCityRadius] integerValue]) {
+				if ([date compare:oneHourFromNow] == NSOrderedDescending) {
+					[self.recentCheckins addObject:checkin];
+				} else if ([date compare:oneHourFromNow] == NSOrderedAscending && [date compare:twentyfourHoursFromNow] == NSOrderedDescending) {
+					[self.todayCheckins addObject:checkin];
+				} else {
+					[self.yesterdayCheckins addObject:checkin];
+				}
+			} else {                
+				if ([date compare:oneHourFromNow] == NSOrderedDescending) {
+					[self.nonCityRecentCheckins addObject:checkin];
+				} else if ([date compare:oneHourFromNow] == NSOrderedAscending && [date compare:twentyfourHoursFromNow] == NSOrderedDescending) {
+					[self.nonCityTodayCheckins addObject:checkin];
+				} else {
+					[self.nonCityYesterdayCheckins addObject:checkin];
+				}
+			}
+		}
+		
+		NSDateComponents *components = [gregorian components:unitFlags fromDate:[[KickballAPI kickballApi] convertToUTC:[NSDate date]] toDate:date options:0];
+		NSInteger minutes = [components minute] * -1;
+		NSInteger hours = [components hour] * -1;
+		NSInteger days = [components day] * -1;
+		if (days == 0 && hours == 0) {
+			checkin.truncatedTimeNumeral = [NSString stringWithFormat:@"%02d", minutes];
+		} else if (days == 0) {
+			checkin.truncatedTimeNumeral = [NSString stringWithFormat:@"%02d", hours];
+		} else {
+			checkin.truncatedTimeNumeral = [NSString stringWithFormat:@"%02d", days];
+		}
+	}
+	
+	DLog(@"all checkins: %d", [self.checkins count]);
+	DLog(@"recent checkins: %d", [self.recentCheckins count]);
+	DLog(@"today checkins: %d", [self.todayCheckins count]);
+	DLog(@"yesterday checkins: %d", [self.yesterdayCheckins count]);
+	DLog(@"non city recent checkins: %d", [self.nonCityRecentCheckins count]);
+	DLog(@"non city today checkins: %d", [self.nonCityTodayCheckins count]);
+	DLog(@"non city yesterday checkins: %d", [self.nonCityYesterdayCheckins count]);
+	
+	[theTableView reloadData];
+	
 }
 
 - (void) updateFriendsPingsOn {

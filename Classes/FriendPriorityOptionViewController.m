@@ -67,7 +67,8 @@
 		[[Utilities sharedInstance] setCityRadius:CITY_RADIUS_TINY];
 		[detailText setImage:[UIImage imageNamed:@"opt_5-desc.png"]];
 	}
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"refreshFriendsList" object:nil];
+	NSNotification *reloadNote = [NSNotification notificationWithName:@"refreshFriendsList" object:nil];
+	[[NSNotificationQueue defaultQueue] enqueueNotification:reloadNote postingStyle:NSPostWhenIdle];
 
 }
 
