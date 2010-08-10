@@ -210,6 +210,7 @@ static BOOL initialized = NO;
 	if (numberTimesDisplayed<2) {
 		KBMessage *message = [[KBMessage alloc] initWithMember:@"FYI" andMessage:@"If you already have your twitter and facebook accounts linked together online, you may see your posts appear twice."];
 		[[KBDialogueManager sharedInstance] displayMessage:message];
+		[message release];
 		numberTimesDisplayed++;
 		[userDefaults setInteger:numberTimesDisplayed forKey:CROSS_POLLINATE_WARNING];
 	}

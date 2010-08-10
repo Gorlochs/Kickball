@@ -367,7 +367,7 @@
 			return YES;
 		}
 	}
-
+	return YES;
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
