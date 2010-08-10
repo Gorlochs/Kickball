@@ -249,7 +249,7 @@ const NSString *kickballDomain = @"http://kickball.gorlochs.com/kickball";
     DLog(@"****** KBBaseViewController MEMORY WARNING!!! ********");
     DLog(@"******************************************************");
 	
-	// Release any cached data, images, etc that aren't in use.
+//	self.navigationController.viewControllers = [NSArray arrayWithObjects:[self.navigationController.viewControllers objectAtIndex:0], self, nil];
 }
 
 - (void)dealloc {
