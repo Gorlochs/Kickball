@@ -4746,7 +4746,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Adam Winiecki (73XW6X7UZD)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Shawn Bernard (6MN36SS56H)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -4756,25 +4756,11 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes\"",
-					"\"$(SRCROOT)/../../../Desktop/PinchAnalytics-r69\"",
-					"\"$(SRCROOT)/../../../Desktop\"",
-					/Developer/iPhone30/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk/System/Library/Frameworks/StoreKit.framework,
-					"\"$(SRCROOT)/../BoomboxPro/Classes\"",
-					"\"$(SRCROOT)/../../../Desktop/libYAJLIPhone-0.2.10 Folder\"",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/libs\"",
-					"\"$(SRCROOT)/../../../Desktop/PinchAnalytics-r91\"",
-					"\"$(SRCROOT)/../../../Desktop/iphone-exif-0-9.1 Folder/Release-iphoneos\"",
-					"\"$(SRCROOT)/Classes/Libraries & Headers/OAuthConsumer\"",
-					"\"$(SRCROOT)/../XAuthTwitterEngine/XAuthTwitterEngineDemo/Libraries & Headers/OAuthConsumer\"",
-					"\"$(SRCROOT)/Classes/OAuth/OAuthConsumerLib\"",
-					"\"$(SRCROOT)/../../../Downloads/libYAJLIPhone-0.2.2\"",
 					"\"$(SRCROOT)/..\"",
-					"\"$(SRCROOT)/../../../Downloads/Flurry iPhone SDK v2.2/FlurryLibWithLocation\"",
-					"\"$(SRCROOT)/../../../Downloads\"",
 				);
 				PRODUCT_NAME = kickball;
-				"PROVISIONING_PROFILE[sdk=*]" = "AB9D818C-924D-48E5-BBC2-20D7DDC1CA7F";
 			};
 			name = Debug;
 		};
@@ -4782,7 +4768,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Adam Winiecki (73XW6X7UZD)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Shawn Bernard (6MN36SS56H)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Kickball_Prefix.pch;
@@ -4796,25 +4782,12 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes\"",
-					"\"$(SRCROOT)/../../../Desktop/PinchAnalytics-r69\"",
-					"\"$(SRCROOT)/../../../Desktop\"",
-					/Developer/iPhone30/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk/System/Library/Frameworks/StoreKit.framework,
-					"\"$(SRCROOT)/../BoomboxPro/Classes\"",
-					"\"$(SRCROOT)/../../../Desktop/libYAJLIPhone-0.2.10 Folder\"",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/libs\"",
-					"\"$(SRCROOT)/../../../Desktop/PinchAnalytics-r91\"",
-					"\"$(SRCROOT)/../../../Desktop/iphone-exif-0-9.1 Folder/Release-iphoneos\"",
-					"\"$(SRCROOT)/Classes/Libraries & Headers/OAuthConsumer\"",
-					"\"$(SRCROOT)/../XAuthTwitterEngine/XAuthTwitterEngineDemo/Libraries & Headers/OAuthConsumer\"",
-					"\"$(SRCROOT)/Classes/OAuth/OAuthConsumerLib\"",
-					"\"$(SRCROOT)/../../../Downloads/libYAJLIPhone-0.2.2\"",
 					"\"$(SRCROOT)/..\"",
-					"\"$(SRCROOT)/../../../Downloads/Flurry iPhone SDK v2.2/FlurryLibWithLocation\"",
-					"\"$(SRCROOT)/../../../Downloads\"",
 				);
 				PRODUCT_NAME = kickball;
-				"PROVISIONING_PROFILE[sdk=*]" = "AB9D818C-924D-48E5-BBC2-20D7DDC1CA7F";
+				"PROVISIONING_PROFILE[sdk=*]" = "E7AE2963-7E6A-4105-8D47-A973A63B6364";
 			};
 			name = Release;
 		};
@@ -4842,7 +4815,7 @@
 				PREBINDING = NO;
 				PROVISIONING_PROFILE = "DC45A20E-0AB7-429E-A35E-2D0DAE94FF84";
 				"PROVISIONING_PROFILE[sdk=*]" = "DC45A20E-0AB7-429E-A35E-2D0DAE94FF84";
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos4.0;
 			};
 			name = Debug;
 		};
