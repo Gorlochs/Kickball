@@ -431,12 +431,12 @@
     [retweetTweetText release];
 	[directMentionToScreenname release];
 	[tweetPhotoResponse release];
-    
+    [tweetPhoto release];
 //    [foursquareButton release];
 //    [facebookButton release];
 //    [geotagButton release];
 //    [addPhotoButton release];
-    [photoImage release];
+    if (photoImage) [photoImage release];
     //[photoManager release];
 //    [thumbnailPreview release];
     [super dealloc];
