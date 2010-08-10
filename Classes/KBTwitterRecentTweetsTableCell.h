@@ -16,8 +16,6 @@
     
     UIImageView *topLineImage;
     UIImageView *bottomLineImage;
-    
-    UIButton *retweetButton;
 }
 
 @property (nonatomic, retain) UILabel *dateLabel;

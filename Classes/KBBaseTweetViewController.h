@@ -23,7 +23,6 @@
     NSMutableArray *tweets;
     NSString *cachingKey;
     int pageNum;
-    NSArray *twitterArray;
     IBOutlet UIView *noResultsView;
     
     BOOL requeryWhenTableGetsToBottom;

@@ -13,7 +13,6 @@
 @interface KBTwitterUserTableCell : UITableViewCell {
     TTImageView *userIcon;
     UILabel *userName;
-    UIImageView *iconBgImage;
 }
 
 @property (nonatomic, retain) TTImageView *userIcon;

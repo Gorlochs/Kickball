@@ -16,7 +16,7 @@
 @synthesize dateLabel;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-    if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
+	   if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
 		self.backgroundColor = [UIColor colorWithRed:240.0/250.0 green:240.0/250.0 blue:240.0/250.0 alpha:1.0];
 		
         // Initialization code
@@ -38,13 +38,15 @@
         //tweetText.shadowOffset = CGSizeMake(1.0, 1.0);
         [self addSubview:tweetText];
         
-        topLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderTop.png"]];
+        UIImageView *topLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderTop.png"]];
         topLineImage.frame = CGRectMake(0, 0, self.frame.size.width, 1);
         [self addSubview:topLineImage];
+		[topLineImage release];
         
-        bottomLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderBottom.png"]];
+        UIImageView *bottomLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderBottom.png"]];
         bottomLineImage.frame = CGRectMake(0, 1, self.frame.size.width, 1);
         [self addSubview:bottomLineImage];
+		[bottomLineImage release];
         
 //        retweetButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
 //        retweetButton.frame = CGRectMake(250, self.frame.size.height - 10, 92, 39);
@@ -75,9 +77,6 @@
 - (void)dealloc {
     [tweetText release];
     [dateLabel release];
-    [topLineImage release];
-    [bottomLineImage release];
-    [retweetButton release];
     [super dealloc];
 }
 

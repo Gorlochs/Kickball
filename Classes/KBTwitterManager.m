@@ -253,9 +253,8 @@ static KBTwitterManager *sharedInstance = nil;
 }
 
 - (NSArray*) retrieveCachedStatusArrayWithKey:(NSString*)key {
-    DLog(@"retrieving statuses 1!");
+    DLog(@"retrieving statuses!");
     NSData *statusArrayData = [[NSUserDefaults standardUserDefaults] dataForKey:key];
-    DLog(@"retrieving statuses 2!");
     return [NSKeyedUnarchiver unarchiveObjectWithData:statusArrayData];
 }
 

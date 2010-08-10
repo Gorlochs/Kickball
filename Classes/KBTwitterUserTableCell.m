@@ -24,9 +24,10 @@
         userIcon.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
         [self addSubview:userIcon];
         
-        iconBgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellIconBorder.png"]];
+        UIImageView *iconBgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellIconBorder.png"]];
         iconBgImage.frame = CGRectMake(6, 4, 54, 54);
         [self addSubview:iconBgImage];
+		[iconBgImage release];
         
         userName = [[UILabel alloc] initWithFrame:CGRectMake(66, 19, 150, 20)];
         userName.textColor = [UIColor colorWithRed:25.0/255.0 green:144.0/255.0 blue:219.0/255.0 alpha:1.0];
@@ -51,7 +52,6 @@
 - (void)dealloc {
     [userIcon release];
     [userName release];
-    [iconBgImage release];
     [super dealloc];
 }
 

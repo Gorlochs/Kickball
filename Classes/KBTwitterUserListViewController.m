@@ -56,7 +56,7 @@
 
 - (void)userInfoReceived:(NSArray *)userInfo {
 	if (userInfo) {
-		twitterArray = [[userInfo objectAtIndex:0] objectForKey:@"users"]; //retain];
+		NSArray *twitterArray = [[userInfo objectAtIndex:0] objectForKey:@"users"];
 		
 		NSMutableArray *tempTweetArray = [[NSMutableArray alloc] initWithCapacity:[twitterArray count]];
 		for (NSDictionary *dict in twitterArray) {

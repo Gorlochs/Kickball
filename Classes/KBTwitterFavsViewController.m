@@ -54,9 +54,8 @@
 - (void)statusesReceived:(NSArray *)statuses {
   DLog(@"received favorites statuses %@", statuses);
 	if (statuses) {
-		twitterArray = statuses; //retain];
-		NSMutableArray *tempTweetArray = [[NSMutableArray alloc] initWithCapacity:[twitterArray count]];
-		for (NSDictionary *dict in twitterArray) {
+		NSMutableArray *tempTweetArray = [[NSMutableArray alloc] initWithCapacity:[statuses count]];
+		for (NSDictionary *dict in statuses) {
 			KBTweet *tweet = [[KBTweet alloc] initWithDictionary:dict];
 			[tempTweetArray addObject:tweet];
 			[tweet release];
