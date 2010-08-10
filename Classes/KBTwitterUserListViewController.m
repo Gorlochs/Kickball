@@ -41,7 +41,7 @@
 }
 
 - (void)statusesReceived:(NSArray *)statuses {
-  [super statusesReceived:statuses];
+  //this classes super doesn't *have* a statusesReceived... [super statusesReceived:statuses];
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -63,7 +63,6 @@
 }
 
 - (void) executeQuery:(int)pageNumber {
-NSLog(@"requesting mentions");
     [self startProgressBar:@"Retrieving more tweets..."];
     [twitterEngine getRepliesSinceID:0 startingAtPage:pageNumber count:25];
 }
