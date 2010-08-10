@@ -167,6 +167,9 @@ static KBTwitterManager *sharedInstance = nil;
 - (void)stopProgressBar {
 	[(KBBaseViewController*)delegate stopProgressBar];
 }
+- (void)delayedViewLoadFailure { //wait for the animation to finish loading the new view, or we will actually go back two pages instead of one
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"twitterViewLoadFailure" object:nil];
+}
 - (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error
 {
 	DLog(@"actual Twitter request failed 2: %@ with error:%@", connectionIdentifier, error);
@@ -178,6 +181,7 @@ static KBTwitterManager *sharedInstance = nil;
 			{
 				// Unauthorized. The user's credentials failed to verify.
 				UIAlertViewQuick(@"Oops!", @"This person has protected their tweets.  You need to send a request before you can start following this person.", @"OK");	
+				[NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(delayedViewLoadFailure) userInfo:nil repeats:NO];
 				break;				
 			}
 				
@@ -185,6 +189,7 @@ static KBTwitterManager *sharedInstance = nil;
 			{
 				// Page doesn't exist. e.g., a nonexistant username was searched on
 				UIAlertViewQuick(@"Page Does Not Exist", @"The Twitter information that you are looking for does not exist.", @"OK");	
+				[NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(delayedViewLoadFailure) userInfo:nil repeats:NO];
 				break;				
 			}
 				

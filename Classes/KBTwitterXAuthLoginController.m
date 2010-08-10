@@ -167,6 +167,7 @@
 }*/
 - (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error
 {
+	//warning, this is not the main requestFailed method for twitter, and doesn't normally get called.  modify in twitterManager instead
 	DLog(@"actual Twitter request failed 1: %@ with error:%@", connectionIdentifier, error);
   //FIXME: stop the progress bar
     //[NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(stopProgressBar) userInfo:nil repeats:NO];

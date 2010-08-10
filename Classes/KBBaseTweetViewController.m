@@ -24,6 +24,7 @@
 	twitterManager = [KBTwitterManager twitterManager];
 	twitterManager.delegate = self;
 	stuckToBottom = 0;
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(twitterViewLoadFailure) name:@"twitterViewLoadFailure" object:nil];	
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -33,6 +34,10 @@
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
+}
+
+- (void)twitterViewLoadFailure {
+	[self.navigationController popViewControllerAnimated:NO];
 }
 
 - (NSMutableArray*) addAndTrimArray:(NSMutableArray*)arrayToAdd {
@@ -72,6 +77,7 @@
 
 - (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error
 {
+	//warning, this is not the main requestFailed method for twitter, and doesn't normally get called
 	DLog(@"actual Twitter request failed 4: %@ with error:%@", connectionIdentifier, error);
     [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(stopProgressBar) userInfo:nil repeats:NO];
 	if ([[error domain] isEqualToString: @"HTTP"])
