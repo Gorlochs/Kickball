@@ -301,16 +301,15 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 	replyCreateViewController = [[KBCreateTweetViewController alloc] initWithNibName:@"KBCreateTweetViewController" bundle:nil];
     replyCreateViewController.replyToStatusId = currentlyDisplayedSearchResult.tweetId;
     replyCreateViewController.replyToScreenName = currentlyDisplayedSearchResult.screenName;
-	[self presentModalViewController:replyCreateViewController animated:YES];
+	[self.navigationController pushViewController:replyCreateViewController animated:YES];
 }
 
 - (void) retweet {
-    DLog(@"**********retweet**************");
 	retweetCreateViewController = [[KBCreateTweetViewController alloc] initWithNibName:@"KBCreateTweetViewController" bundle:nil];
     retweetCreateViewController.replyToStatusId = currentlyDisplayedSearchResult.tweetId;
     retweetCreateViewController.replyToScreenName = currentlyDisplayedSearchResult.screenName;
     retweetCreateViewController.retweetTweetText = currentlyDisplayedSearchResult.tweetText;
-	[self presentModalViewController:retweetCreateViewController animated:YES];
+	[self.navigationController pushViewController:retweetCreateViewController animated:YES];
 }
 
 #pragma mark -

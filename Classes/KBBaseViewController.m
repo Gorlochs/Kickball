@@ -245,6 +245,10 @@ const NSString *kickballDomain = @"http://kickball.gorlochs.com/kickball";
 	// Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
 	
+    DLog(@"******************************************************");
+    DLog(@"****** KBBaseViewController MEMORY WARNING!!! ********");
+    DLog(@"******************************************************");
+	
 	// Release any cached data, images, etc that aren't in use.
 }
 

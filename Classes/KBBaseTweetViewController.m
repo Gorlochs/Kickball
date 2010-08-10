@@ -47,8 +47,9 @@
     return [[[NSMutableArray alloc] initWithArray:[arrayToAdd subarrayWithRange:theRange]] autorelease];
 }
 
+// FIXME: if this isn't supposed to be called, then all the notification observers need to be removed from all the classes
 - (void)handleTweetNotification:(NSNotification *)notification {
-    DLog(@"--------------------------this should never be called, because links were removed from most views-----------------------------------------------------------------------------------------");
+    DLog(@"--------------------------this should never be called, because links were removed from most views--------------------");
 	DLog(@"handleTweetNotification: notification = %@", notification);
 }
 
