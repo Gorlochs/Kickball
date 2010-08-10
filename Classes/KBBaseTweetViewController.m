@@ -23,6 +23,7 @@
     [super viewDidLoad];
 	twitterManager = [KBTwitterManager twitterManager];
 	twitterManager.delegate = self;
+	stuckToBottom = 0;
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -220,12 +221,16 @@
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (indexPath.row == [tweets count] - 1) {
+	if ((indexPath.row == [tweets count] - 1) || (stuckToBottom >= [tweets count] - 1)) {
         if (requeryWhenTableGetsToBottom) {
             [self executeQuery:++pageNum];
         } else {
             DLog("********************* REACHED NO MORE RESULTS!!!!! **********************");
         }
+	} else if (indexPath.row >= [tweets count] - 2) {
+		//this is ugly, but it works well.  allows user to grab more tweets when they went offline and then online again
+		if (stuckToBottom == indexPath.row) stuckToBottom++;
+		else stuckToBottom = indexPath.row;
 	}
 }
 

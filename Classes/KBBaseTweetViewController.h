@@ -27,6 +27,7 @@
     IBOutlet UIView *noResultsView;
     
     BOOL requeryWhenTableGetsToBottom;
+    int stuckToBottom;
 }
 
 - (void) showStatuses;
