@@ -104,7 +104,6 @@
     _inModalTweetView = NO;
     }
 	if (statuses) {
-		//twitterArray = statuses; //retain];
         int count = 0;
         if (!tweets) tweets = [[NSMutableArray alloc] init];
         if (pageNum > 1) count = [tweets count];
@@ -121,9 +120,8 @@
 			[[KBTwitterManager twitterManager] cacheStatusArray:tweets withKey:cachingKey];
 		}
         [[NSUserDefaults standardUserDefaults] synchronize];
-	} else {
-        requeryWhenTableGetsToBottom = NO;
     }
+	requeryWhenTableGetsToBottom = YES;
     [self stopProgressBar];
 	[self dataSourceDidFinishLoadingNewData];
 }

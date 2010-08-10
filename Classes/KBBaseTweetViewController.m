@@ -50,20 +50,6 @@
 - (void)handleTweetNotification:(NSNotification *)notification {
     DLog(@"--------------------------this should never be called, because links were removed from most views-----------------------------------------------------------------------------------------");
 	DLog(@"handleTweetNotification: notification = %@", notification);
-    /*if ([[notification object] rangeOfString:@"@"].location == 0) {
-        KBUserTweetsViewController *userTweetsController = [[KBUserTweetsViewController alloc] initWithNibName:@"KBUserTweetsViewController" bundle:nil];
-        userTweetsController.username = [notification object];
-        [self.navigationController pushViewController:userTweetsController animated:YES];
-		[userTweetsController release];
-    } else if ([[notification object] rangeOfString:@"#"].location == 0) {
-        KBTwitterSearchViewController *searchController = [[KBTwitterSearchViewController alloc] initWithNibName:@"KBTwitterSearchViewController" bundle:nil];
-        searchController.searchTerms = [notification object];
-        [self.navigationController pushViewController:searchController animated:YES];
-		[searchController release];
-    } else {
-        // TODO: push properly styled web view
-        [self openWebView:[notification object]];
-    }*/
 }
 
 - (void) showStatuses {
@@ -233,10 +219,13 @@
         } else {
             DLog("********************* REACHED NO MORE RESULTS!!!!! **********************");
         }
-	} else if (indexPath.row >= [tweets count] - 2) {
+		requeryWhenTableGetsToBottom = !requeryWhenTableGetsToBottom;
+	} else if (indexPath.row >= [tweets count] - 3) {
 		//this is ugly, but it works well.  allows user to grab more tweets when they went offline and then online again
-		if (stuckToBottom == indexPath.row) stuckToBottom++;
-		else stuckToBottom = indexPath.row;
+		if (stuckToBottom >= indexPath.row) {
+		  stuckToBottom++;
+		  requeryWhenTableGetsToBottom = YES; //we didn't get the server response because we were offline, try again
+		} else stuckToBottom = indexPath.row;
 	}
 }
 
@@ -271,7 +260,6 @@
 
 
 - (void)dealloc {
-	//twitterManager.delegate = nil;
     [tweets release];
     if (cachingKey) [cachingKey release];
     [super dealloc];

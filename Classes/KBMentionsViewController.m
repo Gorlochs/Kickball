@@ -39,7 +39,6 @@
 
 - (void)statusesReceived:(NSArray *)statuses {
 	if (statuses) {
-		//twitterArray = [statuses retain];
         int count = 0;
         if (!tweets) tweets = [[NSMutableArray alloc] init];
         if (pageNum > 1) count = [tweets count];
@@ -64,6 +63,7 @@
 }
 
 - (void) executeQuery:(int)pageNumber {
+NSLog(@"requesting mentions");
     [self startProgressBar:@"Retrieving more tweets..."];
     [twitterEngine getRepliesSinceID:0 startingAtPage:pageNumber count:25];
 }
