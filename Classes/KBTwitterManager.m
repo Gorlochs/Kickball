@@ -257,6 +257,7 @@ static KBTwitterManager *sharedInstance = nil;
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:kKBTwitterMentionsKey];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:kKBTwitterDirectMessagesKey];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"twittername"];
+	[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"twitUserPhotoURL"];
 	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
