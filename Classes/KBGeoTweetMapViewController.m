@@ -205,7 +205,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 	}
     
     KBPin *annView=[[[KBPin alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomId"] autorelease];
-    annView.image = [UIImage imageNamed:@"pin.png"];
+    annView.image = [UIImage imageNamed:@"tweet-pin.png"];
     [annView setObserver:self];
     [annView addObserver:self
               forKeyPath:@"selected"
@@ -233,11 +233,11 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 		if (annotationAppeared) {
 			DLog(@"annotation selected %@", ((KBPin*) object).annotation.title);
 			[self showAnnotation:((KBPin*) object).annotation];
-			((KBPin*) object).image = [UIImage imageNamed:@"pin.png"];
+			((KBPin*) object).image = [UIImage imageNamed:@"tweet-pin.png"];
 		} else {
 			DLog(@"annotation deselected %@", ((KBPin*) object).annotation.title);
 			[self hideAnnotation];
-			((KBPin*) object).image = [UIImage imageNamed:@"pin.png"];
+			((KBPin*) object).image = [UIImage imageNamed:@"tweet-pin.png"];
 		}
 	}
 }
