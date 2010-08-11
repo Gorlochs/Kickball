@@ -14,9 +14,6 @@
 - (void)viewDidLoad {
     pageViewType = KBPageViewTypeList;
     [super viewDidLoad];
-    
-    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTweetNotification:) name:IFTweetLabelURLNotification object:nil];
-    
     cachingKey = [kKBTwitterDirectMessagesKey retain];
     [self startProgressBar:@"Retrieving more tweets..."];
     [self showStatuses];
@@ -44,8 +41,6 @@
 
 - (void)directMessagesReceived:(NSArray *)messages {
 	if ([messages count] > 0 || isInitialLoad) {
-        //if (twitterArray) [twitterArray release];
-        //twitterArray = [messages retain];
         int count = 0;
         if (!tweets) tweets = [[NSMutableArray alloc] initWithCapacity:1];
         if (pageNum > 1) count = [tweets count];
@@ -68,7 +63,6 @@
 }
 
 - (void) executeQuery:(int)pageNumber {
-//for shawn: this gets called multiple times, creating multiple sets of direct messages.  the first check at directMessages received stops this.
     isInitialLoad = NO;
     [twitterEngine getDirectMessagesSinceID:0 startingAtPage:pageNumber];
 }

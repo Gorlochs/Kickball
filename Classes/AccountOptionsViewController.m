@@ -674,6 +674,7 @@
 				case 0:
 					//do logout
 					[[[KBTwitterManager twitterManager] twitterEngine] clearAccessToken];
+					[[KBTwitterManager twitterManager] clearCaches];
 					KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
 					[appDelegate loggedOutOfTwitter];
 					[xTW setEnabled:NO];

@@ -65,6 +65,7 @@
 			[user release];
 		}
 		
+        //FIXME: add directly to users instead of swapping two arrays
 		if (currentCursor != [NSNumber numberWithInt:-1]) {
 			[users addObjectsFromArray:tempTweetArray];
 		} else if (!users) {
@@ -77,17 +78,6 @@
 			users = [[NSMutableArray alloc] initWithArray:tempTweetArray];
 		}
 		[tempTweetArray release];
-   
-        //FIXME: use this code instead, it's more stable!
-        //if (!users) users = [[NSMutableArray alloc] init];
-		/*for (NSDictionary *dict in twitterArray) {
-			KBTwitterUser *user = [[KBTwitterUser alloc] initWithDictionary:dict];
-            [users addObject:user];
-			[user release];
-		}*/
-		//[users addObjectsFromArray:twitterArray];
-		
-
 		[theTableView reloadData];
 		NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
 		[f setNumberStyle:NSNumberFormatterDecimalStyle];

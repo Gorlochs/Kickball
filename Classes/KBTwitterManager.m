@@ -252,6 +252,14 @@ static KBTwitterManager *sharedInstance = nil;
 	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
+- (void)clearCaches {
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:kKBTwitterTimelineKey];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:kKBTwitterMentionsKey];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:kKBTwitterDirectMessagesKey];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"twittername"];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 - (NSArray*) retrieveCachedStatusArrayWithKey:(NSString*)key {
     DLog(@"retrieving statuses!");
     NSData *statusArrayData = [[NSUserDefaults standardUserDefaults] dataForKey:key];

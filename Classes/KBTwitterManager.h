@@ -44,6 +44,7 @@
 + (KBTwitterManager*) twitterManager;
 
 - (void) cacheStatusArray:(NSArray*)statuses withKey:(NSString*)key;
+- (void)clearCaches;
 - (NSArray*) retrieveCachedStatusArrayWithKey:(NSString*)key;
 
 @end
