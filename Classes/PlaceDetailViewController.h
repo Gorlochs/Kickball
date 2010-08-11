@@ -17,6 +17,7 @@
 #import "KBPhotoManager.h"
 #import "TipDetailViewController.h"
 #import "KBCheckinModalViewController.h"
+#import "GAConnectionManager.h"
 
 
 @interface PlaceDetailViewController : AbstractPushNotificationViewController <PhotoManagerDelegate, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate, GAConnectionDelegate, UIActionSheetDelegate> {
@@ -94,6 +95,7 @@
 	
 	UITableViewCell *peopleHereCell;
 	UIView *checkinView;
+	GAConnectionManager *connectionManager_;
 }
 
 @property (nonatomic, retain) UITableViewCell *mayorMapCell;

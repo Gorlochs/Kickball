@@ -854,59 +854,24 @@
 
 - (void)dealloc {
     
-    [[NSNotificationCenter defaultCenter] removeObserver:self];// removeObserver:self forKeyPath:@"todoTipSent"];
-//    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:@"shoutAndCheckinSent"];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     
 	photoManager.delegate = nil;
-    [mayorMapCell release];
-    [checkinCell release];
-    [giftCell release];
-    [bottomButtonCell release];
-    [detailButtonCell release];
-    [smallMapView release];
-    [fullMapView release];
-    
-    [venueName release];
-    [venueAddress release];
-    [mayorNameLabel release];
-    [mayorCheckinCountLabel release];
-    
-    [badgeImage release];
-    
-    [twitterButton release];
-    [pingAndTwitterToggleButton release];
-    [venueDetailButton release];
-    [specialsButton release];
-    [mapButton release];
-    [closeMapButton release];
-	[imHereButton release];
-    [phoneButton release];
     
     [checkin release];
     [venue release];
     [venueId release];
     [goodies release];
     [photoSource release];
-    
-    [mayorCrown release];
-    [mayorArrow release];
-    [photoHeaderLabel release];
-    [addPhotoButton release];
-    [seeAllPhotosButton release];
-    [photoHeaderView release];
     [photoImage release];
-    
-    [specialView release];
-    [specialText release];
-    [specialPlaceName release];
-    [specialAddress release];
-    [specialClose release];
     
     [tipController release];
     [checkinViewController release];
 	
 	[peopleHereCell release];
 	[checkinView release];
+	
+	if (connectionManager_) [connectionManager_ release];
     
     [super dealloc];
 }
@@ -1194,7 +1159,7 @@
 }
 
 - (void) doGeoAPICall {
-    GAConnectionManager *connectionManager_ = [[[GAConnectionManager alloc] initWithAPIKey:@"K6afuuFTXK" delegate:self] autorelease];
+    connectionManager_ = [[GAConnectionManager alloc] initWithAPIKey:@"K6afuuFTXK" delegate:self];
     CLLocationCoordinate2D location = venue.location;
 
     [self startProgressBar:@"Searching for the venue..."];

@@ -213,7 +213,7 @@
 }
 
 - (void)dealloc {
-	[connectionManager_ release];
+	//[connectionManager_ release];
     [place release];
     [venueName release];
     [venueAddress release];

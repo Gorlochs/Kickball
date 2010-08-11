@@ -77,7 +77,7 @@
 
 
 - (void)dealloc {
-    [geoAPIResults release];
+    if (geoAPIResults) [geoAPIResults release];
     [super dealloc];
 }
 
