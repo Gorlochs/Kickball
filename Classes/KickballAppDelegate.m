@@ -594,6 +594,32 @@ void uncaughtExceptionHandler(NSException *exception) {
 }
 
 
+
+- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application{
+	DLog(@"recieved memory warning");
+	if([twitterNavigationController.viewControllers count]>2){
+		DLog(@"dumping %i viewControllers from twitter stack",[twitterNavigationController.viewControllers count]-2);
+		NSArray *newStack = [NSArray arrayWithObjects:[twitterNavigationController.viewControllers objectAtIndex:0],[twitterNavigationController.viewControllers objectAtIndex:[twitterNavigationController.viewControllers count]-1],nil];
+		[twitterNavigationController setViewControllers:newStack animated:NO];
+	}
+	if([navigationController.viewControllers count]>2){
+		DLog(@"dumping %i viewControllers from foursquare stack",[navigationController.viewControllers count]-2);
+		NSArray *newStack = [NSArray arrayWithObjects:[navigationController.viewControllers objectAtIndex:0],[navigationController.viewControllers objectAtIndex:[navigationController.viewControllers count]-1],nil];
+		[navigationController setViewControllers:newStack animated:NO];
+	}
+	if([facebookNavigationController.viewControllers count]>2){
+		DLog(@"dumping %i viewControllers from facebook stack",[facebookNavigationController.viewControllers count]-2);
+		NSArray *newStack = [NSArray arrayWithObjects:[facebookNavigationController.viewControllers objectAtIndex:0],[facebookNavigationController.viewControllers objectAtIndex:[facebookNavigationController.viewControllers count]-1],nil];
+		[facebookNavigationController setViewControllers:newStack animated:NO];
+	}
+	if([optionsNavigationController.viewControllers count]>2){
+		DLog(@"dumping %i viewControllers from options stack",[optionsNavigationController.viewControllers count]-2);
+		NSArray *newStack = [NSArray arrayWithObjects:[optionsNavigationController.viewControllers objectAtIndex:0],[optionsNavigationController.viewControllers objectAtIndex:[optionsNavigationController.viewControllers count]-1],nil];
+		[optionsNavigationController setViewControllers:newStack animated:NO];
+	}
+}
+
+
 - (void)dealloc {
     [viewController release];
     [popupView release];

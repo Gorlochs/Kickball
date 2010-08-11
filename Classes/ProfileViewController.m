@@ -584,13 +584,14 @@
 	pool = [[NSAutoreleasePool alloc] init];
     NSString *gorlochUrlString = [NSString stringWithFormat:@"%@/gifts/owner/%@.xml?limit=4", kickballDomain, userId];
     DLog(@"photo url string: %@", gorlochUrlString);
-    ASIHTTPRequest *gorlochRequest = [[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:gorlochUrlString]] autorelease];
+    ASIHTTPRequest *gorlochRequest = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:gorlochUrlString]];
     
     [gorlochRequest setDidFailSelector:@selector(photoRequestWentWrong:)];
     [gorlochRequest setDidFinishSelector:@selector(photoRequestDidFinish:)];
     [gorlochRequest setTimeOutSeconds:500];
     [gorlochRequest setDelegate:self];
     [gorlochRequest startAsynchronous];
+	[pool release];
 }
 
 //- (void) viewYourPhotos {
@@ -602,14 +603,16 @@
 //}
 
 - (void) photoRequestWentWrong:(ASIHTTPRequest *) request {
-	[pool release];
+	//[pool release];
+	[request release];
     DLog(@"BOOOOOOOOOOOO!");
 }
 
 - (void) photoRequestDidFinish:(ASIHTTPRequest *) request {
     userPhotos = [[[KickballAPI kickballApi] parsePhotosFromXML:[request responseString]] retain];
     
-	[pool release];
+	//[pool release];
+	[request release];
     [theTableView reloadData];
 }
 
