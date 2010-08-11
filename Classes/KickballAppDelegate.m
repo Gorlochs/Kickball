@@ -569,6 +569,11 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 #pragma mark -
 
+-(void)createInitialTwitterView{
+	[twitterNavigationController.visibleViewController killLoginView];
+	[twitterNavigationController.visibleViewController showLoginView];
+}
+
 -(void)loggedOutOfTwitter{
 	[twitterNavigationController popToRootViewControllerAnimated:NO];
 	[twitterNavigationController.visibleViewController showLoginView];

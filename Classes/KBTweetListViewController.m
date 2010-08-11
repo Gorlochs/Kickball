@@ -44,6 +44,7 @@
 }
 
 - (void)viewDidLoad {
+NSLog(@"loading tweetlist");
    _firstView = true;
    [super viewDidLoad];
     twitterManager.delegate = self;

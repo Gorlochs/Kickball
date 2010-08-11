@@ -339,16 +339,12 @@
 			//pop action sheet, and return NO
 			[self logout4SQ];
 			return NO;
-		}else {
-			return YES;
 		}
 	}else if (textField==foursquarePassword) {
 		if ([[KBAccountManager sharedInstance] usesFoursquare]) {
 			//pop action sheet, and return NO
 			[self logout4SQ];
 			return NO;
-		}else {
-			return YES;
 		}
 	}else if (textField==twitterUsername) {
 		if ([[KBAccountManager sharedInstance] usesTwitter]) {
@@ -356,15 +352,16 @@
 			[self logoutTW];
 			return NO;
 		}else {
-			return YES;
+			KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
+			NSLog(@"creating initial twitter view");
+			[appDelegate createInitialTwitterView];
+			//[twitterNavigationController.visibleViewController showLoginView];
 		}
 	}else if (textField==twitterPassword) {
 		if ([[KBAccountManager sharedInstance] usesTwitter]) {
 			//pop action sheet, and return NO
 			[self logoutTW];
 			return NO;
-		}else {
-			return YES;
 		}
 	}
 	return YES;
