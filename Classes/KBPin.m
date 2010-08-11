@@ -11,7 +11,7 @@
 
 @implementation KBPin
 
-@synthesize title;
+@synthesize title, observer;
 
 - (id)initWithAnnotation:(id <MKAnnotation>)annotation
 {
@@ -30,6 +30,7 @@
 }
 
 - (void) dealloc {
+	if (observer) [self removeObserver:observer forKeyPath:@"selected"];
     [title release];
     [super dealloc];
 }

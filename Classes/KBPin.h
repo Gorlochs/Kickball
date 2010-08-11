@@ -11,9 +11,11 @@
 
 @interface KBPin : MKAnnotationView {
     NSString *title;
+	id observer;
 }
 
 @property (nonatomic, retain) NSString *title;
+@property (nonatomic, retain) id observer;
 
 - (id)initWithAnnotation:(id <MKAnnotation>) annotation;
 

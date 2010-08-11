@@ -206,7 +206,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     
     KBPin *annView=[[[KBPin alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomId"] autorelease];
     annView.image = [UIImage imageNamed:@"pin.png"];
-    
+    [annView setObserver:self];
     [annView addObserver:self
               forKeyPath:@"selected"
                  options:NSKeyValueObservingOptionNew
