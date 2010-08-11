@@ -178,13 +178,10 @@
 - (void)handleTweetNotification:(NSNotification *)notification {
 	DLog(@"handleTweetNotification: notification = %@", notification);
     NSMutableString *nObject = [[NSMutableString alloc] initWithString:[notification object]];
-   [nObject replaceOccurrencesOfString:@":" withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [nObject length])];
-   [nObject replaceOccurrencesOfString:@"." withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [nObject length])];
-   [nObject replaceOccurrencesOfString:@"!" withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [nObject length])];
-   [nObject replaceOccurrencesOfString:@";" withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [nObject length])];
-   [nObject replaceOccurrencesOfString:@"," withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [nObject length])];
-   [nObject replaceOccurrencesOfString:@"?" withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [nObject length])];
-   //[nObject replaceOccurrencesOfString:@"@" withString:@"#" options:NSLiteralSearch range:NSMakeRange(0, [nObject length])];
+	NSArray *strippedChars = [NSArray arrayWithObjects:@":",@";",@"!",@",",@"?",@"\"",@"'",@".",nil];
+	for (NSString *badChar in strippedChars) {
+		[nObject replaceOccurrencesOfString:badChar withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [nObject length])];
+	}
     if ([[notification object] rangeOfString:@"@"].location == 0) {
         KBUserTweetsViewController *userTweetsController = [[KBUserTweetsViewController alloc] initWithNibName:@"KBUserTweetsViewController" bundle:nil];
         userTweetsController.username = nObject;
