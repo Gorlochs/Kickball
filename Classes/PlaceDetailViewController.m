@@ -148,7 +148,7 @@
 
 - (void) venueRequestDidFinish:(ASIHTTPRequest *) request {
     
-    goodies = [[[KickballAPI kickballApi] parsePhotosFromXML:[request responseString]] retain];
+    goodies = [[[KickballAPI kickballApi] parsePhotosFromXML:[request responseString]] copy];
     
 
     if ([goodies count] > 0) {
@@ -872,7 +872,9 @@
 	[checkinView release];
 	
 	if (connectionManager_) [connectionManager_ release];
-    
+    [mayorMapCell release];
+	[checkinCell release];
+	[giftCell release];
     [super dealloc];
 }
 

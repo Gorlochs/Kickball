@@ -1081,7 +1081,7 @@ static FoursquareAPI *sharedInstance = nil;
 			} else if ([key isEqualToString:@"stats"]){
 				NSArray * mayorNodes = [venueResult nodesForXPath:@"stats/mayor/user" error:nil];
 				if(mayorNodes && [mayorNodes count] > 0){
-					newVenue.mayor = [[FoursquareAPI _userFromNode:[mayorNodes objectAtIndex:0]] retain];
+					newVenue.mayor = [FoursquareAPI _userFromNode:[mayorNodes objectAtIndex:0]];
 				}
 				
 				NSArray * countNodes = [venueResult nodesForXPath:@"stats/mayor/count" error:nil];
@@ -1163,7 +1163,7 @@ static FoursquareAPI *sharedInstance = nil;
 			} else if([key isEqualToString:@"url"]){
 				newTip.url = value;
 			}  else if([key isEqualToString:@"user"]){
-				newTip.submittedBy = [[FoursquareAPI _shortUserFromNode:[[tipResult nodesForXPath:@"user" error:nil] objectAtIndex:0]] retain];
+				newTip.submittedBy = [FoursquareAPI _shortUserFromNode:[[tipResult nodesForXPath:@"user" error:nil] objectAtIndex:0]];
 			}
 		}
 		[allTips addObject:newTip];

@@ -114,13 +114,14 @@
 
 - (void)receivedResponseString:(NSString *)responseString {
     DLog(@"geoapi response string: %@", responseString);
-    
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     //label.text = responseString;
     SBJSON *parser = [SBJSON new];
     id dict = [parser objectWithString:responseString error:NULL];
     NSDictionary *results = [(NSDictionary*)dict objectForKey:@"result"];
-    
-    place.listing = [[NSDictionary alloc] initWithDictionary:results];
+    NSDictionary *listing = [[NSDictionary alloc] initWithDictionary:results];
+    place.listing = listing;
+	[listing release];
     DLog(@"place listing: %@", place.listing);
     place.name = [results objectForKey:@"name"];
     place.address = [results objectForKey:@"address"];
@@ -161,6 +162,7 @@
         websiteButton.enabled = NO;
     }
     [parser release];
+	[pool release];
     [self stopProgressBar];
 }
 
