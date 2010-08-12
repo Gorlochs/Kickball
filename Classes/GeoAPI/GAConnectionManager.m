@@ -201,7 +201,7 @@ didReceiveResponse:(NSURLResponse *)response {
 
 - (void)dealloc {
   [responseData_ release];
-  [delegate_ release];
+  delegate_ = nil;
   [apiKey_ release];
   [super dealloc];
 }
