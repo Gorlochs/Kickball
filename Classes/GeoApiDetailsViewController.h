@@ -26,7 +26,7 @@
     IBOutlet UIButton *websiteButton;
 }
 
-@property (nonatomic, retain) GAPlace *place;
+@property (nonatomic, copy) GAPlace *place;
 
 - (IBAction) callVenue;
 - (IBAction) visitWebsite;

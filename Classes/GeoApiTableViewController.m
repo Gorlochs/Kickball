@@ -62,6 +62,7 @@
     GAPlace *place = [geoAPIResults objectAtIndex:indexPath.row];
 	cell.textLabel.text = place.name;
 	cell.detailTextLabel.text = place.address;
+//	cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", place.address];
     return cell;
 }
 
@@ -69,7 +70,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [FlurryAPI logEvent:@"GeoAPI venue selected from list view"];
 	GeoApiDetailsViewController *vc = [[GeoApiDetailsViewController alloc] initWithNibName:@"GeoApiDetailsView" bundle:nil];
-    vc.place = [geoAPIResults objectAtIndex:indexPath.row];
+    vc.place = [[geoAPIResults objectAtIndex:indexPath.row] copy];
 	[self.navigationController pushViewController:vc animated:YES];
 	[vc release];
     [theTableView deselectRowAtIndexPath:indexPath animated:YES];

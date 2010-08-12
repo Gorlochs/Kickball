@@ -39,10 +39,8 @@
     self.listing = [placeDict objectForKey:@"view.listing"];
     self.name = [self.listing objectForKey:@"name"];
     self.guid = [placeDict objectForKey:@"guid"];
-    self.address =
-      [[self.listing objectForKey:@"address"] componentsJoinedByString:@", "];
-    NSArray *geomCoords = [[placeDict objectForKey:@"geom"]
-                           objectForKey:@"coordinates"];
+    self.address = [[self.listing objectForKey:@"address"] componentsJoinedByString:@", "];
+    NSArray *geomCoords = [[placeDict objectForKey:@"geom"] objectForKey:@"coordinates"];
     coords_.latitude = [[geomCoords objectAtIndex:1] doubleValue];
     coords_.longitude = [[geomCoords objectAtIndex:0] doubleValue];    
   }
@@ -58,10 +56,13 @@
     self.guid = [[[listingDict objectForKey:@"query"]
                   objectForKey:@"params"]
                  objectForKey:@"guid"];
-    self.address =
-      [[result objectForKey:@"address"] componentsJoinedByString:@", "];
+    self.address = [[result objectForKey:@"address"] componentsJoinedByString:@", "];
   }
   return self;
+}
+
+- (NSString*) description {
+	return [NSString stringWithFormat:@"name: %@ | address: %@", self.name, self.address];
 }
 
 - (void)dealloc {
