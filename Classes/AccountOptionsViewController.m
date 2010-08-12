@@ -353,8 +353,10 @@
 			return NO;
 		}else {
 			KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
-			NSLog(@"creating initial twitter view");
+			int curControllerType = appDelegate.navControllerType;
+			appDelegate.navControllerType = KBNavControllerTypeTwitter;
 			[appDelegate createInitialTwitterView];
+			appDelegate.navControllerType = curControllerType;
 			//[twitterNavigationController.visibleViewController showLoginView];
 		}
 	}else if (textField==twitterPassword) {
@@ -673,7 +675,10 @@
 					[[[KBTwitterManager twitterManager] twitterEngine] clearAccessToken];
 					[[KBTwitterManager twitterManager] clearCaches];
 					KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
+					int curControllerType = appDelegate.navControllerType;
+					appDelegate.navControllerType = KBNavControllerTypeTwitter;
 					[appDelegate loggedOutOfTwitter];
+					appDelegate.navControllerType = curControllerType;
 					[xTW setEnabled:NO];
 					[xTW setHidden:YES];
 					[twitterUsername setPlaceholder:@"twitter name"];
