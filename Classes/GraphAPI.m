@@ -303,6 +303,28 @@ NSString* const kConnectionAlbums = @"albums";
 	}
 }
 
+-(NSDictionary*)eventFeed:(NSString*)event_id{
+	NSData* responseData = nil;
+	NSString* r_string = nil;
+	NSString* method = @"stream.get";
+	NSMutableDictionary *args = nil;
+	args= [NSMutableDictionary dictionaryWithObjectsAndKeys:event_id,@"source_ids",@"json",@"format",self._accessToken,kArgumentKeyAccessToken,nil];
+	responseData = [self makeSynchronousRest:method args:args verb:kRequestVerbGet];
+	r_string = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+	//[responseData release];
+	SBJSON *parser = [SBJSON new];
+	id arr = [parser objectWithString:r_string error:NULL];
+	[parser release];
+	[r_string release];
+	if ([arr isKindOfClass:[NSDictionary class]]) {
+		DLog(@"woohoo parsed an dictionary");
+		return arr;
+	}else {
+		DLog(@"parsed and got an array.  bummer.");
+		return nil;
+	}
+}
+
 -(NSArray*)getProfileObjects:(NSArray*)profileIds{
 	NSData* responseData = nil;
 	NSString* r_string = nil;

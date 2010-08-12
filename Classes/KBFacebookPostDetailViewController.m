@@ -172,7 +172,7 @@
 	if (incomingComments==nil) {
 		update = NO;
 	}
-	if ([incomingComments count]<2) {
+	if ([incomingComments count]==0) {
 		update = NO;
 	}
 	if (update) {

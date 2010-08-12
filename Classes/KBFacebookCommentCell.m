@@ -69,14 +69,19 @@
 	}
 	[fbPictureUrl release];
 	fbPictureUrl = nil;
-	NSString *forceUTF = [[NSString alloc] initWithUTF8String:[_url UTF8String]];
-	fbPictureUrl = [forceUTF stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-	[forceUTF release];
-	[fbPictureUrl retain];
-	DLog(@"fbPictureUrl:: %@",fbPictureUrl);
-	//NSString *cachedUrl = [[FacebookProxy instance].pictureUrls objectForKey:fbPictureUrl];
+	if (_url != nil) {
+		NSString *forceUTF = [[NSString alloc] initWithUTF8String:[_url UTF8String]];
+		fbPictureUrl = [forceUTF stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+		[forceUTF release];
+		[fbPictureUrl retain];
+		DLog(@"fbPictureUrl:: %@",fbPictureUrl);
+		
+	}
+		//NSString *cachedUrl = [[FacebookProxy instance].pictureUrls objectForKey:fbPictureUrl];
 	//if (cachedUrl!=nil) {
-		[userIcon setUrlPath:fbPictureUrl];
+		//[userIcon setUrlPath:fbPictureUrl];
+	[userIcon performSelectorOnMainThread:@selector(setUrlPath:) withObject:fbPictureUrl waitUntilDone:YES];
+
 	//}else {
 	//	[NSThread detachNewThreadSelector:@selector(loadPicUrl) toTarget:self withObject:nil];
 	//}

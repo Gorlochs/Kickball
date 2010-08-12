@@ -61,30 +61,21 @@
 }
 
 -(void)refreshMainFeed{
+	
 	[comments release];
 	comments = nil;
 	requeryWhenTableGetsToBottom = YES;
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	NSString *method = [NSString stringWithFormat:@"%@/feed",[event objectForKey:@"eid"]];
-	GraphAPI *graph = [[[FacebookProxy instance] newGraph] autorelease];
-	GraphObject* response = [graph getObject:method];
-	[nextPageURL release];
-	nextPageURL = nil;
-	comments = [response propertyWithKey:@"data"];
-	[comments retain];
-	NSDictionary *paging = [response propertyWithKey:@"paging"];
-	if (paging!=nil) {
-		nextPageURL = [[NSString alloc] initWithString:[paging objectForKey:@"next"]];
-		//[nextPageURL retain];
-	}
+	GraphAPI *graph = [[FacebookProxy instance] newGraph];
+	NSDictionary *feed = [graph eventFeed:[event objectForKey:@"eid"]];
+	comments = [[NSMutableArray alloc] initWithArray:[feed objectForKey:@"posts"]];
+	[[FacebookProxy instance] cacheIncomingProfiles:[feed objectForKey:@"profiles"]];
+	[[FacebookProxy instance] cacheIncomingProfiles:[feed objectForKey:@"albums"]];
+	[graph release];
 	[theTableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];//[theTableView reloadData];
-	// = [[FacebookProxy instance] refreshEvents];
-	//GraphObject *baseObj = [baseEventResult objectAtIndex:0];
-	//comments = [[FacebookProxy instance] refreshEvents];
 	[self dataSourceDidFinishLoadingNewData];
 	[pool release];
 	[self performSelectorOnMainThread:@selector(stopProgressBar) withObject:nil waitUntilDone:NO];
-
 }
 
 -(void)concatenateMore:(NSString*)urlString{
@@ -234,8 +225,8 @@
 				cell = [[[KBFacebookCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
 			}
 			NSDictionary *comment = [comments objectAtIndex:indexPath.row];
-			NSString *displayString = [NSString	 stringWithFormat:@"<span class=\"fbBlueText\">%@</span> %@",[(NSDictionary*)[comment objectForKey:@"from"] objectForKey:@"name"], [comment objectForKey:@"message"]];
-			cell.fbPictureUrl = [(NSDictionary*)[comment objectForKey:@"from"] objectForKey:@"id"];
+			NSString *displayString = [NSString	 stringWithFormat:@"<span class=\"fbBlueText\">%@</span> %@",[[FacebookProxy instance] userNameFrom:[comment objectForKey:@"actor_id"]], [comment objectForKey:@"message"]];
+			cell.fbPictureUrl = [[FacebookProxy instance] profilePicUrlFrom:[comment objectForKey:@"actor_id"]];// [(NSDictionary*)[comment objectForKey:@"from"] objectForKey:@"id"];
 			cell.commentText.text = [TTStyledText textFromXHTML:displayString lineBreaks:NO URLs:NO];
 			[cell.commentText sizeToFit];
 			[cell.commentText setNeedsDisplay];
