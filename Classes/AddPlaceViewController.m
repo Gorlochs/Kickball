@@ -67,7 +67,7 @@
 	}
     
     KBPin *annView=[[[KBPin alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomId"] autorelease];
-    annView.image = [UIImage imageNamed:@"pin.png"];
+    annView.image = [UIImage imageNamed:@"place-mapPin.png"];
 
     return annView;
 }

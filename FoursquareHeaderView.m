@@ -23,7 +23,7 @@
 //        //myDetailButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
 //        
 //        // Set the image for the button
-//        [backButton setImage:[UIImage imageNamed:@"kbMap01.png"] forState:UIControlStateNormal];
+//        [backButton setImage:[UIImage imageNamed:@"btn-4sqMap01.png"] forState:UIControlStateNormal];
 //        [backButton addTarget:self action:@selector(backOneView) forControlEvents:UIControlEventTouchUpInside];
 //        [self addSubview:backButton];
     }

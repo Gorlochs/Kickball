@@ -19,7 +19,7 @@
     
     if (self)        
     {
-        UIImage*    theImage = [UIImage imageNamed:@"pin.png"];
+        UIImage*    theImage = [UIImage imageNamed:@"place-mapPin.png"];
         
         if (!theImage)
             return nil;

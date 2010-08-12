@@ -62,7 +62,7 @@
 		bottomLineImage.contentMode = UIViewContentModeScaleAspectFill;
         [self addSubview:bottomLineImage];
         
-        specialImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"specialCorner.png"]];
+        specialImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"places-Special.png"]];
         specialImage.frame = CGRectMake(298, 0, 22, 22);
         [self addSubview:specialImage];
 		

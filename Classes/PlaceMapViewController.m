@@ -53,7 +53,7 @@
     
 	KBPin *annView=[[[KBPin alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomId"] autorelease];
 	//annView.pinColor = MKPinAnnotationColorGreen;
-    annView.image = [UIImage imageNamed:@"pin.png"];
+    annView.image = [UIImage imageNamed:@"place-mapPin.png"];
     
     // add an accessory button so user can click through to the venue page
 	UIButton *myDetailButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -81,7 +81,7 @@
 ////	int postag = 0;
 //    
 //	KBPin *annView = [[[KBPin alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomId"] autorelease];
-//    annView.image = [UIImage imageNamed:@"pin.png"];
+//    annView.image = [UIImage imageNamed:@"place-mapPin.png"];
 //    
 //    // add an accessory button so user can click through to the venue page
 ////	UIButton *myDetailButton = [UIButton buttonWithType:UIButtonTypeCustom];
