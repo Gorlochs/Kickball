@@ -96,7 +96,7 @@ const NSString *kickballDomain = @"http://kickball.gorlochs.com/kickball";
         case KBFooterTypeProfile:
             break;
         case KBFooterTypeFacebook:
-            [foursquareTab setImage:[UIImage imageNamed:@"btn-footer4SQ04.png"] forState:UIControlStateNormal];
+            [foursquareTab setImage:[UIImage imageNamed:@"btn-footer4SQ03.png"] forState:UIControlStateNormal];
             [twitterTab setImage:[UIImage imageNamed:@"btn-footerTW03.png"] forState:UIControlStateNormal];
             [facebookTab setImage:[UIImage imageNamed:@"btn-footerFB01.png"] forState:UIControlStateNormal];
 			if ([FacebookProxy instance].profilePic) {
@@ -115,19 +115,19 @@ const NSString *kickballDomain = @"http://kickball.gorlochs.com/kickball";
         case KBFooterTypeTwitter:
             [foursquareTab setImage:[UIImage imageNamed:@"btn-footer4SQ03.png"] forState:UIControlStateNormal];
             [twitterTab setImage:[UIImage imageNamed:@"btn-footerTW01.png"] forState:UIControlStateNormal];
-            [facebookTab setImage:[UIImage imageNamed:@"btn-footerFB04.png"] forState:UIControlStateNormal];
+            [facebookTab setImage:[UIImage imageNamed:@"btn-footerFB03.png"] forState:UIControlStateNormal];
 			NSString *twitUserPhotoURL = [[NSUserDefaults standardUserDefaults] objectForKey:@"twitUserPhotoURL"];
 			UIImage *twitterUserPic = [[Utilities sharedInstance] getCachedImage:twitUserPhotoURL];
 			if (twitterUserPic) [signedInUserIcon setImage:twitterUserPic forState:UIControlStateNormal];
             break;
         case KBFooterTypeFoursquare:
             [foursquareTab setImage:[UIImage imageNamed:@"btn-footer4SQ01.png"] forState:UIControlStateNormal];
-            [twitterTab setImage:[UIImage imageNamed:@"btn-footerTW04.png"] forState:UIControlStateNormal];
+            [twitterTab setImage:[UIImage imageNamed:@"btn-footerTW03.png"] forState:UIControlStateNormal];
             [facebookTab setImage:[UIImage imageNamed:@"btn-footerFB03.png"] forState:UIControlStateNormal];
             break;
         default:
             [foursquareTab setImage:[UIImage imageNamed:@"btn-footer4SQ01.png"] forState:UIControlStateNormal];
-            [twitterTab setImage:[UIImage imageNamed:@"btn-footerTW04.png"] forState:UIControlStateNormal];
+            [twitterTab setImage:[UIImage imageNamed:@"btn-footerTW03.png"] forState:UIControlStateNormal];
             [facebookTab setImage:[UIImage imageNamed:@"btn-footerFB03.png"] forState:UIControlStateNormal];
     }
 }
