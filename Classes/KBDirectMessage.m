@@ -8,6 +8,7 @@
 
 #import "KBDirectMessage.h"
 #import "KickballAPI.h"
+#import "RegexKitLite.h"
 
 
 @implementation KBDirectMessage
@@ -20,7 +21,20 @@
         createDate = [[[[KickballAPI kickballApi] twitterDateFormatter] dateFromString:[statusDictionary objectForKey:@"created_at"]] retain];
         tweetId = [[statusDictionary objectForKey:@"id"] copy];
 		fullName = nil;
-		clientName = nil;
+		
+		NSString *clientWithLink = [statusDictionary objectForKey:@"source"];
+		DLog("************** client with link: %@", clientWithLink);
+		NSRange matchedRange = [clientWithLink rangeOfRegex:@">(.*)<"];
+		
+		if (matchedRange.location != NSNotFound) {
+			NSRange reducedRange = NSMakeRange(matchedRange.location + 1, matchedRange.length - 2);
+			clientName = [[clientWithLink substringWithRange:reducedRange] copy];
+			DLog(@"********************************* clientName: %@", clientName);
+		} else if ([statusDictionary objectForKey:@"source"]) {
+			clientName = [[statusDictionary objectForKey:@"source"] copy];
+		} else {
+			clientName = @"";
+		}
     }
     return self;
 }

@@ -60,7 +60,7 @@
 }
 
 - (NSString*) description {
-	return [NSString stringWithFormat:@"(TWEET : screenName=%@ ; fullName=%@ ; profileImageUrl=%@ ; tweetText=%@ ; tweetId=%qu)", screenName, fullName, profileImageUrl, tweetText, [tweetId longLongValue]];
+	return [NSString stringWithFormat:@"(TWEET : screenName=%@ ; fullName=%@ ; profileImageUrl=%@ ; tweetText=%@ ; clientName=%@ tweetId=%qu)", screenName, fullName, profileImageUrl, tweetText, clientName, [tweetId longLongValue]];
 }
 
 - (void) encodeWithCoder: (NSCoder *)coder { 

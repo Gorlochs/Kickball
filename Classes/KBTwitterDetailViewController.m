@@ -33,7 +33,7 @@
     [mentionsButton setImage:[UIImage imageNamed:@"tabMentions03.png"] forState:UIControlStateNormal];
     [directMessageButton setImage:[UIImage imageNamed:@"tabDM03.png"] forState:UIControlStateNormal];
     [searchButton setImage:[UIImage imageNamed:@"tabSearch03.png"] forState:UIControlStateNormal];
-    
+    NSLog(@"tweet: %@", tweet);
     screenName.text = tweet.screenName;
     fullName.text = tweet.fullName;
 	twitterClient.text = @"";
