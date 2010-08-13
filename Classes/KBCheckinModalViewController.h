@@ -52,7 +52,6 @@
 -(void) uploadToFacebook;
 - (void) submitToTwitter:(TweetPhotoResponse*)response;
 - (void) closeUpShop;
-- (void) statusRetrieved:(NSNotification *)inNotification;
 - (void) decrementActionCount;
 - (void) getPhoto:(UIImagePickerControllerSourceType)sourceType;
 - (IBAction) choosePhotoSelectMethod;

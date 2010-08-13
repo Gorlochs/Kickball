@@ -419,6 +419,10 @@
 	// e.g. self.myOutlet = nil;
 }
 
+- (void)requestSucceeded:(NSString *)connectionIdentifier {} //satisfy MGTWitterEngineDelegate protocol requirements
+
+- (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error {}
+
 - (void)dealloc {
 	photoManager.delegate = nil;
     [venue release];

@@ -526,7 +526,7 @@
     [self startProgressBar:@"Retrieving tweets..."];
 
     DLog(@"twitter username: %@", user.twitter);
-    NSString *twitters = [[KBTwitterManager twitterManager] getUserTimelineFor:user.twitter sinceID:0 startingAtPage:0 count:20];
+    NSString *twitters = [(MGTwitterEngine*)[KBTwitterManager twitterManager] getUserTimelineFor:user.twitter sinceID:0 startingAtPage:0 count:20];
     DLog(@"twitter: %@", twitters);
 }
 

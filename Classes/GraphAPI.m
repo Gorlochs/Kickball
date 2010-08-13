@@ -448,7 +448,7 @@ NSString* const kConnectionAlbums = @"albums";
 
 -(void)postToWall:(NSString*)message withImage:(UIImage*)photo{
 	NSData* responseData = nil;
-	NSString* r_string = nil;
+	//NSString* r_string = nil;
 	NSString* method = @"photos.upload";
 	NSMutableDictionary *args = nil;
 	

@@ -40,7 +40,7 @@
 -(void)showLoginView;
 -(void)killLoginView;
 -(void)displayAlbum:(NSString*)aid;
--(void)displayAlbumThreaded:(NSString *)aid;
+//-(void)displayAlbumThreaded:(NSString *)aid;
 
 @end
 @interface KBFacebookViewController (Private)

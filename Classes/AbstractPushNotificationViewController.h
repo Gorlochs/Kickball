@@ -26,5 +26,6 @@
 //- (void) friendsToPingReceived:(NSNotification *)inNotification;
 - (void) retrieveAllFriendsWithPingOn;
 - (void)friendsToPingReceived;
+- (void) retrieveAllFriendsWithPingOn;
 
 @end

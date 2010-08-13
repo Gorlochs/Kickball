@@ -98,4 +98,6 @@ void uncaughtExceptionHandler(NSException *exception);
 -(void)loggedOutOfFoursquare;
 -(void)loggedInToTwitter;
 -(void)loggedInToFoursquare;
+-(void)pressOptionsLeft;
+-(void)pressOptionsRight;
 @end

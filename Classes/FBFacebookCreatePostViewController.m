@@ -355,6 +355,11 @@
     // e.g. self.myOutlet = nil;
 }
 
+- (void)requestSucceeded:(NSString *)connectionIdentifier {
+}
+- (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error {
+}
+
 
 - (void)dealloc {
 	photoManager.delegate = nil;

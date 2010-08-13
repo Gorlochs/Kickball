@@ -22,6 +22,7 @@
 #import "ViewFriendRequestsViewController.h"
 #import "FriendRequestsViewController.h"
 #import "KBDialogueManager.h"
+#import "KBTweetListViewController.h"
 
 @implementation KickballAppDelegate
 
@@ -92,7 +93,7 @@
 }
 
 - (void) updateFriendsPings {
-    [[Utilities sharedInstance] retrieveAllFriendsWithPingOn];
+    //doesn't exist here anymore... [(Utilities*)[Utilities sharedInstance] retrieveAllFriendsWithPingOn];
 }
 
 void uncaughtExceptionHandler(NSException *exception) {
@@ -516,10 +517,10 @@ void uncaughtExceptionHandler(NSException *exception) {
 }
 
 -(void)pressOptionsLeft{
-	[(OptionsVC*)[optionsNavigationController visibleViewController] pressOptionsLeft];
+	[(OptionsViewController*)[optionsNavigationController visibleViewController] pressOptionsLeft];
 }
 -(void)pressOptionsRight{
-	[(OptionsVC*)[optionsNavigationController visibleViewController] pressOptionsRight];
+	[(OptionsViewController*)[optionsNavigationController visibleViewController] pressOptionsRight];
 	
 }
 
@@ -570,31 +571,31 @@ void uncaughtExceptionHandler(NSException *exception) {
 #pragma mark -
 
 -(void)createInitialTwitterView{
-	[twitterNavigationController.visibleViewController killLoginView];
-	[twitterNavigationController.visibleViewController showLoginView];
+	[(KBTwitterViewController*)twitterNavigationController.visibleViewController killLoginView];
+	[(KBTwitterViewController*)twitterNavigationController.visibleViewController showLoginView];
 }
 
 -(void)loggedOutOfTwitter{
 	[twitterNavigationController popToRootViewControllerAnimated:NO];
-	[twitterNavigationController.visibleViewController showLoginView];
+	[(KBTwitterViewController*)twitterNavigationController.visibleViewController showLoginView];
 }
 
 -(void)loggedOutOfFoursquare{
 	[navigationController popToRootViewControllerAnimated:NO];
-	[navigationController.visibleViewController showLoginView];
+	[(KBFoursquareViewController*)navigationController.visibleViewController showLoginView];
 }
 
 -(void)loggedInToTwitter{
-	[twitterNavigationController.visibleViewController killLoginView];
+	[(KBTwitterViewController*)twitterNavigationController.visibleViewController killLoginView];
 	if([twitterNavigationController.visibleViewController  respondsToSelector:@selector(showStatuses)]){
-		[twitterNavigationController.visibleViewController  showStatuses];
+		[(KBTweetListViewController*)twitterNavigationController.visibleViewController  showStatuses];
 	}
 }
 
 -(void)loggedInToFoursquare{
-	[navigationController.visibleViewController killLoginView];
+	[(KBFoursquareViewController*)navigationController.visibleViewController killLoginView];
 	if([navigationController.visibleViewController respondsToSelector:@selector(doInitialDisplay)]){
-		[navigationController.visibleViewController doInitialDisplay];
+		[(KBFoursquareViewController*)navigationController.visibleViewController doInitialDisplay];
 	}
 }
 
