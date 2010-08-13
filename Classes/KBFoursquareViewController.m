@@ -90,18 +90,25 @@
 }
 
 - (void) backOneView {
+	[[FoursquareAPI sharedInstance] dumpRequests];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void) backOneViewNotAnimated {
+	[[FoursquareAPI sharedInstance] dumpRequests];
+
     [self.navigationController popViewControllerAnimated:NO];
 }
 
 - (void) goToHomeView {
+	[[FoursquareAPI sharedInstance] dumpRequests];
+
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void) goToHomeViewNotAnimated {
+	[[FoursquareAPI sharedInstance] dumpRequests];
+
     [self.navigationController popToRootViewControllerAnimated:NO];
 }
 

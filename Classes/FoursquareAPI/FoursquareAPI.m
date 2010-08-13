@@ -1580,6 +1580,11 @@ int fs_encode(unsigned s_len, char *src, unsigned d_len, char *dst)
     }
 }
 
+-(void)dumpRequests{
+	for(FSFunctionRequest *fsReq in activeRequests){
+		fsReq.currentTarget = nil;
+	}
+}
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
