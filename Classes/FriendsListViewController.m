@@ -502,7 +502,7 @@
 		if (isFacebookOn ) {
 			//actionCount++;
 			GraphAPI *graph = [[FacebookProxy instance] newGraph];
-			[graph putWallPost:@"me" message:shoutText.text attachment:nil];
+			[graph simpleStatusPost:shoutText.text];	
 			[graph release];
 		}
 		

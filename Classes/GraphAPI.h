@@ -71,6 +71,7 @@
 -(NSArray*)getPhotosForAlbum:(NSString*)aid;
 -(void)postToWall:(NSString*)message withImage:(UIImage*)photo;
 -(NSDictionary*)eventFeed:(NSString*)event_id;
+-(void)simpleStatusPost:(NSString*)message;
 
 @end
 

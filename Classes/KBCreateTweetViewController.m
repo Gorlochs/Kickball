@@ -158,7 +158,10 @@
 		} else {
 			[self submitToTwitter:nil];
 			if (isFacebookOn) {
-				[Utilities putGoogleMapsWallPostWithMessage:tweetTextView.text andVenue:nil andLink:nil];
+				//[Utilities putGoogleMapsWallPostWithMessage:tweetTextView.text andVenue:nil andLink:nil];
+				GraphAPI *graph = [[FacebookProxy instance] newGraph];
+				[graph simpleStatusPost:tweetTextView.text];	
+				[graph release];		
 			}
 		}
 	} else {
@@ -395,7 +398,10 @@
     [self stopProgressBar];
     DLog(@"Uhoh, it did fail!");
 	if (isFacebookOn) {
-        [Utilities putGoogleMapsWallPostWithMessage:tweetTextView.text andVenue:nil andLink:nil];
+        //[Utilities putGoogleMapsWallPostWithMessage:tweetTextView.text andVenue:nil andLink:nil];
+		GraphAPI *graph = [[FacebookProxy instance] newGraph];
+		[graph simpleStatusPost:tweetTextView.text];	
+		[graph release];		
 	}
 }
 

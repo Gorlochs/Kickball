@@ -457,7 +457,16 @@ NSString* const kConnectionAlbums = @"albums";
 	//r_string = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
 }
 
-
+-(void)simpleStatusPost:(NSString*)message{
+	NSData* responseData = nil;
+	NSString* r_string = nil;
+	NSString* method = @"users.setStatus";
+	NSMutableDictionary *args = nil;
+	args= [NSMutableDictionary dictionaryWithObjectsAndKeys:message,@"status",@"true",@"status_includes_verb",@"json",@"format",self._accessToken,kArgumentKeyAccessToken,nil];
+	responseData = [self makeSynchronousRest:method args:args verb:kRequestVerbGet];
+	r_string = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+	[r_string release];
+}
 
 -(GraphObject*)putToObject:(NSString*)parent_obj_id connectionType:(NSString*)connection args:(NSDictionary*)request_args
 {
