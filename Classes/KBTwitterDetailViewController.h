@@ -20,10 +20,11 @@
     IBOutlet UILabel *fullName;
     IBOutlet UILabel *timeLabel;
     IBOutlet UIButton *retweetButton;
-    IBOutlet UIButton *replyButton;
+    IBOutlet UIButton *replyToTweetButton;
     IBOutlet UIButton *forwardButton;
 	IBOutlet UILabel *twitterClient;
 	IBOutlet UIButton *favoriteButton;
+	IBOutlet UIButton *replyButton;
     IBOutlet UILabel *numberOfFollowers;
     IBOutlet UILabel *numberOfFriends;
     IBOutlet UILabel *numberOfFavorites;

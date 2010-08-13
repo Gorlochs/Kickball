@@ -13,11 +13,89 @@
 #import "KBTwitterUserListViewController.h"
 #import "KBTwitterFavsViewController.h"
 #import "KBTwitterSearchViewController.h"
+#import "KBDirectMessage.h"
 
 
 @implementation KBTwitterDetailViewController
 
 @synthesize tweet, tweets;
+
+- (void)viewDidLoad {
+    pageType = KBPageTypeOther;
+    [super viewDidLoad];
+	[self startProgressBar:@"Retrieving Info"];
+    numberOfFollowers.text = @"";
+    numberOfFriends.text = @"";
+    numberOfFavorites.text = @"";
+    numberOfTweets.text = @"";
+    userDictionary = nil;
+    [timelineButton setImage:[UIImage imageNamed:@"tabTweets03.png"] forState:UIControlStateNormal];
+    [mentionsButton setImage:[UIImage imageNamed:@"tabMentions03.png"] forState:UIControlStateNormal];
+    [directMessageButton setImage:[UIImage imageNamed:@"tabDM03.png"] forState:UIControlStateNormal];
+    [searchButton setImage:[UIImage imageNamed:@"tabSearch03.png"] forState:UIControlStateNormal];
+    
+    screenName.text = tweet.screenName;
+    fullName.text = tweet.fullName;
+	twitterClient.text = @"";
+	if (tweet.clientName) {
+		twitterClient.text = tweet.clientName;
+	}
+	
+	if ([tweet isKindOfClass:[KBDirectMessage class]]) {
+		[replyToTweetButton setImage:[UIImage imageNamed:@"btn-directMsg01.png"] forState:UIControlStateNormal];
+		[replyToTweetButton setImage:[UIImage imageNamed:@"btn-directMsg02.png"] forState:UIControlStateHighlighted];
+		retweetButton.enabled = NO;
+		favoriteButton.enabled = NO;
+	}
+	
+	TTStyledTextLabel* label1 = [[TTStyledTextLabel alloc] initWithFrame:CGRectMake(6, 125, 300, 100)];
+	label1.font = [UIFont fontWithName:@"Helvetica" size:14.0];
+	label1.textColor = [UIColor colorWithWhite:0.5 alpha:1.0];
+	label1.text = [TTStyledText textWithURLs:tweet.tweetText lineBreaks:NO];
+	label1.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
+	label1.backgroundColor = [UIColor clearColor];	
+	[label1 sizeToFit];
+	[label1 setNeedsLayout];
+	[self.view addSubview:label1];
+    [label1 release];
+	
+    CGRect frame = CGRectMake(17, 67, 33, 34);
+    TTImageView *userProfileImage = [[TTImageView alloc] initWithFrame:frame];
+    userProfileImage.backgroundColor = [UIColor clearColor];
+    userProfileImage.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
+    userProfileImage.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
+    userProfileImage.urlPath = tweet.profileImageUrl;
+    [self.view addSubview:userProfileImage];
+    [userProfileImage release];
+    
+    timeLabel.text = [[KickballAPI kickballApi] convertDateToTimeUnitString:tweet.createDate];
+	isFavorited = tweet.isFavorited;
+	if (isFavorited) {
+		[favoriteButton setImage:[UIImage imageNamed:@"btn-favorite02.png"] forState:UIControlStateNormal];
+	} else {
+		[favoriteButton setImage:[UIImage imageNamed:@"btn-favorite01.png"] forState:UIControlStateNormal];
+	}
+    twitterManager = [KBTwitterManager twitterManager];
+	twitterManager.delegate = self;
+	
+    [twitterEngine getUserInformationFor:tweet.screenName];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTweetNotification:) name:IFTweetLabelURLNotification object:nil];
+    _isObservingNotifications = true;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    if (!_isObservingNotifications) {
+		_isObservingNotifications = true;
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTweetNotification:) name:IFTweetLabelURLNotification object:nil];
+    }
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    _isObservingNotifications = false;
+}
 
 - (IBAction) viewRecentTweets {
     if (![userDictionary objectForKey:@"screen_name"]) return;
@@ -74,76 +152,6 @@
     [self stopProgressBar];
 }
 
-- (void)viewDidLoad {
-    pageType = KBPageTypeOther;
-    [super viewDidLoad];
-	[self startProgressBar:@"Retrieving Info"];
-    numberOfFollowers.text = @"";
-    numberOfFriends.text = @"";
-    numberOfFavorites.text = @"";
-    numberOfTweets.text = @"";
-    userDictionary = nil;
-    [timelineButton setImage:[UIImage imageNamed:@"tabTweets03.png"] forState:UIControlStateNormal];
-    [mentionsButton setImage:[UIImage imageNamed:@"tabMentions03.png"] forState:UIControlStateNormal];
-    [directMessageButton setImage:[UIImage imageNamed:@"tabDM03.png"] forState:UIControlStateNormal];
-    [searchButton setImage:[UIImage imageNamed:@"tabSearch03.png"] forState:UIControlStateNormal];
-    
-    screenName.text = tweet.screenName;
-    fullName.text = tweet.fullName;
-	twitterClient.text = @"";
-	if (tweet.clientName) {
-		twitterClient.text = tweet.clientName;
-	}
-	
-	TTStyledTextLabel* label1 = [[TTStyledTextLabel alloc] initWithFrame:CGRectMake(6, 125, 300, 100)];
-	label1.font = [UIFont fontWithName:@"Helvetica" size:14.0];
-	label1.textColor = [UIColor colorWithWhite:0.5 alpha:1.0];
-	label1.text = [TTStyledText textWithURLs:tweet.tweetText lineBreaks:NO];
-	label1.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
-	label1.backgroundColor = [UIColor clearColor];	
-	[label1 sizeToFit];
-	[label1 setNeedsLayout];
-	[self.view addSubview:label1];
-    [label1 release];
-	
-    CGRect frame = CGRectMake(17, 67, 33, 34);
-    TTImageView *userProfileImage = [[TTImageView alloc] initWithFrame:frame];
-    userProfileImage.backgroundColor = [UIColor clearColor];
-    userProfileImage.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
-    userProfileImage.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
-    userProfileImage.urlPath = tweet.profileImageUrl;
-    [self.view addSubview:userProfileImage];
-    [userProfileImage release];
-    
-    timeLabel.text = [[KickballAPI kickballApi] convertDateToTimeUnitString:tweet.createDate];
-	isFavorited = tweet.isFavorited;
-	if (isFavorited) {
-		[favoriteButton setImage:[UIImage imageNamed:@"btn-favorite02.png"] forState:UIControlStateNormal];
-	} else {
-		[favoriteButton setImage:[UIImage imageNamed:@"btn-favorite01.png"] forState:UIControlStateNormal];
-	}
-    twitterManager = [KBTwitterManager twitterManager];
-	twitterManager.delegate = self;
-	
-    [twitterEngine getUserInformationFor:tweet.screenName];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTweetNotification:) name:IFTweetLabelURLNotification object:nil];
-    _isObservingNotifications = true;
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    if (!_isObservingNotifications) {
-		_isObservingNotifications = true;
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTweetNotification:) name:IFTweetLabelURLNotification object:nil];
-    }
-}
-
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    _isObservingNotifications = false;
-}
-
 - (void) retweet {
 	KBCreateTweetViewController *createRetweetViewController = [[KBCreateTweetViewController alloc] initWithNibName:@"KBCreateTweetViewController" bundle:nil];
     createRetweetViewController.replyToStatusId = tweet.tweetId;
@@ -156,7 +164,11 @@
 - (void) reply {
 	KBCreateTweetViewController *createReplyViewController = [[KBCreateTweetViewController alloc] initWithNibName:@"KBCreateTweetViewController" bundle:nil];
     createReplyViewController.replyToStatusId = tweet.tweetId;
-    createReplyViewController.replyToScreenName = tweet.screenName;
+	if ([tweet isKindOfClass:[KBDirectMessage class]]) {
+		createReplyViewController.directMentionToScreenname = tweet.screenName;
+	} else {
+		createReplyViewController.replyToScreenName = tweet.screenName;
+	}
 	[self.navigationController pushViewController:createReplyViewController animated:YES];
 	[createReplyViewController release];
 }

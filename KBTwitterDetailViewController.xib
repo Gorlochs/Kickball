@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="35"/>
+			<integer value="1"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -827,6 +827,22 @@
 					</object>
 					<int key="connectionID">84</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">replyToTweetButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="959975504"/>
+					</object>
+					<int key="connectionID">86</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">retweetButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="529550220"/>
+					</object>
+					<int key="connectionID">87</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -1085,7 +1101,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>KBTwitterDetailViewController</string>
 					<string>UIResponder</string>
-					<string>{{548, 80}, {320, 480}}</string>
+					<string>{{481, 237}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1127,7 +1143,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">84</int>
+			<int key="maxID">87</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1633,6 +1649,7 @@
 							<string>numberOfFriends</string>
 							<string>numberOfTweets</string>
 							<string>replyButton</string>
+							<string>replyToTweetButton</string>
 							<string>retweetButton</string>
 							<string>screenName</string>
 							<string>timeLabel</string>
@@ -1647,6 +1664,7 @@
 							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
+							<string>UIButton</string>
 							<string>UIButton</string>
 							<string>UIButton</string>
 							<string>UILabel</string>
@@ -1666,6 +1684,7 @@
 							<string>numberOfFriends</string>
 							<string>numberOfTweets</string>
 							<string>replyButton</string>
+							<string>replyToTweetButton</string>
 							<string>retweetButton</string>
 							<string>screenName</string>
 							<string>timeLabel</string>
@@ -1703,6 +1722,10 @@
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">replyButton</string>
+								<string key="candidateClassName">UIButton</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">replyToTweetButton</string>
 								<string key="candidateClassName">UIButton</string>
 							</object>
 							<object class="IBToOneOutletInfo">
