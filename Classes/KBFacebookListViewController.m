@@ -31,6 +31,11 @@
 					  minimumFontSize:12 shadowColor:[UIColor colorWithWhite:1 alpha:0.8]
 						 shadowOffset:CGSizeMake(0, -1) next:nil];
 }
+- (TTStyle*)fbRedText {
+	return [TTTextStyle styleWithFont:[UIFont systemFontOfSize:12.0] color:[UIColor colorWithRed:255/255.0 green:0/255.0 blue:0/255.0 alpha:1.0]
+					  minimumFontSize:12 shadowColor:[UIColor colorWithWhite:1 alpha:0.8]
+						 shadowOffset:CGSizeMake(0, -1) next:nil];
+}
 @end
 
 @implementation KBFacebookListViewController

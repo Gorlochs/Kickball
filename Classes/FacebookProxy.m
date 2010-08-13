@@ -331,6 +331,19 @@ static NSDateFormatter* fbEventDetailDate = NULL;
 	}
 }
 
+- (void)dialogDidCancel:(FBDialog*)dialog{
+	NSLog(@"FBDialog canceled");
+	
+}
+
+- (void)dialog:(FBDialog*)dialog didFailWithError:(NSError*)error{
+	NSLog(@"FBDialog had an error");
+}
+
+- (BOOL)dialog:(FBDialog*)dialog shouldOpenURLInExternalBrowser:(NSURL*)url{
+	DLog(@"FBDialog is trying to open URL in external browser");
+	return YES;
+}
 #pragma mark -
 #pragma mark Authorization Methods (Graph API)
 
@@ -836,8 +849,19 @@ static NSDateFormatter* fbEventDetailDate = NULL;
 		if (caption!=nil) {
 			[suitable appendFormat:@" %@",caption];
 		}
+		
 	}
-	NSString *result = [suitable stringByReplacingOccurrencesOfString: @"&" withString: @"&amp;"]; 
+	NSString *cleaned = [suitable stringByReplacingOccurrencesOfString: @"&" withString: @"&amp;"]; 
+	cleaned = [cleaned stringByReplacingOccurrencesOfString: @"<" withString: @"&lt;"]; 
+	cleaned = [cleaned stringByReplacingOccurrencesOfString: @">" withString: @"&gt;"]; 
+	NSString *attribution = [fbItem objectForKey:@"attribution"];
+	NSString *result = cleaned;
+	if (attribution!=[NSNull null]) {
+		if ([attribution isEqualToString:@"Kickball!"]) {
+			result = [NSString stringWithFormat:@"%@ - via <span class=\"fbRedText\">%@</span>",cleaned, attribution];
+		}
+	}
+
 	return result;
 }
 

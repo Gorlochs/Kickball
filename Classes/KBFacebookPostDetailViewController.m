@@ -80,7 +80,8 @@
 	NSString *href = [[fbItem objectForKey:@"attachment"] objectForKey:@"href"];
 	if (href != nil && [href rangeOfString:@"facebook"].location == NSNotFound) {
 		NSString *shortHref = [NSString stringWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://is.gd/api.php?longurl=%@", href]] encoding:NSASCIIStringEncoding error:nil];
-		bodyText = [NSString stringWithFormat:@"%@<br/>%@",bodyText, shortHref];
+		if(shortHref!=nil)
+			bodyText = [NSString stringWithFormat:@"%@<br/>%@",bodyText, shortHref];
 	}
 	NSString *displayString = [NSString	 stringWithFormat:@"<span class=\"fbLargeBlueText\">%@</span> %@",[[FacebookProxy instance] userNameFrom:[fbItem objectForKey:@"actor_id"]], bodyText];
 	fbPostText.text = [TTStyledText textFromXHTML:[displayString stringByReplacingOccurrencesOfString:@"\n" withString:@""] lineBreaks:YES URLs:YES];
