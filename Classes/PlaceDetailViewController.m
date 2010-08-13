@@ -88,7 +88,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentCheckinOverlay:) name:@"checkedIn" object:nil];
 
 	specialsButton = [UIButton buttonWithType:UIButtonTypeCustom];
-	[specialsButton setFrame:CGRectMake(254, -1, 53, 57)];
+	[specialsButton setFrame:CGRectMake(254, 3, 53, 57)];
 	[specialsButton setImage:[UIImage imageNamed:@"place-Special01.png"] forState:UIControlStateNormal];
 	[specialsButton setImage:[UIImage imageNamed:@"place-Special02.png"] forState:UIControlStateHighlighted];
 	[specialsButton addTarget:self action:@selector(showSpecial) forControlEvents:UIControlEventTouchUpInside];
@@ -704,8 +704,7 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 2 || indexPath.section > 3) {
-        [cell setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:1.0]];  
-        //        [cell setBackgroundColor:[UIColor colorWithRed:239.0/255.0 green:239.0/255.0 blue:239.0/255.0 alpha:1.0]];  
+        [cell setBackgroundColor:[UIColor colorWithRed:239.0/255.0 green:239.0/255.0 blue:239.0/255.0 alpha:1.0]];  
     }
 }
 
