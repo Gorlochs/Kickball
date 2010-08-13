@@ -27,7 +27,7 @@
 }
 
 - (void)didStartModalTweet {
-  _inModalTweetView = YES;
+	_inModalTweetView = YES;
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -39,14 +39,13 @@
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
-  [super viewDidDisappear:animated];
-  _firstView = false;
+	[super viewDidDisappear:animated];
+	_firstView = false;
 }
 
 - (void)viewDidLoad {
-NSLog(@"loading tweetlist");
-   _firstView = true;
-   [super viewDidLoad];
+	_firstView = true;
+	[super viewDidLoad];
     twitterManager.delegate = self;
     _inModalTweetView = NO;
     pageNum = 1;
@@ -101,8 +100,8 @@ NSLog(@"loading tweetlist");
 
 - (void)statusesReceived:(NSArray *)statuses {
     if (_inModalTweetView) {
-    [self.navigationController popViewControllerAnimated:YES];
-    _inModalTweetView = NO;
+		[self.navigationController popViewControllerAnimated:YES];
+		_inModalTweetView = NO;
     }
 	if (statuses) {
         int count = 0;

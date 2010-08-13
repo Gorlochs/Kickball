@@ -44,8 +44,8 @@
 	if ([tweet isKindOfClass:[KBDirectMessage class]]) {
 		[replyToTweetButton setImage:[UIImage imageNamed:@"btn-directMsg01.png"] forState:UIControlStateNormal];
 		[replyToTweetButton setImage:[UIImage imageNamed:@"btn-directMsg02.png"] forState:UIControlStateHighlighted];
-		retweetButton.enabled = NO;
-		favoriteButton.enabled = NO;
+		retweetButton.hidden = NO;
+		favoriteButton.hidden = NO;
 	}
 	
 	TTStyledTextLabel* label1 = [[TTStyledTextLabel alloc] initWithFrame:CGRectMake(6, 125, 300, 100)];
