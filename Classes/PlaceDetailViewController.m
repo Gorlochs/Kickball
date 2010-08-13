@@ -40,7 +40,8 @@
 #import "KBAccountManager.h"
 
 #define PHOTOS_PER_ROW 4
-#define THUMBNAIL_IMAGE_SIZE 73
+#define THUMBNAIL_IMAGE_SIZEX 80
+#define THUMBNAIL_IMAGE_SIZEY 73
 #define MAX_NUM_TIPS_SHOWN 4
 #define MAX_PEOPLE_HERE_SHOWN 4
 
@@ -88,7 +89,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentCheckinOverlay:) name:@"checkedIn" object:nil];
 
 	specialsButton = [UIButton buttonWithType:UIButtonTypeCustom];
-	[specialsButton setFrame:CGRectMake(254, 3, 53, 57)];
+	[specialsButton setFrame:CGRectMake(254, 2, 53, 57)];
 	[specialsButton setImage:[UIImage imageNamed:@"place-Special01.png"] forState:UIControlStateNormal];
 	[specialsButton setImage:[UIImage imageNamed:@"place-Special02.png"] forState:UIControlStateHighlighted];
 	[specialsButton addTarget:self action:@selector(showSpecial) forControlEvents:UIControlEventTouchUpInside];
@@ -180,7 +181,7 @@
             [tempTTPhotoArray addObject:photo];
             [photo release];
             
-            CGRect frame = CGRectMake(x*THUMBNAIL_IMAGE_SIZE, y*THUMBNAIL_IMAGE_SIZE, THUMBNAIL_IMAGE_SIZE, THUMBNAIL_IMAGE_SIZE);
+            CGRect frame = CGRectMake(x*THUMBNAIL_IMAGE_SIZEX, y*THUMBNAIL_IMAGE_SIZEY, THUMBNAIL_IMAGE_SIZEX, THUMBNAIL_IMAGE_SIZEY);
             TTImageView *ttImage = [[TTImageView alloc] initWithFrame:frame];
             ttImage.urlPath = goody.thumbnailImagePath;
             ttImage.clipsToBounds = YES;
@@ -704,7 +705,7 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 2 || indexPath.section > 3) {
-        [cell setBackgroundColor:[UIColor colorWithRed:239.0/255.0 green:239.0/255.0 blue:239.0/255.0 alpha:1.0]];  
+        [cell setBackgroundColor:[UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:1.0]];  
     }
 }
 
@@ -727,7 +728,7 @@
 //            if ([goodies count] == 0) {
 //                return 102;
 //            } else {
-                return THUMBNAIL_IMAGE_SIZE;
+                return THUMBNAIL_IMAGE_SIZEY;
 //            }
             break;
         case 4:
