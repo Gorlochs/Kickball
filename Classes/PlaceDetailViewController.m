@@ -86,6 +86,15 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(displayTodoTipMessage:) name:@"todoTipSent" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentCheckinOverlay:) name:@"checkedIn" object:nil];
+
+	specialsButton = [UIButton buttonWithType:UIButtonTypeCustom];
+	[specialsButton setFrame:CGRectMake(254, -1, 53, 57)];
+	[specialsButton setImage:[UIImage imageNamed:@"place-Special01.png"] forState:UIControlStateNormal];
+	[specialsButton setImage:[UIImage imageNamed:@"place-Special02.png"] forState:UIControlStateHighlighted];
+	[specialsButton addTarget:self action:@selector(showSpecial) forControlEvents:UIControlEventTouchUpInside];
+	[theTableView addSubview:specialsButton];
+  
+
     
     isUserCheckedIn = NO;
     
@@ -376,7 +385,8 @@
 			case 2:
 				peopleHereContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 60)];
 				[peopleHereContainer setBackgroundColor:[UIColor clearColor]];
-				roundedRect = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 290, 47)];
+				roundedRect = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 47)];
+        	//			roundedRect = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 290, 47)];
 				[[roundedRect layer] setCornerRadius:3.0f];
 				[roundedRect setBackgroundColor:[UIColor colorWithRed:239.0/255.0 green:239.0/255.0 blue:239.0/255.0 alpha:1.0]];  
 				[peopleHereContainer addSubview:roundedRect];
@@ -384,7 +394,8 @@
 				break;
 			default:
 				peopleHereContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 107)];
-				roundedRect = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 290, 95)];
+				roundedRect = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 95)];
+        //				roundedRect = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 290, 95)];
 				[[roundedRect layer] setCornerRadius:3.0f];
 				[roundedRect setBackgroundColor:[UIColor colorWithRed:239.0/255.0 green:239.0/255.0 blue:239.0/255.0 alpha:1.0]];  
 				[peopleHereContainer addSubview:roundedRect];
@@ -485,42 +496,48 @@
 			nameRect = CGRectMake(48, 8, 75, 30);
 			headRect = CGRectMake(8, 8, 32, 32);
 			personTag = 1;
-			touchRect = CGRectMake(0, 0, 290, 47);
+			touchRect = CGRectMake(0, 0, 320, 47);
+      //			touchRect = CGRectMake(0, 0, 290, 47);
 			accessoryRect = CGRectMake(270, 17, 9, 12);
 			break;
 		case 3:
 			nameRect = CGRectMake(48, 55, 75, 30);
 			headRect = CGRectMake(8, 55, 32, 32);
 			personTag = 3;
-			touchRect = CGRectMake(0, 48, 290, 47);
+			touchRect = CGRectMake(0, 48, 320, 47);
+      //			touchRect = CGRectMake(0, 48, 290, 47);
 			accessoryRect = CGRectMake(270, 64, 9, 12);
 			break;
 		case 21:
 			nameRect = CGRectMake(48, 8, 75, 30);
 			headRect = CGRectMake(8, 8, 32, 32);
 			personTag = 1;
-			touchRect = CGRectMake(0, 0, 145, 47);
+			touchRect = CGRectMake(0, 0, 160, 47);
+      //			touchRect = CGRectMake(0, 0, 145, 47);
 			accessoryRect = CGRectMake(125, 17, 9, 12);
 			break;
 		case 22:
 			nameRect = CGRectMake(192, 8, 75, 30);
 			headRect = CGRectMake(152, 8, 32, 32);
 			personTag = 2;
-			touchRect = CGRectMake(148, 0, 145, 47);
+			touchRect = CGRectMake(163, 0, 160, 47);
+      //			touchRect = CGRectMake(148, 0, 145, 47);
 			accessoryRect = CGRectMake(270, 17, 9, 12);
 			break;
 		case 23:
 			nameRect = CGRectMake(48, 55, 75, 30);
 			headRect = CGRectMake(8, 55, 32, 32);
 			personTag = 3;
-			touchRect = CGRectMake(0, 48, 145, 47);
+			touchRect = CGRectMake(0, 48, 160, 47);
+      //			touchRect = CGRectMake(0, 48, 145, 47);
 			accessoryRect = CGRectMake(125, 64, 9, 12);
 			break;
 		default:
 			nameRect = CGRectMake(192, 55, 75, 30);
 			headRect = CGRectMake(152, 55, 32, 32);
 			personTag = 4;
-			touchRect = CGRectMake(148, 48, 145, 47);
+			touchRect = CGRectMake(163, 48, 160, 47);
+      //			touchRect = CGRectMake(148, 48, 145, 47);
 			accessoryRect = CGRectMake(270, 64, 9, 12);
 			break;
 	}
@@ -687,7 +704,8 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 2 || indexPath.section > 3) {
-        [cell setBackgroundColor:[UIColor colorWithRed:239.0/255.0 green:239.0/255.0 blue:239.0/255.0 alpha:1.0]];  
+        [cell setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:1.0]];  
+        //        [cell setBackgroundColor:[UIColor colorWithRed:239.0/255.0 green:239.0/255.0 blue:239.0/255.0 alpha:1.0]];  
     }
 }
 
@@ -952,7 +970,8 @@
     checkinView.opaque = NO;
     
     // create title
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(17, 5, 291, 60)];
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, 320, 60)];
+    //    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(17, 5, 291, 60)];
     [titleLabel setFont:[UIFont boldSystemFontOfSize:42]];
     [titleLabel setTextColor:[UIColor colorWithRed:14/255.0 green:140/255.0 blue:192/255.0 alpha:1]];
     [titleLabel setNumberOfLines:1];
@@ -986,7 +1005,8 @@
         mayorBadgeImageView.frame = CGRectMake(0, 70, 320, 221);
         [checkinView addSubview:mayorBadgeImageView];
 		
-        IFTweetLabel *mayorLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(17.0f, height, 280.0f, 50.0f)];
+        IFTweetLabel *mayorLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(17.0f, height, 320.0f, 50.0f)];
+          //      IFTweetLabel *mayorLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(17.0f, height, 280.0f, 50.0f)];
         [mayorLabel setFont:[UIFont boldSystemFontOfSize:12.0f]];
         [mayorLabel setTextColor:[UIColor whiteColor]];
         [mayorLabel setBackgroundColor:[UIColor clearColor]];
@@ -1011,7 +1031,8 @@
         NSData *data = [NSData dataWithContentsOfURL:url];
         UIImage *img = [[UIImage alloc] initWithData:data];
         UIImageView *badgeImageView = [[UIImageView alloc] initWithImage:img];
-        badgeImageView.frame = CGRectMake(17, height, 50, 50);
+        badgeImageView.frame = CGRectMake(0, height, 50, 50);
+        //        badgeImageView.frame = CGRectMake(17, height, 50, 50);
         [checkinView addSubview:badgeImageView];
         [badgeImageView release];
 		[img release];
@@ -1037,7 +1058,8 @@
     [messageLabel setText:aCheckin.message];
 	
 	//// resize messageLabel ////
-	CGSize maximumLabelSize = CGSizeMake(280, 80);
+	CGSize maximumLabelSize = CGSizeMake(320, 80);
+  //	CGSize maximumLabelSize = CGSizeMake(280, 80);
 	CGSize expectedLabelSize = [aCheckin.message sizeWithFont:messageLabel.font 
 										   constrainedToSize:maximumLabelSize 
 											   lineBreakMode:UILineBreakModeClip]; 
@@ -1050,7 +1072,8 @@
     [messageLabel release];
     
     // loop through scores to display points
-    IFTweetLabel *scoreLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(17.0f, height, 280.0f, 80.0f)];
+    IFTweetLabel *scoreLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(17.0f, height, 320, 80.0f)];
+     //   IFTweetLabel *scoreLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(17.0f, height, 280.0f, 80.0f)];
     [scoreLabel setFont:[UIFont boldSystemFontOfSize:14.0f]];
     [scoreLabel setTextColor:[UIColor whiteColor]];
     [scoreLabel setBackgroundColor:[UIColor clearColor]];
@@ -1270,7 +1293,8 @@
 - (void) viewVenueMap {
 
     closeMapButton.alpha = 0;
-    closeMapButton.frame = CGRectMake(276, 123, 45, 45);
+    closeMapButton.frame = CGRectMake(320, 123, 45, 45);
+    //    closeMapButton.frame = CGRectMake(276, 123, 45, 45);
     fullMapView.alpha = 0;
     fullMapView.frame = CGRectMake(0, 118, 320, 343);
     [self.view addSubview:fullMapView];
