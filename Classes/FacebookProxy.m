@@ -854,13 +854,14 @@ static NSDateFormatter* fbEventDetailDate = NULL;
 	NSString *cleaned = [suitable stringByReplacingOccurrencesOfString: @"&" withString: @"&amp;"]; 
 	cleaned = [cleaned stringByReplacingOccurrencesOfString: @"<" withString: @"&lt;"]; 
 	cleaned = [cleaned stringByReplacingOccurrencesOfString: @">" withString: @"&gt;"]; 
-	NSString *attribution = [fbItem objectForKey:@"attribution"];
 	NSString *result = cleaned;
+	/*
+	NSString *attribution = [fbItem objectForKey:@"attribution"];
 	if (attribution!=[NSNull null]) {
 		if ([attribution isEqualToString:@"Kickball!"]) {
 			result = [NSString stringWithFormat:@"%@ - via <span class=\"fbRedText\">%@</span>",cleaned, attribution];
 		}
-	}
+	}*/
 
 	return result;
 }

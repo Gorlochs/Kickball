@@ -36,6 +36,11 @@
 					  minimumFontSize:12 shadowColor:[UIColor colorWithWhite:1 alpha:0.8]
 						 shadowOffset:CGSizeMake(0, -1) next:nil];
 }
+- (TTStyle*)fbLargeRedText {
+	return [TTTextStyle styleWithFont:[UIFont systemFontOfSize:14.0] color:[UIColor colorWithRed:255/255.0 green:0/255.0 blue:0/255.0 alpha:1.0]
+					  minimumFontSize:12 shadowColor:[UIColor colorWithWhite:1 alpha:0.8]
+						 shadowOffset:CGSizeMake(0, -1) next:nil];
+}
 @end
 
 @implementation KBFacebookListViewController
@@ -219,6 +224,12 @@
 		NSDictionary *fbItem = [newsFeed objectAtIndex:indexPath.row];
 		NSString *bodyText = [[FacebookProxy instance] findSuitableText:fbItem];
 		NSString *displayString = [NSString stringWithFormat:@"<span class=\"fbBlueText\">%@</span> %@",[[FacebookProxy instance] userNameFrom:[fbItem objectForKey:@"actor_id"]], bodyText];
+		NSString *attribution = [fbItem objectForKey:@"attribution"];
+		if (attribution!=[NSNull null]) {
+			if ([attribution isEqualToString:@"Kickball!"]) {
+				displayString = [NSString stringWithFormat:@"%@ - via <span class=\"fbRedText\">%@</span>",displayString, attribution];
+			}
+		}
 		//DLog(@"display string: %@", displayString);
 		
 		heightTester.text = [TTStyledText textFromXHTML:[displayString stringByReplacingOccurrencesOfString:@"\n" withString:@""] lineBreaks:NO URLs:NO];
@@ -255,7 +266,12 @@
     NSDictionary *fbItem = [newsFeed objectAtIndex:indexPath.row];
     NSString *bodyText = [[FacebookProxy instance] findSuitableText:fbItem];
     NSString *displayString = [NSString	 stringWithFormat:@"<span class=\"fbBlueText\">%@</span> %@",[[FacebookProxy instance] userNameFrom:[fbItem objectForKey:@"actor_id"]], bodyText];
-	
+	NSString *attribution = [fbItem objectForKey:@"attribution"];
+	if (attribution!=[NSNull null]) {
+		if ([attribution isEqualToString:@"Kickball!"]) {
+			displayString = [NSString stringWithFormat:@"%@ - via <span class=\"fbRedText\">%@</span>",displayString, attribution];
+		}
+	}
     BOOL withPhoto = [[FacebookProxy instance] doesHavePhoto:fbItem];
 	if (withPhoto) {
 		cell.fbPictureUrl = [[FacebookProxy instance] imageUrlForPhoto:fbItem];
