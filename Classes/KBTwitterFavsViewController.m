@@ -75,7 +75,7 @@
 	}
   [self stopProgressBar];
   [self dataSourceDidFinishLoadingNewData];
-  [[KBTwitterManager twitterManager] cacheStatusArray:tweets withKey:cachingKey];
+  //[[KBTwitterManager twitterManager] cacheStatusArray:tweets withKey:cachingKey];
 }
 
 - (void) refreshTable {
