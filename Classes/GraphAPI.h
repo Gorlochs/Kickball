@@ -2,7 +2,7 @@
 #include "GraphObject.h"
 #include "GraphDelegate.h"
 
-@interface GraphAPI : NSObject 
+@interface GraphAPI : NSObject <NSXMLParserDelegate>
 {
 	NSString* _accessToken;
 

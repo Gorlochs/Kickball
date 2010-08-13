@@ -13,7 +13,7 @@
 #import "KBBaseViewController.h"
 #import "KickballAppDelegate.h"
 #import "SFHFKeychainUtils.h"
-
+#import "KBFoursquareViewController.h"
 
 @implementation KBFoursquareLoginView
 @synthesize delegate;
@@ -106,7 +106,7 @@
         KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
         [appDelegate setupAuthenticatedUserAndPushNotifications];
         
-		[delegate killLoginView];
+		[(KBFoursquareViewController*)delegate killLoginView];
         if([delegate respondsToSelector:@selector(doInitialDisplay)]){
             [delegate doInitialDisplay];
         }

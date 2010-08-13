@@ -13,9 +13,6 @@
 @interface KBTwitterRecentTweetsTableCell : UITableViewCell {
     IFTweetLabel *tweetText;
     UILabel *dateLabel;
-    
-    UIImageView *topLineImage;
-    UIImageView *bottomLineImage;
 }
 
 @property (nonatomic, retain) UILabel *dateLabel;

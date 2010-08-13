@@ -107,7 +107,7 @@ static KBDialogueManager* dialogue;
 
 
 - (void) displayMessageWithAutoFade:(KBMessage *)message{
-    [self stopProgressBar];
+ //TODO: make this work or delete   [self stopProgressBar];
 	[self displayMessage:message];
 	[self performSelector:@selector(fadeOut) withObject:nil afterDelay:3.0f];
 }
