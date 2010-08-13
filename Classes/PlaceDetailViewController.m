@@ -89,7 +89,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentCheckinOverlay:) name:@"checkedIn" object:nil];
 
 	specialsButton = [UIButton buttonWithType:UIButtonTypeCustom];
-	[specialsButton setFrame:CGRectMake(254, 2, 53, 57)];
+	[specialsButton setFrame:CGRectMake(253, 2, 53, 57)];
 	[specialsButton setImage:[UIImage imageNamed:@"place-Special01.png"] forState:UIControlStateNormal];
 	[specialsButton setImage:[UIImage imageNamed:@"place-Special02.png"] forState:UIControlStateHighlighted];
 	[specialsButton addTarget:self action:@selector(showSpecial) forControlEvents:UIControlEventTouchUpInside];
