@@ -14,6 +14,7 @@
 @synthesize userIcon;
 @synthesize userName;
 @synthesize venueName;
+@synthesize numberOfTimeUnits;
 @synthesize venueAddress;
 @synthesize hasShoutAndCheckin;
 
@@ -66,6 +67,15 @@
         venueAddress.highlightedTextColor = [UIColor whiteColor];
         venueAddress.lineBreakMode = UILineBreakModeClip;
         [self addSubview:venueAddress];
+		
+		numberOfTimeUnits = [[UILabel alloc] initWithFrame:CGRectMake(290, 5, 37, 20)];
+		numberOfTimeUnits.font = [UIFont systemFontOfSize:26.0];
+		numberOfTimeUnits.shadowColor = [UIColor whiteColor];
+		numberOfTimeUnits.shadowOffset = CGSizeMake(1.0, 1.0);
+		numberOfTimeUnits.textColor = [UIColor colorWithWhite:0.8 alpha:1.0];
+		numberOfTimeUnits.backgroundColor = [UIColor clearColor];
+		numberOfTimeUnits.highlightedTextColor = [UIColor clearColor];
+        self.accessoryView = numberOfTimeUnits;
         
         topLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderTop.png"]];
         topLineImage.frame = CGRectMake(0, 0, self.frame.size.width, 1);
@@ -158,6 +168,7 @@
     [bottomLineImage release];
     [iconBgImage release];
     [fadeImage release];
+	[numberOfTimeUnits release];
     [super dealloc];
 }
 

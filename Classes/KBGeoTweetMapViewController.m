@@ -63,16 +63,9 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     self.popupBubbleView.tweetText.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
     self.popupBubbleView.tweetText.font = [UIFont fontWithName:@"Helvetica" size:10.0];
     self.popupBubbleView.tweetText.backgroundColor = [UIColor clearColor];
-    //self.popupBubbleView.tweetText.linksEnabled = YES;
     self.popupBubbleView.tweetText.numberOfLines = 0;
     [self.popupBubbleView addSubview:self.popupBubbleView.tweetText];
 	[self.popupBubbleView.layer setCornerRadius:10.0f];
-	
-//	UIButton *tweetDetailButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//	[tweetDetailButton setFrame:CGRectMake(0, 0, 250, 80)];
-//	tweetDetailButton.backgroundColor = [UIColor yellowColor];
-//	[tweetDetailButton addTarget:self action:@selector(viewFullTweet) forControlEvents:UIControlEventTouchUpInside];
-//	[self.popupBubbleView.tweetText addSubview:tweetDetailButton];
 	
     [self.touchView addSubview:self.popupBubbleView];
 }

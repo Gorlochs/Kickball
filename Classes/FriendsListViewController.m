@@ -304,15 +304,7 @@
 			[cell makeTwoLine];
 		}
 	}
-    UILabel *numberOfTimeUnits = [[UILabel alloc] initWithFrame:CGRectMake(290, 5, 37, 20)];
-    numberOfTimeUnits.text = checkin.truncatedTimeNumeral;
-    numberOfTimeUnits.font = [UIFont systemFontOfSize:26.0];
-    numberOfTimeUnits.shadowColor = [UIColor whiteColor];
-    numberOfTimeUnits.shadowOffset = CGSizeMake(1.0, 1.0);
-    numberOfTimeUnits.textColor = [UIColor colorWithWhite:0.8 alpha:1.0];
-    numberOfTimeUnits.backgroundColor = [UIColor clearColor];
-    cell.accessoryView = numberOfTimeUnits;
-    [numberOfTimeUnits release];
+    cell.numberOfTimeUnits.text = checkin.truncatedTimeNumeral;
 
     // v1.1 - TODO: need transparent png for the crown image
 //    if (checkin.isMayor) {

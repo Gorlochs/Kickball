@@ -16,7 +16,8 @@
     UILabel *userName;
     UILabel *venueName;
     UILabel *venueAddress;
-    
+    UILabel *numberOfTimeUnits;
+	
     UIImageView *topLineImage;
     UIImageView *bottomLineImage;
     UIImageView *iconBgImage;
@@ -29,6 +30,7 @@
 @property (nonatomic, retain) UILabel *userName;
 @property (nonatomic, retain) UILabel *venueName;
 @property (nonatomic, retain) UILabel *venueAddress;
+@property (nonatomic, retain) UILabel *numberOfTimeUnits;
 @property (nonatomic) BOOL hasShoutAndCheckin;
 
 - (void)makeTwoLine;
