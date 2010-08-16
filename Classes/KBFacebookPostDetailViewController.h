@@ -30,6 +30,8 @@
 	NSArray *comments;
 	NSString *nextPageURL;
 	BOOL requeryWhenTableGetsToBottom;
+	BOOL userLikes;
+	IBOutlet UIButton* likeButton;
 }
 @property(nonatomic,retain)UIView *postView;
 @property(nonatomic,retain)UIView *commentView;

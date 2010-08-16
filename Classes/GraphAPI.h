@@ -53,7 +53,7 @@
 -(bool)deleteObject:(NSString*)obj_id;
 
 // these 3 are just convenience methods that wrap putToObject, nothing special about them
--(GraphObject*)likeObject:(NSString*)obj_id;
+//-(GraphObject*)likeObject:(NSString*)obj_id;
 -(GraphObject*)attendObject:(NSString*)obj_id;
 -(GraphObject*)declineObject:(NSString*)obj_id;
 -(GraphObject*)putCommentToObject:(NSString*)obj_id message:(NSString*)message;
@@ -72,6 +72,9 @@
 -(void)postToWall:(NSString*)message withImage:(UIImage*)photo;
 -(NSDictionary*)eventFeed:(NSString*)event_id;
 -(void)simpleStatusPost:(NSString*)message;
+-(void)unlikeObject:(NSString*)obj_id;
+-(void)likeObject:(NSString*)obj_id;
+
 
 @end
 

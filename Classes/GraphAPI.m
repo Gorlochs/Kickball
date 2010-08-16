@@ -506,9 +506,30 @@ NSString* const kConnectionAlbums = @"albums";
 	return [self putToObject:profile_id connectionType:kConnectionWall args:mutableArgs];
 }
 
--(GraphObject*)likeObject:(NSString*)obj_id
+-(void)likeObject:(NSString*)obj_id
 {
-	return [self putToObject:obj_id connectionType:kConnectionLikes args:nil];
+	NSData* responseData = nil;
+	NSString* r_string = nil;
+	NSString* method = @"stream.addLike";
+	NSMutableDictionary *args = nil;
+	args= [NSMutableDictionary dictionaryWithObjectsAndKeys:obj_id,@"post_id",@"json",@"format",self._accessToken,kArgumentKeyAccessToken,nil];
+	responseData = [self makeSynchronousRest:method args:args verb:kRequestVerbGet];
+	r_string = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+	[r_string release];
+	
+	//return [self putToObject:obj_id connectionType:kConnectionLikes args:nil];
+}
+-(void)unlikeObject:(NSString*)obj_id
+{
+	NSData* responseData = nil;
+	NSString* r_string = nil;
+	NSString* method = @"stream.removeLike";
+	NSMutableDictionary *args = nil;
+	args= [NSMutableDictionary dictionaryWithObjectsAndKeys:obj_id,@"post_id",@"json",@"format",self._accessToken,kArgumentKeyAccessToken,nil];
+	responseData = [self makeSynchronousRest:method args:args verb:kRequestVerbGet];
+	r_string = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+	[r_string release];
+	//return [self putToObject:obj_id connectionType:kConnectionLikes args:nil];
 }
 
 -(GraphObject*)attendObject:(NSString*)obj_id

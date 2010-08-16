@@ -96,6 +96,12 @@
 	numComments = [(NSNumber*)[commentDict objectForKey:@"count"] intValue];
 	dateLabel.text = [[KickballAPI kickballApi] convertDateToTimeUnitString:[NSDate dateWithTimeIntervalSince1970:[(NSNumber*)[fbItem objectForKey:@"created_time"] intValue]]]; //[[FacebookProxy fbDateFormatter] dateFromString:[fbItem objectForKey:@"created_time"]]]];
 	[fbPostText sizeToFit];
+	NSDictionary *likeInfo = [fbItem objectForKey:@"likes"];
+	userLikes = [(NSNumber*)[likeInfo objectForKey:@"user_likes"] boolValue];
+	if (userLikes) {
+		[likeButton setImage:[UIImage imageNamed:@"btn-youLike01.png"] forState:UIControlStateNormal];
+		[likeButton setImage:[UIImage imageNamed:@"btn-youLike02.png"] forState:UIControlStateHighlighted];
+	}
 	CGRect postSize = fbPostText.frame;
 	[fbPostText setNeedsDisplay];
 	int frameHeight = postSize.size.height+30 > 70 ? postSize.size.height+30 : 70;
@@ -352,8 +358,19 @@
 
 -(void)pressLikeThreaded{
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	userLikes = !userLikes;
 	GraphAPI *graph = [[[FacebookProxy instance] newGraph] autorelease];
-	[graph likeObject:[fbItem objectForKey:@"post_id"]];
+	if (userLikes) {
+		[graph likeObject:[fbItem objectForKey:@"post_id"]];
+		[likeButton setImage:[UIImage imageNamed:@"btn-youLike01.png"] forState:UIControlStateNormal];
+		[likeButton setImage:[UIImage imageNamed:@"btn-youLike02.png"] forState:UIControlStateHighlighted];
+	}else {
+		[graph unlikeObject:[fbItem objectForKey:@"post_id"]];
+		[likeButton setImage:[UIImage imageNamed:@"btn-like01.png"] forState:UIControlStateNormal];
+		[likeButton setImage:[UIImage imageNamed:@"btn-like02.png"] forState:UIControlStateHighlighted];
+	}
+	[(NSMutableDictionary*)[fbItem objectForKey:@"likes"] setObject:[NSNumber numberWithBool:userLikes] forKey:@"user_likes"];
+
 	[pool release];
 	
 }
