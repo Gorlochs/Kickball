@@ -39,8 +39,14 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     
     [self.view addSubview:touchView];
     
+	// Does this notification do anything?
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(searchRetrieved:) name:kTwitterSearchRetrievedNotificationKey object:nil];
-    [self showStatuses];
+	
+	if ([[KBLocationManager locationManager] locationDefined]) {
+		[self showStatuses];
+	} else {
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showStatuses) name:kUpdatedLocationKey object:nil];
+	}
     
     [timelineButton setImage:[UIImage imageNamed:@"tabTweets03.png"] forState:UIControlStateNormal];
     [mentionsButton setImage:[UIImage imageNamed:@"tabMentions03.png"] forState:UIControlStateNormal];
@@ -50,20 +56,22 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     // this should TOTALLY be inside the KBMapPopupView, but I couldn't find an init method that is actually being called.
     self.popupBubbleView.frame = CGRectMake(20.0, 250.0 + 300 , self.popupBubbleView.frame.size.width, self.popupBubbleView.frame.size.height);
 	// FIXME: this is still using IFTweetLabel
-    IFTweetLabel *tweetLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(8, 29, 250, 50)];
+    UILabel *tweetLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, 25, 250, 50)];
 	self.popupBubbleView.tweetText = tweetLabel;
 	[tweetLabel release];
-    self.popupBubbleView.tweetText.textColor = [UIColor colorWithWhite:0.3 alpha:1.0];
-    self.popupBubbleView.tweetText.font = [UIFont fontWithName:@"Helvetica" size:12.0];
+    self.popupBubbleView.tweetText.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+    self.popupBubbleView.tweetText.font = [UIFont fontWithName:@"Helvetica" size:10.0];
     self.popupBubbleView.tweetText.backgroundColor = [UIColor clearColor];
-    self.popupBubbleView.tweetText.linksEnabled = YES;
+    //self.popupBubbleView.tweetText.linksEnabled = YES;
     self.popupBubbleView.tweetText.numberOfLines = 0;
     [self.popupBubbleView addSubview:self.popupBubbleView.tweetText];
+	[self.popupBubbleView.layer setCornerRadius:10.0f];
     
     [self.touchView addSubview:self.popupBubbleView];
 }
 
 - (void) showStatuses {
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:kUpdatedLocationKey object:nil];
     [self startProgressBar:@"Retrieving your tweets..."];
     [self executeQueryWithPageNumber:pageNum andCoordinates:mapCenterCoordinate];
 }
@@ -258,6 +266,16 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 	self.popupBubbleView.screenname.text = annotation.title;
     self.popupBubbleView.tweetText.text = annotation.subtitle;
     currentlyDisplayedSearchResult = annotation.searchResult;
+	
+	CGSize maximumLabelSize = CGSizeMake(250, MAX_LABEL_HEIGHT);
+	CGSize expectedLabelSize = [self.popupBubbleView.tweetText.text sizeWithFont:self.popupBubbleView.tweetText.font
+															   constrainedToSize:maximumLabelSize 
+																   lineBreakMode:UILineBreakModeWordWrap];
+	
+	CGRect frame = self.popupBubbleView.tweetText.frame;
+	frame.size = CGSizeMake(250, expectedLabelSize.height);
+	self.popupBubbleView.tweetText.frame = frame;
+	
 	[UIView beginAnimations: @"moveCNGCallout" context: nil];
 	[UIView setAnimationDelegate: self];
 	[UIView setAnimationDuration: 0.5];

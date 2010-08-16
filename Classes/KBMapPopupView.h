@@ -12,10 +12,10 @@
 
 @interface KBMapPopupView : UIView {
     IBOutlet UILabel *screenname;
-    IFTweetLabel *tweetText;
+    UILabel *tweetText;
 }
 
 @property (nonatomic, retain) UILabel *screenname;
-@property (nonatomic, retain) IFTweetLabel *tweetText;
+@property (nonatomic, retain) UILabel *tweetText;
 
 @end
