@@ -9,6 +9,7 @@
 #import "KBGeoTweetMapViewController.h"
 #import "KBLocationManager.h"
 #import "IFTweetLabel.h"
+#import "KBTwitterDetailViewController.h"
 
 #define GEO_TWITTER_RADIUS 5
 
@@ -66,8 +67,21 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     self.popupBubbleView.tweetText.numberOfLines = 0;
     [self.popupBubbleView addSubview:self.popupBubbleView.tweetText];
 	[self.popupBubbleView.layer setCornerRadius:10.0f];
-    
+	
+//	UIButton *tweetDetailButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//	[tweetDetailButton setFrame:CGRectMake(0, 0, 250, 80)];
+//	tweetDetailButton.backgroundColor = [UIColor yellowColor];
+//	[tweetDetailButton addTarget:self action:@selector(viewFullTweet) forControlEvents:UIControlEventTouchUpInside];
+//	[self.popupBubbleView.tweetText addSubview:tweetDetailButton];
+	
     [self.touchView addSubview:self.popupBubbleView];
+}
+
+- (void) viewFullTweet {
+	KBTwitterDetailViewController *detailViewController = [[KBTwitterDetailViewController alloc] initWithNibName:@"KBTwitterDetailViewController" bundle:nil];
+	detailViewController.tweet = currentlyDisplayedSearchResult;
+	[self.navigationController pushViewController:detailViewController animated:YES];
+	[detailViewController release];
 }
 
 - (void) showStatuses {

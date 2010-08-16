@@ -205,7 +205,6 @@
         KBTwitterDetailViewController *detailViewController = [[KBTwitterDetailViewController alloc] initWithNibName:@"KBTwitterDetailViewController" bundle:nil];
         detailViewController.tweet = [tweets objectAtIndex:indexPath.row];
         detailViewController.tweets = tweets;
-	[self checkMemoryUsage];
         [self.navigationController pushViewController:detailViewController animated:YES];
 		[detailViewController release];
     } else {

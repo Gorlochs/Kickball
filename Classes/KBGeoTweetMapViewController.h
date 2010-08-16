@@ -43,6 +43,7 @@ extern NSString *const GMAP_ANNOTATION_SELECTED;
 - (void)hideAnnotation;
 - (IBAction) replyToTweet;
 - (IBAction) retweet;
+- (IBAction) viewFullTweet;
 - (void)executeQueryWithPageNumber:(int)pageNumber andCoordinates:(CLLocationCoordinate2D)coordinate;
 
 @end
