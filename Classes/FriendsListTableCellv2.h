@@ -21,7 +21,7 @@
     UIImageView *topLineImage;
     UIImageView *bottomLineImage;
     UIImageView *iconBgImage;
-    UIImageView *fadeImage;
+    UIImageView *crownImage;
 	BOOL twoLine;
 	BOOL hasShoutAndCheckin;
 }
@@ -31,6 +31,7 @@
 @property (nonatomic, retain) UILabel *venueName;
 @property (nonatomic, retain) UILabel *venueAddress;
 @property (nonatomic, retain) UILabel *numberOfTimeUnits;
+@property (nonatomic, retain) UIImageView *crownImage;
 @property (nonatomic) BOOL hasShoutAndCheckin;
 
 - (void)makeTwoLine;

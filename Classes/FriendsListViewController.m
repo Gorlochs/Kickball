@@ -306,14 +306,12 @@
 	}
     cell.numberOfTimeUnits.text = checkin.truncatedTimeNumeral;
 
-    // v1.1 - TODO: need transparent png for the crown image
-//    if (checkin.isMayor) {
-//        cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"crown_bg.png"]];
-//    } else {
-//        cell.backgroundView = nil;
-//    }
+    if (checkin.isMayor) {
+        cell.crownImage.hidden = NO;
+    } else {
+        cell.crownImage.hidden = YES;
+    }
     
-    //DLog(@"returning cell for row: %d", indexPath.row);
 	return cell;
 }
 
