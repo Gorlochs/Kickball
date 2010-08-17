@@ -312,7 +312,7 @@
     if (cell == nil) {
         cell = [[[PlacesListTableViewCellv2 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-		cell.labelWidth = 220;
+		//cell.labelWidth = 220;
     }
     
     switch (indexPath.section) {
@@ -376,16 +376,16 @@
         default:
             break;
     }
-	if (indexPath.row == 0) {
+//	if (indexPath.row == 0) {
 		cell.roundedTopCorners.hidden = YES;
-	} else {
-		cell.roundedTopCorners.hidden = YES;
-	}
-	if (indexPath.row == [theTableView numberOfRowsInSection:indexPath.section] - 1) {
+//	} else {
+//		cell.roundedTopCorners.hidden = YES;
+//	}
+//	if (indexPath.row == [theTableView numberOfRowsInSection:indexPath.section] - 1) {
 		cell.roundedBottomCorners.hidden = YES;
-	} else {
-		cell.roundedBottomCorners.hidden = YES;
-	}
+//	} else {
+//		cell.roundedBottomCorners.hidden = YES;
+//	}
     return cell;
 }
 
