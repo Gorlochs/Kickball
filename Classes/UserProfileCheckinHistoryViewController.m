@@ -9,6 +9,8 @@
 #import "UserProfileCheckinHistoryViewController.h"
 #import "PlaceDetailViewController.h"
 #import "PlacesListTableViewCellv2.h"
+#import	"TableSectionHeaderView.h"
+
 
 @implementation UserProfileCheckinHistoryViewController
 
@@ -114,6 +116,8 @@
     if (cell == nil) {
         cell = [[[PlacesListTableViewCellv2 alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
         cell.venueName.size = CGSizeMake(210, cell.venueName.size.height);
+		cell.selectionStyle = UITableViewCellSelectionStyleGray;
+
     }
     [cell makeOneLine];
     FSCheckin *theCheckin = [[checkinsByDate objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
@@ -152,12 +156,12 @@
     }
 	
 	if (indexPath.row == 0) {
-		cell.roundedTopCorners.hidden = NO;
+		cell.roundedTopCorners.hidden = YES;
 	} else {
 		cell.roundedTopCorners.hidden = YES;
 	}
 	if (indexPath.row == [theTableView numberOfRowsInSection:indexPath.section] - 1) {
-		cell.roundedBottomCorners.hidden = NO;
+		cell.roundedBottomCorners.hidden = YES;
 	} else {
 		cell.roundedBottomCorners.hidden = YES;
 	}
@@ -179,8 +183,9 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
-    BlackTableCellHeader *sectionHeaderView = [[[BlackTableCellHeader alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 36)] autorelease];
-    sectionHeaderView.leftHeaderLabel.text = [checkinDaysOfWeek objectAtIndex:section];
+    //BlackTableCellHeader *sectionHeaderView = [[[BlackTableCellHeader alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 36)] autorelease];
+	TableSectionHeaderView *sectionHeaderView = [[[TableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 36)] autorelease];
+	sectionHeaderView.leftHeaderLabel.text = [checkinDaysOfWeek objectAtIndex:section];
     return sectionHeaderView;
 }
 

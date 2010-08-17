@@ -359,7 +359,7 @@
             cell.categoryIcon.urlPath = ((FSVenue*)[user.mayorOf objectAtIndex:indexPath.row]).primaryCategory.iconUrl;
             break;
         case 3:  // badges
-            badgeCell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"wood_bg.png"]];
+            //badgeCell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"wood_bg.png"]];
 			badgeCell.backgroundView.clipsToBounds = YES;
 			badgeCell.backgroundView.contentMode = UIViewContentModeTop;
             return badgeCell;

@@ -7,6 +7,7 @@
 //
 
 #import "UserProfileFriendsViewController.h"
+#import	"TableSectionHeaderView.h"
 #import "FSUser.h"
 
 @implementation UserProfileFriendsViewController
@@ -96,7 +97,8 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.imageView.image = [UIImage imageNamed:@"blank_boy.png"];   
         cell.textLabel.font = [UIFont boldSystemFontOfSize:14.0];
-        
+		cell.selectionStyle = UITableViewCellSelectionStyleGray;
+
         UIImageView *topLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderTop.png"]];
         topLineImage.frame = CGRectMake(0, 0, cell.frame.size.width, 1);
         [cell addSubview:topLineImage];
@@ -146,9 +148,10 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
-    BlackTableCellHeader *sectionHeaderView = [[[BlackTableCellHeader alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 36)] autorelease];
-    sectionHeaderView.leftHeaderLabel.text = [NSString stringWithFormat:@"%d Friends", [friends count]];
-    sectionHeaderView.leftHeaderLabel.textColor = [UIColor whiteColor];
+    //BlackTableCellHeader *sectionHeaderView = [[[BlackTableCellHeader alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 36)] autorelease];
+	TableSectionHeaderView *sectionHeaderView = [[[TableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 36)] autorelease];
+	sectionHeaderView.leftHeaderLabel.text = [NSString stringWithFormat:@"%d Friends", [friends count]];
+    //sectionHeaderView.leftHeaderLabel.textColor = [UIColor whiteColor];
     return sectionHeaderView;
 }
 
