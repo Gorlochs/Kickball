@@ -24,6 +24,7 @@
 #import "KBPhotoViewController.h"
 #import "PlacesListTableViewCellv2.h"
 #import "KBThumbnailViewController.h"
+#import "TableSectionHeaderView.h"
 
 #define BADGES_PER_ROW 4
 
@@ -58,7 +59,7 @@
     
     [self addHeaderAndFooter:theTableView];
     
-    refreshHeaderView.backgroundColor = [UIColor blackColor];
+    //refreshHeaderView.backgroundColor = [UIColor blackColor];
     
     [self executeFoursquareCalls];
 	
@@ -338,17 +339,17 @@
                     [button release];
                     [ttImage release];
                 }
-				UIImageView *roundedTopCorners = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"roundedTop.png"]];
-				roundedTopCorners.frame = CGRectMake(0, 0, roundedTopCorners.frame.size.width, roundedTopCorners.frame.size.height);
-				[photoCell addSubview:roundedTopCorners];
+				//UIImageView *roundedTopCorners = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"roundedTop.png"]];
+				//roundedTopCorners.frame = CGRectMake(0, 0, roundedTopCorners.frame.size.width, roundedTopCorners.frame.size.height);
+				//[photoCell addSubview:roundedTopCorners];
 				
-				UIImageView *roundedBottomCorners = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"roundedBottom.png"]];
-				roundedBottomCorners.frame = CGRectMake(0, photoCell.frame.size.height - 3, roundedBottomCorners.frame.size.width, roundedBottomCorners.frame.size.height);
-				[photoCell addSubview:roundedBottomCorners];
-				[photoCell bringSubviewToFront:roundedTopCorners];
-				[photoCell bringSubviewToFront:roundedBottomCorners];
-                [roundedTopCorners release];
-                [roundedBottomCorners release];
+				//UIImageView *roundedBottomCorners = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"roundedBottom.png"]];
+				//roundedBottomCorners.frame = CGRectMake(0, photoCell.frame.size.height - 3, roundedBottomCorners.frame.size.width, roundedBottomCorners.frame.size.height);
+				//[photoCell addSubview:roundedBottomCorners];
+				//[photoCell bringSubviewToFront:roundedTopCorners];
+				//[photoCell bringSubviewToFront:roundedBottomCorners];
+                //[roundedTopCorners release];
+                //[roundedBottomCorners release];
             }
             return photoCell;
             break;
@@ -372,12 +373,12 @@
             break;
     }
 	if (indexPath.row == 0) {
-		cell.roundedTopCorners.hidden = NO;
+		cell.roundedTopCorners.hidden = YES;
 	} else {
 		cell.roundedTopCorners.hidden = YES;
 	}
 	if (indexPath.row == [theTableView numberOfRowsInSection:indexPath.section] - 1) {
-		cell.roundedBottomCorners.hidden = NO;
+		cell.roundedBottomCorners.hidden = YES;
 	} else {
 		cell.roundedBottomCorners.hidden = YES;
 	}
@@ -406,24 +407,23 @@
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-	return 39.0;
+	return 36.0;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section > 1 && indexPath.section < 4) {
-        [cell setBackgroundColor:[UIColor colorWithWhite:0.9 alpha:1.0]];  
+        [cell setBackgroundColor:[UIColor colorWithWhite:0.92 alpha:1.0]];  
     }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    if (section == 0) {
-        return NULL;
-    } else {
-        BlackTableCellHeader *sectionHeaderView = [[[BlackTableCellHeader alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 36)] autorelease];
-        
+	
+        //BlackTableCellHeader *sectionHeaderView = [[[BlackTableCellHeader alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 36)] autorelease];
+		TableSectionHeaderView *sectionHeaderView = [[[TableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 36)] autorelease];
+
         switch (section) {
             case 0:
-                sectionHeaderView.leftHeaderLabel.text = @"";
+                return nil;//sectionHeaderView.leftHeaderLabel.text = @"";
                 break;
             case 1:
                 if (userPhotos != nil && [userPhotos count] > 0) {
@@ -460,14 +460,13 @@
 //                    frame.size = CGSizeMake(frame.size.width, 18);
 //                    headerView.frame = frame;
 //                }
-                sectionHeaderView.leftHeaderLabel.text = @"";
+                return nil;//sectionHeaderView.leftHeaderLabel.text = @"";
                 break;
             default:
                 sectionHeaderView.leftHeaderLabel.text = @"You shouldn't see this";
                 break;
         }
         return sectionHeaderView;
-    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
