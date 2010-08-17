@@ -80,12 +80,32 @@
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
+    
+	if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.imageView.image = [UIImage imageNamed:@"blank_boy.png"];   
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:14.0];
+		cell.selectionStyle = UITableViewCellSelectionStyleGray;
+		
+        UIImageView *topLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderTop.png"]];
+        topLineImage.frame = CGRectMake(0, 0, cell.frame.size.width, 1);
+        [cell addSubview:topLineImage];
+        [topLineImage release];
+        
+        // TODO: the origin.y should probably not be hard coded
+        UIImageView *bottomLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderBottom.png"]];
+        bottomLineImage.frame = CGRectMake(0, cell.frame.size.height - 1, cell.frame.size.width, 1);
+        [cell addSubview:bottomLineImage];
+        [bottomLineImage release];
+    }
+	/*
+	if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.imageView.image = [UIImage imageNamed:@"blank_boy.png"];   
     }
-    
+    */
     // Set up the cell...
     FSUser *user = (FSUser*)[friends objectAtIndex:indexPath.row];
     cell.textLabel.text = user.firstnameLastInitial;
