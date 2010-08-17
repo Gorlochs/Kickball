@@ -19,7 +19,7 @@
         // Initialization code	
         self.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1.0];
         
-        leftHeaderLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, 4.0, 200.0, 24.0)];
+        leftHeaderLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, (frame.size.height-24)/2, 200.0, 24.0)];
         leftHeaderLabel.backgroundColor = [UIColor clearColor];
         leftHeaderLabel.opaque = NO;
         leftHeaderLabel.textColor = [UIColor grayColor];
@@ -46,7 +46,7 @@
         
         // TODO: the origin.y should probably not be hard coded
         bottomLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderBottom.png"]];
-        bottomLineImage.frame = CGRectMake(0, 29, self.frame.size.width, 1);
+        bottomLineImage.frame = CGRectMake(0, self.frame.size.height-1, self.frame.size.width, 1);
         [self addSubview:bottomLineImage];
     }
     return self;

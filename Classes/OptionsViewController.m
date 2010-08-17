@@ -29,7 +29,7 @@
     self.hideFooter = YES;
     self.hideRefresh = YES;
     
-    cellArray = [[NSArray alloc] initWithObjects:defaultCheckinCell, accountInformationCell, pushNotificationCell, quickCheckInCell,friendsListPriorityCell, feedbackCell, versionInformationsCell, nil];
+    cellArray = [[NSArray alloc] initWithObjects:quickCheckInCell, defaultCheckinCell, accountInformationCell, pushNotificationCell,friendsListPriorityCell, feedbackCell, versionInformationsCell, nil];
     
     [super viewDidLoad];
  

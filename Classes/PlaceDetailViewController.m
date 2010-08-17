@@ -38,6 +38,7 @@
 #import "KBThumbnailViewController.h"
 #import "GraphAPI.h"
 #import "KBAccountManager.h"
+#import "TableSectionHeaderView.h"
 
 #define PHOTOS_PER_ROW 4
 #define THUMBNAIL_IMAGE_SIZEX 80
@@ -89,7 +90,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentCheckinOverlay:) name:@"checkedIn" object:nil];
 
 	specialsButton = [UIButton buttonWithType:UIButtonTypeCustom];
-	[specialsButton setFrame:CGRectMake(253, 2, 53, 57)];
+	[specialsButton setFrame:CGRectMake(320-51, 0, 53, 57)];
 	[specialsButton setImage:[UIImage imageNamed:@"place-Special01.png"] forState:UIControlStateNormal];
 	[specialsButton setImage:[UIImage imageNamed:@"place-Special02.png"] forState:UIControlStateHighlighted];
 	[specialsButton addTarget:self action:@selector(showSpecial) forControlEvents:UIControlEventTouchUpInside];
@@ -124,7 +125,7 @@
     mayorCrown.hidden = YES;
     
     [self addHeaderAndFooter:theTableView];
-    refreshHeaderView.backgroundColor = [UIColor blackColor];
+    //refreshHeaderView.backgroundColor = [UIColor blackColor];
     
     [self startProgressBar:@"Retrieving venue details..."];
     [[FoursquareAPI sharedInstance] getVenue:venueId withTarget:self andAction:@selector(venueResponseReceived:withResponseString:)];
@@ -384,23 +385,25 @@
 		switch ([venueToDisplay.currentCheckins count]) {
 			case 1:
 			case 2:
-				peopleHereContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 60)];
-				[peopleHereContainer setBackgroundColor:[UIColor clearColor]];
-				roundedRect = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 47)];
+				peopleHereContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 47)];
+				[peopleHereContainer setBackgroundColor:[UIColor colorWithWhite:0.92 alpha:1.0]];
+				//roundedRect = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 47)];
         	//			roundedRect = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 290, 47)];
-				[[roundedRect layer] setCornerRadius:3.0f];
-				[roundedRect setBackgroundColor:[UIColor colorWithRed:239.0/255.0 green:239.0/255.0 blue:239.0/255.0 alpha:1.0]];  
-				[peopleHereContainer addSubview:roundedRect];
-				[roundedRect release];
+				//[[roundedRect layer] setCornerRadius:3.0f];
+				//[roundedRect setBackgroundColor:[UIColor colorWithRed:239.0/255.0 green:239.0/255.0 blue:239.0/255.0 alpha:1.0]];  
+				//[peopleHereContainer addSubview:roundedRect];
+				//[roundedRect release];
 				break;
 			default:
-				peopleHereContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 107)];
-				roundedRect = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 95)];
+				peopleHereContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 95)];
+				[peopleHereContainer setBackgroundColor:[UIColor colorWithWhite:0.92 alpha:1.0]];
+
+				//roundedRect = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 95)];
         //				roundedRect = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 290, 95)];
-				[[roundedRect layer] setCornerRadius:3.0f];
-				[roundedRect setBackgroundColor:[UIColor colorWithRed:239.0/255.0 green:239.0/255.0 blue:239.0/255.0 alpha:1.0]];  
-				[peopleHereContainer addSubview:roundedRect];
-				[roundedRect release];
+				//[[roundedRect layer] setCornerRadius:3.0f];
+				//[roundedRect setBackgroundColor:[UIColor colorWithRed:239.0/255.0 green:239.0/255.0 blue:239.0/255.0 alpha:1.0]];  
+				//[peopleHereContainer addSubview:roundedRect];
+				//[roundedRect release];
 				break;
 		}
 		UIView *horizontalSplitter;
@@ -416,8 +419,8 @@
 				[self addPersonHere:peopleHereContainer :currentCheckin :1];
 				break;
 			case 2:
-				horizontalSplitter = [[UIView alloc] initWithFrame:CGRectMake(145, 0, 1, 47)];
-				[horizontalSplitter setBackgroundColor:[UIColor grayColor]];
+				horizontalSplitter = [[UIView alloc] initWithFrame:CGRectMake(159, 0, 1, 47)];
+				[horizontalSplitter setBackgroundColor:[UIColor lightGrayColor]];
 				[peopleHereContainer addSubview:horizontalSplitter];
 				[horizontalSplitter release];
 				
@@ -431,12 +434,12 @@
 				[self addPersonHere:peopleHereContainer :currentCheckin :22];
 				break;
 			case 3:
-				horizontalSplitter = [[UIView alloc] initWithFrame:CGRectMake(145, 0, 1, 48)];
-				[horizontalSplitter setBackgroundColor:[UIColor grayColor]];
+				horizontalSplitter = [[UIView alloc] initWithFrame:CGRectMake(159, 0, 1, 48)];
+				[horizontalSplitter setBackgroundColor:[UIColor lightGrayColor]];
 				[peopleHereContainer addSubview:horizontalSplitter];
 				[horizontalSplitter release];
-				verticalSplitter = [[UIView alloc] initWithFrame:CGRectMake(0, 48, 290, 1)];
-				[verticalSplitter setBackgroundColor:[UIColor grayColor]];
+				verticalSplitter = [[UIView alloc] initWithFrame:CGRectMake(0, 48, 320, 1)];
+				[verticalSplitter setBackgroundColor:[UIColor lightGrayColor]];
 				[peopleHereContainer addSubview:verticalSplitter];
 				[verticalSplitter release];
 				
@@ -454,12 +457,12 @@
 				[self addPersonHere:peopleHereContainer :currentCheckin :3];
 				break;
 			default:
-				horizontalSplitter = [[UIView alloc] initWithFrame:CGRectMake(145, 0, 1, 95)];
-				[horizontalSplitter setBackgroundColor:[UIColor grayColor]];
+				horizontalSplitter = [[UIView alloc] initWithFrame:CGRectMake(159, 0, 1, 95)];
+				[horizontalSplitter setBackgroundColor:[UIColor lightGrayColor]];
 				[peopleHereContainer addSubview:horizontalSplitter];
 				[horizontalSplitter release];
-				verticalSplitter = [[UIView alloc] initWithFrame:CGRectMake(0, 48, 290, 1)];
-				[verticalSplitter setBackgroundColor:[UIColor grayColor]];
+				verticalSplitter = [[UIView alloc] initWithFrame:CGRectMake(0, 48, 320, 1)];
+				[verticalSplitter setBackgroundColor:[UIColor lightGrayColor]];
 				[peopleHereContainer addSubview:verticalSplitter];
 				[verticalSplitter release];
 				
@@ -499,7 +502,7 @@
 			personTag = 1;
 			touchRect = CGRectMake(0, 0, 320, 47);
       //			touchRect = CGRectMake(0, 0, 290, 47);
-			accessoryRect = CGRectMake(270, 17, 9, 12);
+			accessoryRect = CGRectMake(298, 17, 9, 12);
 			break;
 		case 3:
 			nameRect = CGRectMake(48, 55, 75, 30);
@@ -507,7 +510,7 @@
 			personTag = 3;
 			touchRect = CGRectMake(0, 48, 320, 47);
       //			touchRect = CGRectMake(0, 48, 290, 47);
-			accessoryRect = CGRectMake(270, 64, 9, 12);
+			accessoryRect = CGRectMake(298, 64, 9, 12);
 			break;
 		case 21:
 			nameRect = CGRectMake(48, 8, 75, 30);
@@ -515,15 +518,15 @@
 			personTag = 1;
 			touchRect = CGRectMake(0, 0, 160, 47);
       //			touchRect = CGRectMake(0, 0, 145, 47);
-			accessoryRect = CGRectMake(125, 17, 9, 12);
+			accessoryRect = CGRectMake(139, 17, 9, 12);
 			break;
 		case 22:
-			nameRect = CGRectMake(192, 8, 75, 30);
-			headRect = CGRectMake(152, 8, 32, 32);
+			nameRect = CGRectMake(206, 8, 75, 30);
+			headRect = CGRectMake(166, 8, 32, 32);
 			personTag = 2;
 			touchRect = CGRectMake(163, 0, 160, 47);
       //			touchRect = CGRectMake(148, 0, 145, 47);
-			accessoryRect = CGRectMake(270, 17, 9, 12);
+			accessoryRect = CGRectMake(298, 17, 9, 12);
 			break;
 		case 23:
 			nameRect = CGRectMake(48, 55, 75, 30);
@@ -531,15 +534,15 @@
 			personTag = 3;
 			touchRect = CGRectMake(0, 48, 160, 47);
       //			touchRect = CGRectMake(0, 48, 145, 47);
-			accessoryRect = CGRectMake(125, 64, 9, 12);
+			accessoryRect = CGRectMake(139, 64, 9, 12);
 			break;
 		default:
-			nameRect = CGRectMake(192, 55, 75, 30);
-			headRect = CGRectMake(152, 55, 32, 32);
+			nameRect = CGRectMake(206, 55, 75, 30);
+			headRect = CGRectMake(166, 55, 32, 32);
 			personTag = 4;
 			touchRect = CGRectMake(163, 48, 160, 47);
       //			touchRect = CGRectMake(148, 48, 145, 47);
-			accessoryRect = CGRectMake(270, 64, 9, 12);
+			accessoryRect = CGRectMake(298, 64, 9, 12);
 			break;
 	}
 	UILabel *hereName = [[UILabel alloc] initWithFrame:nameRect];
@@ -639,8 +642,25 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
-        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+        cell.selectionStyle = UITableViewCellSelectionStyleGray;
+		UIView *colorFill = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 55)];
+		colorFill.backgroundColor = [UIColor colorWithWhite:0.92 alpha:1.0];
+		colorFill.opaque = YES;
+		[cell setBackgroundView:colorFill];
+		[colorFill release];
+		UIImageView* topLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderTop.png"]];
+		topLineImage.frame = CGRectMake(0, 0, 320, 1);
+		[cell addSubview:topLineImage];
+		
+		// TODO: the origin.y should probably not be hard coded
+		UIImageView* bottomLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderBottom.png"]];
+		bottomLineImage.frame = CGRectMake(0, 54, 320, 1);
+		[cell addSubview:bottomLineImage];
+		
+
     }
+	
+	
     
     // Set up the cell...
     if (indexPath.section == 0) {
@@ -651,17 +671,17 @@
     } else if (indexPath.section == 2) { // people here
 		return peopleHereCell;
     } else if (indexPath.section == 3) {
-		UIImageView *roundedTopCorners = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"roundedTop.png"]];
-		roundedTopCorners.frame = CGRectMake(0, 0, roundedTopCorners.frame.size.width, roundedTopCorners.frame.size.height);
-		[giftCell addSubview:roundedTopCorners];
+		//UIImageView *roundedTopCorners = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"roundedTop.png"]];
+		//roundedTopCorners.frame = CGRectMake(0, 0, roundedTopCorners.frame.size.width, roundedTopCorners.frame.size.height);
+		//[giftCell addSubview:roundedTopCorners];
 		
-		UIImageView *roundedBottomCorners = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"roundedBottom.png"]];
-		roundedBottomCorners.frame = CGRectMake(0, giftCell.frame.size.height - 3, roundedBottomCorners.frame.size.width, roundedBottomCorners.frame.size.height);
-		[giftCell addSubview:roundedBottomCorners];
-		[giftCell bringSubviewToFront:roundedTopCorners];
-		[giftCell bringSubviewToFront:roundedBottomCorners];
-        [roundedTopCorners release];
-        [roundedBottomCorners release];
+		//UIImageView *roundedBottomCorners = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"roundedBottom.png"]];
+		//roundedBottomCorners.frame = CGRectMake(0, giftCell.frame.size.height - 3, roundedBottomCorners.frame.size.width, roundedBottomCorners.frame.size.height);
+		//[giftCell addSubview:roundedBottomCorners];
+		//[giftCell bringSubviewToFront:roundedTopCorners];
+		//[giftCell bringSubviewToFront:roundedBottomCorners];
+        //[roundedTopCorners release];
+        //[roundedBottomCorners release];
 		
         return giftCell;
     } else if (indexPath.section == 4) {
@@ -677,6 +697,9 @@
         cell.detailTextLabel.font = [UIFont systemFontOfSize:12.0];
         cell.textLabel.text = tip.submittedBy.firstnameLastInitial;
         cell.detailTextLabel.text = tip.text;
+		cell.detailTextLabel.backgroundColor = [UIColor colorWithWhite:0.92 alpha:1.0];
+		cell.textLabel.backgroundColor = [UIColor colorWithWhite:0.92 alpha:1.0];
+
         
         CGRect frame = CGRectMake(0,0,36,36);
         TTImageView *ttImage = [[[TTImageView alloc] initWithFrame:frame] autorelease];
@@ -687,18 +710,18 @@
         [cell.imageView addSubview:ttImage];
     }
 	if (indexPath.row == 0) {
-		UIImageView *roundedTopCorners = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"roundedTop.png"]];
-		roundedTopCorners.frame = CGRectMake(0, 0, roundedTopCorners.frame.size.width, roundedTopCorners.frame.size.height);
-		[cell addSubview:roundedTopCorners];
-		[cell bringSubviewToFront:roundedTopCorners];
-        [roundedTopCorners release];
+		//UIImageView *roundedTopCorners = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"roundedTop.png"]];
+		//roundedTopCorners.frame = CGRectMake(0, 0, roundedTopCorners.frame.size.width, roundedTopCorners.frame.size.height);
+		//[cell addSubview:roundedTopCorners];
+		//[cell bringSubviewToFront:roundedTopCorners];
+        //[roundedTopCorners release];
 	}
 	if (indexPath.row == [theTableView numberOfRowsInSection:indexPath.section] - 1 && indexPath.section == 5) {
-		UIImageView *roundedBottomCorners = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"roundedBottom.png"]];
-		roundedBottomCorners.frame = CGRectMake(0, 52, roundedBottomCorners.frame.size.width, roundedBottomCorners.frame.size.height);
-		[cell addSubview:roundedBottomCorners];
-		[cell bringSubviewToFront:roundedBottomCorners];
-        [roundedBottomCorners release];
+		//UIImageView *roundedBottomCorners = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"roundedBottom.png"]];
+		//roundedBottomCorners.frame = CGRectMake(0, 52, roundedBottomCorners.frame.size.width, roundedBottomCorners.frame.size.height);
+		//[cell addSubview:roundedBottomCorners];
+		//[cell bringSubviewToFront:roundedBottomCorners];
+        //[roundedBottomCorners release];
 	}
     return cell;
 }
@@ -719,9 +742,9 @@
             break;
         case 2: //people here
 			if ([venue.currentCheckins count]<=2) {
-				return 60;
+				return 47;
 			}else {
-				return 107;
+				return 95;
 			}
             break;
         case 3: // photos
@@ -750,8 +773,10 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
 
-    BlackTableCellHeader *tableCellHeader = [[[BlackTableCellHeader alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)] autorelease];
-    
+    //BlackTableCellHeader *tableCellHeader = [[[BlackTableCellHeader alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)] autorelease];
+	//tableCellHeader.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1.0];
+	TableSectionHeaderView *tableCellHeader = [[[TableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 39)] autorelease];
+
     switch (section) {
         case 0:
         case 1:
@@ -762,7 +787,6 @@
                 return nil;
             } else {
                 tableCellHeader.leftHeaderLabel.text = [NSString stringWithFormat:@"%d %@ Here", venue.hereNow, venue.hereNow == 1 ? @"Person" : @"People"];
-                
                 if (venue.hereNow > MAX_PEOPLE_HERE_SHOWN) {
                     UIButton *myDetailButton = [UIButton buttonWithType:UIButtonTypeCustom];
                     myDetailButton.frame = CGRectMake(210, 0, 92, 39);
@@ -782,17 +806,21 @@
 				CGRect frame = addPhotoButton.frame;
 				frame.origin = CGPointMake(230, addPhotoButton.frame.origin.y);
 				addPhotoButton.frame = frame;
+				[tableCellHeader addSubview:addPhotoButton];
 			} else {
 				seeAllPhotosButton.hidden = NO;
 				CGRect frame = addPhotoButton.frame;
 				frame.origin = CGPointMake(142, addPhotoButton.frame.origin.y);
 				addPhotoButton.frame = frame;
+				[tableCellHeader addSubview:addPhotoButton];
+				[tableCellHeader addSubview:seeAllPhotosButton];
 			}
-			photoHeaderLabel.text = [NSString stringWithFormat:@"%d %@", [goodies count], [goodies count] == 1 ? @"Photo" : @"Photos"];
-			return photoHeaderView;
+			//photoHeaderLabel.text = [NSString stringWithFormat:@"%d %@", [goodies count], [goodies count] == 1 ? @"Photo" : @"Photos"];
+			tableCellHeader.leftHeaderLabel.text = [NSString stringWithFormat:@"%d %@", [goodies count], [goodies count] == 1 ? @"Photo" : @"Photos"];
+			//return photoHeaderView;
             break;
         case 4:
-            return nil;
+			tableCellHeader.leftHeaderLabel.text = @"More Info";
             break;
         case 5:
             if (YES) { // odd bug. you can't instantiate a new object as the first line in a case statement

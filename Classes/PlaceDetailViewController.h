@@ -18,6 +18,7 @@
 #import "TipDetailViewController.h"
 #import "KBCheckinModalViewController.h"
 #import "GAConnectionManager.h"
+#import "TableSectionHeaderView.h"
 
 
 @interface PlaceDetailViewController : AbstractPushNotificationViewController <PhotoManagerDelegate, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate, GAConnectionDelegate, UIActionSheetDelegate> {
@@ -69,7 +70,7 @@
     NSMutableArray *goodies;
     MockPhotoSource *photoSource;
     IBOutlet UILabel *photoHeaderLabel;
-    IBOutlet UIView *photoHeaderView;
+    IBOutlet TableSectionHeaderView *photoHeaderView;
     IBOutlet UIButton *seeAllPhotosButton;
     IBOutlet UIButton *addPhotoButton;
     UIImage *photoImage;
