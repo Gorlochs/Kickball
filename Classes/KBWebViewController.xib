@@ -69,14 +69,11 @@
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC41AA</bytes>
 						</object>
-						<object class="NSCustomResource" key="IBUIHighlightedImage">
+						<object class="NSCustomResource" key="IBUIHighlightedImage" id="598929599">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">webKit-x02.png</string>
+							<string key="NSResourceName">x.png</string>
 						</object>
-						<object class="NSCustomResource" key="IBUINormalImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">webKit-x01.png</string>
-						</object>
+						<reference key="IBUINormalImage" ref="598929599"/>
 					</object>
 					<object class="IBUIButton" id="632254529">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -96,11 +93,11 @@
 						<reference key="IBUINormalTitleShadowColor" ref="711161426"/>
 						<object class="NSCustomResource" key="IBUIHighlightedImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">webKit-back02.png</string>
+							<string key="NSResourceName">arrowLeft02.png</string>
 						</object>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">webKit-back01.png</string>
+							<string key="NSResourceName">arrowLeft01.png</string>
 						</object>
 					</object>
 					<object class="IBUIButton" id="173249582">
@@ -119,14 +116,11 @@
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="711161426"/>
-						<object class="NSCustomResource" key="IBUIHighlightedImage">
+						<object class="NSCustomResource" key="IBUIHighlightedImage" id="177685170">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">webKit-forward02.png</string>
+							<string key="NSResourceName">arrowRight01.png</string>
 						</object>
-						<object class="NSCustomResource" key="IBUINormalImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">webKit-forward01.png</string>
-						</object>
+						<reference key="IBUINormalImage" ref="177685170"/>
 					</object>
 					<object class="IBUIWebView" id="1051432729">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -636,21 +630,17 @@
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>webKit-back01.png</string>
-				<string>webKit-back02.png</string>
-				<string>webKit-forward01.png</string>
-				<string>webKit-forward02.png</string>
-				<string>webKit-x01.png</string>
-				<string>webKit-x02.png</string>
+				<string>arrowLeft01.png</string>
+				<string>arrowLeft02.png</string>
+				<string>arrowRight01.png</string>
+				<string>x.png</string>
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>{43, 43}</string>
-				<string>{43, 43}</string>
-				<string>{43, 43}</string>
-				<string>{43, 43}</string>
-				<string>{43, 43}</string>
-				<string>{43, 43}</string>
+				<string>{15, 22}</string>
+				<string>{15, 22}</string>
+				<string>{15, 22}</string>
+				<string>{18, 18}</string>
 			</object>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">117</string>
