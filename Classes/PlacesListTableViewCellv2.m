@@ -63,7 +63,8 @@
         [self addSubview:bottomLineImage];
         
         specialImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"places-Special.png"]];
-        specialImage.frame = CGRectMake(298, 0, 22, 22);
+        specialImage.frame = CGRectMake(298, 1, 22, 22);
+		specialImage.hidden = YES;
         [self addSubview:specialImage];
 		
 		roundedTopCorners = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"roundedTop.png"]];

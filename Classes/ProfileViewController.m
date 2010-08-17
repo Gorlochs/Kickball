@@ -354,9 +354,13 @@
             return photoCell;
             break;
         case 2:  // mayors
-            cell.venueName.text = ((FSVenue*)[user.mayorOf objectAtIndex:indexPath.row]).name;
-            cell.venueAddress.text = ((FSVenue*)[user.mayorOf objectAtIndex:indexPath.row]).addressWithCrossstreet;
-            cell.categoryIcon.urlPath = ((FSVenue*)[user.mayorOf objectAtIndex:indexPath.row]).primaryCategory.iconUrl;
+			if (YES) {
+				FSVenue *venue = [user.mayorOf objectAtIndex:indexPath.row];
+				cell.venueName.text = venue.name;
+				cell.venueAddress.text = venue.addressWithCrossstreet;
+				cell.categoryIcon.urlPath = venue.primaryCategory.iconUrl;
+				cell.specialImage.hidden = YES;
+			}
             break;
         case 3:  // badges
             //badgeCell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"wood_bg.png"]];
