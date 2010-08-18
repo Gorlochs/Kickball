@@ -294,7 +294,10 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
 }
 
 + (NSString*) shortenUrl:(NSString*)longUrl {
-	return [NSString stringWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://is.gd/api.php?longurl=%@", longUrl]] encoding:NSASCIIStringEncoding error:nil];
+	NSString *isGdString = [NSString stringWithFormat:@"http://is.gd/api.php?longurl=%@", longUrl];
+	NSURL *isGdUrl = [NSURL URLWithString:isGdString];
+	NSString *shortenedUrlString = [NSString stringWithContentsOfURL:isGdUrl encoding:NSASCIIStringEncoding error:nil];
+	return shortenedUrlString;
 }
 
 

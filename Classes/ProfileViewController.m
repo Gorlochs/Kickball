@@ -76,7 +76,6 @@
     [self startProgressBar:@"Retrieving profile..."];
     [[FoursquareAPI sharedInstance] getUser:self.userId withTarget:self andAction:@selector(userResponseReceived:withResponseString:)];
     [FlurryAPI logEvent:@"Profile"];
-
 	
 	[NSThread detachNewThreadSelector:@selector(retrieveUserPhotos) toTarget:self withObject:nil];
 }
@@ -223,7 +222,7 @@
 }
 
 - (void)dealloc {
-    [badgeCell release];
+//    [badgeCell release];
 //    [addFriendCell release];
 //    [friendActionCell release];
 //    [friendPendingCell release];
@@ -237,7 +236,7 @@
 //    [name release];
 //    [location release];
 //    [lastCheckinAddress release];
-    [userIcon release];
+//    [userIcon release];
 //    [textButton release];
 //    [callButton release];
 //    [emailButton release];

@@ -188,7 +188,16 @@
 - (void) uploadToTweetPhoto {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	tweetPhoto = [[TweetPhoto alloc] initWithSetup:[[FoursquareAPI sharedInstance] userName] identitySecret:[[FoursquareAPI sharedInstance] passWord] apiKey:@"bd1cf27c-0f19-4af5-b409-1c1a5bd35332" serviceName:@"Foursquare" isoAuth:NO];
-	tweetPhotoResponse = [[tweetPhoto photoUpload:UIImageJPEGRepresentation(photoImage, 1.0) comment:[NSString stringWithFormat:@"%@...",[checkinTextField.text substringToIndex:120]] tags:@"Kickball" latitude:[[KBLocationManager locationManager] latitude] longitude:[[KBLocationManager locationManager] longitude]] retain];
+	NSString *tweetPhotoComment = nil;
+	if ([checkinTextField.text length] > 0 && [checkinTextField.text length] < 120) {
+		tweetPhotoComment = checkinTextField.text;
+	} else if ([checkinTextField.text length] > 120) {
+		tweetPhotoComment = [NSString stringWithFormat:@"%@...",[checkinTextField.text substringToIndex:120]];
+	} {
+		tweetPhotoComment = [NSString stringWithFormat:@"Photo at %@", venue.name];
+	}
+
+	tweetPhotoResponse = [[tweetPhoto photoUpload:UIImageJPEGRepresentation(photoImage, 1.0) comment:tweetPhotoComment tags:@"Kickball" latitude:[[KBLocationManager locationManager] latitude] longitude:[[KBLocationManager locationManager] longitude]] retain];
 	[pool release];
 	DLog(@"tweetphoto url: %@", tweetPhotoResponse.mediaUrl);
 	[self performSelectorOnMainThread:@selector(submitToTwitter:) withObject:tweetPhotoResponse waitUntilDone:NO];

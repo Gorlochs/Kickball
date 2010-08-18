@@ -379,7 +379,7 @@
 	if ([venueToDisplay.currentCheckins count] > 0) {
 
 		//create base container based on how many people
-		UIView *roundedRect;
+		//UIView *roundedRect;
 		UIView *peopleHereContainer;
 		peopleHereCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"peopleHere"];
 		switch ([venueToDisplay.currentCheckins count]) {
@@ -651,17 +651,15 @@
 		UIImageView* topLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderTop.png"]];
 		topLineImage.frame = CGRectMake(0, 0, 320, 1);
 		[cell addSubview:topLineImage];
+		[topLineImage release];
 		
 		// TODO: the origin.y should probably not be hard coded
 		UIImageView* bottomLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderBottom.png"]];
 		bottomLineImage.frame = CGRectMake(0, 54, 320, 1);
 		[cell addSubview:bottomLineImage];
-		
-
+		[bottomLineImage release];
     }
 	
-	
-    
     // Set up the cell...
     if (indexPath.section == 0) {
         //return nil;

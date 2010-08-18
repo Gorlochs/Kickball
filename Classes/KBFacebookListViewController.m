@@ -135,7 +135,7 @@
 	GraphAPI *graph = [[FacebookProxy instance] newGraph];
 	NSDictionary *moreFeed = [graph newMeFeed:lastStamp];
 	NSMutableArray *moreNews = [[NSMutableArray alloc] initWithArray:[moreFeed objectForKey:@"posts"]];
-	[moreNews retain]; //startLoadingDefaults sometimes releases an autorelease pool while we use this object.  this will keep the object from getting released, and us from crashing
+	//[moreNews retain]; //startLoadingDefaults sometimes releases an autorelease pool while we use this object.  this will keep the object from getting released, and us from crashing
 	[[FacebookProxy instance] cacheIncomingProfiles:[moreFeed objectForKey:@"profiles"]];
 	[[FacebookProxy instance] cacheIncomingProfiles:[moreFeed objectForKey:@"albums"]];
 
