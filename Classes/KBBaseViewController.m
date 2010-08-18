@@ -415,11 +415,12 @@ const NSString *kickballDomain = @"http://kickball.gorlochs.com/kickball";
 }
 
 - (void) fadePopupMessage {
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationDuration:0.7];
-    popupView.view.alpha = 0.0;
-    [UIView commitAnimations];
+	[[KBDialogueManager sharedInstance] fadeOut];
+//    [UIView beginAnimations:nil context:NULL];
+//    [UIView setAnimationBeginsFromCurrentState:YES];
+//    [UIView setAnimationDuration:0.7];
+//    popupView.view.alpha = 0.0;
+//    [UIView commitAnimations];
 }
 
 - (void) viewSettings {

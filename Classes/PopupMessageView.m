@@ -7,6 +7,8 @@
 //
 
 #import "PopupMessageView.h"
+#import "KBDialogueManager.h"
+
 
 @implementation PopupMessageView
 
@@ -51,7 +53,8 @@
 }
 
 - (void) dismissPopupMessage {
-    [self.view removeFromSuperview];
+	[[KBDialogueManager sharedInstance] fadeOut];
+    //[self.view removeFromSuperview];
 }
 
 - (void)dealloc {
