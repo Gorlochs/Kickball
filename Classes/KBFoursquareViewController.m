@@ -38,18 +38,18 @@
 - (void) setProperFoursquareButtons {
 	if (pageType == KBPageTypePlaces) {
         [friendButton setImage:[UIImage imageNamed:@"btn-Friends03.png"] forState:UIControlStateNormal];
-        [placesButton setImage:[UIImage imageNamed:@"placesTab01.png"] forState:UIControlStateNormal];
+        [placesButton setImage:[UIImage imageNamed:@"btn-Places01.png"] forState:UIControlStateNormal];
         placesButton.enabled = NO;
     } else if (pageType == KBPageTypeFriends) {
         [friendButton setImage:[UIImage imageNamed:@"btn-Friends01.png"] forState:UIControlStateNormal];
-        [placesButton setImage:[UIImage imageNamed:@"placesTab03.png"] forState:UIControlStateNormal];
+        [placesButton setImage:[UIImage imageNamed:@"btn-Places03.png"] forState:UIControlStateNormal];
         friendButton.enabled = NO;
     } else if (pageType == KBPageTypeOther) {
         friendButton.enabled = NO;
         homeButton.hidden = NO;
         backButton.hidden = NO;
         placesButton.hidden = YES;
-        [placesButton setImage:[UIImage imageNamed:@"placesTab01.png"] forState:UIControlStateNormal];
+        [placesButton setImage:[UIImage imageNamed:@"btn-Places01.png"] forState:UIControlStateNormal];
     }
     
     if (pageViewType == KBPageViewTypeList) {
