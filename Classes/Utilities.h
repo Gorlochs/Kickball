@@ -53,5 +53,6 @@ static const int CITY_RADIUS_LARGE = 106934;
 + (NSString*) convertVenueToFoursquareUrl:(NSString*)venueId;
 + (NSString*) getShortenedUrlFromFoursquareVenueId:(NSString*)venueId;
 + (natural_t)getMemory;
+- (void) updateFriendWithPingOn:(NSString*) friendId;
 
 @end

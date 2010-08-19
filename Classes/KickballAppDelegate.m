@@ -245,6 +245,7 @@ void uncaughtExceptionHandler(NSException *exception) {
     self.pushNotificationUserId = nil;
     [self.navigationController pushViewController:profileController animated:YES];
     [profileController release];
+    [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(startFadeOut:) userInfo:nil repeats:NO];
 }
 
 

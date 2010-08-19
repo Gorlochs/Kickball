@@ -198,6 +198,35 @@ static Utilities *sharedInstance = nil;
 #pragma mark -
 #pragma mark Retrieve ping-on friends
 
+- (void) updateFriendWithPingOn:(NSString*) friendId {
+	pool = [[NSAutoreleasePool alloc] init];
+	NSURL *url = [NSURL URLWithString:@"http://kickball.gorlochs.com/kickball/pings/add.json"];
+	
+	NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+	ASIFormDataRequest *request = [[ASIFormDataRequest alloc] initWithURL:url];
+	[request setPostValue:[[FoursquareAPI sharedInstance] currentUser].userId forKey:@"userId"];
+	[request setPostValue:friendId forKey:@"friendId"];
+	[request setDelegate:self];
+	[request setDidFinishSelector: @selector(pingAddSubmitCompleted:)];
+	[request setDidFailSelector: @selector(pingAddSubmitFailed:)];
+	[queue addOperation:request];
+	[request release];
+	[queue release];
+	[pool release];
+}
+
+- (void) pingAddSubmitFailed:(ASIHTTPRequest *) request {
+    DLog(@"BOOOOOOOOOOOO!");
+    DLog(@"failed response msg: %@", request.responseStatusMessage);
+}
+
+- (void) pingAddSubmitCompleted:(ASIHTTPRequest *) request {
+    DLog(@"YAAAAAAAAAAAY!");
+    DLog(@"successful response msg: %@", request.responseStatusMessage);
+	
+	// if response code is 200, add friendId to the pingid list
+}
+
 - (void) updateAllFriendsWithPingOn:(NSArray*)checkins {
 	pool = [[NSAutoreleasePool alloc] init];
 	

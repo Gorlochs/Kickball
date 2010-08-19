@@ -632,6 +632,7 @@
 	NSString *ping = @"off";
     if (checkinNotificationSwitch.on) {
         ping = @"on";
+		[[Utilities sharedInstance] updateFriendWithPingOn:user.userId];
     }
 	[self startProgressBar:@"Toggling pings for this user..."];
 	[[FoursquareAPI sharedInstance] setPings:ping forUser:user.userId withTarget:self andAction:@selector(pingResponseReceived:withResponseString:)];
