@@ -15,8 +15,13 @@
 #import "PopupMessageView.h"
 #import "util.h"
 
-#define kApplicationKey @"yRIla6gWSyWVmizCFl13Nw"
-#define kApplicationSecret @"-BnhB82eSrWrGG0aXm2PLQ"
+// PRODUCTION
+//#define kApplicationKey @"yRIla6gWSyWVmizCFl13Nw"
+//#define kApplicationSecret @"-BnhB82eSrWrGG0aXm2PLQ"
+
+// DEVELOPMENT
+#define kApplicationKey @"qpHHiOCAT8iYATFJa4dsIQ"
+#define kApplicationSecret @"PGTRPo6OTI2dvtz2xw-vfw"
 
 typedef enum{
 	KBNavControllerTypeFoursquare = 0,
