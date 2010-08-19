@@ -897,6 +897,16 @@
 }
 
 - (void)dealloc {
+    @try {
+        [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:@"todoTipSent"];
+        [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:@"shoutAndCheckinSent"];
+    }
+    @catch (NSException * e) {
+        DLog("observer could not be removed: %@", e);
+    }
+    @finally {
+        DLog("finally");
+    }
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
