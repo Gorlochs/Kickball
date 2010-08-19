@@ -62,7 +62,7 @@
 }
 
 - (NSString*) description {
-	return [NSString stringWithFormat:@"name: %@ | address: %@", self.name, self.address];
+	return [NSString stringWithFormat:@"GAPlace: name: %@ | address: %@", self.name, self.address];
 }
 
 - (void)dealloc {

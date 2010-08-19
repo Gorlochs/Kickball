@@ -213,10 +213,6 @@
         seeAllPhotosButton.hidden = NO;
         addPhotoButton.hidden = NO;
         photoHeaderLabel.hidden = NO;
-    } else {
-        //seeAllPhotosButton.hidden = YES;
-        //addPhotoButton.hidden = YES;
-        //photoHeaderLabel.hidden = YES;
     }
     [theTableView reloadData];
 }
@@ -387,23 +383,10 @@
 			case 2:
 				peopleHereContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 47)];
 				[peopleHereContainer setBackgroundColor:[UIColor colorWithWhite:0.92 alpha:1.0]];
-				//roundedRect = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 47)];
-        	//			roundedRect = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 290, 47)];
-				//[[roundedRect layer] setCornerRadius:3.0f];
-				//[roundedRect setBackgroundColor:[UIColor colorWithRed:239.0/255.0 green:239.0/255.0 blue:239.0/255.0 alpha:1.0]];  
-				//[peopleHereContainer addSubview:roundedRect];
-				//[roundedRect release];
 				break;
 			default:
 				peopleHereContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 95)];
 				[peopleHereContainer setBackgroundColor:[UIColor colorWithWhite:0.92 alpha:1.0]];
-
-				//roundedRect = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 95)];
-        //				roundedRect = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 290, 95)];
-				//[[roundedRect layer] setCornerRadius:3.0f];
-				//[roundedRect setBackgroundColor:[UIColor colorWithRed:239.0/255.0 green:239.0/255.0 blue:239.0/255.0 alpha:1.0]];  
-				//[peopleHereContainer addSubview:roundedRect];
-				//[roundedRect release];
 				break;
 		}
 		UIView *horizontalSplitter;
@@ -412,8 +395,7 @@
 		currentCheckin = nil;
 		switch ([venueToDisplay.currentCheckins count]) {
 			case 1:
-				
-				//populate with poeople
+				//populate with people
 				//person 1
 				currentCheckin = ((FSCheckin*)[venueToDisplay.currentCheckins objectAtIndex:0]);
 				[self addPersonHere:peopleHereContainer :currentCheckin :1];
@@ -424,7 +406,7 @@
 				[peopleHereContainer addSubview:horizontalSplitter];
 				[horizontalSplitter release];
 				
-				//populate with poeople
+				//populate with people
 				//person 1
 				currentCheckin = ((FSCheckin*)[venueToDisplay.currentCheckins objectAtIndex:0]);
 				[self addPersonHere:peopleHereContainer :currentCheckin :21];
@@ -443,7 +425,7 @@
 				[peopleHereContainer addSubview:verticalSplitter];
 				[verticalSplitter release];
 				
-				//populate with poeople
+				//populate with people
 				//person 1
 				currentCheckin = ((FSCheckin*)[venueToDisplay.currentCheckins objectAtIndex:0]);
 				[self addPersonHere:peopleHereContainer :currentCheckin :21];
@@ -606,6 +588,7 @@
     mayorCheckinCountLabel = nil;
 }
 
+#pragma mark -
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -660,27 +643,13 @@
 		[bottomLineImage release];
     }
 	
-    // Set up the cell...
     if (indexPath.section == 0) {
-        //return nil;
         return checkinCell;
     } else if (indexPath.section == 1) {
         return mayorMapCell;
     } else if (indexPath.section == 2) { // people here
 		return peopleHereCell;
     } else if (indexPath.section == 3) {
-		//UIImageView *roundedTopCorners = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"roundedTop.png"]];
-		//roundedTopCorners.frame = CGRectMake(0, 0, roundedTopCorners.frame.size.width, roundedTopCorners.frame.size.height);
-		//[giftCell addSubview:roundedTopCorners];
-		
-		//UIImageView *roundedBottomCorners = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"roundedBottom.png"]];
-		//roundedBottomCorners.frame = CGRectMake(0, giftCell.frame.size.height - 3, roundedBottomCorners.frame.size.width, roundedBottomCorners.frame.size.height);
-		//[giftCell addSubview:roundedBottomCorners];
-		//[giftCell bringSubviewToFront:roundedTopCorners];
-		//[giftCell bringSubviewToFront:roundedBottomCorners];
-        //[roundedTopCorners release];
-        //[roundedBottomCorners release];
-		
         return giftCell;
     } else if (indexPath.section == 4) {
         return bottomButtonCell;
@@ -707,20 +676,6 @@
         ttImage.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
         [cell.imageView addSubview:ttImage];
     }
-	if (indexPath.row == 0) {
-		//UIImageView *roundedTopCorners = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"roundedTop.png"]];
-		//roundedTopCorners.frame = CGRectMake(0, 0, roundedTopCorners.frame.size.width, roundedTopCorners.frame.size.height);
-		//[cell addSubview:roundedTopCorners];
-		//[cell bringSubviewToFront:roundedTopCorners];
-        //[roundedTopCorners release];
-	}
-	if (indexPath.row == [theTableView numberOfRowsInSection:indexPath.section] - 1 && indexPath.section == 5) {
-		//UIImageView *roundedBottomCorners = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"roundedBottom.png"]];
-		//roundedBottomCorners.frame = CGRectMake(0, 52, roundedBottomCorners.frame.size.width, roundedBottomCorners.frame.size.height);
-		//[cell addSubview:roundedBottomCorners];
-		//[cell bringSubviewToFront:roundedBottomCorners];
-        //[roundedBottomCorners release];
-	}
     return cell;
 }
 
@@ -932,6 +887,7 @@
     [super dealloc];
 }
 
+#pragma mark -
 #pragma mark IBAction methods
 
 - (void) viewThumbnails {
@@ -969,11 +925,7 @@
 - (void) showTwitterFeed {
 	KBUserTweetsViewController *recentTweetsController = [[KBUserTweetsViewController alloc] initWithNibName:@"KBUserTweetsViewController" bundle:nil];
     recentTweetsController.username = venue.twitter;
-    
-//    PlaceTwitterViewController *vc = [[PlaceTwitterViewController alloc] initWithNibName:@"PlaceTwitterViewController" bundle:nil];
-//    vc.twitterName = venue.twitter;
-//    vc.venueName = venue.name;
-    //[self presentModalViewController:recentTweetsController animated:YES];
+	
     [self.navigationController pushViewController:recentTweetsController animated:YES];
     [recentTweetsController release];
 }
@@ -1152,46 +1104,7 @@
     
     // add view to main view
     [self.view addSubview:checkinView];
-    
-	
-//    NSMutableString *checkinText = [[NSMutableString alloc] initWithCapacity:1];
-//    NSMutableString *noteworthyCheckin = [[NSMutableString alloc] initWithString:@""];
-//    if (aCheckin.mayor.user == nil && [aCheckin.mayor.mayorTransitionType isEqualToString:@"nochange"]) {
-//        [checkinText appendString:[NSString stringWithFormat:@"You're still the mayor of %@! \n\n", venue.name]];
-//    } else if ([aCheckin.mayor.mayorTransitionType isEqualToString:@"stolen"] || [aCheckin.mayor.mayorTransitionType isEqualToString:@"new"]) {
-//        if ([[self getSingleCheckin].mayor.mayorTransitionType isEqualToString:@"stolen"]) {
-//            [noteworthyCheckin setString:@"I just became mayor"];
-//            [checkinText appendString:[NSString stringWithFormat:@"Congrats! %@ is yours with %d check-ins and %@ lost their crown. \n\n", 
-//                                      aCheckin.venue.name, 
-//                                      aCheckin.mayor.numCheckins, 
-//                                      aCheckin.mayor.user.firstnameLastInitial]];
-//        } else {
-//            [checkinText appendString:[NSString stringWithFormat:@"%@ \n\n", aCheckin.mayor.mayorCheckinMessage]];
-//        }
-//    }
-//
-//    for (FSBadge *badge in aCheckin.badges) {
-//        if ([noteworthyCheckin length] > 0) [noteworthyCheckin appendString:[NSString stringWithFormat:@" and I unlocked the %@ badge", badge.badgeName]];
-//        else [noteworthyCheckin appendString:[NSString stringWithFormat:@"I just unlocked the %@ badge at %@", badge.badgeName]];
-//        [checkinText appendString:[NSString stringWithFormat:@"%@: %@ \n\n", badge.badgeName, badge.badgeDescription]];
-//    }
-//    [checkinText appendFormat:@"%@ \n\n", aCheckin.message];
-//    for (FSScore *score in aCheckin.scoring.scores) {
-//        [checkinText appendString:[NSString stringWithFormat:@"+%d %@ \n", score.points, score.message]];
-//    }
-//	if (isFacebookOn && [noteworthyCheckin length] > 0) {
-//        [noteworthyCheckin appendString:[NSString stringWithFormat:@" at %@! %@", venue.name, [Utilities getShortenedUrlFromFoursquareVenueId:venue.venueid]]];
-//		GraphAPI *graph = [[FacebookProxy instance] newGraph];
-//		[graph putWallPost:@"me" message:noteworthyCheckin attachment:nil];
-//		[graph release];
-//	}
-//    DLog(@"checkin text: %@", checkinText);
-//    KBMessage *message = [[KBMessage alloc] initWithMember:@"Check-in successful" andMessage:checkinText];
-//    [self displayPopupMessage:message];
-//    [checkinText release];
-//    [message release];
-//    [noteworthyCheckin release];
-	
+
     self.venueToPush = aCheckin.venue;
 }
 
@@ -1262,17 +1175,6 @@
         specialAddress.text = venue.addressWithCrossstreet;
     }
     specialText.text = special.messageText;
-    
-//    CGSize maximumLabelSize = CGSizeMake(246, 157);
-//    CGSize expectedLabelSize = [special.messageText sizeWithFont:specialText.font 
-//                                           constrainedToSize:maximumLabelSize 
-//                                               lineBreakMode:UILineBreakModeWordWrap];
-//    DLog(@"expected label size: %f", expectedLabelSize.height);
-//    
-//    //adjust the label the the new height.
-//    CGRect newFrame = specialText.frame;
-//    newFrame.size.height = expectedLabelSize.height;
-//    specialText.frame = newFrame;
 
     CGRect specialFrame = specialView.frame;
     specialFrame.origin = CGPointMake(0, 119);
@@ -1392,6 +1294,7 @@
     }
 }
 
+#pragma mark -
 #pragma mark CityGrid methods
 
 - (void) cityGridRequestWentWrong:(ASIHTTPRequest *) request {
@@ -1448,6 +1351,7 @@
     [self stopProgressBar];
 }
 
+#pragma mark -
 #pragma mark GeoAPI Delegate methods
 
 // TODO: neaten this mess up
@@ -1542,6 +1446,7 @@
 	return annView;
 }
 
+#pragma mark -
 #pragma mark Image Picker Delegate methods
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
@@ -1595,7 +1500,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"attachMessageToPhoto" object:nil];
 }
 
-#pragma mark
+#pragma mark -
 #pragma mark UIActionSheetDelegate methods
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -1607,8 +1512,6 @@
         [self getPhoto:UIImagePickerControllerSourceTypeCamera];
     }
 }
-
-#pragma mark -
 
 - (void) getPhoto:(UIImagePickerControllerSourceType)sourceType {
 	UIImagePickerController * picker = [[UIImagePickerController alloc] init];
@@ -1659,7 +1562,7 @@
     DLog(@"Uhoh, it did fail!");
 }
 
-#pragma mark 
+#pragma mark -
 #pragma mark table refresh methods
 
 - (void) refreshTable {

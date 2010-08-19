@@ -70,7 +70,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [FlurryAPI logEvent:@"GeoAPI venue selected from list view"];
 	GeoApiDetailsViewController *vc = [[GeoApiDetailsViewController alloc] initWithNibName:@"GeoApiDetailsView" bundle:nil];
-    vc.place = [[geoAPIResults objectAtIndex:indexPath.row] copy];
+    vc.place = [geoAPIResults objectAtIndex:indexPath.row];
 	[self.navigationController pushViewController:vc animated:YES];
 	[vc release];
     [theTableView deselectRowAtIndexPath:indexPath animated:YES];
