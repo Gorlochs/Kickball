@@ -210,7 +210,7 @@ static Utilities *sharedInstance = nil;
 	}
 	
 	DLog("ping ids: %@", ids);
-	NSURL *url = [NSURL URLWithString:@"http://kickball.gorlochs.com/kickball/pings"];
+	NSURL *url = [NSURL URLWithString:@"http://kickball.gorlochs.com/kickball/pings.json"];
 	
 	NSOperationQueue *queue = [[NSOperationQueue alloc] init];
 	ASIFormDataRequest *request = [[ASIFormDataRequest alloc] initWithURL:url];

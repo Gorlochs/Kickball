@@ -33,6 +33,7 @@
         userName.textColor = [UIColor colorWithRed:25.0/255.0 green:144.0/255.0 blue:219.0/255.0 alpha:1.0];
         userName.font = [UIFont boldSystemFontOfSize:16.0];
         userName.backgroundColor = [UIColor clearColor];
+        userName.highlightedTextColor = [UIColor clearColor];
         userName.shadowColor = [UIColor colorWithWhite:1.0 alpha:0.5];
         userName.shadowOffset = CGSizeMake(1.0, 1.0);
         [self addSubview:userName];

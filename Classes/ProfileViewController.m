@@ -596,14 +596,6 @@
 	[pool release];
 }
 
-//- (void) viewYourPhotos {
-////    MockPhotoSource *photoSource = [[KickballAPI kickballApi] convertGoodiesIntoPhotoSource:[[KickballAPI kickballApi] parsePhotosFromXML:[request responseString]] withTitle:@"Your Photos"];
-////    KBGenericPhotoViewController *photoController = [[KBGenericPhotoViewController alloc] initWithPhotoSource:photoSource];
-////    [self stopProgressBar];
-////    [self.navigationController pushViewController:photoController animated:YES];
-////    [photoController release];
-//}
-
 - (void) photoRequestWentWrong:(ASIHTTPRequest *) request {
 	//[pool release];
 	[request release];
@@ -619,7 +611,7 @@
 }
 
 - (void) showProfileOptions {
-    profileOptionsView.frame = CGRectMake(0, 48, profileOptionsView.frame.size.width, profileOptionsView.frame.size.height);
+    profileOptionsView.frame = CGRectMake(0, 47, profileOptionsView.frame.size.width, profileOptionsView.frame.size.height);
     [self.view addSubview:profileOptionsView];
 }
 
@@ -628,7 +620,7 @@
 }
 
 - (void) showInfoOptions {
-    profileInfoView.frame = CGRectMake(0, 48, profileInfoView.frame.size.width, profileInfoView.frame.size.height);
+    profileInfoView.frame = CGRectMake(0, 47, profileInfoView.frame.size.width, profileInfoView.frame.size.height);
     [self.view addSubview:profileInfoView];
 }
 

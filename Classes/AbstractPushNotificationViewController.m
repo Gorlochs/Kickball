@@ -13,8 +13,8 @@
 #import "FoursquareAPI.h"
 #import "SBJSON.h"
     
-#define PUSH_URL @"https://www.gorlochs.com/kickball/app/push.1.1.php"
-//#define PUSH_URL @"http://www.literalshore.com/gorloch/kickball/push.1.1.php"
+//#define PUSH_URL @"https://www.gorlochs.com/kickball/app/push.1.1.php"
+#define PUSH_URL @"http://www.literalshore.com/gorloch/kickball/push.1.1.php"
 
 @implementation AbstractPushNotificationViewController
 

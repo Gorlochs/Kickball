@@ -41,6 +41,7 @@
         userName.textColor = [UIColor colorWithRed:25.0/255.0 green:144.0/255.0 blue:219.0/255.0 alpha:1.0];
         userName.font = [UIFont boldSystemFontOfSize:16.0];
         userName.backgroundColor = [UIColor clearColor];
+		userName.highlightedTextColor = [UIColor clearColor];
         userName.shadowColor = [UIColor colorWithWhite:1.0 alpha:0.5];
         userName.shadowOffset = CGSizeMake(1.0, 1.0);
         [self addSubview:userName];
@@ -49,27 +50,19 @@
         dateLabel.textColor = [UIColor colorWithWhite:0.5 alpha:1.0];
         dateLabel.font = [UIFont systemFontOfSize:12.0];
         dateLabel.backgroundColor = [UIColor clearColor];
+		dateLabel.highlightedTextColor = [UIColor clearColor];
         dateLabel.shadowColor = [UIColor colorWithWhite:1.0 alpha:0.5];
         dateLabel.shadowOffset = CGSizeMake(1.0, 1.0);
 		dateLabel.textAlignment = UITextAlignmentRight;
         [self addSubview:dateLabel];
-        
-		/*
-		tweetText = [[TTStyledTextLabel alloc] initWithFrame:CGRectMake(58, 25, 250, 70)];
-		tweetText.textColor = [UIColor colorWithWhite:0.3 alpha:1.0];
-		tweetText.font = [UIFont fontWithName:@"Helvetica" size:12.0];
-		tweetText.backgroundColor = [UIColor clearColor];
-		[self addSubview:tweetText];
-		*/
 		
         tweetText = [[IFTweetLabel alloc] initWithFrame:CGRectMake(58, 0, 250, 70)];
         tweetText.textColor = [UIColor colorWithWhite:0.3 alpha:1.0];
         tweetText.font = [UIFont fontWithName:@"Helvetica" size:12.0];
         tweetText.backgroundColor = [UIColor clearColor];
+		tweetText.labelHighlightedTextColor = [UIColor whiteColor];
         tweetText.linksEnabled = NO;
         tweetText.numberOfLines = 0;
-        //tweetText.shadowColor = [UIColor colorWithWhite:1.0 alpha:0.5];
-        //tweetText.shadowOffset = CGSizeMake(1.0, 1.0);
         [self addSubview:tweetText];
 		
         topLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderTop.png"]];
