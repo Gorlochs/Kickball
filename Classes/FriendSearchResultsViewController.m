@@ -174,15 +174,15 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
 	// create the parent view that will hold header Label
 	UIView* customView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 24.0)] autorelease];
-    customView.backgroundColor = [UIColor whiteColor];
+    customView.backgroundColor = [UIColor grayColor];
     customView.alpha = 0.85;
 	
 	// create the button object
 	UILabel * headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
 	headerLabel.backgroundColor = [UIColor clearColor];
 	headerLabel.opaque = NO;
-	headerLabel.textColor = [UIColor grayColor];
-	headerLabel.highlightedTextColor = [UIColor whiteColor];
+	headerLabel.textColor = [UIColor whiteColor];
+	headerLabel.highlightedTextColor = [UIColor blackColor];
 	headerLabel.font = [UIFont boldSystemFontOfSize:12];
 	headerLabel.frame = CGRectMake(10.0, 0.0, 320.0, 24.0);
     
