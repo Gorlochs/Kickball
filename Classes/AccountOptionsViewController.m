@@ -263,6 +263,7 @@
         [message release];
 		KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
 		[appDelegate loggedInToFoursquare];
+        [appDelegate setupAuthenticatedUserAndPushNotifications];
 		[foursquareUsername setPlaceholder:@"logged in"];
 		[foursquarePassword setPlaceholder:@" "];
 		[foursquarePassword setText:nil];
