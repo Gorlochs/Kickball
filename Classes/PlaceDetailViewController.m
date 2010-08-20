@@ -184,8 +184,15 @@
             
             CGRect frame = CGRectMake(x*THUMBNAIL_IMAGE_SIZEX, y*THUMBNAIL_IMAGE_SIZEY, THUMBNAIL_IMAGE_SIZEX, THUMBNAIL_IMAGE_SIZEY);
             TTImageView *ttImage = [[TTImageView alloc] initWithFrame:frame];
-            ttImage.urlPath = goody.thumbnailImagePath;
-            ttImage.clipsToBounds = YES;
+			
+			UIScreen *theScreen = [UIScreen mainScreen];
+			if (theScreen.scale > 1.0) {
+				ttImage.urlPath = goody.mediumImagePath;
+            } else {
+				ttImage.urlPath = goody.thumbnailImagePath;
+			}
+
+			ttImage.clipsToBounds = YES;
             ttImage.contentMode = UIViewContentModeScaleToFill;
             [giftCell addSubview:ttImage];
             
@@ -1486,7 +1493,7 @@
 - (void) returnFromMessageView:(NSNotification *)inNotification {
     NSString *message = [[inNotification userInfo] objectForKey:@"message"];
     self.photoMessageToPush = message;
-    [photoMessageViewController dismissModalViewControllerAnimated:NO];
+    [photoMessageViewController dismissModalViewControllerAnimated:YES];
     [self startProgressBar:@"Uploading photo..." withTimer:NO andLongerTime:NO];
 	
     [photoManager uploadImage:UIImageJPEGRepresentation(self.photoImage, 1.0) 

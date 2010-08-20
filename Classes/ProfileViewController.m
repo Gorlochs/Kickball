@@ -324,7 +324,14 @@
                 for (KBGoody *photo in userPhotos) {
                     CGRect frame = CGRectMake(x*73, 0, 73, 73);
                     TTImageView *ttImage = [[TTImageView alloc] initWithFrame:frame];
-                    ttImage.urlPath = photo.thumbnailImagePath;
+                    
+					UIScreen *theScreen = [UIScreen mainScreen];
+					if (theScreen.scale > 1.0) {
+						ttImage.urlPath = photo.mediumImagePath;
+					} else {
+						ttImage.urlPath = photo.thumbnailImagePath;
+					}
+					
                     ttImage.clipsToBounds = YES;
                     ttImage.contentMode = UIViewContentModeScaleToFill;
                     [photoCell addSubview:ttImage];
