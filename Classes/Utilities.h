@@ -55,5 +55,7 @@ static const int CITY_RADIUS_LARGE = 106934;
 + (natural_t)getMemory;
 - (void) updateFriendWithPingOn:(NSString*) friendId;
 - (void) updateFriendWithPingOff:(NSString*) friendId;
+- (BOOL) isInstacheckinOn;
+- (void) setIsInstacheckinOn:(BOOL)isOn;
 
 @end

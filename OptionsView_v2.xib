@@ -3,21 +3,20 @@
 	<data>
 		<int key="IBDocument.SystemTarget">1024</int>
 		<string key="IBDocument.SystemVersion">10F569</string>
-		<string key="IBDocument.InterfaceBuilderVersion">804</string>
+		<string key="IBDocument.InterfaceBuilderVersion">788</string>
 		<string key="IBDocument.AppKitVersion">1038.29</string>
 		<string key="IBDocument.HIToolboxVersion">461.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">123</string>
+			<string key="NS.object.0">117</string>
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="23"/>
 			<integer value="21"/>
 			<integer value="75"/>
-			<integer value="22"/>
 			<integer value="20"/>
-			<integer value="46"/>
+			<integer value="23"/>
+			<integer value="22"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -179,7 +178,7 @@
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 			<object class="IBUITableViewCell" id="168607240">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -243,7 +242,6 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{292, 54}</string>
-				<reference key="NSSuperview"/>
 				<reference key="IBUIBackgroundColor" ref="975839411"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<int key="IBUISeparatorStyle">1</int>
@@ -824,15 +822,6 @@
 					<int key="connectionID">72</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">togglePushNotifications</string>
-						<reference key="source" ref="500536544"/>
-						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">13</int>
-					</object>
-					<int key="connectionID">79</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">quickCheckInCell</string>
 						<reference key="source" ref="372490531"/>
@@ -856,6 +845,15 @@
 						<int key="IBEventType">7</int>
 					</object>
 					<int key="connectionID">84</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">toggleInstacheckin</string>
+						<reference key="source" ref="500536544"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">13</int>
+					</object>
+					<int key="connectionID">85</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1109,7 +1107,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{340, 802}, {292, 54}}</string>
+					<string>{{346, 826}, {292, 54}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1134,7 +1132,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">84</int>
+			<int key="maxID">85</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1317,6 +1315,7 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>addFriends</string>
+							<string>toggleInstacheckin</string>
 							<string>togglePushNotifications</string>
 							<string>viewAccountOptions</string>
 							<string>viewDefaultCheckinOptions</string>
@@ -1327,6 +1326,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -1342,6 +1342,7 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>addFriends</string>
+							<string>toggleInstacheckin</string>
 							<string>togglePushNotifications</string>
 							<string>viewAccountOptions</string>
 							<string>viewDefaultCheckinOptions</string>
@@ -1354,6 +1355,10 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBActionInfo">
 								<string key="name">addFriends</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">toggleInstacheckin</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
@@ -1809,6 +1814,6 @@
 				<string>{292, 54}</string>
 			</object>
 		</object>
-		<string key="IBCocoaTouchPluginVersion">123</string>
+		<string key="IBCocoaTouchPluginVersion">117</string>
 	</data>
 </archive>

@@ -43,6 +43,7 @@
 - (IBAction) viewFeedback;
 - (IBAction) viewDefaultCheckinOptions;
 - (IBAction) togglePushNotifications;
+- (IBAction) toggleInstacheckin;
 
 -(void)pressOptionsLeft;
 -(void)pressOptionsRight;

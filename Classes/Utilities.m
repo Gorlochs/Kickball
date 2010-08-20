@@ -20,7 +20,7 @@
 static Utilities *sharedInstance = nil;
 
 #define TMP NSHomeDirectory()
-
+#define kInstacheckinUserDefaultKey @"instacheckinUserDefaultKey"
 
 @implementation Utilities
 
@@ -193,6 +193,19 @@ static Utilities *sharedInstance = nil;
     }
     
     return image;
+}
+
+#pragma mark -
+#pragma mark Instacheckin Settings
+
+- (BOOL) isInstacheckinOn {
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	return ![userDefaults boolForKey:kInstacheckinUserDefaultKey];
+}
+
+- (void) setIsInstacheckinOn:(BOOL)isOn {
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	[userDefaults setBool:!isOn forKey:kInstacheckinUserDefaultKey];
 }
 
 #pragma mark -

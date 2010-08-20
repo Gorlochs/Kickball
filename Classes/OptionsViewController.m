@@ -34,6 +34,7 @@
     [super viewDidLoad];
  
     [pushNotificationSwitch setOn:[[FoursquareAPI sharedInstance] currentUser].isPingOn];
+	[quickCheckInSwitch setOn:[[Utilities sharedInstance] isInstacheckinOn]];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -214,6 +215,10 @@
         ping = @"on";
     }
     [[FoursquareAPI sharedInstance] setPings:ping forUser:@"self" withTarget:self andAction:@selector(pingUpdateResponseReceived:withResponseString:)];
+}
+
+- (void) toggleInstacheckin {
+	[[Utilities sharedInstance] setIsInstacheckinOn:quickCheckInSwitch.on];
 }
 
 - (void) pingUpdateResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {

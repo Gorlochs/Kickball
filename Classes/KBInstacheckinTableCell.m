@@ -80,12 +80,15 @@
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    self->_cancelTouches = NO;
-    [super touchesBegan:touches withEvent:event];
-    [self performSelector:@selector(tapNHoldFired) withObject:nil afterDelay:0.9];
-	[self performSelector:@selector(startSpinner) withObject:nil afterDelay:.25];
-	touchLocation = [[touches anyObject] locationInView:self.superview];
-	
+	if ([[Utilities sharedInstance] isInstacheckinOn]) {
+		self->_cancelTouches = NO;
+		[super touchesBegan:touches withEvent:event];
+		[self performSelector:@selector(tapNHoldFired) withObject:nil afterDelay:0.9];
+		[self performSelector:@selector(startSpinner) withObject:nil afterDelay:.25];
+		touchLocation = [[touches anyObject] locationInView:self.superview];
+	} else {
+		[super touchesBegan:touches withEvent:event];
+	}
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
