@@ -198,7 +198,9 @@ static Utilities *sharedInstance = nil;
 #pragma mark -
 #pragma mark Retrieve ping-on friends
 
+/******** when a user changes a friend's ping status to ON *******/
 - (void) updateFriendWithPingOn:(NSString*) friendId {
+	
 	pool = [[NSAutoreleasePool alloc] init];
 	NSURL *url = [NSURL URLWithString:@"http://kickball.gorlochs.com/kickball/pings/add.json"];
 	
@@ -223,10 +225,52 @@ static Utilities *sharedInstance = nil;
 - (void) pingAddSubmitCompleted:(ASIHTTPRequest *) request {
     DLog(@"YAAAAAAAAAAAY!");
     DLog(@"successful response msg: %@", request.responseStatusMessage);
+    DLog(@"successful response string: %@", [request responseString]);
 	
-	// if response code is 200, add friendId to the pingid list
+	// currently, self.userIdsToReceivePings is received every time a user checks in. 
+	// if we ever decide to cache that object, then this block of code will be effective
+	// otherwise, as it stands, it's pointless
+	if (self.userIdsToReceivePings) {
+		SBJSON *parser = [SBJSON new];
+		id pingDict = [parser objectWithString:[request responseString] error:NULL];
+		[parser release];
+		[self.userIdsToReceivePings addObject:[[pingDict objectForKey:@"ping"] objectForKey:@"friendId"]];
+		DLog(@"userIdsToReceivePings: %@", self.userIdsToReceivePings);
+	}
 }
 
+/******** when a user changes a friend's ping status to OFF *******/
+- (void) updateFriendWithPingOff:(NSString*) friendId {
+	
+	pool = [[NSAutoreleasePool alloc] init];
+	NSURL *url = [NSURL URLWithString:@"http://kickball.gorlochs.com/kickball/pings/remove.json"];
+	
+	NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+	ASIFormDataRequest *request = [[ASIFormDataRequest alloc] initWithURL:url];
+	[request setPostValue:[[FoursquareAPI sharedInstance] currentUser].userId forKey:@"userId"];
+	[request setPostValue:friendId forKey:@"friendId"];
+	[request setDelegate:self];
+	//[request setRequestMethod:@"DELETE"];
+	[request setDidFinishSelector: @selector(pingRemoveSubmitCompleted:)];
+	[request setDidFailSelector: @selector(pingRemoveSubmitFailed:)];
+	[queue addOperation:request];
+	[request release];
+	[queue release];
+	[pool release];
+}
+
+- (void) pingRemoveSubmitFailed:(ASIHTTPRequest *) request {
+    DLog(@"BOOOOOOOOOOOO!");
+    DLog(@"failed response msg: %@", request.responseStatusMessage);
+}
+
+- (void) pingRemoveSubmitCompleted:(ASIHTTPRequest *) request {
+    DLog(@"YAAAAAAAAAAAY!");
+    DLog(@"successful response msg: %@", request.responseStatusMessage);
+    DLog(@"successful response string: %@", [request responseString]);
+}
+
+/******** updates the backend with the user's ping statuses for all their friends *******/
 - (void) updateAllFriendsWithPingOn:(NSArray*)checkins {
 	pool = [[NSAutoreleasePool alloc] init];
 	

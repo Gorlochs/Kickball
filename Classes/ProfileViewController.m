@@ -633,7 +633,9 @@
     if (checkinNotificationSwitch.on) {
         ping = @"on";
 		[[Utilities sharedInstance] updateFriendWithPingOn:user.userId];
-    }
+    } else {
+		[[Utilities sharedInstance] updateFriendWithPingOff:user.userId];
+	}
 	[self startProgressBar:@"Toggling pings for this user..."];
 	[[FoursquareAPI sharedInstance] setPings:ping forUser:user.userId withTarget:self andAction:@selector(pingResponseReceived:withResponseString:)];
 }
