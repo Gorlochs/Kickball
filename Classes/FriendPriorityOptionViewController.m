@@ -26,14 +26,20 @@
 	int val = [currentUserValue intValue];
 	if (val < 0) {
 		[slider setValue:1.0 animated:NO];
+		[detailText setImage:[UIImage imageNamed:@"opt_x-desc.png"]];
 	}else if (val >CITY_RADIUS_MEDIUM) {
 		[slider setValue:0.75 animated:NO];
+		[detailText setImage:[UIImage imageNamed:@"100-desc.png"]];
 	}else if (val >CITY_RADIUS_SMALL) {
 		[slider setValue:0.50 animated:NO];
+		[detailText setImage:[UIImage imageNamed:@"50-desc.png"]];
 	}else if (val >CITY_RADIUS_TINY) {
 		[slider setValue:0.25 animated:NO];
+		[detailText setImage:[UIImage imageNamed:@"opt_25-desc.png"]];
 	}else {
 		[slider setValue:0.0 animated:NO];
+		[detailText setImage:[UIImage imageNamed:@"opt_5-desc.png"]];
+
 	}
 }
 

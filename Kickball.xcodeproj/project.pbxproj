@@ -493,6 +493,8 @@
 		0E0181201219BF040074FB97 /* btn-youLike02.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E01811E1219BF040074FB97 /* btn-youLike02.png */; };
 		0E2E954C11DCF79C0042D0E2 /* OptionsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2E954B11DCF79C0042D0E2 /* OptionsNavigationController.m */; };
 		0E2E955111DCF9630042D0E2 /* OptionsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2E955011DCF9630042D0E2 /* OptionsVC.m */; };
+		0E56771A121EFA2600E6726B /* btn-directMsg03.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E567718121EFA2600E6726B /* btn-directMsg03.png */; };
+		0E56771B121EFA2600E6726B /* btn-directMsg04.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E567719121EFA2600E6726B /* btn-directMsg04.png */; };
 		0E5A96E211F6115200E8155E /* photoLoading.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E5A96E111F6115200E8155E /* photoLoading.png */; };
 		0E76C3F311C1571F00BA1E89 /* KBFacebookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E76C3F111C1571F00BA1E89 /* KBFacebookViewController.m */; };
 		0E76C3FB11C158F100BA1E89 /* FacebookHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E76C3FA11C158F100BA1E89 /* FacebookHeaderView.xib */; };
@@ -1402,6 +1404,8 @@
 		0E2E954B11DCF79C0042D0E2 /* OptionsNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionsNavigationController.m; sourceTree = "<group>"; };
 		0E2E954F11DCF9630042D0E2 /* OptionsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionsVC.h; sourceTree = "<group>"; };
 		0E2E955011DCF9630042D0E2 /* OptionsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionsVC.m; sourceTree = "<group>"; };
+		0E567718121EFA2600E6726B /* btn-directMsg03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-directMsg03.png"; sourceTree = "<group>"; };
+		0E567719121EFA2600E6726B /* btn-directMsg04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-directMsg04.png"; sourceTree = "<group>"; };
 		0E5A96E111F6115200E8155E /* photoLoading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photoLoading.png; sourceTree = "<group>"; };
 		0E76C3F011C1571F00BA1E89 /* KBFacebookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBFacebookViewController.h; sourceTree = "<group>"; };
 		0E76C3F111C1571F00BA1E89 /* KBFacebookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBFacebookViewController.m; sourceTree = "<group>"; };
@@ -2475,6 +2479,8 @@
 				0739060111EE70F8008756C2 /* btn-atReply02.png */,
 				0739060211EE70F8008756C2 /* btn-directMsg01.png */,
 				0739060311EE70F8008756C2 /* btn-directMsg02.png */,
+				0E567718121EFA2600E6726B /* btn-directMsg03.png */,
+				0E567719121EFA2600E6726B /* btn-directMsg04.png */,
 				0739060411EE70F8008756C2 /* btn-favorite01.png */,
 				0739060511EE70F8008756C2 /* btn-favorite02.png */,
 				0739060611EE70F8008756C2 /* btn-reply01.png */,
@@ -4182,6 +4188,7 @@
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Kickball" */;
 			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				English,
@@ -4780,6 +4787,8 @@
 				2B9AA59E121DAF29000C1E07 /* btn-Places01@2x.png in Resources */,
 				2B9AA59F121DAF29000C1E07 /* btn-Places02@2x.png in Resources */,
 				2B9AA5A0121DAF29000C1E07 /* btn-Places03@2x.png in Resources */,
+				0E56771A121EFA2600E6726B /* btn-directMsg03.png in Resources */,
+				0E56771B121EFA2600E6726B /* btn-directMsg04.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5110,8 +5119,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = "~/Documents/Gorlochs/Kickball/SVN/1.1/trunk9/Entitlements.plist";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Shawn Bernard (6MN36SS56H)";
+				CODE_SIGN_ENTITLEMENTS = "";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Scott bates (KPDR9C2CV9)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -5126,7 +5135,7 @@
 					"\"$(SRCROOT)/..\"",
 				);
 				PRODUCT_NAME = kickball;
-				"PROVISIONING_PROFILE[sdk=*]" = "E7AE2963-7E6A-4105-8D47-A973A63B6364";
+				SDKROOT = iphoneos4.1;
 			};
 			name = Debug;
 		};

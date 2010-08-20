@@ -42,11 +42,13 @@
 	}
 	
 	if ([tweet isKindOfClass:[KBDirectMessage class]]) {
-		[replyToTweetButton setImage:[UIImage imageNamed:@"btn-directMsg01.png"] forState:UIControlStateNormal];
-		[replyToTweetButton setImage:[UIImage imageNamed:@"btn-directMsg02.png"] forState:UIControlStateHighlighted];
-		retweetButton.hidden = NO;
-		favoriteButton.hidden = NO;
+		[replyToTweetButton setImage:[UIImage imageNamed:@"btn-directMsg04.png"] forState:UIControlStateNormal];
+		[replyToTweetButton setImage:[UIImage imageNamed:@"btn-directMsg03.png"] forState:UIControlStateHighlighted];
+		retweetButton.hidden = YES;
+		favoriteButton.hidden = YES;
+		[replyToTweetButton setOrigin:CGPointMake(270, replyToTweetButton.origin.y)];
 	}
+
 	
 	TTStyledTextLabel* label1 = [[TTStyledTextLabel alloc] initWithFrame:CGRectMake(6, 125, 300, 100)];
 	label1.font = [UIFont fontWithName:@"Helvetica" size:14.0];
