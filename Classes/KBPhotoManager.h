@@ -16,9 +16,12 @@
 @interface KBPhotoManager : NSObject <FBRequestDelegate> {
     id <PhotoManagerDelegate> delegate;
     ASINetworkQueue *networkQueue;
+    
+    NSString *photoTextPlaceholder;  // this is necessary for when the user takes a photo. the view is unloaded, so the textview needs to store the text somewhere
 }
 
 @property (retain, nonatomic) id <PhotoManagerDelegate> delegate;
+@property (retain, nonatomic) NSString *photoTextPlaceholder;
 
 + (KBPhotoManager*) sharedInstance;
 - (BOOL)uploadImage:(NSData *)imageData filename:(NSString *)filename withWidth:(float)width andHeight:(float)height 

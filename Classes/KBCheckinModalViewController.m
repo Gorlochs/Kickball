@@ -42,6 +42,8 @@
     pageType = KBPageTypeOther;
     [super viewDidLoad];
     
+    checkinTextField.text = [[KBPhotoManager sharedInstance] photoTextPlaceholder];
+    
     photoManager = [KBPhotoManager sharedInstance];
     photoManager.delegate = self;
     
@@ -318,6 +320,9 @@
 	
     thumbnailPreview.clipsToBounds = YES;
     thumbnailPreview.image = photoImage;
+    
+    checkinTextField.text = [[KBPhotoManager sharedInstance] photoTextPlaceholder];
+    [[KBPhotoManager sharedInstance] setPhotoTextPlaceholder:@""];
 }
 
 - (void) getPhoto:(UIImagePickerControllerSourceType)sourceType {
@@ -329,6 +334,7 @@
 }
 
 - (void) choosePhotoSelectMethod {
+    [[KBPhotoManager sharedInstance] setPhotoTextPlaceholder:checkinTextField.text];
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"How would you like to select a photo?"
                                                              delegate:self
                                                     cancelButtonTitle:@"Cancel"

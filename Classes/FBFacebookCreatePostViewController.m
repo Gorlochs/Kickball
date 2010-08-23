@@ -36,6 +36,8 @@
 	pageViewType = KBPageViewTypeOther;
 	pageType = KBPageTypeOther;
     [super viewDidLoad];
+    
+    tweetTextView.text = [[KBPhotoManager sharedInstance] photoTextPlaceholder];
 	
 	[tweetTextView becomeFirstResponder];
     tweetTextView.font = [UIFont fontWithName:@"Helvetica" size:13.0];
@@ -266,6 +268,9 @@
     removePhotoButton.hidden = NO;
     
     DLog(@"image picker info: %@", info);
+    
+    tweetTextView.text = [[KBPhotoManager sharedInstance] photoTextPlaceholder];
+    [[KBPhotoManager sharedInstance] setPhotoTextPlaceholder:@""];
 }
 
 - (void) getPhoto:(UIImagePickerControllerSourceType)sourceType {
@@ -277,6 +282,7 @@
 }
 
 - (void) choosePhotoSelectMethod {
+    [[KBPhotoManager sharedInstance] setPhotoTextPlaceholder:tweetTextView.text];
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"How would you like to select a photo?"
                                                              delegate:self
                                                     cancelButtonTitle:@"Cancel"

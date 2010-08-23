@@ -29,6 +29,7 @@ static BOOL initialized = NO;
 @implementation KBPhotoManager
 
 @synthesize delegate;
+@synthesize photoTextPlaceholder;
 
 + (KBPhotoManager*) sharedInstance {
 	if(!photoManager)  {
@@ -73,6 +74,9 @@ static BOOL initialized = NO;
     [networkQueue setDelegate:self];
     
 	initialized = YES;
+    
+    photoTextPlaceholder = @"";
+    
     return self;
 }
 

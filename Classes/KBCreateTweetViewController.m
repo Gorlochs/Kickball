@@ -35,6 +35,8 @@
 	
     [super viewDidLoad];
 	
+    tweetTextView.text = [[KBPhotoManager sharedInstance] photoTextPlaceholder];
+    
 	// mini-hack to turn off the foursquare button. we might decide to keep it on by default
 	//isFoursquareOn = YES; --commented out...  calling the toggle will actually turn it on. so this was actually turning it off.
 	isFoursquareOn = [[KBAccountManager sharedInstance] twitterPollinatesFoursquare];
@@ -350,6 +352,9 @@
     removePhotoButton.hidden = NO;
     
     DLog(@"image picker info: %@", info);
+    
+    tweetTextView.text = [[KBPhotoManager sharedInstance] photoTextPlaceholder];
+    [[KBPhotoManager sharedInstance] setPhotoTextPlaceholder:@""];
 }
 
 - (void) getPhoto:(UIImagePickerControllerSourceType)sourceType {
@@ -361,6 +366,7 @@
 }
 
 - (void) choosePhotoSelectMethod {
+    [[KBPhotoManager sharedInstance] setPhotoTextPlaceholder:tweetTextView.text];
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"How would you like to select a photo?"
                                                              delegate:self
                                                     cancelButtonTitle:@"Cancel"
