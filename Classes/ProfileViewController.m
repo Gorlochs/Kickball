@@ -196,7 +196,7 @@
 - (void) didTapBadge: (UIControl *) button {
     FSBadge *badge = (FSBadge*)[user.badges objectAtIndex:button.tag];
     KBMessage *message = [[KBMessage alloc] initWithMember:badge.badgeName andMessage:badge.badgeDescription];
-    [self displayPopupMessage:message];
+    [self displayInfoPopupMessage:message];
     [message release];
     [FlurryAPI logEvent:@"View Badge Details"];
 }

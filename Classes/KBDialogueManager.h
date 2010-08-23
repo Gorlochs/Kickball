@@ -25,7 +25,8 @@
 
 - (void) displayMessage:(KBMessage*)message;
 - (void) displayMessageWithAutoFade:(KBMessage *)message;
--(void)populateWithMessage:(KBMessage*)message;
-
+- (void) displayInfoMessage:(KBMessage*)message;
+- (void) populateWithMessage:(KBMessage*)message;
 -(void) fadeOut;
+
 @end

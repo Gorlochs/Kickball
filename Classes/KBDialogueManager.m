@@ -78,12 +78,9 @@ static KBDialogueManager* dialogue;
 	
 	if (message.isError) {
 		titleLabel.textColor = [UIColor redColor];
-	}else {
+	} else {
 		[titleLabel setTextColor:[UIColor colorWithRed:14/255.0 green:140/255.0 blue:192/255.0 alpha:1]];
 	}
-
-	
-	
 }
 
 - (void) displayMessage:(KBMessage*)message{
@@ -98,12 +95,23 @@ static KBDialogueManager* dialogue;
 		[UIView setAnimationDuration:0.7];
 		view.alpha = 0.85;
 		[UIView commitAnimations];
-	}else {
+	} else {
 		[[[UIApplication sharedApplication] keyWindow] bringSubviewToFront:view];
 	}
-	
 }
-		
+
+// info messages do not have the opportunity to be appended to another message
+- (void) displayInfoMessage:(KBMessage*)message {
+	[self populateWithMessage:message];
+	view.alpha = 0;
+	[[[UIApplication sharedApplication] keyWindow] addSubview:view];
+	[[[UIApplication sharedApplication] keyWindow] bringSubviewToFront:view];
+	[UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationBeginsFromCurrentState:YES];
+	[UIView setAnimationDuration:0.7];
+	view.alpha = 0.85;
+	[UIView commitAnimations];
+}
 
 
 - (void) displayMessageWithAutoFade:(KBMessage *)message{

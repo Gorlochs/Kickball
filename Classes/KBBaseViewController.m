@@ -359,76 +359,32 @@ const NSString *kickballDomain = @"http://kickball.gorlochs.com/kickball";
 }
 
 - (void) displayPopupMessage:(KBMessage*)message {
-    
     [self stopProgressBar];
-	
 	[[KBDialogueManager sharedInstance] displayMessage:message];
-	
-    //if (popupView) [popupView release];
-    //popupView = [[PopupMessageView alloc] initWithNibName:@"PopupMessageView" bundle:nil];
-    //popupView.message = message;
-	//popupView.view.frame = CGRectMake(0, 0, 320, 460);
-    //popupView.view.alpha = 0;
-    //    popupView.view.layer.cornerRadius = 8.0;
-    //[self.navigationController.view.superview addSubview:popupView.view];
-    
-    //[UIView beginAnimations:nil context:NULL];
-    //[UIView setAnimationBeginsFromCurrentState:YES];
-    //[UIView setAnimationDuration:0.7];
-    //popupView.view.alpha = 1.0;
-    
-    //[UIView commitAnimations];
-    //[self performSelector:@selector(fadePopupMessage) withObject:nil afterDelay:3];
+}
+
+// this is to be used when there is no possibility of having to add the message to an existing, displayed message
+- (void) displayInfoPopupMessage:(KBMessage*)message {
+    [self stopProgressBar];
+	[[KBDialogueManager sharedInstance] displayInfoMessage:message];
 }
 
 - (void) displayPopupMessageWithFadeout:(KBMessage*)message {
-    //[self displayPopupMessage:message];
-    //[self performSelector:@selector(fadePopupMessage) withObject:nil afterDelay:3];
 	[[KBDialogueManager sharedInstance] displayMessageWithAutoFade:message];
 }
 
 - (void) displayPopupMessageForLogin:(KBMessage*)message {
-    
     [self stopProgressBar];
 	[self displayPopupMessage:message];
-	/*
-    if (popupView) [popupView release];
-    popupView = [[PopupMessageView alloc] initWithNibName:@"PopupMessageView" bundle:nil];
-    popupView.message = message;
-    popupView.view.alpha = 0;
-    //    popupView.view.layer.cornerRadius = 8.0;
-    [self.view addSubview:popupView.view];
-    
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationDuration:0.7];
-    popupView.view.alpha = 1.0;
-    popupView.view.frame = CGRectMake(0, -212, popupView.view.frame.size.width, popupView.view.frame.size.height);
-    
-    CGRect frame = popupView.closeButton.frame;
-    frame.origin = CGPointMake(frame.origin.x, 220);
-    popupView.closeButton.frame = frame;
-    
-    [UIView commitAnimations];
-	 */
-    //[self performSelector:@selector(fadePopupMessage) withObject:nil afterDelay:3];
 }
 
 - (void) fadePopupMessage {
 	[[KBDialogueManager sharedInstance] fadeOut];
-//    [UIView beginAnimations:nil context:NULL];
-//    [UIView setAnimationBeginsFromCurrentState:YES];
-//    [UIView setAnimationDuration:0.7];
-//    popupView.view.alpha = 0.0;
-//    [UIView commitAnimations];
 }
 
 - (void) viewSettings {
 	KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
 	[appDelegate flipToOptions];
-    //OptionsViewController *optionsController = [[OptionsViewController alloc] initWithNibName:@"OptionsView_v2" bundle:nil];
-    //[self.navigationController pushViewController:optionsController animated:YES];
-    //[optionsController release];
 }
 
 - (void) addHeaderAndFooter:(UITableView*)tableView {

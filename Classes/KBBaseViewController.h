@@ -112,6 +112,7 @@ typedef enum{
 - (void) stopProgressBar;
 - (void) doInitialDisplay;
 - (void) displayPopupMessage:(KBMessage*)message;
+- (void) displayInfoPopupMessage:(KBMessage*)message;
 - (void) displayPopupMessageForLogin:(KBMessage*)message;
 - (void) displayPopupMessageWithFadeout:(KBMessage*)message;
 - (IBAction) viewSettings;
