@@ -156,7 +156,7 @@
 			//calculate height of comment cell
 			comment = [comments objectAtIndex:indexPath.row];
 			NSString *displayString = [NSString	 stringWithFormat:@"<span class=\"fbBlueText\">%@</span> %@",[(NSDictionary*)[comment objectForKey:@"from"] objectForKey:@"name"], [comment objectForKey:@"message"]];
-			commentHightTester.text = [TTStyledText textFromXHTML:displayString lineBreaks:NO URLs:NO];
+			commentHightTester.text = [TTStyledText textFromXHTML:displayString lineBreaks:NO URLs:NO twitterSpecific:NO];
 			[commentHightTester sizeToFit];
 			return commentHightTester.frame.size.height+30 > 58 ? commentHightTester.frame.size.height+30 : 58;
 		default:
@@ -227,7 +227,7 @@
 			NSDictionary *comment = [comments objectAtIndex:indexPath.row];
 			NSString *displayString = [NSString	 stringWithFormat:@"<span class=\"fbBlueText\">%@</span> %@",[[FacebookProxy instance] userNameFrom:[comment objectForKey:@"actor_id"]], [comment objectForKey:@"message"]];
 			cell.fbPictureUrl = [[FacebookProxy instance] profilePicUrlFrom:[comment objectForKey:@"actor_id"]];// [(NSDictionary*)[comment objectForKey:@"from"] objectForKey:@"id"];
-			cell.commentText.text = [TTStyledText textFromXHTML:displayString lineBreaks:NO URLs:NO];
+			cell.commentText.text = [TTStyledText textFromXHTML:displayString lineBreaks:NO URLs:NO twitterSpecific:NO];
 			[cell.commentText sizeToFit];
 			[cell.commentText setNeedsDisplay];
 			return cell;

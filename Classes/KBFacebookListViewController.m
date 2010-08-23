@@ -232,7 +232,7 @@
 		}
 		//DLog(@"display string: %@", displayString);
 		
-		heightTester.text = [TTStyledText textFromXHTML:[displayString stringByReplacingOccurrencesOfString:@"\n" withString:@""] lineBreaks:NO URLs:NO];
+		heightTester.text = [TTStyledText textFromXHTML:[displayString stringByReplacingOccurrencesOfString:@"\n" withString:@""] lineBreaks:NO URLs:NO twitterSpecific:NO];
 		[heightTester sizeToFit];
 		int baseHeight = 38;
 		BOOL withPhoto = [[FacebookProxy instance] doesHavePhoto:fbItem];
@@ -296,7 +296,7 @@
 	 */
     cell.fbProfilePicUrl = [[FacebookProxy instance] profilePicUrlFrom:[fbItem objectForKey:@"actor_id"]];
 	
-    cell.tweetText.text = [TTStyledText textFromXHTML:[displayString stringByReplacingOccurrencesOfString:@"\n" withString:@""] lineBreaks:NO URLs:NO];
+    cell.tweetText.text = [TTStyledText textFromXHTML:[displayString stringByReplacingOccurrencesOfString:@"\n" withString:@""] lineBreaks:NO URLs:NO twitterSpecific:NO];
 	NSDictionary* commentDict = [fbItem objectForKey:@"comments"];
     if(commentDict){
 		[cell setNumberOfComments:[(NSNumber*)[commentDict objectForKey:@"count"] intValue]];
