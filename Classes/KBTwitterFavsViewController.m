@@ -13,10 +13,14 @@
 #import "KBUserTweetsViewController.h"
 #import "KBTwitterDetailViewController.h"
 #import "MGTwitterEngine.h"
+#import "TableSectionHeaderView.h"
+
 
 @implementation KBTwitterFavsViewController
+
 @synthesize userDictionary;
 @synthesize username;
+
 #pragma mark -
 #pragma mark View lifecycle
 
@@ -80,6 +84,19 @@
 
 - (void) refreshTable {
     [self showStatuses];
+}
+
+#pragma mark -
+#pragma mark table methods
+
+- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+	return 30.0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    TableSectionHeaderView *sectionHeaderView = [[[TableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)] autorelease];
+	sectionHeaderView.leftHeaderLabel.text = [NSString stringWithFormat:@"%@'s favorites", self.username];
+	return sectionHeaderView;
 }
 
 #pragma mark -

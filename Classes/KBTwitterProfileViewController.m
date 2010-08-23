@@ -114,7 +114,7 @@
     [followersController release];
 }
 
-- (IBAction) viewFavorites {
+- (void) viewFavorites {
     if ([numberOfFavorites.text isEqualToString:@""] || [numberOfFavorites.text isEqualToString:@"0"]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry" message:@"This user has no favorites." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
@@ -124,7 +124,6 @@
     KBTwitterFavsViewController *favTweets = [[KBTwitterFavsViewController alloc] initWithNibName:@"KBTwitterFavsViewController" bundle:nil];
     favTweets.userDictionary = userDictionary;
     favTweets.username = [userDictionary objectForKey:@"screen_name"];
-	[self checkMemoryUsage];
     [self.navigationController pushViewController:favTweets animated:YES];
     [favTweets release];
 }
@@ -134,7 +133,6 @@
 	KBTwitterUserListViewController *friendsController = [[KBTwitterUserListViewController alloc] initWithNibName:@"KBTwitterUserListViewController" bundle:nil];
     friendsController.userDictionary = userDictionary;
     friendsController.userType = KBTwitterUserFriend;
-	[self checkMemoryUsage];
 	[self.navigationController pushViewController:friendsController animated:YES];
     [friendsController release];
 }

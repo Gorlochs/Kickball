@@ -10,6 +10,7 @@
 #import "KBTwitterUser.h"
 #import "KBTwitterUserTableCell.h"
 #import "KBTwitterProfileViewController.h"
+#import "TableSectionHeaderView.h"
 
 
 @implementation KBTwitterUserListViewController
@@ -133,6 +134,22 @@
 	cell.userName.text = user.fullName;
 	cell.userIcon.urlPath = user.profileImageUrl;
 	return cell;
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+	return 30.0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    TableSectionHeaderView *sectionHeaderView = [[[TableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)] autorelease];
+	
+    if (userType == KBTwitterUserFollower) {
+        sectionHeaderView.leftHeaderLabel.text = [NSString stringWithFormat:@"%@'s followers", [userDictionary objectForKey:@"screen_name"]];
+    } else if (userType == KBTwitterUserFriend) {
+		sectionHeaderView.leftHeaderLabel.text = [NSString stringWithFormat:@"%@'s friends", [userDictionary objectForKey:@"screen_name"]];
+	}
+	
+	return sectionHeaderView;
 }
 
 #pragma mark -
