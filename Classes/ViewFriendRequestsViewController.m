@@ -78,7 +78,6 @@
     if (cell == nil) {        
         UIViewController *vc = [[UIViewController alloc]initWithNibName:@"ViewFriendRequestsTableCell" bundle:nil];
         cell = (ViewFriendRequestsTableCell*) vc.view;
-        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
         [vc release];
     }
     

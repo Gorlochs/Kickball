@@ -547,6 +547,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 	[UIView setAnimationDuration:0.4f];
 	//[optionsNavigationController.view setCenter:CGPointMake(optionsNavigationController.view.center.x - 320, optionsNavigationController.view.center.y)];
 	[friendRequestsNavController.view setCenter:CGPointMake(friendRequestsNavController.view.center.x + 320, friendRequestsNavController.view.center.y)];
+	[((OptionsViewController*) optionsNavigationController.visibleViewController) retrieveFriendRequests];
     [UIView commitAnimations];
 }
 

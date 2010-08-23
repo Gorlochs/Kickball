@@ -39,16 +39,13 @@
 
 - (void) viewWillAppear:(BOOL)animated {
     //[self startProgressBar:@"Retrieving settings..."];
-	if([[KBAccountManager sharedInstance] usesFoursquare]){
-		[[FoursquareAPI sharedInstance] getPendingFriendRequests:self andAction:@selector(friendRequestResponseReceived:withResponseString:)];
-	}	
+	[self retrieveFriendRequests];
     [super viewWillAppear:animated];
 	[theTableView scrollToFirstRow:NO];
 	KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
 	[appDelegate showNoOptionsButts];
 	NSArray *newStack = [NSArray arrayWithObjects:self,nil];
 	[[self navigationController] setViewControllers:newStack animated:NO];
-	
 }
 
 - (void)friendRequestResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
@@ -67,6 +64,11 @@
     [self stopProgressBar];
 }
 
+- (void) retrieveFriendRequests {
+	if([[KBAccountManager sharedInstance] usesFoursquare]){
+		[[FoursquareAPI sharedInstance] getPendingFriendRequests:self andAction:@selector(friendRequestResponseReceived:withResponseString:)];
+	}
+}
 
 - (void) displayFoursquareErrorMessage:(NSString*)errorMessage {
     KBMessage *message = [[KBMessage alloc] initWithMember:@"Foursquare Error" andMessage:errorMessage isError:YES];

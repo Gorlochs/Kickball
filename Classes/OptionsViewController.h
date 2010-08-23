@@ -45,7 +45,8 @@
 - (IBAction) togglePushNotifications;
 - (IBAction) toggleInstacheckin;
 
--(void)pressOptionsLeft;
--(void)pressOptionsRight;
+- (void)pressOptionsLeft;
+- (void)pressOptionsRight;
+- (void) retrieveFriendRequests;
 
 @end
