@@ -148,6 +148,7 @@
 	
 }
 -(void)showLoginView{
+	[self setTabImages];
 	// Ingest the nib. Should there be a copy or retain here?
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"KBFacebookLoginView" owner:self options:nil];
 	

@@ -696,6 +696,8 @@ static NSDateFormatter* fbEventDetailDate = NULL;
 	self._uid = 0;
 	[self forgetToken];
 	[_session logout];
+	[profilePic release];
+	profilePic = nil;
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"completedFacebookLogout" object:nil];
 
 }
