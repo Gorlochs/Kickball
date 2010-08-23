@@ -19,7 +19,7 @@
 @synthesize userName;
 @synthesize tweetText;
 @synthesize dateLabel;
-@synthesize fbProfilePicUrl, fbPictureUrl, pictureAlbumId;
+@synthesize fbProfilePicUrl, fbPictureUrl, pictureAlbumId, pictureIndex;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
@@ -253,7 +253,9 @@
 -(void)pressPhotoAlbum{
 	UITableView *tv = (UITableView *) self.superview;
 	UITableViewController *vc = (UITableViewController *) tv.dataSource;
-	[(KBFacebookViewController*)vc displayAlbum:pictureAlbumId];
+	//[(KBFacebookViewController*)vc displayAlbum:pictureAlbumId];
+	[(KBFacebookViewController*)vc displayAlbum:pictureAlbumId atIndex:pictureIndex];
+
 }
 
 - (void)dealloc {

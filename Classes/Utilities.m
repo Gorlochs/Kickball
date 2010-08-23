@@ -94,13 +94,14 @@ static Utilities *sharedInstance = nil;
 + (void)putGoogleMapsWallPostWithMessage:(NSString*)message andVenue:(FSVenue*)venue andLink:(NSString*)link {    
 	NSDictionary *googleMapPic = nil;
     NSMutableString *urlPath = [[NSMutableString alloc] initWithString:@"http://maps.google.com/maps/api/staticmap?zoom=14&size=96x96&markers=icon:http://s3.amazonaws.com/kickball/assets/pin2.png|"];
-    if (venue && venue.venueAddress) {
-        NSMutableString *addy = [[NSMutableString alloc] initWithString:venue.venueAddress];
-        [addy replaceOccurrencesOfString:@" " withString:@"+" options:NSLiteralSearch range:NSMakeRange(0, [addy length])];
-        [urlPath appendFormat:@"%@&sensor=true", addy];
+    if (venue && venue.geolat && venue.geolong) {
+       // NSMutableString *addy = [[NSMutableString alloc] initWithString:venue.venueAddress];
+        //[addy replaceOccurrencesOfString:@" " withString:@"+" options:NSLiteralSearch range:NSMakeRange(0, [addy length])];
+        //[urlPath appendFormat:@"%@&sensor=true", addy];
         NSString *fullAddress = [NSString stringWithFormat:@"%@, %@, %@", venue.addressWithCrossstreet, venue.city, venue.venueState];
-        googleMapPic = [[NSDictionary alloc] initWithObjectsAndKeys:venue.name, @"name", urlPath, @"picture",fullAddress,@"caption",@" ",@"description", [Utilities safeString:link], @"link", nil];
-        [addy release];
+        [urlPath appendFormat:@"%@,%@&sensor=true", venue.geolat,venue.geolong];
+		googleMapPic = [[NSDictionary alloc] initWithObjectsAndKeys:venue.name, @"name", urlPath, @"picture",fullAddress,@"caption",@" ",@"description", [Utilities safeString:link], @"link", nil];
+        //[addy release];
     } else {
         double lat = [[KBLocationManager locationManager] latitude];
         double lng = [[KBLocationManager locationManager] longitude];

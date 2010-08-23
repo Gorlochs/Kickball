@@ -15,6 +15,7 @@
 #import "GraphAPI.h"
 #import "MockPhotoSource.h"
 #import "KBThumbnailViewController.h"
+#import "KBGenericPhotoViewController.h"
 
 @implementation KBFacebookViewController
 
@@ -177,16 +178,48 @@
     backButton.hidden = NO;
 }
 
+-(void)displayAlbum:(NSString*)aid atIndex:(NSNumber*)index{
+	[self startProgressBar:@"loading photos"];
+	GraphAPI *graph = [[FacebookProxy instance] newGraph];
+	NSArray* photos = [graph getPhotosForAlbum:aid];
+	MockPhoto *photoIndex = nil;
+	NSMutableArray *tempTTPhotoArray = [[NSMutableArray alloc] initWithCapacity:[photos count]];
+	int i = 1;
+    for (NSDictionary *pic in photos) {
+        MockPhoto *photo = [[MockPhoto alloc] initWithURL:[pic objectForKey:@"src_big"] smallURL:[pic objectForKey:@"src_small"] size:CGSizeMake([[pic objectForKey:@"src_big_width"] intValue], [[pic objectForKey:@"src_big_height"] intValue]) caption:[pic objectForKey:@"caption"]];
+        [tempTTPhotoArray addObject:photo];
+		if (i==[index intValue]) {
+			photoIndex = [photo retain];
+		}
+        [photo release];
+		i++;
+    }
+	
+    MockPhotoSource *thePhotoSource = [[MockPhotoSource alloc] initWithType:MockPhotoSourceNormal title:[[FacebookProxy instance] albumNameFrom:aid] photos:tempTTPhotoArray photos2:nil];
+	KBGenericPhotoViewController *thumbsController = [[KBGenericPhotoViewController alloc] initWithPhotoSource:thePhotoSource];
+	self.title = @"facebook";
+	thumbsController.title = [[FacebookProxy instance] albumNameFrom:aid];
+	//thumbsController.photoSource = thePhotoSource;
+	thumbsController.centerPhoto = photoIndex;
+    //thumbsController.navigationBarStyle = UIBarStyleBlackOpaque;
+    //thumbsController.statusBarStyle = UIStatusBarStyleBlackOpaque;
+    [self.navigationController pushViewController:thumbsController animated:YES];
+    [thumbsController release]; 
+	
+	[thePhotoSource release];
+	[tempTTPhotoArray release];
+	[graph release];
+	[photoIndex release];
+
+	//[pool release];
+	
+	
+	[self stopProgressBar];
+	
+	
+}
 -(void)displayAlbum:(NSString*)aid{
 	[self startProgressBar:@"loading photos"];
-//	[NSThread detachNewThreadSelector:@selector(displayAlbumThreaded:) toTarget:self withObject:aid];
-//}
-//-(void)displayAlbumThreaded:(NSString *)aid{
-//	//fetch album photo array based on aid
-//	//convert photo array to MockPhoto
-//	//display photo viewer
-//	//kill progress bar
-//	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	GraphAPI *graph = [[FacebookProxy instance] newGraph];
 	NSArray* photos = [graph getPhotosForAlbum:aid];
 	
@@ -198,10 +231,10 @@
     }
 	
     MockPhotoSource *thePhotoSource = [[MockPhotoSource alloc] initWithType:MockPhotoSourceNormal title:[[FacebookProxy instance] albumNameFrom:aid] photos:tempTTPhotoArray photos2:nil];
-	KBThumbnailViewController *thumbsController = [[KBThumbnailViewController alloc] init];
+	KBGenericPhotoViewController *thumbsController = [[KBGenericPhotoViewController alloc] initWithPhotoSource:thePhotoSource];
 	self.title = @"facebook";
 	thumbsController.title = [[FacebookProxy instance] albumNameFrom:aid];
-	thumbsController.photoSource = thePhotoSource;
+	//thumbsController.photoSource = thePhotoSource;
     thumbsController.navigationBarStyle = UIBarStyleBlackOpaque;
     thumbsController.statusBarStyle = UIStatusBarStyleBlackOpaque;
     [self.navigationController pushViewController:thumbsController animated:YES];

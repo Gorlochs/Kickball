@@ -29,6 +29,7 @@
 	TTImageView *pictureThumb1;
 	UIButton *pictureButt;
 	NSString *pictureAlbumId;
+	NSNumber *pictureIndex;
 }
 
 @property (nonatomic, retain) TTImageView *userIcon;
@@ -38,6 +39,7 @@
 @property (nonatomic, retain) NSString *fbProfilePicUrl;
 @property (nonatomic, retain) NSString *fbPictureUrl;
 @property (nonatomic, retain) NSString *pictureAlbumId;
+@property (nonatomic, retain) NSNumber *pictureIndex;
 
 
 - (void) setDateLabelWithDate:(NSDate*)theDate;

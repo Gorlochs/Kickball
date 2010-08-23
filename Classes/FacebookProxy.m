@@ -897,6 +897,42 @@ static NSDateFormatter* fbEventDetailDate = NULL;
 	
 }
 
+-(NSNumber*)photoIndexWithinGallery:(NSDictionary*)fbItem{
+	NSDictionary *attachment = [fbItem objectForKey:@"attachment"];
+	if (attachment) {
+		NSArray *media  = [attachment objectForKey:@"media"];
+		if (media) {
+			if ([media isKindOfClass:[NSArray class]]) {
+				if ([media count]>0) {
+					NSDictionary *item = [media objectAtIndex:0];
+					NSString *type = [item objectForKey:@"type"];
+					if ([type isEqualToString:@"photo"]) {
+						NSDictionary *photo = [item objectForKey:@"photo"];
+						if ([photo isKindOfClass:[NSDictionary class]]) {
+							return [photo objectForKey:@"index"];
+						}else {
+							return nil;
+						}
+						
+					}else {
+						return nil;
+					}
+				}else {
+					return nil;
+				}
+				
+			}else {
+				return nil;
+			}
+			
+		}else {
+			return nil;
+		}
+	}else {
+		return nil;
+	}	
+}
+
 -(NSString*)imageUrlForPhoto:(NSDictionary*)fbItem{
 	NSDictionary *attachment = [fbItem objectForKey:@"attachment"];
 	if (attachment) {

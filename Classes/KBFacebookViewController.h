@@ -40,6 +40,7 @@
 -(void)showLoginView;
 -(void)killLoginView;
 -(void)displayAlbum:(NSString*)aid;
+-(void)displayAlbum:(NSString*)aid atIndex:(NSNumber*)index;
 //-(void)displayAlbumThreaded:(NSString *)aid;
 
 @end

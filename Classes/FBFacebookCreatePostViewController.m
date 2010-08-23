@@ -70,13 +70,19 @@
 #pragma mark IBAction methods
 
 - (void) submitTweet {
-    
-	[tweetTextView resignFirstResponder];
-    [self startProgressBar:@"Submitting..."];
-    [self dismissModalViewControllerAnimated:YES];
-    actionCount = 1;
-	//[NSThread detachNewThreadSelector:@selector(threadedSubmit) toTarget:self withObject:nil];
-	[self threadedSubmit];
+	if (tweetTextView.text && ![tweetTextView.text isEqualToString:@""]) {
+		[tweetTextView resignFirstResponder];
+		[self startProgressBar:@"Submitting..."];
+		[self dismissModalViewControllerAnimated:YES];
+		actionCount = 1;
+		//[NSThread detachNewThreadSelector:@selector(threadedSubmit) toTarget:self withObject:nil];
+		[self threadedSubmit];
+	} else {
+		[tweetTextView resignFirstResponder];
+		KBMessage *theMessage = [[KBMessage alloc] initWithMember:@"Form Error"	andMessage:@"Please fill in a status message before submitting"];
+		[delegate displayPopupMessage:theMessage];
+		[theMessage release];
+	}
 
 }
 

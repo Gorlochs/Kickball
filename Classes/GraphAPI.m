@@ -833,12 +833,22 @@ NSString* const kConnectionAlbums = @"albums";
 	for ( NSString* i_key in request_args ) 
 	{
 		i++;
-		[argString appendFormat:@"%@=%@", i_key, [request_args objectForKey:i_key]];
+		[argString appendFormat:@"%@=%@", i_key, [self _encodeString:[request_args objectForKey:i_key]]];
 		if ( i < arg_count )
 			[argString appendString:@"&"];
 	}
-	return [argString stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+	return argString; //[argString stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
 }
+- (NSString *)_encodeString:(NSString *)string
+{
+    NSString *result = (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, 
+																		   (CFStringRef)string, 
+																		   NULL, 
+																		   (CFStringRef)@";/?:@&=$+{}<>,.",
+																		   kCFStringEncodingUTF8);
+    return [result autorelease];
+}
+
 
 -(NSData*)generatePostBody:(NSDictionary*)request_args
 {

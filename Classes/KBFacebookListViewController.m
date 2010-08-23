@@ -276,6 +276,7 @@
 	if (withPhoto) {
 		cell.fbPictureUrl = [[FacebookProxy instance] imageUrlForPhoto:fbItem];
 		cell.pictureAlbumId = [[FacebookProxy instance] albumIdForPhoto:fbItem];
+		cell.pictureIndex = [[FacebookProxy instance] photoIndexWithinGallery:fbItem];
 	}else {
 		cell.fbPictureUrl = nil;
 		cell.pictureAlbumId = nil;

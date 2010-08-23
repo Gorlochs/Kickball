@@ -74,6 +74,7 @@
 -(void)simpleStatusPost:(NSString*)message;
 -(void)unlikeObject:(NSString*)obj_id;
 -(void)likeObject:(NSString*)obj_id;
+- (NSString *)_encodeString:(NSString *)string;
 
 
 @end

@@ -109,4 +109,5 @@ extern NSString* const kFBRedirectURI;
 -(NSString*)albumIdForPhoto:(NSDictionary*)fbItem;
 -(NSString*)albumNameFrom:(id)_id;
 -(NSString*)normalizeIdAsString:(id)_id;
+-(NSNumber*)photoIndexWithinGallery:(NSDictionary*)fbItem;
 @end
