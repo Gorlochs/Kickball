@@ -65,7 +65,7 @@
 
 - (void) executeQuery:(int)pageNumber {
     isInitialLoad = NO;
-    [twitterEngine getDirectMessagesSinceID:0 startingAtPage:pageNumber];
+    [twitterEngine getDirectMessagesSinceID:([tweets count] > 0 ? [[[tweets objectAtIndex:0] objectForKey:@"id"] longLongValue] : 0) startingAtPage:pageNumber];
 }
 
 - (void) refreshTable {
