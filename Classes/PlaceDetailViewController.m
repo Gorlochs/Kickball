@@ -917,7 +917,16 @@
 		[self displayPopupMessage:message];
 		[message release];
 	} else {
-		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", venue.phone]]];
+		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"You will be leaving Kickball to make a call. Are you sure?"
+																 delegate:self
+														cancelButtonTitle:@"Cancel"
+												   destructiveButtonTitle:nil
+														otherButtonTitles:@"Yes, open Phone app", nil];
+		
+		actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+		actionSheet.tag = 99;
+		[actionSheet showInView:self.view];
+		[actionSheet release];
 	}
 }
 
@@ -1512,11 +1521,20 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
-        [FlurryAPI logEvent:@"Choose Photo: Library"];
-        [self getPhoto:UIImagePickerControllerSourceTypePhotoLibrary];
+		if (actionSheet.tag == 99) {
+			DLog(@"call made");
+			[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", venue.phone]]];
+		} else {
+			[FlurryAPI logEvent:@"Choose Photo: Library"];
+			[self getPhoto:UIImagePickerControllerSourceTypePhotoLibrary];
+		}
     } else if (buttonIndex == 1) {
-        [FlurryAPI logEvent:@"Choose Photo: New"];
-        [self getPhoto:UIImagePickerControllerSourceTypeCamera];
+		if (actionSheet.tag == 99) {
+			DLog(@"call cancelled");
+		} else {
+			[FlurryAPI logEvent:@"Choose Photo: New"];
+			[self getPhoto:UIImagePickerControllerSourceTypeCamera];
+		}
     }
 }
 
