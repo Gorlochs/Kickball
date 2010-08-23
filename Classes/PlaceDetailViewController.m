@@ -1551,7 +1551,7 @@
     // NOTE: the self.photoMessageToPush is being set above in the returnFromMessageView: method
     self.venueToPush = self.venue;
     self.hasPhoto = YES;
-    //[self sendPushNotification];
+    [self sendPushNotification];
     [FlurryAPI logEvent:@"Image Upload Completed"];
 }
 
