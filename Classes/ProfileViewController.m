@@ -521,14 +521,29 @@
 		  didFinishWithResult:(MFMailComposeResult)result 
 						error:(NSError*)error;
 {
-	if (result == MFMailComposeResultSent) {
-		DLog(@"It's away!");
-	}
 	[self dismissModalViewControllerAnimated:YES];
 	
-    KBMessage *msg = [[KBMessage alloc] initWithMember:@"Kickball Notification" andMessage:@"Your email has been sent."];
-    [self displayPopupMessage:msg];
-    [msg release];
+	if (result == MFMailComposeResultSent) {
+		DLog(@"It's away!");
+		KBMessage *msg = [[KBMessage alloc] initWithMember:@"Kickball Notification" andMessage:@"Your email has been sent."];
+		[self displayPopupMessage:msg];
+		[msg release];
+	} else if (result == MFMailComposeResultCancelled) {
+		DLog(@"It's cancelled!");
+		KBMessage *msg = [[KBMessage alloc] initWithMember:@"Kickball Notification" andMessage:@"Your email has been cancelled."];
+		[self displayPopupMessage:msg];
+		[msg release];
+	} else if (result == MFMailComposeResultSaved) {
+		DLog(@"It's saved!");
+		KBMessage *msg = [[KBMessage alloc] initWithMember:@"Kickball Notification" andMessage:@"Your email draft has been saved."];
+		[self displayPopupMessage:msg];
+		[msg release];
+	} else if (result == MFMailComposeResultFailed) {
+		DLog(@"It failed!");
+		KBMessage *msg = [[KBMessage alloc] initWithMember:@"Kickball Notification" andMessage:@"Your email failed.  Please try again later."];
+		[self displayPopupMessage:msg];
+		[msg release];
+	}
 }
 
 - (void) viewProfilesTwitterFeed {
