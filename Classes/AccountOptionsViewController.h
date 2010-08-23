@@ -77,6 +77,7 @@
 
 - (IBAction) hideKeyboard;
 -(void)showKeyboardMask;
+- (void) displayVoteMessage;
 
 
 @end

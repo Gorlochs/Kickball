@@ -488,7 +488,7 @@
 	[[self navigationController] pushViewController:[(OptionsNavigationController*)self.navigationController friendPriority] animated:YES];
 }
 
-
+// TODO: these could probably be consolidated by using button.tag to designate which button is which
 - (IBAction) doVote1{
 	BOOL voted = [[NSUserDefaults standardUserDefaults] boolForKey:@"vote1"];
 	if (!voted) {
@@ -507,6 +507,7 @@
 	}
 	//make this one selected
 	[vote1Butt setSelected:YES];
+	[self displayVoteMessage];
 }
 - (IBAction) doVote2{
 	BOOL voted = [[NSUserDefaults standardUserDefaults] boolForKey:@"vote2"];
@@ -525,6 +526,7 @@
 	}
 	//make this one selected
 	[vote2Butt setSelected:YES];
+	[self displayVoteMessage];
 }
 - (IBAction) doVote3{
 	BOOL voted = [[NSUserDefaults standardUserDefaults] boolForKey:@"vote3"];
@@ -544,6 +546,7 @@
 	}
 	//make this one selected
 	[vote3Butt setSelected:YES];
+	[self displayVoteMessage];
 }
 - (IBAction) doVote4{
 	BOOL voted = [[NSUserDefaults standardUserDefaults] boolForKey:@"vote4"];
@@ -563,6 +566,13 @@
 	}
 	//make this one selected
 	[vote4Butt setSelected:YES];
+	[self displayVoteMessage];
+}
+
+- (void) displayVoteMessage {
+	KBMessage *message = [[KBMessage alloc] initWithMember:@"Vote" andMessage:@"Thank you for voting!"];
+	[self displayInfoPopupMessage:message];
+	[message release];
 }
 
 - (void) feedbackWentWrong:(ASIHTTPRequest *) request {
