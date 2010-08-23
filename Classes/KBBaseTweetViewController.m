@@ -24,6 +24,7 @@
 	twitterManager = [KBTwitterManager twitterManager];
 	twitterManager.delegate = self;
 	stuckToBottom = 0;
+	theTableView.backgroundColor = [UIColor colorWithWhite:0.94 alpha:1.0];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(twitterViewLoadFailure) name:@"twitterViewLoadFailure" object:nil];	
 }
 
