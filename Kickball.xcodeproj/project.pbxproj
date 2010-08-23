@@ -5118,8 +5118,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = "";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Scott bates (KPDR9C2CV9)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Shawn Bernard (6MN36SS56H)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -5134,7 +5133,7 @@
 					"\"$(SRCROOT)/..\"",
 				);
 				PRODUCT_NAME = kickball;
-				SDKROOT = iphoneos4.1;
+				"PROVISIONING_PROFILE[sdk=*]" = "E7AE2963-7E6A-4105-8D47-A973A63B6364";
 			};
 			name = Debug;
 		};
@@ -5142,8 +5141,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = "~/Documents/Gorlochs/Kickball/SVN/1.1/trunk9/Entitlements.plist";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Adam Winiecki (73XW6X7UZD)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Shawn Bernard (6MN36SS56H)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Kickball_Prefix.pch;
@@ -5162,7 +5160,7 @@
 					"\"$(SRCROOT)/..\"",
 				);
 				PRODUCT_NAME = kickball;
-				"PROVISIONING_PROFILE[sdk=*]" = "AB9D818C-924D-48E5-BBC2-20D7DDC1CA7F";
+				"PROVISIONING_PROFILE[sdk=*]" = "E7AE2963-7E6A-4105-8D47-A973A63B6364";
 			};
 			name = Release;
 		};
@@ -5227,7 +5225,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Shawn Bernard (6MN36SS56H)";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Shawn Bernard (6MN36SS56H)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -5244,8 +5242,8 @@
 					"-ObjC",
 				);
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "DC45A20E-0AB7-429E-A35E-2D0DAE94FF84";
-				"PROVISIONING_PROFILE[sdk=*]" = "";
+				PROVISIONING_PROFILE = "E7AE2963-7E6A-4105-8D47-A973A63B6364";
+				"PROVISIONING_PROFILE[sdk=*]" = "E7AE2963-7E6A-4105-8D47-A973A63B6364";
 				SDKROOT = iphoneos4.0;
 			};
 			name = Debug;
@@ -5254,6 +5252,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Shawn Bernard (6MN36SS56H)";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Shawn Bernard (6MN36SS56H)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -5272,6 +5271,8 @@
 					"-ObjC",
 				);
 				PREBINDING = NO;
+				PROVISIONING_PROFILE = "E7AE2963-7E6A-4105-8D47-A973A63B6364";
+				"PROVISIONING_PROFILE[sdk=*]" = "E7AE2963-7E6A-4105-8D47-A973A63B6364";
 				SDKROOT = iphoneos4.0;
 			};
 			name = Release;

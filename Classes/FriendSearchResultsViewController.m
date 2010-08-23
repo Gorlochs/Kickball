@@ -46,15 +46,19 @@
             NSMutableArray *phones = [[NSMutableArray alloc] initWithCapacity:1];
             for (int i = 0; i<[people count]; i++) {
                 ABRecordRef person = [people objectAtIndex:i];
-				CFTypeRef abRecord = ABRecordCopyValue(person,kABPersonPhoneProperty);
-                if (ABMultiValueGetCount(abRecord) > 0) {
-                    NSString *phone = (NSString *)ABMultiValueCopyValueAtIndex(abRecord, 0);
-                    if (phone != nil && ![phone isEqualToString:@""]) {
-                        [phones addObject:phone];
+                if (person) {
+                    CFTypeRef abRecord = ABRecordCopyValue(person,kABPersonPhoneProperty);
+                    if (abRecord) {
+                        if (ABMultiValueGetCount(abRecord) > 0) {
+                            NSString *phone = (NSString *)ABMultiValueCopyValueAtIndex(abRecord, 0);
+                            if (phone != nil && ![phone isEqualToString:@""]) {
+                                [phones addObject:phone];
+                            }
+                            [phone release];
+                        }
+                        CFRelease(abRecord);
                     }
-                    [phone release];
                 }
-				CFRelease(abRecord);
             }
             DLog(@"phones: %@", phones);
             [[FoursquareAPI sharedInstance] findFriendsByPhone:[phones componentsJoinedByString:@","] withTarget:self andAction:@selector(searchResponseReceived:withResponseString:)];
