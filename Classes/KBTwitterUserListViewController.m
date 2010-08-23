@@ -158,8 +158,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	KBTwitterProfileViewController *twitterProfileController = [[KBTwitterProfileViewController alloc] initWithNibName:@"KBTwitterProfileViewController" bundle:nil];
 	twitterProfileController.screenname = ((KBTwitterUser*)[users objectAtIndex:indexPath.row]).screenName;
-	[self checkMemoryUsage];
 	[self.navigationController pushViewController:twitterProfileController animated:YES];
+	[theTableView deselectRowAtIndexPath:indexPath animated:YES];
 	[twitterProfileController release];
 }
 
