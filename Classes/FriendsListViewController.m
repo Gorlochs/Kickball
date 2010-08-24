@@ -297,10 +297,14 @@
     if (checkin.shout) {
 		//check to see if it is long enough to need two lines:
 		CGSize maximumLabelSize = CGSizeMake(250, 60);
-		CGSize expectedLabelSize = [checkin.shout sizeWithFont:[UIFont boldSystemFontOfSize:16.0]
+		float fontSize = 16.0;
+		if (checkin.venue) {
+			fontSize = 11.0;
+		}
+		CGSize expectedLabelSize = [checkin.shout sizeWithFont:[UIFont boldSystemFontOfSize:fontSize]
 											 constrainedToSize:maximumLabelSize 
 												 lineBreakMode:UILineBreakModeWordWrap];
-		if (expectedLabelSize.height>20) {
+		if (expectedLabelSize.height > 20) {
 			[cell makeTwoLine];
 		}
 	}
@@ -378,10 +382,10 @@
     }
 	if (checkin.shout && checkin.venue) {
 		CGSize maximumLabelSize = CGSizeMake(250, 60);
-		CGSize expectedLabelSize = [checkin.shout sizeWithFont:[UIFont boldSystemFontOfSize:16.0]
+		CGSize expectedLabelSize = [checkin.shout sizeWithFont:[UIFont boldSystemFontOfSize:11.0]
 											 constrainedToSize:maximumLabelSize 
 												 lineBreakMode:UILineBreakModeWordWrap];
-		if (expectedLabelSize.height>20) {
+		if (expectedLabelSize.height > 20) {
 			return 96;
 		}
 	} else if (checkin.shout) {
@@ -390,7 +394,7 @@
 		CGSize expectedLabelSize = [checkin.shout sizeWithFont:[UIFont boldSystemFontOfSize:16.0]
 									constrainedToSize:maximumLabelSize 
 										lineBreakMode:UILineBreakModeWordWrap];
-		if (expectedLabelSize.height>20) {
+		if (expectedLabelSize.height > 20) {
 			return 76;
 		}
 	}
