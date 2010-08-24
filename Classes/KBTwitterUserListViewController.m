@@ -146,7 +146,7 @@
     if (userType == KBTwitterUserFollower) {
         sectionHeaderView.leftHeaderLabel.text = [NSString stringWithFormat:@"%@'s followers", [userDictionary objectForKey:@"screen_name"]];
     } else if (userType == KBTwitterUserFriend) {
-		sectionHeaderView.leftHeaderLabel.text = [NSString stringWithFormat:@"%@'s following", [userDictionary objectForKey:@"screen_name"]];
+		sectionHeaderView.leftHeaderLabel.text = [NSString stringWithFormat:@"users %@ is following", [userDictionary objectForKey:@"screen_name"]];
 	}
 	
 	return sectionHeaderView;
