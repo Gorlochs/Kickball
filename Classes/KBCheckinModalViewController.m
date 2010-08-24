@@ -430,8 +430,7 @@
 }
 
 - (void)viewDidUnload {
-	// Release any retained subviews of the main view.
-	// e.g. self.myOutlet = nil;
+	twitterManager.delegate = nil;
 }
 
 - (void)requestSucceeded:(NSString *)connectionIdentifier {} //satisfy MGTWitterEngineDelegate protocol requirements
