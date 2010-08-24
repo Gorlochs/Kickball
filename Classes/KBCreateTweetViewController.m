@@ -65,6 +65,10 @@
         tweetTextView.text = [NSString stringWithFormat:@"@%@ ", self.replyToScreenName];
     } else if (self.directMessageToScreenname) {
 		tweetTextView.text = [NSString stringWithFormat:@"D @%@ ", self.directMessageToScreenname];
+		foursquareButton.enabled = NO;
+		facebookButton.enabled = NO;
+		isFacebookOn = NO;
+		isFoursquareOn = NO;
 	}
     [tweetTextView becomeFirstResponder];
     tweetTextView.font = [UIFont fontWithName:@"Helvetica" size:13.0];
