@@ -25,36 +25,30 @@
 // init with dictionary
 - (id) initWithDictionary:(NSDictionary*)statusDictionary {		
     if (self = [super init]) {
-        screenName = [[[statusDictionary objectForKey:@"user"] objectForKey:@"screen_name"] copy];
-        fullName = [[[statusDictionary objectForKey:@"user"] objectForKey:@"name"] copy];
-        profileImageUrl = [[[statusDictionary objectForKey:@"user"] objectForKey:@"profile_image_url"] copy];
-        tweetText = [[statusDictionary objectForKey:@"text"] copy];
-        tweetId = [[statusDictionary objectForKey:@"id"] copy];
-		//clientName = [statusDictionary objectForKey:@"source"];
-		
-		//NSRange   matchedRange = NSMakeRange(NSNotFound, 0);
-		NSString *clientWithLink = [statusDictionary objectForKey:@"source"];
-		DLog("************** client with link: %@", clientWithLink);
-		NSRange matchedRange = [clientWithLink rangeOfRegex:@">(.*)<"];
-		
-		if (matchedRange.location != NSNotFound) {
-			NSRange reducedRange = NSMakeRange(matchedRange.location + 1, matchedRange.length - 2);
-			clientName = [[clientWithLink substringWithRange:reducedRange] copy];
-			DLog(@"********************************* clientName: %@", clientName);
-		} else if ([statusDictionary objectForKey:@"source"]) {
-			clientName = [[statusDictionary objectForKey:@"source"] copy];
-		} else clientName = @"";
-		
-//		NSString * searchString = [statusDictionary objectForKey:@"text"];
-//		NSString *regexString = @">(.*)<";
-//		NSArray  *matchArray   = nil;
-//		matchArray = [searchString componentsMatchedByRegex:regexString];
-		
-		
-		
-        
-        createDate = [[[[KickballAPI kickballApi] twitterDateFormatter] dateFromString:[statusDictionary objectForKey:@"created_at"]] retain];
-        isFavorited = [[statusDictionary objectForKey:@"favorited"] boolValue];
+		if (statusDictionary && ![statusDictionary isKindOfClass:[NSNull class]]) {
+			screenName = [[[statusDictionary objectForKey:@"user"] objectForKey:@"screen_name"] copy];
+			fullName = [[[statusDictionary objectForKey:@"user"] objectForKey:@"name"] copy];
+			profileImageUrl = [[[statusDictionary objectForKey:@"user"] objectForKey:@"profile_image_url"] copy];
+			tweetText = [[statusDictionary objectForKey:@"text"] copy];
+			tweetId = [[statusDictionary objectForKey:@"id"] copy];
+			//clientName = [statusDictionary objectForKey:@"source"];
+			
+			//NSRange   matchedRange = NSMakeRange(NSNotFound, 0);
+			NSString *clientWithLink = [statusDictionary objectForKey:@"source"];
+			NSRange matchedRange = [clientWithLink rangeOfRegex:@">(.*)<"];
+			
+			if (matchedRange.location != NSNotFound) {
+				NSRange reducedRange = NSMakeRange(matchedRange.location + 1, matchedRange.length - 2);
+				clientName = [[clientWithLink substringWithRange:reducedRange] copy];
+			} else if ([statusDictionary objectForKey:@"source"]) {
+				clientName = [[statusDictionary objectForKey:@"source"] copy];
+			} else { 
+				clientName = @"";
+			}
+			
+			createDate = [[[[KickballAPI kickballApi] twitterDateFormatter] dateFromString:[statusDictionary objectForKey:@"created_at"]] retain];
+			isFavorited = [[statusDictionary objectForKey:@"favorited"] boolValue];
+		}
     }
     return self;
 }

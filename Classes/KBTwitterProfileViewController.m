@@ -34,8 +34,8 @@
 	twitterManager.delegate = self;
     
     [twitterEngine getUserInformationFor:screenname];
-
-
+	
+	
     [self hideOwnUserButtons];	
 }
 
@@ -49,6 +49,7 @@
 
 - (void)userInfoReceived:(NSArray *)userInfo {
     userDictionary = [[userInfo objectAtIndex:0] copy];
+	DLog(@"**************** user dictionary: %@", userDictionary);
     screenNameLabel.text = [Utilities safeString:[userDictionary objectForKey:@"screen_name"]];
     fullName.text = [Utilities safeString:[userDictionary objectForKey:@"name"]];
     NSString *locationText = [Utilities safeString:[userDictionary objectForKey:@"location"]];
@@ -73,7 +74,7 @@
     userIcon.urlPath = [userDictionary objectForKey:@"profile_image_url"];
     [self.view addSubview:userIcon];
 	
-  if ([[userDictionary objectForKey:@"following"] isKindOfClass:[NSNull class]]) { //fix for crash
+	if ([[userDictionary objectForKey:@"following"] isKindOfClass:[NSNull class]]) { //fix for crash
 		followButton.hidden = NO;
 		unfollowButton.hidden = YES;
 	} else if ([[userDictionary objectForKey:@"following"] boolValue]) { //TWITTER BUG: when you unfollow someone, the server returns true whether it is really true or not!!!
@@ -153,8 +154,7 @@
 
 - (void) sendDirectMessage {
     KBCreateTweetViewController *tweetController = [[KBCreateTweetViewController alloc] initWithNibName:@"KBCreateTweetViewController" bundle:nil];
-	tweetController.directMentionToScreenname = screenname;
-	[self checkMemoryUsage];
+	tweetController.directMessageToScreenname = screenname;
 	[self.navigationController pushViewController:tweetController animated:YES];
 	[tweetController release];
 }
@@ -162,7 +162,6 @@
 - (void) sendTweet {
     KBCreateTweetViewController *tweetController = [[KBCreateTweetViewController alloc] initWithNibName:@"KBCreateTweetViewController" bundle:nil];
 	tweetController.replyToScreenName = screenname;
-	[self checkMemoryUsage];
 	[self.navigationController pushViewController:tweetController animated:YES];
 	[tweetController release];
 }

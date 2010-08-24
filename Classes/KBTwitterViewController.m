@@ -44,6 +44,13 @@
 	[self stopProgressBar];
 }
 
+- (void) viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+	
+	// just in case a view higher in the stack was dealloc'd that grabbed the twitterManager.delegate from this class
+	twitterManager.delegate = self;
+}
+
 - (void)viewDidLoad {
 	twitterManager = [KBTwitterManager twitterManager];
 	twitterManager.delegate = self;
@@ -178,7 +185,7 @@
 
 
 - (void)dealloc {
-	//twitterManager.delegate = nil;
+	twitterManager.delegate = nil;
     //[twitterEngine release];
     [super dealloc];
 }

@@ -167,7 +167,7 @@
 	KBCreateTweetViewController *createReplyViewController = [[KBCreateTweetViewController alloc] initWithNibName:@"KBCreateTweetViewController" bundle:nil];
     createReplyViewController.replyToStatusId = tweet.tweetId;
 	if ([tweet isKindOfClass:[KBDirectMessage class]]) {
-		createReplyViewController.directMentionToScreenname = tweet.screenName;
+		createReplyViewController.directMessageToScreenname = tweet.screenName;
 	} else {
 		createReplyViewController.replyToScreenName = tweet.screenName;
 	}

@@ -117,7 +117,7 @@
 	// blech
 	footerType = KBFooterTypeFoursquare;
     [self setTabImages];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidCheckin) name:@"didCheckin" object:nil];    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidCheckin) name:@"didCheckin" object:nil];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -128,6 +128,9 @@
     if ([theTableView numberOfRowsInSection:0] > 0)
       [theTableView scrollToRowAtIndexPath:[NSIndexPath indexPathWithIndexes:indexArr length:2] atScrollPosition:UITableViewScrollPositionTop animated:YES];
 	}
+	
+	// just in case a view higher in the stack was dealloc'd that grabbed the twitterManager.delegate from this class
+	twitterManager.delegate = self;
 }
 
 - (void) doInitialDisplay {
@@ -210,6 +213,7 @@
 }
 
 - (void)dealloc {
+	twitterManager.delegate = nil;
     [recentCheckins release];
     [todayCheckins release];
     [yesterdayCheckins release];

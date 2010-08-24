@@ -1335,7 +1335,10 @@
         [params setObject:[NSString stringWithFormat:@"%d", count] forKey:@"count"];
     }
     
-    return [self _sendRequestWithMethod:nil path:path queryParameters:params body:nil 
+    return [self _sendRequestWithMethod:nil 
+								   path:path 
+						queryParameters:params 
+								   body:nil 
                             requestType:MGTwitterDirectMessagesSentRequest 
                            responseType:MGTwitterDirectMessages];
 }
@@ -1359,11 +1362,13 @@
     
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:0];
     [params setObject:trimmedText forKey:@"text"];
-    [params setObject:username forKey:@"user"];
+    [params setObject:username forKey:@"screen_name"];
     NSString *body = [self _queryStringWithBase:nil parameters:params prefixed:NO];
     
-    return [self _sendRequestWithMethod:HTTP_POST_METHOD path:path 
-                        queryParameters:params body:body 
+    return [self _sendRequestWithMethod:HTTP_POST_METHOD 
+								   path:path 
+                        queryParameters:params 
+								   body:body 
                             requestType:MGTwitterDirectMessageSendRequest
                            responseType:MGTwitterDirectMessage];
 }
@@ -1373,7 +1378,10 @@
 {
     NSString *path = [NSString stringWithFormat:@"direct_messages/destroy/%u.%@", updateID, API_FORMAT];
     
-    return [self _sendRequestWithMethod:HTTP_POST_METHOD path:path queryParameters:nil body:nil 
+    return [self _sendRequestWithMethod:HTTP_POST_METHOD 
+								   path:path 
+						queryParameters:nil 
+								   body:nil 
                             requestType:MGTwitterDirectMessageDeleteRequest 
                            responseType:MGTwitterDirectMessage];
 }

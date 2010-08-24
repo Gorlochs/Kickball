@@ -22,14 +22,12 @@
     requeryWhenTableGetsToBottom = YES;
     [super viewDidLoad];
 	twitterManager = [KBTwitterManager twitterManager];
-	twitterManager.delegate = self;
 	stuckToBottom = 0;
 	theTableView.backgroundColor = [UIColor colorWithWhite:0.94 alpha:1.0];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(twitterViewLoadFailure) name:@"twitterViewLoadFailure" object:nil];	
 }
 
 - (void) viewDidAppear:(BOOL)animated {
-	twitterManager.delegate = self;
 	[super viewDidAppear:animated];
 }
 
@@ -176,8 +174,6 @@
         
         cell.userIcon.urlPath = tweet.profileImageUrl;
         cell.userName.text = tweet.screenName;
-        //cell.tweetText.numberOfLines = 0;
-		//cell.tweetText.text = tweet.tweetText;
 		cell.tweetText.text = tweet.tweetText; // [TTStyledText textWithURLs:tweet.tweetText lineBreaks:NO]; //tweet.tweetText;
         [cell setDateLabelWithText:[[KickballAPI kickballApi] convertDateToTimeUnitString:tweet.createDate]];
 		
@@ -190,10 +186,7 @@
         CGRect newFrame = cell.tweetText.frame;
         newFrame.size.height = expectedLabelSize.height;
         cell.tweetText.frame = newFrame;
-        
-		//[cell.tweetText sizeToFit];
-		//[cell.tweetText setNeedsLayout];
-		//[cell.tweetText setNeedsDisplay];
+
         return cell;
 }
 

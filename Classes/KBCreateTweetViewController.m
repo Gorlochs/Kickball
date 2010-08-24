@@ -25,7 +25,7 @@
 @synthesize retweetStatusId;
 @synthesize retweetToScreenName;
 @synthesize retweetTweetText;
-@synthesize directMentionToScreenname;
+@synthesize directMessageToScreenname;
 @synthesize tweetPhoto;
 
 - (void)viewDidLoad {
@@ -63,9 +63,9 @@
         tweetTextView.text = [NSString stringWithFormat:@"RT @%@ %@", self.replyToScreenName, self.retweetTweetText];
     } else if (self.replyToScreenName) {
         tweetTextView.text = [NSString stringWithFormat:@"@%@ ", self.replyToScreenName];
-    } else if (self.directMentionToScreenname) {
-		tweetTextView.text = [NSString stringWithFormat:@"D @%@ ", self.directMentionToScreenname];
-	}
+    }// else if (self.directMessageToScreenname) {
+//		tweetTextView.text = [NSString stringWithFormat:@"D @%@ ", self.directMessageToScreenname];
+//	}
     [tweetTextView becomeFirstResponder];
     tweetTextView.font = [UIFont fontWithName:@"Helvetica" size:13.0];
     
@@ -192,7 +192,9 @@
 - (void) submitToTwitter:(TweetPhotoResponse*)response {
 	DLog(@"tweetphoto response: %@", response);
 	NSString *textToTweet = [NSString stringWithFormat:@"%@ %@", tweetTextView.text, response ? response.mediaUrl : @""];
-	if (replyToStatusId && replyToStatusId > 0) {
+	if (directMessageToScreenname) {
+		[twitterEngine sendDirectMessage:textToTweet to:directMessageToScreenname];
+	} else if (replyToStatusId && replyToStatusId > 0) {
 		if (isGeotagOn) {
 			[twitterEngine sendUpdate:textToTweet withLatitude:[[KBLocationManager locationManager] latitude] withLongitude:[[KBLocationManager locationManager] longitude] inReplyTo:[replyToStatusId longLongValue]];
 		} else {
@@ -209,7 +211,12 @@
 
 // twitter response
 - (void)statusesReceived:(NSArray *)statuses {
+	DLog(@"create tweet status: %@", statuses);
     [self decrementActionCount];
+}
+
+- (void)directMessagesReceived:(NSArray *)messages {
+	DLog(@"create DM messages: %@", messages);
 }
 
 // foursquare response
@@ -441,7 +448,7 @@
     [retweetStatusId release];
     [retweetToScreenName release];
     [retweetTweetText release];
-	[directMentionToScreenname release];
+	[directMessageToScreenname release];
 	[tweetPhotoResponse release];
     [tweetPhoto release];
 //    [foursquareButton release];

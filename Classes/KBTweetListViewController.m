@@ -100,6 +100,7 @@
 }
 
 - (void)statusesReceived:(NSArray *)statuses {
+	DLog(@"statuses: %@", statuses);
     if (_inModalTweetView) {
 		[self.navigationController popViewControllerAnimated:YES];
 		_inModalTweetView = NO;
