@@ -580,15 +580,19 @@ void uncaughtExceptionHandler(NSException *exception) {
 -(void)loggedOutOfTwitter{
 	[twitterNavigationController popToRootViewControllerAnimated:NO];
 	[(KBTwitterViewController*)twitterNavigationController.visibleViewController showLoginView];
+	[(KBTwitterViewController*)twitterNavigationController.visibleViewController setTabImages];
 }
 
 -(void)loggedOutOfFoursquare{
 	[navigationController popToRootViewControllerAnimated:NO];
 	[(KBFoursquareViewController*)navigationController.visibleViewController showLoginView];
+	[(KBFoursquareViewController*)navigationController.visibleViewController setTabImages];
+
 }
 
 -(void)loggedInToTwitter{
 	[(KBTwitterViewController*)twitterNavigationController.visibleViewController killLoginView];
+	[(KBTwitterViewController*)twitterNavigationController.visibleViewController setTabImages];
 	if([twitterNavigationController.visibleViewController  respondsToSelector:@selector(showStatuses)]){
 		[(KBTweetListViewController*)twitterNavigationController.visibleViewController  showStatuses];
 	}
@@ -596,6 +600,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 -(void)loggedInToFoursquare{
 	[(KBFoursquareViewController*)navigationController.visibleViewController killLoginView];
+	[(KBFoursquareViewController*)navigationController.visibleViewController setTabImages];
 	if([navigationController.visibleViewController respondsToSelector:@selector(doInitialDisplay)]){
 		[(KBFoursquareViewController*)navigationController.visibleViewController doInitialDisplay];
 	}

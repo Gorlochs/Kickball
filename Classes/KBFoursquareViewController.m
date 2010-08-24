@@ -12,6 +12,7 @@
 #import "FriendsListViewController.h"
 #import "FriendsMapViewController.h"
 #import "KBFoursquareLoginView.h"
+#import "UserProfileViewController.h"
 
 
 
@@ -157,6 +158,16 @@
 - (void) showBackHomeButtons {
     homeButton.hidden = NO;
     backButton.hidden = NO;
+}
+
+- (void) viewUserProfile {
+    // take user to their profile
+    [FlurryAPI logEvent:@"View User Profile from Top Nav Icon"];
+    //if ([self displaysTwitterUserProfile]) return;
+	UserProfileViewController *pvc = [[UserProfileViewController alloc] initWithNibName:@"UserProfileView_v2" bundle:nil];
+	pvc.userId = [self getAuthenticatedUser].userId;
+	[self.navigationController pushViewController:pvc animated:YES];
+	[pvc release];
 }
 
 - (void)dealloc {

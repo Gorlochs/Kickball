@@ -17,6 +17,7 @@
 #import "KBCreateTweetViewController.h"
 #import "KBTwitterLoginView.h"
 #import "Utilities.h"
+#import "KBTwitterProfileViewController.h"
 
 @implementation KBTwitterViewController
 
@@ -165,6 +166,14 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+}
+- (void) viewUserProfile {
+    // take user to their profile
+    [FlurryAPI logEvent:@"View User Profile from Top Nav Icon"];
+    KBTwitterProfileViewController *pvc = [[KBTwitterProfileViewController alloc] initWithNibName:@"KBTwitterProfileViewController" bundle:nil];
+	pvc.screenname = [[NSUserDefaults standardUserDefaults] objectForKey:@"twittername"];
+	[self.navigationController pushViewController:pvc animated:YES];
+	[pvc release];
 }
 
 

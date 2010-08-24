@@ -227,6 +227,26 @@
 	[xTW setEnabled:YES];
 	[xTW setHidden:NO];
 }
+
+- (void)userInfoReceived:(NSArray *)userInfo {
+    NSDictionary *userDictionary = [userInfo objectAtIndex:0];
+	if (userDictionary) {
+		NSString *profileImage = [userDictionary objectForKey:@"profile_image_url"];
+		if (profileImage) {
+			NSString *screenName = [userDictionary objectForKey:@"screen_name"];
+			NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:@"twittername"];
+			if (screenName && username && [screenName isEqualToString:username]) { //only use the profile pic for the user!!
+				[[NSUserDefaults standardUserDefaults] setObject:profileImage forKey:@"twitUserPhotoURL"];
+				[[NSUserDefaults standardUserDefaults] synchronize];
+				UIImage *twitterUserPic = [[Utilities sharedInstance] getCachedImage:profileImage];
+				if (twitterUserPic) [signedInUserIcon setImage:twitterUserPic forState:UIControlStateNormal];
+				[signedInUserIcon setEnabled:YES];
+			}
+		}
+	}
+}
+
+
 #pragma mark delgate callbacks
 
 - (void)userResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {

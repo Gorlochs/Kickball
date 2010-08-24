@@ -134,6 +134,8 @@ static FoursquareAPI *sharedInstance = nil;
 		[SFHFKeychainUtils deleteItemForUsername:self.userName andServiceName:@"Kickball" error:&error];
 		[passWord release];
 		[userName release];
+		[currentUser release];
+		currentUser = nil;
 		passWord = nil;
 		userName = nil;
 		

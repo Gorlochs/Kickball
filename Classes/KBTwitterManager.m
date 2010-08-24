@@ -150,8 +150,25 @@ static KBTwitterManager *sharedInstance = nil;
 }
 
 - (void)userInfoReceived:(NSArray *)userInfo forRequest:(NSString *)connectionIdentifier {
-  if ([(NSObject*)delegate respondsToSelector:@selector(userInfoReceived:)])
-	[delegate userInfoReceived:userInfo];
+	if ([(NSObject*)delegate respondsToSelector:@selector(userInfoReceived:)]){
+		[delegate userInfoReceived:userInfo];
+	}else {
+		NSDictionary *userDictionary = [userInfo objectAtIndex:0];
+		if (userDictionary) {
+			NSString *profileImage = [userDictionary objectForKey:@"profile_image_url"];
+			if (profileImage) {
+				NSString *screenName = [userDictionary objectForKey:@"screen_name"];
+				NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:@"twittername"];
+				if (screenName && username && [screenName isEqualToString:username]) { //only use the profile pic for the user!!
+					[[NSUserDefaults standardUserDefaults] setObject:profileImage forKey:@"twitUserPhotoURL"];
+					[[NSUserDefaults standardUserDefaults] synchronize];
+				}
+			}
+		}
+	}
+
+	
+	
 }
 
 - (void)miscInfoReceived:(NSArray *)miscInfo forRequest:(NSString *)connectionIdentifier {

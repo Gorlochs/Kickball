@@ -77,6 +77,7 @@
 				[[NSUserDefaults standardUserDefaults] synchronize];
 				UIImage *twitterUserPic = [[Utilities sharedInstance] getCachedImage:profileImage];
 				if (twitterUserPic) [signedInUserIcon setImage:twitterUserPic forState:UIControlStateNormal];
+				[signedInUserIcon setEnabled:YES];
 			}
 		}
 	}

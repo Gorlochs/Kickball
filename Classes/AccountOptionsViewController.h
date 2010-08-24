@@ -79,5 +79,6 @@
 -(void)showKeyboardMask;
 - (void) displayVoteMessage;
 
+- (void)userInfoReceived:(NSArray *)userInfo;
 
 @end

@@ -118,12 +118,22 @@ const NSString *kickballDomain = @"http://kickball.gorlochs.com/kickball";
             [facebookTab setImage:[UIImage imageNamed:@"btn-footerFB03.png"] forState:UIControlStateNormal];
 			NSString *twitUserPhotoURL = [[NSUserDefaults standardUserDefaults] objectForKey:@"twitUserPhotoURL"];
 			UIImage *twitterUserPic = [[Utilities sharedInstance] getCachedImage:twitUserPhotoURL];
-			if (twitterUserPic) [signedInUserIcon setImage:twitterUserPic forState:UIControlStateNormal];
+			//if (twitterUserPic) [signedInUserIcon setImage:twitterUserPic forState:UIControlStateNormal];
+			[signedInUserIcon setImage:twitterUserPic forState:UIControlStateNormal];
+			// FIXME : this should be testing if user is logged in.  
+			if (![[KBAccountManager sharedInstance] usesTwitter]) {
+				[signedInUserIcon setAdjustsImageWhenDisabled:NO];
+				[signedInUserIcon setEnabled:NO];
+			}
             break;
         case KBFooterTypeFoursquare:
             [foursquareTab setImage:[UIImage imageNamed:@"btn-footer4SQ01.png"] forState:UIControlStateNormal];
             [twitterTab setImage:[UIImage imageNamed:@"btn-footerTW03.png"] forState:UIControlStateNormal];
             [facebookTab setImage:[UIImage imageNamed:@"btn-footerFB03.png"] forState:UIControlStateNormal];
+			if (![[KBAccountManager sharedInstance] usesFoursquare]) {
+				[signedInUserIcon setAdjustsImageWhenDisabled:NO];
+				[signedInUserIcon setEnabled:NO];
+			}
             break;
         default:
             [foursquareTab setImage:[UIImage imageNamed:@"btn-footer4SQ01.png"] forState:UIControlStateNormal];
@@ -225,12 +235,16 @@ const NSString *kickballDomain = @"http://kickball.gorlochs.com/kickball";
 
 - (void) viewUserProfile {
     // take user to their profile
+	
+	//Scott moved this one level up to the base clasee of each respective service
+	/*
     [FlurryAPI logEvent:@"View User Profile from Top Nav Icon"];
     if ([self displaysTwitterUserProfile]) return;
 	UserProfileViewController *pvc = [[UserProfileViewController alloc] initWithNibName:@"UserProfileView_v2" bundle:nil];
 	pvc.userId = [self getAuthenticatedUser].userId;
 	[self.navigationController pushViewController:pvc animated:YES];
 	[pvc release];
+	 */
 }
 
 - (FSUser*) getAuthenticatedUser {

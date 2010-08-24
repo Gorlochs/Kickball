@@ -134,6 +134,40 @@ static BOOL initialized = NO;
 
 -(UIImage*)imageByScalingToSize:(UIImage*)image toSize:(CGSize)targetSize {
 	UIImage* sourceImage = image; 
+	CGFloat targetMax = targetSize.width;
+	
+	CGImageRef imageRef = [sourceImage CGImage];
+	CGBitmapInfo bitmapInfo = CGImageGetBitmapInfo(imageRef);
+	CGColorSpaceRef colorSpaceInfo = CGImageGetColorSpace(imageRef);
+	
+	if (bitmapInfo == kCGImageAlphaNone) {
+		bitmapInfo = kCGImageAlphaNoneSkipLast;
+	}
+	
+	CGContextRef bitmap;
+	CGFloat targetWidth;
+	CGFloat targetHeight;
+	if(image.size.width==image.size.height){
+		//square
+		targetWidth = targetMax;
+		targetHeight = targetMax;
+	}else if (image.size.width > image.size.height) {
+		//landscape
+		targetWidth = targetMax;
+		targetHeight = (targetMax * image.size.height)/image.size.width;
+	}else {
+		//portrait
+		targetWidth = (targetMax * image.size.width)/image.size.height;
+		targetHeight = targetMax;
+	}
+	bitmap = CGBitmapContextCreate(NULL, targetHeight, targetWidth, CGImageGetBitsPerComponent(imageRef), CGImageGetBytesPerRow(imageRef), colorSpaceInfo, bitmapInfo);
+
+/*
+	
+}
+
+-(UIImage*)imageByScalingToSize:(UIImage*)image toSize:(CGSize)targetSize {
+	UIImage* sourceImage = image; 
 	CGFloat targetWidth = targetSize.width;
 	CGFloat targetHeight = targetSize.height;
     
@@ -152,7 +186,7 @@ static BOOL initialized = NO;
 	} else {
 		bitmap = CGBitmapContextCreate(NULL, targetHeight, targetWidth, CGImageGetBitsPerComponent(imageRef), CGImageGetBytesPerRow(imageRef), colorSpaceInfo, bitmapInfo);
 	}	
-	
+	*/
 	
 	// In the right or left cases, we need to switch scaledWidth and scaledHeight,
 	// and also the thumbnail point
@@ -166,12 +200,16 @@ static BOOL initialized = NO;
 		
 	} else if (sourceImage.imageOrientation == UIImageOrientationUp) {
 		// NOTHING
+		// This is the default value
+		//need to check for 
 	} else if (sourceImage.imageOrientation == UIImageOrientationDown) {
 		CGContextTranslateCTM (bitmap, targetWidth, targetHeight);
 		CGContextRotateCTM (bitmap, radians(-180.));
 	}
 	
+	//this needs to be way more complex...
 	CGContextDrawImage(bitmap, CGRectMake(0, 0, targetWidth, targetHeight), imageRef);
+	
 	CGImageRef ref = CGBitmapContextCreateImage(bitmap);
 	UIImage* newImage = [UIImage imageWithCGImage:ref];
 	

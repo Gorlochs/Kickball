@@ -178,7 +178,7 @@
     }
     [self setAuthenticatedUser:user];
     [signedInUserIcon setImage:[[Utilities sharedInstance] getCachedImage:user.photo] forState:UIControlStateNormal];
-        
+    [signedInUserIcon setEnabled:YES];    
     DLog(@"auth'd user: %@", user);
     [user release];
 }
