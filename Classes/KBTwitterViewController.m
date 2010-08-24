@@ -29,7 +29,7 @@
     }
     return self;
 }
-
+/*
 -(void) stopProgressBarAndDisplayErrorMessage:(NSTimer*)theTimer {
     [theTimer invalidate];
     theTimer = nil;
@@ -37,7 +37,7 @@
     KBMessage *message = [[KBMessage alloc] initWithMember:@"Twitter Message" andMessage:@"The server is not currently responding. Please try again shortly."];
     [self displayPopupMessage:message];
     [message release];
-}
+}*/
 
 - (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error {
 	DLog(@"Twitter request failed: %@ with error:%@", connectionIdentifier, error);

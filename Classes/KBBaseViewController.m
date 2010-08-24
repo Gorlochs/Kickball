@@ -347,9 +347,12 @@ const NSString *kickballDomain = @"http://kickball.gorlochs.com/kickball";
 -(void) stopProgressBarAndDisplayErrorMessage:(NSTimer*)theTimer {
     [self stopProgressBar];
     
-    KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"The server is not currently responding. Please try again shortly."];
+	// *** SCOTT ***  Scott thinks this error message is irrelevant and does not need to be called.
+    /*
+	KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"The server is not currently responding. Please try again shortly."];
     [self displayPopupMessage:message];
     [message release];
+	 */
 }
 
 - (void) stopProgressBar {
