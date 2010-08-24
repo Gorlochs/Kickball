@@ -62,7 +62,7 @@
 									 [UIImage imageNamed:@"qc20.png"],nil]];
 	[spinnerView setAnimationDuration:0.75f];
 	[spinnerView setAnimationRepeatCount:1];
-	[self.superview addSubview:spinnerView];
+	[self.superview.superview addSubview:spinnerView];
 	[spinnerView startAnimating];
 }
 
@@ -85,7 +85,7 @@
 		[super touchesBegan:touches withEvent:event];
 		[self performSelector:@selector(tapNHoldFired) withObject:nil afterDelay:0.9];
 		[self performSelector:@selector(startSpinner) withObject:nil afterDelay:.25];
-		touchLocation = [[touches anyObject] locationInView:self.superview];
+		touchLocation = [[touches anyObject] locationInView:self.superview.superview];
 	} else {
 		[super touchesBegan:touches withEvent:event];
 	}
