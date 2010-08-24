@@ -65,7 +65,14 @@
 
 - (void) executeQuery:(int)pageNumber {
     isInitialLoad = NO;
-    [twitterEngine getDirectMessagesSinceID:([tweets count] > 0 ? [[[tweets objectAtIndex:0] objectForKey:@"id"] longLongValue] : 0) startingAtPage:pageNumber];
+	if ([tweets count]>0) {
+		KBDirectMessage* someObject = [tweets objectAtIndex:0];
+		id idObject = (KBDirectMessage*)someObject.tweetId;
+		[twitterEngine getDirectMessagesSinceID:([tweets count] > 0 ? [idObject longLongValue] : 0) startingAtPage:pageNumber];
+	}else {
+		requeryWhenTableGetsToBottom = NO;
+	}
+
 }
 
 - (void) refreshTable {
