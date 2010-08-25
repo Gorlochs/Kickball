@@ -64,7 +64,7 @@
     } else if (self.replyToScreenName) {
         tweetTextView.text = [NSString stringWithFormat:@"@%@ ", self.replyToScreenName];
     } else if (self.directMessageToScreenname) {
-		tweetTextView.text = [NSString stringWithFormat:@"D @%@ ", self.directMessageToScreenname];
+		//tweetTextView.text = [NSString stringWithFormat:@"D @%@ ", self.directMessageToScreenname];
 		foursquareButton.enabled = NO;
 		facebookButton.enabled = NO;
 		isFacebookOn = NO;
@@ -196,10 +196,9 @@
 - (void) submitToTwitter:(TweetPhotoResponse*)response {
 	DLog(@"tweetphoto response: %@", response);
 	NSString *textToTweet = [NSString stringWithFormat:@"%@ %@", tweetTextView.text, response ? response.mediaUrl : @""];
-//	if (directMessageToScreenname) {
-//		[twitterEngine sendDirectMessage:textToTweet to:directMessageToScreenname];
-//	} else 
-		if (replyToStatusId && replyToStatusId > 0) {
+	if (directMessageToScreenname) {
+		[twitterEngine sendDirectMessage:textToTweet to:directMessageToScreenname];
+	} else if (replyToStatusId && replyToStatusId > 0) {
 		if (isGeotagOn) {
 			[twitterEngine sendUpdate:textToTweet withLatitude:[[KBLocationManager locationManager] latitude] withLongitude:[[KBLocationManager locationManager] longitude] inReplyTo:[replyToStatusId longLongValue]];
 		} else {
@@ -222,6 +221,7 @@
 
 - (void)directMessagesReceived:(NSArray *)messages {
 	DLog(@"create DM messages: %@", messages);
+    [self decrementActionCount];
 }
 
 // foursquare response

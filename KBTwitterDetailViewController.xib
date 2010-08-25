@@ -242,21 +242,6 @@
 								<int key="IBUIBaselineAdjustment">1</int>
 								<float key="IBUIMinimumFontSize">10</float>
 							</object>
-							<object class="IBUIImageView" id="365684997">
-								<reference key="NSNextResponder" ref="16969202"/>
-								<int key="NSvFlags">256</int>
-								<string key="NSFrame">{{292, 30}, {8, 11}}</string>
-								<reference key="NSSuperview" ref="16969202"/>
-								<bool key="IBUIOpaque">NO</bool>
-								<bool key="IBUIClipsSubviews">YES</bool>
-								<int key="IBUIContentMode">4</int>
-								<bool key="IBUIMultipleTouchEnabled">YES</bool>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<object class="NSCustomResource" key="IBUIImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">btn-arrow01.png</string>
-								</object>
-							</object>
 							<object class="IBUIImageView" id="608144873">
 								<reference key="NSNextResponder" ref="16969202"/>
 								<int key="NSvFlags">256</int>
@@ -270,6 +255,21 @@
 								<object class="NSCustomResource" key="IBUIImage">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">twittIconBG.png</string>
+								</object>
+							</object>
+							<object class="IBUIImageView" id="305568113">
+								<reference key="NSNextResponder" ref="16969202"/>
+								<int key="NSvFlags">256</int>
+								<string key="NSFrame">{{291, 30}, {9, 12}}</string>
+								<reference key="NSSuperview" ref="16969202"/>
+								<bool key="IBUIOpaque">NO</bool>
+								<bool key="IBUIClipsSubviews">YES</bool>
+								<int key="IBUIContentMode">4</int>
+								<bool key="IBUIMultipleTouchEnabled">YES</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<object class="NSCustomResource" key="IBUIImage" id="344697221">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">cellArrow.png</string>
 								</object>
 							</object>
 						</object>
@@ -542,10 +542,7 @@
 						<int key="IBUIContentMode">4</int>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<object class="NSCustomResource" key="IBUIImage" id="118070583">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">cellArrow.png</string>
-						</object>
+						<reference key="IBUIImage" ref="344697221"/>
 					</object>
 					<object class="IBUIImageView" id="885034171">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -557,7 +554,7 @@
 						<int key="IBUIContentMode">4</int>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<reference key="IBUIImage" ref="118070583"/>
+						<reference key="IBUIImage" ref="344697221"/>
 					</object>
 					<object class="IBUIImageView" id="837207221">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -569,7 +566,7 @@
 						<int key="IBUIContentMode">4</int>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<reference key="IBUIImage" ref="118070583"/>
+						<reference key="IBUIImage" ref="344697221"/>
 					</object>
 					<object class="IBUIImageView" id="738546196">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -581,7 +578,7 @@
 						<int key="IBUIContentMode">4</int>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<reference key="IBUIImage" ref="118070583"/>
+						<reference key="IBUIImage" ref="344697221"/>
 					</object>
 					<object class="IBUIButton" id="959975504">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -915,9 +912,9 @@
 							<reference ref="921810397"/>
 							<reference ref="814738113"/>
 							<reference ref="607627685"/>
-							<reference ref="365684997"/>
 							<reference ref="608144873"/>
 							<reference ref="339388545"/>
+							<reference ref="305568113"/>
 						</object>
 						<reference key="parent" ref="191373211"/>
 					</object>
@@ -1050,11 +1047,6 @@
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">64</int>
-						<reference key="object" ref="365684997"/>
-						<reference key="parent" ref="16969202"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">65</int>
 						<reference key="object" ref="608144873"/>
 						<reference key="parent" ref="16969202"/>
@@ -1062,6 +1054,11 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">81</int>
 						<reference key="object" ref="339388545"/>
+						<reference key="parent" ref="16969202"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">88</int>
+						<reference key="object" ref="305568113"/>
 						<reference key="parent" ref="16969202"/>
 					</object>
 				</object>
@@ -1143,7 +1140,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">87</int>
+			<int key="maxID">88</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2320,7 +2317,6 @@
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>bg-follow.png</string>
 				<string>bg-numbers.png</string>
-				<string>btn-arrow01.png</string>
 				<string>btn-favorite01.png</string>
 				<string>btn-favorite02.png</string>
 				<string>btn-reply01.png</string>
@@ -2336,7 +2332,6 @@
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>{320, 50}</string>
 				<string>{320, 153}</string>
-				<string>{8, 11}</string>
 				<string>{50, 50}</string>
 				<string>{50, 50}</string>
 				<string>{50, 50}</string>

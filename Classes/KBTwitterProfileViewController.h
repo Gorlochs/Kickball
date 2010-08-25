@@ -25,6 +25,8 @@
 	
 	IBOutlet UIButton *followButton;
 	IBOutlet UIButton *unfollowButton;
+	IBOutlet UIButton *replyButton;
+	IBOutlet UIButton *dmButton;
 	
     TTImageView *userIcon;
     UIImageView *iconBgImage;

@@ -128,6 +128,7 @@
     if (cell == nil) {
         cell = [[[KBTwitterUserTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		cell.userName.highlightedTextColor = [UIColor whiteColor];
     }
     
 	KBTwitterUser *user = [users objectAtIndex:indexPath.row];

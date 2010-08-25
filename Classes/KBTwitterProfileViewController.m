@@ -85,6 +85,11 @@
 	} else {
 		followButton.hidden = NO;
 		unfollowButton.hidden = YES;
+		dmButton.hidden = YES;
+		
+		CGRect btnFrame = replyButton.frame;
+		btnFrame.origin.x += 50;
+		replyButton.frame = btnFrame;
 	}
     [self hideOwnUserButtons];
     [self stopProgressBar];

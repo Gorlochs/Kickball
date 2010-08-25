@@ -411,7 +411,7 @@
     // I had to uncomment this out for stuff to work properly. Not sure why it was commented out. -shawn-
     // TOTAL HACK ALERT: sending a tweet/update craps out unless this code is not executed, but 
     //                   everything else needs it. Go figure.
-    if (params && requestType != MGTwitterUpdateSendRequest) {
+    if (params && requestType != MGTwitterUpdateSendRequest && requestType != MGTwitterDirectMessageSendRequest) {
         fullPath = [self _queryStringWithBase:fullPath parameters:params prefixed:YES];
     }
 	// --------------------------------------------------------------------------------

@@ -1368,9 +1368,11 @@
     return [self _sendRequestWithMethod:HTTP_POST_METHOD 
 								   path:path 
                         queryParameters:params 
-								   body:body 
+								   body:body
                             requestType:MGTwitterDirectMessageSendRequest
                            responseType:MGTwitterDirectMessage];
+//                            requestType:MGTwitterUpdateSendRequest
+//                           responseType:MGTwitterStatus];
 }
 
 
