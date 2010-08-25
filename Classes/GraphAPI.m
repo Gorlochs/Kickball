@@ -280,13 +280,15 @@ NSString* const kConnectionAlbums = @"albums";
 	NSArray* ids = [post_id componentsSeparatedByString:@"_"];
 	NSData* responseData = nil;
 	NSString* r_string = nil;
-	NSString* method = @"comments.get";
+	//NSString* method = @"comments.get";
+	NSString* method = @"stream.getComments";
 	NSMutableDictionary *args = nil;
 	if ([ids count]!=2) {
 		//there was a problem with the incoming post_id
 		return nil;
 	}
-	args= [NSMutableDictionary dictionaryWithObjectsAndKeys:[ids objectAtIndex:1],@"object_id",@"json",@"format",self._accessToken,kArgumentKeyAccessToken,nil];
+	//args= [NSMutableDictionary dictionaryWithObjectsAndKeys:[ids objectAtIndex:1],@"object_id",@"json",@"format",self._accessToken,kArgumentKeyAccessToken,nil];
+	args= [NSMutableDictionary dictionaryWithObjectsAndKeys:post_id,@"post_id",@"json",@"format",self._accessToken,kArgumentKeyAccessToken,nil];
 	responseData = [self makeSynchronousRest:method args:args verb:kRequestVerbGet];
 	r_string = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
 	//[responseData release];
