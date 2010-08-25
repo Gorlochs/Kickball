@@ -19,10 +19,8 @@
     [super viewDidLoad];
 	
 	//load web URL
-	//http://s3.amazonaws.com/kickball/version/version.1.1.html
-	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://s3.amazonaws.com/kickball/version/version.1.1.html"]];
-	//NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.gorlochs.com/kickball/app/version/version.1.1.html"]];
-	//NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.22greystreet.com/kickball/version.1.1.html"]];
+	//http://s3.amazonaws.com/kickball/version/version.1.5.html
+	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://s3.amazonaws.com/kickball/version/version.1.5.html"]];
 	[webView loadRequest:request];
 
 

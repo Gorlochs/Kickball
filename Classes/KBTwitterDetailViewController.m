@@ -77,8 +77,8 @@
 	} else {
 		[favoriteButton setImage:[UIImage imageNamed:@"btn-favorite01.png"] forState:UIControlStateNormal];
 	}
-    twitterManager = [KBTwitterManager twitterManager];
-	twitterManager.delegate = self;
+//    twitterManager = [KBTwitterManager twitterManager];
+//	twitterManager.delegate = self;
 	
     [twitterEngine getUserInformationFor:tweet.screenName];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTweetNotification:) name:IFTweetLabelURLNotification object:nil];
@@ -146,11 +146,19 @@
 }
 
 - (void)userInfoReceived:(NSArray *)userInfo {
+	DLog(@"tweet detail user info: %@", userInfo);
     userDictionary = [[userInfo objectAtIndex:0] copy];
     numberOfFriends.text = [NSString stringWithFormat:@"%d", [[userDictionary objectForKey:@"friends_count"] intValue]];
     numberOfFollowers.text = [NSString stringWithFormat:@"%d", [[userDictionary objectForKey:@"followers_count"] intValue]];
     numberOfTweets.text = [NSString stringWithFormat:@"%d", [[userDictionary objectForKey:@"statuses_count"] intValue]];
     numberOfFavorites.text = [NSString stringWithFormat:@"%d", [[userDictionary objectForKey:@"favourites_count"] intValue]];
+	if ([[userDictionary objectForKey:@"protected"] boolValue]) {
+		retweetButton.hidden = YES;
+		
+		CGRect btnFrame = replyToTweetButton.frame;
+		btnFrame.origin.x += 50;
+		replyToTweetButton.frame = btnFrame;
+	}
     [self stopProgressBar];
 }
 

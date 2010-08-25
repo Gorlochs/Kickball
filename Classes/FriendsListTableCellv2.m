@@ -54,7 +54,7 @@
         venueName.lineBreakMode = UILineBreakModeClip;
         [self addSubview:venueName];
         
-        crownImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"crown.png"]];
+        crownImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"place-mayorCrown.png"]];
         crownImage.frame = CGRectMake(27, 2, 13, 7);
 		crownImage.hidden = YES;
         [self addSubview:crownImage];
