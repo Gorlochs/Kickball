@@ -61,6 +61,8 @@ typedef enum{
 	UIView *optionsHeaderBg;
 	UIButton *optionsLeft;
 	UIButton *optionsRight;
+	
+	KBNavControllerType currentControllerType;
 	}
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;

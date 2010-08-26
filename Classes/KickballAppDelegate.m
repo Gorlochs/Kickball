@@ -401,6 +401,8 @@ void uncaughtExceptionHandler(NSException *exception) {
 }
 
 -(void)flipToOptions {
+	currentControllerType = navControllerType;
+	navControllerType = KBNavControllerTypeFoursquare;
 	optionsFrame = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, 320, 460)];
 	[optionsFrame setImage:[UIImage imageNamed:@"opt_cornersOptions.png"]];
 	optionsHeaderBg = [[UIView alloc] initWithFrame:CGRectMake(0, 29, 320, 69)];
@@ -458,6 +460,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 }
 
 - (void)returnFromOptions{
+	navControllerType = currentControllerType;
 	[UIView beginAnimations:@"returnFromOptions" context:nil];
     [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:flipperView cache:YES];
 	[UIView setAnimationDelegate:self];

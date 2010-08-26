@@ -220,18 +220,7 @@ const NSString *kickballDomain = @"http://kickball.gorlochs.com/kickball";
     [msg release];
 }
 
-- (BOOL)displaysTwitterUserProfile {
-    DLog(@"displaying twitter userprofile");
-    KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
-	if (appDelegate.navControllerType == KBNavControllerTypeTwitter) {
-		KBTwitterProfileViewController *pvc = [[KBTwitterProfileViewController alloc] initWithNibName:@"KBTwitterProfileViewController" bundle:nil];
-		pvc.screenname = [[NSUserDefaults standardUserDefaults] objectForKey:@"twittername"];
-		[self.navigationController pushViewController:pvc animated:YES];
-		[pvc release];
-		return YES;
-	}
-	return NO;
-}
+
 
 - (void) viewUserProfile {
     // take user to their profile
@@ -504,7 +493,7 @@ const NSString *kickballDomain = @"http://kickball.gorlochs.com/kickball";
 #pragma mark utility methods
 
 - (void) displayProperProfileView:(NSString*)userId {
-    if ([self displaysTwitterUserProfile]) return;
+    //if ([self displaysTwitterUserProfile]) return;
     if ([userId isEqualToString:[self getAuthenticatedUser].userId]) {
         UserProfileViewController *profileController = [[UserProfileViewController alloc] initWithNibName:@"UserProfileView_v2" bundle:nil];
         profileController.userId = userId;

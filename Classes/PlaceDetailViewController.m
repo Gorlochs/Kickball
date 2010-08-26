@@ -299,7 +299,7 @@
 - (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     DLog(@"instring: %@", inString);
 	
-    FSCheckin *theCheckin = [[FoursquareAPI checkinFromResponseXML:inString] retain];
+    FSCheckin *theCheckin = [FoursquareAPI checkinFromResponseXML:inString];
 	[self stopProgressBar];
     
 	self.venueToPush = theCheckin.venue;
@@ -307,8 +307,8 @@
         [self sendPushNotification];
     }
 	
-	[self presentCheckinOverlayWithCheckin:[theCheckin retain]];
-	[theCheckin release];
+	[self presentCheckinOverlayWithCheckin:theCheckin];
+	//[theCheckin release];
 	//[[NSNotificationCenter defaultCenter] postNotificationName:@"didCheckin" object:nil]; 
 }
 
@@ -331,10 +331,10 @@
     
     [smallMapView setRegion:region animated:NO];
     [smallMapView regionThatFits:region];
-    [smallMapView setShowsUserLocation:YES];
+    [smallMapView setShowsUserLocation:NO];
     [fullMapView setRegion:fullRegion animated:NO];
     [fullMapView regionThatFits:fullRegion];
-    [fullMapView setShowsUserLocation:YES];
+    [fullMapView setShowsUserLocation:NO];
     
     VenueAnnotation *venueAnnotation = [[VenueAnnotation alloc] initWithCoordinate:location];
     [smallMapView addAnnotation:venueAnnotation];
@@ -573,7 +573,7 @@
     [super didReceiveMemoryWarning];
 	
 	// Release any cached data, images, etc that aren't in use.
-    fullMapView = nil;
+    //fullMapView = nil;
     badgeImage = nil;
     //smallMapView = nil;
 }
@@ -858,41 +858,7 @@
     [self displayProperProfileView:profileUserId];
 }
 
-- (void)dealloc {
-    @try {
-        [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:@"todoTipSent"];
-        [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:@"shoutAndCheckinSent"];
-    }
-    @catch (NSException * e) {
-        DLog("observer could not be removed: %@", e);
-    }
-    @finally {
-        DLog("finally");
-    }
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
-	photoManager.delegate = nil;
-    
-    [checkin release];
-    [venue release];
-    [venueId release];
-    [goodies release];
-    [photoSource release];
-    [photoImage release];
-    
-    [tipController release];
-    [checkinViewController release];
-	
-	[peopleHereCell release];
-	[checkinView release];
-	
-	if (connectionManager_) [connectionManager_ release];
-    [mayorMapCell release];
-	[checkinCell release];
-	[giftCell release];
-    [super dealloc];
-}
+
 
 #pragma mark -
 #pragma mark IBAction methods
@@ -1430,13 +1396,19 @@
 
 - (MKAnnotationView *) mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>) annotation{
 	
-    if (annotation == mapView.userLocation) {
-        return nil;
-    }
+    if( [[annotation title] isEqualToString:@"Current Location"] ) {
+		return nil;
+	}
     
     int postag = 0;
-    
-	KBPin *annView=[[[KBPin alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomId"] autorelease];
+    static NSString* annotationIdentifier = @"annotationIdentifier";
+	KBPin* annView = (KBPin *)[mapView dequeueReusableAnnotationViewWithIdentifier:annotationIdentifier];
+	if (!annView)
+	{
+		// if an existing pin view was not available, create one
+		annView = [[[KBPin alloc] initWithAnnotation:annotation reuseIdentifier:annotationIdentifier] autorelease];
+	//KBPin *annView=[[[KBPin alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomId"] autorelease];
+	}
 	//annView.pinColor = MKPinAnnotationColorGreen;
     annView.image = [UIImage imageNamed:@"place-mapPin.png"];
     
@@ -1597,6 +1569,43 @@
 - (void)venueResponseReceivedWithRefresh:(NSURL *)inURL withResponseString:(NSString *)inString {
     [self venueResponseReceived:inURL withResponseString:inString];
 	[self dataSourceDidFinishLoadingNewData];
+}
+
+
+- (void)dealloc {
+    @try {
+        [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:@"todoTipSent"];
+        [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:@"shoutAndCheckinSent"];
+    }
+    @catch (NSException * e) {
+        DLog("observer could not be removed: %@", e);
+    }
+    @finally {
+        DLog("finally");
+    }
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+	photoManager.delegate = nil;
+    
+    [checkin release];
+    [venue release];
+    [venueId release];
+    [goodies release];
+    [photoSource release];
+    [photoImage release];
+    
+    [tipController release];
+    [checkinViewController release];
+	
+	[peopleHereCell release];
+	[checkinView release];
+	
+	if (connectionManager_) [connectionManager_ release];
+    [mayorMapCell release];
+	[checkinCell release];
+	[giftCell release];
+    [super dealloc];
 }
 
 @end

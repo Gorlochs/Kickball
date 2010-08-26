@@ -18,6 +18,7 @@
 #import "KBTwitterLoginView.h"
 #import "Utilities.h"
 #import "KBTwitterProfileViewController.h"
+#import "KickballAppDelegate.h"
 
 @implementation KBTwitterViewController
 
@@ -183,6 +184,22 @@
 	[pvc release];
 }
 
+- (void) displayProperProfileView:(NSString*)userId {
+	[self displaysTwitterUserProfile];
+}
+
+- (BOOL)displaysTwitterUserProfile {
+    DLog(@"displaying twitter userprofile");
+    KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
+	if (appDelegate.navControllerType == KBNavControllerTypeTwitter) {
+		KBTwitterProfileViewController *pvc = [[KBTwitterProfileViewController alloc] initWithNibName:@"KBTwitterProfileViewController" bundle:nil];
+		pvc.screenname = [[NSUserDefaults standardUserDefaults] objectForKey:@"twittername"];
+		[self.navigationController pushViewController:pvc animated:YES];
+		[pvc release];
+		return YES;
+	}
+	return NO;
+}
 
 - (void)dealloc {
 	twitterManager.delegate = nil;

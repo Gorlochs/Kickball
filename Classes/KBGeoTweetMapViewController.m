@@ -218,8 +218,14 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     if( [[annotation title] isEqualToString:@"Current Location"] ) {
 		return nil;
 	}
-    
-    KBPin *annView=[[[KBPin alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomId"] autorelease];
+	static NSString* annotationIdentifier = @"annotationIdentifier";
+	KBPin* annView = (KBPin *)[mapView dequeueReusableAnnotationViewWithIdentifier:annotationIdentifier];
+	if (!annView)
+	{
+		// if an existing pin view was not available, create one
+		annView = [[[KBPin alloc] initWithAnnotation:annotation reuseIdentifier:annotationIdentifier] autorelease];
+		//KBPin *annView=[[[KBPin alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomId"] autorelease];
+	}
     annView.image = [UIImage imageNamed:@"tweet-pin.png"];
     [annView setObserver:self];
     [annView addObserver:self

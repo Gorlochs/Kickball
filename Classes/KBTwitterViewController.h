@@ -36,5 +36,5 @@
 - (void)checkMemoryUsage;
 -(void)showLoginView;
 -(void)killLoginView;
-
+- (BOOL)displaysTwitterUserProfile;
 @end
