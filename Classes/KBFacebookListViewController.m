@@ -225,7 +225,7 @@
 		NSString *bodyText = [[FacebookProxy instance] findSuitableText:fbItem];
 		NSString *displayString = [NSString stringWithFormat:@"<span class=\"fbBlueText\">%@</span> %@",[[FacebookProxy instance] userNameFrom:[fbItem objectForKey:@"actor_id"]], bodyText];
 		NSString *attribution = [fbItem objectForKey:@"attribution"];
-		if (attribution!=[NSNull null]) {
+		if ([attribution isKindOfClass:[NSString class]]) {
 			if ([attribution isEqualToString:@"Kickball!"]) {
 				displayString = [NSString stringWithFormat:@"%@ - via <span class=\"fbRedText\">%@</span>",displayString, attribution];
 			}
@@ -267,7 +267,7 @@
     NSString *bodyText = [[FacebookProxy instance] findSuitableText:fbItem];
     NSString *displayString = [NSString	 stringWithFormat:@"<span class=\"fbBlueText\">%@</span> %@",[[FacebookProxy instance] userNameFrom:[fbItem objectForKey:@"actor_id"]], bodyText];
 	NSString *attribution = [fbItem objectForKey:@"attribution"];
-	if (attribution!=[NSNull null]) {
+	if ([attribution isKindOfClass:[NSString class]]) {
 		if ([attribution isEqualToString:@"Kickball!"]) {
 			displayString = [NSString stringWithFormat:@"%@ - via <span class=\"fbRedText\">%@</span>",displayString, attribution];
 		}

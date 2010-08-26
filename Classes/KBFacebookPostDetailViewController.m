@@ -85,7 +85,7 @@
 	}
 	NSString *displayString = [NSString	 stringWithFormat:@"<span class=\"fbLargeBlueText\">%@</span> %@",[[FacebookProxy instance] userNameFrom:[fbItem objectForKey:@"actor_id"]], bodyText];
 	NSString *attribution = [fbItem objectForKey:@"attribution"];
-	if (attribution!=[NSNull null]) {
+	if ([attribution isKindOfClass:[NSString class]]) {
 		if ([attribution isEqualToString:@"Kickball!"]) {
 			displayString = [NSString stringWithFormat:@"%@ - via <span class=\"fbLargeRedText\">%@</span>",displayString, attribution];
 		}
