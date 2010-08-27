@@ -12,6 +12,7 @@
 
 @interface VersionInfoViewController : OptionsVC {
 	IBOutlet UIWebView *webView;
+	IBOutlet UILabel *headerLabel;
 }
 
 @end

@@ -22,6 +22,7 @@
 	//http://s3.amazonaws.com/kickball/version/version.1.5.html
 	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://s3.amazonaws.com/kickball/version/version.1.5.html"]];
 	[webView loadRequest:request];
+	[headerLabel setText:[NSString stringWithFormat:@"Version Information (%@)",[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]]];
 
 
 }
