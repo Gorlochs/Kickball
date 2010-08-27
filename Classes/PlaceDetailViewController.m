@@ -125,6 +125,7 @@
     [self setProperButtonStates];
     
     mayorCrown.hidden = YES;
+	fullMapView.alpha = 0.0;
     
     [self addHeaderAndFooter:theTableView];
     //refreshHeaderView.backgroundColor = [UIColor blackColor];
@@ -139,6 +140,16 @@
     pageType = KBPageTypePlaces;
     pageViewType = KBPageViewTypeList;
     [self setProperFoursquareButtons];
+	[centerHeaderButton removeTarget:self action:NULL forControlEvents:UIControlEventTouchUpInside];
+	[centerHeaderButton addTarget:self action:@selector(toggleMap) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void) toggleMap {
+	if (fullMapView.alpha < 1.0) {
+		[self viewVenueMap];
+	} else {
+		[self closeMap];
+	}
 }
 
 - (void) startBusy {
@@ -492,7 +503,7 @@
 	int personTag;	
 	switch (position) {
 		case 1:
-			nameRect = CGRectMake(48, 8, 75, 30);
+			nameRect = CGRectMake(48, 8, 175, 30);
 			headRect = CGRectMake(8, 8, 32, 32);
 			personTag = 1;
 			touchRect = CGRectMake(0, 0, 320, 47);
@@ -639,11 +650,13 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
+		
 		UIView *colorFill = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 55)];
 		colorFill.backgroundColor = [UIColor colorWithWhite:0.92 alpha:1.0];
 		colorFill.opaque = YES;
 		[cell setBackgroundView:colorFill];
 		[colorFill release];
+		
 		UIImageView* topLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderTop.png"]];
 		topLineImage.frame = CGRectMake(0, 0, 320, 1);
 		[cell addSubview:topLineImage];
