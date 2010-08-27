@@ -635,6 +635,7 @@
 		2BF5CC9A12147D1F00D39F68 /* pullFB02.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BF5CC9312147D1F00D39F68 /* pullFB02.png */; };
 		2BF5CC9B12147D1F00D39F68 /* pullTW01.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BF5CC9412147D1F00D39F68 /* pullTW01.png */; };
 		2BF5CC9C12147D1F00D39F68 /* pullTW02.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BF5CC9512147D1F00D39F68 /* pullTW02.png */; };
+		2BF8743C12283A9A00A94986 /* BusyAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8743B12283A9A00A94986 /* BusyAgent.m */; };
 		552AFD8210A270ED009300E2 /* FSTip.m in Sources */ = {isa = PBXBuildFile; fileRef = 552AFD8110A270ED009300E2 /* FSTip.m */; };
 		552AFDE410A27AED009300E2 /* FriendPlacemark.m in Sources */ = {isa = PBXBuildFile; fileRef = 552AFDE310A27AED009300E2 /* FriendPlacemark.m */; };
 		552AFE4110A285AC009300E2 /* FriendIconAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 552AFE4010A285AC009300E2 /* FriendIconAnnotationView.m */; };
@@ -1636,6 +1637,8 @@
 		2BF5CC9312147D1F00D39F68 /* pullFB02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pullFB02.png; sourceTree = "<group>"; };
 		2BF5CC9412147D1F00D39F68 /* pullTW01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pullTW01.png; sourceTree = "<group>"; };
 		2BF5CC9512147D1F00D39F68 /* pullTW02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pullTW02.png; sourceTree = "<group>"; };
+		2BF8743A12283A9900A94986 /* BusyAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusyAgent.h; sourceTree = "<group>"; };
+		2BF8743B12283A9A00A94986 /* BusyAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusyAgent.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Kickball_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kickball_Prefix.pch; sourceTree = "<group>"; };
 		363386F3121DE8D3009E3AEF /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		552AFD8010A270ED009300E2 /* FSTip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSTip.h; sourceTree = "<group>"; };
@@ -3821,6 +3824,8 @@
 		6A50B44A116D509D002FC1FF /* Singletons */ = {
 			isa = PBXGroup;
 			children = (
+				2BF8743A12283A9900A94986 /* BusyAgent.h */,
+				2BF8743B12283A9A00A94986 /* BusyAgent.m */,
 				0E985EDD11EFB5960027E401 /* KBDialogueManager.h */,
 				0E985EDE11EFB5960027E401 /* KBDialogueManager.m */,
 				6ADC9C1810D1EE5100CFDCA7 /* Utilities.h */,
@@ -4373,7 +4378,6 @@
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Kickball" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				English,
@@ -5337,6 +5341,7 @@
 				2BCBC70E1208CFB60017920E /* GAParent.m in Sources */,
 				2BCBC70F1208CFB60017920E /* GAPlace.m in Sources */,
 				0EC5C0AA120B4701003AA0E5 /* MGTwitterTouchJSONParser.m in Sources */,
+				2BF8743C12283A9A00A94986 /* BusyAgent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

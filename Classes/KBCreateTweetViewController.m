@@ -248,6 +248,7 @@
 - (void) closeUpShop {
     [self stopProgressBar];
 	// FIXME: POST NOTIFICATION TO DISPLAY THE SUCCESS VIEW
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"twitterViewLoadFailure" object: nil];
 	[self backOneView];
 }
 

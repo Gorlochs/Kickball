@@ -100,6 +100,7 @@ static BOOL initialized = NO;
     [delegate photoUploadFinished:request];
 //    [self stopProgressBar];
     DLog(@"PhotoManager - YAY! Image uploaded! %@", [request responseString]);
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"photoUploaded" object:nil];
 //    KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"Image upload has been completed!"];
 //    [self displayPopupMessage:message];
 //    [message release];
@@ -341,6 +342,7 @@ static BOOL initialized = NO;
          andMessage:(NSString*)message andOrientation:(UIImageOrientation)orientation andVenue:(FSVenue*)venue {
     
     NSNumber *tagKey = [NSNumber numberWithInteger:1];
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"startBusy" object:nil];
     
     // Initilize Variables
     NSURL *url = nil;

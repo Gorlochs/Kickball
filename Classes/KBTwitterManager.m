@@ -125,7 +125,6 @@ static KBTwitterManager *sharedInstance = nil;
 - (void)requestSucceeded:(NSString *)connectionIdentifier
 {
 	DLog(@"Twitter request succeeded 5: %@", connectionIdentifier);
-	
 	//UIAlertViewQuick(@"twitter call worked!", @"Everything works!", @"OK");
 }
 

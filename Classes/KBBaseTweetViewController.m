@@ -14,6 +14,8 @@
 #import "KBTwitterDetailViewController.h"
 #import "KBTwitterProfileViewController.h"
 #import "KickballAPI.h"
+#import "KBDialogueManager.h"
+
 
 @implementation KBBaseTweetViewController
 
@@ -29,10 +31,18 @@
 
 - (void) viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(displaySentTwitterMessage) name:@"displaySentTwitterMessage" object:nil];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:@"displaySentTwitterMessage" object:nil];
     [super viewDidDisappear:animated];
+}
+
+- (void) displaySentTwitterMessage {
+	KBMessage *theMessage = [[KBMessage alloc] initWithMember:@"Success!" andMessage:@"Your tweet was sent successfully."];
+	[[KBDialogueManager sharedInstance] displayMessage:theMessage];
+	[theMessage release];	
 }
 
 - (void)twitterViewLoadFailure {

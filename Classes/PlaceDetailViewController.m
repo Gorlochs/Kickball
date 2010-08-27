@@ -88,6 +88,8 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(displayTodoTipMessage:) name:@"todoTipSent" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentCheckinOverlay:) name:@"checkedIn" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(photoUploaded) name:@"photoUploaded" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startBusy) name:@"startBusy" object:nil];
 
 	specialsButton = [UIButton buttonWithType:UIButtonTypeCustom];
 	[specialsButton setFrame:CGRectMake(320-51, 0, 53, 57)];
@@ -137,6 +139,10 @@
     pageType = KBPageTypePlaces;
     pageViewType = KBPageViewTypeList;
     [self setProperFoursquareButtons];
+}
+
+- (void) startBusy {
+	[self startProgressBar:@""];
 }
 
 - (void) retrievePhotos {
@@ -940,7 +946,7 @@
     checkinView.opaque = NO;
     
     // create title
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, 320, 60)];
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 300, 60)];
     //    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(17, 5, 291, 60)];
     [titleLabel setFont:[UIFont boldSystemFontOfSize:42]];
     [titleLabel setTextColor:[UIColor colorWithRed:14/255.0 green:140/255.0 blue:192/255.0 alpha:1]];
@@ -975,8 +981,7 @@
         mayorBadgeImageView.frame = CGRectMake(0, 70, 320, 221);
         [checkinView addSubview:mayorBadgeImageView];
 		
-        IFTweetLabel *mayorLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(17.0f, height, 320.0f, 50.0f)];
-          //      IFTweetLabel *mayorLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(17.0f, height, 280.0f, 50.0f)];
+        IFTweetLabel *mayorLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(17.0f, height, 300.0f, 50.0f)];
         [mayorLabel setFont:[UIFont boldSystemFontOfSize:12.0f]];
         [mayorLabel setTextColor:[UIColor whiteColor]];
         [mayorLabel setBackgroundColor:[UIColor clearColor]];
@@ -1534,9 +1539,7 @@
 - (void) photoUploadFinished:(ASIHTTPRequest *) request {
     [self stopProgressBar];
     DLog(@"YAY! Image uploaded! %@", [request responseString]);
-    KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"Image upload has been completed!"];
-    [self displayPopupMessage:message];
-    [message release];
+
     
     // NOTE: the self.photoMessageToPush is being set above in the returnFromMessageView: method
     self.venueToPush = self.venue;
@@ -1557,6 +1560,13 @@
 - (void) photoUploadFailed:(ASIHTTPRequest *) request {
     [self stopProgressBar];
     DLog(@"Uhoh, it did fail!");
+}
+
+// this is used in the notification
+- (void) photoUploaded {
+	KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"Image upload has been completed!"];
+    [self displayPopupMessage:message];
+    [message release];
 }
 
 #pragma mark -

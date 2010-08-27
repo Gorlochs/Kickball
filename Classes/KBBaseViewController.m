@@ -23,6 +23,8 @@
 #import "GraphAPI.h"
 #import "KBTwitterProfileViewController.h"
 #import "Utilities.h"
+#import "BusyAgent.h"
+
 
 #define PROGRESS_BAR_TIMER_LENGTH 30.0
 
@@ -293,32 +295,33 @@ const NSString *kickballDomain = @"http://kickball.gorlochs.com/kickball";
 }
 
 - (void) startProgressBar:(NSString*)textToDisplay withTimer:(BOOL)shouldSetTimer andLongerTime:(BOOL)longerTime{
-//    if (textToDisplay == nil) {
-//        textToDisplay = @"Processing...";
-//    }
-	//	if (progressViewController) [progressViewController release];
-	if (!progressViewController) {
-		progressViewController = [[ProgressViewController alloc] initWithNibName:@"ProgressView" bundle:nil];
-	}
-	CGRect frame = progressViewController.view.frame;
-	frame.origin.y = frame.origin.y + 50;
-	progressViewController.view.frame = frame;
 	
-	[UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationDuration:0.4];
-	[UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
-	progressViewController.view.frame = CGRectMake(0, 
-												   progressViewController.view.frame.origin.y - 50, 
-												   progressViewController.view.frame.size.width, 
-												   progressViewController.view.frame.size.height);
-    
-    [UIView commitAnimations];
+	DLog(@"################# starting progress bar #################");
 	
-//    progressViewController.activityLabel.text = textToDisplay;
-//    [progressViewController.activityLabel setShadowColor:[UIColor whiteColor]];
-//    [progressViewController.activityLabel setShadowOffset:CGSizeMake(1, 1)];
-    [self.view addSubview:progressViewController.view];
+	[[BusyAgent defaultAgent] queueBusy];
+	
+//	if (!progressViewController) {
+//		progressViewController = [[ProgressViewController alloc] initWithNibName:@"ProgressView" bundle:nil];
+//	}
+//	CGRect frame = progressViewController.view.frame;
+//	frame.origin.y = frame.origin.y + 50;
+//	progressViewController.view.frame = frame;
+//	
+//	[UIView beginAnimations:nil context:NULL];
+//    [UIView setAnimationBeginsFromCurrentState:YES];
+//    [UIView setAnimationDuration:0.4];
+//	[UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
+//	progressViewController.view.frame = CGRectMake(0, 
+//												   progressViewController.view.frame.origin.y - 50, 
+//												   progressViewController.view.frame.size.width, 
+//												   progressViewController.view.frame.size.height);
+//    
+//    [UIView commitAnimations];
+//	
+////    progressViewController.activityLabel.text = textToDisplay;
+////    [progressViewController.activityLabel setShadowColor:[UIColor whiteColor]];
+////    [progressViewController.activityLabel setShadowOffset:CGSizeMake(1, 1)];
+//    [self.view addSubview:progressViewController.view];
     
     if (shouldSetTimer) {
         if (longerTime) {
@@ -334,7 +337,8 @@ const NSString *kickballDomain = @"http://kickball.gorlochs.com/kickball";
 }
 
 -(void) stopProgressBarAndDisplayErrorMessage:(NSTimer*)theTimer {
-    [self stopProgressBar];
+	[[BusyAgent defaultAgent] dequeueBusy];
+//    [self stopProgressBar];
     
 	// *** SCOTT ***  Scott thinks this error message is irrelevant and does not need to be called.
     /*
@@ -345,20 +349,22 @@ const NSString *kickballDomain = @"http://kickball.gorlochs.com/kickball";
 }
 
 - (void) stopProgressBar {
-    [progressBarTimer invalidate];
-    progressBarTimer = nil;
-	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-	
-	[UIView beginAnimations:nil context:NULL];
-	[UIView setAnimationBeginsFromCurrentState:YES];
-	[UIView setAnimationDuration:0.4];
-	[UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
-	progressViewController.view.frame = CGRectMake(0, 
-												   progressViewController.view.frame.origin.y + 50, 
-												   progressViewController.view.frame.size.width, 
-												   progressViewController.view.frame.size.height);
-	
-	[UIView commitAnimations];
+	DLog(@"################# stopping progress bar #################");
+	[[BusyAgent defaultAgent] dequeueBusy];
+//    [progressBarTimer invalidate];
+//    progressBarTimer = nil;
+//	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+//	
+//	[UIView beginAnimations:nil context:NULL];
+//	[UIView setAnimationBeginsFromCurrentState:YES];
+//	[UIView setAnimationDuration:0.4];
+//	[UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
+//	progressViewController.view.frame = CGRectMake(0, 
+//												   progressViewController.view.frame.origin.y + 50, 
+//												   progressViewController.view.frame.size.width, 
+//												   progressViewController.view.frame.size.height);
+//	
+//	[UIView commitAnimations];
 }
 
 - (void) doInitialDisplay {
