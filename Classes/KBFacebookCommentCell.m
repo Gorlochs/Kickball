@@ -70,11 +70,17 @@
 	[fbPictureUrl release];
 	fbPictureUrl = nil;
 	if (_url != nil) {
-		NSString *forceUTF = [[NSString alloc] initWithUTF8String:[_url UTF8String]];
-		fbPictureUrl = [forceUTF stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-		[forceUTF release];
-		[fbPictureUrl retain];
-		DLog(@"fbPictureUrl:: %@",fbPictureUrl);
+		if ([_url isKindOfClass:[NSNull class]]) {
+			DLog(@"Fish Bug");
+		}else {
+			NSString *forceUTF = [[NSString alloc] initWithUTF8String:[_url UTF8String]];
+			fbPictureUrl = [forceUTF stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+			[forceUTF release];
+			[fbPictureUrl retain];
+			DLog(@"fbPictureUrl:: %@",fbPictureUrl);
+		}
+
+		
 		
 	}
 		//NSString *cachedUrl = [[FacebookProxy instance].pictureUrls objectForKey:fbPictureUrl];
