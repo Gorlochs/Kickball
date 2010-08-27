@@ -145,4 +145,6 @@
 -(void)addPersonHere:(UIView*)container :(FSCheckin*)person :(int)position;
 -(void)touchedPersonHere:(id)sender;
 
+-(void) closeChekinView;
+
 @end

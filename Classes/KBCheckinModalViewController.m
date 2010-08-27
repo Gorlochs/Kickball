@@ -23,7 +23,7 @@
 
 @implementation KBCheckinModalViewController
 
-@synthesize venue;
+@synthesize venue, parentController;
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
@@ -74,7 +74,8 @@
 }
 
 - (void) cancelView {
-    [self dismissModalViewControllerAnimated:YES];
+    //[self dismissModalViewControllerAnimated:YES];
+	[parentController closeChekinView];
 }
 
 #pragma mark -
@@ -438,6 +439,7 @@
 - (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error {}
 
 - (void)dealloc {
+	[parentController release];
 	photoManager.delegate = nil;
     [venue release];
     [characterCountLabel release];

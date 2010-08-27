@@ -935,7 +935,38 @@
     if (checkinViewController) [checkinViewController release];
     checkinViewController = [[KBCheckinModalViewController alloc] initWithNibName:@"CheckinModalView" bundle:nil];
     checkinViewController.venue = venue;
-    [self presentModalViewController:checkinViewController animated:YES];
+	checkinViewController.parentController = self;
+	[checkinViewController.view setCenter:CGPointMake(160.0, 710.0)];
+	[self.view setUserInteractionEnabled:NO];
+	[self.view addSubview:checkinViewController.view];
+	[UIView beginAnimations:@"openCheckinView" context:nil];
+    [UIView setAnimationDuration:0.5];
+	[UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(checkinEnableinput)];
+    checkinViewController.view.center = CGPointMake(160.0, 230.0);
+	[UIView commitAnimations]; //do animation
+	
+    //[self presentModalViewController:checkinViewController animated:YES];
+}
+-(void)checkinEnableinput{
+	[self.view setUserInteractionEnabled:YES];
+}
+
+-(void) closeChekinView {
+	[self.view addSubview:checkinViewController.view];
+	[UIView beginAnimations:@"closeCheckinView" context:nil];
+	[self.view setUserInteractionEnabled:NO];
+    [UIView setAnimationDuration:0.5];
+	[UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(cleanUpAfterCheckin)];
+    checkinViewController.view.center = CGPointMake(160.0, 710.0);
+	[UIView commitAnimations]; //do animation
+}
+-(void)cleanUpAfterCheckin{
+	[checkinViewController removeFromSupercontroller];
+	[checkinViewController release];
+	checkinViewController = nil;
+	[self.view setUserInteractionEnabled:YES];
 }
         
 - (void) presentCheckinOverlay:(NSNotification*)inNotification {

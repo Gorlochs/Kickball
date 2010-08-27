@@ -37,9 +37,11 @@
 	TweetPhotoResponse *tweetPhotoResponse;
 	
     int actionCount;
+	id parentController;
 }
 
 @property (nonatomic, retain) FSVenue *venue;
+@property (nonatomic, retain)id parentController;
 
 - (IBAction) checkin;
 - (IBAction) cancelView;
