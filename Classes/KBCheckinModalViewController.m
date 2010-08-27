@@ -196,7 +196,7 @@
 		tweetPhotoComment = checkinTextField.text;
 	} else if ([checkinTextField.text length] > 120) {
 		tweetPhotoComment = [NSString stringWithFormat:@"%@...",[checkinTextField.text substringToIndex:120]];
-	} {
+	} else {
 		tweetPhotoComment = [NSString stringWithFormat:@"Photo at %@", venue.name];
 	}
 
