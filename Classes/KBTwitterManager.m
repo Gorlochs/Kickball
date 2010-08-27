@@ -140,12 +140,15 @@ static KBTwitterManager *sharedInstance = nil;
     DLog(@"Receive status");
     if([(NSObject*)delegate respondsToSelector:@selector(statusesReceived:)]){
     	[delegate statusesReceived:statuses]; //if it doesn't respond, there was a network error
-    } else DLog(@"unable to call statusesReceived with info %@ ----------------------------------------------- for controller %@", statuses, delegate);
+    } else {
+		DLog(@"unable to call statusesReceived with info %@ ----------------------------------------------- for controller %@", statuses, delegate);
+	}
 }
 
 - (void)directMessagesReceived:(NSArray *)messages forRequest:(NSString *)connectionIdentifier {
-  if ([(NSObject*)delegate respondsToSelector:@selector(directMessagesReceived:)])
-  	[delegate directMessagesReceived:messages];
+	if ([(NSObject*)delegate respondsToSelector:@selector(directMessagesReceived:)]) {
+		[delegate directMessagesReceived:messages];
+	}
 }
 
 - (void)userInfoReceived:(NSArray *)userInfo forRequest:(NSString *)connectionIdentifier {
@@ -165,27 +168,26 @@ static KBTwitterManager *sharedInstance = nil;
 			}
 		}
 	}
-
-	
-	
 }
 
 - (void)miscInfoReceived:(NSArray *)miscInfo forRequest:(NSString *)connectionIdentifier {
-  if ([(NSObject*)delegate respondsToSelector:@selector(miscInfoReceived:)])
-    [delegate miscInfoReceived:miscInfo];
+	if ([(NSObject*)delegate respondsToSelector:@selector(miscInfoReceived:)])
+		[delegate miscInfoReceived:miscInfo];
 }
 
 - (void)searchResultsReceived:(NSArray *)searchResults forRequest:(NSString *)connectionIdentifier; {
-  if ([(NSObject*)delegate respondsToSelector:@selector(searchResultsReceived:)])
-    [delegate searchResultsReceived:searchResults];
+	if ([(NSObject*)delegate respondsToSelector:@selector(searchResultsReceived:)])
+		[delegate searchResultsReceived:searchResults];
 }
 
 - (void)stopProgressBar {
 	[(KBBaseViewController*)delegate stopProgressBar];
 }
+
 - (void)delayedViewLoadFailure { //wait for the animation to finish loading the new view, or we will actually go back two pages instead of one
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"twitterViewLoadFailure" object:nil];
 }
+
 - (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error
 {
 	DLog(@"actual Twitter request failed 2: %@ with error:%@", connectionIdentifier, error);

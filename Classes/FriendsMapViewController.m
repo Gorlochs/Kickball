@@ -27,10 +27,10 @@
     [super viewDidLoad];
     [FlurryAPI logEvent:@"Friends Map View"];
 	checkins = nil;
-}
- 
--(void) viewDidAppear:(BOOL)animated{
-	[super viewDidAppear:animated];
+//}
+// 
+//-(void) viewDidAppear:(BOOL)animated{
+//	[super viewDidAppear:animated];
     [self startProgressBar:@"Retrieving map..."];
     if (checkins) {
         [self refreshEverything];

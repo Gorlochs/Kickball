@@ -19,7 +19,7 @@
     if (self = [super init]) {
         screenName = [[statusDictionary objectForKey:@"from_user"] copy];
         profileImageUrl = [[statusDictionary objectForKey:@"profile_image_url"] copy];
-        tweetText = [[statusDictionary objectForKey:@"text"] copy];
+		tweetText = [[[[statusDictionary objectForKey:@"text"] stringByReplacingOccurrencesOfString:@"&lt;" withString:@"<"] stringByReplacingOccurrencesOfString:@"&gt;" withString:@">"] copy];
         createDate = [[[[KickballAPI kickballApi] twitterSearchDateFormatter] dateFromString:[statusDictionary objectForKey:@"created_at"]] retain];
         tweetId = [[statusDictionary objectForKey:@"id"] copy];
 		fullName = nil;

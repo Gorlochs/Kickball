@@ -29,7 +29,7 @@
 			screenName = [[[statusDictionary objectForKey:@"user"] objectForKey:@"screen_name"] copy];
 			fullName = [[[statusDictionary objectForKey:@"user"] objectForKey:@"name"] copy];
 			profileImageUrl = [[[statusDictionary objectForKey:@"user"] objectForKey:@"profile_image_url"] copy];
-			tweetText = [[statusDictionary objectForKey:@"text"] copy];
+			tweetText = [[[[statusDictionary objectForKey:@"text"] stringByReplacingOccurrencesOfString:@"&lt;" withString:@"<"] stringByReplacingOccurrencesOfString:@"&gt;" withString:@">"] copy];
 			tweetId = [[statusDictionary objectForKey:@"id"] copy];
 			//clientName = [statusDictionary objectForKey:@"source"];
 			
