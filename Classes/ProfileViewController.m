@@ -25,6 +25,7 @@
 #import "PlacesListTableViewCellv2.h"
 #import "KBThumbnailViewController.h"
 #import "TableSectionHeaderView.h"
+#import "FriendsMapViewController.h"
 
 #define BADGES_PER_ROW 4
 
@@ -66,6 +67,8 @@
     pageType = KBPageTypeOther;
     pageViewType = KBPageViewTypeList;
     [self setProperFoursquareButtons];
+	[centerHeaderButton removeTarget:self action:NULL forControlEvents:UIControlEventTouchUpInside];
+	[centerHeaderButton addTarget:self action:@selector(displayFriendsMap) forControlEvents:UIControlEventTouchUpInside];
 }
 
 -(void)pressOptionsLeft{ //called when the user leaves options
@@ -806,5 +809,13 @@
     [self stopProgressBar];
 }
 
+#pragma mark -
+
+- (void) displayFriendsMap {
+    FriendsMapViewController *friendsMapController = [[FriendsMapViewController alloc] initWithNibName:@"FriendsMapView_v2" bundle:nil];
+	friendsMapController.showBackButton = YES;
+    [self.navigationController pushViewController:friendsMapController animated:NO];
+    [friendsMapController release];
+}
 
 @end

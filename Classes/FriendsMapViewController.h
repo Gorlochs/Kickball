@@ -17,7 +17,10 @@
 	IBOutlet MKMapView * mapViewer;
 	NSArray * checkins;
 	MKCoordinateRegion mapRegion;
+	BOOL showBackButton;
 }
+
+@property (nonatomic) BOOL showBackButton;
 
 - (void) refreshFriendPoints;
 - (void) refreshMapRegion;

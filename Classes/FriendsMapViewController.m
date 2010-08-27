@@ -19,24 +19,28 @@
 
 @implementation FriendsMapViewController
 
+@synthesize showBackButton;
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
-    pageType = KBPageTypeFriends;
-    pageViewType = KBPageViewTypeMap;
+
     [super viewDidLoad];
     [FlurryAPI logEvent:@"Friends Map View"];
 	checkins = nil;
-//}
-// 
-//-(void) viewDidAppear:(BOOL)animated{
-//	[super viewDidAppear:animated];
+
     [self startProgressBar:@"Retrieving map..."];
     if (checkins) {
         [self refreshEverything];
     } else {
         [[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
     }
+	pageViewType = KBPageViewTypeMap;
+	if (showBackButton) {
+		pageType = KBPageTypeOther;
+	} else {
+		pageType = KBPageTypeFriends;
+	}
+    [self setProperFoursquareButtons];
 }
 
 - (void) flipBetweenMapAndList {
