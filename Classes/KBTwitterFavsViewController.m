@@ -34,7 +34,7 @@
 	pageType = KBPageTypeOther;
     [super viewDidLoad];
     pageNum = 1;
-    cachingKey = [kKBTwitterTimelineKey retain];
+    cachingKey = [kKBTwitterFavoritesKey retain];
     pageViewType = KBPageViewTypeList;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginCanceled) name:@"loginCanceled" object:nil];
     if ([self.twitterEngine isAuthorized]) {

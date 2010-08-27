@@ -22,6 +22,7 @@
 #define kTwitterSearchRetrievedNotificationKey      @"searchRetrievedNotification"
 
 #define kKBTwitterTimelineKey           @"timeline"
+#define kKBTwitterFavoritesKey          @"favorites"
 #define kKBTwitterMentionsKey           @"mentions"
 #define kKBTwitterDirectMessagesKey     @"directMessage"
 #define kKBTwitterGeoTweetKey           @"geoTweet"
