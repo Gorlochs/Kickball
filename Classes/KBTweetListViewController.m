@@ -31,7 +31,7 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated{
-	//[super viewDidAppear:animated];
+	[super viewDidAppear:animated];
     if (_firstView) return;
     _firstView = true;
 	

@@ -80,9 +80,12 @@ static KBTwitterManager *sharedInstance = nil;
 }
 
 -(void) setDelegate:(id)delegateValue {
-	if (delegateValue == nil) {
+    DLog(@"*************************** KBTwitterDelegate %@ ************************", [delegateValue class]);
+	//if (delegateValue == nil) {
+    if (delegateValue != delegate) {
 		[self.twitterEngine closeAllConnections];
-	}
+    }
+	//}
     delegate = delegateValue;
 }
 
