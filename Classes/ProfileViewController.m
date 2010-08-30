@@ -372,6 +372,7 @@
 				cell.venueAddress.text = venue.addressWithCrossstreet;
 				cell.categoryIcon.urlPath = venue.primaryCategory.iconUrl;
 				cell.specialImage.hidden = YES;
+				cell.venueId = venue.venueid;
 			}
             break;
         case 3:  // badges
