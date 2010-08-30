@@ -140,11 +140,11 @@
 				location.adjustsFontSizeToFitWidth = YES;
 				location.text = theUser.checkin.shout;
 			}
-
-			
 			locationOverlayButton.enabled = NO;
         }
     }
+	
+	userSettingsButton.hidden = !theUser.isFriend;
     
     // user icon
     userIcon.image = [[Utilities sharedInstance] getCachedImage:theUser.photo];

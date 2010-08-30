@@ -42,6 +42,7 @@
     IBOutlet UIButton *facebookButton;
     IBOutlet UIButton *viewVenueButton;
     IBOutlet UIButton *befriendUserButton;
+    IBOutlet UIButton *userSettingsButton;
     
     // not sure what these are doing here
     bool isPingOn;
