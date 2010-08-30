@@ -1590,6 +1590,7 @@
     self.hasPhoto = YES;
     [self sendPushNotification];
     [FlurryAPI logEvent:@"Image Upload Completed"];
+	[self retrievePhotos];
 }
 
 - (void) photoQueueFinished:(ASIHTTPRequest *) request {
