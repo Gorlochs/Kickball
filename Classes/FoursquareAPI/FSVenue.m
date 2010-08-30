@@ -29,8 +29,14 @@
 }
 
 - (NSString*) addressWithCrossstreet {
-    if (self.crossStreet != nil) {
+    if (self.crossStreet != nil && self.venueAddress != nil) {
         return [NSString stringWithFormat:@"%@ (%@)", self.venueAddress, self.crossStreet];
+	} else if (self.crossStreet != nil && self.venueAddress == nil) {
+        return self.crossStreet;
+	} else if (self.crossStreet == nil && self.venueAddress != nil) {
+        return self.venueAddress;
+	} else if (self.crossStreet == nil && self.venueAddress == nil) {
+        return @"";
     } else {
         return self.venueAddress;
     }
