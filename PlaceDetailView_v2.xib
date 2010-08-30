@@ -12,10 +12,11 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="1"/>
-			<integer value="13"/>
-			<integer value="99"/>
 			<integer value="67"/>
+			<integer value="116"/>
+			<integer value="1"/>
+			<integer value="99"/>
+			<integer value="13"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -850,19 +851,15 @@
 				<reference key="IBUIContentView" ref="397112460"/>
 			</object>
 			<object class="IBUIView" id="235903953">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<object class="IBUIImageView" id="323414760">
+					<object class="IBUIImageView" id="979068616">
 						<reference key="NSNextResponder" ref="235903953"/>
 						<int key="NSvFlags">256</int>
-						<string key="NSFrame">{{0, 5}, {320, 74}}</string>
+						<string key="NSFrame">{{14, 8}, {292, 312}}</string>
 						<reference key="NSSuperview" ref="235903953"/>
-						<object class="NSColor" key="IBUIBackgroundColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MCAwIDAgMAA</bytes>
-						</object>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">4</int>
@@ -870,7 +867,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">specialHeader01.png</string>
+							<string key="NSResourceName">place-specialNearbyBG.png</string>
 						</object>
 					</object>
 					<object class="IBUIButton" id="436659741">
@@ -891,22 +888,11 @@
 						<reference key="IBUINormalTitleShadowColor" ref="424839964"/>
 						<object class="NSCustomResource" key="IBUIHighlightedImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">optionsClose02.png</string>
+							<string key="NSResourceName">place-specialNearbyX02.png</string>
 						</object>
-					</object>
-					<object class="IBUIImageView" id="979068616">
-						<reference key="NSNextResponder" ref="235903953"/>
-						<int key="NSvFlags">256</int>
-						<string key="NSFrame">{{0, 76}, {320, 243}}</string>
-						<reference key="NSSuperview" ref="235903953"/>
-						<bool key="IBUIOpaque">NO</bool>
-						<bool key="IBUIClipsSubviews">YES</bool>
-						<int key="IBUIContentMode">4</int>
-						<bool key="IBUIMultipleTouchEnabled">YES</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<object class="NSCustomResource" key="IBUIImage">
+						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">specialBody.png</string>
+							<string key="NSResourceName">place-specialNearbyX01.png</string>
 						</object>
 					</object>
 					<object class="IBUILabel" id="65510975">
@@ -1001,11 +987,11 @@
 						<reference key="IBUINormalTitleShadowColor" ref="424839964"/>
 						<object class="NSCustomResource" key="IBUIHighlightedImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">arrowRight02.png</string>
+							<string key="NSResourceName">place-specialNearbyNext02.png</string>
 						</object>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">arrowRight01.png</string>
+							<string key="NSResourceName">place-specialNearbyNext01.png</string>
 						</object>
 					</object>
 					<object class="IBUIButton" id="663980997">
@@ -1026,15 +1012,16 @@
 						<reference key="IBUINormalTitleShadowColor" ref="424839964"/>
 						<object class="NSCustomResource" key="IBUIHighlightedImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">arrowLeft02.png</string>
+							<string key="NSResourceName">place-specialNearbyBack02.png</string>
 						</object>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">arrowLeft01.png</string>
+							<string key="NSResourceName">place-specialNearbyBack01.png</string>
 						</object>
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 343}</string>
+				<reference key="NSSuperview"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MAA</bytes>
@@ -1671,22 +1658,16 @@
 						<reference key="object" ref="235903953"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="979068616"/>
 							<reference ref="598453231"/>
 							<reference ref="65510975"/>
-							<reference ref="323414760"/>
-							<reference ref="436659741"/>
 							<reference ref="663980997"/>
 							<reference ref="623005597"/>
 							<reference ref="165776129"/>
+							<reference ref="979068616"/>
+							<reference ref="436659741"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Special View</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">129</int>
-						<reference key="object" ref="323414760"/>
-						<reference key="parent" ref="235903953"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">133</int>
@@ -1830,10 +1811,13 @@
 					<string>116.IBEditorWindowLastContentRect</string>
 					<string>116.IBPluginDependency</string>
 					<string>119.IBPluginDependency</string>
+					<string>119.IBViewBoundsToFrameTransform</string>
 					<string>120.IBPluginDependency</string>
 					<string>13.IBEditorWindowLastContentRect</string>
 					<string>13.IBPluginDependency</string>
+					<string>133.IBViewBoundsToFrameTransform</string>
 					<string>134.IBPluginDependency</string>
+					<string>134.IBViewBoundsToFrameTransform</string>
 					<string>140.IBEditorWindowLastContentRect</string>
 					<string>140.IBPluginDependency</string>
 					<string>145.IBPluginDependency</string>
@@ -1892,13 +1876,22 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{560, 513}, {320, 343}}</string>
+					<string>{{428, 25}, {320, 343}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAABCDAAAwvAAAA</bytes>
+					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{349, 781}, {320, 75}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAAAAAAAAw8EAAA</bytes>
+					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">AUN5AABBYAAAA</bytes>
+					</object>
 					<string>{{21, 933}, {291, 73}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -3021,15 +3014,10 @@
 				<string>aap_x02.png</string>
 				<string>addFirst01a.png</string>
 				<string>addFirst02a.png</string>
-				<string>arrowLeft01.png</string>
-				<string>arrowLeft02.png</string>
-				<string>arrowRight01.png</string>
-				<string>arrowRight02.png</string>
 				<string>call02.png</string>
 				<string>cellArrow.png</string>
 				<string>cellBorderBottom.png</string>
 				<string>cellBorderTop.png</string>
-				<string>optionsClose02.png</string>
 				<string>place-call01.png</string>
 				<string>place-call02.png</string>
 				<string>place-checkin01.png</string>
@@ -3042,14 +3030,19 @@
 				<string>place-photosAdd02.png</string>
 				<string>place-photosSeeAll01.png</string>
 				<string>place-photosSeeAll02.png</string>
+				<string>place-specialNearbyBG.png</string>
+				<string>place-specialNearbyBack01.png</string>
+				<string>place-specialNearbyBack02.png</string>
+				<string>place-specialNearbyNext01.png</string>
+				<string>place-specialNearbyNext02.png</string>
+				<string>place-specialNearbyX01.png</string>
+				<string>place-specialNearbyX02.png</string>
 				<string>place-titleBG.png</string>
 				<string>place-venueDetails01.png</string>
 				<string>place-venueDetails02.png</string>
 				<string>place-venueTwitter01.png</string>
 				<string>place-venueTwitter02.png</string>
 				<string>placePhotoBG.png</string>
-				<string>specialBody.png</string>
-				<string>specialHeader01.png</string>
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
@@ -3057,15 +3050,10 @@
 				<string>{23, 22}</string>
 				<string>{320, 102}</string>
 				<string>{320, 102}</string>
-				<string>{15, 22}</string>
-				<string>{15, 22}</string>
-				<string>{15, 22}</string>
-				<string>{15, 22}</string>
 				<string>{16, 16}</string>
 				<string>{9, 12}</string>
 				<string>{320, 1}</string>
 				<string>{320, 1}</string>
-				<string>{23, 22}</string>
 				<string>{46, 44}</string>
 				<string>{46, 44}</string>
 				<string>{300, 63}</string>
@@ -3078,14 +3066,19 @@
 				<string>{59, 30}</string>
 				<string>{77, 30}</string>
 				<string>{77, 30}</string>
+				<string>{292, 312}</string>
+				<string>{12, 18}</string>
+				<string>{12, 18}</string>
+				<string>{12, 18}</string>
+				<string>{12, 18}</string>
+				<string>{23, 22}</string>
+				<string>{23, 22}</string>
 				<string>{640, 142}</string>
 				<string>{160, 37}</string>
 				<string>{160, 37}</string>
 				<string>{160, 37}</string>
 				<string>{160, 37}</string>
 				<string>{291, 73}</string>
-				<string>{320, 243}</string>
-				<string>{320, 69}</string>
 			</object>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">123</string>
