@@ -697,22 +697,11 @@
 #pragma mark private methods
 
 - (void) disableUnavailableSegments {
-    if (user.phone) {
-        textButton.enabled = YES;
-        callButton.enabled = YES;
-    }
-    
-    if (user.email) {
-        emailButton.enabled = YES;
-    }
-    
-    if (user.twitter) {
-        twitterButton.enabled = YES;
-    }
-    
-    if (user.facebook) {
-        facebookButton.enabled = YES;
-    }
+	textButton.enabled = user.phone != nil && user.isFriend;
+	callButton.enabled = user.phone != nil && user.isFriend;
+	emailButton.enabled = user.email != nil && user.isFriend;
+	twitterButton.enabled = user.twitter != nil && user.isFriend;
+	facebookButton.enabled = user.facebook != nil && user.isFriend;
 }
 
 #pragma mark
