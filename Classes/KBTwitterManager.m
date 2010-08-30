@@ -79,6 +79,13 @@ static KBTwitterManager *sharedInstance = nil;
     return twitterEngine;
 }
 
+-(void) setDelegate:(id)delegateValue {
+	if (delegateValue == nil) {
+		[self.twitterEngine closeAllConnections];
+	}
+    delegate = delegateValue;
+}
+
 #pragma mark -
 #pragma mark XAuthTwitterEngineDelegate methods
 
