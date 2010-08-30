@@ -210,7 +210,7 @@
 			}
 
 			ttImage.clipsToBounds = YES;
-            ttImage.contentMode = UIViewContentModeScaleToFill;
+            ttImage.contentMode = UIViewContentModeScaleAspectFill;
             [giftCell addSubview:ttImage];
             
             UIButton *button = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
