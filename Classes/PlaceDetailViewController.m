@@ -401,16 +401,25 @@
 		//create base container based on how many people
 		//UIView *roundedRect;
 		UIView *peopleHereContainer;
+		UIView *bottomLine;
 		peopleHereCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"peopleHere"];
 		switch ([venueToDisplay.currentCheckins count]) {
 			case 1:
 			case 2:
 				peopleHereContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 47)];
 				[peopleHereContainer setBackgroundColor:[UIColor colorWithWhite:0.92 alpha:1.0]];
+				bottomLine = [[UIView alloc] initWithFrame:CGRectMake(0, 46, 320, 1)];
+				[bottomLine setBackgroundColor:[UIColor colorWithWhite:0.77 alpha:1.0]];
+				[peopleHereContainer addSubview:bottomLine];
+				[bottomLine release];
 				break;
 			default:
 				peopleHereContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 95)];
 				[peopleHereContainer setBackgroundColor:[UIColor colorWithWhite:0.92 alpha:1.0]];
+				bottomLine = [[UIView alloc] initWithFrame:CGRectMake(0, 94, 320, 1)];
+				[bottomLine setBackgroundColor:[UIColor colorWithWhite:0.77 alpha:1.0]];
+				[peopleHereContainer addSubview:bottomLine];
+				[bottomLine release];
 				break;
 		}
 		UIView *horizontalSplitter;
@@ -426,7 +435,7 @@
 				break;
 			case 2:
 				horizontalSplitter = [[UIView alloc] initWithFrame:CGRectMake(159, 0, 1, 47)];
-				[horizontalSplitter setBackgroundColor:[UIColor lightGrayColor]];
+				[horizontalSplitter setBackgroundColor:[UIColor colorWithWhite:0.77 alpha:1.0]];
 				[peopleHereContainer addSubview:horizontalSplitter];
 				[horizontalSplitter release];
 				
@@ -441,11 +450,11 @@
 				break;
 			case 3:
 				horizontalSplitter = [[UIView alloc] initWithFrame:CGRectMake(159, 0, 1, 48)];
-				[horizontalSplitter setBackgroundColor:[UIColor lightGrayColor]];
+				[horizontalSplitter setBackgroundColor:[UIColor colorWithWhite:0.77 alpha:1.0]];
 				[peopleHereContainer addSubview:horizontalSplitter];
 				[horizontalSplitter release];
 				verticalSplitter = [[UIView alloc] initWithFrame:CGRectMake(0, 48, 320, 1)];
-				[verticalSplitter setBackgroundColor:[UIColor lightGrayColor]];
+				[verticalSplitter setBackgroundColor:[UIColor colorWithWhite:0.77 alpha:1.0]];
 				[peopleHereContainer addSubview:verticalSplitter];
 				[verticalSplitter release];
 				
@@ -464,11 +473,11 @@
 				break;
 			default:
 				horizontalSplitter = [[UIView alloc] initWithFrame:CGRectMake(159, 0, 1, 95)];
-				[horizontalSplitter setBackgroundColor:[UIColor lightGrayColor]];
+				[horizontalSplitter setBackgroundColor:[UIColor colorWithWhite:0.77 alpha:1.0]];
 				[peopleHereContainer addSubview:horizontalSplitter];
 				[horizontalSplitter release];
 				verticalSplitter = [[UIView alloc] initWithFrame:CGRectMake(0, 48, 320, 1)];
-				[verticalSplitter setBackgroundColor:[UIColor lightGrayColor]];
+				[verticalSplitter setBackgroundColor:[UIColor colorWithWhite:0.77 alpha:1.0]];
 				[peopleHereContainer addSubview:verticalSplitter];
 				[verticalSplitter release];
 				
@@ -714,7 +723,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.section) {
         case 0: // i'm here button
-            return 60;
+            return 75;
             break;
         case 1: // mayor-map cell
             return 69;
@@ -734,7 +743,7 @@
 //            }
             break;
         case 4:
-            return 44;
+            return 37;
         case 5:
             return 55;
         default:
@@ -755,7 +764,7 @@
     //BlackTableCellHeader *tableCellHeader = [[[BlackTableCellHeader alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)] autorelease];
 	//tableCellHeader.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1.0];
 	TableSectionHeaderView *tableCellHeader = [[[TableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 39)] autorelease];
-
+	tableCellHeader.backgroundColor = [UIColor colorWithWhite:0.93 alpha:1.0];
     switch (section) {
         case 0:
         case 1:
@@ -783,14 +792,15 @@
                 //tableCellHeader.leftHeaderLabel.text = @"";
 				seeAllPhotosButton.hidden = YES;
 				CGRect frame = addPhotoButton.frame;
-				frame.origin = CGPointMake(230, addPhotoButton.frame.origin.y);
+				frame.origin = CGPointMake(240, 6);
 				addPhotoButton.frame = frame;
 				[tableCellHeader addSubview:addPhotoButton];
 			} else {
 				seeAllPhotosButton.hidden = NO;
 				CGRect frame = addPhotoButton.frame;
-				frame.origin = CGPointMake(142, addPhotoButton.frame.origin.y);
+				frame.origin = CGPointMake(180, 6);
 				addPhotoButton.frame = frame;
+				seeAllPhotosButton.frame = CGRectMake(240, 6, 77, 30);
 				[tableCellHeader addSubview:addPhotoButton];
 				[tableCellHeader addSubview:seeAllPhotosButton];
 			}
@@ -804,22 +814,22 @@
         case 5:
             if (YES) { // odd bug. you can't instantiate a new object as the first line in a case statement
                 UIButton *addTipButton = [UIButton buttonWithType:UIButtonTypeCustom];
-                addTipButton.frame = CGRectMake(130, 0, 92, 39);
+                addTipButton.frame = CGRectMake(180, 7, 54, 27);
                 addTipButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
                 addTipButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-                [addTipButton setImage:[UIImage imageNamed:@"addTip01_hdr.png"] forState:UIControlStateNormal];
-                [addTipButton setImage:[UIImage imageNamed:@"addTip02_hdr.png"] forState:UIControlStateHighlighted];
+                [addTipButton setImage:[UIImage imageNamed:@"place-tipsAdd01.png"] forState:UIControlStateNormal];
+                [addTipButton setImage:[UIImage imageNamed:@"place-tipsAdd02.png"] forState:UIControlStateHighlighted];
                 [addTipButton addTarget:self action:@selector(addTipTodo) forControlEvents:UIControlEventTouchUpInside]; 
                 [tableCellHeader addSubview:addTipButton];
 				tableCellHeader.leftHeaderLabel.text = [NSString stringWithFormat:@"%d %@", [venue.tips count], [venue.tips count] == 1 ? @"Tip" : @"Tips"];
 				
 				if ([venue.tips count] > 4) {
 					UIButton *myDetailButton = [UIButton buttonWithType:UIButtonTypeCustom];
-					myDetailButton.frame = CGRectMake(210, 0, 92, 39);
+					myDetailButton.frame = CGRectMake(240, 7, 74, 27);
 					myDetailButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
 					myDetailButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-					[myDetailButton setImage:[UIImage imageNamed:@"profileSeeAllTips01.png"] forState:UIControlStateNormal];
-					[myDetailButton setImage:[UIImage imageNamed:@"profileSeeAllTips02.png"] forState:UIControlStateHighlighted];
+					[myDetailButton setImage:[UIImage imageNamed:@"place-tipsSeeAll01.png"] forState:UIControlStateNormal];
+					[myDetailButton setImage:[UIImage imageNamed:@"place-tipsSeeAll02.png"] forState:UIControlStateHighlighted];
 					[myDetailButton addTarget:self action:@selector(displayAllTips:) forControlEvents:UIControlEventTouchUpInside]; 
 					[tableCellHeader addSubview:myDetailButton];
 				} else {

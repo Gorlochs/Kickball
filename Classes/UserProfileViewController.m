@@ -18,9 +18,9 @@
     yourStuffButton.enabled = NO;
     yourFriendsButton.enabled = YES;
     checkinHistoryButton.enabled = YES;
-    [yourStuffButton setImage:[UIImage imageNamed:@"myProfileStuffTab01.png"] forState:UIControlStateDisabled];
-    [yourFriendsButton setImage:[UIImage imageNamed:@"myProfileFriendsTab02.png"] forState:UIControlStateNormal];
-    [checkinHistoryButton setImage:[UIImage imageNamed:@"myProfileHistoryTab03.png"] forState:UIControlStateNormal];
+    //[yourStuffButton setImage:[UIImage imageNamed:@"myProfileStuffTab01.png"] forState:UIControlStateDisabled];
+    //[yourFriendsButton setImage:[UIImage imageNamed:@"myProfileFriendsTab02.png"] forState:UIControlStateNormal];
+    //[checkinHistoryButton setImage:[UIImage imageNamed:@"myProfileHistoryTab03.png"] forState:UIControlStateNormal];
     
     if (self.user) {
         [self setAllUserFields:self.user];

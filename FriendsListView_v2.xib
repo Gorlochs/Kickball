@@ -13,8 +13,8 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="31"/>
-			<integer value="10"/>
 			<integer value="1"/>
+			<integer value="9"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -129,7 +129,7 @@
 									<object class="IBUIButton" id="392551013">
 										<reference key="NSNextResponder" ref="922539391"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrameSize">{320, 40}</string>
+										<string key="NSFrameSize">{320, 37}</string>
 										<reference key="NSSuperview" ref="922539391"/>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -145,15 +145,15 @@
 										<reference key="IBUINormalTitleShadowColor" ref="778498797"/>
 										<object class="NSCustomResource" key="IBUIHighlightedImage">
 											<string key="NSClassName">NSImage</string>
-											<string key="NSResourceName">fl_addFriend02.png</string>
+											<string key="NSResourceName">btn-addFriend02.png</string>
 										</object>
 										<object class="NSCustomResource" key="IBUINormalImage">
 											<string key="NSClassName">NSImage</string>
-											<string key="NSResourceName">fl_addFriend01.png</string>
+											<string key="NSResourceName">btn-addFriend01.png</string>
 										</object>
 									</object>
 								</object>
-								<string key="NSFrameSize">{320, 50}</string>
+								<string key="NSFrameSize">{320, 37}</string>
 								<reference key="NSSuperview" ref="852487751"/>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">2</int>
@@ -163,7 +163,7 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
 						</object>
-						<string key="NSFrameSize">{320, 40}</string>
+						<string key="NSFrameSize">{320, 37}</string>
 						<reference key="NSSuperview" ref="93784494"/>
 						<object class="NSColor" key="IBUIBackgroundColor" id="727535096">
 							<int key="NSColorSpace">3</int>
@@ -176,7 +176,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</object>
-				<string key="NSFrameSize">{320, 40}</string>
+				<string key="NSFrameSize">{320, 37}</string>
 				<reference key="NSSuperview"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
@@ -814,7 +814,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{708, 363}, {320, 40}}</string>
+					<string>{{614, 236}, {320, 37}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>
@@ -1392,6 +1392,8 @@
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
+				<string>btn-addFriend01.png</string>
+				<string>btn-addFriend02.png</string>
 				<string>checkin4SQ01.png</string>
 				<string>checkin4SQ03.png</string>
 				<string>checkinFB01.png</string>
@@ -1401,14 +1403,14 @@
 				<string>checkinTWT02.png</string>
 				<string>checkinTWT03.png</string>
 				<string>field-shout.png</string>
-				<string>fl_addFriend01.png</string>
-				<string>fl_addFriend02.png</string>
 				<string>fl_shoutToggle.png</string>
 				<string>shout01.png</string>
 				<string>x.png</string>
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
+				<string>{320, 37}</string>
+				<string>{320, 37}</string>
 				<string>{94, 38}</string>
 				<string>{94, 38}</string>
 				<string>{95, 38}</string>
@@ -1418,8 +1420,6 @@
 				<string>{93, 38}</string>
 				<string>{93, 38}</string>
 				<string>{320, 46}</string>
-				<string>{320, 38}</string>
-				<string>{320, 38}</string>
 				<string>{320, 74}</string>
 				<string>{320, 46}</string>
 				<string>{18, 18}</string>

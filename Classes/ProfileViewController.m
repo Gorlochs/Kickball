@@ -325,7 +325,7 @@
             if (userPhotos != nil && [userPhotos count] > 0) {
                 int x = 0;
                 for (KBGoody *photo in userPhotos) {
-                    CGRect frame = CGRectMake(x*73, 0, 73, 73);
+                    CGRect frame = CGRectMake(x*80, 0, 80, 80);
                     TTImageView *ttImage = [[TTImageView alloc] initWithFrame:frame];
                     
 					UIScreen *theScreen = [UIScreen mainScreen];
@@ -347,6 +347,9 @@
                     [photoCell addSubview:button];
                     [button release];
                     [ttImage release];
+					if (x>3) {
+						break;
+					}
                 }
 				//UIImageView *roundedTopCorners = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"roundedTop.png"]];
 				//roundedTopCorners.frame = CGRectMake(0, 0, roundedTopCorners.frame.size.width, roundedTopCorners.frame.size.height);
@@ -433,6 +436,7 @@
 	
         //BlackTableCellHeader *sectionHeaderView = [[[BlackTableCellHeader alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 36)] autorelease];
 		TableSectionHeaderView *sectionHeaderView = [[[TableSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 36)] autorelease];
+		sectionHeaderView.backgroundColor = [UIColor colorWithWhite:0.93 alpha:1.0];
 
         switch (section) {
             case 0:
@@ -443,11 +447,11 @@
                     sectionHeaderView.leftHeaderLabel.text = [NSString stringWithFormat:@"%d %@", [userPhotos count], [userPhotos count] == 1 ? @"Photo" : @"Photos"];
                     
                     UIButton *myDetailButton = [UIButton buttonWithType:UIButtonTypeCustom];
-                    myDetailButton.frame = CGRectMake(210, 0, 92, 39);
+                    myDetailButton.frame = CGRectMake(240, 6, 77, 30);
                     myDetailButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
                     myDetailButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-                    [myDetailButton setImage:[UIImage imageNamed:@"profileSeeAllPhotos01.png"] forState:UIControlStateNormal];
-                    [myDetailButton setImage:[UIImage imageNamed:@"profileSeeAllPhotos02.png"] forState:UIControlStateHighlighted];
+                    [myDetailButton setImage:[UIImage imageNamed:@"profile-photosSeeAll01.png"] forState:UIControlStateNormal];
+                    [myDetailButton setImage:[UIImage imageNamed:@"profile-photosSeeAll01.png"] forState:UIControlStateHighlighted];
                     [myDetailButton addTarget:self action:@selector(viewThumbnails) forControlEvents:UIControlEventTouchUpInside]; 
                     [sectionHeaderView addSubview:myDetailButton];
                 } else {

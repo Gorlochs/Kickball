@@ -23,9 +23,9 @@
     yourStuffButton.enabled = YES;
     yourFriendsButton.enabled = YES;
     
-    [yourStuffButton setImage:[UIImage imageNamed:@"myProfileStuffTab03.png"] forState:UIControlStateNormal];
-    [yourFriendsButton setImage:[UIImage imageNamed:@"myProfileFriendsTab02.png"] forState:UIControlStateNormal];
-    [checkinHistoryButton setImage:[UIImage imageNamed:@"myProfileHistoryTab01.png"] forState:UIControlStateDisabled];
+    //[yourStuffButton setImage:[UIImage imageNamed:@"myProfileStuffTab03.png"] forState:UIControlStateNormal];
+    //[yourFriendsButton setImage:[UIImage imageNamed:@"myProfileFriendsTab02.png"] forState:UIControlStateNormal];
+    //[checkinHistoryButton setImage:[UIImage imageNamed:@"myProfileHistoryTab01.png"] forState:UIControlStateDisabled];
     
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(instaCheckin:) name:@"touchAndHoldCheckin" object:nil];
 }
