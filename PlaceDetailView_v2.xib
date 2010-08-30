@@ -318,6 +318,10 @@
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">place-checkin02.png</string>
 								</object>
+								<object class="NSCustomResource" key="IBUIDisabledImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">place-checkin03.png</string>
+								</object>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">place-checkin01.png</string>
@@ -772,12 +776,12 @@
 											<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 										</object>
 										<reference key="IBUINormalTitleShadowColor" ref="424839964"/>
-										<object class="NSCustomResource" key="IBUIHighlightedImage" id="761186276">
+										<object class="NSCustomResource" key="IBUIHighlightedImage" id="879053529">
 											<string key="NSClassName">NSImage</string>
 											<string key="NSResourceName">place-venueDetails01.png</string>
 										</object>
-										<reference key="IBUIDisabledImage" ref="761186276"/>
-										<reference key="IBUISelectedImage" ref="761186276"/>
+										<reference key="IBUIDisabledImage" ref="879053529"/>
+										<reference key="IBUISelectedImage" ref="879053529"/>
 										<object class="NSCustomResource" key="IBUINormalImage">
 											<string key="NSClassName">NSImage</string>
 											<string key="NSResourceName">place-venueDetails02.png</string>
@@ -3030,6 +3034,7 @@
 				<string>place-call02.png</string>
 				<string>place-checkin01.png</string>
 				<string>place-checkin02.png</string>
+				<string>place-checkin03.png</string>
 				<string>place-mapMask.png</string>
 				<string>place-mayorCrown.png</string>
 				<string>place-mayorMask.png</string>
@@ -3063,6 +3068,7 @@
 				<string>{23, 22}</string>
 				<string>{46, 44}</string>
 				<string>{46, 44}</string>
+				<string>{300, 63}</string>
 				<string>{300, 63}</string>
 				<string>{300, 63}</string>
 				<string>{109, 45}</string>
