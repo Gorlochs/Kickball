@@ -12,10 +12,10 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="99"/>
 			<integer value="1"/>
-			<integer value="67"/>
 			<integer value="13"/>
+			<integer value="99"/>
+			<integer value="67"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -772,14 +772,15 @@
 											<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 										</object>
 										<reference key="IBUINormalTitleShadowColor" ref="424839964"/>
-										<object class="NSCustomResource" key="IBUIHighlightedImage" id="988834647">
-											<string key="NSClassName">NSImage</string>
-											<string key="NSResourceName">place-venueDetails02.png</string>
-										</object>
-										<reference key="IBUISelectedImage" ref="988834647"/>
-										<object class="NSCustomResource" key="IBUINormalImage">
+										<object class="NSCustomResource" key="IBUIHighlightedImage" id="761186276">
 											<string key="NSClassName">NSImage</string>
 											<string key="NSResourceName">place-venueDetails01.png</string>
+										</object>
+										<reference key="IBUIDisabledImage" ref="761186276"/>
+										<reference key="IBUISelectedImage" ref="761186276"/>
+										<object class="NSCustomResource" key="IBUINormalImage">
+											<string key="NSClassName">NSImage</string>
+											<string key="NSResourceName">place-venueDetails02.png</string>
 										</object>
 									</object>
 									<object class="IBUIButton" id="315733021">
@@ -804,6 +805,7 @@
 											<string key="NSClassName">NSImage</string>
 											<string key="NSResourceName">place-venueTwitter02.png</string>
 										</object>
+										<reference key="IBUIDisabledImage" ref="178491559"/>
 										<reference key="IBUISelectedImage" ref="178491559"/>
 										<object class="NSCustomResource" key="IBUINormalImage">
 											<string key="NSClassName">NSImage</string>
@@ -1946,7 +1948,7 @@
 					<string>{{694, 171}, {320, 343}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{465, 605}, {320, 37}}</string>
+					<string>{{413, 406}, {320, 37}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>
