@@ -32,12 +32,11 @@
 - (void) viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(displaySentTwitterMessage) name:@"displaySentTwitterMessage" object:nil];
-	twitterManager.delegate = self;
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:@"displaySentTwitterMessage" object:nil];
-	twitterManager.delegate = nil;
+	//twitterManager.delegate = nil;
     [super viewDidDisappear:animated];
 }
 

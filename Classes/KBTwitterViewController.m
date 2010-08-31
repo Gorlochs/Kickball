@@ -26,7 +26,6 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        // Custom initialization
     }
     return self;
 }
@@ -46,14 +45,20 @@
 }
 
 - (void) viewDidAppear:(BOOL)animated {
-	[super viewDidAppear:animated];
-	
 	// just in case a view higher in the stack was dealloc'd that grabbed the twitterManager.delegate from this class
 	twitterManager.delegate = self;
+    
+	[super viewDidAppear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+	//twitterManager.delegate = nil;
 }
 
 - (void)viewDidLoad {
-	twitterManager = [KBTwitterManager twitterManager];
+    
+    twitterManager = [KBTwitterManager twitterManager];
 	twitterManager.delegate = self;
     twitterEngine = [twitterManager twitterEngine];
     

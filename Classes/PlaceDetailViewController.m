@@ -663,6 +663,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        cell.backgroundColor = [UIColor colorWithWhite:0.92 alpha:1.0]; 
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
 		
 		UIView *colorFill = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 55)];
@@ -704,8 +705,10 @@
         cell.detailTextLabel.font = [UIFont systemFontOfSize:12.0];
         cell.textLabel.text = tip.submittedBy.firstnameLastInitial;
         cell.detailTextLabel.text = tip.text;
-		cell.detailTextLabel.backgroundColor = [UIColor colorWithWhite:0.92 alpha:1.0];
-		cell.textLabel.backgroundColor = [UIColor colorWithWhite:0.92 alpha:1.0];
+//		cell.detailTextLabel.backgroundColor = [UIColor colorWithWhite:0.92 alpha:1.0];
+//		cell.textLabel.backgroundColor = [UIColor colorWithWhite:0.92 alpha:1.0];
+		cell.detailTextLabel.backgroundColor = [UIColor clearColor];
+		cell.textLabel.backgroundColor = [UIColor clearColor];
 
         
         CGRect frame = CGRectMake(0,0,36,36);

@@ -30,8 +30,8 @@
     [super viewDidLoad];
 	[self startProgressBar:@""];
     
-    twitterManager = [KBTwitterManager twitterManager];
-	twitterManager.delegate = self;
+//    twitterManager = [KBTwitterManager twitterManager];
+//	twitterManager.delegate = self;
     
     [twitterEngine getUserInformationFor:screenname];
 	
