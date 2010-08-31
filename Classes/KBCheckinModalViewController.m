@@ -44,7 +44,7 @@
     
     checkinTextField.text = [[KBPhotoManager sharedInstance] photoTextPlaceholder];
     
-    photoManager = [KBPhotoManager sharedInstance];
+    photoManager = [KBPhotoManager sharedInstance]; 
     photoManager.delegate = self;
     
     FSUser* user = [self getAuthenticatedUser];

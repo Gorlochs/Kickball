@@ -329,9 +329,14 @@
                     TTImageView *ttImage = [[TTImageView alloc] initWithFrame:frame];
                     
 					UIScreen *theScreen = [UIScreen mainScreen];
-					if (theScreen.scale > 1.0) {
-						ttImage.urlPath = photo.mediumImagePath;
-					} else {
+                    
+                    if ([[UIDevice currentDevice] respondsToSelector:@selector(userInterfaceIdiom)]) {    //check for iphone OS 3.1
+                        if (theScreen.scale > 1.0) {
+                            ttImage.urlPath = photo.mediumImagePath;
+                        } else {
+                            ttImage.urlPath = photo.thumbnailImagePath;
+                        }
+                    } else {
 						ttImage.urlPath = photo.thumbnailImagePath;
 					}
 					
