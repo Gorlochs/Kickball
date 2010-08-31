@@ -40,7 +40,7 @@
         CGRect frame = CGRectMake(16, 65, 33, 34);
         TTImageView *userProfileImage = [[TTImageView alloc] initWithFrame:frame];
         userProfileImage.backgroundColor = [UIColor clearColor];
-        userProfileImage.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
+        userProfileImage.defaultImage = [UIImage imageNamed:@"icon-default.png"];
         userProfileImage.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:3 topRight:3 bottomRight:3 bottomLeft:3] next:[TTContentStyle styleWithNext:nil]];
         userProfileImage.urlPath = [self.userDictionary objectForKey:@"profile_image_url"];
         [self.view addSubview:userProfileImage];
@@ -84,7 +84,7 @@
         CGRect frame = CGRectMake(9, 58, 49, 49);
         TTImageView *userProfileImage = [[TTImageView alloc] initWithFrame:frame];
         userProfileImage.backgroundColor = [UIColor clearColor];
-        userProfileImage.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
+        userProfileImage.defaultImage = [UIImage imageNamed:@"icon-default.png"];
         userProfileImage.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
         userProfileImage.urlPath = [Utilities safeString:[[[userStatuses objectAtIndex:0] objectForKey:@"user"] objectForKey:@"profile_image_url"]];
         [self.view addSubview:userProfileImage];

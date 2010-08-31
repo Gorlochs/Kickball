@@ -69,7 +69,7 @@
     CGRect frame = CGRectMake(16, 65, 33, 34);
     userIcon = [[TTImageView alloc] initWithFrame:frame];
     userIcon.backgroundColor = [UIColor clearColor];
-    userIcon.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
+    userIcon.defaultImage = [UIImage imageNamed:@"icon-default.png"];
     userIcon.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:3 topRight:3 bottomRight:3 bottomLeft:3] next:[TTContentStyle styleWithNext:nil]];
     userIcon.urlPath = [userDictionary objectForKey:@"profile_image_url"];
     [self.view addSubview:userIcon];

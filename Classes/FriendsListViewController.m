@@ -257,7 +257,7 @@
     FriendsListTableCellv2 *cell = (FriendsListTableCellv2*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[FriendsListTableCellv2 alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
-        cell.imageView.image = [UIImage imageNamed:@"blank_boy.png"];
+        //cell.imageView.image = [UIImage imageNamed:@"icon-default.png"];
     }
     
     FSCheckin *checkin = nil;

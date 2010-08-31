@@ -148,7 +148,7 @@
 		case 0:
 			if (indexPath.row==0) {
 				//calculate hight for detail cell
-				return 100;
+				return 200;
 			}else {
 				return 46;
 			}

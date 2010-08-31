@@ -3,12 +3,12 @@
 	<data>
 		<int key="IBDocument.SystemTarget">1024</int>
 		<string key="IBDocument.SystemVersion">10F569</string>
-		<string key="IBDocument.InterfaceBuilderVersion">788</string>
+		<string key="IBDocument.InterfaceBuilderVersion">804</string>
 		<string key="IBDocument.AppKitVersion">1038.29</string>
 		<string key="IBDocument.HIToolboxVersion">461.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">117</string>
+			<string key="NS.object.0">123</string>
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -192,14 +192,11 @@
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="454773114"/>
-						<object class="NSCustomResource" key="IBUIHighlightedImage">
+						<object class="NSCustomResource" key="IBUIHighlightedImage" id="482214027">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">fbMap02.png</string>
+							<string key="NSResourceName">btn-fbMap00.png</string>
 						</object>
-						<object class="NSCustomResource" key="IBUINormalImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">fbMap01.png</string>
-						</object>
+						<reference key="IBUINormalImage" ref="482214027"/>
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 47}</string>
@@ -955,33 +952,31 @@
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
+				<string>bg-tabDefaultBG.png</string>
 				<string>btn-backtab01.png</string>
 				<string>btn-backtab02.png</string>
-				<string>bg-tabDefaultBG.png</string>
 				<string>btn-fbEvents01.png</string>
 				<string>btn-fbEvents02.png</string>
 				<string>btn-fbFriendTab01.png</string>
 				<string>btn-fbFriendsTab02.png</string>
-				<string>fbMap01.png</string>
-				<string>fbMap02.png</string>
+				<string>btn-fbMap00.png</string>
 				<string>btn-home01.png</string>
 				<string>btn-home02.png</string>
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>{100, 47}</string>
-				<string>{100, 47}</string>
 				<string>{320, 47}</string>
+				<string>{100, 47}</string>
+				<string>{100, 47}</string>
 				<string>{160, 47}</string>
 				<string>{160, 47}</string>
 				<string>{161, 47}</string>
 				<string>{161, 47}</string>
-				<string>{99, 47}</string>
-				<string>{99, 47}</string>
+				<string>{99, 46}</string>
 				<string>{57, 47}</string>
 				<string>{57, 47}</string>
 			</object>
 		</object>
-		<string key="IBCocoaTouchPluginVersion">117</string>
+		<string key="IBCocoaTouchPluginVersion">123</string>
 	</data>
 </archive>

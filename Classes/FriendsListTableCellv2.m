@@ -24,16 +24,18 @@
         
 		twoLine = NO;
         
-        iconBgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellIconBorder.png"]];
-        iconBgImage.frame = CGRectMake(6, 8, 54, 54);
-        [self addSubview:iconBgImage];
-        
-        CGRect frame = CGRectMake(8, 10, 49, 50);
+                
+        //CGRect frame = CGRectMake(8, 10, 49, 50);
+		CGRect frame = CGRectMake(10, 18, 34, 34);
         userIcon = [[TTImageView alloc] initWithFrame:frame];
         userIcon.backgroundColor = [UIColor clearColor];
-        userIcon.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
+        userIcon.defaultImage = [UIImage imageNamed:@"icon-default.png"];
         userIcon.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:3 topRight:3 bottomRight:3 bottomLeft:3] next:[TTContentStyle styleWithNext:nil]];
         [self addSubview:userIcon];
+		
+		iconBgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"twitter-iconMask.png"]];
+		iconBgImage.frame = CGRectMake(10, 18, 34, 34);
+        [self addSubview:iconBgImage];
         
         userName = [[UILabel alloc] initWithFrame:CGRectMake(66, 6, 220, 20)];
         userName.textColor = [UIColor colorWithWhite:0.5 alpha:1.0];
@@ -55,7 +57,7 @@
         [self addSubview:venueName];
         
         crownImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"place-mayorCrown.png"]];
-        crownImage.frame = CGRectMake(27, 2, 13, 7);
+        crownImage.frame = CGRectMake(20, 2, 13, 7);
 		crownImage.hidden = YES;
         [self addSubview:crownImage];
         
@@ -104,6 +106,7 @@
 	CGRect contentRect = [self.contentView bounds];
 	[userIcon setCenter:CGPointMake(userIcon.center.x, contentRect.size.height/2)];
 	[iconBgImage setCenter:CGPointMake(iconBgImage.center.x, contentRect.size.height/2)];
+	[crownImage setCenter:CGPointMake(userIcon.center.x, userIcon.center.y-19)];
 	topLineImage.frame = CGRectMake(0, 0, self.frame.size.width, 1);
 	bottomLineImage.frame = CGRectMake(0, contentRect.size.height - 1, self.frame.size.width, 1);
 	if (twoLine) {

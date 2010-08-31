@@ -28,7 +28,7 @@
 		
         userIcon = [[TTImageView alloc] initWithFrame:CGRectMake(10, 12, 34, 34)];
         userIcon.backgroundColor = [UIColor clearColor];
-        userIcon.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
+        userIcon.defaultImage = [UIImage imageNamed:@"icon-default.png"];
         userIcon.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
         
         dateLabel = [[UILabel alloc] init];
@@ -99,9 +99,13 @@
 	NSDictionary *likeInfo = [fbItem objectForKey:@"likes"];
 	userLikes = [(NSNumber*)[likeInfo objectForKey:@"user_likes"] boolValue];
 	if (userLikes) {
-		[likeButton setImage:[UIImage imageNamed:@"btn-youLike01.png"] forState:UIControlStateNormal];
-		[likeButton setImage:[UIImage imageNamed:@"btn-youLike02.png"] forState:UIControlStateHighlighted];
+		[likeButton setImage:[UIImage imageNamed:@"btn-like01.png"] forState:UIControlStateNormal];
+		[likeButton setImage:[UIImage imageNamed:@"btn-like02.png"] forState:UIControlStateHighlighted];
+	}else {
+		[likeButton setImage:[UIImage imageNamed:@"btn-like03.png"] forState:UIControlStateNormal];
+		[likeButton setImage:[UIImage imageNamed:@"btn-like02.png"] forState:UIControlStateHighlighted];
 	}
+
 	CGRect postSize = fbPostText.frame;
 	[fbPostText setNeedsDisplay];
 	int frameHeight = postSize.size.height+30 > 70 ? postSize.size.height+30 : 70;
@@ -362,11 +366,11 @@
 	GraphAPI *graph = [[[FacebookProxy instance] newGraph] autorelease];
 	if (userLikes) {
 		[graph likeObject:[fbItem objectForKey:@"post_id"]];
-		[likeButton setImage:[UIImage imageNamed:@"btn-youLike01.png"] forState:UIControlStateNormal];
-		[likeButton setImage:[UIImage imageNamed:@"btn-youLike02.png"] forState:UIControlStateHighlighted];
+		[likeButton setImage:[UIImage imageNamed:@"btn-like01.png"] forState:UIControlStateNormal];
+		[likeButton setImage:[UIImage imageNamed:@"btn-like02.png"] forState:UIControlStateHighlighted];
 	}else {
 		[graph unlikeObject:[fbItem objectForKey:@"post_id"]];
-		[likeButton setImage:[UIImage imageNamed:@"btn-like01.png"] forState:UIControlStateNormal];
+		[likeButton setImage:[UIImage imageNamed:@"btn-like03.png"] forState:UIControlStateNormal];
 		[likeButton setImage:[UIImage imageNamed:@"btn-like02.png"] forState:UIControlStateHighlighted];
 	}
 	[(NSMutableDictionary*)[fbItem objectForKey:@"likes"] setObject:[NSNumber numberWithBool:userLikes] forKey:@"user_likes"];

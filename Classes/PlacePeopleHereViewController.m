@@ -57,13 +57,13 @@
     FSCheckin *currentCheckin = ((FSCheckin*)[checkedInUsers objectAtIndex:indexPath.row]);
     cell.textLabel.text = currentCheckin.user.firstnameLastInitial;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.imageView.image = [UIImage imageNamed:@"blank_boy.png"];
+    cell.imageView.image = [UIImage imageNamed:@"icon-default.png"];
     
     CGRect frame = CGRectMake(0,0,36,36);
     TTImageView *ttImage = [[[TTImageView alloc] initWithFrame:frame] autorelease];
     ttImage.urlPath = currentCheckin.user.photo;
     ttImage.backgroundColor = [UIColor clearColor];
-    ttImage.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
+    ttImage.defaultImage = [UIImage imageNamed:@"icon-default.png"];
     ttImage.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
     [cell.imageView addSubview:ttImage];
 	return cell;

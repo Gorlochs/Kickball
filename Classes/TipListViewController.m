@@ -8,6 +8,7 @@
 
 #import "TipListViewController.h"
 #import "FSTip.h"
+#import "TipListTableCell.h"
 
 @implementation TipListViewController
 
@@ -21,6 +22,7 @@
     self.hideFooter = YES;
     self.hideRefresh = YES;
     pageType = KBPageTypeOther;
+	tipController = nil;
     [super viewDidLoad];
 }
 
@@ -42,38 +44,25 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *CellIdentifier = @"Cell";
+	static NSString *CellIdentifier = @"Cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    TipListTableCell *cell = (TipListTableCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
-        cell.textLabel.font = [UIFont boldSystemFontOfSize:12.0];
-        cell.detailTextLabel.font = [UIFont systemFontOfSize:12.0];
-        cell.detailTextLabel.numberOfLines = 2;
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.imageView.image = [UIImage imageNamed:@"blank_boy.png"];   
+        cell = [[[TipListTableCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
     
     // Configure the cell...
     
     FSTip *tip = (FSTip*)[venue.tips objectAtIndex:indexPath.row];
-    cell.textLabel.text = tip.submittedBy.firstnameLastInitial;
-    cell.detailTextLabel.text = tip.text;
-    
-    CGRect frame = CGRectMake(9,9,36,36);
-    TTImageView *ttImage = [[[TTImageView alloc] initWithFrame:frame] autorelease];
-    ttImage.urlPath = tip.submittedBy.photo;
-    ttImage.backgroundColor = [UIColor clearColor];
-    ttImage.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
-    ttImage.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
-    [cell addSubview:ttImage];
-    
+    cell.tipName.text = tip.submittedBy.firstnameLastInitial;
+    cell.tipDetail.text = tip.text;
+    cell.userIcon.urlPath = tip.submittedBy.photo;
     return cell;
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 55;
+    return 48;
 }
 
 #pragma mark -
@@ -81,6 +70,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     FSTip *tip = ((FSTip*)[venue.tips objectAtIndex:indexPath.row]);
+	if (tipController!=nil) {
+		[tipController release];
+		tipController = nil;
+	}
     tipController = [[TipDetailViewController alloc] initWithNibName:@"TipView" bundle:nil];
     tipController.tip = tip;
     tipController.venue = venue;

@@ -27,13 +27,13 @@
 		self.contentView.backgroundColor = [UIColor colorWithRed:240/255.0 green:240/255.0 blue:240/255.0 alpha:1.0];
         userIcon = [[TTImageView alloc] initWithFrame:CGRectMake(10, 18, 34, 34)];
         userIcon.backgroundColor = [UIColor clearColor];
-        userIcon.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
+        userIcon.defaultImage = [UIImage imageNamed:@"icon-default.png"];
         userIcon.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
         [self addSubview:userIcon];
         
 		
-        iconBgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellIconBorder.png"]];
-		iconBgImage.frame = CGRectMake(8, 16, 38, 38);
+        iconBgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"twitter-iconMask.png"]];
+		iconBgImage.frame = CGRectMake(10, 18, 34, 34);
         [self addSubview:iconBgImage];
 		iconButt = [UIButton buttonWithType:UIButtonTypeCustom];
 		[iconButt setFrame:CGRectMake(8, 16, 38, 38)];
@@ -126,7 +126,7 @@
 	
 	[iconButt setFrame:CGRectMake(8, contentRect.origin.y+10, 38, 38)];//CGPointMake(27, contentRect.size.height/2)];
 	[userIcon setFrame:CGRectMake(10, contentRect.origin.y+12, 34, 34)];//CGPointMake(27, contentRect.size.height/2)];
-	[iconBgImage setFrame:CGRectMake(8, contentRect.origin.y+10, 38, 38)];//CGPointMake(27, contentRect.size.height/2)];
+	[iconBgImage setFrame:CGRectMake(10, contentRect.origin.y+12, 34, 34)];//CGPointMake(27, contentRect.size.height/2)];
 	commentNumber.frame = CGRectMake(contentRect.origin.x+contentRect.size.width - 46, contentRect.size.height - 26, 40, 25);
 	if (comments) {
 		if (comments==1) {

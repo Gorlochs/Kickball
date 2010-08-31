@@ -39,6 +39,7 @@
 #import "GraphAPI.h"
 #import "KBAccountManager.h"
 #import "TableSectionHeaderView.h"
+#import "TipListTableCell.h"
 
 #define PHOTOS_PER_ROW 4
 #define THUMBNAIL_IMAGE_SIZEX 80
@@ -576,7 +577,7 @@
 	TTImageView *hereHead = [[TTImageView alloc] initWithFrame:headRect];
 	hereHead.urlPath = person.user.photo;
 	hereHead.backgroundColor = [UIColor clearColor];
-	hereHead.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
+	hereHead.defaultImage = [UIImage imageNamed:@"icon-default.png"];
 	hereHead.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
 	[container addSubview:hereHead];
 	[hereHead release];
@@ -658,6 +659,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+<<<<<<< .mine
+   	
+=======
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -684,6 +688,7 @@
 		[bottomLineImage release];
     }
 	
+>>>>>>> .r1424
     if (indexPath.section == 0) {
         return checkinCell;
     } else if (indexPath.section == 1) {
@@ -694,6 +699,21 @@
         return giftCell;
     } else if (indexPath.section == 4) {
         return bottomButtonCell;
+<<<<<<< .mine
+    } else if (indexPath.section == 5) {  
+		
+		
+		static NSString *CellIdentifier = @"TipCell";
+		
+		TipListTableCell *cell = (TipListTableCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+		if (cell == nil) {
+			cell = [[[TipListTableCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+		}
+		
+		// Configure the cell...
+		
+		FSTip *tip = (FSTip*)[venue.tips objectAtIndex:indexPath.row];
+=======
     } else if (indexPath.section == 5) {        
         FSTip *tip = (FSTip*) [venue.tips objectAtIndex:indexPath.row];
         cell.textLabel.font = [UIFont boldSystemFontOfSize:12.0];
@@ -709,17 +729,40 @@
 //		cell.textLabel.backgroundColor = [UIColor colorWithWhite:0.92 alpha:1.0];
 		cell.detailTextLabel.backgroundColor = [UIColor clearColor];
 		cell.textLabel.backgroundColor = [UIColor clearColor];
+>>>>>>> .r1424
 
-        
-        CGRect frame = CGRectMake(0,0,36,36);
-        TTImageView *ttImage = [[[TTImageView alloc] initWithFrame:frame] autorelease];
-        ttImage.urlPath = tip.submittedBy.photo;
-        ttImage.backgroundColor = [UIColor clearColor];
-        ttImage.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
-        ttImage.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
-        [cell.imageView addSubview:ttImage];
-    }
-    return cell;
+		cell.tipName.text = tip.submittedBy.firstnameLastInitial;
+		cell.tipDetail.text = tip.text;
+		cell.userIcon.urlPath = tip.submittedBy.photo;
+		return cell;
+	}else {
+		static NSString *CellIdentifier = @"Cell";
+		
+		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+		if (cell == nil) {
+			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+			cell.selectionStyle = UITableViewCellSelectionStyleGray;
+			
+			UIView *colorFill = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 55)];
+			colorFill.backgroundColor = [UIColor colorWithWhite:0.92 alpha:1.0];
+			colorFill.opaque = YES;
+			[cell setBackgroundView:colorFill];
+			[colorFill release];
+			
+			UIImageView* topLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderTop.png"]];
+			topLineImage.frame = CGRectMake(0, 0, 320, 1);
+			[cell addSubview:topLineImage];
+			[topLineImage release];
+			
+			// TODO: the origin.y should probably not be hard coded
+			UIImageView* bottomLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderBottom.png"]];
+			bottomLineImage.frame = CGRectMake(0, 54, 320, 1);
+			[cell addSubview:bottomLineImage];
+			[bottomLineImage release];
+		}
+		return cell;
+	}
+
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -753,7 +796,7 @@
         case 4:
             return 37;
         case 5:
-            return 55;
+            return 48;
         default:
             return 44;
     }

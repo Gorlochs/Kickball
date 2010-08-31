@@ -64,7 +64,7 @@
     CGRect frame = CGRectMake(17, 67, 33, 34);
     TTImageView *userProfileImage = [[TTImageView alloc] initWithFrame:frame];
     userProfileImage.backgroundColor = [UIColor clearColor];
-    userProfileImage.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
+    userProfileImage.defaultImage = [UIImage imageNamed:@"icon-default.png"];
     userProfileImage.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
     userProfileImage.urlPath = tweet.profileImageUrl;
     [self.view addSubview:userProfileImage];

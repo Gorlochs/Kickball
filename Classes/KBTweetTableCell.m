@@ -23,7 +23,7 @@
         CGRect frame = CGRectMake(8, 12, 49, 49);
         userIcon = [[TTImageView alloc] initWithFrame:frame];
         userIcon.backgroundColor = [UIColor clearColor];
-        userIcon.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
+        userIcon.defaultImage = [UIImage imageNamed:@"icon-default.png"];
         userIcon.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
         [self addSubview:userIcon];
         

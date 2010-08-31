@@ -84,7 +84,7 @@
 	if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.imageView.image = [UIImage imageNamed:@"blank_boy.png"];   
+        cell.imageView.image = [UIImage imageNamed:@"icon-default.png"];   
         cell.textLabel.font = [UIFont boldSystemFontOfSize:14.0];
 		cell.selectionStyle = UITableViewCellSelectionStyleGray;
 		
@@ -103,7 +103,7 @@
 	if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.imageView.image = [UIImage imageNamed:@"blank_boy.png"];   
+        cell.imageView.image = [UIImage imageNamed:@"icon-default.png"];   
     }
     */
     // Set up the cell...
@@ -114,7 +114,7 @@
     TTImageView *ttImage = [[[TTImageView alloc] initWithFrame:frame] autorelease];
     ttImage.urlPath = user.photo;
     ttImage.backgroundColor = [UIColor clearColor];
-    ttImage.defaultImage = [UIImage imageNamed:@"blank_boy.png"];
+    ttImage.defaultImage = [UIImage imageNamed:@"icon-default.png"];
     ttImage.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
     [cell addSubview:ttImage];
     

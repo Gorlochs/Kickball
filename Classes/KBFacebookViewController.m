@@ -65,14 +65,14 @@
     }
     
     if (pageViewType == KBPageViewTypeList) {
-        [centerHeaderButton setImage:[UIImage imageNamed:@"fbMap01.png"] forState:UIControlStateNormal];
-        [centerHeaderButton setImage:[UIImage imageNamed:@"fbMap02.png"] forState:UIControlStateHighlighted];
+        [centerHeaderButton setImage:[UIImage imageNamed:@"btn-fbMap00.png"] forState:UIControlStateNormal];
+        [centerHeaderButton setImage:[UIImage imageNamed:@"btn-fbMap00.png"] forState:UIControlStateHighlighted];
     } else if (pageViewType == KBPageViewTypeMap) {
-        [centerHeaderButton setImage:[UIImage imageNamed:@"fbList01.png"] forState:UIControlStateNormal];
-        [centerHeaderButton setImage:[UIImage imageNamed:@"fbList02.png"] forState:UIControlStateHighlighted];
+        [centerHeaderButton setImage:[UIImage imageNamed:@"btn-fbMap00.png"] forState:UIControlStateNormal];
+        [centerHeaderButton setImage:[UIImage imageNamed:@"btn-fbMap00.png"] forState:UIControlStateHighlighted];
     } else if (pageViewType == KBPageViewTypeOther) {
-        [centerHeaderButton setImage:[UIImage imageNamed:@"fbMap01.png"] forState:UIControlStateNormal];
-        [centerHeaderButton setImage:[UIImage imageNamed:@"fbMap02.png"] forState:UIControlStateHighlighted];
+        [centerHeaderButton setImage:[UIImage imageNamed:@"btn-fbMap00.png"] forState:UIControlStateNormal];
+        [centerHeaderButton setImage:[UIImage imageNamed:@"btn-fbMap00.png"] forState:UIControlStateHighlighted];
         centerHeaderButton.enabled = NO;
     }
 	footerType = KBFooterTypeFacebook;
