@@ -2,6 +2,7 @@
 #import "GraphAPI.h"
 #import "GraphObject.h"
 #import "JSON.h"
+#import "BusyAgent.h"
 
 // testing rediculousness
 //#import "AppDelegate_Pad.h"
@@ -358,6 +359,7 @@ static NSDateFormatter* fbEventDetailDate = NULL;
 	{
 		[self._authTarget performSelector:self._authCallback];
 	}			
+	[[BusyAgent defaultAgent] dequeueBusy];
 }
 
 // authorization has the following steps
@@ -668,6 +670,7 @@ static NSDateFormatter* fbEventDetailDate = NULL;
 
 -(void)loginAndAuthorizeWithTarget:(id)target callback:(SEL)authCallback
 {
+	[[BusyAgent defaultAgent] queueBusy];
 	self._authTarget = target;
 	self._authCallback = authCallback;
 
@@ -747,6 +750,7 @@ static NSDateFormatter* fbEventDetailDate = NULL;
 	//	self._fullText.text = [NSString stringWithFormat:@"Likes\n%@\n\nObject\n%@\n\nSearch\n%@\n\nNews for mother\n%@", likesText, self._fullText.text, searchText, searchNewsText];
 	
 	
+	[[BusyAgent defaultAgent] dequeueBusy];
 }
 
 +(NSDateFormatter*)fbDateFormatter{

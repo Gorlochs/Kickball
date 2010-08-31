@@ -211,8 +211,14 @@
         cell = [[[AddFriendTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     
+	cell.nameLabel.numberOfLines = 1;
     if ([searchResults count] == 0) {
-        cell.nameLabel.text = @"No matching search results";
+		if ([searchBar.text isEqualToString:@""]) {
+			cell.nameLabel.text = @"Enter a Twitter handle to get a list of their friends who are on Foursquare.";
+			cell.nameLabel.numberOfLines = 2;
+		} else {
+			cell.nameLabel.text = @"No matching search results";
+		}
         cell.iconBackground.hidden = YES;
         cell.userIcon.hidden = YES;
         cell.addFriendButton.hidden = YES;
