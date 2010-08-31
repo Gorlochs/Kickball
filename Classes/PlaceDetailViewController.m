@@ -659,36 +659,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-<<<<<<< .mine
-   	
-=======
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
-        cell.backgroundColor = [UIColor colorWithWhite:0.92 alpha:1.0]; 
-        cell.selectionStyle = UITableViewCellSelectionStyleGray;
-		
-		UIView *colorFill = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 55)];
-		colorFill.backgroundColor = [UIColor colorWithWhite:0.92 alpha:1.0];
-		colorFill.opaque = YES;
-		[cell setBackgroundView:colorFill];
-		[colorFill release];
-		
-		UIImageView* topLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderTop.png"]];
-		topLineImage.frame = CGRectMake(0, 0, 320, 1);
-		[cell addSubview:topLineImage];
-		[topLineImage release];
-		
-		// TODO: the origin.y should probably not be hard coded
-		UIImageView* bottomLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderBottom.png"]];
-		bottomLineImage.frame = CGRectMake(0, 54, 320, 1);
-		[cell addSubview:bottomLineImage];
-		[bottomLineImage release];
-    }
-	
->>>>>>> .r1424
+
     if (indexPath.section == 0) {
         return checkinCell;
     } else if (indexPath.section == 1) {
@@ -699,7 +670,6 @@
         return giftCell;
     } else if (indexPath.section == 4) {
         return bottomButtonCell;
-<<<<<<< .mine
     } else if (indexPath.section == 5) {  
 		
 		
@@ -713,23 +683,7 @@
 		// Configure the cell...
 		
 		FSTip *tip = (FSTip*)[venue.tips objectAtIndex:indexPath.row];
-=======
-    } else if (indexPath.section == 5) {        
-        FSTip *tip = (FSTip*) [venue.tips objectAtIndex:indexPath.row];
-        cell.textLabel.font = [UIFont boldSystemFontOfSize:12.0];
-        
-        cell.detailTextLabel.numberOfLines = 2;
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.imageView.image = [UIImage imageNamed:@"blank_boy.png"];   
-        cell.textLabel.font = [UIFont boldSystemFontOfSize:12];
-        cell.detailTextLabel.font = [UIFont systemFontOfSize:12.0];
-        cell.textLabel.text = tip.submittedBy.firstnameLastInitial;
-        cell.detailTextLabel.text = tip.text;
-//		cell.detailTextLabel.backgroundColor = [UIColor colorWithWhite:0.92 alpha:1.0];
-//		cell.textLabel.backgroundColor = [UIColor colorWithWhite:0.92 alpha:1.0];
-		cell.detailTextLabel.backgroundColor = [UIColor clearColor];
-		cell.textLabel.backgroundColor = [UIColor clearColor];
->>>>>>> .r1424
+
 
 		cell.tipName.text = tip.submittedBy.firstnameLastInitial;
 		cell.tipDetail.text = tip.text;
