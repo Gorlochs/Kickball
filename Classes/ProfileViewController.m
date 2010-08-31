@@ -590,6 +590,7 @@
     placeDetailController.venueId = venue.venueid;
     [self.navigationController pushViewController:placeDetailController animated:YES];
     [placeDetailController release];
+	[FlurryAPI logEvent:@"tapped to venue detail from profile detial header"];
 }
 
 - (void) checkinToProfilesVenue {
