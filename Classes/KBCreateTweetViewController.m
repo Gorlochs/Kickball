@@ -144,7 +144,7 @@
 			actionCount++;
 			NSData *data = UIImageJPEGRepresentation(photoImage, 1.0);
 			NSString *filename = @"tweet.jpg";
-			if (!data) {
+			if (!data) { // i'm pretty sure this doesn't work
 				data = UIImagePNGRepresentation(photoImage);
 				filename = @"tweet.png";
 			}
@@ -155,7 +155,7 @@
 						   andMessage:tweetTextView.text
 					   andOrientation:photoImage.imageOrientation
 							 andVenue:nil];
-			
+			 
 			
 			[NSThread detachNewThreadSelector:@selector(uploadToTweetPhoto) toTarget:self withObject:nil];
 			if (isFacebookOn) {
@@ -173,7 +173,7 @@
 	} else {
 		[tweetTextView resignFirstResponder];
 		
-		KBMessage *theMessage = [[KBMessage alloc] initWithMember:@"Form Error"	andMessage:@"Please fill in the tweet before submitting"];
+		KBMessage *theMessage = [[KBMessage alloc] initWithMember:@"Form Error"	andMessage:@"Oops, better fill in the tweet before hitting submit."];
 		[[KBDialogueManager sharedInstance] displayMessage:theMessage];
 		[theMessage release];
 	}
@@ -187,6 +187,7 @@
 	DLog(@"tweetphoto url: %@", tweetPhotoResponse.mediaUrl);
 	[self performSelectorOnMainThread:@selector(submitToTwitter:) withObject:tweetPhotoResponse waitUntilDone:NO];
 }
+
 -(void) uploadToFacebook{
 	GraphAPI *graph = [[FacebookProxy instance] newGraph];
 	[graph postToWall:tweetTextView.text withImage:photoImage];	
@@ -395,7 +396,7 @@
 - (void) photoUploadFinished:(ASIHTTPRequest *) request {
     [self stopProgressBar];
     DLog(@"YAY! Image uploaded! *****************%@",[request responseString]);
-    KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"Image upload has been completed!"];
+    KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"Okay, your image is uploaded!"];
     [self displayPopupMessage:message];
     [message release];
     

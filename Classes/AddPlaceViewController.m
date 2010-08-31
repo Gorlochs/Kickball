@@ -163,7 +163,7 @@
 
 - (void) doVenuelessCheckin {
     if ([venue.name isEqualToString:@""]){
-        KBMessage *msg = [[KBMessage alloc] initWithMember:@"Error" andMessage:@"Please fill out a venue name"];
+        KBMessage *msg = [[KBMessage alloc] initWithMember:@"Error" andMessage:@"Oops! Enter a venue name."];
         [self displayPopupMessage:msg];
         [msg release];
     } else {
@@ -200,7 +200,7 @@
                                          withTarget:self 
                                           andAction:@selector(newVenueResponseReceived:withResponseString:)];
 //    } else {
-//        KBMessage *msg = [[KBMessage alloc] initWithMember:@"Form Error!" andMessage:@"All the required fields need to be filled in"];
+//        KBMessage *msg = [[KBMessage alloc] initWithMember:@"Form Error!" andMessage:@"All the required fields must be filled in."];
 //        [self displayPopupMessage:msg];
 //        [msg release];
 //    }
@@ -209,7 +209,7 @@
 - (void)newVenueResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     BOOL hasError = [inString rangeOfString:@"<error>"].location != NSNotFound;
     if (hasError) {
-        KBMessage *msg = [[KBMessage alloc] initWithMember:@"Foursquare Error" andMessage:@"The venue could not be created, possibly because it is a duplicate venue."];
+        KBMessage *msg = [[KBMessage alloc] initWithMember:@"Foursquare Error" andMessage:@"The venue could not be created. Is it a duplicate venue?"];
         [self displayPopupMessage:msg];
         [msg release];
     } else {

@@ -21,7 +21,6 @@
 
 @synthesize showBackButton;
 
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
 
     [super viewDidLoad];
@@ -115,12 +114,13 @@
 	}
 }
 
-- (void) retrieveNewFriendLocationsAndRefresh {
-    //self.checkins = nil;
-    [self startProgressBar:@"Refreshing friends' locations..."];
-    [mapViewer removeAnnotations:mapViewer.annotations];
-	[[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
-}
+//	Not currently being used
+//- (void) retrieveNewFriendLocationsAndRefresh {
+//    //self.checkins = nil;
+//    [self startProgressBar:@"Refreshing friends' locations..."];
+//    [mapViewer removeAnnotations:mapViewer.annotations];
+//	[[FoursquareAPI sharedInstance] getCheckinsWithTarget:self andAction:@selector(checkinResponseReceived:withResponseString:)];
+//}
 
 - (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     [self setCheckins:[FoursquareAPI checkinsFromResponseXML:inString]];

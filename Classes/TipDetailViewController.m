@@ -32,12 +32,12 @@
     DLog(@"returned tip id: %@", tipId);
     if (tipId != nil) {
         // display thank you message
-        KBMessage *message = [[KBMessage alloc] initWithMember:@"Tips" andMessage:@"Success"];
+        KBMessage *message = [[KBMessage alloc] initWithMember:@"Tips" andMessage:@"Thanks for the tip! Maybe someone will one day say they've done this."];
         [self displayPopupMessage:message];
         [message release];
     } else {
         // display error message
-        KBMessage *message = [[KBMessage alloc] initWithMember:@"Tips" andMessage:@"Error. We apologize for the error. Please try again later."];
+        KBMessage *message = [[KBMessage alloc] initWithMember:@"Tips" andMessage:@"Something went wrong. Give it another try."];
         [self displayPopupMessage:message];
         [message release];
     }

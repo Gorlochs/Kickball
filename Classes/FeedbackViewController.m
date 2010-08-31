@@ -152,7 +152,7 @@
 
 - (void) feedbackDidFinish:(ASIHTTPRequest *) request {
 	[self stopProgressBar];
-	KBMessage *message = [[KBMessage alloc] initWithMember:@"Thanks!" andMessage:@"Feedback submitted!"];
+	KBMessage *message = [[KBMessage alloc] initWithMember:@"Thanks!" andMessage:@"We've got your feedback!"];
     [self displayPopupMessage:message];
     [message release];
     DLog(@"YAAAAAAAAAAAY!");

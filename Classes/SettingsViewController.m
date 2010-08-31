@@ -79,12 +79,12 @@
     BOOL containsUnauthorized = [inString rangeOfString:@"unauthorized" options:NSCaseInsensitiveSearch].length > 0;
     if (containsUnauthorized) {
         // display fail message
-        KBMessage *message = [[KBMessage alloc] initWithMember:@"Failed!" andMessage:@"Authentication failed. Please try again."];
+        KBMessage *message = [[KBMessage alloc] initWithMember:@"Failed!" andMessage:@"Authentication failed. Give it another try."];
         [self displayPopupMessage:message];
         [message release];
     } else {
         // display success message and save to keychain
-        KBMessage *message = [[KBMessage alloc] initWithMember:@"Success!" andMessage:@"Authentication succeeded!  Your new username and password have been authenticated."];
+        KBMessage *message = [[KBMessage alloc] initWithMember:@"Success!" andMessage:@"Authentication succeeded! Your username and password have been authenticated."];
         [self displayPopupMessage:message];
         [message release];
         

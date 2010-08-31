@@ -112,7 +112,7 @@
     
     KBMessage *message = nil;
     if (user) {
-        message = [[KBMessage alloc] initWithMember:@"Friend Request Approved" andMessage:@"You now have a new buddy."];
+        message = [[KBMessage alloc] initWithMember:@"Friend Request Approved" andMessage:@"You have a new buddy!"];
         int i = 0;
         for (FSUser *u in pendingFriendRequests) {
             if ([user.userId isEqualToString:u.userId]) {
@@ -140,7 +140,7 @@
     
     KBMessage *message = nil;
     if (user) {
-        message = [[KBMessage alloc] initWithMember:@"Friend Request Denied" andMessage:@"Sorry buddy, not this time!"];
+        message = [[KBMessage alloc] initWithMember:@"Friend Request Denied" andMessage:@"Maybe it was something they said?Missing"];
         int i = 0;
         for (FSUser *u in pendingFriendRequests) {
             if ([user.userId isEqualToString:u.userId]) {

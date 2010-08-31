@@ -111,7 +111,7 @@
 
 - (void) search {
     if ([searchBar.text isEqualToString:@""]) {
-        KBMessage *message = [[KBMessage alloc] initWithMember:@"Search Error" andMessage:@"Missing value. Please fill in the name field"];
+        KBMessage *message = [[KBMessage alloc] initWithMember:@"Search Error" andMessage:@"Oops, better enter something in the name field."];
         [self displayPopupMessage:message];
         [message release];
     } else {

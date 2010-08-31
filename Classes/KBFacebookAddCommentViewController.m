@@ -53,7 +53,7 @@
     if ([text isEqualToString:@"\n"]) {
         [textView resignFirstResponder];
 		if ([tipTodoText.text length] == 0) {
-			KBMessage *message = [[KBMessage alloc] initWithMember:@"Submission Failed" andMessage:@"Please enter in some text and try again."];
+			KBMessage *message = [[KBMessage alloc] initWithMember:@"Submission Failed" andMessage:@"Enter some text and give it another try."];
 			[self displayPopupMessage:message];
 			[message release];
 		} else {
@@ -84,7 +84,7 @@
 
 - (void)success {
 	[self.parentViewController dismissModalViewControllerAnimated:YES];
-    KBMessage *msg = [[KBMessage alloc] initWithMember:@"Kickball Notification" andMessage:@"Your comment was posted"];
+    KBMessage *msg = [[KBMessage alloc] initWithMember:@"Kickball Notification" andMessage:@"Okay, your comment has been posted!"];
     [parentView displayPopupMessage:msg];
 	[parentView refreshTable];
     [msg release];

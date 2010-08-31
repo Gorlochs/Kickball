@@ -35,7 +35,7 @@
     [theTimer invalidate];
     theTimer = nil;
     [self stopProgressBar];
-    KBMessage *message = [[KBMessage alloc] initWithMember:@"Twitter Message" andMessage:@"The server is not currently responding. Please try again shortly."];
+    KBMessage *message = [[KBMessage alloc] initWithMember:@"Twitter Message" andMessage:@"That's strange, the server didn't respond. Give it another try."];
     [self displayPopupMessage:message];
     [message release];
 }*/

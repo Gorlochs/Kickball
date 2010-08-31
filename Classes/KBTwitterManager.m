@@ -257,7 +257,7 @@ static KBTwitterManager *sharedInstance = nil;
 				
 			case -1200:
 			{
-				UIAlertViewQuick(@"Secure connection failed", @"I couldn't connect to Twitter. This is most likely a temporary issue, please try again.", @"OK");					
+				UIAlertViewQuick(@"Secure connection failed", @"That's strange, we couldn't connect to Twitter. Give it another try.", @"OK");					
 				break;								
 			}
 				

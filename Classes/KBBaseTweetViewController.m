@@ -32,10 +32,12 @@
 - (void) viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(displaySentTwitterMessage) name:@"displaySentTwitterMessage" object:nil];
+	twitterManager.delegate = self;
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:@"displaySentTwitterMessage" object:nil];
+	twitterManager.delegate = nil;
     [super viewDidDisappear:animated];
 }
 
@@ -83,7 +85,7 @@
 			case 401:
 			{
 				// Unauthorized. The user's credentials failed to verify.
-				UIAlertViewQuick(@"Oops!", @"Your username and password could not be verified. Double check that you entered them correctly and try again.", @"OK");	
+				UIAlertViewQuick(@"Oops!", @"Your username and password could not be verified. Did you enter them correctly?", @"OK");	
 				break;				
 			}
 				
@@ -130,7 +132,7 @@
 				
 			case -1200:
 			{
-				UIAlertViewQuick(@"Secure connection failed", @"I couldn't connect to Twitter. This is most likely a temporary issue, please try again.", @"OK");					
+				UIAlertViewQuick(@"Secure connection failed", @"That's strange, we couldn't connect to Twitter. Give it another try.", @"OK");					
 				break;								
 			}
 				

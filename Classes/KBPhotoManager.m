@@ -101,7 +101,7 @@ static BOOL initialized = NO;
 //    [self stopProgressBar];
     DLog(@"PhotoManager - YAY! Image uploaded! %@", [request responseString]);
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"photoUploaded" object:nil];
-//    KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"Image upload has been completed!"];
+//    KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"Okay, your image is uploaded!"];
 //    [self displayPopupMessage:message];
 //    [message release];
 //    
@@ -246,95 +246,6 @@ static BOOL initialized = NO;
     UIGraphicsEndImageContext();  
 	
     return imageCopy;
-
-	
-	/*
-	UIImage* sourceImage = image; 
-	CGFloat targetMax = targetSize.width;
-	
-	CGImageRef imageRef = [sourceImage CGImage];
-	CGBitmapInfo bitmapInfo = CGImageGetBitmapInfo(imageRef);
-	CGColorSpaceRef colorSpaceInfo = CGImageGetColorSpace(imageRef);
-	
-	if (bitmapInfo == kCGImageAlphaNone) {
-		bitmapInfo = kCGImageAlphaNoneSkipLast;
-	}
-	
-	CGContextRef bitmap;
-	CGFloat targetWidth;
-	CGFloat targetHeight;
-	if(image.size.width==image.size.height){
-		//square
-		targetWidth = targetMax;
-		targetHeight = targetMax;
-	}else if (image.size.width > image.size.height) {
-		//landscape
-		targetWidth = targetMax;
-		targetHeight = (targetMax * image.size.height)/image.size.width;
-	}else {
-		//portrait
-		targetWidth = (targetMax * image.size.width)/image.size.height;
-		targetHeight = targetMax;
-	}
-	
-	bitmap = CGBitmapContextCreate(NULL, targetHeight, targetWidth, CGImageGetBitsPerComponent(imageRef), CGImageGetBytesPerRow(imageRef), colorSpaceInfo, bitmapInfo);
-
-
-	
-}
-
--(UIImage*)imageByScalingToSize:(UIImage*)image toSize:(CGSize)targetSize {
-	UIImage* sourceImage = image; 
-	CGFloat targetWidth = targetSize.width;
-	CGFloat targetHeight = targetSize.height;
-    
-	CGImageRef imageRef = [sourceImage CGImage];
-	CGBitmapInfo bitmapInfo = CGImageGetBitmapInfo(imageRef);
-	CGColorSpaceRef colorSpaceInfo = CGImageGetColorSpace(imageRef);
-	
-	if (bitmapInfo == kCGImageAlphaNone) {
-		bitmapInfo = kCGImageAlphaNoneSkipLast;
-	}
-	
-	CGContextRef bitmap;
-	
-	if (sourceImage.imageOrientation == UIImageOrientationUp || sourceImage.imageOrientation == UIImageOrientationDown) {
-		bitmap = CGBitmapContextCreate(NULL, targetHeight, targetWidth, CGImageGetBitsPerComponent(imageRef), CGImageGetBytesPerRow(imageRef), colorSpaceInfo, bitmapInfo);
-	} else {
-		bitmap = CGBitmapContextCreate(NULL, targetWidth, targetHeight, CGImageGetBitsPerComponent(imageRef), CGImageGetBytesPerRow(imageRef), colorSpaceInfo, bitmapInfo);
-	}	
-	
-	
-	// In the right or left cases, we need to switch scaledWidth and scaledHeight,
-	// and also the thumbnail point
-	if (sourceImage.imageOrientation == UIImageOrientationLeft) {
-		//CGContextRotateCTM (bitmap, radians(90));
-		//CGContextTranslateCTM (bitmap, 0, -targetHeight);
-		
-	} else if (sourceImage.imageOrientation == UIImageOrientationRight) {
-		CGContextRotateCTM (bitmap, radians(-90));
-		CGContextTranslateCTM (bitmap, -targetWidth, 0);
-		
-	} else if (sourceImage.imageOrientation == UIImageOrientationUp) {
-		// NOTHING
-		// This is the default value
-		//need to check for 
-	} else if (sourceImage.imageOrientation == UIImageOrientationDown) {
-		CGContextTranslateCTM (bitmap, targetWidth, targetHeight);
-		CGContextRotateCTM (bitmap, radians(-180.));
-	}
-	
-	//this needs to be way more complex...
-	CGContextDrawImage(bitmap, CGRectMake(0, 0, targetWidth, targetHeight), imageRef);
-	
-	CGImageRef ref = CGBitmapContextCreateImage(bitmap);
-	UIImage* newImage = [UIImage imageWithCGImage:ref];
-	
-	CGContextRelease(bitmap);
-	CGImageRelease(ref);
-	
-	return newImage; 
-	 */
 }
 
 // TODO: set max file size    

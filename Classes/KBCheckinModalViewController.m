@@ -370,7 +370,7 @@
 	
     DLog(@"YAY! Image uploaded!");
 
-//    KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"Image upload has been completed!"];
+//    KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"Okay, your image is uploaded!"];
 //    [self displayPopupMessage:message];
 //    [message release];
     

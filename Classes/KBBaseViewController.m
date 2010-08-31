@@ -342,7 +342,7 @@ const NSString *kickballDomain = @"http://kickball.gorlochs.com/kickball";
     
 	// *** SCOTT ***  Scott thinks this error message is irrelevant and does not need to be called.
     /*
-	KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"The server is not currently responding. Please try again shortly."];
+	KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"That's strange, the server didn't respond. Give it another try."];
     [self displayPopupMessage:message];
     [message release];
 	 */

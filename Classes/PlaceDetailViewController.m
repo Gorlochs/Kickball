@@ -206,12 +206,12 @@
             
             if ([[UIDevice currentDevice] respondsToSelector:@selector(userInterfaceIdiom)]) {    //check for iphone OS 3.1
                 if (theScreen.scale > 1.0) {
-                    ttImage.urlPath = photo.mediumImagePath;
+                    ttImage.urlPath = goody.mediumImagePath;
                 } else {
-                    ttImage.urlPath = photo.thumbnailImagePath;
+                    ttImage.urlPath = goody.thumbnailImagePath;
                 }
             } else {
-                ttImage.urlPath = photo.thumbnailImagePath;
+                ttImage.urlPath = goody.thumbnailImagePath;
             }
             
 			ttImage.clipsToBounds = YES;
@@ -257,7 +257,7 @@
 }
 
 - (void) displayTodoTipMessage:(NSNotification *)inNotification {
-    KBMessage *msg = [[KBMessage alloc] initWithMember:@"Kickball Notification" andMessage:@"Your todo/tip was sent"];
+    KBMessage *msg = [[KBMessage alloc] initWithMember:@"Kickball Notification" andMessage:@"Your To Do / Tip was sent!"];
     [self displayPopupMessage:msg];
     [msg release];
 }
@@ -913,7 +913,7 @@
     DLog(@"phone number to call: %@", [NSString stringWithFormat:@"tel:%@", venue.phone]);
     [FlurryAPI logEvent:@"call Venue"];
 	if (!venue.phone) {
-		KBMessage *message = [[KBMessage alloc] initWithMember:@"Foursquare Message" andMessage:@"Sorry, a phone number for this venue could not be found."];
+		KBMessage *message = [[KBMessage alloc] initWithMember:@"Foursquare Message" andMessage:@"Oops, we can't find a phone number for this venue."];
 		[self displayPopupMessage:message];
 		[message release];
 	} else {
@@ -1334,7 +1334,7 @@
     [self stopProgressBar];
     
     if (isOK) {
-        KBMessage *msg = [[KBMessage alloc] initWithMember:@"Foursquare Notification" andMessage:@"Thank you for notifying Foursquare of the venue closure."];
+        KBMessage *msg = [[KBMessage alloc] initWithMember:@"Foursquare Notification" andMessage:@"This venue has closed? Thanks for letting Foursquare know."];
         [self displayPopupMessage:msg];
         [msg release];
     }
@@ -1624,7 +1624,7 @@
 
 // this is used in the notification
 - (void) photoUploaded {
-	KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"Image upload has been completed!"];
+	KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"Okay, your image is uploaded!"];
     [self displayPopupMessage:message];
     [message release];
 }

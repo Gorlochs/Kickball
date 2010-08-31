@@ -86,7 +86,7 @@
 - (void) submitTipOrTodoToFoursquare {
     [tipTodoText resignFirstResponder];
     if ([tipTodoText.text length] == 0) {
-        KBMessage *message = [[KBMessage alloc] initWithMember:@"Submission Failed" andMessage:@"Please enter in some text and try again."];
+        KBMessage *message = [[KBMessage alloc] initWithMember:@"Submission Failed" andMessage:@"Enter some text and give it another try."];
         [self displayPopupMessage:message];
         [message release];
     } else {

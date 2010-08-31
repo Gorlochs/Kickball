@@ -310,7 +310,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 //                [apiAlert show];
 //                [apiAlert release];
 //            } else {
-                KBMessage *message = [[KBMessage alloc] initWithMember:@"Network Error" andMessage:@"The network is down. Please try again shortly."];
+                KBMessage *message = [[KBMessage alloc] initWithMember:@"Network Error" andMessage:@"That's strange, the server didn't respond. Give it another try."];
                 [self displayPopupMessage:message];
                 [message release];
                 

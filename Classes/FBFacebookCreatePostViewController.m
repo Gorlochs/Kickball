@@ -297,7 +297,7 @@
 
 
 - (void) photoUploadFinished:(ASIHTTPRequest *) request {
-    KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"Image upload has been completed!"];
+    KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"Okay, your image is uploaded!"];
     [delegate displayPopupMessage:message];
     [message release];
     [FlurryAPI logEvent:@"Image Upload Completed- facebook post"];
@@ -321,7 +321,7 @@
 	GraphAPI *graph = [[FacebookProxy instance] newGraph];
 	[graph simpleStatusPost:tweetTextView.text];	
 	[graph release];
-	KBMessage *message = [[KBMessage alloc] initWithMember:@"Error" andMessage:@"Image upload failed!"];
+	KBMessage *message = [[KBMessage alloc] initWithMember:@"Error" andMessage:@"Oh, no! Your image upload failed."];
     [delegate displayPopupMessage:message];
     [message release];
     [FlurryAPI logEvent:@"Image Upload Failed- facebook post"];

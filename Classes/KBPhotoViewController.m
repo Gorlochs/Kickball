@@ -84,14 +84,14 @@
 
 - (void) flagWentWrong:(ASIHTTPRequest *) request {
     DLog(@"flagging went wrong: %@", [request responseString]);
-    KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"There was an error with the flagging of this photo.  Please try again later."];
+    KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"Oops! There was an error in flagging this photo. Give it another try."];
     [self displayPopupMessage:message];
     [message release];
 }
 
 - (void) flagDidFinish:(ASIHTTPRequest *) request {
     DLog(@"flagged inappropriate: %@", [request responseString]);
-    KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"We have flagged this photo and will review it shortly. Thanks for making the world a safer place."];
+    KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"This photo has been flagged for review. Thanks for making the world a safer place."];
     [self displayPopupMessage:message];
     [message release];
 }

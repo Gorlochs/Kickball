@@ -79,7 +79,7 @@
     if (containsUnauthorized) {
         // display fail message
 		//[password becomeFirstResponder];
-        KBMessage *message = [[KBMessage alloc] initWithMember:@"Authentication Failed" andMessage:@"Please try again."];
+        KBMessage *message = [[KBMessage alloc] initWithMember:@"Authentication Failed" andMessage:@"Give it another try."];
         //[delegate displayFoursquareErrorMessage:message];
 		[delegate displayFoursquareErrorMessage:@"Authentication Failed"];
         [message release];

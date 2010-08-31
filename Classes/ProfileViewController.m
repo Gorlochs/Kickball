@@ -773,7 +773,7 @@
     [self stopProgressBar];
     
     // TODO: figure out what we want to do here. How do we show points?
-    KBMessage *msg = [[KBMessage alloc] initWithMember:@"Kickball Notification" andMessage:@"Thank you for checking in"];
+    KBMessage *msg = [[KBMessage alloc] initWithMember:@"Kickball Notification" andMessage:@"Okay, you're checked in!"];
     [self displayPopupMessage:msg];
     [msg release];
 }
@@ -800,7 +800,7 @@
 }
 
 - (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error {
-    KBMessage *message = [[KBMessage alloc] initWithMember:@"Twitter Error" andMessage:@"Sorry. It seems that Twitter is down. Try again later."];
+    KBMessage *message = [[KBMessage alloc] initWithMember:@"Twitter Error" andMessage:@"Oh, no! It looks like Twitter is down. Try again later."];
     [self displayPopupMessage:message];
     [message release];
     DLog(@"requestFailed: %@", connectionIdentifier);
