@@ -16,12 +16,12 @@
 #import "util.h"
 
 // PRODUCTION
-//#define kApplicationKey @"yRIla6gWSyWVmizCFl13Nw"
-//#define kApplicationSecret @"-BnhB82eSrWrGG0aXm2PLQ"
+#define kApplicationKey @"yRIla6gWSyWVmizCFl13Nw"
+#define kApplicationSecret @"-BnhB82eSrWrGG0aXm2PLQ"
 
 // DEVELOPMENT
-#define kApplicationKey @"qpHHiOCAT8iYATFJa4dsIQ"
-#define kApplicationSecret @"PGTRPo6OTI2dvtz2xw-vfw"
+//#define kApplicationKey @"qpHHiOCAT8iYATFJa4dsIQ"
+//#define kApplicationSecret @"PGTRPo6OTI2dvtz2xw-vfw"
 
 typedef enum{
 	KBNavControllerTypeFoursquare = 0,
