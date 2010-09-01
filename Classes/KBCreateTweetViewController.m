@@ -102,7 +102,11 @@
 
 - (void) submitTweet {
     
-	if (tweetTextView.text && ![tweetTextView.text isEqualToString:@""]) {
+	if ([tweetTextView.text length] > 140) {
+		KBMessage *theMessage = [[KBMessage alloc] initWithMember:@"Form Error"	andMessage:@"Oops, keep your tweets under 140 characters please!"];
+		[[KBDialogueManager sharedInstance] displayMessage:theMessage];
+		[theMessage release];
+	} else if (tweetTextView.text && ![tweetTextView.text isEqualToString:@""]) {
 		[tweetTextView resignFirstResponder];
 		[self startProgressBar:@"Submitting..."];
 		[self dismissModalViewControllerAnimated:YES];
@@ -253,7 +257,6 @@
 	KBMessage *message = [[KBMessage alloc] initWithMember:@"Twitter Message" andMessage:@"Your tweet has been sent!"];
 	[[KBDialogueManager sharedInstance] displayMessage:message];
 	[message release];
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"twitterViewLoadFailure" object: nil];
 	[self backOneView];
 }
 
@@ -316,8 +319,12 @@
 
 - (void) textViewDidChange:(UITextView *)textView {
     if ([textView.text length] > 140) {
-        textView.text = [textView.text substringToIndex:140];
-    }
+		characterCountLabel.textColor = [UIColor redColor];
+//        textView.text = [textView.text substringToIndex:140];
+    } else {
+		characterCountLabel.textColor = [UIColor colorWithWhite:0.5 alpha:1.0];
+	}
+
     characterCountLabel.text = [NSString stringWithFormat:@"%d/140", [textView.text length]];
 }
 
@@ -448,12 +455,7 @@
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 	photoManager.delegate = nil;
-	
-//    [tweetTextView release];
-//    [characterCountLabel release];
-//    [sendTweet release];
-//    [cancel release];
-    
+	   
     [replyToStatusId release];
     [replyToScreenName release];
     [retweetStatusId release];
@@ -462,13 +464,7 @@
 	[directMessageToScreenname release];
 	[tweetPhotoResponse release];
     [tweetPhoto release];
-//    [foursquareButton release];
-//    [facebookButton release];
-//    [geotagButton release];
-//    [addPhotoButton release];
     if (photoImage) [photoImage release];
-    //[photoManager release];
-//    [thumbnailPreview release];
     [super dealloc];
 }
 
