@@ -125,6 +125,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
                                              GEO_TWITTER_RADIUS
                                              ]
      ];
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 }
 
 #pragma mark -
@@ -322,6 +323,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 
 - (void)mapViewDidFinishLoadingMap:(MKMapView *)mapView {
     isMapFinishedLoading = YES;
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
 #pragma mark -

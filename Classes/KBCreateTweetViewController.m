@@ -249,6 +249,10 @@
 - (void) closeUpShop {
     [self stopProgressBar];
 	// FIXME: POST NOTIFICATION TO DISPLAY THE SUCCESS VIEW
+	
+	KBMessage *message = [[KBMessage alloc] initWithMember:@"Twitter Message" andMessage:@"Your tweet has been sent!"];
+	[[KBDialogueManager sharedInstance] displayMessage:message];
+	[message release];
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"twitterViewLoadFailure" object: nil];
 	[self backOneView];
 }
