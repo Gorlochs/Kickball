@@ -17,7 +17,7 @@
 
 - (void) markTipAsTodoForUser {
     [self startProgressBar:@"Marking tip as a todo..."];
-    [[FoursquareAPI sharedInstance] markTipAsDone:tip.tipId withTarget:self andAction:@selector(tipResponseReceived:withResponseString:)];
+    [[FoursquareAPI sharedInstance] markTipAsDone:tip.tipId withTarget:self andAction:@selector(tipTodoResponseReceived:withResponseString:)];
 }
 
 - (void) markTipAsDoneForUser {
@@ -33,6 +33,24 @@
     if (tipId != nil) {
         // display thank you message
         KBMessage *message = [[KBMessage alloc] initWithMember:@"Tips" andMessage:@"Thanks for the tip! Maybe someone will one day say they've done this."];
+        [self displayPopupMessage:message];
+        [message release];
+    } else {
+        // display error message
+        KBMessage *message = [[KBMessage alloc] initWithMember:@"Tips" andMessage:@"Something went wrong. Give it another try."];
+        [self displayPopupMessage:message];
+        [message release];
+    }
+}
+
+- (void) tipTodoResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
+    DLog(@"tip response string: %@", inString);
+	NSString *tipId =  [FoursquareAPI tipIdFromResponseXML:inString];
+    [self stopProgressBar];
+    DLog(@"returned tip id: %@", tipId);
+    if (tipId != nil) {
+        // display thank you message
+        KBMessage *message = [[KBMessage alloc] initWithMember:@"Tips" andMessage:@"What are you waiting for? Do it!"];
         [self displayPopupMessage:message];
         [message release];
     } else {
