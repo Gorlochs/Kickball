@@ -63,7 +63,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     // this should TOTALLY be inside the KBMapPopupView, but I couldn't find an init method that is actually being called.
     self.popupBubbleView.frame = CGRectMake(20.0, 250.0 + 300 , self.popupBubbleView.frame.size.width, self.popupBubbleView.frame.size.height);
 	// FIXME: this is still using IFTweetLabel
-    UILabel *tweetLabel = [[UILabel alloc] initWithFrame:CGRectMake(56, 80, 150, 50)];
+    UILabel *tweetLabel = [[UILabel alloc] initWithFrame:CGRectMake(56, 80, 200, 50)];
 	self.popupBubbleView.tweetText = tweetLabel;
 	[tweetLabel release];
     self.popupBubbleView.tweetText.textColor = [UIColor colorWithWhite:0.5 alpha:1.0];
@@ -295,13 +295,13 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     currentlyDisplayedSearchResult = annotation.searchResult;
 	userIcon.urlPath = annotation.iconUrl;
 	
-	CGSize maximumLabelSize = CGSizeMake(250, MAX_LABEL_HEIGHT);
+	CGSize maximumLabelSize = CGSizeMake(200, MAX_LABEL_HEIGHT);
 	CGSize expectedLabelSize = [self.popupBubbleView.tweetText.text sizeWithFont:self.popupBubbleView.tweetText.font
 															   constrainedToSize:maximumLabelSize 
 																   lineBreakMode:UILineBreakModeWordWrap];
 	
 	CGRect frame = self.popupBubbleView.tweetText.frame;
-	frame.size = CGSizeMake(250, expectedLabelSize.height);
+	frame.size = CGSizeMake(200, expectedLabelSize.height);
 	self.popupBubbleView.tweetText.frame = frame;
 	
 	[UIView beginAnimations: @"moveCNGCallout" context: nil];
