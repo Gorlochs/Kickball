@@ -108,10 +108,13 @@
 		[theMessage release];
 	} else if (tweetTextView.text && ![tweetTextView.text isEqualToString:@""]) {
 		[tweetTextView resignFirstResponder];
+		sendTweet.enabled = NO;
 		[self startProgressBar:@"Submitting..."];
 		[self dismissModalViewControllerAnimated:YES];
 		actionCount = 1;
 
+		twitterManager.delegate = self;
+		photoManager.delegate = self;
 		
 		/* this is double posting to facebook.   wait and post with the image
 		if (isFacebookOn && [[KBAccountManager sharedInstance] usesFacebook]) {
@@ -229,6 +232,10 @@
     [self decrementActionCount];
 }
 
+- (void)requestSucceeded:(NSString *)connectionIdentifier {
+    DLog(@"requestSucceeded: %@", connectionIdentifier);
+}
+
 // foursquare response
 - (void)shoutResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     [self decrementActionCount];
@@ -244,15 +251,17 @@
 }
 
 - (void) decrementActionCount {
-    actionCount--;
-    if (actionCount == 0) {
-        [self closeUpShop];
-    }
+	@synchronized(self) {
+		actionCount--;
+		NSLog(@"^v^v^v^v^v^v^ decrementing action count %d ^v^v^v^v^v^v^", actionCount);
+		if (actionCount == 0) {
+			[self closeUpShop];
+		}
+	}
 }
 
 - (void) closeUpShop {
     [self stopProgressBar];
-	// FIXME: POST NOTIFICATION TO DISPLAY THE SUCCESS VIEW
 	
 	KBMessage *message = [[KBMessage alloc] initWithMember:@"Twitter Message" andMessage:@"Your tweet has been sent!"];
 	[[KBDialogueManager sharedInstance] displayMessage:message];
@@ -372,6 +381,7 @@
     [photoImage retain];
     thumbnailPreview.clipsToBounds = YES;
     thumbnailPreview.image = photoImage;
+	thumbnailPreview.contentMode = UIViewContentModeScaleAspectFill;
     thumbnailBackground.hidden = NO;
     addPhotoButton.hidden = YES;
     removePhotoButton.hidden = NO;
@@ -405,11 +415,11 @@
 }
 
 - (void) photoUploadFinished:(ASIHTTPRequest *) request {
-    [self stopProgressBar];
     DLog(@"YAY! Image uploaded! *****************%@",[request responseString]);
-    KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"Okay, your image is uploaded!"];
-    [self displayPopupMessage:message];
-    [message release];
+    [self decrementActionCount];
+//    KBMessage *message = [[KBMessage alloc] initWithMember:@"Kickball Message" andMessage:@"Okay, your image is uploaded!"];
+//    [self displayPopupMessage:message];
+//    [message release];
     
     // NOTE: the self.photoMessageToPush is being set above in the returnFromMessageView: method
     [FlurryAPI logEvent:@"Image Upload Completed"];
@@ -426,7 +436,6 @@
 }
 
 - (void) photoUploadFailed:(ASIHTTPRequest *) request {
-    [self stopProgressBar];
     DLog(@"Uhoh, it did fail!");
 	if (isFacebookOn) {
         //[Utilities putGoogleMapsWallPostWithMessage:tweetTextView.text andVenue:nil andLink:nil];
