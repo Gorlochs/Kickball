@@ -322,7 +322,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
-        return 400; // !isWhatsThisDisplayed ? 229 : 355;
+        return 406; // !isWhatsThisDisplayed ? 229 : 355;
     } else if (indexPath.row == 1) {
         return 211;
     } else {
