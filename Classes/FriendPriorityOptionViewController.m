@@ -31,10 +31,10 @@
 		[slider setValue:0.75 animated:NO];
 		[detailText setImage:[UIImage imageNamed:@"100-desc.png"]];
 	}else if (val >CITY_RADIUS_SMALL) {
-		[slider setValue:0.50 animated:NO];
+		[slider setValue:0.48 animated:NO];
 		[detailText setImage:[UIImage imageNamed:@"50-desc.png"]];
 	}else if (val >CITY_RADIUS_TINY) {
-		[slider setValue:0.25 animated:NO];
+		[slider setValue:0.24 animated:NO];
 		[detailText setImage:[UIImage imageNamed:@"opt_25-desc.png"]];
 	}else {
 		[slider setValue:0.0 animated:NO];
@@ -61,11 +61,11 @@
 		[[Utilities sharedInstance] setCityRadius:CITY_RADIUS_LARGE];
 		[detailText setImage:[UIImage imageNamed:@"100-desc.png"]];
 	}else if (newValue>=0.375) { 
-		[slider setValue:0.5 animated:YES]; // 50 miles
+		[slider setValue:0.48 animated:YES]; // 50 miles
 		[[Utilities sharedInstance] setCityRadius:CITY_RADIUS_MEDIUM];
 		[detailText setImage:[UIImage imageNamed:@"50-desc.png"]];
 	}else if (newValue>=0.125) {
-		[slider setValue:0.25 animated:YES]; // 25 miles
+		[slider setValue:0.24 animated:YES]; // 25 miles
 		[[Utilities sharedInstance] setCityRadius:CITY_RADIUS_SMALL];
 		[detailText setImage:[UIImage imageNamed:@"opt_25-desc.png"]];
 	}else {

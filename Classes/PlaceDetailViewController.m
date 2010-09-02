@@ -785,8 +785,8 @@
                     myDetailButton.frame = CGRectMake(210, 0, 92, 39);
                     myDetailButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
                     myDetailButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-                    [myDetailButton setImage:[UIImage imageNamed:@"placePeopleHere01.png"] forState:UIControlStateNormal];
-                    [myDetailButton setImage:[UIImage imageNamed:@"placePeopleHere02.png"] forState:UIControlStateHighlighted];
+                    [myDetailButton setImage:[UIImage imageNamed:@"place-peopleSeeAll01.png"] forState:UIControlStateNormal];
+                    [myDetailButton setImage:[UIImage imageNamed:@"place-peopleSeeAll02.png"] forState:UIControlStateHighlighted];
                     [myDetailButton addTarget:self action:@selector(displayAllPeopleHere:) forControlEvents:UIControlEventTouchUpInside]; 
                     [tableCellHeader addSubview:myDetailButton];
                 }
