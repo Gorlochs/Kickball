@@ -176,9 +176,9 @@
 - (void)userResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString {
     DLog(@"authenticated user: %@", inString);
 	FSUser* user = [[FoursquareAPI userFromResponseXML:inString] retain];
-    if (hasViewedInstructions) {
-        [self setUserIconViewCustom:user];
-    }
+//    if (hasViewedInstructions) {
+//        [self setUserIconViewCustom:user];
+//    }
     [self setAuthenticatedUser:user];
     [signedInUserIcon setImage:[[Utilities sharedInstance] getCachedImage:user.photo] forState:UIControlStateNormal];
     [signedInUserIcon setEnabled:YES];    
@@ -602,9 +602,9 @@
 - (void) flipBetweenMapAndList {
     FriendsMapViewController *mapViewController = [[FriendsMapViewController alloc] initWithNibName:@"FriendsMapView_v2" bundle:nil];
     if ([self.recentCheckins count] > 0 && [self.todayCheckins count] > 0) {
-        [mapViewController setCheckins:[[NSArray arrayWithArray:self.recentCheckins] arrayByAddingObjectsFromArray:self.todayCheckins]];
+        [mapViewController setCheckins:[[[[NSArray arrayWithArray:self.recentCheckins] arrayByAddingObjectsFromArray:self.todayCheckins] arrayByAddingObjectsFromArray:yesterdayCheckins] retain]];
     } else if ([self.nonCityRecentCheckins count] > 0 || [self.nonCityTodayCheckins count] > 0 || [self.nonCityYesterdayCheckins count] > 0) {
-        [mapViewController setCheckins:[[[NSArray arrayWithArray:self.nonCityRecentCheckins] arrayByAddingObjectsFromArray:self.nonCityTodayCheckins] arrayByAddingObjectsFromArray:self.nonCityYesterdayCheckins]];
+        [mapViewController setCheckins:[[[[NSArray arrayWithArray:self.nonCityRecentCheckins] arrayByAddingObjectsFromArray:self.nonCityTodayCheckins] arrayByAddingObjectsFromArray:self.nonCityYesterdayCheckins] retain]];
     }
     [self.navigationController pushViewController:mapViewController animated:NO];
     [mapViewController release];
@@ -773,57 +773,6 @@
     [self.navigationController pushViewController:friendsController animated:YES];
     [friendsController release];
 }
-
-- (void) setUserIconViewCustom:(FSUser*)user {
-//    TTButton *imageButton = [TTButton buttonWithStyle:@"blockPhoto:"]; 
-//    [imageButton setImage:user.photo forState:UIControlStateNormal]; 
-
-//    if (user) {
-//        DLog(@"user is not null");
-//        UIImage *image = [[Utilities sharedInstance] getCachedImage:user.photo];
-//        iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(278, 2, 42, 42)];
-//        iconImageView.image = image;
-//        [image release];
-//        [self.view insertSubview:iconImageView belowSubview:instructionView];
-//        iconImageView.layer.masksToBounds = YES;
-//        iconImageView.layer.cornerRadius = 4.0;
-//        [self.view bringSubviewToFront:signedInUserIcon];
-//    }
-}
-
-- (void) viewNextWelcomeImage {
-//    [self stopProgressBar];
-//    [instructionView removeFromSuperview];
-//    [self setUserIconViewCustom:[self getAuthenticatedUser]];
-//    [iconImageView setHidden:NO];
-    
-    
-//    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-//    [standardUserDefaults setBool:YES forKey:@"viewedInstructions"];
-//    hasViewedInstructions = YES;
-////    if (welcomePageNum == 1) {
-////        NSString *imageName = [NSString stringWithFormat:@"welcome0%d.png", welcomePageNum + 1];
-////        DLog(@"image name: %@", imageName);
-////        welcomeImage.image = [UIImage imageNamed:imageName];
-////        [self.view bringSubviewToFront:nextWelcomeImage];
-////        [self.view bringSubviewToFront:previousWelcomeImage];
-////        welcomePageNum++;
-////    } else {
-//        [instructionView removeFromSuperview];
-//        [self stopProgressBar];
-//        [self setUserIconView:[self getAuthenticatedUser]];
-//        [iconImageView setHidden:NO];
-//        [self doInitialDisplay];
-////    }
-}
-
-- (void) viewPreviousWelcomeImage {
-//    if (welcomePageNum > 1) {
-//        welcomeImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"welcome0%d.png", welcomePageNum - 1]];
-//        welcomePageNum--;
-//    }
-}
-
 
 - (void) setupSplashAnimation {
     NSMutableArray *images = [[NSMutableArray alloc] initWithCapacity:1];

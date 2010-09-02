@@ -15,6 +15,7 @@
 #import "TouchView.h"
 #import "KBSearchResult.h"
 #import "KBCreateTweetViewController.h"
+#import "Three20/Three20.h"
 
 
 @interface KBGeoTweetMapViewController : KBBaseTweetViewController <MKMapViewDelegate> {
@@ -26,6 +27,7 @@
 	TouchView* touchView;
     KBSearchResult *currentlyDisplayedSearchResult;
     BOOL isMapFinishedLoading;
+	TTImageView *userIcon;
     
     KBCreateTweetViewController *replyCreateViewController;
     KBCreateTweetViewController *retweetCreateViewController;

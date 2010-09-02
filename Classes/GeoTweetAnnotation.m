@@ -11,7 +11,7 @@
 
 @implementation GeoTweetAnnotation
 
-@synthesize coordinate, title, subtitle, searchResult;
+@synthesize coordinate, title, subtitle, searchResult, iconUrl;
 
 -(id)initWithCoordinate:(CLLocationCoordinate2D) c {
 	coordinate = c;
@@ -22,6 +22,7 @@
     [title release];
     [subtitle release];
     [searchResult release];
+    [iconUrl release];
     [super dealloc];
 }
 

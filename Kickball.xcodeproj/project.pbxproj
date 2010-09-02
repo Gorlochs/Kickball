@@ -808,6 +808,10 @@
 		2B48BB4311F50A670028E36A /* pullFB02.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B48BB3D11F50A670028E36A /* pullFB02.png */; };
 		2B48BB4411F50A670028E36A /* pullTW01.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B48BB3E11F50A670028E36A /* pullTW01.png */; };
 		2B48BB4511F50A670028E36A /* pullTW02.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B48BB3F11F50A670028E36A /* pullTW02.png */; };
+		2B679B1B122EEC4500562B6F /* geoTweet-BG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B679B19122EEC4500562B6F /* geoTweet-BG@2x.png */; };
+		2B679B1C122EEC4500562B6F /* geoTweet-carrot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B679B1A122EEC4500562B6F /* geoTweet-carrot@2x.png */; };
+		2B679B20122EEC5300562B6F /* geoTweet-BG.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B679B1E122EEC5300562B6F /* geoTweet-BG.png */; };
+		2B679B21122EEC5300562B6F /* geoTweet-carrot.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B679B1F122EEC5300562B6F /* geoTweet-carrot.png */; };
 		2B9AA36A1219E249000C1E07 /* 41-picture-frame.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B9AA3691219E249000C1E07 /* 41-picture-frame.png */; };
 		2B9AA430121C4A33000C1E07 /* photo_addMessage02.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B9AA428121C4A33000C1E07 /* photo_addMessage02.png */; };
 		2B9AA431121C4A33000C1E07 /* photo_addMessage01.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B9AA429121C4A33000C1E07 /* photo_addMessage01.png */; };
@@ -1994,6 +1998,10 @@
 		2B48BB3D11F50A670028E36A /* pullFB02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pullFB02.png; sourceTree = "<group>"; };
 		2B48BB3E11F50A670028E36A /* pullTW01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pullTW01.png; sourceTree = "<group>"; };
 		2B48BB3F11F50A670028E36A /* pullTW02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pullTW02.png; sourceTree = "<group>"; };
+		2B679B19122EEC4500562B6F /* geoTweet-BG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "geoTweet-BG@2x.png"; path = "../../twitter/geoTweet-BG@2x.png"; sourceTree = "<group>"; };
+		2B679B1A122EEC4500562B6F /* geoTweet-carrot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "geoTweet-carrot@2x.png"; path = "../../twitter/geoTweet-carrot@2x.png"; sourceTree = "<group>"; };
+		2B679B1E122EEC5300562B6F /* geoTweet-BG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "geoTweet-BG.png"; sourceTree = "<group>"; };
+		2B679B1F122EEC5300562B6F /* geoTweet-carrot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "geoTweet-carrot.png"; sourceTree = "<group>"; };
 		2B9AA3691219E249000C1E07 /* 41-picture-frame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "41-picture-frame.png"; path = "../../41-picture-frame.png"; sourceTree = "<group>"; };
 		2B9AA428121C4A33000C1E07 /* photo_addMessage02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo_addMessage02.png; sourceTree = "<group>"; };
 		2B9AA429121C4A33000C1E07 /* photo_addMessage01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo_addMessage01.png; sourceTree = "<group>"; };
@@ -2963,6 +2971,8 @@
 		073905FD11EE70F8008756C2 /* twitter */ = {
 			isa = PBXGroup;
 			children = (
+				2B679B1E122EEC5300562B6F /* geoTweet-BG.png */,
+				2B679B1F122EEC5300562B6F /* geoTweet-carrot.png */,
 				077B1BCE1213190B00C5FEEC /* tweet-pin.png */,
 				2B436BAB11F643D200E2063B /* tweetField02.png */,
 				2BD3AC9611EFAF8400834DCB /* tweetField01.png */,
@@ -3552,6 +3562,8 @@
 		0E5A79F512286A7200F725C8 /* twitter */ = {
 			isa = PBXGroup;
 			children = (
+				2B679B19122EEC4500562B6F /* geoTweet-BG@2x.png */,
+				2B679B1A122EEC4500562B6F /* geoTweet-carrot@2x.png */,
 				0EE14D4E122DC3A700B4CA3E /* btn-directMsg04@2x.png */,
 				0EE14D4F122DC3A700B4CA3E /* btn-directMsg03@2x.png */,
 				0EE14C71122D979200B4CA3E /* twitter-iconMask@2x.png */,
@@ -5866,6 +5878,10 @@
 				0EE14D4A122DC13E00B4CA3E /* btn-attending03@2x.png in Resources */,
 				0EE14D50122DC3A700B4CA3E /* btn-directMsg04@2x.png in Resources */,
 				0EE14D51122DC3A700B4CA3E /* btn-directMsg03@2x.png in Resources */,
+				2B679B1B122EEC4500562B6F /* geoTweet-BG@2x.png in Resources */,
+				2B679B1C122EEC4500562B6F /* geoTweet-carrot@2x.png in Resources */,
+				2B679B20122EEC5300562B6F /* geoTweet-BG.png in Resources */,
+				2B679B21122EEC5300562B6F /* geoTweet-carrot.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

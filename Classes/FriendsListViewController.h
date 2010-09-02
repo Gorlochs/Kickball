@@ -69,14 +69,8 @@
 - (void)checkinResponseReceived:(NSURL *)inURL withResponseString:(NSString *)inString;
 - (void) doInitialDisplay;
 - (IBAction) addFriend;
-- (IBAction) viewNextWelcomeImage;
-- (IBAction) viewPreviousWelcomeImage;
-//- (IBAction) displayOlderCheckins;
 - (void) setupSplashAnimation;
 - (void) instaCheckin:(NSNotification *)inNotification;
-- (void) setUserIconViewCustom:(FSUser*)user;
-//- (IBAction) displayTwitterXAuthLogin;
-//- (void) showSplash;
 
 - (IBAction) displayShoutView;
 - (IBAction) removeShoutView;

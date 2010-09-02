@@ -20,12 +20,13 @@
 @implementation FriendsMapViewController
 
 @synthesize showBackButton;
+@synthesize checkins;
 
 - (void)viewDidLoad {
 
     [super viewDidLoad];
     [FlurryAPI logEvent:@"Friends Map View"];
-	checkins = nil;
+//	checkins = nil;
 
     [self startProgressBar:@"Retrieving map..."];
     if (checkins) {
@@ -63,6 +64,7 @@
 - (void) refreshMapRegion {
 	[mapViewer setRegion:mapRegion animated:TRUE];
 	[mapViewer regionThatFits:mapRegion];
+	[self stopProgressBar];
 }
 
 // map is to be centered on the user and a generic zoom level

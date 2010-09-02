@@ -39,6 +39,12 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     [touchView addSubview:mapViewer];
     
     [self.view addSubview:touchView];
+	
+	UIImageView *shadowImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"geoTweet-carrot.png"]];
+	shadowImage.frame = CGRectMake(0, 373-57, 320, 57);
+	[self.touchView addSubview:shadowImage];
+	[shadowImage release];
+	
     
 	// Does this notification do anything?
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(searchRetrieved:) name:kTwitterSearchRetrievedNotificationKey object:nil];
@@ -57,15 +63,21 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     // this should TOTALLY be inside the KBMapPopupView, but I couldn't find an init method that is actually being called.
     self.popupBubbleView.frame = CGRectMake(20.0, 250.0 + 300 , self.popupBubbleView.frame.size.width, self.popupBubbleView.frame.size.height);
 	// FIXME: this is still using IFTweetLabel
-    UILabel *tweetLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, 25, 250, 50)];
+    UILabel *tweetLabel = [[UILabel alloc] initWithFrame:CGRectMake(56, 80, 150, 50)];
 	self.popupBubbleView.tweetText = tweetLabel;
 	[tweetLabel release];
-    self.popupBubbleView.tweetText.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
-    self.popupBubbleView.tweetText.font = [UIFont fontWithName:@"Helvetica" size:10.0];
+    self.popupBubbleView.tweetText.textColor = [UIColor colorWithWhite:0.5 alpha:1.0];
+    self.popupBubbleView.tweetText.font = [UIFont fontWithName:@"Helvetica-Bold" size:12.0];
     self.popupBubbleView.tweetText.backgroundColor = [UIColor clearColor];
     self.popupBubbleView.tweetText.numberOfLines = 0;
     [self.popupBubbleView addSubview:self.popupBubbleView.tweetText];
 	[self.popupBubbleView.layer setCornerRadius:10.0f];
+	
+	userIcon = [[TTImageView alloc] initWithFrame:CGRectMake(10, 45, 34, 34)];
+	userIcon.backgroundColor = [UIColor clearColor];
+	userIcon.defaultImage = [UIImage imageNamed:@"icon-default.png"];
+	userIcon.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:3 topRight:3 bottomRight:3 bottomLeft:3] next:[TTContentStyle styleWithNext:nil]];
+	[self.popupBubbleView addSubview:userIcon];
 	
     [self.touchView addSubview:self.popupBubbleView];
 }
@@ -203,6 +215,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
             anote.coordinate = location;
             anote.title = tweet.screenName;
             anote.subtitle = tweet.tweetText;
+			anote.iconUrl = tweet.profileImageUrl;
             anote.searchResult = tweet;
             DLog(@"annotation title: %@", anote.title);
             [mapViewer addAnnotation:anote];
@@ -280,6 +293,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 	self.popupBubbleView.screenname.text = annotation.title;
     self.popupBubbleView.tweetText.text = annotation.subtitle;
     currentlyDisplayedSearchResult = annotation.searchResult;
+	userIcon.urlPath = annotation.iconUrl;
 	
 	CGSize maximumLabelSize = CGSizeMake(250, MAX_LABEL_HEIGHT);
 	CGSize expectedLabelSize = [self.popupBubbleView.tweetText.text sizeWithFont:self.popupBubbleView.tweetText.font
@@ -294,7 +308,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 	[UIView setAnimationDelegate: self];
 	[UIView setAnimationDuration: 0.5];
 	[UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
-	self.popupBubbleView.frame = CGRectMake(10.0, 250.0, self.popupBubbleView.frame.size.width, self.popupBubbleView.frame.size.height);
+	self.popupBubbleView.frame = CGRectMake(0.0, 373-149, self.popupBubbleView.frame.size.width, self.popupBubbleView.frame.size.height);
 	[UIView commitAnimations];
 }
 
@@ -303,11 +317,12 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 	[UIView setAnimationDelegate: self];
 	[UIView setAnimationDuration: 0.5];
 	[UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
-	self.popupBubbleView.frame = CGRectMake(10.0, 250.0 + 300, self.popupBubbleView.frame.size.width, self.popupBubbleView.frame.size.height);
+	self.popupBubbleView.frame = CGRectMake(0.0, 373-149 + 300, self.popupBubbleView.frame.size.width, self.popupBubbleView.frame.size.height);
     [UIView commitAnimations];
 	self.popupBubbleView.screenname.text = nil;
 	self.popupBubbleView.tweetText.text = nil;
     currentlyDisplayedSearchResult = nil;
+	userIcon.urlPath = @"";
 }
 
 #pragma mark MKMapViewDelegate functions
@@ -379,6 +394,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 	
 	[replyCreateViewController release];
 	[retweetCreateViewController release];
+	[userIcon release];
     [super dealloc];
 }
 

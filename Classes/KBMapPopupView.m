@@ -13,6 +13,7 @@
 
 @synthesize screenname;
 @synthesize tweetText;
+@synthesize userIcon;
 
 //- (id)initWithFrame:(CGRect)frame {
 //    if ((self = [super initWithFrame:frame])) {
@@ -49,6 +50,7 @@
 - (void)dealloc {
 	[screenname release];
 	[tweetText release];
+	[userIcon release];
     [super dealloc];
 }
 

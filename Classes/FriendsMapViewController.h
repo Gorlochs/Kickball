@@ -21,11 +21,10 @@
 }
 
 @property (nonatomic) BOOL showBackButton;
+@property (nonatomic, retain) NSArray *checkins;
 
 - (void) refreshFriendPoints;
 - (void) refreshMapRegion;
-- (void) setCheckins:(NSArray *) checkin;
-- (NSArray *) checkins;
 - (void) showProfile:(id)sender;
 - (IBAction) retrieveNewFriendLocationsAndRefresh;
 - (void) refreshEverything;

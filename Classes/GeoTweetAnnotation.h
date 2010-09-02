@@ -14,6 +14,7 @@
 @interface GeoTweetAnnotation : NSObject<MKAnnotation> {
     NSString *title;
     NSString *subtitle;
+	NSString *iconUrl;
 	CLLocationCoordinate2D coordinate;
     KBSearchResult *searchResult;
 }
@@ -21,6 +22,7 @@
 @property (nonatomic) CLLocationCoordinate2D coordinate;
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSString *subtitle;
+@property (nonatomic, retain) NSString *iconUrl;
 @property (nonatomic, retain) KBSearchResult *searchResult;
 
 -(id)initWithCoordinate:(CLLocationCoordinate2D)c;
