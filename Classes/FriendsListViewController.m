@@ -129,6 +129,8 @@
       [theTableView scrollToRowAtIndexPath:[NSIndexPath indexPathWithIndexes:indexArr length:2] atScrollPosition:UITableViewScrollPositionTop animated:YES];
 	}
 	
+	[self reloadCheckinTable];
+	
 	// just in case a view higher in the stack was dealloc'd that grabbed the twitterManager.delegate from this class
 	twitterManager.delegate = self;
 }

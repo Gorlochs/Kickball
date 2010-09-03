@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <AddressBook/AddressBook.h>
-#import "KBBaseViewController.h"
+#import "KBFoursquareViewController.h"
 
 typedef enum {
 	KBFriendSearchByName = 0,
@@ -17,7 +17,7 @@ typedef enum {
 	KBFriendSearchByAddressBook = 3
 } KBFriendSearchType;
 
-@interface FriendSearchResultsViewController : KBBaseViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
+@interface FriendSearchResultsViewController : KBFoursquareViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
     KBFriendSearchType searchType;
     IBOutlet UITextField *searchBar;
     IBOutlet UIImageView *titleImage;

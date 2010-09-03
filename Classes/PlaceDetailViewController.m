@@ -1084,7 +1084,7 @@
     }
     
     // display message
-    IFTweetLabel *messageLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(17.0f, height, 280.0f, 80.0f)];
+    IFTweetLabel *messageLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(17.0f, height, 280.0f, 120.0f)];
     [messageLabel setFont:[UIFont boldSystemFontOfSize:14.0f]];
     [messageLabel setTextColor:[UIColor whiteColor]];
     [messageLabel setBackgroundColor:[UIColor clearColor]];
@@ -1092,7 +1092,7 @@
     [messageLabel setText:aCheckin.message];
 	
 	//// resize messageLabel ////
-	CGSize maximumLabelSize = CGSizeMake(320, 80);
+	CGSize maximumLabelSize = CGSizeMake(320, 120);
   //	CGSize maximumLabelSize = CGSizeMake(280, 80);
 	CGSize expectedLabelSize = [aCheckin.message sizeWithFont:messageLabel.font 
 										   constrainedToSize:maximumLabelSize 
