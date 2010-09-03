@@ -57,11 +57,9 @@
 		[self startProgressBar:@"Retrieving your tweets..."];
 		[self showStatuses];
 		
-		// FIXME: put in separate thread
-		NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:@"twittername"];
-		if (username) [self.twitterEngine getUserInformationFor:username]; //get the twitter profile pic to save it
 	} else {
 		[self showLoginView];
+		firstViewPostLogin = YES;
     }
 }
 
@@ -96,7 +94,12 @@
         startAtId = ((KBTweet*)[tweets objectAtIndex:0]).tweetId;
         [theTableView reloadData];
     }
-    [self.twitterEngine getFollowedTimelineSinceID:[startAtId longLongValue] startingAtPage:0 count:25];
+	
+	NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:@"twittername"];
+	if (username) {
+		[self.twitterEngine getUserInformationFor:username]; //get the twitter profile pic to save it
+    }
+	[self.twitterEngine getFollowedTimelineSinceID:[startAtId longLongValue] startingAtPage:0 count:25];
 }
 
 - (void)statusesReceived:(NSArray *)statuses {
