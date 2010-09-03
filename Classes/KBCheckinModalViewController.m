@@ -274,6 +274,7 @@
     [self cancelView];
 }
 
+// NOTE: I'm not sure what this is doing, since there is no uitextview on this page 
 #pragma mark 
 #pragma mark UITextViewDelegate methods
 
@@ -282,6 +283,14 @@
         textView.text = [textView.text substringToIndex:140];
     }
     characterCountLabel.text = [NSString stringWithFormat:@"%d/140", [textView.text length]];
+}
+
+#pragma mark 
+#pragma mark UITextFieldDelegate methods
+
+- (BOOL) textFieldShouldReturn:(UITextField *)textField {
+	[self checkin];
+	return YES;
 }
 
 #pragma mark
