@@ -59,7 +59,6 @@
 		
 	} else {
 		[self showLoginView];
-		firstViewPostLogin = YES;
     }
 }
 
