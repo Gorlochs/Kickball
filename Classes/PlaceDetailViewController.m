@@ -1035,9 +1035,10 @@
         }
 		showMayorBadge = YES;
     }
+	//showMayorBadge = YES;
 	if (showMayorBadge) {
-		UIImageView *mayorBadgeImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mayorBG.png"]];
-        mayorBadgeImageView.frame = CGRectMake(0, 70, 320, 221);
+		UIImageView *mayorBadgeImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mayor-crown.png"]];
+        mayorBadgeImageView.frame = CGRectMake(75, 70, 169, 169);
         [checkinView addSubview:mayorBadgeImageView];
 		
         IFTweetLabel *mayorLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(17.0f, height, 300.0f, 50.0f)];
