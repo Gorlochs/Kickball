@@ -16,6 +16,7 @@
 #import "GraphAPI.h"
 #import "SBJSON.h"
 #import "KBDialogueManager.h"
+#import "OAToken.h"
 
 
 @implementation KBCreateTweetViewController
@@ -192,7 +193,12 @@
 
 - (void) uploadToTweetPhoto {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	self.tweetPhoto = [[TweetPhoto alloc] initWithSetup:[[FoursquareAPI sharedInstance] userName] identitySecret:[[FoursquareAPI sharedInstance] passWord] apiKey:@"bd1cf27c-0f19-4af5-b409-1c1a5bd35332" serviceName:@"Foursquare" isoAuth:NO];
+	//old tweetPhoto using 4sq
+	//self.tweetPhoto = [[TweetPhoto alloc] initWithSetup:[[FoursquareAPI sharedInstance] userName] identitySecret:[[FoursquareAPI sharedInstance] passWord] apiKey:@"bd1cf27c-0f19-4af5-b409-1c1a5bd35332" serviceName:@"Foursquare" isoAuth:NO];
+	
+	//new tweetPhoto using twitter oAuth
+	tweetPhoto = [[TweetPhoto alloc] initWithSetup:[(OAToken*)[[[KBTwitterManager twitterManager] twitterEngine] accessToken] key] identitySecret:[(OAToken*)[[[KBTwitterManager twitterManager] twitterEngine] accessToken] secret] apiKey:@"bd1cf27c-0f19-4af5-b409-1c1a5bd35332" serviceName:@"Twitter" isoAuth:YES];
+	
 	tweetPhotoResponse = [[self.tweetPhoto photoUpload:UIImageJPEGRepresentation(photoImage, 1.0) comment:tweetTextView.text tags:@"Kickball" latitude:[[KBLocationManager locationManager] latitude] longitude:[[KBLocationManager locationManager] longitude]] retain];
 	[pool release];
 	DLog(@"tweetphoto url: %@", tweetPhotoResponse.mediaUrl);

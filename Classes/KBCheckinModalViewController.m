@@ -20,6 +20,7 @@
 #import "FacebookProxy.h"
 #import "GraphAPI.h"
 #import "SBJSON.h"
+#import "OAToken.h"
 
 @implementation KBCheckinModalViewController
 
@@ -190,7 +191,12 @@
 
 - (void) uploadToTweetPhoto {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	tweetPhoto = [[TweetPhoto alloc] initWithSetup:[[FoursquareAPI sharedInstance] userName] identitySecret:[[FoursquareAPI sharedInstance] passWord] apiKey:@"bd1cf27c-0f19-4af5-b409-1c1a5bd35332" serviceName:@"Foursquare" isoAuth:NO];
+	//old tweetPhoto using 4sq
+	//tweetPhoto = [[TweetPhoto alloc] initWithSetup:[[FoursquareAPI sharedInstance] userName] identitySecret:[[FoursquareAPI sharedInstance] passWord] apiKey:@"bd1cf27c-0f19-4af5-b409-1c1a5bd35332" serviceName:@"Foursquare" isoAuth:NO];
+	
+	//new tweetPhoto using twitter oAuth
+	tweetPhoto = [[TweetPhoto alloc] initWithSetup:[(OAToken*)[[[KBTwitterManager twitterManager] twitterEngine] accessToken] key] identitySecret:[(OAToken*)[[[KBTwitterManager twitterManager] twitterEngine] accessToken] secret] apiKey:@"bd1cf27c-0f19-4af5-b409-1c1a5bd35332" serviceName:@"Twitter" isoAuth:YES];
+	
 	NSString *tweetPhotoComment = nil;
 	if ([checkinTextField.text length] > 0 && [checkinTextField.text length] < 120) {
 		tweetPhotoComment = checkinTextField.text;
