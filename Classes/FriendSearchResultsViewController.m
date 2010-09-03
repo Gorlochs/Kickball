@@ -214,7 +214,19 @@
 	cell.nameLabel.numberOfLines = 1;
     if ([searchResults count] == 0) {
 		if ([searchBar.text isEqualToString:@""]) {
-			cell.nameLabel.text = @"Enter a Twitter handle to get a list of their friends who are on Foursquare.";
+			switch (searchType) {
+				case KBFriendSearchByName:
+					cell.nameLabel.text = @"Enter a name to find a friend on Foursquare.";
+					break;
+				case KBFriendSearchByPhone:
+					cell.nameLabel.text = @"Enter a phone number to find a friend on Foursquare.";
+					break;
+				case KBFriendSearchByTwitter:
+					cell.nameLabel.text = @"Enter a Twitter handle to get a list of their friends who are on Foursquare.";
+					break;
+				default:
+					cell.nameLabel.text = @"";
+			}
 			cell.nameLabel.numberOfLines = 2;
 		} else {
 			cell.nameLabel.text = @"No matching search results";
