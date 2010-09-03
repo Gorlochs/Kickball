@@ -106,6 +106,10 @@
 		KBMessage *theMessage = [[KBMessage alloc] initWithMember:@"Form Error"	andMessage:@"Oops, keep your tweets under 140 characters please!"];
 		[[KBDialogueManager sharedInstance] displayMessage:theMessage];
 		[theMessage release];
+	} else if ([tweetTextView.text rangeOfString:@"D "].location == 0 && (isFoursquareOn || isFacebookOn)) {
+		KBMessage *theMessage = [[KBMessage alloc] initWithMember:@"Warning" andMessage:@"You probably don't want to broadcast your DM to Facebook and Foursquare! Turn those options off, or make it a public @ message."];
+		[[KBDialogueManager sharedInstance] displayMessage:theMessage];
+		[theMessage release];
 	} else if (tweetTextView.text && ![tweetTextView.text isEqualToString:@""]) {
 		[tweetTextView resignFirstResponder];
 		sendTweet.enabled = NO;
