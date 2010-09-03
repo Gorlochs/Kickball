@@ -130,8 +130,9 @@
 
 -(void)concatenateMore:(NSString*)urlString{
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	NSDictionary *lastItem = [newsFeed objectAtIndex:[newsFeed count]-1];
-	NSNumber *lastStamp = [lastItem objectForKey:@"updated_time"];
+	NSDictionary *lastItem = [newsFeed lastObject];
+	NSNumber *lastStamp = [lastItem objectForKey:@"created_time"];
+	DLog(@"asking for more posts after: %@",lastStamp);
 	GraphAPI *graph = [[FacebookProxy instance] newGraph];
 	NSDictionary *moreFeed = [graph newMeFeed:lastStamp];
 	NSMutableArray *moreNews = [[NSMutableArray alloc] initWithArray:[moreFeed objectForKey:@"posts"]];
