@@ -239,7 +239,7 @@
 		if (withPhoto) {
 			baseHeight+=138;
 		}
-		return heightTester.frame.size.height+baseHeight > 58 ? heightTester.frame.size.height+baseHeight : 58;
+		return heightTester.frame.size.height+baseHeight > 72 ? heightTester.frame.size.height+baseHeight : 72;
 		//
 		/*
 		CGSize maximumLabelSize = CGSizeMake(250, 400);

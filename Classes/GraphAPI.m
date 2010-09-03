@@ -394,7 +394,9 @@ NSString* const kConnectionAlbums = @"albums";
 	unsure_parser.delegate = unsure_handler;
 	[unsure_parser parse];
 	for(NSMutableDictionary *event in unsure_handler.rootObject){
-		[event setObject:@"unsure" forKey:@"rsvp_status"];
+		if ([event isKindOfClass:[NSMutableDictionary class]]) {
+			[event setObject:@"unsure" forKey:@"rsvp_status"];
+		}
 	}
 	NSArray *returnArray = [NSArray arrayWithArray:unsure_handler.rootObject];
 	
@@ -409,7 +411,9 @@ NSString* const kConnectionAlbums = @"albums";
 	[attending_parser parse];
 	//NSArray *attendingResults = attending_handler.rootObject;
 	for(NSMutableDictionary *event in attending_handler.rootObject){
-		[event setObject:@"attending" forKey:@"rsvp_status"];
+		if ([event isKindOfClass:[NSMutableDictionary class]]) {
+			[event setObject:@"attending" forKey:@"rsvp_status"];
+		}
 	}
 	
 	returnArray = [returnArray arrayByAddingObjectsFromArray:attending_handler.rootObject];
@@ -424,7 +428,9 @@ NSString* const kConnectionAlbums = @"albums";
 	[declined_parser parse];
 	//NSArray *declinedResults = declined_handler.rootObject;
 	for(NSMutableDictionary *event in declined_handler.rootObject){
-		[event setObject:@"declined" forKey:@"rsvp_status"];
+		if ([event isKindOfClass:[NSMutableDictionary class]]) {
+			[event setObject:@"declined" forKey:@"rsvp_status"];
+		}
 	}
 	returnArray = [returnArray arrayByAddingObjectsFromArray:declined_handler.rootObject];
 	[r_string release];
@@ -438,7 +444,9 @@ NSString* const kConnectionAlbums = @"albums";
 	[not_replied_parser parse];
 	//NSArray *not_repliedResults = not_replied_handler.rootObject;
 	for(NSMutableDictionary *event in not_replied_handler.rootObject){
-		[event setObject:@"not_replied" forKey:@"rsvp_status"];
+		if ([event isKindOfClass:[NSMutableDictionary class]]) {
+			[event setObject:@"not_replied" forKey:@"rsvp_status"];
+		}
 	}
 	returnArray = [returnArray arrayByAddingObjectsFromArray:not_replied_handler.rootObject];
 	[r_string release];

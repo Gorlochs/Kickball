@@ -7,6 +7,7 @@
 //
 
 #import "PlacePeopleHereViewController.h"
+#import "PlacePeopleHereTableCell.h"
 #import "Three20/Three20.h"
 #import "FSCheckin.h"
 
@@ -43,30 +44,44 @@
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     static NSString *CellIdentifier = @"Cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    PlacePeopleHereTableCell *cell = (PlacePeopleHereTableCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[PlacePeopleHereTableCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    cell.detailTextLabel.numberOfLines = 1;
-    cell.detailTextLabel.text = nil;
-    cell.textLabel.font = [UIFont boldSystemFontOfSize:16];
+    //cell.detailTextLabel.numberOfLines = 1;
+    //cell.detailTextLabel.text = nil;
+    //cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
     FSCheckin *currentCheckin = ((FSCheckin*)[checkedInUsers objectAtIndex:indexPath.row]);
     cell.textLabel.text = currentCheckin.user.firstnameLastInitial;
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.imageView.image = [UIImage imageNamed:@"icon-default.png"];
+    //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    //cell.imageView.image = [UIImage imageNamed:@"icon-default.png"];
     
-    CGRect frame = CGRectMake(0,0,36,36);
-    TTImageView *ttImage = [[[TTImageView alloc] initWithFrame:frame] autorelease];
-    ttImage.urlPath = currentCheckin.user.photo;
-    ttImage.backgroundColor = [UIColor clearColor];
-    ttImage.defaultImage = [UIImage imageNamed:@"icon-default.png"];
-    ttImage.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
-    [cell.imageView addSubview:ttImage];
+	//CGRect frame = CGRectMake(8, 6, 34, 34);
+    //TTImageView *ttImage = [[[TTImageView alloc] initWithFrame:frame] autorelease];
+    cell.imageIcon.urlPath = currentCheckin.user.photo;
+    //ttImage.backgroundColor = [UIColor clearColor];
+    //ttImage.defaultImage = [UIImage imageNamed:@"icon-default.png"];
+    //ttImage.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
+    //[cell.contentView addSubview:ttImage];
+	//UIImageView *iconBgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"twitter-iconMask.png"]];
+	//iconBgImage.frame = CGRectMake(8, 6, 34, 34);
+	//[cell.contentView addSubview:iconBgImage];
+	//[iconBgImage release];
+	//UILabel *userName = [[[UILabel alloc] initWithFrame:CGRectMake(54, 6, 240, 34)] autorelease];
+	//userName.textColor = [UIColor colorWithWhite:0.2 alpha:1.0];
+	//userName.font = [UIFont boldSystemFontOfSize:14.0];
+	//userName.backgroundColor = [UIColor clearColor];
+	//userName.shadowColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+	//userName.shadowOffset = CGSizeMake(1.0, 1.0);
+	//userName.highlightedTextColor = [UIColor whiteColor];
+	//[cell.contentView addSubview:userName];
+	
+	
 	return cell;
+
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -77,8 +92,8 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
     FSCheckin *tmpCheckin = ((FSCheckin*)[checkedInUsers objectAtIndex:indexPath.row]);
-    [theTableView deselectRowAtIndexPath:indexPath animated:YES];
     [self displayProperProfileView:tmpCheckin.user.userId];
 }
 

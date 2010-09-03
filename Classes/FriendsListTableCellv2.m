@@ -26,7 +26,7 @@
         
                 
         //CGRect frame = CGRectMake(8, 10, 49, 50);
-		CGRect frame = CGRectMake(10, 18, 34, 34);
+		CGRect frame = CGRectMake(8, 10, 48, 48);
         userIcon = [[TTImageView alloc] initWithFrame:frame];
         userIcon.backgroundColor = [UIColor clearColor];
         userIcon.defaultImage = [UIImage imageNamed:@"icon-default.png"];
@@ -34,7 +34,7 @@
         [self addSubview:userIcon];
 		
 		iconBgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"twitter-iconMask.png"]];
-		iconBgImage.frame = CGRectMake(10, 18, 34, 34);
+		iconBgImage.frame = CGRectMake(8, 10, 48, 48);
         [self addSubview:iconBgImage];
         
         userName = [[UILabel alloc] initWithFrame:CGRectMake(66, 6, 220, 20)];
@@ -106,7 +106,7 @@
 	CGRect contentRect = [self.contentView bounds];
 	[userIcon setCenter:CGPointMake(userIcon.center.x, contentRect.size.height/2)];
 	[iconBgImage setCenter:CGPointMake(iconBgImage.center.x, contentRect.size.height/2)];
-	[crownImage setCenter:CGPointMake(userIcon.center.x, userIcon.center.y-19)];
+	[crownImage setCenter:CGPointMake(userIcon.center.x, userIcon.center.y-26)];
 	topLineImage.frame = CGRectMake(0, 0, self.frame.size.width, 1);
 	bottomLineImage.frame = CGRectMake(0, contentRect.size.height - 1, self.frame.size.width, 1);
 	if (twoLine) {

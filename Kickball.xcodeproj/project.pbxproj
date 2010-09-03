@@ -696,6 +696,7 @@
 		0E86F8D311C2B8710070C9D4 /* GraphAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E86F8CE11C2B8710070C9D4 /* GraphAPI.m */; };
 		0E86F8D411C2B8710070C9D4 /* GraphObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E86F8D011C2B8710070C9D4 /* GraphObject.m */; };
 		0E86FACD11C330B10070C9D4 /* KBFacebookNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E86FACC11C330B10070C9D4 /* KBFacebookNewsCell.m */; };
+		0E88AB101231745400F2FBE6 /* PlacePeopleHereTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E88AB0F1231745400F2FBE6 /* PlacePeopleHereTableCell.m */; };
 		0E906D6C11CAA7AF0045006C /* KBFacebookEventsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E906D6B11CAA7AF0045006C /* KBFacebookEventsCell.m */; };
 		0E906DDF11CAB9FF0045006C /* KBFacebookEventDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E906DDD11CAB9FF0045006C /* KBFacebookEventDetailViewController.m */; };
 		0E906DE011CAB9FF0045006C /* KBFacebookEventDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E906DDE11CAB9FF0045006C /* KBFacebookEventDetailViewController.xib */; };
@@ -1921,6 +1922,8 @@
 		0E86F8D011C2B8710070C9D4 /* GraphObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphObject.m; sourceTree = "<group>"; };
 		0E86FACB11C330B10070C9D4 /* KBFacebookNewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBFacebookNewsCell.h; sourceTree = "<group>"; };
 		0E86FACC11C330B10070C9D4 /* KBFacebookNewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBFacebookNewsCell.m; sourceTree = "<group>"; };
+		0E88AB0E1231745400F2FBE6 /* PlacePeopleHereTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlacePeopleHereTableCell.h; sourceTree = "<group>"; };
+		0E88AB0F1231745400F2FBE6 /* PlacePeopleHereTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlacePeopleHereTableCell.m; sourceTree = "<group>"; };
 		0E906D6A11CAA7AF0045006C /* KBFacebookEventsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBFacebookEventsCell.h; sourceTree = "<group>"; };
 		0E906D6B11CAA7AF0045006C /* KBFacebookEventsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBFacebookEventsCell.m; sourceTree = "<group>"; };
 		0E906DDC11CAB9FF0045006C /* KBFacebookEventDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBFacebookEventDetailViewController.h; sourceTree = "<group>"; };
@@ -5012,6 +5015,8 @@
 				6A2AEF561174161900F1EA88 /* PlacesListTableViewCellv2.m */,
 				6AA8BE9611A46EF700F60550 /* PlacePeopleHereViewController.h */,
 				6AA8BE9711A46EF700F60550 /* PlacePeopleHereViewController.m */,
+				0E88AB0E1231745400F2FBE6 /* PlacePeopleHereTableCell.h */,
+				0E88AB0F1231745400F2FBE6 /* PlacePeopleHereTableCell.m */,
 			);
 			name = Place;
 			sourceTree = "<group>";
@@ -5190,6 +5195,7 @@
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Kickball" */;
 			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				English,
@@ -6408,6 +6414,7 @@
 				0EC5C0AA120B4701003AA0E5 /* MGTwitterTouchJSONParser.m in Sources */,
 				2BF8743C12283A9A00A94986 /* BusyAgent.m in Sources */,
 				0EE14CA9122D9DD300B4CA3E /* TipListTableCell.m in Sources */,
+				0E88AB101231745400F2FBE6 /* PlacePeopleHereTableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

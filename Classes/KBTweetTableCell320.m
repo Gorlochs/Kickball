@@ -21,7 +21,7 @@
     if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
         // Initialization code
 		self.contentView.backgroundColor = [UIColor colorWithRed:240/255.0 green:240/255.0 blue:240/255.0 alpha:1.0];
-        userIcon = [[TTImageView alloc] initWithFrame:CGRectMake(10, 18, 34, 34)];
+        userIcon = [[TTImageView alloc] initWithFrame:CGRectMake(4, 12, 48, 48)];
         userIcon.backgroundColor = [UIColor clearColor];
         userIcon.defaultImage = [UIImage imageNamed:@"icon-default.png"];
         userIcon.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
@@ -33,10 +33,10 @@
         [self addSubview:iconBgImage];
 		 */
 		iconBgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"twitter-iconMask.png"]];
-		iconBgImage.frame = CGRectMake(10, 18, 34, 34);
+		iconBgImage.frame = CGRectMake(4, 12, 48, 48);
         [self addSubview:iconBgImage];
 		iconButt = [UIButton buttonWithType:UIButtonTypeCustom];
-		[iconButt setFrame:CGRectMake(8, 16, 37, 38)];
+		[iconButt setFrame:CGRectMake(4, 12, 48, 48)];
 		[iconButt retain];
 		[iconButt addTarget:self action:@selector(pushToProfile) forControlEvents:UIControlEventTouchUpInside];
 		[self addSubview:iconButt];
@@ -88,9 +88,9 @@
 	tweetText.center = CGPointMake(tweetText.center.x,(tweetText.frame.size.height/2)+32);
 	topLineImage.frame = CGRectMake(0, 0, contentRect.size.width, 1);
 	bottomLineImage.frame = CGRectMake(0, contentRect.size.height - 1, contentRect.size.width, 1);
-	[iconButt setCenter:CGPointMake(27, contentRect.size.height/2)];
-	[userIcon setCenter:CGPointMake(27, contentRect.size.height/2)];
-	[iconBgImage setCenter:CGPointMake(27, contentRect.size.height/2)];
+	[iconButt setCenter:CGPointMake(28, contentRect.size.height/2)];
+	[userIcon setCenter:CGPointMake(28, contentRect.size.height/2)];
+	[iconBgImage setCenter:CGPointMake(28, contentRect.size.height/2)];
 	
 }
 
