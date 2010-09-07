@@ -814,7 +814,8 @@
 			//return photoHeaderView;
             break;
         case 4:
-			tableCellHeader.leftHeaderLabel.text = @"More Info";
+			return nil;
+			//tableCellHeader.leftHeaderLabel.text = @"More Info";
             break;
         case 5:
             if (YES) { // odd bug. you can't instantiate a new object as the first line in a case statement
@@ -839,7 +840,7 @@
 					[tableCellHeader addSubview:myDetailButton];
 				} else {
 					CGRect frame = addTipButton.frame;
-					frame.origin = CGPointMake(213, addTipButton.frame.origin.y);
+					frame.origin = CGPointMake(240, addTipButton.frame.origin.y);
 					addTipButton.frame = frame;
 				}
             }
@@ -951,14 +952,16 @@
     checkinViewController = [[KBCheckinModalViewController alloc] initWithNibName:@"CheckinModalView" bundle:nil];
     checkinViewController.venue = venue;
 	checkinViewController.parentController = self;
-	[checkinViewController.view setCenter:CGPointMake(160.0, 710.0)];
+	[checkinViewController.view setCenter:CGPointMake(160.0, 230.0)];
+	[checkinViewController.view setAlpha:0.0f];
 	[self.view setUserInteractionEnabled:NO];
 	[self.view addSubview:checkinViewController.view];
 	[UIView beginAnimations:@"openCheckinView" context:nil];
     [UIView setAnimationDuration:0.5];
 	[UIView setAnimationDelegate:self];
     [UIView setAnimationDidStopSelector:@selector(checkinEnableinput)];
-    checkinViewController.view.center = CGPointMake(160.0, 230.0);
+    //checkinViewController.view.center = CGPointMake(160.0, 230.0);
+	[checkinViewController.view setAlpha:1.0f];
 	[UIView commitAnimations]; //do animation
 	
     //[self presentModalViewController:checkinViewController animated:YES];
@@ -974,7 +977,8 @@
     [UIView setAnimationDuration:0.5];
 	[UIView setAnimationDelegate:self];
     [UIView setAnimationDidStopSelector:@selector(cleanUpAfterCheckin)];
-    checkinViewController.view.center = CGPointMake(160.0, 710.0);
+    //checkinViewController.view.center = CGPointMake(160.0, 710.0);
+	[checkinViewController.view setAlpha:0.0f];
 	[UIView commitAnimations]; //do animation
 }
 -(void)cleanUpAfterCheckin{
