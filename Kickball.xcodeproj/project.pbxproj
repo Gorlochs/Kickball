@@ -894,6 +894,7 @@
 		2BDF053111EBB5FB00D79131 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BDF052D11EBB5FB00D79131 /* SBJsonWriter.m */; };
 		2BDF053711EBB62A00D79131 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BDF053411EBB62A00D79131 /* NSObject+SBJSON.m */; };
 		2BDF053811EBB62A00D79131 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BDF053611EBB62A00D79131 /* NSString+SBJSON.m */; };
+		2BE989681236D40400CA926C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BE989671236D40400CA926C /* AudioToolbox.framework */; };
 		2BF8743C12283A9A00A94986 /* BusyAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8743B12283A9A00A94986 /* BusyAgent.m */; };
 		552AFD8210A270ED009300E2 /* FSTip.m in Sources */ = {isa = PBXBuildFile; fileRef = 552AFD8110A270ED009300E2 /* FSTip.m */; };
 		552AFDE410A27AED009300E2 /* FriendPlacemark.m in Sources */ = {isa = PBXBuildFile; fileRef = 552AFDE310A27AED009300E2 /* FriendPlacemark.m */; };
@@ -2157,6 +2158,7 @@
 		2BDF053411EBB62A00D79131 /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
 		2BDF053511EBB62A00D79131 /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SBJSON.h"; sourceTree = "<group>"; };
 		2BDF053611EBB62A00D79131 /* NSString+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SBJSON.m"; sourceTree = "<group>"; };
+		2BE989671236D40400CA926C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = /System/Library/Frameworks/AudioToolbox.framework; sourceTree = "<absolute>"; };
 		2BF8743A12283A9900A94986 /* BusyAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusyAgent.h; sourceTree = "<group>"; };
 		2BF8743B12283A9A00A94986 /* BusyAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusyAgent.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Kickball_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kickball_Prefix.pch; sourceTree = "<group>"; };
@@ -2751,6 +2753,7 @@
 				2BDECE7711E67F2300BCF92D /* libFlurryWithLocation.a in Frameworks */,
 				2B32BE5211E68B8D00D9E72E /* libOAuth.a in Frameworks */,
 				6AC0A7F811E8305B008360D8 /* libOAuth.a in Frameworks */,
+				2BE989681236D40400CA926C /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3991,6 +3994,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2BE989671236D40400CA926C /* AudioToolbox.framework */,
 				6A8F68E910E9B9FC00E0275E /* AddressBook.framework */,
 				6AFF0FFE1101796600AD6E55 /* CFNetwork.framework */,
 				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
@@ -5207,7 +5211,6 @@
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Kickball" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				English,

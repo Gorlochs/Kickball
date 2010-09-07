@@ -8,6 +8,7 @@
 
 #import "KBInstacheckinTableCell.h"
 #import "Utilities.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 @implementation KBInstacheckinTableCell
 
@@ -32,7 +33,8 @@
     self->_cancelTouches = YES;
 	[self stopSpinner];
     // DO WHATEVER YOU LIKE HERE!!!
-    NSDictionary *messageInfo = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[Utilities safeString:self.venueId], nil] forKeys:[NSArray arrayWithObjects:@"venueIdOfCell", nil]];
+    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+	NSDictionary *messageInfo = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[Utilities safeString:self.venueId], nil] forKeys:[NSArray arrayWithObjects:@"venueIdOfCell", nil]];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"touchAndHoldCheckin"
                                                         object:nil
                                                       userInfo:messageInfo];

@@ -303,13 +303,26 @@
 #pragma mark UIActionSheetDelegate methods
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 0) {
-        [FlurryAPI logEvent:@"Choose Photo: Library"];
-        [self getPhoto:UIImagePickerControllerSourceTypePhotoLibrary];
-    } else if (buttonIndex == 1) {
-        [FlurryAPI logEvent:@"Choose Photo: New"];
-        [self getPhoto:UIImagePickerControllerSourceTypeCamera];
-    }
+	if (thumbnailPreview.image) {
+		if (buttonIndex == 1) {
+			[FlurryAPI logEvent:@"Choose Photo: Library"];
+			[self getPhoto:UIImagePickerControllerSourceTypePhotoLibrary];
+		} else if (buttonIndex == 2) {
+			[FlurryAPI logEvent:@"Choose Photo: New"];
+			[self getPhoto:UIImagePickerControllerSourceTypeCamera];
+		} else if (buttonIndex == actionSheet.destructiveButtonIndex) {
+			thumbnailPreview.image = nil;
+			photoImage = nil;
+		}
+	} else {
+		if (buttonIndex == 0) {
+			[FlurryAPI logEvent:@"Choose Photo: Library"];
+			[self getPhoto:UIImagePickerControllerSourceTypePhotoLibrary];
+		} else if (buttonIndex == 1) {
+			[FlurryAPI logEvent:@"Choose Photo: New"];
+			[self getPhoto:UIImagePickerControllerSourceTypeCamera];
+		}
+	}
 }
 
 #pragma mark -
@@ -335,6 +348,8 @@
     photoImage = [photoManager imageByScalingToSize:initialImage toSize:CGSizeMake(480.0, round(480.0/roundedFloat))];
 	
     thumbnailPreview.clipsToBounds = YES;
+	thumbnailPreview.layer.masksToBounds = YES;
+	thumbnailPreview.layer.cornerRadius = 4.0;
     thumbnailPreview.image = photoImage;
     
     checkinTextField.text = [[KBPhotoManager sharedInstance] photoTextPlaceholder];
@@ -351,12 +366,21 @@
 
 - (void) choosePhotoSelectMethod {
     [[KBPhotoManager sharedInstance] setPhotoTextPlaceholder:checkinTextField.text];
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"How would you like to select a photo?"
-                                                             delegate:self
-                                                    cancelButtonTitle:@"Cancel"
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"Photo Album", @"Take New Photo", nil];
-    
+	UIActionSheet *actionSheet = nil;
+	if (thumbnailPreview.image) {
+		actionSheet = [[UIActionSheet alloc] initWithTitle:@"How would you like to select a photo?"
+												  delegate:self
+										 cancelButtonTitle:@"Cancel"
+									destructiveButtonTitle:@"Delete Photo"
+										 otherButtonTitles:/*@"Photo Album", @"Take New Photo",*/ nil];
+	} else {
+		actionSheet = [[UIActionSheet alloc] initWithTitle:@"How would you like to select a photo?"
+												  delegate:self
+										 cancelButtonTitle:@"Cancel"
+									destructiveButtonTitle:nil
+										 otherButtonTitles:@"Photo Album", @"Take New Photo", nil];
+	}
+
     actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
     actionSheet.tag = 0;
     [actionSheet showInView:self.view];
