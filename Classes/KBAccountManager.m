@@ -251,8 +251,8 @@ static BOOL initialized = NO;
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	firstRunCompleted =  [userDefaults boolForKey:FIRST_RUN_COMPLETED];
 	if (!firstRunCompleted) {
-		[userDefaults setBool:YES forKey:DEFAULT_POST_TO_TWITTER];
-		[userDefaults setBool:YES forKey:DEFAULT_POST_TO_FACEBOOK];
+		[userDefaults setBool:NO forKey:DEFAULT_POST_TO_TWITTER];
+		[userDefaults setBool:NO forKey:DEFAULT_POST_TO_FACEBOOK];
 		[userDefaults setBool:YES forKey:DEFAULT_POST_TO_FOURSQUARE];
 		[userDefaults setBool:YES forKey:FIRST_RUN_COMPLETED];
 	}
