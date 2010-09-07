@@ -51,7 +51,8 @@ const NSString *kickballDomain = @"http://kickball.gorlochs.com/kickball";
     DLog(@"kickball baseview viewdidload %i", [Utilities getMemory]);
 
     [super viewDidLoad];
-	
+	theTableView.backgroundColor = [UIColor colorWithWhite:0.94 alpha:1.0];
+	self.view.backgroundColor = [UIColor colorWithWhite:0.94 alpha:1.0];
     
     [UIView setAnimationsEnabled:YES];
     
