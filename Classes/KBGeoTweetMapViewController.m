@@ -80,6 +80,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 	[self.popupBubbleView addSubview:userIcon];
 	
     [self.touchView addSubview:self.popupBubbleView];
+	[self.view bringSubviewToFront:self.touchView];
 }
 
 - (void) viewFullTweet {
@@ -308,7 +309,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 	[UIView setAnimationDelegate: self];
 	[UIView setAnimationDuration: 0.5];
 	[UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
-	self.popupBubbleView.frame = CGRectMake(0.0, 373-149, self.popupBubbleView.frame.size.width, self.popupBubbleView.frame.size.height);
+	self.popupBubbleView.frame = CGRectMake(0.0, 373-149+40, self.popupBubbleView.frame.size.width, self.popupBubbleView.frame.size.height);
 	[UIView commitAnimations];
 }
 
@@ -317,7 +318,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 	[UIView setAnimationDelegate: self];
 	[UIView setAnimationDuration: 0.5];
 	[UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
-	self.popupBubbleView.frame = CGRectMake(0.0, 373-149 + 300, self.popupBubbleView.frame.size.width, self.popupBubbleView.frame.size.height);
+	self.popupBubbleView.frame = CGRectMake(0.0, 373-149 + 300 + 40, self.popupBubbleView.frame.size.width, self.popupBubbleView.frame.size.height);
     [UIView commitAnimations];
 	self.popupBubbleView.screenname.text = nil;
 	self.popupBubbleView.tweetText.text = nil;
