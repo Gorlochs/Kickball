@@ -590,7 +590,7 @@
 	[self updateFacebookButton];
 	
     CGRect frame = shoutView.frame;
-    frame.origin = CGPointMake(0, 46);
+    frame.origin = CGPointMake(0, 47);
     shoutView.frame = frame;
     [self.view addSubview:shoutView];
     [shoutText becomeFirstResponder];
