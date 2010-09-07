@@ -171,8 +171,8 @@
 	switch (aState) {
 		case EGOOPullRefreshPulling:
 			
-			statusLabel.text = @"";
-			//statusLabel.text = @"Release to refresh...";
+			//statusLabel.text = @"";
+			statusLabel.text = @"Release to refresh...";
 			
 			[CATransaction begin];
 			[CATransaction setAnimationDuration:.18];
@@ -205,8 +205,8 @@
 				[CATransaction commit];
 			}
 			
-			statusLabel.text = @"";
-			//statusLabel.text = @"Pull down to refresh...";
+			//statusLabel.text = @"";
+			statusLabel.text = @"Pull down to refresh...";
 			[activityView stopAnimating];
 			[CATransaction begin];
 			[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions]; 
