@@ -728,7 +728,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.section) {
         case 0: // i'm here button
-            return 75;
+            return 83;
             break;
         case 1: // mayor-map cell
             return 69;
