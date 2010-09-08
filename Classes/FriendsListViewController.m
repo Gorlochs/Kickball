@@ -603,11 +603,12 @@
 
 - (void) flipBetweenMapAndList {
     FriendsMapViewController *mapViewController = [[FriendsMapViewController alloc] initWithNibName:@"FriendsMapView_v2" bundle:nil];
-    if ([self.recentCheckins count] > 0 && [self.todayCheckins count] > 0) {
-        [mapViewController setCheckins:[[[[NSArray arrayWithArray:self.recentCheckins] arrayByAddingObjectsFromArray:self.todayCheckins] arrayByAddingObjectsFromArray:yesterdayCheckins] retain]];
-    } else if ([self.nonCityRecentCheckins count] > 0 || [self.nonCityTodayCheckins count] > 0 || [self.nonCityYesterdayCheckins count] > 0) {
-        [mapViewController setCheckins:[[[[NSArray arrayWithArray:self.nonCityRecentCheckins] arrayByAddingObjectsFromArray:self.nonCityTodayCheckins] arrayByAddingObjectsFromArray:self.nonCityYesterdayCheckins] retain]];
-    }
+	[mapViewController setCheckins:checkins];
+//    if ([self.recentCheckins count] > 0 && [self.todayCheckins count] > 0) {
+//        [mapViewController setCheckins:[[[[NSArray arrayWithArray:self.recentCheckins] arrayByAddingObjectsFromArray:self.todayCheckins] arrayByAddingObjectsFromArray:yesterdayCheckins] retain]];
+//    } else if ([self.nonCityRecentCheckins count] > 0 || [self.nonCityTodayCheckins count] > 0 || [self.nonCityYesterdayCheckins count] > 0) {
+//        [mapViewController setCheckins:[[[[NSArray arrayWithArray:self.nonCityRecentCheckins] arrayByAddingObjectsFromArray:self.nonCityTodayCheckins] arrayByAddingObjectsFromArray:self.nonCityYesterdayCheckins] retain]];
+//    }
     [self.navigationController pushViewController:mapViewController animated:NO];
     [mapViewController release];
 }

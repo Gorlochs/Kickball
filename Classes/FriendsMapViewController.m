@@ -148,6 +148,8 @@
 	if (!pinView){
 		// If an existing pin view was not available, create one
 		pinView = [[[FriendIconAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomPinAnnotation" andCheckin:((FriendPlacemark *)annotation).checkin] autorelease];
+		//pinView.layer.masksToBounds = YES;
+		pinView.layer.cornerRadius = 4.0;
 	} else {
         pinView.annotation = annotation;
     }

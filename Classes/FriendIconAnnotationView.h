@@ -9,11 +9,13 @@
 #import <Foundation/Foundation.h>
 #import	<MapKit/MapKit.h>
 #import "FSCheckin.h"
+#import "Three20/Three20.h"
 
 
 @interface FriendIconAnnotationView : MKAnnotationView {
 	CLLocationCoordinate2D _coordinate;
-	UIImageView * imageView;
+	//UIImageView * imageView;
+	TTImageView *imageView;
 	NSString* title;
 	NSString* subtitle;
 	NSString* userData;
@@ -23,7 +25,7 @@
 
 - (id)initWithAnnotation:(id )annotation reuseIdentifier:(NSString *)reuseIdentifier andCheckin:(FSCheckin *) url;
 
-@property (nonatomic, retain) UIImageView * imageView;
+@property (nonatomic, retain) TTImageView * imageView;
 @property (nonatomic, retain) NSString* userData;
 @property (nonatomic, retain) NSString* title;
 @property (nonatomic, retain) NSString* subtitle;

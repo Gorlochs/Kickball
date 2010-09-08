@@ -24,8 +24,15 @@
 	self.backgroundColor = [UIColor whiteColor];
 	if (checkin.user.photo){
         //DLog(@"map icon url: %@", inUrl);
-        imageView = [[UIImageView alloc] initWithImage:[[Utilities sharedInstance] getCachedImage:checkin.user.photo]];
-		imageView.frame = CGRectMake(kBorder, kBorder, kWidth - 2 * kBorder, kWidth - 2 * kBorder);
+		CGRect frame = CGRectMake(kBorder, kBorder, kWidth - 2 * kBorder, kWidth - 2 * kBorder);
+        imageView = [[TTImageView alloc] initWithFrame:frame];
+        imageView.backgroundColor = [UIColor clearColor];
+        imageView.defaultImage = [UIImage imageNamed:@"blank.png"];
+		imageView.urlPath = checkin.user.photo;
+        imageView.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:3 topRight:3 bottomRight:3 bottomLeft:3] next:[TTContentStyle styleWithNext:nil]];
+        
+//        imageView = [[TTImageView alloc] initWithImage:[[Utilities sharedInstance] getCachedImage:checkin.user.photo]];
+//		imageView.frame = CGRectMake(kBorder, kBorder, kWidth - 2 * kBorder, kWidth - 2 * kBorder);
         
 //        NSDate *checkinDate = [[[Utilities sharedInstance] foursquareCheckinDateFormatter] dateFromString:checkin.created];
 //        NSDate *localCheckinDate = [Utilities convertUTCCheckinDateToLocal:checkinDate];
@@ -40,7 +47,7 @@
 //        
 //        imageView.alpha = fadedAlpha;
 //        self.alpha = fadedAlpha;
-        imageView.backgroundColor = [UIColor clearColor];
+		
 		[self addSubview:imageView];
 	}
 		
