@@ -688,6 +688,10 @@
 		0E6446FA1236CA8500291543 /* profileSprocket.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E6446F91236CA8500291543 /* profileSprocket.png */; };
 		0E6447551236F87C00291543 /* cellBorderBottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E6447531236F87C00291543 /* cellBorderBottom@2x.png */; };
 		0E6447561236F87C00291543 /* cellBorderTop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E6447541236F87C00291543 /* cellBorderTop@2x.png */; };
+		0E6447671237006F00291543 /* cellPressedTop.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E6447651237006F00291543 /* cellPressedTop.png */; };
+		0E6447681237006F00291543 /* cellPressedTop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E6447661237006F00291543 /* cellPressedTop@2x.png */; };
+		0E644777123704AF00291543 /* CoreTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E644776123704AF00291543 /* CoreTableCell.m */; };
+		0E6447851237068600291543 /* CoreTableCellWithProfilePic.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E6447841237068600291543 /* CoreTableCellWithProfilePic.m */; };
 		0E76C3F311C1571F00BA1E89 /* KBFacebookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E76C3F111C1571F00BA1E89 /* KBFacebookViewController.m */; };
 		0E76C3FB11C158F100BA1E89 /* FacebookHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E76C3FA11C158F100BA1E89 /* FacebookHeaderView.xib */; };
 		0E76C40011C15F6E00BA1E89 /* KBFacebookListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E76C3FF11C15F6E00BA1E89 /* KBFacebookListViewController.m */; };
@@ -1913,6 +1917,12 @@
 		0E6446F91236CA8500291543 /* profileSprocket.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profileSprocket.png; sourceTree = "<group>"; };
 		0E6447531236F87C00291543 /* cellBorderBottom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cellBorderBottom@2x.png"; sourceTree = "<group>"; };
 		0E6447541236F87C00291543 /* cellBorderTop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cellBorderTop@2x.png"; sourceTree = "<group>"; };
+		0E6447651237006F00291543 /* cellPressedTop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cellPressedTop.png; sourceTree = "<group>"; };
+		0E6447661237006F00291543 /* cellPressedTop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cellPressedTop@2x.png"; sourceTree = "<group>"; };
+		0E644775123704AF00291543 /* CoreTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreTableCell.h; sourceTree = "<group>"; };
+		0E644776123704AF00291543 /* CoreTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreTableCell.m; sourceTree = "<group>"; };
+		0E6447831237068600291543 /* CoreTableCellWithProfilePic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreTableCellWithProfilePic.h; sourceTree = "<group>"; };
+		0E6447841237068600291543 /* CoreTableCellWithProfilePic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreTableCellWithProfilePic.m; sourceTree = "<group>"; };
 		0E76C3F011C1571F00BA1E89 /* KBFacebookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBFacebookViewController.h; sourceTree = "<group>"; };
 		0E76C3F111C1571F00BA1E89 /* KBFacebookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBFacebookViewController.m; sourceTree = "<group>"; };
 		0E76C3FA11C158F100BA1E89 /* FacebookHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FacebookHeaderView.xib; sourceTree = "<group>"; };
@@ -4409,6 +4419,8 @@
 			children = (
 				0E88EFD71231957F0025670D /* mayor-crown@2x.png */,
 				0E88EFE31231958E0025670D /* mayor-crown.png */,
+				0E6447651237006F00291543 /* cellPressedTop.png */,
+				0E6447661237006F00291543 /* cellPressedTop@2x.png */,
 				0E2CF6A21230179D00FFEFCF /* kbOptions */,
 				0EE14C1D122D889C00B4CA3E /* new1x */,
 				0EE14B0A122C70AC00B4CA3E /* kb_4sq_tipSpecial */,
@@ -4832,6 +4844,10 @@
 				6AC85B881177E518002FB92C /* KBTwitterViewController.m */,
 				0E76C3F011C1571F00BA1E89 /* KBFacebookViewController.h */,
 				0E76C3F111C1571F00BA1E89 /* KBFacebookViewController.m */,
+				0E644775123704AF00291543 /* CoreTableCell.h */,
+				0E644776123704AF00291543 /* CoreTableCell.m */,
+				0E6447831237068600291543 /* CoreTableCellWithProfilePic.h */,
+				0E6447841237068600291543 /* CoreTableCellWithProfilePic.m */,
 			);
 			name = "Abstract Classes";
 			sourceTree = "<group>";
@@ -6128,6 +6144,8 @@
 				0E6446FA1236CA8500291543 /* profileSprocket.png in Resources */,
 				0E6447551236F87C00291543 /* cellBorderBottom@2x.png in Resources */,
 				0E6447561236F87C00291543 /* cellBorderTop@2x.png in Resources */,
+				0E6447671237006F00291543 /* cellPressedTop.png in Resources */,
+				0E6447681237006F00291543 /* cellPressedTop@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6443,6 +6461,8 @@
 				2BF8743C12283A9A00A94986 /* BusyAgent.m in Sources */,
 				0EE14CA9122D9DD300B4CA3E /* TipListTableCell.m in Sources */,
 				0E88AB101231745400F2FBE6 /* PlacePeopleHereTableCell.m in Sources */,
+				0E644777123704AF00291543 /* CoreTableCell.m in Sources */,
+				0E6447851237068600291543 /* CoreTableCellWithProfilePic.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,7 +15,6 @@
 
 @implementation KBFacebookNewsCell
 
-@synthesize userIcon;
 @synthesize userName;
 @synthesize tweetText;
 @synthesize dateLabel;
@@ -24,17 +23,6 @@
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
         // Initialization code
-		self.contentView.backgroundColor = [UIColor colorWithRed:240/255.0 green:240/255.0 blue:240/255.0 alpha:1.0];
-        userIcon = [[TTImageView alloc] initWithFrame:CGRectMake(4, 18, 48, 48)];
-        userIcon.backgroundColor = [UIColor clearColor];
-        userIcon.defaultImage = [UIImage imageNamed:@"icon-default.png"];
-        userIcon.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
-        [self addSubview:userIcon];
-        
-		
-        iconBgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"twitter-iconMask.png"]];
-		iconBgImage.frame = CGRectMake(4, 18, 48, 48);
-        [self addSubview:iconBgImage];
 		iconButt = [UIButton buttonWithType:UIButtonTypeCustom];
 		[iconButt setFrame:CGRectMake(2, 16, 48, 48)];
 		[iconButt retain];
@@ -89,11 +77,6 @@
 		commentNumber.textAlignment = UITextAlignmentRight;
 		[self addSubview:commentNumber];
 		
-        topLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderTop.png"]];
-        [self addSubview:topLineImage];
-        
-        bottomLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderBottom.png"]];
-        [self addSubview:bottomLineImage];
 		fbProfilePicUrl = nil;
 		fbPictureUrl = nil;
 		pictureThumb1 = [[TTImageView alloc] initWithFrame:CGRectMake(60, 50, 34, 34)];
@@ -121,9 +104,6 @@
 	dateLabel.frame = CGRectMake(contentRect.origin.x+58, contentRect.size.height - 20, 200, 16);
 
 	//tweetText.center = CGPointMake(tweetText.center.x,(tweetText.frame.size.height/2)+32);
-	topLineImage.frame = CGRectMake(0, 0, contentRect.size.width, 1);
-	bottomLineImage.frame = CGRectMake(0, contentRect.size.height - 1, contentRect.size.width, 1);
-	
 	[iconButt setFrame:CGRectMake(8, contentRect.origin.y+10, 38, 38)];//CGPointMake(27, contentRect.size.height/2)];
 	[userIcon setFrame:CGRectMake(4, contentRect.origin.y+12, 48, 48)];//CGPointMake(27, contentRect.size.height/2)];
 	[iconBgImage setFrame:CGRectMake(4, contentRect.origin.y+12, 48, 48)];//CGPointMake(27, contentRect.size.height/2)];
@@ -161,12 +141,7 @@
     dateLabel.text = theDate;
 	
 }
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-	
-    [super setSelected:selected animated:animated];
-	
-    // Configure the view for the selected state
-}
+
 
 -(void)setFbProfilePicUrl:(NSString *)_url{
 	//avoid reloading the image if it;s the same one already in use	
@@ -261,16 +236,12 @@
 - (void)dealloc {
 	[pictureAlbumId release];
 	[fbProfilePicUrl release];
-    [userIcon release];
     [userName release];
 	[iconButt retain];
     [tweetText release];
     [dateLabel release];
     [commentBG release];
 	[commentNumber release];
-    [topLineImage release];
-    [bottomLineImage release];
-    [iconBgImage release];
     [super dealloc];
 }
 

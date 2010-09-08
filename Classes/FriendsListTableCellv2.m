@@ -21,7 +21,7 @@
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        
+        [self setSelectionStyle:UITableViewCellSelectionStyleNone];
 		twoLine = NO;
         
                 
@@ -84,6 +84,11 @@
         topLineImage.frame = CGRectMake(0, 0, self.frame.size.width, 1);
         [self addSubview:topLineImage];
         
+		topPressedImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellPressedTop.png"]];
+        topPressedImage.frame = CGRectMake(0, 0, self.frame.size.width, 3);
+		[topPressedImage setHidden:YES];
+        [self addSubview:topPressedImage];
+
         // TODO: the origin.y should probably not be hard coded
         bottomLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderBottom.png"]];
         bottomLineImage.frame = CGRectMake(0, 71, self.frame.size.width, 1);
@@ -97,7 +102,39 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+	if (selected) {
+		[topPressedImage setHidden:NO];
+		[topLineImage setHidden:YES];
+		[self.backgroundView setBackgroundColor:[UIColor colorWithWhite:0.75 alpha:1.0]];
+		[self.contentView setBackgroundColor:[UIColor colorWithWhite:0.75 alpha:1.0]];
+	}else {
+		[topPressedImage setHidden:YES];
+		[topLineImage setHidden:NO];
+		[self.backgroundView setBackgroundColor:[UIColor colorWithWhite:0.94 alpha:1.0]];
+		[self.contentView setBackgroundColor:[UIColor colorWithWhite:0.94 alpha:1.0]];
+	}
+
 }
+
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
+	[super setHighlighted:highlighted animated:animated];
+	if (highlighted) {
+		[topPressedImage setHidden:NO];
+		[topLineImage setHidden:YES];
+		[self.backgroundView setBackgroundColor:[UIColor colorWithWhite:0.75 alpha:1.0]];
+		[self.contentView setBackgroundColor:[UIColor colorWithWhite:0.75 alpha:1.0]];
+		[self setBackgroundColor:[UIColor colorWithWhite:0.75 alpha:1.0]];
+	}else {
+		[topPressedImage setHidden:YES];
+		[topLineImage setHidden:NO];
+		[self.backgroundView setBackgroundColor:[UIColor colorWithWhite:0.94 alpha:1.0]];
+		[self.contentView setBackgroundColor:[UIColor colorWithWhite:0.94 alpha:1.0]];
+		[self setBackgroundColor:[UIColor colorWithWhite:0.94 alpha:1.0]];
+	}
+	
+}
+
+
 
 - (void)layoutSubviews
 {
@@ -170,6 +207,7 @@
     [venueAddress release];
     [topLineImage release];
     [bottomLineImage release];
+	[topPressedImage release];
     [iconBgImage release];
     [crownImage release];
 	[numberOfTimeUnits release];

@@ -26,7 +26,7 @@
 		iconBgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellIconBorder.png"]];
 		iconBgImage.frame = CGRectMake(8, 10, 38, 38);
 		
-        userIcon = [[TTImageView alloc] initWithFrame:CGRectMake(10, 12, 34, 34)];
+        userIcon = [[TTImageView alloc] initWithFrame:CGRectMake(8, 10, 38, 38)];
         userIcon.backgroundColor = [UIColor clearColor];
         userIcon.defaultImage = [UIImage imageNamed:@"icon-default.png"];
         userIcon.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];

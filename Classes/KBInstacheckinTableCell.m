@@ -20,7 +20,7 @@
 //        UIView *v = [[[UIView alloc] init] autorelease];
 //        v.backgroundColor = [UIColor colorWithRed:224.0/255.0 green:0.0 blue:25.0/255.0 alpha:1.0];
 //        self.selectedBackgroundView = v;
-        [self setSelectionStyle:UITableViewCellSelectionStyleGray];
+        //[self setSelectionStyle:UITableViewCellSelectionStyleGray];
         
         self.textLabel.highlightedTextColor = [UIColor whiteColor];
         self.detailTextLabel.highlightedTextColor = [UIColor whiteColor];

@@ -7,14 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CoreTableCell.h"
 
-
-@interface KBFacebookEventsCell : UITableViewCell {
+@interface KBFacebookEventsCell : CoreTableCell {
 	UILabel *eventHost;
 	UILabel *eventName;
 	UILabel *eventTime;
-	UIImageView *topLineImage;
-    UIImageView *bottomLineImage;
+
 }
 
 -(void)populate:(NSDictionary*)event;

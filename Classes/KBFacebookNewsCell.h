@@ -9,10 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "Three20/Three20.h"
 #import "Utilities.h"
+#import "CoreTableCellWithProfilePic.h"
 
-@interface KBFacebookNewsCell : UITableViewCell {
-	TTImageView *userIcon;
-	UIImageView *iconBgImage;
+@interface KBFacebookNewsCell : CoreTableCellWithProfilePic {
+	
     TTStyledTextLabel *tweetText;
 	UILabel *dateLabel;
 	int comments;
@@ -21,8 +21,7 @@
 	
     UILabel *userName;
 
-    UIImageView *topLineImage;
-    UIImageView *bottomLineImage;
+   
 	UIButton *iconButt;
 	UIImageView *commentBG;
 	UILabel *commentNumber;
@@ -32,7 +31,6 @@
 	NSNumber *pictureIndex;
 }
 
-@property (nonatomic, retain) TTImageView *userIcon;
 @property (nonatomic, retain) UILabel *userName;
 @property (nonatomic, retain) UILabel *dateLabel;
 @property (nonatomic, retain) TTStyledTextLabel *tweetText;

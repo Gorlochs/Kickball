@@ -12,32 +12,18 @@
 #import "GraphAPI.h"
 
 @implementation KBFacebookCommentCell
-@synthesize userIcon, commentText, fbPictureUrl;
+@synthesize commentText, fbPictureUrl;
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
         // Initialization code
 		
-		iconBgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellIconBorder.png"]];
-		iconBgImage.frame = CGRectMake(8, 10, 38, 38);
-		[self addSubview:iconBgImage];
-		
-        userIcon = [[TTImageView alloc] initWithFrame:CGRectMake(10, 12, 34, 34)];
-        userIcon.backgroundColor = [UIColor clearColor];
-        userIcon.defaultImage = [UIImage imageNamed:@"icon-default.png"];
-        userIcon.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
-        [self addSubview:userIcon];
-		
+	
 		commentText = [[TTStyledTextLabel alloc] initWithFrame:CGRectMake(58, 10, 250, 70)];
 		commentText.textColor = [UIColor colorWithWhite:0.3 alpha:1.0];
 		commentText.font = [UIFont fontWithName:@"Helvetica" size:12.0];
 		commentText.backgroundColor = [UIColor clearColor];
 		[self addSubview:commentText];
 		
-		topLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderTop.png"]];
-        [self addSubview:topLineImage];
-        
-        bottomLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderBottom.png"]];
-        [self addSubview:bottomLineImage];
 		fbPictureUrl = nil;
 		
 		[self setSelectionStyle:UITableViewCellSelectionStyleNone];
@@ -55,11 +41,9 @@
 	//CGFloat textHeight = commentText.frame.size.height;
 	
 	//tweetText.center = CGPointMake(tweetText.center.x,(tweetText.frame.size.height/2)+32);
-	topLineImage.frame = CGRectMake(0, 0, contentRect.size.width, 1);
-	bottomLineImage.frame = CGRectMake(0, contentRect.size.height - 1, contentRect.size.width, 1);
 	
-	[userIcon setFrame:CGRectMake(10, contentRect.origin.y+12, 34, 34)];//CGPointMake(27, contentRect.size.height/2)];
-	[iconBgImage setFrame:CGRectMake(8, contentRect.origin.y+10, 38, 38)];//CGPointMake(27, contentRect.size.height/2)];
+	[userIcon setFrame:CGRectMake(8, contentRect.origin.y+12, 38, 38)];//CGPointMake(27, contentRect.size.height/2)];
+	[iconBgImage setFrame:CGRectMake(8, contentRect.origin.y+12, 38, 38)];//CGPointMake(27, contentRect.size.height/2)];
 }
 
 -(void)setFbPictureUrl:(NSString *)_url{
@@ -118,10 +102,7 @@
 
 
 - (void)dealloc {
-	[topLineImage release];
-	[bottomLineImage release];
-	[iconBgImage release];
-	[userIcon release];
+	
 	[commentText release];
 	[fbPictureUrl release];
     [super dealloc];

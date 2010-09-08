@@ -20,6 +20,7 @@
 	
     UIImageView *topLineImage;
     UIImageView *bottomLineImage;
+	UIImageView *topPressedImage;
     UIImageView *iconBgImage;
     UIImageView *crownImage;
 	BOOL twoLine;

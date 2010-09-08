@@ -8,18 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "Three20/Three20.h"
+#import "CoreTableCellWithProfilePic.h"
 
 
-@interface KBFacebookCommentCell : UITableViewCell {
-	TTImageView *userIcon;
-	UIImageView *iconBgImage;
+@interface KBFacebookCommentCell : CoreTableCellWithProfilePic {
     TTStyledTextLabel *commentText;
 	NSString *fbPictureUrl;
-	UIImageView *topLineImage;
-    UIImageView *bottomLineImage;
 }
-
-@property (nonatomic, retain) TTImageView *userIcon;
 @property (nonatomic, retain) TTStyledTextLabel *commentText;
 @property (nonatomic, retain) NSString *fbPictureUrl;
 

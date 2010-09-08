@@ -41,12 +41,6 @@
 		eventTime.textAlignment = UITextAlignmentLeft;
         [self addSubview:eventTime];
 		
-		topLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderTop.png"]];
-        [self addSubview:topLineImage];
-        
-        bottomLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderBottom.png"]];
-        [self addSubview:bottomLineImage];
-		
     }
     return self;
 }
@@ -56,9 +50,7 @@
 {
 	[super layoutSubviews];
 	CGRect contentRect = [self.contentView bounds];
-	
-	topLineImage.frame = CGRectMake(0, 0, contentRect.size.width, 1);
-	bottomLineImage.frame = CGRectMake(0, contentRect.size.height - 1, contentRect.size.width, 1);
+
 	
 	eventHost.frame = CGRectMake(10, 10, 238, 18);
 	eventName.frame = CGRectMake(10, 28, 238, 22);
@@ -88,8 +80,6 @@
 	[eventHost release];
 	[eventName release];
 	[eventTime release];
-	[topLineImage release];
-	[bottomLineImage release];
     [super dealloc];
 }
 
