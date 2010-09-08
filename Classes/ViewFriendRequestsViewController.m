@@ -88,6 +88,7 @@
         cell.rowCarat.hidden = YES;
     } else {
         cell.acceptFriendButton.tag = indexPath.row;
+		cell.denyFriendButton.tag = indexPath.row;
         cell.friendName.text = ((FSUser*)[pendingFriendRequests objectAtIndex:indexPath.row]).firstnameLastInitial;
         cell.acceptFriendButton.hidden = NO;
         cell.denyFriendButton.hidden = NO;
@@ -163,6 +164,7 @@
     [FlurryAPI logEvent:@"Accept Friend"];
     DLog(@"acceptfriend tag: %d", button.tag);
     [self startProgressBar:@"Accepting your new friend..."];
+	DLog(@"friend to accept: %@", [pendingFriendRequests objectAtIndex:button.tag]);
     [[FoursquareAPI sharedInstance] approveFriendRequest:((FSUser*)[pendingFriendRequests objectAtIndex:button.tag]).userId withTarget:self andAction:@selector(friendRequestResponseReceived:withResponseString:)];
 }
 
@@ -170,6 +172,7 @@
     [FlurryAPI logEvent:@"Deny Friend"];
     DLog(@"denyfriend tag: %d", button.tag);
     [self startProgressBar:@"Denying your new friend..."];
+	DLog(@"friend to deny: %@", [pendingFriendRequests objectAtIndex:button.tag]);
     [[FoursquareAPI sharedInstance] denyFriendRequest:((FSUser*)[pendingFriendRequests objectAtIndex:button.tag]).userId withTarget:self andAction:@selector(denyFriendRequestResponseReceived:withResponseString:)];
 }
 

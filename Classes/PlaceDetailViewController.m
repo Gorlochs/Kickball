@@ -248,6 +248,7 @@
 }
 
 - (void) displayImages:(id)sender {
+	[self startProgressBar:@""];
     int buttonPressedIndex = ((UIButton *)sender).tag;
     MockPhotoSource *thePhotoSource = [[KickballAPI kickballApi] convertGoodiesIntoPhotoSource:goodies withTitle:venue.name];
     KBPhotoViewController *photoController = [[KBPhotoViewController alloc] initWithPhotoSource:thePhotoSource];
@@ -255,6 +256,7 @@
     photoController.goodies = goodies;
     [self.navigationController pushViewController:photoController animated:YES];
     [photoController release];
+	[self stopProgressBar];
 }
 
 - (void) displayTodoTipMessage:(NSNotification *)inNotification {

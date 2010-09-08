@@ -38,7 +38,7 @@
 }
 
 - (NSString*) description {
-    return [NSString stringWithFormat:@"(USER : userId=%@ ; firstname=%@ ; photo=%@ ; pings=%d ; sendtotwitter=%d)", userId, firstname, photo, isPingOn, sendToTwitter];
+    return [NSString stringWithFormat:@"(USER : userId=%@ ; firstname=%@ ; lastname=%@ ; photo=%@ ; pings=%d ; sendtotwitter=%d)", userId, firstname, lastname, photo, isPingOn, sendToTwitter];
 }
 
 - (void) encodeWithCoder: (NSCoder *)coder { 
