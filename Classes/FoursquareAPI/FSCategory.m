@@ -21,6 +21,10 @@
     return [NSString stringWithFormat:@"(CATEGORY : categoryId=%@ ; nodeName=%@ ; iconUrl=%@ ; fullPathName=%@ ; subcategories=%@)", categoryId, nodeName, iconUrl, fullPathName, subcategories];
 }
 
+- (NSString*) highResolutionIconUrl {
+	return [self.iconUrl stringByReplacingOccurrencesOfString:@".png" withString:@"_64.png"];
+}
+
 - (void) encodeWithCoder: (NSCoder *)coder { 
     [coder encodeObject: categoryId forKey:@"categoryId"]; 
     [coder encodeObject: fullPathName forKey:@"fullPathName"]; 

@@ -239,7 +239,7 @@
             cell.venueName.text = venue.name;
             cell.venueAddress.text = venue.addressWithCrossstreet;
             cell.venueId = venue.venueid;
-            cell.categoryIcon.urlPath = venue.primaryCategory.iconUrl;
+            cell.categoryIcon.urlPath = [venue.primaryCategory highResolutionIconUrl];
             if (venue.specials && [venue.specials count] > 0) {
                 cell.specialImage.hidden = NO;
             } else {

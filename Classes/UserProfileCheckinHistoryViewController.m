@@ -141,7 +141,7 @@
     if (theCheckin.venue) {
         cell.venueId = theCheckin.venue.venueid;
     }
-    cell.categoryIcon.urlPath = theCheckin.venue.primaryCategory.iconUrl;
+    cell.categoryIcon.urlPath = [theCheckin.venue.primaryCategory highResolutionIconUrl];
     
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     

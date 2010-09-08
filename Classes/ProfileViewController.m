@@ -375,7 +375,7 @@
 				FSVenue *venue = [user.mayorOf objectAtIndex:indexPath.row];
 				cell.venueName.text = venue.name;
 				cell.venueAddress.text = venue.addressWithCrossstreet;
-				cell.categoryIcon.urlPath = venue.primaryCategory.iconUrl;
+				cell.categoryIcon.urlPath = [venue.primaryCategory highResolutionIconUrl];
 				cell.specialImage.hidden = YES;
 				cell.venueId = venue.venueid;
 			}
