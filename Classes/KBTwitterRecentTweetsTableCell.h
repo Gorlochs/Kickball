@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "IFTweetLabel.h"
+#import "CoreTableCell.h"
 
 
-@interface KBTwitterRecentTweetsTableCell : UITableViewCell {
+@interface KBTwitterRecentTweetsTableCell : CoreTableCell {
     IFTweetLabel *tweetText;
     UILabel *dateLabel;
 }

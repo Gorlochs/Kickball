@@ -21,9 +21,7 @@
 	
     UILabel *userName;
 
-   
-	UIButton *iconButt;
-	UIImageView *commentBG;
+   	UIImageView *commentBG;
 	UILabel *commentNumber;
 	TTImageView *pictureThumb1;
 	UIButton *pictureButt;

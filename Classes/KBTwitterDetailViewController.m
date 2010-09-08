@@ -61,7 +61,7 @@
 	[self.view addSubview:label1];
     [label1 release];
 	
-    CGRect frame = CGRectMake(17, 67, 33, 34);
+    CGRect frame = CGRectMake(15, 65, 38, 38);
     TTImageView *userProfileImage = [[TTImageView alloc] initWithFrame:frame];
     userProfileImage.backgroundColor = [UIColor clearColor];
     userProfileImage.defaultImage = [UIImage imageNamed:@"icon-default.png"];
@@ -69,6 +69,11 @@
     userProfileImage.urlPath = tweet.profileImageUrl;
     [self.view addSubview:userProfileImage];
     [userProfileImage release];
+	
+	UIImageView *iconBgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"twitter-iconMask.png"]];
+	iconBgImage.frame = frame;
+	[self.view addSubview:iconBgImage];
+	
     
     timeLabel.text = [[KickballAPI kickballApi] convertDateToTimeUnitString:tweet.createDate];
 	isFavorited = tweet.isFavorited;

@@ -18,8 +18,8 @@
 		eventHost.textColor = [UIColor colorWithRed:83/255.0 green:134/255.0 blue:225/255.0 alpha:1.0];
         eventHost.font = [UIFont systemFontOfSize:12.0];
         eventHost.backgroundColor = [UIColor clearColor];
-        eventHost.shadowColor = [UIColor colorWithWhite:1.0 alpha:0.5];
-        eventHost.shadowOffset = CGSizeMake(1.0, 1.0);
+        //eventHost.shadowColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+        //eventHost.shadowOffset = CGSizeMake(1.0, 1.0);
 		eventHost.textAlignment = UITextAlignmentLeft;
         [self addSubview:eventHost];
 		
@@ -27,8 +27,8 @@
 		eventName.textColor = [UIColor colorWithRed:68/255.0 green:68/255.0 blue:68/255.0 alpha:1.0];
         eventName.font = [UIFont boldSystemFontOfSize:14.0];
         eventName.backgroundColor = [UIColor clearColor];
-        eventName.shadowColor = [UIColor colorWithWhite:1.0 alpha:0.5];
-        eventName.shadowOffset = CGSizeMake(1.0, 1.0);
+        //eventName.shadowColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+        //eventName.shadowOffset = CGSizeMake(1.0, 1.0);
 		eventName.textAlignment = UITextAlignmentLeft;
         [self addSubview:eventName];
 		
@@ -61,11 +61,33 @@
 
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-
+	
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+	if (selected) {
+		eventTime.textColor = [UIColor whiteColor];
+		eventTime.shadowColor = [UIColor colorWithWhite:1.0 alpha:0.0];
+        eventTime.shadowOffset = CGSizeMake(0.0, 0.0);
+	}else {
+		eventTime.textColor = [UIColor colorWithRed:211/255.0 green:211/255.0 blue:211/255.0 alpha:1.0];
+		eventTime.shadowColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+        eventTime.shadowOffset = CGSizeMake(1.0, 1.0);
+	}
+	
 }
+
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
+	[super setHighlighted:highlighted animated:animated];
+	if (highlighted) {
+		eventTime.textColor = [UIColor whiteColor];
+		eventTime.shadowColor = [UIColor colorWithWhite:1.0 alpha:0.0];
+        eventTime.shadowOffset = CGSizeMake(0.0, 0.0);
+	}else {
+		eventTime.textColor = [UIColor colorWithRed:211/255.0 green:211/255.0 blue:211/255.0 alpha:1.0];
+		eventTime.shadowColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+        eventTime.shadowOffset = CGSizeMake(1.0, 1.0);
+	}	
+}
+
 
 -(void)populate:(NSDictionary*)event{
 

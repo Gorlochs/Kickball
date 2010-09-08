@@ -23,11 +23,6 @@
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
         // Initialization code
-		iconButt = [UIButton buttonWithType:UIButtonTypeCustom];
-		[iconButt setFrame:CGRectMake(2, 16, 48, 48)];
-		[iconButt retain];
-		[iconButt addTarget:self action:@selector(pushToProfile) forControlEvents:UIControlEventTouchUpInside];
-		[self addSubview:iconButt];
         
         userName = [[UILabel alloc] init];
         userName.textColor = [UIColor colorWithRed:25.0/255.0 green:144.0/255.0 blue:219.0/255.0 alpha:1.0];
@@ -129,6 +124,37 @@
 
 	
 }
+
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+	
+    [super setSelected:selected animated:animated];
+	if (selected) {
+		//dateLabel.textColor = [UIColor whiteColor];
+		dateLabel.shadowColor = [UIColor colorWithWhite:1.0 alpha:0.0];
+        dateLabel.shadowOffset = CGSizeMake(0.0, 0.0);
+	}else {
+		//dateLabel.textColor = [UIColor colorWithRed:211/255.0 green:211/255.0 blue:211/255.0 alpha:1.0];
+		dateLabel.shadowColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+        dateLabel.shadowOffset = CGSizeMake(1.0, 1.0);
+	}
+	
+}
+
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
+	[super setHighlighted:highlighted animated:animated];
+	if (highlighted) {
+		//dateLabel.textColor = [UIColor whiteColor];
+		dateLabel.shadowColor = [UIColor colorWithWhite:1.0 alpha:0.0];
+        dateLabel.shadowOffset = CGSizeMake(0.0, 0.0);
+	}else {
+		//dateLabel.textColor = [UIColor colorWithRed:211/255.0 green:211/255.0 blue:211/255.0 alpha:1.0];
+		dateLabel.shadowColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+        dateLabel.shadowOffset = CGSizeMake(1.0, 1.0);
+	}	
+}
+
+
 
 - (void) setDateLabelWithDate:(NSDate*)theDate {
     //DLog(@"label date: %@", theDate);
@@ -237,7 +263,6 @@
 	[pictureAlbumId release];
 	[fbProfilePicUrl release];
     [userName release];
-	[iconButt retain];
     [tweetText release];
     [dateLabel release];
     [commentBG release];

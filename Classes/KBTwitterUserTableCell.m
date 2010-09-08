@@ -12,22 +12,11 @@
 @implementation KBTwitterUserTableCell
 
 @synthesize userName;
-@synthesize userIcon;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
         // Initialization code
         CGRect frame = CGRectMake(8, 6, 49, 49);
-        userIcon = [[TTImageView alloc] initWithFrame:frame];
-        userIcon.backgroundColor = [UIColor clearColor];
-        userIcon.defaultImage = [UIImage imageNamed:@"icon-default.png"];
-        userIcon.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
-        [self addSubview:userIcon];
-        
-        UIImageView *iconBgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellIconBorder.png"]];
-        iconBgImage.frame = CGRectMake(6, 4, 54, 54);
-        [self addSubview:iconBgImage];
-		[iconBgImage release];
         
         userName = [[UILabel alloc] initWithFrame:CGRectMake(66, 19, 185, 20)];
         userName.textColor = [UIColor colorWithRed:25.0/255.0 green:144.0/255.0 blue:219.0/255.0 alpha:1.0];
@@ -36,11 +25,21 @@
         userName.highlightedTextColor = [UIColor clearColor];
         userName.shadowColor = [UIColor colorWithWhite:1.0 alpha:0.5];
         userName.shadowOffset = CGSizeMake(1.0, 1.0);
+		
+		caret = [[UIImageView alloc] initWithFrame:CGRectMake(300, 0, 8, 11)];
+		[caret setImage:[UIImage imageNamed:@"btn-arrow01.png"]];
+		[self addSubview:caret];
         [self addSubview:userName];
     }
     return self;
 }
 
+- (void)layoutSubviews
+{
+	[super layoutSubviews];
+	CGRect contentRect = [self.contentView bounds];
+	caret.center = CGPointMake(caret.center.x,(contentRect.size.height/2));
+}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
 
@@ -51,7 +50,7 @@
 
 
 - (void)dealloc {
-    [userIcon release];
+	[caret release];
     [userName release];
     [super dealloc];
 }

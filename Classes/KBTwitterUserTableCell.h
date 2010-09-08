@@ -8,14 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "Three20/Three20.h"
+#import "CoreTableCellWithProfilePic.h"
 
 
-@interface KBTwitterUserTableCell : UITableViewCell {
-    TTImageView *userIcon;
+@interface KBTwitterUserTableCell : CoreTableCellWithProfilePic {
     UILabel *userName;
+	UIImageView *caret;
+	
 }
 
-@property (nonatomic, retain) TTImageView *userIcon;
 @property (nonatomic, retain) UILabel *userName;
 
 @end

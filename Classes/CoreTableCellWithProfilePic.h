@@ -13,8 +13,10 @@
 @interface CoreTableCellWithProfilePic : CoreTableCell {
 	TTImageView *userIcon;
 	UIImageView *iconBgImage;
+	UIButton *iconButt;
 }
 
 @property (nonatomic, retain) TTImageView *userIcon;
 
+- (void) pushToProfile;
 @end

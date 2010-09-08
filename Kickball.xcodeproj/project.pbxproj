@@ -712,6 +712,7 @@
 		0E906DE011CAB9FF0045006C /* KBFacebookEventDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E906DDE11CAB9FF0045006C /* KBFacebookEventDetailViewController.xib */; };
 		0E985E1D11EF8F1E0027E401 /* sliderBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E985E1C11EF8F1E0027E401 /* sliderBar.png */; };
 		0E985EDF11EFB5960027E401 /* KBDialogueManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E985EDE11EFB5960027E401 /* KBDialogueManager.m */; };
+		0EA459FD12384FF9007CFEE2 /* cellArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EA459FC12384FF9007CFEE2 /* cellArrow@2x.png */; };
 		0EAC002611F50B210004CF53 /* btn-like01.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EAC002311F50B210004CF53 /* btn-like01.png */; };
 		0EAC002711F50B210004CF53 /* btn-like02.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EAC002411F50B210004CF53 /* btn-like02.png */; };
 		0EAC002811F50B210004CF53 /* field-comment.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EAC002511F50B210004CF53 /* field-comment.png */; };
@@ -1955,6 +1956,7 @@
 		0E985E1C11EF8F1E0027E401 /* sliderBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sliderBar.png; sourceTree = "<group>"; };
 		0E985EDD11EFB5960027E401 /* KBDialogueManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBDialogueManager.h; sourceTree = "<group>"; };
 		0E985EDE11EFB5960027E401 /* KBDialogueManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBDialogueManager.m; sourceTree = "<group>"; };
+		0EA459FC12384FF9007CFEE2 /* cellArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cellArrow@2x.png"; sourceTree = "<group>"; };
 		0EAC002311F50B210004CF53 /* btn-like01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btn-like01.png"; path = "Facebook Status Details/btn-like01.png"; sourceTree = SOURCE_ROOT; };
 		0EAC002411F50B210004CF53 /* btn-like02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btn-like02.png"; path = "Facebook Status Details/btn-like02.png"; sourceTree = SOURCE_ROOT; };
 		0EAC002511F50B210004CF53 /* field-comment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "field-comment.png"; path = "Facebook Status Details/field-comment.png"; sourceTree = SOURCE_ROOT; };
@@ -4417,6 +4419,7 @@
 		6A39EC4B109662D3006F76C3 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				0EA459FC12384FF9007CFEE2 /* cellArrow@2x.png */,
 				0E88EFD71231957F0025670D /* mayor-crown@2x.png */,
 				0E88EFE31231958E0025670D /* mayor-crown.png */,
 				0E6447651237006F00291543 /* cellPressedTop.png */,
@@ -5233,6 +5236,7 @@
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Kickball" */;
 			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				English,
@@ -6145,6 +6149,7 @@
 				0E6447561236F87C00291543 /* cellBorderTop@2x.png in Resources */,
 				0E6447671237006F00291543 /* cellPressedTop.png in Resources */,
 				0E6447681237006F00291543 /* cellPressedTop@2x.png in Resources */,
+				0EA459FD12384FF9007CFEE2 /* cellArrow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

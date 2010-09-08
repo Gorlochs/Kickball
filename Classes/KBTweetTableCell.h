@@ -10,16 +10,15 @@
 #import "Three20/Three20.h"
 #import "IFTweetLabel.h"
 #import "Utilities.h"
+#import "CoreTableCellWithProfilePic.h"
 
-@interface KBTweetTableCell : UITableViewCell {
-    TTImageView *userIcon;
+@interface KBTweetTableCell : CoreTableCellWithProfilePic {
     UILabel *userName;
     IFTweetLabel *tweetText;
     UILabel *dateLabel;
     
 }
 
-@property (nonatomic, retain) TTImageView *userIcon;
 @property (nonatomic, retain) UILabel *userName;
 @property (nonatomic, retain) UILabel *dateLabel;
 @property (nonatomic, retain) IFTweetLabel *tweetText;

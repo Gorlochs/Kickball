@@ -25,6 +25,12 @@
         iconBgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"twitter-iconMask.png"]];
 		iconBgImage.frame = CGRectMake(4, 18, 48, 48);
         [self addSubview:iconBgImage];
+		
+		iconButt = [UIButton buttonWithType:UIButtonTypeCustom];
+		[iconButt setFrame:CGRectMake(2, 16, 48, 48)];
+		[iconButt retain];
+		[iconButt addTarget:self action:@selector(pushToProfile) forControlEvents:UIControlEventTouchUpInside];
+		[self addSubview:iconButt];
     }
     return self;
 }
@@ -36,6 +42,8 @@
 	CGRect contentRect = [self.contentView bounds];
 	[userIcon setCenter:CGPointMake(userIcon.center.x, contentRect.size.height/2)];
 	[iconBgImage setCenter:CGPointMake(iconBgImage.center.x, contentRect.size.height/2)];
+	[iconButt setCenter:CGPointMake(iconButt.center.x, contentRect.size.height/2)];
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -45,10 +53,14 @@
     // Configure the view for the selected state
 }
 
+- (void) pushToProfile{
+	// overload in your own sub-class
+}
 
 - (void)dealloc {
 	[userIcon release];
 	[iconBgImage release];
+	[iconButt release];
     [super dealloc];
 }
 
