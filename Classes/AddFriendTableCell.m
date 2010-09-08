@@ -35,6 +35,7 @@
         userIcon.backgroundColor = [UIColor clearColor];
         userIcon.clipsToBounds = YES;
         userIcon.contentMode = UIViewContentModeScaleToFill;
+        userIcon.defaultImage = [UIImage imageNamed:@"icon-default.png"];
         userIcon.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:2 topRight:2 bottomRight:2 bottomLeft:2] next:[TTContentStyle styleWithNext:nil]];
         [self addSubview:userIcon];
         

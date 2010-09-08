@@ -141,7 +141,7 @@
     
     KBMessage *message = nil;
     if (user) {
-        message = [[KBMessage alloc] initWithMember:@"Friend Request Denied" andMessage:@"Maybe it was something they said?Missing"];
+        message = [[KBMessage alloc] initWithMember:@"Friend Request Declined" andMessage:@""];
         int i = 0;
         for (FSUser *u in pendingFriendRequests) {
             if ([user.userId isEqualToString:u.userId]) {
