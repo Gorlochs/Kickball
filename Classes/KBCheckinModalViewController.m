@@ -216,9 +216,11 @@
 }
 
 -(void) uploadToFacebook{
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	GraphAPI *graph = [[FacebookProxy instance] newGraph];
 	[graph postToWall:[self formatCheckinMessage:checkinTextField.text] withImage:photoImage];	
 	[graph release];
+	[pool release];
 }
 
 - (void) submitToTwitter:(TweetPhotoResponse*)response {
