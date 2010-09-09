@@ -33,11 +33,11 @@
     self->_cancelTouches = YES;
 	[self stopSpinner];
     // DO WHATEVER YOU LIKE HERE!!!
-    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
 	NSDictionary *messageInfo = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[Utilities safeString:self.venueId], nil] forKeys:[NSArray arrayWithObjects:@"venueIdOfCell", nil]];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"touchAndHoldCheckin"
                                                         object:nil
                                                       userInfo:messageInfo];
+    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
 }
 -(void) startSpinner {
 	spinnerView = [[UIImageView alloc] initWithFrame:CGRectMake(touchLocation.x-64, touchLocation.y-64, 128, 128)];

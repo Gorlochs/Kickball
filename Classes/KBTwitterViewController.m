@@ -51,6 +51,11 @@
 	[super viewDidAppear:animated];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    //twitterManager.delegate = nil;
+}
+
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
 	//twitterManager.delegate = nil;
@@ -209,7 +214,7 @@
 }
 
 - (void)dealloc {
-	twitterManager.delegate = nil;
+	//twitterManager.delegate = nil;
     //[twitterEngine release];
     [super dealloc];
 }
