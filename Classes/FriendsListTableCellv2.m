@@ -71,14 +71,14 @@
         venueAddress.lineBreakMode = UILineBreakModeClip;
         [self addSubview:venueAddress];
 		
-		numberOfTimeUnits = [[UILabel alloc] initWithFrame:CGRectMake(290, 5, 37, 20)];
+		numberOfTimeUnits = [[UILabel alloc] initWithFrame:CGRectMake(280, 5, 37, 40)];
 		numberOfTimeUnits.font = [UIFont systemFontOfSize:26.0];
 		numberOfTimeUnits.shadowColor = [UIColor whiteColor];
 		numberOfTimeUnits.shadowOffset = CGSizeMake(1.0, 1.0);
 		numberOfTimeUnits.textColor = [UIColor colorWithWhite:0.8 alpha:1.0];
 		numberOfTimeUnits.backgroundColor = [UIColor clearColor];
 		numberOfTimeUnits.highlightedTextColor = [UIColor clearColor];
-        self.accessoryView = numberOfTimeUnits;
+        [self addSubview:numberOfTimeUnits];
     }
     return self;
 }
@@ -93,6 +93,7 @@
 	[userIcon setCenter:CGPointMake(userIcon.center.x, contentRect.size.height/2)];
 	[iconBgImage setCenter:CGPointMake(iconBgImage.center.x, contentRect.size.height/2)];
 	[crownImage setCenter:CGPointMake(userIcon.center.x, userIcon.center.y-26)];
+	[numberOfTimeUnits setCenter:CGPointMake(numberOfTimeUnits.center.x, contentRect.size.height/2)];
 	if (twoLine) {
 		if (hasShoutAndCheckin) {
 			UIFont *font = [UIFont boldSystemFontOfSize:11.0];
@@ -138,6 +139,45 @@
 		venueAddress.frame = CGRectMake(66, contentRect.origin.y+42, 200, 20);
 	}
 }
+
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+	
+    [super setSelected:selected animated:animated];
+	if (selected) {
+		numberOfTimeUnits.shadowColor = self.contentView.backgroundColor;
+		numberOfTimeUnits.textColor = [UIColor colorWithWhite:0.5 alpha:1.0];
+		userName.shadowColor = self.contentView.backgroundColor;
+        venueName.shadowColor = self.contentView.backgroundColor;
+        venueAddress.shadowColor = self.contentView.backgroundColor;
+	}else {
+		numberOfTimeUnits.shadowColor = [UIColor whiteColor];
+		numberOfTimeUnits.textColor = [UIColor colorWithWhite:0.8 alpha:1.0];
+		userName.shadowColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+        venueName.shadowColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+        venueAddress.shadowColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+
+	}
+	
+}
+
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
+	[super setHighlighted:highlighted animated:animated];
+	if (highlighted) {
+		numberOfTimeUnits.shadowColor = self.contentView.backgroundColor;
+		numberOfTimeUnits.textColor = [UIColor colorWithWhite:0.5 alpha:1.0];
+		userName.shadowColor = self.contentView.backgroundColor;
+        venueName.shadowColor = self.contentView.backgroundColor;
+        venueAddress.shadowColor = self.contentView.backgroundColor;
+	}else {
+		numberOfTimeUnits.shadowColor = [UIColor whiteColor];
+		numberOfTimeUnits.textColor = [UIColor colorWithWhite:0.8 alpha:1.0];
+		userName.shadowColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+        venueName.shadowColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+        venueAddress.shadowColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+	}	
+}
+
 
 - (void)makeTwoLine {
 	twoLine = YES;

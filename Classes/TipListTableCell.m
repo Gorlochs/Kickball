@@ -11,27 +11,12 @@
 
 @implementation TipListTableCell
 
-@synthesize tipName, tipDetail, userIcon;
+@synthesize tipName, tipDetail;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
         // Initialization code
-		self.backgroundColor = [UIColor colorWithWhite:0.92 alpha:1.0];
-		self.contentView.backgroundColor = [UIColor colorWithWhite:0.92 alpha:1.0];
-		self.backgroundView.backgroundColor	= [UIColor colorWithWhite:0.92 alpha:1.0];
-
-
-		CGRect frame = CGRectMake(8, 6, 34, 34);
-        userIcon = [[TTImageView alloc] initWithFrame:frame];
-        userIcon.backgroundColor = [UIColor clearColor];
-        userIcon.defaultImage = [UIImage imageNamed:@"icon-default.png"];
-        userIcon.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:3 topRight:3 bottomRight:3 bottomLeft:3] next:[TTContentStyle styleWithNext:nil]];
-        [self addSubview:userIcon];
-		
-		iconBgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"twitter-iconMask.png"]];
-		iconBgImage.frame = CGRectMake(8, 6, 34, 34);
-        [self addSubview:iconBgImage];
-		
+			
 		tipName = [[UILabel alloc] initWithFrame:CGRectMake(54, 5, 240, 20)];
         tipName.textColor = [UIColor colorWithWhite:0.2 alpha:1.0];
         tipName.font = [UIFont boldSystemFontOfSize:14.0];
@@ -50,20 +35,19 @@
         tipDetail.highlightedTextColor = [UIColor whiteColor];
         [self addSubview:tipDetail];
 		
-		topLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderTop.png"]];
-		topLineImage.frame = CGRectMake(0, 0, 320, 1);
-		[self addSubview:topLineImage];
-		
-		// TODO: the origin.y should probably not be hard coded
-		bottomLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderBottom.png"]];
-		bottomLineImage.frame = CGRectMake(0, 47, 320, 1);
-		[self addSubview:bottomLineImage];
-		
-		
     }
     return self;
 }
-
+- (void)layoutSubviews
+{
+	[super layoutSubviews];
+	CGRect contentRect = [self.contentView bounds];
+	CGRect smallerImageFrame = CGRectMake(4, (contentRect.size.height-34)/2, 34, 34);
+	userIcon.frame = smallerImageFrame;
+	iconButt.frame = smallerImageFrame;
+	iconBgImage.frame = smallerImageFrame;
+	
+}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
 
@@ -76,10 +60,6 @@
 - (void)dealloc {
 	[tipName release];
 	[tipDetail release];
-	[bottomLineImage release];
-	[topLineImage release];
-	[iconBgImage release];
-	[userIcon release];
     [super dealloc];
 }
 

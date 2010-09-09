@@ -8,13 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Three20/Three20.h"
+#import "CoreTableCellWithProfilePic.h"
 
-
-@interface TipListTableCell : UITableViewCell {
-	TTImageView *userIcon;
-	UIImageView *topLineImage;
-    UIImageView *bottomLineImage;
-    UIImageView *iconBgImage;
+@interface TipListTableCell : CoreTableCellWithProfilePic {
 	UILabel *tipName;
     UILabel *tipDetail;
 
@@ -22,7 +18,6 @@
 }
 @property (nonatomic, retain) UILabel *tipName;
 @property (nonatomic, retain) UILabel *tipDetail;
-@property (nonatomic, retain) TTImageView *userIcon;
 
 
 @end

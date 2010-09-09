@@ -40,6 +40,10 @@
 	CGRect contentRect = [self.contentView bounds];
 	textLabel.center = CGPointMake(textLabel.center.x,(contentRect.size.height/2));
 	caret.center = CGPointMake(caret.center.x,(contentRect.size.height/2));
+	CGRect smallerImageFrame = CGRectMake(4, (contentRect.size.height-34)/2, 34, 34);
+	userIcon.frame = smallerImageFrame;
+	iconButt.frame = smallerImageFrame;
+	iconBgImage.frame = smallerImageFrame;
 
 }
 
