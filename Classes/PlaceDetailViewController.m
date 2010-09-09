@@ -972,7 +972,7 @@
 	[self.view setUserInteractionEnabled:YES];
 }
 
--(void) closeChekinView {
+-(void) closeCheckinView {
 	[self.view addSubview:checkinViewController.view];
 	[UIView beginAnimations:@"closeCheckinView" context:nil];
 	[self.view setUserInteractionEnabled:NO];

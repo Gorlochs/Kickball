@@ -77,7 +77,7 @@
 
 - (void) cancelView {
     //[self dismissModalViewControllerAnimated:YES];
-	[parentController closeChekinView];
+	[parentController closeCheckinView];
 }
 
 #pragma mark -
@@ -207,6 +207,8 @@
 		tweetPhotoComment = [NSString stringWithFormat:@"Photo at %@", venue.name];
 	}
 
+	[tweetPhotoResponse release];
+	tweetPhotoResponse = nil;
 	tweetPhotoResponse = [[tweetPhoto photoUpload:UIImageJPEGRepresentation(photoImage, 1.0) comment:tweetPhotoComment tags:@"Kickball" latitude:[[KBLocationManager locationManager] latitude] longitude:[[KBLocationManager locationManager] longitude]] retain];
 	[pool release];
 	DLog(@"tweetphoto url: %@", tweetPhotoResponse.mediaUrl);
@@ -491,6 +493,9 @@
     [photoManager release];
     [thumbnailPreview release];
 	[photoImage release];
+	[tweetPhoto release];
+	[tweetPhotoResponse release];
+	//[checkin release];
     [super dealloc];
 }
 
