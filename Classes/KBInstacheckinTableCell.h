@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CoreTableCell.h"
 
 
-@interface KBInstacheckinTableCell : UITableViewCell {
+@interface KBInstacheckinTableCell : CoreTableCell {
     BOOL _cancelTouches;
     NSString *venueId;
 	CGPoint touchLocation;

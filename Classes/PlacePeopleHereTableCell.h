@@ -8,16 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "Three20/Three20.h"
+#import "CoreTableCellWithProfilePic.h"
 
 
-@interface PlacePeopleHereTableCell : UITableViewCell {
-	TTImageView *imageIcon;
-	UIImageView *topLineImage;
-    UIImageView *bottomLineImage;
-    UIImageView *iconBgImage;
+@interface PlacePeopleHereTableCell : CoreTableCellWithProfilePic {
 	UILabel *textLabel;	
+	UIImageView *caret;
 }
 @property (nonatomic, retain) UILabel *textLabel;
-@property (nonatomic, retain) TTImageView *imageIcon;
 
 @end

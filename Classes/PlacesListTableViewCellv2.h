@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Three20/Three20.h"
 #import "KBInstacheckinTableCell.h"
+#import "CoreTableCell.h"
 
 
 @interface PlacesListTableViewCellv2 : KBInstacheckinTableCell {
@@ -17,8 +18,6 @@
     UILabel *venueName;
     UILabel *venueAddress;
     
-    UIImageView *topLineImage;
-    UIImageView *bottomLineImage;
     UIImageView *specialImage;
 	
 	UIImageView *roundedTopCorners;

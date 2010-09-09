@@ -9,6 +9,7 @@
 #import "UserProfileFriendsViewController.h"
 #import	"TableSectionHeaderView.h"
 #import "FSUser.h"
+#import "PlacePeopleHereTableCell.h"
 
 @implementation UserProfileFriendsViewController
 
@@ -83,61 +84,39 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 44;
+    return 56;
 }
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *CellIdentifier = @"Cell";
+	static NSString *CellIdentifier = @"Cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    PlacePeopleHereTableCell *cell = (PlacePeopleHereTableCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.imageView.image = [UIImage imageNamed:@"icon-default.png"];   
-        cell.textLabel.font = [UIFont boldSystemFontOfSize:14.0];
-		cell.selectionStyle = UITableViewCellSelectionStyleGray;
-
-        UIImageView *topLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderTop.png"]];
-        topLineImage.frame = CGRectMake(0, 0, cell.frame.size.width, 1);
-        [cell addSubview:topLineImage];
-        [topLineImage release];
-        
-        // TODO: the origin.y should probably not be hard coded
-        UIImageView *bottomLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderBottom.png"]];
-        bottomLineImage.frame = CGRectMake(0, cell.frame.size.height - 1, cell.frame.size.width, 1);
-        [cell addSubview:bottomLineImage];
-        [bottomLineImage release];
+        cell = [[[PlacePeopleHereTableCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
-    
-//	if (indexPath.section == 1) {
-//		return friendToggleCell;
-//	} else {
-		FSUser *theUser = (FSUser*)[friends objectAtIndex:indexPath.row];
-		if (filterType == KBFriendsFilterAll || (filterType == KBFriendsFilterPing && theUser.sendsPingsToSignedInUser) || (filterType == KBFriendsFilterNoPing && !theUser.sendsPingsToSignedInUser)) {
-			
-			cell.textLabel.text = theUser.firstnameLastInitial;
-			
-			CGRect frame = CGRectMake(4,4,36,36);
-			TTImageView *ttImage = [[[TTImageView alloc] initWithFrame:frame] autorelease];
-			ttImage.urlPath = theUser.photo;
-			ttImage.backgroundColor = [UIColor clearColor];
-			ttImage.defaultImage = [UIImage imageNamed:@"icon-default.png"];
-			ttImage.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
-			[cell addSubview:ttImage];
-			
-			float sw=32/cell.imageView.image.size.width;
-			float sh=32/cell.imageView.image.size.height;
-			cell.imageView.transform=CGAffineTransformMakeScale(sw,sh);
-			cell.imageView.layer.masksToBounds = YES;
-			cell.imageView.layer.cornerRadius = 8.0; 
-			
-			return cell;
-		} else {
-			return nil;
-		}
-//	}
+	
+
+	FSUser *theUser = (FSUser*)[friends objectAtIndex:indexPath.row];
+	if (filterType == KBFriendsFilterAll || (filterType == KBFriendsFilterPing && theUser.sendsPingsToSignedInUser) || (filterType == KBFriendsFilterNoPing && !theUser.sendsPingsToSignedInUser)) {
+		
+		cell.textLabel.text = theUser.firstnameLastInitial;
+		
+		cell.userIcon.urlPath = theUser.photo;
+		
+		/*
+		float sw=32/cell.imageView.image.size.width;
+		float sh=32/cell.imageView.image.size.height;
+		cell.imageView.transform=CGAffineTransformMakeScale(sw,sh);
+		cell.imageView.layer.masksToBounds = YES;
+		cell.imageView.layer.cornerRadius = 8.0; 
+		 */
+		
+		return cell;
+	} else {
+		return nil;
+	}
 }
 
 

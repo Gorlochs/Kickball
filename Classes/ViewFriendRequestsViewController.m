@@ -24,6 +24,8 @@
     self.hideFooter = YES;
     [FlurryAPI logEvent:@"View Pending Friend Requests"];
     [super viewDidLoad];
+	theTableView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:1.0];
+	self.view.backgroundColor = [UIColor colorWithWhite:0.0 alpha:1.0];
 }
 
 -(void)pressOptionsLeft{

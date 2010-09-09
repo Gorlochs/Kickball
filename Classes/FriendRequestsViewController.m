@@ -22,6 +22,8 @@
     self.hideHeader = YES;
     self.hideFooter = YES;
     [super viewDidLoad];
+	theTableView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:1.0];
+	self.view.backgroundColor = [UIColor colorWithWhite:0.0 alpha:1.0];
     [FlurryAPI logEvent:@"Search for Friends View"];
     
     if (![[KBAccountManager sharedInstance] usesFacebook]) {

@@ -79,59 +79,8 @@
 		numberOfTimeUnits.backgroundColor = [UIColor clearColor];
 		numberOfTimeUnits.highlightedTextColor = [UIColor clearColor];
         self.accessoryView = numberOfTimeUnits;
-        
-        topLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderTop.png"]];
-        topLineImage.frame = CGRectMake(0, 0, self.frame.size.width, 1);
-        [self addSubview:topLineImage];
-        
-		topPressedImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellPressedTop.png"]];
-        topPressedImage.frame = CGRectMake(0, 0, self.frame.size.width, 3);
-		[topPressedImage setHidden:YES];
-        [self addSubview:topPressedImage];
-
-        // TODO: the origin.y should probably not be hard coded
-        bottomLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderBottom.png"]];
-        bottomLineImage.frame = CGRectMake(0, 71, self.frame.size.width, 1);
-        [self addSubview:bottomLineImage];
     }
     return self;
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-	if (selected) {
-		[topPressedImage setHidden:NO];
-		[topLineImage setHidden:YES];
-		[self.backgroundView setBackgroundColor:[UIColor colorWithWhite:0.75 alpha:1.0]];
-		[self.contentView setBackgroundColor:[UIColor colorWithWhite:0.75 alpha:1.0]];
-	}else {
-		[topPressedImage setHidden:YES];
-		[topLineImage setHidden:NO];
-		[self.backgroundView setBackgroundColor:[UIColor colorWithWhite:0.94 alpha:1.0]];
-		[self.contentView setBackgroundColor:[UIColor colorWithWhite:0.94 alpha:1.0]];
-	}
-
-}
-
-- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
-	[super setHighlighted:highlighted animated:animated];
-	if (highlighted) {
-		[topPressedImage setHidden:NO];
-		[topLineImage setHidden:YES];
-		[self.backgroundView setBackgroundColor:[UIColor colorWithWhite:0.75 alpha:1.0]];
-		[self.contentView setBackgroundColor:[UIColor colorWithWhite:0.75 alpha:1.0]];
-		[self setBackgroundColor:[UIColor colorWithWhite:0.75 alpha:1.0]];
-	}else {
-		[topPressedImage setHidden:YES];
-		[topLineImage setHidden:NO];
-		[self.backgroundView setBackgroundColor:[UIColor colorWithWhite:0.94 alpha:1.0]];
-		[self.contentView setBackgroundColor:[UIColor colorWithWhite:0.94 alpha:1.0]];
-		[self setBackgroundColor:[UIColor colorWithWhite:0.94 alpha:1.0]];
-	}
-	
 }
 
 
@@ -144,8 +93,6 @@
 	[userIcon setCenter:CGPointMake(userIcon.center.x, contentRect.size.height/2)];
 	[iconBgImage setCenter:CGPointMake(iconBgImage.center.x, contentRect.size.height/2)];
 	[crownImage setCenter:CGPointMake(userIcon.center.x, userIcon.center.y-26)];
-	topLineImage.frame = CGRectMake(0, 0, self.frame.size.width, 1);
-	bottomLineImage.frame = CGRectMake(0, contentRect.size.height - 1, self.frame.size.width, 1);
 	if (twoLine) {
 		if (hasShoutAndCheckin) {
 			UIFont *font = [UIFont boldSystemFontOfSize:11.0];
@@ -205,10 +152,7 @@
     [userName release];
     [venueName release];
     [venueAddress release];
-    [topLineImage release];
-    [bottomLineImage release];
-	[topPressedImage release];
-    [iconBgImage release];
+	[iconBgImage release];
     [crownImage release];
 	[numberOfTimeUnits release];
     [super dealloc];

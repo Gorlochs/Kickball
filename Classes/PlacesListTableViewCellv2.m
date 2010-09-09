@@ -51,17 +51,6 @@
         venueAddress.highlightedTextColor = [UIColor whiteColor];
         [self addSubview:venueAddress];
         
-        topLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderTop.png"]];
-        topLineImage.frame = CGRectMake(0, 0, 320, 1);
-		topLineImage.contentMode = UIViewContentModeScaleAspectFit;
-        [self addSubview:topLineImage];
-        
-        // TODO: the origin.y should probably not be hard coded
-        bottomLineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBorderBottom.png"]];
-        bottomLineImage.frame = CGRectMake(0, self.frame.size.height - 1, 320, 1);
-		bottomLineImage.contentMode = UIViewContentModeScaleAspectFit;
-        [self addSubview:bottomLineImage];
-        
         specialImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"places-Special.png"]];
         specialImage.frame = CGRectMake(298, 1, 22, 22);
 		specialImage.hidden = YES;
@@ -85,8 +74,6 @@
 	[super layoutSubviews];
 	CGRect contentRect = [self.contentView bounds];
 	[categoryIcon setCenter:CGPointMake(categoryIcon.center.x, contentRect.size.height/2)];
-	topLineImage.frame = CGRectMake(0, 0, 320, 1);
-	bottomLineImage.frame = CGRectMake(0, contentRect.size.height - 1, 320, 1);
 	if (twoLine) {
 		UIFont *font = [UIFont boldSystemFontOfSize:14.0];
 		int i;
@@ -133,8 +120,7 @@
     [venueName release];
     [venueAddress release];
     
-    [topLineImage release];
-    [bottomLineImage release];
+
     [specialImage release];
 	
 	[roundedTopCorners release];

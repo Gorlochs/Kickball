@@ -116,7 +116,7 @@
     if (cell == nil) {
         cell = [[[PlacesListTableViewCellv2 alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
         cell.venueName.size = CGSizeMake(210, cell.venueName.size.height);
-		cell.selectionStyle = UITableViewCellSelectionStyleGray;
+		//cell.selectionStyle = UITableViewCellSelectionStyleGray;
 
     }
     [cell makeOneLine];
@@ -132,10 +132,10 @@
 			[cell makeTwoLine];
 		}
         cell.venueName.text = text;
-        cell.accessoryType = UITableViewCellAccessoryNone;
+        //cell.accessoryType = UITableViewCellAccessoryNone;
     } else {
         cell.venueName.text = theCheckin.venue.name;
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
     if (theCheckin.venue) {

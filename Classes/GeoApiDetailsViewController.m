@@ -24,7 +24,8 @@
     pageViewType = KBPageViewTypeList;
     
     [super viewDidLoad];
-    
+    theTableView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:1.0];
+	self.view.backgroundColor = [UIColor colorWithWhite:0.0 alpha:1.0];
     features.font = [UIFont systemFontOfSize:12.0];
     tags.font = [UIFont systemFontOfSize:12.0];
     hours.font = [UIFont systemFontOfSize:12.0];

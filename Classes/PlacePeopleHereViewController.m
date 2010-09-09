@@ -51,35 +51,9 @@
         cell = [[[PlacePeopleHereTableCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    //cell.detailTextLabel.numberOfLines = 1;
-    //cell.detailTextLabel.text = nil;
-    //cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
-    FSCheckin *currentCheckin = ((FSCheckin*)[checkedInUsers objectAtIndex:indexPath.row]);
+	FSCheckin *currentCheckin = ((FSCheckin*)[checkedInUsers objectAtIndex:indexPath.row]);
     cell.textLabel.text = currentCheckin.user.firstnameLastInitial;
-    //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    //cell.imageView.image = [UIImage imageNamed:@"icon-default.png"];
-    
-	//CGRect frame = CGRectMake(8, 6, 34, 34);
-    //TTImageView *ttImage = [[[TTImageView alloc] initWithFrame:frame] autorelease];
-    cell.imageIcon.urlPath = currentCheckin.user.photo;
-    //ttImage.backgroundColor = [UIColor clearColor];
-    //ttImage.defaultImage = [UIImage imageNamed:@"icon-default.png"];
-    //ttImage.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4 topRight:4 bottomRight:4 bottomLeft:4] next:[TTContentStyle styleWithNext:nil]];
-    //[cell.contentView addSubview:ttImage];
-	//UIImageView *iconBgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"twitter-iconMask.png"]];
-	//iconBgImage.frame = CGRectMake(8, 6, 34, 34);
-	//[cell.contentView addSubview:iconBgImage];
-	//[iconBgImage release];
-	//UILabel *userName = [[[UILabel alloc] initWithFrame:CGRectMake(54, 6, 240, 34)] autorelease];
-	//userName.textColor = [UIColor colorWithWhite:0.2 alpha:1.0];
-	//userName.font = [UIFont boldSystemFontOfSize:14.0];
-	//userName.backgroundColor = [UIColor clearColor];
-	//userName.shadowColor = [UIColor colorWithWhite:1.0 alpha:0.5];
-	//userName.shadowOffset = CGSizeMake(1.0, 1.0);
-	//userName.highlightedTextColor = [UIColor whiteColor];
-	//[cell.contentView addSubview:userName];
-	
-	
+    cell.userIcon.urlPath = currentCheckin.user.photo;
 	return cell;
 
 }

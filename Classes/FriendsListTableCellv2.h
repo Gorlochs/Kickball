@@ -18,9 +18,6 @@
     UILabel *venueAddress;
     UILabel *numberOfTimeUnits;
 	
-    UIImageView *topLineImage;
-    UIImageView *bottomLineImage;
-	UIImageView *topPressedImage;
     UIImageView *iconBgImage;
     UIImageView *crownImage;
 	BOOL twoLine;

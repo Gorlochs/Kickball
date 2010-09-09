@@ -35,6 +35,8 @@
 - (void)viewDidLoad {
 	fbLoginView = nil;
     [super viewDidLoad];
+	theTableView.backgroundColor = [UIColor colorWithWhite:0.94 alpha:1.0];
+	self.view.backgroundColor = [UIColor colorWithWhite:0.94 alpha:1.0];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(killLoginView) name:@"completedFacebookLogin" object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLoginView) name:@"completedFacebookLogout" object:nil];
 	

@@ -42,7 +42,8 @@
     
     pageType = KBPageTypeOther;
     [super viewDidLoad];
-    
+    theTableView.backgroundColor = [UIColor colorWithWhite:0.94 alpha:0.0];
+	self.view.backgroundColor = [UIColor colorWithWhite:0.94 alpha:0.0];
     checkinTextField.text = [[KBPhotoManager sharedInstance] photoTextPlaceholder];
     
     photoManager = [KBPhotoManager sharedInstance]; 

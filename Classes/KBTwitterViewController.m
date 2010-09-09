@@ -66,7 +66,9 @@
     footerType = KBFooterTypeTwitter;
     
     [super viewDidLoad];
-    
+    theTableView.backgroundColor = [UIColor colorWithWhite:0.94 alpha:1.0];
+	self.view.backgroundColor = [UIColor colorWithWhite:0.94 alpha:1.0];
+	
     if (pageType == KBPageTypeOther) {
         homeButton.hidden = NO;
         backButton.hidden = NO;
