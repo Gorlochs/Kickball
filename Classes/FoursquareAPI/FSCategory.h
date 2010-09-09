@@ -23,4 +23,6 @@
 @property (nonatomic, retain) NSString *iconUrl;
 @property (nonatomic, retain) NSArray *subcategories;
 
+- (NSString*) highResolutionIconUrl;
+
 @end

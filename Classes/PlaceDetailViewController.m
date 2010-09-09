@@ -1047,6 +1047,8 @@
         mayorBadgeImageView.frame = CGRectMake(75, 70, 169, 169);
         [checkinView addSubview:mayorBadgeImageView];
 		
+		height += mayorBadgeImageView.frame.size.height + buffer;
+		
         IFTweetLabel *mayorLabel = [[IFTweetLabel alloc] initWithFrame:CGRectMake(17.0f, height, 300.0f, 50.0f)];
         [mayorLabel setFont:[UIFont boldSystemFontOfSize:12.0f]];
         [mayorLabel setTextColor:[UIColor whiteColor]];
@@ -1054,8 +1056,9 @@
         [mayorLabel setNumberOfLines:0];
         [mayorLabel setText:mayorText];
 		
+		height += mayorLabel.frame.size.height + buffer;
+		
         [checkinView addSubview:mayorLabel];
-		height = height + mayorBadgeImageView.frame.size.height + buffer;
         [mayorBadgeImageView release];
         [mayorLabel release];
 	}
