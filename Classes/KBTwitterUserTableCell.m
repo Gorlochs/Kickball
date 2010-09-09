@@ -15,8 +15,6 @@
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
-        // Initialization code
-        CGRect frame = CGRectMake(8, 6, 49, 49);
         
         userName = [[UILabel alloc] initWithFrame:CGRectMake(66, 19, 185, 20)];
         userName.textColor = [UIColor colorWithRed:25.0/255.0 green:144.0/255.0 blue:219.0/255.0 alpha:1.0];

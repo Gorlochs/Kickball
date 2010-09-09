@@ -49,13 +49,10 @@
 - (void)layoutSubviews
 {
 	[super layoutSubviews];
-	CGRect contentRect = [self.contentView bounds];
-
 	
 	eventHost.frame = CGRectMake(10, 10, 238, 18);
 	eventName.frame = CGRectMake(10, 28, 238, 22);
 	eventTime.frame = CGRectMake(250, 10, 70, 40);
-	
 }
 
 

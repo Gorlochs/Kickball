@@ -73,7 +73,7 @@
 	UIImageView *iconBgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"twitter-iconMask.png"]];
 	iconBgImage.frame = frame;
 	[self.view addSubview:iconBgImage];
-	
+	[iconBgImage release];
     
     timeLabel.text = [[KickballAPI kickballApi] convertDateToTimeUnitString:tweet.createDate];
 	isFavorited = tweet.isFavorited;
