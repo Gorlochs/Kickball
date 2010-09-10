@@ -46,7 +46,7 @@
     IBOutlet UIButton *phoneButton;
     IBOutlet UIButton *choosePhotoButton;
     IBOutlet UIButton *imHereButton;
-    IBOutlet UIImageView *noMayorImage;
+    IBOutlet UIImageView *mayorIconShadowImage;
     IBOutlet UIImageView *mayorArrow;
     IBOutlet UIImageView *mayorCrown;
 	IBOutlet UILabel *noMayorLabel;

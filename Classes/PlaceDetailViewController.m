@@ -387,12 +387,12 @@
         
         mayorNameLabel.text = venueToDisplay.mayor.firstnameLastInitial;
         mayorCheckinCountLabel.text = [NSString stringWithFormat:@"Mayor, %d check-ins", venueToDisplay.mayorCount];
-        noMayorImage.hidden = YES;
+        mayorIconShadowImage.hidden = NO;
         mayorArrow.hidden = NO;
         mayorCrown.hidden = NO;
 		noMayorLabel.hidden = YES;
     } else {
-        noMayorImage.hidden = NO;
+        mayorIconShadowImage.hidden = YES;
         mayorArrow.hidden = YES;
         mayorCrown.hidden = YES;
 		noMayorLabel.hidden = NO;
