@@ -3,6 +3,7 @@
 #import "GraphObject.h"
 #import "JSON.h"
 #import "BusyAgent.h"
+#import "EGOCache.h"
 
 // testing rediculousness
 //#import "AppDelegate_Pad.h"
@@ -699,10 +700,8 @@ static NSDateFormatter* fbEventDetailDate = NULL;
 	self._uid = 0;
 	[self forgetToken];
 	[_session logout];
-	[profilePic release];
-	profilePic = nil;
+	[[EGOCache currentCache] removeCacheForKey:@"facebookProfilePic"];
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"completedFacebookLogout" object:nil];
-
 }
 
 -(GraphAPI*)newGraph
@@ -737,7 +736,7 @@ static NSDateFormatter* fbEventDetailDate = NULL;
 	self.profilePic = pic;
 
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"completedFacebookLogin" object:nil];
-
+	[NSThread detachNewThreadSelector:@selector(getLoggedInProfilePic) toTarget:self withObject:nil];
 	
 	//	NSString* likesText = [self._graph getConnections:@"likes" forObject:@"me"];
 	//	NSString* searchText = [self._graph searchTerms:@"context" objectType:kSearchUsers];
@@ -828,11 +827,38 @@ static NSDateFormatter* fbEventDetailDate = NULL;
 }
 
 -(void)storeProfilePic{
-	GraphAPI *graph = [self newGraph];
-	UIImage *pic = [graph getProfilePhotoForObject:@"me"];
-	self.profilePic = pic;
-	[graph release];
+	//GraphAPI *graph = [self newGraph];
+	//UIImage *pic = [graph getProfilePhotoFo rObject:@"me"];
+	//self.profilePic = pic;
+	//[graph release];
 }
+
+-(UIImage*)profilePic{
+	UIImage *pic_square = [[EGOCache currentCache] imageForKey:@"facebookProfilePic"];
+	return pic_square;
+}
+
+-(void)getLoggedInProfilePic{
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	GraphAPI *graph = [self newGraph];
+	NSArray *incomingProfiles = [graph getProfileObjects:[NSArray arrayWithObjects:[NSNumber numberWithLongLong:_uid],nil]];
+	[[FacebookProxy instance] cacheIncomingProfiles:incomingProfiles];
+	[graph release];
+	NSData *data = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:[self profilePicUrlFrom:[NSNumber numberWithLongLong:_uid]]]];
+	UIImage *image = [[UIImage alloc] initWithData: data];
+	[data release];
+	if (image!=nil) {
+		[[EGOCache currentCache] setImage:image forKey:@"facebookProfilePic"];
+	}
+	[image release];
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"facebookProfilePic" object:nil];
+
+	[pool release];
+	
+	//notify that profile pic has been aquired.
+
+}
+
 
 -(NSString*)findSuitableText:(NSDictionary*)fbItem {
 	NSString *message = [fbItem objectForKey:@"message"];
@@ -849,7 +875,7 @@ static NSDateFormatter* fbEventDetailDate = NULL;
 		}
 		NSString *name = [attachment objectForKey:@"name"];
 		if(name!=nil){
-			[suitable appendFormat:@" - %@",name];
+			[suitable appendFormat:@" \n%@",name];
 		}
 		NSString *caption = [attachment objectForKey:@"caption"];
 		if (caption!=nil) {
@@ -1061,4 +1087,6 @@ static NSDateFormatter* fbEventDetailDate = NULL;
 		return nil;
 	}
 }
+
+
 @end

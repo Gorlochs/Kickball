@@ -690,6 +690,8 @@
 				case 0:
 					//do logout
 					[[FacebookProxy instance] logout];
+					KickballAppDelegate *appDelegate = (KickballAppDelegate*)[[UIApplication sharedApplication] delegate];
+					[appDelegate loggedOutOfFoursquare];
 					break;
 				case 1:
 					//do noting?

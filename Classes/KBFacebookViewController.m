@@ -39,6 +39,8 @@
 	self.view.backgroundColor = [UIColor colorWithWhite:0.94 alpha:1.0];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(killLoginView) name:@"completedFacebookLogin" object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLoginView) name:@"completedFacebookLogout" object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newProfilePic) name:@"facebookProfilePic" object:nil];
+	
 	
     /*if (!self.hideHeader) {
         NSArray* nibViews =  [[NSBundle mainBundle] loadNibNamed:HEADER_NIB_FACEBOOK owner:self options:nil];
@@ -47,6 +49,11 @@
     }*/
     
 	[self setProperFacebookButtons];
+}
+-(void)newProfilePic{
+	[self setTabImages];
+	[signedInUserIcon setNeedsLayout];
+	[signedInUserIcon setNeedsDisplay];
 }
 - (void) setProperFacebookButtons {
 	if (pageType == KBpageTypeEvents) {
@@ -137,6 +144,7 @@
 }
 
 -(void)killLoginView{
+	//[self setTabImages];
 	//hide loginView and load user info
 	if (fbLoginView!=nil) {
 		[fbLoginView removeFromSuperview];

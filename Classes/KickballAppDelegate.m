@@ -592,6 +592,11 @@ void uncaughtExceptionHandler(NSException *exception) {
 	[(KBFoursquareViewController*)navigationController.visibleViewController setTabImages];
 
 }
+-(void)loggedOutOfFacebook{
+	[facebookNavigationController popToRootViewControllerAnimated:NO];
+	//[(KBFacebookViewController*)facebookNavigationController.visibleViewController showLoginView];
+	//[(KBFacebookViewController*)facebookNavigationController.visibleViewController setTabImages];
+}
 
 -(void)loggedInToTwitter{
 	[(KBTwitterViewController*)twitterNavigationController.visibleViewController killLoginView];

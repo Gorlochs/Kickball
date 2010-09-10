@@ -71,8 +71,8 @@
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
-    _loginThread = [[NSThread alloc] initWithTarget:self selector:@selector(startLoadingDefaults) object:nil];
-    [_loginThread start];
+    //_loginThread = [[NSThread alloc] initWithTarget:self selector:@selector(startLoadingDefaults) object:nil];
+    //[_loginThread start];
 
 	[TTStyleSheet setGlobalStyleSheet:[[[KBFacebookStyleSheet alloc] init] autorelease]];
 	pageType = KBPageTypeFriends;
@@ -90,6 +90,9 @@
 		//[self refreshMainFeed];
 		[self startProgressBar:@"Retrieving news feed..."];
 		[NSThread detachNewThreadSelector:@selector(refreshMainFeed) toTarget:self withObject:nil];
+		if (![FacebookProxy instance].profilePic) {
+			[NSThread detachNewThreadSelector:@selector(getLoggedInProfilePic) toTarget:[FacebookProxy instance] withObject:nil];
+		}
 
 	} else {
 		[self showLoginView];
@@ -123,7 +126,7 @@
 	[pool release];
 
 	[self performSelectorOnMainThread:@selector(stopProgressBar) withObject:nil waitUntilDone:NO];
-	[self performSelectorOnMainThread:@selector(setTabImages) withObject:nil waitUntilDone:NO];
+	//[self performSelectorOnMainThread:@selector(setTabImages) withObject:nil waitUntilDone:NO];
 	//[self stopProgressBar];
 
 }
@@ -228,12 +231,14 @@
 		NSString *attribution = [fbItem objectForKey:@"attribution"];
 		if ([attribution isKindOfClass:[NSString class]]) {
 			if ([attribution isEqualToString:@"Kickball!"]) {
-				displayString = [NSString stringWithFormat:@"%@ - via <span class=\"fbRedText\">%@</span>",displayString, attribution];
+				displayString = [NSString stringWithFormat:@"%@ \n(via <span class=\"fbRedText\">%@</span>)",displayString, attribution];
 			}
 		}
 		//DLog(@"display string: %@", displayString);
 		
-		heightTester.text = [TTStyledText textFromXHTML:[displayString stringByReplacingOccurrencesOfString:@"\n" withString:@""] lineBreaks:NO URLs:NO twitterSpecific:NO];
+		heightTester.text = [TTStyledText textFromXHTML:displayString lineBreaks:YES URLs:NO twitterSpecific:NO];
+
+		//heightTester.text = [TTStyledText textFromXHTML:[displayString stringByReplacingOccurrencesOfString:@"\n" withString:@""] lineBreaks:NO URLs:NO twitterSpecific:NO];
 		[heightTester sizeToFit];
 		int baseHeight = 38;
 		BOOL withPhoto = [[FacebookProxy instance] doesHavePhoto:fbItem];
@@ -270,7 +275,7 @@
 	NSString *attribution = [fbItem objectForKey:@"attribution"];
 	if ([attribution isKindOfClass:[NSString class]]) {
 		if ([attribution isEqualToString:@"Kickball!"]) {
-			displayString = [NSString stringWithFormat:@"%@ - via <span class=\"fbRedText\">%@</span>",displayString, attribution];
+			displayString = [NSString stringWithFormat:@"%@ \n(via <span class=\"fbRedText\">%@</span>)",displayString, attribution];
 		}
 	}
     BOOL withPhoto = [[FacebookProxy instance] doesHavePhoto:fbItem];
@@ -297,7 +302,9 @@
 	 */
     cell.fbProfilePicUrl = [[FacebookProxy instance] profilePicUrlFrom:[fbItem objectForKey:@"actor_id"]];
 	
-    cell.tweetText.text = [TTStyledText textFromXHTML:[displayString stringByReplacingOccurrencesOfString:@"\n" withString:@""] lineBreaks:NO URLs:NO twitterSpecific:NO];
+   //cell.tweetText.text = [TTStyledText textFromXHTML:[displayString stringByReplacingOccurrencesOfString:@"\n" withString:@""] lineBreaks:NO URLs:NO twitterSpecific:NO];
+
+	cell.tweetText.text = [TTStyledText textFromXHTML:displayString lineBreaks:YES URLs:NO twitterSpecific:NO];
 	NSDictionary* commentDict = [fbItem objectForKey:@"comments"];
     if(commentDict){
 		[cell setNumberOfComments:[(NSNumber*)[commentDict objectForKey:@"count"] intValue]];

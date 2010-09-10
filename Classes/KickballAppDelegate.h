@@ -103,6 +103,7 @@ void uncaughtExceptionHandler(NSException *exception);
 -(void)createInitialTwitterView;
 -(void)loggedOutOfTwitter;
 -(void)loggedOutOfFoursquare;
+-(void)loggedOutOfFacebook;
 -(void)loggedInToTwitter;
 -(void)loggedInToFoursquare;
 -(void)pressOptionsLeft;

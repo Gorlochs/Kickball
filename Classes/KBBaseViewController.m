@@ -102,14 +102,11 @@ const NSString *kickballDomain = @"http://kickball.gorlochs.com/kickball";
             [twitterTab setImage:[UIImage imageNamed:@"btn-footerTW03.png"] forState:UIControlStateNormal];
             [facebookTab setImage:[UIImage imageNamed:@"btn-footerFB01.png"] forState:UIControlStateNormal];
 			if ([FacebookProxy instance].profilePic) {
-				DLog(@"[FacebookProxy instance].profilePic class: %@", [[FacebookProxy instance].profilePic class]);
-				DLog(@"[FacebookProxy instance].profilePic: %@", [FacebookProxy instance].profilePic);
+				//DLog(@"[FacebookProxy instance].profilePic class: %@", [[FacebookProxy instance].profilePic class]);
+				//DLog(@"[FacebookProxy instance].profilePic: %@", [FacebookProxy instance].profilePic);
 				[signedInUserIcon setImage:[FacebookProxy instance].profilePic forState:UIControlStateNormal];
 			} else {
-				GraphAPI *graph = [[FacebookProxy instance] newGraph];
-				[FacebookProxy instance].profilePic = [graph getProfilePhotoForObject:@"me"];
-				[graph release];
-				[signedInUserIcon setImage:[FacebookProxy instance].profilePic forState:UIControlStateNormal];
+				[signedInUserIcon setImage:[UIImage imageNamed:@"icon-default.png"] forState:UIControlStateNormal];
 			}
 			[signedInUserIcon setAdjustsImageWhenDisabled:NO];
 			[signedInUserIcon setEnabled:NO];

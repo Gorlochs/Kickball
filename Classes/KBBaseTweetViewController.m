@@ -170,7 +170,7 @@
 										   constrainedToSize:maximumLabelSize 
 											   lineBreakMode:UILineBreakModeWordWrap];
 	
-	return expectedLabelSize.height + 48.0; // > MAX_LABEL_HEIGHT ? expectedLabelSize.height + 30.0 : MAX_LABEL_HEIGHT;
+	return expectedLabelSize.height + 46.0; // > MAX_LABEL_HEIGHT ? expectedLabelSize.height + 30.0 : MAX_LABEL_HEIGHT;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

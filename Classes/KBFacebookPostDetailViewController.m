@@ -87,10 +87,12 @@
 	NSString *attribution = [fbItem objectForKey:@"attribution"];
 	if ([attribution isKindOfClass:[NSString class]]) {
 		if ([attribution isEqualToString:@"Kickball!"]) {
-			displayString = [NSString stringWithFormat:@"%@ - via <span class=\"fbLargeRedText\">%@</span>",displayString, attribution];
+			displayString = [NSString stringWithFormat:@"%@ \n(via <span class=\"fbLargeRedText\">%@</span>)",displayString, attribution];
 		}
 	}
-	fbPostText.text = [TTStyledText textFromXHTML:[displayString stringByReplacingOccurrencesOfString:@"\n" withString:@""] lineBreaks:YES URLs:YES twitterSpecific:NO];
+	fbPostText.text = [TTStyledText textFromXHTML:displayString lineBreaks:YES URLs:NO twitterSpecific:NO];
+
+	//fbPostText.text = [TTStyledText textFromXHTML:[displayString stringByReplacingOccurrencesOfString:@"\n" withString:@""] lineBreaks:YES URLs:YES twitterSpecific:NO];
 	NSDictionary *commentDict = [fbItem objectForKey:@"comments"];
 	comments = [[NSArray alloc] initWithArray:(NSArray*)[commentDict objectForKey:@"comment_list"]];
 	numComments = [(NSNumber*)[commentDict objectForKey:@"count"] intValue];
@@ -287,7 +289,7 @@
 		case 0:
 			comment = [comments objectAtIndex:indexPath.row];
 			NSString *displayString = [NSString	 stringWithFormat:@"<span class=\"fbBlueText\">%@</span> %@",[[FacebookProxy instance] userNameFrom:[comment objectForKey:@"fromid"]], [comment objectForKey:@"text"]];
-			commentHightTester.text = [TTStyledText textFromXHTML:displayString lineBreaks:NO URLs:NO twitterSpecific:NO];
+			commentHightTester.text = [TTStyledText textFromXHTML:displayString lineBreaks:YES URLs:NO twitterSpecific:NO];
 			[commentHightTester sizeToFit];
 			return commentHightTester.frame.size.height+30 > 58 ? commentHightTester.frame.size.height+30 : 58;
 		case 1:
@@ -328,7 +330,7 @@
 	NSDictionary *comment = [comments objectAtIndex:indexPath.row];
 	NSString *displayString = [NSString	 stringWithFormat:@"<span class=\"fbBlueText\">%@</span> %@",[[FacebookProxy instance] userNameFrom:[comment objectForKey:@"fromid"]], [comment objectForKey:@"text"]];
 	cell.fbPictureUrl = [[FacebookProxy instance] profilePicUrlFrom:[comment objectForKey:@"fromid"]];
-	cell.commentText.text = [TTStyledText textFromXHTML:displayString lineBreaks:NO URLs:NO twitterSpecific:NO];
+	cell.commentText.text = [TTStyledText textFromXHTML:displayString lineBreaks:YES URLs:NO twitterSpecific:NO];
 	[cell.commentText sizeToFit];
 	[cell.commentText setNeedsDisplay];
 	return cell;
