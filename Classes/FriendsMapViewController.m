@@ -199,7 +199,7 @@
     mapViewer.showsUserLocation = NO;
     [mapViewer release];
     
-    [checkins release];
+    //[checkins release];
 	[super dealloc]; // I assume that this is just so that there is no Xcode warning
 }
 
