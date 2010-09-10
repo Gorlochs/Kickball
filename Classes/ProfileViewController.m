@@ -225,34 +225,12 @@
 }
 
 - (void)dealloc {
-//    [badgeCell release];
-//    [addFriendCell release];
-//    [friendActionCell release];
-//    [friendPendingCell release];
-//    [friendHistoryCell release];
-//    [friendHistorySplitCell release];
     [userId release];
     [user release];
     [twitterStatuses release];
     [checkin release];
-    
-//    [name release];
-//    [location release];
-//    [lastCheckinAddress release];
-//    [userIcon release];
-//    [textButton release];
-//    [callButton release];
-//    [emailButton release];
-//    [twitterButton release];
-//    [facebookButton release];
-//    [locationOverlayButton release];
-    
     [userPhotos release];
-//    [profileOptionsView release];
-//    [profileInfoView release];
-//    [photoCell release];
-//    [checkinNotificationSwitch release];
-//    [photoNotificationSwitch release];
+    [pool release];
     
     [super dealloc];
 }

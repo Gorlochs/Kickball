@@ -422,16 +422,22 @@
 
 
 - (void)dealloc {
-	[nextPageURL release];
-	[comments release];
-	[commentHightTester release];
-	[iconBgImage release];
-	[userIcon release];
-	[dateLabel release];
-	[fbPostText release];
 	[fbItem release];
 	[postView release];
 	[commentView release];
+    
+	[userIcon release];
+	[iconBgImage release];
+	[fbPostText release];
+	[commentHightTester release];
+	[dateLabel release];
+    [fbPictureUrl release];
+    [pictureThumb1 release];
+    [pictureButt release];
+    [pictureAlbumId release];
+	[comments release];
+	[nextPageURL release];
+    
     [super dealloc];
 }
 

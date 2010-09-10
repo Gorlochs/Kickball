@@ -383,6 +383,9 @@
 	photoManager.delegate = nil;
 	[photoImage release];
 	[delegate release];
+    [pool release];
+    [tweetPhoto release];
+    [tweetPhotoResponse release];
     [super dealloc];
 }
 

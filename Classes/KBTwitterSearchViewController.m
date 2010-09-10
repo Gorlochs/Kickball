@@ -152,6 +152,7 @@
 
 -(void)dealloc{
 	[localTwitterArray release];
+    [searchTerms release];
 	[super dealloc];
 }
 

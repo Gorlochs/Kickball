@@ -323,6 +323,8 @@ NSInteger eventsDateSort(id e1, id e2, void *context) {
 
 
 - (void)dealloc {
+    [venues release];
+    [coverButton release];
 	[eventsFeed release];
     [super dealloc];
 }

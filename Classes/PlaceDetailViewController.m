@@ -1674,6 +1674,7 @@
     [goodies release];
     [photoSource release];
     [photoImage release];
+    [photoMessageViewController release];
     
     [tipController release];
     [checkinViewController release];

@@ -260,13 +260,17 @@
 }
 
 - (void)dealloc {
-	[pictureAlbumId release];
-	[fbProfilePicUrl release];
-    [userName release];
     [tweetText release];
     [dateLabel release];
+	[fbProfilePicUrl release];
+    [fbPictureUrl release];
+    [userName release];
     [commentBG release];
 	[commentNumber release];
+    [pictureThumb1 release];
+    [pictureButt release];
+	[pictureAlbumId release];
+    [pictureIndex release];
     [super dealloc];
 }
 

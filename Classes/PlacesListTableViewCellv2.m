@@ -119,7 +119,6 @@
     
     [venueName release];
     [venueAddress release];
-    
 
     [specialImage release];
 	
