@@ -246,7 +246,7 @@
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) { // Friend/I'm Here/Friending-Status row
-        if ([user.userId isEqualToString:[self getAuthenticatedUser].userId] || !user.checkin.venue.venueid) {
+        if ([user.userId isEqualToString:[self getAuthenticatedUser].userId] || (!user.checkin.venue.venueid && user.isFriend)) {
             return 0;
         } else {
             return 1;
