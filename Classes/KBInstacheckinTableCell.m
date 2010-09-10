@@ -128,6 +128,8 @@
 
 
 - (void)dealloc {
+    [venueId release];
+    [spinnerView release];
     [super dealloc];
 }
 

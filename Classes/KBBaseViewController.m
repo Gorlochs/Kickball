@@ -264,17 +264,10 @@ const NSString *kickballDomain = @"http://kickball.gorlochs.com/kickball";
     if (popupView) [popupView release];
     
     if (refreshHeaderView) [refreshHeaderView release];
-	
-    //[footerTabView release];
-//    [optionsTab release];
-//    [facebookTab release];
-//    [twitterTab release];
-//    [foursquareTab release];
-//    [signedInUserIcon release];
-    
-    //[profileController release];
     
 //    [iconImageView release];  // uncommenting this crashes shit. not sure why.
+    [progressBarTimer release];
+    [footerTabView release];
     
     [super dealloc];
 	    DLog(@"kickball baseview dealloc %i", [Utilities getMemory]);

@@ -791,6 +791,7 @@
     [postPhotosToFacebookSwitch release];
     
     [whatIsThisButton release];
+    [fbButton release];
     
     [super dealloc];
 }

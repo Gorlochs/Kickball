@@ -267,6 +267,7 @@
     [centerHeaderButton release];
     [homeButton release];
     [backButton release];
+    [fbLoginView release];
     //[facebookHeaderView release];
     [super dealloc];
 }

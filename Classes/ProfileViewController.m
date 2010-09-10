@@ -607,7 +607,7 @@
     [gorlochRequest setTimeOutSeconds:500];
     [gorlochRequest setDelegate:self];
     [gorlochRequest startAsynchronous];
-	[pool release];
+	//[pool release];
 }
 
 - (void) photoRequestWentWrong:(ASIHTTPRequest *) request {

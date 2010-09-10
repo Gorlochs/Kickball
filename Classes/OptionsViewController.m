@@ -248,6 +248,8 @@
 
 
 - (void)dealloc {
+    [pendingFriendRequests release];
+    [cellArray release];
     [super dealloc];
 }
 

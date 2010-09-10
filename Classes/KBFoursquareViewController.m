@@ -177,6 +177,7 @@
 //    [centerHeaderButton release];
 //    [homeButton release];
 //    [backButton release];
+    [fsLoginView release];
     [super dealloc];
 }
 

@@ -216,6 +216,7 @@
 - (void)dealloc {
 	//twitterManager.delegate = nil;
     //[twitterEngine release];
+    [twLoginView release];
     [super dealloc];
 }
 
