@@ -368,7 +368,6 @@
 	[nextPageURL release];
 	[TTStyleSheet setGlobalStyleSheet:nil];
 	[newsFeed release];
-	//[fbLoginView release];
     [super dealloc];
 }
 

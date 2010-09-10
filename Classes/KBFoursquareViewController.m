@@ -122,6 +122,7 @@
 	//hide loginView and load user info
 	if (fsLoginView!=nil) {
 		[fsLoginView removeFromSuperview];
+        //[fsLoginView release];
 		fsLoginView = nil;
 		//[self refreshMainFeed];
 		//[self startProgressBar:@"Retrieving news feed..."];
@@ -177,7 +178,6 @@
 //    [centerHeaderButton release];
 //    [homeButton release];
 //    [backButton release];
-    [fsLoginView release];
     [super dealloc];
 }
 

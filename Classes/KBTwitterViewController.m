@@ -152,6 +152,7 @@
 	//hide loginView and load user info
 	if (twLoginView!=nil) {
 		[twLoginView removeFromSuperview];
+        //[twLoginView release];
 		twLoginView = nil;
 		//[self refreshMainFeed];
 		//[self startProgressBar:@"Retrieving news feed..."];
@@ -216,7 +217,6 @@
 - (void)dealloc {
 	//twitterManager.delegate = nil;
     //[twitterEngine release];
-    [twLoginView release];
     [super dealloc];
 }
 
